@@ -1,3 +1,8 @@
 /build/app/intermediates/*
 /build/app/outputs/*
-/build/realm/intermediates/*
+/build/*
+
+/build/.cxx/Debug/*
+
+.dart_tool/flutter_build/*
+.dart_tool/pub/bin/*
