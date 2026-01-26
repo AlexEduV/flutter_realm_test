@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
@@ -30,12 +32,27 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       ),
       body: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
-          return AnimatedList(
-            key: _listKey,
-            itemBuilder: (context, index, animation) {
-              return _buildItem(state.cars[index], animation, index);
-            },
-            initialItemCount: state.cars.length,
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppDimensions.normalM,
+                  top: AppDimensions.normalM,
+                ),
+                child: Text('Results', style: AppTextStyles.roboto16),
+              ),
+
+              Expanded(
+                child: AnimatedList(
+                  key: _listKey,
+                  itemBuilder: (context, index, animation) {
+                    return _buildItem(state.cars[index], animation, index);
+                  },
+                  initialItemCount: state.cars.length,
+                ),
+              ),
+            ],
           );
         },
       ),
