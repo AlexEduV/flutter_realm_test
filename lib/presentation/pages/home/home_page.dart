@@ -76,9 +76,9 @@ class _HomePageState extends State<HomePage> {
       realm.add(Car(ObjectId(), 'Tesla', model: 'Y', kilometers: 200));
     });
 
-    setState(() {
-      cars = realm.all<Car>().toList();
-    });
+    cars = realm.all<Car>().toList();
+
+    _listKey.currentState?.insertItem(cars.length - 1);
   }
 
   Widget _buildItem(Car car, Animation<double> animation, int index) {
