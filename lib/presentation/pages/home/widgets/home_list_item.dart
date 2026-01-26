@@ -47,7 +47,28 @@ class HomeListItem extends StatelessWidget {
               style: AppTextStyles.roboto24,
             ),
 
-            Text('\$ ${car?.price.toString() ?? '0'}', style: AppTextStyles.roboto18),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  spacing: AppDimensions.minorS,
+                  children: [
+                    Text('\$ ${car?.price.toString() ?? '0'}', style: AppTextStyles.roboto20),
+
+                    Icon(Icons.whatshot, color: Colors.redAccent, size: 18),
+                  ],
+                ),
+
+                Row(
+                  spacing: AppDimensions.minorS,
+                  children: [
+                    Icon(Icons.location_pin, size: 18),
+
+                    Text('${car?.distanceTo ?? '0'} km away', style: AppTextStyles.roboto20),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
       ),
