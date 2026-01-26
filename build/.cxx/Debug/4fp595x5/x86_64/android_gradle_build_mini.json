@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/oleksandr_aksonov/fvm/versions/3.32.5/packages/flutter_tools/gradle/src/main/scripts/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/oleksandr_aksonov/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/oleksandr_aksonov/StudioProjects/test_futter_project/build/.cxx/Debug/4fp595x5/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/oleksandr_aksonov/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/oleksandr_aksonov/StudioProjects/test_futter_project/build/.cxx/Debug/4fp595x5/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
