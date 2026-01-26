@@ -18,13 +18,18 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     String? model,
     String? year,
     bool? isChecked = false,
+    bool? isHotProposition = false,
     int? kilometers = 500,
+    int? distanceTo,
+    int price = 0,
     Person? owner,
   }) {
     if (!_defaultsSet) {
       _defaultsSet = RealmObjectBase.setDefaults<Car>({
         'isChecked': false,
+        'isHotProposition': false,
         'kilometers': 500,
+        'price': 0,
       });
     }
     RealmObjectBase.set(this, 'id', id);
@@ -32,7 +37,10 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'model', model);
     RealmObjectBase.set(this, 'year', year);
     RealmObjectBase.set(this, 'isChecked', isChecked);
+    RealmObjectBase.set(this, 'isHotProposition', isHotProposition);
     RealmObjectBase.set(this, 'kilometers', kilometers);
+    RealmObjectBase.set(this, 'distanceTo', distanceTo);
+    RealmObjectBase.set(this, 'price', price);
     RealmObjectBase.set(this, 'owner', owner);
   }
 
@@ -66,9 +74,26 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   set isChecked(bool? value) => RealmObjectBase.set(this, 'isChecked', value);
 
   @override
+  bool? get isHotProposition =>
+      RealmObjectBase.get<bool>(this, 'isHotProposition') as bool?;
+  @override
+  set isHotProposition(bool? value) =>
+      RealmObjectBase.set(this, 'isHotProposition', value);
+
+  @override
   int? get kilometers => RealmObjectBase.get<int>(this, 'kilometers') as int?;
   @override
   set kilometers(int? value) => RealmObjectBase.set(this, 'kilometers', value);
+
+  @override
+  int? get distanceTo => RealmObjectBase.get<int>(this, 'distanceTo') as int?;
+  @override
+  set distanceTo(int? value) => RealmObjectBase.set(this, 'distanceTo', value);
+
+  @override
+  int get price => RealmObjectBase.get<int>(this, 'price') as int;
+  @override
+  set price(int value) => RealmObjectBase.set(this, 'price', value);
 
   @override
   Person? get owner => RealmObjectBase.get<Person>(this, 'owner') as Person?;
@@ -94,7 +119,10 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       'model': model.toEJson(),
       'year': year.toEJson(),
       'isChecked': isChecked.toEJson(),
+      'isHotProposition': isHotProposition.toEJson(),
       'kilometers': kilometers.toEJson(),
+      'distanceTo': distanceTo.toEJson(),
+      'price': price.toEJson(),
       'owner': owner.toEJson(),
     };
   }
@@ -109,7 +137,13 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
         model: fromEJson(ejson['model']),
         year: fromEJson(ejson['year']),
         isChecked: fromEJson(ejson['isChecked'], defaultValue: false),
+        isHotProposition: fromEJson(
+          ejson['isHotProposition'],
+          defaultValue: false,
+        ),
         kilometers: fromEJson(ejson['kilometers'], defaultValue: 500),
+        distanceTo: fromEJson(ejson['distanceTo']),
+        price: fromEJson(ejson['price'], defaultValue: 0),
         owner: fromEJson(ejson['owner']),
       ),
       _ => raiseInvalidEJson(ejson),
@@ -125,7 +159,14 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('model', RealmPropertyType.string, optional: true),
       SchemaProperty('year', RealmPropertyType.string, optional: true),
       SchemaProperty('isChecked', RealmPropertyType.bool, optional: true),
+      SchemaProperty(
+        'isHotProposition',
+        RealmPropertyType.bool,
+        optional: true,
+      ),
       SchemaProperty('kilometers', RealmPropertyType.int, optional: true),
+      SchemaProperty('distanceTo', RealmPropertyType.int, optional: true),
+      SchemaProperty('price', RealmPropertyType.int),
       SchemaProperty(
         'owner',
         RealmPropertyType.object,

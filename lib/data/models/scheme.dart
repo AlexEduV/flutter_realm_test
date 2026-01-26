@@ -10,7 +10,10 @@ class _Car {
   String? model;
   String? year;
   bool? isChecked = false;
+  bool? isHotProposition = false;
   int? kilometers = 500;
+  int? distanceTo;
+  int price = 0;
   _Person? owner;
 }
 

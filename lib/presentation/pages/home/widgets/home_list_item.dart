@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/common/app_text_styles.dart';
 
 import '../../../../data/models/scheme.dart';
 
@@ -28,22 +29,25 @@ class HomeListItem extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(AppDimensions.contentPadding),
-        child: Row(
+        padding: const EdgeInsets.all(AppDimensions.normalM),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: AppDimensions.contentPadding,
           children: [
-            Expanded(
-              child: Text('${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}'),
-            ),
-
             Container(
-              width: 120,
-              height: 120,
+              height: 180,
               decoration: BoxDecoration(
                 color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(AppDimensions.contentPadding),
+                borderRadius: BorderRadius.circular(AppDimensions.normalM),
               ),
             ),
+
+            Text(
+              '${car?.manufacturer} ${car?.model ?? ''} ${car?.year ?? ''}'.toUpperCase(),
+              style: AppTextStyles.roboto24,
+            ),
+
+            Text('\$ ${car?.price.toString() ?? '0'}', style: AppTextStyles.roboto18),
           ],
         ),
       ),
