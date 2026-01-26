@@ -5,21 +5,21 @@ import 'package:test_futter_project/common/app_constants.dart';
 import '../../../../data/models/scheme.dart';
 
 class HomeListItem extends StatelessWidget {
-  final Car car;
-  final void Function() onDismissed;
+  final Car? car;
+  final void Function()? onDismissed;
 
   const HomeListItem({required this.car, required this.onDismissed, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      key: ValueKey(car.id),
+      key: car != null ? ValueKey(car?.id) : null,
       endActionPane: ActionPane(
         motion: DrawerMotion(),
         extentRatio: 0.25,
         children: [
           SlidableAction(
-            onPressed: (context) => onDismissed(),
+            onPressed: (context) => onDismissed?.call(),
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,
@@ -32,7 +32,9 @@ class HomeListItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: Text('${car.manufacturer} ${car.model ?? ''} ${car.year ?? ''}')),
+            Expanded(
+              child: Text('${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}'),
+            ),
 
             Container(
               width: 120,

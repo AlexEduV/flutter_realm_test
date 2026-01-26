@@ -86,24 +86,27 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _handleDelete(Car carToDelete, int index) {
-    // 1. Capture the item to show it during animation
-    final Car removedItem = carToDelete;
+    // 1. Capture the data while the object is still valid
+    final ObjectId id = carToDelete.id;
 
-    // 2. Trigger the folding animation
+    // 2. Animate out using a "Snapshot" instance of the same widget
     _listKey.currentState?.removeItem(
       index,
-      (context, animation) => _buildItem(removedItem, animation, index),
+      (context, animation) =>
+          SizeTransition(sizeFactor: animation, child: HomeListItem(car: null, onDismissed: null)),
       duration: const Duration(milliseconds: 300),
     );
 
-    // 3. Delete from Realm and local state
+    // 3. Delete once
     realm.write(() {
-      final liveCar = realm.find<Car>(carToDelete.id);
-      if (liveCar != null) realm.delete(liveCar);
+      final liveCar = realm.find<Car>(id);
+      if (liveCar != null && liveCar.isValid) {
+        realm.delete(liveCar);
+      }
     });
 
-    // setState(() {
-    //   cars.removeAt(index);
-    // });
+    setState(() {
+      cars.removeAt(index);
+    });
   }
 }
