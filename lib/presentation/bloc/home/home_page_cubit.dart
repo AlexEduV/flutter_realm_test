@@ -15,7 +15,9 @@ class HomePageCubit extends Cubit<HomePageState> {
   }
 
   void removeCarAt(int index) {
-    state.cars.removeAt(index);
-    emit(state.copyWith(cars: state.cars));
+    final cars = List<Car>.from(state.cars);
+    cars.removeAt(index);
+
+    emit(state.copyWith(cars: cars));
   }
 }
