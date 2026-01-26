@@ -55,11 +55,7 @@ class _HomePageState extends State<HomePage> {
       body: AnimatedList(
         key: _listKey,
         itemBuilder: (context, index, animation) {
-          return SizeTransition(
-            sizeFactor: animation,
-            axis: Axis.vertical,
-            child: _buildItem(cars[index], animation, index),
-          );
+          return _buildItem(cars[index], animation, index);
         },
         initialItemCount: cars.length,
       ),
