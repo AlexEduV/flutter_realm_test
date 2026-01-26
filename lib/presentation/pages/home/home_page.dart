@@ -14,6 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+
   final config = Configuration.local(
     [Car.schema, Person.schema],
     schemaVersion: 2,
@@ -50,26 +52,16 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          return HomeListItem(
-            car: cars[index],
-            onDismissed: () {
-              realm.write(() {
-                final car = realm.find<Car>(cars[index].id);
-
-                if (car != null) {
-                  realm.delete(car);
-                }
-              });
-
-              setState(() {
-                cars.removeAt(index);
-              });
-            },
+      body: AnimatedList(
+        key: _listKey,
+        itemBuilder: (context, index, animation) {
+          return SizeTransition(
+            sizeFactor: animation,
+            axis: Axis.vertical,
+            child: _buildItem(cars[index], animation, index),
           );
         },
-        itemCount: cars.length,
+        initialItemCount: cars.length,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addCarToBase,
@@ -87,5 +79,35 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       cars = realm.all<Car>().toList();
     });
+  }
+
+  Widget _buildItem(Car car, Animation<double> animation, int index) {
+    return SizeTransition(
+      sizeFactor: animation, // Controls the vertical fold
+      axis: Axis.vertical,
+      child: HomeListItem(car: car, onDismissed: () => _handleDelete(car, index)),
+    );
+  }
+
+  void _handleDelete(Car carToDelete, int index) {
+    // 1. Capture the item to show it during animation
+    final Car removedItem = carToDelete;
+
+    // 2. Trigger the folding animation
+    _listKey.currentState?.removeItem(
+      index,
+      (context, animation) => _buildItem(removedItem, animation, index),
+      duration: const Duration(milliseconds: 300),
+    );
+
+    // 3. Delete from Realm and local state
+    realm.write(() {
+      final liveCar = realm.find<Car>(carToDelete.id);
+      if (liveCar != null) realm.delete(liveCar);
+    });
+
+    // setState(() {
+    //   cars.removeAt(index);
+    // });
   }
 }
