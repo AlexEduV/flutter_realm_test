@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     final cars = serviceLocator<CarRepository>().getAllCars();
 
     _listKey.currentState?.insertItem(cars.length - 1);
-    serviceLocator<HomePageCubit>().updateCars(cars);
+    context.read<HomePageCubit>().updateCars(cars);
   }
 
   Widget _buildItem(Car car, Animation<double> animation, int index) {
@@ -78,6 +78,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     // 3. Delete once
     serviceLocator<CarRepository>().deleteCarById(id);
 
-    serviceLocator<HomePageCubit>().removeCarAt(index);
+    context.read<HomePageCubit>().removeCarAt(index);
   }
 }
