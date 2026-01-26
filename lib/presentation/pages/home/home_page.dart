@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/repositories/car_repository_impl.dart';
+import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/home_list_item.dart';
 
 import '../../../data/models/scheme.dart';
+import '../../bloc/home/home_page_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -14,7 +17,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
   late final CarRepositoryImpl carRepositoryImpl;
 
@@ -37,16 +40,17 @@ class _HomePageState extends State<HomePage> {
   );
   late Realm realm;
 
-  List<Car> cars = [];
-
   @override
   void initState() {
     super.initState();
 
     realm = Realm(config);
-    cars = realm.all<Car>().toList();
-
     carRepositoryImpl = CarRepositoryImpl(realm);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final cars = carRepositoryImpl.getAllCars();
+      context.read<HomePageCubit>().updateCars(cars);
+    });
   }
 
   @override
@@ -56,12 +60,16 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: AnimatedList(
-        key: _listKey,
-        itemBuilder: (context, index, animation) {
-          return _buildItem(cars[index], animation, index);
+      body: BlocBuilder<HomePageCubit, HomePageState>(
+        builder: (context, state) {
+          return AnimatedList(
+            key: _listKey,
+            itemBuilder: (context, index, animation) {
+              return _buildItem(state.cars[index], animation, index);
+            },
+            initialItemCount: state.cars.length,
+          );
         },
-        initialItemCount: cars.length,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addCarToBase,
@@ -73,9 +81,10 @@ class _HomePageState extends State<HomePage> {
 
   void _addCarToBase() {
     carRepositoryImpl.addCar(Car(ObjectId(), 'Tesla', model: 'Y', kilometers: 200));
-    cars = carRepositoryImpl.getAllCars();
+    final cars = carRepositoryImpl.getAllCars();
 
     _listKey.currentState?.insertItem(cars.length - 1);
+    context.read<HomePageCubit>().updateCars(cars);
   }
 
   Widget _buildItem(Car car, Animation<double> animation, int index) {
@@ -101,8 +110,6 @@ class _HomePageState extends State<HomePage> {
     // 3. Delete once
     carRepositoryImpl.deleteCarById(id);
 
-    setState(() {
-      cars.removeAt(index);
-    });
+    context.read<HomePageCubit>().removeCarAt(index);
   }
 }
