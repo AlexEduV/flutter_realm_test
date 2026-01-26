@@ -76,8 +76,8 @@ as List<Car>,
 /// @nodoc
 
 
-class _HomePageState implements HomePageState {
-  const _HomePageState({final  List<Car> cars = const []}): _cars = cars;
+class _HomePageState extends HomePageState {
+  const _HomePageState({final  List<Car> cars = const []}): _cars = cars,super._();
   
 
  final  List<Car> _cars;
