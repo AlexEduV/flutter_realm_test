@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/data/repositories/car_repository_impl.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/home_list_item.dart';
 
 import '../../../data/models/scheme.dart';
@@ -15,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+  late final CarRepositoryImpl carRepositoryImpl;
 
   final config = Configuration.local(
     [Car.schema, Person.schema],
@@ -43,6 +45,8 @@ class _HomePageState extends State<HomePage> {
 
     realm = Realm(config);
     cars = realm.all<Car>().toList();
+
+    carRepositoryImpl = CarRepositoryImpl(realm);
   }
 
   @override
@@ -68,11 +72,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _addCarToBase() {
-    realm.write(() {
-      realm.add(Car(ObjectId(), 'Tesla', model: 'Y', kilometers: 200));
-    });
-
-    cars = realm.all<Car>().toList();
+    carRepositoryImpl.addCar(Car(ObjectId(), 'Tesla', model: 'Y', kilometers: 200));
+    cars = carRepositoryImpl.getAllCars();
 
     _listKey.currentState?.insertItem(cars.length - 1);
   }
@@ -98,12 +99,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     // 3. Delete once
-    realm.write(() {
-      final liveCar = realm.find<Car>(id);
-      if (liveCar != null && liveCar.isValid) {
-        realm.delete(liveCar);
-      }
-    });
+    carRepositoryImpl.deleteCarById(id);
 
     setState(() {
       cars.removeAt(index);
