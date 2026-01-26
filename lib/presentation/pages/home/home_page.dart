@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/data/repositories/car_repository_impl.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/home_list_item.dart';
 
@@ -19,39 +20,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
-  late final CarRepositoryImpl carRepositoryImpl;
-
-  final config = Configuration.local(
-    [Car.schema, Person.schema],
-    schemaVersion: 2,
-    migrationCallback: (migration, oldVersion) {
-      //add object id
-      if (oldVersion < 2) {
-        final oldCars = migration.oldRealm.all('Car');
-
-        for (final oldCar in oldCars) {
-          final newCar = migration.findInNewRealm<Car>(oldCar);
-          if (newCar != null) {
-            newCar.id = ObjectId();
-          }
-        }
-      }
-    },
-  );
-  late Realm realm;
-
-  @override
-  void initState() {
-    super.initState();
-
-    realm = Realm(config);
-    carRepositoryImpl = CarRepositoryImpl(realm);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final cars = carRepositoryImpl.getAllCars();
-      context.read<HomePageCubit>().updateCars(cars);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +48,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void _addCarToBase() {
-    carRepositoryImpl.addCar(Car(ObjectId(), 'Tesla', model: 'Y', kilometers: 200));
-    final cars = carRepositoryImpl.getAllCars();
+    serviceLocator<CarRepository>().addCar(Car(ObjectId(), 'Tesla', model: 'Y', kilometers: 200));
+    final cars = serviceLocator<CarRepository>().getAllCars();
 
     _listKey.currentState?.insertItem(cars.length - 1);
-    context.read<HomePageCubit>().updateCars(cars);
+    serviceLocator<HomePageCubit>().updateCars(cars);
   }
 
   Widget _buildItem(Car car, Animation<double> animation, int index) {
@@ -108,8 +76,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     );
 
     // 3. Delete once
-    carRepositoryImpl.deleteCarById(id);
+    serviceLocator<CarRepository>().deleteCarById(id);
 
-    context.read<HomePageCubit>().removeCarAt(index);
+    serviceLocator<HomePageCubit>().removeCarAt(index);
   }
 }

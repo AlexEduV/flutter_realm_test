@@ -1,13 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
 
 import '../../../data/models/scheme.dart';
 
 class HomePageCubit extends Cubit<HomePageState> {
-  HomePageCubit() : super(HomePageState());
+  HomePageCubit(this._carRepository) : super(HomePageState());
+
+  final CarRepository _carRepository;
 
   void init() {
-    emit(state.copyWith(cars: []));
+    final cars = _carRepository.getAllCars();
+    emit(state.copyWith(cars: cars));
   }
 
   void updateCars(List<Car> newValue) {
