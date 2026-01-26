@@ -6,3 +6,6 @@
 
 .dart_tool/flutter_build/*
 .dart_tool/pub/bin/*
+.dart_tool/*
+
+.idea/*

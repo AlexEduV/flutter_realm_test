@@ -9,13 +9,16 @@
       "dependencies": [
         "cupertino_icons",
         "flutter",
+        "flutter_bloc",
         "flutter_slidable",
+        "freezed_annotation",
         "realm"
       ],
       "devDependencies": [
         "build_runner",
         "flutter_lints",
-        "flutter_test"
+        "flutter_test",
+        "freezed"
       ]
     },
     {
@@ -83,6 +86,24 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "freezed_annotation",
+      "version": "3.1.0",
+      "dependencies": [
+        "collection",
+        "json_annotation",
+        "meta"
+      ]
+    },
+    {
+      "name": "flutter_bloc",
+      "version": "9.1.1",
+      "dependencies": [
+        "bloc",
+        "flutter",
+        "provider"
       ]
     },
     {
@@ -524,6 +545,29 @@
       ]
     },
     {
+      "name": "json_annotation",
+      "version": "4.9.0",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "provider",
+      "version": "6.1.5+1",
+      "dependencies": [
+        "collection",
+        "flutter",
+        "nested"
+      ]
+    },
+    {
+      "name": "bloc",
+      "version": "9.2.0",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
       "name": "realm_dart",
       "version": "20.2.0",
       "dependencies": [
@@ -589,13 +633,6 @@
       "version": "1.0.1",
       "dependencies": [
         "web"
-      ]
-    },
-    {
-      "name": "json_annotation",
-      "version": "4.9.0",
-      "dependencies": [
-        "meta"
       ]
     },
     {
@@ -671,6 +708,17 @@
       ]
     },
     {
+      "name": "leak_tracker",
+      "version": "11.0.2",
+      "dependencies": [
+        "clock",
+        "collection",
+        "meta",
+        "path",
+        "vm_service"
+      ]
+    },
+    {
       "name": "term_glyph",
       "version": "1.2.2",
       "dependencies": []
@@ -681,6 +729,13 @@
       "dependencies": [
         "source_span",
         "string_scanner"
+      ]
+    },
+    {
+      "name": "nested",
+      "version": "1.0.0",
+      "dependencies": [
+        "flutter"
       ]
     },
     {
@@ -771,6 +826,11 @@
       "dependencies": []
     },
     {
+      "name": "vm_service",
+      "version": "15.0.0",
+      "dependencies": []
+    },
+    {
       "name": "intl",
       "version": "0.20.2",
       "dependencies": [
@@ -813,20 +873,18 @@
       "dependencies": []
     },
     {
-      "name": "leak_tracker",
-      "version": "11.0.2",
+      "name": "freezed",
+      "version": "3.0.6",
       "dependencies": [
-        "clock",
+        "analyzer",
+        "build",
+        "build_config",
         "collection",
+        "freezed_annotation",
+        "json_annotation",
         "meta",
-        "path",
-        "vm_service"
+        "source_gen"
       ]
-    },
-    {
-      "name": "vm_service",
-      "version": "15.0.0",
-      "dependencies": []
     }
   ],
   "configVersion": 1
