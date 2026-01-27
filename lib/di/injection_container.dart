@@ -10,7 +10,7 @@ import '../presentation/bloc/home/home_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 
-Future<void> init() async {
+Future<void> initDependeciesContainer() async {
   //Register Realm
   final config = Configuration.local(
     [Car.schema, Person.schema],
