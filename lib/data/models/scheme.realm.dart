@@ -14,6 +14,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
 
   Car(
     ObjectId id,
+    String carId,
     String manufacturer, {
     String? model,
     String? year,
@@ -33,6 +34,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       });
     }
     RealmObjectBase.set(this, 'id', id);
+    RealmObjectBase.set(this, 'carId', carId);
     RealmObjectBase.set(this, 'manufacturer', manufacturer);
     RealmObjectBase.set(this, 'model', model);
     RealmObjectBase.set(this, 'year', year);
@@ -50,6 +52,11 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   ObjectId get id => RealmObjectBase.get<ObjectId>(this, 'id') as ObjectId;
   @override
   set id(ObjectId value) => RealmObjectBase.set(this, 'id', value);
+
+  @override
+  String get carId => RealmObjectBase.get<String>(this, 'carId') as String;
+  @override
+  set carId(String value) => RealmObjectBase.set(this, 'carId', value);
 
   @override
   String get manufacturer =>
@@ -115,6 +122,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   EJsonValue toEJson() {
     return <String, dynamic>{
       'id': id.toEJson(),
+      'carId': carId.toEJson(),
       'manufacturer': manufacturer.toEJson(),
       'model': model.toEJson(),
       'year': year.toEJson(),
@@ -131,21 +139,27 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   static Car _fromEJson(EJsonValue ejson) {
     if (ejson is! Map<String, dynamic>) return raiseInvalidEJson(ejson);
     return switch (ejson) {
-      {'id': EJsonValue id, 'manufacturer': EJsonValue manufacturer} => Car(
-        fromEJson(id),
-        fromEJson(manufacturer),
-        model: fromEJson(ejson['model']),
-        year: fromEJson(ejson['year']),
-        isChecked: fromEJson(ejson['isChecked'], defaultValue: false),
-        isHotProposition: fromEJson(
-          ejson['isHotProposition'],
-          defaultValue: false,
+      {
+        'id': EJsonValue id,
+        'carId': EJsonValue carId,
+        'manufacturer': EJsonValue manufacturer,
+      } =>
+        Car(
+          fromEJson(id),
+          fromEJson(carId),
+          fromEJson(manufacturer),
+          model: fromEJson(ejson['model']),
+          year: fromEJson(ejson['year']),
+          isChecked: fromEJson(ejson['isChecked'], defaultValue: false),
+          isHotProposition: fromEJson(
+            ejson['isHotProposition'],
+            defaultValue: false,
+          ),
+          kilometers: fromEJson(ejson['kilometers'], defaultValue: 500),
+          distanceTo: fromEJson(ejson['distanceTo']),
+          price: fromEJson(ejson['price'], defaultValue: 0),
+          owner: fromEJson(ejson['owner']),
         ),
-        kilometers: fromEJson(ejson['kilometers'], defaultValue: 500),
-        distanceTo: fromEJson(ejson['distanceTo']),
-        price: fromEJson(ejson['price'], defaultValue: 0),
-        owner: fromEJson(ejson['owner']),
-      ),
       _ => raiseInvalidEJson(ejson),
     };
   }
@@ -155,6 +169,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     register(_toEJson, _fromEJson);
     return const SchemaObject(ObjectType.realmObject, Car, 'Car', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
+      SchemaProperty('carId', RealmPropertyType.string),
       SchemaProperty('manufacturer', RealmPropertyType.string),
       SchemaProperty('model', RealmPropertyType.string, optional: true),
       SchemaProperty('year', RealmPropertyType.string, optional: true),

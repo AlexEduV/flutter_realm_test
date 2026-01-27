@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   void _addCarToBase() {
     serviceLocator<CarRepository>().addCar(
-      Car(ObjectId(), 'Tesla', model: 'Model Y', kilometers: 200),
+      Car(ObjectId(), '3', 'Tesla', model: 'Model Y', kilometers: 200),
     );
     final cars = serviceLocator<CarRepository>().getAllCars();
 

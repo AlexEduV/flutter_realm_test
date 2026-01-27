@@ -1,7 +1,7 @@
 import '../../data/dto/car_dto.dart';
 
 class CarEntity {
-  final int carId;
+  final String carId;
   final String model;
   final String manufacturer;
   final String? year;

@@ -1,5 +1,5 @@
 class CarDto {
-  final int carId;
+  final String carId;
   final String model;
   final String manufacturer;
   final String? year;
@@ -24,7 +24,7 @@ class CarDto {
   });
 
   factory CarDto.fromJson(Map<String, dynamic> json) => CarDto(
-    carId: json['id'] as int,
+    carId: json['id'] as String,
     model: json['model'] as String,
     manufacturer: json['manufacturer'] as String,
     year: json['year'] as String?,

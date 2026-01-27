@@ -1,4 +1,4 @@
-import 'dart:async'; // Import TimerStream
+import 'dart:async';
 import 'dart:math';
 
 import 'package:rxdart/rxdart.dart';
@@ -12,13 +12,13 @@ class MockCarApiService {
   // Track the subscription so we can stop the timer if needed
   StreamSubscription? _liveUpdateSubscription;
 
-  Future<void> fetchCars() async {
+  Future<List<CarDto>> fetchCars() async {
     // Simulate initial load
     await Future.delayed(const Duration(seconds: 2));
 
     final initialData = [
       CarDto(
-        carId: 1,
+        carId: '1',
         manufacturer: 'Porsche',
         model: '911',
         price: 120000,
@@ -26,7 +26,7 @@ class MockCarApiService {
         isHotPromotion: false,
       ),
       CarDto(
-        carId: 2,
+        carId: '2',
         manufacturer: 'Honda',
         model: 'Civic',
         price: 25000,
@@ -39,6 +39,8 @@ class MockCarApiService {
 
     // 2. Automatically start live updates after the first successful fetch
     _startHeartbeat();
+
+    return initialData;
   }
 
   void _startHeartbeat() {
@@ -57,7 +59,7 @@ class MockCarApiService {
   List<CarDto> _generateRandomUpdates() {
     return [
       CarDto(
-        carId: 1,
+        carId: '1',
         manufacturer: 'Porsche',
         model: '911',
         price: 120000 + Random().nextInt(1000), // Randomize!
@@ -66,7 +68,7 @@ class MockCarApiService {
         isHotPromotion: false,
       ),
       CarDto(
-        carId: 2,
+        carId: '2',
         manufacturer: 'Honda',
         model: 'Civic',
         price: 25000 + Random().nextInt(500), // Randomize!
