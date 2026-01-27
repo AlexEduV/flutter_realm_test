@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/utils/l10n.dart';
 
 import '../../../../data/models/scheme.dart';
 
@@ -24,7 +25,7 @@ class HomeListItem extends StatelessWidget {
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,
-            label: 'Delete',
+            label: AppLocalisations.deleteButtonTitle,
           ),
         ],
       ),
@@ -70,7 +71,7 @@ class HomeListItem extends StatelessWidget {
                         child: Icon(Icons.location_pin, size: 18),
                       ),
                       TextSpan(
-                        text: ' ${car?.distanceTo ?? 0} km away',
+                        text: ' ${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
                         style: AppTextStyles.roboto20,
                       ),
                     ],

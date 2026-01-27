@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/utils/l10n.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
@@ -40,7 +41,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   left: AppDimensions.normalM,
                   top: AppDimensions.normalM,
                 ),
-                child: Text('Results', style: AppTextStyles.roboto16),
+                //todo: finish widget as per design
+                child: Row(
+                  spacing: AppDimensions.minorS,
+                  children: [
+                    Text(AppLocalisations.results, style: AppTextStyles.roboto16),
+
+                    Text(state.cars.length.toString()),
+                  ],
+                ),
               ),
 
               Expanded(
@@ -58,7 +67,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addCarToBase,
-        tooltip: 'Add A car',
+        tooltip: AppLocalisations.addCarButtonTooltip,
         child: const Icon(Icons.add),
       ),
     );
