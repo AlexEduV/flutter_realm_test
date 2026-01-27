@@ -37,7 +37,7 @@ class MockCarApiService {
         price: 25000,
         isVerified: false,
         isHotPromotion: true,
-        year: '2015',
+        year: '2007',
       ),
     ];
 
@@ -73,6 +73,7 @@ class MockCarApiService {
         distanceTo: Random().nextInt(60),
         isVerified: true,
         isHotPromotion: false,
+        year: '2010',
       ),
       CarDto(
         id: initIds.last,
@@ -83,6 +84,7 @@ class MockCarApiService {
         distanceTo: Random().nextInt(50),
         isVerified: false,
         isHotPromotion: true,
+        year: '2007',
       ),
     ];
   }
