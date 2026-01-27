@@ -13,7 +13,7 @@ Future<void> init() async {
   //Register Realm
   final config = Configuration.local(
     [Car.schema, Person.schema],
-    schemaVersion: 3,
+    schemaVersion: 4,
     migrationCallback: (migration, oldVersion) {
       //add object id
       if (oldVersion < 2) {
