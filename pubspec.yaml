@@ -1,5 +1,5 @@
 name: test_futter_project
-description: "Test Flutter Project for realm, go-router and mockito"
+description: "Test Flutter Project for realm, go-router, rxDart and mockito"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
@@ -18,6 +18,7 @@ dependencies:
   freezed_annotation: ^3.1.0
   get_it: ^9.2.0
   rxdart: ^0.28.0
+  mockito: ^5.4.6
 
 dev_dependencies:
   flutter_test:
