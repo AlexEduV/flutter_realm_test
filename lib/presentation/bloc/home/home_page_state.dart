@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 
-import '../../../data/models/scheme.dart';
-
 part 'home_page_state.freezed.dart';
 
 @freezed
