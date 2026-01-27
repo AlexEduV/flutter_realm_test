@@ -9,3 +9,5 @@
 .dart_tool/*
 
 .idea/*
+
+coverage/*
