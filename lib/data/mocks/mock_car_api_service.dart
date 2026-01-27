@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:realm/realm.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 
@@ -8,6 +9,7 @@ class MockCarApiService {
   // 1. Single source of truth
   final _carStreamController = BehaviorSubject<List<CarDto>>();
   Stream<List<CarDto>> get carStream => _carStreamController.stream;
+  List<ObjectId> initIds = [ObjectId(), ObjectId()];
 
   // Track the subscription so we can stop the timer if needed
   StreamSubscription? _liveUpdateSubscription;
@@ -18,6 +20,7 @@ class MockCarApiService {
 
     final initialData = [
       CarDto(
+        id: initIds.first,
         carId: '1',
         manufacturer: 'Porsche',
         model: '911',
@@ -26,6 +29,7 @@ class MockCarApiService {
         isHotPromotion: false,
       ),
       CarDto(
+        id: initIds.last,
         carId: '2',
         manufacturer: 'Honda',
         model: 'Civic',
@@ -59,6 +63,7 @@ class MockCarApiService {
   List<CarDto> _generateRandomUpdates() {
     return [
       CarDto(
+        id: initIds.first,
         carId: '1',
         manufacturer: 'Porsche',
         model: '911',
@@ -68,6 +73,7 @@ class MockCarApiService {
         isHotPromotion: false,
       ),
       CarDto(
+        id: initIds.last,
         carId: '2',
         manufacturer: 'Honda',
         model: 'Civic',

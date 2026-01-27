@@ -1,4 +1,7 @@
+import 'package:realm/realm.dart';
+
 class CarDto {
+  final ObjectId id;
   final String carId;
   final String model;
   final String manufacturer;
@@ -11,6 +14,7 @@ class CarDto {
   int? price = 0;
 
   CarDto({
+    required this.id,
     required this.carId,
     required this.model,
     required this.manufacturer,
@@ -24,6 +28,7 @@ class CarDto {
   });
 
   factory CarDto.fromJson(Map<String, dynamic> json) => CarDto(
+    id: ObjectId(),
     carId: json['id'] as String,
     model: json['model'] as String,
     manufacturer: json['manufacturer'] as String,

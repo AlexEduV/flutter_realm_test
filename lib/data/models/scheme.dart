@@ -33,7 +33,7 @@ extension CarExtensions on Car {
 
   static Car fromDto(CarDto dto) {
     return Car(
-      ObjectId(),
+      dto.id,
       dto.carId,
       dto.manufacturer,
       model: dto.model,
