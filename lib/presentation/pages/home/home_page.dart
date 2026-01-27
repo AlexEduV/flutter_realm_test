@@ -12,7 +12,7 @@ import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart'
 import 'package:test_futter_project/presentation/pages/home/widgets/home_list_item.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
+  const HomePage({required this.title, super.key});
 
   final String title;
 
