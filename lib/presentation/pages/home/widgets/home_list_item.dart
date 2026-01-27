@@ -55,10 +55,7 @@ class HomeListItem extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(text: '\$ ${car?.price ?? 0} ', style: AppTextStyles.roboto20),
-                      const WidgetSpan(
-                        alignment: PlaceholderAlignment.bottom,
-                        child: Icon(Icons.whatshot, color: Colors.redAccent, size: 18),
-                      ),
+                      getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                     ],
                   ),
                 ),
@@ -66,10 +63,7 @@ class HomeListItem extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     children: [
-                      const WidgetSpan(
-                        alignment: PlaceholderAlignment.bottom,
-                        child: Icon(Icons.location_pin, size: 18),
-                      ),
+                      getSpanIcon(icon: Icons.location_pin),
                       TextSpan(
                         text: ' ${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
                         style: AppTextStyles.roboto20,
@@ -81,6 +75,17 @@ class HomeListItem extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  WidgetSpan getSpanIcon({required IconData icon, Color? color}) {
+    return WidgetSpan(
+      alignment: PlaceholderAlignment.middle,
+      baseline: TextBaseline.alphabetic,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: AppDimensions.minorS),
+        child: Icon(icon, size: 18, color: color),
       ),
     );
   }
