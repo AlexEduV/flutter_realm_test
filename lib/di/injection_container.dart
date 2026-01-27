@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/data/mocks/mock_car_api_service.dart';
 
 import '../data/models/scheme.dart';
 import '../data/repositories/car_repository_impl.dart';
@@ -30,8 +31,12 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton(() => Realm(config));
 
+  serviceLocator.registerLazySingleton(() => MockCarApiService());
+
   //Register Repository (passing Realm from GetIt)
-  serviceLocator.registerLazySingleton<CarRepository>(() => CarRepositoryImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<CarRepository>(
+    () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
+  );
 
   //Register Cubit (as a Factory, so you get a new instance if needed)
   serviceLocator.registerFactory(() => HomePageCubit(serviceLocator()));

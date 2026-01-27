@@ -31,7 +31,7 @@ class CarRepositoryImpl implements CarRepository {
 
     realm.write(() {
       for (var dto in dtos) {
-        realm.add(Car.fromDto(dto), update: true);
+        realm.add(CarExtensions.fromDto(dto), update: true);
       }
     });
 
@@ -39,7 +39,7 @@ class CarRepositoryImpl implements CarRepository {
     apiService.carStream.listen((updatedDtos) {
       realm.write(() {
         for (var dto in updatedDtos) {
-          realm.add(Car.fromDto(dto), update: true);
+          realm.add(CarExtensions.fromDto(dto), update: true);
         }
       });
     });
