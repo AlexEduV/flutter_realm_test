@@ -7,9 +7,11 @@ abstract class CarRepository {
 
   void addCar(CarEntity car);
 
-  void deleteCarById(ObjectId id);
-
   Future<void> syncCars();
 
   Stream<List<CarEntity>> watchCars();
+
+  void deleteAll();
+
+  void deleteCarById(ObjectId id);
 }

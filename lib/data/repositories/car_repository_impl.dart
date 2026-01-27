@@ -30,6 +30,8 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   Future<void> syncCars() async {
+    deleteAll();
+
     final dtos = await apiService.fetchCars();
 
     realm.write(() {
@@ -61,5 +63,12 @@ class CarRepositoryImpl implements CarRepository {
   @override
   List<CarEntity> getAllCars() {
     return realm.all<Car>().map((element) => CarEntity.fromSchema(element)).toList();
+  }
+
+  @override
+  void deleteAll() {
+    realm.write(() {
+      realm.deleteAll<Car>();
+    });
   }
 }
