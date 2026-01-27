@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/utils/l10n.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
@@ -61,7 +62,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 child: AnimatedList(
                   key: _listKey,
                   itemBuilder: (context, index, animation) {
-                    return _buildItem(state.cars[index], animation, index);
+                    return _buildItem(
+                      CarExtensions.fromEntity(state.cars[index]),
+                      animation,
+                      index,
+                    );
                   },
                   initialItemCount: state.cars.length,
                 ),
@@ -80,7 +85,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   void _addCarToBase() {
     serviceLocator<CarRepository>().addCar(
-      Car(ObjectId(), '3', 'Tesla', model: 'Model Y', kilometers: 200),
+      CarEntity(
+        carId: '3',
+        model: 'Model Y',
+        manufacturer: 'Tesla',
+        isVerified: false,
+        isHotPromotion: false,
+      ),
     );
     final cars = serviceLocator<CarRepository>().getAllCars();
 
@@ -92,7 +103,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     return SizeTransition(
       sizeFactor: animation, // Controls the vertical fold
       axis: Axis.vertical,
-      child: HomeListItem(car: car, onDismissed: () => _handleDelete(car, index)),
+      child: HomeListItem(
+        car: CarEntity.fromSchema(car),
+        onDismissed: () => _handleDelete(car, index),
+      ),
     );
   }
 

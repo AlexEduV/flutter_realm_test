@@ -45,6 +45,21 @@ extension CarExtensions on Car {
       price: dto.price ?? 0,
     );
   }
+
+  static Car fromEntity(CarEntity entity) {
+    return Car(
+      ObjectId(),
+      entity.carId,
+      entity.manufacturer,
+      model: entity.model,
+      year: entity.year,
+      isChecked: entity.isVerified,
+      isHotProposition: entity.isHotPromotion,
+      kilometers: entity.kilometers,
+      distanceTo: entity.distanceTo,
+      price: entity.price ?? 0,
+    );
+  }
 }
 
 @RealmModel()

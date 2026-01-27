@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_futter_project/domain/entities/car_entity.dart';
 
 import '../../../data/models/scheme.dart';
 
@@ -8,8 +9,8 @@ part 'home_page_state.freezed.dart';
 class HomePageState with _$HomePageState {
   const HomePageState._();
 
-  const factory HomePageState({@Default([]) List<Car> cars}) = _HomePageState;
+  const factory HomePageState({@Default([]) List<CarEntity> cars}) = _HomePageState;
 
   @override
-  List<Car> get cars => [];
+  List<CarEntity> get cars => [];
 }

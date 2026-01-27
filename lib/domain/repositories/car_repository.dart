@@ -1,11 +1,15 @@
 import 'package:realm/realm.dart';
 
-import '../../data/models/scheme.dart';
+import '../entities/car_entity.dart';
 
 abstract class CarRepository {
-  List<Car> getAllCars();
+  List<CarEntity> getAllCars();
 
-  void addCar(Car car);
+  void addCar(CarEntity car);
 
   void deleteCarById(ObjectId id);
+
+  Future<void> syncCars();
+
+  Stream<List<CarEntity>> watchCars();
 }

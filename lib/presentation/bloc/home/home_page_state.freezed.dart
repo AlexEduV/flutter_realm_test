@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomePageState {
 
- List<Car> get cars;
+ List<CarEntity> get cars;
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,7 +46,7 @@ abstract mixin class $HomePageStateCopyWith<$Res>  {
   factory $HomePageStateCopyWith(HomePageState value, $Res Function(HomePageState) _then) = _$HomePageStateCopyWithImpl;
 @useResult
 $Res call({
- List<Car> cars
+ List<CarEntity> cars
 });
 
 
@@ -66,7 +66,7 @@ class _$HomePageStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? cars = null,}) {
   return _then(_self.copyWith(
 cars: null == cars ? _self.cars : cars // ignore: cast_nullable_to_non_nullable
-as List<Car>,
+as List<CarEntity>,
   ));
 }
 
@@ -77,11 +77,11 @@ as List<Car>,
 
 
 class _HomePageState extends HomePageState {
-  const _HomePageState({final  List<Car> cars = const []}): _cars = cars,super._();
+  const _HomePageState({final  List<CarEntity> cars = const []}): _cars = cars,super._();
   
 
- final  List<Car> _cars;
-@override@JsonKey() List<Car> get cars {
+ final  List<CarEntity> _cars;
+@override@JsonKey() List<CarEntity> get cars {
   if (_cars is EqualUnmodifiableListView) return _cars;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_cars);
@@ -118,7 +118,7 @@ abstract mixin class _$HomePageStateCopyWith<$Res> implements $HomePageStateCopy
   factory _$HomePageStateCopyWith(_HomePageState value, $Res Function(_HomePageState) _then) = __$HomePageStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<Car> cars
+ List<CarEntity> cars
 });
 
 
@@ -138,7 +138,7 @@ class __$HomePageStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? cars = null,}) {
   return _then(_HomePageState(
 cars: null == cars ? _self._cars : cars // ignore: cast_nullable_to_non_nullable
-as List<Car>,
+as List<CarEntity>,
   ));
 }
 

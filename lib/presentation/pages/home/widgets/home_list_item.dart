@@ -4,10 +4,10 @@ import 'package:flutter_slidable/flutter_slidable.dart'
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/utils/l10n.dart';
-import 'package:test_futter_project/data/models/scheme.dart';
+import 'package:test_futter_project/domain/entities/car_entity.dart';
 
 class HomeListItem extends StatelessWidget {
-  final Car? car;
+  final CarEntity? car;
   final void Function()? onDismissed;
 
   const HomeListItem({required this.car, required this.onDismissed, super.key});
@@ -15,7 +15,7 @@ class HomeListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      key: car != null ? ValueKey(car?.id) : null,
+      key: car != null ? ValueKey(car?.carId) : null,
       endActionPane: ActionPane(
         motion: DrawerMotion(),
         extentRatio: 0.25,

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
@@ -13,19 +15,20 @@ class CarRepositoryImpl implements CarRepository {
   CarRepositoryImpl(this.realm, this.apiService);
 
   @override
-  void addCar(Car car) {
+  void addCar(CarEntity carEntity) {
     realm.write(() {
-      realm.add(car);
+      realm.add(CarExtensions.fromEntity(carEntity));
     });
   }
 
-  //todo: add these functions to the repository
+  @override
   Stream<List<CarEntity>> watchCars() {
     return realm.all<Car>().changes.map((changes) {
       return changes.results.map((schema) => schema.toEntity(schema)).toList();
     });
   }
 
+  @override
   Future<void> syncCars() async {
     final dtos = await apiService.fetchCars();
 
@@ -56,7 +59,7 @@ class CarRepositoryImpl implements CarRepository {
   }
 
   @override
-  List<Car> getAllCars() {
-    return realm.all<Car>().toList();
+  List<CarEntity> getAllCars() {
+    return realm.all<Car>().map((element) => CarEntity.fromSchema(element)).toList();
   }
 }
