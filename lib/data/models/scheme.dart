@@ -28,6 +28,10 @@ extension CarExtensions on Car {
       manufacturer: car.manufacturer,
       isVerified: car.isChecked ?? false,
       isHotPromotion: car.isHotProposition ?? false,
+      year: car.year,
+      kilometers: car.kilometers,
+      distanceTo: car.distanceTo,
+      price: car.price,
     );
   }
 

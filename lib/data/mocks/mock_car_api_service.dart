@@ -27,6 +27,7 @@ class MockCarApiService {
         price: 120000,
         isVerified: true,
         isHotPromotion: false,
+        year: '2010',
       ),
       CarDto(
         id: initIds.last,
@@ -36,6 +37,7 @@ class MockCarApiService {
         price: 25000,
         isVerified: false,
         isHotPromotion: true,
+        year: '2015',
       ),
     ];
 
