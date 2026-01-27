@@ -40,13 +40,19 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   left: AppDimensions.normalM,
                   top: AppDimensions.normalM,
                 ),
-                //todo: finish widget as per design
                 child: Row(
-                  spacing: AppDimensions.minorS,
+                  spacing: AppDimensions.minorL,
                   children: [
                     Text(AppLocalisations.results, style: AppTextStyles.roboto16),
 
-                    Text(state.cars.length.toString()),
+                    Container(
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+                      padding: EdgeInsets.all(AppDimensions.minorL),
+                      child: Text(
+                        state.cars.length.toString(),
+                        style: AppTextStyles.roboto16.copyWith(color: Colors.white),
+                      ),
+                    ),
                   ],
                 ),
               ),
