@@ -9,9 +9,9 @@ class CarDto {
   final String? owner;
   final bool isVerified;
   final bool isHotPromotion;
-  int? kilometers = 0;
+  int? kilometers;
   int? distanceTo;
-  int? price = 0;
+  int? price;
 
   CarDto({
     required this.id,
@@ -22,9 +22,9 @@ class CarDto {
     required this.isHotPromotion,
     this.year,
     this.owner,
-    this.kilometers,
+    this.kilometers = 0,
     this.distanceTo,
-    this.price,
+    this.price = 0,
   });
 
   factory CarDto.fromJson(Map<String, dynamic> json) => CarDto(
