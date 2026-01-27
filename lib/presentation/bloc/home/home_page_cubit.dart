@@ -11,7 +11,7 @@ class HomePageCubit extends Cubit<HomePageState> {
   final CarRepository _carRepository;
   StreamSubscription? _carSubscription;
 
-  void init() async {
+  Future<void> init() async {
     await _carRepository.syncCars();
 
     _carSubscription = _carRepository.watchCars().listen((entities) {

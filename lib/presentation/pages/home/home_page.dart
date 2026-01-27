@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder, ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
               Expanded(
                 child: AnimatedList(
-                  key: _listKey,
+                  key: state.cars.isEmpty ? const ValueKey('empty') : _listKey,
                   itemBuilder: (context, index, animation) {
                     return _buildItem(
                       CarExtensions.fromEntity(state.cars[index]),
