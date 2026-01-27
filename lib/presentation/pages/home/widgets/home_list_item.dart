@@ -1,32 +1,10 @@
-import 'package:flutter/material.dart'
-    show
-        BorderRadius,
-        BoxDecoration,
-        BuildContext,
-        Colors,
-        Column,
-        Container,
-        CrossAxisAlignment,
-        EdgeInsets,
-        Icon,
-        Icons,
-        MainAxisAlignment,
-        Padding,
-        PlaceholderAlignment,
-        Row,
-        StatelessWidget,
-        Text,
-        TextSpan,
-        ValueKey,
-        Widget,
-        WidgetSpan;
+import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
     show ActionPane, DrawerMotion, Slidable, SlidableAction;
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/utils/l10n.dart';
-
-import '../../../../data/models/scheme.dart';
+import 'package:test_futter_project/data/models/scheme.dart';
 
 class HomeListItem extends StatelessWidget {
   final Car? car;
