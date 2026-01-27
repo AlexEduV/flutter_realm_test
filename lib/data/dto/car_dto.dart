@@ -1,5 +1,5 @@
 class CarDto {
-  final int id;
+  final int carId;
   final String model;
   final String manufacturer;
   final String? year;
@@ -11,7 +11,7 @@ class CarDto {
   int? price = 0;
 
   CarDto({
-    required this.id,
+    required this.carId,
     required this.model,
     required this.manufacturer,
     required this.isVerified,
@@ -24,7 +24,7 @@ class CarDto {
   });
 
   factory CarDto.fromJson(Map<String, dynamic> json) => CarDto(
-    id: json['id'] as int,
+    carId: json['id'] as int,
     model: json['model'] as String,
     manufacturer: json['manufacturer'] as String,
     year: json['year'] as String?,
