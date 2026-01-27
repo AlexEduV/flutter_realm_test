@@ -12,7 +12,11 @@ class HomePageCubit extends Cubit<HomePageState> {
   StreamSubscription? _carSubscription;
 
   Future<void> init() async {
+    emit(state.copyWith(isLoading: true));
+
     await _carRepository.syncCars();
+
+    emit(state.copyWith(isLoading: false));
 
     _carSubscription = _carRepository.watchCars().listen((entities) {
       emit(state.copyWith(cars: entities));

@@ -59,15 +59,17 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               ),
 
               Expanded(
-                child: AnimatedList(
-                  key: state.cars.isEmpty ? const ValueKey('empty') : _listKey,
-                  itemBuilder: (context, index, animation) {
-                    final car = state.cars[index];
+                child: state.isLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : AnimatedList(
+                        key: state.cars.isEmpty ? const ValueKey('empty') : _listKey,
+                        itemBuilder: (context, index, animation) {
+                          final car = state.cars[index];
 
-                    return _buildItem(CarExtensions.fromEntity(car), animation, index);
-                  },
-                  initialItemCount: state.cars.length,
-                ),
+                          return _buildItem(CarExtensions.fromEntity(car), animation, index);
+                        },
+                        initialItemCount: state.cars.length,
+                      ),
               ),
             ],
           );

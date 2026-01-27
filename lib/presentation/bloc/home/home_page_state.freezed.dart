@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomePageState {
 
- List<CarEntity> get cars;
+ List<CarEntity> get cars; bool get isLoading;
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $HomePageStateCopyWith<HomePageState> get copyWith => _$HomePageStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomePageState&&const DeepCollectionEquality().equals(other.cars, cars));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomePageState&&const DeepCollectionEquality().equals(other.cars, cars)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(cars));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(cars),isLoading);
 
 @override
 String toString() {
-  return 'HomePageState(cars: $cars)';
+  return 'HomePageState(cars: $cars, isLoading: $isLoading)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $HomePageStateCopyWith<$Res>  {
   factory $HomePageStateCopyWith(HomePageState value, $Res Function(HomePageState) _then) = _$HomePageStateCopyWithImpl;
 @useResult
 $Res call({
- List<CarEntity> cars
+ List<CarEntity> cars, bool isLoading
 });
 
 
@@ -63,10 +63,11 @@ class _$HomePageStateCopyWithImpl<$Res>
 
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cars = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cars = null,Object? isLoading = null,}) {
   return _then(_self.copyWith(
 cars: null == cars ? _self.cars : cars // ignore: cast_nullable_to_non_nullable
-as List<CarEntity>,
+as List<CarEntity>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -77,7 +78,7 @@ as List<CarEntity>,
 
 
 class _HomePageState extends HomePageState {
-  const _HomePageState({final  List<CarEntity> cars = const []}): _cars = cars,super._();
+  const _HomePageState({final  List<CarEntity> cars = const [], this.isLoading = false}): _cars = cars,super._();
   
 
  final  List<CarEntity> _cars;
@@ -87,6 +88,7 @@ class _HomePageState extends HomePageState {
   return EqualUnmodifiableListView(_cars);
 }
 
+@override@JsonKey() final  bool isLoading;
 
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
@@ -98,16 +100,16 @@ _$HomePageStateCopyWith<_HomePageState> get copyWith => __$HomePageStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomePageState&&const DeepCollectionEquality().equals(other._cars, _cars));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomePageState&&const DeepCollectionEquality().equals(other._cars, _cars)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_cars));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_cars),isLoading);
 
 @override
 String toString() {
-  return 'HomePageState(cars: $cars)';
+  return 'HomePageState(cars: $cars, isLoading: $isLoading)';
 }
 
 
@@ -118,7 +120,7 @@ abstract mixin class _$HomePageStateCopyWith<$Res> implements $HomePageStateCopy
   factory _$HomePageStateCopyWith(_HomePageState value, $Res Function(_HomePageState) _then) = __$HomePageStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<CarEntity> cars
+ List<CarEntity> cars, bool isLoading
 });
 
 
@@ -135,10 +137,11 @@ class __$HomePageStateCopyWithImpl<$Res>
 
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cars = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cars = null,Object? isLoading = null,}) {
   return _then(_HomePageState(
 cars: null == cars ? _self._cars : cars // ignore: cast_nullable_to_non_nullable
-as List<CarEntity>,
+as List<CarEntity>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
