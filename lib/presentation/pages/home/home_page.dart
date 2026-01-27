@@ -12,6 +12,8 @@ import 'package:test_futter_project/presentation/bloc/home/home_page_cubit.dart'
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/home_list_item.dart';
 
+import '../../../common/extensions/car_scheme_extension.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({required this.title, super.key});
 

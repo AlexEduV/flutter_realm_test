@@ -5,6 +5,7 @@ import 'package:test_futter_project/data/data_sources/car_api_service.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 
+import '../../common/extensions/car_scheme_extension.dart';
 import '../../domain/entities/car_entity.dart';
 
 class CarRepositoryImpl implements CarRepository {
