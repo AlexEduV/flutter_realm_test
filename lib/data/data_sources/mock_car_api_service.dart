@@ -3,17 +3,22 @@ import 'dart:math';
 
 import 'package:realm/realm.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:test_futter_project/data/data_sources/car_api_service.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 
-class MockCarApiService {
+class MockCarApiService implements CarApiService {
   // 1. Single source of truth
   final _carStreamController = BehaviorSubject<List<CarDto>>();
+
+  @override
   Stream<List<CarDto>> get carStream => _carStreamController.stream;
+
   List<ObjectId> initIds = [ObjectId(), ObjectId()];
 
   // Track the subscription so we can stop the timer if needed
   StreamSubscription? _liveUpdateSubscription;
 
+  @override
   Future<List<CarDto>> fetchCars() async {
     // Simulate initial load
     await Future.delayed(const Duration(seconds: 2));
@@ -89,6 +94,7 @@ class MockCarApiService {
     ];
   }
 
+  @override
   void dispose() {
     _liveUpdateSubscription?.cancel();
     _carStreamController.close();
