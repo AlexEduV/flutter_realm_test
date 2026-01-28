@@ -11,6 +11,7 @@ import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/home_list_item.dart';
+import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/extensions/car_scheme_extension.dart';
@@ -32,33 +33,30 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.headerColor,
-        title: Text(widget.title, style: AppTextStyles.roboto24White),
+        title: Text(widget.title, style: AppTextStyles.roboto30White),
       ),
       body: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                height: 30,
+                decoration: BoxDecoration(
+                  color: AppColors.headerColor,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(AppDimensions.normalL),
+                    bottomRight: Radius.circular(AppDimensions.normalL),
+                  ),
+                ),
+              ),
+
               Padding(
                 padding: const EdgeInsets.only(
                   left: AppDimensions.normalM,
                   top: AppDimensions.normalM,
                 ),
-                child: Row(
-                  spacing: AppDimensions.minorL,
-                  children: [
-                    Text(AppLocalisations.results, style: AppTextStyles.roboto16),
-
-                    Container(
-                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.black),
-                      padding: EdgeInsets.all(AppDimensions.minorL),
-                      child: Text(
-                        state.cars.length.toString(),
-                        style: AppTextStyles.roboto16.copyWith(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
+                child: ResultsWidget(results: state.cars.length.toString()),
               ),
 
               Expanded(

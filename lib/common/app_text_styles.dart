@@ -6,5 +6,8 @@ class AppTextStyles {
   static final roboto18 = TextStyle(fontSize: 18, fontWeight: FontWeight.w500);
   static final roboto20 = TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
   static final roboto24 = TextStyle(fontSize: 24, fontWeight: FontWeight.w600);
+  static final roboto30 = TextStyle(fontSize: 30, fontWeight: FontWeight.w700);
+
+  static final roboto30White = roboto30.copyWith(color: Colors.white);
   static final roboto24White = roboto24.copyWith(color: Colors.white);
 }
