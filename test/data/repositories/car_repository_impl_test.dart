@@ -106,20 +106,30 @@ void main() {
     expect(result.first, isA<CarEntity>());
   });
 
-  // test('syncCars deletes all, fetches, and adds cars', () async {
-  //   final carDto = MockCarDto();
-  //   final carDtos = [carDto];
-  //   when(apiService.fetchCars()).thenAnswer((_) async => carDtos);
-  //   when(realm.write(any)).thenAnswer((invocation) {
-  //     invocation.positionalArguments.first();
-  //   });
-  //   when(apiService.carStream).thenAnswer((_) => const Stream.empty());
-  //
-  //   await repository.syncCars();
-  //
-  //   verify(realm.write(any)).called(greaterThanOrEqualTo(1));
-  //   verify(apiService.fetchCars()).called(1);
-  // });
+  test('syncCars deletes all, fetches, and adds cars', () async {
+    final carDto = MockCarDto();
+
+    when(carDto.id).thenReturn(ObjectId());
+    when(carDto.carId).thenReturn('testId');
+    when(carDto.manufacturer).thenReturn('Test Motors');
+    when(carDto.model).thenReturn('Model X');
+    when(carDto.year).thenReturn('2010');
+    when(carDto.isVerified).thenReturn(false);
+    when(carDto.isHotPromotion).thenReturn(false);
+    when(carDto.kilometers).thenReturn(100);
+    when(carDto.distanceTo).thenReturn(0);
+    when(carDto.price).thenReturn(2000);
+
+    final carDtos = [carDto];
+    when(apiService.fetchCars()).thenAnswer((_) async => carDtos);
+    when(apiService.carStream).thenAnswer((_) => const Stream.empty());
+
+    await repository.syncCars();
+
+    verify(localStorage.deleteAll()).called(1);
+    verify(localStorage.update(any)).called(1);
+    verify(apiService.fetchCars()).called(1);
+  });
 
   // test('watchCars maps realm changes to entities', () async {
   //   // Setup a fake stream of RealmResultsChanges
