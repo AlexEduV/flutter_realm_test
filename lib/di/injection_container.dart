@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/data/data_sources/car_api_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_car_api_service.dart';
+import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 
 import '../data/models/scheme.dart';
 import '../data/repositories/car_repository_impl.dart';

@@ -1,7 +1,8 @@
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
 
-import '../common/extensions/car_scheme_extension.dart';
+import '../../common/extensions/car_scheme_extension.dart';
+import '../models/scheme.dart';
 
 class RealmLocalStorage implements BaseLocalStorage {
   final Realm realm;
@@ -17,7 +18,9 @@ class RealmLocalStorage implements BaseLocalStorage {
 
   @override
   void deleteAll() {
-    // TODO: implement deleteAll
+    realm.write(() {
+      realm.deleteAll<Car>();
+    });
   }
 
   @override

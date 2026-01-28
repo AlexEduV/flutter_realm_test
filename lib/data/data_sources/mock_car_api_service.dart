@@ -3,8 +3,8 @@ import 'dart:math';
 
 import 'package:realm/realm.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:test_futter_project/data/data_sources/car_api_service.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
+import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 
 class MockCarApiService implements CarApiService {
   // 1. Single source of truth

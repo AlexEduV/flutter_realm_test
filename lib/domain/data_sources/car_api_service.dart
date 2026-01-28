@@ -1,4 +1,4 @@
-import '../dto/car_dto.dart';
+import '../../data/dto/car_dto.dart';
 
 abstract class CarApiService {
   Future<List<CarDto>> fetchCars();

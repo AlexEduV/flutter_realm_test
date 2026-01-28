@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/data/data_sources/car_api_service.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
+import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 
 import '../../common/extensions/car_scheme_extension.dart';
