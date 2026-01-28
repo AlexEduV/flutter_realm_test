@@ -42,7 +42,6 @@ void main() {
     await cubit.close();
   });
 
-  //todo: mocking does not work here. Probably need to generate with Mockito;
   blocTest<HomePageCubit, HomePageState>(
     'should init',
     setUp: () {
