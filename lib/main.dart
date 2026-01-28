@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
     return BlocProvider<HomePageCubit>(
       create: (context) => serviceLocator<HomePageCubit>()..init(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter Realm Demo',
         theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo)),
-        home: const HomePage(title: 'Flutter Demo Home Page'),
+        home: const HomePage(title: 'Home Page'),
         debugShowCheckedModeBanner: false,
       ),
     );
