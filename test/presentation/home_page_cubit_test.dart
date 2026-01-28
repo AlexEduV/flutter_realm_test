@@ -41,11 +41,14 @@ void main() {
     await cubit.close();
   });
 
+  //todo: mocking does not work here. Probably need to generate with Mockito;
   blocTest<HomePageCubit, HomePageState>(
-    'emits [isLoading: true], [isLoading: false], then updates cars from stream on init',
-    build: () {
-      when(mockRepo.syncCars()).thenAnswer((_) async {});
+    'should init',
+    setUp: () {
+      when(mockRepo.syncCars()).thenAnswer((_) async => {});
       when(mockRepo.watchCars()).thenAnswer((_) => Stream.value(carList));
+    },
+    build: () {
       return cubit;
     },
     act: (cubit) => cubit.init(),
