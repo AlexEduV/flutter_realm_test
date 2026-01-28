@@ -2,6 +2,7 @@ import 'package:realm/realm.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
 
 import '../../common/extensions/car_scheme_extension.dart';
+import '../../domain/entities/car_entity.dart';
 import '../models/scheme.dart';
 
 class RealmLocalStorage implements BaseLocalStorage {
@@ -31,8 +32,8 @@ class RealmLocalStorage implements BaseLocalStorage {
   }
 
   @override
-  getAll() {
-    return realm.all<Car>();
+  List<CarEntity> getAll() {
+    return realm.all<Car>().map((element) => CarEntity.fromSchema(element)).toList();
   }
 
   @override

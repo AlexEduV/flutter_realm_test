@@ -92,20 +92,19 @@ void main() {
     verify(localStorage.deleteAll()).called(1);
   });
 
-  //todo: unfinished tests
-  // test('getAllCars returns mapped entities', () {
-  //   final car = MockCar();
-  //   final cars = [car];
-  //   when(realm.all<Car>()).thenReturn(cars);
-  //
-  //   // Assuming CarEntity.fromSchema is a static method
-  //   when(CarEntity.fromSchema(car)).thenReturn(MockCarEntity());
-  //
-  //   final result = repository.getAllCars();
-  //
-  //   expect(result.length, 1);
-  //   expect(result.first, isA<CarEntity>());
-  // });
+  test('getAllCars returns mapped entities', () {
+    final car = MockCar();
+
+    when(localStorage.getAll()).thenReturn([CarEntity.empty()]);
+
+    // Assuming CarEntity.fromSchema is a static method
+    when(CarEntity.fromSchema(car)).thenReturn(MockCarEntity());
+
+    final result = repository.getAllCars();
+
+    expect(result.length, 1);
+    expect(result.first, isA<CarEntity>());
+  });
 
   // test('syncCars deletes all, fetches, and adds cars', () async {
   //   final carDto = MockCarDto();

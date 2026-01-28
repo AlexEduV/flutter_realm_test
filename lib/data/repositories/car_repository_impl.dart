@@ -53,7 +53,7 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   List<CarEntity> getAllCars() {
-    return localStorage.getAll().map((element) => CarEntity.fromSchema(element)).toList();
+    return localStorage.getAll().toList();
   }
 
   @override

@@ -730,6 +730,14 @@ class MockRealmLocalStorage extends _i1.Mock implements _i14.RealmLocalStorage {
           as _i4.Stream<dynamic>);
 
   @override
+  List<_i13.CarEntity> getAll() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAll, []),
+            returnValue: <_i13.CarEntity>[],
+          )
+          as List<_i13.CarEntity>);
+
+  @override
   void deleteById(_i6.ObjectId? id) => super.noSuchMethod(
     Invocation.method(#deleteById, [id]),
     returnValueForMissingStub: null,

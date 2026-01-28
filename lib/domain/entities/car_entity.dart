@@ -26,6 +26,16 @@ class CarEntity {
     this.price,
   });
 
+  factory CarEntity.empty() {
+    return CarEntity(
+      carId: 'testId',
+      model: 'Test Model',
+      manufacturer: 'Test Motors',
+      isVerified: true,
+      isHotPromotion: false,
+    );
+  }
+
   factory CarEntity.fromDto(CarDto dto) {
     return CarEntity(
       carId: dto.carId,

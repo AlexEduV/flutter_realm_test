@@ -1,7 +1,8 @@
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/domain/entities/car_entity.dart';
 
 abstract class BaseLocalStorage {
-  dynamic getAll();
+  List<CarEntity> getAll();
 
   void add(T);
 
