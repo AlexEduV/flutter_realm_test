@@ -24,10 +24,8 @@ class RealmLocalStorage implements BaseLocalStorage {
   }
 
   @override
-  Stream<List> watch<T>() {
-    return realm.all<Car>().changes.map((changes) {
-      return changes.results.map((schema) => schema.toEntity(schema)).toList();
-    });
+  Stream watch<T>() {
+    return realm.all<Car>().changes;
   }
 
   @override
