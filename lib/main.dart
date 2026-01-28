@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/home_page.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       create: (context) => serviceLocator<HomePageCubit>()..init(),
       child: MaterialApp(
         title: 'Flutter Realm Demo',
-        theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo)),
+        theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor)),
         home: const HomePage(title: 'Home Page'),
         debugShowCheckedModeBanner: false,
       ),
