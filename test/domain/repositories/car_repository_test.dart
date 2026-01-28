@@ -1,12 +1,13 @@
-/*import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 
-// Create a mock class using mockito
-class MockCarRepository extends Mock implements CarRepository {}
+import 'car_repository_test.mocks.dart';
 
+@GenerateMocks([CarRepository])
 void main() {
   late MockCarRepository mockRepo;
 
@@ -88,7 +89,3 @@ void main() {
     verify(mockRepo.deleteCarById(id)).called(1);
   });
 }
-
- */
-
-void main() {}
