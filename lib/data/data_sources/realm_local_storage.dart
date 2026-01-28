@@ -17,6 +17,13 @@ class RealmLocalStorage implements BaseLocalStorage {
   }
 
   @override
+  void update(T) {
+    realm.write(() {
+      realm.add(CarExtensions.fromEntity(T), update: true);
+    });
+  }
+
+  @override
   void deleteAll() {
     realm.write(() {
       realm.deleteAll<Car>();
@@ -25,12 +32,16 @@ class RealmLocalStorage implements BaseLocalStorage {
 
   @override
   void deleteById(ObjectId id) {
-    // TODO: implement deleteById
+    realm.write(() {
+      final liveCar = realm.find<Car>(id);
+      if (liveCar != null && liveCar.isValid) {
+        realm.delete(liveCar);
+      }
+    });
   }
 
   @override
-  getAll<T>() {
-    // TODO: implement getAll
-    throw UnimplementedError();
+  getAll() {
+    return realm.all<Car>();
   }
 }
