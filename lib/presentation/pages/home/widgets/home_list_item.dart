@@ -55,7 +55,8 @@ class HomeListItem extends StatelessWidget {
                   TextSpan(
                     children: [
                       TextSpan(text: '\$ ${car?.price ?? 0} ', style: AppTextStyles.roboto20),
-                      getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
+                      if (car?.isHotPromotion ?? false)
+                        getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                     ],
                   ),
                 ),
