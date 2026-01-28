@@ -31,51 +31,34 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.headerColor,
-        title: Text(widget.title, style: AppTextStyles.zonaPro30White),
-      ),
       body: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.headerColor,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(AppDimensions.normalL),
-                    bottomRight: Radius.circular(AppDimensions.normalL),
+          return CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                backgroundColor: AppColors.headerColor,
+                title: Text(widget.title, style: AppTextStyles.zonaPro30White),
+                floating: false,
+                pinned: true,
+                expandedHeight: 80, // Adjust as needed
+              ),
+
+              SliverPersistentHeader(pinned: false, delegate: _ExploreHeaderDelegate()),
+
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: AppDimensions.normalM,
+                    top: AppDimensions.normalM,
                   ),
-                ),
-                padding: EdgeInsets.only(left: AppDimensions.normalM, bottom: 40, top: 25),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    spacing: AppDimensions.normalL,
-                    children: [
-                      ExploreSectionItem(),
-                      ExploreSectionItem(),
-                      ExploreSectionItem(),
-                      //todo: the sizedBox was added just for the padding. It's not an ideal solution
-                      SizedBox(),
-                    ],
+                  child: Text(
+                    AppLocalisations.recommendedSectionTitle,
+                    style: AppTextStyles.zonaPro18,
                   ),
                 ),
               ),
 
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: AppDimensions.normalM,
-                  top: AppDimensions.normalM,
-                ),
-                child: Text(
-                  AppLocalisations.recommendedSectionTitle,
-                  style: AppTextStyles.zonaPro18,
-                ),
-              ),
-
-              Expanded(
+              SliverFillRemaining(
                 child: state.isLoading
                     ? Center(child: CircularProgressIndicator())
                     : AnimatedList(
@@ -144,4 +127,42 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
 
     context.read<HomePageCubit>().removeCarAt(index);
   }
+}
+
+class _ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  double get minExtent => 60; // Collapsed height
+  @override
+  double get maxExtent => 140; // Expanded height
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    // You can animate the height or style based on shrinkOffset
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.headerColor,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(AppDimensions.normalL),
+          bottomRight: Radius.circular(AppDimensions.normalL),
+        ),
+      ),
+      padding: EdgeInsets.only(left: AppDimensions.normalM, bottom: 40, top: 25),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            ExploreSectionItem(),
+            SizedBox(width: AppDimensions.normalL),
+            ExploreSectionItem(),
+            SizedBox(width: AppDimensions.normalL),
+            ExploreSectionItem(),
+            SizedBox(width: AppDimensions.normalL), // For spacing after last item
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => true;
 }
