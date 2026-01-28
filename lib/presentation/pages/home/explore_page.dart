@@ -57,6 +57,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                       ExploreSectionItem(),
                       ExploreSectionItem(),
                       ExploreSectionItem(),
+                      //todo: the sizedBox was added just for the padding. It's not an ideal solution
                       SizedBox(),
                     ],
                   ),
