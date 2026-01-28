@@ -14,12 +14,12 @@ class ResultsWidget extends StatelessWidget {
     return Row(
       spacing: AppDimensions.minorL,
       children: [
-        Text(AppLocalisations.results, style: AppTextStyles.roboto16),
+        Text(AppLocalisations.results, style: AppTextStyles.zonaPro16),
 
         Container(
           decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.black),
           padding: EdgeInsets.all(AppDimensions.minorL),
-          child: Text(results, style: AppTextStyles.roboto16.copyWith(color: Colors.white)),
+          child: Text(results, style: AppTextStyles.zonaPro16.copyWith(color: Colors.white)),
         ),
       ],
     );

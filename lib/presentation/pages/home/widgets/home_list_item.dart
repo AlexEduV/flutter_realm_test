@@ -61,7 +61,7 @@ class HomeListItem extends StatelessWidget {
 
             Text(
               '${car?.manufacturer} ${car?.model ?? ''} ${car?.year ?? ''}'.toUpperCase(),
-              style: AppTextStyles.roboto24,
+              style: AppTextStyles.zonaPro24,
             ),
 
             Row(
@@ -70,7 +70,7 @@ class HomeListItem extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     children: [
-                      TextSpan(text: '\$ ${car?.price ?? 0} ', style: AppTextStyles.roboto20),
+                      TextSpan(text: '\$ ${car?.price ?? 0} ', style: AppTextStyles.zonaPro20),
                       if (car?.isHotPromotion ?? false)
                         getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                     ],
@@ -83,7 +83,7 @@ class HomeListItem extends StatelessWidget {
                       getSpanIcon(icon: Icons.location_pin),
                       TextSpan(
                         text: ' ${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
-                        style: AppTextStyles.roboto20,
+                        style: AppTextStyles.zonaPro20,
                       ),
                     ],
                   ),

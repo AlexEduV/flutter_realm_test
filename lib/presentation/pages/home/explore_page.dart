@@ -33,7 +33,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.headerColor,
-        title: Text(widget.title, style: AppTextStyles.roboto30White),
+        title: Text(widget.title, style: AppTextStyles.zonaPro30White),
       ),
       body: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {
@@ -71,7 +71,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                 ),
                 child: Text(
                   AppLocalisations.recommendedSectionTitle,
-                  style: AppTextStyles.roboto18,
+                  style: AppTextStyles.zonaPro18,
                 ),
               ),
 
