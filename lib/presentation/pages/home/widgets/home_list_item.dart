@@ -35,12 +35,28 @@ class HomeListItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: AppDimensions.contentPadding,
           children: [
-            Container(
-              height: 180,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(AppDimensions.normalM),
-              ),
+            Stack(
+              children: [
+                Container(
+                  height: 180,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                  ),
+                ),
+
+                if (car?.isVerified ?? false) ...[
+                  Positioned(
+                    top: AppDimensions.normalXS,
+                    right: AppDimensions.normalXS,
+                    child: Container(
+                      padding: EdgeInsets.all(AppDimensions.minorS),
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                      child: Icon(Icons.check, color: Colors.green, size: 24),
+                    ),
+                  ),
+                ],
+              ],
             ),
 
             Text(
