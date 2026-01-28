@@ -1,4 +1,5 @@
-/*import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/data_sources/car_api_service.dart';
@@ -6,15 +7,9 @@ import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/data/repositories/car_repository_impl.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 
-// Mock classes
-class MockRealm extends Mock implements Realm {}
+import 'car_repository_impl_test.mocks.dart';
 
-class MockCarApiService extends Mock implements CarApiService {}
-
-class MockCar extends Mock implements Car {}
-
-class MockCarEntity extends Mock implements CarEntity {}
-
+@GenerateMocks([Realm, CarApiService, Car, CarEntity])
 void main() {
   late MockRealm realm;
   late MockCarApiService apiService;
@@ -28,13 +23,13 @@ void main() {
 
   test('addCar calls realm.write and adds car', () {
     final carEntity = MockCarEntity();
-    when(realm.write).thenAnswer((invocation) {
+    when(realm.write(any)).thenAnswer((invocation) {
       return invocation.positionalArguments.first;
     });
 
     repository.addCar(carEntity);
 
-    verify(realm.write).called(1);
+    verify(realm.write(any)).called(1);
   });
 
   // test('deleteCarById deletes car if found and valid', () {
@@ -121,7 +116,3 @@ void main() {
   //   controller.close();
   // });
 }
-
- */
-
-void main() {}
