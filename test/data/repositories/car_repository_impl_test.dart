@@ -9,8 +9,6 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 
-//class DummyRealmObject extends RealmObject {}
-
 @GenerateMocks([Realm, CarApiService, Car, CarEntity])
 void main() {
   late MockRealm realm;
@@ -21,7 +19,6 @@ void main() {
 
   setUpAll(() {
     provideDummy<Car>(mockCar);
-    //provideDummy<RealmObject>(RealmEntity());
   });
 
   setUp(() {
@@ -48,7 +45,6 @@ void main() {
       final callback = invocation.positionalArguments.first as void Function();
       return callback();
     });
-
     when(realm.add(any as Car?, update: false)).thenReturn(mockCar);
 
     repository.addCar(carEntity);
