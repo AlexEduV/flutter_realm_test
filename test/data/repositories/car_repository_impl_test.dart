@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/data/repositories/car_repository_impl.dart';
@@ -10,11 +11,12 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 
-@GenerateMocks([Realm, CarApiService, Car, CarEntity, CarDto])
+@GenerateMocks([Realm, CarApiService, Car, CarEntity, CarDto, RealmLocalStorage])
 void main() {
   late MockRealm realm;
   late MockCarApiService apiService;
   late CarRepositoryImpl repository;
+  late MockRealmLocalStorage localStorage;
 
   final mockCar = Car(ObjectId(), '1', 'Tesla');
 
@@ -25,7 +27,8 @@ void main() {
   setUp(() {
     realm = MockRealm();
     apiService = MockCarApiService();
-    repository = CarRepositoryImpl(realm, apiService);
+    localStorage = MockRealmLocalStorage();
+    repository = CarRepositoryImpl(localStorage, apiService);
   });
 
   test('addCar calls realm.write and adds car', () {

@@ -1,7 +1,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/data_sources/mock_car_api_service.dart';
+import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
+import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
 
 import '../data/models/scheme.dart';
 import '../data/repositories/car_repository_impl.dart';
@@ -10,7 +12,7 @@ import '../presentation/bloc/home/home_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 
-Future<void> initDependeciesContainer() async {
+Future<void> initDependenciesContainer() async {
   //Register Realm
   final config = Configuration.local(
     [Car.schema, Person.schema],
@@ -30,7 +32,9 @@ Future<void> initDependeciesContainer() async {
     },
   );
 
-  serviceLocator.registerLazySingleton(() => Realm(config));
+  serviceLocator.registerLazySingleton<Realm>(() => Realm(config));
+
+  serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
   serviceLocator.registerLazySingleton<CarApiService>(() => MockCarApiService());
 

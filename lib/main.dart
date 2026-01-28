@@ -6,7 +6,7 @@ import 'package:test_futter_project/presentation/pages/home/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initDependeciesContainer();
+  await initDependenciesContainer();
   runApp(const MyApp());
 }
 

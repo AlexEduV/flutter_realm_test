@@ -18,7 +18,7 @@ class HomePageCubit extends Cubit<HomePageState> {
 
     emit(state.copyWith(isLoading: false));
 
-    _carSubscription = _carRepository.watchCars().listen((entities) {
+    _carSubscription = _carRepository.watchCars()?.listen((entities) {
       emit(state.copyWith(cars: entities));
     });
   }

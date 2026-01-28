@@ -57,14 +57,6 @@ class MockCarRepository extends _i1.Mock implements _i2.CarRepository {
           as _i4.Future<void>);
 
   @override
-  _i4.Stream<List<_i3.CarEntity>> watchCars() =>
-      (super.noSuchMethod(
-            Invocation.method(#watchCars, []),
-            returnValue: _i4.Stream<List<_i3.CarEntity>>.empty(),
-          )
-          as _i4.Stream<List<_i3.CarEntity>>);
-
-  @override
   void deleteAll() => super.noSuchMethod(
     Invocation.method(#deleteAll, []),
     returnValueForMissingStub: null,
