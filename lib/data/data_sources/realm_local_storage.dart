@@ -19,7 +19,7 @@ class RealmLocalStorage implements BaseLocalStorage {
   @override
   void update(T) {
     realm.write(() {
-      realm.add(CarExtensions.fromEntity(T), update: true);
+      realm.add(T, update: true);
     });
   }
 
