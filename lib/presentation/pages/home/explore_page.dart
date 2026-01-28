@@ -10,6 +10,7 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
+import 'package:test_futter_project/presentation/pages/home/widgets/explore_section_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/home_list_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -40,12 +41,24 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 30,
                 decoration: BoxDecoration(
                   color: AppColors.headerColor,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(AppDimensions.normalL),
                     bottomRight: Radius.circular(AppDimensions.normalL),
+                  ),
+                ),
+                padding: EdgeInsets.only(left: AppDimensions.normalM, bottom: 40, top: 25),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    spacing: AppDimensions.normalL,
+                    children: [
+                      ExploreSectionItem(),
+                      ExploreSectionItem(),
+                      ExploreSectionItem(),
+                      SizedBox(),
+                    ],
                   ),
                 ),
               ),
