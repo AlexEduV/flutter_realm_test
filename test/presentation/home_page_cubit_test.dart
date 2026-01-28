@@ -2,15 +2,16 @@ import 'dart:async';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
 
-// Mock class for CarRepository
-class MockCarRepository extends Mock implements CarRepository {}
+import 'home_page_cubit_test.mocks.dart';
 
+@GenerateMocks([CarRepository])
 void main() {
   late MockCarRepository mockRepo;
   late HomePageCubit cubit;
