@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
@@ -30,8 +31,8 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        backgroundColor: AppColors.headerColor,
+        title: Text(widget.title, style: AppTextStyles.roboto24White),
       ),
       body: BlocBuilder<HomePageCubit, HomePageState>(
         builder: (context, state) {

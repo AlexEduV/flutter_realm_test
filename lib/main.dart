@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Realm Demo',
         theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor)),
-        home: const ExplorePage(title: 'Home Page'),
+        home: const ExplorePage(title: 'Explore'),
         debugShowCheckedModeBanner: false,
       ),
     );
