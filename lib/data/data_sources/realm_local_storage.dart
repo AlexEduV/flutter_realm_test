@@ -24,10 +24,15 @@ class RealmLocalStorage implements BaseLocalStorage {
   }
 
   @override
-  void deleteAll() {
-    realm.write(() {
-      realm.deleteAll<Car>();
+  Stream<List> watch<T>() {
+    return realm.all<Car>().changes.map((changes) {
+      return changes.results.map((schema) => schema.toEntity(schema)).toList();
     });
+  }
+
+  @override
+  getAll() {
+    return realm.all<Car>();
   }
 
   @override
@@ -41,7 +46,9 @@ class RealmLocalStorage implements BaseLocalStorage {
   }
 
   @override
-  getAll() {
-    return realm.all<Car>();
+  void deleteAll() {
+    realm.write(() {
+      realm.deleteAll<Car>();
+    });
   }
 }
