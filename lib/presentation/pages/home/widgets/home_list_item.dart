@@ -3,8 +3,8 @@ import 'package:flutter_slidable/flutter_slidable.dart'
     show ActionPane, DrawerMotion, Slidable, SlidableAction;
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
-import 'package:test_futter_project/common/utils/l10n.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 class HomeListItem extends StatelessWidget {
   final CarEntity? car;

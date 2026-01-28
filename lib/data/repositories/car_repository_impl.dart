@@ -9,6 +9,7 @@ import '../../common/extensions/car_scheme_extension.dart';
 import '../../domain/entities/car_entity.dart';
 
 class CarRepositoryImpl implements CarRepository {
+  //todo: this class should depend on the abstract local storage, not realm implementation
   final Realm realm;
   final CarApiService apiService;
 
