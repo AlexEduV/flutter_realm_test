@@ -53,7 +53,7 @@ void main() {
 
     repository.addCar(carEntity);
 
-    verify(realm.write(any)).called(1);
+    verify(localStorage.add(carEntity)).called(1);
   });
 
   test('deleteCarById deletes car if found and valid', () {
@@ -67,7 +67,7 @@ void main() {
 
     repository.deleteCarById(carId);
 
-    verify(realm.delete(car)).called(1);
+    verify(localStorage.deleteById(any)).called(1);
   });
 
   test('deleteCarById does nothing if car not found', () {
@@ -89,7 +89,7 @@ void main() {
 
     repository.deleteAll();
 
-    verify(realm.deleteAll<Car>()).called(1);
+    verify(localStorage.deleteAll()).called(1);
   });
 
   //todo: unfinished tests
