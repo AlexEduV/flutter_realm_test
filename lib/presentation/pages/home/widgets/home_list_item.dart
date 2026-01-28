@@ -101,7 +101,7 @@ class HomeListItem extends StatelessWidget {
       alignment: PlaceholderAlignment.middle,
       baseline: TextBaseline.alphabetic,
       child: Padding(
-        padding: EdgeInsets.only(bottom: AppDimensions.minorS),
+        padding: EdgeInsets.only(bottom: AppDimensions.minorM),
         child: Icon(icon, size: 18, color: color),
       ),
     );
