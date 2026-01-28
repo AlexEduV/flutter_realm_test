@@ -14,16 +14,16 @@ import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/extensions/car_scheme_extension.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({required this.title, super.key});
+class ExplorePage extends StatefulWidget {
+  const ExplorePage({required this.title, super.key});
 
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ExplorePage> createState() => _ExplorePageState();
 }
 
-class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   @override
