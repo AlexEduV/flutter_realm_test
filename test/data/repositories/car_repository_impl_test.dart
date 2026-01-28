@@ -89,6 +89,7 @@ void main() {
     verify(realm.deleteAll<Car>()).called(1);
   });
 
+  //todo: unfinished tests
   // test('getAllCars returns mapped entities', () {
   //   final car = MockCar();
   //   final cars = [car];
