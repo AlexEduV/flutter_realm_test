@@ -77,8 +77,8 @@ as bool,
 /// @nodoc
 
 
-class _HomePageState extends HomePageState {
-  const _HomePageState({final  List<CarEntity> cars = const [], this.isLoading = false}): _cars = cars,super._();
+class _HomePageState implements HomePageState {
+  const _HomePageState({final  List<CarEntity> cars = const [], this.isLoading = false}): _cars = cars;
   
 
  final  List<CarEntity> _cars;
