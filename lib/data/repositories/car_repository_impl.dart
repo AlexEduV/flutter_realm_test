@@ -22,8 +22,10 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   Stream<List<CarEntity>>? watchCars() {
+    //todo: works, but the type is not existent;
     return localStorage.watch<Car>().map((changes) {
-      return changes.results.map((schema) => schema.toEntity(schema)).toList();
+      final list = changes.results.map((Car schema) => schema.toEntity(schema)).toList();
+      return list.cast<CarEntity>();
     });
   }
 
