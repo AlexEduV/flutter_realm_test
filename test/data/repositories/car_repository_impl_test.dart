@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -130,23 +132,4 @@ void main() {
     verify(localStorage.update(any)).called(1);
     verify(apiService.fetchCars()).called(1);
   });
-
-  // test('watchCars maps realm changes to entities', () async {
-  //   // Setup a fake stream of RealmResultsChanges
-  //   final car = MockCar();
-  //   final changes = RealmResultsChanges<Car>([car], [], [], [], []);
-  //   final controller = StreamController<RealmResultsChanges<Car>>();
-  //   when(realm.all<Car>()).thenReturn([car]);
-  //   when(realm.all<Car>().changes).thenAnswer((_) => controller.stream);
-  //
-  //   // Assuming CarExtensions.toEntity returns a CarEntity
-  //   when(car.toEntity(car)).thenReturn(MockCarEntity());
-  //
-  //   final stream = repository.watchCars();
-  //   controller.add(changes);
-  //
-  //   final result = await stream.first;
-  //   expect(result, isA<List<CarEntity>>());
-  //   controller.close();
-  // });
 }

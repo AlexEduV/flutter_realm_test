@@ -26,8 +26,6 @@ class RealmLocalStorage implements BaseLocalStorage {
 
   @override
   Stream watch<T>() {
-    //todo: this is not working; not strictly typing variables leads to
-    // NoSuchMethodError: Class 'Car' has no instance method 'toEntity'.
     return realm.all<Car>().changes;
   }
 
