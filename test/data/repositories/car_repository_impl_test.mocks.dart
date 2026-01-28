@@ -609,3 +609,84 @@ class MockCarEntity extends _i1.Mock implements _i13.CarEntity {
     returnValueForMissingStub: null,
   );
 }
+
+/// A class which mocks [CarDto].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCarDto extends _i1.Mock implements _i12.CarDto {
+  MockCarDto() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.ObjectId get id =>
+      (super.noSuchMethod(
+            Invocation.getter(#id),
+            returnValue: _FakeObjectId_7(this, Invocation.getter(#id)),
+          )
+          as _i6.ObjectId);
+
+  @override
+  String get carId =>
+      (super.noSuchMethod(
+            Invocation.getter(#carId),
+            returnValue: _i9.dummyValue<String>(
+              this,
+              Invocation.getter(#carId),
+            ),
+          )
+          as String);
+
+  @override
+  String get model =>
+      (super.noSuchMethod(
+            Invocation.getter(#model),
+            returnValue: _i9.dummyValue<String>(
+              this,
+              Invocation.getter(#model),
+            ),
+          )
+          as String);
+
+  @override
+  String get manufacturer =>
+      (super.noSuchMethod(
+            Invocation.getter(#manufacturer),
+            returnValue: _i9.dummyValue<String>(
+              this,
+              Invocation.getter(#manufacturer),
+            ),
+          )
+          as String);
+
+  @override
+  bool get isVerified =>
+      (super.noSuchMethod(Invocation.getter(#isVerified), returnValue: false)
+          as bool);
+
+  @override
+  bool get isHotPromotion =>
+      (super.noSuchMethod(
+            Invocation.getter(#isHotPromotion),
+            returnValue: false,
+          )
+          as bool);
+
+  @override
+  set kilometers(int? _kilometers) => super.noSuchMethod(
+    Invocation.setter(#kilometers, _kilometers),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  set distanceTo(int? _distanceTo) => super.noSuchMethod(
+    Invocation.setter(#distanceTo, _distanceTo),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  set price(int? _price) => super.noSuchMethod(
+    Invocation.setter(#price, _price),
+    returnValueForMissingStub: null,
+  );
+}
