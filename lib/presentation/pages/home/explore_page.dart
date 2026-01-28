@@ -11,7 +11,6 @@ import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/home_list_item.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/extensions/car_scheme_extension.dart';
@@ -56,7 +55,10 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                   left: AppDimensions.normalM,
                   top: AppDimensions.normalM,
                 ),
-                child: ResultsWidget(results: state.cars.length.toString()),
+                child: Text(
+                  AppLocalisations.recommendedSectionTitle,
+                  style: AppTextStyles.roboto18,
+                ),
               ),
 
               Expanded(

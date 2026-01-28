@@ -6,4 +6,6 @@ class AppLocalisations {
   static String deleteButtonTitle = 'Delete';
 
   static String distanceWidgetText = 'km away';
+
+  static String recommendedSectionTitle = 'Recommended';
 }
