@@ -9,11 +9,20 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 
+//class DummyRealmObject extends RealmObject {}
+
 @GenerateMocks([Realm, CarApiService, Car, CarEntity])
 void main() {
   late MockRealm realm;
   late MockCarApiService apiService;
   late CarRepositoryImpl repository;
+
+  final mockCar = Car(ObjectId(), '1', 'Tesla');
+
+  setUpAll(() {
+    provideDummy<Car>(mockCar);
+    //provideDummy<RealmObject>(RealmEntity());
+  });
 
   setUp(() {
     realm = MockRealm();
@@ -23,9 +32,24 @@ void main() {
 
   test('addCar calls realm.write and adds car', () {
     final carEntity = MockCarEntity();
+
+    when(carEntity.carId).thenReturn('id');
+    when(carEntity.model).thenReturn('Model Y');
+    when(carEntity.manufacturer).thenReturn('Tesla');
+    when(carEntity.year).thenReturn('2007');
+    when(carEntity.owner).thenReturn('Elon');
+    when(carEntity.isVerified).thenReturn(true);
+    when(carEntity.isHotPromotion).thenReturn(false);
+    when(carEntity.kilometers).thenReturn(12345);
+    when(carEntity.distanceTo).thenReturn(50);
+    when(carEntity.price).thenReturn(60000);
+
     when(realm.write(any)).thenAnswer((invocation) {
-      return invocation.positionalArguments.first;
+      final callback = invocation.positionalArguments.first as void Function();
+      return callback();
     });
+
+    when(realm.add(any as Car?, update: false)).thenReturn(mockCar);
 
     repository.addCar(carEntity);
 
