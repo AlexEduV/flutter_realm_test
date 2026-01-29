@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:realm/realm.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 
@@ -13,7 +14,7 @@ class MockCarApiService implements CarApiService {
   @override
   Stream<List<CarDto>> get carStream => _carStreamController.stream;
 
-  List<ObjectId> initIds = [ObjectId(), ObjectId()];
+  List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
 
   // Track the subscription so we can stop the timer if needed
   StreamSubscription? _liveUpdateSubscription;
@@ -25,10 +26,10 @@ class MockCarApiService implements CarApiService {
 
     final initialData = [
       CarDto(
-        id: initIds.first,
+        id: initIds[0],
         carId: '1',
         manufacturer: 'Porsche',
-        type: 'car',
+        type: CarType.car.name,
         model: '911',
         price: 120000,
         isVerified: true,
@@ -36,15 +37,26 @@ class MockCarApiService implements CarApiService {
         year: '2010',
       ),
       CarDto(
-        id: initIds.last,
+        id: initIds[1],
         carId: '2',
         manufacturer: 'Honda',
         model: 'Civic',
-        type: 'car',
+        type: CarType.car.name,
         price: 25000,
         isVerified: false,
         isHotPromotion: true,
         year: '2007',
+      ),
+      CarDto(
+        id: initIds[2],
+        carId: '3',
+        manufacturer: 'Scania',
+        model: 'Nova',
+        type: CarType.truck.name,
+        price: 50000,
+        isVerified: true,
+        isHotPromotion: true,
+        year: '2002',
       ),
     ];
 
@@ -72,11 +84,11 @@ class MockCarApiService implements CarApiService {
   List<CarDto> _generateRandomUpdates() {
     return [
       CarDto(
-        id: initIds.first,
+        id: initIds[0],
         carId: '1',
         manufacturer: 'Porsche',
         model: '911',
-        type: 'car',
+        type: CarType.car.name,
         price: 120000 + Random().nextInt(1000), // Randomize!
         distanceTo: Random().nextInt(60),
         isVerified: true,
@@ -84,16 +96,28 @@ class MockCarApiService implements CarApiService {
         year: '2010',
       ),
       CarDto(
-        id: initIds.last,
+        id: initIds[1],
         carId: '2',
         manufacturer: 'Honda',
         model: 'Civic',
-        type: 'car',
+        type: CarType.car.name,
         price: 25000 + Random().nextInt(500), // Randomize!
         distanceTo: Random().nextInt(50),
         isVerified: false,
         isHotPromotion: true,
         year: '2007',
+      ),
+      CarDto(
+        id: initIds[2],
+        carId: '3',
+        manufacturer: 'Scania',
+        model: 'Nova',
+        type: CarType.truck.name,
+        price: 50000 + Random().nextInt(1000),
+        distanceTo: Random().nextInt(50),
+        isVerified: true,
+        isHotPromotion: true,
+        year: '2002',
       ),
     ];
   }
