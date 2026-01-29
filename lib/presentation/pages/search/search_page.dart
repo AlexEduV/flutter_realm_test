@@ -39,7 +39,11 @@ class _SearchPageState extends State<SearchPage> {
             padding: const EdgeInsets.all(AppDimensions.normalM),
             child: SegmentedSwitch(
               selectedIndex: _selectedIndex,
-              options: ['Cars', 'Bikes', 'Trucks'],
+              options: [
+                AppLocalisations.searchTabCars,
+                AppLocalisations.searchTabBikes,
+                AppLocalisations.searchTabTrucks,
+              ],
               onChanged: (newIndex) {
                 setState(() {
                   _selectedIndex = newIndex;

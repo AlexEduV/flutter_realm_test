@@ -14,4 +14,10 @@ class AppLocalisations {
   static const String recommendedSectionTitle = 'Recommended';
 
   static const String searchPageTitle = 'Search';
+
+  static const String searchTabCars = 'Cars';
+
+  static const String searchTabBikes = 'Bikes';
+
+  static const String searchTabTrucks = 'Trucks';
 }
