@@ -20,7 +20,7 @@ void main() {
   late CarRepositoryImpl repository;
   late MockRealmLocalStorage localStorage;
 
-  final mockCar = Car(ObjectId(), '1', 'Tesla');
+  final mockCar = Car(ObjectId(), '1', 'Tesla', 'car');
 
   setUpAll(() {
     provideDummy<Car>(mockCar);

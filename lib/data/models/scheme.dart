@@ -8,6 +8,7 @@ class _Car {
   late ObjectId id;
   late String carId;
   late String manufacturer;
+  late String type;
   String? model;
   String? year;
   bool? isChecked = false;

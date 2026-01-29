@@ -11,6 +11,7 @@ void main() {
         carId: '123',
         model: 'Model S',
         manufacturer: 'Tesla',
+        type: 'car',
         isVerified: true,
         isHotPromotion: false,
         year: '2020',
@@ -42,6 +43,7 @@ void main() {
         manufacturer: 'Tesla',
         isVerified: true,
         isHotPromotion: false,
+        type: 'car',
       );
 
       expect(car.year, isNull);

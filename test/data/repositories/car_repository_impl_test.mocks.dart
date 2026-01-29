@@ -387,6 +387,14 @@ class MockCar extends _i1.Mock implements _i8.Car {
           as String);
 
   @override
+  String get type =>
+      (super.noSuchMethod(
+            Invocation.getter(#type),
+            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#type)),
+          )
+          as String);
+
+  @override
   int get price =>
       (super.noSuchMethod(Invocation.getter(#price), returnValue: 0) as int);
 
@@ -424,6 +432,12 @@ class MockCar extends _i1.Mock implements _i8.Car {
   @override
   set manufacturer(String? value) => super.noSuchMethod(
     Invocation.setter(#manufacturer, value),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  set type(String? value) => super.noSuchMethod(
+    Invocation.setter(#type, value),
     returnValueForMissingStub: null,
   );
 
@@ -581,6 +595,14 @@ class MockCarEntity extends _i1.Mock implements _i13.CarEntity {
           as String);
 
   @override
+  String get type =>
+      (super.noSuchMethod(
+            Invocation.getter(#type),
+            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#type)),
+          )
+          as String);
+
+  @override
   bool get isVerified =>
       (super.noSuchMethod(Invocation.getter(#isVerified), returnValue: false)
           as bool);
@@ -658,6 +680,14 @@ class MockCarDto extends _i1.Mock implements _i12.CarDto {
               this,
               Invocation.getter(#manufacturer),
             ),
+          )
+          as String);
+
+  @override
+  String get type =>
+      (super.noSuchMethod(
+            Invocation.getter(#type),
+            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#type)),
           )
           as String);
 

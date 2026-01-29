@@ -71,6 +71,8 @@ class _SearchPageState extends State<SearchPage> {
             child: ResultsWidget(results: '12'),
           ),
 
+          //todo: not indexed stack, just a list of search results;
+          //the fetch request should be once, but the results should be cached.
           Expanded(
             child: IndexedStack(
               index: _selectedIndex,

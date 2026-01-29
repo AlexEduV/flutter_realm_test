@@ -147,6 +147,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
         manufacturer: 'Tesla',
         isVerified: false,
         isHotPromotion: false,
+        type: 'car',
       ),
     );
     final cars = serviceLocator<CarRepository>().getAllCars();

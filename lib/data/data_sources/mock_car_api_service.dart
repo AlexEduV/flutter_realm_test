@@ -28,6 +28,7 @@ class MockCarApiService implements CarApiService {
         id: initIds.first,
         carId: '1',
         manufacturer: 'Porsche',
+        type: 'car',
         model: '911',
         price: 120000,
         isVerified: true,
@@ -39,6 +40,7 @@ class MockCarApiService implements CarApiService {
         carId: '2',
         manufacturer: 'Honda',
         model: 'Civic',
+        type: 'car',
         price: 25000,
         isVerified: false,
         isHotPromotion: true,
@@ -74,6 +76,7 @@ class MockCarApiService implements CarApiService {
         carId: '1',
         manufacturer: 'Porsche',
         model: '911',
+        type: 'car',
         price: 120000 + Random().nextInt(1000), // Randomize!
         distanceTo: Random().nextInt(60),
         isVerified: true,
@@ -85,6 +88,7 @@ class MockCarApiService implements CarApiService {
         carId: '2',
         manufacturer: 'Honda',
         model: 'Civic',
+        type: 'car',
         price: 25000 + Random().nextInt(500), // Randomize!
         distanceTo: Random().nextInt(50),
         isVerified: false,

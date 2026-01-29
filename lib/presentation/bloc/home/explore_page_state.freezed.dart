@@ -16,11 +16,11 @@ T _$identity<T>(T value) => value;
 mixin _$ExplorePageState {
 
  List<CarEntity> get cars; bool get isLoading;
-/// Create a copy of HomePageState
+/// Create a copy of ExplorePageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$HomePageStateCopyWith<ExplorePageState> get copyWith => _$HomePageStateCopyWithImpl<ExplorePageState>(this as ExplorePageState, _$identity);
+$ExplorePageStateCopyWith<ExplorePageState> get copyWith => _$ExplorePageStateCopyWithImpl<ExplorePageState>(this as ExplorePageState, _$identity);
 
 
 
@@ -35,15 +35,15 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'HomePageState(cars: $cars, isLoading: $isLoading)';
+  return 'ExplorePageState(cars: $cars, isLoading: $isLoading)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $HomePageStateCopyWith<$Res>  {
-  factory $HomePageStateCopyWith(ExplorePageState value, $Res Function(ExplorePageState) _then) = _$HomePageStateCopyWithImpl;
+abstract mixin class $ExplorePageStateCopyWith<$Res>  {
+  factory $ExplorePageStateCopyWith(ExplorePageState value, $Res Function(ExplorePageState) _then) = _$ExplorePageStateCopyWithImpl;
 @useResult
 $Res call({
  List<CarEntity> cars, bool isLoading
@@ -54,14 +54,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$HomePageStateCopyWithImpl<$Res>
-    implements $HomePageStateCopyWith<$Res> {
-  _$HomePageStateCopyWithImpl(this._self, this._then);
+class _$ExplorePageStateCopyWithImpl<$Res>
+    implements $ExplorePageStateCopyWith<$Res> {
+  _$ExplorePageStateCopyWithImpl(this._self, this._then);
 
   final ExplorePageState _self;
   final $Res Function(ExplorePageState) _then;
 
-/// Create a copy of HomePageState
+/// Create a copy of ExplorePageState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? cars = null,Object? isLoading = null,}) {
   return _then(_self.copyWith(
@@ -90,11 +90,11 @@ class _ExplorePageState implements ExplorePageState {
 
 @override@JsonKey() final  bool isLoading;
 
-/// Create a copy of HomePageState
+/// Create a copy of ExplorePageState
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$HomePageStateCopyWith<_ExplorePageState> get copyWith => __$HomePageStateCopyWithImpl<_ExplorePageState>(this, _$identity);
+_$ExplorePageStateCopyWith<_ExplorePageState> get copyWith => __$ExplorePageStateCopyWithImpl<_ExplorePageState>(this, _$identity);
 
 
 
@@ -109,15 +109,15 @@ int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(
 
 @override
 String toString() {
-  return 'HomePageState(cars: $cars, isLoading: $isLoading)';
+  return 'ExplorePageState(cars: $cars, isLoading: $isLoading)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$HomePageStateCopyWith<$Res> implements $HomePageStateCopyWith<$Res> {
-  factory _$HomePageStateCopyWith(_ExplorePageState value, $Res Function(_ExplorePageState) _then) = __$HomePageStateCopyWithImpl;
+abstract mixin class _$ExplorePageStateCopyWith<$Res> implements $ExplorePageStateCopyWith<$Res> {
+  factory _$ExplorePageStateCopyWith(_ExplorePageState value, $Res Function(_ExplorePageState) _then) = __$ExplorePageStateCopyWithImpl;
 @override @useResult
 $Res call({
  List<CarEntity> cars, bool isLoading
@@ -128,14 +128,14 @@ $Res call({
 
 }
 /// @nodoc
-class __$HomePageStateCopyWithImpl<$Res>
-    implements _$HomePageStateCopyWith<$Res> {
-  __$HomePageStateCopyWithImpl(this._self, this._then);
+class __$ExplorePageStateCopyWithImpl<$Res>
+    implements _$ExplorePageStateCopyWith<$Res> {
+  __$ExplorePageStateCopyWithImpl(this._self, this._then);
 
   final _ExplorePageState _self;
   final $Res Function(_ExplorePageState) _then;
 
-/// Create a copy of HomePageState
+/// Create a copy of ExplorePageState
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? cars = null,Object? isLoading = null,}) {
   return _then(_ExplorePageState(

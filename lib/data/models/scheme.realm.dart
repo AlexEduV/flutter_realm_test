@@ -15,7 +15,8 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   Car(
     ObjectId id,
     String carId,
-    String manufacturer, {
+    String manufacturer,
+    String type, {
     String? model,
     String? year,
     bool? isChecked = false,
@@ -36,6 +37,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'carId', carId);
     RealmObjectBase.set(this, 'manufacturer', manufacturer);
+    RealmObjectBase.set(this, 'type', type);
     RealmObjectBase.set(this, 'model', model);
     RealmObjectBase.set(this, 'year', year);
     RealmObjectBase.set(this, 'isChecked', isChecked);
@@ -64,6 +66,11 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   @override
   set manufacturer(String value) =>
       RealmObjectBase.set(this, 'manufacturer', value);
+
+  @override
+  String get type => RealmObjectBase.get<String>(this, 'type') as String;
+  @override
+  set type(String value) => RealmObjectBase.set(this, 'type', value);
 
   @override
   String? get model => RealmObjectBase.get<String>(this, 'model') as String?;
@@ -124,6 +131,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       'id': id.toEJson(),
       'carId': carId.toEJson(),
       'manufacturer': manufacturer.toEJson(),
+      'type': type.toEJson(),
       'model': model.toEJson(),
       'year': year.toEJson(),
       'isChecked': isChecked.toEJson(),
@@ -143,11 +151,13 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
         'id': EJsonValue id,
         'carId': EJsonValue carId,
         'manufacturer': EJsonValue manufacturer,
+        'type': EJsonValue type,
       } =>
         Car(
           fromEJson(id),
           fromEJson(carId),
           fromEJson(manufacturer),
+          fromEJson(type),
           model: fromEJson(ejson['model']),
           year: fromEJson(ejson['year']),
           isChecked: fromEJson(ejson['isChecked'], defaultValue: false),
@@ -171,6 +181,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
       SchemaProperty('carId', RealmPropertyType.string),
       SchemaProperty('manufacturer', RealmPropertyType.string),
+      SchemaProperty('type', RealmPropertyType.string),
       SchemaProperty('model', RealmPropertyType.string, optional: true),
       SchemaProperty('year', RealmPropertyType.string, optional: true),
       SchemaProperty('isChecked', RealmPropertyType.bool, optional: true),

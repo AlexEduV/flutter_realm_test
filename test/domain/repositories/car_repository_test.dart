@@ -21,6 +21,7 @@ void main() {
         carId: '1',
         model: 'Model S',
         manufacturer: 'Tesla',
+        type: 'car',
         isVerified: true,
         isHotPromotion: false,
       ),
@@ -41,6 +42,7 @@ void main() {
       manufacturer: 'Honda',
       isVerified: false,
       isHotPromotion: true,
+      type: 'car',
     );
 
     mockRepo.addCar(car);
@@ -64,6 +66,7 @@ void main() {
         manufacturer: 'Toyota',
         isVerified: true,
         isHotPromotion: false,
+        type: 'car',
       ),
     ];
 

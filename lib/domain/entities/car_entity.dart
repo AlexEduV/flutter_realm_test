@@ -5,6 +5,7 @@ class CarEntity {
   final String carId;
   final String model;
   final String manufacturer;
+  final String type;
   final String? year;
   final String? owner;
   final bool isVerified;
@@ -19,6 +20,7 @@ class CarEntity {
     required this.manufacturer,
     required this.isVerified,
     required this.isHotPromotion,
+    required this.type,
     this.year,
     this.owner,
     this.kilometers,
@@ -30,6 +32,7 @@ class CarEntity {
     return CarEntity(
       carId: 'testId',
       model: 'Test Model',
+      type: 'Car',
       manufacturer: 'Test Motors',
       isVerified: true,
       isHotPromotion: false,
@@ -43,6 +46,7 @@ class CarEntity {
       manufacturer: dto.manufacturer,
       isVerified: dto.isVerified,
       isHotPromotion: dto.isHotPromotion,
+      type: dto.type,
       price: dto.price,
       distanceTo: dto.distanceTo,
       year: dto.year,
@@ -56,6 +60,7 @@ class CarEntity {
       carId: car.carId,
       model: car.model ?? '',
       manufacturer: car.manufacturer,
+      type: car.type,
       isVerified: car.isChecked ?? false,
       isHotPromotion: car.isHotProposition ?? false,
       price: car.price,

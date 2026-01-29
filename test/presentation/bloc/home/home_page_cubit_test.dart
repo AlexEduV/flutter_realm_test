@@ -23,6 +23,7 @@ void main() {
       manufacturer: 'Tesla',
       isVerified: true,
       isHotPromotion: false,
+      type: 'car',
     ),
     CarEntity(
       carId: '2',
@@ -30,6 +31,7 @@ void main() {
       manufacturer: 'Honda',
       isVerified: false,
       isHotPromotion: true,
+      type: 'car',
     ),
   ];
 
