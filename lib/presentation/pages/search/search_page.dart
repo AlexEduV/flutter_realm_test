@@ -72,9 +72,13 @@ class _SearchPageState extends State<SearchPage> {
             selectionCount: '2',
           ),
 
-          Padding(
-            padding: const EdgeInsets.all(AppDimensions.normalL),
-            child: ResultsWidget(results: '12'),
+          BlocBuilder<SearchPageCubit, SearchPageState>(
+            builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.all(AppDimensions.normalL),
+                child: ResultsWidget(results: state.results.length.toString()),
+              );
+            },
           ),
 
           BlocBuilder<SearchPageCubit, SearchPageState>(
