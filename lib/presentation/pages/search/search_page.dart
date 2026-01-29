@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 class SearchPage extends StatefulWidget {
@@ -34,19 +35,19 @@ class _SearchPageState extends State<SearchPage> {
       ),
       body: Column(
         children: [
-          ToggleButtons(
-            isSelected: List.generate(3, (index) => index == _selectedIndex),
-            onPressed: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            children: [
-              Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('Cars')),
-              Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('Bikes')),
-              Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('Trucks')),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(AppDimensions.normalM),
+            child: SegmentedSwitch(
+              selectedIndex: _selectedIndex,
+              options: ['Cars', 'Bikes', 'Trucks'],
+              onChanged: (newIndex) {
+                setState(() {
+                  _selectedIndex = newIndex;
+                });
+              },
+            ),
           ),
+
           Expanded(
             child: IndexedStack(
               index: _selectedIndex,
