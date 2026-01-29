@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -75,7 +76,14 @@ class _SearchPageState extends State<SearchPage> {
                     width: 40,
                   ),
 
-                  Text('Model: BMW', style: AppTextStyles.zonaPro18),
+                  Text(
+                    'Model: BMW',
+                    style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
+                  ),
+
+                  Spacer(),
+
+                  AppBadge(text: '1'),
                 ],
               ),
             ),
