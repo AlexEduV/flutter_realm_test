@@ -5,8 +5,15 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +30,33 @@ class SearchPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(children: []),
+      body: Column(
+        children: [
+          ToggleButtons(
+            isSelected: List.generate(3, (index) => index == _selectedIndex),
+            onPressed: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            children: [
+              Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('Cars')),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('Bikes')),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Text('Trucks')),
+            ],
+          ),
+          Expanded(
+            child: IndexedStack(
+              index: _selectedIndex,
+              children: [
+                Center(child: Text('Page 1')),
+                Center(child: Text('Page 2')),
+                Center(child: Text('Page 3')),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
