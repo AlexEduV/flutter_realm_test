@@ -26,7 +26,10 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
-      buildWhen: (previous, current) => previous.drawerOpened != current.drawerOpened,
+      //todo: not good in scenarios, where the length is the same, but the contents differ;
+      buildWhen: (previous, current) =>
+          previous.drawerOpened != current.drawerOpened ||
+          previous.selectedModels.length != current.selectedModels.length,
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,

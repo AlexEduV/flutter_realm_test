@@ -57,16 +57,22 @@ class SearchFilterButton extends StatelessWidget {
                 Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
 
                 if (text != null) ...[
-                  Text(
-                    text.toString(),
-                    style: AppTextStyles.zonaPro16.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: isPlaceHolder ? Colors.grey : null,
+                  Expanded(
+                    child: Text(
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      text.toString(),
+                      style: AppTextStyles.zonaPro16.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: isPlaceHolder ? Colors.grey : null,
+                      ),
                     ),
                   ),
-                ],
 
-                Spacer(),
+                  SizedBox(width: AppDimensions.minorS),
+                ] else ...[
+                  Spacer(),
+                ],
 
                 AppBadge(text: selectionCount),
               ],
