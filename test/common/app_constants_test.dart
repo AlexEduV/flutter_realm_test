@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 
 void main() {
   group('AppDimensions', () {

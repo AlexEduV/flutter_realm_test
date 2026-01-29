@@ -8,7 +8,7 @@ import 'package:test_futter_project/domain/repositories/base_local_storage.dart'
 import '../data/models/scheme.dart';
 import '../data/repositories/car_repository_impl.dart';
 import '../domain/repositories/car_repository.dart';
-import '../presentation/bloc/home/home_page_cubit.dart';
+import '../presentation/bloc/home/explore_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -44,5 +44,5 @@ Future<void> initDependenciesContainer() async {
   );
 
   //Register Cubit (as a Factory, so you get a new instance if needed)
-  serviceLocator.registerFactory(() => HomePageCubit(serviceLocator()));
+  serviceLocator.registerFactory(() => ExplorePageCubit(serviceLocator()));
 }

@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
-import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page_state.dart';
 
-class HomePageCubit extends Cubit<HomePageState> {
-  HomePageCubit(this._carRepository) : super(HomePageState());
+class ExplorePageCubit extends Cubit<ExplorePageState> {
+  ExplorePageCubit(this._carRepository) : super(ExplorePageState());
 
   final CarRepository _carRepository;
   StreamSubscription? _carSubscription;

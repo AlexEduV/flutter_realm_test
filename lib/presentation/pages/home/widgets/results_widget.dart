@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/app_constants.dart';
+import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
 import '../../../../utils/l10n.dart';
 

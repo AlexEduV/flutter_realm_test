@@ -4,7 +4,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'home_page_state.dart';
+part of 'explore_page_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -20,13 +20,13 @@ mixin _$HomePageState {
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$HomePageStateCopyWith<HomePageState> get copyWith => _$HomePageStateCopyWithImpl<HomePageState>(this as HomePageState, _$identity);
+$HomePageStateCopyWith<ExplorePageState> get copyWith => _$HomePageStateCopyWithImpl<ExplorePageState>(this as ExplorePageState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomePageState&&const DeepCollectionEquality().equals(other.cars, cars)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExplorePageState&&const DeepCollectionEquality().equals(other.cars, cars)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
@@ -43,7 +43,7 @@ String toString() {
 
 /// @nodoc
 abstract mixin class $HomePageStateCopyWith<$Res>  {
-  factory $HomePageStateCopyWith(HomePageState value, $Res Function(HomePageState) _then) = _$HomePageStateCopyWithImpl;
+  factory $HomePageStateCopyWith(ExplorePageState value, $Res Function(ExplorePageState) _then) = _$HomePageStateCopyWithImpl;
 @useResult
 $Res call({
  List<CarEntity> cars, bool isLoading
@@ -58,8 +58,8 @@ class _$HomePageStateCopyWithImpl<$Res>
     implements $HomePageStateCopyWith<$Res> {
   _$HomePageStateCopyWithImpl(this._self, this._then);
 
-  final HomePageState _self;
-  final $Res Function(HomePageState) _then;
+  final ExplorePageState _self;
+  final $Res Function(ExplorePageState) _then;
 
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
@@ -77,7 +77,7 @@ as bool,
 /// @nodoc
 
 
-class _HomePageState implements HomePageState {
+class _HomePageState implements ExplorePageState {
   const _HomePageState({final  List<CarEntity> cars = const [], this.isLoading = false}): _cars = cars;
   
 

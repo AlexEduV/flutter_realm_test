@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
     show ActionPane, DrawerMotion, Slidable, SlidableAction;
-import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
-class HomeListItem extends StatelessWidget {
+class ExploreListItem extends StatelessWidget {
   final CarEntity? car;
   final void Function()? onDismissed;
 
-  const HomeListItem({required this.car, required this.onDismissed, super.key});
+  const ExploreListItem({required this.car, required this.onDismissed, super.key});
 
   @override
   Widget build(BuildContext context) {

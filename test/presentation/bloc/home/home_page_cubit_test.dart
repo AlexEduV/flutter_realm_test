@@ -6,15 +6,15 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
-import 'package:test_futter_project/presentation/bloc/home/home_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page_state.dart';
 
 import 'home_page_cubit_test.mocks.dart';
 
 @GenerateMocks([CarRepository])
 void main() {
   late MockCarRepository mockRepo;
-  late HomePageCubit cubit;
+  late ExplorePageCubit cubit;
 
   final carList = [
     CarEntity(
@@ -35,14 +35,14 @@ void main() {
 
   setUp(() {
     mockRepo = MockCarRepository();
-    cubit = HomePageCubit(mockRepo);
+    cubit = ExplorePageCubit(mockRepo);
   });
 
   tearDown(() async {
     await cubit.close();
   });
 
-  blocTest<HomePageCubit, HomePageState>(
+  blocTest<ExplorePageCubit, ExplorePageState>(
     'should init',
     setUp: () {
       when(mockRepo.syncCars()).thenAnswer((_) async => {});
@@ -53,9 +53,9 @@ void main() {
     },
     act: (cubit) => cubit.init(),
     expect: () => [
-      isA<HomePageState>().having((s) => s.isLoading, 'isLoading', true),
-      isA<HomePageState>().having((s) => s.isLoading, 'isLoading', false),
-      isA<HomePageState>().having((s) => s.cars, 'cars', carList),
+      isA<ExplorePageState>().having((s) => s.isLoading, 'isLoading', true),
+      isA<ExplorePageState>().having((s) => s.isLoading, 'isLoading', false),
+      isA<ExplorePageState>().having((s) => s.cars, 'cars', carList),
     ],
     verify: (_) {
       verify(mockRepo.syncCars()).called(1);
@@ -63,20 +63,20 @@ void main() {
     },
   );
 
-  blocTest<HomePageCubit, HomePageState>(
+  blocTest<ExplorePageCubit, ExplorePageState>(
     'updateCars emits state with new cars',
     build: () => cubit,
     act: (cubit) => cubit.updateCars(carList),
-    expect: () => [isA<HomePageState>().having((s) => s.cars, 'cars', carList)],
+    expect: () => [isA<ExplorePageState>().having((s) => s.cars, 'cars', carList)],
   );
 
-  blocTest<HomePageCubit, HomePageState>(
+  blocTest<ExplorePageCubit, ExplorePageState>(
     'removeCarAt removes the car at the given index',
     build: () => cubit,
-    seed: () => HomePageState(cars: carList),
+    seed: () => ExplorePageState(cars: carList),
     act: (cubit) => cubit.removeCarAt(0),
     expect: () => [
-      isA<HomePageState>()
+      isA<ExplorePageState>()
           .having((s) => s.cars.length, 'cars.length', 1)
           .having((s) => s.cars.first.carId, 'remaining carId', '2'),
     ],

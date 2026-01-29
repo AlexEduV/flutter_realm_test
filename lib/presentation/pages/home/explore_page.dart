@@ -3,16 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:go_router/go_router.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
-import 'package:test_futter_project/presentation/bloc/home/home_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/home_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page_state.dart';
+import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_section_item.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/home_list_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/extensions/car_scheme_extension.dart';
@@ -66,8 +67,9 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
         title: Text(widget.title, style: AppTextStyles.zonaPro30White),
         actions: [
           IconButton(
+            //todo: move to cubit & probably route manager
             onPressed: () {
-              context.go('/search');
+              context.go(AppRoutes.home + AppRoutes.search);
             },
             icon: Icon(Icons.search, size: 32, color: Colors.white),
           ),
@@ -108,7 +110,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             child: Text(AppLocalisations.recommendedSectionTitle, style: AppTextStyles.zonaPro18),
           ),
 
-          BlocBuilder<HomePageCubit, HomePageState>(
+          BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
               return Expanded(
                 child: state.isLoading
@@ -149,14 +151,14 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     final cars = serviceLocator<CarRepository>().getAllCars();
 
     _listKey.currentState?.insertItem(cars.length - 1);
-    context.read<HomePageCubit>().updateCars(cars);
+    context.read<ExplorePageCubit>().updateCars(cars);
   }
 
   Widget _buildItem(Car car, Animation<double> animation, int index) {
     return SizeTransition(
       sizeFactor: animation, // Controls the vertical fold
       axis: Axis.vertical,
-      child: HomeListItem(
+      child: ExploreListItem(
         car: CarEntity.fromSchema(car),
         onDismissed: () => _handleDelete(car, index),
       ),
@@ -170,14 +172,16 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     // 2. Animate out using a "Snapshot" instance of the same widget
     _listKey.currentState?.removeItem(
       index,
-      (context, animation) =>
-          SizeTransition(sizeFactor: animation, child: HomeListItem(car: null, onDismissed: null)),
+      (context, animation) => SizeTransition(
+        sizeFactor: animation,
+        child: ExploreListItem(car: null, onDismissed: null),
+      ),
       duration: const Duration(milliseconds: 300),
     );
 
     // 3. Delete once
     serviceLocator<CarRepository>().deleteCarById(id);
 
-    context.read<HomePageCubit>().removeCarAt(index);
+    context.read<ExplorePageCubit>().removeCarAt(index);
   }
 }
