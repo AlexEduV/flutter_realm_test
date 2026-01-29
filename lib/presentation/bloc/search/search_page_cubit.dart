@@ -26,7 +26,8 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   void updateTypeSelection(CarType newType) {
-    emit(state.copyWith(currentSelectedType: newType));
+    //todo: maybe better to save Map<> for each type, so the user can easily switch between tabs
+    emit(state.copyWith(currentSelectedType: newType, selectedModels: []));
   }
 
   List<CarEntity> filterCarsByType(List<CarEntity> list) {
