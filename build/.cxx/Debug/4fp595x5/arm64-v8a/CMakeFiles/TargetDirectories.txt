@@ -1,2 +1,0 @@
-/Users/oleksandr_aksonov/StudioProjects/test_futter_project/build/.cxx/Debug/4fp595x5/arm64-v8a/CMakeFiles/edit_cache.dir
-/Users/oleksandr_aksonov/StudioProjects/test_futter_project/build/.cxx/Debug/4fp595x5/arm64-v8a/CMakeFiles/rebuild_cache.dir
