@@ -16,6 +16,8 @@ class SegmentedSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //todo: add a flowy animation, so that selected container flows to the new selected index,
+    // since the width is the same.
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
