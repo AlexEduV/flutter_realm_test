@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
+import 'package:go_router/go_router.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_constants.dart';
@@ -37,6 +38,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     _scrollController.addListener(_onScroll);
   }
 
+  //todo: it's not working correctly, since the widget bounces back even if there's enough room for user's scroll
   void _onScroll() {
     double offset = _scrollController.offset;
     double minHeight = 60;
@@ -62,6 +64,15 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
       appBar: AppBar(
         backgroundColor: AppColors.headerColor,
         title: Text(widget.title, style: AppTextStyles.zonaPro30White),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.go('/search');
+            },
+            icon: Icon(Icons.search, size: 32, color: Colors.white),
+          ),
+        ],
+        actionsPadding: EdgeInsets.only(right: AppDimensions.normalM),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
