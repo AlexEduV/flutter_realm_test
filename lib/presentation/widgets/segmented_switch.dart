@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 
 class SegmentedSwitch extends StatelessWidget {
   final int selectedIndex;
@@ -16,8 +17,16 @@ class SegmentedSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.circular(8)),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(AppDimensions.normalM),
+      ),
+      padding: EdgeInsets.symmetric(
+        vertical: AppDimensions.minorS,
+        horizontal: AppDimensions.minorL,
+      ),
       child: Row(
+        spacing: AppDimensions.minorM,
         children: List.generate(options.length, (index) {
           final isSelected = index == selectedIndex;
           return Expanded(
@@ -26,10 +35,7 @@ class SegmentedSwitch extends StatelessWidget {
                 backgroundColor: isSelected ? AppColors.headerColor : Colors.transparent,
                 foregroundColor: isSelected ? Colors.white : Colors.black,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.horizontal(
-                    left: index == 0 ? Radius.circular(8) : Radius.zero,
-                    right: index == options.length - 1 ? Radius.circular(8) : Radius.zero,
-                  ),
+                  borderRadius: BorderRadius.circular(AppDimensions.normalS),
                 ),
               ),
               onPressed: () => onChanged(index),
