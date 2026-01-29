@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
-import 'package:test_futter_project/presentation/widgets/app_badge.dart';
+import 'package:test_futter_project/presentation/pages/search/widgets/search_filter.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -53,40 +53,16 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimensions.normalL,
-              vertical: AppDimensions.contentPadding,
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(AppDimensions.normalL),
-              ),
-              padding: EdgeInsets.all(AppDimensions.normalS),
-              child: Row(
-                spacing: AppDimensions.normalXS,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppDimensions.normalXS),
-                      color: AppColors.placeholderColor,
-                    ),
-                    height: 40,
-                    width: 40,
-                  ),
+          SearchFilter(
+            icon: Icons.local_shipping_outlined,
+            text: 'Model: BMW',
+            selectionCount: '1',
+          ),
 
-                  Text(
-                    'Model: BMW',
-                    style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
-                  ),
-
-                  Spacer(),
-
-                  AppBadge(text: '1'),
-                ],
-              ),
-            ),
+          SearchFilter(
+            icon: Icons.settings_input_component,
+            text: 'Parameters',
+            selectionCount: '2',
           ),
 
           Expanded(
