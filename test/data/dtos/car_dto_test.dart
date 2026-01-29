@@ -25,6 +25,7 @@ void main() {
       expect(car.carId, '123');
       expect(car.model, 'Model S');
       expect(car.manufacturer, 'Tesla');
+      expect(car.type, 'car');
       expect(car.isVerified, true);
       expect(car.isHotPromotion, false);
       expect(car.year, '2020');
@@ -62,6 +63,7 @@ void main() {
         'is_verified': false,
         'price': 20000,
         'is_hot_promotion': true,
+        'type': 'car',
       };
 
       final car = CarDto.fromJson(json);
