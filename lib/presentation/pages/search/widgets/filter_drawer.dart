@@ -28,7 +28,7 @@ class FilterDrawer extends StatelessWidget {
               } else if (index == 1) {
                 return ListTile(
                   leading: Checkbox(
-                    value: state.selectedModels == models,
+                    value: areTwoListsEqual(state.selectedModels, models),
                     onChanged: (bool? value) {
                       if (value ?? false) {
                         context.read<SearchPageCubit>().updateModelSelection(models);
@@ -40,16 +40,20 @@ class FilterDrawer extends StatelessWidget {
                   title: Text(AppLocalisations.searchFilterModelPlaceholder),
                 );
               } else {
+                final model = models[index - 2];
+
                 return ListTile(
                   leading: Checkbox(
-                    value:
-                        state.selectedModels.contains(models[index - 2]) ||
-                        state.selectedModels == models,
+                    value: state.selectedModels.contains(model) || state.selectedModels == models,
                     onChanged: (bool? newValue) {
-                      if (newValue ?? false) {}
+                      if (newValue ?? false) {
+                        context.read<SearchPageCubit>().addCarModelToSelection(model);
+                      } else {
+                        context.read<SearchPageCubit>().removeCarModelFromSelection(model);
+                      }
                     },
                   ),
-                  title: Text(models[index - 2]),
+                  title: Text(model),
                 );
               }
             },
@@ -57,5 +61,9 @@ class FilterDrawer extends StatelessWidget {
         );
       },
     );
+  }
+
+  bool areTwoListsEqual(List listA, List listB) {
+    return Set<String>.from(listA).containsAll(listB) && Set<String>.from(listB).containsAll(listA);
   }
 }
