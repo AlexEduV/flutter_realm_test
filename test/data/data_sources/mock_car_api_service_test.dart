@@ -17,7 +17,7 @@ void main() {
     final cars = await service.fetchCars();
     stopwatch.stop();
 
-    expect(cars.length, 2);
+    expect(cars.length, 3);
     expect(cars[0].manufacturer, 'Porsche');
     expect(cars[1].manufacturer, 'Honda');
     expect(stopwatch.elapsed.inSeconds, greaterThanOrEqualTo(2));
@@ -26,7 +26,7 @@ void main() {
   test('carStream emits initial data after fetchCars', () async {
     await service.fetchCars();
     final emitted = await service.carStream.first;
-    expect(emitted.length, 2);
+    expect(emitted.length, 3);
     expect(emitted[0].manufacturer, 'Porsche');
     expect(emitted[1].manufacturer, 'Honda');
   });
