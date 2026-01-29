@@ -109,11 +109,9 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ],
           ),
-          endDrawer: state.drawerOpened == SearchDrawerType.empty
-              ? null
-              : Drawer(
-                  child: ListView(children: [DrawerHeader(child: Text('Drawer'))]),
-                ),
+          endDrawer: Drawer(
+            child: ListView(children: [DrawerHeader(child: Text('Drawer'))]),
+          ),
         );
       },
     );

@@ -28,33 +28,34 @@ class SearchFilter extends StatelessWidget {
         horizontal: AppDimensions.normalL,
         vertical: AppDimensions.contentPadding,
       ),
-      child: GestureDetector(
-        onTap: onPressed,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(AppDimensions.normalL),
-          ),
-          padding: EdgeInsets.all(AppDimensions.normalL),
-          child: Row(
-            spacing: AppDimensions.normalXS,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppDimensions.normalXS),
-                  color: AppColors.scaffoldColor,
+      child: Material(
+        borderRadius: BorderRadius.circular(AppDimensions.normalL),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(AppDimensions.normalL),
+          onTap: onPressed,
+          child: Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalL)),
+            padding: EdgeInsets.all(AppDimensions.normalL),
+            child: Row(
+              spacing: AppDimensions.normalXS,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppDimensions.normalXS),
+                    color: AppColors.scaffoldColor,
+                  ),
+                  height: iconSize,
+                  width: iconSize,
+                  child: Icon(icon, color: AppColors.headerColor),
                 ),
-                height: iconSize,
-                width: iconSize,
-                child: Icon(icon, color: AppColors.headerColor),
-              ),
 
-              Text(text, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
+                Text(text, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
 
-              Spacer(),
+                Spacer(),
 
-              AppBadge(text: selectionCount),
-            ],
+                AppBadge(text: selectionCount),
+              ],
+            ),
           ),
         ),
       ),
