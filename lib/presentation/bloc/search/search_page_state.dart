@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/drawer_type.dart';
 
 import '../../../domain/entities/car_entity.dart';
 
@@ -11,5 +12,6 @@ abstract class SearchPageState with _$SearchPageState {
     @Default([]) List<CarEntity> results,
     @Default(CarType.car) CarType currentSelectedType,
     @Default(false) bool isLoading,
+    @Default(SearchDrawerType.empty) SearchDrawerType drawerOpened,
   }) = _SearchPageState;
 }

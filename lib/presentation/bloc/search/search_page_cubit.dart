@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/drawer_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
@@ -30,6 +31,14 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   List<CarEntity> filterCarsByType(List<CarEntity> list) {
     return list.where((car) => car.type == state.currentSelectedType.name).toList();
+  }
+
+  void closeDrawer() {
+    emit(state.copyWith(drawerOpened: SearchDrawerType.empty));
+  }
+
+  void openDrawer(SearchDrawerType type) {
+    emit(state.copyWith(drawerOpened: type));
   }
 
   @override
