@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
     show ActionPane, DrawerMotion, Slidable, SlidableAction;
+import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
@@ -40,7 +41,7 @@ class ExploreListItem extends StatelessWidget {
                 Container(
                   height: 180,
                   decoration: BoxDecoration(
-                    color: Colors.grey[300],
+                    color: AppColors.placeholderColor,
                     borderRadius: BorderRadius.circular(AppDimensions.normalL),
                   ),
                 ),

@@ -69,7 +69,7 @@ class _SearchPageState extends State<SearchPage> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppDimensions.normalXS),
-                      color: Colors.grey[300],
+                      color: AppColors.placeholderColor,
                     ),
                     height: 40,
                     width: 40,
