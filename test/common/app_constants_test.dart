@@ -8,7 +8,7 @@ void main() {
     });
 
     test('normalM is correct', () {
-      expect(AppDimensions.normalM, 18.0);
+      expect(AppDimensions.normalL, 18.0);
     });
 
     test('normalS is correct', () {

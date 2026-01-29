@@ -36,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(AppDimensions.normalM),
+            padding: const EdgeInsets.all(AppDimensions.normalL),
             child: SegmentedSwitch(
               selectedIndex: _selectedIndex,
               options: [
@@ -49,6 +49,35 @@ class _SearchPageState extends State<SearchPage> {
                   _selectedIndex = newIndex;
                 });
               },
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimensions.normalL,
+              vertical: AppDimensions.contentPadding,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+              ),
+              padding: EdgeInsets.all(AppDimensions.normalS),
+              child: Row(
+                spacing: AppDimensions.normalXS,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppDimensions.normalXS),
+                      color: Colors.grey[300],
+                    ),
+                    height: 40,
+                    width: 40,
+                  ),
+
+                  Text('Model: BMW', style: AppTextStyles.zonaPro18),
+                ],
+              ),
             ),
           ),
 

@@ -21,7 +21,7 @@ class SegmentedSwitch extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(AppDimensions.normalM),
+        borderRadius: BorderRadius.circular(AppDimensions.normalL),
       ),
       padding: EdgeInsets.symmetric(
         vertical: AppDimensions.minorS,

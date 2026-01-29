@@ -75,7 +75,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             icon: Icon(Icons.search, size: AppDimensions.appBarIconSize, color: Colors.white),
           ),
         ],
-        actionsPadding: EdgeInsets.only(right: AppDimensions.normalM),
+        actionsPadding: EdgeInsets.only(right: AppDimensions.normalL),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,15 +86,15 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             decoration: BoxDecoration(
               color: AppColors.headerColor,
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(AppDimensions.normalL),
-                bottomRight: Radius.circular(AppDimensions.normalL),
+                bottomLeft: Radius.circular(AppDimensions.normalXL),
+                bottomRight: Radius.circular(AppDimensions.normalXL),
               ),
             ),
-            padding: EdgeInsets.only(left: AppDimensions.normalM, bottom: 40, top: 25),
+            padding: EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 25),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                spacing: AppDimensions.normalL,
+                spacing: AppDimensions.normalXL,
                 children: [
                   ExploreSectionItem(height: _exploreHeight),
                   ExploreSectionItem(height: _exploreHeight),
@@ -107,7 +107,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
           ),
 
           Padding(
-            padding: const EdgeInsets.only(left: AppDimensions.normalM, top: AppDimensions.normalM),
+            padding: const EdgeInsets.only(left: AppDimensions.normalL, top: AppDimensions.normalL),
             child: Text(AppLocalisations.recommendedSectionTitle, style: AppTextStyles.zonaPro18),
           ),
 

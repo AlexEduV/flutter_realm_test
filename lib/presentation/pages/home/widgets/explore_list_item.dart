@@ -30,7 +30,7 @@ class ExploreListItem extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(AppDimensions.normalM),
+        padding: const EdgeInsets.all(AppDimensions.normalL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: AppDimensions.contentPadding,
@@ -41,7 +41,7 @@ class ExploreListItem extends StatelessWidget {
                   height: 180,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                    borderRadius: BorderRadius.circular(AppDimensions.normalL),
                   ),
                 ),
 
