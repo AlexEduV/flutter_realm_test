@@ -18,6 +18,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         centerTitle: true,
         title: Text(AppLocalisations.searchPageTitle, style: AppTextStyles.zonaPro24),
@@ -29,6 +30,7 @@ class _SearchPageState extends State<SearchPage> {
             color: AppColors.headerColor,
           ),
         ),
+        backgroundColor: AppColors.scaffoldColor,
       ),
       body: Column(
         children: [

@@ -62,6 +62,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         backgroundColor: AppColors.headerColor,
         title: Text(widget.title, style: AppTextStyles.zonaPro30White),
