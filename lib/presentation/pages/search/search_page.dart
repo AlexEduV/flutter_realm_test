@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
@@ -16,8 +21,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,17 +42,20 @@ class _SearchPageState extends State<SearchPage> {
         children: [
           Padding(
             padding: const EdgeInsets.all(AppDimensions.normalL),
-            child: SegmentedSwitch(
-              selectedIndex: _selectedIndex,
-              options: [
-                AppLocalisations.searchTabCars,
-                AppLocalisations.searchTabBikes,
-                AppLocalisations.searchTabTrucks,
-              ],
-              onChanged: (newIndex) {
-                setState(() {
-                  _selectedIndex = newIndex;
-                });
+            child: BlocBuilder<SearchPageCubit, SearchPageState>(
+              builder: (context, state) {
+                return SegmentedSwitch(
+                  selectedIndex: state.currentSelectedType.index,
+                  options: [
+                    AppLocalisations.searchTabCars,
+                    AppLocalisations.searchTabBikes,
+                    AppLocalisations.searchTabTrucks,
+                  ],
+                  onChanged: (newIndex) {
+                    context.read<SearchPageCubit>().updateTypeSelection(CarType.values[newIndex]);
+                    context.read<SearchPageCubit>().loadData();
+                  },
+                );
               },
             ),
           ),
@@ -71,17 +77,16 @@ class _SearchPageState extends State<SearchPage> {
             child: ResultsWidget(results: '12'),
           ),
 
-          //todo: not indexed stack, just a list of search results;
-          //the fetch request should be once, but the results should be cached.
-          Expanded(
-            child: IndexedStack(
-              index: _selectedIndex,
-              children: [
-                Center(child: Text('Page 1')),
-                Center(child: Text('Page 2')),
-                Center(child: Text('Page 3')),
-              ],
-            ),
+          BlocBuilder<SearchPageCubit, SearchPageState>(
+            builder: (context, state) {
+              return Expanded(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return ExploreListItem(car: state.results[index], onDismissed: () {});
+                  },
+                ),
+              );
+            },
           ),
         ],
       ),
