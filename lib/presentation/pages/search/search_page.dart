@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -26,10 +27,9 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
-      //todo: not good in scenarios, where the length is the same, but the contents differ;
       buildWhen: (previous, current) =>
           previous.drawerOpened != current.drawerOpened ||
-          previous.selectedModels.length != current.selectedModels.length,
+          !listEquals(previous.selectedModels, current.selectedModels),
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
