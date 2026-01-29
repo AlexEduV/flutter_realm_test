@@ -1,11 +1,15 @@
 class AppLocalisations {
-  static String results = 'Results';
+  static const String appName = 'Flutter Realm Demo';
 
-  static String addCarButtonTooltip = 'Add a car';
+  static const String explorePageTitle = 'Explore';
 
-  static String deleteButtonTitle = 'Delete';
+  static const String results = 'Results';
 
-  static String distanceWidgetText = 'km away';
+  static const String addCarButtonTooltip = 'Add a car';
 
-  static String recommendedSectionTitle = 'Recommended';
+  static const String deleteButtonTitle = 'Delete';
+
+  static const String distanceWidgetText = 'km away';
+
+  static const String recommendedSectionTitle = 'Recommended';
 }
