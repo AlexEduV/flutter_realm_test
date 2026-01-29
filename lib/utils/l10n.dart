@@ -20,4 +20,8 @@ class AppLocalisations {
   static const String searchTabBikes = 'Bikes';
 
   static const String searchTabTrucks = 'Trucks';
+
+  static const String searchFilterModelTitle = 'Model';
+
+  static const String searchFilterParametersTitle = 'Parameters';
 }

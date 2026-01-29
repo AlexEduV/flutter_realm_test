@@ -55,13 +55,13 @@ class _SearchPageState extends State<SearchPage> {
 
           SearchFilter(
             icon: Icons.local_shipping_outlined,
-            text: 'Model: BMW',
+            text: '${AppLocalisations.searchFilterModelTitle}: BMW',
             selectionCount: '1',
           ),
 
           SearchFilter(
             icon: Icons.settings_input_component,
-            text: 'Parameters',
+            text: AppLocalisations.searchFilterParametersTitle,
             selectionCount: '2',
           ),
 
