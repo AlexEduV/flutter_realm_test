@@ -11,14 +11,19 @@ class FilterDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView.builder(
-        itemCount: 1 + models.length,
+        itemCount: 2 + models.length,
         itemBuilder: (context, index) {
           if (index == 0) {
             return DrawerHeader(
               child: Text(AppLocalisations.searchFilterModelTitle, style: AppTextStyles.zonaPro20),
             );
+          } else if (index == 1) {
+            return ListTile(
+              leading: Checkbox(value: true, onChanged: (value) {}),
+              title: Text(AppLocalisations.searchFilterModelPlaceholder),
+            );
           } else {
-            return ListTile(title: Text(models[index - 1]));
+            return ListTile(title: Text(models[index - 2]));
           }
         },
       ),
