@@ -4,9 +4,9 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 part 'explore_page_state.freezed.dart';
 
 @freezed
-abstract class ExplorePageState with _$HomePageState {
+abstract class ExplorePageState with _$ExplorePageState {
   const factory ExplorePageState({
     @Default([]) List<CarEntity> cars,
     @Default(false) bool isLoading,
-  }) = _HomePageState;
+  }) = _ExplorePageState;
 }

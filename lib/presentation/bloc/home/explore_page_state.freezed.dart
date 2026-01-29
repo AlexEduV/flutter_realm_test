@@ -13,7 +13,7 @@ part of 'explore_page_state.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$HomePageState {
+mixin _$ExplorePageState {
 
  List<CarEntity> get cars; bool get isLoading;
 /// Create a copy of HomePageState
@@ -77,8 +77,8 @@ as bool,
 /// @nodoc
 
 
-class _HomePageState implements ExplorePageState {
-  const _HomePageState({final  List<CarEntity> cars = const [], this.isLoading = false}): _cars = cars;
+class _ExplorePageState implements ExplorePageState {
+  const _ExplorePageState({final  List<CarEntity> cars = const [], this.isLoading = false}): _cars = cars;
   
 
  final  List<CarEntity> _cars;
@@ -94,13 +94,13 @@ class _HomePageState implements ExplorePageState {
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$HomePageStateCopyWith<_HomePageState> get copyWith => __$HomePageStateCopyWithImpl<_HomePageState>(this, _$identity);
+_$HomePageStateCopyWith<_ExplorePageState> get copyWith => __$HomePageStateCopyWithImpl<_ExplorePageState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomePageState&&const DeepCollectionEquality().equals(other._cars, _cars)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExplorePageState&&const DeepCollectionEquality().equals(other._cars, _cars)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
@@ -117,7 +117,7 @@ String toString() {
 
 /// @nodoc
 abstract mixin class _$HomePageStateCopyWith<$Res> implements $HomePageStateCopyWith<$Res> {
-  factory _$HomePageStateCopyWith(_HomePageState value, $Res Function(_HomePageState) _then) = __$HomePageStateCopyWithImpl;
+  factory _$HomePageStateCopyWith(_ExplorePageState value, $Res Function(_ExplorePageState) _then) = __$HomePageStateCopyWithImpl;
 @override @useResult
 $Res call({
  List<CarEntity> cars, bool isLoading
@@ -132,13 +132,13 @@ class __$HomePageStateCopyWithImpl<$Res>
     implements _$HomePageStateCopyWith<$Res> {
   __$HomePageStateCopyWithImpl(this._self, this._then);
 
-  final _HomePageState _self;
-  final $Res Function(_HomePageState) _then;
+  final _ExplorePageState _self;
+  final $Res Function(_ExplorePageState) _then;
 
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? cars = null,Object? isLoading = null,}) {
-  return _then(_HomePageState(
+  return _then(_ExplorePageState(
 cars: null == cars ? _self._cars : cars // ignore: cast_nullable_to_non_nullable
 as List<CarEntity>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,
