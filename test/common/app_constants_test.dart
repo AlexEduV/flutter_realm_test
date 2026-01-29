@@ -12,7 +12,7 @@ void main() {
     });
 
     test('normalS is correct', () {
-      expect(AppDimensions.normalS, 14.0);
+      expect(AppDimensions.normalS, 12.0);
     });
 
     test('minorL is correct', () {

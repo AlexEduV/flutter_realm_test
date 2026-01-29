@@ -5,6 +5,7 @@ import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 
+//todo: maybe switch to generated mock here;
 class MockCar extends Mock implements Car {
   @override
   String carId = 'car123';
@@ -26,6 +27,8 @@ class MockCar extends Mock implements Car {
   Person owner = Person('John Doe');
   @override
   int? kilometers = 10000;
+  @override
+  String type = 'car';
 }
 
 void main() {

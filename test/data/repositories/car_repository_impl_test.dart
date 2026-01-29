@@ -46,6 +46,7 @@ void main() {
     when(carEntity.kilometers).thenReturn(12345);
     when(carEntity.distanceTo).thenReturn(50);
     when(carEntity.price).thenReturn(60000);
+    when(carEntity.type).thenReturn('car');
 
     when(realm.write(any)).thenAnswer((invocation) {
       final callback = invocation.positionalArguments.first as void Function();
@@ -121,6 +122,7 @@ void main() {
     when(carDto.kilometers).thenReturn(100);
     when(carDto.distanceTo).thenReturn(0);
     when(carDto.price).thenReturn(2000);
+    when(carDto.type).thenReturn('car');
 
     final carDtos = [carDto];
     when(apiService.fetchCars()).thenAnswer((_) async => carDtos);
