@@ -66,13 +66,17 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               ),
 
-              SearchFilter(
-                icon: Icons.local_shipping_outlined,
-                text: '${AppLocalisations.searchFilterModelTitle}: BMW',
-                selectionCount: '1',
-                onPressed: () {
-                  context.read<SearchPageCubit>().openDrawer(SearchDrawerType.model);
-                  Scaffold.of(context).openEndDrawer();
+              Builder(
+                builder: (context) {
+                  return SearchFilter(
+                    icon: Icons.local_shipping_outlined,
+                    text: '${AppLocalisations.searchFilterModelTitle}: BMW',
+                    selectionCount: '1',
+                    onPressed: () {
+                      context.read<SearchPageCubit>().openDrawer(SearchDrawerType.model);
+                      Scaffold.of(context).openEndDrawer();
+                    },
+                  );
                 },
               ),
 
