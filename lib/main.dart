@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page.dart';
 import 'package:test_futter_project/presentation/pages/search/search_page.dart';
 import 'package:test_futter_project/utils/l10n.dart';
@@ -39,8 +40,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ExplorePageCubit>(
-      create: (context) => serviceLocator<ExplorePageCubit>()..init(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ExplorePageCubit>(
+          create: (context) => serviceLocator<ExplorePageCubit>()..init(),
+        ),
+        BlocProvider<SearchPageCubit>(
+          create: (context) => serviceLocator<SearchPageCubit>()..loadData(),
+        ),
+      ],
       child: MaterialApp.router(
         title: AppLocalisations.appName,
         theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor)),
