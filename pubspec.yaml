@@ -52,6 +52,6 @@ flutter:
   fonts:
     - family: Zona Pro
       fonts:
-        - asset: fonts/ZonaPro-ExtraLight.otf
-        - asset: fonts/ZonaPro-Bold.otf
+        - asset: assets/fonts/ZonaPro-ExtraLight.otf
+        - asset: assets/fonts/ZonaPro-Bold.otf
           weight: 700
