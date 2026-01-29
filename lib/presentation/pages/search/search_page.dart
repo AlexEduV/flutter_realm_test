@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
@@ -63,6 +64,11 @@ class _SearchPageState extends State<SearchPage> {
             icon: Icons.settings_input_component,
             text: AppLocalisations.searchFilterParametersTitle,
             selectionCount: '2',
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(AppDimensions.normalL),
+            child: ResultsWidget(results: '12'),
           ),
 
           Expanded(
