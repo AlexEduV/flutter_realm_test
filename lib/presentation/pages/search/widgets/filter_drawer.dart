@@ -14,49 +14,48 @@ class FilterDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       builder: (context, state) {
-        return Drawer(
-          child: ListView.builder(
-            itemCount: 2 + models.length,
-            itemBuilder: (context, index) {
-              if (index == 0) {
-                return DrawerHeader(
-                  child: Text(
-                    AppLocalisations.searchFilterModelTitle,
-                    style: AppTextStyles.zonaPro20,
-                  ),
-                );
-              } else if (index == 1) {
-                return ListTile(
-                  leading: Checkbox(
-                    value: areTwoListsEqual(state.selectedModels, models),
-                    onChanged: (bool? value) {
-                      if (value ?? false) {
-                        context.read<SearchPageCubit>().updateModelSelection(models);
-                      } else {
-                        context.read<SearchPageCubit>().updateModelSelection([]);
-                      }
-                    },
-                  ),
-                  title: Text(AppLocalisations.searchFilterModelPlaceholder),
-                );
-              } else {
-                final model = models[index - 2];
+        final selectedSet = Set<String>.from(state.selectedModels);
+        final allSet = Set<String>.from(models);
+        final areAllSelected =
+            selectedSet.length == allSet.length && selectedSet.containsAll(allSet);
 
-                return ListTile(
-                  leading: Checkbox(
-                    value: state.selectedModels.contains(model) || state.selectedModels == models,
-                    onChanged: (bool? newValue) {
-                      if (newValue ?? false) {
-                        context.read<SearchPageCubit>().addCarModelToSelection(model);
-                      } else {
-                        context.read<SearchPageCubit>().removeCarModelFromSelection(model);
-                      }
-                    },
-                  ),
+        return Drawer(
+          child: ListView(
+            children: [
+              DrawerHeader(
+                child: Text(
+                  AppLocalisations.searchFilterModelTitle,
+                  style: AppTextStyles.zonaPro20,
+                ),
+              ),
+
+              CheckboxListTile(
+                value: areAllSelected,
+                onChanged: (bool? value) {
+                  if (value ?? false) {
+                    context.read<SearchPageCubit>().updateModelSelection(models);
+                  } else {
+                    context.read<SearchPageCubit>().updateModelSelection([]);
+                  }
+                },
+                title: Text(AppLocalisations.searchFilterModelPlaceholder),
+              ),
+
+              ...models.map((model) {
+                final isSelected = selectedSet.contains(model);
+                return CheckboxListTile(
+                  value: isSelected,
+                  onChanged: (bool? newValue) {
+                    if (newValue == true) {
+                      context.read<SearchPageCubit>().addCarModelToSelection(model);
+                    } else {
+                      context.read<SearchPageCubit>().removeCarModelFromSelection(model);
+                    }
+                  },
                   title: Text(model),
                 );
-              }
-            },
+              }),
+            ],
           ),
         );
       },
