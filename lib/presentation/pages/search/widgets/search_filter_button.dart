@@ -5,7 +5,7 @@ import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
 import '../../../widgets/app_badge.dart';
 
-class SearchFilter extends StatelessWidget {
+class SearchFilterButton extends StatelessWidget {
   final String title;
   final String? text;
   final String selectionCount;
@@ -14,7 +14,7 @@ class SearchFilter extends StatelessWidget {
   final void Function()? onPressed;
   final bool isPlaceHolder;
 
-  const SearchFilter({
+  const SearchFilterButton({
     required this.title,
     required this.icon,
     required this.selectionCount,

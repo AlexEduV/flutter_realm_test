@@ -37,6 +37,10 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     return cars.map((element) => '${element.manufacturer} ${element.model}').toSet().toList();
   }
 
+  void updateModelSelection(List<String> newList) {
+    emit(state.copyWith(selectedModels: newList));
+  }
+
   void openDrawer(SearchDrawerType type) {
     emit(state.copyWith(drawerOpened: type));
   }

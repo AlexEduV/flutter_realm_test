@@ -11,7 +11,7 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_state.d
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/filter_drawer.dart';
-import 'package:test_futter_project/presentation/pages/search/widgets/search_filter.dart';
+import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -74,7 +74,7 @@ class _SearchPageState extends State<SearchPage> {
                       ? AppLocalisations.searchFilterModelPlaceholder
                       : state.selectedModels.join(', ');
 
-                  return SearchFilter(
+                  return SearchFilterButton(
                     icon: Icons.local_shipping_outlined,
                     title: '${AppLocalisations.searchFilterModelTitle}: ',
                     text: modelFilters,
@@ -88,7 +88,7 @@ class _SearchPageState extends State<SearchPage> {
                 },
               ),
 
-              SearchFilter(
+              SearchFilterButton(
                 icon: Icons.settings_input_component,
                 title: AppLocalisations.searchFilterParametersTitle,
                 selectionCount: '2',
