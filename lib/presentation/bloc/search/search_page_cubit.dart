@@ -33,10 +33,6 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     return list.where((car) => car.type == state.currentSelectedType.name).toList();
   }
 
-  void closeDrawer() {
-    emit(state.copyWith(drawerOpened: SearchDrawerType.empty));
-  }
-
   void openDrawer(SearchDrawerType type) {
     emit(state.copyWith(drawerOpened: type));
   }

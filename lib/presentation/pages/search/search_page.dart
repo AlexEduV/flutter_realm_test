@@ -68,21 +68,28 @@ class _SearchPageState extends State<SearchPage> {
 
               Builder(
                 builder: (context) {
+                  final isFilterEmpty = state.selectedModels.isEmpty;
+                  final modelFilters = isFilterEmpty
+                      ? AppLocalisations.searchFilterModelPlaceholder
+                      : state.selectedModels.join(', ');
+
                   return SearchFilter(
                     icon: Icons.local_shipping_outlined,
-                    text: '${AppLocalisations.searchFilterModelTitle}: BMW',
-                    selectionCount: '1',
+                    title: '${AppLocalisations.searchFilterModelTitle}: ',
+                    text: modelFilters,
+                    selectionCount: state.selectedModels.length.toString(),
                     onPressed: () {
                       context.read<SearchPageCubit>().openDrawer(SearchDrawerType.model);
                       Scaffold.of(context).openEndDrawer();
                     },
+                    isPlaceHolder: isFilterEmpty,
                   );
                 },
               ),
 
               SearchFilter(
                 icon: Icons.settings_input_component,
-                text: AppLocalisations.searchFilterParametersTitle,
+                title: AppLocalisations.searchFilterParametersTitle,
                 selectionCount: '2',
               ),
 

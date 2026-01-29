@@ -6,18 +6,22 @@ import '../../../../common/app_text_styles.dart';
 import '../../../widgets/app_badge.dart';
 
 class SearchFilter extends StatelessWidget {
-  final String text;
+  final String title;
+  final String? text;
   final String selectionCount;
   final double iconSize;
   final IconData icon;
   final void Function()? onPressed;
+  final bool isPlaceHolder;
 
   const SearchFilter({
-    required this.text,
+    required this.title,
     required this.icon,
     required this.selectionCount,
+    this.text,
     this.onPressed,
     this.iconSize = 40.0,
+    this.isPlaceHolder = false,
     super.key,
   });
 
@@ -37,7 +41,6 @@ class SearchFilter extends StatelessWidget {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalL)),
             padding: EdgeInsets.all(AppDimensions.normalL),
             child: Row(
-              spacing: AppDimensions.normalXS,
               children: [
                 Container(
                   decoration: BoxDecoration(
@@ -49,7 +52,19 @@ class SearchFilter extends StatelessWidget {
                   child: Icon(icon, color: AppColors.headerColor),
                 ),
 
-                Text(text, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
+                SizedBox(width: AppDimensions.normalXS),
+
+                Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
+
+                if (text != null) ...[
+                  Text(
+                    text.toString(),
+                    style: AppTextStyles.zonaPro16.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: isPlaceHolder ? Colors.grey : null,
+                    ),
+                  ),
+                ],
 
                 Spacer(),
 

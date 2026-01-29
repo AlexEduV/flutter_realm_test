@@ -12,6 +12,7 @@ abstract class SearchPageState with _$SearchPageState {
     @Default([]) List<CarEntity> results,
     @Default(CarType.car) CarType currentSelectedType,
     @Default(false) bool isLoading,
+    @Default([]) List<String> selectedModels,
     @Default(SearchDrawerType.empty) SearchDrawerType drawerOpened,
   }) = _SearchPageState;
 }

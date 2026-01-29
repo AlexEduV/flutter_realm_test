@@ -24,4 +24,6 @@ class AppLocalisations {
   static const String searchFilterModelTitle = 'Model';
 
   static const String searchFilterParametersTitle = 'Parameters';
+
+  static const String searchFilterModelPlaceholder = 'All';
 }
