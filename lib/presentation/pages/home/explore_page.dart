@@ -71,7 +71,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             onPressed: () {
               context.go(AppRoutes.home + AppRoutes.search);
             },
-            icon: Icon(Icons.search, size: 32, color: Colors.white),
+            icon: Icon(Icons.search, size: AppDimensions.appBarIconSize, color: Colors.white),
           ),
         ],
         actionsPadding: EdgeInsets.only(right: AppDimensions.normalM),

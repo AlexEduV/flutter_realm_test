@@ -12,4 +12,6 @@ class AppLocalisations {
   static const String distanceWidgetText = 'km away';
 
   static const String recommendedSectionTitle = 'Recommended';
+
+  static const String searchPageTitle = 'Search';
 }
