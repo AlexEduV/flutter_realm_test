@@ -84,6 +84,7 @@ class _SearchPageState extends State<SearchPage> {
                   itemBuilder: (context, index) {
                     return ExploreListItem(car: state.results[index], onDismissed: () {});
                   },
+                  itemCount: state.results.length,
                 ),
               );
             },
