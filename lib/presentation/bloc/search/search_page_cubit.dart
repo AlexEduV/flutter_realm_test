@@ -33,6 +33,10 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     return list.where((car) => car.type == state.currentSelectedType.name).toList();
   }
 
+  List<String> getModelsFromEntities(List<CarEntity> cars) {
+    return cars.map((element) => '${element.manufacturer} ${element.model}').toSet().toList();
+  }
+
   void openDrawer(SearchDrawerType type) {
     emit(state.copyWith(drawerOpened: type));
   }

@@ -10,6 +10,7 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
+import 'package:test_futter_project/presentation/pages/search/widgets/filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
@@ -116,8 +117,8 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ],
           ),
-          endDrawer: Drawer(
-            child: ListView(children: [DrawerHeader(child: Text('Drawer'))]),
+          endDrawer: FilterDrawer(
+            models: context.read<SearchPageCubit>().getModelsFromEntities(state.results),
           ),
         );
       },
