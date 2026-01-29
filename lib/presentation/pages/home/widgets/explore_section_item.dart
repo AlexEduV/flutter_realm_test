@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ExploreSectionItem extends StatelessWidget {
-  final double size;
+  final double height;
 
-  const ExploreSectionItem({super.key, this.size = 120.0});
+  const ExploreSectionItem({super.key, this.height = 120.0});
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +12,8 @@ class ExploreSectionItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(6 * 2),
         color: Colors.grey[300],
       ),
-      height: size,
-      width: size,
+      height: height,
+      width: 120,
     );
   }
 }

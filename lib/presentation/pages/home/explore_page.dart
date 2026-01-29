@@ -27,6 +27,34 @@ class ExplorePage extends StatefulWidget {
 
 class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+  final ScrollController _scrollController = ScrollController();
+  double _exploreHeight = 140; // initial height
+
+  @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    double offset = _scrollController.offset;
+    double minHeight = 60;
+    double maxHeight = 140;
+    double newHeight = (maxHeight - offset).clamp(minHeight, maxHeight);
+    if (newHeight != _exploreHeight) {
+      setState(() {
+        _exploreHeight = newHeight;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,47 +63,43 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
         backgroundColor: AppColors.headerColor,
         title: Text(widget.title, style: AppTextStyles.zonaPro30White),
       ),
-      body: BlocBuilder<HomePageCubit, HomePageState>(
-        builder: (context, state) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.headerColor,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(AppDimensions.normalL),
-                    bottomRight: Radius.circular(AppDimensions.normalL),
-                  ),
-                ),
-                padding: EdgeInsets.only(left: AppDimensions.normalM, bottom: 40, top: 25),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    spacing: AppDimensions.normalL,
-                    children: [
-                      ExploreSectionItem(),
-                      ExploreSectionItem(),
-                      ExploreSectionItem(),
-                      //todo: the sizedBox was added just for the padding. It's not an ideal solution
-                      SizedBox(),
-                    ],
-                  ),
-                ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AnimatedContainer(
+            duration: Duration(milliseconds: 200),
+            height: _exploreHeight,
+            decoration: BoxDecoration(
+              color: AppColors.headerColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(AppDimensions.normalL),
+                bottomRight: Radius.circular(AppDimensions.normalL),
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: AppDimensions.normalM,
-                  top: AppDimensions.normalM,
-                ),
-                child: Text(
-                  AppLocalisations.recommendedSectionTitle,
-                  style: AppTextStyles.zonaPro18,
-                ),
+            ),
+            padding: EdgeInsets.only(left: AppDimensions.normalM, bottom: 40, top: 25),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                spacing: AppDimensions.normalL,
+                children: [
+                  ExploreSectionItem(height: _exploreHeight),
+                  ExploreSectionItem(height: _exploreHeight),
+                  ExploreSectionItem(height: _exploreHeight),
+                  //todo: the sizedBox was added just for the padding. It's not an ideal solution
+                  SizedBox(),
+                ],
               ),
+            ),
+          ),
 
-              Expanded(
+          Padding(
+            padding: const EdgeInsets.only(left: AppDimensions.normalM, top: AppDimensions.normalM),
+            child: Text(AppLocalisations.recommendedSectionTitle, style: AppTextStyles.zonaPro18),
+          ),
+
+          BlocBuilder<HomePageCubit, HomePageState>(
+            builder: (context, state) {
+              return Expanded(
                 child: state.isLoading
                     ? Center(child: CircularProgressIndicator())
                     : AnimatedList(
@@ -86,11 +110,12 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                           return _buildItem(CarExtensions.fromEntity(car), animation, index);
                         },
                         initialItemCount: state.cars.length,
+                        controller: _scrollController,
                       ),
-              ),
-            ],
-          );
-        },
+              );
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addCarToBase,
