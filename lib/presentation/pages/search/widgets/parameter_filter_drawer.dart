@@ -19,6 +19,9 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
   final minYearTextController = TextEditingController();
   final maxYearTextController = TextEditingController();
 
+  final minPriceTextController = TextEditingController();
+  final maxPriceTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
@@ -106,6 +109,23 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                 ),
               ),
 
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildFormField(
+                      minPriceTextController,
+                      FieldParamsModel.withLabel('Min:'),
+                    ),
+                  ),
+                  Expanded(
+                    child: _buildFormField(
+                      maxPriceTextController,
+                      FieldParamsModel.withLabel('Max:'),
+                    ),
+                  ),
+                ],
+              ),
+
               ListTile(
                 title: Text(AppLocalisations.parameterFuelTypeName, style: AppTextStyles.zonaPro18),
               ),
@@ -172,6 +192,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
           labelText: model.label,
           border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.accentColor)),
         ),
+        keyboardType: TextInputType.number,
       ),
     );
   }
