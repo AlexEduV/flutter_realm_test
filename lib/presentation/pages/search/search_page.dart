@@ -30,7 +30,8 @@ class _SearchPageState extends State<SearchPage> {
       buildWhen: (previous, current) =>
           previous.drawerOpened != current.drawerOpened ||
           !listEquals(previous.selectedModels, current.selectedModels) ||
-          previous.currentSelectedType != current.currentSelectedType,
+          previous.currentSelectedType != current.currentSelectedType ||
+          previous.allModels != current.allModels,
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
@@ -121,9 +122,7 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ],
           ),
-          endDrawer: FilterDrawer(
-            models: context.read<SearchPageCubit>().getModelsFromEntities(state.results),
-          ),
+          endDrawer: FilterDrawer(models: state.allModels),
         );
       },
     );

@@ -18,6 +18,8 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
     final results = filterCarsByType(_carRepository.getAllCars());
 
+    updateModelListFromEntities(results, state.currentSelectedType);
+
     emit(state.copyWith(results: results, isLoading: false));
 
     _carSubscription = _carRepository.watchCars()?.listen((entities) {
@@ -27,6 +29,8 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   void updateTypeSelection(CarType newType) {
     //todo: maybe better to save Map<> for each type, so the user can easily switch between tabs
+    updateModelListFromEntities(state.results, newType);
+
     emit(state.copyWith(currentSelectedType: newType, selectedModels: []));
   }
 
@@ -34,12 +38,13 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     return list.where((car) => car.type == state.currentSelectedType.name).toList();
   }
 
-  List<String> getModelsFromEntities(List<CarEntity> cars) {
-    return cars
+  void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
+    final allModels = cars
         .where((element) => element.type == state.currentSelectedType.name)
         .map((element) => '${element.manufacturer} ${element.model}')
         .toSet()
         .toList();
+    emit(state.copyWith(allModels: allModels));
   }
 
   void updateModelSelection(List<String> newList) {
