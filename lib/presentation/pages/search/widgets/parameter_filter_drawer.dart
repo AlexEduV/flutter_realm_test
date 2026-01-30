@@ -21,6 +21,16 @@ class ParameterFilterDrawer extends StatelessWidget {
                   style: AppTextStyles.zonaPro20,
                 ),
               ),
+
+              ListTile(title: Text(AppLocalisations.parameterYearName)),
+
+              ListTile(title: Text(AppLocalisations.parameterBodyTypeName)),
+
+              ListTile(title: Text(AppLocalisations.parameterPriceRangeName)),
+
+              ListTile(title: Text(AppLocalisations.parameterFuelTypeName)),
+
+              ListTile(title: Text(AppLocalisations.parameterTransmissionTypeName)),
             ],
           ),
         );

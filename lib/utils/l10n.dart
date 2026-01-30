@@ -26,4 +26,14 @@ class AppLocalisations {
   static const String searchFilterParametersTitle = 'Parameters';
 
   static const String searchFilterModelPlaceholder = 'All';
+
+  static const String parameterYearName = 'Year';
+
+  static const String parameterBodyTypeName = 'Body Type';
+
+  static const String parameterPriceRangeName = 'Price Range';
+
+  static const String parameterFuelTypeName = 'Fuel Type';
+
+  static const String parameterTransmissionTypeName = 'Transmission Type';
 }
