@@ -39,6 +39,7 @@ class FilterDrawer extends StatelessWidget {
                   }
                 },
                 title: Text(AppLocalisations.searchFilterModelPlaceholder),
+                controlAffinity: ListTileControlAffinity.leading,
               ),
 
               ...models.map((model) {
@@ -53,6 +54,7 @@ class FilterDrawer extends StatelessWidget {
                     }
                   },
                   title: Text(model),
+                  controlAffinity: ListTileControlAffinity.leading,
                 );
               }),
             ],
