@@ -35,7 +35,11 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   List<String> getModelsFromEntities(List<CarEntity> cars) {
-    return cars.map((element) => '${element.manufacturer} ${element.model}').toSet().toList();
+    return cars
+        .where((element) => element.type == state.currentSelectedType.name)
+        .map((element) => '${element.manufacturer} ${element.model}')
+        .toSet()
+        .toList();
   }
 
   void updateModelSelection(List<String> newList) {

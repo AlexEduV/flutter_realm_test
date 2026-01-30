@@ -29,7 +29,8 @@ class _SearchPageState extends State<SearchPage> {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       buildWhen: (previous, current) =>
           previous.drawerOpened != current.drawerOpened ||
-          !listEquals(previous.selectedModels, current.selectedModels),
+          !listEquals(previous.selectedModels, current.selectedModels) ||
+          previous.currentSelectedType != current.currentSelectedType,
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
