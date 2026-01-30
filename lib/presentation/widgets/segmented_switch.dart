@@ -17,7 +17,8 @@ class SegmentedSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double segmentWidth = 1 / options.length;
-    final buttonHeight = 40.0;
+    const buttonHeight = 40.0;
+    const animationDuration = 400;
 
     return Container(
       decoration: BoxDecoration(
@@ -29,7 +30,7 @@ class SegmentedSwitch extends StatelessWidget {
         children: [
           // Slider
           AnimatedAlign(
-            duration: const Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: animationDuration),
             curve: Curves.easeInOut,
             // Calculate alignment: -1.0 is far left, 1.0 is far right
             alignment: Alignment(-1.0 + (selectedIndex * (2.0 / (options.length - 1))), 0.0),
@@ -57,9 +58,9 @@ class SegmentedSwitch extends StatelessWidget {
                     height: buttonHeight,
                     alignment: Alignment.center,
                     child: AnimatedDefaultTextStyle(
-                      duration: const Duration(milliseconds: 200),
+                      duration: const Duration(milliseconds: animationDuration),
                       style: TextStyle(
-                        color: isSelected ? Colors.white : Colors.black,
+                        color: isSelected ? Colors.white : AppColors.headerColor,
                         fontWeight: FontWeight.w600,
                       ),
                       child: Text(options[index]),
