@@ -11,7 +11,8 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
-import 'package:test_futter_project/presentation/pages/search/widgets/filter_drawer.dart';
+import 'package:test_futter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
+import 'package:test_futter_project/presentation/pages/search/widgets/parameter_filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
@@ -93,10 +94,18 @@ class _SearchPageState extends State<SearchPage> {
                 },
               ),
 
-              SearchFilterButton(
-                icon: Icons.settings_input_component,
-                title: AppLocalisations.searchFilterParametersTitle,
-                selectionCount: '2',
+              Builder(
+                builder: (context) {
+                  return SearchFilterButton(
+                    icon: Icons.settings_input_component,
+                    title: AppLocalisations.searchFilterParametersTitle,
+                    selectionCount: '2',
+                    onPressed: () {
+                      context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);
+                      Scaffold.of(context).openEndDrawer();
+                    },
+                  );
+                },
               ),
 
               BlocBuilder<SearchPageCubit, SearchPageState>(
@@ -122,7 +131,9 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ],
           ),
-          endDrawer: FilterDrawer(models: state.allModels),
+          endDrawer: state.drawerOpened == SearchDrawerType.model
+              ? ModelFilterDrawer(models: state.allModels)
+              : ParameterFilterDrawer(models: state.allModels),
         );
       },
     );

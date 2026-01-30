@@ -5,10 +5,10 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
-class FilterDrawer extends StatelessWidget {
+class ModelFilterDrawer extends StatelessWidget {
   final List<String> models;
 
-  const FilterDrawer({required this.models, super.key});
+  const ModelFilterDrawer({required this.models, super.key});
 
   @override
   Widget build(BuildContext context) {
