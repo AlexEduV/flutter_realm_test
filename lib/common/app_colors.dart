@@ -5,5 +5,6 @@ class AppColors {
   static final placeholderColor = Colors.grey[400];
 
   static const headerColor = Color(0xFF181C2A);
+  static const accentColor = Color(0xFF9A9A9A);
   static const scaffoldColor = Color(0xFFE9E9ED);
 }
