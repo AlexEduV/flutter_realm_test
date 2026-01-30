@@ -31,7 +31,7 @@ class SegmentedSwitch extends StatelessWidget {
           // Slider
           AnimatedAlign(
             duration: const Duration(milliseconds: animationDuration),
-            curve: Curves.easeInOut,
+            curve: Curves.easeOutBack,
             // Calculate alignment: -1.0 is far left, 1.0 is far right
             alignment: Alignment(-1.0 + (selectedIndex * (2.0 / (options.length - 1))), 0.0),
             child: FractionallySizedBox(
