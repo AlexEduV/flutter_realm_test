@@ -12,6 +12,8 @@ class ParameterFilterDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       builder: (context, state) {
+        final checkBoxPosition = ListTileControlAffinity.leading;
+
         return Drawer(
           child: ListView(
             children: [
@@ -22,15 +24,107 @@ class ParameterFilterDrawer extends StatelessWidget {
                 ),
               ),
 
-              ListTile(title: Text(AppLocalisations.parameterYearName)),
+              ListTile(
+                title: Text(AppLocalisations.parameterYearName, style: AppTextStyles.zonaPro18),
+              ),
 
-              ListTile(title: Text(AppLocalisations.parameterBodyTypeName)),
+              ListTile(
+                title: Text(AppLocalisations.parameterBodyTypeName, style: AppTextStyles.zonaPro18),
+              ),
 
-              ListTile(title: Text(AppLocalisations.parameterPriceRangeName)),
+              //todo: probably get the tile values using api mocks;
+              CheckboxListTile(
+                title: Text('Sedan'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: Text('Hatchback'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: Text('Universal'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: Text('Minivan'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: Text('Coupe'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: Text('Cross-over'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
 
-              ListTile(title: Text(AppLocalisations.parameterFuelTypeName)),
+              ListTile(
+                title: Text(
+                  AppLocalisations.parameterPriceRangeName,
+                  style: AppTextStyles.zonaPro18,
+                ),
+              ),
 
-              ListTile(title: Text(AppLocalisations.parameterTransmissionTypeName)),
+              ListTile(
+                title: Text(AppLocalisations.parameterFuelTypeName, style: AppTextStyles.zonaPro18),
+              ),
+
+              CheckboxListTile(
+                title: Text('Diesel'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: Text('Gasoline'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: Text('EV'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+
+              ListTile(
+                title: Text(
+                  AppLocalisations.parameterTransmissionTypeName,
+                  style: AppTextStyles.zonaPro18,
+                ),
+              ),
+
+              CheckboxListTile(
+                title: Text('Manual'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: Text('Automatic'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: Text('Hybrid'),
+                value: false,
+                onChanged: (bool? newValue) {},
+                controlAffinity: checkBoxPosition,
+              ),
             ],
           ),
         );
