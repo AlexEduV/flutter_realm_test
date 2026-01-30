@@ -133,7 +133,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
           endDrawer: state.drawerOpened == SearchDrawerType.model
               ? ModelFilterDrawer(models: state.allModels)
-              : ParameterFilterDrawer(models: state.allModels),
+              : ParameterFilterDrawer(),
         );
       },
     );
