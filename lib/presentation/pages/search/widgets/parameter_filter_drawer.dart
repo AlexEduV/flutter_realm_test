@@ -22,6 +22,8 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
   final minPriceTextController = TextEditingController();
   final maxPriceTextController = TextEditingController();
 
+  //todo: business logic is not ready;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
