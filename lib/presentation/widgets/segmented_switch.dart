@@ -16,35 +16,57 @@ class SegmentedSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo: add a flowy animation, so that selected container flows to the new selected index,
-    // since the width is the same.
+    final double segmentWidth = 1 / options.length;
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(AppDimensions.normalL),
       ),
-      padding: EdgeInsets.symmetric(
-        vertical: AppDimensions.minorS,
-        horizontal: AppDimensions.minorL,
-      ),
-      child: Row(
-        spacing: AppDimensions.minorM,
-        children: List.generate(options.length, (index) {
-          final isSelected = index == selectedIndex;
-          return Expanded(
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: isSelected ? AppColors.headerColor : Colors.transparent,
-                foregroundColor: isSelected ? Colors.white : Colors.black,
-                shape: RoundedRectangleBorder(
+      padding: EdgeInsets.all(AppDimensions.minorL),
+      child: Stack(
+        children: [
+          AnimatedAlign(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            // Calculate alignment: -1.0 is far left, 1.0 is far right
+            alignment: Alignment(-1.0 + (selectedIndex * (2.0 / (options.length - 1))), 0.0),
+            child: FractionallySizedBox(
+              widthFactor: segmentWidth,
+              child: Container(
+                height: 40, // Match your button height
+                decoration: BoxDecoration(
+                  color: AppColors.headerColor, // Your dark blue
                   borderRadius: BorderRadius.circular(AppDimensions.normalS),
                 ),
               ),
-              onPressed: () => onChanged(index),
-              child: Text(options[index]),
             ),
-          );
-        }),
+          ),
+
+          Row(
+            children: List.generate(options.length, (index) {
+              final isSelected = index == selectedIndex;
+              return Expanded(
+                child: GestureDetector(
+                  onTap: () => onChanged(index),
+                  behavior: HitTestBehavior.opaque,
+                  child: Container(
+                    height: 40,
+                    alignment: Alignment.center,
+                    child: AnimatedDefaultTextStyle(
+                      duration: const Duration(milliseconds: 300),
+                      style: TextStyle(
+                        color: isSelected ? Colors.white : Colors.black,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      child: Text(options[index]),
+                    ),
+                  ),
+                ),
+              );
+            }),
+          ),
+        ],
       ),
     );
   }
