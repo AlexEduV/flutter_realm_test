@@ -23,7 +23,10 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(results: results, isLoading: false));
 
     _carSubscription = _carRepository.watchCars()?.listen((entities) {
-      emit(state.copyWith(results: filterCarsByType(entities)));
+      final resultsByType = filterCarsByType(entities);
+      final resultsByModel = filterCarsByModel(resultsByType);
+
+      emit(state.copyWith(results: resultsByModel));
     });
   }
 
@@ -38,6 +41,16 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     return list.where((car) => car.type == state.currentSelectedType.name).toList();
   }
 
+  List<CarEntity> filterCarsByModel(List<CarEntity> list) {
+    if (state.selectedModels.isEmpty) {
+      return list;
+    }
+
+    return list
+        .where((car) => state.selectedModels.contains('${car.manufacturer} ${car.model}'))
+        .toList();
+  }
+
   void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
     final allModels = cars
         .where((element) => element.type == state.currentSelectedType.name)
@@ -49,16 +62,22 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   void updateModelSelection(List<String> newList) {
     emit(state.copyWith(selectedModels: newList));
+
+    emit(state.copyWith(results: filterCarsByModel(state.results)));
   }
 
   void addCarModelToSelection(String model) {
     final newSelection = List<String>.from(state.selectedModels)..add(model);
     emit(state.copyWith(selectedModels: newSelection));
+
+    emit(state.copyWith(results: filterCarsByModel(state.results)));
   }
 
   void removeCarModelFromSelection(String model) {
     final newSelection = List<String>.from(state.selectedModels)..remove(model);
     emit(state.copyWith(selectedModels: newSelection));
+
+    emit(state.copyWith(results: filterCarsByModel(state.results)));
   }
 
   void openDrawer(SearchDrawerType type) {
