@@ -19,9 +19,7 @@ import 'package:test_futter_project/utils/l10n.dart';
 import '../../../common/extensions/car_scheme_extension.dart';
 
 class ExplorePage extends StatefulWidget {
-  const ExplorePage({required this.title, super.key});
-
-  final String title;
+  const ExplorePage({super.key});
 
   @override
   State<ExplorePage> createState() => _ExplorePageState();
@@ -65,10 +63,9 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         backgroundColor: AppColors.headerColor,
-        title: Text(widget.title, style: AppTextStyles.zonaPro30White),
+        title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
         actions: [
           IconButton(
-            //todo: move to cubit & probably route manager
             onPressed: () {
               context.go(AppRoutes.home + AppRoutes.search);
             },

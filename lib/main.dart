@@ -21,7 +21,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: AppRoutes.home,
       builder: (BuildContext context, GoRouterState state) {
-        return ExplorePage(title: AppLocalisations.explorePageTitle);
+        return ExplorePage();
       },
       routes: <RouteBase>[
         GoRoute(
