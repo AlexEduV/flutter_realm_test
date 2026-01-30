@@ -11,6 +11,7 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
+import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/parameter_filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
@@ -119,6 +120,10 @@ class _SearchPageState extends State<SearchPage> {
 
               BlocBuilder<SearchPageCubit, SearchPageState>(
                 builder: (context, state) {
+                  if (state.results.isEmpty) {
+                    return EmptySearchPlaceholderWidget();
+                  }
+
                   return Expanded(
                     child: ListView.builder(
                       itemBuilder: (context, index) {

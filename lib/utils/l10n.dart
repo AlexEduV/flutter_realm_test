@@ -21,6 +21,8 @@ class AppLocalisations {
 
   static const String searchTabTrucks = 'Trucks';
 
+  static const String emptySearchPlaceholderText = 'No results were found for this search.';
+
   static const String searchFilterModelTitle = 'Model';
 
   static const String searchFilterParametersTitle = 'Parameters';
