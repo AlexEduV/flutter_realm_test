@@ -17,6 +17,7 @@ class SegmentedSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double segmentWidth = 1 / options.length;
+    final buttonHeight = 40.0;
 
     return Container(
       decoration: BoxDecoration(
@@ -26,15 +27,16 @@ class SegmentedSwitch extends StatelessWidget {
       padding: EdgeInsets.all(AppDimensions.minorL),
       child: Stack(
         children: [
+          // Slider
           AnimatedAlign(
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 200),
             curve: Curves.easeInOut,
             // Calculate alignment: -1.0 is far left, 1.0 is far right
             alignment: Alignment(-1.0 + (selectedIndex * (2.0 / (options.length - 1))), 0.0),
             child: FractionallySizedBox(
               widthFactor: segmentWidth,
               child: Container(
-                height: 40, // Match your button height
+                height: buttonHeight,
                 decoration: BoxDecoration(
                   color: AppColors.headerColor, // Your dark blue
                   borderRadius: BorderRadius.circular(AppDimensions.normalS),
@@ -43,6 +45,7 @@ class SegmentedSwitch extends StatelessWidget {
             ),
           ),
 
+          //Buttons
           Row(
             children: List.generate(options.length, (index) {
               final isSelected = index == selectedIndex;
@@ -51,10 +54,10 @@ class SegmentedSwitch extends StatelessWidget {
                   onTap: () => onChanged(index),
                   behavior: HitTestBehavior.opaque,
                   child: Container(
-                    height: 40,
+                    height: buttonHeight,
                     alignment: Alignment.center,
                     child: AnimatedDefaultTextStyle(
-                      duration: const Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 200),
                       style: TextStyle(
                         color: isSelected ? Colors.white : Colors.black,
                         fontWeight: FontWeight.w600,
