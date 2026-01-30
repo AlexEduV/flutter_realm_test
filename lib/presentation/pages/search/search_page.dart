@@ -49,6 +49,8 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             backgroundColor: AppColors.scaffoldColor,
+            //hidden hamburger icon this way;
+            actions: [const SizedBox.shrink()],
           ),
           body: Column(
             children: [
