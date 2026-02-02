@@ -24,3 +24,11 @@ class _Person {
   late String name;
   int age = 1;
 }
+
+@RealmModel()
+class _User {
+  late String userId;
+  late String firstName;
+  late String lastName;
+  late bool isLocationPermissionGranted;
+}

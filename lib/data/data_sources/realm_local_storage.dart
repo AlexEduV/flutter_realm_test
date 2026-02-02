@@ -1,4 +1,6 @@
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
 
 import '../../common/extensions/car_scheme_extension.dart';
@@ -49,5 +51,25 @@ class RealmLocalStorage implements BaseLocalStorage {
     realm.write(() {
       realm.deleteAll<Car>();
     });
+  }
+
+  @override
+  UserEntity initUser() {
+    final users = realm.all<User>().map((element) => UserEntity.fromSchema(element)).toList();
+
+    if (users.isNotEmpty) return users.first;
+
+    final user = const UserEntity(
+      userId: '1',
+      firstName: 'John',
+      lastName: 'Adams',
+      isLocationPermissionGranted: false,
+    );
+
+    realm.write(() {
+      realm.add(UserExtensions.fromEntity(user));
+    });
+
+    return user;
   }
 }

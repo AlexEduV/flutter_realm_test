@@ -5,21 +5,22 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:cancellation_token/cancellation_token.dart' as _i10;
+import 'package:cancellation_token/cancellation_token.dart' as _i11;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i9;
+import 'package:mockito/src/dummies.dart' as _i10;
 import 'package:realm/realm.dart' as _i2;
 import 'package:realm_common/realm_common.dart' as _i6;
 import 'package:realm_dart/src/configuration.dart' as _i3;
 import 'package:realm_dart/src/realm_object.dart' as _i7;
 import 'package:realm_dart/src/results.dart' as _i5;
 import 'package:test_futter_project/data/data_sources/realm_local_storage.dart'
-    as _i14;
-import 'package:test_futter_project/data/dto/car_dto.dart' as _i12;
+    as _i15;
+import 'package:test_futter_project/data/dto/car_dto.dart' as _i13;
 import 'package:test_futter_project/data/models/scheme.dart' as _i8;
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart'
-    as _i11;
-import 'package:test_futter_project/domain/entities/car_entity.dart' as _i13;
+    as _i12;
+import 'package:test_futter_project/domain/entities/car_entity.dart' as _i14;
+import 'package:test_futter_project/domain/entities/user_entity.dart' as _i9;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -92,6 +93,11 @@ class _FakeCar_10 extends _i1.SmartFake implements _i8.Car {
     : super(parent, parentInvocation);
 }
 
+class _FakeUserEntity_11 extends _i1.SmartFake implements _i9.UserEntity {
+  _FakeUserEntity_11(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [Realm].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -152,7 +158,7 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
   T add<T extends _i7.RealmObject>(T? object, {bool? update = false}) =>
       (super.noSuchMethod(
             Invocation.method(#add, [object], {#update: update}),
-            returnValue: _i9.dummyValue<T>(
+            returnValue: _i10.dummyValue<T>(
               this,
               Invocation.method(#add, [object], {#update: update}),
             ),
@@ -185,7 +191,7 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
   T write<T>(T Function()? writeCallback) =>
       (super.noSuchMethod(
             Invocation.method(#write, [writeCallback]),
-            returnValue: _i9.dummyValue<T>(
+            returnValue: _i10.dummyValue<T>(
               this,
               Invocation.method(#write, [writeCallback]),
             ),
@@ -205,7 +211,7 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
 
   @override
   _i4.Future<_i2.Transaction> beginWriteAsync([
-    _i10.CancellationToken? cancellationToken,
+    _i11.CancellationToken? cancellationToken,
   ]) =>
       (super.noSuchMethod(
             Invocation.method(#beginWriteAsync, [cancellationToken]),
@@ -221,13 +227,13 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
   @override
   _i4.Future<T> writeAsync<T>(
     T Function()? writeCallback, [
-    _i10.CancellationToken? cancellationToken,
+    _i11.CancellationToken? cancellationToken,
   ]) =>
       (super.noSuchMethod(
             Invocation.method(#writeAsync, [writeCallback, cancellationToken]),
             returnValue:
-                _i9.ifNotNull(
-                  _i9.dummyValueOrNull<T>(
+                _i10.ifNotNull(
+                  _i10.dummyValueOrNull<T>(
                     this,
                     Invocation.method(#writeAsync, [
                       writeCallback,
@@ -320,26 +326,26 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
 /// A class which mocks [CarApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarApiService extends _i1.Mock implements _i11.CarApiService {
+class MockCarApiService extends _i1.Mock implements _i12.CarApiService {
   MockCarApiService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Stream<List<_i12.CarDto>> get carStream =>
+  _i4.Stream<List<_i13.CarDto>> get carStream =>
       (super.noSuchMethod(
             Invocation.getter(#carStream),
-            returnValue: _i4.Stream<List<_i12.CarDto>>.empty(),
+            returnValue: _i4.Stream<List<_i13.CarDto>>.empty(),
           )
-          as _i4.Stream<List<_i12.CarDto>>);
+          as _i4.Stream<List<_i13.CarDto>>);
 
   @override
-  _i4.Future<List<_i12.CarDto>> fetchCars() =>
+  _i4.Future<List<_i13.CarDto>> fetchCars() =>
       (super.noSuchMethod(
             Invocation.method(#fetchCars, []),
-            returnValue: _i4.Future<List<_i12.CarDto>>.value(<_i12.CarDto>[]),
+            returnValue: _i4.Future<List<_i13.CarDto>>.value(<_i13.CarDto>[]),
           )
-          as _i4.Future<List<_i12.CarDto>>);
+          as _i4.Future<List<_i13.CarDto>>);
 
   @override
   void dispose() => super.noSuchMethod(
@@ -368,7 +374,7 @@ class MockCar extends _i1.Mock implements _i8.Car {
   String get carId =>
       (super.noSuchMethod(
             Invocation.getter(#carId),
-            returnValue: _i9.dummyValue<String>(
+            returnValue: _i10.dummyValue<String>(
               this,
               Invocation.getter(#carId),
             ),
@@ -379,7 +385,7 @@ class MockCar extends _i1.Mock implements _i8.Car {
   String get manufacturer =>
       (super.noSuchMethod(
             Invocation.getter(#manufacturer),
-            returnValue: _i9.dummyValue<String>(
+            returnValue: _i10.dummyValue<String>(
               this,
               Invocation.getter(#manufacturer),
             ),
@@ -390,7 +396,10 @@ class MockCar extends _i1.Mock implements _i8.Car {
   String get type =>
       (super.noSuchMethod(
             Invocation.getter(#type),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#type)),
+            returnValue: _i10.dummyValue<String>(
+              this,
+              Invocation.getter(#type),
+            ),
           )
           as String);
 
@@ -556,7 +565,7 @@ class MockCar extends _i1.Mock implements _i8.Car {
 /// A class which mocks [CarEntity].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarEntity extends _i1.Mock implements _i13.CarEntity {
+class MockCarEntity extends _i1.Mock implements _i14.CarEntity {
   MockCarEntity() {
     _i1.throwOnMissingStub(this);
   }
@@ -565,7 +574,7 @@ class MockCarEntity extends _i1.Mock implements _i13.CarEntity {
   String get carId =>
       (super.noSuchMethod(
             Invocation.getter(#carId),
-            returnValue: _i9.dummyValue<String>(
+            returnValue: _i10.dummyValue<String>(
               this,
               Invocation.getter(#carId),
             ),
@@ -576,7 +585,7 @@ class MockCarEntity extends _i1.Mock implements _i13.CarEntity {
   String get model =>
       (super.noSuchMethod(
             Invocation.getter(#model),
-            returnValue: _i9.dummyValue<String>(
+            returnValue: _i10.dummyValue<String>(
               this,
               Invocation.getter(#model),
             ),
@@ -587,7 +596,7 @@ class MockCarEntity extends _i1.Mock implements _i13.CarEntity {
   String get manufacturer =>
       (super.noSuchMethod(
             Invocation.getter(#manufacturer),
-            returnValue: _i9.dummyValue<String>(
+            returnValue: _i10.dummyValue<String>(
               this,
               Invocation.getter(#manufacturer),
             ),
@@ -598,7 +607,10 @@ class MockCarEntity extends _i1.Mock implements _i13.CarEntity {
   String get type =>
       (super.noSuchMethod(
             Invocation.getter(#type),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#type)),
+            returnValue: _i10.dummyValue<String>(
+              this,
+              Invocation.getter(#type),
+            ),
           )
           as String);
 
@@ -637,7 +649,7 @@ class MockCarEntity extends _i1.Mock implements _i13.CarEntity {
 /// A class which mocks [CarDto].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarDto extends _i1.Mock implements _i12.CarDto {
+class MockCarDto extends _i1.Mock implements _i13.CarDto {
   MockCarDto() {
     _i1.throwOnMissingStub(this);
   }
@@ -654,7 +666,7 @@ class MockCarDto extends _i1.Mock implements _i12.CarDto {
   String get carId =>
       (super.noSuchMethod(
             Invocation.getter(#carId),
-            returnValue: _i9.dummyValue<String>(
+            returnValue: _i10.dummyValue<String>(
               this,
               Invocation.getter(#carId),
             ),
@@ -665,7 +677,7 @@ class MockCarDto extends _i1.Mock implements _i12.CarDto {
   String get model =>
       (super.noSuchMethod(
             Invocation.getter(#model),
-            returnValue: _i9.dummyValue<String>(
+            returnValue: _i10.dummyValue<String>(
               this,
               Invocation.getter(#model),
             ),
@@ -676,7 +688,7 @@ class MockCarDto extends _i1.Mock implements _i12.CarDto {
   String get manufacturer =>
       (super.noSuchMethod(
             Invocation.getter(#manufacturer),
-            returnValue: _i9.dummyValue<String>(
+            returnValue: _i10.dummyValue<String>(
               this,
               Invocation.getter(#manufacturer),
             ),
@@ -687,7 +699,10 @@ class MockCarDto extends _i1.Mock implements _i12.CarDto {
   String get type =>
       (super.noSuchMethod(
             Invocation.getter(#type),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#type)),
+            returnValue: _i10.dummyValue<String>(
+              this,
+              Invocation.getter(#type),
+            ),
           )
           as String);
 
@@ -726,7 +741,7 @@ class MockCarDto extends _i1.Mock implements _i12.CarDto {
 /// A class which mocks [RealmLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRealmLocalStorage extends _i1.Mock implements _i14.RealmLocalStorage {
+class MockRealmLocalStorage extends _i1.Mock implements _i15.RealmLocalStorage {
   MockRealmLocalStorage() {
     _i1.throwOnMissingStub(this);
   }
@@ -760,12 +775,12 @@ class MockRealmLocalStorage extends _i1.Mock implements _i14.RealmLocalStorage {
           as _i4.Stream<dynamic>);
 
   @override
-  List<_i13.CarEntity> getAll() =>
+  List<_i14.CarEntity> getAll() =>
       (super.noSuchMethod(
             Invocation.method(#getAll, []),
-            returnValue: <_i13.CarEntity>[],
+            returnValue: <_i14.CarEntity>[],
           )
-          as List<_i13.CarEntity>);
+          as List<_i14.CarEntity>);
 
   @override
   void deleteById(_i6.ObjectId? id) => super.noSuchMethod(
@@ -778,4 +793,15 @@ class MockRealmLocalStorage extends _i1.Mock implements _i14.RealmLocalStorage {
     Invocation.method(#deleteAll, []),
     returnValueForMissingStub: null,
   );
+
+  @override
+  _i9.UserEntity initUser() =>
+      (super.noSuchMethod(
+            Invocation.method(#initUser, []),
+            returnValue: _FakeUserEntity_11(
+              this,
+              Invocation.method(#initUser, []),
+            ),
+          )
+          as _i9.UserEntity);
 }

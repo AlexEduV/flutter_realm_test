@@ -268,3 +268,101 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
   @override
   SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
 }
+
+class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
+  User(
+    String userId,
+    String firstName,
+    String lastName,
+    bool isLocationPermissionGranted,
+  ) {
+    RealmObjectBase.set(this, 'userId', userId);
+    RealmObjectBase.set(this, 'firstName', firstName);
+    RealmObjectBase.set(this, 'lastName', lastName);
+    RealmObjectBase.set(
+      this,
+      'isLocationPermissionGranted',
+      isLocationPermissionGranted,
+    );
+  }
+
+  User._();
+
+  @override
+  String get userId => RealmObjectBase.get<String>(this, 'userId') as String;
+  @override
+  set userId(String value) => RealmObjectBase.set(this, 'userId', value);
+
+  @override
+  String get firstName =>
+      RealmObjectBase.get<String>(this, 'firstName') as String;
+  @override
+  set firstName(String value) => RealmObjectBase.set(this, 'firstName', value);
+
+  @override
+  String get lastName =>
+      RealmObjectBase.get<String>(this, 'lastName') as String;
+  @override
+  set lastName(String value) => RealmObjectBase.set(this, 'lastName', value);
+
+  @override
+  bool get isLocationPermissionGranted =>
+      RealmObjectBase.get<bool>(this, 'isLocationPermissionGranted') as bool;
+  @override
+  set isLocationPermissionGranted(bool value) =>
+      RealmObjectBase.set(this, 'isLocationPermissionGranted', value);
+
+  @override
+  Stream<RealmObjectChanges<User>> get changes =>
+      RealmObjectBase.getChanges<User>(this);
+
+  @override
+  Stream<RealmObjectChanges<User>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<User>(this, keyPaths);
+
+  @override
+  User freeze() => RealmObjectBase.freezeObject<User>(this);
+
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      'userId': userId.toEJson(),
+      'firstName': firstName.toEJson(),
+      'lastName': lastName.toEJson(),
+      'isLocationPermissionGranted': isLocationPermissionGranted.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(User value) => value.toEJson();
+  static User _fromEJson(EJsonValue ejson) {
+    if (ejson is! Map<String, dynamic>) return raiseInvalidEJson(ejson);
+    return switch (ejson) {
+      {
+        'userId': EJsonValue userId,
+        'firstName': EJsonValue firstName,
+        'lastName': EJsonValue lastName,
+        'isLocationPermissionGranted': EJsonValue isLocationPermissionGranted,
+      } =>
+        User(
+          fromEJson(userId),
+          fromEJson(firstName),
+          fromEJson(lastName),
+          fromEJson(isLocationPermissionGranted),
+        ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
+    RealmObjectBase.registerFactory(User._);
+    register(_toEJson, _fromEJson);
+    return const SchemaObject(ObjectType.realmObject, User, 'User', [
+      SchemaProperty('userId', RealmPropertyType.string),
+      SchemaProperty('firstName', RealmPropertyType.string),
+      SchemaProperty('lastName', RealmPropertyType.string),
+      SchemaProperty('isLocationPermissionGranted', RealmPropertyType.bool),
+    ]);
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
+}
