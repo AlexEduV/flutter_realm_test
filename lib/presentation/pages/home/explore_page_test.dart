@@ -32,23 +32,11 @@ class _ExplorePageTestState extends State<ExplorePageTest> with WidgetsBindingOb
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
-      // appBar: AppBar(
-      //   backgroundColor: AppColors.headerColor,
-      //   title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () {
-      //         context.go(AppRoutes.home + AppRoutes.search);
-      //       },
-      //       icon: const Icon(Icons.search, size: AppDimensions.appBarIconSize, color: Colors.white),
-      //     ),
-      //   ],
-      //   actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
-      // ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             pinned: true,
+            backgroundColor: AppColors.headerColor,
             title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
             actions: [
               IconButton(
