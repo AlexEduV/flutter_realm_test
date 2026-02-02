@@ -1,16 +1,25 @@
 # test_futter_project
 
-Test Flutter Project for realm, gorouter and mockito
+A Test Flutter Project, which uses RealmDb, GoRouter and Mockito
 
-## Getting Started
+## Summary
 
-This project is a starting point for a Flutter application.
+This project is a mobile app, which models the Auto E-commerce App, like Auto.Ria.
+It uses cubit for State Management, covered by cubit tests, GoRouter for navigation,
+Realm for local storage, and Mockito for Unit tests. It also uses RXDart and streams for the mock API calls.
 
-A few resources to get you started if this is your first Flutter project:
+And all of this following the best practices and Clean Architecture.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+I have primarily created the project to get familiar with these libs.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## RoadMap
+
+- I want to add deeplink support and custom routes in router,
+- Cover widgets with tests and Golden Tests, probably using Alchemist, but story book will be more beneficial
+- Add mock localisation API calls and localise the app
+- Add Flavors support for QA and Prod envs
+- Maybe add Firebase authentication
+- Add semantics
+
+Base design is taken from [here]('https://dribbble.com/shots/17097339-Vehicle-Retailer-App').
+I use custom Zona Pro font throughout the project
