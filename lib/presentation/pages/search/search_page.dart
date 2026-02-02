@@ -26,8 +26,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  //todo: when scrolling the list, the filter buttons section should slowly shrink
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
@@ -54,86 +52,94 @@ class _SearchPageState extends State<SearchPage> {
             //hidden hamburger icon this way;
             actions: [const SizedBox.shrink()],
           ),
-          body: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(AppDimensions.normalL),
-                child: BlocBuilder<SearchPageCubit, SearchPageState>(
-                  builder: (context, state) {
-                    return SegmentedSwitch(
-                      selectedIndex: state.currentSelectedType.index,
-                      options: [
-                        AppLocalisations.searchTabCars,
-                        AppLocalisations.searchTabBikes,
-                        AppLocalisations.searchTabTrucks,
-                      ],
-                      onChanged: (newIndex) {
-                        context.read<SearchPageCubit>().updateTypeSelection(
-                          CarType.values[newIndex],
-                        );
-                        context.read<SearchPageCubit>().loadData();
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(AppDimensions.normalL),
+                  child: BlocBuilder<SearchPageCubit, SearchPageState>(
+                    builder: (context, state) {
+                      return SegmentedSwitch(
+                        selectedIndex: state.currentSelectedType.index,
+                        options: [
+                          AppLocalisations.searchTabCars,
+                          AppLocalisations.searchTabBikes,
+                          AppLocalisations.searchTabTrucks,
+                        ],
+                        onChanged: (newIndex) {
+                          context.read<SearchPageCubit>().updateTypeSelection(
+                            CarType.values[newIndex],
+                          );
+                          context.read<SearchPageCubit>().loadData();
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
+
+              SliverToBoxAdapter(
+                child: Builder(
+                  builder: (context) {
+                    final isFilterEmpty = state.selectedModels.isEmpty;
+                    final modelFilters = isFilterEmpty
+                        ? AppLocalisations.searchFilterModelPlaceholder
+                        : state.selectedModels.join(', ');
+
+                    return SearchFilterButton(
+                      icon: Icons.local_shipping_outlined,
+                      title: '${AppLocalisations.searchFilterModelTitle}: ',
+                      text: modelFilters,
+                      selectionCount: state.selectedModels.length.toString(),
+                      onPressed: () {
+                        context.read<SearchPageCubit>().openDrawer(SearchDrawerType.model);
+                        Scaffold.of(context).openEndDrawer();
+                      },
+                      isPlaceHolder: isFilterEmpty,
+                    );
+                  },
+                ),
+              ),
+
+              SliverToBoxAdapter(
+                child: Builder(
+                  builder: (context) {
+                    return SearchFilterButton(
+                      icon: Icons.settings_input_component,
+                      title: AppLocalisations.searchFilterParametersTitle,
+                      selectionCount: '2',
+                      onPressed: () {
+                        context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);
+                        Scaffold.of(context).openEndDrawer();
                       },
                     );
                   },
                 ),
               ),
 
-              Builder(
-                builder: (context) {
-                  final isFilterEmpty = state.selectedModels.isEmpty;
-                  final modelFilters = isFilterEmpty
-                      ? AppLocalisations.searchFilterModelPlaceholder
-                      : state.selectedModels.join(', ');
-
-                  return SearchFilterButton(
-                    icon: Icons.local_shipping_outlined,
-                    title: '${AppLocalisations.searchFilterModelTitle}: ',
-                    text: modelFilters,
-                    selectionCount: state.selectedModels.length.toString(),
-                    onPressed: () {
-                      context.read<SearchPageCubit>().openDrawer(SearchDrawerType.model);
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                    isPlaceHolder: isFilterEmpty,
-                  );
-                },
-              ),
-
-              Builder(
-                builder: (context) {
-                  return SearchFilterButton(
-                    icon: Icons.settings_input_component,
-                    title: AppLocalisations.searchFilterParametersTitle,
-                    selectionCount: '2',
-                    onPressed: () {
-                      context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                  );
-                },
-              ),
-
-              BlocBuilder<SearchPageCubit, SearchPageState>(
-                builder: (context, state) {
-                  return Padding(
-                    padding: const EdgeInsets.all(AppDimensions.normalL),
-                    child: ResultsWidget(results: state.results.length.toString()),
-                  );
-                },
+              SliverToBoxAdapter(
+                child: BlocBuilder<SearchPageCubit, SearchPageState>(
+                  builder: (context, state) {
+                    return Padding(
+                      padding: const EdgeInsets.all(AppDimensions.normalL),
+                      child: ResultsWidget(results: state.results.length.toString()),
+                    );
+                  },
+                ),
               ),
 
               BlocBuilder<SearchPageCubit, SearchPageState>(
                 builder: (context, state) {
                   if (state.results.isEmpty) {
-                    return const EmptySearchPlaceholderWidget();
+                    return const SliverToBoxAdapter(child: EmptySearchPlaceholderWidget());
                   }
 
-                  return Expanded(
-                    child: ListView.builder(
-                      itemBuilder: (context, index) {
+                  return SliverPadding(
+                    padding: const EdgeInsetsGeometry.only(bottom: AppDimensions.normalXL),
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate((context, index) {
                         return ExploreListItem(car: state.results[index], onDismissed: () {});
-                      },
-                      itemCount: state.results.length,
+                      }, childCount: state.results.length),
                     ),
                   );
                 },
