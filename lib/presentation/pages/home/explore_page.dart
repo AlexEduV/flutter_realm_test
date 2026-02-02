@@ -29,6 +29,13 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
   @override
+  void initState() {
+    //todo: ask for the location (approx) permission here
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
