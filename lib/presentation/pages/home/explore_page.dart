@@ -35,6 +35,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
 
+    //todo: on iOS, the app has an outdated code, the main screen is 3 days old
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (await Permission.location.request().isGranted) {
         debugPrint('Yo-hoo, we have a location permission');
