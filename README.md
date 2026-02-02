@@ -20,7 +20,7 @@ I have primarily created the project to get familiar with these libs.
 - Add mock localisation API calls and localise the app
 - Add Flavors support for QA and Prod envs
 - Maybe add Firebase authentication
-- Add semantics
+- Add semantics and Accessibility
 
 Base design is taken from [here]('https://dribbble.com/shots/17097339-Vehicle-Retailer-App').
 I use custom Zona Pro font throughout the project
