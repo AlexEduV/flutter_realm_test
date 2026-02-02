@@ -46,9 +46,7 @@ class _ExplorePageTestState extends State<ExplorePageTest> with WidgetsBindingOb
             title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
             actions: [
               IconButton(
-                onPressed: () {
-                  context.go(AppRoutes.home + AppRoutes.search);
-                },
+                onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
                 icon: const Icon(
                   Icons.search,
                   size: AppDimensions.appBarIconSize,
