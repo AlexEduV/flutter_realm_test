@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - permission_handler_apple (9.3.0):
+    - Flutter
+  - realm (20.2.0):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - realm (from `.symlinks/plugins/realm/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  realm:
+    :path: ".symlinks/plugins/realm/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  permission_handler_apple: 4ed2196e43d0651e8ff7ca3483a069d469701f2d
+  realm: f0cc04a30e27142f3e4a3d80545ce27b8be28b09
+
+PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
+
+COCOAPODS: 1.16.2
