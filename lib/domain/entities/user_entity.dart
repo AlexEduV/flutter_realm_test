@@ -21,4 +21,18 @@ class UserEntity {
       isLocationPermissionGranted: user.isLocationPermissionGranted,
     );
   }
+
+  UserEntity copyWith({
+    String? userId,
+    String? firstName,
+    String? lastName,
+    bool? isLocationPermissionGranted,
+  }) {
+    return UserEntity(
+      userId: userId ?? this.userId,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      isLocationPermissionGranted: isLocationPermissionGranted ?? this.isLocationPermissionGranted,
+    );
+  }
 }

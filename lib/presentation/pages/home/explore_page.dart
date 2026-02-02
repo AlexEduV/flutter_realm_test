@@ -12,6 +12,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_section_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
@@ -37,6 +38,9 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (await Permission.location.request().isGranted) {
         debugPrint('Yo-hoo, we have a location permission');
+        if (!mounted) return;
+
+        context.read<UserDataCubit>().updateLocationPermissionStatus(true);
       }
     });
   }

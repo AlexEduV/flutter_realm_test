@@ -4,6 +4,7 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<SearchPageCubit>(
           create: (context) => serviceLocator<SearchPageCubit>()..loadData(),
         ),
+        BlocProvider<UserDataCubit>(create: (context) => serviceLocator<UserDataCubit>()..init()),
       ],
       child: MaterialApp.router(
         title: AppLocalisations.appName,

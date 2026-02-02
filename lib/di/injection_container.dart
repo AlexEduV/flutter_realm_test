@@ -5,6 +5,7 @@ import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../data/models/scheme.dart';
 import '../data/repositories/car_repository_impl.dart';
@@ -48,4 +49,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => ExplorePageCubit(serviceLocator()));
 
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator()));
+
+  serviceLocator.registerFactory(() => UserDataCubit(serviceLocator()));
 }
