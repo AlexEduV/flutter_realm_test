@@ -64,7 +64,7 @@ class _ExplorePageTestState extends State<ExplorePageTest> with WidgetsBindingOb
                 // Calculate the item height based on the header's current height
                 final itemHeight = (currentHeight - 20).clamp(100.0, 180.0); // Example logic
 
-                return Container(
+                return Padding(
                   padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 110),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
