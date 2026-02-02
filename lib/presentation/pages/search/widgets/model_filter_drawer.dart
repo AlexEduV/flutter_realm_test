@@ -22,7 +22,7 @@ class ModelFilterDrawer extends StatelessWidget {
         return Drawer(
           child: ListView(
             children: [
-              DrawerHeader(
+              const DrawerHeader(
                 child: Text(
                   AppLocalisations.searchFilterModelTitle,
                   style: AppTextStyles.zonaPro20,
@@ -38,7 +38,7 @@ class ModelFilterDrawer extends StatelessWidget {
                     context.read<SearchPageCubit>().updateModelSelection([]);
                   }
                 },
-                title: Text(AppLocalisations.searchFilterModelPlaceholder),
+                title: const Text(AppLocalisations.searchFilterModelPlaceholder),
                 controlAffinity: ListTileControlAffinity.leading,
               ),
 

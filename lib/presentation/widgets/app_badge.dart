@@ -12,7 +12,7 @@ class AppBadge extends StatelessWidget {
     return Container(
       width: 30,
       height: 30,
-      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+      decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.black),
       alignment: Alignment.center,
       child: FittedBox(
         fit: BoxFit.scaleDown,

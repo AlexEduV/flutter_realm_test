@@ -39,10 +39,10 @@ class _SearchPageState extends State<SearchPage> {
           backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
             centerTitle: true,
-            title: Text(AppLocalisations.searchPageTitle, style: AppTextStyles.zonaPro20),
+            title: const Text(AppLocalisations.searchPageTitle, style: AppTextStyles.zonaPro20),
             leading: IconButton(
               onPressed: () => context.pop(),
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back,
                 size: AppDimensions.appBarIconSize,
                 color: AppColors.headerColor,
@@ -123,7 +123,7 @@ class _SearchPageState extends State<SearchPage> {
               BlocBuilder<SearchPageCubit, SearchPageState>(
                 builder: (context, state) {
                   if (state.results.isEmpty) {
-                    return EmptySearchPlaceholderWidget();
+                    return const EmptySearchPlaceholderWidget();
                   }
 
                   return Expanded(
@@ -140,7 +140,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
           endDrawer: state.drawerOpened == SearchDrawerType.model
               ? ModelFilterDrawer(models: state.allModels)
-              : ParameterFilterDrawer(),
+              : const ParameterFilterDrawer(),
         );
       },
     );

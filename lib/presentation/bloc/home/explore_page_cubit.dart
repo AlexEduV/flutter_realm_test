@@ -6,7 +6,7 @@ import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page_state.dart';
 
 class ExplorePageCubit extends Cubit<ExplorePageState> {
-  ExplorePageCubit(this._carRepository) : super(ExplorePageState());
+  ExplorePageCubit(this._carRepository) : super(const ExplorePageState());
 
   final CarRepository _carRepository;
   StreamSubscription? _carSubscription;

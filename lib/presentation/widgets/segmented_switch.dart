@@ -25,7 +25,7 @@ class SegmentedSwitch extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(AppDimensions.normalL),
       ),
-      padding: EdgeInsets.all(AppDimensions.minorL),
+      padding: const EdgeInsets.all(AppDimensions.minorL),
       child: Stack(
         children: [
           // Slider

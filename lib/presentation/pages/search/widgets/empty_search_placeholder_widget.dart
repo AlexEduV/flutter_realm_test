@@ -9,8 +9,8 @@ class EmptySearchPlaceholderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(AppDimensions.normalL),
+    return const Padding(
+      padding: EdgeInsets.all(AppDimensions.normalL),
       child: Row(
         children: [
           Flexible(

@@ -18,7 +18,7 @@ class ExploreListItem extends StatelessWidget {
     return Slidable(
       key: car != null ? ValueKey(car?.carId) : null,
       endActionPane: ActionPane(
-        motion: DrawerMotion(),
+        motion: const DrawerMotion(),
         extentRatio: 0.25,
         children: [
           SlidableAction(
@@ -51,9 +51,9 @@ class ExploreListItem extends StatelessWidget {
                     top: AppDimensions.normalXS,
                     right: AppDimensions.normalXS,
                     child: Container(
-                      padding: EdgeInsets.all(AppDimensions.minorS),
-                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-                      child: Icon(Icons.check, color: Colors.green, size: 24),
+                      padding: const EdgeInsets.all(AppDimensions.minorS),
+                      decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                      child: const Icon(Icons.check, color: Colors.green, size: 24),
                     ),
                   ),
                 ],
@@ -102,7 +102,7 @@ class ExploreListItem extends StatelessWidget {
       alignment: PlaceholderAlignment.middle,
       baseline: TextBaseline.alphabetic,
       child: Padding(
-        padding: EdgeInsets.only(bottom: AppDimensions.minorM),
+        padding: const EdgeInsets.only(bottom: AppDimensions.minorM),
         child: Icon(icon, size: 18, color: color),
       ),
     );

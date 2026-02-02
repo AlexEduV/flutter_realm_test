@@ -8,7 +8,7 @@ import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
-  SearchPageCubit(this._carRepository) : super(SearchPageState());
+  SearchPageCubit(this._carRepository) : super(const SearchPageState());
 
   final CarRepository _carRepository;
   StreamSubscription? _carSubscription;

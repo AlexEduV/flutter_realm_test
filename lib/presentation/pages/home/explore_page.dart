@@ -69,25 +69,25 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             onPressed: () {
               context.go(AppRoutes.home + AppRoutes.search);
             },
-            icon: Icon(Icons.search, size: AppDimensions.appBarIconSize, color: Colors.white),
+            icon: const Icon(Icons.search, size: AppDimensions.appBarIconSize, color: Colors.white),
           ),
         ],
-        actionsPadding: EdgeInsets.only(right: AppDimensions.normalL),
+        actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AnimatedContainer(
-            duration: Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 200),
             height: _exploreHeight,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.headerColor,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(AppDimensions.normalXL),
                 bottomRight: Radius.circular(AppDimensions.normalXL),
               ),
             ),
-            padding: EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 25),
+            padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 25),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -97,14 +97,14 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                   ExploreSectionItem(height: _exploreHeight),
                   ExploreSectionItem(height: _exploreHeight),
                   //todo: the sizedBox was added just for the padding. It's not an ideal solution
-                  SizedBox(),
+                  const SizedBox.shrink(),
                 ],
               ),
             ),
           ),
 
-          Padding(
-            padding: const EdgeInsets.only(left: AppDimensions.normalL, top: AppDimensions.normalL),
+          const Padding(
+            padding: EdgeInsets.only(left: AppDimensions.normalL, top: AppDimensions.normalL),
             child: Text(AppLocalisations.recommendedSectionTitle, style: AppTextStyles.zonaPro18),
           ),
 
@@ -112,7 +112,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             builder: (context, state) {
               return Expanded(
                 child: state.isLoading
-                    ? Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator())
                     : AnimatedList(
                         key: state.cars.isEmpty ? const ValueKey('empty') : _listKey,
                         itemBuilder: (context, index, animation) {
@@ -173,7 +173,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
       index,
       (context, animation) => SizeTransition(
         sizeFactor: animation,
-        child: ExploreListItem(car: null, onDismissed: null),
+        child: const ExploreListItem(car: null, onDismissed: null),
       ),
       duration: const Duration(milliseconds: 300),
     );

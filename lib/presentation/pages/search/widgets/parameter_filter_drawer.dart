@@ -34,14 +34,14 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
           backgroundColor: AppColors.scaffoldColor,
           child: ListView(
             children: [
-              DrawerHeader(
+              const DrawerHeader(
                 child: Text(
                   AppLocalisations.searchFilterParametersTitle,
                   style: AppTextStyles.zonaPro20,
                 ),
               ),
 
-              ListTile(
+              const ListTile(
                 title: Text(AppLocalisations.parameterYearName, style: AppTextStyles.zonaPro18),
               ),
 
@@ -62,49 +62,49 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                 ],
               ),
 
-              ListTile(
+              const ListTile(
                 title: Text(AppLocalisations.parameterBodyTypeName, style: AppTextStyles.zonaPro18),
               ),
 
               //todo: probably get the tile values using api mocks;
               CheckboxListTile(
-                title: Text('Sedan'),
+                title: const Text('Sedan'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: Text('Hatchback'),
+                title: const Text('Hatchback'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: Text('Universal'),
+                title: const Text('Universal'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: Text('Minivan'),
+                title: const Text('Minivan'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: Text('Coupe'),
+                title: const Text('Coupe'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: Text('Cross-over'),
+                title: const Text('Cross-over'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
 
-              ListTile(
+              const ListTile(
                 title: Text(
                   AppLocalisations.parameterPriceRangeName,
                   style: AppTextStyles.zonaPro18,
@@ -128,30 +128,30 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                 ],
               ),
 
-              ListTile(
+              const ListTile(
                 title: Text(AppLocalisations.parameterFuelTypeName, style: AppTextStyles.zonaPro18),
               ),
 
               CheckboxListTile(
-                title: Text('Diesel'),
+                title: const Text('Diesel'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: Text('Gasoline'),
+                title: const Text('Gasoline'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: Text('EV'),
+                title: const Text('EV'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
 
-              ListTile(
+              const ListTile(
                 title: Text(
                   AppLocalisations.parameterTransmissionTypeName,
                   style: AppTextStyles.zonaPro18,
@@ -159,19 +159,19 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
               ),
 
               CheckboxListTile(
-                title: Text('Manual'),
+                title: const Text('Manual'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: Text('Automatic'),
+                title: const Text('Automatic'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: Text('Hybrid'),
+                title: const Text('Hybrid'),
                 value: false,
                 onChanged: (bool? newValue) {},
                 controlAffinity: checkBoxPosition,
@@ -192,7 +192,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
           fillColor: Colors.white,
           filled: true,
           labelText: model.label,
-          border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.accentColor)),
+          border: const OutlineInputBorder(borderSide: BorderSide(color: AppColors.accentColor)),
         ),
         keyboardType: TextInputType.number,
       ),
