@@ -1,14 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
-import 'package:test_futter_project/presentation/pages/home/explore_page.dart';
-import 'package:test_futter_project/presentation/pages/search/search_page.dart';
+import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 void main() async {
@@ -16,21 +12,6 @@ void main() async {
   await initDependenciesContainer();
   runApp(const MyApp());
 }
-
-final GoRouter _router = GoRouter(
-  routes: <RouteBase>[
-    GoRoute(
-      path: AppRoutes.home,
-      pageBuilder: (context, state) => const CupertinoPage(child: ExplorePage()),
-      routes: <RouteBase>[
-        GoRoute(
-          path: AppRoutes.search,
-          pageBuilder: (context, state) => const CupertinoPage(child: SearchPage()),
-        ),
-      ],
-    ),
-  ],
-);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -49,7 +30,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: AppLocalisations.appName,
         theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor)),
-        routerConfig: _router,
+        routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
       ),
     );
