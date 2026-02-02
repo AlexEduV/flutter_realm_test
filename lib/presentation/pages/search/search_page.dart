@@ -9,6 +9,7 @@ import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
@@ -138,7 +139,11 @@ class _SearchPageState extends State<SearchPage> {
                     padding: const EdgeInsetsGeometry.only(bottom: AppDimensions.normalXL),
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate((context, index) {
-                        return ExploreListItem(car: state.results[index], onDismissed: () {});
+                        return ExploreListItem(
+                          car: state.results[index],
+                          user: context.read<UserDataCubit>().user,
+                          onDismissed: () {},
+                        );
                       }, childCount: state.results.length),
                     ),
                   );

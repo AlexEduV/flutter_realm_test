@@ -9,15 +9,15 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   final BaseLocalStorage _localStorage;
 
-  late UserEntity _user;
+  late UserEntity user;
 
   void init() {
-    _user = _localStorage.initUser();
+    user = _localStorage.initUser();
   }
 
   void updateLocationPermissionStatus(bool newStatus) {
-    _user = _user.copyWith(isLocationPermissionGranted: newStatus);
-    _localStorage.update(UserExtensions.fromEntity(_user));
+    user = user.copyWith(isLocationPermissionGranted: newStatus);
+    _localStorage.update(UserExtensions.fromEntity(user));
 
     emit(state.copyWith(isLocationPermissionGranted: newStatus));
   }

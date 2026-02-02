@@ -162,6 +162,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
 
   Widget _buildItem(Car car, int index) {
     return ExploreListItem(
+      user: context.read<UserDataCubit>().user,
       car: CarEntity.fromSchema(car),
       onDismissed: () => _handleDelete(car, index),
     );
@@ -176,7 +177,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
       index,
       (context, animation) => SizeTransition(
         sizeFactor: animation,
-        child: const ExploreListItem(car: null, onDismissed: null),
+        child: const ExploreListItem(car: null, user: null, onDismissed: null),
       ),
       duration: const Duration(milliseconds: 300),
     );

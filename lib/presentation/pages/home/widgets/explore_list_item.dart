@@ -5,13 +5,20 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 class ExploreListItem extends StatelessWidget {
   final CarEntity? car;
+  final UserEntity? user;
   final void Function()? onDismissed;
 
-  const ExploreListItem({required this.car, required this.onDismissed, super.key});
+  const ExploreListItem({
+    required this.car,
+    required this.user,
+    required this.onDismissed,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -90,17 +97,19 @@ class ExploreListItem extends StatelessWidget {
                     ),
                   ),
 
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        getSpanIcon(icon: Icons.location_pin),
-                        TextSpan(
-                          text: ' ${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
-                          style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                  if (user?.isLocationPermissionGranted ?? false) ...[
+                    Text.rich(
+                      TextSpan(
+                        children: [
+                          getSpanIcon(icon: Icons.location_pin),
+                          TextSpan(
+                            text: ' ${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
+                            style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ],
               ),
             ),
