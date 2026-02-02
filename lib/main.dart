@@ -6,7 +6,7 @@ import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
-import 'package:test_futter_project/presentation/pages/home/explore_page_test.dart';
+import 'package:test_futter_project/presentation/pages/home/explore_page.dart';
 import 'package:test_futter_project/presentation/pages/search/search_page.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -21,7 +21,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: AppRoutes.home,
       builder: (BuildContext context, GoRouterState state) {
-        return const ExplorePageTest();
+        return const ExplorePage();
       },
       routes: <RouteBase>[
         GoRoute(

@@ -11,12 +11,12 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page_state.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_section_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/extensions/car_scheme_extension.dart';
+import '../../bloc/home/explore_page_state.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
@@ -27,103 +27,84 @@ class ExplorePage extends StatefulWidget {
 
 class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
-  final ScrollController _scrollController = ScrollController();
-  double _exploreHeight = 140; // initial height
-
-  @override
-  void initState() {
-    super.initState();
-
-    _scrollController.addListener(_onScroll);
-  }
-
-  //todo: it's not working correctly, since the widget bounces back even if there's enough room for user's scroll
-  void _onScroll() {
-    double offset = _scrollController.offset;
-    double minHeight = 60;
-    double maxHeight = 140;
-    double newHeight = (maxHeight - offset).clamp(minHeight, maxHeight);
-    if (newHeight != _exploreHeight) {
-      setState(() {
-        _exploreHeight = newHeight;
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_onScroll);
-    _scrollController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.headerColor,
-        title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.go(AppRoutes.home + AppRoutes.search);
-            },
-            icon: const Icon(Icons.search, size: AppDimensions.appBarIconSize, color: Colors.white),
-          ),
-        ],
-        actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            height: _exploreHeight,
-            decoration: const BoxDecoration(
-              color: AppColors.headerColor,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            backgroundColor: AppColors.headerColor,
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(AppDimensions.normalXL),
-                bottomRight: Radius.circular(AppDimensions.normalXL),
+                bottomLeft: Radius.circular(AppDimensions.normalL),
+                bottomRight: Radius.circular(AppDimensions.normalL),
               ),
             ),
-            padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 25),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                spacing: AppDimensions.normalXL,
-                children: [
-                  ExploreSectionItem(height: _exploreHeight),
-                  ExploreSectionItem(height: _exploreHeight),
-                  ExploreSectionItem(height: _exploreHeight),
-                  //todo: the sizedBox was added just for the padding. It's not an ideal solution
-                  const SizedBox.shrink(),
-                ],
+            title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
+            actions: [
+              IconButton(
+                onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
+                icon: const Icon(
+                  Icons.search,
+                  size: AppDimensions.appBarIconSize,
+                  color: Colors.white,
+                ),
               ),
+            ],
+            actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
+            expandedHeight: 200,
+            collapsedHeight: 60,
+            flexibleSpace: LayoutBuilder(
+              builder: (context, constraints) {
+                // constraints.maxHeight will be between collapsedHeight and expandedHeight
+                final currentHeight = constraints.maxHeight;
+                // Calculate the item height based on the header's current height
+                final itemHeight = (currentHeight - 20).clamp(100.0, 180.0); // Example logic
+
+                return Padding(
+                  padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 110),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      spacing: AppDimensions.normalXL,
+                      children: [
+                        ExploreSectionItem(height: itemHeight),
+                        ExploreSectionItem(height: itemHeight),
+                        ExploreSectionItem(height: itemHeight),
+                        const SizedBox.shrink(),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.only(left: AppDimensions.normalL, top: AppDimensions.normalL),
-            child: Text(AppLocalisations.recommendedSectionTitle, style: AppTextStyles.zonaPro18),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: AppDimensions.normalL, top: AppDimensions.normalL),
+              child: Text(AppLocalisations.recommendedSectionTitle, style: AppTextStyles.zonaPro18),
+            ),
           ),
 
           BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
-              return Expanded(
-                child: state.isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : AnimatedList(
-                        key: state.cars.isEmpty ? const ValueKey('empty') : _listKey,
-                        itemBuilder: (context, index, animation) {
-                          final car = state.cars[index];
+              if (state.isLoading) {
+                return const SliverFillRemaining(child: Center(child: CircularProgressIndicator()));
+              } else {
+                return SliverList(
+                  key: state.cars.isEmpty ? const ValueKey('empty') : _listKey,
 
-                          return _buildItem(CarExtensions.fromEntity(car), animation, index);
-                        },
-                        initialItemCount: state.cars.length,
-                        controller: _scrollController,
-                      ),
-              );
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final car = state.cars[index];
+
+                    return _buildItem(CarExtensions.fromEntity(car), index);
+                  }, childCount: state.cars.length),
+                );
+              }
             },
           ),
         ],
@@ -153,14 +134,10 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     context.read<ExplorePageCubit>().updateCars(cars);
   }
 
-  Widget _buildItem(Car car, Animation<double> animation, int index) {
-    return SizeTransition(
-      sizeFactor: animation, // Controls the vertical fold
-      axis: Axis.vertical,
-      child: ExploreListItem(
-        car: CarEntity.fromSchema(car),
-        onDismissed: () => _handleDelete(car, index),
-      ),
+  Widget _buildItem(Car car, int index) {
+    return ExploreListItem(
+      car: CarEntity.fromSchema(car),
+      onDismissed: () => _handleDelete(car, index),
     );
   }
 
