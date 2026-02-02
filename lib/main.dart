@@ -16,19 +16,30 @@ void main() async {
   runApp(const MyApp());
 }
 
+const _navigationTransitionDuration = Duration(milliseconds: 300);
+
+Widget _navigationTransitionType(Animation<double> animation, Widget child) {
+  return FadeTransition(opacity: animation, child: child);
+}
+
 final GoRouter _router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: AppRoutes.home,
-      builder: (BuildContext context, GoRouterState state) {
-        return const ExplorePage();
-      },
+      pageBuilder: (context, state) => CustomTransitionPage(
+        child: const ExplorePage(),
+        transitionsBuilder: (_, animation, _, child) => _navigationTransitionType(animation, child),
+        transitionDuration: _navigationTransitionDuration,
+      ),
       routes: <RouteBase>[
         GoRoute(
           path: AppRoutes.search,
-          builder: (BuildContext context, GoRouterState state) {
-            return const SearchPage();
-          },
+          pageBuilder: (context, state) => CustomTransitionPage(
+            child: const SearchPage(),
+            transitionsBuilder: (_, animation, _, child) =>
+                _navigationTransitionType(animation, child),
+            transitionDuration: _navigationTransitionDuration,
+          ),
         ),
       ],
     ),
