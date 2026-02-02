@@ -32,33 +32,48 @@ class _ExplorePageTestState extends State<ExplorePageTest> with WidgetsBindingOb
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.headerColor,
-        title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.go(AppRoutes.home + AppRoutes.search);
-            },
-            icon: const Icon(Icons.search, size: AppDimensions.appBarIconSize, color: Colors.white),
-          ),
-        ],
-        actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: AppColors.headerColor,
+      //   title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         context.go(AppRoutes.home + AppRoutes.search);
+      //       },
+      //       icon: const Icon(Icons.search, size: AppDimensions.appBarIconSize, color: Colors.white),
+      //     ),
+      //   ],
+      //   actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
+      // ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 140,
+            pinned: true,
+            title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  context.go(AppRoutes.home + AppRoutes.search);
+                },
+                icon: const Icon(
+                  Icons.search,
+                  size: AppDimensions.appBarIconSize,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+            actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
+            expandedHeight: 200,
             collapsedHeight: 60,
             flexibleSpace: LayoutBuilder(
               builder: (context, constraints) {
                 // constraints.maxHeight will be between collapsedHeight and expandedHeight
                 final currentHeight = constraints.maxHeight;
                 // Calculate the item height based on the header's current height
-                final itemHeight = (currentHeight - 20).clamp(40.0, 120.0); // Example logic
+                final itemHeight = (currentHeight - 20).clamp(100.0, 180.0); // Example logic
 
                 return Container(
-                  padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 25),
+                  padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 110),
                   decoration: const BoxDecoration(
                     color: AppColors.headerColor,
                     borderRadius: BorderRadius.only(
