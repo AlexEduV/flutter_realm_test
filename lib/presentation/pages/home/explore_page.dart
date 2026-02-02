@@ -95,14 +95,17 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
               if (state.isLoading) {
                 return const SliverFillRemaining(child: Center(child: CircularProgressIndicator()));
               } else {
-                return SliverList(
-                  key: state.cars.isEmpty ? const ValueKey('empty') : _listKey,
+                return SliverPadding(
+                  padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
+                  sliver: SliverList(
+                    key: state.cars.isEmpty ? const ValueKey('empty') : _listKey,
 
-                  delegate: SliverChildBuilderDelegate((context, index) {
-                    final car = state.cars[index];
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final car = state.cars[index];
 
-                    return _buildItem(CarExtensions.fromEntity(car), index);
-                  }, childCount: state.cars.length),
+                      return _buildItem(CarExtensions.fromEntity(car), index);
+                    }, childCount: state.cars.length),
+                  ),
                 );
               }
             },
