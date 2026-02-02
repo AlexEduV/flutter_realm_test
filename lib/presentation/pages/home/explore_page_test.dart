@@ -50,7 +50,6 @@ class _ExplorePageTestState extends State<ExplorePageTest> with WidgetsBindingOb
           SliverAppBar(
             expandedHeight: 140,
             collapsedHeight: 60,
-            backgroundColor: AppColors.headerColor,
             flexibleSpace: LayoutBuilder(
               builder: (context, constraints) {
                 // constraints.maxHeight will be between collapsedHeight and expandedHeight
@@ -58,8 +57,15 @@ class _ExplorePageTestState extends State<ExplorePageTest> with WidgetsBindingOb
                 // Calculate the item height based on the header's current height
                 final itemHeight = (currentHeight - 20).clamp(40.0, 120.0); // Example logic
 
-                return Padding(
+                return Container(
                   padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 25),
+                  decoration: const BoxDecoration(
+                    color: AppColors.headerColor,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(AppDimensions.normalL),
+                      bottomRight: Radius.circular(AppDimensions.normalL),
+                    ),
+                  ),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
