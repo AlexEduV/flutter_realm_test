@@ -35,7 +35,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
 
-    //todo: on iOS, the app has an outdated code, the main screen is 3 days old
+    //todo: move this code to the separate permissions module;
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (await Permission.location.request().isGranted) {
         debugPrint('Yoo-hoo, we have a location permission');
@@ -43,7 +43,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
 
         context.read<UserDataCubit>().updateLocationPermissionStatus(true);
 
-        //maybe turn on the location service
+        //todo: maybe turn on the location service
       }
     });
   }
