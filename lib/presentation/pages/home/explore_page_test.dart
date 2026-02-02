@@ -37,6 +37,12 @@ class _ExplorePageTestState extends State<ExplorePageTest> with WidgetsBindingOb
           SliverAppBar(
             pinned: true,
             backgroundColor: AppColors.headerColor,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(AppDimensions.normalL),
+                bottomRight: Radius.circular(AppDimensions.normalL),
+              ),
+            ),
             title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
             actions: [
               IconButton(
@@ -62,13 +68,6 @@ class _ExplorePageTestState extends State<ExplorePageTest> with WidgetsBindingOb
 
                 return Container(
                   padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 110),
-                  decoration: const BoxDecoration(
-                    color: AppColors.headerColor,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(AppDimensions.normalL),
-                      bottomRight: Radius.circular(AppDimensions.normalL),
-                    ),
-                  ),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
