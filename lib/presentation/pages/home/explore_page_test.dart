@@ -84,12 +84,12 @@ class _ExplorePageTestState extends State<ExplorePageTest> with WidgetsBindingOb
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
+                      spacing: AppDimensions.normalXL,
                       children: [
                         ExploreSectionItem(height: itemHeight),
-                        const SizedBox(width: AppDimensions.normalXL),
                         ExploreSectionItem(height: itemHeight),
-                        const SizedBox(width: AppDimensions.normalXL),
                         ExploreSectionItem(height: itemHeight),
+                        const SizedBox.shrink(),
                       ],
                     ),
                   ),
