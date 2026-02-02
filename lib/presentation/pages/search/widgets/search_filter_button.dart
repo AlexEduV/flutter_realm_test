@@ -33,6 +33,7 @@ class SearchFilterButton extends StatelessWidget {
         vertical: AppDimensions.contentPadding,
       ),
       child: Material(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(AppDimensions.normalL),
         child: InkWell(
           borderRadius: BorderRadius.circular(AppDimensions.normalL),
