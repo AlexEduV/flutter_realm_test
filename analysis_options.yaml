@@ -17,7 +17,10 @@ linter:
     avoid_print: true
     prefer_const_constructors: true
     unawaited_futures: true
-
+    avoid_unnecessary_containers: true
+    always_declare_return_types: true
+    unnecessary_const: true
+    use_key_in_widget_constructors: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
