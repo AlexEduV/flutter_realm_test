@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -26,20 +27,11 @@ final GoRouter _router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: AppRoutes.home,
-      pageBuilder: (context, state) => CustomTransitionPage(
-        child: const ExplorePage(),
-        transitionsBuilder: (_, animation, _, child) => _navigationTransitionType(animation, child),
-        transitionDuration: _navigationTransitionDuration,
-      ),
+      pageBuilder: (context, state) => const CupertinoPage(child: ExplorePage()),
       routes: <RouteBase>[
         GoRoute(
           path: AppRoutes.search,
-          pageBuilder: (context, state) => CustomTransitionPage(
-            child: const SearchPage(),
-            transitionsBuilder: (_, animation, _, child) =>
-                _navigationTransitionType(animation, child),
-            transitionDuration: _navigationTransitionDuration,
-          ),
+          pageBuilder: (context, state) => const CupertinoPage(child: SearchPage()),
         ),
       ],
     ),
