@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
@@ -30,9 +31,20 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    //todo: ask for the location (approx) permission here
-
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (await Permission.location.request().isGranted) {
+        debugPrint('Yo-hoo, we have a location permission');
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override
