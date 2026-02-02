@@ -21,6 +21,7 @@ I have primarily created the project to get familiar with these libs.
 - Add Flavors support for QA and Prod envs
 - Maybe add Firebase authentication
 - Add semantics and Accessibility
+- Permission Handling for the location approx. Maybe a Map support with MapBox
 
 Base design is taken from [here]('https://dribbble.com/shots/17097339-Vehicle-Retailer-App').
 I use custom Zona Pro font throughout the project
