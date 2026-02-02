@@ -71,7 +71,10 @@ class ExploreListItem extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     children: [
-                      TextSpan(text: '\$ ${car?.price ?? 0} ', style: AppTextStyles.zonaPro20),
+                      TextSpan(
+                        text: '\$ ${car?.price ?? 0} ',
+                        style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
+                      ),
                       if (car?.isHotPromotion ?? false)
                         getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                     ],
@@ -84,7 +87,7 @@ class ExploreListItem extends StatelessWidget {
                       getSpanIcon(icon: Icons.location_pin),
                       TextSpan(
                         text: ' ${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
-                        style: AppTextStyles.zonaPro20,
+                        style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
                       ),
                     ],
                   ),
