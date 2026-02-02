@@ -17,12 +17,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-const _navigationTransitionDuration = Duration(milliseconds: 300);
-
-Widget _navigationTransitionType(Animation<double> animation, Widget child) {
-  return FadeTransition(opacity: animation, child: child);
-}
-
 final GoRouter _router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
