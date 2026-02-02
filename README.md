@@ -5,6 +5,7 @@ A Test Flutter Project, which uses RealmDb, GoRouter and Mockito
 ## Summary
 
 This project is a mobile app, which models the Auto E-commerce App, like Auto.Ria.
+
 It uses cubit for State Management, covered by cubit tests, GoRouter for navigation,
 Realm for local storage, and Mockito for Unit tests. It also uses RXDart and streams for the mock API calls.
 
