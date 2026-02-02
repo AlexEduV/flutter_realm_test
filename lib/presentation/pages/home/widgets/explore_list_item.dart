@@ -30,8 +30,12 @@ class ExploreListItem extends StatelessWidget {
           ),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(AppDimensions.normalL),
+      child: Container(
+        margin: const EdgeInsets.all(AppDimensions.normalL),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(AppDimensions.normalL),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: AppDimensions.contentPadding,
@@ -60,40 +64,48 @@ class ExploreListItem extends StatelessWidget {
               ],
             ),
 
-            Text(
-              '${car?.manufacturer} ${car?.model ?? ''} ${car?.year ?? ''}'.toUpperCase(),
-              style: AppTextStyles.zonaPro24,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
+              child: Text(
+                '${car?.manufacturer} ${car?.model ?? ''} ${car?.year ?? ''}'.toUpperCase(),
+                style: AppTextStyles.zonaPro24,
+              ),
             ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: '\$ ${car?.price ?? 0} ',
-                        style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
-                      ),
-                      if (car?.isHotPromotion ?? false)
-                        getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
-                    ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '\$ ${car?.price ?? 0} ',
+                          style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
+                        ),
+                        if (car?.isHotPromotion ?? false)
+                          getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
+                      ],
+                    ),
                   ),
-                ),
 
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      getSpanIcon(icon: Icons.location_pin),
-                      TextSpan(
-                        text: ' ${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
-                        style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
-                      ),
-                    ],
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        getSpanIcon(icon: Icons.location_pin),
+                        TextSpan(
+                          text: ' ${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
+                          style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+
+            const SizedBox(height: AppDimensions.normalS),
           ],
         ),
       ),
