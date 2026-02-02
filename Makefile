@@ -1,6 +1,9 @@
 get:
 	flutter pub get
 
+clean:
+	flutter clean
+
 
 clean-build:
 	dart run build_runner clean
