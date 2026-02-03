@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 
 import '../../../../common/app_dimensions.dart';
@@ -27,9 +28,14 @@ class HomeBottomBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //todo: add an indexed enum or class for bar items
-              const HomeBottomBarItem(index: 0, icon: Icons.home_outlined),
-              const HomeBottomBarItem(index: 1, icon: Icons.favorite_border),
+              const HomeBottomBarItem(
+                index: AppConstants.homeTabExplore,
+                icon: Icons.home_outlined,
+              ),
+              const HomeBottomBarItem(
+                index: AppConstants.homeTabFavorites,
+                icon: Icons.favorite_border,
+              ),
 
               IconButton(
                 style: ButtonStyle(
@@ -42,8 +48,11 @@ class HomeBottomBar extends StatelessWidget {
                 tooltip: AppLocalisations.addCarButtonTooltip,
               ),
 
-              const HomeBottomBarItem(index: 2, icon: Icons.mail_outlined),
-              const HomeBottomBarItem(index: 3, icon: Icons.settings_outlined),
+              const HomeBottomBarItem(index: AppConstants.homeTabInbox, icon: Icons.mail_outlined),
+              const HomeBottomBarItem(
+                index: AppConstants.homeTabSettings,
+                icon: Icons.settings_outlined,
+              ),
             ],
           ),
         ),
