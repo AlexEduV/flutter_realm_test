@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
@@ -19,10 +20,16 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   Future<void> requestLocationPermission() async {
     final isGranted = await _permissionRepository.requestLocationPermission();
-    if (isGranted) {
-      updateLocationPermissionStatus(isGranted);
 
-      //todo: maybe turn on the location service
+    if (!isGranted) {
+      return;
+    }
+
+    updateLocationPermissionStatus(isGranted);
+
+    final bool isServiceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!isServiceEnabled) {
+      await Geolocator.openLocationSettings();
     }
   }
 
