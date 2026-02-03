@@ -14,38 +14,21 @@ import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_section_item.dart';
-import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/home_bottom_bar.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/extensions/car_scheme_extension.dart';
 import '../../../bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePage extends StatefulWidget {
-  const ExplorePage({super.key});
+  final GlobalKey<AnimatedListState> listKey;
+
+  const ExplorePage({required this.listKey, super.key});
 
   @override
   State<ExplorePage> createState() => _ExplorePageState();
 }
 
 class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addObserver(this);
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await context.read<UserDataCubit>().requestLocationPermission();
-    });
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +99,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                 return SliverPadding(
                   padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
                   sliver: SliverList(
-                    key: state.cars.isEmpty ? const ValueKey('empty') : _listKey,
+                    key: state.cars.isEmpty ? const ValueKey('empty') : widget.listKey,
 
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final car = state.cars[index];
@@ -130,26 +113,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
           ),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: HomeBottomBar(onAddPressed: _addCarToBase),
     );
-  }
-
-  void _addCarToBase() {
-    serviceLocator<CarRepository>().addCar(
-      CarEntity(
-        carId: '3',
-        model: 'Model Y',
-        manufacturer: 'Tesla',
-        isVerified: false,
-        isHotPromotion: false,
-        type: 'car',
-      ),
-    );
-    final cars = serviceLocator<CarRepository>().getAllCars();
-
-    _listKey.currentState?.insertItem(cars.length - 1);
-    context.read<ExplorePageCubit>().updateCars(cars);
   }
 
   Widget _buildItem(Car car, int index) {
@@ -165,7 +129,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     final ObjectId id = carToDelete.id;
 
     // 2. Animate out using a "Snapshot" instance of the same widget
-    _listKey.currentState?.removeItem(
+    widget.listKey.currentState?.removeItem(
       index,
       (context, animation) => SizeTransition(
         sizeFactor: animation,
