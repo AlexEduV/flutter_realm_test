@@ -4,7 +4,7 @@ import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/explore_page.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/dummy_page.dart';
+import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../di/injection_container.dart';
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             case AppConstants.homeTabExplore:
               return ExplorePage(listKey: exploreListKey);
             default:
-              return const DummyPage();
+              return const PlaceholderPage();
           }
         },
       ),

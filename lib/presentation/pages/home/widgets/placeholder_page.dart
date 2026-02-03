@@ -5,8 +5,8 @@ import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_text_styles.dart';
 
-class DummyPage extends StatelessWidget {
-  const DummyPage({super.key});
+class PlaceholderPage extends StatelessWidget {
+  const PlaceholderPage({super.key});
 
   @override
   Widget build(BuildContext context) {
