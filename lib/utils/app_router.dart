@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/presentation/pages/home/home_page.dart';
 
 import '../common/app_routes.dart';
-import '../presentation/pages/home/explore_page/explore_page.dart';
 import '../presentation/pages/search/search_page.dart';
 
 class AppRouter {
@@ -10,7 +10,7 @@ class AppRouter {
     routes: <RouteBase>[
       GoRoute(
         path: AppRoutes.home,
-        pageBuilder: (context, state) => const CupertinoPage(child: ExplorePage()),
+        pageBuilder: (context, state) => const CupertinoPage(child: HomePage()),
         routes: <RouteBase>[
           GoRoute(
             path: AppRoutes.search,
