@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UK_QA" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="additionalArgs" value="" />
+    <option name="filePath" value="$PROJECT_DIR$/lib/flavors/main_uk.dart" />
+    <method v="2" />
+  </configuration>
+</component>
