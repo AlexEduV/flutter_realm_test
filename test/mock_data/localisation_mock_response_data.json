@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "Flutter Realm Demo"
+  },
+  "pages": {
+    "explore": {
+      "title": "Explore"
+    },
+    "search": {
+      "title": "Search",
+      "tabs": {
+        "cars": "Cars",
+        "bikes": "Bikes",
+        "trucks": "Trucks"
+      },
+      "emptyPlaceholder": "No results were found for this search."
+    },
+    "results": {
+      "title": "Results"
+    },
+    "recommended": {
+      "sectionTitle": "Recommended"
+    },
+    "comingSoon": {
+      "title": "Coming Soon",
+      "subtitle": "This feature is not available yet."
+    }
+  },
+  "actions": {
+    "addCar": {
+      "tooltip": "Add a car"
+    },
+    "delete": {
+      "title": "Delete"
+    }
+  },
+  "widgets": {
+    "distance": {
+      "text": "km away"
+    }
+  },
+  "filters": {
+    "model": {
+      "title": "Model",
+      "placeholder": "All"
+    },
+    "parameters": {
+      "title": "Parameters",
+      "year": "Year",
+      "bodyType": "Body Type",
+      "priceRange": "Price Range",
+      "fuelType": "Fuel Type",
+      "transmissionType": "Transmission Type"
+    }
+  }
+}
