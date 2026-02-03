@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 
-import '../../../../common/app_dimensions.dart';
-import '../../../../common/app_text_styles.dart';
-import '../../../../utils/l10n.dart';
+import '../../../../../common/app_dimensions.dart';
+import '../../../../../common/app_text_styles.dart';
+import '../../../../../utils/l10n.dart';
 
 class ResultsWidget extends StatelessWidget {
   final String results;

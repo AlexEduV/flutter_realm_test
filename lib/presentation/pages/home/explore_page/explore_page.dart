@@ -10,15 +10,15 @@ import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_list_item.dart';
+import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_section_item.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/home_bottom_bar.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/explore_section_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
-import '../../../common/extensions/car_scheme_extension.dart';
-import '../../bloc/home/explore_page_state.dart';
+import '../../../../common/extensions/car_scheme_extension.dart';
+import '../../../bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});

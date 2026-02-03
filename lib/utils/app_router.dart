@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 import '../common/app_routes.dart';
-import '../presentation/pages/home/explore_page.dart';
+import '../presentation/pages/home/explore_page/explore_page.dart';
 import '../presentation/pages/search/search_page.dart';
 
 class AppRouter {

@@ -6,8 +6,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
 import 'home_page_cubit_test.mocks.dart';
 

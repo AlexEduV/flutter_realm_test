@@ -10,14 +10,15 @@ import 'package:test_futter_project/common/enums/drawer_type.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/results_widget.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/parameter_filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
+
+import '../home/explore_page/widgets/explore_list_item.dart';
+import '../home/explore_page/widgets/results_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
