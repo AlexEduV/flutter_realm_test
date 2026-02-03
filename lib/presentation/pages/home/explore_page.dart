@@ -151,7 +151,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                     backgroundColor: WidgetStatePropertyAll(Colors.black),
                     foregroundColor: WidgetStatePropertyAll(Colors.white),
                   ),
-                  icon: const Icon(Icons.add, size: 36),
+                  icon: const Icon(Icons.add, size: AppDimensions.bottomAppBarIconEnlargedSize),
                   onPressed: _addCarToBase,
                   tooltip: AppLocalisations.addCarButtonTooltip,
                 ),

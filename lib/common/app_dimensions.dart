@@ -12,4 +12,5 @@ class AppDimensions {
   static const minorS = 4.0;
 
   static const appBarIconSize = 32.0;
+  static const bottomAppBarIconEnlargedSize = 36.0;
 }
