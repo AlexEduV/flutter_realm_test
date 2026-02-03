@@ -22,10 +22,7 @@ class PlaceholderPage extends StatelessWidget {
               color: Colors.grey,
             ),
             const SizedBox(height: AppDimensions.normalM),
-            const Text(
-              AppLocalisations.comingSoonPlaceholderPageTitle,
-              style: AppTextStyles.zonaPro24,
-            ),
+            Text(AppLocalisations.comingSoonPlaceholderPageTitle, style: AppTextStyles.zonaPro24),
             const SizedBox(height: AppDimensions.minorL),
             Text(
               AppLocalisations.comingSoonPlaceholderPageSubTitle,

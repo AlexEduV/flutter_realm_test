@@ -3,47 +3,48 @@ class AppLocalisations {
 
   static String get(String key) => localisations[key] ?? '';
 
-  static const String appName = 'Flutter Realm Demo';
+  //todo: maybe move to slang for strong typing
+  static final String appName = get('app.name');
 
   static final String explorePageTitle = get('pages.explore.title');
 
-  static const String results = 'Results';
+  static final String results = get('pages.results.title');
 
-  static const String addCarButtonTooltip = 'Add a car';
+  static final String addCarButtonTooltip = get('actions.addCar.tooltip');
 
-  static const String deleteButtonTitle = 'Delete';
+  static final String deleteButtonTitle = get('actions.delete.title');
 
-  static const String distanceWidgetText = 'km away';
+  static final String distanceWidgetText = get('widgets.distance.text');
 
-  static const String recommendedSectionTitle = 'Recommended';
+  static final String recommendedSectionTitle = get('pages.recommended.sectionTitle');
 
-  static const String searchPageTitle = 'Search';
+  static final String searchPageTitle = get('pages.search.title');
 
-  static const String searchTabCars = 'Cars';
+  static final String searchTabCars = get('pages.search.tabs.cars');
 
-  static const String searchTabBikes = 'Bikes';
+  static final String searchTabBikes = get('pages.search.tabs.bikes');
 
-  static const String searchTabTrucks = 'Trucks';
+  static final String searchTabTrucks = get('pages.search.tabs.trucks');
 
-  static const String emptySearchPlaceholderText = 'No results were found for this search.';
+  static final String emptySearchPlaceholderText = get('pages.search.emptyPlaceholder');
 
-  static const String searchFilterModelTitle = 'Model';
+  static final String searchFilterModelTitle = get('filters.model.title');
 
-  static const String searchFilterParametersTitle = 'Parameters';
+  static final String searchFilterParametersTitle = get('filters.parameters.title');
 
-  static const String searchFilterModelPlaceholder = 'All';
+  static final String searchFilterModelPlaceholder = get('filters.model.placeholder');
 
-  static const String parameterYearName = 'Year';
+  static final String parameterYearName = get('filters.parameters.year');
 
-  static const String parameterBodyTypeName = 'Body Type';
+  static final String parameterBodyTypeName = get('filters.parameters.bodyType');
 
-  static const String parameterPriceRangeName = 'Price Range';
+  static final String parameterPriceRangeName = get('filters.parameters.priceRange');
 
-  static const String parameterFuelTypeName = 'Fuel Type';
+  static final String parameterFuelTypeName = get('filters.parameters.fuelType');
 
-  static const String parameterTransmissionTypeName = 'Transmission Type';
+  static final String parameterTransmissionTypeName = get('filters.parameters.transmissionType');
 
-  static const String comingSoonPlaceholderPageTitle = 'Coming Soon';
+  static final String comingSoonPlaceholderPageTitle = get('pages.comingSoon.title');
 
-  static const String comingSoonPlaceholderPageSubTitle = 'This feature is not available yet.';
+  static final String comingSoonPlaceholderPageSubTitle = get('pages.comingSoon.subTitle');
 }

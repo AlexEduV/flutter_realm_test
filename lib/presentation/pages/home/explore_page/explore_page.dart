@@ -84,9 +84,12 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             ),
           ),
 
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.only(left: AppDimensions.normalL, top: AppDimensions.normalL),
+              padding: const EdgeInsets.only(
+                left: AppDimensions.normalL,
+                top: AppDimensions.normalL,
+              ),
               child: Text(AppLocalisations.recommendedSectionTitle, style: AppTextStyles.zonaPro18),
             ),
           ),

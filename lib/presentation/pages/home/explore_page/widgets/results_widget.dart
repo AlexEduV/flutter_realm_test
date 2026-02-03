@@ -15,7 +15,7 @@ class ResultsWidget extends StatelessWidget {
     return Row(
       spacing: AppDimensions.minorL,
       children: [
-        const Text(AppLocalisations.results, style: AppTextStyles.zonaPro16),
+        Text(AppLocalisations.results, style: AppTextStyles.zonaPro16),
 
         AppBadge(text: results),
       ],

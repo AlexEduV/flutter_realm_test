@@ -34,14 +34,14 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
           backgroundColor: AppColors.scaffoldColor,
           child: ListView(
             children: [
-              const DrawerHeader(
+              DrawerHeader(
                 child: Text(
                   AppLocalisations.searchFilterParametersTitle,
                   style: AppTextStyles.zonaPro20,
                 ),
               ),
 
-              const ListTile(
+              ListTile(
                 title: Text(AppLocalisations.parameterYearName, style: AppTextStyles.zonaPro18),
               ),
 
@@ -62,7 +62,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                 ],
               ),
 
-              const ListTile(
+              ListTile(
                 title: Text(AppLocalisations.parameterBodyTypeName, style: AppTextStyles.zonaPro18),
               ),
 
@@ -104,7 +104,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                 controlAffinity: checkBoxPosition,
               ),
 
-              const ListTile(
+              ListTile(
                 title: Text(
                   AppLocalisations.parameterPriceRangeName,
                   style: AppTextStyles.zonaPro18,
@@ -128,7 +128,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                 ],
               ),
 
-              const ListTile(
+              ListTile(
                 title: Text(AppLocalisations.parameterFuelTypeName, style: AppTextStyles.zonaPro18),
               ),
 
@@ -151,7 +151,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                 controlAffinity: checkBoxPosition,
               ),
 
-              const ListTile(
+              ListTile(
                 title: Text(
                   AppLocalisations.parameterTransmissionTypeName,
                   style: AppTextStyles.zonaPro18,

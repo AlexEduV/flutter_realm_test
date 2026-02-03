@@ -41,7 +41,7 @@ class _SearchPageState extends State<SearchPage> {
           backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
             centerTitle: true,
-            title: const Text(AppLocalisations.searchPageTitle, style: AppTextStyles.zonaPro20),
+            title: Text(AppLocalisations.searchPageTitle, style: AppTextStyles.zonaPro20),
             leading: IconButton(
               onPressed: () => context.pop(),
               icon: const Icon(
