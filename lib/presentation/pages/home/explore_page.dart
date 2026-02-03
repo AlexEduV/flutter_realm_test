@@ -129,10 +129,39 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addCarToBase,
-        tooltip: AppLocalisations.addCarButtonTooltip,
-        child: const Icon(Icons.add),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _addCarToBase,
+      //   tooltip: AppLocalisations.addCarButtonTooltip,
+      //   child: const Icon(Icons.add),
+      // ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        notchMargin: AppDimensions.normalL,
+        child: Material(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(AppDimensions.normalL),
+              topRight: Radius.circular(AppDimensions.normalL),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(icon: const Icon(Icons.home_outlined), onPressed: () {}),
+              IconButton(icon: const Icon(Icons.favorite_border), onPressed: () {}),
+              IconButton(
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.black),
+                  foregroundColor: WidgetStatePropertyAll(Colors.white),
+                ),
+                icon: const Icon(Icons.add),
+                onPressed: () {},
+              ),
+              IconButton(icon: const Icon(Icons.mail_outlined), onPressed: () {}),
+              IconButton(icon: const Icon(Icons.settings_outlined), onPressed: () {}),
+            ],
+          ),
+        ),
       ),
     );
   }
