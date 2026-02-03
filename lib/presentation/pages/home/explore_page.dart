@@ -136,7 +136,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
       // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        notchMargin: AppDimensions.normalL,
+        padding: EdgeInsets.zero,
         child: Material(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -144,22 +144,25 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
               topRight: Radius.circular(AppDimensions.normalL),
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(icon: const Icon(Icons.home_outlined), onPressed: () {}),
-              IconButton(icon: const Icon(Icons.favorite_border), onPressed: () {}),
-              IconButton(
-                style: const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.black),
-                  foregroundColor: WidgetStatePropertyAll(Colors.white),
+          child: Padding(
+            padding: const EdgeInsets.all(AppDimensions.minorL),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(icon: const Icon(Icons.home_outlined), onPressed: () {}),
+                IconButton(icon: const Icon(Icons.favorite_border), onPressed: () {}),
+                IconButton(
+                  style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.black),
+                    foregroundColor: WidgetStatePropertyAll(Colors.white),
+                  ),
+                  icon: const Icon(Icons.add),
+                  onPressed: () {},
                 ),
-                icon: const Icon(Icons.add),
-                onPressed: () {},
-              ),
-              IconButton(icon: const Icon(Icons.mail_outlined), onPressed: () {}),
-              IconButton(icon: const Icon(Icons.settings_outlined), onPressed: () {}),
-            ],
+                IconButton(icon: const Icon(Icons.mail_outlined), onPressed: () {}),
+                IconButton(icon: const Icon(Icons.settings_outlined), onPressed: () {}),
+              ],
+            ),
           ),
         ),
       ),
