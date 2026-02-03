@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 
@@ -46,7 +47,7 @@ class HomeBottomBar extends StatelessWidget {
 
               IconButton(
                 style: ButtonStyle(
-                  backgroundColor: const WidgetStatePropertyAll(Colors.black),
+                  backgroundColor: const WidgetStatePropertyAll(AppColors.headerColor),
                   foregroundColor: const WidgetStatePropertyAll(Colors.white),
                   overlayColor: WidgetStatePropertyAll(Colors.white.withAlpha(60)),
                 ),
