@@ -147,9 +147,10 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                 IconButton(icon: const Icon(Icons.home_outlined), onPressed: () {}),
                 IconButton(icon: const Icon(Icons.favorite_border), onPressed: () {}),
                 IconButton(
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.black),
-                    foregroundColor: WidgetStatePropertyAll(Colors.white),
+                  style: ButtonStyle(
+                    backgroundColor: const WidgetStatePropertyAll(Colors.black),
+                    foregroundColor: const WidgetStatePropertyAll(Colors.white),
+                    overlayColor: WidgetStatePropertyAll(Colors.white.withAlpha(60)),
                   ),
                   icon: const Icon(Icons.add, size: AppDimensions.bottomAppBarIconEnlargedSize),
                   onPressed: _addCarToBase,
