@@ -38,4 +38,8 @@ class AppLocalisations {
   static const String parameterFuelTypeName = 'Fuel Type';
 
   static const String parameterTransmissionTypeName = 'Transmission Type';
+
+  static const String comingSoonPlaceholderPageTitle = 'Coming Soon';
+
+  static const String comingSoonPlaceholderPageSubTitle = 'This feature is not available yet.';
 }
