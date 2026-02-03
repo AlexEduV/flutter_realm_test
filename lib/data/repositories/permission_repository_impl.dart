@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
 
