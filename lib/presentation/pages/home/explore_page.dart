@@ -14,6 +14,7 @@ import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.da
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_section_item.dart';
+import 'package:test_futter_project/presentation/pages/home/widgets/home_bottom_bar.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/extensions/car_scheme_extension.dart';
@@ -130,54 +131,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        padding: EdgeInsets.zero,
-        child: Material(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(AppDimensions.normalL),
-              topRight: Radius.circular(AppDimensions.normalL),
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(AppDimensions.normalXS),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.home_outlined, size: AppDimensions.bottomAppBarIconSize),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: const Icon(Icons.favorite_border, size: AppDimensions.bottomAppBarIconSize),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  style: ButtonStyle(
-                    backgroundColor: const WidgetStatePropertyAll(Colors.black),
-                    foregroundColor: const WidgetStatePropertyAll(Colors.white),
-                    overlayColor: WidgetStatePropertyAll(Colors.white.withAlpha(60)),
-                  ),
-                  icon: const Icon(Icons.add, size: AppDimensions.bottomAppBarIconEnlargedSize),
-                  onPressed: _addCarToBase,
-                  tooltip: AppLocalisations.addCarButtonTooltip,
-                ),
-                IconButton(
-                  icon: const Icon(Icons.mail_outlined, size: AppDimensions.bottomAppBarIconSize),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.settings_outlined,
-                    size: AppDimensions.bottomAppBarIconSize,
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: HomeBottomBar(onAddPressed: _addCarToBase),
     );
   }
 
