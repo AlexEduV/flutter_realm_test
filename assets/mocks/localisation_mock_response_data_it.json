@@ -1,0 +1,56 @@
+{
+  "app": {
+    "name": "Demo Flutter Realm"
+  },
+  "pages": {
+    "explore": {
+      "title": "Esplora"
+    },
+    "search": {
+      "title": "Cerca",
+      "tabs": {
+        "cars": "Auto",
+        "bikes": "Moto",
+        "trucks": "Camion"
+      },
+      "emptyPlaceholder": "Nessun risultato trovato per questa ricerca."
+    },
+    "results": {
+      "title": "Risultati"
+    },
+    "recommended": {
+      "sectionTitle": "Consigliato"
+    },
+    "comingSoon": {
+      "title": "Prossimamente",
+      "subtitle": "Questa funzione non è ancora disponibile."
+    }
+  },
+  "actions": {
+    "addCar": {
+      "tooltip": "Aggiungi un'auto"
+    },
+    "delete": {
+      "title": "Elimina"
+    }
+  },
+  "widgets": {
+    "distance": {
+      "text": "km di distanza"
+    }
+  },
+  "filters": {
+    "model": {
+      "title": "Modello",
+      "placeholder": "Tutti"
+    },
+    "parameters": {
+      "title": "Parametri",
+      "year": "Anno",
+      "bodyType": "Tipo di carrozzeria",
+      "priceRange": "Fascia di prezzo",
+      "fuelType": "Tipo di carburante",
+      "transmissionType": "Tipo di trasmissione"
+    }
+  }
+}
