@@ -49,6 +49,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
         },
         builder: (context, state) {
+          //todo: when the pages will be ready, add animation for switching between them
           switch (state.currentSelectedTabIndex) {
             case AppConstants.homeTabExplore:
               return ExplorePage(listKey: exploreListKey);
