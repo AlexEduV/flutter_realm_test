@@ -20,6 +20,7 @@ class HomeBottomBarItem extends StatelessWidget {
             foregroundColor: WidgetStatePropertyAll(
               state.currentSelectedTabIndex == index ? Colors.black87 : Colors.grey,
             ),
+            padding: const WidgetStatePropertyAll(EdgeInsets.all(AppDimensions.normalS)),
           ),
           icon: Icon(icon, size: AppDimensions.bottomAppBarIconSize),
           onPressed: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
