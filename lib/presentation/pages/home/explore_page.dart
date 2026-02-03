@@ -144,8 +144,14 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(icon: const Icon(Icons.home_outlined), onPressed: () {}),
-                IconButton(icon: const Icon(Icons.favorite_border), onPressed: () {}),
+                IconButton(
+                  icon: const Icon(Icons.home_outlined, size: AppDimensions.bottomAppBarIconSize),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(Icons.favorite_border, size: AppDimensions.bottomAppBarIconSize),
+                  onPressed: () {},
+                ),
                 IconButton(
                   style: ButtonStyle(
                     backgroundColor: const WidgetStatePropertyAll(Colors.black),
@@ -156,8 +162,17 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                   onPressed: _addCarToBase,
                   tooltip: AppLocalisations.addCarButtonTooltip,
                 ),
-                IconButton(icon: const Icon(Icons.mail_outlined), onPressed: () {}),
-                IconButton(icon: const Icon(Icons.settings_outlined), onPressed: () {}),
+                IconButton(
+                  icon: const Icon(Icons.mail_outlined, size: AppDimensions.bottomAppBarIconSize),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.settings_outlined,
+                    size: AppDimensions.bottomAppBarIconSize,
+                  ),
+                  onPressed: () {},
+                ),
               ],
             ),
           ),
