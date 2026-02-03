@@ -8,10 +8,17 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/localisation_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependenciesContainer();
+
+  final localisations = await LocalisationUtil.loadLocalisations(
+    'assets/mocks/localisation_mock_response_data.json',
+  );
+  await LocalisationUtil.saveLocalisations(localisations);
+
   runApp(const MyApp());
 }
 

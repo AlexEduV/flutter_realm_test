@@ -1,7 +1,9 @@
+import 'package:test_futter_project/utils/localisation_util.dart';
+
 class AppLocalisations {
   static const String appName = 'Flutter Realm Demo';
 
-  static const String explorePageTitle = 'Explore';
+  static Future<String> explorePageTitle = LocalisationUtil.getLocalisation('pages.explore.title');
 
   static const String results = 'Results';
 
