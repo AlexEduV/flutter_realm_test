@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 
@@ -18,7 +19,9 @@ class HomeBottomBarItem extends StatelessWidget {
         return IconButton(
           style: ButtonStyle(
             foregroundColor: WidgetStatePropertyAll(
-              state.currentSelectedTabIndex == index ? Colors.black87 : Colors.grey,
+              state.currentSelectedTabIndex == index
+                  ? AppColors.headerColor
+                  : AppColors.headerColor.withAlpha((0.38 * 255).toInt()),
             ),
             padding: const WidgetStatePropertyAll(EdgeInsets.all(AppDimensions.normalS)),
           ),
