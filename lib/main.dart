@@ -15,7 +15,7 @@ void main() async {
   await initDependenciesContainer();
 
   AppLocalisations.localisations = await LocalisationUtil.loadLocalisations(
-    'assets/mocks/localisation_mock_response_data_it.json',
+    'assets/mocks/it/localisation_mock_response_data.json',
   );
 
   await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);
