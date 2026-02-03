@@ -6,6 +6,7 @@ import 'package:test_futter_project/data/repositories/permission_repository_impl
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
@@ -55,4 +56,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator()));
 
   serviceLocator.registerFactory(() => UserDataCubit(serviceLocator(), serviceLocator()));
+
+  serviceLocator.registerFactory(() => HomeBottomBarCubit());
 }

@@ -12,9 +12,9 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/home_bottom_bar.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/explore_section_item.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/home_bottom_bar.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/extensions/car_scheme_extension.dart';

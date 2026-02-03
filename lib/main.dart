@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
           create: (context) => serviceLocator<SearchPageCubit>()..loadData(),
         ),
         BlocProvider<UserDataCubit>(create: (context) => serviceLocator<UserDataCubit>()..init()),
+        BlocProvider<HomeBottomBarCubit>(create: (context) => serviceLocator<HomeBottomBarCubit>()),
       ],
       child: MaterialApp.router(
         title: AppLocalisations.appName,
