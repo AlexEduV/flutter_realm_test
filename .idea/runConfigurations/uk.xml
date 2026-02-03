@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
     <configuration default="false" name="UK Flavor" type="FlutterRunConfigurationType" factoryName="Flutter">
-        <option name="filePath" value="$PROJECT_DIR$/lib/main_uk.dart" />
+        <option name="filePath" value="$PROJECT_DIR$/lib/flavors/main_uk.dart" />
         <option name="flavor" value="uk" />
         <option name="additionalArgs" value="" />
         <method v="2">
