@@ -12,16 +12,23 @@ class HomeBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo: add shadow to the top
-
     return BottomAppBar(
       padding: EdgeInsets.zero,
-      child: Material(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(AppDimensions.normalL),
             topRight: Radius.circular(AppDimensions.normalL),
           ),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withAlpha(60),
+              spreadRadius: 2,
+              blurRadius: 8,
+              offset: const Offset(0, -2),
+            ),
+          ],
         ),
         child: Padding(
           padding: const EdgeInsets.all(AppDimensions.normalXS),
