@@ -129,11 +129,6 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _addCarToBase,
-      //   tooltip: AppLocalisations.addCarButtonTooltip,
-      //   child: const Icon(Icons.add),
-      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         padding: EdgeInsets.zero,
@@ -145,7 +140,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(AppDimensions.minorL),
+            padding: const EdgeInsets.all(AppDimensions.normalXS),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -156,8 +151,9 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                     backgroundColor: WidgetStatePropertyAll(Colors.black),
                     foregroundColor: WidgetStatePropertyAll(Colors.white),
                   ),
-                  icon: const Icon(Icons.add),
-                  onPressed: () {},
+                  icon: const Icon(Icons.add, size: 36),
+                  onPressed: _addCarToBase,
+                  tooltip: AppLocalisations.addCarButtonTooltip,
                 ),
                 IconButton(icon: const Icon(Icons.mail_outlined), onPressed: () {}),
                 IconButton(icon: const Icon(Icons.settings_outlined), onPressed: () {}),
