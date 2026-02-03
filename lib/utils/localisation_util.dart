@@ -7,7 +7,7 @@ import 'package:test_futter_project/utils/json_util.dart';
 class LocalisationUtil {
   //todo: use abstract local storage, so that the vendor might be changed easily
 
-  static Future<Map<String, dynamic>> loadLocalisations(String path) async {
+  static Future<Map<String, String>> loadLocalisations(String path) async {
     final jsonString = await rootBundle.loadString(path);
     final Map<String, dynamic> jsonMap = json.decode(jsonString);
 

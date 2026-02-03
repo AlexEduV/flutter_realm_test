@@ -44,12 +44,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                 bottomRight: Radius.circular(AppDimensions.normalL),
               ),
             ),
-            title: FutureBuilder<String>(
-              future: AppLocalisations.explorePageTitle,
-              builder: (context, snapshot) {
-                return Text(snapshot.data ?? '', style: AppTextStyles.zonaPro30White);
-              },
-            ),
+            title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
             actions: [
               IconButton(
                 onPressed: () => context.go(AppRoutes.home + AppRoutes.search),

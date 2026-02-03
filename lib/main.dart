@@ -14,10 +14,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependenciesContainer();
 
-  final localisations = await LocalisationUtil.loadLocalisations(
+  AppLocalisations.localisations = await LocalisationUtil.loadLocalisations(
     'assets/mocks/localisation_mock_response_data.json',
   );
-  await LocalisationUtil.saveLocalisations(localisations);
+
+  await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);
 
   runApp(const MyApp());
 }
