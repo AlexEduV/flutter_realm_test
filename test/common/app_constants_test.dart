@@ -1,30 +1,29 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 
 void main() {
-  group('AppDimensions', () {
-    test('contentPadding is correct', () {
-      expect(AppDimensions.contentPadding, 12.0);
+  group('AppConstants', () {
+    test('homeTabExplore should be 0', () {
+      expect(AppConstants.homeTabExplore, 0);
     });
 
-    test('normalM is correct', () {
-      expect(AppDimensions.normalL, 18.0);
+    test('homeTabFavorites should be 1', () {
+      expect(AppConstants.homeTabFavorites, 1);
     });
 
-    test('normalS is correct', () {
-      expect(AppDimensions.normalS, 12.0);
+    test('homeTabInbox should be 2', () {
+      expect(AppConstants.homeTabInbox, 2);
     });
 
-    test('minorL is correct', () {
-      expect(AppDimensions.minorL, 8.0);
+    test('homeTabSettings should be 3', () {
+      expect(AppConstants.homeTabSettings, 3);
     });
 
-    test('minorM is correct', () {
-      expect(AppDimensions.minorM, 6.0);
-    });
-
-    test('minorS is correct', () {
-      expect(AppDimensions.minorS, 4.0);
+    test('all tab constants should be of type int', () {
+      expect(AppConstants.homeTabExplore, isA<int>());
+      expect(AppConstants.homeTabFavorites, isA<int>());
+      expect(AppConstants.homeTabInbox, isA<int>());
+      expect(AppConstants.homeTabSettings, isA<int>());
     });
   });
 }
