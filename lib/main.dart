@@ -14,6 +14,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initDependenciesContainer();
 
+  //todo: added flavors, but had to revert, because they broke the Android project.
+  // The working version did not create a separate app, but used one. And launched only from
+  // the android folder, not from `flutter run`. Updating gradle files did not help
   AppLocalisations.localisations = await LocalisationUtil.loadLocalisations(
     'assets/mocks/localisation_mock_response_data_it.json',
   );
