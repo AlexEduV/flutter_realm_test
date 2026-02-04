@@ -46,5 +46,5 @@ class AppLocalisations {
 
   static final String comingSoonPlaceholderPageTitle = get('pages.comingSoon.title');
 
-  static final String comingSoonPlaceholderPageSubTitle = get('pages.comingSoon.subTitle');
+  static final String comingSoonPlaceholderPageSubTitle = get('pages.comingSoon.subtitle');
 }
