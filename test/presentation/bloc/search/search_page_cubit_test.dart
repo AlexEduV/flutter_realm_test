@@ -58,8 +58,8 @@ void main() {
     blocTest<SearchPageCubit, SearchPageState>(
       'loadData emits loading, updates allModels, and results',
       build: () {
-        when(mockGetAllCarsUseCase.call(null)).thenReturn(carList);
-        when(mockWatchCarsUseCase.call(null)).thenReturn(null);
+        when(mockGetAllCarsUseCase.call()).thenReturn(carList);
+        when(mockWatchCarsUseCase.call()).thenReturn(null);
         return cubit;
       },
       act: (cubit) => cubit.loadData(),

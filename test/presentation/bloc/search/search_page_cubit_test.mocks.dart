@@ -33,9 +33,9 @@ class MockGetAllCarsUseCase extends _i1.Mock implements _i2.GetAllCarsUseCase {
   }
 
   @override
-  List<_i3.CarEntity> call(dynamic params) =>
+  List<_i3.CarEntity> call() =>
       (super.noSuchMethod(
-            Invocation.method(#call, [params]),
+            Invocation.method(#call, []),
             returnValue: <_i3.CarEntity>[],
           )
           as List<_i3.CarEntity>);

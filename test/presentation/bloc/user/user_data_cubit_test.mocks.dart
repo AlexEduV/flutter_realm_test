@@ -112,9 +112,9 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
   }
 
   @override
-  _i6.Future<bool> call(dynamic params) =>
+  _i6.Future<bool> call() =>
       (super.noSuchMethod(
-            Invocation.method(#call, [params]),
+            Invocation.method(#call, []),
             returnValue: _i6.Future<bool>.value(false),
           )
           as _i6.Future<bool>);

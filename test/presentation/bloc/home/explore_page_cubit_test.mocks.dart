@@ -34,9 +34,9 @@ class MockSyncCarsUseCase extends _i1.Mock implements _i2.SyncCarsUseCase {
   }
 
   @override
-  _i3.Future<void> call(dynamic params) =>
+  _i3.Future<void> call() =>
       (super.noSuchMethod(
-            Invocation.method(#call, [params]),
+            Invocation.method(#call, []),
             returnValue: _i3.Future<void>.value(),
             returnValueForMissingStub: _i3.Future<void>.value(),
           )

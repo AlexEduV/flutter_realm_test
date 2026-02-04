@@ -42,7 +42,7 @@ void main() {
     blocTest<UserDataCubit, UserDataState>(
       'requestLocationPermission does nothing if permission not granted',
       build: () {
-        when(mockRequestLocationPermissionUseCase.call(null)).thenAnswer((_) async => false);
+        when(mockRequestLocationPermissionUseCase.call()).thenAnswer((_) async => false);
         return cubit;
       },
       act: (cubit) async {

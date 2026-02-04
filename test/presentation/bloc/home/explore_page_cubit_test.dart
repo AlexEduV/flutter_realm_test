@@ -51,8 +51,8 @@ void main() {
   blocTest<ExplorePageCubit, ExplorePageState>(
     'should init',
     setUp: () {
-      when(mockSyncCarsUseCase.call(null)).thenAnswer((_) async => {});
-      when(mockWatchCarsUseCase.call(null)).thenAnswer((_) => Stream.value(carList));
+      when(mockSyncCarsUseCase.call()).thenAnswer((_) async => {});
+      when(mockWatchCarsUseCase.call()).thenAnswer((_) => Stream.value(carList));
     },
     build: () {
       return cubit;
@@ -64,8 +64,8 @@ void main() {
       isA<ExplorePageState>().having((s) => s.cars, 'cars', carList),
     ],
     verify: (_) {
-      verify(mockWatchCarsUseCase.call(null)).called(1);
-      verify(mockSyncCarsUseCase.call(null)).called(1);
+      verify(mockWatchCarsUseCase.call()).called(1);
+      verify(mockSyncCarsUseCase.call()).called(1);
     },
   );
 
