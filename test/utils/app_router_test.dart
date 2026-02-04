@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
@@ -73,7 +74,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Navigate to /search
-    AppRouter.router.go('/search');
+    AppRouter.router.go(AppRoutes.search);
     await tester.pumpAndSettle();
 
     expect(find.byType(SearchPage), findsOneWidget);
