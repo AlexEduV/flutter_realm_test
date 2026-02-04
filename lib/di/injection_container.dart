@@ -6,6 +6,13 @@ import 'package:test_futter_project/data/repositories/permission_repository_impl
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/delete_all_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
@@ -61,4 +68,20 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
 
   serviceLocator.registerLazySingleton(() => RequestLocationPermissionUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(
+    () => CheckLocationPermissionStatusUseCase(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton(() => WatchCarsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => SyncCarsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => AddCarUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => DeleteCarByIdUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => DeleteAllCarsUseCase(serviceLocator()));
 }
