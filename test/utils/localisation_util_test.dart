@@ -4,14 +4,12 @@ import 'package:mockito/annotations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/utils/localisation_util.dart';
 
-import 'localisation_util_test.mocks.dart';
-
 @GenerateMocks([AssetBundle])
 void main() {
-  late MockAssetBundle mockBundle;
+  //late MockAssetBundle mockBundle;
 
   setUp(() {
-    mockBundle = MockAssetBundle();
+    //mockBundle = MockAssetBundle();
     SharedPreferences.setMockInitialValues({});
   });
 
