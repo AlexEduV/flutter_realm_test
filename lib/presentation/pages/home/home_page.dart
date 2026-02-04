@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       ),
     );
 
-    final cars = serviceLocator<GetAllCarsUseCase>().call(null);
+    final cars = serviceLocator<GetAllCarsUseCase>().call();
 
     exploreListKey.currentState?.insertItem(cars.length - 1);
     context.read<ExplorePageCubit>().updateCars(cars);

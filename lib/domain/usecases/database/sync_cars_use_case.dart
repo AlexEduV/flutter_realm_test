@@ -1,13 +1,13 @@
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/domain/usecases/usecase.dart';
 
-class SyncCarsUseCase implements UseCase<void, void> {
+class SyncCarsUseCase implements UseCaseNoParams<void> {
   SyncCarsUseCase(this._carRepository);
 
   final CarRepository _carRepository;
 
   @override
-  Future<void> call(void params) async {
+  Future<void> call() async {
     return _carRepository.syncCars();
   }
 }

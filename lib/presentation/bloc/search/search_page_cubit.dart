@@ -19,13 +19,13 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void loadData() {
     emit(state.copyWith(isLoading: true));
 
-    final results = filterCarsByType(_getAllCarsUseCase.call(null));
+    final results = filterCarsByType(_getAllCarsUseCase.call());
 
     updateModelListFromEntities(results, state.currentSelectedType);
 
     emit(state.copyWith(results: results, isLoading: false));
 
-    _carSubscription = _watchCarsUseCase.call(null)?.listen((entities) {
+    _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final resultsByType = filterCarsByType(entities);
       final resultsByModel = filterCarsByModel(resultsByType);
 

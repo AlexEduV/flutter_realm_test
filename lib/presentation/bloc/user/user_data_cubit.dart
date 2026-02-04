@@ -20,7 +20,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> requestLocationPermission() async {
-    final isGranted = await _requestLocationPermissionUseCase.call(null);
+    final isGranted = await _requestLocationPermissionUseCase.call();
 
     if (!isGranted) {
       return;

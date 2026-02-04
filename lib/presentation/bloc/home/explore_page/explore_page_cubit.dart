@@ -17,11 +17,11 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
 
-    await _syncCarsUseCase.call(null);
+    await _syncCarsUseCase.call();
 
     emit(state.copyWith(isLoading: false));
 
-    _carSubscription = _watchCarsUseCase.call(null)?.listen((entities) {
+    _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       emit(state.copyWith(cars: entities));
     });
   }
