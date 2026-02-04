@@ -1,4 +1,5 @@
 //todo: need to place blocProvider above the widget tree
+//the page does not show expected widgets
 
 /* import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
