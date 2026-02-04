@@ -2,6 +2,6 @@ abstract class UseCaseNoParams<Output> {
   Output call();
 }
 
-abstract class UseCaseWithParams<Output, Input> {
+abstract class UseCaseWithParams<Input, Output> {
   Output call(Input params);
 }

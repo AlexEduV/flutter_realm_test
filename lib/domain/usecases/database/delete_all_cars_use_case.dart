@@ -7,7 +7,7 @@ class DeleteAllCarsUseCase implements UseCaseNoParams<void> {
   final CarRepository _carRepository;
 
   @override
-  Future<void> call() async {
+  void call() {
     return _carRepository.deleteAll();
   }
 }
