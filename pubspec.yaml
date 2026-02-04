@@ -37,8 +37,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/mocks/uk/
-    - assets/mocks/it/
+    - assets/mocks/
 
   fonts:
     - family: Zona Pro
