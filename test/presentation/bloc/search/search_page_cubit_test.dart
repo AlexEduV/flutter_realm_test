@@ -1,16 +1,22 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 
-import '../../../domain/repositories/car_repository_test.mocks.dart';
+import 'search_page_cubit_test.mocks.dart';
 
+@GenerateMocks([GetAllCarsUseCase, WatchCarsUseCase])
 void main() {
-  late MockCarRepository mockCarRepository;
+  late MockGetAllCarsUseCase mockGetAllCarsUseCase;
+  late MockWatchCarsUseCase mockWatchCarsUseCase;
+
   late SearchPageCubit cubit;
   final car1 = CarEntity(
     carId: '1',
@@ -39,8 +45,9 @@ void main() {
   final carList = [car1, car2];
 
   setUp(() {
-    mockCarRepository = MockCarRepository();
-    cubit = SearchPageCubit(mockCarRepository);
+    mockWatchCarsUseCase = MockWatchCarsUseCase();
+    mockGetAllCarsUseCase = MockGetAllCarsUseCase();
+    cubit = SearchPageCubit(mockGetAllCarsUseCase, mockWatchCarsUseCase);
   });
 
   group('SearchPageCubit', () {
@@ -51,8 +58,8 @@ void main() {
     blocTest<SearchPageCubit, SearchPageState>(
       'loadData emits loading, updates allModels, and results',
       build: () {
-        when(mockCarRepository.getAllCars()).thenReturn(carList);
-        when(mockCarRepository.watchCars()).thenReturn(null);
+        when(mockGetAllCarsUseCase.call(null)).thenReturn(carList);
+        when(mockWatchCarsUseCase.call(null)).thenReturn(null);
         return cubit;
       },
       act: (cubit) => cubit.loadData(),

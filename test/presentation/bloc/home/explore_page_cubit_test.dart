@@ -5,15 +5,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/repositories/car_repository.dart';
+import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
-import 'home_page_cubit_test.mocks.dart';
+import 'explore_page_cubit_test.mocks.dart';
 
-@GenerateMocks([CarRepository])
+@GenerateMocks([SyncCarsUseCase, WatchCarsUseCase])
 void main() {
-  late MockCarRepository mockRepo;
+  late MockSyncCarsUseCase mockSyncCarsUseCase;
+  late MockWatchCarsUseCase mockWatchCarsUseCase;
+
   late ExplorePageCubit cubit;
 
   final carList = [
@@ -36,8 +39,9 @@ void main() {
   ];
 
   setUp(() {
-    mockRepo = MockCarRepository();
-    cubit = ExplorePageCubit(mockRepo);
+    mockWatchCarsUseCase = MockWatchCarsUseCase();
+    mockSyncCarsUseCase = MockSyncCarsUseCase();
+    cubit = ExplorePageCubit(mockWatchCarsUseCase, mockSyncCarsUseCase);
   });
 
   tearDown(() async {
@@ -47,8 +51,8 @@ void main() {
   blocTest<ExplorePageCubit, ExplorePageState>(
     'should init',
     setUp: () {
-      when(mockRepo.syncCars()).thenAnswer((_) async => {});
-      when(mockRepo.watchCars()).thenAnswer((_) => Stream.value(carList));
+      when(mockSyncCarsUseCase.call(null)).thenAnswer((_) async => {});
+      when(mockWatchCarsUseCase.call(null)).thenAnswer((_) => Stream.value(carList));
     },
     build: () {
       return cubit;
@@ -60,8 +64,8 @@ void main() {
       isA<ExplorePageState>().having((s) => s.cars, 'cars', carList),
     ],
     verify: (_) {
-      verify(mockRepo.syncCars()).called(1);
-      verify(mockRepo.watchCars()).called(1);
+      verify(mockWatchCarsUseCase.call(null)).called(1);
+      verify(mockSyncCarsUseCase.call(null)).called(1);
     },
   );
 
