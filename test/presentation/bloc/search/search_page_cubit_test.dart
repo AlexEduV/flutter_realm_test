@@ -116,6 +116,7 @@ void main() {
       ],
     );
 
+    //todo: the test is not working
     // blocTest<SearchPageCubit, SearchPageState>(
     //   'removeCarModelFromSelection removes model and updates results',
     //   build: () => cubit,
@@ -140,6 +141,7 @@ void main() {
       ],
     );
 
+    //todo: the test is not compatible with cubit's private variables
     // test('close cancels car subscription', () async {
     //   final controller = StreamController<List<CarEntity>>();
     //   when(mockCarRepository.getAllCars()).thenReturn(carList);

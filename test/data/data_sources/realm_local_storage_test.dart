@@ -24,6 +24,7 @@ void main() {
     storage = RealmLocalStorage(mockRealm);
   });
 
+  //todo: tests are not working
   // test('add should call realm.write and realm.add with Car', () {
   //   final carEntity = CarEntity(
   //     carId: 'car123',

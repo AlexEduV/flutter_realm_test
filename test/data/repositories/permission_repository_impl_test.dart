@@ -1,3 +1,5 @@
+//todo: permission platform is not mocked easily
+
 /*
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

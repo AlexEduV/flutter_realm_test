@@ -51,6 +51,7 @@ void main() {
       expect: () => [],
     );
 
+    //todo: permission handler is harder to mock
     // blocTest<UserDataCubit, UserDataState>(
     //   'requestLocationPermission updates permission status and opens location settings if service not enabled',
     //   build: () {

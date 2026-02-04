@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 
 void main() {
+  //todo: the bloc provider is missing from the widget tree
   // testWidgets('Navigates to HomePage on root route', (WidgetTester tester) async {
   //   await tester.pumpWidget(CupertinoApp.router(routerConfig: AppRouter.router));
   //   await tester.pumpAndSettle();

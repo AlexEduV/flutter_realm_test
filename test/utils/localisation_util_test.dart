@@ -14,6 +14,7 @@ void main() {
   });
 
   group('LocalisationUtil', () {
+    //todo: the class' static methods are not to be overriden
     // test('loadLocalisations loads and flattens JSON', () async {
     //   // Arrange
     //   const jsonString = '''

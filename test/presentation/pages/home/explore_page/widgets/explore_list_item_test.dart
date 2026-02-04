@@ -44,6 +44,7 @@ void main() {
       expect(find.text('TESLA MODEL S 2022'), findsOneWidget);
     });
 
+    //todo: the test is not working
     // testWidgets('displays price and hot promotion icon', (WidgetTester tester) async {
     //   await tester.pumpWidget(
     //     MaterialApp(
@@ -76,6 +77,7 @@ void main() {
       expect(find.byIcon(Icons.check), findsOneWidget);
     });
 
+    //todo: the test is not working
     // testWidgets('calls onDismissed when delete action is pressed', (WidgetTester tester) async {
     //   bool dismissed = false;
     //   await tester.pumpWidget(
