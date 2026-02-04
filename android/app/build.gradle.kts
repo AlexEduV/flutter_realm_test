@@ -37,21 +37,6 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
-
-    flavorDimensions "app"
-    productFlavors {
-        uk {
-            dimension: "app"
-            applicationSuffix: ".uk"
-            resValue: "string", "app_name", "Flutter Realm Demo UK"
-        }
-
-        it {
-            dimension: "app"
-            applicationSuffix: ".it"
-            resValue: "string", "app_name", "Flutter Realm Demo IT"
-        }
-    }
 }
 
 flutter {

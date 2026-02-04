@@ -9,6 +9,5 @@
 .dart_tool/*
 
 .idea/*
-!.idea/runConfigurations/
 
 coverage/*
