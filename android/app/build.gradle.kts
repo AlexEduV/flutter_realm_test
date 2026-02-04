@@ -38,19 +38,18 @@ android {
         }
     }
 
-    flavorDimensions += "app"
-
+    flavorDimensions "app"
     productFlavors {
-        create("uk") {
-            dimension = "app"
-            applicationIdSuffix = ".uk"
-            resValue("string", "app_name", "Flutter Realm Demo UK")
+        uk {
+            dimension: "app"
+            applicationSuffix: ".uk"
+            resValue: "string", "app_name", "Flutter Realm Demo UK"
         }
 
-        create("it") {
-            dimension = "app"
-            applicationIdSuffix = ".it"
-            resValue("string", "app_name", "Flutter Realm Demo IT")
+        it {
+            dimension: "app"
+            applicationSuffix: ".it"
+            resValue: "string", "app_name", "Flutter Realm Demo IT"
         }
     }
 }
