@@ -1,0 +1,135 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
+
+import 'base_local_storage_test.mocks.dart';
+
+@GenerateMocks([BaseLocalStorage])
+void main() {
+  late MockBaseLocalStorage mockStorage;
+
+  setUp(() {
+    mockStorage = MockBaseLocalStorage();
+  });
+
+  group('BaseLocalStorage', () {
+    test('getAll returns a list of CarEntity', () {
+      final cars = [
+        CarEntity(
+          carId: 'car1',
+          model: 'Model S',
+          manufacturer: 'Tesla',
+          type: CarType.car.name,
+          isVerified: true,
+          isHotPromotion: false,
+          year: '2022',
+          kilometers: 1000,
+          distanceTo: 5,
+          price: 90000,
+        ),
+      ];
+
+      when(mockStorage.getAll()).thenReturn(cars);
+
+      final result = mockStorage.getAll();
+
+      expect(result, isA<List<CarEntity>>());
+      expect(result.length, 1);
+      expect(result.first.manufacturer, 'Tesla');
+    });
+
+    test('add can be called with any object', () {
+      final car = CarEntity(
+        carId: 'car2',
+        model: 'Civic',
+        manufacturer: 'Honda',
+        type: CarType.car.name,
+        isVerified: false,
+        isHotPromotion: false,
+        year: '2020',
+        kilometers: 5000,
+        distanceTo: 10,
+        price: 20000,
+      );
+
+      mockStorage.add(car);
+
+      verify(mockStorage.add(car)).called(1);
+    });
+
+    test('update can be called with any object', () {
+      final car = CarEntity(
+        carId: 'car3',
+        model: 'Corolla',
+        manufacturer: 'Toyota',
+        type: CarType.car.name,
+        isVerified: true,
+        isHotPromotion: false,
+        year: '2019',
+        kilometers: 8000,
+        distanceTo: 15,
+        price: 15000,
+      );
+
+      mockStorage.update(car);
+
+      verify(mockStorage.update(car)).called(1);
+    });
+
+    test('watch returns a Stream', () {
+      final carStream = Stream<List<CarEntity>>.value([
+        CarEntity(
+          carId: 'car4',
+          model: 'Mustang',
+          manufacturer: 'Ford',
+          type: CarType.car.name,
+          isVerified: true,
+          isHotPromotion: true,
+          year: '2021',
+          kilometers: 3000,
+          distanceTo: 2,
+          price: 50000,
+        ),
+      ]);
+
+      when(mockStorage.watch<CarEntity>()).thenAnswer((_) => carStream);
+
+      expect(mockStorage.watch<CarEntity>(), emits(isA<List<CarEntity>>()));
+    });
+
+    test('deleteAll can be called', () {
+      mockStorage.deleteAll();
+
+      verify(mockStorage.deleteAll()).called(1);
+    });
+
+    test('deleteById can be called with ObjectId', () {
+      final id = ObjectId();
+
+      mockStorage.deleteById(id);
+
+      verify(mockStorage.deleteById(id)).called(1);
+    });
+
+    test('initUser returns a UserEntity', () {
+      final user = const UserEntity(
+        userId: 'u1',
+        firstName: 'John',
+        lastName: 'Doe',
+        isLocationPermissionGranted: true,
+      );
+
+      when(mockStorage.initUser()).thenReturn(user);
+
+      final result = mockStorage.initUser();
+
+      expect(result, isA<UserEntity>());
+      expect(result.userId, 'u1');
+    });
+  });
+}
