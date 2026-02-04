@@ -142,6 +142,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     );
 
     // 3. Delete once
+    //todo: use a use case instead
     serviceLocator<CarRepository>().deleteCarById(id);
 
     context.read<ExplorePageCubit>().removeCarAt(index);

@@ -6,16 +6,14 @@
 import 'dart:async' as _i6;
 
 import 'package:geolocator_platform_interface/src/enums/enums.dart' as _i10;
-import 'package:geolocator_platform_interface/src/geolocator_platform_interface.dart'
-    as _i9;
+import 'package:geolocator_platform_interface/src/geolocator_platform_interface.dart' as _i9;
 import 'package:geolocator_platform_interface/src/models/models.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:realm/realm.dart' as _i7;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i5;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
-import 'package:test_futter_project/domain/repositories/base_local_storage.dart'
-    as _i4;
-import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_usecase.dart'
+import 'package:test_futter_project/domain/repositories/base_local_storage.dart' as _i4;
+import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
     as _i8;
 
 // ignore_for_file: type=lint
@@ -33,13 +31,11 @@ import 'package:test_futter_project/domain/usecases/permissions/request_location
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
-  _FakeUserEntity_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeUserEntity_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakePosition_1 extends _i1.SmartFake implements _i3.Position {
-  _FakePosition_1(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakePosition_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 /// A class which mocks [BaseLocalStorage].
@@ -52,52 +48,35 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
 
   @override
   List<_i5.CarEntity> getAll() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAll, []),
-            returnValue: <_i5.CarEntity>[],
-          )
+      (super.noSuchMethod(Invocation.method(#getAll, []), returnValue: <_i5.CarEntity>[])
           as List<_i5.CarEntity>);
 
   @override
-  void add(dynamic T) => super.noSuchMethod(
-    Invocation.method(#add, [T]),
-    returnValueForMissingStub: null,
-  );
+  void add(dynamic T) =>
+      super.noSuchMethod(Invocation.method(#add, [T]), returnValueForMissingStub: null);
 
   @override
-  void update(dynamic T) => super.noSuchMethod(
-    Invocation.method(#update, [T]),
-    returnValueForMissingStub: null,
-  );
+  void update(dynamic T) =>
+      super.noSuchMethod(Invocation.method(#update, [T]), returnValueForMissingStub: null);
 
   @override
   _i6.Stream<dynamic> watch<T>() =>
-      (super.noSuchMethod(
-            Invocation.method(#watch, []),
-            returnValue: _i6.Stream<dynamic>.empty(),
-          )
+      (super.noSuchMethod(Invocation.method(#watch, []), returnValue: _i6.Stream<dynamic>.empty())
           as _i6.Stream<dynamic>);
 
   @override
-  void deleteAll() => super.noSuchMethod(
-    Invocation.method(#deleteAll, []),
-    returnValueForMissingStub: null,
-  );
+  void deleteAll() =>
+      super.noSuchMethod(Invocation.method(#deleteAll, []), returnValueForMissingStub: null);
 
   @override
-  void deleteById(_i7.ObjectId? id) => super.noSuchMethod(
-    Invocation.method(#deleteById, [id]),
-    returnValueForMissingStub: null,
-  );
+  void deleteById(_i7.ObjectId? id) =>
+      super.noSuchMethod(Invocation.method(#deleteById, [id]), returnValueForMissingStub: null);
 
   @override
   _i2.UserEntity initUser() =>
       (super.noSuchMethod(
             Invocation.method(#initUser, []),
-            returnValue: _FakeUserEntity_0(
-              this,
-              Invocation.method(#initUser, []),
-            ),
+            returnValue: _FakeUserEntity_0(this, Invocation.method(#initUser, [])),
           )
           as _i2.UserEntity);
 }
@@ -123,8 +102,7 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
 /// A class which mocks [GeolocatorPlatform].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGeolocatorPlatform extends _i1.Mock
-    implements _i9.GeolocatorPlatform {
+class MockGeolocatorPlatform extends _i1.Mock implements _i9.GeolocatorPlatform {
   MockGeolocatorPlatform() {
     _i1.throwOnMissingStub(this);
   }
@@ -133,9 +111,7 @@ class MockGeolocatorPlatform extends _i1.Mock
   _i6.Future<_i10.LocationPermission> checkPermission() =>
       (super.noSuchMethod(
             Invocation.method(#checkPermission, []),
-            returnValue: _i6.Future<_i10.LocationPermission>.value(
-              _i10.LocationPermission.denied,
-            ),
+            returnValue: _i6.Future<_i10.LocationPermission>.value(_i10.LocationPermission.denied),
           )
           as _i6.Future<_i10.LocationPermission>);
 
@@ -143,9 +119,7 @@ class MockGeolocatorPlatform extends _i1.Mock
   _i6.Future<_i10.LocationPermission> requestPermission() =>
       (super.noSuchMethod(
             Invocation.method(#requestPermission, []),
-            returnValue: _i6.Future<_i10.LocationPermission>.value(
-              _i10.LocationPermission.denied,
-            ),
+            returnValue: _i6.Future<_i10.LocationPermission>.value(_i10.LocationPermission.denied),
           )
           as _i6.Future<_i10.LocationPermission>);
 
@@ -158,9 +132,7 @@ class MockGeolocatorPlatform extends _i1.Mock
           as _i6.Future<bool>);
 
   @override
-  _i6.Future<_i3.Position?> getLastKnownPosition({
-    bool? forceLocationManager = false,
-  }) =>
+  _i6.Future<_i3.Position?> getLastKnownPosition({bool? forceLocationManager = false}) =>
       (super.noSuchMethod(
             Invocation.method(#getLastKnownPosition, [], {
               #forceLocationManager: forceLocationManager,
@@ -170,19 +142,13 @@ class MockGeolocatorPlatform extends _i1.Mock
           as _i6.Future<_i3.Position?>);
 
   @override
-  _i6.Future<_i3.Position> getCurrentPosition({
-    _i3.LocationSettings? locationSettings,
-  }) =>
+  _i6.Future<_i3.Position> getCurrentPosition({_i3.LocationSettings? locationSettings}) =>
       (super.noSuchMethod(
-            Invocation.method(#getCurrentPosition, [], {
-              #locationSettings: locationSettings,
-            }),
+            Invocation.method(#getCurrentPosition, [], {#locationSettings: locationSettings}),
             returnValue: _i6.Future<_i3.Position>.value(
               _FakePosition_1(
                 this,
-                Invocation.method(#getCurrentPosition, [], {
-                  #locationSettings: locationSettings,
-                }),
+                Invocation.method(#getCurrentPosition, [], {#locationSettings: locationSettings}),
               ),
             ),
           )
@@ -197,13 +163,9 @@ class MockGeolocatorPlatform extends _i1.Mock
           as _i6.Stream<_i10.ServiceStatus>);
 
   @override
-  _i6.Stream<_i3.Position> getPositionStream({
-    _i3.LocationSettings? locationSettings,
-  }) =>
+  _i6.Stream<_i3.Position> getPositionStream({_i3.LocationSettings? locationSettings}) =>
       (super.noSuchMethod(
-            Invocation.method(#getPositionStream, [], {
-              #locationSettings: locationSettings,
-            }),
+            Invocation.method(#getPositionStream, [], {#locationSettings: locationSettings}),
             returnValue: _i6.Stream<_i3.Position>.empty(),
           )
           as _i6.Stream<_i3.Position>);
@@ -213,9 +175,7 @@ class MockGeolocatorPlatform extends _i1.Mock
     required String? purposeKey,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#requestTemporaryFullAccuracy, [], {
-              #purposeKey: purposeKey,
-            }),
+            Invocation.method(#requestTemporaryFullAccuracy, [], {#purposeKey: purposeKey}),
             returnValue: _i6.Future<_i10.LocationAccuracyStatus>.value(
               _i10.LocationAccuracyStatus.reduced,
             ),
