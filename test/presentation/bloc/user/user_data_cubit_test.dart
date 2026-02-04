@@ -5,23 +5,23 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
-import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_usecase.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 
 import 'user_data_cubit_test.mocks.dart';
 
-@GenerateMocks([BaseLocalStorage, PermissionRepository, GeolocatorPlatform])
+@GenerateMocks([BaseLocalStorage, RequestLocationPermissionUseCase, GeolocatorPlatform])
 void main() {
   late MockBaseLocalStorage mockLocalStorage;
-  late MockPermissionRepository mockPermissionRepository;
+  late MockRequestLocationPermissionUseCase mockRequestLocationPermissionUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
 
   setUp(() {
     mockLocalStorage = MockBaseLocalStorage();
-    mockPermissionRepository = MockPermissionRepository();
-    cubit = UserDataCubit(mockLocalStorage, mockPermissionRepository);
+    mockRequestLocationPermissionUseCase = MockRequestLocationPermissionUseCase();
+    cubit = UserDataCubit(mockLocalStorage, mockRequestLocationPermissionUseCase);
     testUser = const UserEntity(
       userId: 'u1',
       firstName: 'John',
@@ -42,7 +42,7 @@ void main() {
     blocTest<UserDataCubit, UserDataState>(
       'requestLocationPermission does nothing if permission not granted',
       build: () {
-        when(mockPermissionRepository.requestLocationPermission()).thenAnswer((_) async => false);
+        when(mockRequestLocationPermissionUseCase.call(null)).thenAnswer((_) async => false);
         return cubit;
       },
       act: (cubit) async {

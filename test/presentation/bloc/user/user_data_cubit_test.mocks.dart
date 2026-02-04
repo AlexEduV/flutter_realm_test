@@ -15,7 +15,7 @@ import 'package:test_futter_project/domain/entities/car_entity.dart' as _i5;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart'
     as _i4;
-import 'package:test_futter_project/domain/repositories/permission_repository.dart'
+import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_usecase.dart'
     as _i8;
 
 // ignore_for_file: type=lint
@@ -102,27 +102,19 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
           as _i2.UserEntity);
 }
 
-/// A class which mocks [PermissionRepository].
+/// A class which mocks [RequestLocationPermissionUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPermissionRepository extends _i1.Mock
-    implements _i8.PermissionRepository {
-  MockPermissionRepository() {
+class MockRequestLocationPermissionUseCase extends _i1.Mock
+    implements _i8.RequestLocationPermissionUseCase {
+  MockRequestLocationPermissionUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<bool> requestLocationPermission() =>
+  _i6.Future<bool> call(dynamic params) =>
       (super.noSuchMethod(
-            Invocation.method(#requestLocationPermission, []),
-            returnValue: _i6.Future<bool>.value(false),
-          )
-          as _i6.Future<bool>);
-
-  @override
-  _i6.Future<bool> checkLocationPermissionState() =>
-      (super.noSuchMethod(
-            Invocation.method(#checkLocationPermissionState, []),
+            Invocation.method(#call, [params]),
             returnValue: _i6.Future<bool>.value(false),
           )
           as _i6.Future<bool>);

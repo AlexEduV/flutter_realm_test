@@ -3,14 +3,15 @@ import 'package:geolocator/geolocator.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
-import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_usecase.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
-  UserDataCubit(this._localStorage, this._permissionRepository) : super(const UserDataState());
+  UserDataCubit(this._localStorage, this._requestLocationPermissionUseCase)
+    : super(const UserDataState());
 
   final BaseLocalStorage _localStorage;
-  final PermissionRepository _permissionRepository;
+  final RequestLocationPermissionUseCase _requestLocationPermissionUseCase;
 
   late UserEntity user;
 
@@ -19,7 +20,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> requestLocationPermission() async {
-    final isGranted = await _permissionRepository.requestLocationPermission();
+    final isGranted = await _requestLocationPermissionUseCase.call(null);
 
     if (!isGranted) {
       return;
