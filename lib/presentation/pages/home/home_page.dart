@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/explore_page.dart';
@@ -9,7 +11,6 @@ import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_
 import '../../../common/app_colors.dart';
 import '../../../di/injection_container.dart';
 import '../../../domain/entities/car_entity.dart';
-import '../../../domain/repositories/car_repository.dart';
 import '../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import 'home_bottom_bar/home_bottom_bar.dart';
@@ -64,8 +65,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void _addCarToBase() {
-    //todo: use cubit / use cases instead
-    serviceLocator<CarRepository>().addCar(
+    serviceLocator<AddCarUseCase>().call(
       CarEntity(
         carId: '3',
         model: 'Model Y',
@@ -75,7 +75,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         type: 'car',
       ),
     );
-    final cars = serviceLocator<CarRepository>().getAllCars();
+
+    final cars = serviceLocator<GetAllCarsUseCase>().call(null);
 
     exploreListKey.currentState?.insertItem(cars.length - 1);
     context.read<ExplorePageCubit>().updateCars(cars);

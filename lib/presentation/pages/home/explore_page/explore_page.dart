@@ -9,7 +9,7 @@ import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/repositories/car_repository.dart';
+import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_list_item.dart';
@@ -142,8 +142,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     );
 
     // 3. Delete once
-    //todo: use a use case instead
-    serviceLocator<CarRepository>().deleteCarById(id);
+    serviceLocator<DeleteCarByIdUseCase>().call(id);
 
     context.read<ExplorePageCubit>().removeCarAt(index);
   }
