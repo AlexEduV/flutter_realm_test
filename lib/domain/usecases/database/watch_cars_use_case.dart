@@ -8,7 +8,7 @@ class WatchCarsUseCase implements UseCase<Stream<List<CarEntity>>?, void> {
   final CarRepository _carRepository;
 
   @override
-  Future<Stream<List<CarEntity>>?> call(void params) async {
+  Stream<List<CarEntity>>? call(void params) {
     return _carRepository.watchCars();
   }
 }

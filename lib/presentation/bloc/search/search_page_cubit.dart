@@ -4,25 +4,28 @@ import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/repositories/car_repository.dart';
+import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
-  SearchPageCubit(this._carRepository) : super(const SearchPageState());
+  SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase) : super(const SearchPageState());
 
-  final CarRepository _carRepository;
   StreamSubscription? _carSubscription;
+
+  final GetAllCarsUseCase _getAllCarsUseCase;
+  final WatchCarsUseCase _watchCarsUseCase;
 
   void loadData() {
     emit(state.copyWith(isLoading: true));
 
-    final results = filterCarsByType(_carRepository.getAllCars());
+    final results = filterCarsByType(_getAllCarsUseCase.call(null));
 
     updateModelListFromEntities(results, state.currentSelectedType);
 
     emit(state.copyWith(results: results, isLoading: false));
 
-    _carSubscription = _carRepository.watchCars()?.listen((entities) {
+    _carSubscription = _watchCarsUseCase.call(null)?.listen((entities) {
       final resultsByType = filterCarsByType(entities);
       final resultsByModel = filterCarsByModel(resultsByType);
 

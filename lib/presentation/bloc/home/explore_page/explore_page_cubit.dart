@@ -2,23 +2,26 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/repositories/car_repository.dart';
+import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePageCubit extends Cubit<ExplorePageState> {
-  ExplorePageCubit(this._carRepository) : super(const ExplorePageState());
+  ExplorePageCubit(this._watchCarsUseCase, this._syncCarsUseCase) : super(const ExplorePageState());
 
-  final CarRepository _carRepository;
   StreamSubscription? _carSubscription;
+
+  final SyncCarsUseCase _syncCarsUseCase;
+  final WatchCarsUseCase _watchCarsUseCase;
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
 
-    await _carRepository.syncCars();
+    await _syncCarsUseCase.call(null);
 
     emit(state.copyWith(isLoading: false));
 
-    _carSubscription = _carRepository.watchCars()?.listen((entities) {
+    _carSubscription = _watchCarsUseCase.call(null)?.listen((entities) {
       emit(state.copyWith(cars: entities));
     });
   }

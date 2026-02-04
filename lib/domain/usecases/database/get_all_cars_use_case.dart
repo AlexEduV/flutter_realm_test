@@ -8,7 +8,7 @@ class GetAllCarsUseCase implements UseCase<List<CarEntity>, void> {
   final CarRepository _carRepository;
 
   @override
-  Future<List<CarEntity>> call(void params) async {
+  List<CarEntity> call(void params) {
     return _carRepository.getAllCars();
   }
 }

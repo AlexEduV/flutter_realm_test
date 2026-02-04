@@ -1,3 +1,3 @@
 abstract class UseCase<Output, Input> {
-  Future<Output> call(Input params);
+  Output call(Input params);
 }
