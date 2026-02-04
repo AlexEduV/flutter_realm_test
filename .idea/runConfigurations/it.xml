@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="IT Flavor" type="FlutterRunConfigurationType" factoryName="Flutter">
+        <option name="filePath" value="$PROJECT_DIR$/lib/flavors/main_it.dart" />
+        <option name="flavor" value="it" />
+        <option name="additionalArgs" value="" />
+        <method v="2">
+            <option name="Make" enabled="true" />
+        </method>
+    </configuration>
+</component>
