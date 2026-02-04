@@ -34,7 +34,7 @@ void main() {
       ];
       final stream = Stream<List<CarEntity>>.value(cars);
 
-      when(mockCarRepository.watchCars()).thenReturn(stream);
+      when(mockCarRepository.watchCars()).thenAnswer((_) => stream);
 
       final result = useCase.call();
 
