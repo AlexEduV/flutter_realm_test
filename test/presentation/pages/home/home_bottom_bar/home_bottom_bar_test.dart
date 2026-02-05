@@ -1,23 +1,40 @@
 //todo: the bloc provider is missing from the widget tree
 
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/home_bottom_bar.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
+import '../../../../utils/app_router_test.mocks.dart';
+
 void main() {
+  final mockHomeBottomBarCubit = MockHomeBottomBarCubit();
+
   setUp(() {
     AppLocalisations.localisations = {'actions.addCar.tooltip': 'Add a car'};
+
+    when(
+      mockHomeBottomBarCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([const HomeBottomBarState()]));
+
+    when(mockHomeBottomBarCubit.state).thenReturn(const HomeBottomBarState());
   });
 
   group('HomeBottomBar', () {
     testWidgets('displays all HomeBottomBarItems and add button', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
+        BlocProvider<HomeBottomBarCubit>(
+          create: (context) => mockHomeBottomBarCubit,
+          child: MaterialApp(
+            home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
+          ),
         ),
       );
 
@@ -28,12 +45,15 @@ void main() {
     testWidgets('calls onAddPressed when add button is tapped', (WidgetTester tester) async {
       bool pressed = false;
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            bottomNavigationBar: HomeBottomBar(
-              onAddPressed: () {
-                pressed = true;
-              },
+        BlocProvider<HomeBottomBarCubit>(
+          create: (context) => mockHomeBottomBarCubit,
+          child: MaterialApp(
+            home: Scaffold(
+              bottomNavigationBar: HomeBottomBar(
+                onAddPressed: () {
+                  pressed = true;
+                },
+              ),
             ),
           ),
         ),
@@ -45,12 +65,15 @@ void main() {
 
     testWidgets('add button has correct style and tooltip', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
+        BlocProvider<HomeBottomBarCubit>(
+          create: (context) => mockHomeBottomBarCubit,
+          child: MaterialApp(
+            home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
+          ),
         ),
       );
 
-      final iconButton = tester.widget<IconButton>(find.byIcon(Icons.add));
+      final iconButton = tester.widget<IconButton>(find.widgetWithIcon(IconButton, Icons.add));
       final style = iconButton.style;
       final backgroundColor = style?.backgroundColor?.resolve({});
       final foregroundColor = style?.foregroundColor?.resolve({});
@@ -64,8 +87,11 @@ void main() {
 
     testWidgets('container has correct decoration', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
+        BlocProvider<HomeBottomBarCubit>(
+          create: (context) => mockHomeBottomBarCubit,
+          child: MaterialApp(
+            home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
+          ),
         ),
       );
 
@@ -87,7 +113,3 @@ void main() {
     });
   });
 }
-
- */
-
-void main() {}
