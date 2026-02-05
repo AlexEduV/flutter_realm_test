@@ -76,12 +76,12 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                   title: const Text('Sedan'),
                   value: selectedBodyTypeSet.contains(BodyType.sedan.name),
                   onChanged: (bool? newValue) {
-                    if (newValue ?? false) {
+                    if (newValue == true) {
+                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.sedan.name);
+                    } else {
                       context.read<SearchPageCubit>().removeBodyTypeFromSelection(
                         BodyType.sedan.name,
                       );
-                    } else {
-                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.sedan.name);
                     }
                   },
                   controlAffinity: checkBoxPosition,
@@ -90,12 +90,12 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                   title: const Text('Hatchback'),
                   value: selectedBodyTypeSet.contains(BodyType.hatchback.name),
                   onChanged: (bool? newValue) {
-                    if (newValue ?? false) {
-                      context.read<SearchPageCubit>().removeBodyTypeFromSelection(
+                    if (newValue == true) {
+                      context.read<SearchPageCubit>().addBodyTypeToSelection(
                         BodyType.hatchback.name,
                       );
                     } else {
-                      context.read<SearchPageCubit>().addBodyTypeToSelection(
+                      context.read<SearchPageCubit>().removeBodyTypeFromSelection(
                         BodyType.hatchback.name,
                       );
                     }
@@ -106,12 +106,12 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                   title: const Text('Universal'),
                   value: selectedBodyTypeSet.contains(BodyType.universal.name),
                   onChanged: (bool? newValue) {
-                    if (newValue ?? false) {
-                      context.read<SearchPageCubit>().removeBodyTypeFromSelection(
+                    if (newValue == true) {
+                      context.read<SearchPageCubit>().addBodyTypeToSelection(
                         BodyType.universal.name,
                       );
                     } else {
-                      context.read<SearchPageCubit>().addBodyTypeToSelection(
+                      context.read<SearchPageCubit>().removeBodyTypeFromSelection(
                         BodyType.universal.name,
                       );
                     }
@@ -122,12 +122,12 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                   title: const Text('Minivan'),
                   value: selectedBodyTypeSet.contains(BodyType.minivan.name),
                   onChanged: (bool? newValue) {
-                    if (newValue ?? false) {
+                    if (newValue == true) {
+                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.minivan.name);
+                    } else {
                       context.read<SearchPageCubit>().removeBodyTypeFromSelection(
                         BodyType.minivan.name,
                       );
-                    } else {
-                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.minivan.name);
                     }
                   },
                   controlAffinity: checkBoxPosition,
@@ -136,12 +136,12 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                   title: const Text('Coupe'),
                   value: selectedBodyTypeSet.contains(BodyType.coupe.name),
                   onChanged: (bool? newValue) {
-                    if (newValue ?? false) {
+                    if (newValue == true) {
+                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.coupe.name);
+                    } else {
                       context.read<SearchPageCubit>().removeBodyTypeFromSelection(
                         BodyType.coupe.name,
                       );
-                    } else {
-                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.coupe.name);
                     }
                   },
                   controlAffinity: checkBoxPosition,
@@ -150,12 +150,12 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                   title: const Text('Cross-over'),
                   value: selectedBodyTypeSet.contains(BodyType.crossover.name),
                   onChanged: (bool? newValue) {
-                    if (newValue ?? false) {
-                      context.read<SearchPageCubit>().removeBodyTypeFromSelection(
+                    if (newValue == true) {
+                      context.read<SearchPageCubit>().addBodyTypeToSelection(
                         BodyType.crossover.name,
                       );
                     } else {
-                      context.read<SearchPageCubit>().addBodyTypeToSelection(
+                      context.read<SearchPageCubit>().removeBodyTypeFromSelection(
                         BodyType.crossover.name,
                       );
                     }
@@ -167,12 +167,12 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                   title: const Text('Semi'),
                   value: selectedBodyTypeSet.contains(BodyType.semi.name),
                   onChanged: (bool? newValue) {
-                    if (newValue ?? false) {
+                    if (newValue == true) {
+                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.semi.name);
+                    } else {
                       context.read<SearchPageCubit>().removeBodyTypeFromSelection(
                         BodyType.semi.name,
                       );
-                    } else {
-                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.semi.name);
                     }
                   },
                   controlAffinity: checkBoxPosition,
@@ -182,12 +182,12 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                   title: const Text('Bike'),
                   value: selectedBodyTypeSet.contains(BodyType.bike.name),
                   onChanged: (bool? newValue) {
-                    if (newValue ?? false) {
+                    if (newValue == true) {
+                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.bike.name);
+                    } else {
                       context.read<SearchPageCubit>().removeBodyTypeFromSelection(
                         BodyType.bike.name,
                       );
-                    } else {
-                      context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.bike.name);
                     }
                   },
                   controlAffinity: checkBoxPosition,
