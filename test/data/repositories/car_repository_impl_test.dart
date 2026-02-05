@@ -123,6 +123,9 @@ void main() {
     when(carDto.distanceTo).thenReturn(0);
     when(carDto.price).thenReturn(2000);
     when(carDto.type).thenReturn('car');
+    when(carDto.bodyType).thenReturn('sedan');
+    when(carDto.fuelType).thenReturn('gasoline');
+    when(carDto.transmissionType).thenReturn('hybrid');
 
     final carDtos = [carDto];
     when(apiService.fetchCars()).thenAnswer((_) async => carDtos);
