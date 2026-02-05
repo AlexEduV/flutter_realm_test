@@ -28,8 +28,9 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final resultsByType = filterCarsByType(entities);
       final resultsByModel = filterCarsByModel(resultsByType);
+      final resultsByBodyType = filterCarsByBodyType(resultsByModel);
 
-      emit(state.copyWith(results: resultsByModel));
+      emit(state.copyWith(results: resultsByBodyType));
     });
   }
 
@@ -52,6 +53,14 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     return list
         .where((car) => state.selectedModels.contains('${car.manufacturer} ${car.model}'))
         .toList();
+  }
+
+  List<CarEntity> filterCarsByBodyType(List<CarEntity> list) {
+    if (state.selectedBodyTypes.isEmpty) {
+      return list;
+    }
+
+    return list.where((car) => state.selectedBodyTypes.contains(car.bodyType)).toList();
   }
 
   void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
@@ -87,14 +96,16 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     final newSelection = List<String>.from(state.selectedBodyTypes)..add(bodyType);
     emit(state.copyWith(selectedBodyTypes: newSelection));
 
-    //todo: update listView selection as well
+    emit(state.copyWith(results: filterCarsByBodyType(state.results)));
   }
 
   void removeBodyTypeFromSelection(String bodyType) {
     final newSelection = List<String>.from(state.selectedBodyTypes)..remove(bodyType);
     emit(state.copyWith(selectedBodyTypes: newSelection));
 
-    //todo: update listView selection as well
+    //todo: bug: if the selection becomes empty, the function just returns the list, but if it's
+    //empty, the query won't go again.
+    emit(state.copyWith(results: filterCarsByBodyType(state.results)));
   }
 
   void openDrawer(SearchDrawerType type) {
