@@ -1,6 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
@@ -22,6 +25,9 @@ void main() {
     when(mockCar.owner).thenReturn(Person('John Doe'));
     when(mockCar.kilometers).thenReturn(10000);
     when(mockCar.type).thenReturn('car');
+    when(mockCar.bodyType).thenReturn('sedan');
+    when(mockCar.fuelType).thenReturn('ev');
+    when(mockCar.transmissionType).thenReturn('automatic');
   });
 
   group('CarEntity', () {
@@ -38,6 +44,9 @@ void main() {
         kilometers: 10000,
         distanceTo: 50,
         price: 80000,
+        fuelType: FuelType.ev.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
       );
 
       expect(entity.carId, 'car123');
@@ -50,6 +59,9 @@ void main() {
       expect(entity.kilometers, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
+      expect(entity.fuelType, 'ev');
+      expect(entity.bodyType, 'sedan');
+      expect(entity.transmissionType, 'automatic');
     });
 
     test('fromDto factory creates instance with correct values', () {
@@ -66,6 +78,9 @@ void main() {
         kilometers: 50000,
         distanceTo: 100,
         price: 20000,
+        fuelType: FuelType.gasoline.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
       );
 
       final entity = CarEntity.fromDto(dto);
@@ -80,6 +95,9 @@ void main() {
       expect(entity.kilometers, 50000);
       expect(entity.distanceTo, 100);
       expect(entity.price, 20000);
+      expect(entity.fuelType, 'gasoline');
+      expect(entity.bodyType, 'sedan');
+      expect(entity.transmissionType, 'automatic');
     });
 
     test('fromSchema factory creates instance with correct values', () {
@@ -95,6 +113,9 @@ void main() {
       expect(entity.kilometers, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
+      expect(entity.fuelType, 'ev');
+      expect(entity.bodyType, 'sedan');
+      expect(entity.transmissionType, 'automatic');
     });
 
     test('fromSchema handles nulls and defaults', () {

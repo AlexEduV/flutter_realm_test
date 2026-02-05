@@ -4,6 +4,9 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
@@ -27,6 +30,9 @@ void main() {
       isVerified: true,
       isHotPromotion: false,
       type: 'car',
+      fuelType: FuelType.ev.name,
+      bodyType: BodyType.sedan.name,
+      transmissionType: TransmissionType.automatic.name,
     ),
     CarEntity(
       carId: '2',
@@ -35,6 +41,9 @@ void main() {
       isVerified: false,
       isHotPromotion: true,
       type: 'car',
+      fuelType: FuelType.hybrid.name,
+      bodyType: BodyType.sedan.name,
+      transmissionType: TransmissionType.automatic.name,
     ),
   ];
 

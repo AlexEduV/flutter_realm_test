@@ -2,7 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
@@ -31,6 +34,9 @@ void main() {
           kilometers: 1000,
           distanceTo: 5,
           price: 90000,
+          fuelType: FuelType.ev.name,
+          bodyType: BodyType.sedan.name,
+          transmissionType: TransmissionType.automatic.name,
         ),
       ];
 
@@ -55,6 +61,9 @@ void main() {
         kilometers: 5000,
         distanceTo: 10,
         price: 20000,
+        fuelType: FuelType.diesel.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.manual.name,
       );
 
       mockStorage.add(car);
@@ -74,6 +83,9 @@ void main() {
         kilometers: 8000,
         distanceTo: 15,
         price: 15000,
+        fuelType: FuelType.gasoline.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
       );
 
       mockStorage.update(car);
@@ -94,6 +106,9 @@ void main() {
           kilometers: 3000,
           distanceTo: 2,
           price: 50000,
+          fuelType: FuelType.hybrid.name,
+          bodyType: BodyType.coupe.name,
+          transmissionType: TransmissionType.manual.name,
         ),
       ]);
 

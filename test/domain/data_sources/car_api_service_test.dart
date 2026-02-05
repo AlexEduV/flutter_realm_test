@@ -1,7 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 
 import '../../data/repositories/car_repository_impl_test.mocks.dart';
@@ -24,6 +27,9 @@ void main() {
           isVerified: true,
           model: 'Camry',
           isHotPromotion: false,
+          fuelType: FuelType.gasoline.name,
+          transmissionType: TransmissionType.automatic.name,
+          bodyType: BodyType.sedan.name,
         ),
         CarDto(
           id: ObjectId(),
@@ -33,6 +39,9 @@ void main() {
           isVerified: false,
           model: 'Type R',
           isHotPromotion: false,
+          fuelType: FuelType.gasoline.name,
+          transmissionType: TransmissionType.automatic.name,
+          bodyType: BodyType.bike.name,
         ),
       ];
 
@@ -55,6 +64,9 @@ void main() {
           isVerified: true,
           model: 'Camry',
           isHotPromotion: false,
+          fuelType: FuelType.gasoline.name,
+          transmissionType: TransmissionType.automatic.name,
+          bodyType: BodyType.sedan.name,
         ),
         CarDto(
           id: ObjectId(),
@@ -64,6 +76,9 @@ void main() {
           isVerified: false,
           model: 'Type R',
           isHotPromotion: false,
+          fuelType: FuelType.gasoline.name,
+          transmissionType: TransmissionType.automatic.name,
+          bodyType: BodyType.bike.name,
         ),
       ];
 

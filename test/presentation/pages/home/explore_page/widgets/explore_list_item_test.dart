@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_list_item.dart';
@@ -27,7 +30,11 @@ void main() {
       kilometers: 1000,
       distanceTo: 5,
       price: 90000,
+      fuelType: FuelType.ev.name,
+      bodyType: BodyType.sedan.name,
+      transmissionType: TransmissionType.automatic.name,
     );
+
     final user = const UserEntity(
       userId: 'user1',
       firstName: 'John',
@@ -161,6 +168,9 @@ void main() {
         kilometers: 500,
         distanceTo: 10,
         price: 50000,
+        fuelType: FuelType.ev.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
       );
 
       await tester.pumpWidget(

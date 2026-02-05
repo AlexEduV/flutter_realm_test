@@ -1,5 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 
@@ -27,6 +30,9 @@ void main() {
         kilometers: 1000,
         distanceTo: 5,
         price: 90000,
+        fuelType: FuelType.ev.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
       );
 
       useCase.call(car);

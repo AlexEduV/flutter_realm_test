@@ -2,8 +2,11 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
@@ -29,7 +32,11 @@ void main() {
     kilometers: 1000,
     distanceTo: 5,
     price: 90000,
+    fuelType: FuelType.ev.name,
+    bodyType: BodyType.sedan.name,
+    transmissionType: TransmissionType.automatic.name,
   );
+
   final car2 = CarEntity(
     carId: '2',
     model: 'CBR',
@@ -41,6 +48,9 @@ void main() {
     kilometers: 8000,
     distanceTo: 10,
     price: 7000,
+    fuelType: FuelType.gasoline.name,
+    bodyType: BodyType.sedan.name,
+    transmissionType: TransmissionType.automatic.name,
   );
   final carList = [car1, car2];
 

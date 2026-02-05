@@ -2,6 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 
@@ -24,6 +27,9 @@ void main() {
         type: 'car',
         isVerified: true,
         isHotPromotion: false,
+        fuelType: FuelType.ev.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
       ),
     ];
 
@@ -43,6 +49,9 @@ void main() {
       isVerified: false,
       isHotPromotion: true,
       type: 'car',
+      fuelType: FuelType.hybrid.name,
+      bodyType: BodyType.sedan.name,
+      transmissionType: TransmissionType.automatic.name,
     );
 
     mockRepo.addCar(car);
@@ -67,6 +76,9 @@ void main() {
         isVerified: true,
         isHotPromotion: false,
         type: 'car',
+        fuelType: FuelType.gasoline.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.manual.name,
       ),
     ];
 
