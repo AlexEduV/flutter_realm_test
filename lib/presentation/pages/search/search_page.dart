@@ -38,7 +38,8 @@ class _SearchPageState extends State<SearchPage> {
           !listEquals(previous.selectedModels, current.selectedModels) ||
           previous.currentSelectedType != current.currentSelectedType ||
           previous.allModels != current.allModels ||
-          !listEquals(previous.selectedBodyTypes, current.selectedBodyTypes),
+          !listEquals(previous.selectedBodyTypes, current.selectedBodyTypes) ||
+          !listEquals(previous.selectedTransmissionTypes, current.selectedTransmissionTypes),
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,

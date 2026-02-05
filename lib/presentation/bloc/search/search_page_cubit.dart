@@ -50,6 +50,11 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       if (state.selectedFuelTypes.isNotEmpty && !state.selectedFuelTypes.contains(car.fuelType)) {
         return false;
       }
+      // Transmission type filter
+      if (state.selectedTransmissionTypes.isNotEmpty &&
+          !state.selectedTransmissionTypes.contains(car.transmissionType)) {
+        return false;
+      }
 
       // Add more filters here as needed
       return true;
@@ -106,16 +111,31 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
-  void addFuelTypeToSelection(String bodyType) {
-    final newSelection = List<String>.from(state.selectedFuelTypes)..add(bodyType);
+  void addFuelTypeToSelection(String fuelType) {
+    final newSelection = List<String>.from(state.selectedFuelTypes)..add(fuelType);
     emit(state.copyWith(selectedFuelTypes: newSelection));
 
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
-  void removeFuelTypeFromSelection(String bodyType) {
-    final newSelection = List<String>.from(state.selectedFuelTypes)..remove(bodyType);
+  void removeFuelTypeFromSelection(String fuelType) {
+    final newSelection = List<String>.from(state.selectedFuelTypes)..remove(fuelType);
     emit(state.copyWith(selectedFuelTypes: newSelection));
+
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void addTransmissionTypeToSelection(String transmissionType) {
+    final newSelection = List<String>.from(state.selectedTransmissionTypes)..add(transmissionType);
+    emit(state.copyWith(selectedTransmissionTypes: newSelection));
+
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void removeTransmissionTypeFromSelection(String transmissionType) {
+    final newSelection = List<String>.from(state.selectedTransmissionTypes)
+      ..remove(transmissionType);
+    emit(state.copyWith(selectedTransmissionTypes: newSelection));
 
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }

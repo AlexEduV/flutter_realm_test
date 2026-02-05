@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
@@ -35,6 +36,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
       builder: (context, state) {
         final selectedBodyTypeSet = Set<String>.from(state.selectedBodyTypes);
         final selectedFuelTypeSet = Set<String>.from(state.selectedFuelTypes);
+        final selectedTransmissionTypeSet = Set<String>.from(state.selectedTransmissionTypes);
 
         return Drawer(
           backgroundColor: AppColors.scaffoldColor,
@@ -288,20 +290,50 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
 
               CheckboxListTile(
                 title: const Text('Manual'),
-                value: false,
-                onChanged: (bool? newValue) {},
+                value: selectedTransmissionTypeSet.contains(TransmissionType.manual.name),
+                onChanged: (bool? newValue) {
+                  if (newValue == true) {
+                    context.read<SearchPageCubit>().addTransmissionTypeToSelection(
+                      TransmissionType.manual.name,
+                    );
+                  } else {
+                    context.read<SearchPageCubit>().removeTransmissionTypeFromSelection(
+                      TransmissionType.manual.name,
+                    );
+                  }
+                },
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
                 title: const Text('Automatic'),
-                value: false,
-                onChanged: (bool? newValue) {},
+                value: selectedTransmissionTypeSet.contains(TransmissionType.automatic.name),
+                onChanged: (bool? newValue) {
+                  if (newValue == true) {
+                    context.read<SearchPageCubit>().addTransmissionTypeToSelection(
+                      TransmissionType.automatic.name,
+                    );
+                  } else {
+                    context.read<SearchPageCubit>().removeTransmissionTypeFromSelection(
+                      TransmissionType.automatic.name,
+                    );
+                  }
+                },
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
                 title: const Text('Hybrid'),
-                value: false,
-                onChanged: (bool? newValue) {},
+                value: selectedTransmissionTypeSet.contains(TransmissionType.hybrid.name),
+                onChanged: (bool? newValue) {
+                  if (newValue == true) {
+                    context.read<SearchPageCubit>().addTransmissionTypeToSelection(
+                      TransmissionType.hybrid.name,
+                    );
+                  } else {
+                    context.read<SearchPageCubit>().removeTransmissionTypeFromSelection(
+                      TransmissionType.hybrid.name,
+                    );
+                  }
+                },
                 controlAffinity: checkBoxPosition,
               ),
             ],
