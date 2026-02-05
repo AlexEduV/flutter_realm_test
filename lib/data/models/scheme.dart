@@ -11,6 +11,9 @@ class _Car {
   late String type;
   String? model;
   String? year;
+  String? bodyType;
+  String? fuelType;
+  String? transmissionType;
   bool? isChecked = false;
   bool? isHotProposition = false;
   int? kilometers = 500;
