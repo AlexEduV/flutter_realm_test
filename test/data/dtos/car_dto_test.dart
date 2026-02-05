@@ -1,5 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 
 void main() {
@@ -19,6 +22,9 @@ void main() {
         kilometers: 10000,
         distanceTo: 50,
         price: 80000,
+        fuelType: FuelType.ev.name,
+        transmissionType: TransmissionType.automatic.name,
+        bodyType: BodyType.sedan.name,
       );
 
       expect(car.id, id);
@@ -33,6 +39,9 @@ void main() {
       expect(car.kilometers, 10000);
       expect(car.distanceTo, 50);
       expect(car.price, 80000);
+      expect(car.fuelType, 'ev');
+      expect(car.transmissionType, 'automatic');
+      expect(car.bodyType, 'sedan');
     });
 
     test('default values for optional fields', () {
@@ -45,6 +54,9 @@ void main() {
         isVerified: true,
         isHotPromotion: false,
         type: 'car',
+        bodyType: 'sedan',
+        fuelType: 'ev',
+        transmissionType: 'manual',
       );
 
       expect(car.year, isNull);
@@ -64,6 +76,9 @@ void main() {
         'price': 20000,
         'is_hot_promotion': true,
         'type': 'car',
+        'body_type': 'sedan',
+        'transmission_type': 'automatic',
+        'fuel_type': 'ev',
       };
 
       final car = CarDto.fromJson(json);

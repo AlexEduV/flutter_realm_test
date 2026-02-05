@@ -1,6 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/common/extensions/car_scheme_extension.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
@@ -50,6 +53,9 @@ void main() {
         kilometers: 8000,
         distanceTo: 5,
         price: 7500,
+        bodyType: BodyType.bike.name,
+        fuelType: FuelType.gasoline.name,
+        transmissionType: TransmissionType.automatic.name,
       );
 
       final car = CarExtensions.fromDto(dto);
@@ -64,6 +70,9 @@ void main() {
       expect(car.kilometers, 8000);
       expect(car.distanceTo, 5);
       expect(car.price, 7500);
+      expect(car.fuelType, 'gasoline');
+      expect(car.bodyType, 'bike');
+      expect(car.transmissionType, 'automatic');
     });
 
     test('fromEntity should convert CarEntity to Car correctly', () {
@@ -78,6 +87,9 @@ void main() {
         kilometers: 5000,
         distanceTo: 2,
         price: 90000,
+        bodyType: BodyType.sedan.name,
+        fuelType: FuelType.ev.name,
+        transmissionType: TransmissionType.automatic.name,
       );
 
       final car = CarExtensions.fromEntity(entity);
@@ -92,6 +104,9 @@ void main() {
       expect(car.kilometers, 5000);
       expect(car.distanceTo, 2);
       expect(car.price, 90000);
+      expect(car.fuelType, 'ev');
+      expect(car.bodyType, 'sedan');
+      expect(car.transmissionType, 'automatic');
     });
   });
 }

@@ -1,1 +1,1 @@
-enum BodyType { sedan, hatchback, universal, minivan, coupe, crossover, semi }
+enum BodyType { sedan, hatchback, universal, minivan, coupe, crossover, semi, bike }

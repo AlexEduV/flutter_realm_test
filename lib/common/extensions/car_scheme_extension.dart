@@ -36,6 +36,9 @@ extension CarExtensions on Car {
       kilometers: dto.kilometers,
       distanceTo: dto.distanceTo,
       price: dto.price ?? 0,
+      bodyType: dto.bodyType,
+      fuelType: dto.fuelType,
+      transmissionType: dto.transmissionType,
     );
   }
 
@@ -52,6 +55,9 @@ extension CarExtensions on Car {
       kilometers: entity.kilometers,
       distanceTo: entity.distanceTo,
       price: entity.price ?? 0,
+      bodyType: entity.bodyType,
+      fuelType: entity.fuelType,
+      transmissionType: entity.transmissionType,
     );
   }
 }
