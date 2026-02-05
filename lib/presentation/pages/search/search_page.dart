@@ -39,7 +39,9 @@ class _SearchPageState extends State<SearchPage> {
           previous.currentSelectedType != current.currentSelectedType ||
           previous.allModels != current.allModels ||
           !listEquals(previous.selectedBodyTypes, current.selectedBodyTypes) ||
-          !listEquals(previous.selectedTransmissionTypes, current.selectedTransmissionTypes),
+          !listEquals(previous.selectedTransmissionTypes, current.selectedTransmissionTypes) ||
+          previous.selectedMinYear != current.selectedMinYear ||
+          previous.selectedMaxYear != current.selectedMaxYear,
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,

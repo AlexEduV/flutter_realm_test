@@ -10,6 +10,7 @@ import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_futter_project/presentation/pages/search/widgets/debounced_text_form_field.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 class ParameterFilterDrawer extends StatefulWidget {
@@ -56,15 +57,27 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
               Row(
                 children: [
                   Expanded(
-                    child: _buildFormField(
-                      minYearTextController,
-                      FieldParamsModel.withLabel('Min:'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppDimensions.normalS),
+                      child: DebouncedTextFormField(
+                        controller: minYearTextController,
+                        label: 'Min',
+                        onDebouncedChanged: (value) {
+                          context.read<SearchPageCubit>().updateSelectedMinYear(value);
+                        },
+                      ),
                     ),
                   ),
                   Expanded(
-                    child: _buildFormField(
-                      maxYearTextController,
-                      FieldParamsModel.withLabel('Max:'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppDimensions.normalS),
+                      child: DebouncedTextFormField(
+                        controller: maxYearTextController,
+                        label: 'Max',
+                        onDebouncedChanged: (value) {
+                          context.read<SearchPageCubit>().updateSelectedMaxYear(value);
+                        },
+                      ),
                     ),
                   ),
                 ],

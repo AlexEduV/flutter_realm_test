@@ -33,6 +33,17 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   List<CarEntity> applyAllFilters(List<CarEntity> cars) {
     return cars.where((car) {
+      // Year filter
+      if (state.selectedMinYear != null &&
+          (int.tryParse(car.year ?? '') ?? 0) < (int.tryParse(state.selectedMinYear ?? '') ?? 0)) {
+        return false;
+      }
+
+      if (state.selectedMaxYear != null &&
+          (int.tryParse(car.year ?? '') ?? 0) > (int.tryParse(state.selectedMaxYear ?? '') ?? 0)) {
+        return false;
+      }
+
       // Type filter
       if (car.type != state.currentSelectedType.name) {
         return false;
@@ -138,6 +149,16 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(selectedTransmissionTypes: newSelection));
 
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void updateSelectedMinYear(String newValue) {
+    emit(state.copyWith(selectedMinYear: newValue));
+    applyAllFilters(state.allResults);
+  }
+
+  void updateSelectedMaxYear(String newValue) {
+    emit(state.copyWith(selectedMaxYear: newValue));
+    applyAllFilters(state.allResults);
   }
 
   void openDrawer(SearchDrawerType type) {
