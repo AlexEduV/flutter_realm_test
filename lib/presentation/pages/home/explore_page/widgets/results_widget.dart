@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 
 import '../../../../../common/app_dimensions.dart';
@@ -12,13 +13,16 @@ class ResultsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: AppDimensions.minorL,
-      children: [
-        Text(AppLocalisations.results, style: AppTextStyles.zonaPro16),
+    return Semantics(
+      label: '${AppSemanticsLabels.resultsLabel} $results',
+      child: Row(
+        spacing: AppDimensions.minorL,
+        children: [
+          Text(AppLocalisations.results, style: AppTextStyles.zonaPro16),
 
-        AppBadge(text: results),
-      ],
+          AppBadge(text: results),
+        ],
+      ),
     );
   }
 }

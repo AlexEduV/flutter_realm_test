@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 
 class SegmentedSwitch extends StatelessWidget {
   final int selectedIndex;
@@ -50,20 +51,24 @@ class SegmentedSwitch extends StatelessWidget {
           Row(
             children: List.generate(options.length, (index) {
               final isSelected = index == selectedIndex;
-              return Expanded(
-                child: GestureDetector(
-                  onTap: () => onChanged(index),
-                  behavior: HitTestBehavior.opaque,
-                  child: Container(
-                    height: buttonHeight,
-                    alignment: Alignment.center,
-                    child: AnimatedDefaultTextStyle(
-                      duration: const Duration(milliseconds: animationDuration),
-                      style: TextStyle(
-                        color: isSelected ? Colors.white : AppColors.headerColor,
-                        fontWeight: FontWeight.w600,
+              return Semantics(
+                button: true,
+                label: '${AppSemanticsLabels.segmentedSwitchButton} ${options[index]}',
+                child: Expanded(
+                  child: GestureDetector(
+                    onTap: () => onChanged(index),
+                    behavior: HitTestBehavior.opaque,
+                    child: Container(
+                      height: buttonHeight,
+                      alignment: Alignment.center,
+                      child: AnimatedDefaultTextStyle(
+                        duration: const Duration(milliseconds: animationDuration),
+                        style: TextStyle(
+                          color: isSelected ? Colors.white : AppColors.headerColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        child: Text(options[index]),
                       ),
-                      child: Text(options[index]),
                     ),
                   ),
                 ),
