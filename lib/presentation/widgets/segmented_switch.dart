@@ -48,32 +48,36 @@ class SegmentedSwitch extends StatelessWidget {
           ),
 
           //Buttons
-          Row(
-            children: List.generate(options.length, (index) {
-              final isSelected = index == selectedIndex;
-              return Semantics(
-                button: true,
-                label: '${AppSemanticsLabels.segmentedSwitchButton} ${options[index]}',
-                child: Expanded(
-                  child: GestureDetector(
-                    onTap: () => onChanged(index),
-                    behavior: HitTestBehavior.opaque,
-                    child: Container(
-                      height: buttonHeight,
-                      alignment: Alignment.center,
-                      child: AnimatedDefaultTextStyle(
-                        duration: const Duration(milliseconds: animationDuration),
-                        style: TextStyle(
-                          color: isSelected ? Colors.white : AppColors.headerColor,
-                          fontWeight: FontWeight.w600,
+          Semantics(
+            label: AppSemanticsLabels.segmentedSwitch,
+            child: Row(
+              children: List.generate(options.length, (index) {
+                final isSelected = index == selectedIndex;
+                return Semantics(
+                  button: true,
+                  label: '${AppSemanticsLabels.segmentedSwitchButton} ${options[index]}',
+                  selected: isSelected,
+                  child: Expanded(
+                    child: GestureDetector(
+                      onTap: () => onChanged(index),
+                      behavior: HitTestBehavior.opaque,
+                      child: Container(
+                        height: buttonHeight,
+                        alignment: Alignment.center,
+                        child: AnimatedDefaultTextStyle(
+                          duration: const Duration(milliseconds: animationDuration),
+                          style: TextStyle(
+                            color: isSelected ? Colors.white : AppColors.headerColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          child: Text(options[index]),
                         ),
-                        child: Text(options[index]),
                       ),
                     ),
                   ),
-                ),
-              );
-            }),
+                );
+              }),
+            ),
           ),
         ],
       ),

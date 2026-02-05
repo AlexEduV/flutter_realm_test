@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 
 import '../../../../common/app_dimensions.dart';
@@ -37,29 +38,40 @@ class HomeBottomBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const HomeBottomBarItem(
+                label: AppSemanticsLabels.homeBottomBarItemHome,
                 index: AppConstants.homeTabExplore,
                 icon: Icons.home_outlined,
               ),
               const HomeBottomBarItem(
+                label: AppSemanticsLabels.homeBottomBarItemFavorites,
                 index: AppConstants.homeTabFavorites,
                 icon: Icons.favorite_border,
               ),
 
-              IconButton(
-                style: ButtonStyle(
-                  backgroundColor: const WidgetStatePropertyAll(AppColors.headerColor),
-                  foregroundColor: const WidgetStatePropertyAll(Colors.white),
-                  overlayColor: WidgetStatePropertyAll(Colors.white.withAlpha(60)),
+              Semantics(
+                button: true,
+                label: AppSemanticsLabels.homeBottomBarItemAdd,
+                child: IconButton(
+                  style: ButtonStyle(
+                    backgroundColor: const WidgetStatePropertyAll(AppColors.headerColor),
+                    foregroundColor: const WidgetStatePropertyAll(Colors.white),
+                    overlayColor: WidgetStatePropertyAll(Colors.white.withAlpha(60)),
+                  ),
+                  icon: const Icon(Icons.add, size: AppDimensions.bottomAppBarIconEnlargedSize),
+                  onPressed: onAddPressed,
+                  tooltip: AppLocalisations.addCarButtonTooltip,
                 ),
-                icon: const Icon(Icons.add, size: AppDimensions.bottomAppBarIconEnlargedSize),
-                onPressed: onAddPressed,
-                tooltip: AppLocalisations.addCarButtonTooltip,
               ),
 
-              const HomeBottomBarItem(index: AppConstants.homeTabInbox, icon: Icons.mail_outlined),
+              const HomeBottomBarItem(
+                index: AppConstants.homeTabInbox,
+                icon: Icons.mail_outlined,
+                label: AppSemanticsLabels.homeBottomBarItemInbox,
+              ),
               const HomeBottomBarItem(
                 index: AppConstants.homeTabSettings,
                 icon: Icons.settings_outlined,
+                label: AppSemanticsLabels.homeBottomBarItemSettings,
               ),
             ],
           ),

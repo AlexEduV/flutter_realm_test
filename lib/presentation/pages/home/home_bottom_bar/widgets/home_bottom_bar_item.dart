@@ -9,24 +9,37 @@ import '../../../../../common/app_dimensions.dart';
 class HomeBottomBarItem extends StatelessWidget {
   final int index;
   final IconData icon;
+  final String label;
 
-  const HomeBottomBarItem({required this.index, required this.icon, super.key});
+  const HomeBottomBarItem({
+    required this.index,
+    required this.icon,
+    required this.label,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBottomBarCubit, HomeBottomBarState>(
       builder: (context, state) {
-        return IconButton(
-          style: ButtonStyle(
-            foregroundColor: WidgetStatePropertyAll(
-              state.currentSelectedTabIndex == index
-                  ? AppColors.headerColor
-                  : AppColors.headerColor.withAlpha((0.38 * 255).toInt()),
+        final isSelected = state.currentSelectedTabIndex == index;
+
+        return Semantics(
+          label: label,
+          button: true,
+          selected: isSelected,
+          child: IconButton(
+            style: ButtonStyle(
+              foregroundColor: WidgetStatePropertyAll(
+                isSelected
+                    ? AppColors.headerColor
+                    : AppColors.headerColor.withAlpha((0.38 * 255).toInt()),
+              ),
+              padding: const WidgetStatePropertyAll(EdgeInsets.all(AppDimensions.normalS)),
             ),
-            padding: const WidgetStatePropertyAll(EdgeInsets.all(AppDimensions.normalS)),
+            icon: Icon(icon, size: AppDimensions.bottomAppBarIconSize),
+            onPressed: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
           ),
-          icon: Icon(icon, size: AppDimensions.bottomAppBarIconSize),
-          onPressed: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
         );
       },
     );

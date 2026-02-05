@@ -5,6 +5,7 @@ import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_routes.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/di/injection_container.dart';
@@ -46,12 +47,16 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             ),
             title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
             actions: [
-              IconButton(
-                onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
-                icon: const Icon(
-                  Icons.search,
-                  size: AppDimensions.appBarIconSize,
-                  color: Colors.white,
+              Semantics(
+                label: AppSemanticsLabels.homePageSearchButton,
+                button: true,
+                child: IconButton(
+                  onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
+                  icon: const Icon(
+                    Icons.search,
+                    size: AppDimensions.appBarIconSize,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ],
