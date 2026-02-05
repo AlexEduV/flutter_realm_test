@@ -44,28 +44,44 @@ void main() {
       expect(find.text('TESLA MODEL S 2022'), findsOneWidget);
     });
 
-    //todo: the test is not working
-    // testWidgets('displays price and hot promotion icon', (WidgetTester tester) async {
-    //   await tester.pumpWidget(
-    //     MaterialApp(
-    //       home: ExploreListItem(car: car, user: user, onDismissed: () {}),
-    //     ),
-    //   );
-    //
-    //   expect(find.text('\$ 90000'), findsOneWidget);
-    //   expect(find.byIcon(Icons.whatshot), findsOneWidget);
-    // });
+    testWidgets('displays price and hot promotion icon', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: ExploreListItem(car: car, user: user, onDismissed: () {}),
+        ),
+      );
 
-    // testWidgets('displays location info if permission granted', (WidgetTester tester) async {
-    //   await tester.pumpWidget(
-    //     MaterialApp(
-    //       home: ExploreListItem(car: car, user: user, onDismissed: () {}),
-    //     ),
-    //   );
-    //
-    //   expect(find.byIcon(Icons.location_pin), findsOneWidget);
-    //   expect(find.text('5 km away'), findsOneWidget);
-    // });
+      final textWidgets = tester.widgetList<Text>(find.byType(Text));
+
+      // Find the Text.rich widget with the price
+      final priceTextWidget = textWidgets.firstWhere(
+        (textWidget) =>
+            textWidget.textSpan is TextSpan &&
+            (textWidget.textSpan as TextSpan).toPlainText().contains('\$ 90000'),
+      );
+
+      expect(priceTextWidget, isNotNull);
+      expect(find.byIcon(Icons.whatshot), findsOneWidget);
+    });
+
+    testWidgets('displays location info if permission granted', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: ExploreListItem(car: car, user: user, onDismissed: () {}),
+        ),
+      );
+
+      final textWidgets = tester.widgetList<Text>(find.byType(Text));
+
+      final distanceTextWidget = textWidgets.firstWhere(
+        (textWidget) =>
+            textWidget.textSpan is TextSpan &&
+            (textWidget.textSpan as TextSpan).toPlainText().contains('5 km away'),
+      );
+
+      expect(find.byIcon(Icons.location_pin), findsOneWidget);
+      expect(distanceTextWidget, isNotNull);
+    });
 
     testWidgets('displays verified icon if car is verified', (WidgetTester tester) async {
       await tester.pumpWidget(
