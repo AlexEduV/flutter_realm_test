@@ -53,11 +53,11 @@ class SegmentedSwitch extends StatelessWidget {
             child: Row(
               children: List.generate(options.length, (index) {
                 final isSelected = index == selectedIndex;
-                return Semantics(
-                  button: true,
-                  label: '${AppSemanticsLabels.segmentedSwitchButton} ${options[index]}',
-                  selected: isSelected,
-                  child: Expanded(
+                return Expanded(
+                  child: Semantics(
+                    button: true,
+                    label: '${AppSemanticsLabels.segmentedSwitchButton} ${options[index]}',
+                    selected: isSelected,
                     child: GestureDetector(
                       onTap: () => onChanged(index),
                       behavior: HitTestBehavior.opaque,
