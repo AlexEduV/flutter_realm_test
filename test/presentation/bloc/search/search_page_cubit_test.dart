@@ -133,17 +133,16 @@ void main() {
       ],
     );
 
-    //todo: the test is not working
-    // blocTest<SearchPageCubit, SearchPageState>(
-    //   'removeCarModelFromSelection removes model and updates results',
-    //   build: () => cubit,
-    //   seed: () => SearchPageState(results: carList, selectedModels: ['Tesla Model S']),
-    //   act: (cubit) => cubit.removeCarModelFromSelection('Tesla Model S'),
-    //   expect: () => [
-    //     isA<SearchPageState>().having((s) => s.results, 'results', carList),
-    //     isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', isEmpty),
-    //   ],
-    // );
+    blocTest<SearchPageCubit, SearchPageState>(
+      'removeCarModelFromSelection removes model and updates results',
+      build: () => cubit,
+      seed: () => SearchPageState(allResults: carList, selectedModels: ['Tesla Model S']),
+      act: (cubit) => cubit.removeCarModelFromSelection('Tesla Model S'),
+      expect: () => [
+        isA<SearchPageState>().having((s) => s.allResults, 'results', carList),
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', isEmpty),
+      ],
+    );
 
     blocTest<SearchPageCubit, SearchPageState>(
       'openDrawer emits state with drawerOpened',
