@@ -1,6 +1,3 @@
-//todo: the bloc provider is missing from the widget tree
-
-/* import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -43,11 +40,7 @@ void main() {
 
     testWidgets('displays header and "All" checkbox', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(initialState);
-      whenListen(
-        mockCubit,
-        Stream<SearchPageState>.fromIterable([initialState]),
-        initialState: initialState,
-      );
+      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([initialState]));
 
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
@@ -59,11 +52,7 @@ void main() {
 
     testWidgets('displays model checkboxes', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(initialState);
-      whenListen(
-        mockCubit,
-        Stream<SearchPageState>.fromIterable([initialState]),
-        initialState: initialState,
-      );
+      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([initialState]));
 
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
@@ -75,11 +64,7 @@ void main() {
 
     testWidgets('tapping "All" checkbox calls updateModelSelection', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(initialState);
-      whenListen(
-        mockCubit,
-        Stream<SearchPageState>.fromIterable([initialState]),
-        initialState: initialState,
-      );
+      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([initialState]));
 
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
@@ -94,11 +79,7 @@ void main() {
       WidgetTester tester,
     ) async {
       when(mockCubit.state).thenReturn(initialState);
-      whenListen(
-        mockCubit,
-        Stream<SearchPageState>.fromIterable([initialState]),
-        initialState: initialState,
-      );
+      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([initialState]));
 
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
@@ -114,11 +95,7 @@ void main() {
     ) async {
       final selectedState = const SearchPageState(selectedModels: ['A']);
       when(mockCubit.state).thenReturn(selectedState);
-      whenListen(
-        mockCubit,
-        Stream<SearchPageState>.fromIterable([selectedState]),
-        initialState: selectedState,
-      );
+      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([selectedState]));
 
       await tester.pumpWidget(buildTestWidget(selectedState));
       await tester.pumpAndSettle();
@@ -130,7 +107,3 @@ void main() {
     });
   });
 }
-
- */
-
-void main() {}
