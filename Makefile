@@ -11,7 +11,7 @@ clean-build:
 
 
 show-coverage:
-	flutter test --coverage
+	PATH=$$PATH:$$HOME/.pub-cache/bin very_good test --coverage
 	genhtml coverage/lcov.info -o coverage/html
 	open coverage/html/index.html
 
