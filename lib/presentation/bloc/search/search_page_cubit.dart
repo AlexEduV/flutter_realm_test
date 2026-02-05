@@ -83,6 +83,20 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(results: filterCarsByModel(state.results)));
   }
 
+  void addBodyTypeToSelection(String bodyType) {
+    final newSelection = List<String>.from(state.selectedBodyTypes)..add(bodyType);
+    emit(state.copyWith(selectedBodyTypes: newSelection));
+
+    //todo: update listView selection as well
+  }
+
+  void removeBodyTypeFromSelection(String bodyType) {
+    final newSelection = List<String>.from(state.selectedBodyTypes)..remove(bodyType);
+    emit(state.copyWith(selectedBodyTypes: newSelection));
+
+    //todo: update listView selection as well
+  }
+
   void openDrawer(SearchDrawerType type) {
     emit(state.copyWith(drawerOpened: type));
   }

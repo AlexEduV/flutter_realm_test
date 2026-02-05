@@ -14,6 +14,13 @@ abstract class SearchPageState with _$SearchPageState {
     @Default(false) bool isLoading,
     @Default([]) List<String> allModels,
     @Default([]) List<String> selectedModels,
+    @Default(null) String? selectedMinYear,
+    @Default(null) String? selectedMaxYear,
+    @Default([]) List<String> selectedBodyTypes,
+    @Default(null) String? selectedMinPrice,
+    @Default(null) String? selectedMaxPrice,
+    @Default([]) List<String> selectedFuelTypes,
+    @Default([]) List<String> selectedTransmissionTypes,
     @Default(SearchDrawerType.empty) SearchDrawerType drawerOpened,
   }) = _SearchPageState;
 }
