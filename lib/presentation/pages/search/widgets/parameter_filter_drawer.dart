@@ -349,6 +349,10 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
       child: TextFormField(
         controller: controller,
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: AppDimensions.minorS,
+            horizontal: AppDimensions.minorL,
+          ),
           fillColor: Colors.white,
           filled: true,
           labelText: model.label,
