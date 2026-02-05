@@ -1,1 +1,1 @@
-enum FuelType { diesel, gasoline, ev }
+enum FuelType { diesel, gasoline, ev, hybrid }

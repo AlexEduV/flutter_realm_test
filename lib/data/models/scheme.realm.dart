@@ -19,6 +19,9 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     String type, {
     String? model,
     String? year,
+    String? bodyType,
+    String? fuelType,
+    String? transmissionType,
     bool? isChecked = false,
     bool? isHotProposition = false,
     int? kilometers = 500,
@@ -40,6 +43,9 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'type', type);
     RealmObjectBase.set(this, 'model', model);
     RealmObjectBase.set(this, 'year', year);
+    RealmObjectBase.set(this, 'bodyType', bodyType);
+    RealmObjectBase.set(this, 'fuelType', fuelType);
+    RealmObjectBase.set(this, 'transmissionType', transmissionType);
     RealmObjectBase.set(this, 'isChecked', isChecked);
     RealmObjectBase.set(this, 'isHotProposition', isHotProposition);
     RealmObjectBase.set(this, 'kilometers', kilometers);
@@ -81,6 +87,25 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   String? get year => RealmObjectBase.get<String>(this, 'year') as String?;
   @override
   set year(String? value) => RealmObjectBase.set(this, 'year', value);
+
+  @override
+  String? get bodyType =>
+      RealmObjectBase.get<String>(this, 'bodyType') as String?;
+  @override
+  set bodyType(String? value) => RealmObjectBase.set(this, 'bodyType', value);
+
+  @override
+  String? get fuelType =>
+      RealmObjectBase.get<String>(this, 'fuelType') as String?;
+  @override
+  set fuelType(String? value) => RealmObjectBase.set(this, 'fuelType', value);
+
+  @override
+  String? get transmissionType =>
+      RealmObjectBase.get<String>(this, 'transmissionType') as String?;
+  @override
+  set transmissionType(String? value) =>
+      RealmObjectBase.set(this, 'transmissionType', value);
 
   @override
   bool? get isChecked => RealmObjectBase.get<bool>(this, 'isChecked') as bool?;
@@ -134,6 +159,9 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       'type': type.toEJson(),
       'model': model.toEJson(),
       'year': year.toEJson(),
+      'bodyType': bodyType.toEJson(),
+      'fuelType': fuelType.toEJson(),
+      'transmissionType': transmissionType.toEJson(),
       'isChecked': isChecked.toEJson(),
       'isHotProposition': isHotProposition.toEJson(),
       'kilometers': kilometers.toEJson(),
@@ -160,6 +188,9 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
           fromEJson(type),
           model: fromEJson(ejson['model']),
           year: fromEJson(ejson['year']),
+          bodyType: fromEJson(ejson['bodyType']),
+          fuelType: fromEJson(ejson['fuelType']),
+          transmissionType: fromEJson(ejson['transmissionType']),
           isChecked: fromEJson(ejson['isChecked'], defaultValue: false),
           isHotProposition: fromEJson(
             ejson['isHotProposition'],
@@ -184,6 +215,13 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('type', RealmPropertyType.string),
       SchemaProperty('model', RealmPropertyType.string, optional: true),
       SchemaProperty('year', RealmPropertyType.string, optional: true),
+      SchemaProperty('bodyType', RealmPropertyType.string, optional: true),
+      SchemaProperty('fuelType', RealmPropertyType.string, optional: true),
+      SchemaProperty(
+        'transmissionType',
+        RealmPropertyType.string,
+        optional: true,
+      ),
       SchemaProperty('isChecked', RealmPropertyType.bool, optional: true),
       SchemaProperty(
         'isHotProposition',

@@ -1,3 +1,7 @@
+import 'package:test_futter_project/common/enums/body_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
+
 import '../../data/dto/car_dto.dart';
 import '../../data/models/scheme.dart';
 
@@ -8,6 +12,9 @@ class CarEntity {
   final String type;
   final String? year;
   final String? owner;
+  final String bodyType;
+  final String fuelType;
+  final String transmissionType;
   final bool isVerified;
   final bool isHotPromotion;
   int? kilometers = 0;
@@ -21,6 +28,9 @@ class CarEntity {
     required this.isVerified,
     required this.isHotPromotion,
     required this.type,
+    required this.bodyType,
+    required this.fuelType,
+    required this.transmissionType,
     this.year,
     this.owner,
     this.kilometers,
@@ -36,6 +46,9 @@ class CarEntity {
       manufacturer: 'Test Motors',
       isVerified: true,
       isHotPromotion: false,
+      bodyType: BodyType.sedan.name,
+      fuelType: FuelType.gasoline.name,
+      transmissionType: TransmissionType.manual.name,
     );
   }
 
@@ -52,6 +65,9 @@ class CarEntity {
       year: dto.year,
       owner: dto.owner,
       kilometers: dto.kilometers,
+      bodyType: dto.bodyType,
+      fuelType: dto.fuelType,
+      transmissionType: dto.transmissionType,
     );
   }
 
@@ -68,6 +84,9 @@ class CarEntity {
       year: car.year,
       owner: car.owner?.name ?? '',
       kilometers: car.kilometers,
+      fuelType: car.fuelType ?? '',
+      bodyType: car.bodyType ?? '',
+      transmissionType: car.transmissionType ?? '',
     );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
@@ -73,6 +76,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         isVerified: false,
         isHotPromotion: false,
         type: 'car',
+        bodyType: BodyType.sedan.name,
+        fuelType: FuelType.ev.name,
+        transmissionType: TransmissionType.automatic.name,
       ),
     );
 

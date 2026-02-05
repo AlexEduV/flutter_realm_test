@@ -3,7 +3,10 @@ import 'dart:math';
 
 import 'package:realm/realm.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 
@@ -35,6 +38,9 @@ class MockCarApiService implements CarApiService {
         isVerified: true,
         isHotPromotion: false,
         year: '2010',
+        bodyType: BodyType.coupe.name,
+        fuelType: FuelType.diesel.name,
+        transmissionType: TransmissionType.hybrid.name,
       ),
       CarDto(
         id: initIds[1],
@@ -46,6 +52,9 @@ class MockCarApiService implements CarApiService {
         isVerified: false,
         isHotPromotion: true,
         year: '2007',
+        bodyType: BodyType.sedan.name,
+        fuelType: FuelType.hybrid.name,
+        transmissionType: TransmissionType.manual.name,
       ),
       CarDto(
         id: initIds[2],
@@ -57,6 +66,9 @@ class MockCarApiService implements CarApiService {
         isVerified: true,
         isHotPromotion: true,
         year: '2002',
+        bodyType: BodyType.semi.name,
+        fuelType: FuelType.diesel.name,
+        transmissionType: TransmissionType.hybrid.name,
       ),
     ];
 
@@ -94,6 +106,9 @@ class MockCarApiService implements CarApiService {
         isVerified: true,
         isHotPromotion: false,
         year: '2010',
+        bodyType: BodyType.coupe.name,
+        fuelType: FuelType.diesel.name,
+        transmissionType: TransmissionType.hybrid.name,
       ),
       CarDto(
         id: initIds[1],
@@ -106,6 +121,9 @@ class MockCarApiService implements CarApiService {
         isVerified: false,
         isHotPromotion: true,
         year: '2007',
+        bodyType: BodyType.sedan.name,
+        fuelType: FuelType.hybrid.name,
+        transmissionType: TransmissionType.manual.name,
       ),
       CarDto(
         id: initIds[2],
@@ -118,6 +136,9 @@ class MockCarApiService implements CarApiService {
         isVerified: true,
         isHotPromotion: true,
         year: '2002',
+        bodyType: BodyType.semi.name,
+        fuelType: FuelType.diesel.name,
+        transmissionType: TransmissionType.hybrid.name,
       ),
     ];
   }

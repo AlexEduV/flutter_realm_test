@@ -7,6 +7,9 @@ class CarDto {
   final String manufacturer;
   final String type;
   final String? year;
+  final String bodyType;
+  final String fuelType;
+  final String transmissionType;
   final String? owner;
   final bool isVerified;
   final bool isHotPromotion;
@@ -22,6 +25,9 @@ class CarDto {
     required this.isVerified,
     required this.isHotPromotion,
     required this.type,
+    required this.bodyType,
+    required this.fuelType,
+    required this.transmissionType,
     this.year,
     this.owner,
     this.kilometers = 0,
@@ -39,5 +45,8 @@ class CarDto {
     isVerified: json['is_verified'] as bool,
     price: json['price'] as int?,
     isHotPromotion: json['is_hot_promotion'] as bool,
+    transmissionType: json['transmission_type'] as String,
+    fuelType: json['fuel_type'] as String,
+    bodyType: json['body_type'] as String,
   );
 }

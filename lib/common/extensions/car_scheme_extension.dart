@@ -17,6 +17,9 @@ extension CarExtensions on Car {
       kilometers: car.kilometers,
       distanceTo: car.distanceTo,
       price: car.price,
+      fuelType: car.fuelType ?? '',
+      bodyType: car.bodyType ?? '',
+      transmissionType: car.transmissionType ?? '',
     );
   }
 

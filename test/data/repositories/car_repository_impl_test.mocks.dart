@@ -463,6 +463,24 @@ class MockCar extends _i1.Mock implements _i8.Car {
   );
 
   @override
+  set bodyType(String? value) => super.noSuchMethod(
+    Invocation.setter(#bodyType, value),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  set fuelType(String? value) => super.noSuchMethod(
+    Invocation.setter(#fuelType, value),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  set transmissionType(String? value) => super.noSuchMethod(
+    Invocation.setter(#transmissionType, value),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   set isChecked(bool? value) => super.noSuchMethod(
     Invocation.setter(#isChecked, value),
     returnValueForMissingStub: null,
@@ -615,6 +633,39 @@ class MockCarEntity extends _i1.Mock implements _i14.CarEntity {
           as String);
 
   @override
+  String get bodyType =>
+      (super.noSuchMethod(
+            Invocation.getter(#bodyType),
+            returnValue: _i10.dummyValue<String>(
+              this,
+              Invocation.getter(#bodyType),
+            ),
+          )
+          as String);
+
+  @override
+  String get fuelType =>
+      (super.noSuchMethod(
+            Invocation.getter(#fuelType),
+            returnValue: _i10.dummyValue<String>(
+              this,
+              Invocation.getter(#fuelType),
+            ),
+          )
+          as String);
+
+  @override
+  String get transmissionType =>
+      (super.noSuchMethod(
+            Invocation.getter(#transmissionType),
+            returnValue: _i10.dummyValue<String>(
+              this,
+              Invocation.getter(#transmissionType),
+            ),
+          )
+          as String);
+
+  @override
   bool get isVerified =>
       (super.noSuchMethod(Invocation.getter(#isVerified), returnValue: false)
           as bool);
@@ -702,6 +753,39 @@ class MockCarDto extends _i1.Mock implements _i13.CarDto {
             returnValue: _i10.dummyValue<String>(
               this,
               Invocation.getter(#type),
+            ),
+          )
+          as String);
+
+  @override
+  String get bodyType =>
+      (super.noSuchMethod(
+            Invocation.getter(#bodyType),
+            returnValue: _i10.dummyValue<String>(
+              this,
+              Invocation.getter(#bodyType),
+            ),
+          )
+          as String);
+
+  @override
+  String get fuelType =>
+      (super.noSuchMethod(
+            Invocation.getter(#fuelType),
+            returnValue: _i10.dummyValue<String>(
+              this,
+              Invocation.getter(#fuelType),
+            ),
+          )
+          as String);
+
+  @override
+  String get transmissionType =>
+      (super.noSuchMethod(
+            Invocation.getter(#transmissionType),
+            returnValue: _i10.dummyValue<String>(
+              this,
+              Invocation.getter(#transmissionType),
             ),
           )
           as String);
