@@ -1,7 +1,3 @@
-//todo: need to place blocProvider above the widget tree
-//the page does not show expected widgets
-
-/* import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -36,7 +32,7 @@ void main() {
 
     testWidgets('displays the correct icon', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(state);
-      whenListen(mockCubit, Stream<HomeBottomBarState>.fromIterable([state]), initialState: state);
+      when(mockCubit.stream).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
 
       await tester.pumpWidget(buildTestWidget(index: 1, icon: Icons.home));
       expect(find.byIcon(Icons.home), findsOneWidget);
@@ -44,12 +40,10 @@ void main() {
 
     testWidgets('uses selected color when selected', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(const HomeBottomBarState(currentSelectedTabIndex: 2));
-      whenListen(
-        mockCubit,
-        Stream<HomeBottomBarState>.fromIterable([
+      when(mockCubit.stream).thenAnswer(
+        (_) => Stream<HomeBottomBarState>.fromIterable([
           const HomeBottomBarState(currentSelectedTabIndex: 2),
         ]),
-        initialState: const HomeBottomBarState(currentSelectedTabIndex: 2),
       );
 
       await tester.pumpWidget(buildTestWidget(index: 2, icon: Icons.search));
@@ -62,12 +56,8 @@ void main() {
 
     testWidgets('uses unselected color when not selected', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(const HomeBottomBarState(currentSelectedTabIndex: 0));
-      whenListen(
-        mockCubit,
-        Stream<HomeBottomBarState>.fromIterable([
-          const HomeBottomBarState(currentSelectedTabIndex: 0),
-        ]),
-        initialState: const HomeBottomBarState(currentSelectedTabIndex: 0),
+      when(mockCubit.stream).thenAnswer(
+        (_) => Stream.fromIterable([const HomeBottomBarState(currentSelectedTabIndex: 0)]),
       );
 
       await tester.pumpWidget(buildTestWidget(index: 1, icon: Icons.search));
@@ -80,7 +70,7 @@ void main() {
 
     testWidgets('calls updateSelectedIndex when pressed', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(state);
-      whenListen(mockCubit, Stream<HomeBottomBarState>.fromIterable([state]), initialState: state);
+      when(mockCubit.stream).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
 
       await tester.pumpWidget(buildTestWidget(index: 1, icon: Icons.home));
       await tester.tap(find.byType(IconButton));
@@ -90,6 +80,3 @@ void main() {
     });
   });
 }
- */
-
-void main() {}
