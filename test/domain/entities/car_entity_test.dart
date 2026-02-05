@@ -5,33 +5,25 @@ import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 
-//todo: maybe switch to generated mock here;
-class MockCar extends Mock implements Car {
-  @override
-  String carId = 'car123';
-  @override
-  String? model = 'Model S';
-  @override
-  String manufacturer = 'Tesla';
-  @override
-  bool? isChecked = true;
-  @override
-  bool? isHotProposition = false;
-  @override
-  int price = 80000;
-  @override
-  int? distanceTo = 50;
-  @override
-  String? year = '2020';
-  @override
-  Person owner = Person('John Doe');
-  @override
-  int? kilometers = 10000;
-  @override
-  String type = 'car';
-}
+import '../../data/repositories/car_repository_impl_test.mocks.dart';
 
 void main() {
+  final mockCar = MockCar();
+
+  setUpAll(() {
+    when(mockCar.carId).thenReturn('car123');
+    when(mockCar.model).thenReturn('Model S');
+    when(mockCar.manufacturer).thenReturn('Tesla');
+    when(mockCar.isChecked).thenReturn(true);
+    when(mockCar.isHotProposition).thenReturn(false);
+    when(mockCar.price).thenReturn(80000);
+    when(mockCar.distanceTo).thenReturn(50);
+    when(mockCar.year).thenReturn('2020');
+    when(mockCar.owner).thenReturn(Person('John Doe'));
+    when(mockCar.kilometers).thenReturn(10000);
+    when(mockCar.type).thenReturn('car');
+  });
+
   group('CarEntity', () {
     test('constructor sets all fields correctly', () {
       final entity = CarEntity(
@@ -91,9 +83,7 @@ void main() {
     });
 
     test('fromSchema factory creates instance with correct values', () {
-      final car = MockCar();
-
-      final entity = CarEntity.fromSchema(car);
+      final entity = CarEntity.fromSchema(mockCar);
 
       expect(entity.carId, 'car123');
       expect(entity.model, 'Model S');
@@ -108,12 +98,11 @@ void main() {
     });
 
     test('fromSchema handles nulls and defaults', () {
-      final car = MockCar()
-        ..model = null
-        ..isChecked = null
-        ..isHotProposition = null;
+      when(mockCar.model).thenReturn(null);
+      when(mockCar.isChecked).thenReturn(null);
+      when(mockCar.isHotProposition).thenReturn(null);
 
-      final entity = CarEntity.fromSchema(car);
+      final entity = CarEntity.fromSchema(mockCar);
 
       expect(entity.model, ''); // default for null model
       expect(entity.isVerified, false); // default for null isChecked
