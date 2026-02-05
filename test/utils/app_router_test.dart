@@ -74,7 +74,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // Navigate to /search
-    AppRouter.router.go(AppRoutes.search);
+    AppRouter.router.go(AppRoutes.home + AppRoutes.search);
     await tester.pumpAndSettle();
 
     expect(find.byType(SearchPage), findsOneWidget);
