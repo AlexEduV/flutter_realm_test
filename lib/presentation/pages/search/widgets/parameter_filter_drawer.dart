@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
@@ -33,6 +34,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       builder: (context, state) {
         final selectedBodyTypeSet = Set<String>.from(state.selectedBodyTypes);
+        final selectedFuelTypeSet = Set<String>.from(state.selectedFuelTypes);
 
         return Drawer(
           backgroundColor: AppColors.scaffoldColor,
@@ -224,20 +226,56 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
 
               CheckboxListTile(
                 title: const Text('Diesel'),
-                value: false,
-                onChanged: (bool? newValue) {},
+                value: selectedFuelTypeSet.contains(FuelType.diesel.name),
+                onChanged: (bool? newValue) {
+                  if (newValue == true) {
+                    context.read<SearchPageCubit>().addFuelTypeToSelection(FuelType.diesel.name);
+                  } else {
+                    context.read<SearchPageCubit>().removeFuelTypeFromSelection(
+                      FuelType.diesel.name,
+                    );
+                  }
+                },
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
                 title: const Text('Gasoline'),
-                value: false,
-                onChanged: (bool? newValue) {},
+                value: selectedFuelTypeSet.contains(FuelType.gasoline.name),
+                onChanged: (bool? newValue) {
+                  if (newValue == true) {
+                    context.read<SearchPageCubit>().addFuelTypeToSelection(FuelType.gasoline.name);
+                  } else {
+                    context.read<SearchPageCubit>().removeFuelTypeFromSelection(
+                      FuelType.gasoline.name,
+                    );
+                  }
+                },
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
                 title: const Text('EV'),
-                value: false,
-                onChanged: (bool? newValue) {},
+                value: selectedFuelTypeSet.contains(FuelType.ev.name),
+                onChanged: (bool? newValue) {
+                  if (newValue == true) {
+                    context.read<SearchPageCubit>().addFuelTypeToSelection(FuelType.ev.name);
+                  } else {
+                    context.read<SearchPageCubit>().removeFuelTypeFromSelection(FuelType.ev.name);
+                  }
+                },
+                controlAffinity: checkBoxPosition,
+              ),
+              CheckboxListTile(
+                title: const Text('Hybrid'),
+                value: selectedFuelTypeSet.contains(FuelType.hybrid.name),
+                onChanged: (bool? newValue) {
+                  if (newValue == true) {
+                    context.read<SearchPageCubit>().addFuelTypeToSelection(FuelType.hybrid.name);
+                  } else {
+                    context.read<SearchPageCubit>().removeFuelTypeFromSelection(
+                      FuelType.hybrid.name,
+                    );
+                  }
+                },
                 controlAffinity: checkBoxPosition,
               ),
 

@@ -46,6 +46,11 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       if (state.selectedBodyTypes.isNotEmpty && !state.selectedBodyTypes.contains(car.bodyType)) {
         return false;
       }
+      // Fuel type filter
+      if (state.selectedFuelTypes.isNotEmpty && !state.selectedFuelTypes.contains(car.fuelType)) {
+        return false;
+      }
+
       // Add more filters here as needed
       return true;
     }).toList();
@@ -97,6 +102,20 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void removeBodyTypeFromSelection(String bodyType) {
     final newSelection = List<String>.from(state.selectedBodyTypes)..remove(bodyType);
     emit(state.copyWith(selectedBodyTypes: newSelection));
+
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void addFuelTypeToSelection(String bodyType) {
+    final newSelection = List<String>.from(state.selectedFuelTypes)..add(bodyType);
+    emit(state.copyWith(selectedFuelTypes: newSelection));
+
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void removeFuelTypeFromSelection(String bodyType) {
+    final newSelection = List<String>.from(state.selectedFuelTypes)..remove(bodyType);
+    emit(state.copyWith(selectedFuelTypes: newSelection));
 
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
