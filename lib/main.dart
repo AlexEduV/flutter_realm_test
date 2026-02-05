@@ -47,7 +47,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor)),
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
-        showSemanticsDebugger: true,
       ),
     );
   }
