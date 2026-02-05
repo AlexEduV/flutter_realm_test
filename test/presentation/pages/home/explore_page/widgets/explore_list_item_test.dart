@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
@@ -93,31 +94,38 @@ void main() {
       expect(find.byIcon(Icons.check), findsOneWidget);
     });
 
-    //todo: the test is not working
-    // testWidgets('calls onDismissed when delete action is pressed', (WidgetTester tester) async {
-    //   bool dismissed = false;
-    //   await tester.pumpWidget(
-    //     MaterialApp(
-    //       home: ExploreListItem(
-    //         car: car,
-    //         user: user,
-    //         onDismissed: () {
-    //           dismissed = true;
-    //         },
-    //       ),
-    //     ),
-    //   );
-    //
-    //   // Open the slidable
-    //   final slidableActionFinder = find.byType(SlidableAction);
-    //   expect(slidableActionFinder, findsOneWidget);
-    //
-    //   // Tap the delete action
-    //   await tester.tap(slidableActionFinder);
-    //   await tester.pump();
-    //
-    //   expect(dismissed, isTrue);
-    // });
+    testWidgets('calls onDismissed when delete action is pressed', (WidgetTester tester) async {
+      bool dismissed = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: ExploreListItem(
+            car: car,
+            user: user,
+            onDismissed: () {
+              dismissed = true;
+            },
+          ),
+        ),
+      );
+
+      await tester.pump();
+
+      // Open the slidable
+      final slidableFinder = find.byType(Slidable);
+      expect(slidableFinder, findsOneWidget);
+
+      await tester.drag(slidableFinder, const Offset(-300, 0));
+      await tester.pumpAndSettle();
+
+      final slidableActionFinder = find.byType(SlidableAction);
+      expect(slidableActionFinder, findsOneWidget);
+
+      // Tap the delete action
+      await tester.tap(slidableActionFinder);
+      await tester.pump();
+
+      expect(dismissed, isTrue);
+    });
 
     testWidgets('does not display location info if permission not granted', (
       WidgetTester tester,
