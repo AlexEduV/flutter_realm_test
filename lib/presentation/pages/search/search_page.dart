@@ -116,6 +116,7 @@ class _SearchPageState extends State<SearchPage> {
                     return SearchFilterButton(
                       icon: Icons.settings_input_component,
                       title: AppLocalisations.searchFilterParametersTitle,
+                      //todo: update the real count
                       selectionCount: '2',
                       onPressed: () {
                         context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);

@@ -23,7 +23,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
     updateModelListFromEntities(results, state.currentSelectedType);
 
-    emit(state.copyWith(results: results, isLoading: false));
+    emit(state.copyWith(allResults: results, isLoading: false));
 
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final results = applyAllFilters(entities);
@@ -70,37 +70,35 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void updateModelSelection(List<String> newList) {
     emit(state.copyWith(selectedModels: newList));
 
-    emit(state.copyWith(results: applyAllFilters(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
   void addCarModelToSelection(String model) {
     final newSelection = List<String>.from(state.selectedModels)..add(model);
     emit(state.copyWith(selectedModels: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
   void removeCarModelFromSelection(String model) {
     final newSelection = List<String>.from(state.selectedModels)..remove(model);
     emit(state.copyWith(selectedModels: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
   void addBodyTypeToSelection(String bodyType) {
     final newSelection = List<String>.from(state.selectedBodyTypes)..add(bodyType);
     emit(state.copyWith(selectedBodyTypes: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
   void removeBodyTypeFromSelection(String bodyType) {
     final newSelection = List<String>.from(state.selectedBodyTypes)..remove(bodyType);
     emit(state.copyWith(selectedBodyTypes: newSelection));
 
-    //todo: bug: if the selection becomes empty, the function just returns the list, but if it's
-    //empty, the query won't go again.
-    emit(state.copyWith(results: applyAllFilters(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
   void openDrawer(SearchDrawerType type) {

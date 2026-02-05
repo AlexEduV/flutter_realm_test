@@ -368,26 +368,18 @@ class MockSearchPageCubit extends _i1.Mock implements _i13.SearchPageCubit {
   );
 
   @override
+  List<_i11.CarEntity> applyAllFilters(List<_i11.CarEntity>? cars) =>
+      (super.noSuchMethod(
+            Invocation.method(#applyAllFilters, [cars]),
+            returnValue: <_i11.CarEntity>[],
+          )
+          as List<_i11.CarEntity>);
+
+  @override
   void updateTypeSelection(_i14.CarType? newType) => super.noSuchMethod(
     Invocation.method(#updateTypeSelection, [newType]),
     returnValueForMissingStub: null,
   );
-
-  @override
-  List<_i11.CarEntity> filterCarsByType(List<_i11.CarEntity>? list) =>
-      (super.noSuchMethod(
-            Invocation.method(#filterCarsByType, [list]),
-            returnValue: <_i11.CarEntity>[],
-          )
-          as List<_i11.CarEntity>);
-
-  @override
-  List<_i11.CarEntity> filterCarsByModel(List<_i11.CarEntity>? list) =>
-      (super.noSuchMethod(
-            Invocation.method(#filterCarsByModel, [list]),
-            returnValue: <_i11.CarEntity>[],
-          )
-          as List<_i11.CarEntity>);
 
   @override
   void updateModelListFromEntities(
@@ -413,6 +405,18 @@ class MockSearchPageCubit extends _i1.Mock implements _i13.SearchPageCubit {
   @override
   void removeCarModelFromSelection(String? model) => super.noSuchMethod(
     Invocation.method(#removeCarModelFromSelection, [model]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void addBodyTypeToSelection(String? bodyType) => super.noSuchMethod(
+    Invocation.method(#addBodyTypeToSelection, [bodyType]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void removeBodyTypeFromSelection(String? bodyType) => super.noSuchMethod(
+    Invocation.method(#removeBodyTypeFromSelection, [bodyType]),
     returnValueForMissingStub: null,
   );
 

@@ -7,9 +7,9 @@ import 'dart:async' as _i4;
 
 import 'package:flutter_bloc/flutter_bloc.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/common/enums/car_type.dart' as _i5;
+import 'package:test_futter_project/common/enums/car_type.dart' as _i6;
 import 'package:test_futter_project/common/enums/drawer_type.dart' as _i7;
-import 'package:test_futter_project/domain/entities/car_entity.dart' as _i6;
+import 'package:test_futter_project/domain/entities/car_entity.dart' as _i5;
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart'
     as _i3;
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart'
@@ -74,31 +74,23 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   );
 
   @override
-  void updateTypeSelection(_i5.CarType? newType) => super.noSuchMethod(
+  List<_i5.CarEntity> applyAllFilters(List<_i5.CarEntity>? cars) =>
+      (super.noSuchMethod(
+            Invocation.method(#applyAllFilters, [cars]),
+            returnValue: <_i5.CarEntity>[],
+          )
+          as List<_i5.CarEntity>);
+
+  @override
+  void updateTypeSelection(_i6.CarType? newType) => super.noSuchMethod(
     Invocation.method(#updateTypeSelection, [newType]),
     returnValueForMissingStub: null,
   );
 
   @override
-  List<_i6.CarEntity> filterCarsByType(List<_i6.CarEntity>? list) =>
-      (super.noSuchMethod(
-            Invocation.method(#filterCarsByType, [list]),
-            returnValue: <_i6.CarEntity>[],
-          )
-          as List<_i6.CarEntity>);
-
-  @override
-  List<_i6.CarEntity> filterCarsByModel(List<_i6.CarEntity>? list) =>
-      (super.noSuchMethod(
-            Invocation.method(#filterCarsByModel, [list]),
-            returnValue: <_i6.CarEntity>[],
-          )
-          as List<_i6.CarEntity>);
-
-  @override
   void updateModelListFromEntities(
-    List<_i6.CarEntity>? cars,
-    _i5.CarType? type,
+    List<_i5.CarEntity>? cars,
+    _i6.CarType? type,
   ) => super.noSuchMethod(
     Invocation.method(#updateModelListFromEntities, [cars, type]),
     returnValueForMissingStub: null,
@@ -119,6 +111,18 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   @override
   void removeCarModelFromSelection(String? model) => super.noSuchMethod(
     Invocation.method(#removeCarModelFromSelection, [model]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void addBodyTypeToSelection(String? bodyType) => super.noSuchMethod(
+    Invocation.method(#addBodyTypeToSelection, [bodyType]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void removeBodyTypeFromSelection(String? bodyType) => super.noSuchMethod(
+    Invocation.method(#removeBodyTypeFromSelection, [bodyType]),
     returnValueForMissingStub: null,
   );
 
