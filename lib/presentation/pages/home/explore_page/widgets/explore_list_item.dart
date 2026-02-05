@@ -33,15 +33,12 @@ class ExploreListItem extends StatelessWidget {
           motion: const DrawerMotion(),
           extentRatio: 0.25,
           children: [
-            AppSemantics(
-              label: AppSemanticsLabels.announcementDeleteButton,
-              child: SlidableAction(
-                onPressed: (context) => onDismissed?.call(),
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-                icon: Icons.delete,
-                label: AppLocalisations.deleteButtonTitle,
-              ),
+            SlidableAction(
+              onPressed: (context) => onDismissed?.call(),
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: AppLocalisations.deleteButtonTitle,
             ),
           ],
         ),
