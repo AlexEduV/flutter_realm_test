@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
@@ -14,6 +15,7 @@ import 'package:test_futter_project/presentation/pages/search/widgets/empty_sear
 import 'package:test_futter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/parameter_filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -42,12 +44,16 @@ class _SearchPageState extends State<SearchPage> {
           appBar: AppBar(
             centerTitle: true,
             title: Text(AppLocalisations.searchPageTitle, style: AppTextStyles.zonaPro20),
-            leading: IconButton(
-              onPressed: () => context.pop(),
-              icon: const Icon(
-                Icons.arrow_back,
-                size: AppDimensions.appBarIconSize,
-                color: AppColors.headerColor,
+            leading: AppSemantics(
+              label: AppSemanticsLabels.backButton,
+              button: true,
+              child: IconButton(
+                onPressed: () => context.pop(),
+                icon: const Icon(
+                  Icons.arrow_back,
+                  size: AppDimensions.appBarIconSize,
+                  color: AppColors.headerColor,
+                ),
               ),
             ),
             backgroundColor: AppColors.scaffoldColor,

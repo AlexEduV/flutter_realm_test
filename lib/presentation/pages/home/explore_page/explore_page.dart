@@ -15,6 +15,7 @@ import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_section_item.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/extensions/car_scheme_extension.dart';
@@ -47,7 +48,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             ),
             title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
             actions: [
-              Semantics(
+              AppSemantics(
                 label: AppSemanticsLabels.homePageSearchButton,
                 button: true,
                 child: IconButton(

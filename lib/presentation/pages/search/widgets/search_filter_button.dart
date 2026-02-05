@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
@@ -35,48 +37,52 @@ class SearchFilterButton extends StatelessWidget {
       child: Material(
         color: Colors.white,
         borderRadius: BorderRadius.circular(AppDimensions.normalL),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(AppDimensions.normalL),
-          onTap: onPressed,
-          child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalL)),
-            padding: const EdgeInsets.all(AppDimensions.normalL),
-            child: Row(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppDimensions.normalXS),
-                    color: AppColors.scaffoldColor,
+        child: AppSemantics(
+          button: true,
+          label: '${AppSemanticsLabels.filterButton} $title',
+          child: InkWell(
+            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+            onTap: onPressed,
+            child: Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalL)),
+              padding: const EdgeInsets.all(AppDimensions.normalL),
+              child: Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppDimensions.normalXS),
+                      color: AppColors.scaffoldColor,
+                    ),
+                    height: iconSize,
+                    width: iconSize,
+                    child: Icon(icon, color: AppColors.headerColor),
                   ),
-                  height: iconSize,
-                  width: iconSize,
-                  child: Icon(icon, color: AppColors.headerColor),
-                ),
 
-                const SizedBox(width: AppDimensions.normalXS),
+                  const SizedBox(width: AppDimensions.normalXS),
 
-                Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
+                  Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
 
-                if (text != null) ...[
-                  Expanded(
-                    child: Text(
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      text.toString(),
-                      style: AppTextStyles.zonaPro16.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: isPlaceHolder ? Colors.grey : null,
+                  if (text != null) ...[
+                    Expanded(
+                      child: Text(
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        text.toString(),
+                        style: AppTextStyles.zonaPro16.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: isPlaceHolder ? Colors.grey : null,
+                        ),
                       ),
                     ),
-                  ),
 
-                  const SizedBox(width: AppDimensions.minorS),
-                ] else ...[
-                  const Spacer(),
+                    const SizedBox(width: AppDimensions.minorS),
+                  ] else ...[
+                    const Spacer(),
+                  ],
+
+                  AppBadge(text: selectionCount),
                 ],
-
-                AppBadge(text: selectionCount),
-              ],
+              ),
             ),
           ),
         ),

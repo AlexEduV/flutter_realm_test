@@ -9,6 +9,8 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
+import '../../../../widgets/app_semantics.dart';
+
 class ExploreListItem extends StatelessWidget {
   final CarEntity? car;
   final UserEntity? user;
@@ -23,7 +25,7 @@ class ExploreListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
+    return AppSemantics(
       label: AppSemanticsLabels.announcementListItem,
       child: Slidable(
         key: car != null ? ValueKey(car?.carId) : null,
@@ -31,7 +33,7 @@ class ExploreListItem extends StatelessWidget {
           motion: const DrawerMotion(),
           extentRatio: 0.25,
           children: [
-            Semantics(
+            AppSemantics(
               label: AppSemanticsLabels.announcementDeleteButton,
               child: SlidableAction(
                 onPressed: (context) => onDismissed?.call(),
@@ -82,7 +84,7 @@ class ExploreListItem extends StatelessWidget {
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
-                child: Semantics(
+                child: AppSemantics(
                   label: AppSemanticsLabels.announcementTitle,
                   child: Text(
                     '${car?.manufacturer} ${car?.model ?? ''} ${car?.year ?? ''}'.toUpperCase(),

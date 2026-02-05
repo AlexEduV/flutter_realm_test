@@ -1,4 +1,6 @@
 class AppSemanticsLabels {
+  static const backButton = 'backButton';
+
   static const segmentedSwitchButton = 'segmentedSwitchButton';
   static const segmentedSwitch = 'segmentedSwitch';
 
@@ -16,4 +18,6 @@ class AppSemanticsLabels {
   static const homeBottomBarItemSettings = 'homeBottomBarItemSettings';
 
   static const homePageSearchButton = 'homePageSearchButton';
+
+  static const filterButton = 'filterButton';
 }

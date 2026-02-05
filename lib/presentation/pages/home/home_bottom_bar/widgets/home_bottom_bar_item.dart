@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/app_dimensions.dart';
 
@@ -24,10 +25,10 @@ class HomeBottomBarItem extends StatelessWidget {
       builder: (context, state) {
         final isSelected = state.currentSelectedTabIndex == index;
 
-        return Semantics(
+        return AppSemantics(
           label: label,
           button: true,
-          selected: isSelected,
+          isSelected: isSelected,
           child: IconButton(
             style: ButtonStyle(
               foregroundColor: WidgetStatePropertyAll(
