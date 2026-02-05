@@ -77,7 +77,7 @@ void main() {
         const SearchPageState(isLoading: true),
         isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
         isA<SearchPageState>()
-            .having((s) => s.results, 'results', isNotEmpty)
+            .having((s) => s.allResults, 'allResults', isNotEmpty)
             .having((s) => s.isLoading, 'isLoading', false),
       ],
     );
@@ -100,21 +100,21 @@ void main() {
 
     test('filterCarsByType returns only cars of selected type', () {
       cubit.emit(cubit.state.copyWith(currentSelectedType: CarType.car));
-      final filtered = cubit.filterCarsByType(carList);
+      final filtered = cubit.applyAllFilters(carList);
       expect(filtered, [car1]);
     });
 
     test('filterCarsByModel returns only cars with selected models', () {
       final state = cubit.state.copyWith(selectedModels: ['Tesla Model S']);
       cubit.emit(state);
-      final filtered = cubit.filterCarsByModel(carList);
+      final filtered = cubit.applyAllFilters(carList);
       expect(filtered, [car1]);
     });
 
     blocTest<SearchPageCubit, SearchPageState>(
       'updateModelSelection updates selectedModels and results',
       build: () => cubit,
-      seed: () => SearchPageState(results: carList),
+      seed: () => SearchPageState(allResults: carList),
       act: (cubit) => cubit.updateModelSelection(['Tesla Model S']),
       expect: () => [
         isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', ['Tesla Model S']),
@@ -125,7 +125,7 @@ void main() {
     blocTest<SearchPageCubit, SearchPageState>(
       'addCarModelToSelection adds model and updates results',
       build: () => cubit,
-      seed: () => SearchPageState(results: carList, selectedModels: []),
+      seed: () => SearchPageState(allResults: carList, selectedModels: []),
       act: (cubit) => cubit.addCarModelToSelection('Tesla Model S'),
       expect: () => [
         isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', ['Tesla Model S']),
