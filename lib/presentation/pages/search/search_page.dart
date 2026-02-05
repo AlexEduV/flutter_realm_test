@@ -37,7 +37,8 @@ class _SearchPageState extends State<SearchPage> {
           previous.drawerOpened != current.drawerOpened ||
           !listEquals(previous.selectedModels, current.selectedModels) ||
           previous.currentSelectedType != current.currentSelectedType ||
-          previous.allModels != current.allModels,
+          previous.allModels != current.allModels ||
+          !listEquals(previous.selectedBodyTypes, current.selectedBodyTypes),
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,

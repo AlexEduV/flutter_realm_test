@@ -19,48 +19,43 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void loadData() {
     emit(state.copyWith(isLoading: true));
 
-    final results = filterCarsByType(_getAllCarsUseCase.call());
+    final results = applyAllFilters(_getAllCarsUseCase.call());
 
     updateModelListFromEntities(results, state.currentSelectedType);
 
     emit(state.copyWith(results: results, isLoading: false));
 
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
-      final resultsByType = filterCarsByType(entities);
-      final resultsByModel = filterCarsByModel(resultsByType);
-      final resultsByBodyType = filterCarsByBodyType(resultsByModel);
-
-      emit(state.copyWith(results: resultsByBodyType));
+      final results = applyAllFilters(entities);
+      emit(state.copyWith(results: results));
     });
+  }
+
+  List<CarEntity> applyAllFilters(List<CarEntity> cars) {
+    return cars.where((car) {
+      // Type filter
+      if (car.type != state.currentSelectedType.name) {
+        return false;
+      }
+      // Model filter
+      if (state.selectedModels.isNotEmpty &&
+          !state.selectedModels.contains('${car.manufacturer} ${car.model}')) {
+        return false;
+      }
+      // Body type filter
+      if (state.selectedBodyTypes.isNotEmpty && !state.selectedBodyTypes.contains(car.bodyType)) {
+        return false;
+      }
+      // Add more filters here as needed
+      return true;
+    }).toList();
   }
 
   void updateTypeSelection(CarType newType) {
     //todo: maybe better to save Map<> for each type, so the user can easily switch between tabs
     updateModelListFromEntities(state.results, newType);
 
-    emit(state.copyWith(currentSelectedType: newType, selectedModels: []));
-  }
-
-  List<CarEntity> filterCarsByType(List<CarEntity> list) {
-    return list.where((car) => car.type == state.currentSelectedType.name).toList();
-  }
-
-  List<CarEntity> filterCarsByModel(List<CarEntity> list) {
-    if (state.selectedModels.isEmpty) {
-      return list;
-    }
-
-    return list
-        .where((car) => state.selectedModels.contains('${car.manufacturer} ${car.model}'))
-        .toList();
-  }
-
-  List<CarEntity> filterCarsByBodyType(List<CarEntity> list) {
-    if (state.selectedBodyTypes.isEmpty) {
-      return list;
-    }
-
-    return list.where((car) => state.selectedBodyTypes.contains(car.bodyType)).toList();
+    emit(state.copyWith(currentSelectedType: newType, selectedModels: [], selectedBodyTypes: []));
   }
 
   void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
@@ -75,28 +70,28 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void updateModelSelection(List<String> newList) {
     emit(state.copyWith(selectedModels: newList));
 
-    emit(state.copyWith(results: filterCarsByModel(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.results)));
   }
 
   void addCarModelToSelection(String model) {
     final newSelection = List<String>.from(state.selectedModels)..add(model);
     emit(state.copyWith(selectedModels: newSelection));
 
-    emit(state.copyWith(results: filterCarsByModel(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.results)));
   }
 
   void removeCarModelFromSelection(String model) {
     final newSelection = List<String>.from(state.selectedModels)..remove(model);
     emit(state.copyWith(selectedModels: newSelection));
 
-    emit(state.copyWith(results: filterCarsByModel(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.results)));
   }
 
   void addBodyTypeToSelection(String bodyType) {
     final newSelection = List<String>.from(state.selectedBodyTypes)..add(bodyType);
     emit(state.copyWith(selectedBodyTypes: newSelection));
 
-    emit(state.copyWith(results: filterCarsByBodyType(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.results)));
   }
 
   void removeBodyTypeFromSelection(String bodyType) {
@@ -105,7 +100,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
     //todo: bug: if the selection becomes empty, the function just returns the list, but if it's
     //empty, the query won't go again.
-    emit(state.copyWith(results: filterCarsByBodyType(state.results)));
+    emit(state.copyWith(results: applyAllFilters(state.results)));
   }
 
   void openDrawer(SearchDrawerType type) {
