@@ -33,6 +33,7 @@ class ExploreListItem extends StatelessWidget {
           motion: const DrawerMotion(),
           extentRatio: 0.25,
           children: [
+            //slidable action is not allowed semantics - 'hasSize' exception
             SlidableAction(
               onPressed: (context) => onDismissed?.call(),
               backgroundColor: Colors.red,
