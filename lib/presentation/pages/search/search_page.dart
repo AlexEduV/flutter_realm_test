@@ -56,9 +56,12 @@ class _SearchPageState extends State<SearchPage> {
         if ((state.selectedMinPrice?.length ?? 0) > 0) selectedFilterCount += 1;
         if ((state.selectedMaxPrice?.length ?? 0) > 0) selectedFilterCount += 1;
 
+        final isDrawerOpened = state.drawerOpened != SearchDrawerType.empty;
+
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
+            scrolledUnderElevation: isDrawerOpened ? 0.0 : null,
             centerTitle: true,
             title: Text(AppLocalisations.searchPageTitle, style: AppTextStyles.zonaPro20),
             leading: AppSemantics(
