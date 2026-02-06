@@ -78,8 +78,6 @@ class SearchPageCubit extends Cubit<SearchPageState> {
         return false;
       }
 
-      //todo: raise price error if min price is greater then max price and vice versa
-
       // Type filter
       if (car.type != state.currentSelectedType.name) {
         return false;
@@ -189,7 +187,6 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   void updateSelectedMinYear(String newValue) {
     emit(state.copyWith(selectedMinYear: newValue));
-
     validateYears(state.selectedMinYear, state.selectedMaxYear);
 
     applyAllFilters(state.allResults);
@@ -197,16 +194,22 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   void updateSelectedMaxYear(String newValue) {
     emit(state.copyWith(selectedMaxYear: newValue));
+    validateYears(state.selectedMinYear, state.selectedMaxYear);
+
     applyAllFilters(state.allResults);
   }
 
   void updateSelectedMinPrice(String newValue) {
     emit(state.copyWith(selectedMinPrice: newValue));
+    validatePrices(state.selectedMinPrice, state.selectedMaxPrice);
+
     applyAllFilters(state.allResults);
   }
 
   void updateSelectedMaxPrice(String newValue) {
     emit(state.copyWith(selectedMaxPrice: newValue));
+    validatePrices(state.selectedMinPrice, state.selectedMaxPrice);
+
     applyAllFilters(state.allResults);
   }
 
@@ -230,6 +233,25 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     }
 
     emit(state.copyWith(minYearError: null, maxYearError: null));
+    return true;
+  }
+
+  bool validatePrices(String? minPriceString, String? maxPriceString) {
+    final minPrice = int.tryParse(minPriceString ?? '');
+    final maxPrice = int.tryParse(maxPriceString ?? '');
+
+    if (minPrice != null && maxPrice != null && minPrice > maxPrice) {
+      emit(
+        state.copyWith(
+          minPriceError: state.minPriceFieldParamsModel?.validationMessage,
+          maxPriceError: state.maxPriceFieldParamsModel?.validationMessage,
+        ),
+      );
+
+      return false;
+    }
+
+    emit(state.copyWith(minPriceError: null, maxPriceError: null));
     return true;
   }
 
