@@ -45,6 +45,8 @@ class SearchPageCubit extends Cubit<SearchPageState> {
         return false;
       }
 
+      //todo: raise year error if min year is greater then max year and vice versa
+
       // Price filter
       final minPrice = int.tryParse(state.selectedMinPrice ?? '');
       if (minPrice != null && (car.price ?? 0) < minPrice) {
@@ -55,6 +57,8 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       if (maxPrice != null && (car.price ?? 0) > maxPrice) {
         return false;
       }
+
+      //todo: raise price error if min price is greater then max price and vice versa
 
       // Type filter
       if (car.type != state.currentSelectedType.name) {

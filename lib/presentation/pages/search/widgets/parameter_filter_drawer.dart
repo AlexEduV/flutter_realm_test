@@ -218,21 +218,27 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
               Row(
                 children: [
                   Expanded(
-                    child: DebouncedTextFormField(
-                      controller: minPriceTextController,
-                      label: 'Min:',
-                      onDebouncedChanged: (newValue) {
-                        context.read<SearchPageCubit>().updateSelectedMinPrice(newValue);
-                      },
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppDimensions.normalS),
+                      child: DebouncedTextFormField(
+                        controller: minPriceTextController,
+                        label: 'Min:',
+                        onDebouncedChanged: (newValue) {
+                          context.read<SearchPageCubit>().updateSelectedMinPrice(newValue);
+                        },
+                      ),
                     ),
                   ),
                   Expanded(
-                    child: DebouncedTextFormField(
-                      controller: maxPriceTextController,
-                      label: 'Max:',
-                      onDebouncedChanged: (newValue) {
-                        context.read<SearchPageCubit>().updateSelectedMaxPrice(newValue);
-                      },
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppDimensions.normalS),
+                      child: DebouncedTextFormField(
+                        controller: maxPriceTextController,
+                        label: 'Max:',
+                        onDebouncedChanged: (newValue) {
+                          context.read<SearchPageCubit>().updateSelectedMaxPrice(newValue);
+                        },
+                      ),
                     ),
                   ),
                 ],
