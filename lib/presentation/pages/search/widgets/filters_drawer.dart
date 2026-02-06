@@ -78,10 +78,11 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: minYearTextController,
-                        label: 'Min:',
+                        label: state.minYearFieldParamsModel?.label ?? '',
                         onDebouncedChanged: (value) {
                           context.read<SearchPageCubit>().updateSelectedMinYear(value);
                         },
+                        errorText: state.minYearError,
                       ),
                     ),
                   ),
@@ -90,10 +91,11 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: maxYearTextController,
-                        label: 'Max:',
+                        label: state.maxYearFieldParamsModel?.label ?? '',
                         onDebouncedChanged: (value) {
                           context.read<SearchPageCubit>().updateSelectedMaxYear(value);
                         },
+                        errorText: state.maxYearError,
                       ),
                     ),
                   ),
@@ -242,10 +244,11 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: minPriceTextController,
-                        label: 'Min:',
+                        label: state.minPriceFieldParamsModel?.label ?? '',
                         onDebouncedChanged: (newValue) {
                           context.read<SearchPageCubit>().updateSelectedMinPrice(newValue);
                         },
+                        errorText: state.minPriceError,
                       ),
                     ),
                   ),
@@ -254,10 +257,11 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: maxPriceTextController,
-                        label: 'Max:',
+                        label: state.maxPriceFieldParamsModel?.label ?? '',
                         onDebouncedChanged: (newValue) {
                           context.read<SearchPageCubit>().updateSelectedMaxPrice(newValue);
                         },
+                        errorText: state.maxPriceError,
                       ),
                     ),
                   ),

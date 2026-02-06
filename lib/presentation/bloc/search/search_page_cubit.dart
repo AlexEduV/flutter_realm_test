@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
@@ -15,6 +16,27 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   final GetAllCarsUseCase _getAllCarsUseCase;
   final WatchCarsUseCase _watchCarsUseCase;
+
+  void init() {
+    emit(
+      state.copyWith(
+        minYearFieldParamsModel: FieldParamsModel.withLabel(
+          'Min:',
+        ).copyWith(validationMessage: 'Incorrect value'),
+        maxYearFieldParamsModel: FieldParamsModel.withLabel(
+          'Max:',
+        ).copyWith(validationMessage: 'Incorrect value'),
+        minPriceFieldParamsModel: FieldParamsModel.withLabel(
+          'Min:',
+        ).copyWith(validationMessage: 'Incorrect value'),
+        maxPriceFieldParamsModel: FieldParamsModel.withLabel(
+          'Max:',
+        ).copyWith(validationMessage: 'Incorrect value'),
+      ),
+    );
+
+    loadData();
+  }
 
   void loadData() {
     emit(state.copyWith(isLoading: true));
@@ -44,8 +66,6 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       if (maxYear != null && (carYear ?? 0) > maxYear) {
         return false;
       }
-
-      //todo: raise year error if min year is greater then max year and vice versa
 
       // Price filter
       final minPrice = int.tryParse(state.selectedMinPrice ?? '');
@@ -169,6 +189,9 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   void updateSelectedMinYear(String newValue) {
     emit(state.copyWith(selectedMinYear: newValue));
+
+    validateYears(state.selectedMinYear, state.selectedMaxYear);
+
     applyAllFilters(state.allResults);
   }
 
@@ -189,6 +212,25 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   void openDrawer(SearchDrawerType type) {
     emit(state.copyWith(drawerOpened: type));
+  }
+
+  bool validateYears(String? minYearString, String? maxYearString) {
+    final minYear = int.tryParse(minYearString ?? '');
+    final maxYear = int.tryParse(maxYearString ?? '');
+
+    if (minYear != null && maxYear != null && minYear > maxYear) {
+      emit(
+        state.copyWith(
+          minYearError: state.minYearFieldParamsModel?.validationMessage,
+          maxYearError: state.maxYearFieldParamsModel?.validationMessage,
+        ),
+      );
+
+      return false;
+    }
+
+    emit(state.copyWith(minYearError: null, maxYearError: null));
+    return true;
   }
 
   @override

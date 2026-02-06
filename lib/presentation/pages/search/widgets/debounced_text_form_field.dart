@@ -9,11 +9,13 @@ class DebouncedTextFormField extends StatefulWidget {
   final TextEditingController controller;
   final String label;
   final void Function(String value) onDebouncedChanged;
+  final String? errorText;
 
   const DebouncedTextFormField({
     required this.controller,
     required this.label,
     required this.onDebouncedChanged,
+    this.errorText,
     super.key,
   });
 
@@ -57,6 +59,7 @@ class _DebouncedTextFormFieldState extends State<DebouncedTextFormField> {
       controller: widget.controller,
       focusNode: _focusNode,
       decoration: InputDecoration(
+        errorText: widget.errorText,
         contentPadding: const EdgeInsets.symmetric(
           vertical: AppDimensions.minorS,
           horizontal: AppDimensions.minorL,

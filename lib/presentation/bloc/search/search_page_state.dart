@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
+import 'package:test_futter_project/domain/models/field_params_model.dart';
 
 import '../../../domain/entities/car_entity.dart';
 
@@ -17,9 +18,17 @@ abstract class SearchPageState with _$SearchPageState {
     @Default([]) List<String> selectedModels,
     @Default(null) String? selectedMinYear,
     @Default(null) String? selectedMaxYear,
+    @Default(null) String? minYearError,
+    @Default(null) String? maxYearError,
     @Default([]) List<String> selectedBodyTypes,
     @Default(null) String? selectedMinPrice,
     @Default(null) String? selectedMaxPrice,
+    @Default(null) String? minPriceError,
+    @Default(null) String? maxPriceError,
+    FieldParamsModel? minYearFieldParamsModel,
+    FieldParamsModel? maxYearFieldParamsModel,
+    FieldParamsModel? minPriceFieldParamsModel,
+    FieldParamsModel? maxPriceFieldParamsModel,
     @Default([]) List<String> selectedFuelTypes,
     @Default([]) List<String> selectedTransmissionTypes,
     @Default(SearchDrawerType.empty) SearchDrawerType drawerOpened,

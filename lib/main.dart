@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           create: (context) => serviceLocator<ExplorePageCubit>()..init(),
         ),
         BlocProvider<SearchPageCubit>(
-          create: (context) => serviceLocator<SearchPageCubit>()..loadData(),
+          create: (context) => serviceLocator<SearchPageCubit>()..init(),
         ),
         BlocProvider<UserDataCubit>(create: (context) => serviceLocator<UserDataCubit>()..init()),
         BlocProvider<HomeBottomBarCubit>(create: (context) => serviceLocator<HomeBottomBarCubit>()),

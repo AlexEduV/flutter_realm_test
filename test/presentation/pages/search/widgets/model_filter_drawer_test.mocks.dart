@@ -127,8 +127,66 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   );
 
   @override
+  void addFuelTypeToSelection(String? fuelType) => super.noSuchMethod(
+    Invocation.method(#addFuelTypeToSelection, [fuelType]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void removeFuelTypeFromSelection(String? fuelType) => super.noSuchMethod(
+    Invocation.method(#removeFuelTypeFromSelection, [fuelType]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void addTransmissionTypeToSelection(String? transmissionType) =>
+      super.noSuchMethod(
+        Invocation.method(#addTransmissionTypeToSelection, [transmissionType]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeTransmissionTypeFromSelection(String? transmissionType) =>
+      super.noSuchMethod(
+        Invocation.method(#removeTransmissionTypeFromSelection, [
+          transmissionType,
+        ]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateSelectedMinYear(String? newValue) => super.noSuchMethod(
+    Invocation.method(#updateSelectedMinYear, [newValue]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void updateSelectedMaxYear(String? newValue) => super.noSuchMethod(
+    Invocation.method(#updateSelectedMaxYear, [newValue]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void updateSelectedMinPrice(String? newValue) => super.noSuchMethod(
+    Invocation.method(#updateSelectedMinPrice, [newValue]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void updateSelectedMaxPrice(String? newValue) => super.noSuchMethod(
+    Invocation.method(#updateSelectedMaxPrice, [newValue]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   void openDrawer(_i7.SearchDrawerType? type) => super.noSuchMethod(
     Invocation.method(#openDrawer, [type]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void validateYears(int? minYear, int? maxYear) => super.noSuchMethod(
+    Invocation.method(#validateYears, [minYear, maxYear]),
     returnValueForMissingStub: null,
   );
 
