@@ -46,6 +46,16 @@ class _SearchPageState extends State<SearchPage> {
           previous.selectedMaxPrice != current.selectedMaxPrice ||
           previous.results != current.results,
       builder: (context, state) {
+        int selectedFilterCount =
+            state.selectedBodyTypes.length +
+            state.selectedTransmissionTypes.length +
+            state.selectedFuelTypes.length;
+
+        if ((state.selectedMinYear?.length ?? 0) > 0) selectedFilterCount += 1;
+        if ((state.selectedMaxYear?.length ?? 0) > 0) selectedFilterCount += 1;
+        if ((state.selectedMinPrice?.length ?? 0) > 0) selectedFilterCount += 1;
+        if ((state.selectedMaxPrice?.length ?? 0) > 0) selectedFilterCount += 1;
+
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
@@ -122,8 +132,7 @@ class _SearchPageState extends State<SearchPage> {
                     return SearchFilterButton(
                       icon: Icons.filter_list_sharp,
                       title: AppLocalisations.searchFilterParametersTitle,
-                      //todo: update the real count
-                      selectionCount: '2',
+                      selectionCount: selectedFilterCount.toString(),
                       onPressed: () {
                         context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);
                         Scaffold.of(context).openEndDrawer();
