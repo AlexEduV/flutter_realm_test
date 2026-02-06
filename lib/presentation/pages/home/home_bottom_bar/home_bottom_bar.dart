@@ -16,6 +16,7 @@ class HomeBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      color: Colors.white,
       padding: EdgeInsets.zero,
       child: Container(
         decoration: BoxDecoration(
@@ -23,7 +24,6 @@ class HomeBottomBar extends StatelessWidget {
             topLeft: Radius.circular(AppDimensions.normalL),
             topRight: Radius.circular(AppDimensions.normalL),
           ),
-          color: Colors.white,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withAlpha(60),
@@ -79,5 +79,50 @@ class HomeBottomBar extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class CircularNotchedAndRoundedRectangle extends NotchedShape {
+  final double radius;
+
+  const CircularNotchedAndRoundedRectangle({this.radius = 16});
+
+  @override
+  Path getOuterPath(Rect host, Rect? guest) {
+    final r = radius;
+    final path = Path();
+
+    // Top left corner
+    path.moveTo(host.left, host.top + r);
+    path.quadraticBezierTo(host.left, host.top, host.left + r, host.top);
+
+    // Notch for FAB
+    if (guest != null) {
+      final notchRadius = guest.width / 2.0;
+      final notchCenter = guest.center.dx;
+      final notchStart = notchCenter - notchRadius;
+      final notchEnd = notchCenter + notchRadius;
+
+      // Line to notch start
+      path.lineTo(notchStart, host.top);
+
+      // Notch arc
+      path.arcToPoint(
+        Offset(notchEnd, host.top),
+        radius: Radius.circular(notchRadius),
+        clockwise: false,
+      );
+    }
+
+    // Top right corner
+    path.lineTo(host.right - r, host.top);
+    path.quadraticBezierTo(host.right, host.top, host.right, host.top + r);
+
+    // Right, bottom, left sides
+    path.lineTo(host.right, host.bottom);
+    path.lineTo(host.left, host.bottom);
+    path.close();
+
+    return path;
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:go_router/go_router.dart';
 import 'package:realm/realm.dart';
@@ -34,111 +33,94 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        systemNavigationBarColor: Color(0x000fffff),
-        systemNavigationBarIconBrightness: Brightness.light,
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        extendBodyBehindAppBar: true,
-        extendBody: true,
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              pinned: true,
-              backgroundColor: AppColors.headerColor,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(AppDimensions.normalL),
-                  bottomRight: Radius.circular(AppDimensions.normalL),
-                ),
+    return Scaffold(
+      backgroundColor: AppColors.scaffoldColor,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            backgroundColor: AppColors.headerColor,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(AppDimensions.normalL),
+                bottomRight: Radius.circular(AppDimensions.normalL),
               ),
-              title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
-              actions: [
-                AppSemantics(
-                  label: AppSemanticsLabels.homePageSearchButton,
-                  button: true,
-                  child: IconButton(
-                    onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
-                    icon: const Icon(
-                      Icons.search,
-                      size: AppDimensions.appBarIconSize,
-                      color: Colors.white,
-                    ),
+            ),
+            title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
+            actions: [
+              AppSemantics(
+                label: AppSemanticsLabels.homePageSearchButton,
+                button: true,
+                child: IconButton(
+                  onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
+                  icon: const Icon(
+                    Icons.search,
+                    size: AppDimensions.appBarIconSize,
+                    color: Colors.white,
                   ),
                 ),
-              ],
-              actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
-              expandedHeight: 200,
-              collapsedHeight: 60,
-              flexibleSpace: LayoutBuilder(
-                builder: (context, constraints) {
-                  // constraints.maxHeight will be between collapsedHeight and expandedHeight
-                  final currentHeight = constraints.maxHeight;
-                  // Calculate the item height based on the header's current height
-                  final itemHeight = (currentHeight - 20).clamp(100.0, 180.0); // Example logic
-
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      left: AppDimensions.normalL,
-                      bottom: 40,
-                      top: 120,
-                    ),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        spacing: AppDimensions.normalXL,
-                        children: [
-                          ExploreSectionItem(height: itemHeight),
-                          ExploreSectionItem(height: itemHeight),
-                          ExploreSectionItem(height: itemHeight),
-                          const SizedBox.shrink(),
-                        ],
-                      ),
-                    ),
-                  );
-                },
               ),
-            ),
+            ],
+            actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
+            expandedHeight: 200,
+            collapsedHeight: 60,
+            flexibleSpace: LayoutBuilder(
+              builder: (context, constraints) {
+                // constraints.maxHeight will be between collapsedHeight and expandedHeight
+                final currentHeight = constraints.maxHeight;
+                // Calculate the item height based on the header's current height
+                final itemHeight = (currentHeight - 20).clamp(100.0, 180.0); // Example logic
 
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: AppDimensions.normalL,
-                  top: AppDimensions.normalL,
-                ),
-                child: Text(
-                  AppLocalisations.recommendedSectionTitle,
-                  style: AppTextStyles.zonaPro18,
-                ),
-              ),
-            ),
-
-            BlocBuilder<ExplorePageCubit, ExplorePageState>(
-              builder: (context, state) {
-                if (state.isLoading) {
-                  return const SliverFillRemaining(
-                    child: Center(child: CircularProgressIndicator()),
-                  );
-                } else {
-                  return SliverPadding(
-                    padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
-                    sliver: SliverList(
-                      key: state.cars.isEmpty ? const ValueKey('empty') : widget.listKey,
-
-                      delegate: SliverChildBuilderDelegate((context, index) {
-                        final car = state.cars[index];
-
-                        return _buildItem(CarExtensions.fromEntity(car), index);
-                      }, childCount: state.cars.length),
+                return Padding(
+                  padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 120),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      spacing: AppDimensions.normalXL,
+                      children: [
+                        ExploreSectionItem(height: itemHeight),
+                        ExploreSectionItem(height: itemHeight),
+                        ExploreSectionItem(height: itemHeight),
+                        const SizedBox.shrink(),
+                      ],
                     ),
-                  );
-                }
+                  ),
+                );
               },
             ),
-          ],
-        ),
+          ),
+
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: AppDimensions.normalL,
+                top: AppDimensions.normalL,
+              ),
+              child: Text(AppLocalisations.recommendedSectionTitle, style: AppTextStyles.zonaPro18),
+            ),
+          ),
+
+          BlocBuilder<ExplorePageCubit, ExplorePageState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const SliverFillRemaining(child: Center(child: CircularProgressIndicator()));
+              } else {
+                return SliverPadding(
+                  padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
+                  sliver: SliverList(
+                    key: state.cars.isEmpty ? const ValueKey('empty') : widget.listKey,
+
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final car = state.cars[index];
+
+                      return _buildItem(CarExtensions.fromEntity(car), index);
+                    }, childCount: state.cars.length),
+                  ),
+                );
+              }
+            },
+          ),
+        ],
       ),
     );
   }
