@@ -7,7 +7,6 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/debounced_text_form_field.dart';
@@ -28,8 +27,6 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
   final maxPriceTextController = TextEditingController();
 
   final checkBoxPosition = ListTileControlAffinity.leading;
-
-  //todo: business logic is not ready;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +58,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: minYearTextController,
-                        label: 'Min',
+                        label: 'Min:',
                         onDebouncedChanged: (value) {
                           context.read<SearchPageCubit>().updateSelectedMinYear(value);
                         },
@@ -73,7 +70,7 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: maxYearTextController,
-                        label: 'Max',
+                        label: 'Max:',
                         onDebouncedChanged: (value) {
                           context.read<SearchPageCubit>().updateSelectedMaxYear(value);
                         },
@@ -221,15 +218,21 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
               Row(
                 children: [
                   Expanded(
-                    child: _buildFormField(
-                      minPriceTextController,
-                      FieldParamsModel.withLabel('Min:'),
+                    child: DebouncedTextFormField(
+                      controller: minPriceTextController,
+                      label: 'Min:',
+                      onDebouncedChanged: (newValue) {
+                        context.read<SearchPageCubit>().updateSelectedMinPrice(newValue);
+                      },
                     ),
                   ),
                   Expanded(
-                    child: _buildFormField(
-                      maxPriceTextController,
-                      FieldParamsModel.withLabel('Max:'),
+                    child: DebouncedTextFormField(
+                      controller: maxPriceTextController,
+                      label: 'Max:',
+                      onDebouncedChanged: (newValue) {
+                        context.read<SearchPageCubit>().updateSelectedMaxPrice(newValue);
+                      },
                     ),
                   ),
                 ],
@@ -353,26 +356,6 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildFormField(TextEditingController controller, FieldParamsModel model) {
-    return Padding(
-      padding: const EdgeInsets.all(AppDimensions.normalS),
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: AppDimensions.minorS,
-            horizontal: AppDimensions.minorL,
-          ),
-          fillColor: Colors.white,
-          filled: true,
-          labelText: model.label,
-          border: const OutlineInputBorder(borderSide: BorderSide(color: AppColors.accentColor)),
-        ),
-        keyboardType: TextInputType.number,
-      ),
     );
   }
 }

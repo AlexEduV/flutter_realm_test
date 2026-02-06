@@ -34,13 +34,25 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   List<CarEntity> applyAllFilters(List<CarEntity> cars) {
     return cars.where((car) {
       // Year filter
-      if (state.selectedMinYear != null &&
-          (int.tryParse(car.year ?? '') ?? 0) < (int.tryParse(state.selectedMinYear ?? '') ?? 0)) {
+      final minYear = int.tryParse(state.selectedMinYear ?? '');
+      final carYear = int.tryParse(car.year ?? '');
+      if (minYear != null && (carYear ?? 0) < minYear) {
         return false;
       }
 
-      if (state.selectedMaxYear != null &&
-          (int.tryParse(car.year ?? '') ?? 0) > (int.tryParse(state.selectedMaxYear ?? '') ?? 0)) {
+      final maxYear = int.tryParse(state.selectedMaxYear ?? '');
+      if (maxYear != null && (carYear ?? 0) > maxYear) {
+        return false;
+      }
+
+      // Price filter
+      final minPrice = int.tryParse(state.selectedMinPrice ?? '');
+      if (minPrice != null && (car.price ?? 0) < minPrice) {
+        return false;
+      }
+
+      final maxPrice = int.tryParse(state.selectedMaxPrice ?? '');
+      if (maxPrice != null && (car.price ?? 0) > maxPrice) {
         return false;
       }
 
@@ -158,6 +170,16 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   void updateSelectedMaxYear(String newValue) {
     emit(state.copyWith(selectedMaxYear: newValue));
+    applyAllFilters(state.allResults);
+  }
+
+  void updateSelectedMinPrice(String newValue) {
+    emit(state.copyWith(selectedMinPrice: newValue));
+    applyAllFilters(state.allResults);
+  }
+
+  void updateSelectedMaxPrice(String newValue) {
+    emit(state.copyWith(selectedMaxPrice: newValue));
     applyAllFilters(state.allResults);
   }
 
