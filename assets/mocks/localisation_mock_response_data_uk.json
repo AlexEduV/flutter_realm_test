@@ -47,10 +47,31 @@
     "parameters": {
       "title": "Filters",
       "year": "Year",
-      "bodyType": "Body Type",
+      "bodyTypes": {
+        "title": "Body Type",
+        "sedan": "Sedan",
+        "hatchback": "Hatchback",
+        "universal": "Universal",
+        "minivan": "Minivan",
+        "coupe": "Coupe",
+        "crossover": "Crossover",
+        "semi": "Semi",
+        "bike": "Bike"
+      },
       "priceRange": "Price Range",
-      "fuelType": "Fuel Type",
-      "transmissionType": "Transmission Type"
+      "fuelTypes":  {
+        "title": "Fuel Type",
+        "diesel": "Diesel",
+        "gasoline": "Gasoline",
+        "ev": "EV",
+        "hybrid": "Hybrid"
+      },
+      "transmissionTypes": {
+        "title": "Transmission Type",
+        "manual": "Manual",
+        "automatic": "Automatic",
+        "hybrid": "Hybrid"
+      }
     }
   }
 }

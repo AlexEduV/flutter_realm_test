@@ -19,7 +19,7 @@
       "title": "Risultati"
     },
     "recommended": {
-      "sectionTitle": "Consigliato"
+      "sectionTitle": "Consigliati"
     },
     "comingSoon": {
       "title": "Prossimamente",
@@ -47,10 +47,31 @@
     "parameters": {
       "title": "Filtri",
       "year": "Anno",
-      "bodyType": "Tipo di carrozzeria",
+      "bodyTypes": {
+        "title": "Tipo di carrozzeria",
+        "sedan": "Berlina",
+        "hatchback": "Hatchback",
+        "universal": "Station Wagon",
+        "minivan": "Minivan",
+        "coupe": "Coupé",
+        "crossover": "Crossover",
+        "semi": "Semirimorchio",
+        "bike": "Moto"
+      },
       "priceRange": "Fascia di prezzo",
-      "fuelType": "Tipo di carburante",
-      "transmissionType": "Tipo di trasmissione"
+      "fuelTypes":  {
+        "title": "Tipo di carburante",
+        "diesel": "Diesel",
+        "gasoline": "Benzina",
+        "ev": "Elettrica",
+        "hybrid": "Ibrida"
+      },
+      "transmissionTypes": {
+        "title": "Tipo di trasmissione",
+        "manual": "Manuale",
+        "automatic": "Automatica",
+        "hybrid": "Ibrida"
+      }
     }
   }
 }
