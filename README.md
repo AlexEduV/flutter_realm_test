@@ -67,7 +67,7 @@ The app uses the custom Zona Pro font for a unique and modern look.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/test_flutter_project.git
+   git clone https://github.com/AlexEduV/flutter__realm_test.git
    ```
 2. **Install dependencies:**
    ```bash
