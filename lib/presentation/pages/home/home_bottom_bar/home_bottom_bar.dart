@@ -18,64 +18,48 @@ class HomeBottomBar extends StatelessWidget {
     return BottomAppBar(
       color: Colors.white,
       padding: EdgeInsets.zero,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(AppDimensions.normalL),
-            topRight: Radius.circular(AppDimensions.normalL),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withAlpha(60),
-              spreadRadius: 2,
-              blurRadius: 8,
-              offset: const Offset(0, -2),
+      child: Padding(
+        padding: const EdgeInsets.all(AppDimensions.normalXS),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const HomeBottomBarItem(
+              label: AppSemanticsLabels.homeBottomBarItemHome,
+              index: AppConstants.homeTabExplore,
+              icon: Icons.home_outlined,
+            ),
+            const HomeBottomBarItem(
+              label: AppSemanticsLabels.homeBottomBarItemFavorites,
+              index: AppConstants.homeTabFavorites,
+              icon: Icons.favorite_border,
+            ),
+
+            AppSemantics(
+              button: true,
+              label: AppSemanticsLabels.homeBottomBarItemAdd,
+              child: IconButton(
+                style: ButtonStyle(
+                  backgroundColor: const WidgetStatePropertyAll(AppColors.headerColor),
+                  foregroundColor: const WidgetStatePropertyAll(Colors.white),
+                  overlayColor: WidgetStatePropertyAll(Colors.white.withAlpha(60)),
+                ),
+                icon: const Icon(Icons.add, size: AppDimensions.bottomAppBarIconEnlargedSize),
+                onPressed: onAddPressed,
+                tooltip: AppLocalisations.addCarButtonTooltip,
+              ),
+            ),
+
+            const HomeBottomBarItem(
+              index: AppConstants.homeTabInbox,
+              icon: Icons.mail_outlined,
+              label: AppSemanticsLabels.homeBottomBarItemInbox,
+            ),
+            const HomeBottomBarItem(
+              index: AppConstants.homeTabSettings,
+              icon: Icons.settings_outlined,
+              label: AppSemanticsLabels.homeBottomBarItemSettings,
             ),
           ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(AppDimensions.normalXS),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const HomeBottomBarItem(
-                label: AppSemanticsLabels.homeBottomBarItemHome,
-                index: AppConstants.homeTabExplore,
-                icon: Icons.home_outlined,
-              ),
-              const HomeBottomBarItem(
-                label: AppSemanticsLabels.homeBottomBarItemFavorites,
-                index: AppConstants.homeTabFavorites,
-                icon: Icons.favorite_border,
-              ),
-
-              AppSemantics(
-                button: true,
-                label: AppSemanticsLabels.homeBottomBarItemAdd,
-                child: IconButton(
-                  style: ButtonStyle(
-                    backgroundColor: const WidgetStatePropertyAll(AppColors.headerColor),
-                    foregroundColor: const WidgetStatePropertyAll(Colors.white),
-                    overlayColor: WidgetStatePropertyAll(Colors.white.withAlpha(60)),
-                  ),
-                  icon: const Icon(Icons.add, size: AppDimensions.bottomAppBarIconEnlargedSize),
-                  onPressed: onAddPressed,
-                  tooltip: AppLocalisations.addCarButtonTooltip,
-                ),
-              ),
-
-              const HomeBottomBarItem(
-                index: AppConstants.homeTabInbox,
-                icon: Icons.mail_outlined,
-                label: AppSemanticsLabels.homeBottomBarItemInbox,
-              ),
-              const HomeBottomBarItem(
-                index: AppConstants.homeTabSettings,
-                icon: Icons.settings_outlined,
-                label: AppSemanticsLabels.homeBottomBarItemSettings,
-              ),
-            ],
-          ),
         ),
       ),
     );
