@@ -32,6 +32,9 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
   void initState() {
     super.initState();
 
+    //todo: when scrolling on the drawer and then closing it on the end position, the main app bar
+    //stays in the scrolled color. Tried to fix, but not working.
+
     minYearTextController.text = context.read<SearchPageCubit>().state.selectedMinYear ?? '';
     maxYearTextController.text = context.read<SearchPageCubit>().state.selectedMaxYear ?? '';
     minPriceTextController.text = context.read<SearchPageCubit>().state.selectedMinPrice ?? '';
