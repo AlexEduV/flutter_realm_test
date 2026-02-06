@@ -304,7 +304,7 @@ void main() {
           'selectedTransmissionTypes',
           isEmpty,
         ),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
       ],
     );
 
