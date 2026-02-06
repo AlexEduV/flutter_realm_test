@@ -29,6 +29,26 @@ class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
   final checkBoxPosition = ListTileControlAffinity.leading;
 
   @override
+  void initState() {
+    super.initState();
+
+    minYearTextController.text = context.read<SearchPageCubit>().state.selectedMinYear ?? '';
+    maxYearTextController.text = context.read<SearchPageCubit>().state.selectedMaxYear ?? '';
+    minPriceTextController.text = context.read<SearchPageCubit>().state.selectedMinPrice ?? '';
+    maxPriceTextController.text = context.read<SearchPageCubit>().state.selectedMaxPrice ?? '';
+  }
+
+  @override
+  void dispose() {
+    minYearTextController.dispose();
+    maxYearTextController.dispose();
+    minPriceTextController.dispose();
+    maxPriceTextController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       builder: (context, state) {
