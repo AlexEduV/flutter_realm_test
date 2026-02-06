@@ -15,9 +15,23 @@ class HomeBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      color: Colors.white,
-      padding: EdgeInsets.zero,
+    return Container(
+      padding: const EdgeInsets.only(bottom: AppDimensions.normalL),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(AppDimensions.normalL),
+          topRight: Radius.circular(AppDimensions.normalL),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withAlpha(60),
+            spreadRadius: 2,
+            blurRadius: 8,
+            offset: const Offset(0, -2),
+          ),
+        ],
+        color: Colors.white,
+      ),
       child: Padding(
         padding: const EdgeInsets.all(AppDimensions.normalXS),
         child: Row(
