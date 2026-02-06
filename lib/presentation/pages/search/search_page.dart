@@ -112,7 +112,7 @@ class _SearchPageState extends State<SearchPage> {
                         : state.selectedModels.join(', ');
 
                     return SearchFilterButton(
-                      icon: Icons.local_shipping_outlined,
+                      icon: Icons.directions_car,
                       title: '${AppLocalisations.searchFilterModelTitle}: ',
                       text: modelFilters,
                       selectionCount: state.selectedModels.length.toString(),
