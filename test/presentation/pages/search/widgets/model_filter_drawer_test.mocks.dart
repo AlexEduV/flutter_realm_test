@@ -68,6 +68,12 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           as bool);
 
   @override
+  void init() => super.noSuchMethod(
+    Invocation.method(#init, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   void loadData() => super.noSuchMethod(
     Invocation.method(#loadData, []),
     returnValueForMissingStub: null,
@@ -185,10 +191,23 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   );
 
   @override
-  void validateYears(int? minYear, int? maxYear) => super.noSuchMethod(
-    Invocation.method(#validateYears, [minYear, maxYear]),
-    returnValueForMissingStub: null,
-  );
+  bool validateYears(String? minYearString, String? maxYearString) =>
+      (super.noSuchMethod(
+            Invocation.method(#validateYears, [minYearString, maxYearString]),
+            returnValue: false,
+          )
+          as bool);
+
+  @override
+  bool validatePrices(String? minPriceString, String? maxPriceString) =>
+      (super.noSuchMethod(
+            Invocation.method(#validatePrices, [
+              minPriceString,
+              maxPriceString,
+            ]),
+            returnValue: false,
+          )
+          as bool);
 
   @override
   _i4.Future<void> close() =>
