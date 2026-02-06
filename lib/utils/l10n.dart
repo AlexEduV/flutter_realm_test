@@ -47,4 +47,34 @@ class AppLocalisations {
   static final String comingSoonPlaceholderPageTitle = get('pages.comingSoon.title');
 
   static final String comingSoonPlaceholderPageSubTitle = get('pages.comingSoon.subtitle');
+
+  static final String bodyTypeSedan = 'Sedan';
+
+  static final String bodyTypeHatchback = 'Hatchback';
+
+  static final String bodyTypeUniversal = 'Universal';
+
+  static final String bodyTypeMinivan = 'Minivan';
+
+  static final String bodyTypeCoupe = 'Coupe';
+
+  static final String bodyTypeCrossover = 'Crossover';
+
+  static final String bodyTypeSemi = 'Semi';
+
+  static final String bodyTypeBike = 'Bike';
+
+  static final String fuelTypeDiesel = 'Diesel';
+
+  static final String fuelTypeGasoline = 'Gasoline';
+
+  static final String fuelTypeEv = 'EV';
+
+  static final String fuelTypeHybrid = 'Hybrid';
+
+  static final String transmissionTypeManual = 'Manual';
+
+  static final String transmissionTypeAutomatic = 'Automatic';
+
+  static final String transmissionTypeHybrid = 'Hybrid';
 }

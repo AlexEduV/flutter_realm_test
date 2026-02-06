@@ -106,10 +106,9 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 title: Text(AppLocalisations.parameterBodyTypeName, style: AppTextStyles.zonaPro18),
               ),
 
-              //todo: add localisations for the texts
               if (state.currentSelectedType == CarType.car) ...[
                 CheckboxListTile(
-                  title: const Text('Sedan'),
+                  title: Text(AppLocalisations.bodyTypeSedan),
                   value: selectedBodyTypeSet.contains(BodyType.sedan.name),
                   onChanged: (bool? newValue) {
                     if (newValue == true) {
@@ -123,7 +122,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                   controlAffinity: checkBoxPosition,
                 ),
                 CheckboxListTile(
-                  title: const Text('Hatchback'),
+                  title: Text(AppLocalisations.bodyTypeHatchback),
                   value: selectedBodyTypeSet.contains(BodyType.hatchback.name),
                   onChanged: (bool? newValue) {
                     if (newValue == true) {
@@ -139,7 +138,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                   controlAffinity: checkBoxPosition,
                 ),
                 CheckboxListTile(
-                  title: const Text('Universal'),
+                  title: Text(AppLocalisations.bodyTypeUniversal),
                   value: selectedBodyTypeSet.contains(BodyType.universal.name),
                   onChanged: (bool? newValue) {
                     if (newValue == true) {
@@ -155,7 +154,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                   controlAffinity: checkBoxPosition,
                 ),
                 CheckboxListTile(
-                  title: const Text('Minivan'),
+                  title: Text(AppLocalisations.bodyTypeMinivan),
                   value: selectedBodyTypeSet.contains(BodyType.minivan.name),
                   onChanged: (bool? newValue) {
                     if (newValue == true) {
@@ -169,7 +168,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                   controlAffinity: checkBoxPosition,
                 ),
                 CheckboxListTile(
-                  title: const Text('Coupe'),
+                  title: Text(AppLocalisations.bodyTypeCoupe),
                   value: selectedBodyTypeSet.contains(BodyType.coupe.name),
                   onChanged: (bool? newValue) {
                     if (newValue == true) {
@@ -183,7 +182,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                   controlAffinity: checkBoxPosition,
                 ),
                 CheckboxListTile(
-                  title: const Text('Cross-over'),
+                  title: Text(AppLocalisations.bodyTypeCrossover),
                   value: selectedBodyTypeSet.contains(BodyType.crossover.name),
                   onChanged: (bool? newValue) {
                     if (newValue == true) {
@@ -200,7 +199,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 ),
               ] else if (state.currentSelectedType == CarType.truck) ...[
                 CheckboxListTile(
-                  title: const Text('Semi'),
+                  title: Text(AppLocalisations.bodyTypeSemi),
                   value: selectedBodyTypeSet.contains(BodyType.semi.name),
                   onChanged: (bool? newValue) {
                     if (newValue == true) {
@@ -215,7 +214,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 ),
               ] else ...[
                 CheckboxListTile(
-                  title: const Text('Bike'),
+                  title: Text(AppLocalisations.bodyTypeBike),
                   value: selectedBodyTypeSet.contains(BodyType.bike.name),
                   onChanged: (bool? newValue) {
                     if (newValue == true) {
@@ -273,7 +272,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               ),
 
               CheckboxListTile(
-                title: const Text('Diesel'),
+                title: Text(AppLocalisations.fuelTypeDiesel),
                 value: selectedFuelTypeSet.contains(FuelType.diesel.name),
                 onChanged: (bool? newValue) {
                   if (newValue == true) {
@@ -287,7 +286,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: const Text('Gasoline'),
+                title: Text(AppLocalisations.fuelTypeGasoline),
                 value: selectedFuelTypeSet.contains(FuelType.gasoline.name),
                 onChanged: (bool? newValue) {
                   if (newValue == true) {
@@ -313,7 +312,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: const Text('Hybrid'),
+                title: Text(AppLocalisations.fuelTypeHybrid),
                 value: selectedFuelTypeSet.contains(FuelType.hybrid.name),
                 onChanged: (bool? newValue) {
                   if (newValue == true) {
@@ -335,7 +334,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               ),
 
               CheckboxListTile(
-                title: const Text('Manual'),
+                title: Text(AppLocalisations.transmissionTypeManual),
                 value: selectedTransmissionTypeSet.contains(TransmissionType.manual.name),
                 onChanged: (bool? newValue) {
                   if (newValue == true) {
@@ -351,7 +350,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: const Text('Automatic'),
+                title: Text(AppLocalisations.transmissionTypeAutomatic),
                 value: selectedTransmissionTypeSet.contains(TransmissionType.automatic.name),
                 onChanged: (bool? newValue) {
                   if (newValue == true) {
@@ -367,7 +366,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 controlAffinity: checkBoxPosition,
               ),
               CheckboxListTile(
-                title: const Text('Hybrid'),
+                title: Text(AppLocalisations.transmissionTypeHybrid),
                 value: selectedTransmissionTypeSet.contains(TransmissionType.hybrid.name),
                 onChanged: (bool? newValue) {
                   if (newValue == true) {
