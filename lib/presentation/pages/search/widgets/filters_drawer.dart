@@ -12,14 +12,14 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_state.d
 import 'package:test_futter_project/presentation/pages/search/widgets/debounced_text_form_field.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
-class ParameterFilterDrawer extends StatefulWidget {
-  const ParameterFilterDrawer({super.key});
+class FiltersDrawer extends StatefulWidget {
+  const FiltersDrawer({super.key});
 
   @override
-  State<ParameterFilterDrawer> createState() => _ParameterFilterDrawerState();
+  State<FiltersDrawer> createState() => _FiltersDrawerState();
 }
 
-class _ParameterFilterDrawerState extends State<ParameterFilterDrawer> {
+class _FiltersDrawerState extends State<FiltersDrawer> {
   final minYearTextController = TextEditingController();
   final maxYearTextController = TextEditingController();
 
