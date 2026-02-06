@@ -18,8 +18,6 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_state.d
 
 import 'search_page_cubit_test.mocks.dart';
 
-//todo: some tests are not working
-
 @GenerateMocks([GetAllCarsUseCase, WatchCarsUseCase])
 void main() {
   late MockGetAllCarsUseCase mockGetAllCarsUseCase;
@@ -169,14 +167,15 @@ void main() {
       expect(filtered, [car1]);
     });
 
-    // test('applyAllFilters returns only cars with selected transmission types', () {
-    //   final state = cubit.state.copyWith(
-    //     selectedTransmissionTypes: [TransmissionType.automatic.name],
-    //   );
-    //   cubit.emit(state);
-    //   final filtered = cubit.applyAllFilters(carList);
-    //   expect(filtered, [car1, car2]);
-    // });
+    test('applyAllFilters returns only cars with selected transmission types', () {
+      final state = cubit.state.copyWith(
+        currentSelectedType: CarType.car,
+        selectedTransmissionTypes: [TransmissionType.automatic.name],
+      );
+      cubit.emit(state);
+      final filtered = cubit.applyAllFilters(carList);
+      expect(filtered, [car1]);
+    });
 
     blocTest<SearchPageCubit, SearchPageState>(
       'updateModelSelection updates selectedModels and results',
@@ -200,40 +199,40 @@ void main() {
       ],
     );
 
-    // blocTest<SearchPageCubit, SearchPageState>(
-    //   'removeCarModelFromSelection removes model and updates results',
-    //   build: () => cubit,
-    //   seed: () => SearchPageState(allResults: carList, selectedModels: ['Tesla Model S']),
-    //   act: (cubit) => cubit.removeCarModelFromSelection('Tesla Model S'),
-    //   expect: () => [
-    //     isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', isEmpty),
-    //     isA<SearchPageState>().having((s) => s.results, 'results', [car1, car2]),
-    //   ],
-    // );
+    blocTest<SearchPageCubit, SearchPageState>(
+      'removeCarModelFromSelection removes model and updates results',
+      build: () => cubit,
+      seed: () => SearchPageState(allResults: carList, selectedModels: ['Tesla Model S']),
+      act: (cubit) => cubit.removeCarModelFromSelection('Tesla Model S'),
+      expect: () => [
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', isEmpty),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+      ],
+    );
 
-    // blocTest<SearchPageCubit, SearchPageState>(
-    //   'addBodyTypeToSelection adds body type and updates results',
-    //   build: () => cubit,
-    //   seed: () => SearchPageState(allResults: carList, selectedBodyTypes: []),
-    //   act: (cubit) => cubit.addBodyTypeToSelection(BodyType.sedan.name),
-    //   expect: () => [
-    //     isA<SearchPageState>().having((s) => s.selectedBodyTypes, 'selectedBodyTypes', [
-    //       BodyType.sedan.name,
-    //     ]),
-    //     isA<SearchPageState>().having((s) => s.results, 'results', [car1, car2]),
-    //   ],
-    // );
+    blocTest<SearchPageCubit, SearchPageState>(
+      'addBodyTypeToSelection adds body type and updates results',
+      build: () => cubit,
+      seed: () => SearchPageState(allResults: carList, selectedBodyTypes: []),
+      act: (cubit) => cubit.addBodyTypeToSelection(BodyType.sedan.name),
+      expect: () => [
+        isA<SearchPageState>().having((s) => s.selectedBodyTypes, 'selectedBodyTypes', [
+          BodyType.sedan.name,
+        ]),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+      ],
+    );
 
-    // blocTest<SearchPageCubit, SearchPageState>(
-    //   'removeBodyTypeFromSelection removes body type and updates results',
-    //   build: () => cubit,
-    //   seed: () => SearchPageState(allResults: carList, selectedBodyTypes: [BodyType.sedan.name]),
-    //   act: (cubit) => cubit.removeBodyTypeFromSelection(BodyType.sedan.name),
-    //   expect: () => [
-    //     isA<SearchPageState>().having((s) => s.selectedBodyTypes, 'selectedBodyTypes', isEmpty),
-    //     isA<SearchPageState>().having((s) => s.results, 'results', [car1, car2]),
-    //   ],
-    // );
+    blocTest<SearchPageCubit, SearchPageState>(
+      'removeBodyTypeFromSelection removes body type and updates results',
+      build: () => cubit,
+      seed: () => SearchPageState(allResults: carList, selectedBodyTypes: [BodyType.sedan.name]),
+      act: (cubit) => cubit.removeBodyTypeFromSelection(BodyType.sedan.name),
+      expect: () => [
+        isA<SearchPageState>().having((s) => s.selectedBodyTypes, 'selectedBodyTypes', isEmpty),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+      ],
+    );
 
     blocTest<SearchPageCubit, SearchPageState>(
       'addFuelTypeToSelection adds fuel type and updates results',
@@ -248,49 +247,49 @@ void main() {
       ],
     );
 
-    // blocTest<SearchPageCubit, SearchPageState>(
-    //   'removeFuelTypeFromSelection removes fuel type and updates results',
-    //   build: () => cubit,
-    //   seed: () => SearchPageState(allResults: carList, selectedFuelTypes: [FuelType.ev.name]),
-    //   act: (cubit) => cubit.removeFuelTypeFromSelection(FuelType.ev.name),
-    //   expect: () => [
-    //     isA<SearchPageState>().having((s) => s.selectedFuelTypes, 'selectedFuelTypes', isEmpty),
-    //     isA<SearchPageState>().having((s) => s.results, 'results', [car1, car2]),
-    //   ],
-    // );
+    blocTest<SearchPageCubit, SearchPageState>(
+      'removeFuelTypeFromSelection removes fuel type and updates results',
+      build: () => cubit,
+      seed: () => SearchPageState(allResults: carList, selectedFuelTypes: [FuelType.ev.name]),
+      act: (cubit) => cubit.removeFuelTypeFromSelection(FuelType.ev.name),
+      expect: () => [
+        isA<SearchPageState>().having((s) => s.selectedFuelTypes, 'selectedFuelTypes', isEmpty),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+      ],
+    );
 
-    // blocTest<SearchPageCubit, SearchPageState>(
-    //   'addTransmissionTypeToSelection adds transmission type and updates results',
-    //   build: () => cubit,
-    //   seed: () => SearchPageState(allResults: carList, selectedTransmissionTypes: []),
-    //   act: (cubit) => cubit.addTransmissionTypeToSelection(TransmissionType.automatic.name),
-    //   expect: () => [
-    //     isA<SearchPageState>().having(
-    //       (s) => s.selectedTransmissionTypes,
-    //       'selectedTransmissionTypes',
-    //       [TransmissionType.automatic.name],
-    //     ),
-    //     isA<SearchPageState>().having((s) => s.results, 'results', [car1, car2]),
-    //   ],
-    // );
+    blocTest<SearchPageCubit, SearchPageState>(
+      'addTransmissionTypeToSelection adds transmission type and updates results',
+      build: () => cubit,
+      seed: () => SearchPageState(allResults: carList, selectedTransmissionTypes: []),
+      act: (cubit) => cubit.addTransmissionTypeToSelection(TransmissionType.automatic.name),
+      expect: () => [
+        isA<SearchPageState>().having(
+          (s) => s.selectedTransmissionTypes,
+          'selectedTransmissionTypes',
+          [TransmissionType.automatic.name],
+        ),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+      ],
+    );
 
-    // blocTest<SearchPageCubit, SearchPageState>(
-    //   'removeTransmissionTypeFromSelection removes transmission type and updates results',
-    //   build: () => cubit,
-    //   seed: () => SearchPageState(
-    //     allResults: carList,
-    //     selectedTransmissionTypes: [TransmissionType.automatic.name],
-    //   ),
-    //   act: (cubit) => cubit.removeTransmissionTypeFromSelection(TransmissionType.automatic.name),
-    //   expect: () => [
-    //     isA<SearchPageState>().having(
-    //       (s) => s.selectedTransmissionTypes,
-    //       'selectedTransmissionTypes',
-    //       isEmpty,
-    //     ),
-    //     isA<SearchPageState>().having((s) => s.results, 'results', [car1, car2]),
-    //   ],
-    // );
+    blocTest<SearchPageCubit, SearchPageState>(
+      'removeTransmissionTypeFromSelection removes transmission type and updates results',
+      build: () => cubit,
+      seed: () => SearchPageState(
+        allResults: carList,
+        selectedTransmissionTypes: [TransmissionType.automatic.name],
+      ),
+      act: (cubit) => cubit.removeTransmissionTypeFromSelection(TransmissionType.automatic.name),
+      expect: () => [
+        isA<SearchPageState>().having(
+          (s) => s.selectedTransmissionTypes,
+          'selectedTransmissionTypes',
+          isEmpty,
+        ),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+      ],
+    );
 
     blocTest<SearchPageCubit, SearchPageState>(
       'updateSelectedMinYear emits new min year and validates',
