@@ -45,7 +45,7 @@
       "placeholder": "Tutti"
     },
     "parameters": {
-      "title": "Parametri",
+      "title": "Filtri",
       "year": "Anno",
       "bodyType": "Tipo di carrozzeria",
       "priceRange": "Fascia di prezzo",

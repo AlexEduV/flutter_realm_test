@@ -119,7 +119,7 @@ class _SearchPageState extends State<SearchPage> {
                 child: Builder(
                   builder: (context) {
                     return SearchFilterButton(
-                      icon: Icons.settings_input_component,
+                      icon: Icons.filter_list_sharp,
                       title: AppLocalisations.searchFilterParametersTitle,
                       //todo: update the real count
                       selectionCount: '2',
