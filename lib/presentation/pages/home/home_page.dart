@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
@@ -11,7 +12,6 @@ import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_
 import 'package:test_futter_project/presentation/pages/home/explore_page/explore_page.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
 
-import '../../../common/app_colors.dart';
 import '../../../di/injection_container.dart';
 import '../../../domain/entities/car_entity.dart';
 import '../../bloc/home/explore_page/explore_page_cubit.dart';
@@ -46,24 +46,32 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
-      body: BlocBuilder<HomeBottomBarCubit, HomeBottomBarState>(
-        buildWhen: (previous, current) {
-          return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
-        },
-        builder: (context, state) {
-          //todo: when the pages will be ready, add animation for switching between them
-          switch (state.currentSelectedTabIndex) {
-            case AppConstants.homeTabExplore:
-              return ExplorePage(listKey: exploreListKey);
-            default:
-              return const PlaceholderPage();
-          }
-        },
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        systemNavigationBarColor: Color(0x000fffff),
+        systemNavigationBarIconBrightness: Brightness.light,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: HomeBottomBar(onAddPressed: _addCarToBase),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        extendBodyBehindAppBar: true,
+        extendBody: true,
+        body: BlocBuilder<HomeBottomBarCubit, HomeBottomBarState>(
+          buildWhen: (previous, current) {
+            return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
+          },
+          builder: (context, state) {
+            //todo: when the pages will be ready, add animation for switching between them
+            switch (state.currentSelectedTabIndex) {
+              case AppConstants.homeTabExplore:
+                return ExplorePage(listKey: exploreListKey);
+              default:
+                return const PlaceholderPage();
+            }
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: HomeBottomBar(onAddPressed: _addCarToBase),
+      ),
     );
   }
 
