@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
@@ -34,18 +33,4 @@ abstract class SearchPageState with _$SearchPageState {
     @Default([]) List<String> selectedTransmissionTypes,
     @Default(SearchDrawerType.empty) SearchDrawerType drawerOpened,
   }) = _SearchPageState;
-
-  bool hasRelevantSelectionChanges(SearchPageState other) {
-    return drawerOpened != other.drawerOpened ||
-        !listEquals(selectedModels, other.selectedModels) ||
-        currentSelectedType != other.currentSelectedType ||
-        allModels != other.allModels ||
-        !listEquals(selectedBodyTypes, other.selectedBodyTypes) ||
-        !listEquals(selectedTransmissionTypes, other.selectedTransmissionTypes) ||
-        selectedMinYear != other.selectedMinYear ||
-        selectedMaxYear != other.selectedMaxYear ||
-        selectedMinPrice != other.selectedMinPrice ||
-        selectedMaxPrice != other.selectedMaxPrice ||
-        results != other.results;
-  }
 }

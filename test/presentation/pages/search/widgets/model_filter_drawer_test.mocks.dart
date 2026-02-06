@@ -210,6 +210,14 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           as bool);
 
   @override
+  int getSelectedFilterCount() =>
+      (super.noSuchMethod(
+            Invocation.method(#getSelectedFilterCount, []),
+            returnValue: 0,
+          )
+          as int);
+
+  @override
   _i4.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),

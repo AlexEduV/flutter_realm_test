@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -32,7 +33,18 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
-      buildWhen: (previous, current) => current.hasRelevantSelectionChanges(previous),
+      buildWhen: (previous, current) =>
+          previous.drawerOpened != current.drawerOpened ||
+          !listEquals(previous.selectedModels, current.selectedModels) ||
+          previous.currentSelectedType != current.currentSelectedType ||
+          previous.allModels != current.allModels ||
+          !listEquals(previous.selectedBodyTypes, current.selectedBodyTypes) ||
+          !listEquals(previous.selectedTransmissionTypes, current.selectedTransmissionTypes) ||
+          previous.selectedMinYear != current.selectedMinYear ||
+          previous.selectedMaxYear != current.selectedMaxYear ||
+          previous.selectedMinPrice != current.selectedMinPrice ||
+          previous.selectedMaxPrice != current.selectedMaxPrice ||
+          previous.results != current.results,
       builder: (context, state) {
         final selectedFilterCount = context.read<SearchPageCubit>().getSelectedFilterCount();
         final isDrawerOpened = state.drawerOpened != SearchDrawerType.empty;

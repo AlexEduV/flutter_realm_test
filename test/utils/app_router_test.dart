@@ -60,6 +60,8 @@ void main() {
   });
 
   testWidgets('Navigates to SearchPage on /search route', (WidgetTester tester) async {
+    when(mockSearchPageCubit.getSelectedFilterCount()).thenReturn(0);
+
     await tester.pumpWidget(
       MultiBlocProvider(
         providers: [
