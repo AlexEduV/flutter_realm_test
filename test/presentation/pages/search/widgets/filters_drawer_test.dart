@@ -120,7 +120,7 @@ void main() {
     await tester.scrollUntilVisible(
       dieselCheckbox,
       200.0, // scroll delta, adjust as needed
-      scrollable: find.byType(ListView),
+      scrollable: find.byType(Scrollable).first,
     );
 
     await tester.tap(dieselCheckbox);
@@ -130,6 +130,8 @@ void main() {
   });
 
   testWidgets('calls cubit methods when transmission type checkbox is toggled', (tester) async {
+    AppLocalisations.localisations = {'filters.parameters.transmissionTypes.manual': 'Manual'};
+
     await tester.pumpWidget(buildTestWidget());
 
     final manualCheckbox = find.byWidgetPredicate(
@@ -138,11 +140,16 @@ void main() {
           widget.title is Text &&
           (widget.title as Text).data == AppLocalisations.transmissionTypeManual,
     );
+
+    await tester.scrollUntilVisible(
+      manualCheckbox,
+      400.0, // scroll delta, adjust as needed
+      scrollable: find.byType(Scrollable).first,
+    );
+
     await tester.tap(manualCheckbox);
     await tester.pumpAndSettle();
 
-    verify(
-      () => mockCubit.removeTransmissionTypeFromSelection(TransmissionType.manual.name),
-    ).called(1);
+    verify(mockCubit.removeTransmissionTypeFromSelection(TransmissionType.manual.name)).called(1);
   });
 }
