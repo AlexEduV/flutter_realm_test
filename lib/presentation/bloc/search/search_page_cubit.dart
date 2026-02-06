@@ -255,6 +255,25 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     return true;
   }
 
+  int getSelectedFilterCount() {
+    int selectedFilterCount = [
+      state.selectedBodyTypes,
+      state.selectedTransmissionTypes,
+      state.selectedFuelTypes,
+    ].fold(0, (sum, list) => sum + list.length);
+
+    final fields = [
+      state.selectedMinYear,
+      state.selectedMaxYear,
+      state.selectedMinPrice,
+      state.selectedMaxPrice,
+    ];
+
+    selectedFilterCount += fields.where((v) => (v?.isNotEmpty ?? false)).length;
+
+    return selectedFilterCount;
+  }
+
   @override
   Future<void> close() {
     _carSubscription?.cancel();

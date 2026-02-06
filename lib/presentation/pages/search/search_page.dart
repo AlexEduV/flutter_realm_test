@@ -46,16 +46,7 @@ class _SearchPageState extends State<SearchPage> {
           previous.selectedMaxPrice != current.selectedMaxPrice ||
           previous.results != current.results,
       builder: (context, state) {
-        int selectedFilterCount =
-            state.selectedBodyTypes.length +
-            state.selectedTransmissionTypes.length +
-            state.selectedFuelTypes.length;
-
-        if ((state.selectedMinYear?.length ?? 0) > 0) selectedFilterCount += 1;
-        if ((state.selectedMaxYear?.length ?? 0) > 0) selectedFilterCount += 1;
-        if ((state.selectedMinPrice?.length ?? 0) > 0) selectedFilterCount += 1;
-        if ((state.selectedMaxPrice?.length ?? 0) > 0) selectedFilterCount += 1;
-
+        final selectedFilterCount = context.read<SearchPageCubit>().getSelectedFilterCount();
         final isDrawerOpened = state.drawerOpened != SearchDrawerType.empty;
 
         return Scaffold(
