@@ -49,7 +49,10 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final results = applyAllFilters(entities);
-      emit(state.copyWith(results: results));
+      emit(state.copyWith(results: results, allResults: entities));
+
+      //todo: maybe I should not use two identical lists for all and selected items;
+      // maybe use reference id list and full list. And get needed item by id.
     });
   }
 
