@@ -43,7 +43,8 @@ class _SearchPageState extends State<SearchPage> {
           previous.selectedMinYear != current.selectedMinYear ||
           previous.selectedMaxYear != current.selectedMaxYear ||
           previous.selectedMinPrice != current.selectedMinPrice ||
-          previous.selectedMaxPrice != current.selectedMaxPrice,
+          previous.selectedMaxPrice != current.selectedMaxPrice ||
+          previous.results != current.results,
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
