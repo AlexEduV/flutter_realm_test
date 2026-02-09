@@ -42,8 +42,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void addCarIdToFavorites(String carId) {
-    //todo: this is not working,
-    final newList = user.favoriteIds..add(carId);
+    final newList = user.favoriteIds.toList()..add(carId);
     final cleanedList = newList.toSet().toList();
 
     user = user.copyWith(favoriteIds: cleanedList);
@@ -53,7 +52,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void removeCarIdFromFavorites(String carId) {
-    final newList = user.favoriteIds..remove(carId);
+    final newList = user.favoriteIds.toList()..remove(carId);
     _localStorage.update(UserExtensions.fromEntity(user));
 
     user = user.copyWith(favoriteIds: newList);
