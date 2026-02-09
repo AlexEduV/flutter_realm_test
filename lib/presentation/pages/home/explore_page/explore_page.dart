@@ -103,6 +103,8 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
           BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
               if (state.isLoading) {
+                //todo: maybe add opacity transition between loading and the list.
+                //and the list items can be shown one at a time.
                 return const SliverFillRemaining(child: Center(child: CircularProgressIndicator()));
               } else {
                 final cars = state.cars;
