@@ -4,8 +4,8 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -20,10 +20,11 @@ class FavoritesPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: AppDimensions.normalL),
-        child: BlocBuilder<UserDataCubit, UserDataState>(
+        child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
           builder: (context, state) {
-            final allCars = context.read<ExplorePageCubit>().state.cars;
-            final favoriteIds = state.favoriteIds;
+            final allCars = state.cars;
+
+            final favoriteIds = context.read<UserDataCubit>().state.favoriteIds;
             final favoriteEntities = allCars
                 .where((entity) => favoriteIds.contains(entity.carId))
                 .toList();
