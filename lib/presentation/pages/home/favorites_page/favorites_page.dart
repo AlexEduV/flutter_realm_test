@@ -7,6 +7,7 @@ import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_futter_project/presentation/pages/home/favorites_page/widgets/favorites_list_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -37,86 +38,10 @@ class FavoritesPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final car = favoriteEntities[index];
 
-                  return Container(
-                    margin: const EdgeInsets.only(
-                      bottom: AppDimensions.normalL,
-                      left: AppDimensions.normalL,
-                      right: AppDimensions.normalL,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-                      color: Colors.white,
-                    ),
-                    child: Container(
-                      padding: const EdgeInsets.all(AppDimensions.normalM),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Car Image
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                            child: Container(
-                              color: AppColors.placeholderColor,
-                              width: AppDimensions.favoriteItemPictureSize,
-                              height: AppDimensions.favoriteItemPictureSize,
-                            ),
-                          ),
-                          const SizedBox(width: AppDimensions.normalM),
-                          // Car Details
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${car.manufacturer} ${car.model} ${car.year}',
-                                  style: AppTextStyles.zonaPro18,
-                                ),
-                                const SizedBox(height: AppDimensions.minorS),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.directions_car,
-                                      size: AppDimensions.normalM,
-                                      color: Colors.grey[700],
-                                    ),
-                                    const SizedBox(width: AppDimensions.minorL),
-                                    Text(
-                                      car.bodyType,
-                                      style: AppTextStyles.zonaPro14.copyWith(
-                                        color: Colors.grey[700],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: AppDimensions.normalL),
-                                Text(
-                                  '\$ ${car.price}',
-                                  style: AppTextStyles.zonaPro16.copyWith(color: Colors.green),
-                                ),
-                              ],
-                            ),
-                          ),
-                          // Favorite Icon
-                          Material(
-                            borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                              onTap: () =>
-                                  context.read<UserDataCubit>().removeCarIdFromFavorites(car.carId),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: AppColors.gold.withAlpha(30),
-                                  borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                                ),
-                                width: AppDimensions.favoriteButtonSize,
-                                height: AppDimensions.favoriteButtonSize,
-                                child: const Icon(Icons.favorite, color: AppColors.gold),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  return FavoritesListItem(
+                    car: car,
+                    onDeleteCallback: () =>
+                        context.read<UserDataCubit>().removeCarIdFromFavorites(car.carId),
                   );
                 },
                 itemCount: favoriteEntities.length,
