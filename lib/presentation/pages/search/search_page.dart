@@ -20,7 +20,7 @@ import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
-import '../home/explore_page/widgets/explore_list_item.dart';
+import '../../widgets/announcement_list_item.dart';
 import '../home/explore_page/widgets/results_widget.dart';
 
 class SearchPage extends StatefulWidget {
@@ -161,7 +161,7 @@ class _SearchPageState extends State<SearchPage> {
                       builder: (context, userState) {
                         return SliverList(
                           delegate: SliverChildBuilderDelegate((context, index) {
-                            return ExploreListItem(
+                            return AnnouncementListItem(
                               car: state.results[index],
                               user: context.read<UserDataCubit>().user,
                               onDismissed: () {},

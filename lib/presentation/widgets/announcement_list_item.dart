@@ -11,14 +11,14 @@ import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
-import '../../../../widgets/app_semantics.dart';
+import 'app_semantics.dart';
 
-class ExploreListItem extends StatelessWidget {
+class AnnouncementListItem extends StatelessWidget {
   final CarEntity? car;
   final UserEntity? user;
   final void Function()? onDismissed;
 
-  const ExploreListItem({
+  const AnnouncementListItem({
     required this.car,
     required this.user,
     required this.onDismissed,

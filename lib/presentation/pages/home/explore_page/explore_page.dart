@@ -14,8 +14,8 @@ import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_us
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_section_item.dart';
+import 'package:test_futter_project/presentation/widgets/announcement_list_item.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -135,7 +135,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   }
 
   Widget _buildItem(Car car, int index) {
-    return ExploreListItem(
+    return AnnouncementListItem(
       user: context.read<UserDataCubit>().user,
       car: CarEntity.fromSchema(car),
       onDismissed: () => _handleDelete(car, index),
@@ -151,7 +151,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
       index,
       (context, animation) => SizeTransition(
         sizeFactor: animation,
-        child: const ExploreListItem(car: null, user: null, onDismissed: null),
+        child: const AnnouncementListItem(car: null, user: null, onDismissed: null),
       ),
       duration: const Duration(milliseconds: 300),
     );

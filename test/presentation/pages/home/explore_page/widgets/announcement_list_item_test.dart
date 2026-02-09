@@ -7,7 +7,7 @@ import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
-import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_list_item.dart';
+import 'package:test_futter_project/presentation/widgets/announcement_list_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 void main() {
@@ -46,7 +46,7 @@ void main() {
     testWidgets('displays car manufacturer, model, and year', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: ExploreListItem(car: car, user: user, onDismissed: () {}),
+          home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
         ),
       );
 
@@ -56,7 +56,7 @@ void main() {
     testWidgets('displays price and hot promotion icon', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: ExploreListItem(car: car, user: user, onDismissed: () {}),
+          home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
         ),
       );
 
@@ -76,7 +76,7 @@ void main() {
     testWidgets('displays location info if permission granted', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: ExploreListItem(car: car, user: user, onDismissed: () {}),
+          home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
         ),
       );
 
@@ -95,7 +95,7 @@ void main() {
     testWidgets('displays verified icon if car is verified', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: ExploreListItem(car: car, user: user, onDismissed: () {}),
+          home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
         ),
       );
 
@@ -106,7 +106,7 @@ void main() {
       bool dismissed = false;
       await tester.pumpWidget(
         MaterialApp(
-          home: ExploreListItem(
+          home: AnnouncementListItem(
             car: car,
             user: user,
             onDismissed: () {
@@ -148,7 +148,7 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: ExploreListItem(car: car, user: userNoLocation, onDismissed: () {}),
+          home: AnnouncementListItem(car: car, user: userNoLocation, onDismissed: () {}),
         ),
       );
 
@@ -177,7 +177,7 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: ExploreListItem(car: carNotVerified, user: user, onDismissed: () {}),
+          home: AnnouncementListItem(car: carNotVerified, user: user, onDismissed: () {}),
         ),
       );
 
