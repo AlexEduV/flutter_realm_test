@@ -56,11 +56,11 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
   Widget build(BuildContext context) {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       builder: (context, state) {
+        final cubit = context.read<SearchPageCubit>();
+
         final selectedBodyTypeSet = Set<String>.from(state.selectedBodyTypes);
         final selectedFuelTypeSet = Set<String>.from(state.selectedFuelTypes);
         final selectedTransmissionTypeSet = Set<String>.from(state.selectedTransmissionTypes);
-
-        final cubit = context.read<SearchPageCubit>();
 
         return Drawer(
           backgroundColor: AppColors.scaffoldColor,
