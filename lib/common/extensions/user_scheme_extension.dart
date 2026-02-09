@@ -9,6 +9,7 @@ extension UserExtensions on User {
       entity.firstName,
       entity.lastName,
       entity.isLocationPermissionGranted,
+      favoriteIds: entity.favoriteIds,
     );
   }
 }

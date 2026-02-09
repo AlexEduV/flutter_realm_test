@@ -137,6 +137,7 @@ void main() {
         firstName: 'John',
         lastName: 'Doe',
         isLocationPermissionGranted: true,
+        favoriteIds: [],
       );
 
       when(mockStorage.initUser()).thenReturn(user);

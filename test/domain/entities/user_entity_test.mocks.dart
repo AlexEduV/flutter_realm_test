@@ -24,30 +24,36 @@ import 'package:test_futter_project/data/models/scheme.dart' as _i3;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeSchemaObject_0 extends _i1.SmartFake implements _i2.SchemaObject {
-  _FakeSchemaObject_0(Object parent, Invocation parentInvocation)
+class _FakeRealmList_0<T extends Object?> extends _i1.SmartFake
+    implements _i2.RealmList<T> {
+  _FakeRealmList_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeRealm_1 extends _i1.SmartFake implements _i2.Realm {
-  _FakeRealm_1(Object parent, Invocation parentInvocation)
+class _FakeSchemaObject_1 extends _i1.SmartFake implements _i2.SchemaObject {
+  _FakeSchemaObject_1(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeDynamicRealmObject_2 extends _i1.SmartFake
+class _FakeRealm_2 extends _i1.SmartFake implements _i2.Realm {
+  _FakeRealm_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeDynamicRealmObject_3 extends _i1.SmartFake
     implements _i2.DynamicRealmObject {
-  _FakeDynamicRealmObject_2(Object parent, Invocation parentInvocation)
+  _FakeDynamicRealmObject_3(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeUser_3 extends _i1.SmartFake implements _i3.User {
-  _FakeUser_3(Object parent, Invocation parentInvocation)
+class _FakeUser_4 extends _i1.SmartFake implements _i3.User {
+  _FakeUser_4(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeRealmResults_4<T1 extends Object?> extends _i1.SmartFake
+class _FakeRealmResults_5<T1 extends Object?> extends _i1.SmartFake
     implements _i2.RealmResults<T1> {
-  _FakeRealmResults_4(Object parent, Invocation parentInvocation)
+  _FakeRealmResults_5(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -101,6 +107,17 @@ class MockUser extends _i1.Mock implements _i3.User {
           as bool);
 
   @override
+  _i2.RealmList<String> get favoriteIds =>
+      (super.noSuchMethod(
+            Invocation.getter(#favoriteIds),
+            returnValue: _FakeRealmList_0<String>(
+              this,
+              Invocation.getter(#favoriteIds),
+            ),
+          )
+          as _i2.RealmList<String>);
+
+  @override
   _i5.Stream<_i2.RealmObjectChanges<_i3.User>> get changes =>
       (super.noSuchMethod(
             Invocation.getter(#changes),
@@ -112,7 +129,7 @@ class MockUser extends _i1.Mock implements _i3.User {
   _i2.SchemaObject get objectSchema =>
       (super.noSuchMethod(
             Invocation.getter(#objectSchema),
-            returnValue: _FakeSchemaObject_0(
+            returnValue: _FakeSchemaObject_1(
               this,
               Invocation.getter(#objectSchema),
             ),
@@ -144,10 +161,16 @@ class MockUser extends _i1.Mock implements _i3.User {
   );
 
   @override
+  set favoriteIds(_i2.RealmList<String>? value) => super.noSuchMethod(
+    Invocation.setter(#favoriteIds, value),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   _i2.Realm get realm =>
       (super.noSuchMethod(
             Invocation.getter(#realm),
-            returnValue: _FakeRealm_1(this, Invocation.getter(#realm)),
+            returnValue: _FakeRealm_2(this, Invocation.getter(#realm)),
           )
           as _i2.Realm);
 
@@ -165,7 +188,7 @@ class MockUser extends _i1.Mock implements _i3.User {
   _i2.DynamicRealmObject get dynamic =>
       (super.noSuchMethod(
             Invocation.getter(#dynamic),
-            returnValue: _FakeDynamicRealmObject_2(
+            returnValue: _FakeDynamicRealmObject_3(
               this,
               Invocation.getter(#dynamic),
             ),
@@ -191,7 +214,7 @@ class MockUser extends _i1.Mock implements _i3.User {
   _i3.User freeze() =>
       (super.noSuchMethod(
             Invocation.method(#freeze, []),
-            returnValue: _FakeUser_3(this, Invocation.method(#freeze, [])),
+            returnValue: _FakeUser_4(this, Invocation.method(#freeze, [])),
           )
           as _i3.User);
 
@@ -199,7 +222,7 @@ class MockUser extends _i1.Mock implements _i3.User {
   _i2.RealmResults<T> getBacklinks<T>(String? propertyName) =>
       (super.noSuchMethod(
             Invocation.method(#getBacklinks, [propertyName]),
-            returnValue: _FakeRealmResults_4<T>(
+            returnValue: _FakeRealmResults_5<T>(
               this,
               Invocation.method(#getBacklinks, [propertyName]),
             ),

@@ -5,12 +5,14 @@ class UserEntity {
   final String firstName;
   final String lastName;
   final bool isLocationPermissionGranted;
+  final List<String> favoriteIds;
 
   const UserEntity({
     required this.userId,
     required this.firstName,
     required this.lastName,
     required this.isLocationPermissionGranted,
+    required this.favoriteIds,
   });
 
   factory UserEntity.fromSchema(User user) {
@@ -19,6 +21,7 @@ class UserEntity {
       firstName: user.firstName,
       lastName: user.lastName,
       isLocationPermissionGranted: user.isLocationPermissionGranted,
+      favoriteIds: user.favoriteIds,
     );
   }
 
@@ -27,12 +30,14 @@ class UserEntity {
     String? firstName,
     String? lastName,
     bool? isLocationPermissionGranted,
+    List<String>? favoriteIds,
   }) {
     return UserEntity(
       userId: userId ?? this.userId,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       isLocationPermissionGranted: isLocationPermissionGranted ?? this.isLocationPermissionGranted,
+      favoriteIds: favoriteIds ?? this.favoriteIds,
     );
   }
 }

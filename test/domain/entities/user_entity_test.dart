@@ -15,6 +15,7 @@ void main() {
         firstName: 'John',
         lastName: 'Doe',
         isLocationPermissionGranted: true,
+        favoriteIds: [],
       );
 
       expect(entity.userId, 'u1');
@@ -44,6 +45,7 @@ void main() {
         firstName: 'Alice',
         lastName: 'Brown',
         isLocationPermissionGranted: false,
+        favoriteIds: [],
       );
 
       final updated = original.copyWith(firstName: 'Alicia', isLocationPermissionGranted: true);
@@ -60,6 +62,7 @@ void main() {
         firstName: 'Bob',
         lastName: 'Marley',
         isLocationPermissionGranted: true,
+        favoriteIds: [],
       );
 
       final copy = original.copyWith();

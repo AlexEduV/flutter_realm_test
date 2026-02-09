@@ -27,6 +27,7 @@ void main() {
       firstName: 'John',
       lastName: 'Doe',
       isLocationPermissionGranted: false,
+      favoriteIds: [],
     );
   });
 

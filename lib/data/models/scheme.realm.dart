@@ -312,8 +312,9 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     String userId,
     String firstName,
     String lastName,
-    bool isLocationPermissionGranted,
-  ) {
+    bool isLocationPermissionGranted, {
+    Iterable<String> favoriteIds = const [],
+  }) {
     RealmObjectBase.set(this, 'userId', userId);
     RealmObjectBase.set(this, 'firstName', firstName);
     RealmObjectBase.set(this, 'lastName', lastName);
@@ -321,6 +322,11 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       this,
       'isLocationPermissionGranted',
       isLocationPermissionGranted,
+    );
+    RealmObjectBase.set<RealmList<String>>(
+      this,
+      'favoriteIds',
+      RealmList<String>(favoriteIds),
     );
   }
 
@@ -351,6 +357,13 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.set(this, 'isLocationPermissionGranted', value);
 
   @override
+  RealmList<String> get favoriteIds =>
+      RealmObjectBase.get<String>(this, 'favoriteIds') as RealmList<String>;
+  @override
+  set favoriteIds(covariant RealmList<String> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
   Stream<RealmObjectChanges<User>> get changes =>
       RealmObjectBase.getChanges<User>(this);
 
@@ -367,6 +380,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'firstName': firstName.toEJson(),
       'lastName': lastName.toEJson(),
       'isLocationPermissionGranted': isLocationPermissionGranted.toEJson(),
+      'favoriteIds': favoriteIds.toEJson(),
     };
   }
 
@@ -385,6 +399,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
           fromEJson(firstName),
           fromEJson(lastName),
           fromEJson(isLocationPermissionGranted),
+          favoriteIds: fromEJson(ejson['favoriteIds']),
         ),
       _ => raiseInvalidEJson(ejson),
     };
@@ -398,6 +413,11 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('firstName', RealmPropertyType.string),
       SchemaProperty('lastName', RealmPropertyType.string),
       SchemaProperty('isLocationPermissionGranted', RealmPropertyType.bool),
+      SchemaProperty(
+        'favoriteIds',
+        RealmPropertyType.string,
+        collectionType: RealmCollectionType.list,
+      ),
     ]);
   }();
 

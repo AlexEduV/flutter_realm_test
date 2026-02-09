@@ -10,6 +10,7 @@ void main() {
         firstName: 'John',
         lastName: 'Doe',
         isLocationPermissionGranted: true,
+        favoriteIds: ['1'],
       );
 
       final user = UserExtensions.fromEntity(entity);
@@ -18,6 +19,7 @@ void main() {
       expect(user.firstName, 'John');
       expect(user.lastName, 'Doe');
       expect(user.isLocationPermissionGranted, true);
+      expect(user.favoriteIds, ['1']);
     });
   });
 }

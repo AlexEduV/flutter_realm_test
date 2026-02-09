@@ -34,4 +34,5 @@ class _User {
   late String firstName;
   late String lastName;
   late bool isLocationPermissionGranted;
+  late List<String> favoriteIds;
 }

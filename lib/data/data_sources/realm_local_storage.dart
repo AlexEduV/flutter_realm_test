@@ -64,6 +64,7 @@ class RealmLocalStorage implements BaseLocalStorage {
       firstName: 'John',
       lastName: 'Adams',
       isLocationPermissionGranted: false,
+      favoriteIds: [],
     );
 
     realm.write(() {

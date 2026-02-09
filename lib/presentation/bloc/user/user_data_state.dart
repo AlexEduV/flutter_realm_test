@@ -4,5 +4,8 @@ part 'user_data_state.freezed.dart';
 
 @freezed
 abstract class UserDataState with _$UserDataState {
-  const factory UserDataState({@Default(false) bool isLocationPermissionGranted}) = _UserDataState;
+  const factory UserDataState({
+    @Default(false) bool isLocationPermissionGranted,
+    @Default([]) List<String> favoriteIds,
+  }) = _UserDataState;
 }

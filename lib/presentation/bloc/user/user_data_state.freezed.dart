@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserDataState {
 
- bool get isLocationPermissionGranted;
+ bool get isLocationPermissionGranted; List<String> get favoriteIds;
 /// Create a copy of UserDataState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $UserDataStateCopyWith<UserDataState> get copyWith => _$UserDataStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserDataState&&(identical(other.isLocationPermissionGranted, isLocationPermissionGranted) || other.isLocationPermissionGranted == isLocationPermissionGranted));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserDataState&&(identical(other.isLocationPermissionGranted, isLocationPermissionGranted) || other.isLocationPermissionGranted == isLocationPermissionGranted)&&const DeepCollectionEquality().equals(other.favoriteIds, favoriteIds));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLocationPermissionGranted);
+int get hashCode => Object.hash(runtimeType,isLocationPermissionGranted,const DeepCollectionEquality().hash(favoriteIds));
 
 @override
 String toString() {
-  return 'UserDataState(isLocationPermissionGranted: $isLocationPermissionGranted)';
+  return 'UserDataState(isLocationPermissionGranted: $isLocationPermissionGranted, favoriteIds: $favoriteIds)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $UserDataStateCopyWith<$Res>  {
   factory $UserDataStateCopyWith(UserDataState value, $Res Function(UserDataState) _then) = _$UserDataStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLocationPermissionGranted
+ bool isLocationPermissionGranted, List<String> favoriteIds
 });
 
 
@@ -63,10 +63,11 @@ class _$UserDataStateCopyWithImpl<$Res>
 
 /// Create a copy of UserDataState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLocationPermissionGranted = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLocationPermissionGranted = null,Object? favoriteIds = null,}) {
   return _then(_self.copyWith(
 isLocationPermissionGranted: null == isLocationPermissionGranted ? _self.isLocationPermissionGranted : isLocationPermissionGranted // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,favoriteIds: null == favoriteIds ? _self.favoriteIds : favoriteIds // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 
@@ -77,10 +78,17 @@ as bool,
 
 
 class _UserDataState implements UserDataState {
-  const _UserDataState({this.isLocationPermissionGranted = false});
+  const _UserDataState({this.isLocationPermissionGranted = false, final  List<String> favoriteIds = const []}): _favoriteIds = favoriteIds;
   
 
 @override@JsonKey() final  bool isLocationPermissionGranted;
+ final  List<String> _favoriteIds;
+@override@JsonKey() List<String> get favoriteIds {
+  if (_favoriteIds is EqualUnmodifiableListView) return _favoriteIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_favoriteIds);
+}
+
 
 /// Create a copy of UserDataState
 /// with the given fields replaced by the non-null parameter values.
@@ -92,16 +100,16 @@ _$UserDataStateCopyWith<_UserDataState> get copyWith => __$UserDataStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDataState&&(identical(other.isLocationPermissionGranted, isLocationPermissionGranted) || other.isLocationPermissionGranted == isLocationPermissionGranted));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDataState&&(identical(other.isLocationPermissionGranted, isLocationPermissionGranted) || other.isLocationPermissionGranted == isLocationPermissionGranted)&&const DeepCollectionEquality().equals(other._favoriteIds, _favoriteIds));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLocationPermissionGranted);
+int get hashCode => Object.hash(runtimeType,isLocationPermissionGranted,const DeepCollectionEquality().hash(_favoriteIds));
 
 @override
 String toString() {
-  return 'UserDataState(isLocationPermissionGranted: $isLocationPermissionGranted)';
+  return 'UserDataState(isLocationPermissionGranted: $isLocationPermissionGranted, favoriteIds: $favoriteIds)';
 }
 
 
@@ -112,7 +120,7 @@ abstract mixin class _$UserDataStateCopyWith<$Res> implements $UserDataStateCopy
   factory _$UserDataStateCopyWith(_UserDataState value, $Res Function(_UserDataState) _then) = __$UserDataStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLocationPermissionGranted
+ bool isLocationPermissionGranted, List<String> favoriteIds
 });
 
 
@@ -129,10 +137,11 @@ class __$UserDataStateCopyWithImpl<$Res>
 
 /// Create a copy of UserDataState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLocationPermissionGranted = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLocationPermissionGranted = null,Object? favoriteIds = null,}) {
   return _then(_UserDataState(
 isLocationPermissionGranted: null == isLocationPermissionGranted ? _self.isLocationPermissionGranted : isLocationPermissionGranted // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,favoriteIds: null == favoriteIds ? _self._favoriteIds : favoriteIds // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 
