@@ -9,6 +9,7 @@ import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_ca
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/explore_page.dart';
+import 'package:test_futter_project/presentation/pages/home/favorites_page/favorites_page.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
 
 import '../../../common/app_colors.dart';
@@ -57,6 +58,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           switch (state.currentSelectedTabIndex) {
             case AppConstants.homeTabExplore:
               return ExplorePage(listKey: exploreListKey);
+            case AppConstants.homeTabFavorites:
+              return const FavoritesPage();
             default:
               return const PlaceholderPage();
           }
