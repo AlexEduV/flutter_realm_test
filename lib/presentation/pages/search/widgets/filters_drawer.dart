@@ -84,6 +84,8 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
           TransmissionType.hybrid.name,
         );
 
+        final cubit = context.read<SearchPageCubit>();
+
         return Drawer(
           backgroundColor: AppColors.scaffoldColor,
           child: ListView(
@@ -107,9 +109,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       child: DebouncedTextFormField(
                         controller: minYearTextController,
                         label: state.minYearFieldParamsModel?.label ?? '',
-                        onDebouncedChanged: (value) {
-                          context.read<SearchPageCubit>().updateSelectedMinYear(value);
-                        },
+                        onDebouncedChanged: (value) => cubit.updateSelectedMinYear(value),
                         errorText: state.minYearError,
                       ),
                     ),
@@ -120,9 +120,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       child: DebouncedTextFormField(
                         controller: maxYearTextController,
                         label: state.maxYearFieldParamsModel?.label ?? '',
-                        onDebouncedChanged: (value) {
-                          context.read<SearchPageCubit>().updateSelectedMaxYear(value);
-                        },
+                        onDebouncedChanged: (value) => cubit.updateSelectedMaxYear(value),
                         errorText: state.maxYearError,
                       ),
                     ),
@@ -135,167 +133,68 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               ),
 
               if (state.currentSelectedType == CarType.car) ...[
-                AppSemantics(
-                  label:
-                      '${AppSemanticsLabels.filterDrawerBodyTypeCheckbox} ${AppLocalisations.bodyTypeSedan}',
+                _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  label: AppLocalisations.bodyTypeSedan,
                   isChecked: isSedanBodyTypeChecked,
-                  child: CheckboxListTile(
-                    title: Text(AppLocalisations.bodyTypeSedan),
-                    value: isSedanBodyTypeChecked,
-                    onChanged: (bool? newValue) {
-                      if (newValue == true) {
-                        context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.sedan.name);
-                      } else {
-                        context.read<SearchPageCubit>().removeBodyTypeFromSelection(
-                          BodyType.sedan.name,
-                        );
-                      }
-                    },
-                    controlAffinity: checkBoxPosition,
-                  ),
+                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.sedan.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.sedan.name),
                 ),
-                AppSemantics(
-                  label:
-                      '${AppSemanticsLabels.filterDrawerBodyTypeCheckbox} ${AppLocalisations.bodyTypeHatchback}',
+
+                _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  label: AppLocalisations.bodyTypeHatchback,
                   isChecked: isHatchbackBodyTypeChecked,
-                  child: CheckboxListTile(
-                    title: Text(AppLocalisations.bodyTypeHatchback),
-                    value: isHatchbackBodyTypeChecked,
-                    onChanged: (bool? newValue) {
-                      if (newValue == true) {
-                        context.read<SearchPageCubit>().addBodyTypeToSelection(
-                          BodyType.hatchback.name,
-                        );
-                      } else {
-                        context.read<SearchPageCubit>().removeBodyTypeFromSelection(
-                          BodyType.hatchback.name,
-                        );
-                      }
-                    },
-                    controlAffinity: checkBoxPosition,
-                  ),
+                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.hatchback.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.hatchback.name),
                 ),
-                AppSemantics(
-                  label:
-                      '${AppSemanticsLabels.filterDrawerBodyTypeCheckbox} ${AppLocalisations.bodyTypeUniversal}',
+
+                _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  label: AppLocalisations.bodyTypeUniversal,
                   isChecked: isUniversalBodyTypeChecked,
-                  child: CheckboxListTile(
-                    title: Text(AppLocalisations.bodyTypeUniversal),
-                    value: isUniversalBodyTypeChecked,
-                    onChanged: (bool? newValue) {
-                      if (newValue == true) {
-                        context.read<SearchPageCubit>().addBodyTypeToSelection(
-                          BodyType.universal.name,
-                        );
-                      } else {
-                        context.read<SearchPageCubit>().removeBodyTypeFromSelection(
-                          BodyType.universal.name,
-                        );
-                      }
-                    },
-                    controlAffinity: checkBoxPosition,
-                  ),
+                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.universal.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.universal.name),
                 ),
-                AppSemantics(
-                  label:
-                      '${AppSemanticsLabels.filterDrawerBodyTypeCheckbox} ${AppLocalisations.bodyTypeMinivan}',
+
+                _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  label: AppLocalisations.bodyTypeMinivan,
                   isChecked: isMinivanBodyTypeChecked,
-                  child: CheckboxListTile(
-                    title: Text(AppLocalisations.bodyTypeMinivan),
-                    value: isMinivanBodyTypeChecked,
-                    onChanged: (bool? newValue) {
-                      if (newValue == true) {
-                        context.read<SearchPageCubit>().addBodyTypeToSelection(
-                          BodyType.minivan.name,
-                        );
-                      } else {
-                        context.read<SearchPageCubit>().removeBodyTypeFromSelection(
-                          BodyType.minivan.name,
-                        );
-                      }
-                    },
-                    controlAffinity: checkBoxPosition,
-                  ),
+                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.minivan.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.minivan.name),
                 ),
-                AppSemantics(
-                  label:
-                      '${AppSemanticsLabels.filterDrawerBodyTypeCheckbox} ${AppLocalisations.bodyTypeCoupe}',
+
+                _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  label: AppLocalisations.bodyTypeCoupe,
                   isChecked: isCoupeBodyTypeChecked,
-                  child: CheckboxListTile(
-                    title: Text(AppLocalisations.bodyTypeCoupe),
-                    value: isCoupeBodyTypeChecked,
-                    onChanged: (bool? newValue) {
-                      if (newValue == true) {
-                        context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.coupe.name);
-                      } else {
-                        context.read<SearchPageCubit>().removeBodyTypeFromSelection(
-                          BodyType.coupe.name,
-                        );
-                      }
-                    },
-                    controlAffinity: checkBoxPosition,
-                  ),
+                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.coupe.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.coupe.name),
                 ),
-                AppSemantics(
-                  label:
-                      '${AppSemanticsLabels.filterDrawerBodyTypeCheckbox} ${AppLocalisations.bodyTypeCrossover}',
+
+                _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  label: AppLocalisations.bodyTypeCrossover,
                   isChecked: isCrossoverBodyTypeChecked,
-                  child: CheckboxListTile(
-                    title: Text(AppLocalisations.bodyTypeCrossover),
-                    value: isCoupeBodyTypeChecked,
-                    onChanged: (bool? newValue) {
-                      if (newValue == true) {
-                        context.read<SearchPageCubit>().addBodyTypeToSelection(
-                          BodyType.crossover.name,
-                        );
-                      } else {
-                        context.read<SearchPageCubit>().removeBodyTypeFromSelection(
-                          BodyType.crossover.name,
-                        );
-                      }
-                    },
-                    controlAffinity: checkBoxPosition,
-                  ),
+                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.crossover.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.crossover.name),
                 ),
               ] else if (state.currentSelectedType == CarType.truck) ...[
-                AppSemantics(
-                  label:
-                      '${AppSemanticsLabels.filterDrawerBodyTypeCheckbox} ${AppLocalisations.bodyTypeSemi}',
+                _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  label: AppLocalisations.bodyTypeSemi,
                   isChecked: isSemiBodyTypeChecked,
-                  child: CheckboxListTile(
-                    title: Text(AppLocalisations.bodyTypeSemi),
-                    value: isSemiBodyTypeChecked,
-                    onChanged: (bool? newValue) {
-                      if (newValue == true) {
-                        context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.semi.name);
-                      } else {
-                        context.read<SearchPageCubit>().removeBodyTypeFromSelection(
-                          BodyType.semi.name,
-                        );
-                      }
-                    },
-                    controlAffinity: checkBoxPosition,
-                  ),
+                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.semi.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.semi.name),
                 ),
               ] else ...[
-                AppSemantics(
-                  label:
-                      '${AppSemanticsLabels.filterDrawerBodyTypeCheckbox} ${AppLocalisations.bodyTypeBike}',
+                _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  label: AppLocalisations.bodyTypeBike,
                   isChecked: isBikeBodyTypeChecked,
-                  child: CheckboxListTile(
-                    title: Text(AppLocalisations.bodyTypeBike),
-                    value: isBikeBodyTypeChecked,
-                    onChanged: (bool? newValue) {
-                      if (newValue == true) {
-                        context.read<SearchPageCubit>().addBodyTypeToSelection(BodyType.bike.name);
-                      } else {
-                        context.read<SearchPageCubit>().removeBodyTypeFromSelection(
-                          BodyType.bike.name,
-                        );
-                      }
-                    },
-                    controlAffinity: checkBoxPosition,
-                  ),
+                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.bike.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.bike.name),
                 ),
               ],
 
@@ -314,9 +213,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       child: DebouncedTextFormField(
                         controller: minPriceTextController,
                         label: state.minPriceFieldParamsModel?.label ?? '',
-                        onDebouncedChanged: (newValue) {
-                          context.read<SearchPageCubit>().updateSelectedMinPrice(newValue);
-                        },
+                        onDebouncedChanged: (newValue) => cubit.updateSelectedMinPrice(newValue),
                         errorText: state.minPriceError,
                       ),
                     ),
@@ -327,9 +224,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       child: DebouncedTextFormField(
                         controller: maxPriceTextController,
                         label: state.maxPriceFieldParamsModel?.label ?? '',
-                        onDebouncedChanged: (newValue) {
-                          context.read<SearchPageCubit>().updateSelectedMaxPrice(newValue);
-                        },
+                        onDebouncedChanged: (newValue) => cubit.updateSelectedMaxPrice(newValue),
                         errorText: state.maxPriceError,
                       ),
                     ),
@@ -341,81 +236,36 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 title: Text(AppLocalisations.parameterFuelTypeName, style: AppTextStyles.zonaPro18),
               ),
 
-              AppSemantics(
-                label:
-                    '${AppSemanticsLabels.filterDrawerFuelTypeCheckbox} ${AppLocalisations.fuelTypeDiesel}',
+              _buildCheckboxTile(
+                semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
+                label: AppLocalisations.fuelTypeDiesel,
                 isChecked: isDieselFuelTypeChecked,
-                child: CheckboxListTile(
-                  title: Text(AppLocalisations.fuelTypeDiesel),
-                  value: isDieselFuelTypeChecked,
-                  onChanged: (bool? newValue) {
-                    if (newValue == true) {
-                      context.read<SearchPageCubit>().addFuelTypeToSelection(FuelType.diesel.name);
-                    } else {
-                      context.read<SearchPageCubit>().removeFuelTypeFromSelection(
-                        FuelType.diesel.name,
-                      );
-                    }
-                  },
-                  controlAffinity: checkBoxPosition,
-                ),
+                onChecked: () => cubit.addFuelTypeToSelection(FuelType.diesel.name),
+                onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.diesel.name),
               ),
-              AppSemantics(
-                label:
-                    '${AppSemanticsLabels.filterDrawerFuelTypeCheckbox} ${AppLocalisations.fuelTypeGasoline}',
+
+              _buildCheckboxTile(
+                semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
+                label: AppLocalisations.fuelTypeGasoline,
                 isChecked: isGasolineFuelTypeChecked,
-                child: CheckboxListTile(
-                  title: Text(AppLocalisations.fuelTypeGasoline),
-                  value: isGasolineFuelTypeChecked,
-                  onChanged: (bool? newValue) {
-                    if (newValue == true) {
-                      context.read<SearchPageCubit>().addFuelTypeToSelection(
-                        FuelType.gasoline.name,
-                      );
-                    } else {
-                      context.read<SearchPageCubit>().removeFuelTypeFromSelection(
-                        FuelType.gasoline.name,
-                      );
-                    }
-                  },
-                  controlAffinity: checkBoxPosition,
-                ),
+                onChecked: () => cubit.addFuelTypeToSelection(FuelType.gasoline.name),
+                onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.gasoline.name),
               ),
-              AppSemantics(
-                label:
-                    '${AppSemanticsLabels.filterDrawerFuelTypeCheckbox} ${AppLocalisations.fuelTypeEv}',
+
+              _buildCheckboxTile(
+                semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
+                label: AppLocalisations.fuelTypeEv,
                 isChecked: isEvFuelTypeChecked,
-                child: CheckboxListTile(
-                  title: Text(AppLocalisations.fuelTypeEv),
-                  value: isEvFuelTypeChecked,
-                  onChanged: (bool? newValue) {
-                    if (newValue == true) {
-                      context.read<SearchPageCubit>().addFuelTypeToSelection(FuelType.ev.name);
-                    } else {
-                      context.read<SearchPageCubit>().removeFuelTypeFromSelection(FuelType.ev.name);
-                    }
-                  },
-                  controlAffinity: checkBoxPosition,
-                ),
+                onChecked: () => cubit.addFuelTypeToSelection(FuelType.ev.name),
+                onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.ev.name),
               ),
-              AppSemantics(
-                label:
-                    '${AppSemanticsLabels.filterDrawerFuelTypeCheckbox} ${AppLocalisations.fuelTypeHybrid}',
+
+              _buildCheckboxTile(
+                semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
+                label: AppLocalisations.fuelTypeHybrid,
                 isChecked: isHybridFuelTypeChecked,
-                child: CheckboxListTile(
-                  title: Text(AppLocalisations.fuelTypeHybrid),
-                  value: isHybridFuelTypeChecked,
-                  onChanged: (bool? newValue) {
-                    if (newValue == true) {
-                      context.read<SearchPageCubit>().addFuelTypeToSelection(FuelType.hybrid.name);
-                    } else {
-                      context.read<SearchPageCubit>().removeFuelTypeFromSelection(
-                        FuelType.hybrid.name,
-                      );
-                    }
-                  },
-                  controlAffinity: checkBoxPosition,
-                ),
+                onChecked: () => cubit.addFuelTypeToSelection(FuelType.hybrid.name),
+                onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.hybrid.name),
               ),
 
               ListTile(
@@ -425,73 +275,62 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 ),
               ),
 
-              AppSemantics(
-                label:
-                    '${AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox} ${AppLocalisations.transmissionTypeManual}',
+              _buildCheckboxTile(
+                semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
+                label: AppLocalisations.transmissionTypeManual,
                 isChecked: isManualTransmissionTypeChecked,
-                child: CheckboxListTile(
-                  title: Text(AppLocalisations.transmissionTypeManual),
-                  value: isManualTransmissionTypeChecked,
-                  onChanged: (bool? newValue) {
-                    if (newValue == true) {
-                      context.read<SearchPageCubit>().addTransmissionTypeToSelection(
-                        TransmissionType.manual.name,
-                      );
-                    } else {
-                      context.read<SearchPageCubit>().removeTransmissionTypeFromSelection(
-                        TransmissionType.manual.name,
-                      );
-                    }
-                  },
-                  controlAffinity: checkBoxPosition,
-                ),
+                onChecked: () => cubit.addTransmissionTypeToSelection(TransmissionType.manual.name),
+                onUnChecked: () =>
+                    cubit.removeTransmissionTypeFromSelection(TransmissionType.manual.name),
               ),
-              AppSemantics(
-                label:
-                    '${AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox} ${AppLocalisations.transmissionTypeAutomatic}',
+
+              _buildCheckboxTile(
+                semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
+                label: AppLocalisations.transmissionTypeAutomatic,
                 isChecked: isAutomaticTransmissionTypeChecked,
-                child: CheckboxListTile(
-                  title: Text(AppLocalisations.transmissionTypeAutomatic),
-                  value: isAutomaticTransmissionTypeChecked,
-                  onChanged: (bool? newValue) {
-                    if (newValue == true) {
-                      context.read<SearchPageCubit>().addTransmissionTypeToSelection(
-                        TransmissionType.automatic.name,
-                      );
-                    } else {
-                      context.read<SearchPageCubit>().removeTransmissionTypeFromSelection(
-                        TransmissionType.automatic.name,
-                      );
-                    }
-                  },
-                  controlAffinity: checkBoxPosition,
-                ),
+                onChecked: () =>
+                    cubit.addTransmissionTypeToSelection(TransmissionType.automatic.name),
+                onUnChecked: () =>
+                    cubit.removeTransmissionTypeFromSelection(TransmissionType.automatic.name),
               ),
-              AppSemantics(
-                label:
-                    '${AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox} ${AppLocalisations.transmissionTypeHybrid}',
+
+              _buildCheckboxTile(
+                semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
+                label: AppLocalisations.transmissionTypeHybrid,
                 isChecked: isHybridTransmissionTypeChecked,
-                child: CheckboxListTile(
-                  title: Text(AppLocalisations.transmissionTypeHybrid),
-                  value: isHybridTransmissionTypeChecked,
-                  onChanged: (bool? newValue) {
-                    if (newValue == true) {
-                      context.read<SearchPageCubit>().addTransmissionTypeToSelection(
-                        TransmissionType.hybrid.name,
-                      );
-                    } else {
-                      context.read<SearchPageCubit>().removeTransmissionTypeFromSelection(
-                        TransmissionType.hybrid.name,
-                      );
-                    }
-                  },
-                  controlAffinity: checkBoxPosition,
-                ),
+                onChecked: () => cubit.addTransmissionTypeToSelection(TransmissionType.hybrid.name),
+                onUnChecked: () =>
+                    cubit.removeTransmissionTypeFromSelection(TransmissionType.hybrid.name),
               ),
             ],
           ),
         );
       },
+    );
+  }
+
+  Widget _buildCheckboxTile({
+    required String semanticsLabel,
+    required String label,
+    required bool? isChecked,
+    required void Function() onChecked,
+    required void Function() onUnChecked,
+  }) {
+    return AppSemantics(
+      label: '$semanticsLabel $label',
+      isChecked: isChecked,
+      child: CheckboxListTile(
+        title: Text(label),
+        value: isChecked,
+        onChanged: (bool? newValue) {
+          if (newValue == true) {
+            onChecked();
+          } else {
+            onUnChecked();
+          }
+        },
+        controlAffinity: checkBoxPosition,
+      ),
     );
   }
 }
