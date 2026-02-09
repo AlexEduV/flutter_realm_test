@@ -10,6 +10,8 @@ class AppLocalisations {
 
   static final String results = get('pages.results.title');
 
+  static final String favoritesPageTitle = get('pages.favorites.title');
+
   static final String addCarButtonTooltip = get('actions.addCar.tooltip');
 
   static final String deleteButtonTitle = get('actions.delete.title');

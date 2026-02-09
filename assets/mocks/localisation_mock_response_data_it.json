@@ -6,6 +6,9 @@
     "explore": {
       "title": "Esplora"
     },
+    "favorites": {
+      "title": "Preferite"
+    },
     "search": {
       "title": "Cerca",
       "tabs": {

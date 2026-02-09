@@ -6,6 +6,9 @@
     "explore": {
       "title": "Explore"
     },
+    "favorites": {
+      "title": "Favorites"
+    },
     "search": {
       "title": "Search",
       "tabs": {

@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -15,7 +16,7 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: const Text('Favorites', style: AppTextStyles.zonaPro30),
+        title: Text(AppLocalisations.favoritesPageTitle, style: AppTextStyles.zonaPro30),
         backgroundColor: AppColors.scaffoldColor,
       ),
       body: Padding(
