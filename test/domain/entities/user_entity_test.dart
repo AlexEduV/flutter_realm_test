@@ -1,12 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 
-import 'user_entity_test.mocks.dart';
-
-@GenerateMocks([User])
 void main() {
   group('UserEntity', () {
     test('constructor sets all fields correctly', () {
@@ -25,11 +21,7 @@ void main() {
     });
 
     test('fromSchema creates UserEntity from User', () {
-      final mockUser = MockUser();
-      when(mockUser.userId).thenReturn('u2');
-      when(mockUser.firstName).thenReturn('Jane');
-      when(mockUser.lastName).thenReturn('Smith');
-      when(mockUser.isLocationPermissionGranted).thenReturn(false);
+      final mockUser = User('u2', 'Jane', 'Smith', false, favoriteIds: RealmList([]));
 
       final entity = UserEntity.fromSchema(mockUser);
 
@@ -37,6 +29,7 @@ void main() {
       expect(entity.firstName, 'Jane');
       expect(entity.lastName, 'Smith');
       expect(entity.isLocationPermissionGranted, false);
+      expect(entity.favoriteIds, []);
     });
 
     test('copyWith returns a new UserEntity with updated fields', () {
