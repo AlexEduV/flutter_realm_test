@@ -47,6 +47,7 @@ class FavoritesPage extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(AppDimensions.normalM),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Car Image
                         ClipRRect(
@@ -67,7 +68,7 @@ class FavoritesPage extends StatelessWidget {
                                 '${car.manufacturer} ${car.model} ${car.year}',
                                 style: AppTextStyles.zonaPro18,
                               ),
-                              const SizedBox(height: AppDimensions.minorL),
+                              const SizedBox(height: AppDimensions.minorS),
                               Row(
                                 children: [
                                   Icon(
