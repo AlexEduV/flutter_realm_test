@@ -409,7 +409,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.registerFactory(User._);
     register(_toEJson, _fromEJson);
     return const SchemaObject(ObjectType.realmObject, User, 'User', [
-      SchemaProperty('userId', RealmPropertyType.string),
+      SchemaProperty('userId', RealmPropertyType.string, primaryKey: true),
       SchemaProperty('firstName', RealmPropertyType.string),
       SchemaProperty('lastName', RealmPropertyType.string),
       SchemaProperty('isLocationPermissionGranted', RealmPropertyType.bool),

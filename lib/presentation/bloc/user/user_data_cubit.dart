@@ -40,4 +40,23 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     emit(state.copyWith(isLocationPermissionGranted: newStatus));
   }
+
+  void addCarIdToFavorites(String carId) {
+    //todo: this is not working,
+    final newList = user.favoriteIds..add(carId);
+    final cleanedList = newList.toSet().toList();
+
+    user = user.copyWith(favoriteIds: cleanedList);
+    _localStorage.update(UserExtensions.fromEntity(user));
+
+    emit(state.copyWith(favoriteIds: cleanedList));
+  }
+
+  void removeCarIdFromFavorites(String carId) {
+    final newList = user.favoriteIds..remove(carId);
+    _localStorage.update(UserExtensions.fromEntity(user));
+
+    user = user.copyWith(favoriteIds: newList);
+    emit(state.copyWith(favoriteIds: newList));
+  }
 }

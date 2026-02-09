@@ -29,7 +29,7 @@ Future<void> initDependenciesContainer() async {
   //Register Realm
   final config = Configuration.local(
     [Car.schema, Person.schema, User.schema],
-    schemaVersion: 8,
+    schemaVersion: 10,
     migrationCallback: (migration, oldVersion) {
       //add object id
       if (oldVersion < 2) {
@@ -40,6 +40,20 @@ Future<void> initDependenciesContainer() async {
           if (newCar != null) {
             newCar.id = ObjectId();
           }
+        }
+      }
+
+      if (oldVersion < 10) {
+        final oldUsers = migration.oldRealm.all('User');
+        final newUsers = migration.newRealm.all<User>();
+
+        // Loop through old data to ensure uniqueness before applying the PK
+        for (var i = 0; i < oldUsers.length; i++) {
+          final oldUser = oldUsers[i];
+          final newUser = newUsers[i];
+
+          // Ensure userId is unique and not null
+          newUser.userId = oldUser.dynamic.get<String>('userId');
         }
       }
     },

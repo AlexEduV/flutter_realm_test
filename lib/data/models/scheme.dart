@@ -30,6 +30,7 @@ class _Person {
 
 @RealmModel()
 class _User {
+  @PrimaryKey()
   late String userId;
   late String firstName;
   late String lastName;

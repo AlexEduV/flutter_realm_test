@@ -296,6 +296,18 @@ class MockUserDataCubit extends _i1.Mock implements _i12.UserDataCubit {
   );
 
   @override
+  void addCarIdToFavorites(String? carId) => super.noSuchMethod(
+    Invocation.method(#addCarIdToFavorites, [carId]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void removeCarIdFromFavorites(String? carId) => super.noSuchMethod(
+    Invocation.method(#removeCarIdFromFavorites, [carId]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   void emit(_i5.UserDataState? state) => super.noSuchMethod(
     Invocation.method(#emit, [state]),
     returnValueForMissingStub: null,

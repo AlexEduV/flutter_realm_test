@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
     show ActionPane, DrawerMotion, Slidable, SlidableAction;
 import 'package:test_futter_project/common/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../widgets/app_semantics.dart';
@@ -25,6 +27,8 @@ class ExploreListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favoriteButtonSize = 38.0;
+
     return AppSemantics(
       label: AppSemanticsLabels.announcementListItem,
       child: Slidable(
@@ -62,6 +66,39 @@ class ExploreListItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(AppDimensions.normalL),
                     ),
                   ),
+
+                  Positioned(
+                    top: AppDimensions.normalXS,
+                    right: AppDimensions.normalXS,
+                    child: Material(
+                      borderRadius: BorderRadius.circular(AppDimensions.minorL),
+                      color: Colors.white,
+                      child: InkWell(
+                        onTap: () {
+                          if (car == null) return;
+
+                          if (user?.favoriteIds.contains(car?.carId) ?? false) {
+                            context.read<UserDataCubit>().removeCarIdFromFavorites(car!.carId);
+                          } else {
+                            context.read<UserDataCubit>().addCarIdToFavorites(car!.carId);
+                          }
+                        },
+                        child: Container(
+                          width: favoriteButtonSize,
+                          height: favoriteButtonSize,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(AppDimensions.minorL),
+                          ),
+                          child: Icon(
+                            user?.favoriteIds.contains(car?.carId) ?? false
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: AppColors.gold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
 
@@ -84,20 +121,13 @@ class ExploreListItem extends StatelessWidget {
                     ),
 
                     if (car?.isVerified ?? false) ...[
-                      Positioned(
-                        top: AppDimensions.normalXS,
-                        right: AppDimensions.normalXS,
-                        child: Container(
-                          padding: const EdgeInsets.all(AppDimensions.minorS),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.green[700],
-                          ),
-                          child: const Icon(
-                            Icons.check,
-                            color: Colors.white,
-                            size: AppDimensions.normalXS,
-                          ),
+                      Container(
+                        padding: const EdgeInsets.all(AppDimensions.minorS),
+                        decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.green[700]),
+                        child: const Icon(
+                          Icons.check,
+                          color: Colors.white,
+                          size: AppDimensions.normalXS,
                         ),
                       ),
                     ],
