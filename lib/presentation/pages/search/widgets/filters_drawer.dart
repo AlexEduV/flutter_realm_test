@@ -32,10 +32,12 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
   void initState() {
     super.initState();
 
-    minYearTextController.text = context.read<SearchPageCubit>().state.selectedMinYear ?? '';
-    maxYearTextController.text = context.read<SearchPageCubit>().state.selectedMaxYear ?? '';
-    minPriceTextController.text = context.read<SearchPageCubit>().state.selectedMinPrice ?? '';
-    maxPriceTextController.text = context.read<SearchPageCubit>().state.selectedMaxPrice ?? '';
+    final state = context.read<SearchPageCubit>().state;
+
+    minYearTextController.text = state.selectedMinYear ?? '';
+    maxYearTextController.text = state.selectedMaxYear ?? '';
+    minPriceTextController.text = state.selectedMinPrice ?? '';
+    maxPriceTextController.text = state.selectedMaxPrice ?? '';
   }
 
   @override
