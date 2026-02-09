@@ -17,4 +17,6 @@ class AppDimensions {
   static const bottomAppBarIconSize = 24.0;
 
   static const placeholderPageIconSize = 64.0;
+
+  static const favoriteButtonSize = 36.0;
 }

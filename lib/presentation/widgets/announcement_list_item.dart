@@ -83,6 +83,7 @@ class AnnouncementListItem extends StatelessWidget {
                           }
                         },
                         child: AnimatedFavoriteIcon(
+                          size: AppDimensions.favoriteButtonSize,
                           isFavorite: user?.favoriteIds.contains(car?.carId) ?? false,
                         ),
                       ),
