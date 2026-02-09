@@ -57,7 +57,9 @@ class RealmLocalStorage implements BaseLocalStorage {
   UserEntity initUser() {
     final users = realm.all<User>().map((element) => UserEntity.fromSchema(element)).toList();
 
-    if (users.isNotEmpty) return users.first;
+    if (users.isNotEmpty) {
+      return users.first;
+    }
 
     final user = const UserEntity(
       userId: '1',

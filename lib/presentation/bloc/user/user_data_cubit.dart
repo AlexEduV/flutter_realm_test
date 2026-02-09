@@ -17,6 +17,12 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   void init() {
     user = _localStorage.initUser();
+    emit(
+      state.copyWith(
+        favoriteIds: user.favoriteIds,
+        isLocationPermissionGranted: user.isLocationPermissionGranted,
+      ),
+    );
   }
 
   Future<void> requestLocationPermission() async {
