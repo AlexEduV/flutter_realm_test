@@ -19,4 +19,5 @@ class AppDimensions {
   static const placeholderPageIconSize = 64.0;
 
   static const favoriteButtonSize = 36.0;
+  static const favoriteItemPictureSize = 100.0;
 }
