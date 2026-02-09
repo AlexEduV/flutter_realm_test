@@ -62,32 +62,46 @@ class ExploreListItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(AppDimensions.normalL),
                     ),
                   ),
-
-                  if (car?.isVerified ?? false) ...[
-                    Positioned(
-                      top: AppDimensions.normalXS,
-                      right: AppDimensions.normalXS,
-                      child: Container(
-                        padding: const EdgeInsets.all(AppDimensions.minorS),
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                        ),
-                        child: const Icon(Icons.check, color: Colors.green, size: 24),
-                      ),
-                    ),
-                  ],
                 ],
               ),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
-                child: AppSemantics(
-                  label: AppSemanticsLabels.announcementTitle,
-                  child: Text(
-                    '${car?.manufacturer} ${car?.model ?? ''} ${car?.year ?? ''}'.toUpperCase(),
-                    style: AppTextStyles.zonaPro24,
-                  ),
+                child: Row(
+                  spacing: AppDimensions.normalXS,
+                  children: [
+                    Flexible(
+                      child: AppSemantics(
+                        label: AppSemanticsLabels.announcementTitle,
+                        child: Text(
+                          '${car?.manufacturer} ${car?.model ?? ''} ${car?.year ?? ''}'
+                              .toUpperCase(),
+                          style: AppTextStyles.zonaPro24,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+
+                    if (car?.isVerified ?? false) ...[
+                      Positioned(
+                        top: AppDimensions.normalXS,
+                        right: AppDimensions.normalXS,
+                        child: Container(
+                          padding: const EdgeInsets.all(AppDimensions.minorS),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.green[700],
+                          ),
+                          child: const Icon(
+                            Icons.check,
+                            color: Colors.white,
+                            size: AppDimensions.normalXS,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
 
