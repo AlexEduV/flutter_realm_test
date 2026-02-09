@@ -13,6 +13,7 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_list_item.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_section_item.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
@@ -111,14 +112,18 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
 
                 return SliverPadding(
                   padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
-                  sliver: SliverList(
-                    key: cars.isEmpty ? const ValueKey('empty') : widget.listKey,
+                  sliver: BlocBuilder<UserDataCubit, UserDataState>(
+                    buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
+                    builder: (context, state) {
+                      return SliverList(
+                        key: cars.isEmpty ? const ValueKey('empty') : widget.listKey,
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          final car = cars[index];
 
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                      final car = cars[index];
-
-                      return _buildItem(CarExtensions.fromEntity(car), index);
-                    }, childCount: cars.length),
+                          return _buildItem(CarExtensions.fromEntity(car), index);
+                        }, childCount: cars.length),
+                      );
+                    },
                   ),
                 );
               }
