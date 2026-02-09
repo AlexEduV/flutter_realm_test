@@ -9,6 +9,7 @@ import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import 'app_semantics.dart';
@@ -27,8 +28,6 @@ class AnnouncementListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favoriteButtonSize = 38.0;
-
     return AppSemantics(
       label: AppSemanticsLabels.announcementListItem,
       child: Slidable(
@@ -83,18 +82,8 @@ class AnnouncementListItem extends StatelessWidget {
                             context.read<UserDataCubit>().addCarIdToFavorites(car!.carId);
                           }
                         },
-                        child: Container(
-                          width: favoriteButtonSize,
-                          height: favoriteButtonSize,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppDimensions.minorL),
-                          ),
-                          child: Icon(
-                            user?.favoriteIds.contains(car?.carId) ?? false
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            color: AppColors.gold,
-                          ),
+                        child: AnimatedFavoriteIcon(
+                          isFavorite: user?.favoriteIds.contains(car?.carId) ?? false,
                         ),
                       ),
                     ),
