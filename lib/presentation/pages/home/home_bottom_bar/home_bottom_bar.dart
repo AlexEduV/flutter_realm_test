@@ -69,9 +69,9 @@ class HomeBottomBar extends StatelessWidget {
               label: AppSemanticsLabels.homeBottomBarItemInbox,
             ),
             const HomeBottomBarItem(
-              index: AppConstants.homeTabSettings,
-              icon: Icons.settings_outlined,
-              label: AppSemanticsLabels.homeBottomBarItemSettings,
+              index: AppConstants.homeTabAccount,
+              icon: Icons.person_2_outlined,
+              label: AppSemanticsLabels.homeBottomBarItemAccount,
             ),
           ],
         ),

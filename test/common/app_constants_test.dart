@@ -16,14 +16,14 @@ void main() {
     });
 
     test('homeTabSettings should be 3', () {
-      expect(AppConstants.homeTabSettings, 3);
+      expect(AppConstants.homeTabAccount, 3);
     });
 
     test('all tab constants should be of type int', () {
       expect(AppConstants.homeTabExplore, isA<int>());
       expect(AppConstants.homeTabFavorites, isA<int>());
       expect(AppConstants.homeTabInbox, isA<int>());
-      expect(AppConstants.homeTabSettings, isA<int>());
+      expect(AppConstants.homeTabAccount, isA<int>());
     });
   });
 }

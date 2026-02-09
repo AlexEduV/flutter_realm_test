@@ -15,7 +15,7 @@ class AppSemanticsLabels {
   static const homeBottomBarItemFavorites = 'homeBottomBarItemFavorites';
   static const homeBottomBarItemAdd = 'homeBottomBarItemAdd';
   static const homeBottomBarItemInbox = 'homeBottomBarItemInbox';
-  static const homeBottomBarItemSettings = 'homeBottomBarItemSettings';
+  static const homeBottomBarItemAccount = 'homeBottomBarItemAccount';
 
   static const homePageSearchButton = 'homePageSearchButton';
 
