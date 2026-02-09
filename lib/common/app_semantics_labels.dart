@@ -20,4 +20,8 @@ class AppSemanticsLabels {
   static const homePageSearchButton = 'homePageSearchButton';
 
   static const filterButton = 'filterButton';
+
+  static const filterDrawerBodyTypeCheckbox = 'filterDrawerBodyTypeCheckbox';
+  static const filterDrawerFuelTypeCheckbox = 'filterDrawerFuelTypeCheckbox';
+  static const filterDrawerTransmissionTypeCheckbox = 'filterDrawerTransmissionTypeCheckbox';
 }

@@ -5,6 +5,7 @@ class AppSemantics extends StatelessWidget {
   final bool? isSelected;
   final bool? button;
   final bool? enabled;
+  final bool? isChecked;
 
   final Widget child;
 
@@ -12,6 +13,7 @@ class AppSemantics extends StatelessWidget {
     required this.label,
     required this.child,
     this.isSelected,
+    this.isChecked,
     this.button,
     this.enabled,
     super.key,
@@ -20,7 +22,13 @@ class AppSemantics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MergeSemantics(
-      child: Semantics(label: label, button: button, selected: isSelected, child: child),
+      child: Semantics(
+        label: label,
+        button: button,
+        selected: isSelected,
+        checked: isChecked,
+        child: child,
+      ),
     );
   }
 }
