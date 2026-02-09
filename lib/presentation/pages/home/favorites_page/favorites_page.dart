@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -19,89 +20,108 @@ class FavoritesPage extends StatelessWidget {
         title: Text(AppLocalisations.favoritesPageTitle, style: AppTextStyles.zonaPro30),
         backgroundColor: AppColors.scaffoldColor,
       ),
-      body: BlocBuilder<ExplorePageCubit, ExplorePageState>(
+      body: BlocBuilder<UserDataCubit, UserDataState>(
+        buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
         builder: (context, state) {
-          final allCars = state.cars;
+          return BlocBuilder<ExplorePageCubit, ExplorePageState>(
+            builder: (context, state) {
+              final allCars = state.cars;
 
-          final favoriteIds = context.read<UserDataCubit>().state.favoriteIds;
-          final favoriteEntities = allCars
-              .where((entity) => favoriteIds.contains(entity.carId))
-              .toList();
+              final favoriteIds = context.read<UserDataCubit>().state.favoriteIds;
+              final favoriteEntities = allCars
+                  .where((entity) => favoriteIds.contains(entity.carId))
+                  .toList();
 
-          return ListView.builder(
-            padding: const EdgeInsets.only(top: AppDimensions.normalL),
-            itemBuilder: (context, index) {
-              final car = favoriteEntities[index];
+              return ListView.builder(
+                padding: const EdgeInsets.only(top: AppDimensions.normalL),
+                itemBuilder: (context, index) {
+                  final car = favoriteEntities[index];
 
-              return Container(
-                margin: const EdgeInsets.only(
-                  bottom: AppDimensions.normalL,
-                  left: AppDimensions.normalL,
-                  right: AppDimensions.normalL,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-                  color: Colors.white,
-                ),
-                child: Container(
-                  padding: const EdgeInsets.all(AppDimensions.normalM),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Car Image
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                        child: Container(
-                          color: AppColors.placeholderColor,
-                          width: AppDimensions.favoriteItemPictureSize,
-                          height: AppDimensions.favoriteItemPictureSize,
-                        ),
-                      ),
-                      const SizedBox(width: AppDimensions.normalM),
-                      // Car Details
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '${car.manufacturer} ${car.model} ${car.year}',
-                              style: AppTextStyles.zonaPro18,
+                  return Container(
+                    margin: const EdgeInsets.only(
+                      bottom: AppDimensions.normalL,
+                      left: AppDimensions.normalL,
+                      right: AppDimensions.normalL,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppDimensions.normalXL),
+                      color: Colors.white,
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.all(AppDimensions.normalM),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Car Image
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                            child: Container(
+                              color: AppColors.placeholderColor,
+                              width: AppDimensions.favoriteItemPictureSize,
+                              height: AppDimensions.favoriteItemPictureSize,
                             ),
-                            const SizedBox(height: AppDimensions.minorS),
-                            Row(
+                          ),
+                          const SizedBox(width: AppDimensions.normalM),
+                          // Car Details
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Icon(
-                                  Icons.directions_car,
-                                  size: AppDimensions.normalM,
-                                  color: Colors.grey[700],
-                                ),
-                                const SizedBox(width: AppDimensions.minorL),
                                 Text(
-                                  car.bodyType,
-                                  style: AppTextStyles.zonaPro14.copyWith(color: Colors.grey[700]),
+                                  '${car.manufacturer} ${car.model} ${car.year}',
+                                  style: AppTextStyles.zonaPro18,
+                                ),
+                                const SizedBox(height: AppDimensions.minorS),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.directions_car,
+                                      size: AppDimensions.normalM,
+                                      color: Colors.grey[700],
+                                    ),
+                                    const SizedBox(width: AppDimensions.minorL),
+                                    Text(
+                                      car.bodyType,
+                                      style: AppTextStyles.zonaPro14.copyWith(
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: AppDimensions.normalL),
+                                Text(
+                                  '\$ ${car.price}',
+                                  style: AppTextStyles.zonaPro16.copyWith(color: Colors.green),
                                 ),
                               ],
                             ),
-                            const SizedBox(height: AppDimensions.normalL),
-                            Text(
-                              '\$ ${car.price}',
-                              style: AppTextStyles.zonaPro16.copyWith(color: Colors.green),
+                          ),
+                          // Favorite Icon
+                          Material(
+                            borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                              onTap: () =>
+                                  context.read<UserDataCubit>().removeCarIdFromFavorites(car.carId),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: AppColors.gold.withAlpha(30),
+                                  borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                                ),
+                                width: AppDimensions.favoriteButtonSize,
+                                height: AppDimensions.favoriteButtonSize,
+                                child: const Icon(Icons.favorite, color: AppColors.gold),
+                              ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      // Favorite Icon
-                      const SizedBox(
-                        width: AppDimensions.favoriteButtonSize,
-                        height: AppDimensions.favoriteButtonSize,
-                        child: Icon(Icons.favorite, color: AppColors.gold),
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
+                itemCount: favoriteEntities.length,
               );
             },
-            itemCount: favoriteEntities.length,
           );
         },
       ),
