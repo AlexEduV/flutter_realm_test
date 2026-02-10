@@ -51,5 +51,6 @@ class CarDto {
     fuelType: json['fuel_type'] as String,
     bodyType: json['body_type'] as String,
     color: json['color'] as String,
+    owner: json['owner'] as String,
   );
 }

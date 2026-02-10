@@ -42,6 +42,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.diesel.name,
         transmissionType: TransmissionType.hybrid.name,
         color: 'Yellow',
+        owner: 'James Norrington',
       ),
       CarDto(
         id: initIds[1],
@@ -57,6 +58,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.hybrid.name,
         transmissionType: TransmissionType.manual.name,
         color: 'Red',
+        owner: 'Jack Smith',
       ),
       CarDto(
         id: initIds[2],
@@ -72,6 +74,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.diesel.name,
         transmissionType: TransmissionType.hybrid.name,
         color: 'Black',
+        owner: 'Arya Stark',
       ),
     ];
 
@@ -113,6 +116,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.diesel.name,
         transmissionType: TransmissionType.hybrid.name,
         color: 'Yellow',
+        owner: 'James Norrington',
       ),
       CarDto(
         id: initIds[1],
@@ -129,6 +133,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.hybrid.name,
         transmissionType: TransmissionType.manual.name,
         color: 'Red',
+        owner: 'Jack Smith',
       ),
       CarDto(
         id: initIds[2],
@@ -145,6 +150,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.diesel.name,
         transmissionType: TransmissionType.hybrid.name,
         color: 'Black',
+        owner: 'Arya Stark',
       ),
     ];
   }

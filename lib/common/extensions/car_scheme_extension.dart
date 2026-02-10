@@ -20,6 +20,7 @@ extension CarExtensions on Car {
       fuelType: fuelType ?? '',
       bodyType: bodyType ?? '',
       transmissionType: transmissionType ?? '',
+      owner: owner?.name ?? '',
     );
   }
 
@@ -39,6 +40,7 @@ extension CarExtensions on Car {
       bodyType: dto.bodyType,
       fuelType: dto.fuelType,
       transmissionType: dto.transmissionType,
+      owner: Person(dto.owner ?? ''),
     );
   }
 
@@ -58,6 +60,7 @@ extension CarExtensions on Car {
       bodyType: entity.bodyType,
       fuelType: entity.fuelType,
       transmissionType: entity.transmissionType,
+      owner: Person(entity.owner ?? ''),
     );
   }
 }

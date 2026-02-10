@@ -177,7 +177,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Marvin McKinney',
+                                      car?.owner ?? '',
                                       style: AppTextStyles.zonaPro18.copyWith(
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -202,7 +202,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                             ),
 
                                             Text(
-                                              '24 km away',
+                                              '${car?.distanceTo ?? ''} km away',
                                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                                 fontWeight: FontWeight.w400,
                                               ),
