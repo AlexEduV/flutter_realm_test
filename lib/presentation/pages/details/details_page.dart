@@ -49,14 +49,14 @@ class _DetailsPageState extends State<DetailsPage> {
                   spacing: AppDimensions.minorM,
                   children: [
                     Text(
-                      'Toyota Camry',
+                      '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
                       style: AppTextStyles.zonaPro30.copyWith(fontWeight: FontWeight.w500),
                     ),
 
                     Row(
                       children: [
                         Text(
-                          '\$ 20 000',
+                          '\$ ${car?.price ?? ''}',
                           style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                         ),
 

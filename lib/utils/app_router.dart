@@ -20,7 +20,7 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.details,
             pageBuilder: (context, state) {
-              final carId = state.pathParameters['carId'] ?? '';
+              final carId = state.extra as String? ?? '';
               return CupertinoPage(child: DetailsPage(carId: carId));
             },
           ),
@@ -32,6 +32,6 @@ class AppRouter {
   static GoRouter get router => _router;
 
   static void goToDetailsRoute(BuildContext context, String carId) {
-    context.go('${AppRoutes.home}${AppRoutes.details}?carId=$carId');
+    context.go('${AppRoutes.home}${AppRoutes.details}', extra: carId);
   }
 }

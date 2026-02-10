@@ -78,7 +78,7 @@ class RealmLocalStorage implements BaseLocalStorage {
 
   @override
   CarEntity getCarById(String id) {
-    final car = realm.all<Car>().query("carId == '$id'").firstOrNull;
+    final car = realm.all<Car>().query('carId == \$0', [id]).firstOrNull;
     if (car == null) return CarEntity.empty();
 
     //maybe watch changes here
