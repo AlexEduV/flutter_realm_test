@@ -164,54 +164,85 @@ class _DetailsPageState extends State<DetailsPage> {
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(AppDimensions.normalS),
                           ),
-                          child: Row(
-                            spacing: AppDimensions.normalM,
+                          child: Column(
                             children: [
-                              const CircleAvatar(
-                                backgroundColor: AppColors.scaffoldColor,
-                                radius: 24,
-                              ),
+                              Row(
+                                spacing: AppDimensions.normalM,
+                                children: [
+                                  const CircleAvatar(
+                                    backgroundColor: AppColors.scaffoldColor,
+                                    radius: 24,
+                                  ),
 
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      car?.owner ?? '',
-                                      style: AppTextStyles.zonaPro18.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Owner',
-                                          style: AppTextStyles.zonaPro16Grey.copyWith(
-                                            fontWeight: FontWeight.w400,
+                                          car?.owner ?? '',
+                                          style: AppTextStyles.zonaPro18.copyWith(
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
 
                                         Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            const Icon(
-                                              Icons.location_pin,
-                                              size: AppDimensions.detailsPageItemIconSize,
-                                              color: Colors.grey,
-                                            ),
-
                                             Text(
-                                              '${car?.distanceTo ?? ''} km away',
+                                              'Owner',
                                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                                 fontWeight: FontWeight.w400,
                                               ),
+                                            ),
+
+                                            Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.location_pin,
+                                                  size: AppDimensions.detailsPageItemIconSize,
+                                                  color: Colors.grey,
+                                                ),
+
+                                                Text(
+                                                  '${car?.distanceTo ?? ''} km away',
+                                                  style: AppTextStyles.zonaPro16Grey.copyWith(
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
                                       ],
                                     ),
-                                  ],
+                                  ),
+                                ],
+                              ),
+
+                              const SizedBox(height: AppDimensions.normalM),
+
+                              SizedBox(
+                                width: double.infinity, // Makes the button full width
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Your action here
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 16,
+                                    ), // Button height
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                        8,
+                                      ), // Optional rounded corners
+                                    ),
+                                    // You can customize splash color via overlayColor
+                                  ),
+                                  child: const Text(
+                                    'Send Message',
+                                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                             ],
