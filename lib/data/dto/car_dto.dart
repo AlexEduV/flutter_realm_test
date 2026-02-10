@@ -7,6 +7,7 @@ class CarDto {
   final String manufacturer;
   final String type;
   final String? year;
+  final String? color;
   final String bodyType;
   final String fuelType;
   final String transmissionType;
@@ -28,6 +29,7 @@ class CarDto {
     required this.bodyType,
     required this.fuelType,
     required this.transmissionType,
+    this.color,
     this.year,
     this.owner,
     this.kilometers = 0,
@@ -48,5 +50,6 @@ class CarDto {
     transmissionType: json['transmission_type'] as String,
     fuelType: json['fuel_type'] as String,
     bodyType: json['body_type'] as String,
+    color: json['color'] as String,
   );
 }

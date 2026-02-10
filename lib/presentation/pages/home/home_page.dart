@@ -82,6 +82,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         bodyType: BodyType.sedan.name,
         fuelType: FuelType.ev.name,
         transmissionType: TransmissionType.automatic.name,
+        color: 'White',
       ),
     );
 

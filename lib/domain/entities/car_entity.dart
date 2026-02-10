@@ -11,6 +11,7 @@ class CarEntity {
   final String manufacturer;
   final String type;
   final String? year;
+  final String? color;
   final String? owner;
   final String bodyType;
   final String fuelType;
@@ -32,6 +33,7 @@ class CarEntity {
     required this.fuelType,
     required this.transmissionType,
     this.year,
+    this.color,
     this.owner,
     this.kilometers,
     this.distanceTo,
@@ -49,6 +51,7 @@ class CarEntity {
       bodyType: BodyType.sedan.name,
       fuelType: FuelType.gasoline.name,
       transmissionType: TransmissionType.manual.name,
+      color: 'White',
     );
   }
 
@@ -60,6 +63,7 @@ class CarEntity {
       isVerified: dto.isVerified,
       isHotPromotion: dto.isHotPromotion,
       type: dto.type,
+      color: dto.color,
       price: dto.price,
       distanceTo: dto.distanceTo,
       year: dto.year,
@@ -81,6 +85,7 @@ class CarEntity {
       isHotPromotion: car.isHotProposition ?? false,
       price: car.price,
       distanceTo: car.distanceTo,
+      color: car.color,
       year: car.year,
       owner: car.owner?.name ?? '',
       kilometers: car.kilometers,

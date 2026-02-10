@@ -10,6 +10,7 @@ class _Car {
   late String manufacturer;
   late String type;
   String? model;
+  String? color;
   String? year;
   String? bodyType;
   String? fuelType;

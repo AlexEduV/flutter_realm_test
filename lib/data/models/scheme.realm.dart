@@ -18,6 +18,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     String manufacturer,
     String type, {
     String? model,
+    String? color,
     String? year,
     String? bodyType,
     String? fuelType,
@@ -42,6 +43,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'manufacturer', manufacturer);
     RealmObjectBase.set(this, 'type', type);
     RealmObjectBase.set(this, 'model', model);
+    RealmObjectBase.set(this, 'color', color);
     RealmObjectBase.set(this, 'year', year);
     RealmObjectBase.set(this, 'bodyType', bodyType);
     RealmObjectBase.set(this, 'fuelType', fuelType);
@@ -82,6 +84,11 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   String? get model => RealmObjectBase.get<String>(this, 'model') as String?;
   @override
   set model(String? value) => RealmObjectBase.set(this, 'model', value);
+
+  @override
+  String? get color => RealmObjectBase.get<String>(this, 'color') as String?;
+  @override
+  set color(String? value) => RealmObjectBase.set(this, 'color', value);
 
   @override
   String? get year => RealmObjectBase.get<String>(this, 'year') as String?;
@@ -158,6 +165,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       'manufacturer': manufacturer.toEJson(),
       'type': type.toEJson(),
       'model': model.toEJson(),
+      'color': color.toEJson(),
       'year': year.toEJson(),
       'bodyType': bodyType.toEJson(),
       'fuelType': fuelType.toEJson(),
@@ -187,6 +195,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
           fromEJson(manufacturer),
           fromEJson(type),
           model: fromEJson(ejson['model']),
+          color: fromEJson(ejson['color']),
           year: fromEJson(ejson['year']),
           bodyType: fromEJson(ejson['bodyType']),
           fuelType: fromEJson(ejson['fuelType']),
@@ -214,6 +223,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('manufacturer', RealmPropertyType.string),
       SchemaProperty('type', RealmPropertyType.string),
       SchemaProperty('model', RealmPropertyType.string, optional: true),
+      SchemaProperty('color', RealmPropertyType.string, optional: true),
       SchemaProperty('year', RealmPropertyType.string, optional: true),
       SchemaProperty('bodyType', RealmPropertyType.string, optional: true),
       SchemaProperty('fuelType', RealmPropertyType.string, optional: true),

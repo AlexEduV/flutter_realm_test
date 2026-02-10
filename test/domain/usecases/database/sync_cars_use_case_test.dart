@@ -15,7 +15,7 @@ void main() {
     });
 
     test('calls syncCars on repository', () async {
-      when(mockCarRepository.syncCars()).thenAnswer((_) async => null);
+      when(mockCarRepository.syncCars()).thenAnswer((_) async {});
 
       await useCase.call();
 

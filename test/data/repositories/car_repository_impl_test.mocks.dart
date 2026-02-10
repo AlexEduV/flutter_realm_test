@@ -462,6 +462,12 @@ class MockCar extends _i1.Mock implements _i8.Car {
   );
 
   @override
+  set color(String? value) => super.noSuchMethod(
+    Invocation.setter(#color, value),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   set year(String? value) => super.noSuchMethod(
     Invocation.setter(#year, value),
     returnValueForMissingStub: null,
