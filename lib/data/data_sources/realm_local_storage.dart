@@ -75,4 +75,14 @@ class RealmLocalStorage implements BaseLocalStorage {
 
     return user;
   }
+
+  @override
+  CarEntity getCarById(String id) {
+    final car = realm.all<Car>().query("carId == '$id'").firstOrNull;
+    if (car == null) return CarEntity.empty();
+
+    //maybe watch changes here
+
+    return car.toEntity();
+  }
 }

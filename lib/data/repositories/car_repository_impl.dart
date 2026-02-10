@@ -24,7 +24,7 @@ class CarRepositoryImpl implements CarRepository {
   Stream<List<CarEntity>>? watchCars() {
     return localStorage.watch<Car>().map((changes) {
       final results = changes.results as RealmResults<Car>;
-      final list = results.map((schema) => schema.toEntity(schema)).toList();
+      final list = results.map((schema) => schema.toEntity()).toList();
       return list.cast<CarEntity>();
     });
   }
@@ -59,5 +59,10 @@ class CarRepositoryImpl implements CarRepository {
   @override
   void deleteAll() {
     localStorage.deleteAll();
+  }
+
+  @override
+  CarEntity getCarById(String id) {
+    return localStorage.getCarById(id);
   }
 }

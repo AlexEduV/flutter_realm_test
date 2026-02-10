@@ -8,13 +8,13 @@ import 'dart:async' as _i6;
 import 'package:geolocator_platform_interface/src/enums/enums.dart' as _i10;
 import 'package:geolocator_platform_interface/src/geolocator_platform_interface.dart'
     as _i9;
-import 'package:geolocator_platform_interface/src/models/models.dart' as _i3;
+import 'package:geolocator_platform_interface/src/models/models.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:realm/realm.dart' as _i7;
-import 'package:test_futter_project/domain/entities/car_entity.dart' as _i5;
+import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart'
-    as _i4;
+    as _i5;
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
     as _i8;
 
@@ -37,26 +37,31 @@ class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
     : super(parent, parentInvocation);
 }
 
-class _FakePosition_1 extends _i1.SmartFake implements _i3.Position {
-  _FakePosition_1(Object parent, Invocation parentInvocation)
+class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
+  _FakeCarEntity_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakePosition_2 extends _i1.SmartFake implements _i4.Position {
+  _FakePosition_2(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
 /// A class which mocks [BaseLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
+class MockBaseLocalStorage extends _i1.Mock implements _i5.BaseLocalStorage {
   MockBaseLocalStorage() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i5.CarEntity> getAll() =>
+  List<_i3.CarEntity> getAll() =>
       (super.noSuchMethod(
             Invocation.method(#getAll, []),
-            returnValue: <_i5.CarEntity>[],
+            returnValue: <_i3.CarEntity>[],
           )
-          as List<_i5.CarEntity>);
+          as List<_i3.CarEntity>);
 
   @override
   void add(dynamic T) => super.noSuchMethod(
@@ -100,6 +105,17 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
             ),
           )
           as _i2.UserEntity);
+
+  @override
+  _i3.CarEntity getCarById(String? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#getCarById, [id]),
+            returnValue: _FakeCarEntity_1(
+              this,
+              Invocation.method(#getCarById, [id]),
+            ),
+          )
+          as _i3.CarEntity);
 }
 
 /// A class which mocks [RequestLocationPermissionUseCase].
@@ -158,27 +174,27 @@ class MockGeolocatorPlatform extends _i1.Mock
           as _i6.Future<bool>);
 
   @override
-  _i6.Future<_i3.Position?> getLastKnownPosition({
+  _i6.Future<_i4.Position?> getLastKnownPosition({
     bool? forceLocationManager = false,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#getLastKnownPosition, [], {
               #forceLocationManager: forceLocationManager,
             }),
-            returnValue: _i6.Future<_i3.Position?>.value(),
+            returnValue: _i6.Future<_i4.Position?>.value(),
           )
-          as _i6.Future<_i3.Position?>);
+          as _i6.Future<_i4.Position?>);
 
   @override
-  _i6.Future<_i3.Position> getCurrentPosition({
-    _i3.LocationSettings? locationSettings,
+  _i6.Future<_i4.Position> getCurrentPosition({
+    _i4.LocationSettings? locationSettings,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#getCurrentPosition, [], {
               #locationSettings: locationSettings,
             }),
-            returnValue: _i6.Future<_i3.Position>.value(
-              _FakePosition_1(
+            returnValue: _i6.Future<_i4.Position>.value(
+              _FakePosition_2(
                 this,
                 Invocation.method(#getCurrentPosition, [], {
                   #locationSettings: locationSettings,
@@ -186,7 +202,7 @@ class MockGeolocatorPlatform extends _i1.Mock
               ),
             ),
           )
-          as _i6.Future<_i3.Position>);
+          as _i6.Future<_i4.Position>);
 
   @override
   _i6.Stream<_i10.ServiceStatus> getServiceStatusStream() =>
@@ -197,16 +213,16 @@ class MockGeolocatorPlatform extends _i1.Mock
           as _i6.Stream<_i10.ServiceStatus>);
 
   @override
-  _i6.Stream<_i3.Position> getPositionStream({
-    _i3.LocationSettings? locationSettings,
+  _i6.Stream<_i4.Position> getPositionStream({
+    _i4.LocationSettings? locationSettings,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#getPositionStream, [], {
               #locationSettings: locationSettings,
             }),
-            returnValue: _i6.Stream<_i3.Position>.empty(),
+            returnValue: _i6.Stream<_i4.Position>.empty(),
           )
-          as _i6.Stream<_i3.Position>);
+          as _i6.Stream<_i4.Position>);
 
   @override
   _i6.Future<_i10.LocationAccuracyStatus> requestTemporaryFullAccuracy({

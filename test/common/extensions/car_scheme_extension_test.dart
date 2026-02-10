@@ -26,7 +26,7 @@ void main() {
         price: 20000,
       );
 
-      final entity = car.toEntity(car);
+      final entity = car.toEntity();
 
       expect(entity.carId, 'car123');
       expect(entity.model, 'Corolla');

@@ -17,4 +17,6 @@ abstract class BaseLocalStorage {
   void deleteById(ObjectId id);
 
   UserEntity initUser();
+
+  CarEntity getCarById(String id);
 }

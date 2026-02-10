@@ -14,4 +14,6 @@ abstract class CarRepository {
   void deleteAll();
 
   void deleteCarById(ObjectId id);
+
+  CarEntity getCarById(String id);
 }

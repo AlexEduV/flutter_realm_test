@@ -5,21 +5,21 @@ import '../../data/models/scheme.dart';
 import '../../domain/entities/car_entity.dart';
 
 extension CarExtensions on Car {
-  CarEntity toEntity(Car car) {
+  CarEntity toEntity() {
     return CarEntity(
-      carId: car.carId,
-      model: car.model ?? '',
-      manufacturer: car.manufacturer,
-      type: car.type,
-      isVerified: car.isChecked ?? false,
-      isHotPromotion: car.isHotProposition ?? false,
-      year: car.year,
-      kilometers: car.kilometers,
-      distanceTo: car.distanceTo,
-      price: car.price,
-      fuelType: car.fuelType ?? '',
-      bodyType: car.bodyType ?? '',
-      transmissionType: car.transmissionType ?? '',
+      carId: carId,
+      model: model ?? '',
+      manufacturer: manufacturer,
+      type: type,
+      isVerified: isChecked ?? false,
+      isHotPromotion: isHotProposition ?? false,
+      year: year,
+      kilometers: kilometers,
+      distanceTo: distanceTo,
+      price: price,
+      fuelType: fuelType ?? '',
+      bodyType: bodyType ?? '',
+      transmissionType: transmissionType ?? '',
     );
   }
 

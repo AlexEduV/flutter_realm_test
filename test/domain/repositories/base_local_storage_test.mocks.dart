@@ -7,10 +7,10 @@ import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:realm/realm.dart' as _i6;
-import 'package:test_futter_project/domain/entities/car_entity.dart' as _i4;
+import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart'
-    as _i3;
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -31,21 +31,26 @@ class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
     : super(parent, parentInvocation);
 }
 
+class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
+  _FakeCarEntity_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [BaseLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBaseLocalStorage extends _i1.Mock implements _i3.BaseLocalStorage {
+class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
   MockBaseLocalStorage() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i4.CarEntity> getAll() =>
+  List<_i3.CarEntity> getAll() =>
       (super.noSuchMethod(
             Invocation.method(#getAll, []),
-            returnValue: <_i4.CarEntity>[],
+            returnValue: <_i3.CarEntity>[],
           )
-          as List<_i4.CarEntity>);
+          as List<_i3.CarEntity>);
 
   @override
   void add(dynamic T) => super.noSuchMethod(
@@ -89,4 +94,15 @@ class MockBaseLocalStorage extends _i1.Mock implements _i3.BaseLocalStorage {
             ),
           )
           as _i2.UserEntity);
+
+  @override
+  _i3.CarEntity getCarById(String? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#getCarById, [id]),
+            returnValue: _FakeCarEntity_1(
+              this,
+              Invocation.method(#getCarById, [id]),
+            ),
+          )
+          as _i3.CarEntity);
 }

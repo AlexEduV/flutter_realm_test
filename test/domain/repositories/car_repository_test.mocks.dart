@@ -7,9 +7,9 @@ import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:realm/realm.dart' as _i5;
-import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
+import 'package:test_futter_project/domain/entities/car_entity.dart' as _i2;
 import 'package:test_futter_project/domain/repositories/car_repository.dart'
-    as _i2;
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,24 +25,29 @@ import 'package:test_futter_project/domain/repositories/car_repository.dart'
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeCarEntity_0 extends _i1.SmartFake implements _i2.CarEntity {
+  _FakeCarEntity_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [CarRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarRepository extends _i1.Mock implements _i2.CarRepository {
+class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
   MockCarRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i3.CarEntity> getAllCars() =>
+  List<_i2.CarEntity> getAllCars() =>
       (super.noSuchMethod(
             Invocation.method(#getAllCars, []),
-            returnValue: <_i3.CarEntity>[],
+            returnValue: <_i2.CarEntity>[],
           )
-          as List<_i3.CarEntity>);
+          as List<_i2.CarEntity>);
 
   @override
-  void addCar(_i3.CarEntity? car) => super.noSuchMethod(
+  void addCar(_i2.CarEntity? car) => super.noSuchMethod(
     Invocation.method(#addCar, [car]),
     returnValueForMissingStub: null,
   );
@@ -67,4 +72,15 @@ class MockCarRepository extends _i1.Mock implements _i2.CarRepository {
     Invocation.method(#deleteCarById, [id]),
     returnValueForMissingStub: null,
   );
+
+  @override
+  _i2.CarEntity getCarById(String? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#getCarById, [id]),
+            returnValue: _FakeCarEntity_0(
+              this,
+              Invocation.method(#getCarById, [id]),
+            ),
+          )
+          as _i2.CarEntity);
 }
