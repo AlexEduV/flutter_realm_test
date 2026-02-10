@@ -19,11 +19,13 @@ class AnnouncementListItem extends StatelessWidget {
   final CarEntity? car;
   final UserEntity? user;
   final void Function()? onDismissed;
+  final bool isExploreItem;
 
   const AnnouncementListItem({
     required this.car,
     required this.user,
     required this.onDismissed,
+    this.isExploreItem = true,
     super.key,
   });
 
@@ -57,7 +59,9 @@ class AnnouncementListItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppDimensions.normalL),
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
-              onTap: () => AppRouter.goToDetailsRoute(context, car?.carId ?? ''),
+              onTap: () => isExploreItem
+                  ? AppRouter.goToDetailsRouteFromExplore(context, car?.carId ?? '')
+                  : AppRouter.goToDetailsRouteFromSearch(context, car?.carId ?? ''),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: AppDimensions.contentPadding,

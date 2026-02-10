@@ -162,6 +162,7 @@ class _SearchPageState extends State<SearchPage> {
                         return SliverList(
                           delegate: SliverChildBuilderDelegate((context, index) {
                             return AnnouncementListItem(
+                              isExploreItem: false,
                               car: state.results[index],
                               user: context.read<UserDataCubit>().user,
                               onDismissed: () {},

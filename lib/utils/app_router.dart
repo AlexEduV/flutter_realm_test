@@ -16,6 +16,15 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.search,
             pageBuilder: (context, state) => const CupertinoPage(child: SearchPage()),
+            routes: <RouteBase>[
+              GoRoute(
+                path: AppRoutes.details,
+                pageBuilder: (context, state) {
+                  final carId = state.extra as String? ?? '';
+                  return CupertinoPage(child: DetailsPage(carId: carId));
+                },
+              ),
+            ],
           ),
           GoRoute(
             path: AppRoutes.details,
@@ -31,7 +40,11 @@ class AppRouter {
 
   static GoRouter get router => _router;
 
-  static void goToDetailsRoute(BuildContext context, String carId) {
+  static void goToDetailsRouteFromExplore(BuildContext context, String carId) {
     context.go('${AppRoutes.home}${AppRoutes.details}', extra: carId);
+  }
+
+  static void goToDetailsRouteFromSearch(BuildContext context, String carId) {
+    context.go('${AppRoutes.home}${AppRoutes.search}/${AppRoutes.details}', extra: carId);
   }
 }
