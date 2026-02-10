@@ -35,6 +35,19 @@ class _DetailsPageState extends State<DetailsPage> {
 
           return Stack(
             children: [
+              Positioned(
+                top: 55,
+                left: 0,
+                child: IconButton(
+                  onPressed: () => context.pop(),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: AppDimensions.appBarIconSize,
+                    color: AppColors.headerColor,
+                  ),
+                ),
+              ),
+
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -147,20 +160,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   ),
                 ],
               ),
-
-              Positioned(
-                top: 55,
-                left: 0,
-                child: IconButton(
-                  onPressed: () => context.pop(),
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: AppDimensions.appBarIconSize,
-                    color: AppColors.headerColor,
-                  ),
-                ),
-              ),
-            ],
+            ].reversed.toList(),
           );
         },
       ),
