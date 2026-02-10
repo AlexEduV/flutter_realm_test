@@ -40,11 +40,11 @@ class AppRouter {
 
   static GoRouter get router => _router;
 
-  static void goToDetailsRouteFromExplore(BuildContext context, String carId) {
-    context.go('${AppRoutes.home}${AppRoutes.details}', extra: carId);
+  static void goToDetailsRouteFromExplore(String carId) {
+    _router.go('${AppRoutes.home}${AppRoutes.details}', extra: carId);
   }
 
-  static void goToDetailsRouteFromSearch(BuildContext context, String carId) {
-    context.go('${AppRoutes.home}${AppRoutes.search}/${AppRoutes.details}', extra: carId);
+  static void goToDetailsRouteFromSearch(String carId) {
+    _router.go('${AppRoutes.home}${AppRoutes.search}/${AppRoutes.details}', extra: carId);
   }
 }
