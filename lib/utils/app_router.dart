@@ -30,4 +30,8 @@ class AppRouter {
   );
 
   static GoRouter get router => _router;
+
+  static void goToDetailsRoute(BuildContext context, String carId) {
+    context.go('${AppRoutes.home}${AppRoutes.details}?carId=$carId');
+  }
 }

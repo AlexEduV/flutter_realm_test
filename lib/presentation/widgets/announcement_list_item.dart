@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
     show ActionPane, DrawerMotion, Slidable, SlidableAction;
-import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
@@ -14,6 +12,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
+import '../../utils/app_router.dart';
 import 'app_semantics.dart';
 
 class AnnouncementListItem extends StatelessWidget {
@@ -58,8 +57,7 @@ class AnnouncementListItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppDimensions.normalL),
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
-              onTap: () =>
-                  context.go('${AppRoutes.home}${AppRoutes.details}?carId=${car?.carId ?? ''}'),
+              onTap: () => AppRouter.goToDetailsRoute(context, car?.carId ?? ''),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: AppDimensions.contentPadding,

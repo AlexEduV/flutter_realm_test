@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
-import '../../../../../common/app_routes.dart';
 import '../../../../../common/app_text_styles.dart';
+import '../../../../../utils/app_router.dart';
 
 class FavoritesListItem extends StatelessWidget {
   final CarEntity car;
@@ -26,7 +25,7 @@ class FavoritesListItem extends StatelessWidget {
         color: Colors.white,
         child: InkWell(
           borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-          onTap: () => context.go('${AppRoutes.home}${AppRoutes.details}?carId=${car.carId}'),
+          onTap: () => AppRouter.goToDetailsRoute(context, car.carId),
           child: Container(
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalXL)),
             child: Container(
