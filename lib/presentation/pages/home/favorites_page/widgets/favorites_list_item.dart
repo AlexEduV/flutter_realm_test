@@ -25,7 +25,7 @@ class FavoritesListItem extends StatelessWidget {
         color: Colors.white,
         child: InkWell(
           borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-          onTap: () => AppRouter.goToDetailsRouteFromExplore(context, car.carId),
+          onTap: () => AppRouter.goToDetailsRouteFromExplore(car.carId),
           child: Container(
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalXL)),
             child: Container(
