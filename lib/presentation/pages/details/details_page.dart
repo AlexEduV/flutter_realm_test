@@ -172,40 +172,47 @@ class _DetailsPageState extends State<DetailsPage> {
                                 radius: 24,
                               ),
 
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Marvin McKinney',
-                                    style: AppTextStyles.zonaPro18.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-
-                                  Text(
-                                    'Owner',
-                                    style: AppTextStyles.zonaPro16Grey.copyWith(
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.location_pin,
-                                        size: AppDimensions.detailsPageItemIconSize,
-                                        color: Colors.grey,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Marvin McKinney',
+                                      style: AppTextStyles.zonaPro18.copyWith(
+                                        fontWeight: FontWeight.w600,
                                       ),
+                                    ),
 
-                                      Text(
-                                        '24 km away',
-                                        style: AppTextStyles.zonaPro16Grey.copyWith(
-                                          fontWeight: FontWeight.w400,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Owner',
+                                          style: AppTextStyles.zonaPro16Grey.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.location_pin,
+                                              size: AppDimensions.detailsPageItemIconSize,
+                                              color: Colors.grey,
+                                            ),
+
+                                            Text(
+                                              '24 km away',
+                                              style: AppTextStyles.zonaPro16Grey.copyWith(
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
