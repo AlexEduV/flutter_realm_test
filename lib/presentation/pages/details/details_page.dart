@@ -76,12 +76,17 @@ class _DetailsPageState extends State<DetailsPage> {
                         borderRadius: BorderRadius.circular(AppDimensions.normalS),
                       ),
                       child: Column(
-                        spacing: AppDimensions.normalS,
+                        spacing: AppDimensions.normalM,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Row(
+                          Row(
                             children: [
-                              Text('Vehicle Specifications', style: AppTextStyles.zonaPro16),
+                              Text(
+                                'Vehicle Specifications',
+                                style: AppTextStyles.zonaPro18.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                             ],
                           ),
 
@@ -90,7 +95,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  spacing: AppDimensions.normalXS,
+                                  spacing: AppDimensions.normalS,
                                   children: [
                                     SpecificationItem(title: 'Body', subtitle: car?.bodyType ?? ''),
 
@@ -110,7 +115,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  spacing: AppDimensions.normalXS,
+                                  spacing: AppDimensions.normalS,
                                   children: [
                                     SpecificationItem(
                                       title: 'Mileage',
@@ -119,11 +124,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
                                     SpecificationItem(title: 'Year', subtitle: car?.year ?? ''),
 
-                                    const SpecificationItem(
-                                      title: 'Color',
-                                      //todo: add color to the car scheme
-                                      subtitle: 'White',
-                                    ),
+                                    SpecificationItem(title: 'Color', subtitle: car?.color ?? ''),
                                   ],
                                 ),
                               ),
