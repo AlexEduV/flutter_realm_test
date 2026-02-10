@@ -155,6 +155,61 @@ class _DetailsPageState extends State<DetailsPage> {
                             ],
                           ),
                         ),
+
+                        const SizedBox(height: AppDimensions.minorL),
+
+                        Container(
+                          padding: const EdgeInsets.all(AppDimensions.normalS),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                          ),
+                          child: Row(
+                            spacing: AppDimensions.normalM,
+                            children: [
+                              const CircleAvatar(
+                                backgroundColor: AppColors.scaffoldColor,
+                                radius: 24,
+                              ),
+
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Marvin McKinney',
+                                    style: AppTextStyles.zonaPro18.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+
+                                  Text(
+                                    'Owner',
+                                    style: AppTextStyles.zonaPro16Grey.copyWith(
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.location_pin,
+                                        size: AppDimensions.detailsPageItemIconSize,
+                                        color: Colors.grey,
+                                      ),
+
+                                      Text(
+                                        '24 km away',
+                                        style: AppTextStyles.zonaPro16Grey.copyWith(
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
