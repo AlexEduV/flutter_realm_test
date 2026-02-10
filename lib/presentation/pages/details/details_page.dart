@@ -50,7 +50,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   children: [
                     Text(
                       '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
-                      style: AppTextStyles.zonaPro30.copyWith(fontWeight: FontWeight.w500),
+                      style: AppTextStyles.zonaPro24.copyWith(fontWeight: FontWeight.w500),
                     ),
 
                     Row(
@@ -64,6 +64,21 @@ class _DetailsPageState extends State<DetailsPage> {
                           const Icon(Icons.whatshot, size: 18, color: Colors.red),
                         ],
                       ],
+                    ),
+
+                    const SizedBox(height: AppDimensions.minorS),
+
+                    Container(
+                      padding: const EdgeInsets.all(AppDimensions.normalS),
+                      decoration: BoxDecoration(
+                        color: AppColors.accentColor,
+                        borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                      ),
+                      child: const Column(
+                        children: [
+                          Row(children: [Text('Vehicle Specifications')]),
+                        ],
+                      ),
                     ),
                   ],
                 ),
