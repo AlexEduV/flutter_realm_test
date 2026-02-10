@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/presentation/pages/details/details_page.dart';
 import 'package:test_futter_project/presentation/pages/home/home_page.dart';
 
 import '../common/app_routes.dart';
@@ -15,6 +16,13 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.search,
             pageBuilder: (context, state) => const CupertinoPage(child: SearchPage()),
+          ),
+          GoRoute(
+            path: AppRoutes.details,
+            pageBuilder: (context, state) {
+              final carId = state.pathParameters['carId'] ?? '';
+              return CupertinoPage(child: DetailsPage(carId: carId));
+            },
           ),
         ],
       ),
