@@ -32,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
 
           // email textField
+          //todo: field design is meh, and password field is not customised;
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
             child: TextFormField(
@@ -170,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
         ],
       ),
     );
