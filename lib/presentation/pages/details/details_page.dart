@@ -37,14 +37,20 @@ class _DetailsPageState extends State<DetailsPage> {
           return Stack(
             children: [
               Positioned(
-                top: 55,
-                left: 0,
+                top: 40,
+                left: AppDimensions.normalM,
                 child: IconButton(
                   onPressed: () => context.pop(),
                   icon: const Icon(
                     Icons.arrow_back,
                     size: AppDimensions.appBarIconSize,
                     color: AppColors.headerColor,
+                  ),
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.white.withAlpha(80),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                    ),
                   ),
                 ),
               ),
@@ -57,7 +63,10 @@ class _DetailsPageState extends State<DetailsPage> {
                       height: 280,
                       decoration: BoxDecoration(
                         color: AppColors.placeholderColor,
-                        borderRadius: BorderRadius.circular(AppDimensions.majorM),
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(AppDimensions.majorM),
+                          bottomRight: Radius.circular(AppDimensions.majorM),
+                        ),
                       ),
                     ),
 
