@@ -63,10 +63,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         },
         child: PageView(
           controller: _pageController,
-          onPageChanged: (index) {
-            // Update the cubit when the user swipes between pages
-            context.read<HomeBottomBarCubit>().updateSelectedIndex(index);
-          },
+          physics: const NeverScrollableScrollPhysics(),
           children: [
             ExplorePage(listKey: exploreListKey),
             const FavoritesPage(),
