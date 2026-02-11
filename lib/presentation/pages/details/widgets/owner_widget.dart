@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -30,7 +31,10 @@ class OwnerWidget extends StatelessWidget {
             child: Row(
               spacing: AppDimensions.normalM,
               children: [
-                CircleAvatar(backgroundColor: AppColors.placeholderColor, radius: 24),
+                CircleAvatar(
+                  backgroundColor: AppColors.placeholderColor,
+                  radius: AppDimensions.normalXL,
+                ),
 
                 Expanded(
                   child: Column(
@@ -60,7 +64,7 @@ class OwnerWidget extends StatelessWidget {
                               ),
 
                               Text(
-                                '${car.distanceTo ?? ''} km away',
+                                '${car.distanceTo ?? ''} ${AppLocalisations.distanceWidgetText}',
                                 style: AppTextStyles.zonaPro16Grey.copyWith(
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -85,7 +89,9 @@ class OwnerWidget extends StatelessWidget {
                 // Your action here
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16), // Button height
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppDimensions.normalM,
+                ), // Button height
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     AppDimensions.normalXL,
