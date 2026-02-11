@@ -7,7 +7,7 @@ import 'package:test_futter_project/data/models/scheme.dart';
 
 import 'realm_local_storage_test.mocks.dart';
 
-@GenerateMocks([Realm, RealmResults<Car>])
+@GenerateMocks([Realm])
 void main() {
   late MockRealm mockRealm;
   late RealmLocalStorage storage;
