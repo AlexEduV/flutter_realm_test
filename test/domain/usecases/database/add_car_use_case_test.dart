@@ -25,7 +25,6 @@ void main() {
         manufacturer: 'Tesla',
         type: 'car',
         isVerified: true,
-        isHotPromotion: false,
         year: '2022',
         kilometers: 1000,
         distanceTo: 5,

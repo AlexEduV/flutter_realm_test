@@ -18,7 +18,7 @@ void main() {
     when(mockCar.model).thenReturn('Model S');
     when(mockCar.manufacturer).thenReturn('Tesla');
     when(mockCar.isChecked).thenReturn(true);
-    when(mockCar.isHotProposition).thenReturn(false);
+    when(mockCar.hotPromotionDescription).thenReturn(null);
     when(mockCar.price).thenReturn(80000);
     when(mockCar.distanceTo).thenReturn(50);
     when(mockCar.year).thenReturn('2020');
@@ -37,7 +37,6 @@ void main() {
         model: 'Model S',
         manufacturer: 'Tesla',
         isVerified: true,
-        isHotPromotion: false,
         type: 'car',
         year: '2020',
         owner: 'John Doe',
@@ -53,7 +52,7 @@ void main() {
       expect(entity.model, 'Model S');
       expect(entity.manufacturer, 'Tesla');
       expect(entity.isVerified, true);
-      expect(entity.isHotPromotion, false);
+      expect(entity.hotPromotionDescription, null);
       expect(entity.year, '2020');
       expect(entity.owner, 'John Doe');
       expect(entity.kilometers, 10000);
@@ -72,7 +71,7 @@ void main() {
         manufacturer: 'Honda',
         type: 'car',
         isVerified: false,
-        isHotPromotion: true,
+        hotPromotionDescription: 'Hot Promo',
         year: '2018',
         owner: 'Jane Doe',
         kilometers: 50000,
@@ -89,7 +88,7 @@ void main() {
       expect(entity.model, 'Civic');
       expect(entity.manufacturer, 'Honda');
       expect(entity.isVerified, false);
-      expect(entity.isHotPromotion, true);
+      expect(entity.hotPromotionDescription, 'Hot Promo');
       expect(entity.year, '2018');
       expect(entity.owner, 'Jane Doe');
       expect(entity.kilometers, 50000);
@@ -107,7 +106,7 @@ void main() {
       expect(entity.model, 'Model S');
       expect(entity.manufacturer, 'Tesla');
       expect(entity.isVerified, true);
-      expect(entity.isHotPromotion, false);
+      expect(entity.hotPromotionDescription, null);
       expect(entity.year, '2020');
       expect(entity.owner, 'John Doe');
       expect(entity.kilometers, 10000);
@@ -121,13 +120,13 @@ void main() {
     test('fromSchema handles nulls and defaults', () {
       when(mockCar.model).thenReturn(null);
       when(mockCar.isChecked).thenReturn(null);
-      when(mockCar.isHotProposition).thenReturn(null);
+      when(mockCar.hotPromotionDescription).thenReturn(null);
 
       final entity = CarEntity.fromSchema(mockCar);
 
       expect(entity.model, ''); // default for null model
       expect(entity.isVerified, false); // default for null isChecked
-      expect(entity.isHotPromotion, false); // default for null isHotProposition
+      expect(entity.hotPromotionDescription, isNull); // default for null isHotProposition
       expect(entity.owner, 'John Doe'); // default for null owner
     });
   });

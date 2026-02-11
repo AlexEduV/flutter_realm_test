@@ -16,7 +16,6 @@ void main() {
         manufacturer: 'Tesla',
         type: 'car',
         isVerified: true,
-        isHotPromotion: false,
         year: '2020',
         owner: 'John Doe',
         kilometers: 10000,
@@ -33,7 +32,7 @@ void main() {
       expect(car.manufacturer, 'Tesla');
       expect(car.type, 'car');
       expect(car.isVerified, true);
-      expect(car.isHotPromotion, false);
+      expect(car.hotPromotionDescription, isNull);
       expect(car.year, '2020');
       expect(car.owner, 'John Doe');
       expect(car.kilometers, 10000);
@@ -52,7 +51,6 @@ void main() {
         model: 'Model S',
         manufacturer: 'Tesla',
         isVerified: true,
-        isHotPromotion: false,
         type: 'car',
         bodyType: 'sedan',
         fuelType: 'ev',
@@ -74,7 +72,7 @@ void main() {
         'year': '2018',
         'is_verified': false,
         'price': 20000,
-        'is_hot_promotion': true,
+        'hot_promotion_description': 'Hot Promo',
         'type': 'car',
         'body_type': 'sedan',
         'transmission_type': 'automatic',
@@ -89,7 +87,7 @@ void main() {
       expect(car.year, '2018');
       expect(car.isVerified, false);
       expect(car.price, 20000);
-      expect(car.isHotPromotion, true);
+      expect(car.hotPromotionDescription, 'Hot Promo');
       expect(car.id, isA<ObjectId>());
     });
   });

@@ -20,7 +20,6 @@ void main() {
         model: 'Corolla',
         year: '2020',
         isChecked: true,
-        isHotProposition: false,
         kilometers: 15000,
         distanceTo: 10,
         price: 20000,
@@ -33,7 +32,7 @@ void main() {
       expect(entity.manufacturer, 'Toyota');
       expect(entity.type, CarType.car.name);
       expect(entity.isVerified, true);
-      expect(entity.isHotPromotion, false);
+      expect(entity.hotPromotionDescription, isNull);
       expect(entity.year, '2020');
       expect(entity.kilometers, 15000);
       expect(entity.distanceTo, 10);
@@ -49,7 +48,7 @@ void main() {
         type: CarType.bike.name,
         year: '2018',
         isVerified: false,
-        isHotPromotion: true,
+        hotPromotionDescription: 'Hot Promotion',
         kilometers: 8000,
         distanceTo: 5,
         price: 7500,
@@ -65,7 +64,7 @@ void main() {
       expect(car.manufacturer, 'Honda');
       expect(car.type, CarType.bike.name);
       expect(car.isChecked, false);
-      expect(car.isHotProposition, true);
+      expect(car.hotPromotionDescription, 'Hot Promotion');
       expect(car.year, '2018');
       expect(car.kilometers, 8000);
       expect(car.distanceTo, 5);
@@ -82,7 +81,7 @@ void main() {
         manufacturer: 'Tesla',
         type: CarType.car.name,
         isVerified: true,
-        isHotPromotion: true,
+        hotPromotionDescription: 'Hot Promotion',
         year: '2022',
         kilometers: 5000,
         distanceTo: 2,
@@ -99,7 +98,7 @@ void main() {
       expect(car.manufacturer, 'Tesla');
       expect(car.type, CarType.car.name);
       expect(car.isChecked, true);
-      expect(car.isHotProposition, true);
+      expect(car.hotPromotionDescription, 'Hot Promotion');
       expect(car.year, '2022');
       expect(car.kilometers, 5000);
       expect(car.distanceTo, 2);
