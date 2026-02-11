@@ -20,7 +20,7 @@ class VehicleSpecsWidget extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: AppColors.scaffoldColor,
-        borderRadius: BorderRadius.circular(AppDimensions.normalS),
+        borderRadius: BorderRadius.circular(AppDimensions.normalL),
       ),
       child: Column(
         spacing: AppDimensions.normalM,

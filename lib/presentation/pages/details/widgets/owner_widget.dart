@@ -18,8 +18,8 @@ class OwnerWidget extends StatelessWidget {
       decoration: const BoxDecoration(
         color: AppColors.scaffoldColor,
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(AppDimensions.normalS),
-          topLeft: Radius.circular(AppDimensions.normalS),
+          topRight: Radius.circular(AppDimensions.normalL),
+          topLeft: Radius.circular(AppDimensions.normalL),
           bottomRight: Radius.circular(AppDimensions.normalXL),
           bottomLeft: Radius.circular(AppDimensions.normalXL),
         ),
