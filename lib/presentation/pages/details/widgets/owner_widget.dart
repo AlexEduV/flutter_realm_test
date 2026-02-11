@@ -1,0 +1,108 @@
+import 'package:flutter/material.dart';
+import 'package:test_futter_project/domain/entities/car_entity.dart';
+
+import '../../../../common/app_colors.dart';
+import '../../../../common/app_dimensions.dart';
+import '../../../../common/app_text_styles.dart';
+
+class OwnerWidget extends StatelessWidget {
+  final CarEntity car;
+
+  const OwnerWidget({required this.car, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(top: AppDimensions.normalS),
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(AppDimensions.normalS),
+          topLeft: Radius.circular(AppDimensions.normalS),
+          bottomRight: Radius.circular(AppDimensions.normalXL),
+          bottomLeft: Radius.circular(AppDimensions.normalXL),
+        ),
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
+            child: Row(
+              spacing: AppDimensions.normalM,
+              children: [
+                CircleAvatar(backgroundColor: AppColors.placeholderColor, radius: 24),
+
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        car.owner ?? '',
+                        style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Owner',
+                            style: AppTextStyles.zonaPro16Grey.copyWith(
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.location_pin,
+                                size: AppDimensions.detailsPageItemIconSize,
+                                color: Colors.grey,
+                              ),
+
+                              Text(
+                                '${car.distanceTo ?? ''} km away',
+                                style: AppTextStyles.zonaPro16Grey.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: AppDimensions.normalL),
+
+          SizedBox(
+            width: double.infinity, // Makes the button full width
+            child: ElevatedButton(
+              onPressed: () {
+                // Your action here
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16), // Button height
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                    AppDimensions.normalXL,
+                  ), // Optional rounded corners
+                ),
+                backgroundColor: AppColors.headerColor,
+                foregroundColor: Colors.white,
+              ),
+              child: const Text(
+                'Send Message',
+                style: AppTextStyles.zonaPro16,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
