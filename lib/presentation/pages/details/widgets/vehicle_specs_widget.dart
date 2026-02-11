@@ -30,7 +30,6 @@ class _VehicleSpecsWidgetState extends State<VehicleSpecsWidget> {
         borderRadius: BorderRadius.circular(AppDimensions.normalL),
       ),
       child: Column(
-        spacing: AppDimensions.normalM,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
@@ -60,44 +59,48 @@ class _VehicleSpecsWidgetState extends State<VehicleSpecsWidget> {
 
           AnimatedSize(
             duration: const Duration(milliseconds: 300),
+            alignment: AlignmentGeometry.topCenter,
             curve: Curves.easeInOut,
             child: _isExpanded
-                ? Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          spacing: AppDimensions.normalS,
-                          children: [
-                            SpecificationItem(title: 'Body', subtitle: widget.car.bodyType),
+                ? Padding(
+                    padding: const EdgeInsets.only(top: AppDimensions.normalM),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            spacing: AppDimensions.normalS,
+                            children: [
+                              SpecificationItem(title: 'Body', subtitle: widget.car.bodyType),
 
-                            SpecificationItem(title: 'Engine', subtitle: widget.car.fuelType),
+                              SpecificationItem(title: 'Engine', subtitle: widget.car.fuelType),
 
-                            SpecificationItem(
-                              title: 'Transmission',
-                              subtitle: widget.car.transmissionType,
-                            ),
-                          ],
+                              SpecificationItem(
+                                title: 'Transmission',
+                                subtitle: widget.car.transmissionType,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
 
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          spacing: AppDimensions.normalS,
-                          children: [
-                            SpecificationItem(
-                              title: 'Mileage',
-                              subtitle: widget.car.kilometers.toString(),
-                            ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            spacing: AppDimensions.normalS,
+                            children: [
+                              SpecificationItem(
+                                title: 'Mileage',
+                                subtitle: widget.car.kilometers.toString(),
+                              ),
 
-                            SpecificationItem(title: 'Year', subtitle: widget.car.year ?? ''),
+                              SpecificationItem(title: 'Year', subtitle: widget.car.year ?? ''),
 
-                            SpecificationItem(title: 'Color', subtitle: widget.car.color ?? ''),
-                          ],
+                              SpecificationItem(title: 'Color', subtitle: widget.car.color ?? ''),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   )
                 : const SizedBox.shrink(),
           ),
