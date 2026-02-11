@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
@@ -83,6 +84,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void _addCarToBase() {
+    final isUserAuthenticated = context.read<UserDataCubit>().state.isUserAuthenticated;
+
+    if (!isUserAuthenticated) {
+      context.read<HomeBottomBarCubit>().updateSelectedIndex(AppConstants.homeTabAccount);
+      return;
+    }
+
     final currentMaxCarId = serviceLocator<GetCurrentMaxCarIdUseCase>().call();
 
     serviceLocator<AddCarUseCase>().call(

@@ -7,5 +7,6 @@ abstract class UserDataState with _$UserDataState {
   const factory UserDataState({
     @Default(false) bool isLocationPermissionGranted,
     @Default([]) List<String> favoriteIds,
+    @Default(false) bool isUserAuthenticated,
   }) = _UserDataState;
 }
