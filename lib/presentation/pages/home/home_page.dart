@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
@@ -29,6 +28,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> exploreListKey = GlobalKey<AnimatedListState>();
+  final PageController _pageController = PageController();
 
   @override
   void initState() {
@@ -50,21 +50,31 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
-      body: BlocBuilder<HomeBottomBarCubit, HomeBottomBarState>(
-        buildWhen: (previous, current) {
+      body: BlocListener<HomeBottomBarCubit, HomeBottomBarState>(
+        listenWhen: (previous, current) {
           return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
         },
-        builder: (context, state) {
-          //todo: when the pages will be ready, add animation for switching between them
-          switch (state.currentSelectedTabIndex) {
-            case AppConstants.homeTabExplore:
-              return ExplorePage(listKey: exploreListKey);
-            case AppConstants.homeTabFavorites:
-              return const FavoritesPage();
-            default:
-              return const PlaceholderPage();
-          }
+        listener: (context, state) {
+          _pageController.animateToPage(
+            state.currentSelectedTabIndex,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+          );
         },
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            // Update the cubit when the user swipes between pages
+            context.read<HomeBottomBarCubit>().updateSelectedIndex(index);
+          },
+          children: [
+            ExplorePage(listKey: exploreListKey),
+            const FavoritesPage(),
+            const PlaceholderPage(),
+            const PlaceholderPage(),
+            const PlaceholderPage(),
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: HomeBottomBar(onAddPressed: _addCarToBase),
