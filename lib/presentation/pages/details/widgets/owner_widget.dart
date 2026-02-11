@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
@@ -84,26 +86,30 @@ class OwnerWidget extends StatelessWidget {
 
           SizedBox(
             width: double.infinity, // Makes the button full width
-            child: ElevatedButton(
-              onPressed: () {
-                // Your action here
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                  vertical: AppDimensions.normalM,
-                ), // Button height
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    AppDimensions.normalXL,
-                  ), // Optional rounded corners
+            child: AppSemantics(
+              button: true,
+              label: AppSemanticsLabels.detailsPageContactButton,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Your action here
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppDimensions.normalM,
+                  ), // Button height
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      AppDimensions.normalXL,
+                    ), // Optional rounded corners
+                  ),
+                  backgroundColor: AppColors.headerColor,
+                  foregroundColor: Colors.white,
                 ),
-                backgroundColor: AppColors.headerColor,
-                foregroundColor: Colors.white,
-              ),
-              child: Text(
-                AppLocalisations.ownerSectionContactButtonTitle,
-                style: AppTextStyles.zonaPro16,
-                textAlign: TextAlign.center,
+                child: Text(
+                  AppLocalisations.ownerSectionContactButtonTitle,
+                  style: AppTextStyles.zonaPro16,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
           ),

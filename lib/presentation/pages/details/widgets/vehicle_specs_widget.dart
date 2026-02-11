@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/specification_item.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_dimensions.dart';
@@ -40,17 +42,21 @@ class VehicleSpecsWidget extends StatelessWidget {
 
               BlocBuilder<DetailsPageCubit, DetailsPageState>(
                 builder: (context, state) {
-                  return IconButton(
-                    onPressed: () => context.read<DetailsPageCubit>().setVehicleSpecsExpansionState(
-                      !state.isVehicleSpecsExpanded,
+                  return AppSemantics(
+                    button: true,
+                    label: AppSemanticsLabels.detailsPageVehicleSpecsExpandButton,
+                    child: IconButton(
+                      onPressed: () => context
+                          .read<DetailsPageCubit>()
+                          .setVehicleSpecsExpansionState(!state.isVehicleSpecsExpanded),
+                      icon: AnimatedRotation(
+                        turns: state.isVehicleSpecsExpanded ? 0.0 : 0.5, // 0.5 turns = 180 degrees
+                        duration: const Duration(milliseconds: 300),
+                        child: const Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 28),
+                      ),
+                      style: IconButton.styleFrom(backgroundColor: Colors.white),
+                      padding: const EdgeInsets.all(AppDimensions.minorXS),
                     ),
-                    icon: AnimatedRotation(
-                      turns: state.isVehicleSpecsExpanded ? 0.0 : 0.5, // 0.5 turns = 180 degrees
-                      duration: const Duration(milliseconds: 300),
-                      child: const Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 28),
-                    ),
-                    style: IconButton.styleFrom(backgroundColor: Colors.white),
-                    padding: const EdgeInsets.all(AppDimensions.minorXS),
                   );
                 },
               ),
