@@ -83,8 +83,19 @@ class RealmLocalStorage implements BaseLocalStorage {
     final car = realm.all<Car>().query('carId == \$0', [id]).firstOrNull;
     if (car == null) return CarEntity.empty();
 
-    //maybe watch changes here
+    //todo: maybe watch changes here
 
     return car.toEntity();
+  }
+
+  @override
+  int getMaxCarId() {
+    final cars = realm.all<Car>();
+
+    final maxCar = cars.toList().reduce((curr, next) {
+      return int.parse(curr.carId) > int.parse(next.carId) ? curr : next;
+    });
+
+    return int.parse(maxCar.carId);
   }
 }

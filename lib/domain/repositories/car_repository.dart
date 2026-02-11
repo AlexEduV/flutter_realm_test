@@ -14,4 +14,6 @@ abstract class CarRepository {
   void deleteCarById(String id);
 
   CarEntity getCarById(String id);
+
+  int getMaxCarId();
 }

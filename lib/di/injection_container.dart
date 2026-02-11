@@ -11,6 +11,7 @@ import 'package:test_futter_project/domain/usecases/database/delete_all_cars_use
 import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
@@ -104,4 +105,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => DeleteAllCarsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetCarByIdUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
 }

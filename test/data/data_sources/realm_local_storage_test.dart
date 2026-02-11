@@ -74,7 +74,7 @@ void main() {
       fn();
     });
 
-    storage.deleteById(car.id);
+    storage.deleteById(car.carId);
 
     verify(mockRealm.write(any)).called(1);
     verify(mockRealm.delete(car)).called(1);

@@ -18,4 +18,6 @@ abstract class BaseLocalStorage {
   UserEntity initUser();
 
   CarEntity getCarById(String id);
+
+  int getMaxCarId();
 }

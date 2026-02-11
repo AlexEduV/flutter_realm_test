@@ -65,4 +65,9 @@ class CarRepositoryImpl implements CarRepository {
   CarEntity getCarById(String id) {
     return localStorage.getCarById(id);
   }
+
+  @override
+  int getMaxCarId() {
+    return localStorage.getMaxCarId();
+  }
 }

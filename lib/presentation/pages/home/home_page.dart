@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/explore_page.dart';
@@ -71,10 +72,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void _addCarToBase() {
+    final currentMaxCarId = serviceLocator<GetCurrentMaxCarIdUseCase>().call();
+
     serviceLocator<AddCarUseCase>().call(
       CarEntity(
-        //todo: use max id + 1 here;
-        carId: '3',
+        carId: (currentMaxCarId + 1).toString(),
         model: 'Model Y',
         manufacturer: 'Tesla',
         isVerified: false,
