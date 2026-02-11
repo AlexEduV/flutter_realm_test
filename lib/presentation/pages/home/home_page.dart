@@ -29,6 +29,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> exploreListKey = GlobalKey<AnimatedListState>();
   final PageController _pageController = PageController();
+  int _bottomBarIndexDiff = 0;
 
   @override
   void initState() {
@@ -52,12 +53,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       backgroundColor: AppColors.scaffoldColor,
       body: BlocListener<HomeBottomBarCubit, HomeBottomBarState>(
         listenWhen: (previous, current) {
+          _bottomBarIndexDiff = (current.currentSelectedTabIndex - previous.currentSelectedTabIndex)
+              .abs();
+
           return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
         },
         listener: (context, state) {
           _pageController.animateToPage(
             state.currentSelectedTabIndex,
-            duration: const Duration(milliseconds: 300),
+            duration: Duration(milliseconds: 300 * _bottomBarIndexDiff),
             curve: Curves.easeInOut,
           );
         },
