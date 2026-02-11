@@ -37,20 +37,22 @@ class CarDto {
     this.price = 0,
   });
 
-  factory CarDto.fromJson(Map<String, dynamic> json) => CarDto(
-    id: ObjectId(),
-    carId: json['id'] as String,
-    model: json['model'] as String,
-    type: json['type'] as String,
-    manufacturer: json['manufacturer'] as String,
-    year: json['year'] as String?,
-    isVerified: json['is_verified'] as bool,
-    price: json['price'] as int?,
-    hotPromotionDescription: json['hot_promotion_description'] as String?,
-    transmissionType: json['transmission_type'] as String,
-    fuelType: json['fuel_type'] as String,
-    bodyType: json['body_type'] as String,
-    color: json['color'] as String,
-    owner: json['owner'] as String,
-  );
+  factory CarDto.fromJson(Map<String, dynamic> json) {
+    return CarDto(
+      id: ObjectId(),
+      carId: json['id'] as String,
+      model: json['model'] as String,
+      type: json['type'] as String,
+      manufacturer: json['manufacturer'] as String,
+      year: json['year'] as String?,
+      isVerified: json['is_verified'] as bool,
+      price: json['price'] as int?,
+      hotPromotionDescription: json['hot_promotion_description'] as String?,
+      transmissionType: json['transmission_type'] as String,
+      fuelType: json['fuel_type'] as String,
+      bodyType: json['body_type'] as String,
+      color: json['color'] as String,
+      owner: json['owner'] as String,
+    );
+  }
 }

@@ -77,6 +77,8 @@ void main() {
         'body_type': 'sedan',
         'transmission_type': 'automatic',
         'fuel_type': 'ev',
+        'owner': 'James Morrison',
+        'color': 'White',
       };
 
       final car = CarDto.fromJson(json);

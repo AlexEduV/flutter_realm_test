@@ -28,6 +28,7 @@ void main() {
     when(mockCar.bodyType).thenReturn('sedan');
     when(mockCar.fuelType).thenReturn('ev');
     when(mockCar.transmissionType).thenReturn('automatic');
+    when(mockCar.color).thenReturn('White');
   });
 
   group('CarEntity', () {

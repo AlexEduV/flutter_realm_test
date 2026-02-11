@@ -126,6 +126,7 @@ void main() {
     when(carDto.bodyType).thenReturn('sedan');
     when(carDto.fuelType).thenReturn('gasoline');
     when(carDto.transmissionType).thenReturn('hybrid');
+    when(carDto.owner).thenReturn('John Morrison');
 
     final carDtos = [carDto];
     when(apiService.fetchCars()).thenAnswer((_) async => carDtos);
