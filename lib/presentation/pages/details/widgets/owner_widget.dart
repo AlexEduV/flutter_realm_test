@@ -14,7 +14,7 @@ class OwnerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: AppDimensions.normalS),
+      padding: const EdgeInsets.only(top: AppDimensions.normalL),
       decoration: BoxDecoration(
         color: Colors.grey[300],
         borderRadius: const BorderRadius.only(
@@ -27,7 +27,7 @@ class OwnerWidget extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
+            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
             child: Row(
               spacing: AppDimensions.normalM,
               children: [

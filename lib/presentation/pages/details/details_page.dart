@@ -56,7 +56,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     height: 280,
                     decoration: BoxDecoration(
                       color: AppColors.placeholderColor,
-                      borderRadius: BorderRadius.circular(32.0),
+                      borderRadius: BorderRadius.circular(AppDimensions.majorM),
                     ),
                   ),
 

@@ -1,6 +1,9 @@
 class AppDimensions {
   static const contentPadding = 12.0;
 
+  static const majorS = 28.0;
+  static const majorM = 32.0;
+
   static const normalXL = 24.0;
   static const normalL = 18.0;
   static const normalM = 16.0;

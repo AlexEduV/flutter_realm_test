@@ -13,7 +13,10 @@ class VehicleSpecsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppDimensions.normalS),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppDimensions.normalM,
+        vertical: AppDimensions.normalL,
+      ),
       decoration: BoxDecoration(
         color: Colors.grey[300],
         borderRadius: BorderRadius.circular(AppDimensions.normalS),
