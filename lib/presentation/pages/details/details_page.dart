@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/owner_widget.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
+import '../../../common/app_semantics_labels.dart';
+import '../../widgets/app_semantics.dart';
 import '../../widgets/verified_badge.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -39,21 +39,21 @@ class _DetailsPageState extends State<DetailsPage> {
       appBar: AppBar(
         leadingWidth: 70,
         backgroundColor: Colors.transparent,
-        leading: AppSemantics(
-          button: true,
-          label: AppSemanticsLabels.backButton,
-          child: IconButton(
-            onPressed: () => context.pop(),
-            icon: const Icon(
+        leading: IconButton(
+          onPressed: () => context.pop(),
+          icon: const AppSemantics(
+            button: true,
+            label: AppSemanticsLabels.backButton,
+            child: Icon(
               Icons.arrow_back,
               size: AppDimensions.appBarIconSize,
               color: AppColors.headerColor,
             ),
-            style: IconButton.styleFrom(
-              backgroundColor: Colors.white.withAlpha(80),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppDimensions.normalS),
-              ),
+          ),
+          style: IconButton.styleFrom(
+            backgroundColor: Colors.white.withAlpha(80),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppDimensions.normalS),
             ),
           ),
         ),
