@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/specification_item.dart';
@@ -71,13 +72,19 @@ class VehicleSpecsWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 spacing: AppDimensions.normalS,
                                 children: [
-                                  SpecificationItem(title: 'Body', subtitle: car.bodyType),
+                                  SpecificationItem(
+                                    title: 'Body',
+                                    subtitle: car.bodyType.capitalizeFirst(),
+                                  ),
 
-                                  SpecificationItem(title: 'Engine', subtitle: car.fuelType),
+                                  SpecificationItem(
+                                    title: 'Engine',
+                                    subtitle: car.fuelType.capitalizeFirst(),
+                                  ),
 
                                   SpecificationItem(
                                     title: 'Transmission',
-                                    subtitle: car.transmissionType,
+                                    subtitle: car.transmissionType.capitalizeFirst(),
                                   ),
                                 ],
                               ),
@@ -95,7 +102,10 @@ class VehicleSpecsWidget extends StatelessWidget {
 
                                   SpecificationItem(title: 'Year', subtitle: car.year ?? ''),
 
-                                  SpecificationItem(title: 'Color', subtitle: car.color ?? ''),
+                                  SpecificationItem(
+                                    title: 'Color',
+                                    subtitle: car.color ?? ''.capitalizeFirst(),
+                                  ),
                                 ],
                               ),
                             ),
