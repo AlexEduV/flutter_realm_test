@@ -6,7 +6,6 @@
 import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:realm/realm.dart' as _i6;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart'
@@ -79,7 +78,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
   );
 
   @override
-  void deleteById(_i6.ObjectId? id) => super.noSuchMethod(
+  void deleteById(dynamic id) => super.noSuchMethod(
     Invocation.method(#deleteById, [id]),
     returnValueForMissingStub: null,
   );

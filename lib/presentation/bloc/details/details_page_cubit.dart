@@ -11,4 +11,8 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
     final entity = getCarByIdUseCase.call(id);
     emit(state.copyWith(car: entity));
   }
+
+  void expandVehicleSpecsButtonPressed() {
+    emit(state.copyWith(isVehicleSpecsExpanded: !state.isVehicleSpecsExpanded));
+  }
 }

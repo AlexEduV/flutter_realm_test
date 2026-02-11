@@ -6,7 +6,6 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:realm/realm.dart' as _i5;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i2;
 import 'package:test_futter_project/domain/repositories/car_repository.dart'
     as _i3;
@@ -68,7 +67,7 @@ class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
   );
 
   @override
-  void deleteCarById(_i5.ObjectId? id) => super.noSuchMethod(
+  void deleteCarById(dynamic id) => super.noSuchMethod(
     Invocation.method(#deleteCarById, [id]),
     returnValueForMissingStub: null,
   );

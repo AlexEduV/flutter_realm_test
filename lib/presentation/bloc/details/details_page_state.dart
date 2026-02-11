@@ -5,6 +5,9 @@ part 'details_page_state.freezed.dart';
 
 @freezed
 abstract class DetailsPageState with _$DetailsPageState {
-  const factory DetailsPageState({@Default(false) bool isLoading, @Default(null) CarEntity? car}) =
-      _DetailsPageState;
+  const factory DetailsPageState({
+    @Default(false) bool isLoading,
+    @Default(null) CarEntity? car,
+    @Default(true) bool isVehicleSpecsExpanded,
+  }) = _DetailsPageState;
 }
