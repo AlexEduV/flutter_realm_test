@@ -27,10 +27,18 @@ class VehicleSpecsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Vehicle Specifications',
-                style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w600),
+              ),
+
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 28),
+                style: IconButton.styleFrom(backgroundColor: Colors.white),
+                padding: const EdgeInsets.all(AppDimensions.minorXS),
               ),
             ],
           ),

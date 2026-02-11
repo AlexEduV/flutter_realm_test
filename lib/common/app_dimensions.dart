@@ -13,6 +13,7 @@ class AppDimensions {
   static const minorL = 8.0;
   static const minorM = 6.0;
   static const minorS = 4.0;
+  static const minorXS = 2.0;
 
   static const appBarIconSize = 32.0;
 
