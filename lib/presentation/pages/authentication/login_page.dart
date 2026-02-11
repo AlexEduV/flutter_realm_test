@@ -126,7 +126,19 @@ class _LoginPageState extends State<LoginPage> {
           ),
 
           //Or Divider
-          const Divider(height: 40),
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: AppDimensions.normalM,
+              horizontal: AppDimensions.normalM,
+            ),
+            child: Row(
+              children: <Widget>[
+                Expanded(child: Divider()),
+                Padding(padding: EdgeInsets.symmetric(horizontal: 8.0), child: Text('Or')),
+                Expanded(child: Divider()),
+              ],
+            ),
+          ),
 
           // join us button if not registered
           Padding(
