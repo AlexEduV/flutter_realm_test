@@ -49,52 +49,58 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
               ),
 
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 280,
-                    decoration: BoxDecoration(
-                      color: AppColors.placeholderColor,
-                      borderRadius: BorderRadius.circular(AppDimensions.majorM),
+              SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 280,
+                      decoration: BoxDecoration(
+                        color: AppColors.placeholderColor,
+                        borderRadius: BorderRadius.circular(AppDimensions.majorM),
+                      ),
                     ),
-                  ),
 
-                  Padding(
-                    padding: const EdgeInsets.all(AppDimensions.normalM),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: AppDimensions.minorM,
-                      children: [
-                        Text(
-                          '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
-                          style: AppTextStyles.zonaPro24.copyWith(fontWeight: FontWeight.w500),
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.all(AppDimensions.normalM),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: AppDimensions.minorM,
+                        children: [
+                          Text(
+                            '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
+                            style: AppTextStyles.zonaPro24.copyWith(fontWeight: FontWeight.w500),
+                          ),
 
-                        Row(
-                          children: [
-                            Text(
-                              '\$ ${car?.price ?? ''}',
-                              style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                '\$ ${car?.price ?? ''}',
+                                style: AppTextStyles.zonaPro18.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
 
-                            if (car?.isHotPromotion ?? false) ...[
-                              const Icon(Icons.whatshot, size: 18, color: Colors.red),
+                              if (car?.isHotPromotion ?? false) ...[
+                                const Icon(Icons.whatshot, size: 18, color: Colors.red),
+                              ],
                             ],
-                          ],
-                        ),
+                          ),
 
-                        const SizedBox(height: AppDimensions.minorS),
+                          const SizedBox(height: AppDimensions.minorS),
 
-                        if (car != null) ...[VehicleSpecsWidget(car: car)],
+                          if (car != null) ...[VehicleSpecsWidget(car: car)],
 
-                        const SizedBox(height: AppDimensions.minorL),
+                          const SizedBox(height: AppDimensions.minorL),
 
-                        if (car != null) ...[OwnerWidget(car: car)],
-                      ],
+                          if (car != null) ...[OwnerWidget(car: car)],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+
+                    const SizedBox(height: AppDimensions.normalL),
+                  ],
+                ),
               ),
             ].reversed.toList(),
           );
