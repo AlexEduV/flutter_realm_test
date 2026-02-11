@@ -103,9 +103,14 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
 
                               if (car?.hotPromotionDescription != null) ...[
-                                const Icon(Icons.whatshot, size: 18, color: Colors.red),
+                                Row(
+                                  spacing: AppDimensions.minorL,
+                                  children: [
+                                    const Icon(Icons.whatshot, size: 18, color: Colors.red),
 
-                                Text(car?.hotPromotionDescription ?? ''),
+                                    Text(car?.hotPromotionDescription ?? ''),
+                                  ],
+                                ),
                               ],
                             ],
                           ),
