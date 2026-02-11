@@ -60,7 +60,7 @@ void main() {
   });
 
   test('deleteCarById deletes car if found and valid', () {
-    final carId = ObjectId();
+    final carId = '1';
     final car = MockCar();
     when(car.isValid).thenReturn(true);
     when(realm.find<Car>(carId)).thenReturn(car);
@@ -74,7 +74,7 @@ void main() {
   });
 
   test('deleteCarById does nothing if car not found', () {
-    final carId = ObjectId();
+    final carId = '1';
     when(realm.find<Car>(carId)).thenReturn(null);
     when(realm.write(any)).thenAnswer((invocation) {
       invocation.positionalArguments.first();

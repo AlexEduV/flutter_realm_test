@@ -862,7 +862,7 @@ class MockRealmLocalStorage extends _i1.Mock implements _i15.RealmLocalStorage {
           as List<_i10.CarEntity>);
 
   @override
-  void deleteById(_i6.ObjectId? id) => super.noSuchMethod(
+  void deleteById(String? id) => super.noSuchMethod(
     Invocation.method(#deleteById, [id]),
     returnValueForMissingStub: null,
   );
@@ -894,4 +894,9 @@ class MockRealmLocalStorage extends _i1.Mock implements _i15.RealmLocalStorage {
             ),
           )
           as _i10.CarEntity);
+
+  @override
+  int getMaxCarId() =>
+      (super.noSuchMethod(Invocation.method(#getMaxCarId, []), returnValue: 0)
+          as int);
 }

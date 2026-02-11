@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
@@ -95,7 +94,7 @@ void main() {
   });
 
   test('deleteCarById calls deleteCarById with correct id', () {
-    final id = ObjectId();
+    final id = '1';
 
     mockRepo.deleteCarById(id);
 

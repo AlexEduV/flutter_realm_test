@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
@@ -120,8 +119,8 @@ void main() {
       verify(mockStorage.deleteAll()).called(1);
     });
 
-    test('deleteById can be called with ObjectId', () {
-      final id = ObjectId();
+    test('deleteById can be called with car Id', () {
+      final id = '1';
 
       mockStorage.deleteById(id);
 
