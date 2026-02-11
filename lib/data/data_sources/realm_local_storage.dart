@@ -37,11 +37,13 @@ class RealmLocalStorage implements BaseLocalStorage {
   }
 
   @override
-  void deleteById(ObjectId id) {
+  void deleteById(String id) {
     realm.write(() {
-      final liveCar = realm.find<Car>(id);
-      if (liveCar != null && liveCar.isValid) {
-        realm.delete(liveCar);
+      final liveCars = realm.all<Car>().query('carId == \$0', [id]);
+      for (final liveCar in liveCars) {
+        if (liveCar.isValid) {
+          realm.delete(liveCar);
+        }
       }
     });
   }

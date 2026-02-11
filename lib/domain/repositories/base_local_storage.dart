@@ -1,4 +1,3 @@
-import 'package:realm/realm.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 
 import '../entities/user_entity.dart';
@@ -14,7 +13,7 @@ abstract class BaseLocalStorage {
 
   void deleteAll();
 
-  void deleteById(ObjectId id);
+  void deleteById(String id);
 
   UserEntity initUser();
 

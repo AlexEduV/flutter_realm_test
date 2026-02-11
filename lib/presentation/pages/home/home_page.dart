@@ -73,6 +73,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void _addCarToBase() {
     serviceLocator<AddCarUseCase>().call(
       CarEntity(
+        //todo: use max id + 1 here;
         carId: '3',
         model: 'Model Y',
         manufacturer: 'Tesla',

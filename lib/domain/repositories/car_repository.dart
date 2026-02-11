@@ -1,5 +1,3 @@
-import 'package:realm/realm.dart';
-
 import '../entities/car_entity.dart';
 
 abstract class CarRepository {
@@ -13,7 +11,7 @@ abstract class CarRepository {
 
   void deleteAll();
 
-  void deleteCarById(ObjectId id);
+  void deleteCarById(String id);
 
   CarEntity getCarById(String id);
 }

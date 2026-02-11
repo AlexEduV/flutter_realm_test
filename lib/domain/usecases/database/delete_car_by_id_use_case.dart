@@ -1,14 +1,13 @@
-import 'package:realm/realm.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/domain/usecases/usecase.dart';
 
-class DeleteCarByIdUseCase implements UseCaseWithParams<ObjectId, void> {
+class DeleteCarByIdUseCase implements UseCaseWithParams<String, void> {
   DeleteCarByIdUseCase(this._carRepository);
 
   final CarRepository _carRepository;
 
   @override
-  void call(ObjectId params) {
+  void call(String params) {
     return _carRepository.deleteCarById(params);
   }
 }

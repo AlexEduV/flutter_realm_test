@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:go_router/go_router.dart';
-import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_routes.dart';
@@ -144,7 +143,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
 
   void _handleDelete(Car carToDelete, int index) {
     // 1. Capture the data while the object is still valid
-    final ObjectId id = carToDelete.id;
+    final id = carToDelete.carId;
 
     // 2. Animate out using a "Snapshot" instance of the same widget
     widget.listKey.currentState?.removeItem(
@@ -157,6 +156,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     );
 
     // 3. Delete once
+    //todo: the item pops back in when there's a stream iteration
     serviceLocator<DeleteCarByIdUseCase>().call(id);
 
     context.read<ExplorePageCubit>().removeCarAt(index);

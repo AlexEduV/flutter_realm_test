@@ -47,7 +47,7 @@ class CarRepositoryImpl implements CarRepository {
   }
 
   @override
-  void deleteCarById(ObjectId id) {
+  void deleteCarById(String id) {
     localStorage.deleteById(id);
   }
 
