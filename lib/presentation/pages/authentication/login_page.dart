@@ -33,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
 
           // email textField
           //todo: field design is meh, and password field is not customised;
+          //add a background with cars or something, and a separate pages for registration and forgot password.
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
             child: TextFormField(
