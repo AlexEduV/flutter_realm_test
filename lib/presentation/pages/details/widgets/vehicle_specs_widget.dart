@@ -6,10 +6,17 @@ import 'package:test_futter_project/presentation/pages/details/widgets/specifica
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
 
-class VehicleSpecsWidget extends StatelessWidget {
+class VehicleSpecsWidget extends StatefulWidget {
   final CarEntity car;
 
   const VehicleSpecsWidget({required this.car, super.key});
+
+  @override
+  State<VehicleSpecsWidget> createState() => _VehicleSpecsWidgetState();
+}
+
+class _VehicleSpecsWidgetState extends State<VehicleSpecsWidget> {
+  bool _isExpanded = true;
 
   @override
   Widget build(BuildContext context) {
@@ -35,44 +42,64 @@ class VehicleSpecsWidget extends StatelessWidget {
               ),
 
               IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 28),
+                onPressed: () {
+                  setState(() {
+                    _isExpanded = !_isExpanded;
+                  });
+                },
+                icon: AnimatedRotation(
+                  turns: _isExpanded ? 0.0 : 0.5, // 0.5 turns = 180 degrees
+                  duration: const Duration(milliseconds: 300),
+                  child: const Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 28),
+                ),
                 style: IconButton.styleFrom(backgroundColor: Colors.white),
                 padding: const EdgeInsets.all(AppDimensions.minorXS),
               ),
             ],
           ),
 
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: AppDimensions.normalS,
-                  children: [
-                    SpecificationItem(title: 'Body', subtitle: car.bodyType),
+          AnimatedSize(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            child: _isExpanded
+                ? Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          spacing: AppDimensions.normalS,
+                          children: [
+                            SpecificationItem(title: 'Body', subtitle: widget.car.bodyType),
 
-                    SpecificationItem(title: 'Engine', subtitle: car.fuelType),
+                            SpecificationItem(title: 'Engine', subtitle: widget.car.fuelType),
 
-                    SpecificationItem(title: 'Transmission', subtitle: car.transmissionType),
-                  ],
-                ),
-              ),
+                            SpecificationItem(
+                              title: 'Transmission',
+                              subtitle: widget.car.transmissionType,
+                            ),
+                          ],
+                        ),
+                      ),
 
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: AppDimensions.normalS,
-                  children: [
-                    SpecificationItem(title: 'Mileage', subtitle: car.kilometers.toString()),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          spacing: AppDimensions.normalS,
+                          children: [
+                            SpecificationItem(
+                              title: 'Mileage',
+                              subtitle: widget.car.kilometers.toString(),
+                            ),
 
-                    SpecificationItem(title: 'Year', subtitle: car.year ?? ''),
+                            SpecificationItem(title: 'Year', subtitle: widget.car.year ?? ''),
 
-                    SpecificationItem(title: 'Color', subtitle: car.color ?? ''),
-                  ],
-                ),
-              ),
-            ],
+                            SpecificationItem(title: 'Color', subtitle: widget.car.color ?? ''),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                : const SizedBox.shrink(),
           ),
         ],
       ),
