@@ -49,7 +49,7 @@ class OwnerWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Owner',
+                            AppLocalisations.ownerSectionPersonTypeOwner,
                             style: AppTextStyles.zonaPro16Grey.copyWith(
                               fontWeight: FontWeight.w400,
                             ),
@@ -100,8 +100,8 @@ class OwnerWidget extends StatelessWidget {
                 backgroundColor: AppColors.headerColor,
                 foregroundColor: Colors.white,
               ),
-              child: const Text(
-                'Send Message',
+              child: Text(
+                AppLocalisations.ownerSectionContactButtonTitle,
                 style: AppTextStyles.zonaPro16,
                 textAlign: TextAlign.center,
               ),

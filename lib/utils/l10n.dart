@@ -83,4 +83,25 @@ class AppLocalisations {
   );
 
   static final String transmissionTypeHybrid = get('filters.parameters.transmissionTypes.hybrid');
+
+  static final String vehicleSpecificationsSectionTitle = get('pages.vehicleDetails.sectionTitle');
+  static final String vehicleSpecificationBody = get('pages.vehicleDetails.specifications.body');
+  static final String vehicleSpecificationEngine = get(
+    'pages.vehicleDetails.specifications.engine',
+  );
+  static final String vehicleSpecificationTransmission = get(
+    'pages.vehicleDetails.specifications.transmission',
+  );
+  static final String vehicleSpecificationMileage = get(
+    'pages.vehicleDetails.specifications.mileage',
+  );
+  static final String vehicleSpecificationColor = get('pages.vehicleDetails.specifications.color');
+  static final String vehicleSpecificationYear = get('pages.vehicleDetails.specifications.year');
+
+  static final String ownerSectionPersonTypeOwner = get(
+    'pages.vehicleDetails.ownerSection.personTypeOwner',
+  );
+  static final String ownerSectionContactButtonTitle = get(
+    'pages.vehicleDetails.ownerSection.contactButtonTitle',
+  );
 }

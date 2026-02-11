@@ -27,6 +27,21 @@
     "comingSoon": {
       "title": "Prossimamente",
       "subtitle": "Questa funzione non è ancora disponibile."
+    },
+    "vehicleDetails": {
+      "sectionTitle": "Specifiche del veicolo",
+      "specifications": {
+        "body": "Carrozzeria",
+        "engine": "Motore",
+        "transmission": "Trasmissione",
+        "mileage": "Chilometraggio",
+        "color": "Colore",
+        "year": "Anno"
+      },
+      "ownerSection": {
+        "personTypeOwner": "Proprietario",
+        "contactButtonTitle": "Invia messaggio"
+      }
     }
   },
   "actions": {

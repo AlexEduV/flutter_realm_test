@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/specification_item.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
@@ -33,7 +34,7 @@ class VehicleSpecsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Vehicle Specifications',
+                AppLocalisations.vehicleSpecificationsSectionTitle,
                 style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w600),
               ),
 
@@ -73,17 +74,17 @@ class VehicleSpecsWidget extends StatelessWidget {
                                 spacing: AppDimensions.normalS,
                                 children: [
                                   SpecificationItem(
-                                    title: 'Body',
+                                    title: AppLocalisations.vehicleSpecificationBody,
                                     subtitle: car.bodyType.capitalizeFirst(),
                                   ),
 
                                   SpecificationItem(
-                                    title: 'Engine',
+                                    title: AppLocalisations.vehicleSpecificationEngine,
                                     subtitle: car.fuelType.capitalizeFirst(),
                                   ),
 
                                   SpecificationItem(
-                                    title: 'Transmission',
+                                    title: AppLocalisations.vehicleSpecificationTransmission,
                                     subtitle: car.transmissionType.capitalizeFirst(),
                                   ),
                                 ],
@@ -96,14 +97,17 @@ class VehicleSpecsWidget extends StatelessWidget {
                                 spacing: AppDimensions.normalS,
                                 children: [
                                   SpecificationItem(
-                                    title: 'Mileage',
+                                    title: AppLocalisations.vehicleSpecificationMileage,
                                     subtitle: car.kilometers.toString(),
                                   ),
 
-                                  SpecificationItem(title: 'Year', subtitle: car.year ?? ''),
+                                  SpecificationItem(
+                                    title: AppLocalisations.vehicleSpecificationYear,
+                                    subtitle: car.year ?? '',
+                                  ),
 
                                   SpecificationItem(
-                                    title: 'Color',
+                                    title: AppLocalisations.vehicleSpecificationColor,
                                     subtitle: car.color ?? ''.capitalizeFirst(),
                                   ),
                                 ],

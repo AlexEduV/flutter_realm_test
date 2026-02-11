@@ -27,6 +27,21 @@
     "comingSoon": {
       "title": "Coming Soon",
       "subtitle": "This feature is not available yet."
+    },
+    "vehicleDetails": {
+      "sectionTitle": "Vehicle Specifications",
+      "specifications": {
+        "body": "Body",
+        "engine": "Engine",
+        "transmission": "Transmission",
+        "mileage": "Mileage",
+        "color": "Color",
+        "year": "Year"
+      },
+      "ownerSection": {
+        "personTypeOwner": "Owner",
+        "contactButtonTitle": "Send Message"
+      }
     }
   },
   "actions": {
