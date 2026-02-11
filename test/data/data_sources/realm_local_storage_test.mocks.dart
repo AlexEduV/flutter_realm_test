@@ -63,6 +63,11 @@ class _FakeRealm_6 extends _i1.SmartFake implements _i2.Realm {
     : super(parent, parentInvocation);
 }
 
+class _FakeIterator_7<E> extends _i1.SmartFake implements Iterator<E> {
+  _FakeIterator_7(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [Realm].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -286,4 +291,309 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
     Invocation.method(#disableAutoRefreshForTesting, []),
     returnValueForMissingStub: null,
   );
+}
+
+/// A class which mocks [RealmResults].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRealmResults<T extends Object?> extends _i1.Mock
+    implements _i5.RealmResults<T> {
+  MockRealmResults() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  bool get isValid =>
+      (super.noSuchMethod(Invocation.getter(#isValid), returnValue: false)
+          as bool);
+
+  @override
+  bool get isEmpty =>
+      (super.noSuchMethod(Invocation.getter(#isEmpty), returnValue: false)
+          as bool);
+
+  @override
+  Iterator<T> get iterator =>
+      (super.noSuchMethod(
+            Invocation.getter(#iterator),
+            returnValue: _FakeIterator_7<T>(this, Invocation.getter(#iterator)),
+          )
+          as Iterator<T>);
+
+  @override
+  int get length =>
+      (super.noSuchMethod(Invocation.getter(#length), returnValue: 0) as int);
+
+  @override
+  T get first =>
+      (super.noSuchMethod(
+            Invocation.getter(#first),
+            returnValue: _i7.dummyValue<T>(this, Invocation.getter(#first)),
+          )
+          as T);
+
+  @override
+  T get last =>
+      (super.noSuchMethod(
+            Invocation.getter(#last),
+            returnValue: _i7.dummyValue<T>(this, Invocation.getter(#last)),
+          )
+          as T);
+
+  @override
+  T get single =>
+      (super.noSuchMethod(
+            Invocation.getter(#single),
+            returnValue: _i7.dummyValue<T>(this, Invocation.getter(#single)),
+          )
+          as T);
+
+  @override
+  _i4.Stream<_i5.RealmResultsChanges<T>> get changes =>
+      (super.noSuchMethod(
+            Invocation.getter(#changes),
+            returnValue: _i4.Stream<_i5.RealmResultsChanges<T>>.empty(),
+          )
+          as _i4.Stream<_i5.RealmResultsChanges<T>>);
+
+  @override
+  bool get isNotEmpty =>
+      (super.noSuchMethod(Invocation.getter(#isNotEmpty), returnValue: false)
+          as bool);
+
+  @override
+  _i2.Realm get realm =>
+      (super.noSuchMethod(
+            Invocation.getter(#realm),
+            returnValue: _FakeRealm_6(this, Invocation.getter(#realm)),
+          )
+          as _i2.Realm);
+
+  @override
+  bool get isManaged =>
+      (super.noSuchMethod(Invocation.getter(#isManaged), returnValue: false)
+          as bool);
+
+  @override
+  bool get isFrozen =>
+      (super.noSuchMethod(Invocation.getter(#isFrozen), returnValue: false)
+          as bool);
+
+  @override
+  T operator [](int? index) =>
+      (super.noSuchMethod(
+            Invocation.method(#[], [index]),
+            returnValue: _i7.dummyValue<T>(
+              this,
+              Invocation.method(#[], [index]),
+            ),
+          )
+          as T);
+
+  @override
+  T elementAt(int? index) =>
+      (super.noSuchMethod(
+            Invocation.method(#elementAt, [index]),
+            returnValue: _i7.dummyValue<T>(
+              this,
+              Invocation.method(#elementAt, [index]),
+            ),
+          )
+          as T);
+
+  @override
+  int indexOf(T? element, [int? start = 0]) =>
+      (super.noSuchMethod(
+            Invocation.method(#indexOf, [element, start]),
+            returnValue: 0,
+          )
+          as int);
+
+  @override
+  bool contains(Object? element) =>
+      (super.noSuchMethod(
+            Invocation.method(#contains, [element]),
+            returnValue: false,
+          )
+          as bool);
+
+  @override
+  _i5.RealmResults<T> skip(int? count) =>
+      (super.noSuchMethod(
+            Invocation.method(#skip, [count]),
+            returnValue: _FakeRealmResults_5<T>(
+              this,
+              Invocation.method(#skip, [count]),
+            ),
+          )
+          as _i5.RealmResults<T>);
+
+  @override
+  _i5.RealmResults<T> freeze() =>
+      (super.noSuchMethod(
+            Invocation.method(#freeze, []),
+            returnValue: _FakeRealmResults_5<T>(
+              this,
+              Invocation.method(#freeze, []),
+            ),
+          )
+          as _i5.RealmResults<T>);
+
+  @override
+  Iterable<R> cast<R>() =>
+      (super.noSuchMethod(Invocation.method(#cast, []), returnValue: <R>[])
+          as Iterable<R>);
+
+  @override
+  Iterable<T> followedBy(Iterable<T>? other) =>
+      (super.noSuchMethod(
+            Invocation.method(#followedBy, [other]),
+            returnValue: <T>[],
+          )
+          as Iterable<T>);
+
+  @override
+  Iterable<T1> map<T1>(T1 Function(T)? toElement) =>
+      (super.noSuchMethod(
+            Invocation.method(#map, [toElement]),
+            returnValue: <T1>[],
+          )
+          as Iterable<T1>);
+
+  @override
+  Iterable<T> where(bool Function(T)? test) =>
+      (super.noSuchMethod(Invocation.method(#where, [test]), returnValue: <T>[])
+          as Iterable<T>);
+
+  @override
+  Iterable<T1> whereType<T1>() =>
+      (super.noSuchMethod(
+            Invocation.method(#whereType, []),
+            returnValue: <T1>[],
+          )
+          as Iterable<T1>);
+
+  @override
+  Iterable<T1> expand<T1>(Iterable<T1> Function(T)? toElements) =>
+      (super.noSuchMethod(
+            Invocation.method(#expand, [toElements]),
+            returnValue: <T1>[],
+          )
+          as Iterable<T1>);
+
+  @override
+  void forEach(void Function(T)? action) => super.noSuchMethod(
+    Invocation.method(#forEach, [action]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  T reduce(T Function(T, T)? combine) =>
+      (super.noSuchMethod(
+            Invocation.method(#reduce, [combine]),
+            returnValue: _i7.dummyValue<T>(
+              this,
+              Invocation.method(#reduce, [combine]),
+            ),
+          )
+          as T);
+
+  @override
+  T1 fold<T1>(T1? initialValue, T1 Function(T1, T)? combine) =>
+      (super.noSuchMethod(
+            Invocation.method(#fold, [initialValue, combine]),
+            returnValue: _i7.dummyValue<T1>(
+              this,
+              Invocation.method(#fold, [initialValue, combine]),
+            ),
+          )
+          as T1);
+
+  @override
+  bool every(bool Function(T)? test) =>
+      (super.noSuchMethod(Invocation.method(#every, [test]), returnValue: false)
+          as bool);
+
+  @override
+  String join([String? separator = '']) =>
+      (super.noSuchMethod(
+            Invocation.method(#join, [separator]),
+            returnValue: _i7.dummyValue<String>(
+              this,
+              Invocation.method(#join, [separator]),
+            ),
+          )
+          as String);
+
+  @override
+  bool any(bool Function(T)? test) =>
+      (super.noSuchMethod(Invocation.method(#any, [test]), returnValue: false)
+          as bool);
+
+  @override
+  List<T> toList({bool? growable = true}) =>
+      (super.noSuchMethod(
+            Invocation.method(#toList, [], {#growable: growable}),
+            returnValue: <T>[],
+          )
+          as List<T>);
+
+  @override
+  Set<T> toSet() =>
+      (super.noSuchMethod(Invocation.method(#toSet, []), returnValue: <T>{})
+          as Set<T>);
+
+  @override
+  Iterable<T> take(int? count) =>
+      (super.noSuchMethod(Invocation.method(#take, [count]), returnValue: <T>[])
+          as Iterable<T>);
+
+  @override
+  Iterable<T> takeWhile(bool Function(T)? test) =>
+      (super.noSuchMethod(
+            Invocation.method(#takeWhile, [test]),
+            returnValue: <T>[],
+          )
+          as Iterable<T>);
+
+  @override
+  Iterable<T> skipWhile(bool Function(T)? test) =>
+      (super.noSuchMethod(
+            Invocation.method(#skipWhile, [test]),
+            returnValue: <T>[],
+          )
+          as Iterable<T>);
+
+  @override
+  T firstWhere(bool Function(T)? test, {T Function()? orElse}) =>
+      (super.noSuchMethod(
+            Invocation.method(#firstWhere, [test], {#orElse: orElse}),
+            returnValue: _i7.dummyValue<T>(
+              this,
+              Invocation.method(#firstWhere, [test], {#orElse: orElse}),
+            ),
+          )
+          as T);
+
+  @override
+  T lastWhere(bool Function(T)? test, {T Function()? orElse}) =>
+      (super.noSuchMethod(
+            Invocation.method(#lastWhere, [test], {#orElse: orElse}),
+            returnValue: _i7.dummyValue<T>(
+              this,
+              Invocation.method(#lastWhere, [test], {#orElse: orElse}),
+            ),
+          )
+          as T);
+
+  @override
+  T singleWhere(bool Function(T)? test, {T Function()? orElse}) =>
+      (super.noSuchMethod(
+            Invocation.method(#singleWhere, [test], {#orElse: orElse}),
+            returnValue: _i7.dummyValue<T>(
+              this,
+              Invocation.method(#singleWhere, [test], {#orElse: orElse}),
+            ),
+          )
+          as T);
 }
