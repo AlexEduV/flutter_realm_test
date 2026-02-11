@@ -30,31 +30,31 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        leadingWidth: 70,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () => context.pop(),
+          icon: const Icon(
+            Icons.arrow_back,
+            size: AppDimensions.appBarIconSize,
+            color: AppColors.headerColor,
+          ),
+          style: IconButton.styleFrom(
+            backgroundColor: Colors.white.withAlpha(80),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppDimensions.normalS),
+            ),
+          ),
+        ),
+      ),
       body: BlocBuilder<DetailsPageCubit, DetailsPageState>(
         builder: (context, state) {
           final car = state.car;
 
           return Stack(
             children: [
-              Positioned(
-                top: 40,
-                left: AppDimensions.normalM,
-                child: IconButton(
-                  onPressed: () => context.pop(),
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: AppDimensions.appBarIconSize,
-                    color: AppColors.headerColor,
-                  ),
-                  style: IconButton.styleFrom(
-                    backgroundColor: Colors.white.withAlpha(80),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                    ),
-                  ),
-                ),
-              ),
-
               SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
