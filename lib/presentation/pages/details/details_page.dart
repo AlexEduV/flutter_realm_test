@@ -26,6 +26,7 @@ class _DetailsPageState extends State<DetailsPage> {
     super.initState();
 
     context.read<DetailsPageCubit>().loadData(widget.carId);
+    context.read<DetailsPageCubit>().setVehicleSpecsExpansionState(true);
   }
 
   @override

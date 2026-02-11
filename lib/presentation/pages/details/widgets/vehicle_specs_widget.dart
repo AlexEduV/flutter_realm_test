@@ -39,8 +39,9 @@ class VehicleSpecsWidget extends StatelessWidget {
               BlocBuilder<DetailsPageCubit, DetailsPageState>(
                 builder: (context, state) {
                   return IconButton(
-                    onPressed: () =>
-                        context.read<DetailsPageCubit>().expandVehicleSpecsButtonPressed(),
+                    onPressed: () => context.read<DetailsPageCubit>().setVehicleSpecsExpansionState(
+                      !state.isVehicleSpecsExpanded,
+                    ),
                     icon: AnimatedRotation(
                       turns: state.isVehicleSpecsExpanded ? 0.0 : 0.5, // 0.5 turns = 180 degrees
                       duration: const Duration(milliseconds: 300),

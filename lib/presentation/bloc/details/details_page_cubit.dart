@@ -12,7 +12,7 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
     emit(state.copyWith(car: entity));
   }
 
-  void expandVehicleSpecsButtonPressed() {
-    emit(state.copyWith(isVehicleSpecsExpanded: !state.isVehicleSpecsExpanded));
+  void setVehicleSpecsExpansionState(bool newState) {
+    emit(state.copyWith(isVehicleSpecsExpanded: newState));
   }
 }
