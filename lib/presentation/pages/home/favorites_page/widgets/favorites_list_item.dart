@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 
 import '../../../../../common/app_colors.dart';
@@ -62,7 +63,7 @@ class FavoritesListItem extends StatelessWidget {
                             ),
                             const SizedBox(width: AppDimensions.minorL),
                             Text(
-                              car.bodyType,
+                              car.bodyType.capitalizeFirst(),
                               style: AppTextStyles.zonaPro14.copyWith(color: Colors.grey[700]),
                             ),
                           ],
