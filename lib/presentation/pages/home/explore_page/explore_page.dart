@@ -156,7 +156,6 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     );
 
     // 3. Delete once
-    //todo: the item pops back in when there's a stream iteration
     serviceLocator<DeleteCarByIdUseCase>().call(id);
 
     context.read<ExplorePageCubit>().removeCarAt(index);
