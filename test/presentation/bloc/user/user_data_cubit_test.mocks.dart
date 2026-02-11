@@ -5,17 +5,18 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i6;
 
-import 'package:geolocator_platform_interface/src/enums/enums.dart' as _i9;
+import 'package:geolocator_platform_interface/src/enums/enums.dart' as _i10;
 import 'package:geolocator_platform_interface/src/geolocator_platform_interface.dart'
-    as _i8;
+    as _i9;
 import 'package:geolocator_platform_interface/src/models/models.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:realm/realm.dart' as _i7;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_futter_project/domain/repositories/base_local_storage.dart'
     as _i5;
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
-    as _i7;
+    as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -89,7 +90,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i5.BaseLocalStorage {
   );
 
   @override
-  void deleteById(dynamic id) => super.noSuchMethod(
+  void deleteById(_i7.ObjectId? id) => super.noSuchMethod(
     Invocation.method(#deleteById, [id]),
     returnValueForMissingStub: null,
   );
@@ -121,7 +122,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i5.BaseLocalStorage {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRequestLocationPermissionUseCase extends _i1.Mock
-    implements _i7.RequestLocationPermissionUseCase {
+    implements _i8.RequestLocationPermissionUseCase {
   MockRequestLocationPermissionUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -139,30 +140,30 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGeolocatorPlatform extends _i1.Mock
-    implements _i8.GeolocatorPlatform {
+    implements _i9.GeolocatorPlatform {
   MockGeolocatorPlatform() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<_i9.LocationPermission> checkPermission() =>
+  _i6.Future<_i10.LocationPermission> checkPermission() =>
       (super.noSuchMethod(
             Invocation.method(#checkPermission, []),
-            returnValue: _i6.Future<_i9.LocationPermission>.value(
-              _i9.LocationPermission.denied,
+            returnValue: _i6.Future<_i10.LocationPermission>.value(
+              _i10.LocationPermission.denied,
             ),
           )
-          as _i6.Future<_i9.LocationPermission>);
+          as _i6.Future<_i10.LocationPermission>);
 
   @override
-  _i6.Future<_i9.LocationPermission> requestPermission() =>
+  _i6.Future<_i10.LocationPermission> requestPermission() =>
       (super.noSuchMethod(
             Invocation.method(#requestPermission, []),
-            returnValue: _i6.Future<_i9.LocationPermission>.value(
-              _i9.LocationPermission.denied,
+            returnValue: _i6.Future<_i10.LocationPermission>.value(
+              _i10.LocationPermission.denied,
             ),
           )
-          as _i6.Future<_i9.LocationPermission>);
+          as _i6.Future<_i10.LocationPermission>);
 
   @override
   _i6.Future<bool> isLocationServiceEnabled() =>
@@ -204,12 +205,12 @@ class MockGeolocatorPlatform extends _i1.Mock
           as _i6.Future<_i4.Position>);
 
   @override
-  _i6.Stream<_i9.ServiceStatus> getServiceStatusStream() =>
+  _i6.Stream<_i10.ServiceStatus> getServiceStatusStream() =>
       (super.noSuchMethod(
             Invocation.method(#getServiceStatusStream, []),
-            returnValue: _i6.Stream<_i9.ServiceStatus>.empty(),
+            returnValue: _i6.Stream<_i10.ServiceStatus>.empty(),
           )
-          as _i6.Stream<_i9.ServiceStatus>);
+          as _i6.Stream<_i10.ServiceStatus>);
 
   @override
   _i6.Stream<_i4.Position> getPositionStream({
@@ -224,28 +225,28 @@ class MockGeolocatorPlatform extends _i1.Mock
           as _i6.Stream<_i4.Position>);
 
   @override
-  _i6.Future<_i9.LocationAccuracyStatus> requestTemporaryFullAccuracy({
+  _i6.Future<_i10.LocationAccuracyStatus> requestTemporaryFullAccuracy({
     required String? purposeKey,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#requestTemporaryFullAccuracy, [], {
               #purposeKey: purposeKey,
             }),
-            returnValue: _i6.Future<_i9.LocationAccuracyStatus>.value(
-              _i9.LocationAccuracyStatus.reduced,
+            returnValue: _i6.Future<_i10.LocationAccuracyStatus>.value(
+              _i10.LocationAccuracyStatus.reduced,
             ),
           )
-          as _i6.Future<_i9.LocationAccuracyStatus>);
+          as _i6.Future<_i10.LocationAccuracyStatus>);
 
   @override
-  _i6.Future<_i9.LocationAccuracyStatus> getLocationAccuracy() =>
+  _i6.Future<_i10.LocationAccuracyStatus> getLocationAccuracy() =>
       (super.noSuchMethod(
             Invocation.method(#getLocationAccuracy, []),
-            returnValue: _i6.Future<_i9.LocationAccuracyStatus>.value(
-              _i9.LocationAccuracyStatus.reduced,
+            returnValue: _i6.Future<_i10.LocationAccuracyStatus>.value(
+              _i10.LocationAccuracyStatus.reduced,
             ),
           )
-          as _i6.Future<_i9.LocationAccuracyStatus>);
+          as _i6.Future<_i10.LocationAccuracyStatus>);
 
   @override
   _i6.Future<bool> openAppSettings() =>

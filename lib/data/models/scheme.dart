@@ -16,7 +16,7 @@ class _Car {
   String? fuelType;
   String? transmissionType;
   bool? isChecked = false;
-  bool? isHotProposition = false;
+  String? hotPromotionDescription;
   int? kilometers = 500;
   int? distanceTo;
   int price = 0;

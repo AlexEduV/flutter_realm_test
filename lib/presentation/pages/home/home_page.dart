@@ -77,7 +77,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         model: 'Model Y',
         manufacturer: 'Tesla',
         isVerified: false,
-        isHotPromotion: false,
         type: 'car',
         bodyType: BodyType.sedan.name,
         fuelType: FuelType.ev.name,

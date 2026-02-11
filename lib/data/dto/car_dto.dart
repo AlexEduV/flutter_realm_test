@@ -13,7 +13,7 @@ class CarDto {
   final String transmissionType;
   final String? owner;
   final bool isVerified;
-  final bool isHotPromotion;
+  final String? hotPromotionDescription;
   int? kilometers;
   int? distanceTo;
   int? price;
@@ -24,11 +24,11 @@ class CarDto {
     required this.model,
     required this.manufacturer,
     required this.isVerified,
-    required this.isHotPromotion,
     required this.type,
     required this.bodyType,
     required this.fuelType,
     required this.transmissionType,
+    this.hotPromotionDescription,
     this.color,
     this.year,
     this.owner,
@@ -46,7 +46,7 @@ class CarDto {
     year: json['year'] as String?,
     isVerified: json['is_verified'] as bool,
     price: json['price'] as int?,
-    isHotPromotion: json['is_hot_promotion'] as bool,
+    hotPromotionDescription: json['hot_promotion_description'] as String?,
     transmissionType: json['transmission_type'] as String,
     fuelType: json['fuel_type'] as String,
     bodyType: json['body_type'] as String,

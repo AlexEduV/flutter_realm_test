@@ -10,6 +10,7 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
+import 'package:test_futter_project/presentation/widgets/verified_badge.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../utils/app_router.dart';
@@ -120,20 +121,7 @@ class AnnouncementListItem extends StatelessWidget {
                           ),
                         ),
 
-                        if (car?.isVerified ?? false) ...[
-                          Container(
-                            padding: const EdgeInsets.all(AppDimensions.minorS),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.green[700],
-                            ),
-                            child: const Icon(
-                              Icons.check,
-                              color: Colors.white,
-                              size: AppDimensions.normalXS,
-                            ),
-                          ),
-                        ],
+                        if (car?.isVerified ?? false) ...[const VerifiedBadge()],
                       ],
                     ),
                   ),
@@ -152,7 +140,7 @@ class AnnouncementListItem extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              if (car?.isHotPromotion ?? false)
+                              if (car?.hotPromotionDescription != null)
                                 getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                             ],
                           ),

@@ -17,7 +17,7 @@ class CarEntity {
   final String fuelType;
   final String transmissionType;
   final bool isVerified;
-  final bool isHotPromotion;
+  final String? hotPromotionDescription;
   int? kilometers = 0;
   int? distanceTo;
   int? price = 0;
@@ -27,11 +27,11 @@ class CarEntity {
     required this.model,
     required this.manufacturer,
     required this.isVerified,
-    required this.isHotPromotion,
     required this.type,
     required this.bodyType,
     required this.fuelType,
     required this.transmissionType,
+    this.hotPromotionDescription,
     this.year,
     this.color,
     this.owner,
@@ -47,7 +47,6 @@ class CarEntity {
       type: 'Car',
       manufacturer: 'Test Motors',
       isVerified: true,
-      isHotPromotion: false,
       bodyType: BodyType.sedan.name,
       fuelType: FuelType.gasoline.name,
       transmissionType: TransmissionType.manual.name,
@@ -61,7 +60,7 @@ class CarEntity {
       model: dto.model,
       manufacturer: dto.manufacturer,
       isVerified: dto.isVerified,
-      isHotPromotion: dto.isHotPromotion,
+      hotPromotionDescription: dto.hotPromotionDescription,
       type: dto.type,
       color: dto.color,
       price: dto.price,
@@ -82,7 +81,7 @@ class CarEntity {
       manufacturer: car.manufacturer,
       type: car.type,
       isVerified: car.isChecked ?? false,
-      isHotPromotion: car.isHotProposition ?? false,
+      hotPromotionDescription: car.hotPromotionDescription,
       price: car.price,
       distanceTo: car.distanceTo,
       color: car.color,

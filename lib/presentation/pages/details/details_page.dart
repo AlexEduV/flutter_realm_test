@@ -9,6 +9,8 @@ import 'package:test_futter_project/presentation/bloc/details/details_page_state
 import 'package:test_futter_project/presentation/pages/details/widgets/owner_widget.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
 
+import '../../widgets/verified_badge.dart';
+
 class DetailsPage extends StatefulWidget {
   final String carId;
 
@@ -76,12 +78,22 @@ class _DetailsPageState extends State<DetailsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         spacing: AppDimensions.minorM,
                         children: [
-                          Text(
-                            '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
-                            style: AppTextStyles.zonaPro24.copyWith(fontWeight: FontWeight.w500),
+                          Row(
+                            spacing: AppDimensions.normalXS,
+                            children: [
+                              Text(
+                                '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
+                                style: AppTextStyles.zonaPro24.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+
+                              if (car?.isVerified ?? false) ...[const VerifiedBadge()],
+                            ],
                           ),
 
                           Row(
+                            spacing: AppDimensions.normalM,
                             children: [
                               Text(
                                 '\$ ${car?.price ?? ''}',
@@ -90,8 +102,10 @@ class _DetailsPageState extends State<DetailsPage> {
                                 ),
                               ),
 
-                              if (car?.isHotPromotion ?? false) ...[
+                              if (car?.hotPromotionDescription != null) ...[
                                 const Icon(Icons.whatshot, size: 18, color: Colors.red),
+
+                                Text(car?.hotPromotionDescription ?? ''),
                               ],
                             ],
                           ),
