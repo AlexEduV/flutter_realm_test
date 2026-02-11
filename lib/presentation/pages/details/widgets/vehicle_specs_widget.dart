@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/specification_item.dart';
 
@@ -18,7 +19,7 @@ class VehicleSpecsWidget extends StatelessWidget {
         vertical: AppDimensions.normalL,
       ),
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        color: AppColors.scaffoldColor,
         borderRadius: BorderRadius.circular(AppDimensions.normalS),
       ),
       child: Column(

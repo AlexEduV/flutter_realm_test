@@ -29,7 +29,7 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
+      backgroundColor: Colors.white,
       body: BlocBuilder<DetailsPageCubit, DetailsPageState>(
         builder: (context, state) {
           final car = state.car;

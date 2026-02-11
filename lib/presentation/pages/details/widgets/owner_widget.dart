@@ -15,9 +15,9 @@ class OwnerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: AppDimensions.normalL),
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: const BorderRadius.only(
+      decoration: const BoxDecoration(
+        color: AppColors.scaffoldColor,
+        borderRadius: BorderRadius.only(
           topRight: Radius.circular(AppDimensions.normalS),
           topLeft: Radius.circular(AppDimensions.normalS),
           bottomRight: Radius.circular(AppDimensions.normalXL),
