@@ -9,6 +9,7 @@ import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_ca
 import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
+import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/explore_page.dart';
 import 'package:test_futter_project/presentation/pages/home/favorites_page/favorites_page.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
@@ -73,8 +74,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             ExplorePage(listKey: exploreListKey),
             const FavoritesPage(),
             const PlaceholderPage(),
-            const PlaceholderPage(),
-            const PlaceholderPage(),
+            const LoginPage(),
           ],
         ),
       ),
