@@ -24,14 +24,12 @@ class _LoginPageState extends State<LoginPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 200),
-
-          const Padding(
-            padding: EdgeInsetsGeometry.only(left: AppDimensions.normalXL),
-            child: Text('Welcome \nBack', style: AppTextStyles.zonaPro30),
+          const Expanded(
+            child: Padding(
+              padding: EdgeInsetsGeometry.only(left: AppDimensions.normalXL, top: 200),
+              child: Text('Welcome \nBack', style: AppTextStyles.zonaPro30),
+            ),
           ),
-
-          const SizedBox(height: 200),
 
           // email textField
           Padding(
@@ -95,11 +93,72 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
 
+          const SizedBox(height: 20),
+
           // login button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Your action here
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppDimensions.normalM,
+                  ), // Button height
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      AppDimensions.normalS,
+                    ), // Optional rounded corners
+                  ),
+                  backgroundColor: AppColors.headerColor,
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text(
+                  'Log in',
+                  style: AppTextStyles.zonaPro16,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
 
           //Or Divider
+          const Divider(height: 40),
 
           // join us button if not registered
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Your action here
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppDimensions.normalM,
+                  ), // Button height
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      AppDimensions.normalS,
+                    ), // Optional rounded corners
+                  ),
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.grey,
+                ),
+                child: const Text(
+                  'Sign up',
+                  style: AppTextStyles.zonaPro16,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 20),
         ],
       ),
     );
