@@ -68,10 +68,17 @@ class LoginField extends StatelessWidget {
             prefixIcon: Icon(leadingIcon, color: AppColors.accentColor),
             suffixIcon: onSuffixIconPressed != null
                 ? Padding(
-                    padding: const EdgeInsets.only(right: AppDimensions.normalS),
-                    child: IconButton(
-                      onPressed: onSuffixIconPressed,
-                      icon: Icon(isObscureText ? Icons.visibility_off : Icons.visibility),
+                    padding: const EdgeInsetsDirectional.only(end: 12.0),
+                    child: Material(
+                      borderRadius: BorderRadius.circular(100.0),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(100.0),
+                        onTap: onSuffixIconPressed,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Icon(isObscureText ? Icons.visibility_off : Icons.visibility),
+                        ),
+                      ),
                     ),
                   )
                 : null,
