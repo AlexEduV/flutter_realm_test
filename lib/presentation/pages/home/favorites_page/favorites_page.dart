@@ -18,8 +18,8 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.favoritesPageTitle, style: AppTextStyles.zonaPro30),
-        backgroundColor: AppColors.scaffoldColor,
+        title: Text(AppLocalisations.favoritesPageTitle, style: AppTextStyles.zonaPro20),
+        centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
