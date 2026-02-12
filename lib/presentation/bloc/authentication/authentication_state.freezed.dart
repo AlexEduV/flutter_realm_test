@@ -90,7 +90,7 @@ as bool,
 
 
 class _AuthenticationState implements AuthenticationState {
-  const _AuthenticationState({this.isPasswordFieldObscure = false, this.fullNameFieldParams, this.emailFieldParams, this.passwordFieldParams, this.emailError, this.passwordError, this.fullNameError, this.isButtonEnabled = false, this.emailValue = '', this.passwordValue = '', this.fullNameValue = '', this.isLoading = false, this.authenticationErrorText = null, this.isLoginMode = true});
+  const _AuthenticationState({this.isPasswordFieldObscure = true, this.fullNameFieldParams, this.emailFieldParams, this.passwordFieldParams, this.emailError, this.passwordError, this.fullNameError, this.isButtonEnabled = false, this.emailValue = '', this.passwordValue = '', this.fullNameValue = '', this.isLoading = false, this.authenticationErrorText = null, this.isLoginMode = true});
   
 
 @override@JsonKey() final  bool isPasswordFieldObscure;
