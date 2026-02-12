@@ -73,9 +73,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<CarApiService>(() => MockCarApiService());
 
-  serviceLocator.registerLazySingleton<AuthService>(
-    () => MockAuthService(serviceLocator(), serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton<AuthService>(() => MockAuthService(serviceLocator()));
 
   //Register Repository (passing Realm from GetIt)
   serviceLocator.registerLazySingleton<CarRepository>(
