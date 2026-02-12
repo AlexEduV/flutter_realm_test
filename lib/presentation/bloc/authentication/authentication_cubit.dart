@@ -170,5 +170,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   void logOut() {
     serviceLocator<AuthRepository>().logOut();
+    emit(state.copyWith(isLoginMode: true));
   }
 }
