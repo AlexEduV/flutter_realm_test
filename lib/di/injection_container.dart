@@ -91,7 +91,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator(), serviceLocator()));
 
-  serviceLocator.registerFactory(() => UserDataCubit(serviceLocator(), serviceLocator()));
+  serviceLocator.registerLazySingleton(() => UserDataCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
 
@@ -119,5 +119,5 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
 
-  serviceLocator.registerFactory(() => AuthenticationCubit());
+  serviceLocator.registerLazySingleton(() => AuthenticationCubit());
 }
