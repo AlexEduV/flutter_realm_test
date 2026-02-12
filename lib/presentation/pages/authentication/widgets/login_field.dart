@@ -8,12 +8,15 @@ class LoginField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String labelText;
   final String hintText;
+  final String? errorText;
   final TextInputType textInputType;
   final IconData leadingIcon;
   final TextInputAction textInputAction;
   final bool isObscureText;
   final Function()? onEditingComplete;
   final Function()? onSuffixIconPressed;
+  final Function(bool)? onFocusChange;
+  final Function(String? value) onChanged;
 
   const LoginField({
     required this.focusNode,
@@ -23,6 +26,9 @@ class LoginField extends StatelessWidget {
     required this.textInputType,
     required this.leadingIcon,
     required this.textInputAction,
+    required this.onFocusChange,
+    required this.onChanged,
+    this.errorText,
     this.onEditingComplete,
     this.isObscureText = false,
     this.onSuffixIconPressed,
@@ -34,13 +40,12 @@ class LoginField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
       child: Focus(
-        onFocusChange: (newValue) {
-          //todo: validate field here
-        },
+        onFocusChange: onFocusChange,
         child: TextFormField(
           focusNode: focusNode,
           controller: textEditingController,
           decoration: InputDecoration(
+            errorText: errorText,
             labelText: labelText,
             hintText: hintText,
             filled: true,
@@ -86,9 +91,7 @@ class LoginField extends StatelessWidget {
           keyboardType: textInputType,
           textInputAction: textInputAction,
           obscureText: isObscureText,
-          onChanged: (newValue) {
-            //todo: revalidate values here
-          },
+          onChanged: onChanged,
           onEditingComplete: onEditingComplete,
         ),
       ),

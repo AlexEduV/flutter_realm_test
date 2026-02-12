@@ -22,6 +22,17 @@ class _LoginPageState extends State<LoginPage> {
   final passwordFocusNode = FocusNode();
 
   @override
+  void dispose() {
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+
+    emailTextController.dispose();
+    passwordTextController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
       builder: (context, state) {
@@ -50,6 +61,21 @@ class _LoginPageState extends State<LoginPage> {
                 onEditingComplete: () {
                   passwordFocusNode.requestFocus();
                 },
+                errorText: state.emailError,
+                onChanged: (newValue) {
+                  context.read<AuthenticationCubit>().validateEmail(
+                    emailTextController.text,
+                    emailFocusNode.hasFocus,
+                  );
+                },
+                onFocusChange: (hasFocus) {
+                  if (!hasFocus) {
+                    context.read<AuthenticationCubit>().validateEmail(
+                      emailTextController.text,
+                      false,
+                    );
+                  }
+                },
               ),
 
               const SizedBox(height: 20),
@@ -68,6 +94,21 @@ class _LoginPageState extends State<LoginPage> {
                   context.read<AuthenticationCubit>().setObscurePassword(
                     !state.isPasswordFieldObscure,
                   );
+                },
+                errorText: state.passwordError,
+                onChanged: (newValue) {
+                  context.read<AuthenticationCubit>().validatePassword(
+                    passwordTextController.text,
+                    passwordFocusNode.hasFocus,
+                  );
+                },
+                onFocusChange: (hasFocus) {
+                  if (!hasFocus) {
+                    context.read<AuthenticationCubit>().validatePassword(
+                      passwordTextController.text,
+                      false,
+                    );
+                  }
                 },
               ),
 

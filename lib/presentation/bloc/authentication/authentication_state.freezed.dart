@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthenticationState {
 
- bool get isPasswordFieldObscure;
+ bool get isPasswordFieldObscure; FieldParamsModel? get emailFieldParams; FieldParamsModel? get passwordFieldParams; String? get emailError; String? get passwordError; bool get isButtonEnabled;
 /// Create a copy of AuthenticationState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $AuthenticationStateCopyWith<AuthenticationState> get copyWith => _$Authenticati
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthenticationState&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthenticationState&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure)&&(identical(other.emailFieldParams, emailFieldParams) || other.emailFieldParams == emailFieldParams)&&(identical(other.passwordFieldParams, passwordFieldParams) || other.passwordFieldParams == passwordFieldParams)&&(identical(other.emailError, emailError) || other.emailError == emailError)&&(identical(other.passwordError, passwordError) || other.passwordError == passwordError)&&(identical(other.isButtonEnabled, isButtonEnabled) || other.isButtonEnabled == isButtonEnabled));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isPasswordFieldObscure);
+int get hashCode => Object.hash(runtimeType,isPasswordFieldObscure,emailFieldParams,passwordFieldParams,emailError,passwordError,isButtonEnabled);
 
 @override
 String toString() {
-  return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure)';
+  return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, isButtonEnabled: $isButtonEnabled)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $AuthenticationStateCopyWith<$Res>  {
   factory $AuthenticationStateCopyWith(AuthenticationState value, $Res Function(AuthenticationState) _then) = _$AuthenticationStateCopyWithImpl;
 @useResult
 $Res call({
- bool isPasswordFieldObscure
+ bool isPasswordFieldObscure, FieldParamsModel? emailFieldParams, FieldParamsModel? passwordFieldParams, String? emailError, String? passwordError, bool isButtonEnabled
 });
 
 
@@ -63,9 +63,14 @@ class _$AuthenticationStateCopyWithImpl<$Res>
 
 /// Create a copy of AuthenticationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isPasswordFieldObscure = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isPasswordFieldObscure = null,Object? emailFieldParams = freezed,Object? passwordFieldParams = freezed,Object? emailError = freezed,Object? passwordError = freezed,Object? isButtonEnabled = null,}) {
   return _then(_self.copyWith(
 isPasswordFieldObscure: null == isPasswordFieldObscure ? _self.isPasswordFieldObscure : isPasswordFieldObscure // ignore: cast_nullable_to_non_nullable
+as bool,emailFieldParams: freezed == emailFieldParams ? _self.emailFieldParams : emailFieldParams // ignore: cast_nullable_to_non_nullable
+as FieldParamsModel?,passwordFieldParams: freezed == passwordFieldParams ? _self.passwordFieldParams : passwordFieldParams // ignore: cast_nullable_to_non_nullable
+as FieldParamsModel?,emailError: freezed == emailError ? _self.emailError : emailError // ignore: cast_nullable_to_non_nullable
+as String?,passwordError: freezed == passwordError ? _self.passwordError : passwordError // ignore: cast_nullable_to_non_nullable
+as String?,isButtonEnabled: null == isButtonEnabled ? _self.isButtonEnabled : isButtonEnabled // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -77,10 +82,15 @@ as bool,
 
 
 class _AuthenticationState implements AuthenticationState {
-  const _AuthenticationState({this.isPasswordFieldObscure = false});
+  const _AuthenticationState({this.isPasswordFieldObscure = false, this.emailFieldParams, this.passwordFieldParams, this.emailError, this.passwordError, this.isButtonEnabled = false});
   
 
 @override@JsonKey() final  bool isPasswordFieldObscure;
+@override final  FieldParamsModel? emailFieldParams;
+@override final  FieldParamsModel? passwordFieldParams;
+@override final  String? emailError;
+@override final  String? passwordError;
+@override@JsonKey() final  bool isButtonEnabled;
 
 /// Create a copy of AuthenticationState
 /// with the given fields replaced by the non-null parameter values.
@@ -92,16 +102,16 @@ _$AuthenticationStateCopyWith<_AuthenticationState> get copyWith => __$Authentic
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthenticationState&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthenticationState&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure)&&(identical(other.emailFieldParams, emailFieldParams) || other.emailFieldParams == emailFieldParams)&&(identical(other.passwordFieldParams, passwordFieldParams) || other.passwordFieldParams == passwordFieldParams)&&(identical(other.emailError, emailError) || other.emailError == emailError)&&(identical(other.passwordError, passwordError) || other.passwordError == passwordError)&&(identical(other.isButtonEnabled, isButtonEnabled) || other.isButtonEnabled == isButtonEnabled));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isPasswordFieldObscure);
+int get hashCode => Object.hash(runtimeType,isPasswordFieldObscure,emailFieldParams,passwordFieldParams,emailError,passwordError,isButtonEnabled);
 
 @override
 String toString() {
-  return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure)';
+  return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, isButtonEnabled: $isButtonEnabled)';
 }
 
 
@@ -112,7 +122,7 @@ abstract mixin class _$AuthenticationStateCopyWith<$Res> implements $Authenticat
   factory _$AuthenticationStateCopyWith(_AuthenticationState value, $Res Function(_AuthenticationState) _then) = __$AuthenticationStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isPasswordFieldObscure
+ bool isPasswordFieldObscure, FieldParamsModel? emailFieldParams, FieldParamsModel? passwordFieldParams, String? emailError, String? passwordError, bool isButtonEnabled
 });
 
 
@@ -129,9 +139,14 @@ class __$AuthenticationStateCopyWithImpl<$Res>
 
 /// Create a copy of AuthenticationState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isPasswordFieldObscure = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isPasswordFieldObscure = null,Object? emailFieldParams = freezed,Object? passwordFieldParams = freezed,Object? emailError = freezed,Object? passwordError = freezed,Object? isButtonEnabled = null,}) {
   return _then(_AuthenticationState(
 isPasswordFieldObscure: null == isPasswordFieldObscure ? _self.isPasswordFieldObscure : isPasswordFieldObscure // ignore: cast_nullable_to_non_nullable
+as bool,emailFieldParams: freezed == emailFieldParams ? _self.emailFieldParams : emailFieldParams // ignore: cast_nullable_to_non_nullable
+as FieldParamsModel?,passwordFieldParams: freezed == passwordFieldParams ? _self.passwordFieldParams : passwordFieldParams // ignore: cast_nullable_to_non_nullable
+as FieldParamsModel?,emailError: freezed == emailError ? _self.emailError : emailError // ignore: cast_nullable_to_non_nullable
+as String?,passwordError: freezed == passwordError ? _self.passwordError : passwordError // ignore: cast_nullable_to_non_nullable
+as String?,isButtonEnabled: null == isButtonEnabled ? _self.isButtonEnabled : isButtonEnabled // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<HomeBottomBarCubit>(create: (context) => serviceLocator<HomeBottomBarCubit>()),
         BlocProvider<DetailsPageCubit>(create: (context) => serviceLocator<DetailsPageCubit>()),
         BlocProvider<AuthenticationCubit>(
-          create: (context) => serviceLocator<AuthenticationCubit>(),
+          create: (context) => serviceLocator<AuthenticationCubit>()..init(),
         ),
       ],
       child: MaterialApp.router(
