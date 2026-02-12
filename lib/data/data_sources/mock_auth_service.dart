@@ -25,7 +25,7 @@ class MockAuthService implements AuthService {
   }
 
   @override
-  Future<AuthResult> register(String email, String password) {
-    return _authRepository.register(email, password);
+  Future<AuthResult> register(String email, String password, String fullName) {
+    return _authRepository.register(email, password, fullName);
   }
 }

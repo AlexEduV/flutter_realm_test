@@ -145,9 +145,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
             const SizedBox(height: 20),
 
-            // login button
+            // Sign up button
             SplashButton(
-              title: 'Log in',
+              title: 'Sign up',
               onPressed: () {
                 if (state.isLoading) {
                   return;
@@ -155,8 +155,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
                 emailFocusNode.unfocus();
                 passwordFocusNode.unfocus();
+                fullNameFocusNode.unfocus();
 
-                context.read<AuthenticationCubit>().onLoginButtonPressed();
+                context.read<AuthenticationCubit>().onRegisterButtonPressed();
               },
               foregroundColor: Colors.white,
               backgroundColor: AppColors.headerColor,
@@ -177,8 +178,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
             // join us button if not registered
             SplashButton(
-              title: 'Sign up',
-              onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
+              title: 'Log in',
+              onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
               foregroundColor: Colors.grey,
               backgroundColor: Colors.white,
             ),

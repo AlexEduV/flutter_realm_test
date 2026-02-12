@@ -137,6 +137,33 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     emit(state.copyWith(isLoading: false));
   }
 
+  void onRegisterButtonPressed() async {
+    emit(state.copyWith(authenticationErrorText: null));
+
+    validatePassword(state.passwordValue, false);
+    validateEmail(state.emailValue, false);
+    validateFullName(state.fullNameValue, false);
+
+    if (state.emailError != null || state.passwordError != null || state.fullNameError != null) {
+      return;
+    }
+
+    emit(state.copyWith(isLoading: true));
+    final result = await serviceLocator<AuthRepository>().register(
+      state.emailValue,
+      state.passwordValue,
+      state.fullNameValue,
+    );
+
+    if (!result.success) {
+      emit(state.copyWith(authenticationErrorText: result.message));
+    } else {
+      serviceLocator<UserDataCubit>().authUser(state.emailValue);
+    }
+
+    emit(state.copyWith(isLoading: false));
+  }
+
   void setNewFormModeToLogin(bool newValue) {
     emit(state.copyWith(isLoginMode: newValue));
   }
