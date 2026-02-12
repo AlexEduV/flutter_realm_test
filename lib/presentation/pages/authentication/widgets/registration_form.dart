@@ -5,29 +5,32 @@ import 'package:test_futter_project/presentation/pages/authentication/widgets/sp
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
-import '../../../../common/app_text_styles.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';
 import 'login_field.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class RegistrationForm extends StatefulWidget {
+  const RegistrationForm({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<RegistrationForm> createState() => _RegistrationFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _RegistrationFormState extends State<RegistrationForm> {
+  final fullNameTextController = TextEditingController();
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
+  final fullNameFocusNode = FocusNode();
   final emailFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
+    fullNameFocusNode.dispose();
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
 
+    fullNameTextController.dispose();
     emailTextController.dispose();
     passwordTextController.dispose();
 
@@ -36,14 +39,48 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    //todo: maybe reset fields when switching between tabs
+
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
       builder: (context, state) {
         return Column(
           children: [
             LoginField(
+              focusNode: fullNameFocusNode,
+              textEditingController: fullNameTextController,
+              labelText: state.fullNameFieldParams?.label ?? '',
+              hintText: 'Enter your full name',
+              textInputType: TextInputType.name,
+              leadingIcon: Icons.person_outlined,
+              textInputAction: TextInputAction.next,
+              onEditingComplete: () {
+                emailFocusNode.requestFocus();
+              },
+              errorText: state.fullNameError,
+              onChanged: (newValue) {
+                context.read<AuthenticationCubit>().updateFullName(fullNameTextController.text);
+
+                context.read<AuthenticationCubit>().validateFullName(
+                  fullNameTextController.text,
+                  fullNameFocusNode.hasFocus,
+                );
+              },
+              onFocusChange: (hasFocus) {
+                if (!hasFocus) {
+                  context.read<AuthenticationCubit>().validateFullName(
+                    fullNameTextController.text,
+                    false,
+                  );
+                }
+              },
+            ),
+
+            const SizedBox(height: 20),
+
+            LoginField(
               focusNode: emailFocusNode,
               textEditingController: emailTextController,
-              labelText: 'Email',
+              labelText: state.emailFieldParams?.label ?? '',
               hintText: 'Enter your email',
               textInputType: TextInputType.emailAddress,
               leadingIcon: Icons.email_outlined,
@@ -76,7 +113,7 @@ class _LoginFormState extends State<LoginForm> {
             LoginField(
               focusNode: passwordFocusNode,
               textEditingController: passwordTextController,
-              labelText: 'Password',
+              labelText: state.passwordFieldParams?.label ?? '',
               hintText: 'Enter your password',
               textInputType: TextInputType.visiblePassword,
               leadingIcon: Icons.lock_outline,
@@ -104,27 +141,6 @@ class _LoginFormState extends State<LoginForm> {
                   );
                 }
               },
-            ),
-
-            //forgot password button
-            Padding(
-              padding: const EdgeInsets.only(
-                top: AppDimensions.minorS,
-                right: AppDimensions.normalM,
-              ),
-              child: Align(
-                alignment: AlignmentGeometry.centerRight,
-                child: GestureDetector(
-                  child: Text(
-                    'Forgot Password?',
-                    style: AppTextStyles.zonaPro16.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.headerColor,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-              ),
             ),
 
             const SizedBox(height: 20),

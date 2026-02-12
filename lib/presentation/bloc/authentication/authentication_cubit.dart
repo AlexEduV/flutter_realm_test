@@ -15,14 +15,19 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         emailFieldParams: FieldParamsModel.withLabel('Email').copyWith(
           regex: r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$',
           regexErrorMessage: 'The email is not valid.',
-          validationMessage: 'This field is required',
+          validationMessage: 'This field is required.',
         ),
         passwordFieldParams: FieldParamsModel.withLabel('Password').copyWith(
           minLength: '8',
           maxLength: '20',
-          validationMessage: 'This field is required',
+          validationMessage: 'This field is required.',
           regex: r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{8,}$',
           regexErrorMessage: 'The password is not valid.',
+        ),
+        fullNameFieldParams: FieldParamsModel.withLabel('Full Name').copyWith(
+          regex: r"^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$",
+          validationMessage: 'This field is required.',
+          regexErrorMessage: 'The Name is not valid.',
         ),
       ),
     );
@@ -38,6 +43,31 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   void updatePassword(String newValue) {
     emit(state.copyWith(passwordValue: newValue));
+  }
+
+  void updateFullName(String newValue) {
+    emit(state.copyWith(fullNameValue: newValue));
+  }
+
+  bool validateFullName(String fullName, bool isEditing) {
+    if (isEditing) {
+      emit(state.copyWith(fullNameError: null));
+      return true;
+    }
+
+    if (fullName.isEmpty) {
+      emit(state.copyWith(fullNameError: state.fullNameFieldParams?.validationMessage));
+      return false;
+    }
+
+    final emailRegex = RegExp(state.fullNameFieldParams?.regex ?? '');
+    if (!emailRegex.hasMatch(fullName)) {
+      emit(state.copyWith(fullNameError: state.fullNameFieldParams?.regexErrorMessage));
+      return false;
+    }
+
+    emit(state.copyWith(fullNameError: null));
+    return true;
   }
 
   bool validateEmail(String email, bool isEditing) {
