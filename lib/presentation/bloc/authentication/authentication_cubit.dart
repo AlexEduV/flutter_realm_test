@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../../../domain/repositories/auth_repository.dart';
 
@@ -99,6 +100,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
     if (!result.success) {
       emit(state.copyWith(authenticationErrorText: result.message));
+    } else {
+      serviceLocator<UserDataCubit>().authUser(state.emailValue);
     }
 
     emit(state.copyWith(isLoading: false));
