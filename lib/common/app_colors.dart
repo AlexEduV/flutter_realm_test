@@ -9,4 +9,5 @@ class AppColors {
   static const scaffoldColor = Color(0xFFE9E9ED);
 
   static const gold = Color(0xFFFFD700);
+  static const cherryRed = Color(0xff7b2d26);
 }

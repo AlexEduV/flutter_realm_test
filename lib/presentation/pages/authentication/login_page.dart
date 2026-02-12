@@ -50,6 +50,31 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                opacity: state.authenticationErrorText == null ? 0 : 1,
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppDimensions.normalM,
+                    vertical: AppDimensions.minorS,
+                  ),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: AppDimensions.normalM,
+                    vertical: AppDimensions.normalM,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.red.withAlpha(60),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Text(
+                    state.authenticationErrorText ?? '',
+                    style: AppTextStyles.zonaPro16.copyWith(color: AppColors.cherryRed),
+                  ),
+                ),
+              ),
+
               // email textField
               LoginField(
                 focusNode: emailFocusNode,

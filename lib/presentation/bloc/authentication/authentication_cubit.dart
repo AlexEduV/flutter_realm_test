@@ -82,6 +82,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   void onLoginButtonPressed() async {
+    emit(state.copyWith(authenticationErrorText: null));
+
     validatePassword(state.passwordValue, false);
     validateEmail(state.emailValue, false);
 
@@ -94,6 +96,11 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       state.emailValue,
       state.passwordValue,
     );
+
+    if (!result.success) {
+      emit(state.copyWith(authenticationErrorText: result.message));
+    }
+
     emit(state.copyWith(isLoading: false));
   }
 }
