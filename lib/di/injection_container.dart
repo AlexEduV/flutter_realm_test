@@ -1,10 +1,14 @@
 import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/data/data_sources/mock_auth_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_car_api_service.dart';
 import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
+import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
+import 'package:test_futter_project/domain/data_sources/auth_service.dart';
+import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
-import 'package:test_futter_project/domain/repositories/base_local_storage.dart';
+import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_all_cars_use_case.dart';
@@ -69,12 +73,18 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<CarApiService>(() => MockCarApiService());
 
+  serviceLocator.registerLazySingleton<AuthService>(
+    () => MockAuthService(serviceLocator(), serviceLocator()),
+  );
+
   //Register Repository (passing Realm from GetIt)
   serviceLocator.registerLazySingleton<CarRepository>(
     () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<PermissionRepository>(() => PermissionRepositoryImpl());
+
+  serviceLocator.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
 
   //Register Cubit (as a Factory, so you get a new instance if needed)
   serviceLocator.registerFactory(() => ExplorePageCubit(serviceLocator(), serviceLocator()));

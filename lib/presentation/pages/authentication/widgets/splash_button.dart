@@ -8,17 +8,21 @@ class SplashButton extends StatelessWidget {
   final void Function() onPressed;
   final Color backgroundColor;
   final Color foregroundColor;
+  final bool isLoading;
 
   const SplashButton({
     required this.title,
     required this.onPressed,
     required this.foregroundColor,
     required this.backgroundColor,
+    this.isLoading = false,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final progressBarSize = 23.0;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
       child: SizedBox(
@@ -35,7 +39,13 @@ class SplashButton extends StatelessWidget {
             backgroundColor: backgroundColor,
             foregroundColor: foregroundColor,
           ),
-          child: Text(title, style: AppTextStyles.zonaPro16, textAlign: TextAlign.center),
+          child: isLoading
+              ? SizedBox(
+                  height: progressBarSize,
+                  width: progressBarSize,
+                  child: CircularProgressIndicator(color: foregroundColor),
+                )
+              : Text(title, style: AppTextStyles.zonaPro16, textAlign: TextAlign.center),
         ),
       ),
     );

@@ -1,11 +1,9 @@
 import 'package:test_futter_project/domain/models/auth_result.dart';
 
-abstract class AuthService {
+abstract class AuthRepository {
   Future<AuthResult> login(String email, String password);
 
   Future<AuthResult> register(String email, String password);
 
-  void changePassword(String oldPassword, String newPassword);
-
-  void logOut();
+  Future<void> logOut();
 }

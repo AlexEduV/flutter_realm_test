@@ -144,6 +144,10 @@ class _LoginPageState extends State<LoginPage> {
               SplashButton(
                 title: 'Log in',
                 onPressed: () {
+                  if (state.isLoading) {
+                    return;
+                  }
+
                   emailFocusNode.unfocus();
                   passwordFocusNode.unfocus();
 
@@ -151,6 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 foregroundColor: Colors.white,
                 backgroundColor: AppColors.headerColor,
+                isLoading: state.isLoading,
               ),
 
               //Or Divider

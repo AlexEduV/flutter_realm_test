@@ -14,5 +14,6 @@ abstract class AuthenticationState with _$AuthenticationState {
     @Default(false) bool isButtonEnabled,
     @Default('') String emailValue,
     @Default('') String passwordValue,
+    @Default(false) bool isLoading,
   }) = _AuthenticationState;
 }

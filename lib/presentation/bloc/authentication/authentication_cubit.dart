@@ -1,6 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
+
+import '../../../domain/repositories/auth_repository.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(const AuthenticationState());
@@ -78,7 +81,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     return true;
   }
 
-  void onLoginButtonPressed() {
+  void onLoginButtonPressed() async {
     validatePassword(state.passwordValue, false);
     validateEmail(state.emailValue, false);
 
@@ -86,6 +89,11 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       return;
     }
 
-    //todo: authenticate here;
+    emit(state.copyWith(isLoading: true));
+    final result = await serviceLocator<AuthRepository>().login(
+      state.emailValue,
+      state.passwordValue,
+    );
+    emit(state.copyWith(isLoading: false));
   }
 }
