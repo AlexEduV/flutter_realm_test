@@ -70,4 +70,8 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     emit(state.copyWith(isUserAuthenticated: true));
   }
+
+  void logOutUser() {
+    emit(state.copyWith(isUserAuthenticated: false));
+  }
 }
