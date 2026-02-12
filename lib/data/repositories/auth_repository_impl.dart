@@ -2,8 +2,9 @@ import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
+  //todo: move this to a secure mock
   final Map<String, String> _users = {
-    'user@example.com': 'Password1!',
+    'mock@example.com': 'Password1!',
     'admin@example.com': 'AdminPass123!',
   };
 
