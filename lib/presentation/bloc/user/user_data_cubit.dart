@@ -64,4 +64,10 @@ class UserDataCubit extends Cubit<UserDataState> {
     user = user.copyWith(favoriteIds: newList);
     emit(state.copyWith(favoriteIds: newList));
   }
+
+  void authUser(String email) {
+    //todo: get user by email here and update cubit as well.
+
+    emit(state.copyWith(isUserAuthenticated: true));
+  }
 }

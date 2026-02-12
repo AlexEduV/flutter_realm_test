@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/login_field.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
 
@@ -177,6 +178,10 @@ class _LoginPageState extends State<LoginPage> {
                   passwordFocusNode.unfocus();
 
                   context.read<AuthenticationCubit>().onLoginButtonPressed();
+
+                  if (state.authenticationErrorText == null) {
+                    context.read<UserDataCubit>().authUser(emailTextController.text);
+                  }
                 },
                 foregroundColor: Colors.white,
                 backgroundColor: AppColors.headerColor,
