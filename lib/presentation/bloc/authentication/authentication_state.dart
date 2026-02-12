@@ -6,7 +6,7 @@ part 'authentication_state.freezed.dart';
 @freezed
 abstract class AuthenticationState with _$AuthenticationState {
   const factory AuthenticationState({
-    @Default(false) bool isPasswordFieldObscure,
+    @Default(true) bool isPasswordFieldObscure,
     FieldParamsModel? fullNameFieldParams,
     FieldParamsModel? emailFieldParams,
     FieldParamsModel? passwordFieldParams,
