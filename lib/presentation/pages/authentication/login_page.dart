@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/login_field.dart';
+import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -136,41 +137,16 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 20),
 
               // login button
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Your action here
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: AppDimensions.normalM,
-                      ), // Button height
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.normalS,
-                        ), // Optional rounded corners
-                      ),
-                      backgroundColor: AppColors.headerColor,
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Text(
-                      'Log in',
-                      style: AppTextStyles.zonaPro16,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
+              SplashButton(
+                title: 'Log in',
+                onPressed: () {},
+                foregroundColor: Colors.white,
+                backgroundColor: AppColors.headerColor,
               ),
 
               //Or Divider
               const Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: AppDimensions.normalM,
-                  horizontal: AppDimensions.normalM,
-                ),
+                padding: EdgeInsets.all(AppDimensions.normalM),
                 child: Row(
                   children: <Widget>[
                     Expanded(child: Divider()),
@@ -181,33 +157,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               // join us button if not registered
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Your action here
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: AppDimensions.normalM,
-                      ), // Button height
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.normalS,
-                        ), // Optional rounded corners
-                      ),
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.grey,
-                    ),
-                    child: const Text(
-                      'Sign up',
-                      style: AppTextStyles.zonaPro16,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
+              SplashButton(
+                title: 'Sign up',
+                onPressed: () {},
+                foregroundColor: Colors.grey,
+                backgroundColor: Colors.white,
               ),
 
               const SizedBox(height: 30),
