@@ -32,25 +32,37 @@ class _LoginPageState extends State<LoginPage> {
           ),
 
           // email textField
-          //todo: field design is meh, and password field is not customised;
-          //add a background with cars or something, and a separate pages for registration and forgot password.
+          // todo: add a background with cars or something, and a separate pages for registration and forgot password.
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
             child: TextFormField(
               controller: emailTextController,
               focusNode: emailFocusNode,
-              decoration: const InputDecoration(
-                errorText: null,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: AppDimensions.minorS,
-                  horizontal: AppDimensions.minorL,
-                ),
-                fillColor: Colors.white,
-                filled: true,
+              decoration: InputDecoration(
                 labelText: 'Email',
-                border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.accentColor)),
+                hintText: 'Enter your email',
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: const BorderSide(color: AppColors.accentColor),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: const BorderSide(color: AppColors.accentColor, width: 2),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: const BorderSide(color: Colors.red),
+                ),
+                prefixIcon: const Icon(Icons.email_outlined, color: AppColors.accentColor),
               ),
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.emailAddress,
             ),
           ),
 
@@ -61,19 +73,32 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
             child: TextFormField(
               controller: passwordTextController,
-              focusNode: emailFocusNode,
-              decoration: const InputDecoration(
-                errorText: null,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: AppDimensions.minorS,
-                  horizontal: AppDimensions.minorL,
-                ),
-                fillColor: Colors.white,
-                filled: true,
+              focusNode: passwordFocusNode,
+              decoration: InputDecoration(
                 labelText: 'Password',
-                border: OutlineInputBorder(borderSide: BorderSide(color: AppColors.accentColor)),
+                hintText: 'Enter your password',
+                filled: true,
+                fillColor: Colors.white,
+                contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: const BorderSide(color: AppColors.accentColor),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: const BorderSide(color: AppColors.accentColor, width: 2),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: const BorderSide(color: Colors.red),
+                ),
+                prefixIcon: const Icon(Icons.lock_outline, color: AppColors.accentColor),
               ),
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.visiblePassword,
             ),
           ),
 
