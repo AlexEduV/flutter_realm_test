@@ -64,6 +64,8 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 errorText: state.emailError,
                 onChanged: (newValue) {
+                  context.read<AuthenticationCubit>().updateEmail(emailTextController.text);
+
                   context.read<AuthenticationCubit>().validateEmail(
                     emailTextController.text,
                     emailFocusNode.hasFocus,
@@ -98,6 +100,8 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 errorText: state.passwordError,
                 onChanged: (newValue) {
+                  context.read<AuthenticationCubit>().updatePassword(passwordTextController.text);
+
                   context.read<AuthenticationCubit>().validatePassword(
                     passwordTextController.text,
                     passwordFocusNode.hasFocus,
@@ -139,7 +143,12 @@ class _LoginPageState extends State<LoginPage> {
               // login button
               SplashButton(
                 title: 'Log in',
-                onPressed: () {},
+                onPressed: () {
+                  emailFocusNode.unfocus();
+                  passwordFocusNode.unfocus();
+
+                  context.read<AuthenticationCubit>().onLoginButtonPressed();
+                },
                 foregroundColor: Colors.white,
                 backgroundColor: AppColors.headerColor,
               ),

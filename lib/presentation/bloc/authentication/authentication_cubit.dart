@@ -28,6 +28,14 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     emit(state.copyWith(isPasswordFieldObscure: newState));
   }
 
+  void updateEmail(String newValue) {
+    emit(state.copyWith(emailValue: newValue));
+  }
+
+  void updatePassword(String newValue) {
+    emit(state.copyWith(passwordValue: newValue));
+  }
+
   bool validateEmail(String email, bool isEditing) {
     if (isEditing) {
       emit(state.copyWith(emailError: null));
@@ -68,5 +76,16 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
     emit(state.copyWith(emailError: null));
     return true;
+  }
+
+  void onLoginButtonPressed() {
+    validatePassword(state.passwordValue, false);
+    validateEmail(state.emailValue, false);
+
+    if (state.emailError != null || state.passwordError != null) {
+      return;
+    }
+
+    //todo: authenticate here;
   }
 }
