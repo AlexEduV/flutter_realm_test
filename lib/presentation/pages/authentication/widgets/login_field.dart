@@ -13,6 +13,7 @@ class LoginField extends StatelessWidget {
   final TextInputAction textInputAction;
   final bool isObscureText;
   final Function()? onEditingComplete;
+  final Function()? onSuffixIconPressed;
 
   const LoginField({
     required this.focusNode,
@@ -24,6 +25,7 @@ class LoginField extends StatelessWidget {
     required this.textInputAction,
     this.onEditingComplete,
     this.isObscureText = false,
+    this.onSuffixIconPressed,
     super.key,
   });
 
@@ -64,6 +66,15 @@ class LoginField extends StatelessWidget {
               borderSide: const BorderSide(color: Colors.red),
             ),
             prefixIcon: Icon(leadingIcon, color: AppColors.accentColor),
+            suffixIcon: onSuffixIconPressed != null
+                ? Padding(
+                    padding: const EdgeInsets.only(right: AppDimensions.normalS),
+                    child: IconButton(
+                      onPressed: onSuffixIconPressed,
+                      icon: Icon(isObscureText ? Icons.visibility_off : Icons.visibility),
+                    ),
+                  )
+                : null,
           ),
           keyboardType: textInputType,
           textInputAction: textInputAction,
