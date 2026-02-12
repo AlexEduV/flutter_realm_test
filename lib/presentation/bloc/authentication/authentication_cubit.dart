@@ -165,7 +165,17 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   void setNewFormModeToLogin(bool newValue) {
-    emit(state.copyWith(isLoginMode: newValue));
+    emit(
+      state.copyWith(
+        isLoginMode: newValue,
+        fullNameError: null,
+        emailError: null,
+        passwordError: null,
+        passwordValue: '',
+        fullNameValue: '',
+        emailValue: '',
+      ),
+    );
   }
 
   void logOut() {
