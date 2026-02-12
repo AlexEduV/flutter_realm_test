@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthenticationState {
 
- bool get isPasswordFieldObscure; FieldParamsModel? get emailFieldParams; FieldParamsModel? get passwordFieldParams; String? get emailError; String? get passwordError; bool get isButtonEnabled; String get emailValue; String get passwordValue; bool get isLoading; String? get authenticationErrorText;
+ bool get isPasswordFieldObscure; FieldParamsModel? get emailFieldParams; FieldParamsModel? get passwordFieldParams; String? get emailError; String? get passwordError; bool get isButtonEnabled; String get emailValue; String get passwordValue; bool get isLoading; String? get authenticationErrorText; bool get isLoginMode;
 /// Create a copy of AuthenticationState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $AuthenticationStateCopyWith<AuthenticationState> get copyWith => _$Authenticati
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthenticationState&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure)&&(identical(other.emailFieldParams, emailFieldParams) || other.emailFieldParams == emailFieldParams)&&(identical(other.passwordFieldParams, passwordFieldParams) || other.passwordFieldParams == passwordFieldParams)&&(identical(other.emailError, emailError) || other.emailError == emailError)&&(identical(other.passwordError, passwordError) || other.passwordError == passwordError)&&(identical(other.isButtonEnabled, isButtonEnabled) || other.isButtonEnabled == isButtonEnabled)&&(identical(other.emailValue, emailValue) || other.emailValue == emailValue)&&(identical(other.passwordValue, passwordValue) || other.passwordValue == passwordValue)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.authenticationErrorText, authenticationErrorText) || other.authenticationErrorText == authenticationErrorText));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthenticationState&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure)&&(identical(other.emailFieldParams, emailFieldParams) || other.emailFieldParams == emailFieldParams)&&(identical(other.passwordFieldParams, passwordFieldParams) || other.passwordFieldParams == passwordFieldParams)&&(identical(other.emailError, emailError) || other.emailError == emailError)&&(identical(other.passwordError, passwordError) || other.passwordError == passwordError)&&(identical(other.isButtonEnabled, isButtonEnabled) || other.isButtonEnabled == isButtonEnabled)&&(identical(other.emailValue, emailValue) || other.emailValue == emailValue)&&(identical(other.passwordValue, passwordValue) || other.passwordValue == passwordValue)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.authenticationErrorText, authenticationErrorText) || other.authenticationErrorText == authenticationErrorText)&&(identical(other.isLoginMode, isLoginMode) || other.isLoginMode == isLoginMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isPasswordFieldObscure,emailFieldParams,passwordFieldParams,emailError,passwordError,isButtonEnabled,emailValue,passwordValue,isLoading,authenticationErrorText);
+int get hashCode => Object.hash(runtimeType,isPasswordFieldObscure,emailFieldParams,passwordFieldParams,emailError,passwordError,isButtonEnabled,emailValue,passwordValue,isLoading,authenticationErrorText,isLoginMode);
 
 @override
 String toString() {
-  return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, isButtonEnabled: $isButtonEnabled, emailValue: $emailValue, passwordValue: $passwordValue, isLoading: $isLoading, authenticationErrorText: $authenticationErrorText)';
+  return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, isButtonEnabled: $isButtonEnabled, emailValue: $emailValue, passwordValue: $passwordValue, isLoading: $isLoading, authenticationErrorText: $authenticationErrorText, isLoginMode: $isLoginMode)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $AuthenticationStateCopyWith<$Res>  {
   factory $AuthenticationStateCopyWith(AuthenticationState value, $Res Function(AuthenticationState) _then) = _$AuthenticationStateCopyWithImpl;
 @useResult
 $Res call({
- bool isPasswordFieldObscure, FieldParamsModel? emailFieldParams, FieldParamsModel? passwordFieldParams, String? emailError, String? passwordError, bool isButtonEnabled, String emailValue, String passwordValue, bool isLoading, String? authenticationErrorText
+ bool isPasswordFieldObscure, FieldParamsModel? emailFieldParams, FieldParamsModel? passwordFieldParams, String? emailError, String? passwordError, bool isButtonEnabled, String emailValue, String passwordValue, bool isLoading, String? authenticationErrorText, bool isLoginMode
 });
 
 
@@ -63,7 +63,7 @@ class _$AuthenticationStateCopyWithImpl<$Res>
 
 /// Create a copy of AuthenticationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isPasswordFieldObscure = null,Object? emailFieldParams = freezed,Object? passwordFieldParams = freezed,Object? emailError = freezed,Object? passwordError = freezed,Object? isButtonEnabled = null,Object? emailValue = null,Object? passwordValue = null,Object? isLoading = null,Object? authenticationErrorText = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isPasswordFieldObscure = null,Object? emailFieldParams = freezed,Object? passwordFieldParams = freezed,Object? emailError = freezed,Object? passwordError = freezed,Object? isButtonEnabled = null,Object? emailValue = null,Object? passwordValue = null,Object? isLoading = null,Object? authenticationErrorText = freezed,Object? isLoginMode = null,}) {
   return _then(_self.copyWith(
 isPasswordFieldObscure: null == isPasswordFieldObscure ? _self.isPasswordFieldObscure : isPasswordFieldObscure // ignore: cast_nullable_to_non_nullable
 as bool,emailFieldParams: freezed == emailFieldParams ? _self.emailFieldParams : emailFieldParams // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,8 @@ as bool,emailValue: null == emailValue ? _self.emailValue : emailValue // ignore
 as String,passwordValue: null == passwordValue ? _self.passwordValue : passwordValue // ignore: cast_nullable_to_non_nullable
 as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,authenticationErrorText: freezed == authenticationErrorText ? _self.authenticationErrorText : authenticationErrorText // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,isLoginMode: null == isLoginMode ? _self.isLoginMode : isLoginMode // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -86,7 +87,7 @@ as String?,
 
 
 class _AuthenticationState implements AuthenticationState {
-  const _AuthenticationState({this.isPasswordFieldObscure = false, this.emailFieldParams, this.passwordFieldParams, this.emailError, this.passwordError, this.isButtonEnabled = false, this.emailValue = '', this.passwordValue = '', this.isLoading = false, this.authenticationErrorText = null});
+  const _AuthenticationState({this.isPasswordFieldObscure = false, this.emailFieldParams, this.passwordFieldParams, this.emailError, this.passwordError, this.isButtonEnabled = false, this.emailValue = '', this.passwordValue = '', this.isLoading = false, this.authenticationErrorText = null, this.isLoginMode = true});
   
 
 @override@JsonKey() final  bool isPasswordFieldObscure;
@@ -99,6 +100,7 @@ class _AuthenticationState implements AuthenticationState {
 @override@JsonKey() final  String passwordValue;
 @override@JsonKey() final  bool isLoading;
 @override@JsonKey() final  String? authenticationErrorText;
+@override@JsonKey() final  bool isLoginMode;
 
 /// Create a copy of AuthenticationState
 /// with the given fields replaced by the non-null parameter values.
@@ -110,16 +112,16 @@ _$AuthenticationStateCopyWith<_AuthenticationState> get copyWith => __$Authentic
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthenticationState&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure)&&(identical(other.emailFieldParams, emailFieldParams) || other.emailFieldParams == emailFieldParams)&&(identical(other.passwordFieldParams, passwordFieldParams) || other.passwordFieldParams == passwordFieldParams)&&(identical(other.emailError, emailError) || other.emailError == emailError)&&(identical(other.passwordError, passwordError) || other.passwordError == passwordError)&&(identical(other.isButtonEnabled, isButtonEnabled) || other.isButtonEnabled == isButtonEnabled)&&(identical(other.emailValue, emailValue) || other.emailValue == emailValue)&&(identical(other.passwordValue, passwordValue) || other.passwordValue == passwordValue)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.authenticationErrorText, authenticationErrorText) || other.authenticationErrorText == authenticationErrorText));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthenticationState&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure)&&(identical(other.emailFieldParams, emailFieldParams) || other.emailFieldParams == emailFieldParams)&&(identical(other.passwordFieldParams, passwordFieldParams) || other.passwordFieldParams == passwordFieldParams)&&(identical(other.emailError, emailError) || other.emailError == emailError)&&(identical(other.passwordError, passwordError) || other.passwordError == passwordError)&&(identical(other.isButtonEnabled, isButtonEnabled) || other.isButtonEnabled == isButtonEnabled)&&(identical(other.emailValue, emailValue) || other.emailValue == emailValue)&&(identical(other.passwordValue, passwordValue) || other.passwordValue == passwordValue)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.authenticationErrorText, authenticationErrorText) || other.authenticationErrorText == authenticationErrorText)&&(identical(other.isLoginMode, isLoginMode) || other.isLoginMode == isLoginMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isPasswordFieldObscure,emailFieldParams,passwordFieldParams,emailError,passwordError,isButtonEnabled,emailValue,passwordValue,isLoading,authenticationErrorText);
+int get hashCode => Object.hash(runtimeType,isPasswordFieldObscure,emailFieldParams,passwordFieldParams,emailError,passwordError,isButtonEnabled,emailValue,passwordValue,isLoading,authenticationErrorText,isLoginMode);
 
 @override
 String toString() {
-  return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, isButtonEnabled: $isButtonEnabled, emailValue: $emailValue, passwordValue: $passwordValue, isLoading: $isLoading, authenticationErrorText: $authenticationErrorText)';
+  return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, isButtonEnabled: $isButtonEnabled, emailValue: $emailValue, passwordValue: $passwordValue, isLoading: $isLoading, authenticationErrorText: $authenticationErrorText, isLoginMode: $isLoginMode)';
 }
 
 
@@ -130,7 +132,7 @@ abstract mixin class _$AuthenticationStateCopyWith<$Res> implements $Authenticat
   factory _$AuthenticationStateCopyWith(_AuthenticationState value, $Res Function(_AuthenticationState) _then) = __$AuthenticationStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isPasswordFieldObscure, FieldParamsModel? emailFieldParams, FieldParamsModel? passwordFieldParams, String? emailError, String? passwordError, bool isButtonEnabled, String emailValue, String passwordValue, bool isLoading, String? authenticationErrorText
+ bool isPasswordFieldObscure, FieldParamsModel? emailFieldParams, FieldParamsModel? passwordFieldParams, String? emailError, String? passwordError, bool isButtonEnabled, String emailValue, String passwordValue, bool isLoading, String? authenticationErrorText, bool isLoginMode
 });
 
 
@@ -147,7 +149,7 @@ class __$AuthenticationStateCopyWithImpl<$Res>
 
 /// Create a copy of AuthenticationState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isPasswordFieldObscure = null,Object? emailFieldParams = freezed,Object? passwordFieldParams = freezed,Object? emailError = freezed,Object? passwordError = freezed,Object? isButtonEnabled = null,Object? emailValue = null,Object? passwordValue = null,Object? isLoading = null,Object? authenticationErrorText = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isPasswordFieldObscure = null,Object? emailFieldParams = freezed,Object? passwordFieldParams = freezed,Object? emailError = freezed,Object? passwordError = freezed,Object? isButtonEnabled = null,Object? emailValue = null,Object? passwordValue = null,Object? isLoading = null,Object? authenticationErrorText = freezed,Object? isLoginMode = null,}) {
   return _then(_AuthenticationState(
 isPasswordFieldObscure: null == isPasswordFieldObscure ? _self.isPasswordFieldObscure : isPasswordFieldObscure // ignore: cast_nullable_to_non_nullable
 as bool,emailFieldParams: freezed == emailFieldParams ? _self.emailFieldParams : emailFieldParams // ignore: cast_nullable_to_non_nullable
@@ -159,7 +161,8 @@ as bool,emailValue: null == emailValue ? _self.emailValue : emailValue // ignore
 as String,passwordValue: null == passwordValue ? _self.passwordValue : passwordValue // ignore: cast_nullable_to_non_nullable
 as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,authenticationErrorText: freezed == authenticationErrorText ? _self.authenticationErrorText : authenticationErrorText // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,isLoginMode: null == isLoginMode ? _self.isLoginMode : isLoginMode // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

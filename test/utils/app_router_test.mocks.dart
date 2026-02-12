@@ -308,6 +308,18 @@ class MockUserDataCubit extends _i1.Mock implements _i12.UserDataCubit {
   );
 
   @override
+  void authUser(String? email) => super.noSuchMethod(
+    Invocation.method(#authUser, [email]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void logOutUser() => super.noSuchMethod(
+    Invocation.method(#logOutUser, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   void emit(_i5.UserDataState? state) => super.noSuchMethod(
     Invocation.method(#emit, [state]),
     returnValueForMissingStub: null,

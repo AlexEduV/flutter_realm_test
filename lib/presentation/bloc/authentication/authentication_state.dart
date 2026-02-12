@@ -16,5 +16,6 @@ abstract class AuthenticationState with _$AuthenticationState {
     @Default('') String passwordValue,
     @Default(false) bool isLoading,
     @Default(null) String? authenticationErrorText,
+    @Default(true) bool isLoginMode,
   }) = _AuthenticationState;
 }

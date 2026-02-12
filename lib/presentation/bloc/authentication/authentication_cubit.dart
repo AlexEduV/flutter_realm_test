@@ -107,6 +107,10 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     emit(state.copyWith(isLoading: false));
   }
 
+  void setNewFormModeToLogin(bool newValue) {
+    emit(state.copyWith(isLoginMode: newValue));
+  }
+
   void logOut() {
     serviceLocator<AuthRepository>().logOut();
   }
