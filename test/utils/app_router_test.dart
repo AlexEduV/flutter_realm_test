@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/common/app_routes.dart';
+import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
@@ -13,18 +15,28 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_futter_project/presentation/pages/details/details_page.dart';
 import 'package:test_futter_project/presentation/pages/home/home_page.dart';
 import 'package:test_futter_project/presentation/pages/search/search_page.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 
 import 'app_router_test.mocks.dart';
 
-@GenerateMocks([HomeBottomBarCubit, ExplorePageCubit, UserDataCubit, SearchPageCubit])
+@GenerateMocks([
+  HomeBottomBarCubit,
+  ExplorePageCubit,
+  UserDataCubit,
+  SearchPageCubit,
+  DetailsPageCubit,
+])
 void main() {
   final MockHomeBottomBarCubit homeBottomBarCubit = MockHomeBottomBarCubit();
   final MockExplorePageCubit explorePageCubit = MockExplorePageCubit();
   final MockUserDataCubit mockUserDataCubit = MockUserDataCubit();
   final MockSearchPageCubit mockSearchPageCubit = MockSearchPageCubit();
+  final MockDetailsPageCubit mockDetailsPageCubit = MockDetailsPageCubit();
+
+  late Widget widget;
 
   setUpAll(() {
     when(homeBottomBarCubit.stream).thenAnswer((_) => const Stream.empty());
@@ -40,19 +52,26 @@ void main() {
 
     when(mockSearchPageCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockSearchPageCubit.state).thenReturn(const SearchPageState());
+
+    when(mockDetailsPageCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(mockDetailsPageCubit.state).thenReturn(const DetailsPageState());
+  });
+
+  setUp(() {
+    widget = MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeBottomBarCubit>(create: (context) => homeBottomBarCubit),
+        BlocProvider<ExplorePageCubit>(create: (context) => explorePageCubit),
+        BlocProvider<UserDataCubit>(create: (context) => mockUserDataCubit),
+        BlocProvider<SearchPageCubit>(create: (context) => mockSearchPageCubit),
+        BlocProvider<DetailsPageCubit>(create: (context) => mockDetailsPageCubit),
+      ],
+      child: MaterialApp.router(routerConfig: AppRouter.router),
+    );
   });
 
   testWidgets('Navigates to HomePage on root route', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MultiBlocProvider(
-        providers: [
-          BlocProvider<HomeBottomBarCubit>(create: (context) => homeBottomBarCubit),
-          BlocProvider<ExplorePageCubit>(create: (context) => explorePageCubit),
-          BlocProvider<UserDataCubit>(create: (context) => mockUserDataCubit),
-        ],
-        child: MaterialApp.router(routerConfig: AppRouter.router),
-      ),
-    );
+    await tester.pumpWidget(widget);
     await tester.pumpAndSettle();
 
     expect(find.byType(HomePage), findsOneWidget);
@@ -62,17 +81,7 @@ void main() {
   testWidgets('Navigates to SearchPage on /search route', (WidgetTester tester) async {
     when(mockSearchPageCubit.getSelectedFilterCount()).thenReturn(0);
 
-    await tester.pumpWidget(
-      MultiBlocProvider(
-        providers: [
-          BlocProvider<HomeBottomBarCubit>(create: (context) => homeBottomBarCubit),
-          BlocProvider<ExplorePageCubit>(create: (context) => explorePageCubit),
-          BlocProvider<UserDataCubit>(create: (context) => mockUserDataCubit),
-          BlocProvider<SearchPageCubit>(create: (context) => mockSearchPageCubit),
-        ],
-        child: MaterialApp.router(routerConfig: AppRouter.router),
-      ),
-    );
+    await tester.pumpWidget(widget);
     await tester.pumpAndSettle();
 
     // Navigate to /search
@@ -81,6 +90,35 @@ void main() {
 
     expect(find.byType(SearchPage), findsOneWidget);
     expect(find.byType(HomePage), findsNothing);
+  });
+
+  testWidgets('Navigates to DetailsPage from Explore', (tester) async {
+    await tester.pumpWidget(widget);
+
+    AppRouter.goToDetailsRouteFromExplore('car123');
+    await tester.pumpAndSettle();
+    expect(find.byType(DetailsPage), findsOneWidget);
+    final detailsPage = tester.widget<DetailsPage>(find.byType(DetailsPage));
+    expect(detailsPage.carId, 'car123');
+  });
+
+  testWidgets('Navigates to DetailsPage from Search', (tester) async {
+    await tester.pumpWidget(widget);
+
+    AppRouter.goToDetailsRouteFromSearch('car456');
+    await tester.pumpAndSettle();
+    expect(find.byType(DetailsPage), findsOneWidget);
+    final detailsPage = tester.widget<DetailsPage>(find.byType(DetailsPage));
+    expect(detailsPage.carId, 'car456');
+  });
+
+  testWidgets('DetailsPage carId is empty string if not provided', (tester) async {
+    await tester.pumpWidget(widget);
+
+    AppRouter.router.go('${AppRoutes.home}${AppRoutes.details}');
+    await tester.pumpAndSettle();
+    final detailsPage = tester.widget<DetailsPage>(find.byType(DetailsPage));
+    expect(detailsPage.carId, '');
   });
 
   test('AppRouter.router is a GoRouter', () {
