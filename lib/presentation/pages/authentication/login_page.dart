@@ -66,7 +66,18 @@ class _LoginPageState extends State<LoginPage> {
                         left: AppDimensions.normalXL,
                         top: 200,
                       ),
-                      child: Text(welcomeText, style: AppTextStyles.zonaPro30White),
+                      child: Text(
+                        welcomeText,
+                        style: AppTextStyles.zonaPro30White.copyWith(
+                          shadows: [
+                            const Shadow(
+                              blurRadius: 2.0,
+                              color: Colors.black,
+                              offset: Offset(0, 0),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
 
