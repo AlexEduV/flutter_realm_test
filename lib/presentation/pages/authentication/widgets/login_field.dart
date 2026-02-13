@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -17,6 +18,8 @@ class LoginField extends StatelessWidget {
   final Function()? onSuffixIconPressed;
   final Function(bool)? onFocusChange;
   final Function(String? value) onChanged;
+  final String? semanticsLabel;
+  final String? trailingActionSemanticsLabel;
 
   const LoginField({
     required this.focusNode,
@@ -32,6 +35,8 @@ class LoginField extends StatelessWidget {
     this.onEditingComplete,
     this.isObscureText = false,
     this.onSuffixIconPressed,
+    this.semanticsLabel,
+    this.trailingActionSemanticsLabel,
     super.key,
   });
 
@@ -41,61 +46,70 @@ class LoginField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
       child: Focus(
         onFocusChange: onFocusChange,
-        child: TextFormField(
-          focusNode: focusNode,
-          controller: textEditingController,
-          decoration: InputDecoration(
-            errorText: errorText,
-            labelText: labelText,
-            hintText: hintText,
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: AppDimensions.normalM,
-              horizontal: 20.0,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppDimensions.normalS),
-              borderSide: const BorderSide(color: AppColors.accentColor),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppDimensions.normalS),
-              borderSide: BorderSide(color: Colors.grey.shade300),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppDimensions.normalS),
-              borderSide: const BorderSide(
-                color: AppColors.accentColor,
-                width: AppDimensions.minorXS,
+        child: AppSemantics(
+          textField: true,
+          label: semanticsLabel ?? '',
+          child: TextFormField(
+            focusNode: focusNode,
+            controller: textEditingController,
+            decoration: InputDecoration(
+              errorText: errorText,
+              labelText: labelText,
+              hintText: hintText,
+              filled: true,
+              fillColor: Colors.white,
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: AppDimensions.normalM,
+                horizontal: 20.0,
               ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppDimensions.normalS),
-              borderSide: const BorderSide(color: Colors.red),
-            ),
-            prefixIcon: Icon(leadingIcon, color: AppColors.accentColor),
-            suffixIcon: onSuffixIconPressed != null
-                ? Padding(
-                    padding: const EdgeInsetsDirectional.only(end: AppDimensions.normalS),
-                    child: Material(
-                      borderRadius: BorderRadius.circular(100.0),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(100.0),
-                        onTap: onSuffixIconPressed,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Icon(isObscureText ? Icons.visibility_off : Icons.visibility),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                borderSide: const BorderSide(color: AppColors.accentColor),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                borderSide: BorderSide(color: Colors.grey.shade300),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                borderSide: const BorderSide(
+                  color: AppColors.accentColor,
+                  width: AppDimensions.minorXS,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                borderSide: const BorderSide(color: Colors.red),
+              ),
+              prefixIcon: Icon(leadingIcon, color: AppColors.accentColor),
+              suffixIcon: onSuffixIconPressed != null
+                  ? AppSemantics(
+                      label: trailingActionSemanticsLabel ?? '',
+                      button: true,
+                      isSelected: isObscureText,
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.only(end: AppDimensions.normalS),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(100.0),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(100.0),
+                            onTap: onSuffixIconPressed,
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppDimensions.normalS),
+                              child: Icon(isObscureText ? Icons.visibility_off : Icons.visibility),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                : null,
+                    )
+                  : null,
+            ),
+            keyboardType: textInputType,
+            textInputAction: textInputAction,
+            obscureText: isObscureText,
+            onChanged: onChanged,
+            onEditingComplete: onEditingComplete,
           ),
-          keyboardType: textInputType,
-          textInputAction: textInputAction,
-          obscureText: isObscureText,
-          onChanged: onChanged,
-          onEditingComplete: onEditingComplete,
         ),
       ),
     );

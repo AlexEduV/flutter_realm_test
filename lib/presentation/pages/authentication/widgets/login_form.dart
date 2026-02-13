@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/animated_divider_with_text.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
@@ -70,6 +72,7 @@ class _LoginFormState extends State<LoginForm> {
                   );
                 }
               },
+              semanticsLabel: AppSemanticsLabels.emailTextField,
             ),
 
             const SizedBox(height: 20),
@@ -106,6 +109,7 @@ class _LoginFormState extends State<LoginForm> {
                   );
                 }
               },
+              semanticsLabel: AppSemanticsLabels.passwordTextField,
             ),
 
             //forgot password button
@@ -116,15 +120,19 @@ class _LoginFormState extends State<LoginForm> {
               ),
               child: Align(
                 alignment: AlignmentGeometry.centerRight,
-                child: GestureDetector(
-                  child: Text(
-                    AppLocalisations.forgotPasswordButtonTitle,
-                    style: AppTextStyles.zonaPro16.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.headerColor,
+                child: AppSemantics(
+                  label: AppSemanticsLabels.forgotPasswordButton,
+                  button: true,
+                  child: GestureDetector(
+                    child: Text(
+                      AppLocalisations.forgotPasswordButtonTitle,
+                      style: AppTextStyles.zonaPro16.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.headerColor,
+                      ),
                     ),
+                    onTap: () {},
                   ),
-                  onTap: () {},
                 ),
               ),
             ),
@@ -132,32 +140,43 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: 20),
 
             // login button
-            SplashButton(
-              title: AppLocalisations.loginButtonTitle,
-              onPressed: () {
-                if (state.isLoading) {
-                  return;
-                }
+            AppSemantics(
+              button: true,
+              label: AppSemanticsLabels.loginButton,
+              child: SplashButton(
+                title: AppLocalisations.loginButtonTitle,
+                onPressed: () {
+                  if (state.isLoading) {
+                    return;
+                  }
 
-                emailFocusNode.unfocus();
-                passwordFocusNode.unfocus();
+                  emailFocusNode.unfocus();
+                  passwordFocusNode.unfocus();
 
-                context.read<AuthenticationCubit>().onLoginButtonPressed();
-              },
-              foregroundColor: Colors.white,
-              backgroundColor: AppColors.headerColor,
-              isLoading: state.isLoading,
+                  context.read<AuthenticationCubit>().onLoginButtonPressed();
+                },
+                foregroundColor: Colors.white,
+                backgroundColor: AppColors.headerColor,
+                isLoading: state.isLoading,
+              ),
             ),
 
             //Or Divider
-            AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
+            AppSemantics(
+              label: AppSemanticsLabels.orDivider,
+              child: AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
+            ),
 
             // join us button if not registered
-            SplashButton(
-              title: AppLocalisations.signUpButtonTitle,
-              onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
-              foregroundColor: Colors.grey,
-              backgroundColor: Colors.white,
+            AppSemantics(
+              label: AppLocalisations.signUpButtonTitle,
+              button: true,
+              child: SplashButton(
+                title: AppLocalisations.signUpButtonTitle,
+                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
+                foregroundColor: Colors.grey,
+                backgroundColor: Colors.white,
+              ),
             ),
 
             const SizedBox(height: 30),

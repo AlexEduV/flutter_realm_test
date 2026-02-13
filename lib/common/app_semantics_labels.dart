@@ -27,4 +27,18 @@ class AppSemanticsLabels {
 
   static const detailsPageVehicleSpecsExpandButton = 'detailsPageVehicleSpecsExpandButton';
   static const detailsPageContactButton = 'detailsPageContactButton';
+
+  static const fullNameTextField = 'fullNameTextField';
+  static const emailTextField = 'emailTextField';
+  static const passwordTextField = ' passwordTextField';
+
+  static const forgotPasswordButton = 'forgotPasswordButton';
+
+  static const registerButton = 'registerButton';
+  static const loginButton = 'loginButton';
+  static const obscurePasswordButton = 'obscurePasswordButton';
+
+  static const authErrorMessage = 'authErrorMessage';
+
+  static const orDivider = 'orDivider';
 }

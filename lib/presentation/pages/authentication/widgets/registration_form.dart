@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
@@ -74,6 +76,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   );
                 }
               },
+              semanticsLabel: AppSemanticsLabels.fullNameTextField,
             ),
 
             const SizedBox(height: 20),
@@ -106,6 +109,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   );
                 }
               },
+              semanticsLabel: AppSemanticsLabels.emailTextField,
             ),
 
             const SizedBox(height: 20),
@@ -142,38 +146,50 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   );
                 }
               },
+              semanticsLabel: AppSemanticsLabels.passwordTextField,
             ),
 
             const SizedBox(height: 20),
 
             // Sign up button
-            SplashButton(
-              title: AppLocalisations.signUpButtonTitle,
-              onPressed: () {
-                if (state.isLoading) {
-                  return;
-                }
+            AppSemantics(
+              button: true,
+              label: AppLocalisations.signUpButtonTitle,
+              child: SplashButton(
+                title: AppLocalisations.signUpButtonTitle,
+                onPressed: () {
+                  if (state.isLoading) {
+                    return;
+                  }
 
-                emailFocusNode.unfocus();
-                passwordFocusNode.unfocus();
-                fullNameFocusNode.unfocus();
+                  emailFocusNode.unfocus();
+                  passwordFocusNode.unfocus();
+                  fullNameFocusNode.unfocus();
 
-                context.read<AuthenticationCubit>().onRegisterButtonPressed();
-              },
-              foregroundColor: Colors.white,
-              backgroundColor: AppColors.headerColor,
-              isLoading: state.isLoading,
+                  context.read<AuthenticationCubit>().onRegisterButtonPressed();
+                },
+                foregroundColor: Colors.white,
+                backgroundColor: AppColors.headerColor,
+                isLoading: state.isLoading,
+              ),
             ),
 
             //Or Divider
-            AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
+            AppSemantics(
+              label: AppSemanticsLabels.orDivider,
+              child: AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
+            ),
 
             // join us button if not registered
-            SplashButton(
-              title: AppLocalisations.loginButtonTitle,
-              onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
-              foregroundColor: Colors.grey,
-              backgroundColor: Colors.white,
+            AppSemantics(
+              button: true,
+              label: AppSemanticsLabels.loginButton,
+              child: SplashButton(
+                title: AppLocalisations.loginButtonTitle,
+                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
+                foregroundColor: Colors.grey,
+                backgroundColor: Colors.white,
+              ),
             ),
 
             const SizedBox(height: 30),
