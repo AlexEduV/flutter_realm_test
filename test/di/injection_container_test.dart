@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:realm/realm.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/auth_service.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
@@ -23,13 +24,18 @@ import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
+import '../data/data_sources/realm_local_storage_test.mocks.dart';
+
 void main() {
-  setUpAll(() async {
+  setUp(() async {
+    await serviceLocator.reset();
+    serviceLocator.registerLazySingleton<Realm>(() => MockRealm());
+    // Register other mocks as needed
     await initDependenciesContainer();
   });
 
-  tearDown(() {
-    serviceLocator.reset();
+  tearDownAll(() async {
+    await serviceLocator.reset();
   });
 
   test('All dependencies are registered and resolvable', () {
@@ -59,48 +65,36 @@ void main() {
     expect(serviceLocator.isRegistered<AuthenticationCubit>(), isTrue);
   });
 
-  // test('All dependencies can be resolved', () {
-  //   expect(serviceLocator<AuthService>(), isA<AuthService>());
-  //   expect(serviceLocator<BaseLocalStorage>(), isA<BaseLocalStorage>());
-  //   expect(serviceLocator<CarApiService>(), isA<CarApiService>());
-  //   expect(serviceLocator<CarRepository>(), isA<CarRepository>());
-  //   expect(serviceLocator<PermissionRepository>(), isA<PermissionRepository>());
-  //   expect(serviceLocator<AuthRepository>(), isA<AuthRepository>());
-  //
-  //   expect(serviceLocator<ExplorePageCubit>(), isA<ExplorePageCubit>());
-  //   expect(serviceLocator<SearchPageCubit>(), isA<SearchPageCubit>());
-  //   expect(serviceLocator<UserDataCubit>(), isA<UserDataCubit>());
-  //   expect(serviceLocator<HomeBottomBarCubit>(), isA<HomeBottomBarCubit>());
-  //   expect(serviceLocator<DetailsPageCubit>(), isA<DetailsPageCubit>());
-  //
-  //   expect(
-  //     serviceLocator<RequestLocationPermissionUseCase>(),
-  //     isA<RequestLocationPermissionUseCase>(),
-  //   );
-  //   expect(
-  //     serviceLocator<CheckLocationPermissionStatusUseCase>(),
-  //     isA<CheckLocationPermissionStatusUseCase>(),
-  //   );
-  //   expect(serviceLocator<WatchCarsUseCase>(), isA<WatchCarsUseCase>());
-  //   expect(serviceLocator<SyncCarsUseCase>(), isA<SyncCarsUseCase>());
-  //   expect(serviceLocator<AddCarUseCase>(), isA<AddCarUseCase>());
-  //   expect(serviceLocator<GetAllCarsUseCase>(), isA<GetAllCarsUseCase>());
-  //   expect(serviceLocator<DeleteCarByIdUseCase>(), isA<DeleteCarByIdUseCase>());
-  //   expect(serviceLocator<DeleteAllCarsUseCase>(), isA<DeleteAllCarsUseCase>());
-  //   expect(serviceLocator<GetCarByIdUseCase>(), isA<GetCarByIdUseCase>());
-  //   expect(serviceLocator<GetCurrentMaxCarIdUseCase>(), isA<GetCurrentMaxCarIdUseCase>());
-  //   expect(serviceLocator<AuthenticationCubit>(), isA<AuthenticationCubit>());
-  // });
-  //
-  // test('Singletons return the same instance', () {
-  //   expect(identical(serviceLocator<AuthService>(), serviceLocator<AuthService>()), isTrue);
-  //   expect(identical(serviceLocator<CarRepository>(), serviceLocator<CarRepository>()), isTrue);
-  //   // ...repeat for other singletons as needed
-  // });
-  //
-  // test('Factories return new instances', () {
-  //   expect(serviceLocator<ExplorePageCubit>(), isNot(same(serviceLocator<ExplorePageCubit>())));
-  //   expect(serviceLocator<SearchPageCubit>(), isNot(same(serviceLocator<SearchPageCubit>())));
-  //   // ...repeat for other factories as needed
-  // });
+  test('All dependencies can be resolved', () {
+    expect(serviceLocator<AuthService>(), isA<AuthService>());
+    expect(serviceLocator<BaseLocalStorage>(), isA<BaseLocalStorage>());
+    expect(serviceLocator<CarApiService>(), isA<CarApiService>());
+    expect(serviceLocator<CarRepository>(), isA<CarRepository>());
+    expect(serviceLocator<PermissionRepository>(), isA<PermissionRepository>());
+    expect(serviceLocator<AuthRepository>(), isA<AuthRepository>());
+
+    expect(serviceLocator<ExplorePageCubit>(), isA<ExplorePageCubit>());
+    expect(serviceLocator<SearchPageCubit>(), isA<SearchPageCubit>());
+    expect(serviceLocator<UserDataCubit>(), isA<UserDataCubit>());
+    expect(serviceLocator<HomeBottomBarCubit>(), isA<HomeBottomBarCubit>());
+    expect(serviceLocator<DetailsPageCubit>(), isA<DetailsPageCubit>());
+
+    expect(
+      serviceLocator<RequestLocationPermissionUseCase>(),
+      isA<RequestLocationPermissionUseCase>(),
+    );
+    expect(
+      serviceLocator<CheckLocationPermissionStatusUseCase>(),
+      isA<CheckLocationPermissionStatusUseCase>(),
+    );
+    expect(serviceLocator<WatchCarsUseCase>(), isA<WatchCarsUseCase>());
+    expect(serviceLocator<SyncCarsUseCase>(), isA<SyncCarsUseCase>());
+    expect(serviceLocator<AddCarUseCase>(), isA<AddCarUseCase>());
+    expect(serviceLocator<GetAllCarsUseCase>(), isA<GetAllCarsUseCase>());
+    expect(serviceLocator<DeleteCarByIdUseCase>(), isA<DeleteCarByIdUseCase>());
+    expect(serviceLocator<DeleteAllCarsUseCase>(), isA<DeleteAllCarsUseCase>());
+    expect(serviceLocator<GetCarByIdUseCase>(), isA<GetCarByIdUseCase>());
+    expect(serviceLocator<GetCurrentMaxCarIdUseCase>(), isA<GetCurrentMaxCarIdUseCase>());
+    expect(serviceLocator<AuthenticationCubit>(), isA<AuthenticationCubit>());
+  });
 }
