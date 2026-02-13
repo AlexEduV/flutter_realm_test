@@ -91,5 +91,38 @@
         "hybrid": "Hybrid"
       }
     }
+  },
+  "forms": {
+    "ui": {
+      "welcomeLoginTitle": "Welcome \nBack",
+      "welcomeRegisterTitle": "Join us",
+      "forgotPasswordButtonText": "Forgot password?",
+      "loginButtonTitle": "Log in",
+      "signUpButtonTitle": "Sign up",
+      "orDividerTitle": "Or"
+    },
+    "warnings": {
+      "userNotFound": "The user not found.",
+      "incorrectPassword": "Incorrect password.",
+      "userAlreadyExists": "User already exists."
+    },
+    "validationMessage": "This field is required.",
+    "fieldParams": {
+      "email": {
+        "label": "Email",
+        "hintText": "Enter your email:",
+        "regexErrorMessage": "The email is not valid."
+      },
+      "password": {
+        "label": "Password",
+        "hintText": "Enter your password:",
+        "regexErrorMessage": "The password is not valid."
+      },
+      "fullName": {
+        "label": "Full name",
+        "hintText": "Enter your full name:",
+        "regexErrorMessage": "The full name is not valid."
+      }
+    }
   }
 }

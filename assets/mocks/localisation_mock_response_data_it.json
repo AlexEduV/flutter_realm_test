@@ -91,5 +91,38 @@
         "hybrid": "Ibrida"
       }
     }
+  },
+  "forms": {
+    "ui": {
+      "welcomeLoginTitle": "Bentornato",
+      "welcomeRegisterTitle": "Unisciti a noi",
+      "forgotPasswordButtonText": "Password dimenticata?",
+      "loginButtonTitle": "Accedi",
+      "signUpButtonTitle": "Registrati",
+      "orDividerTitle": "Oppure"
+    },
+    "warnings": {
+      "userNotFound": "Utente non trovato.",
+      "incorrectPassword": "Password errata.",
+      "userAlreadyExists": "L'utente esiste già."
+    },
+    "validationMessage": "Questo campo è obbligatorio.",
+    "fieldParams": {
+      "email": {
+        "label": "Email",
+        "hintText": "Inserisci la tua email:",
+        "regexErrorMessage": "L'email non è valida."
+      },
+      "password": {
+        "label": "Password",
+        "hintText": "Inserisci la tua password:",
+        "regexErrorMessage": "La password non è valida."
+      },
+      "fullName": {
+        "label": "Nome completo",
+        "hintText": "Inserisci il tuo nome completo:",
+        "regexErrorMessage": "Il nome completo non è valido."
+      }
+    }
   }
 }
