@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/divider_with_text_widget.dart';
+import 'package:test_futter_project/presentation/pages/authentication/widgets/animated_divider_with_text.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -150,7 +150,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
 
             //Or Divider
-            DividerWithText(text: AppLocalisations.orDividerTitle),
+            AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
 
             // join us button if not registered
             SplashButton(

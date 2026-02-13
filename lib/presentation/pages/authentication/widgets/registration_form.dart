@@ -6,7 +6,7 @@ import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';
-import 'divider_with_text_widget.dart';
+import 'animated_divider_with_text.dart';
 import 'login_field.dart';
 
 class RegistrationForm extends StatefulWidget {
@@ -166,7 +166,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             ),
 
             //Or Divider
-            DividerWithText(text: AppLocalisations.orDividerTitle),
+            AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
 
             // join us button if not registered
             SplashButton(
