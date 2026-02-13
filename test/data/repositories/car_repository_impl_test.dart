@@ -95,6 +95,28 @@ void main() {
     verify(localStorage.deleteAll()).called(1);
   });
 
+  test('getCarById calls realm.getCarById()', () {
+    when(realm.write(any)).thenAnswer((invocation) {
+      invocation.positionalArguments.first();
+    });
+    when(localStorage.getCarById('id')).thenReturn(CarEntity.empty());
+
+    repository.getCarById('id');
+
+    verify(localStorage.getCarById('id')).called(1);
+  });
+
+  test('getMaxCarId calls realm.getMaxCarId()', () {
+    when(realm.write(any)).thenAnswer((invocation) {
+      invocation.positionalArguments.first();
+    });
+    when(localStorage.getMaxCarId()).thenReturn(1);
+
+    repository.getMaxCarId();
+
+    verify(localStorage.getMaxCarId()).called(1);
+  });
+
   test('getAllCars returns mapped entities', () {
     final car = MockCar();
 
