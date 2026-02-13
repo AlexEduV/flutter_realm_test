@@ -38,6 +38,7 @@ flutter:
 
   assets:
     - assets/mocks/
+    - assets/images/
 
   fonts:
     - family: Zona Pro
