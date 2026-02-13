@@ -26,7 +26,7 @@ void main() {
       'forms.fieldParams.password.label': 'Password',
       'forms.fieldParams.password.regexErrorMessage': 'Invalid password',
       'forms.fieldParams.password.hintText': 'Enter password',
-      'forms.fieldParams.fullName.label': 'Full Name',
+      'forms.fieldParams.fullName.label': 'Full name',
       'forms.fieldParams.fullName.regexErrorMessage': 'Invalid name',
       'forms.fieldParams.fullName.hintText': 'Enter name',
     };
@@ -51,7 +51,7 @@ void main() {
       expect(cubit.state.isLoginMode, true);
       expect(cubit.state.emailFieldParams?.label, 'Email');
       expect(cubit.state.passwordFieldParams?.label, 'Password');
-      expect(cubit.state.fullNameFieldParams?.label, 'Full Name');
+      expect(cubit.state.fullNameFieldParams?.label, 'Full name');
     });
 
     blocTest<AuthenticationCubit, AuthenticationState>(
