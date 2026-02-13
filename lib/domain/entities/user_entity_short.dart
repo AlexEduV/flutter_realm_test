@@ -10,13 +10,4 @@ class UserEntityShort {
     required this.password,
     required this.fullName,
   });
-
-  UserEntityShort copyWith({String? userId, String? email, String? password, String? fullName}) {
-    return UserEntityShort(
-      userId: userId ?? this.userId,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      fullName: fullName ?? this.fullName,
-    );
-  }
 }
