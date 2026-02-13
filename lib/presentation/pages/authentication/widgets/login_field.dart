@@ -82,33 +82,36 @@ class LoginField extends StatelessWidget {
                 borderSide: const BorderSide(color: Colors.red),
               ),
               prefixIcon: Icon(leadingIcon, color: AppColors.accentColor),
-              suffixIcon: onSuffixIconPressed != null
-                  ? AppSemantics(
-                      label: trailingActionSemanticsLabel ?? '',
-                      button: true,
-                      isSelected: isObscureText,
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.only(end: AppDimensions.normalS),
-                        child: Material(
-                          borderRadius: BorderRadius.circular(100.0),
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(100.0),
-                            onTap: onSuffixIconPressed,
-                            child: Padding(
-                              padding: const EdgeInsets.all(AppDimensions.normalS),
-                              child: Icon(isObscureText ? Icons.visibility_off : Icons.visibility),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  : null,
+              suffixIcon: onSuffixIconPressed != null ? getFieldSuffixWidget() : null,
             ),
             keyboardType: textInputType,
             textInputAction: textInputAction,
             obscureText: isObscureText,
             onChanged: onChanged,
             onEditingComplete: onEditingComplete,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget getFieldSuffixWidget() {
+    return AppSemantics(
+      //todo: these semantics are not visible
+      label: trailingActionSemanticsLabel ?? '',
+      button: true,
+      isSelected: isObscureText,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.only(end: AppDimensions.normalS),
+        child: Material(
+          shape: const CircleBorder(),
+          child: InkWell(
+            onTap: onSuffixIconPressed,
+            customBorder: const CircleBorder(),
+            child: Padding(
+              padding: const EdgeInsets.all(AppDimensions.normalS),
+              child: Icon(isObscureText ? Icons.visibility_off : Icons.visibility),
+            ),
           ),
         ),
       ),
