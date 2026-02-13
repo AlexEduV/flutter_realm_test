@@ -27,73 +27,77 @@ class _LoginPageState extends State<LoginPage> {
 
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          body: Stack(
             children: [
-              Expanded(
-                // todo: add a background with cars or something, and a separate pages for registration and forgot password.
-                child: Stack(
-                  children: [
-                    ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          stops: [0.0, 0.7, 1.0],
-                          colors: [
-                            Colors.white, // Fully visible image
-                            Colors.white, // Start fading
-                            Colors.transparent, // Fully faded (shows background)
-                          ],
-                        ).createShader(bounds);
-                      },
-                      blendMode: BlendMode.dstIn,
-                      child: Image.asset(
-                        'assets/images/car-yellow.jpg',
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: double.infinity,
-                        alignment: Alignment.bottomCenter,
-                      ),
-                    ),
+              FractionallySizedBox(
+                alignment: Alignment.bottomCenter, // or any alignment you need
+                heightFactor: 0.5, // 50% of the parent's height
+                widthFactor: 1.0, // full width
+                child: ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: [0.0, 0.7, 1.0],
+                      colors: [
+                        Colors.white, // Fully visible image
+                        Colors.white, // Start fading
+                        Colors.transparent, // Fully faded (shows background)
+                      ],
+                    ).createShader(bounds);
+                  },
+                  blendMode: BlendMode.dstIn,
+                  child: Image.asset(
+                    'assets/images/car-yellow.jpg',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                    alignment: Alignment.bottomCenter,
+                  ),
+                ),
+              ),
 
-                    Padding(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Padding(
                       padding: const EdgeInsetsGeometry.only(
                         left: AppDimensions.normalXL,
                         top: 200,
                       ),
                       child: Text(welcomeText, style: AppTextStyles.zonaPro30White),
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
-              AnimatedOpacity(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-                opacity: state.authenticationErrorText == null ? 0 : 1,
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppDimensions.normalM,
-                    vertical: AppDimensions.minorS,
+                  AnimatedOpacity(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    opacity: state.authenticationErrorText == null ? 0 : 1,
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppDimensions.normalM,
+                        vertical: AppDimensions.minorS,
+                      ),
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: AppDimensions.normalM,
+                        vertical: AppDimensions.normalM,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.red.withAlpha(60),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Text(
+                        state.authenticationErrorText ?? '',
+                        style: AppTextStyles.zonaPro16.copyWith(color: AppColors.cherryRed),
+                      ),
+                    ),
                   ),
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: AppDimensions.normalM,
-                    vertical: AppDimensions.normalM,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.red.withAlpha(60),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Text(
-                    state.authenticationErrorText ?? '',
-                    style: AppTextStyles.zonaPro16.copyWith(color: AppColors.cherryRed),
-                  ),
-                ),
-              ),
 
-              if (state.isLoginMode) ...[const LoginForm()] else ...[const RegistrationForm()],
+                  if (state.isLoginMode) ...[const LoginForm()] else ...[const RegistrationForm()],
+                ],
+              ),
             ],
           ),
         );
