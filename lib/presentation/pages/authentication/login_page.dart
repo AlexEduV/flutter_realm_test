@@ -32,29 +32,39 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Expanded(
                 // todo: add a background with cars or something, and a separate pages for registration and forgot password.
-                child: Container(
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        AppColors.scaffoldColor, // Replace with your actual color
-                        AppColors.scaffoldColor.withAlpha(0),
-                      ],
-                      stops: [0.7, 1.0],
+                child: Stack(
+                  children: [
+                    ShaderMask(
+                      shaderCallback: (Rect bounds) {
+                        return const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          stops: [0.0, 0.7, 1.0],
+                          colors: [
+                            Colors.white, // Fully visible image
+                            Colors.white, // Start fading
+                            Colors.transparent, // Fully faded (shows background)
+                          ],
+                        ).createShader(bounds);
+                      },
+                      blendMode: BlendMode.dstIn,
+                      child: Image.asset(
+                        'assets/images/car-yellow.jpg',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                        alignment: Alignment.bottomCenter,
+                      ),
                     ),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/car-yellow.jpg'),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.bottomCenter,
+
+                    Padding(
+                      padding: const EdgeInsetsGeometry.only(
+                        left: AppDimensions.normalXL,
+                        top: 200,
+                      ),
+                      child: Text(welcomeText, style: AppTextStyles.zonaPro30White),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsetsGeometry.only(left: AppDimensions.normalXL, top: 200),
-                    child: Text(welcomeText, style: AppTextStyles.zonaPro30White),
-                  ),
+                  ],
                 ),
               ),
 
