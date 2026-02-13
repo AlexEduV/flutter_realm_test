@@ -147,6 +147,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 }
               },
               semanticsLabel: AppSemanticsLabels.passwordTextField,
+              trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
             ),
 
             const SizedBox(height: 20),

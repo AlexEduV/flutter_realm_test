@@ -110,6 +110,7 @@ class _LoginFormState extends State<LoginForm> {
                 }
               },
               semanticsLabel: AppSemanticsLabels.passwordTextField,
+              trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
             ),
 
             //forgot password button

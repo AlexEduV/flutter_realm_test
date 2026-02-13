@@ -96,13 +96,12 @@ class LoginField extends StatelessWidget {
   }
 
   Widget getFieldSuffixWidget() {
-    return AppSemantics(
-      //todo: these semantics are not visible
-      label: trailingActionSemanticsLabel ?? '',
-      button: true,
-      isSelected: isObscureText,
-      child: Padding(
-        padding: const EdgeInsets.only(right: AppDimensions.normalS),
+    return Padding(
+      padding: const EdgeInsets.only(right: AppDimensions.normalS),
+      child: AppSemantics(
+        label: trailingActionSemanticsLabel ?? '',
+        button: true,
+        isSelected: isObscureText,
         child: Material(
           shape: const CircleBorder(),
           child: InkWell(
