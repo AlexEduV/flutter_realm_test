@@ -105,6 +105,8 @@ class LoginField extends StatelessWidget {
         child: Material(
           shape: const CircleBorder(),
           child: InkWell(
+            //this will prevent refocusing on the text field on icon long press;
+            onLongPress: () {},
             onTap: onSuffixIconPressed,
             customBorder: const CircleBorder(),
             child: Padding(
