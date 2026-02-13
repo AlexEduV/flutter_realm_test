@@ -13,7 +13,7 @@ class AuthFormsSwitcher extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: AnimatedSize(
-        duration: const Duration(milliseconds: 1000),
+        duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOut,
         child: isLoginMode
             ? const LoginForm(key: ValueKey('login'))
