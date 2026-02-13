@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -43,8 +44,8 @@ class _LoginFormState extends State<LoginForm> {
             LoginField(
               focusNode: emailFocusNode,
               textEditingController: emailTextController,
-              labelText: 'Email',
-              hintText: 'Enter your email',
+              labelText: state.emailFieldParams?.label ?? '',
+              hintText: state.emailFieldParams?.hintText ?? '',
               textInputType: TextInputType.emailAddress,
               leadingIcon: Icons.email_outlined,
               textInputAction: TextInputAction.next,
@@ -76,8 +77,8 @@ class _LoginFormState extends State<LoginForm> {
             LoginField(
               focusNode: passwordFocusNode,
               textEditingController: passwordTextController,
-              labelText: 'Password',
-              hintText: 'Enter your password',
+              labelText: state.passwordFieldParams?.label ?? '',
+              hintText: state.passwordFieldParams?.hintText ?? '',
               textInputType: TextInputType.visiblePassword,
               leadingIcon: Icons.lock_outline,
               textInputAction: TextInputAction.done,
@@ -116,7 +117,7 @@ class _LoginFormState extends State<LoginForm> {
                 alignment: AlignmentGeometry.centerRight,
                 child: GestureDetector(
                   child: Text(
-                    'Forgot Password?',
+                    AppLocalisations.forgotPasswordButtonTitle,
                     style: AppTextStyles.zonaPro16.copyWith(
                       fontWeight: FontWeight.bold,
                       color: AppColors.headerColor,
@@ -131,7 +132,7 @@ class _LoginFormState extends State<LoginForm> {
 
             // login button
             SplashButton(
-              title: 'Log in',
+              title: AppLocalisations.loginButtonTitle,
               onPressed: () {
                 if (state.isLoading) {
                   return;
@@ -148,20 +149,23 @@ class _LoginFormState extends State<LoginForm> {
             ),
 
             //Or Divider
-            const Padding(
-              padding: EdgeInsets.all(AppDimensions.normalM),
+            Padding(
+              padding: const EdgeInsets.all(AppDimensions.normalM),
               child: Row(
                 children: <Widget>[
-                  Expanded(child: Divider()),
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 8.0), child: Text('Or')),
-                  Expanded(child: Divider()),
+                  const Expanded(child: Divider()),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
+                    child: Text(AppLocalisations.orDividerTitle),
+                  ),
+                  const Expanded(child: Divider()),
                 ],
               ),
             ),
 
             // join us button if not registered
             SplashButton(
-              title: 'Sign up',
+              title: AppLocalisations.signUpButtonTitle,
               onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
               foregroundColor: Colors.grey,
               backgroundColor: Colors.white,

@@ -3,6 +3,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../domain/repositories/auth_repository.dart';
 
@@ -12,23 +13,30 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   void init() {
     emit(
       state.copyWith(
-        emailFieldParams: FieldParamsModel.withLabel('Email').copyWith(
-          regex: r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$',
-          regexErrorMessage: 'The email is not valid.',
-          validationMessage: 'This field is required.',
-        ),
-        passwordFieldParams: FieldParamsModel.withLabel('Password').copyWith(
-          minLength: '8',
-          maxLength: '20',
-          validationMessage: 'This field is required.',
-          regex: r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{8,}$',
-          regexErrorMessage: 'The password is not valid.',
-        ),
-        fullNameFieldParams: FieldParamsModel.withLabel('Full Name').copyWith(
-          regex: r"^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$",
-          validationMessage: 'This field is required.',
-          regexErrorMessage: 'The Name is not valid.',
-        ),
+        emailFieldParams: FieldParamsModel.withLabel(AppLocalisations.fieldParamsEmailLabel)
+            .copyWith(
+              regex: r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$',
+              regexErrorMessage: AppLocalisations.fieldParamsEmailRegexErrorMessage,
+              validationMessage: AppLocalisations.fieldParamsValidationMessage,
+              hintText: AppLocalisations.fieldParamsEmailHintText,
+            ),
+        //todo: min and max length here are not utilised
+        passwordFieldParams: FieldParamsModel.withLabel(AppLocalisations.fieldParamsPasswordLabel)
+            .copyWith(
+              minLength: '8',
+              maxLength: '20',
+              validationMessage: AppLocalisations.fieldParamsValidationMessage,
+              regex: r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{8,}$',
+              regexErrorMessage: AppLocalisations.fieldParamsPasswordRegexErrorMessage,
+              hintText: AppLocalisations.fieldParamsPasswordHintText,
+            ),
+        fullNameFieldParams: FieldParamsModel.withLabel(AppLocalisations.fieldParamsFullNameLabel)
+            .copyWith(
+              regex: r"^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$",
+              validationMessage: AppLocalisations.fieldParamsValidationMessage,
+              regexErrorMessage: AppLocalisations.fieldParamsFullNameRegexErrorMessage,
+              hintText: AppLocalisations.fieldParamsFullNameHintText,
+            ),
       ),
     );
   }

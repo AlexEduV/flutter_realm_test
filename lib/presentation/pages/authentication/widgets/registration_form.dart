@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -49,7 +50,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               focusNode: fullNameFocusNode,
               textEditingController: fullNameTextController,
               labelText: state.fullNameFieldParams?.label ?? '',
-              hintText: 'Enter your full name',
+              hintText: state.fullNameFieldParams?.hintText ?? '',
               textInputType: TextInputType.name,
               leadingIcon: Icons.person_outlined,
               textInputAction: TextInputAction.next,
@@ -81,7 +82,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               focusNode: emailFocusNode,
               textEditingController: emailTextController,
               labelText: state.emailFieldParams?.label ?? '',
-              hintText: 'Enter your email',
+              hintText: state.emailFieldParams?.hintText ?? '',
               textInputType: TextInputType.emailAddress,
               leadingIcon: Icons.email_outlined,
               textInputAction: TextInputAction.next,
@@ -114,7 +115,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               focusNode: passwordFocusNode,
               textEditingController: passwordTextController,
               labelText: state.passwordFieldParams?.label ?? '',
-              hintText: 'Enter your password',
+              hintText: state.passwordFieldParams?.hintText ?? '',
               textInputType: TextInputType.visiblePassword,
               leadingIcon: Icons.lock_outline,
               textInputAction: TextInputAction.done,
@@ -147,7 +148,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
             // Sign up button
             SplashButton(
-              title: 'Sign up',
+              title: AppLocalisations.signUpButtonTitle,
               onPressed: () {
                 if (state.isLoading) {
                   return;
@@ -165,20 +166,23 @@ class _RegistrationFormState extends State<RegistrationForm> {
             ),
 
             //Or Divider
-            const Padding(
-              padding: EdgeInsets.all(AppDimensions.normalM),
+            Padding(
+              padding: const EdgeInsets.all(AppDimensions.normalM),
               child: Row(
                 children: <Widget>[
-                  Expanded(child: Divider()),
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 8.0), child: Text('Or')),
-                  Expanded(child: Divider()),
+                  const Expanded(child: Divider()),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text(AppLocalisations.orDividerTitle),
+                  ),
+                  const Expanded(child: Divider()),
                 ],
               ),
             ),
 
             // join us button if not registered
             SplashButton(
-              title: 'Log in',
+              title: AppLocalisations.loginButtonTitle,
               onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
               foregroundColor: Colors.grey,
               backgroundColor: Colors.white,

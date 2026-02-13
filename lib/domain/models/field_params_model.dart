@@ -1,5 +1,6 @@
 class FieldParamsModel {
   final String label;
+  final String? hintText;
   final String? maxLength;
   final String? minLength;
   final String? minLengthErrorMessage;
@@ -13,6 +14,7 @@ class FieldParamsModel {
     required this.validationMessage,
     required this.regex,
     required this.regexErrorMessage,
+    this.hintText,
     this.minLength,
     this.maxLength,
     this.minLengthErrorMessage,
@@ -32,6 +34,7 @@ class FieldParamsModel {
     String? validationMessage,
     String? regexErrorMessage,
     String? regex,
+    String? hintText,
   }) {
     return FieldParamsModel(
       label: label ?? this.label,
@@ -42,6 +45,7 @@ class FieldParamsModel {
       validationMessage: validationMessage ?? this.validationMessage,
       regexErrorMessage: regexErrorMessage ?? this.regexErrorMessage,
       regex: regex ?? this.regex,
+      hintText: hintText ?? this.hintText,
     );
   }
 }

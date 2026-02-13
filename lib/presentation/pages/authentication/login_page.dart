@@ -7,6 +7,7 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/login_form.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/registration_form.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,7 +21,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
       builder: (context, state) {
-        final welcomeText = state.isLoginMode ? 'Welcome \nBack' : 'Join us';
+        final welcomeText = state.isLoginMode
+            ? AppLocalisations.loginPageLoginWelcomeText
+            : AppLocalisations.loginPageRegistrationWelcomeText;
 
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,

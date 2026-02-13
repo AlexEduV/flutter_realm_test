@@ -21,8 +21,6 @@ class SplashButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progressBarSize = 23.0;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
       child: SizedBox(
@@ -41,8 +39,8 @@ class SplashButton extends StatelessWidget {
           ),
           child: isLoading
               ? SizedBox(
-                  height: progressBarSize,
-                  width: progressBarSize,
+                  height: AppDimensions.splashButtonProgressBarSize,
+                  width: AppDimensions.splashButtonProgressBarSize,
                   child: CircularProgressIndicator(color: foregroundColor),
                 )
               : Text(title, style: AppTextStyles.zonaPro16, textAlign: TextAlign.center),

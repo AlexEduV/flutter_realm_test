@@ -64,7 +64,10 @@ class LoginField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppDimensions.normalS),
-              borderSide: const BorderSide(color: AppColors.accentColor, width: 2),
+              borderSide: const BorderSide(
+                color: AppColors.accentColor,
+                width: AppDimensions.minorXS,
+              ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppDimensions.normalS),
@@ -73,7 +76,7 @@ class LoginField extends StatelessWidget {
             prefixIcon: Icon(leadingIcon, color: AppColors.accentColor),
             suffixIcon: onSuffixIconPressed != null
                 ? Padding(
-                    padding: const EdgeInsetsDirectional.only(end: 12.0),
+                    padding: const EdgeInsetsDirectional.only(end: AppDimensions.normalS),
                     child: Material(
                       borderRadius: BorderRadius.circular(100.0),
                       child: InkWell(

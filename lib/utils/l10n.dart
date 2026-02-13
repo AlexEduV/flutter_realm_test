@@ -104,4 +104,28 @@ class AppLocalisations {
   static final String ownerSectionContactButtonTitle = get(
     'pages.vehicleDetails.ownerSection.contactButtonTitle',
   );
+
+  static final String loginPageLoginWelcomeText = 'Welcome \nBack';
+  static final String loginPageRegistrationWelcomeText = 'Join us';
+
+  static final String forgotPasswordButtonTitle = 'Forgot Password?';
+
+  static final String loginButtonTitle = 'Log in';
+  static final String signUpButtonTitle = 'Sign up';
+
+  static final String orDividerTitle = 'Or';
+
+  static final fieldParamsValidationMessage = 'This field is required.';
+
+  static final fieldParamsEmailLabel = 'Email';
+  static final fieldParamsEmailHintText = 'Enter your email:';
+  static final fieldParamsEmailRegexErrorMessage = 'The email is not valid.';
+
+  static final fieldParamsPasswordLabel = 'Password';
+  static final fieldParamsPasswordHintText = 'Enter your password:';
+  static final fieldParamsPasswordRegexErrorMessage = 'The password is not valid.';
+
+  static final fieldParamsFullNameLabel = 'Full Name';
+  static final fieldParamsFullNameHintText = 'Enter your full name:';
+  static final fieldParamsFullNameRegexErrorMessage = 'The full name is not valid.';
 }
