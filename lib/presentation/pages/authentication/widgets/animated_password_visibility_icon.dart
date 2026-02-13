@@ -75,16 +75,24 @@ class _LinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     if (progress == 0.0) return;
+
     final paint = Paint()
       ..color = AppColors.headerColor.withAlpha((progress * 255).round())
       ..strokeWidth = 2.5
       ..strokeCap = StrokeCap.round;
 
-    // Draw a line from top-left to bottom-right, animated by progress
-    final start = const Offset(4, 4);
-    final end = Offset(size.width - 4, size.height - 4);
-    final current = Offset.lerp(start, end, progress)!;
-    canvas.drawLine(start, current, paint);
+    final center = Offset(size.width / 2, size.height / 2);
+
+    // Define the two directions for the line (diagonal)
+    final offset1 = Offset(size.width - 4, size.height - 4); // bottom-right
+    final offset2 = const Offset(4, 4); // top-left
+
+    // Animate from center to both ends
+    final current1 = Offset.lerp(center, offset1, progress)!;
+    final current2 = Offset.lerp(center, offset2, progress)!;
+
+    canvas.drawLine(center, current1, paint);
+    canvas.drawLine(center, current2, paint);
   }
 
   @override
