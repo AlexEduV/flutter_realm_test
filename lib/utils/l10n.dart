@@ -105,31 +105,37 @@ class AppLocalisations {
     'pages.vehicleDetails.ownerSection.contactButtonTitle',
   );
 
-  static final String loginPageLoginWelcomeText = 'Welcome \nBack';
-  static final String loginPageRegistrationWelcomeText = 'Join us';
+  static final String loginPageLoginWelcomeText = get('forms.ui.welcomeLoginTitle');
+  static final String loginPageRegistrationWelcomeText = get('forms.ui.welcomeRegisterTitle');
 
-  static final String forgotPasswordButtonTitle = 'Forgot Password?';
+  static final String forgotPasswordButtonTitle = get('forms.ui.forgotPasswordButtonText');
 
-  static final String loginButtonTitle = 'Log in';
-  static final String signUpButtonTitle = 'Sign up';
+  static final String loginButtonTitle = get('forms.ui.loginButtonTitle');
+  static final String signUpButtonTitle = get('forms.ui.signUpButtonTitle');
 
-  static final String orDividerTitle = 'Or';
+  static final String orDividerTitle = get('forms.ui.orDividerTitle');
 
-  static final fieldParamsValidationMessage = 'This field is required.';
+  static final String fieldParamsValidationMessage = get('forms.validationMessage');
 
-  static final fieldParamsEmailLabel = 'Email';
-  static final fieldParamsEmailHintText = 'Enter your email:';
-  static final fieldParamsEmailRegexErrorMessage = 'The email is not valid.';
+  static final String fieldParamsEmailLabel = get('forms.fieldParams.email.label');
+  static final String fieldParamsEmailHintText = get('forms.fieldParams.email.hintText');
+  static final String fieldParamsEmailRegexErrorMessage = get(
+    'forms.fieldParams.email.regexErrorMessage',
+  );
 
-  static final fieldParamsPasswordLabel = 'Password';
-  static final fieldParamsPasswordHintText = 'Enter your password:';
-  static final fieldParamsPasswordRegexErrorMessage = 'The password is not valid.';
+  static final String fieldParamsPasswordLabel = get('forms.fieldParams.password.label');
+  static final String fieldParamsPasswordHintText = get('forms.fieldParams.password.hintText');
+  static final String fieldParamsPasswordRegexErrorMessage = get(
+    'forms.fieldParams.password.regexErrorMessage',
+  );
 
-  static final fieldParamsFullNameLabel = 'Full Name';
-  static final fieldParamsFullNameHintText = 'Enter your full name:';
-  static final fieldParamsFullNameRegexErrorMessage = 'The full name is not valid.';
+  static final String fieldParamsFullNameLabel = get('forms.fieldParams.fullName.label');
+  static final String fieldParamsFullNameHintText = get('forms.fieldParams.fullName.hintText');
+  static final String fieldParamsFullNameRegexErrorMessage = get(
+    'forms.fieldParams.fullName.regexErrorMessage',
+  );
 
-  static final authErrorUserNotFoundMessage = 'User not found';
-  static final authErrorIncorrectPassword = 'Incorrect password';
-  static final authErrorUserAlreadyExists = 'User already exists';
+  static final String authErrorUserNotFoundMessage = get('forms.warnings.userNotFound');
+  static final String authErrorIncorrectPassword = get('forms.warnings.incorrectPassword');
+  static final String authErrorUserAlreadyExists = get('forms.warnings.userAlreadyExists');
 }
