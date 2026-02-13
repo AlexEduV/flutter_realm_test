@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/presentation/pages/authentication/widgets/animated_password_visibility_icon.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/app_colors.dart';
@@ -111,7 +112,7 @@ class LoginField extends StatelessWidget {
             customBorder: const CircleBorder(),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalS),
-              child: Icon(isObscureText ? Icons.visibility_off : Icons.visibility),
+              child: AnimatedVisibilityIcon(isObscure: isObscureText),
             ),
           ),
         ),
