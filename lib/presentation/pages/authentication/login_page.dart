@@ -5,8 +5,7 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/login_form.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/registration_form.dart';
+import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_form_switcher.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 class LoginPage extends StatefulWidget {
@@ -106,7 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
-                  if (state.isLoginMode) ...[const LoginForm()] else ...[const RegistrationForm()],
+                  //if (state.isLoginMode) ...[const LoginForm()] else ...[const RegistrationForm()],
+                  AuthFormsSwitcher(isLoginMode: state.isLoginMode),
                 ],
               ),
             ],
