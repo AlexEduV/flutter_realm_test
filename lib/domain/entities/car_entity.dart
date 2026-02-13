@@ -54,6 +54,42 @@ class CarEntity {
     );
   }
 
+  CarEntity copyWith({
+    String? carId,
+    String? model,
+    String? manufacturer,
+    String? type,
+    String? year,
+    String? color,
+    String? owner,
+    String? bodyType,
+    String? fuelType,
+    String? transmissionType,
+    bool? isVerified,
+    String? hotPromotionDescription,
+    int? kilometers,
+    int? distanceTo,
+    int? price,
+  }) {
+    return CarEntity(
+      carId: carId ?? this.carId,
+      model: model ?? this.model,
+      manufacturer: manufacturer ?? this.manufacturer,
+      isVerified: isVerified ?? this.isVerified,
+      type: type ?? this.type,
+      bodyType: bodyType ?? this.bodyType,
+      fuelType: fuelType ?? this.fuelType,
+      transmissionType: transmissionType ?? this.transmissionType,
+      hotPromotionDescription: hotPromotionDescription ?? this.hotPromotionDescription,
+      year: year ?? this.year,
+      color: color ?? this.color,
+      owner: owner ?? this.owner,
+      kilometers: kilometers ?? this.kilometers,
+      distanceTo: distanceTo ?? this.distanceTo,
+      price: price ?? this.price,
+    );
+  }
+
   factory CarEntity.fromDto(CarDto dto) {
     return CarEntity(
       carId: dto.carId,
@@ -93,4 +129,43 @@ class CarEntity {
       transmissionType: car.transmissionType ?? '',
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CarEntity &&
+          runtimeType == other.runtimeType &&
+          carId == other.carId &&
+          model == other.model &&
+          manufacturer == other.manufacturer &&
+          type == other.type &&
+          year == other.year &&
+          color == other.color &&
+          owner == other.owner &&
+          bodyType == other.bodyType &&
+          fuelType == other.fuelType &&
+          transmissionType == other.transmissionType &&
+          isVerified == other.isVerified &&
+          hotPromotionDescription == other.hotPromotionDescription &&
+          kilometers == other.kilometers &&
+          distanceTo == other.distanceTo &&
+          price == other.price;
+
+  @override
+  int get hashCode =>
+      carId.hashCode ^
+      model.hashCode ^
+      manufacturer.hashCode ^
+      type.hashCode ^
+      (year?.hashCode ?? 0) ^
+      (color?.hashCode ?? 0) ^
+      (owner?.hashCode ?? 0) ^
+      bodyType.hashCode ^
+      fuelType.hashCode ^
+      transmissionType.hashCode ^
+      isVerified.hashCode ^
+      (hotPromotionDescription?.hashCode ?? 0) ^
+      (kilometers ?? 0).hashCode ^
+      (distanceTo ?? 0).hashCode ^
+      (price ?? 0).hashCode;
 }

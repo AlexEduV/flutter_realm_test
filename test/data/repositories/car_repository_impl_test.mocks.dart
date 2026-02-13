@@ -19,8 +19,8 @@ import 'package:test_futter_project/data/dto/car_dto.dart' as _i14;
 import 'package:test_futter_project/data/models/scheme.dart' as _i8;
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart'
     as _i13;
-import 'package:test_futter_project/domain/entities/car_entity.dart' as _i10;
-import 'package:test_futter_project/domain/entities/user_entity.dart' as _i9;
+import 'package:test_futter_project/domain/entities/car_entity.dart' as _i9;
+import 'package:test_futter_project/domain/entities/user_entity.dart' as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -93,13 +93,13 @@ class _FakeCar_10 extends _i1.SmartFake implements _i8.Car {
     : super(parent, parentInvocation);
 }
 
-class _FakeUserEntity_11 extends _i1.SmartFake implements _i9.UserEntity {
-  _FakeUserEntity_11(Object parent, Invocation parentInvocation)
+class _FakeCarEntity_11 extends _i1.SmartFake implements _i9.CarEntity {
+  _FakeCarEntity_11(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeCarEntity_12 extends _i1.SmartFake implements _i10.CarEntity {
-  _FakeCarEntity_12(Object parent, Invocation parentInvocation)
+class _FakeUserEntity_12 extends _i1.SmartFake implements _i10.UserEntity {
+  _FakeUserEntity_12(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -594,7 +594,7 @@ class MockCar extends _i1.Mock implements _i8.Car {
 /// A class which mocks [CarEntity].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarEntity extends _i1.Mock implements _i10.CarEntity {
+class MockCarEntity extends _i1.Mock implements _i9.CarEntity {
   MockCarEntity() {
     _i1.throwOnMissingStub(this);
   }
@@ -698,6 +698,65 @@ class MockCarEntity extends _i1.Mock implements _i10.CarEntity {
     Invocation.setter(#price, _price),
     returnValueForMissingStub: null,
   );
+
+  @override
+  _i9.CarEntity copyWith({
+    String? carId,
+    String? model,
+    String? manufacturer,
+    String? type,
+    String? year,
+    String? color,
+    String? owner,
+    String? bodyType,
+    String? fuelType,
+    String? transmissionType,
+    bool? isVerified,
+    String? hotPromotionDescription,
+    int? kilometers,
+    int? distanceTo,
+    int? price,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#copyWith, [], {
+              #carId: carId,
+              #model: model,
+              #manufacturer: manufacturer,
+              #type: type,
+              #year: year,
+              #color: color,
+              #owner: owner,
+              #bodyType: bodyType,
+              #fuelType: fuelType,
+              #transmissionType: transmissionType,
+              #isVerified: isVerified,
+              #hotPromotionDescription: hotPromotionDescription,
+              #kilometers: kilometers,
+              #distanceTo: distanceTo,
+              #price: price,
+            }),
+            returnValue: _FakeCarEntity_11(
+              this,
+              Invocation.method(#copyWith, [], {
+                #carId: carId,
+                #model: model,
+                #manufacturer: manufacturer,
+                #type: type,
+                #year: year,
+                #color: color,
+                #owner: owner,
+                #bodyType: bodyType,
+                #fuelType: fuelType,
+                #transmissionType: transmissionType,
+                #isVerified: isVerified,
+                #hotPromotionDescription: hotPromotionDescription,
+                #kilometers: kilometers,
+                #distanceTo: distanceTo,
+                #price: price,
+              }),
+            ),
+          )
+          as _i9.CarEntity);
 }
 
 /// A class which mocks [CarDto].
@@ -854,12 +913,12 @@ class MockRealmLocalStorage extends _i1.Mock implements _i15.RealmLocalStorage {
           as _i4.Stream<dynamic>);
 
   @override
-  List<_i10.CarEntity> getAll() =>
+  List<_i9.CarEntity> getAll() =>
       (super.noSuchMethod(
             Invocation.method(#getAll, []),
-            returnValue: <_i10.CarEntity>[],
+            returnValue: <_i9.CarEntity>[],
           )
-          as List<_i10.CarEntity>);
+          as List<_i9.CarEntity>);
 
   @override
   void deleteById(String? id) => super.noSuchMethod(
@@ -874,26 +933,26 @@ class MockRealmLocalStorage extends _i1.Mock implements _i15.RealmLocalStorage {
   );
 
   @override
-  _i9.UserEntity initUser() =>
+  _i10.UserEntity initUser() =>
       (super.noSuchMethod(
             Invocation.method(#initUser, []),
-            returnValue: _FakeUserEntity_11(
+            returnValue: _FakeUserEntity_12(
               this,
               Invocation.method(#initUser, []),
             ),
           )
-          as _i9.UserEntity);
+          as _i10.UserEntity);
 
   @override
-  _i10.CarEntity getCarById(String? id) =>
+  _i9.CarEntity getCarById(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getCarById, [id]),
-            returnValue: _FakeCarEntity_12(
+            returnValue: _FakeCarEntity_11(
               this,
               Invocation.method(#getCarById, [id]),
             ),
           )
-          as _i10.CarEntity);
+          as _i9.CarEntity);
 
   @override
   int getMaxCarId() =>
