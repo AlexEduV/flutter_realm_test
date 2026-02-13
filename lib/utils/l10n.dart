@@ -128,4 +128,8 @@ class AppLocalisations {
   static final fieldParamsFullNameLabel = 'Full Name';
   static final fieldParamsFullNameHintText = 'Enter your full name:';
   static final fieldParamsFullNameRegexErrorMessage = 'The full name is not valid.';
+
+  static final authErrorUserNotFoundMessage = 'User not found';
+  static final authErrorIncorrectPassword = 'Incorrect password';
+  static final authErrorUserAlreadyExists = 'User already exists';
 }

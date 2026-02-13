@@ -1,6 +1,7 @@
 import 'package:test_futter_project/domain/entities/user_entity_short.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   //todo: move this to a secure mock
@@ -30,11 +31,11 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (!_users.values.any((element) => element.email == email)) {
-      return AuthResult(success: false, message: 'User not found');
+      return AuthResult(success: false, message: AppLocalisations.authErrorUserNotFoundMessage);
     }
 
     if (!_users.values.any((element) => element.password == password && element.email == email)) {
-      return AuthResult(success: false, message: 'Incorrect password');
+      return AuthResult(success: false, message: AppLocalisations.authErrorIncorrectPassword);
     }
 
     return AuthResult(success: true);
@@ -45,15 +46,15 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (_users.values.any((element) => element.email == email)) {
-      return AuthResult(success: false, message: 'User already exists');
+      return AuthResult(success: false, message: AppLocalisations.authErrorUserAlreadyExists);
     }
 
     final newUserId = _users.length;
     _users.addAll({
       '$newUserId': UserEntityShort(
         userId: '$newUserId',
-        email: 'admin@example.com',
-        password: 'AdminPass123!',
+        email: email,
+        password: password,
         fullName: fullName,
       ),
     });
