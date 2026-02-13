@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 
 class AnimatedVisibilityIcon extends StatefulWidget {
   final bool isObscure;
@@ -52,12 +53,12 @@ class _AnimatedVisibilityIconState extends State<AnimatedVisibilityIcon>
     return Stack(
       alignment: Alignment.center,
       children: [
-        const Icon(Icons.visibility, size: 24, color: AppColors.headerColor),
+        const Icon(Icons.visibility, size: AppDimensions.normalXL, color: AppColors.headerColor),
         AnimatedBuilder(
           animation: _controller,
           builder: (context, child) {
             return CustomPaint(
-              size: const Size(24, 24),
+              size: const Size(AppDimensions.normalXL, AppDimensions.normalXL),
               painter: _LinePainter(progress: _controller.value),
             );
           },
