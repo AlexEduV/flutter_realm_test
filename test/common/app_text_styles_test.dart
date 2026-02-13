@@ -41,6 +41,12 @@ void main() {
       expect(AppTextStyles.zonaPro24White.color, Colors.white);
     });
 
+    test('zonaPro16Grey should have fontSize 16, FontWeight.w500, and color grey[700]', () {
+      expect(AppTextStyles.zonaPro16Grey.fontSize, 16);
+      expect(AppTextStyles.zonaPro16Grey.fontWeight, FontWeight.w500);
+      expect(AppTextStyles.zonaPro16Grey.color, Colors.grey[700]);
+    });
+
     test('all styles should be of type TextStyle', () {
       expect(AppTextStyles.zonaPro16, isA<TextStyle>());
       expect(AppTextStyles.zonaPro18, isA<TextStyle>());
@@ -49,6 +55,7 @@ void main() {
       expect(AppTextStyles.zonaPro30, isA<TextStyle>());
       expect(AppTextStyles.zonaPro30White, isA<TextStyle>());
       expect(AppTextStyles.zonaPro24White, isA<TextStyle>());
+      expect(AppTextStyles.zonaPro16Grey, isA<TextStyle>());
     });
   });
 }
