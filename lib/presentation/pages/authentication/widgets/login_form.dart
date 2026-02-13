@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_futter_project/presentation/pages/authentication/widgets/or_divider_widget.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -149,19 +150,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
 
             //Or Divider
-            Padding(
-              padding: const EdgeInsets.all(AppDimensions.normalM),
-              child: Row(
-                children: <Widget>[
-                  const Expanded(child: Divider()),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
-                    child: Text(AppLocalisations.orDividerTitle),
-                  ),
-                  const Expanded(child: Divider()),
-                ],
-              ),
-            ),
+            const OrDividerWidget(),
 
             // join us button if not registered
             SplashButton(
