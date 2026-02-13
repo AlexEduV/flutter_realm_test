@@ -182,6 +182,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         passwordValue: '',
         fullNameValue: '',
         emailValue: '',
+        authenticationErrorText: null,
       ),
     );
   }
