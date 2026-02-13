@@ -102,7 +102,7 @@ class LoginField extends StatelessWidget {
       button: true,
       isSelected: isObscureText,
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(end: AppDimensions.normalS),
+        padding: const EdgeInsets.only(right: AppDimensions.normalS),
         child: Material(
           shape: const CircleBorder(),
           child: InkWell(
