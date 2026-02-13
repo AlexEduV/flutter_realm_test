@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../../../common/app_dimensions.dart';
-import '../../../../utils/l10n.dart';
 
-class OrDividerWidget extends StatelessWidget {
-  const OrDividerWidget({super.key});
+class DividerWithText extends StatelessWidget {
+  final String text;
+
+  const DividerWithText({required this.text, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class OrDividerWidget extends StatelessWidget {
           const Expanded(child: Divider()),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
-            child: Text(AppLocalisations.orDividerTitle),
+            child: Text(text),
           ),
           const Expanded(child: Divider()),
         ],
