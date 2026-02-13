@@ -4,6 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
+import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
@@ -152,7 +156,23 @@ void main() {
 
     final carDtos = [carDto];
     when(apiService.fetchCars()).thenAnswer((_) async => carDtos);
-    when(apiService.carStream).thenAnswer((_) => const Stream.empty());
+    when(apiService.carStream).thenAnswer(
+      (_) => Stream.fromIterable([
+        [
+          CarDto(
+            id: ObjectId(),
+            carId: '1',
+            model: 'Model S',
+            manufacturer: 'Tesla',
+            isVerified: false,
+            type: CarType.car.name,
+            bodyType: BodyType.sedan.name,
+            fuelType: FuelType.hybrid.name,
+            transmissionType: TransmissionType.manual.name,
+          ),
+        ],
+      ]),
+    );
 
     await repository.syncCars();
 
