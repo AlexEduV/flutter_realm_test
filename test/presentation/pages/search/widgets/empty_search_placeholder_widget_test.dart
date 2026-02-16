@@ -16,7 +16,11 @@ void main() {
   group('EmptySearchPlaceholderWidget', () {
     testWidgets('displays the correct placeholder text', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(home: Scaffold(body: EmptySearchPlaceholderWidget())),
+        MaterialApp(
+          home: Scaffold(
+            body: EmptyResultsPlaceholderWidget(text: AppLocalisations.emptySearchPlaceholderText),
+          ),
+        ),
       );
 
       expect(find.text(AppLocalisations.emptySearchPlaceholderText), findsOneWidget);
@@ -24,7 +28,11 @@ void main() {
 
     testWidgets('uses correct text style and maxLines', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(home: Scaffold(body: EmptySearchPlaceholderWidget())),
+        MaterialApp(
+          home: Scaffold(
+            body: EmptyResultsPlaceholderWidget(text: AppLocalisations.emptySearchPlaceholderText),
+          ),
+        ),
       );
 
       final textWidget = tester.widget<Text>(
@@ -37,7 +45,11 @@ void main() {
 
     testWidgets('applies correct padding', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(home: Scaffold(body: EmptySearchPlaceholderWidget())),
+        MaterialApp(
+          home: Scaffold(
+            body: EmptyResultsPlaceholderWidget(text: AppLocalisations.emptySearchPlaceholderText),
+          ),
+        ),
       );
 
       final paddingWidget = tester.widget<Padding>(find.byType(Padding));
@@ -46,7 +58,11 @@ void main() {
 
     testWidgets('uses Flexible inside Row', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(home: Scaffold(body: EmptySearchPlaceholderWidget())),
+        MaterialApp(
+          home: Scaffold(
+            body: EmptyResultsPlaceholderWidget(text: AppLocalisations.emptySearchPlaceholderText),
+          ),
+        ),
       );
 
       final rowFinder = find.byType(Row);

@@ -7,7 +7,8 @@
       "title": "Esplora"
     },
     "favorites": {
-      "title": "Preferite"
+      "title": "Preferite",
+      "emptyPlaceholder": "Non ci sono ancora preferiti."
     },
     "search": {
       "title": "Cerca",

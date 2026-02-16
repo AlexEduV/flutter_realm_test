@@ -7,7 +7,8 @@
       "title": "Explore"
     },
     "favorites": {
-      "title": "Favorites"
+      "title": "Favorites",
+      "emptyPlaceholder": "There are no favorites yet."
     },
     "search": {
       "title": "Search",

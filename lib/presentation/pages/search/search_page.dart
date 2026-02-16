@@ -151,7 +151,11 @@ class _SearchPageState extends State<SearchPage> {
               BlocBuilder<SearchPageCubit, SearchPageState>(
                 builder: (context, state) {
                   if (state.results.isEmpty) {
-                    return const SliverToBoxAdapter(child: EmptySearchPlaceholderWidget());
+                    return SliverToBoxAdapter(
+                      child: EmptyResultsPlaceholderWidget(
+                        text: AppLocalisations.emptySearchPlaceholderText,
+                      ),
+                    );
                   }
 
                   return SliverPadding(

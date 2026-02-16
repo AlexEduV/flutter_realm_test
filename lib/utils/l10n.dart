@@ -12,6 +12,8 @@ class AppLocalisations {
 
   static final String favoritesPageTitle = get('pages.favorites.title');
 
+  static final String favoritesEmptyPlaceholder = get('pages.favorites.emptyPlaceholder');
+
   static final String addCarButtonTooltip = get('actions.addCar.tooltip');
 
   static final String deleteButtonTitle = get('actions.delete.title');
