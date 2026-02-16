@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
@@ -50,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   blendMode: BlendMode.dstIn,
                   child: Image.asset(
-                    'assets/images/car-yellow.jpg',
+                    AppAssetRoutes.yellowCarLoginBackground,
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: double.infinity,
