@@ -27,7 +27,7 @@ class AuthErrorWidget extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: Colors.red.withAlpha(60),
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(AppDimensions.minorL),
         ),
         child: Text(
           text ?? '',
