@@ -129,33 +129,30 @@ void main() {
       },
     );
 
-    // blocTest<AuthenticationCubit, AuthenticationState>(
-    //   'onRegisterButtonPressed emits loading, calls repo, emits result and stops loading (success)',
-    //   build: () {
-    //     when(
-    //       mockAuthRepository.register('a@gmail.com', 'Password1!', 'Test User'),
-    //     ).thenAnswer((_) async => AuthResult(success: true));
-    //     return cubit;
-    //   },
-    //   seed: () => cubit.state.copyWith(
-    //     emailValue: 'a@mail.com',
-    //     passwordValue: 'Password1!',
-    //     fullNameValue: 'Test User',
-    //   ),
-    //   act: (cubit) => cubit.onRegisterButtonPressed(),
-    //   expect: () => [
-    //     cubit.state.copyWith(authenticationErrorText: null),
-    //     cubit.state.copyWith(isLoading: true),
-    //     cubit.state.copyWith(isLoading: false),
-    //   ],
-    //   verify: (_) {
-    //     verify(
-    //       () => mockAuthRepository.register('a@mail.com', 'Password1!', 'Test User'),
-    //     ).called(1);
-    //     verify(() => mockUserDataCubit.authUser('a@mail.com')).called(1);
-    //   },
-    // );
-    //
+    blocTest<AuthenticationCubit, AuthenticationState>(
+      'onRegisterButtonPressed emits loading, calls repo, emits result and stops loading (success)',
+      build: () {
+        when(
+          mockAuthRepository.register(any, any, any),
+        ).thenAnswer((_) async => AuthResult(success: true));
+        return cubit;
+      },
+      seed: () => cubit.state.copyWith(
+        emailValue: 'a@mail.com',
+        passwordValue: 'Password1!',
+        fullNameValue: 'Test User',
+      ),
+      act: (cubit) => cubit.onRegisterButtonPressed(),
+      expect: () => [
+        cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
+        cubit.state.copyWith(isLoading: false),
+      ],
+      verify: (_) {
+        verify(mockAuthRepository.register('a@mail.com', 'Password1!', 'Test User')).called(1);
+        verify(mockUserDataCubit.authUser('a@mail.com')).called(1);
+      },
+    );
+
     // blocTest<AuthenticationCubit, AuthenticationState>(
     //   'onRegisterButtonPressed emits error if register fails',
     //   build: () {
