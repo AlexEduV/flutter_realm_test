@@ -24,6 +24,10 @@ void main() {
     AppLocalisations.localisations = {'pages.favorites.title': 'Favorites'};
   });
 
+  tearDownAll(() {
+    serviceLocator.reset();
+  });
+
   Widget makeTestableWidget(Widget child) {
     return MaterialApp(
       home: MultiBlocProvider(
