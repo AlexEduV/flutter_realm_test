@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
@@ -8,6 +7,8 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_error_widget.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_form_switcher.dart';
 import 'package:test_futter_project/utils/l10n.dart';
+
+import '../../../common/app_colors.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -35,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                 widthFactor: 1.0, // full width
                 child: ShaderMask(
                   shaderCallback: (Rect bounds) {
+                    //todo: the system UI in the status bar is not so visible;
                     return const LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
