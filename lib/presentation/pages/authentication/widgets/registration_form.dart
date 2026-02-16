@@ -148,6 +148,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
             ),
 
+            //todo: add password confirmation field as well
             const SizedBox(height: 20),
 
             // Sign up button
