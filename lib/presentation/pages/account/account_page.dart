@@ -36,6 +36,7 @@ class AccountPage extends StatelessWidget {
               ),
 
               const ListTile(title: Text('Personal Details')),
+              //todo: in the personal details -> Change password
               const ListTile(title: Text('Location')),
               const ListTile(title: Text('My Items')),
               const ListTile(title: Text('Viewed Items')),
