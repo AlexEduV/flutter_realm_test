@@ -17,25 +17,12 @@ class PasswordStrengthBarWidget extends StatelessWidget {
           final stagesAvailable = 5;
 
           return Column(
-            spacing: AppDimensions.minorXS,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: List.generate(
-                  stagesAvailable,
-                  (index) => Expanded(
-                    child: Container(
-                      height: 5,
-                      decoration: BoxDecoration(
-                        color: index < state.passwordValidationStage ? Colors.green : Colors.grey,
-                        borderRadius: BorderRadius.circular(AppDimensions.minorXS),
-                      ),
-                      margin: const EdgeInsets.symmetric(horizontal: AppDimensions.minorXS),
-                    ),
-                  ),
-                ),
+              AnimatedStageBar(
+                stagesAvailable: stagesAvailable,
+                currentStage: state.passwordValidationStage,
               ),
-
               Opacity(
                 opacity: state.passwordStrengthHintText != null ? 1.0 : 0.0,
                 child: Text(state.passwordStrengthHintText ?? ''),
@@ -43,6 +30,72 @@ class PasswordStrengthBarWidget extends StatelessWidget {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+class AnimatedStageBar extends StatefulWidget {
+  final int stagesAvailable;
+  final int currentStage;
+
+  const AnimatedStageBar({required this.stagesAvailable, required this.currentStage, super.key});
+
+  @override
+  State<AnimatedStageBar> createState() => _AnimatedStageBarState();
+}
+
+class _AnimatedStageBarState extends State<AnimatedStageBar> {
+  late List<bool> _activeStages;
+
+  @override
+  void initState() {
+    super.initState();
+    _activeStages = List.generate(widget.stagesAvailable, (i) => i < widget.currentStage);
+  }
+
+  @override
+  void didUpdateWidget(covariant AnimatedStageBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.currentStage != oldWidget.currentStage) {
+      _animateStages(oldWidget.currentStage, widget.currentStage);
+    }
+  }
+
+  Future<void> _animateStages(int from, int to) async {
+    final animationDuration = const Duration(milliseconds: 120);
+
+    if (to > from) {
+      // Animate up: left to right
+      for (int i = from; i < to; i++) {
+        setState(() => _activeStages[i] = true);
+        await Future.delayed(animationDuration);
+      }
+    } else if (to < from) {
+      // Animate down: left to right (rightmost first)
+      for (int i = 0; i < from - to; i++) {
+        setState(() => _activeStages[from - 1 - i] = false);
+        await Future.delayed(animationDuration);
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: List.generate(
+        widget.stagesAvailable,
+        (index) => Expanded(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            height: 5,
+            decoration: BoxDecoration(
+              color: _activeStages[index] ? Colors.green : Colors.grey,
+              borderRadius: BorderRadius.circular(AppDimensions.minorXS),
+            ),
+            margin: const EdgeInsets.symmetric(horizontal: AppDimensions.minorXS),
+          ),
+        ),
       ),
     );
   }
