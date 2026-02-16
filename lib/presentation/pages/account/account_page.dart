@@ -37,7 +37,9 @@ class AccountPage extends StatelessWidget {
 
               const ListTile(title: Text('Personal Details')),
               const ListTile(title: Text('Location')),
-              const ListTile(title: Text('Clear History')),
+              const ListTile(title: Text('My Items')),
+              const ListTile(title: Text('Viewed Items')),
+              const ListTile(title: Text('Clear Data')),
               ListTile(
                 title: const Text('Log out'),
                 onTap: () {
