@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
@@ -86,31 +87,27 @@ void main() {
       ],
     );
 
-    //todo: tests are not working: missing stub
-    // blocTest<AuthenticationCubit, AuthenticationState>(
-    //   'onLoginButtonPressed emits loading, calls repo, emits result and stops loading (success)',
-    //   setUp: () {
-    //     when(
-    //       mockAuthRepository.login('a@gmail.com', 'Password1!'),
-    //     ).thenAnswer((_) async => AuthResult(success: true));
-    //   },
-    //   build: () {
-    //     return cubit;
-    //   },
-    //   seed: () => cubit.state.copyWith(emailValue: 'a@mail.com', passwordValue: 'Password1!'),
-    //   act: (cubit) => cubit.onLoginButtonPressed(),
-    //   expect: () => [
-    //     cubit.state.copyWith(authenticationErrorText: null),
-    //     // validation passes, so no error
-    //     cubit.state.copyWith(isLoading: true),
-    //     cubit.state.copyWith(isLoading: false),
-    //   ],
-    //   verify: (_) {
-    //     verify(mockAuthRepository.login('a@mail.com', 'Password1!')).called(1);
-    //     verify(mockUserDataCubit.authUser('a@mail.com')).called(1);
-    //   },
-    // );
-    //
+    blocTest<AuthenticationCubit, AuthenticationState>(
+      'onLoginButtonPressed emits loading, calls repo, emits result and stops loading (success)',
+      setUp: () {
+        when(mockAuthRepository.login(any, any)).thenAnswer((_) async => AuthResult(success: true));
+      },
+      build: () {
+        return cubit;
+      },
+      seed: () => cubit.state.copyWith(emailValue: 'a@mail.com', passwordValue: 'Password1!'),
+      act: (cubit) => cubit.onLoginButtonPressed(),
+      expect: () => [
+        cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
+        // validation passes, so no error
+        cubit.state.copyWith(isLoading: false),
+      ],
+      verify: (_) {
+        verify(mockAuthRepository.login('a@mail.com', 'Password1!')).called(1);
+        verify(mockUserDataCubit.authUser('a@mail.com')).called(1);
+      },
+    );
+
     // blocTest<AuthenticationCubit, AuthenticationState>(
     //   'onLoginButtonPressed emits error if login fails',
     //   build: () {
