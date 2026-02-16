@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/animated_divider_with_text.dart';
@@ -132,7 +134,7 @@ class _LoginFormState extends State<LoginForm> {
                         color: AppColors.headerColor,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () => context.go(AppRoutes.home + AppRoutes.forgotPassword),
                   ),
                 ),
               ),

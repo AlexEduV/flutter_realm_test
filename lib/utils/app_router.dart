@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/presentation/pages/details/details_page.dart';
 import 'package:test_futter_project/presentation/pages/home/home_page.dart';
+import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
 
 import '../common/app_routes.dart';
 import '../presentation/pages/search/search_page.dart';
@@ -31,6 +32,12 @@ class AppRouter {
             pageBuilder: (context, state) {
               final carId = state.extra as String? ?? '';
               return CupertinoPage(child: DetailsPage(carId: carId));
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.forgotPassword,
+            pageBuilder: (context, state) {
+              return const CupertinoPage(child: PlaceholderPage());
             },
           ),
         ],
