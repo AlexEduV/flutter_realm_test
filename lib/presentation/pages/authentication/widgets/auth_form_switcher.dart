@@ -10,13 +10,8 @@ class AuthFormsSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo: not the best resizing. I wanted the bottom to always remain there, and the height to
-    //change upwards, but did not find a solution.
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: isLoginMode
-          ? const LoginForm(key: ValueKey('login'))
-          : const RegistrationForm(key: ValueKey('register')),
-    );
+    return isLoginMode
+        ? const LoginForm(key: ValueKey('login'))
+        : const RegistrationForm(key: ValueKey('register'));
   }
 }
