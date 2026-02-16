@@ -14,13 +14,9 @@ class AuthFormsSwitcher extends StatelessWidget {
     //change upwards, but did not find a solution.
     return Align(
       alignment: Alignment.bottomCenter,
-      child: AnimatedSize(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOut,
-        child: isLoginMode
-            ? const LoginForm(key: ValueKey('login'))
-            : const RegistrationForm(key: ValueKey('register')),
-      ),
+      child: isLoginMode
+          ? const LoginForm(key: ValueKey('login'))
+          : const RegistrationForm(key: ValueKey('register')),
     );
   }
 }
