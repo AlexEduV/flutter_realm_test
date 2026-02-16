@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_futter_project/presentation/pages/authentication/widgets/password_strength_bar_widget.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
@@ -148,7 +149,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
               semanticsLabel: AppSemanticsLabels.passwordTextField,
               trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
             ),
-            //todo: add a strength bar with hints to the user
+
+            const PasswordStrengthBarWidget(),
 
             //todo: add password confirmation field as well
             const SizedBox(height: 20),
