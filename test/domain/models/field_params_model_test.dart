@@ -9,8 +9,8 @@ void main() {
         validationMessage: 'Required',
         regex: r'^[a-zA-Z0-9]+$',
         regexErrorMessage: 'Invalid format',
-        minLength: '3',
-        maxLength: '12',
+        minLength: 3,
+        maxLength: 12,
         minLengthErrorMessage: 'Too short',
         maxLengthErrorMessage: 'Too long',
       );
@@ -48,7 +48,7 @@ void main() {
 
       final updated = original.copyWith(
         label: 'New Password',
-        minLength: '8',
+        minLength: 8,
         minLengthErrorMessage: 'Too short',
       );
 

@@ -21,6 +21,7 @@ class LoginField extends StatelessWidget {
   final Function(String? value) onChanged;
   final String? semanticsLabel;
   final String? trailingActionSemanticsLabel;
+  final int? maxLength;
 
   const LoginField({
     required this.focusNode,
@@ -35,6 +36,7 @@ class LoginField extends StatelessWidget {
     this.errorText,
     this.onEditingComplete,
     this.isObscureText = false,
+    this.maxLength,
     this.onSuffixIconPressed,
     this.semanticsLabel,
     this.trailingActionSemanticsLabel,
@@ -51,6 +53,7 @@ class LoginField extends StatelessWidget {
           textField: true,
           label: semanticsLabel ?? '',
           child: TextFormField(
+            maxLength: maxLength,
             focusNode: focusNode,
             controller: textEditingController,
             decoration: InputDecoration(

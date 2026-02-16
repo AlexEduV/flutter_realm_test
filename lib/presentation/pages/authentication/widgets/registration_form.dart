@@ -144,9 +144,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   );
                 }
               },
+              maxLength: state.passwordFieldParams?.maxLength,
               semanticsLabel: AppSemanticsLabels.passwordTextField,
               trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
             ),
+            //todo: add a strength bar with hints to the user
 
             //todo: add password confirmation field as well
             const SizedBox(height: 20),

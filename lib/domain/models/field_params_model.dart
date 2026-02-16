@@ -1,8 +1,8 @@
 class FieldParamsModel {
   final String label;
   final String? hintText;
-  final String? maxLength;
-  final String? minLength;
+  final int? maxLength;
+  final int? minLength;
   final String? minLengthErrorMessage;
   final String? maxLengthErrorMessage;
   final String validationMessage;
@@ -27,8 +27,8 @@ class FieldParamsModel {
 
   FieldParamsModel copyWith({
     String? label,
-    String? maxLength,
-    String? minLength,
+    int? maxLength,
+    int? minLength,
     String? minLengthErrorMessage,
     String? maxLengthErrorMessage,
     String? validationMessage,

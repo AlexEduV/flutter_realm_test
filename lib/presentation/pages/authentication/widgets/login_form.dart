@@ -111,6 +111,7 @@ class _LoginFormState extends State<LoginForm> {
                   );
                 }
               },
+              maxLength: state.passwordFieldParams?.maxLength,
               semanticsLabel: AppSemanticsLabels.passwordTextField,
               trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
             ),

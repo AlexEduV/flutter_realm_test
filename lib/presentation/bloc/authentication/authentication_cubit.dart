@@ -23,12 +23,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
               validationMessage: AppLocalisations.fieldParamsValidationMessage,
               hintText: AppLocalisations.fieldParamsEmailHintText,
             ),
-        //todo: min and max length here are not utilised
         passwordFieldParams: FieldParamsModel.withLabel(AppLocalisations.fieldParamsPasswordLabel)
             .copyWith(
-              minLength: '8',
-              maxLength: '20',
+              minLength: 8,
+              maxLength: 20,
               validationMessage: AppLocalisations.fieldParamsValidationMessage,
+              //todo:
               regex: r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{8,}$',
               regexErrorMessage: AppLocalisations.fieldParamsPasswordRegexErrorMessage,
               hintText: AppLocalisations.fieldParamsPasswordHintText,
