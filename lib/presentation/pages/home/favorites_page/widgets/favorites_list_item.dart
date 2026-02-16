@@ -61,12 +61,14 @@ class FavoritesListItem extends StatelessWidget {
                           Icon(
                             Icons.directions_car,
                             size: AppDimensions.normalM,
-                            color: Colors.grey[700],
+                            color: AppColors.placeholderColorDark,
                           ),
                           const SizedBox(width: AppDimensions.minorL),
                           Text(
                             car.bodyType.capitalizeFirst(),
-                            style: AppTextStyles.zonaPro14.copyWith(color: Colors.grey[700]),
+                            style: AppTextStyles.zonaPro14.copyWith(
+                              color: AppColors.placeholderColorDark,
+                            ),
                           ),
                         ],
                       ),

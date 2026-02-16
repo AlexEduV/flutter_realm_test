@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart' show FontWeight, TextStyle;
 import 'package:flutter/material.dart' show Colors;
+import 'package:test_futter_project/common/app_colors.dart';
 
 class AppTextStyles {
   static const zonaPro14 = TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
@@ -12,5 +13,5 @@ class AppTextStyles {
   static final zonaPro30White = zonaPro30.copyWith(color: Colors.white);
   static final zonaPro24White = zonaPro24.copyWith(color: Colors.white);
 
-  static final zonaPro16Grey = zonaPro16.copyWith(color: Colors.grey[700]);
+  static final zonaPro16Grey = zonaPro16.copyWith(color: AppColors.placeholderColorDark);
 }
