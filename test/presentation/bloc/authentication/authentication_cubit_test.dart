@@ -153,33 +153,30 @@ void main() {
       },
     );
 
-    // blocTest<AuthenticationCubit, AuthenticationState>(
-    //   'onRegisterButtonPressed emits error if register fails',
-    //   build: () {
-    //     when(
-    //       mockAuthRepository.register('a@gmail.com', 'Password1!', 'Test User'),
-    //     ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
-    //     return cubit;
-    //   },
-    //   seed: () => cubit.state.copyWith(
-    //     emailValue: 'a@mail.com',
-    //     passwordValue: 'Password1!',
-    //     fullNameValue: 'Test User',
-    //   ),
-    //   act: (cubit) => cubit.onRegisterButtonPressed(),
-    //   expect: () => [
-    //     cubit.state.copyWith(authenticationErrorText: null),
-    //     cubit.state.copyWith(isLoading: true),
-    //     cubit.state.copyWith(authenticationErrorText: 'fail'),
-    //     cubit.state.copyWith(isLoading: false),
-    //   ],
-    //   verify: (_) {
-    //     verify(
-    //       () => mockAuthRepository.register('a@mail.com', 'Password1!', 'Test User'),
-    //     ).called(1);
-    //     verifyNever(() => mockUserDataCubit.authUser('a@gmail.com'));
-    //   },
-    // );
+    blocTest<AuthenticationCubit, AuthenticationState>(
+      'onRegisterButtonPressed emits error if register fails',
+      build: () {
+        when(
+          mockAuthRepository.register(any, any, any),
+        ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
+        return cubit;
+      },
+      seed: () => cubit.state.copyWith(
+        emailValue: 'a@mail.com',
+        passwordValue: 'Password1!',
+        fullNameValue: 'Test User',
+      ),
+      act: (cubit) => cubit.onRegisterButtonPressed(),
+      expect: () => [
+        cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
+        cubit.state.copyWith(authenticationErrorText: 'fail', isLoading: true),
+        cubit.state.copyWith(isLoading: false),
+      ],
+      verify: (_) {
+        verify(mockAuthRepository.register('a@mail.com', 'Password1!', 'Test User')).called(1);
+        verifyNever(mockUserDataCubit.authUser('a@gmail.com'));
+      },
+    );
 
     blocTest<AuthenticationCubit, AuthenticationState>(
       'logOut calls repository and resets to login mode',
