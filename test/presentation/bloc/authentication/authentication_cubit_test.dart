@@ -108,28 +108,27 @@ void main() {
       },
     );
 
-    // blocTest<AuthenticationCubit, AuthenticationState>(
-    //   'onLoginButtonPressed emits error if login fails',
-    //   build: () {
-    //     when(
-    //       mockAuthRepository.login('a@gmail.com', 'Password1!'),
-    //     ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
-    //     return cubit;
-    //   },
-    //   seed: () => cubit.state.copyWith(emailValue: 'a@mail.com', passwordValue: 'Password1!'),
-    //   act: (cubit) => cubit.onLoginButtonPressed(),
-    //   expect: () => [
-    //     cubit.state.copyWith(authenticationErrorText: null),
-    //     cubit.state.copyWith(isLoading: true),
-    //     cubit.state.copyWith(authenticationErrorText: 'fail'),
-    //     cubit.state.copyWith(isLoading: false),
-    //   ],
-    //   verify: (_) {
-    //     verify(() => mockAuthRepository.login('a@mail.com', 'Password1!')).called(1);
-    //     verifyNever(() => mockUserDataCubit.authUser('a@gmail.com'));
-    //   },
-    // );
-    //
+    blocTest<AuthenticationCubit, AuthenticationState>(
+      'onLoginButtonPressed emits error if login fails',
+      build: () {
+        when(
+          mockAuthRepository.login(any, any),
+        ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
+        return cubit;
+      },
+      seed: () => cubit.state.copyWith(emailValue: 'a@mail.com', passwordValue: 'Password1!'),
+      act: (cubit) => cubit.onLoginButtonPressed(),
+      expect: () => [
+        cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
+        cubit.state.copyWith(authenticationErrorText: 'fail', isLoading: true),
+        cubit.state.copyWith(isLoading: false),
+      ],
+      verify: (_) {
+        verify(mockAuthRepository.login('a@mail.com', 'Password1!')).called(1);
+        verifyNever(mockUserDataCubit.authUser('a@gmail.com'));
+      },
+    );
+
     // blocTest<AuthenticationCubit, AuthenticationState>(
     //   'onRegisterButtonPressed emits loading, calls repo, emits result and stops loading (success)',
     //   build: () {
