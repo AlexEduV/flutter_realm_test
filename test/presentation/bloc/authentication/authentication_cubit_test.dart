@@ -1,9 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
+import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
+import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -11,11 +15,17 @@ import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../data/data_sources/mock_auth_service_test.mocks.dart';
 import '../../../utils/app_router_test.mocks.dart';
+import 'authentication_cubit_test.mocks.dart';
 
+@GenerateMocks([LogoutUseCase, LoginUseCase, RegisterUseCase])
 void main() {
   late AuthenticationCubit cubit;
   late MockAuthRepository mockAuthRepository;
   late MockUserDataCubit mockUserDataCubit;
+
+  late MockLoginUseCase mockLoginUseCase;
+  late MockRegisterUseCase mockRegisterUseCase;
+  late MockLogoutUseCase mockLogoutUseCase;
 
   setUp(() {
     // Setup mock localisations
@@ -34,10 +44,16 @@ void main() {
 
     mockAuthRepository = MockAuthRepository();
     mockUserDataCubit = MockUserDataCubit();
+    mockLoginUseCase = MockLoginUseCase();
+    mockLogoutUseCase = MockLogoutUseCase();
+    mockRegisterUseCase = MockRegisterUseCase();
 
     // Register mocks in service locator
     serviceLocator.registerSingleton<AuthRepository>(mockAuthRepository);
     serviceLocator.registerSingleton<UserDataCubit>(mockUserDataCubit);
+    serviceLocator.registerSingleton<LoginUseCase>(mockLoginUseCase);
+    serviceLocator.registerSingleton<LogoutUseCase>(mockLogoutUseCase);
+    serviceLocator.registerSingleton<RegisterUseCase>(mockRegisterUseCase);
 
     cubit = AuthenticationCubit();
     cubit.init();
@@ -90,9 +106,7 @@ void main() {
     blocTest<AuthenticationCubit, AuthenticationState>(
       'onLoginButtonPressed emits loading, calls repo, emits result and stops loading (success)',
       setUp: () {
-        when(
-          mockAuthRepository.login(email: any, password: any),
-        ).thenAnswer((_) async => AuthResult(success: true));
+        when(mockLoginUseCase.call(any)).thenAnswer((_) async => AuthResult(success: true));
       },
       build: () {
         return cubit;
@@ -105,7 +119,7 @@ void main() {
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
-        verify(mockAuthRepository.login(email: 'a@mail.com', password: 'Password1!')).called(1);
+        verify(mockLoginUseCase.call(any)).called(1);
         verify(mockUserDataCubit.authUser('a@mail.com')).called(1);
       },
     );
@@ -114,7 +128,7 @@ void main() {
       'onLoginButtonPressed emits error if login fails',
       build: () {
         when(
-          mockAuthRepository.login(email: any, password: any),
+          mockLoginUseCase.call(any),
         ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
         return cubit;
       },
@@ -126,7 +140,7 @@ void main() {
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
-        verify(mockAuthRepository.login(email: 'a@mail.com', password: 'Password1!')).called(1);
+        verify(mockLoginUseCase.call(any)).called(1);
         verifyNever(mockUserDataCubit.authUser('a@gmail.com'));
       },
     );
@@ -134,9 +148,7 @@ void main() {
     blocTest<AuthenticationCubit, AuthenticationState>(
       'onRegisterButtonPressed emits loading, calls repo, emits result and stops loading (success)',
       build: () {
-        when(
-          mockAuthRepository.register(email: any, password: any, fullName: any),
-        ).thenAnswer((_) async => AuthResult(success: true));
+        when(mockRegisterUseCase.call(any)).thenAnswer((_) async => AuthResult(success: true));
         return cubit;
       },
       seed: () => cubit.state.copyWith(
@@ -150,13 +162,7 @@ void main() {
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
-        verify(
-          mockAuthRepository.register(
-            email: 'a@mail.com',
-            password: 'Password1!',
-            fullName: 'Test User',
-          ),
-        ).called(1);
+        verify(mockRegisterUseCase.call(any)).called(1);
         verify(mockUserDataCubit.authUser('a@mail.com')).called(1);
       },
     );
@@ -165,7 +171,7 @@ void main() {
       'onRegisterButtonPressed emits error if register fails',
       build: () {
         when(
-          mockAuthRepository.register(email: any, password: any, fullName: any),
+          mockRegisterUseCase.call(any),
         ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
         return cubit;
       },
@@ -181,13 +187,7 @@ void main() {
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
-        verify(
-          mockAuthRepository.register(
-            email: 'a@mail.com',
-            password: 'Password1!',
-            fullName: 'Test User',
-          ),
-        ).called(1);
+        verify(mockRegisterUseCase.call(any)).called(1);
         verifyNever(mockUserDataCubit.authUser('a@gmail.com'));
       },
     );
@@ -198,7 +198,7 @@ void main() {
       act: (cubit) => cubit.logOut(),
       expect: () => [],
       verify: (_) {
-        verify(mockAuthRepository.logOut()).called(1);
+        verify(mockLogoutUseCase.call()).called(1);
       },
     );
   });
