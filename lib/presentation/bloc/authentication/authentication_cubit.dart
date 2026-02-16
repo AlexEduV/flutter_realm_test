@@ -123,6 +123,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     return true;
   }
 
+  //todo: add localisations
   bool validatePasswordWithStrengthBar(String password) {
     final minLength = state.passwordFieldParams?.minLength ?? 0;
     if (password.length < minLength) {
@@ -211,7 +212,10 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     validateEmail(state.emailValue, false);
     validateFullName(state.fullNameValue, false);
 
-    if (state.emailError != null || state.passwordError != null || state.fullNameError != null) {
+    if (state.emailError != null ||
+        state.passwordError != null ||
+        state.fullNameError != null ||
+        state.passwordStrengthHintText != null) {
       return;
     }
 
@@ -240,6 +244,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         fullNameValue: '',
         emailValue: '',
         authenticationErrorText: null,
+        passwordStrengthHintText: null,
+        passwordValidationStage: 0,
       ),
     );
   }
