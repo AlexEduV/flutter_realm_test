@@ -10,8 +10,6 @@ class AuthFormsSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isLoginMode
-        ? const LoginForm(key: ValueKey('login'))
-        : const RegistrationForm(key: ValueKey('register'));
+    return isLoginMode ? const LoginForm() : const RegistrationForm();
   }
 }
