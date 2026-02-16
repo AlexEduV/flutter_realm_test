@@ -123,6 +123,63 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     return true;
   }
 
+  bool validatePasswordWithStrengthBar(String password) {
+    final minLength = state.passwordFieldParams?.minLength ?? 0;
+    if (password.length < minLength) {
+      emit(
+        state.copyWith(
+          passwordValidationStage: 0,
+          passwordStrengthHintText: 'The minimum password length is $minLength',
+        ),
+      );
+      return false;
+    }
+
+    if (!password.contains(RegExp(r'[a-z]'))) {
+      emit(
+        state.copyWith(
+          passwordValidationStage: 1,
+          passwordStrengthHintText: 'The password should contain at least one lower case character',
+        ),
+      );
+      return false;
+    }
+
+    if (!password.contains(RegExp(r'[A-Z]'))) {
+      emit(
+        state.copyWith(
+          passwordValidationStage: 2,
+          passwordStrengthHintText: 'The password should contain at least one upper case character',
+        ),
+      );
+      return false;
+    }
+
+    if (!password.contains(RegExp(r'\d'))) {
+      emit(
+        state.copyWith(
+          passwordValidationStage: 3,
+          passwordStrengthHintText: 'The password should contain at least one digit',
+        ),
+      );
+      return false;
+    }
+
+    const specialChars = '!@#\$&*~';
+    if (!password.split('').any((char) => specialChars.contains(char))) {
+      emit(
+        state.copyWith(
+          passwordValidationStage: 4,
+          passwordStrengthHintText: 'The password should contain at least one special character',
+        ),
+      );
+      return false;
+    }
+
+    emit(state.copyWith(passwordValidationStage: 5, passwordStrengthHintText: null));
+    return true;
+  }
+
   void onLoginButtonPressed() async {
     emit(state.copyWith(authenticationErrorText: null));
 
@@ -150,7 +207,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   void onRegisterButtonPressed() async {
     emit(state.copyWith(authenticationErrorText: null));
 
-    validatePassword(state.passwordValue, false);
+    validatePasswordWithStrengthBar(state.passwordValue);
     validateEmail(state.emailValue, false);
     validateFullName(state.fullNameValue, false);
 

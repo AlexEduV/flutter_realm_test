@@ -120,6 +120,14 @@ class MockAuthenticationCubit extends _i1.Mock
           as bool);
 
   @override
+  bool validatePasswordWithStrengthBar(String? password) =>
+      (super.noSuchMethod(
+            Invocation.method(#validatePasswordWithStrengthBar, [password]),
+            returnValue: false,
+          )
+          as bool);
+
+  @override
   void onLoginButtonPressed() => super.noSuchMethod(
     Invocation.method(#onLoginButtonPressed, []),
     returnValueForMissingStub: null,

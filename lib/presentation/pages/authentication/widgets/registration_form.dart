@@ -132,16 +132,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
               onChanged: (newValue) {
                 context.read<AuthenticationCubit>().updatePassword(passwordTextController.text);
 
-                context.read<AuthenticationCubit>().validatePassword(
+                context.read<AuthenticationCubit>().validatePasswordWithStrengthBar(
                   passwordTextController.text,
-                  passwordFocusNode.hasFocus,
                 );
               },
               onFocusChange: (hasFocus) {
                 if (!hasFocus) {
-                  context.read<AuthenticationCubit>().validatePassword(
+                  context.read<AuthenticationCubit>().validatePasswordWithStrengthBar(
                     passwordTextController.text,
-                    false,
                   );
                 }
               },

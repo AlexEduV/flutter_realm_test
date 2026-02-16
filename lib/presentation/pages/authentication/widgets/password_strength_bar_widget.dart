@@ -14,7 +14,7 @@ class PasswordStrengthBarWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
       child: BlocBuilder<AuthenticationCubit, AuthenticationState>(
         builder: (context, state) {
-          final stagesAvailable = 4;
+          final stagesAvailable = 5;
 
           return Column(
             spacing: AppDimensions.minorXS,
