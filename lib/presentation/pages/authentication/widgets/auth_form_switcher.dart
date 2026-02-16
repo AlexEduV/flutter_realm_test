@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/registration_form.dart';
 
 import 'login_form.dart';
+import 'registration_form.dart';
 
 class AuthFormsSwitcher extends StatelessWidget {
   final bool isLoginMode;
