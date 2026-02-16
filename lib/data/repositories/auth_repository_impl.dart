@@ -26,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<AuthResult> login(String email, String password) async {
+  Future<AuthResult> login({required String email, required String password}) async {
     // Simulate network delay
     await Future.delayed(const Duration(milliseconds: 1500));
 
@@ -42,7 +42,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<AuthResult> register(String email, String password, String fullName) async {
+  Future<AuthResult> register({
+    required String email,
+    required String password,
+    required String fullName,
+  }) async {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (_users.values.any((element) => element.email == email)) {

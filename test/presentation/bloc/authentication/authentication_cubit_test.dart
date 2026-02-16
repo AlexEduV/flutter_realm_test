@@ -90,7 +90,9 @@ void main() {
     blocTest<AuthenticationCubit, AuthenticationState>(
       'onLoginButtonPressed emits loading, calls repo, emits result and stops loading (success)',
       setUp: () {
-        when(mockAuthRepository.login(any, any)).thenAnswer((_) async => AuthResult(success: true));
+        when(
+          mockAuthRepository.login(email: any, password: any),
+        ).thenAnswer((_) async => AuthResult(success: true));
       },
       build: () {
         return cubit;
@@ -103,7 +105,7 @@ void main() {
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
-        verify(mockAuthRepository.login('a@mail.com', 'Password1!')).called(1);
+        verify(mockAuthRepository.login(email: 'a@mail.com', password: 'Password1!')).called(1);
         verify(mockUserDataCubit.authUser('a@mail.com')).called(1);
       },
     );
@@ -112,7 +114,7 @@ void main() {
       'onLoginButtonPressed emits error if login fails',
       build: () {
         when(
-          mockAuthRepository.login(any, any),
+          mockAuthRepository.login(email: any, password: any),
         ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
         return cubit;
       },
@@ -124,7 +126,7 @@ void main() {
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
-        verify(mockAuthRepository.login('a@mail.com', 'Password1!')).called(1);
+        verify(mockAuthRepository.login(email: 'a@mail.com', password: 'Password1!')).called(1);
         verifyNever(mockUserDataCubit.authUser('a@gmail.com'));
       },
     );
@@ -133,7 +135,7 @@ void main() {
       'onRegisterButtonPressed emits loading, calls repo, emits result and stops loading (success)',
       build: () {
         when(
-          mockAuthRepository.register(any, any, any),
+          mockAuthRepository.register(email: any, password: any, fullName: any),
         ).thenAnswer((_) async => AuthResult(success: true));
         return cubit;
       },
@@ -148,7 +150,13 @@ void main() {
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
-        verify(mockAuthRepository.register('a@mail.com', 'Password1!', 'Test User')).called(1);
+        verify(
+          mockAuthRepository.register(
+            email: 'a@mail.com',
+            password: 'Password1!',
+            fullName: 'Test User',
+          ),
+        ).called(1);
         verify(mockUserDataCubit.authUser('a@mail.com')).called(1);
       },
     );
@@ -157,7 +165,7 @@ void main() {
       'onRegisterButtonPressed emits error if register fails',
       build: () {
         when(
-          mockAuthRepository.register(any, any, any),
+          mockAuthRepository.register(email: any, password: any, fullName: any),
         ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
         return cubit;
       },
@@ -173,7 +181,13 @@ void main() {
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
-        verify(mockAuthRepository.register('a@mail.com', 'Password1!', 'Test User')).called(1);
+        verify(
+          mockAuthRepository.register(
+            email: 'a@mail.com',
+            password: 'Password1!',
+            fullName: 'Test User',
+          ),
+        ).called(1);
         verifyNever(mockUserDataCubit.authUser('a@gmail.com'));
       },
     );

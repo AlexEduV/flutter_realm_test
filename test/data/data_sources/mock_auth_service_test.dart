@@ -21,22 +21,26 @@ void main() {
   group('MockAuthService', () {
     test('login delegates to repository', () async {
       final result = AuthResult(success: true, message: 'Logged in');
-      when(mockRepo.login('test@mail.com', 'pass')).thenAnswer((_) async => result);
+      when(
+        mockRepo.login(email: 'test@mail.com', password: 'pass'),
+      ).thenAnswer((_) async => result);
 
       final response = await authService.login('test@mail.com', 'pass');
 
       expect(response, result);
-      verify(mockRepo.login('test@mail.com', 'pass')).called(1);
+      verify(mockRepo.login(email: 'test@mail.com', password: 'pass')).called(1);
     });
 
     test('register delegates to repository', () async {
       final result = AuthResult(success: true, message: 'Registered');
-      when(mockRepo.register('a@mail.com', 'pw', 'Name')).thenAnswer((_) async => result);
+      when(
+        mockRepo.register(email: 'a@mail.com', password: 'pw', fullName: 'Name'),
+      ).thenAnswer((_) async => result);
 
       final response = await authService.register('a@mail.com', 'pw', 'Name');
 
       expect(response, result);
-      verify(mockRepo.register('a@mail.com', 'pw', 'Name')).called(1);
+      verify(mockRepo.register(email: 'a@mail.com', password: 'pw', fullName: 'Name')).called(1);
     });
 
     test('logOut delegates to repository', () {

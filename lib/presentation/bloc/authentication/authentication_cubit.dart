@@ -1,11 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
+import 'package:test_futter_project/domain/models/login_model.dart';
+import 'package:test_futter_project/domain/models/register_model.dart';
+import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
+import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
+import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/l10n.dart';
-
-import '../../../domain/repositories/auth_repository.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(const AuthenticationState());
@@ -131,9 +134,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
 
     emit(state.copyWith(isLoading: true));
-    final result = await serviceLocator<AuthRepository>().login(
-      state.emailValue,
-      state.passwordValue,
+    final result = await serviceLocator<LoginUseCase>().call(
+      LoginModel(state.emailValue, state.passwordValue),
     );
 
     if (!result.success) {
@@ -157,10 +159,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
 
     emit(state.copyWith(isLoading: true));
-    final result = await serviceLocator<AuthRepository>().register(
-      state.emailValue,
-      state.passwordValue,
-      state.fullNameValue,
+    final result = await serviceLocator<RegisterUseCase>().call(
+      RegisterModel(state.emailValue, state.passwordValue, state.fullNameValue),
     );
 
     if (!result.success) {
@@ -188,7 +188,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   void logOut() {
-    serviceLocator<AuthRepository>().logOut();
+    serviceLocator<LogoutUseCase>().call();
     emit(state.copyWith(isLoginMode: true));
   }
 }

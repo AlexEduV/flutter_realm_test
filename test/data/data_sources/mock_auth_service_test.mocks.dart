@@ -38,30 +38,44 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
   }
 
   @override
-  _i4.Future<_i2.AuthResult> login(String? email, String? password) =>
+  _i4.Future<_i2.AuthResult> login({
+    required String? email,
+    required String? password,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#login, [email, password]),
+            Invocation.method(#login, [], {#email: email, #password: password}),
             returnValue: _i4.Future<_i2.AuthResult>.value(
               _FakeAuthResult_0(
                 this,
-                Invocation.method(#login, [email, password]),
+                Invocation.method(#login, [], {
+                  #email: email,
+                  #password: password,
+                }),
               ),
             ),
           )
           as _i4.Future<_i2.AuthResult>);
 
   @override
-  _i4.Future<_i2.AuthResult> register(
-    String? email,
-    String? password,
-    String? fullName,
-  ) =>
+  _i4.Future<_i2.AuthResult> register({
+    required String? email,
+    required String? password,
+    required String? fullName,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#register, [email, password, fullName]),
+            Invocation.method(#register, [], {
+              #email: email,
+              #password: password,
+              #fullName: fullName,
+            }),
             returnValue: _i4.Future<_i2.AuthResult>.value(
               _FakeAuthResult_0(
                 this,
-                Invocation.method(#register, [email, password, fullName]),
+                Invocation.method(#register, [], {
+                  #email: email,
+                  #password: password,
+                  #fullName: fullName,
+                }),
               ),
             ),
           )

@@ -17,19 +17,19 @@ void main() {
 
   group('login', () {
     test('returns success for correct credentials', () async {
-      final result = await repo.login('mock@example.com', 'Password1!');
+      final result = await repo.login(email: 'mock@example.com', password: 'Password1!');
       expect(result.success, isTrue);
       expect(result.message, isNull);
     });
 
     test('returns user not found for unknown email', () async {
-      final result = await repo.login('unknown@example.com', 'Password1!');
+      final result = await repo.login(email: 'unknown@example.com', password: 'Password1!');
       expect(result.success, isFalse);
       expect(result.message, AppLocalisations.authErrorUserNotFoundMessage);
     });
 
     test('returns incorrect password for wrong password', () async {
-      final result = await repo.login('mock@example.com', 'wrongpassword');
+      final result = await repo.login(email: 'mock@example.com', password: 'wrongpassword');
       expect(result.success, isFalse);
       expect(result.message, AppLocalisations.authErrorIncorrectPassword);
     });
@@ -37,21 +37,33 @@ void main() {
 
   group('register', () {
     test('returns success for new user', () async {
-      final result = await repo.register('new@example.com', 'NewPass123!', 'New User');
+      final result = await repo.register(
+        email: 'new@example.com',
+        password: 'NewPass123!',
+        fullName: 'New User',
+      );
       expect(result.success, isTrue);
       expect(result.message, isNull);
     });
 
     test('returns user already exists for duplicate email', () async {
-      final result = await repo.register('mock@example.com', 'Password1!', 'user');
+      final result = await repo.register(
+        email: 'mock@example.com',
+        password: 'Password1!',
+        fullName: 'user',
+      );
       expect(result.success, isFalse);
       expect(result.message, AppLocalisations.authErrorUserAlreadyExists);
     });
 
     test('actually adds the user to the repository', () async {
-      await repo.register('unique@example.com', 'UniquePass!', 'Unique User');
+      await repo.register(
+        email: 'unique@example.com',
+        password: 'UniquePass!',
+        fullName: 'Unique User',
+      );
       // Now login should succeed
-      final result = await repo.login('unique@example.com', 'UniquePass!');
+      final result = await repo.login(email: 'unique@example.com', password: 'UniquePass!');
       expect(result.success, isTrue);
     });
   });

@@ -9,7 +9,7 @@ class MockAuthService implements AuthService {
 
   @override
   Future<AuthResult> login(String email, String password) async {
-    return _authRepository.login(email, password);
+    return _authRepository.login(email: email, password: password);
   }
 
   @override
@@ -24,6 +24,6 @@ class MockAuthService implements AuthService {
 
   @override
   Future<AuthResult> register(String email, String password, String fullName) {
-    return _authRepository.register(email, password, fullName);
+    return _authRepository.register(email: email, password: password, fullName: fullName);
   }
 }

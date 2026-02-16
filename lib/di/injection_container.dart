@@ -10,6 +10,9 @@ import 'package:test_futter_project/domain/data_sources/base_local_storage.dart'
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
+import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
+import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_all_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
@@ -120,4 +123,8 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AuthenticationCubit());
+
+  serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
 }
