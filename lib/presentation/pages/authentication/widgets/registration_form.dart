@@ -42,8 +42,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   @override
   Widget build(BuildContext context) {
-    //todo: maybe reset fields when switching between tabs
-
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
       builder: (context, state) {
         return Column(
