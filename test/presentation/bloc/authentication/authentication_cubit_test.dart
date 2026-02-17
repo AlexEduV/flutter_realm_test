@@ -158,7 +158,8 @@ void main() {
       ),
       act: (cubit) => cubit.onRegisterButtonPressed(),
       expect: () => [
-        cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
+        cubit.state.copyWith(authenticationErrorText: null, isLoading: false),
+        cubit.state.copyWith(isLoading: true),
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
@@ -182,6 +183,7 @@ void main() {
       ),
       act: (cubit) => cubit.onRegisterButtonPressed(),
       expect: () => [
+        cubit.state.copyWith(authenticationErrorText: null, isLoading: false),
         cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
         cubit.state.copyWith(authenticationErrorText: 'fail', isLoading: true),
         cubit.state.copyWith(isLoading: false),
