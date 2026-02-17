@@ -43,7 +43,8 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.inbox,
             pageBuilder: (context, state) {
-              final ownerId = state.extra as String? ?? '';
+              //todo: pass the id to the next page
+              //final ownerId = state.extra as String? ?? '';
 
               return const CupertinoPage(child: PlaceholderPage());
             },
