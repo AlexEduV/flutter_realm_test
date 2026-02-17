@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+//todo: retrieval won't work if the users are not stored as well
 class AuthSessionUtil {
   static Future<Map<String, String>?> getUserSession() async {
     final prefs = await SharedPreferences.getInstance();
