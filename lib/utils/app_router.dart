@@ -40,6 +40,14 @@ class AppRouter {
               return const CupertinoPage(child: PlaceholderPage());
             },
           ),
+          GoRoute(
+            path: AppRoutes.inbox,
+            pageBuilder: (context, state) {
+              final ownerId = state.extra as String? ?? '';
+
+              return const CupertinoPage(child: PlaceholderPage());
+            },
+          ),
         ],
       ),
     ],
