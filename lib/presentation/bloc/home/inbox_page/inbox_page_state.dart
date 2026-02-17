@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 
 part 'inbox_page_state.freezed.dart';

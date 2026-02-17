@@ -31,12 +31,13 @@ class InboxListItem extends StatelessWidget {
             padding: const EdgeInsets.all(AppDimensions.normalXS),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: AppDimensions.normalM,
               children: [
                 CircleAvatar(
                   backgroundColor: AppColors.placeholderColor,
                   radius: AppDimensions.normalXL,
                 ),
+
+                const SizedBox(width: AppDimensions.normalM),
 
                 Expanded(
                   child: Column(
@@ -58,16 +59,13 @@ class InboxListItem extends StatelessWidget {
                   ),
                 ),
 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Icon(_getMessageStatusIcon()),
+                Icon(_getMessageStatusIcon()),
 
-                    Text(
-                      DateFormatter.formatSmartDate(message.date),
-                      style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
-                    ),
-                  ],
+                const SizedBox(width: AppDimensions.minorM),
+
+                Text(
+                  DateFormatter.formatSmartDate(message.date),
+                  style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
                 ),
               ],
             ),
