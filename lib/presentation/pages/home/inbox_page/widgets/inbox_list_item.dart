@@ -77,10 +77,9 @@ class InboxListItem extends StatelessWidget {
                     ),
 
                     if (message.messageStatus == MessageStatus.unknown) ...[
-                      const Align(
-                        alignment: AlignmentGeometry.bottomCenter,
-                        child: AppBadge(text: '1'),
-                      ),
+                      const SizedBox(height: AppDimensions.minorL),
+
+                      const AppBadge(text: '1'),
                     ],
                   ],
                 ),
