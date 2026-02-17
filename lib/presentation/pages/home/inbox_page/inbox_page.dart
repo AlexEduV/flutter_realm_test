@@ -34,10 +34,14 @@ class InboxPage extends StatelessWidget {
                     children: [
                       Text(
                         'Full Name',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                         style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                       ),
                       Text(
                         'Last Message',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
                       ),
                     ],
