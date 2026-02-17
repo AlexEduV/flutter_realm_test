@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
+import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
 
 import '../../../../../common/app_colors.dart';
@@ -50,8 +51,8 @@ class InboxListItem extends StatelessWidget {
                         style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        message.message,
-                        maxLines: 1,
+                        '${message.text}\n',
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
                       ),
@@ -59,13 +60,29 @@ class InboxListItem extends StatelessWidget {
                   ),
                 ),
 
-                Icon(_getMessageStatusIcon()),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(_getMessageStatusIcon()),
 
-                const SizedBox(width: AppDimensions.minorM),
+                        const SizedBox(width: AppDimensions.minorM),
 
-                Text(
-                  DateFormatter.formatSmartDate(message.date),
-                  style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
+                        Text(
+                          DateFormatter.formatSmartDate(message.date),
+                          style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+
+                    if (message.messageStatus == MessageStatus.unknown) ...[
+                      const Align(
+                        alignment: AlignmentGeometry.bottomCenter,
+                        child: AppBadge(text: '1'),
+                      ),
+                    ],
+                  ],
                 ),
               ],
             ),
