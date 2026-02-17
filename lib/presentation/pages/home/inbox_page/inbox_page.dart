@@ -13,52 +13,68 @@ class InboxPage extends StatelessWidget {
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(title: const Text('Inbox', style: AppTextStyles.zonaPro20), centerTitle: true),
       body: ListView.builder(
+        padding: const EdgeInsets.only(top: AppDimensions.normalL),
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsetsGeometry.symmetric(
-              horizontal: AppDimensions.normalM,
-              vertical: AppDimensions.minorL,
+              horizontal: AppDimensions.normalXS,
+              vertical: AppDimensions.minorM,
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: AppDimensions.normalM,
-              children: [
-                CircleAvatar(
-                  backgroundColor: AppColors.placeholderColor,
-                  radius: AppDimensions.normalXL,
-                ),
-
-                Expanded(
-                  child: Column(
+            child: Material(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(AppDimensions.normalM),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.all(AppDimensions.minorL),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppDimensions.normalM,
                     children: [
-                      Text(
-                        'Full Name',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                      CircleAvatar(
+                        backgroundColor: AppColors.placeholderColor,
+                        radius: AppDimensions.normalXL,
                       ),
-                      Text(
-                        'Last Message',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
+
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Full Name',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              'Last Message',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyles.zonaPro16Grey.copyWith(
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      Column(
+                        children: [
+                          const Icon(Icons.done_all),
+
+                          Text(
+                            'Sn',
+                            style: AppTextStyles.zonaPro16Grey.copyWith(
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-
-                Column(
-                  children: [
-                    const Icon(Icons.done_all),
-
-                    Text(
-                      'Sn',
-                      style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
           );
         },
