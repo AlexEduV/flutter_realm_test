@@ -4,6 +4,7 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
+import 'package:test_futter_project/domain/models/owner_model.dart';
 
 void main() {
   group('CarDto', () {
@@ -17,7 +18,7 @@ void main() {
         type: 'car',
         isVerified: true,
         year: '2020',
-        owner: 'John Doe',
+        owner: OwnerModel(id: 'test', name: 'John Doe', linkedItemIds: []),
         kilometers: 10000,
         distanceTo: 50,
         price: 80000,
@@ -34,7 +35,7 @@ void main() {
       expect(car.isVerified, true);
       expect(car.hotPromotionDescription, isNull);
       expect(car.year, '2020');
-      expect(car.owner, 'John Doe');
+      expect(car.owner?.name ?? '', 'John Doe');
       expect(car.kilometers, 10000);
       expect(car.distanceTo, 50);
       expect(car.price, 80000);
@@ -77,7 +78,7 @@ void main() {
         'body_type': 'sedan',
         'transmission_type': 'automatic',
         'fuel_type': 'ev',
-        'owner': 'James Morrison',
+        'owner': {'name': 'James Morrison'},
         'color': 'White',
       };
 

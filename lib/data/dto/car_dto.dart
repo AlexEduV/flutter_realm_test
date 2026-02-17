@@ -1,4 +1,5 @@
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/domain/models/owner_model.dart';
 
 class CarDto {
   final ObjectId id;
@@ -11,7 +12,7 @@ class CarDto {
   final String bodyType;
   final String fuelType;
   final String transmissionType;
-  final String? owner;
+  final OwnerModel? owner;
   final bool isVerified;
   final String? hotPromotionDescription;
   int? kilometers;
@@ -52,7 +53,7 @@ class CarDto {
       fuelType: json['fuel_type'] as String,
       bodyType: json['body_type'] as String,
       color: json['color'] as String,
-      owner: json['owner'] as String,
+      owner: OwnerModel.fromJson(json['owner'] as Map<String, dynamic>),
     );
   }
 }

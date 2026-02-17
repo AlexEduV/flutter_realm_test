@@ -14,6 +14,7 @@ import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/data/repositories/car_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/models/owner_model.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 
@@ -44,7 +45,7 @@ void main() {
     when(carEntity.model).thenReturn('Model Y');
     when(carEntity.manufacturer).thenReturn('Tesla');
     when(carEntity.year).thenReturn('2007');
-    when(carEntity.owner).thenReturn('Elon');
+    when(carEntity.owner).thenReturn(OwnerModel(id: 'test', name: 'Elon', linkedItemIds: []));
     when(carEntity.isVerified).thenReturn(true);
     when(carEntity.hotPromotionDescription).thenReturn(null);
     when(carEntity.kilometers).thenReturn(12345);
@@ -152,7 +153,9 @@ void main() {
     when(carDto.bodyType).thenReturn('sedan');
     when(carDto.fuelType).thenReturn('gasoline');
     when(carDto.transmissionType).thenReturn('hybrid');
-    when(carDto.owner).thenReturn('John Morrison');
+    when(
+      carDto.owner,
+    ).thenReturn(OwnerModel(id: 'test', name: 'James Morrison', linkedItemIds: []));
 
     final carDtos = [carDto];
     when(apiService.fetchCars()).thenAnswer((_) async => carDtos);

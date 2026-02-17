@@ -7,6 +7,7 @@ import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/models/owner_model.dart';
 
 import '../../data/repositories/car_repository_impl_test.mocks.dart';
 
@@ -22,7 +23,7 @@ void main() {
     when(mockCar.price).thenReturn(80000);
     when(mockCar.distanceTo).thenReturn(50);
     when(mockCar.year).thenReturn('2020');
-    when(mockCar.owner).thenReturn(Person('John Doe'));
+    when(mockCar.owner).thenReturn(Person('John Doe', 'test', linkedIds: []));
     when(mockCar.kilometers).thenReturn(10000);
     when(mockCar.type).thenReturn('car');
     when(mockCar.bodyType).thenReturn('sedan');
@@ -40,7 +41,7 @@ void main() {
         isVerified: true,
         type: 'car',
         year: '2020',
-        owner: 'John Doe',
+        owner: OwnerModel(id: 'test', name: 'John Doe', linkedItemIds: []),
         kilometers: 10000,
         distanceTo: 50,
         price: 80000,
@@ -55,7 +56,7 @@ void main() {
       expect(entity.isVerified, true);
       expect(entity.hotPromotionDescription, null);
       expect(entity.year, '2020');
-      expect(entity.owner, 'John Doe');
+      expect(entity.owner?.name, 'John Doe');
       expect(entity.kilometers, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
@@ -74,7 +75,7 @@ void main() {
         isVerified: false,
         hotPromotionDescription: 'Hot Promo',
         year: '2018',
-        owner: 'Jane Doe',
+        owner: OwnerModel(id: 'test', name: 'Jane Doe', linkedItemIds: []),
         kilometers: 50000,
         distanceTo: 100,
         price: 20000,
@@ -91,7 +92,7 @@ void main() {
       expect(entity.isVerified, false);
       expect(entity.hotPromotionDescription, 'Hot Promo');
       expect(entity.year, '2018');
-      expect(entity.owner, 'Jane Doe');
+      expect(entity.owner?.name, 'Jane Doe');
       expect(entity.kilometers, 50000);
       expect(entity.distanceTo, 100);
       expect(entity.price, 20000);
@@ -109,7 +110,7 @@ void main() {
       expect(entity.isVerified, true);
       expect(entity.hotPromotionDescription, null);
       expect(entity.year, '2020');
-      expect(entity.owner, 'John Doe');
+      expect(entity.owner?.name, 'John Doe');
       expect(entity.kilometers, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
@@ -128,7 +129,7 @@ void main() {
       expect(entity.model, ''); // default for null model
       expect(entity.isVerified, false); // default for null isChecked
       expect(entity.hotPromotionDescription, isNull); // default for null isHotProposition
-      expect(entity.owner, 'John Doe'); // default for null owner
+      expect(entity.owner?.name, 'John Doe'); // default for null owner
     });
   });
 }

@@ -1,4 +1,5 @@
 import 'package:realm/realm.dart' show ObjectId;
+import 'package:test_futter_project/domain/models/owner_model.dart';
 
 import '../../data/dto/car_dto.dart';
 import '../../data/models/scheme.dart';
@@ -20,7 +21,11 @@ extension CarExtensions on Car {
       fuelType: fuelType ?? '',
       bodyType: bodyType ?? '',
       transmissionType: transmissionType ?? '',
-      owner: owner?.name ?? '',
+      owner: OwnerModel(
+        id: owner?.id ?? '0',
+        name: owner?.name ?? '',
+        linkedItemIds: owner?.linkedIds ?? [],
+      ),
     );
   }
 
@@ -40,7 +45,11 @@ extension CarExtensions on Car {
       bodyType: dto.bodyType,
       fuelType: dto.fuelType,
       transmissionType: dto.transmissionType,
-      owner: Person(dto.owner ?? ''),
+      owner: Person(
+        dto.owner?.name ?? '',
+        dto.owner?.id ?? '',
+        linkedIds: dto.owner?.linkedItemIds ?? [],
+      ),
     );
   }
 
@@ -60,7 +69,11 @@ extension CarExtensions on Car {
       bodyType: entity.bodyType,
       fuelType: entity.fuelType,
       transmissionType: entity.transmissionType,
-      owner: Person(entity.owner ?? ''),
+      owner: Person(
+        entity.owner?.name ?? '',
+        entity.owner?.id ?? '',
+        linkedIds: entity.owner?.linkedItemIds ?? [],
+      ),
     );
   }
 }

@@ -26,6 +26,8 @@ class _Car {
 @RealmModel()
 class _Person {
   late String name;
+  late String id;
+  late List<String> linkedIds;
   int age = 1;
 }
 

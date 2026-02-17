@@ -257,11 +257,22 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
 class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
   static var _defaultsSet = false;
 
-  Person(String name, {int age = 1}) {
+  Person(
+    String name,
+    String id, {
+    Iterable<String> linkedIds = const [],
+    int age = 1,
+  }) {
     if (!_defaultsSet) {
       _defaultsSet = RealmObjectBase.setDefaults<Person>({'age': 1});
     }
     RealmObjectBase.set(this, 'name', name);
+    RealmObjectBase.set(this, 'id', id);
+    RealmObjectBase.set<RealmList<String>>(
+      this,
+      'linkedIds',
+      RealmList<String>(linkedIds),
+    );
     RealmObjectBase.set(this, 'age', age);
   }
 
@@ -271,6 +282,18 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
   String get name => RealmObjectBase.get<String>(this, 'name') as String;
   @override
   set name(String value) => RealmObjectBase.set(this, 'name', value);
+
+  @override
+  String get id => RealmObjectBase.get<String>(this, 'id') as String;
+  @override
+  set id(String value) => RealmObjectBase.set(this, 'id', value);
+
+  @override
+  RealmList<String> get linkedIds =>
+      RealmObjectBase.get<String>(this, 'linkedIds') as RealmList<String>;
+  @override
+  set linkedIds(covariant RealmList<String> value) =>
+      throw RealmUnsupportedSetError();
 
   @override
   int get age => RealmObjectBase.get<int>(this, 'age') as int;
@@ -289,15 +312,22 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
   Person freeze() => RealmObjectBase.freezeObject<Person>(this);
 
   EJsonValue toEJson() {
-    return <String, dynamic>{'name': name.toEJson(), 'age': age.toEJson()};
+    return <String, dynamic>{
+      'name': name.toEJson(),
+      'id': id.toEJson(),
+      'linkedIds': linkedIds.toEJson(),
+      'age': age.toEJson(),
+    };
   }
 
   static EJsonValue _toEJson(Person value) => value.toEJson();
   static Person _fromEJson(EJsonValue ejson) {
     if (ejson is! Map<String, dynamic>) return raiseInvalidEJson(ejson);
     return switch (ejson) {
-      {'name': EJsonValue name} => Person(
+      {'name': EJsonValue name, 'id': EJsonValue id} => Person(
         fromEJson(name),
+        fromEJson(id),
+        linkedIds: fromEJson(ejson['linkedIds']),
         age: fromEJson(ejson['age'], defaultValue: 1),
       ),
       _ => raiseInvalidEJson(ejson),
@@ -309,6 +339,12 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
     register(_toEJson, _fromEJson);
     return const SchemaObject(ObjectType.realmObject, Person, 'Person', [
       SchemaProperty('name', RealmPropertyType.string),
+      SchemaProperty('id', RealmPropertyType.string),
+      SchemaProperty(
+        'linkedIds',
+        RealmPropertyType.string,
+        collectionType: RealmCollectionType.list,
+      ),
       SchemaProperty('age', RealmPropertyType.int),
     ]);
   }();

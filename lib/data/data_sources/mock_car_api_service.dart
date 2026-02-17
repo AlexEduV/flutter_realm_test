@@ -9,6 +9,7 @@ import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
+import 'package:test_futter_project/domain/models/owner_model.dart';
 
 class MockCarApiService implements CarApiService {
   // 1. Single source of truth
@@ -42,7 +43,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.diesel.name,
         transmissionType: TransmissionType.hybrid.name,
         color: 'Yellow',
-        owner: 'James Norrington',
+        owner: OwnerModel(id: '1', name: 'James Norrington', linkedItemIds: ['1', '25']),
       ),
       CarDto(
         id: initIds[1],
@@ -58,7 +59,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.hybrid.name,
         transmissionType: TransmissionType.manual.name,
         color: 'Red',
-        owner: 'Jack Smith',
+        owner: OwnerModel(id: '2', name: 'Jack Smith', linkedItemIds: ['2', '23']),
       ),
       CarDto(
         id: initIds[2],
@@ -68,13 +69,14 @@ class MockCarApiService implements CarApiService {
         type: CarType.truck.name,
         price: 50000,
         isVerified: true,
+        //todo: this is not localised properly
         hotPromotionDescription: 'Best Price',
         year: '2002',
         bodyType: BodyType.semi.name,
         fuelType: FuelType.diesel.name,
         transmissionType: TransmissionType.hybrid.name,
         color: 'Black',
-        owner: 'Arya Stark',
+        owner: OwnerModel(id: '3', name: 'Arya Stark', linkedItemIds: ['3', '26']),
       ),
     ];
 
@@ -116,7 +118,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.diesel.name,
         transmissionType: TransmissionType.hybrid.name,
         color: 'Yellow',
-        owner: 'James Norrington',
+        owner: OwnerModel(id: '1', name: 'James Norrington', linkedItemIds: ['1', '25']),
       ),
       CarDto(
         id: initIds[1],
@@ -133,7 +135,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.hybrid.name,
         transmissionType: TransmissionType.manual.name,
         color: 'Red',
-        owner: 'Jack Smith',
+        owner: OwnerModel(id: '2', name: 'Jack Smith', linkedItemIds: ['2', '23']),
       ),
       CarDto(
         id: initIds[2],
@@ -150,7 +152,7 @@ class MockCarApiService implements CarApiService {
         fuelType: FuelType.diesel.name,
         transmissionType: TransmissionType.hybrid.name,
         color: 'Black',
-        owner: 'Arya Stark',
+        owner: OwnerModel(id: '3', name: 'Arya Stark', linkedItemIds: ['3', '26']),
       ),
     ];
   }
