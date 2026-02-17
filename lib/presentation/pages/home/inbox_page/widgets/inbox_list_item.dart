@@ -26,7 +26,7 @@ class InboxListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.normalM),
         child: InkWell(
           borderRadius: BorderRadius.circular(AppDimensions.normalM),
-          onTap: () => context.go(AppRoutes.home + AppRoutes.inbox),
+          onTap: () => context.go(AppRoutes.home + AppRoutes.inbox, extra: message.sender.id),
           child: Padding(
             padding: const EdgeInsets.all(AppDimensions.normalXS),
             child: Row(
