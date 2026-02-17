@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
@@ -24,9 +26,7 @@ class InboxListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.normalM),
         child: InkWell(
           borderRadius: BorderRadius.circular(AppDimensions.normalM),
-          onTap: () {
-            //todo: go to the chat
-          },
+          onTap: () => context.go(AppRoutes.home + AppRoutes.inbox),
           child: Padding(
             padding: const EdgeInsets.all(AppDimensions.normalXS),
             child: Row(
