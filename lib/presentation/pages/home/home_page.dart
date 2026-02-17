@@ -12,7 +12,7 @@ import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_
 import 'package:test_futter_project/presentation/pages/account/account_page.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/explore_page.dart';
 import 'package:test_futter_project/presentation/pages/home/favorites_page/favorites_page.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
+import 'package:test_futter_project/presentation/pages/home/inbox_page/inbox_page.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../di/injection_container.dart';
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           children: [
             ExplorePage(listKey: exploreListKey),
             const FavoritesPage(),
-            const PlaceholderPage(),
+            const InboxPage(),
             const AccountPage(),
           ],
         ),
