@@ -148,4 +148,8 @@ class AppLocalisations {
   static final String authPasswordStrengthSpecialCharacterHint = get(
     'forms.hints.passwordSpecialChar',
   );
+
+  static final String inboxPageLoggedOutText = get('pages.inbox.loggedOutPlaceholderText');
+  static final String inboxPageEmptyText = get('pages.inbox.emptyPlaceholderText');
+  static final String inboxPageTitle = get('pages.inbox.title');
 }

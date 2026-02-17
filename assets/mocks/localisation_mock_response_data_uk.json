@@ -29,6 +29,11 @@
       "title": "Coming Soon",
       "subtitle": "This feature is not available yet."
     },
+    "inbox": {
+      "title": "Inbox",
+      "emptyPlaceholderText": "No messages yet.",
+      "loggedOutPlaceholderText": "Please, login to see the messages."
+    },
     "vehicleDetails": {
       "sectionTitle": "Vehicle Specifications",
       "specifications": {

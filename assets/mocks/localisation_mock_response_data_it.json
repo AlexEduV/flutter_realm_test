@@ -29,6 +29,11 @@
       "title": "Prossimamente",
       "subtitle": "Questa funzione non è ancora disponibile."
     },
+    "inbox": {
+      "title": "Posta in arrivo",
+      "emptyPlaceholderText": "Nessun messaggio ancora.",
+      "loggedOutPlaceholderText": "Effettua il login per vedere i messaggi."
+    },
     "vehicleDetails": {
       "sectionTitle": "Specifiche del veicolo",
       "specifications": {
