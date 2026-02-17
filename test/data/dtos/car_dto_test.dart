@@ -78,7 +78,7 @@ void main() {
         'body_type': 'sedan',
         'transmission_type': 'automatic',
         'fuel_type': 'ev',
-        'owner': {'name': 'James Morrison'},
+        'owner': {'full_name': 'James Morrison', 'id': '4', 'linked_ids': <String>[]},
         'color': 'White',
       };
 

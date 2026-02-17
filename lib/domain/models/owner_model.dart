@@ -6,6 +6,10 @@ class OwnerModel {
   OwnerModel({required this.id, required this.name, required this.linkedItemIds});
 
   factory OwnerModel.fromJson(Map<String, dynamic> json) {
-    return OwnerModel(id: json['id'], name: json['full_name'], linkedItemIds: json['linked_ids']);
+    return OwnerModel(
+      id: json['id'] as String,
+      name: json['full_name'] as String,
+      linkedItemIds: json['linked_ids'] as List<String>,
+    );
   }
 }
