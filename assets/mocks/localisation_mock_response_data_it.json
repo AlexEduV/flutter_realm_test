@@ -107,6 +107,13 @@
       "incorrectPassword": "Password errata.",
       "userAlreadyExists": "L'utente esiste già."
     },
+    "hints": {
+      "passwordMinLength": "La lunghezza minima della password è",
+      "passwordLowerCaseChar": "La password deve contenere almeno una lettera minuscola.",
+      "passwordUpperCaseChar": "La password deve contenere almeno una lettera maiuscola.",
+      "passwordDigitChar": "La password deve contenere almeno una cifra.",
+      "passwordSpecialChar": "La password deve contenere almeno un carattere speciale."
+    },
     "validationMessage": "Questo campo è obbligatorio.",
     "fieldParams": {
       "email": {

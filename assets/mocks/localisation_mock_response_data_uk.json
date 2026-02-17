@@ -107,6 +107,13 @@
       "incorrectPassword": "Incorrect password.",
       "userAlreadyExists": "User already exists."
     },
+    "hints": {
+      "passwordMinLength": "The minimum password length is",
+      "passwordLowerCaseChar": "The password should contain at least one lower case character.",
+      "passwordUpperCaseChar": "The password should contain at least one upper case character.",
+      "passwordDigitChar": "The password should contain at least one digit.",
+      "passwordSpecialChar": "The password should contain at least one special character."
+    },
     "validationMessage": "This field is required.",
     "fieldParams": {
       "email": {
