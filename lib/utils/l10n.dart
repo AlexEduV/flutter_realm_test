@@ -140,4 +140,18 @@ class AppLocalisations {
   static final String authErrorUserNotFoundMessage = get('forms.warnings.userNotFound');
   static final String authErrorIncorrectPassword = get('forms.warnings.incorrectPassword');
   static final String authErrorUserAlreadyExists = get('forms.warnings.userAlreadyExists');
+
+  static final String authPasswordStrengthLengthHint = get('The minimum password length is');
+  static final String authPasswordStrengthLowercaseHint = get(
+    'The password should contain at least one lower case character.',
+  );
+  static final String authPasswordStrengthUppercaseHint = get(
+    'The password should contain at least one upper case character.',
+  );
+  static final String authPasswordStrengthDigitHint = get(
+    'The password should contain at least one digit.',
+  );
+  static final String authPasswordStrengthSpecialCharacterHint = get(
+    'The password should contain at least one special character.',
+  );
 }

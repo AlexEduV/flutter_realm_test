@@ -28,7 +28,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
               minLength: 8,
               maxLength: 20,
               validationMessage: AppLocalisations.fieldParamsValidationMessage,
-              //todo:
               regex: r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{8,}$',
               regexErrorMessage: AppLocalisations.fieldParamsPasswordRegexErrorMessage,
               hintText: AppLocalisations.fieldParamsPasswordHintText,
@@ -123,14 +122,13 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     return true;
   }
 
-  //todo: add localisations
   bool validatePasswordWithStrengthBar(String password) {
     final minLength = state.passwordFieldParams?.minLength ?? 0;
     if (password.length < minLength) {
       emit(
         state.copyWith(
           passwordValidationStage: 0,
-          passwordStrengthHintText: 'The minimum password length is $minLength',
+          passwordStrengthHintText: '${AppLocalisations.authPasswordStrengthLengthHint} $minLength',
         ),
       );
       return false;
@@ -140,7 +138,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(
         state.copyWith(
           passwordValidationStage: 1,
-          passwordStrengthHintText: 'The password should contain at least one lower case character',
+          passwordStrengthHintText: AppLocalisations.authPasswordStrengthLowercaseHint,
         ),
       );
       return false;
@@ -150,7 +148,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(
         state.copyWith(
           passwordValidationStage: 2,
-          passwordStrengthHintText: 'The password should contain at least one upper case character',
+          passwordStrengthHintText: AppLocalisations.authPasswordStrengthUppercaseHint,
         ),
       );
       return false;
@@ -160,7 +158,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(
         state.copyWith(
           passwordValidationStage: 3,
-          passwordStrengthHintText: 'The password should contain at least one digit',
+          passwordStrengthHintText: AppLocalisations.authPasswordStrengthDigitHint,
         ),
       );
       return false;
@@ -171,7 +169,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(
         state.copyWith(
           passwordValidationStage: 4,
-          passwordStrengthHintText: 'The password should contain at least one special character',
+          passwordStrengthHintText: AppLocalisations.authPasswordStrengthSpecialCharacterHint,
         ),
       );
       return false;
