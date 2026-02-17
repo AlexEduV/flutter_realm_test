@@ -20,6 +20,7 @@ class InboxPage extends StatelessWidget {
               vertical: AppDimensions.minorL,
             ),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               spacing: AppDimensions.normalM,
               children: [
                 CircleAvatar(
@@ -27,15 +28,28 @@ class InboxPage extends StatelessWidget {
                   radius: AppDimensions.normalXL,
                 ),
 
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Full Name',
+                        style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        'Last Message',
+                        style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                ),
+
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const Icon(Icons.done_all),
+
                     Text(
-                      'Full Name',
-                      style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      'Last Message',
+                      'Sn',
                       style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
                     ),
                   ],
