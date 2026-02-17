@@ -26,7 +26,7 @@ class PasswordStrengthBarWidget extends StatelessWidget {
               AnimatedOpacity(
                 duration: const Duration(milliseconds: 500),
                 opacity: state.passwordStrengthHintText != null ? 1.0 : 0.0,
-                child: Text(state.passwordStrengthHintText ?? ''),
+                child: Text('${state.passwordStrengthHintText ?? ''}\n', maxLines: 2),
               ),
             ],
           );
