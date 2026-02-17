@@ -19,8 +19,8 @@ void main() {
       expect(model.validationMessage, 'Required');
       expect(model.regex, r'^[a-zA-Z0-9]+$');
       expect(model.regexErrorMessage, 'Invalid format');
-      expect(model.minLength, '3');
-      expect(model.maxLength, '12');
+      expect(model.minLength, 3);
+      expect(model.maxLength, 12);
       expect(model.minLengthErrorMessage, 'Too short');
       expect(model.maxLengthErrorMessage, 'Too long');
     });
@@ -56,7 +56,7 @@ void main() {
       expect(updated.validationMessage, 'Required');
       expect(updated.regex, r'.*');
       expect(updated.regexErrorMessage, 'Invalid');
-      expect(updated.minLength, '8');
+      expect(updated.minLength, 8);
       expect(updated.minLengthErrorMessage, 'Too short');
       expect(updated.maxLength, isNull);
       expect(updated.maxLengthErrorMessage, isNull);
