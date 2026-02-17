@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/data_sources/mock_auth_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_car_api_service.dart';
+import 'package:test_futter_project/data/data_sources/mock_messages_service.dart';
 import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
@@ -26,6 +27,7 @@ import 'package:test_futter_project/domain/usecases/permissions/request_location
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
@@ -123,6 +125,9 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AuthenticationCubit());
+
+  serviceLocator.registerLazySingleton(() => MockMessagesService());
+  serviceLocator.registerLazySingleton(() => InboxPageCubit());
 
   serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));

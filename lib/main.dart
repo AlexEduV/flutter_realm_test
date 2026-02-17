@@ -6,6 +6,7 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthenticationCubit>(
           create: (context) => serviceLocator<AuthenticationCubit>()..init(),
         ),
+        BlocProvider<InboxPageCubit>(create: (context) => serviceLocator<InboxPageCubit>()..init()),
       ],
       child: MaterialApp.router(
         title: AppLocalisations.appName,
