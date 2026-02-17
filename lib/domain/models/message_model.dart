@@ -4,7 +4,7 @@ class MessageModel {
   final String sender;
   final MessageStatus messageStatus;
   final String message;
-  final String date;
+  final DateTime date;
 
   MessageModel(this.sender, this.messageStatus, this.message, this.date);
 }

@@ -1,11 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/enums/message_status.dart';
+import 'package:test_futter_project/domain/models/message_model.dart';
+import 'package:test_futter_project/presentation/pages/home/inbox_page/widgets/inbox_list_item.dart';
 
 import '../../../../common/app_text_styles.dart';
 
-class InboxPage extends StatelessWidget {
+class InboxPage extends StatefulWidget {
   const InboxPage({super.key});
+
+  @override
+  State<InboxPage> createState() => _InboxPageState();
+}
+
+class _InboxPageState extends State<InboxPage> {
+  //todo: get from the service
+  final List<MessageModel> items = [
+    MessageModel(
+      'James Morrison',
+      MessageStatus.unknown,
+      'Some Message here.',
+      DateTime.now().subtract(const Duration(hours: 4)),
+    ),
+    MessageModel(
+      'Jennifer Williams',
+      MessageStatus.sent,
+      'Some Message here.',
+      DateTime.now().subtract(const Duration(days: 2)),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -15,70 +39,9 @@ class InboxPage extends StatelessWidget {
       body: ListView.builder(
         padding: const EdgeInsets.only(top: AppDimensions.normalL),
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsetsGeometry.symmetric(
-              horizontal: AppDimensions.normalXS,
-              vertical: AppDimensions.minorM,
-            ),
-            child: Material(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(AppDimensions.normalM),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                onTap: () {},
-                child: Padding(
-                  padding: const EdgeInsets.all(AppDimensions.minorL),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: AppDimensions.normalM,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: AppColors.placeholderColor,
-                        radius: AppDimensions.normalXL,
-                      ),
-
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Full Name',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
-                            ),
-                            Text(
-                              'Last Message',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppTextStyles.zonaPro16Grey.copyWith(
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      Column(
-                        children: [
-                          const Icon(Icons.done_all),
-
-                          Text(
-                            'Sn',
-                            style: AppTextStyles.zonaPro16Grey.copyWith(
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
+          return InboxListItem(message: items[index]);
         },
-        itemCount: 3,
+        itemCount: items.length,
       ),
     );
   }
