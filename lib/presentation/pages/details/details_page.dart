@@ -88,10 +88,13 @@ class _DetailsPageState extends State<DetailsPage> {
                           Row(
                             spacing: AppDimensions.normalXS,
                             children: [
-                              Text(
-                                '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
-                                style: AppTextStyles.zonaPro24.copyWith(
-                                  fontWeight: FontWeight.w500,
+                              Flexible(
+                                child: Text(
+                                  '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
+                                  style: AppTextStyles.zonaPro24.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  maxLines: 2,
                                 ),
                               ),
 
