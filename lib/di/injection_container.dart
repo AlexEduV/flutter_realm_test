@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/common/extensions/test_platform_extension.dart';
 import 'package:test_futter_project/data/data_sources/mock_auth_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_car_api_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_messages_service.dart';
@@ -91,7 +90,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<PermissionRepository>(() => PermissionRepositoryImpl());
 
   final authRepositoryImpl = AuthRepositoryImpl();
-  if (!kTest) await authRepositoryImpl.init();
+  await authRepositoryImpl.init();
 
   serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
 
