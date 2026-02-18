@@ -22,6 +22,7 @@ import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_c
 import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/inbox/fetch_messages_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
@@ -130,9 +131,11 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => AuthenticationCubit());
 
   serviceLocator.registerLazySingleton(() => MockMessagesService());
-  serviceLocator.registerLazySingleton(() => InboxPageCubit());
+  serviceLocator.registerLazySingleton(() => InboxPageCubit(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => FetchMessagesUseCase(serviceLocator()));
 }
