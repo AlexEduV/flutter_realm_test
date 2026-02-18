@@ -32,32 +32,33 @@ class AnnouncementListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppSemantics(
-      label: AppSemanticsLabels.announcementListItem,
-      child: Slidable(
-        key: car != null ? ValueKey(car?.carId) : null,
-        endActionPane: ActionPane(
-          motion: const DrawerMotion(),
-          extentRatio: 0.25,
-          children: [
-            //NOTE: slidable action is not allowed semantics - 'hasSize' exception
-            SlidableAction(
-              onPressed: (context) => onDismissed?.call(),
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              icon: Icons.delete,
-              label: AppLocalisations.deleteButtonTitle,
-            ),
-          ],
-        ),
-        child: Container(
-          margin: const EdgeInsets.all(AppDimensions.normalL),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+    return Slidable(
+      key: car != null ? ValueKey(car?.carId) : null,
+      endActionPane: ActionPane(
+        motion: const DrawerMotion(),
+        extentRatio: 0.25,
+        children: [
+          //NOTE: slidable action is not allowed semantics - 'hasSize' exception
+          SlidableAction(
+            onPressed: (context) => onDismissed?.call(),
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: AppLocalisations.deleteButtonTitle,
           ),
-          child: Material(
-            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+        ],
+      ),
+      child: Container(
+        margin: const EdgeInsets.all(AppDimensions.normalL),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(AppDimensions.normalL),
+        ),
+        child: Material(
+          borderRadius: BorderRadius.circular(AppDimensions.normalL),
+          child: AppSemantics(
+            button: true,
+            label: AppSemanticsLabels.announcementListItem,
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
               onTap: () => isExploreItem
@@ -159,7 +160,7 @@ class AnnouncementListItem extends StatelessWidget {
                                 getSpanIcon(icon: Icons.location_pin),
                                 TextSpan(
                                   text:
-                                      ' ${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
+                                      '${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
                                   style: AppTextStyles.zonaPro20.copyWith(
                                     fontWeight: FontWeight.w400,
                                   ),
