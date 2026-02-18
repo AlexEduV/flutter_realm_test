@@ -6,8 +6,14 @@ import '../../common/app_colors.dart';
 class AnimatedFavoriteIcon extends StatefulWidget {
   final bool isFavorite;
   final double size;
+  final bool decorated;
 
-  const AnimatedFavoriteIcon({required this.isFavorite, required this.size, super.key});
+  const AnimatedFavoriteIcon({
+    required this.isFavorite,
+    required this.size,
+    this.decorated = true,
+    super.key,
+  });
 
   @override
   State<AnimatedFavoriteIcon> createState() => _AnimatedFavoriteIconState();
@@ -47,10 +53,12 @@ class _AnimatedFavoriteIconState extends State<AnimatedFavoriteIcon>
     return Container(
       height: widget.size,
       width: widget.size,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(AppDimensions.minorL),
-      ),
+      decoration: widget.decorated
+          ? BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(AppDimensions.minorL),
+            )
+          : null,
       child: AnimatedBuilder(
         animation: _scaleAnimation,
         builder: (context, child) => Transform.scale(

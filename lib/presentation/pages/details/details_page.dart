@@ -9,6 +9,7 @@ import 'package:test_futter_project/presentation/bloc/details/details_page_state
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/owner_widget.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
+import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 
 import '../../../common/app_semantics_labels.dart';
 import '../../bloc/user/user_data_cubit.dart';
@@ -82,10 +83,10 @@ class _DetailsPageState extends State<DetailsPage> {
                       icon: AppSemantics(
                         button: true,
                         label: AppSemanticsLabels.favoriteButton,
-                        child: Icon(
-                          (isCarFavorite) ? Icons.favorite : Icons.favorite_border_outlined,
-                          size: AppDimensions.appBarIconSize,
-                          color: AppColors.gold,
+                        child: AnimatedFavoriteIcon(
+                          decorated: false,
+                          isFavorite: isCarFavorite,
+                          size: AppDimensions.favoriteButtonSize,
                         ),
                       ),
                       style: IconButton.styleFrom(
