@@ -1,11 +1,31 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
+import 'package:test_futter_project/domain/entities/user_entity_short.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   late AuthRepositoryImpl repo;
 
   setUp(() {
+    final initUsers = {
+      '1': const UserEntityShort(
+        userId: '1',
+        email: 'mock@example.com',
+        password: 'Password1!',
+        fullName: 'Alex Smith',
+      ),
+      '2': const UserEntityShort(
+        userId: '2',
+        email: 'admin@example.com',
+        password: 'AdminPass123!',
+        fullName: 'admin',
+      ),
+    };
+
+    SharedPreferences.setMockInitialValues(initUsers);
+
     // Set up localisations for error messages
     AppLocalisations.localisations = {
       'forms.warnings.userNotFound': 'User not found',
@@ -13,6 +33,7 @@ void main() {
       'forms.warnings.userAlreadyExists': 'User already exists',
     };
     repo = AuthRepositoryImpl();
+    repo.users = initUsers;
   });
 
   group('login', () {
