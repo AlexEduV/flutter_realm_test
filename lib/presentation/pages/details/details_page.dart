@@ -6,10 +6,12 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/owner_widget.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
 
 import '../../../common/app_semantics_labels.dart';
+import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';
 import '../../widgets/verified_badge.dart';
 
@@ -57,6 +59,48 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
           ),
         ),
+        actions: [
+          BlocBuilder<UserDataCubit, UserDataState>(
+            builder: (context, userState) {
+              return BlocBuilder<DetailsPageCubit, DetailsPageState>(
+                builder: (context, state) {
+                  final car = state.car;
+                  final isCarFavorite = userState.favoriteIds.contains(car?.carId);
+
+                  return Padding(
+                    padding: const EdgeInsets.only(right: AppDimensions.normalM),
+                    child: IconButton(
+                      onPressed: () {
+                        if (car == null) return;
+
+                        if (isCarFavorite) {
+                          context.read<UserDataCubit>().removeCarIdFromFavorites(car.carId);
+                        } else {
+                          context.read<UserDataCubit>().addCarIdToFavorites(car.carId);
+                        }
+                      },
+                      icon: AppSemantics(
+                        button: true,
+                        label: AppSemanticsLabels.favoriteButton,
+                        child: Icon(
+                          (isCarFavorite) ? Icons.favorite : Icons.favorite_border_outlined,
+                          size: AppDimensions.appBarIconSize,
+                          color: AppColors.gold,
+                        ),
+                      ),
+                      style: IconButton.styleFrom(
+                        backgroundColor: Colors.white.withAlpha(80),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: BlocBuilder<DetailsPageCubit, DetailsPageState>(
         builder: (context, state) {
