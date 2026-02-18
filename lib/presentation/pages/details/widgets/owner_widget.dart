@@ -48,30 +48,32 @@ class OwnerWidget extends StatelessWidget {
                       ),
 
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppLocalisations.ownerSectionPersonTypeOwner,
-                            style: AppTextStyles.zonaPro16Grey.copyWith(
-                              fontWeight: FontWeight.w400,
+                          Expanded(
+                            child: Text(
+                              maxLines: 1,
+                              AppLocalisations.ownerSectionPersonTypeOwner,
+                              style: AppTextStyles.zonaPro16Grey.copyWith(
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
 
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_pin,
-                                size: AppDimensions.detailsPageItemIconSize,
-                                color: Colors.grey,
-                              ),
+                          const Icon(
+                            Icons.location_pin,
+                            size: AppDimensions.detailsPageItemIconSize,
+                            color: Colors.grey,
+                          ),
 
-                              Text(
-                                '${car.distanceTo ?? ''} ${AppLocalisations.distanceWidgetText}',
-                                style: AppTextStyles.zonaPro16Grey.copyWith(
-                                  fontWeight: FontWeight.w400,
-                                ),
+                          Flexible(
+                            child: Text(
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              '${car.distanceTo ?? ''} ${AppLocalisations.distanceWidgetText}',
+                              style: AppTextStyles.zonaPro16Grey.copyWith(
+                                fontWeight: FontWeight.w400,
                               ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
