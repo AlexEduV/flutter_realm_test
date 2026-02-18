@@ -27,6 +27,8 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import '../data/data_sources/realm_local_storage_test.mocks.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   setUp(() async {
     await serviceLocator.reset();
     serviceLocator.registerLazySingleton<Realm>(() => MockRealm());
