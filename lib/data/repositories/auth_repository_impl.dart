@@ -5,7 +5,7 @@ import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  late final Map<String, dynamic> users;
+  late final Map<String, UserEntityShort> users;
 
   void init() async {
     users = await MockUsers.loadMockUsers();
