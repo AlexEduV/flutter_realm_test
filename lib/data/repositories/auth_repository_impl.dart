@@ -8,7 +8,8 @@ import 'package:test_futter_project/utils/l10n.dart';
 class AuthRepositoryImpl implements AuthRepository {
   late final Map<String, UserEntityShort> users;
 
-  void init() async {
+  @override
+  Future<void> init() async {
     users = await MockUsers.loadMockUsers();
   }
 

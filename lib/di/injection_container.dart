@@ -90,7 +90,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<PermissionRepository>(() => PermissionRepositoryImpl());
 
   final authRepositoryImpl = AuthRepositoryImpl();
-  authRepositoryImpl.init();
+  await authRepositoryImpl.init();
 
   serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
 
