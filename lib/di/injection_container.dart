@@ -89,7 +89,10 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<PermissionRepository>(() => PermissionRepositoryImpl());
 
-  serviceLocator.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl()..init());
+  final authRepositoryImpl = AuthRepositoryImpl();
+  authRepositoryImpl.init();
+
+  serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
 
   //Register Cubit (as a Factory, so you get a new instance if needed)
   serviceLocator.registerFactory(() => ExplorePageCubit(serviceLocator(), serviceLocator()));
