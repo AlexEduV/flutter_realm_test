@@ -2,6 +2,7 @@ import 'package:test_futter_project/domain/entities/user_entity_short.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
+import 'package:test_futter_project/utils/auth_session_util.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -13,6 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> logOut() async {
+    await AuthSessionUtil.clearUserSession();
     await Future.delayed(const Duration(milliseconds: 200));
   }
 
@@ -29,6 +31,9 @@ class AuthRepositoryImpl implements AuthRepository {
       return AuthResult(success: false, message: AppLocalisations.authErrorIncorrectPassword);
     }
 
+    await AuthSessionUtil.saveUserSession(
+      users.values.firstWhere((element) => element.email == email).userId,
+    );
     return AuthResult(success: true);
   }
 
@@ -54,6 +59,7 @@ class AuthRepositoryImpl implements AuthRepository {
       ),
     });
     await MockUsers.saveMockUsers(users);
+    await AuthSessionUtil.saveUserSession(newUserId.toString());
 
     return AuthResult(success: true);
   }

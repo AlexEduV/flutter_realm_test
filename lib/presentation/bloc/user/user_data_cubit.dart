@@ -5,6 +5,7 @@ import 'package:test_futter_project/domain/data_sources/base_local_storage.dart'
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_futter_project/utils/auth_session_util.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(this._localStorage, this._requestLocationPermissionUseCase)
@@ -15,12 +16,17 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   late UserEntity user;
 
-  void init() {
+  void init() async {
     user = _localStorage.initUser();
+    final userSession = await AuthSessionUtil.getUserSession();
+
     emit(
       state.copyWith(
         favoriteIds: user.favoriteIds,
         isLocationPermissionGranted: user.isLocationPermissionGranted,
+        isUserAuthenticated: userSession != null,
+        firstName: user.firstName,
+        lastName: user.lastName,
       ),
     );
   }
