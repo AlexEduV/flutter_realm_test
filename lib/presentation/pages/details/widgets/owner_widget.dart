@@ -32,6 +32,7 @@ class OwnerWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
             child: Row(
               spacing: AppDimensions.normalM,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
                   backgroundColor: AppColors.placeholderColor,
@@ -48,6 +49,7 @@ class OwnerWidget extends StatelessWidget {
                       ),
 
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             child: Text(
