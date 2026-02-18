@@ -54,7 +54,12 @@ class VehicleSpecsWidget extends StatelessWidget {
                         duration: const Duration(milliseconds: 300),
                         child: const Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 28),
                       ),
-                      style: IconButton.styleFrom(backgroundColor: Colors.white),
+                      style: IconButton.styleFrom(
+                        padding: const EdgeInsets.all(AppDimensions.minorXS),
+                        backgroundColor: Colors.white,
+                        minimumSize: Size.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
                       padding: const EdgeInsets.all(AppDimensions.minorXS),
                     ),
                   );
