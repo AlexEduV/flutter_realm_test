@@ -11,3 +11,4 @@
 .idea/*
 
 coverage/*
+/lib/mocks/mock_users.dart

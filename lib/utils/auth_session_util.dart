@@ -6,13 +6,15 @@ class AuthSessionUtil {
     final prefs = await SharedPreferences.getInstance();
     final userId = prefs.getString('userId');
     final email = prefs.getString('email');
-    if (userId != null && email != null) {
-      return {'userId': userId, 'email': email};
+    final password = prefs.getString('password');
+    final fullName = prefs.getString('fullName');
+    if (userId != null && email != null && password != null && fullName != null) {
+      return {'userId': userId, 'email': email, 'password': password, 'fullName': fullName};
     }
     return null;
   }
 
-  static Future<void> saveUserSession(String userId, String email) async {
+  static Future<void> saveUserSession(String userId, String email, Stir) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('userId', userId);
     await prefs.setString('email', email);
@@ -22,5 +24,7 @@ class AuthSessionUtil {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('userId');
     await prefs.remove('email');
+    await prefs.remove('password');
+    await prefs.remove('fullName');
   }
 }
