@@ -83,19 +83,25 @@ class AnnouncementListItem extends StatelessWidget {
                         child: Material(
                           borderRadius: BorderRadius.circular(AppDimensions.minorL),
                           color: Colors.white,
-                          child: InkWell(
-                            onTap: () {
-                              if (car == null) return;
+                          child: AppSemantics(
+                            button: true,
+                            label: AppSemanticsLabels.favoriteButton,
+                            child: InkWell(
+                              onTap: () {
+                                if (car == null) return;
 
-                              if (user?.favoriteIds.contains(car?.carId) ?? false) {
-                                context.read<UserDataCubit>().removeCarIdFromFavorites(car!.carId);
-                              } else {
-                                context.read<UserDataCubit>().addCarIdToFavorites(car!.carId);
-                              }
-                            },
-                            child: AnimatedFavoriteIcon(
-                              size: AppDimensions.favoriteButtonSize,
-                              isFavorite: user?.favoriteIds.contains(car?.carId) ?? false,
+                                if (user?.favoriteIds.contains(car?.carId) ?? false) {
+                                  context.read<UserDataCubit>().removeCarIdFromFavorites(
+                                    car!.carId,
+                                  );
+                                } else {
+                                  context.read<UserDataCubit>().addCarIdToFavorites(car!.carId);
+                                }
+                              },
+                              child: AnimatedFavoriteIcon(
+                                size: AppDimensions.favoriteButtonSize,
+                                isFavorite: user?.favoriteIds.contains(car?.carId) ?? false,
+                              ),
                             ),
                           ),
                         ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_routes.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/presentation/widgets/app_badge.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
 
 import '../../../../../common/app_colors.dart';
@@ -22,68 +24,73 @@ class InboxListItem extends StatelessWidget {
         horizontal: AppDimensions.normalXS,
         vertical: AppDimensions.minorM,
       ),
-      child: Material(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(AppDimensions.normalM),
-        child: InkWell(
+      child: AppSemantics(
+        label: '${AppSemanticsLabels.inboxItem} ${message.sender.name}',
+        child: Material(
+          color: Colors.white,
           borderRadius: BorderRadius.circular(AppDimensions.normalM),
-          onTap: () => context.go(AppRoutes.home + AppRoutes.inbox, extra: message.sender.id),
-          child: Padding(
-            padding: const EdgeInsets.all(AppDimensions.normalXS),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  backgroundColor: AppColors.placeholderColor,
-                  radius: AppDimensions.normalXL,
-                ),
-
-                const SizedBox(width: AppDimensions.normalM),
-
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        message.sender.name,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        '${message.text}\n',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
-                      ),
-                    ],
+          child: InkWell(
+            borderRadius: BorderRadius.circular(AppDimensions.normalM),
+            onTap: () => context.go(AppRoutes.home + AppRoutes.inbox, extra: message.sender.id),
+            child: Padding(
+              padding: const EdgeInsets.all(AppDimensions.normalXS),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: AppColors.placeholderColor,
+                    radius: AppDimensions.normalXL,
                   ),
-                ),
 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Row(
+                  const SizedBox(width: AppDimensions.normalM),
+
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(_getMessageStatusIcon()),
-
-                        const SizedBox(width: AppDimensions.minorM),
-
                         Text(
-                          DateFormatter.formatSmartDate(message.date),
+                          message.sender.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          '${message.text}\n',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                           style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
                         ),
                       ],
                     ),
+                  ),
 
-                    if (message.messageStatus == MessageStatus.unknown) ...[
-                      const SizedBox(height: AppDimensions.minorL),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(_getMessageStatusIcon()),
 
-                      const AppBadge(text: '1'),
+                          const SizedBox(width: AppDimensions.minorM),
+
+                          Text(
+                            DateFormatter.formatSmartDate(message.date),
+                            style: AppTextStyles.zonaPro16Grey.copyWith(
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      if (message.messageStatus == MessageStatus.unknown) ...[
+                        const SizedBox(height: AppDimensions.minorL),
+
+                        const AppBadge(text: '1'),
+                      ],
                     ],
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

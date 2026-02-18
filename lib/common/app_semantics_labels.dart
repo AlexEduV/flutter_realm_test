@@ -7,6 +7,7 @@ class AppSemanticsLabels {
   static const announcementListItem = 'announcementListItem';
   static const announcementDeleteButton = 'announcementDeleteButton';
   static const announcementTitle = 'announcementTitle';
+  static const favoriteButton = 'FavoriteButton';
 
   static const exploreSectionItem = 'exploreSectionItem';
   static const resultsLabel = 'resultsLabel';
@@ -41,4 +42,7 @@ class AppSemanticsLabels {
   static const authErrorMessage = 'authErrorMessage';
 
   static const orDivider = 'orDivider';
+
+  static const inboxItem = 'inboxItem';
+  static const favoriteListItem = 'favoriteListItem';
 }
