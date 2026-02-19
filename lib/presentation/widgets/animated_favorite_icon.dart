@@ -54,10 +54,7 @@ class _AnimatedFavoriteIconState extends State<AnimatedFavoriteIcon>
       height: widget.size,
       width: widget.size,
       decoration: widget.decorated
-          ? BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(AppDimensions.minorL),
-            )
+          ? BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.minorL))
           : null,
       child: AnimatedBuilder(
         animation: _scaleAnimation,
