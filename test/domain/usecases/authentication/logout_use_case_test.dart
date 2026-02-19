@@ -13,7 +13,7 @@ void main() {
     logoutUseCase = LogoutUseCase(mockAuthRepository);
   });
 
-  test('calls logOut on the repository', () async {
+  test('calls logOut on the repository', () {
     // Arrange
     when(mockAuthRepository.logOut()).thenAnswer((_) async {});
 

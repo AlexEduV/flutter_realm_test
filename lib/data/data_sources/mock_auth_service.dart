@@ -8,7 +8,7 @@ class MockAuthService implements AuthService {
   MockAuthService(this._authRepository);
 
   @override
-  Future<AuthResult> login(String email, String password) async {
+  Future<AuthResult> login(String email, String password) {
     return _authRepository.login(email: email, password: password);
   }
 

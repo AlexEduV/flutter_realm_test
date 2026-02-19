@@ -3,7 +3,7 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_futter_project/domain/models/auth_result.dart' as _i3;
@@ -12,7 +12,7 @@ import 'package:test_futter_project/domain/models/register_model.dart' as _i9;
 import 'package:test_futter_project/domain/repositories/auth_repository.dart'
     as _i2;
 import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart'
-    as _i5;
+    as _i6;
 import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart'
     as _i4;
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart'
@@ -63,16 +63,19 @@ class MockLogoutUseCase extends _i1.Mock implements _i4.LogoutUseCase {
           as _i2.AuthRepository);
 
   @override
-  void call() => super.noSuchMethod(
-    Invocation.method(#call, []),
-    returnValueForMissingStub: null,
-  );
+  _i5.Future<void> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
 }
 
 /// A class which mocks [LoginUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginUseCase extends _i1.Mock implements _i5.LoginUseCase {
+class MockLoginUseCase extends _i1.Mock implements _i6.LoginUseCase {
   MockLoginUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -89,14 +92,14 @@ class MockLoginUseCase extends _i1.Mock implements _i5.LoginUseCase {
           as _i2.AuthRepository);
 
   @override
-  _i6.Future<_i3.AuthResult> call(_i7.LoginModel? model) =>
+  _i5.Future<_i3.AuthResult> call(_i7.LoginModel? model) =>
       (super.noSuchMethod(
             Invocation.method(#call, [model]),
-            returnValue: _i6.Future<_i3.AuthResult>.value(
+            returnValue: _i5.Future<_i3.AuthResult>.value(
               _FakeAuthResult_1(this, Invocation.method(#call, [model])),
             ),
           )
-          as _i6.Future<_i3.AuthResult>);
+          as _i5.Future<_i3.AuthResult>);
 }
 
 /// A class which mocks [RegisterUseCase].
@@ -119,12 +122,12 @@ class MockRegisterUseCase extends _i1.Mock implements _i8.RegisterUseCase {
           as _i2.AuthRepository);
 
   @override
-  _i6.Future<_i3.AuthResult> call(_i9.RegisterModel? model) =>
+  _i5.Future<_i3.AuthResult> call(_i9.RegisterModel? model) =>
       (super.noSuchMethod(
             Invocation.method(#call, [model]),
-            returnValue: _i6.Future<_i3.AuthResult>.value(
+            returnValue: _i5.Future<_i3.AuthResult>.value(
               _FakeAuthResult_1(this, Invocation.method(#call, [model])),
             ),
           )
-          as _i6.Future<_i3.AuthResult>);
+          as _i5.Future<_i3.AuthResult>);
 }

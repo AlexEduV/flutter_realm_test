@@ -438,7 +438,7 @@ void main() {
       expect(cubit.state.maxPriceError, null);
     });
 
-    test('close cancels car subscription', () async {
+    test('close cancels car subscription', () {
       final controller = StreamController<List<CarEntity>>();
       when(mockGetAllCarsUseCase.call()).thenReturn(carList);
       when(mockWatchCarsUseCase.call()).thenAnswer((_) => controller.stream);

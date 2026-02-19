@@ -9,7 +9,7 @@ class FetchMessagesUseCase extends UseCaseNoParams<Future<List<MessageModel>>> {
   FetchMessagesUseCase(this.messagesService);
 
   @override
-  Future<List<MessageModel>> call() async {
+  Future<List<MessageModel>> call() {
     return messagesService.fetchMessages();
   }
 }
