@@ -18,7 +18,7 @@ import 'package:test_futter_project/domain/models/owner_model.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 
-@GenerateMocks([Realm, CarApiService, Car, CarEntity, CarDto, RealmLocalStorage])
+@GenerateMocks([Realm, CarApiService, CarEntity, CarDto, RealmLocalStorage])
 void main() {
   late MockRealm realm;
   late MockCarApiService apiService;
@@ -66,7 +66,7 @@ void main() {
 
   test('deleteCarById deletes car if found and valid', () {
     final carId = '1';
-    final car = MockCar();
+    final car = mockCar;
     when(car.isValid).thenReturn(true);
     when(realm.find<Car>(carId)).thenReturn(car);
     when(realm.write(any)).thenAnswer((invocation) {
@@ -123,7 +123,7 @@ void main() {
   });
 
   test('getAllCars returns mapped entities', () {
-    final car = MockCar();
+    final car = mockCar;
 
     when(localStorage.getAll()).thenReturn([CarEntity.empty()]);
 

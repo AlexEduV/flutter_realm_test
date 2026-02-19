@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
@@ -9,28 +8,26 @@ import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/models/owner_model.dart';
 
-import '../../data/repositories/car_repository_impl_test.mocks.dart';
-
 void main() {
-  final mockCar = MockCar();
-
-  setUpAll(() {
-    when(mockCar.carId).thenReturn('car123');
-    when(mockCar.model).thenReturn('Model S');
-    when(mockCar.manufacturer).thenReturn('Tesla');
-    when(mockCar.isChecked).thenReturn(true);
-    when(mockCar.hotPromotionDescription).thenReturn(null);
-    when(mockCar.price).thenReturn(80000);
-    when(mockCar.distanceTo).thenReturn(50);
-    when(mockCar.year).thenReturn('2020');
-    when(mockCar.owner).thenReturn(Person('John Doe', 'test', linkedIds: []));
-    when(mockCar.kilometers).thenReturn(10000);
-    when(mockCar.type).thenReturn('car');
-    when(mockCar.bodyType).thenReturn('sedan');
-    when(mockCar.fuelType).thenReturn('ev');
-    when(mockCar.transmissionType).thenReturn('automatic');
-    when(mockCar.color).thenReturn('White');
-  });
+  final mockCar = Car(
+    ObjectId(),
+    'car123',
+    'Tesla',
+    'car',
+    model: 'Model S',
+    isChecked: true,
+    hotPromotionDescription: null,
+    price: 80000,
+    distanceTo: 50,
+    year: '2020',
+    owner: Person('John Doe', 'test', linkedIds: []),
+    kilometers: 10000,
+    bodyType: 'sedan',
+    fuelType: 'ev',
+    transmissionType: 'automatic',
+    color: 'White',
+    images: [],
+  );
 
   group('CarEntity', () {
     test('constructor sets all fields correctly', () {
@@ -120,9 +117,9 @@ void main() {
     });
 
     test('fromSchema handles nulls and defaults', () {
-      when(mockCar.model).thenReturn(null);
-      when(mockCar.isChecked).thenReturn(null);
-      when(mockCar.hotPromotionDescription).thenReturn(null);
+      mockCar.model = null;
+      mockCar.isChecked = null;
+      mockCar.hotPromotionDescription = null;
 
       final entity = CarEntity.fromSchema(mockCar);
 
