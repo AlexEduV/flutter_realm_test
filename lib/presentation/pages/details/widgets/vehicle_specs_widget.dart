@@ -79,56 +79,52 @@ class VehicleSpecsWidget extends StatelessWidget {
                   child: state.isVehicleSpecsExpanded
                       ? Padding(
                           padding: const EdgeInsets.only(top: AppDimensions.normalM),
-                          child: Column(
+                          child: Row(
                             children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      spacing: AppDimensions.normalS,
-                                      children: [
-                                        SpecificationItem(
-                                          title: AppLocalisations.vehicleSpecificationBody,
-                                          subtitle: car.bodyType.capitalizeFirst(),
-                                        ),
-
-                                        SpecificationItem(
-                                          title: AppLocalisations.vehicleSpecificationEngine,
-                                          subtitle: car.fuelType.capitalizeFirst(),
-                                        ),
-
-                                        SpecificationItem(
-                                          title: AppLocalisations.vehicleSpecificationTransmission,
-                                          subtitle: car.transmissionType.capitalizeFirst(),
-                                        ),
-                                      ],
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  spacing: AppDimensions.normalS,
+                                  children: [
+                                    SpecificationItem(
+                                      title: AppLocalisations.vehicleSpecificationBody,
+                                      subtitle: car.bodyType.capitalizeFirst(),
                                     ),
-                                  ),
 
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      spacing: AppDimensions.normalS,
-                                      children: [
-                                        SpecificationItem(
-                                          title: AppLocalisations.vehicleSpecificationMileage,
-                                          subtitle: car.kilometers.toString(),
-                                        ),
-
-                                        SpecificationItem(
-                                          title: AppLocalisations.vehicleSpecificationYear,
-                                          subtitle: car.year ?? '',
-                                        ),
-
-                                        SpecificationItem(
-                                          title: AppLocalisations.vehicleSpecificationColor,
-                                          subtitle: car.color ?? ''.capitalizeFirst(),
-                                        ),
-                                      ],
+                                    SpecificationItem(
+                                      title: AppLocalisations.vehicleSpecificationEngine,
+                                      subtitle: car.fuelType.capitalizeFirst(),
                                     ),
-                                  ),
-                                ],
+
+                                    SpecificationItem(
+                                      title: AppLocalisations.vehicleSpecificationTransmission,
+                                      subtitle: car.transmissionType.capitalizeFirst(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  spacing: AppDimensions.normalS,
+                                  children: [
+                                    SpecificationItem(
+                                      title: AppLocalisations.vehicleSpecificationMileage,
+                                      subtitle: car.kilometers.toString(),
+                                    ),
+
+                                    SpecificationItem(
+                                      title: AppLocalisations.vehicleSpecificationYear,
+                                      subtitle: car.year ?? '',
+                                    ),
+
+                                    SpecificationItem(
+                                      title: AppLocalisations.vehicleSpecificationColor,
+                                      subtitle: car.color ?? ''.capitalizeFirst(),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
