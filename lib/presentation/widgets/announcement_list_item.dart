@@ -73,8 +73,14 @@ class AnnouncementListItem extends StatelessWidget {
                       Container(
                         height: 180,
                         decoration: BoxDecoration(
-                          color: AppColors.placeholderColor,
+                          color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
                           borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                          image: (car?.images.isNotEmpty ?? false)
+                              ? DecorationImage(
+                                  image: AssetImage(car?.images.first ?? ''),
+                                  fit: BoxFit.cover,
+                                )
+                              : null,
                         ),
                       ),
 

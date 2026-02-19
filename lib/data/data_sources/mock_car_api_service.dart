@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:realm/realm.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
@@ -44,6 +45,7 @@ class MockCarApiService implements CarApiService {
         transmissionType: TransmissionType.hybrid.name,
         color: 'Yellow',
         owner: OwnerModel(id: '1', name: 'James Norrington', linkedItemIds: ['1', '25']),
+        images: [AppAssetRoutes.porscheYellowImage],
       ),
       CarDto(
         id: initIds[1],
@@ -60,6 +62,7 @@ class MockCarApiService implements CarApiService {
         transmissionType: TransmissionType.manual.name,
         color: 'Red',
         owner: OwnerModel(id: '2', name: 'Jack Smith', linkedItemIds: ['2', '23']),
+        images: [AppAssetRoutes.hondaCivicRedImage],
       ),
       CarDto(
         id: initIds[2],
@@ -77,6 +80,7 @@ class MockCarApiService implements CarApiService {
         transmissionType: TransmissionType.hybrid.name,
         color: 'Black',
         owner: OwnerModel(id: '3', name: 'Arya Stark', linkedItemIds: ['3', '26']),
+        images: [],
       ),
     ];
 
@@ -119,6 +123,7 @@ class MockCarApiService implements CarApiService {
         transmissionType: TransmissionType.hybrid.name,
         color: 'Yellow',
         owner: OwnerModel(id: '1', name: 'James Norrington', linkedItemIds: ['1', '25']),
+        images: [AppAssetRoutes.porscheYellowImage],
       ),
       CarDto(
         id: initIds[1],
@@ -136,6 +141,7 @@ class MockCarApiService implements CarApiService {
         transmissionType: TransmissionType.manual.name,
         color: 'Red',
         owner: OwnerModel(id: '2', name: 'Jack Smith', linkedItemIds: ['2', '23']),
+        images: [AppAssetRoutes.hondaCivicRedImage],
       ),
       CarDto(
         id: initIds[2],
@@ -153,6 +159,7 @@ class MockCarApiService implements CarApiService {
         transmissionType: TransmissionType.hybrid.name,
         color: 'Black',
         owner: OwnerModel(id: '3', name: 'Arya Stark', linkedItemIds: ['3', '26']),
+        images: [],
       ),
     ];
   }
