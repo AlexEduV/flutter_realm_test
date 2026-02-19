@@ -9,6 +9,7 @@ import 'package:test_futter_project/data/repositories/permission_repository_impl
 import 'package:test_futter_project/domain/data_sources/auth_service.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
+import 'package:test_futter_project/domain/data_sources/messages_service.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
 import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
@@ -130,7 +131,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => AuthenticationCubit());
 
-  serviceLocator.registerLazySingleton(() => MockMessagesService());
+  serviceLocator.registerLazySingleton<MessagesService>(() => MockMessagesService());
   serviceLocator.registerLazySingleton(() => InboxPageCubit(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
