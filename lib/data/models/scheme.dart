@@ -21,6 +21,7 @@ class _Car {
   int? distanceTo;
   int price = 0;
   _Person? owner;
+  late List<String> images;
 }
 
 @RealmModel()

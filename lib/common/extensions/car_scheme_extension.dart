@@ -27,6 +27,7 @@ extension CarExtensions on Car {
         linkedItemIds: owner?.linkedIds ?? [],
       ),
       color: color,
+      images: images,
     );
   }
 
@@ -52,6 +53,7 @@ extension CarExtensions on Car {
         linkedIds: dto.owner?.linkedItemIds ?? [],
       ),
       color: dto.color,
+      images: dto.images,
     );
   }
 
@@ -77,6 +79,7 @@ extension CarExtensions on Car {
         linkedIds: entity.owner?.linkedItemIds ?? [],
       ),
       color: entity.color,
+      images: entity.images,
     );
   }
 }

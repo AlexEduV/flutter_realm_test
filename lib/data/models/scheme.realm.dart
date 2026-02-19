@@ -29,6 +29,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     int? distanceTo,
     int price = 0,
     Person? owner,
+    Iterable<String> images = const [],
   }) {
     if (!_defaultsSet) {
       _defaultsSet = RealmObjectBase.setDefaults<Car>({
@@ -57,6 +58,11 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'distanceTo', distanceTo);
     RealmObjectBase.set(this, 'price', price);
     RealmObjectBase.set(this, 'owner', owner);
+    RealmObjectBase.set<RealmList<String>>(
+      this,
+      'images',
+      RealmList<String>(images),
+    );
   }
 
   Car._();
@@ -151,6 +157,13 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.set(this, 'owner', value);
 
   @override
+  RealmList<String> get images =>
+      RealmObjectBase.get<String>(this, 'images') as RealmList<String>;
+  @override
+  set images(covariant RealmList<String> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
   Stream<RealmObjectChanges<Car>> get changes =>
       RealmObjectBase.getChanges<Car>(this);
 
@@ -179,6 +192,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       'distanceTo': distanceTo.toEJson(),
       'price': price.toEJson(),
       'owner': owner.toEJson(),
+      'images': images.toEJson(),
     };
   }
 
@@ -209,6 +223,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
           distanceTo: fromEJson(ejson['distanceTo']),
           price: fromEJson(ejson['price'], defaultValue: 0),
           owner: fromEJson(ejson['owner']),
+          images: fromEJson(ejson['images']),
         ),
       _ => raiseInvalidEJson(ejson),
     };
@@ -246,6 +261,11 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
         RealmPropertyType.object,
         optional: true,
         linkTarget: 'Person',
+      ),
+      SchemaProperty(
+        'images',
+        RealmPropertyType.string,
+        collectionType: RealmCollectionType.list,
       ),
     ]);
   }();

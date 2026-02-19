@@ -18,6 +18,7 @@ class CarDto {
   int? kilometers;
   int? distanceTo;
   int? price;
+  List<String> images;
 
   CarDto({
     required this.id,
@@ -36,6 +37,7 @@ class CarDto {
     this.kilometers = 0,
     this.distanceTo,
     this.price = 0,
+    this.images = const [],
   });
 
   factory CarDto.fromJson(Map<String, dynamic> json) {
@@ -54,6 +56,7 @@ class CarDto {
       bodyType: json['body_type'] as String,
       color: json['color'] as String,
       owner: OwnerModel.fromJson(json['owner'] as Map<String, dynamic>),
+      images: json['images'] as List<String>,
     );
   }
 }
