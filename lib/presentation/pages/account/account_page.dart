@@ -13,8 +13,6 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo: the user logs out on app restart. Maybe write to persistence.
-
     return BlocBuilder<UserDataCubit, UserDataState>(
       builder: (context, state) {
         if (!state.isUserAuthenticated) {
