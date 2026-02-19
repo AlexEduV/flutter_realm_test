@@ -28,19 +28,22 @@ class AccountPage extends StatelessWidget {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: Center(child: CircleAvatar(radius: 50, backgroundColor: Colors.white)),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Center(
+                  child: CircleAvatar(radius: 50, backgroundColor: AppColors.placeholderColor),
+                ),
               ),
 
-              const ListTile(title: Text('Personal Details')),
+              const ListTile(title: Text('Personal Details'), leading: Icon(Icons.person)),
               //todo: in the personal details -> Change password
-              const ListTile(title: Text('Location')),
-              const ListTile(title: Text('My Items')),
-              const ListTile(title: Text('Viewed Items')),
-              const ListTile(title: Text('Clear Data')),
+              const ListTile(title: Text('Location'), leading: Icon(Icons.location_pin)),
+              const ListTile(title: Text('My Items'), leading: Icon(Icons.checklist)),
+              const ListTile(title: Text('Viewed Items'), leading: Icon(Icons.remove_red_eye)),
+              const ListTile(title: Text('Clear Data'), leading: Icon(Icons.delete)),
               ListTile(
                 title: const Text('Log out'),
+                leading: const Icon(Icons.exit_to_app_sharp),
                 onTap: () async {
                   await context.read<AuthenticationCubit>().logOut();
 
@@ -48,6 +51,10 @@ class AccountPage extends StatelessWidget {
 
                   context.read<UserDataCubit>().logOutUser();
                 },
+              ),
+              const Spacer(),
+              Center(
+                child: ListTile(title: const Text('Delete Account'), onTap: () {}),
               ),
             ],
           ),
