@@ -53,8 +53,18 @@ class AccountPage extends StatelessWidget {
                 },
               ),
               const Spacer(),
-              Center(
-                child: ListTile(title: const Text('Delete Account'), onTap: () {}),
+              ListTile(
+                title: const Center(
+                  child: Text(
+                    'Delete Account',
+                    style: TextStyle(
+                      color: AppColors.headerColor,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14.0,
+                    ),
+                  ),
+                ),
+                onTap: () {},
               ),
             ],
           ),
