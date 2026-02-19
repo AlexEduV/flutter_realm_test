@@ -41,15 +41,16 @@ class FavoritesListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Car Image
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                    child: ColoredBox(
-                      color: AppColors.placeholderColor ?? Colors.grey,
-                      child: const SizedBox(
-                        width: AppDimensions.favoriteItemPictureSize,
-                        height: AppDimensions.favoriteItemPictureSize,
-                      ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                      color: car.images.isEmpty ? AppColors.placeholderColor : null,
+                      image: car.images.isNotEmpty
+                          ? DecorationImage(image: AssetImage(car.images.first), fit: BoxFit.cover)
+                          : null,
                     ),
+                    height: AppDimensions.favoriteItemPictureSize,
+                    width: AppDimensions.favoriteItemPictureSize,
                   ),
                   const SizedBox(width: AppDimensions.normalM),
                   // Car Details
