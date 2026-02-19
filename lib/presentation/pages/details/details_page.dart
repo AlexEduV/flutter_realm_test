@@ -36,6 +36,11 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBarButtonStyle = IconButton.styleFrom(
+      backgroundColor: Colors.white.withAlpha(140),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimensions.normalS)),
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
@@ -53,12 +58,7 @@ class _DetailsPageState extends State<DetailsPage> {
               color: AppColors.headerColor,
             ),
           ),
-          style: IconButton.styleFrom(
-            backgroundColor: Colors.white.withAlpha(80),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppDimensions.normalS),
-            ),
-          ),
+          style: appBarButtonStyle,
         ),
         actions: [
           BlocBuilder<UserDataCubit, UserDataState>(
@@ -89,12 +89,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           size: AppDimensions.favoriteButtonSize,
                         ),
                       ),
-                      style: IconButton.styleFrom(
-                        backgroundColor: Colors.white.withAlpha(80),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                        ),
-                      ),
+                      style: appBarButtonStyle,
                     ),
                   );
                 },
