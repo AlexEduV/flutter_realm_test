@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Padding(
                       padding: const EdgeInsetsGeometry.only(
                         left: AppDimensions.normalXL,
-                        top: 170,
+                        top: 120,
                       ),
                       child: Text(
                         welcomeText,
