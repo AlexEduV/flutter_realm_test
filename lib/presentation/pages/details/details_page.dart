@@ -116,11 +116,17 @@ class _DetailsPageState extends State<DetailsPage> {
                     Container(
                       height: 280,
                       decoration: BoxDecoration(
-                        color: AppColors.placeholderColor,
+                        color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(AppDimensions.majorM),
                           bottomRight: Radius.circular(AppDimensions.majorM),
                         ),
+                        image: (car?.images.isNotEmpty ?? false)
+                            ? DecorationImage(
+                                image: AssetImage(car?.images.first ?? ''),
+                                fit: BoxFit.cover,
+                              )
+                            : null,
                       ),
                     ),
 
