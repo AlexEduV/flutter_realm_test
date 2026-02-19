@@ -6,5 +6,5 @@ class AppAssetRoutes {
 
   static const scaniaTruckBlackImage = '$assetFolder${imagesFolder}scania-black.jpg';
   static const hondaCivicRedImage = '$assetFolder${imagesFolder}honda-civic-red.jpg';
-  static const porscheYellowImage = '$assetFolder${imagesFolder}porsche-yellow.jpg';
+  static const porscheYellowImage = '$assetFolder${imagesFolder}porsche-yellow.jpeg';
 }
