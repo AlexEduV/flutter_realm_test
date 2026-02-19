@@ -102,91 +102,83 @@ class _DetailsPageState extends State<DetailsPage> {
         builder: (context, state) {
           final car = state.car;
 
-          return Stack(
-            children: [
-              SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 280,
-                      decoration: BoxDecoration(
-                        color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(AppDimensions.majorM),
-                          bottomRight: Radius.circular(AppDimensions.majorM),
-                        ),
-                        image: (car?.images.isNotEmpty ?? false)
-                            ? DecorationImage(
-                                image: AssetImage(car?.images.first ?? ''),
-                                fit: BoxFit.cover,
-                              )
-                            : null,
-                      ),
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 280,
+                  decoration: BoxDecoration(
+                    color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(AppDimensions.majorM),
+                      bottomRight: Radius.circular(AppDimensions.majorM),
                     ),
+                    image: (car?.images.isNotEmpty ?? false)
+                        ? DecorationImage(
+                            image: AssetImage(car?.images.first ?? ''),
+                            fit: BoxFit.cover,
+                          )
+                        : null,
+                  ),
+                ),
 
-                    Padding(
-                      padding: const EdgeInsets.all(AppDimensions.normalM),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: AppDimensions.minorM,
+                Padding(
+                  padding: const EdgeInsets.all(AppDimensions.normalM),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppDimensions.minorM,
+                    children: [
+                      Row(
+                        spacing: AppDimensions.normalXS,
                         children: [
-                          Row(
-                            spacing: AppDimensions.normalXS,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
-                                  style: AppTextStyles.zonaPro24.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  maxLines: 2,
-                                ),
-                              ),
-
-                              if (car?.isVerified ?? false) ...[const VerifiedBadge()],
-                            ],
+                          Flexible(
+                            child: Text(
+                              '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
+                              style: AppTextStyles.zonaPro24.copyWith(fontWeight: FontWeight.w500),
+                              maxLines: 2,
+                            ),
                           ),
 
-                          Row(
-                            spacing: AppDimensions.normalM,
-                            children: [
-                              Text(
-                                '\$ ${car?.price ?? ''}',
-                                style: AppTextStyles.zonaPro18.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-
-                              if (car?.hotPromotionDescription != null) ...[
-                                Row(
-                                  spacing: AppDimensions.minorL,
-                                  children: [
-                                    const Icon(Icons.whatshot, size: 18, color: Colors.red),
-
-                                    Text(car?.hotPromotionDescription ?? ''),
-                                  ],
-                                ),
-                              ],
-                            ],
-                          ),
-
-                          const SizedBox(height: AppDimensions.minorS),
-
-                          if (car != null) ...[VehicleSpecsWidget(car: car)],
-
-                          const SizedBox(height: AppDimensions.minorL),
-
-                          if (car != null) ...[OwnerWidget(car: car)],
+                          if (car?.isVerified ?? false) ...[const VerifiedBadge()],
                         ],
                       ),
-                    ),
 
-                    const SizedBox(height: AppDimensions.normalL),
-                  ],
+                      Row(
+                        spacing: AppDimensions.normalM,
+                        children: [
+                          Text(
+                            '\$ ${car?.price ?? ''}',
+                            style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                          ),
+
+                          if (car?.hotPromotionDescription != null) ...[
+                            Row(
+                              spacing: AppDimensions.minorL,
+                              children: [
+                                const Icon(Icons.whatshot, size: 18, color: Colors.red),
+
+                                Text(car?.hotPromotionDescription ?? ''),
+                              ],
+                            ),
+                          ],
+                        ],
+                      ),
+
+                      const SizedBox(height: AppDimensions.minorS),
+
+                      if (car != null) ...[VehicleSpecsWidget(car: car)],
+
+                      const SizedBox(height: AppDimensions.minorL),
+
+                      if (car != null) ...[OwnerWidget(car: car)],
+                    ],
+                  ),
                 ),
-              ),
-            ].reversed.toList(),
+
+                const SizedBox(height: AppDimensions.normalL),
+              ],
+            ),
           );
         },
       ),
