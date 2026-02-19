@@ -83,13 +83,13 @@ class MockCarApiService implements CarApiService {
     _carStreamController.add(initialData);
 
     // 2. Automatically start live updates after the first successful fetch
-    _startHeartbeat();
+    await _startHeartbeat();
 
     return initialData;
   }
 
-  void _startHeartbeat() {
-    _liveUpdateSubscription?.cancel(); // Don't start duplicate timers
+  Future<void> _startHeartbeat() async {
+    await _liveUpdateSubscription?.cancel(); // Don't start duplicate timers
 
     _liveUpdateSubscription = Stream.periodic(const Duration(seconds: 5))
         .asyncMap((_) async {
@@ -158,8 +158,8 @@ class MockCarApiService implements CarApiService {
   }
 
   @override
-  void dispose() {
-    _liveUpdateSubscription?.cancel();
-    _carStreamController.close();
+  Future<void> dispose() async {
+    await _liveUpdateSubscription?.cancel();
+    await _carStreamController.close();
   }
 }

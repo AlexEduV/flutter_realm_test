@@ -8,8 +8,8 @@ void main() {
     service = MockCarApiService();
   });
 
-  tearDown(() {
-    service.dispose();
+  tearDown(() async {
+    await service.dispose();
   });
 
   test('fetchCars returns initial data after delay', () async {
@@ -45,7 +45,7 @@ void main() {
 
   test('dispose cancels subscription and closes stream', () async {
     await service.fetchCars();
-    service.dispose();
+    await service.dispose();
     expect(service.carStream.isBroadcast, true); // BehaviorSubject is broadcast
   });
 }

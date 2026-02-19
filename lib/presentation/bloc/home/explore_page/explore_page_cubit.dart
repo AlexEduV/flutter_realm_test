@@ -38,8 +38,8 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
   }
 
   @override
-  Future<void> close() {
-    _carSubscription?.cancel();
+  Future<void> close() async {
+    await _carSubscription?.cancel();
     return super.close();
   }
 }

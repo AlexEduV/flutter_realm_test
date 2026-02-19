@@ -43,8 +43,11 @@ class AccountPage extends StatelessWidget {
               const ListTile(title: Text('Clear Data')),
               ListTile(
                 title: const Text('Log out'),
-                onTap: () {
-                  context.read<AuthenticationCubit>().logOut();
+                onTap: () async {
+                  await context.read<AuthenticationCubit>().logOut();
+
+                  if (!context.mounted) return;
+
                   context.read<UserDataCubit>().logOutUser();
                 },
               ),

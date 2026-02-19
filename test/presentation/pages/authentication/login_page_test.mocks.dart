@@ -146,10 +146,13 @@ class MockAuthenticationCubit extends _i1.Mock
   );
 
   @override
-  void logOut() => super.noSuchMethod(
-    Invocation.method(#logOut, []),
-    returnValueForMissingStub: null,
-  );
+  _i4.Future<void> logOut() =>
+      (super.noSuchMethod(
+            Invocation.method(#logOut, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
   void emit(_i2.AuthenticationState? state) => super.noSuchMethod(

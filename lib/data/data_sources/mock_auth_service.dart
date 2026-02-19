@@ -18,8 +18,8 @@ class MockAuthService implements AuthService {
   }
 
   @override
-  void logOut() {
-    _authRepository.logOut();
+  Future<void> logOut() async {
+    await _authRepository.logOut();
   }
 
   @override

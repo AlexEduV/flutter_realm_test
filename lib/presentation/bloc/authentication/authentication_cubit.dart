@@ -248,8 +248,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     );
   }
 
-  void logOut() {
-    serviceLocator<LogoutUseCase>().call();
+  Future<void> logOut() async {
+    await serviceLocator<LogoutUseCase>().call();
     emit(state.copyWith(isLoginMode: true));
   }
 }

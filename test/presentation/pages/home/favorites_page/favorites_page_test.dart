@@ -24,8 +24,8 @@ void main() {
     AppLocalisations.localisations = {'pages.favorites.title': 'Favorites'};
   });
 
-  tearDownAll(() {
-    serviceLocator.reset();
+  tearDownAll(() async {
+    await serviceLocator.reset();
   });
 
   Widget makeTestableWidget(Widget child) {

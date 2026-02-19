@@ -59,8 +59,8 @@ void main() {
     cubit.init();
   });
 
-  tearDown(() {
-    serviceLocator.reset();
+  tearDown(() async {
+    await serviceLocator.reset();
   });
 
   group('AuthenticationCubit', () {
