@@ -25,7 +25,25 @@ void main() {
   late CarRepositoryImpl repository;
   late MockRealmLocalStorage localStorage;
 
-  final mockCar = Car(ObjectId(), '1', 'Tesla', 'car');
+  final mockCar = Car(
+    ObjectId(),
+    'car123',
+    'Tesla',
+    'car',
+    model: 'Model S',
+    isChecked: true,
+    hotPromotionDescription: null,
+    price: 80000,
+    distanceTo: 50,
+    year: '2020',
+    owner: Person('John Doe', 'test', linkedIds: []),
+    kilometers: 10000,
+    bodyType: 'sedan',
+    fuelType: 'ev',
+    transmissionType: 'automatic',
+    color: 'White',
+    images: [],
+  );
 
   setUpAll(() {
     provideDummy<Car>(mockCar);
@@ -67,7 +85,8 @@ void main() {
   test('deleteCarById deletes car if found and valid', () {
     final carId = '1';
     final car = mockCar;
-    when(car.isValid).thenReturn(true);
+    car.isChecked = true;
+
     when(realm.find<Car>(carId)).thenReturn(car);
     when(realm.write(any)).thenAnswer((invocation) {
       invocation.positionalArguments.first();
@@ -123,12 +142,7 @@ void main() {
   });
 
   test('getAllCars returns mapped entities', () {
-    final car = mockCar;
-
     when(localStorage.getAll()).thenReturn([CarEntity.empty()]);
-
-    // Assuming CarEntity.fromSchema is a static method
-    when(CarEntity.fromSchema(car)).thenReturn(MockCarEntity());
 
     final result = repository.getAllCars();
 
@@ -153,6 +167,8 @@ void main() {
     when(carDto.bodyType).thenReturn('sedan');
     when(carDto.fuelType).thenReturn('gasoline');
     when(carDto.transmissionType).thenReturn('hybrid');
+    when(carDto.color).thenReturn('White');
+    when(carDto.images).thenReturn([]);
     when(
       carDto.owner,
     ).thenReturn(OwnerModel(id: 'test', name: 'James Morrison', linkedItemIds: []));
