@@ -70,64 +70,71 @@ class VehicleSpecsWidget extends StatelessWidget {
 
           BlocBuilder<DetailsPageCubit, DetailsPageState>(
             builder: (context, state) {
-              return AnimatedSize(
-                duration: const Duration(milliseconds: 300),
-                alignment: AlignmentGeometry.topCenter,
-                curve: Curves.easeInOut,
-                child: state.isVehicleSpecsExpanded
-                    ? Padding(
-                        padding: const EdgeInsets.only(top: AppDimensions.normalM),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                spacing: AppDimensions.normalS,
+              return SizedBox(
+                width: double.infinity,
+                child: AnimatedSize(
+                  duration: const Duration(milliseconds: 300),
+                  alignment: AlignmentGeometry.topCenter,
+                  curve: Curves.easeInOut,
+                  child: state.isVehicleSpecsExpanded
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: AppDimensions.normalM),
+                          child: Column(
+                            children: [
+                              Row(
                                 children: [
-                                  SpecificationItem(
-                                    title: AppLocalisations.vehicleSpecificationBody,
-                                    subtitle: car.bodyType.capitalizeFirst(),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      spacing: AppDimensions.normalS,
+                                      children: [
+                                        SpecificationItem(
+                                          title: AppLocalisations.vehicleSpecificationBody,
+                                          subtitle: car.bodyType.capitalizeFirst(),
+                                        ),
+
+                                        SpecificationItem(
+                                          title: AppLocalisations.vehicleSpecificationEngine,
+                                          subtitle: car.fuelType.capitalizeFirst(),
+                                        ),
+
+                                        SpecificationItem(
+                                          title: AppLocalisations.vehicleSpecificationTransmission,
+                                          subtitle: car.transmissionType.capitalizeFirst(),
+                                        ),
+                                      ],
+                                    ),
                                   ),
 
-                                  SpecificationItem(
-                                    title: AppLocalisations.vehicleSpecificationEngine,
-                                    subtitle: car.fuelType.capitalizeFirst(),
-                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      spacing: AppDimensions.normalS,
+                                      children: [
+                                        SpecificationItem(
+                                          title: AppLocalisations.vehicleSpecificationMileage,
+                                          subtitle: car.kilometers.toString(),
+                                        ),
 
-                                  SpecificationItem(
-                                    title: AppLocalisations.vehicleSpecificationTransmission,
-                                    subtitle: car.transmissionType.capitalizeFirst(),
+                                        SpecificationItem(
+                                          title: AppLocalisations.vehicleSpecificationYear,
+                                          subtitle: car.year ?? '',
+                                        ),
+
+                                        SpecificationItem(
+                                          title: AppLocalisations.vehicleSpecificationColor,
+                                          subtitle: car.color ?? ''.capitalizeFirst(),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                spacing: AppDimensions.normalS,
-                                children: [
-                                  SpecificationItem(
-                                    title: AppLocalisations.vehicleSpecificationMileage,
-                                    subtitle: car.kilometers.toString(),
-                                  ),
-
-                                  SpecificationItem(
-                                    title: AppLocalisations.vehicleSpecificationYear,
-                                    subtitle: car.year ?? '',
-                                  ),
-
-                                  SpecificationItem(
-                                    title: AppLocalisations.vehicleSpecificationColor,
-                                    subtitle: car.color ?? ''.capitalizeFirst(),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : const SizedBox.shrink(),
+                            ],
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                ),
               );
             },
           ),
