@@ -26,6 +26,7 @@ extension CarExtensions on Car {
         name: owner?.name ?? '',
         linkedItemIds: owner?.linkedIds ?? [],
       ),
+      color: color,
     );
   }
 
@@ -50,6 +51,7 @@ extension CarExtensions on Car {
         dto.owner?.id ?? '',
         linkedIds: dto.owner?.linkedItemIds ?? [],
       ),
+      color: dto.color,
     );
   }
 
@@ -74,6 +76,7 @@ extension CarExtensions on Car {
         entity.owner?.id ?? '',
         linkedIds: entity.owner?.linkedItemIds ?? [],
       ),
+      color: entity.color,
     );
   }
 }
