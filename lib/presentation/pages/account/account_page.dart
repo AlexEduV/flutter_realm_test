@@ -29,10 +29,24 @@ class AccountPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.only(top: 20, bottom: 8),
                 child: Center(
                   child: CircleAvatar(radius: 50, backgroundColor: AppColors.placeholderColor),
                 ),
+              ),
+
+              ListTile(
+                title: Center(
+                  child: Text(
+                    '${state.firstName} ${state.lastName}',
+                    style: const TextStyle(
+                      color: AppColors.headerColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
+                onTap: () {},
               ),
 
               const ListTile(title: Text('Personal Details'), leading: Icon(Icons.person)),
