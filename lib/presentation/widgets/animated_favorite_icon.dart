@@ -63,9 +63,18 @@ class _AnimatedFavoriteIconState extends State<AnimatedFavoriteIcon>
         animation: _scaleAnimation,
         builder: (context, child) => Transform.scale(
           scale: widget.isFavorite ? _scaleAnimation.value : 1.0,
-          child: Icon(
-            widget.isFavorite ? Icons.favorite : Icons.favorite_border,
-            color: widget.isFavorite ? AppColors.gold : Colors.grey,
+          child: Stack(
+            alignment: AlignmentGeometry.center,
+            children: [
+              Icon(
+                widget.isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: widget.isFavorite ? AppColors.gold : Colors.grey,
+              ),
+
+              if (widget.isFavorite) ...[
+                const Icon(Icons.favorite_border, color: AppColors.mutedGold),
+              ],
+            ],
           ),
         ),
       ),
