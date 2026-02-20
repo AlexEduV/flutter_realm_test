@@ -46,7 +46,6 @@ class AccountPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                onTap: () {},
               ),
 
               const ListTile(title: Text('Personal Details'), leading: Icon(Icons.person)),
