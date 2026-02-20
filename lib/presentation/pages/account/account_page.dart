@@ -54,28 +54,28 @@ class AccountPage extends StatelessWidget {
 
               ListTile(
                 title: Text(AppLocalisations.accountItemPersonalDetails),
-                leading: const Icon(Icons.person),
+                leading: const Icon(Icons.person_outlined),
               ),
               //todo: in the personal details -> Change password
               ListTile(
                 title: Text(AppLocalisations.accountItemLocation),
-                leading: const Icon(Icons.location_pin),
+                leading: const Icon(Icons.location_on_outlined),
               ),
               ListTile(
                 title: Text(AppLocalisations.accountItemMyItems),
-                leading: const Icon(Icons.checklist),
+                leading: const Icon(Icons.checklist_outlined),
               ),
               ListTile(
                 title: Text(AppLocalisations.accountItemViewedItems),
-                leading: const Icon(Icons.remove_red_eye),
+                leading: const Icon(Icons.remove_red_eye_outlined),
               ),
               ListTile(
                 title: Text(AppLocalisations.accountItemClearData),
-                leading: const Icon(Icons.delete),
+                leading: const Icon(Icons.delete_outline),
               ),
               ListTile(
                 title: Text(AppLocalisations.accountItemLogout),
-                leading: const Icon(Icons.exit_to_app_sharp),
+                leading: const Icon(Icons.logout_outlined),
                 onTap: () async {
                   await context.read<AuthenticationCubit>().logOut();
 
