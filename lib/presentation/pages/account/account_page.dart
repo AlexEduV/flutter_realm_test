@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/account_item.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -52,30 +53,27 @@ class AccountPage extends StatelessWidget {
                 ),
               ),
 
-              ListTile(
-                title: Text(AppLocalisations.accountItemPersonalDetails),
-                leading: const Icon(Icons.person_outlined),
+              AccountItem(
+                icon: Icons.person_outlined,
+                text: AppLocalisations.accountItemPersonalDetails,
               ),
               //todo: in the personal details -> Change password
-              ListTile(
-                title: Text(AppLocalisations.accountItemLocation),
-                leading: const Icon(Icons.location_on_outlined),
+              AccountItem(
+                icon: Icons.location_on_outlined,
+                text: AppLocalisations.accountItemLocation,
               ),
-              ListTile(
-                title: Text(AppLocalisations.accountItemMyItems),
-                leading: const Icon(Icons.checklist_outlined),
+              AccountItem(
+                icon: Icons.checklist_outlined,
+                text: AppLocalisations.accountItemMyItems,
               ),
-              ListTile(
-                title: Text(AppLocalisations.accountItemViewedItems),
-                leading: const Icon(Icons.remove_red_eye_outlined),
+              AccountItem(
+                icon: Icons.remove_red_eye_outlined,
+                text: AppLocalisations.accountItemViewedItems,
               ),
-              ListTile(
-                title: Text(AppLocalisations.accountItemClearData),
-                leading: const Icon(Icons.delete_outline),
-              ),
-              ListTile(
-                title: Text(AppLocalisations.accountItemLogout),
-                leading: const Icon(Icons.logout_outlined),
+              AccountItem(icon: Icons.delete_outline, text: AppLocalisations.accountItemClearData),
+              AccountItem(
+                icon: Icons.logout_outlined,
+                text: AppLocalisations.accountItemLogout,
                 onTap: () async {
                   await context.read<AuthenticationCubit>().logOut();
 
@@ -85,13 +83,9 @@ class AccountPage extends StatelessWidget {
                 },
               ),
               const Spacer(),
-              ListTile(
-                title: Center(
-                  child: Text(
-                    AppLocalisations.accountItemDeleteAccount,
-                    style: AppTextStyles.zonaPro14.copyWith(color: AppColors.accentColor),
-                  ),
-                ),
+              AccountItem(
+                text: AppLocalisations.accountItemDeleteAccount,
+                textStyle: AppTextStyles.zonaPro14.copyWith(color: AppColors.accentColor),
                 onTap: () async {
                   await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
@@ -99,6 +93,7 @@ class AccountPage extends StatelessWidget {
 
                   context.read<UserDataCubit>().logOutUser();
                 },
+                isCentered: true,
               ),
             ],
           ),
