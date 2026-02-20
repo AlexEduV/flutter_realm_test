@@ -116,7 +116,7 @@ void main() {
 
     repository.deleteAll();
 
-    verify(localStorage.deleteAll()).called(1);
+    verify(localStorage.deleteAllCars()).called(1);
   });
 
   test('getCarById calls realm.getCarById()', () {
@@ -195,7 +195,7 @@ void main() {
 
     await repository.syncCars();
 
-    verify(localStorage.deleteAll()).called(1);
+    verify(localStorage.deleteAllCars()).called(1);
     verify(localStorage.update(any)).called(1);
     verify(apiService.fetchCars()).called(1);
   });

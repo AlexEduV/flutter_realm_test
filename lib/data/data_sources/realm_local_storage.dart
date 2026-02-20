@@ -49,7 +49,7 @@ class RealmLocalStorage implements BaseLocalStorage {
   }
 
   @override
-  void deleteAll() {
+  void deleteAllCars() {
     realm.write(() {
       realm.deleteAll<Car>();
     });
@@ -98,5 +98,12 @@ class RealmLocalStorage implements BaseLocalStorage {
     });
 
     return int.parse(maxCar.carId);
+  }
+
+  @override
+  void clearUser() {
+    realm.write(() {
+      realm.deleteAll<User>();
+    });
   }
 }

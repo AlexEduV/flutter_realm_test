@@ -114,9 +114,9 @@ void main() {
     });
 
     test('deleteAll can be called', () {
-      mockStorage.deleteAll();
+      mockStorage.deleteAllCars();
 
-      verify(mockStorage.deleteAll()).called(1);
+      verify(mockStorage.deleteAllCars()).called(1);
     });
 
     test('deleteById can be called with car Id', () {

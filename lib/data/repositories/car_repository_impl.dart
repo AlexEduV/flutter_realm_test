@@ -58,7 +58,7 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   void deleteAll() {
-    localStorage.deleteAll();
+    localStorage.deleteAllCars();
   }
 
   @override

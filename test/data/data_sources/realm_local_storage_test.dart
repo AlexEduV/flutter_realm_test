@@ -86,7 +86,7 @@ void main() {
       fn();
     });
 
-    storage.deleteAll();
+    storage.deleteAllCars();
 
     verify(mockRealm.write(any)).called(1);
     verify(mockRealm.deleteAll<Car>()).called(1);

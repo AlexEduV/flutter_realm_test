@@ -18,6 +18,8 @@ class UserDataCubit extends Cubit<UserDataState> {
   late UserEntity user;
 
   void init() async {
+    //todo: the user is not updated in the local storage on login / log out
+    //we should delete it / update it, since I have a fallback there
     user = _localStorage.initUser();
     final userSession = await AuthSessionUtil.getUserSession();
 

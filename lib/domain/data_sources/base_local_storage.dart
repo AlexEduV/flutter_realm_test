@@ -11,7 +11,7 @@ abstract class BaseLocalStorage {
 
   Stream watch<T>();
 
-  void deleteAll();
+  void deleteAllCars();
 
   void deleteById(String id);
 
@@ -20,4 +20,6 @@ abstract class BaseLocalStorage {
   CarEntity getCarById(String id);
 
   int getMaxCarId();
+
+  void clearUser();
 }

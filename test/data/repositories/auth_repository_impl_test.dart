@@ -4,9 +4,13 @@ import 'package:test_futter_project/data/repositories/auth_repository_impl.dart'
 import 'package:test_futter_project/domain/entities/user_entity_short.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
+import '../../domain/repositories/base_local_storage_test.mocks.dart';
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late AuthRepositoryImpl repo;
+
+  final mockLocalStorage = MockBaseLocalStorage();
 
   setUp(() {
     final initUsers = {
@@ -34,7 +38,7 @@ void main() {
       'forms.warnings.incorrectPassword': 'Incorrect password',
       'forms.warnings.userAlreadyExists': 'User already exists',
     };
-    repo = AuthRepositoryImpl();
+    repo = AuthRepositoryImpl(mockLocalStorage);
     repo.users = initUsers;
   });
 
