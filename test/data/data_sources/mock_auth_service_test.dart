@@ -34,14 +34,14 @@ void main() {
     test('register delegates to repository', () async {
       final result = AuthResult(success: true, message: 'Registered');
       when(
-        mockRepo.register(email: 'a@mail.com', password: 'pw', firstName: 'Name', lastName: 'Last'),
+        mockRepo.register(email: 'a@mail.com', password: 'pw', firstName: 'Jane', lastName: 'Doe'),
       ).thenAnswer((_) async => result);
 
       final response = await authService.register('a@mail.com', 'pw', 'Jane', 'Doe');
 
       expect(response, result);
       verify(
-        mockRepo.register(email: 'a@mail.com', password: 'pw', firstName: 'Name', lastName: 'Last'),
+        mockRepo.register(email: 'a@mail.com', password: 'pw', firstName: 'Jane', lastName: 'Doe'),
       ).called(1);
     });
 
