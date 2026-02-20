@@ -10,12 +10,12 @@ class PasswordStrengthBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stagesAvailable = 5;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
       child: BlocBuilder<AuthenticationCubit, AuthenticationState>(
         builder: (context, state) {
-          final stagesAvailable = 5;
-
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
