@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/utils/json_util.dart';
 
 class LocalisationUtil {
-  //todo: use abstract local storage, so that the vendor might be changed easily
+  //todo: use abstraction of shared preferences storage, so that the vendor might be changed easily
 
   static Future<Map<String, String>> loadLocalisations(String path) async {
     final jsonString = await rootBundle.loadString(path);
