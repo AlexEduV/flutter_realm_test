@@ -11,6 +11,7 @@ void main() {
         lastName: 'Doe',
         isLocationPermissionGranted: true,
         favoriteIds: ['1'],
+        email: 'mock@gmail.com',
       );
 
       final user = UserExtensions.fromEntity(entity);
@@ -20,6 +21,7 @@ void main() {
       expect(user.lastName, 'Doe');
       expect(user.isLocationPermissionGranted, true);
       expect(user.favoriteIds, ['1']);
+      expect(user.email, 'mock@gmail.com');
     });
   });
 }

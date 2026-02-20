@@ -378,12 +378,14 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     String userId,
     String firstName,
     String lastName,
+    String email,
     bool isLocationPermissionGranted, {
     Iterable<String> favoriteIds = const [],
   }) {
     RealmObjectBase.set(this, 'userId', userId);
     RealmObjectBase.set(this, 'firstName', firstName);
     RealmObjectBase.set(this, 'lastName', lastName);
+    RealmObjectBase.set(this, 'email', email);
     RealmObjectBase.set(
       this,
       'isLocationPermissionGranted',
@@ -416,6 +418,11 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
   set lastName(String value) => RealmObjectBase.set(this, 'lastName', value);
 
   @override
+  String get email => RealmObjectBase.get<String>(this, 'email') as String;
+  @override
+  set email(String value) => RealmObjectBase.set(this, 'email', value);
+
+  @override
   bool get isLocationPermissionGranted =>
       RealmObjectBase.get<bool>(this, 'isLocationPermissionGranted') as bool;
   @override
@@ -445,6 +452,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'userId': userId.toEJson(),
       'firstName': firstName.toEJson(),
       'lastName': lastName.toEJson(),
+      'email': email.toEJson(),
       'isLocationPermissionGranted': isLocationPermissionGranted.toEJson(),
       'favoriteIds': favoriteIds.toEJson(),
     };
@@ -458,12 +466,14 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
         'userId': EJsonValue userId,
         'firstName': EJsonValue firstName,
         'lastName': EJsonValue lastName,
+        'email': EJsonValue email,
         'isLocationPermissionGranted': EJsonValue isLocationPermissionGranted,
       } =>
         User(
           fromEJson(userId),
           fromEJson(firstName),
           fromEJson(lastName),
+          fromEJson(email),
           fromEJson(isLocationPermissionGranted),
           favoriteIds: fromEJson(ejson['favoriteIds']),
         ),
@@ -478,6 +488,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('userId', RealmPropertyType.string, primaryKey: true),
       SchemaProperty('firstName', RealmPropertyType.string),
       SchemaProperty('lastName', RealmPropertyType.string),
+      SchemaProperty('email', RealmPropertyType.string),
       SchemaProperty('isLocationPermissionGranted', RealmPropertyType.bool),
       SchemaProperty(
         'favoriteIds',

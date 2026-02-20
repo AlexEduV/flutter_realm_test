@@ -12,4 +12,6 @@ abstract class AuthRepository {
   });
 
   Future<void> logOut();
+
+  Future<void> deleteAccount(String email);
 }

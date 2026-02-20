@@ -41,6 +41,7 @@ void main() {
       lastName: 'Doe',
       isLocationPermissionGranted: true,
       favoriteIds: [],
+      email: 'mock@gmail.com',
     );
 
     testWidgets('displays car manufacturer, model, and year', (WidgetTester tester) async {
@@ -144,6 +145,7 @@ void main() {
         lastName: 'Smith',
         isLocationPermissionGranted: false,
         favoriteIds: [],
+        email: 'mock@gmail.com',
       );
 
       await tester.pumpWidget(

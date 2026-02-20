@@ -26,4 +26,9 @@ class MockAuthService implements AuthService {
   Future<AuthResult> register(String email, String password, String fullName) {
     return _authRepository.register(email: email, password: password, fullName: fullName);
   }
+
+  @override
+  Future<void> deleteAccount(String email) async {
+    await _authRepository.deleteAccount(email);
+  }
 }

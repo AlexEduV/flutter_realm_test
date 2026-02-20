@@ -38,6 +38,7 @@ class _User {
   late String userId;
   late String firstName;
   late String lastName;
+  late String email;
   late bool isLocationPermissionGranted;
   late List<String> favoriteIds;
 }

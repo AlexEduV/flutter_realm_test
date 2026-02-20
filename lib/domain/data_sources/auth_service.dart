@@ -8,4 +8,6 @@ abstract class AuthService {
   void changePassword(String oldPassword, String newPassword);
 
   void logOut();
+
+  void deleteAccount(String email);
 }

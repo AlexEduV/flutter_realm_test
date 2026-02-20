@@ -64,4 +64,12 @@ class AuthRepositoryImpl implements AuthRepository {
 
     return AuthResult(success: true);
   }
+
+  @override
+  Future<void> deleteAccount(String email) async {
+    await logOut();
+
+    users.removeWhere((elementId, element) => element.email == email);
+    await MockUsers.saveMockUsers(users);
+  }
 }

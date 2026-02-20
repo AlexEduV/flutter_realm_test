@@ -8,6 +8,7 @@ extension UserExtensions on User {
       entity.userId,
       entity.firstName,
       entity.lastName,
+      entity.email,
       entity.isLocationPermissionGranted,
       favoriteIds: entity.favoriteIds,
     );

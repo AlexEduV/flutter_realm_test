@@ -12,16 +12,25 @@ void main() {
         lastName: 'Doe',
         isLocationPermissionGranted: true,
         favoriteIds: [],
+        email: 'mock@gmail.com',
       );
 
       expect(entity.userId, 'u1');
       expect(entity.firstName, 'John');
       expect(entity.lastName, 'Doe');
       expect(entity.isLocationPermissionGranted, true);
+      expect(entity.email, 'mock@gmail.com');
     });
 
     test('fromSchema creates UserEntity from User', () {
-      final mockUser = User('u2', 'Jane', 'Smith', false, favoriteIds: RealmList([]));
+      final mockUser = User(
+        'u2',
+        'Jane',
+        'Smith',
+        'mock@gmail.com',
+        false,
+        favoriteIds: RealmList([]),
+      );
 
       final entity = UserEntity.fromSchema(mockUser);
 
@@ -30,6 +39,7 @@ void main() {
       expect(entity.lastName, 'Smith');
       expect(entity.isLocationPermissionGranted, false);
       expect(entity.favoriteIds, []);
+      expect(entity.email, 'mock@gmail.com');
     });
 
     test('copyWith returns a new UserEntity with updated fields', () {
@@ -39,6 +49,7 @@ void main() {
         lastName: 'Brown',
         isLocationPermissionGranted: false,
         favoriteIds: [],
+        email: 'mock@gmail.com',
       );
 
       final updated = original.copyWith(firstName: 'Alicia', isLocationPermissionGranted: true);
@@ -56,6 +67,7 @@ void main() {
         lastName: 'Marley',
         isLocationPermissionGranted: true,
         favoriteIds: [],
+        email: 'mock@gmail.com',
       );
 
       final copy = original.copyWith();

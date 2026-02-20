@@ -98,4 +98,13 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
             returnValueForMissingStub: _i4.Future<void>.value(),
           )
           as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> deleteAccount(String? email) =>
+      (super.noSuchMethod(
+            Invocation.method(#deleteAccount, [email]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 }

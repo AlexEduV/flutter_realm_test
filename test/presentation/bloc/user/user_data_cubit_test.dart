@@ -28,6 +28,7 @@ void main() {
       lastName: 'Doe',
       isLocationPermissionGranted: false,
       favoriteIds: [],
+      email: 'mock@gmail.com',
     );
   });
 

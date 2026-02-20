@@ -3,6 +3,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/domain/models/login_model.dart';
 import 'package:test_futter_project/domain/models/register_model.dart';
+import 'package:test_futter_project/domain/usecases/authentication/delete_account_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
@@ -250,6 +251,11 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   Future<void> logOut() async {
     await serviceLocator<LogoutUseCase>().call();
+    emit(state.copyWith(isLoginMode: true));
+  }
+
+  Future<void> deleteAccount(String email) async {
+    await serviceLocator<DeleteAccountUseCase>().call(email);
     emit(state.copyWith(isLoginMode: true));
   }
 }

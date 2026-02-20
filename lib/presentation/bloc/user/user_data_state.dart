@@ -10,5 +10,7 @@ abstract class UserDataState with _$UserDataState {
     @Default(false) bool isUserAuthenticated,
     @Default('') String firstName,
     @Default('') String lastName,
+    @Default('') String email,
+    @Default('') String password,
   }) = _UserDataState;
 }

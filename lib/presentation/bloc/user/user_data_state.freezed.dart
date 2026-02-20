@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserDataState {
 
- bool get isLocationPermissionGranted; List<String> get favoriteIds; bool get isUserAuthenticated; String get firstName; String get lastName;
+ bool get isLocationPermissionGranted; List<String> get favoriteIds; bool get isUserAuthenticated; String get firstName; String get lastName; String get email; String get password;
 /// Create a copy of UserDataState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $UserDataStateCopyWith<UserDataState> get copyWith => _$UserDataStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserDataState&&(identical(other.isLocationPermissionGranted, isLocationPermissionGranted) || other.isLocationPermissionGranted == isLocationPermissionGranted)&&const DeepCollectionEquality().equals(other.favoriteIds, favoriteIds)&&(identical(other.isUserAuthenticated, isUserAuthenticated) || other.isUserAuthenticated == isUserAuthenticated)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserDataState&&(identical(other.isLocationPermissionGranted, isLocationPermissionGranted) || other.isLocationPermissionGranted == isLocationPermissionGranted)&&const DeepCollectionEquality().equals(other.favoriteIds, favoriteIds)&&(identical(other.isUserAuthenticated, isUserAuthenticated) || other.isUserAuthenticated == isUserAuthenticated)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLocationPermissionGranted,const DeepCollectionEquality().hash(favoriteIds),isUserAuthenticated,firstName,lastName);
+int get hashCode => Object.hash(runtimeType,isLocationPermissionGranted,const DeepCollectionEquality().hash(favoriteIds),isUserAuthenticated,firstName,lastName,email,password);
 
 @override
 String toString() {
-  return 'UserDataState(isLocationPermissionGranted: $isLocationPermissionGranted, favoriteIds: $favoriteIds, isUserAuthenticated: $isUserAuthenticated, firstName: $firstName, lastName: $lastName)';
+  return 'UserDataState(isLocationPermissionGranted: $isLocationPermissionGranted, favoriteIds: $favoriteIds, isUserAuthenticated: $isUserAuthenticated, firstName: $firstName, lastName: $lastName, email: $email, password: $password)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $UserDataStateCopyWith<$Res>  {
   factory $UserDataStateCopyWith(UserDataState value, $Res Function(UserDataState) _then) = _$UserDataStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLocationPermissionGranted, List<String> favoriteIds, bool isUserAuthenticated, String firstName, String lastName
+ bool isLocationPermissionGranted, List<String> favoriteIds, bool isUserAuthenticated, String firstName, String lastName, String email, String password
 });
 
 
@@ -63,13 +63,15 @@ class _$UserDataStateCopyWithImpl<$Res>
 
 /// Create a copy of UserDataState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLocationPermissionGranted = null,Object? favoriteIds = null,Object? isUserAuthenticated = null,Object? firstName = null,Object? lastName = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLocationPermissionGranted = null,Object? favoriteIds = null,Object? isUserAuthenticated = null,Object? firstName = null,Object? lastName = null,Object? email = null,Object? password = null,}) {
   return _then(_self.copyWith(
 isLocationPermissionGranted: null == isLocationPermissionGranted ? _self.isLocationPermissionGranted : isLocationPermissionGranted // ignore: cast_nullable_to_non_nullable
 as bool,favoriteIds: null == favoriteIds ? _self.favoriteIds : favoriteIds // ignore: cast_nullable_to_non_nullable
 as List<String>,isUserAuthenticated: null == isUserAuthenticated ? _self.isUserAuthenticated : isUserAuthenticated // ignore: cast_nullable_to_non_nullable
 as bool,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -81,7 +83,7 @@ as String,
 
 
 class _UserDataState implements UserDataState {
-  const _UserDataState({this.isLocationPermissionGranted = false, final  List<String> favoriteIds = const [], this.isUserAuthenticated = false, this.firstName = '', this.lastName = ''}): _favoriteIds = favoriteIds;
+  const _UserDataState({this.isLocationPermissionGranted = false, final  List<String> favoriteIds = const [], this.isUserAuthenticated = false, this.firstName = '', this.lastName = '', this.email = '', this.password = ''}): _favoriteIds = favoriteIds;
   
 
 @override@JsonKey() final  bool isLocationPermissionGranted;
@@ -95,6 +97,8 @@ class _UserDataState implements UserDataState {
 @override@JsonKey() final  bool isUserAuthenticated;
 @override@JsonKey() final  String firstName;
 @override@JsonKey() final  String lastName;
+@override@JsonKey() final  String email;
+@override@JsonKey() final  String password;
 
 /// Create a copy of UserDataState
 /// with the given fields replaced by the non-null parameter values.
@@ -106,16 +110,16 @@ _$UserDataStateCopyWith<_UserDataState> get copyWith => __$UserDataStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDataState&&(identical(other.isLocationPermissionGranted, isLocationPermissionGranted) || other.isLocationPermissionGranted == isLocationPermissionGranted)&&const DeepCollectionEquality().equals(other._favoriteIds, _favoriteIds)&&(identical(other.isUserAuthenticated, isUserAuthenticated) || other.isUserAuthenticated == isUserAuthenticated)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserDataState&&(identical(other.isLocationPermissionGranted, isLocationPermissionGranted) || other.isLocationPermissionGranted == isLocationPermissionGranted)&&const DeepCollectionEquality().equals(other._favoriteIds, _favoriteIds)&&(identical(other.isUserAuthenticated, isUserAuthenticated) || other.isUserAuthenticated == isUserAuthenticated)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.email, email) || other.email == email)&&(identical(other.password, password) || other.password == password));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLocationPermissionGranted,const DeepCollectionEquality().hash(_favoriteIds),isUserAuthenticated,firstName,lastName);
+int get hashCode => Object.hash(runtimeType,isLocationPermissionGranted,const DeepCollectionEquality().hash(_favoriteIds),isUserAuthenticated,firstName,lastName,email,password);
 
 @override
 String toString() {
-  return 'UserDataState(isLocationPermissionGranted: $isLocationPermissionGranted, favoriteIds: $favoriteIds, isUserAuthenticated: $isUserAuthenticated, firstName: $firstName, lastName: $lastName)';
+  return 'UserDataState(isLocationPermissionGranted: $isLocationPermissionGranted, favoriteIds: $favoriteIds, isUserAuthenticated: $isUserAuthenticated, firstName: $firstName, lastName: $lastName, email: $email, password: $password)';
 }
 
 
@@ -126,7 +130,7 @@ abstract mixin class _$UserDataStateCopyWith<$Res> implements $UserDataStateCopy
   factory _$UserDataStateCopyWith(_UserDataState value, $Res Function(_UserDataState) _then) = __$UserDataStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLocationPermissionGranted, List<String> favoriteIds, bool isUserAuthenticated, String firstName, String lastName
+ bool isLocationPermissionGranted, List<String> favoriteIds, bool isUserAuthenticated, String firstName, String lastName, String email, String password
 });
 
 
@@ -143,13 +147,15 @@ class __$UserDataStateCopyWithImpl<$Res>
 
 /// Create a copy of UserDataState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLocationPermissionGranted = null,Object? favoriteIds = null,Object? isUserAuthenticated = null,Object? firstName = null,Object? lastName = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLocationPermissionGranted = null,Object? favoriteIds = null,Object? isUserAuthenticated = null,Object? firstName = null,Object? lastName = null,Object? email = null,Object? password = null,}) {
   return _then(_UserDataState(
 isLocationPermissionGranted: null == isLocationPermissionGranted ? _self.isLocationPermissionGranted : isLocationPermissionGranted // ignore: cast_nullable_to_non_nullable
 as bool,favoriteIds: null == favoriteIds ? _self._favoriteIds : favoriteIds // ignore: cast_nullable_to_non_nullable
 as List<String>,isUserAuthenticated: null == isUserAuthenticated ? _self.isUserAuthenticated : isUserAuthenticated // ignore: cast_nullable_to_non_nullable
 as bool,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,password: null == password ? _self.password : password // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

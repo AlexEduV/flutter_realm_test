@@ -27,6 +27,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         isUserAuthenticated: userSession != null,
         firstName: user.firstName,
         lastName: user.lastName,
+        email: user.email,
       ),
     );
   }

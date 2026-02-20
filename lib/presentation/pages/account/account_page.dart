@@ -77,7 +77,13 @@ class AccountPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                onTap: () {},
+                onTap: () async {
+                  await context.read<AuthenticationCubit>().deleteAccount(state.email);
+
+                  if (!context.mounted) return;
+
+                  context.read<UserDataCubit>().logOutUser();
+                },
               ),
             ],
           ),

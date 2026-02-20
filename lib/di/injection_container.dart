@@ -44,7 +44,7 @@ Future<void> initDependenciesContainer() async {
   //Register Realm
   final config = Configuration.local(
     [Car.schema, Person.schema, User.schema],
-    schemaVersion: 14,
+    schemaVersion: 15,
     migrationCallback: (migration, oldVersion) {
       //add object id
       if (oldVersion < 2) {
@@ -137,6 +137,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => DeleteAllCarsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => FetchMessagesUseCase(serviceLocator()));
 }
