@@ -46,6 +46,16 @@ class AccountPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                subtitle: Center(
+                  child: Text(
+                    state.email,
+                    style: const TextStyle(
+                      color: AppColors.accentColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15.0,
+                    ),
+                  ),
+                ),
               ),
 
               const ListTile(title: Text('Personal Details'), leading: Icon(Icons.person)),
