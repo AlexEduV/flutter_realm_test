@@ -152,4 +152,13 @@ class AppLocalisations {
   static final String inboxPageLoggedOutText = get('pages.inbox.loggedOutPlaceholderText');
   static final String inboxPageEmptyText = get('pages.inbox.emptyPlaceholderText');
   static final String inboxPageTitle = get('pages.inbox.title');
+
+  static final String accountPageTitle = 'My account';
+  static final String accountItemPersonalDetails = 'Personal details';
+  static final String accountItemLocation = 'Location';
+  static final String accountItemMyItems = 'My items';
+  static final String accountItemViewedItems = 'Recently viewed';
+  static final String accountItemClearData = 'Clear data';
+  static final String accountItemLogout = 'Log out';
+  static final String accountItemDeleteAccount = 'Delete Account';
 }

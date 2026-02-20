@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/app_text_styles.dart';
 
@@ -22,14 +24,14 @@ class AccountPage extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
-            title: const Text('My Account', style: AppTextStyles.zonaPro20),
+            title: Text(AppLocalisations.accountPageTitle, style: AppTextStyles.zonaPro20),
             centerTitle: true,
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 8),
+                padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
                 child: Center(
                   child: CircleAvatar(radius: 50, backgroundColor: AppColors.placeholderColor),
                 ),
@@ -58,14 +60,29 @@ class AccountPage extends StatelessWidget {
                 ),
               ),
 
-              const ListTile(title: Text('Personal Details'), leading: Icon(Icons.person)),
-              //todo: in the personal details -> Change password
-              const ListTile(title: Text('Location'), leading: Icon(Icons.location_pin)),
-              const ListTile(title: Text('My Items'), leading: Icon(Icons.checklist)),
-              const ListTile(title: Text('Viewed Items'), leading: Icon(Icons.remove_red_eye)),
-              const ListTile(title: Text('Clear Data'), leading: Icon(Icons.delete)),
               ListTile(
-                title: const Text('Log out'),
+                title: Text(AppLocalisations.accountItemPersonalDetails),
+                leading: const Icon(Icons.person),
+              ),
+              //todo: in the personal details -> Change password
+              ListTile(
+                title: Text(AppLocalisations.accountItemLocation),
+                leading: const Icon(Icons.location_pin),
+              ),
+              ListTile(
+                title: Text(AppLocalisations.accountItemMyItems),
+                leading: const Icon(Icons.checklist),
+              ),
+              ListTile(
+                title: Text(AppLocalisations.accountItemViewedItems),
+                leading: const Icon(Icons.remove_red_eye),
+              ),
+              ListTile(
+                title: Text(AppLocalisations.accountItemClearData),
+                leading: const Icon(Icons.delete),
+              ),
+              ListTile(
+                title: Text(AppLocalisations.accountItemLogout),
                 leading: const Icon(Icons.exit_to_app_sharp),
                 onTap: () async {
                   await context.read<AuthenticationCubit>().logOut();
@@ -77,10 +94,10 @@ class AccountPage extends StatelessWidget {
               ),
               const Spacer(),
               ListTile(
-                title: const Center(
+                title: Center(
                   child: Text(
-                    'Delete Account',
-                    style: TextStyle(
+                    AppLocalisations.accountItemDeleteAccount,
+                    style: const TextStyle(
                       color: AppColors.accentColor,
                       fontWeight: FontWeight.w700,
                       fontSize: 14.0,
