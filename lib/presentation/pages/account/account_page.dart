@@ -41,21 +41,13 @@ class AccountPage extends StatelessWidget {
                 title: Center(
                   child: Text(
                     '${state.firstName} ${state.lastName}',
-                    style: const TextStyle(
-                      color: AppColors.headerColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18.0,
-                    ),
+                    style: AppTextStyles.zonaPro18.copyWith(color: AppColors.headerColor),
                   ),
                 ),
                 subtitle: Center(
                   child: Text(
                     state.email,
-                    style: const TextStyle(
-                      color: AppColors.accentColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15.0,
-                    ),
+                    style: AppTextStyles.zonaPro16.copyWith(color: AppColors.accentColor),
                   ),
                 ),
               ),
@@ -97,11 +89,7 @@ class AccountPage extends StatelessWidget {
                 title: Center(
                   child: Text(
                     AppLocalisations.accountItemDeleteAccount,
-                    style: const TextStyle(
-                      color: AppColors.accentColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14.0,
-                    ),
+                    style: AppTextStyles.zonaPro14.copyWith(color: AppColors.accentColor),
                   ),
                 ),
                 onTap: () async {

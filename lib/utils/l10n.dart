@@ -153,6 +153,7 @@ class AppLocalisations {
   static final String inboxPageEmptyText = get('pages.inbox.emptyPlaceholderText');
   static final String inboxPageTitle = get('pages.inbox.title');
 
+  //todo: localise
   static final String accountPageTitle = 'My account';
   static final String accountItemPersonalDetails = 'Personal details';
   static final String accountItemLocation = 'Location';
