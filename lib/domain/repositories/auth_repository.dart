@@ -8,7 +8,8 @@ abstract class AuthRepository {
   Future<AuthResult> register({
     required String email,
     required String password,
-    required String fullName,
+    required String firstName,
+    required String lastName,
   });
 
   Future<void> logOut();

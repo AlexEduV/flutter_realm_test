@@ -71,7 +71,7 @@ class AccountPage extends StatelessWidget {
                   child: Text(
                     'Delete Account',
                     style: TextStyle(
-                      color: AppColors.headerColor,
+                      color: AppColors.accentColor,
                       fontWeight: FontWeight.w700,
                       fontSize: 14.0,
                     ),

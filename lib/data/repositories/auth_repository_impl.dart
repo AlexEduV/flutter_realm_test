@@ -42,7 +42,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<AuthResult> register({
     required String email,
     required String password,
-    required String fullName,
+    required String firstName,
+    required String lastName,
   }) async {
     await Future.delayed(const Duration(milliseconds: 1500));
 
@@ -56,7 +57,8 @@ class AuthRepositoryImpl implements AuthRepository {
         userId: '$newUserId',
         email: email,
         password: password,
-        fullName: fullName,
+        firstName: firstName,
+        lastName: lastName,
       ),
     });
     await MockUsers.saveMockUsers(users);

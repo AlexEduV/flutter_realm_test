@@ -17,13 +17,14 @@ void main() {
 
   test('calls register on the repository with correct params and returns result', () async {
     // Arrange
-    final registerModel = RegisterModel('test@mail.com', 'password123', 'Test User');
+    final registerModel = RegisterModel('test@mail.com', 'password123', 'Test', 'User');
     final expectedResult = AuthResult(success: true, message: 'Registered');
     when(
       mockAuthRepository.register(
         email: registerModel.email,
         password: registerModel.password,
-        fullName: registerModel.fullName,
+        firstName: registerModel.firstName,
+        lastName: registerModel.lastName,
       ),
     ).thenAnswer((_) async => expectedResult);
 
@@ -36,7 +37,8 @@ void main() {
       mockAuthRepository.register(
         email: registerModel.email,
         password: registerModel.password,
-        fullName: registerModel.fullName,
+        firstName: registerModel.firstName,
+        lastName: registerModel.lastName,
       ),
     ).called(1);
   });

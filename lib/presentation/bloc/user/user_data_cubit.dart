@@ -4,6 +4,7 @@ import 'package:test_futter_project/common/extensions/user_scheme_extension.dart
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
+import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/utils/auth_session_util.dart';
 
@@ -73,9 +74,18 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void authUser(String email) {
-    //todo: get user by email here and update cubit as well.
+    final user = MockUsers.getUserByEmail(email);
 
-    emit(state.copyWith(isUserAuthenticated: true));
+    if (user == null) return;
+
+    emit(
+      state.copyWith(
+        isUserAuthenticated: true,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      ),
+    );
   }
 
   void logOutUser() {

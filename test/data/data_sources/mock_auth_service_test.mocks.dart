@@ -69,13 +69,15 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
   _i4.Future<_i2.AuthResult> register({
     required String? email,
     required String? password,
-    required String? fullName,
+    required String? firstName,
+    required String? lastName,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#register, [], {
               #email: email,
               #password: password,
-              #fullName: fullName,
+              #firstName: firstName,
+              #lastName: lastName,
             }),
             returnValue: _i4.Future<_i2.AuthResult>.value(
               _FakeAuthResult_0(
@@ -83,7 +85,8 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
                 Invocation.method(#register, [], {
                   #email: email,
                   #password: password,
-                  #fullName: fullName,
+                  #firstName: firstName,
+                  #lastName: lastName,
                 }),
               ),
             ),

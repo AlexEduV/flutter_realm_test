@@ -14,7 +14,8 @@ class RegisterUseCase extends UseCaseWithParams<RegisterModel, Future<AuthResult
     return authRepository.register(
       email: model.email,
       password: model.password,
-      fullName: model.fullName,
+      firstName: model.firstName,
+      lastName: model.lastName,
     );
   }
 }

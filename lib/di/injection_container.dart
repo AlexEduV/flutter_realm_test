@@ -12,6 +12,7 @@ import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 import 'package:test_futter_project/domain/data_sources/messages_service.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_futter_project/domain/usecases/authentication/delete_account_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
@@ -137,7 +138,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => DeleteAllCarsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => DeleteAccountUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => FetchMessagesUseCase(serviceLocator()));
 }

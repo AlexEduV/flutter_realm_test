@@ -219,8 +219,15 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
 
     emit(state.copyWith(isLoading: true));
+
+    List<String> parts = state.fullNameValue.trim().split(' ');
+
+    // Get first and last name
+    String firstName = parts.isNotEmpty ? parts.first : '';
+    String lastName = parts.length > 1 ? parts.last : '';
+
     final result = await serviceLocator<RegisterUseCase>().call(
-      RegisterModel(state.emailValue, state.passwordValue, state.fullNameValue),
+      RegisterModel(state.emailValue, state.passwordValue, firstName, lastName),
     );
 
     if (!result.success) {

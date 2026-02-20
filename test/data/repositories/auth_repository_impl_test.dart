@@ -14,13 +14,15 @@ void main() {
         userId: '1',
         email: 'mock@example.com',
         password: 'Password1!',
-        fullName: 'Alex Smith',
+        firstName: 'Alex',
+        lastName: 'Smith',
       ),
       '2': const UserEntityShort(
         userId: '2',
         email: 'admin@example.com',
         password: 'AdminPass123!',
-        fullName: 'admin',
+        firstName: 'admin',
+        lastName: '',
       ),
     };
 
@@ -61,7 +63,8 @@ void main() {
       final result = await repo.register(
         email: 'new@example.com',
         password: 'NewPass123!',
-        fullName: 'New User',
+        firstName: 'User',
+        lastName: 'Test',
       );
       expect(result.success, isTrue);
       expect(result.message, isNull);
@@ -71,7 +74,8 @@ void main() {
       final result = await repo.register(
         email: 'mock@example.com',
         password: 'Password1!',
-        fullName: 'user',
+        firstName: 'Test',
+        lastName: 'User',
       );
       expect(result.success, isFalse);
       expect(result.message, AppLocalisations.authErrorUserAlreadyExists);
@@ -81,7 +85,8 @@ void main() {
       await repo.register(
         email: 'unique@example.com',
         password: 'UniquePass!',
-        fullName: 'Unique User',
+        firstName: 'Unique',
+        lastName: 'User',
       );
       // Now login should succeed
       final result = await repo.login(email: 'unique@example.com', password: 'UniquePass!');
