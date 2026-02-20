@@ -153,13 +153,12 @@ class AppLocalisations {
   static final String inboxPageEmptyText = get('pages.inbox.emptyPlaceholderText');
   static final String inboxPageTitle = get('pages.inbox.title');
 
-  //todo: localise
-  static final String accountPageTitle = 'My account';
-  static final String accountItemPersonalDetails = 'Personal details';
-  static final String accountItemLocation = 'Location';
-  static final String accountItemMyItems = 'My items';
-  static final String accountItemViewedItems = 'Recently viewed';
-  static final String accountItemClearData = 'Clear data';
-  static final String accountItemLogout = 'Log out';
-  static final String accountItemDeleteAccount = 'Delete Account';
+  static final String accountPageTitle = get('pages.account.title');
+  static final String accountItemPersonalDetails = get('pages.account.items.personalDetails');
+  static final String accountItemLocation = get('pages.account.items.location');
+  static final String accountItemMyItems = get('pages.account.items.myItems');
+  static final String accountItemViewedItems = get('pages.account.items.recentlyViewed');
+  static final String accountItemClearData = get('pages.account.items.clearData');
+  static final String accountItemLogout = get('pages.account.items.logOut');
+  static final String accountItemDeleteAccount = get('pages.account.items.deleteAccount');
 }

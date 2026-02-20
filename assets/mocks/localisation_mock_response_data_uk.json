@@ -48,6 +48,18 @@
         "personTypeOwner": "Owner",
         "contactButtonTitle": "Send Message"
       }
+    },
+    "account": {
+      "title": "My account",
+      "items": {
+        "personalDetails": "Personal details",
+        "location": "Location",
+        "myItems": "My items",
+        "recentlyViewed": "Recently viewed",
+        "clearData": "Clear data",
+        "logOut": "Log out",
+        "deleteAccount": "Delete account"
+      }
     }
   },
   "actions": {

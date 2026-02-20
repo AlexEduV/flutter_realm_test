@@ -48,6 +48,18 @@
         "personTypeOwner": "Proprietario",
         "contactButtonTitle": "Invia messaggio"
       }
+    },
+    "account": {
+      "title": "Il mio account",
+      "items": {
+        "personalDetails": "Dati personali",
+        "location": "Posizione",
+        "myItems": "I miei articoli",
+        "recentlyViewed": "Visualizzati di recente",
+        "clearData": "Cancella dati",
+        "logOut": "Disconnetti",
+        "deleteAccount": "Elimina account"
+      }
     }
   },
   "actions": {
