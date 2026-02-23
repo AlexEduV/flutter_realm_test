@@ -440,6 +440,15 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
   );
 
   @override
+  void updateColorListFromEntities(
+    List<_i13.CarEntity>? cars,
+    _i16.CarType? type,
+  ) => super.noSuchMethod(
+    Invocation.method(#updateColorListFromEntities, [cars, type]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   void updateModelSelection(List<String>? newList) => super.noSuchMethod(
     Invocation.method(#updateModelSelection, [newList]),
     returnValueForMissingStub: null,
@@ -454,6 +463,18 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
   @override
   void removeCarModelFromSelection(String? model) => super.noSuchMethod(
     Invocation.method(#removeCarModelFromSelection, [model]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void addCarColorToSelection(String? color) => super.noSuchMethod(
+    Invocation.method(#addCarColorToSelection, [color]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void removeCarColorFromSelection(String? color) => super.noSuchMethod(
+    Invocation.method(#removeCarColorFromSelection, [color]),
     returnValueForMissingStub: null,
   );
 
