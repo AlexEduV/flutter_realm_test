@@ -28,74 +28,78 @@ class AccountPage extends StatelessWidget {
             title: Text(AppLocalisations.accountPageTitle, style: AppTextStyles.zonaPro20),
             centerTitle: true,
           ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
-                child: Center(
-                  child: CircleAvatar(radius: 50, backgroundColor: AppColors.placeholderColor),
-                ),
-              ),
-
-              ListTile(
-                title: Center(
-                  child: Text(
-                    '${state.firstName} ${state.lastName}',
-                    style: AppTextStyles.zonaPro18.copyWith(color: AppColors.headerColor),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
+                  child: Center(
+                    child: CircleAvatar(radius: 50, backgroundColor: AppColors.placeholderColor),
                   ),
                 ),
-                subtitle: Center(
-                  child: Text(
-                    state.email,
-                    style: AppTextStyles.zonaPro16.copyWith(color: AppColors.accentColor),
+
+                ListTile(
+                  title: Center(
+                    child: Text(
+                      '${state.firstName} ${state.lastName}',
+                      style: AppTextStyles.zonaPro18.copyWith(color: AppColors.headerColor),
+                    ),
+                  ),
+                  subtitle: Center(
+                    child: Text(
+                      state.email,
+                      style: AppTextStyles.zonaPro16.copyWith(color: AppColors.accentColor),
+                    ),
                   ),
                 ),
-              ),
 
-              AccountItem(
-                icon: Icons.person_outlined,
-                text: AppLocalisations.accountItemPersonalDetails,
-              ),
-              //todo: in the personal details -> Change password
-              AccountItem(
-                icon: Icons.location_on_outlined,
-                text: AppLocalisations.accountItemLocation,
-              ),
-              AccountItem(
-                icon: Icons.checklist_outlined,
-                text: AppLocalisations.accountItemMyItems,
-              ),
-              AccountItem(
-                icon: Icons.remove_red_eye_outlined,
-                text: AppLocalisations.accountItemViewedItems,
-              ),
-              AccountItem(icon: Icons.delete_outline, text: AppLocalisations.accountItemClearData),
-              AccountItem(
-                icon: Icons.logout_outlined,
-                text: AppLocalisations.accountItemLogout,
-                onTap: () async {
-                  await context.read<AuthenticationCubit>().logOut();
+                AccountItem(
+                  icon: Icons.person_outlined,
+                  text: AppLocalisations.accountItemPersonalDetails,
+                ),
+                //todo: in the personal details -> Change password
+                AccountItem(
+                  icon: Icons.location_on_outlined,
+                  text: AppLocalisations.accountItemLocation,
+                ),
+                AccountItem(
+                  icon: Icons.checklist_outlined,
+                  text: AppLocalisations.accountItemMyItems,
+                ),
+                AccountItem(
+                  icon: Icons.remove_red_eye_outlined,
+                  text: AppLocalisations.accountItemViewedItems,
+                ),
+                AccountItem(
+                  icon: Icons.delete_outline,
+                  text: AppLocalisations.accountItemClearData,
+                ),
+                AccountItem(
+                  icon: Icons.logout_outlined,
+                  text: AppLocalisations.accountItemLogout,
+                  onTap: () async {
+                    await context.read<AuthenticationCubit>().logOut();
 
-                  if (!context.mounted) return;
+                    if (!context.mounted) return;
 
-                  context.read<UserDataCubit>().logOutUser();
-                },
-              ),
-              const Spacer(),
-              AccountItem(
-                text: AppLocalisations.accountItemDeleteAccount,
-                textStyle: AppTextStyles.zonaPro14.copyWith(color: AppColors.accentColor),
-                onTap: () async {
-                  await context.read<AuthenticationCubit>().deleteAccount(state.email);
+                    context.read<UserDataCubit>().logOutUser();
+                  },
+                ),
+                AccountItem(
+                  text: AppLocalisations.accountItemDeleteAccount,
+                  textStyle: AppTextStyles.zonaPro14.copyWith(color: AppColors.accentColor),
+                  onTap: () async {
+                    await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
-                  if (!context.mounted) return;
+                    if (!context.mounted) return;
 
-                  context.read<UserDataCubit>().logOutUser();
-                },
-                isCentered: true,
-              ),
-            ],
+                    context.read<UserDataCubit>().logOutUser();
+                  },
+                  isCentered: true,
+                ),
+              ],
+            ),
           ),
         );
       },
