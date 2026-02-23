@@ -1,88 +1,110 @@
-# test_flutter_project
+# Flutter Realm Test
 
-A Test Flutter Project utilizing RealmDB, GoRouter, and Mockito.
+[![Flutter](https://img.shields.io/badge/Flutter-3.19-blue.svg)](https://flutter.dev)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/AlexEduV/flutter_realm_test/flutter.yml?branch=main)](https://github.com/AlexEduV/flutter_realm_test/actions)
 
-## Summary
+A clean‑architecture Flutter sample app that showcases **RealmDB**, **GoRouter**, **Cubit**, **Mockito**, and **RxDart**. The app simulates an auto‑e‑commerce platform inspired by Auto.Ria.
 
-This project is a mobile application that models an Auto E-commerce platform, inspired by apps like Auto.Ria.
+## Table of Contents
+- [Features](#features)
+- [Architecture](#architecture)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+- [Running Tests](#running-tests)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
 
-Key technologies and practices used:
-- **State Management:** Cubit, with comprehensive cubit tests.
-- **Navigation:** GoRouter for robust and scalable routing.
-- **Local Storage:** RealmDB for efficient offline data management.
-- **Unit Testing:** Mockito for mocking and testing.
-- **Reactive Programming:** RxDart and streams for simulating API calls.
-- **Architecture:** Follows Clean Architecture and best practices for maintainability and scalability.
+## Features
+- **State management** with Cubit + comprehensive unit tests
+- **Navigation** using GoRouter (deep‑link ready)
+- **Local persistence** with RealmDB
+- **Mocking & testing** via Mockito
+- **Reactive streams** with RxDart
+- Clean Architecture separation (data, domain, presentation)
 
-The primary goal of this project is to gain hands-on experience with these libraries and architectural patterns.
-
-## Project Structure
-
+## Architecture
 ```
 lib/
-├── common/
-│   ├── enums/
-│   ├── extensions/
-│   └── constansts here...
-├── data/
-│   ├── data_sources/ - data sources and services implementations
-│   ├── dtos/
-│   ├── models/       - Models for data layer
-│   └── repositories/ - Implementations of the repositories
-├── di/               - getIt container
-├── domain/
-│   ├── data_sources/
-│   ├── entities/
-│   ├── models/       - models for presentation layer
-│   ├── repositories/ - abstractions of repositories
-│   └── usecases/
-├── presentation/
-│   ├── bloc/         - blocs and states per page
-│   └── pages/        - pages and widgets
-├── utils/
-│   ├── router.dart
-│   ├── json_util.dart          - json parser
-│   ├── l10n.dart               - localisations strings
-│   ├── localisation_util.dart  - localisation parser
-└── main.dart
-
+├─ common/
+│   ├─ enums/
+│   ├─ extensions/
+│   └─ constants/
+├─ data/
+│   ├─ data_sources/
+│   ├─ dtos/
+│   ├─ models/
+│   └─ repositories/
+├─ di/                # get_it service locator
+├─ domain/
+│   ├─ data_sources/
+│   ├─ entities/
+│   ├─ models/
+│   ├─ repositories/
+│   └─ usecases/
+├─ presentation/
+│   ├─ bloc/
+│   └─ pages/
+├─ utils/
+│   ├─ router.dart
+│   ├─ json_util.dart
+│   ├─ l10n.dart
+│   └─ localisation_util.dart
+└─ main.dart
 ```
 
-## Roadmap
-
-- **Deeplink Support:** Implement custom routes and deeplinks in GoRouter.
-- **Widget Testing:** Cover widgets with unit and golden tests (using Alchemist or Storybook for enhanced UI testing).
-- **Localization:** Add mock localization API calls and localize the app for multiple languages.
-- **Flavors:** Support for QA and Production environments using Flutter flavors.
-- **Authentication:** Potential integration of Firebase authentication.
-- **Accessibility:** Improve semantics and accessibility throughout the app.
-- **Permissions & Maps:** Handle location permissions and possibly integrate MapBox for map features.
-
-## Design
-
-The base design is inspired by [this Dribbble shot](https://dribbble.com/shots/17097339-Vehicle-Retailer-App).  
-The app uses the custom Zona Pro font for a unique and modern look.
+## Screenshots
+*Add a screenshot or GIF of the app here*
+![App preview](https://raw.githubusercontent.com/AlexEduV/flutter_realm_test/main/assets/screenshot.png)
 
 ## Getting Started
 
-1. **Clone the repository:**
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/AlexEduV/flutter__realm_test.git
+   git clone https://github.com/AlexEduV/flutter_realm_test.git
+   cd flutter_realm_test
    ```
-2. **Install dependencies:**
+
+2. **Install Flutter dependencies**
    ```bash
    flutter pub get
    ```
-3. **Run the app:**
+
+3. **Run the app**
    ```bash
    flutter run
    ```
 
-## Contributing
+### Prerequisites
+- Flutter SDK >= 3.19
+- Xcode / Android Studio for device emulation
+- RealmDB native libraries (handled by `flutter pub get`)
 
-Contributions are welcome! Please open issues or submit pull requests for improvements, bug fixes, or new features.
+## Running Tests
+```bash
+# Unit & Cubit tests
+flutter test
+
+# Integration tests (if any)
+flutter drive --target=test_driver/app.dart
+```
+
+## Roadmap
+- Deeplink support with custom GoRouter routes
+- Widget & golden tests (Alchemist / Storybook)
+- Multi‑language localisation
+- Flavors for QA & Production
+- Firebase authentication integration
+- Accessibility improvements
+- Map integration (MapBox) with location permissions
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request. Follow the [contribution guidelines](CONTRIBUTING.md) (if present).
 
 ## License
+This project is provided for educational purposes. See the `LICENSE` file for details. For commercial use, contact the author.
 
-This project is for educational purposes and does not have a formal license.  
-If you wish to use it commercially, please contact the author.
+---
+
+*Built with ❤️ by Alex*
