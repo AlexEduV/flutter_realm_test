@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
@@ -51,35 +52,41 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
-      body: BlocListener<HomeBottomBarCubit, HomeBottomBarState>(
-        listenWhen: (previous, current) {
-          _bottomBarIndexDiff = (current.currentSelectedTabIndex - previous.currentSelectedTabIndex)
-              .abs();
+    return WillPopScope(
+      onWillPop: () async {
+        await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.scaffoldColor,
+        body: BlocListener<HomeBottomBarCubit, HomeBottomBarState>(
+          listenWhen: (previous, current) {
+            _bottomBarIndexDiff =
+                (current.currentSelectedTabIndex - previous.currentSelectedTabIndex).abs();
 
-          return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
-        },
-        listener: (context, state) {
-          _pageController.animateToPage(
-            state.currentSelectedTabIndex,
-            duration: Duration(milliseconds: 300 * _bottomBarIndexDiff),
-            curve: Curves.easeInOut,
-          );
-        },
-        child: PageView(
-          controller: _pageController,
-          physics: const NeverScrollableScrollPhysics(),
-          children: [
-            ExplorePage(listKey: exploreListKey),
-            const FavoritesPage(),
-            const InboxPage(),
-            const AccountPage(),
-          ],
+            return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
+          },
+          listener: (context, state) {
+            _pageController.animateToPage(
+              state.currentSelectedTabIndex,
+              duration: Duration(milliseconds: 300 * _bottomBarIndexDiff),
+              curve: Curves.easeInOut,
+            );
+          },
+          child: PageView(
+            controller: _pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              ExplorePage(listKey: exploreListKey),
+              const FavoritesPage(),
+              const InboxPage(),
+              const AccountPage(),
+            ],
+          ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: HomeBottomBar(onAddPressed: _addCarToBase),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: HomeBottomBar(onAddPressed: _addCarToBase),
     );
   }
 
