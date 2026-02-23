@@ -108,7 +108,8 @@
         "manual": "Manual",
         "automatic": "Automatic",
         "hybrid": "Hybrid"
-      }
+      },
+      "filterValidationMessage": "Incorrect value"
     }
   },
   "forms": {

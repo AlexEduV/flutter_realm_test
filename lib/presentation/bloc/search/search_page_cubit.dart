@@ -9,6 +9,7 @@ import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
   SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase) : super(const SearchPageState());
@@ -21,19 +22,18 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void init() {
     emit(
       state.copyWith(
-        //todo: this is not localised;
         minYearFieldParamsModel: FieldParamsModel.withLabel(
           'Min:',
-        ).copyWith(validationMessage: 'Incorrect value'),
+        ).copyWith(validationMessage: AppLocalisations.filterValidationMessage),
         maxYearFieldParamsModel: FieldParamsModel.withLabel(
           'Max:',
-        ).copyWith(validationMessage: 'Incorrect value'),
+        ).copyWith(validationMessage: AppLocalisations.filterValidationMessage),
         minPriceFieldParamsModel: FieldParamsModel.withLabel(
           'Min:',
-        ).copyWith(validationMessage: 'Incorrect value'),
+        ).copyWith(validationMessage: AppLocalisations.filterValidationMessage),
         maxPriceFieldParamsModel: FieldParamsModel.withLabel(
           'Max:',
-        ).copyWith(validationMessage: 'Incorrect value'),
+        ).copyWith(validationMessage: AppLocalisations.filterValidationMessage),
       ),
     );
 

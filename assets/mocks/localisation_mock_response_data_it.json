@@ -108,7 +108,8 @@
         "manual": "Manuale",
         "automatic": "Automatica",
         "hybrid": "Ibrida"
-      }
+      },
+      "filterValidationMessage": "Valore errato"
     }
   },
   "forms": {

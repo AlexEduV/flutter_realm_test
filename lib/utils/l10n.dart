@@ -52,6 +52,8 @@ class AppLocalisations {
     'filters.parameters.transmissionTypes.title',
   );
 
+  static final String filterValidationMessage = get('filters.parameters.filterValidationMessage');
+
   static final String comingSoonPlaceholderPageTitle = get('pages.comingSoon.title');
 
   static final String comingSoonPlaceholderPageSubTitle = get('pages.comingSoon.subtitle');
