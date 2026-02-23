@@ -54,10 +54,6 @@ lib/
 └─ main.dart
 ```
 
-## Screenshots
-*Add a screenshot or GIF of the app here*
-![App preview](https://raw.githubusercontent.com/AlexEduV/flutter_realm_test/main/assets/screenshot.png)
-
 ## Getting Started
 
 1. **Clone the repository**
