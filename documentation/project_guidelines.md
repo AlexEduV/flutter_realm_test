@@ -18,3 +18,8 @@
 
 # when generating mocks using @GenerateMocks, if the classes are the same, it will create duplicates,
 # just in different files. I still do not know how to handle that.
+
+## Common Issues
+# when writing tests for Shared Preferences, the error might popup: `MissingPluginException(No implementation found for method getAll on channel plugins.flutter.io/shared_preferences)`
+# it just requires setting up mock data:
+# `SharedPreferences.setMockInitialValues({}); // Mock empty storage`
