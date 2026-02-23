@@ -78,11 +78,6 @@ This document consolidates best‑practice guidelines for developing, testing, a
 
 ---
 
-## 9. Code of Conduct
-- We adopt the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). All contributors must adhere to it.
-
----
-
 ## 10. Common Issues
 # when writing tests for Shared Preferences, the error might popup: `MissingPluginException(No implementation found for method getAll on channel plugins.flutter.io/shared_preferences)`
 # it just requires setting up mock data:
