@@ -53,6 +53,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+      //todo: needs more research
+      //disable full app restart on back press, just move it to background
       onWillPop: () async {
         await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
         return false;
