@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
+import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
@@ -20,6 +21,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void init() {
     emit(
       state.copyWith(
+        //todo: this is not localised;
         minYearFieldParamsModel: FieldParamsModel.withLabel(
           'Min:',
         ).copyWith(validationMessage: 'Incorrect value'),
@@ -44,6 +46,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     final results = applyAllFilters(_getAllCarsUseCase.call());
 
     updateModelListFromEntities(results, state.currentSelectedType);
+    updateColorListFromEntities(results, state.currentSelectedType);
 
     emit(state.copyWith(allResults: results, isLoading: false));
 
@@ -90,6 +93,12 @@ class SearchPageCubit extends Cubit<SearchPageState> {
           !state.selectedModels.contains('${car.manufacturer} ${car.model}')) {
         return false;
       }
+
+      //Color filter
+      if (state.selectedColors.isNotEmpty && !state.selectedColors.contains(car.color)) {
+        return false;
+      }
+
       // Body type filter
       if (state.selectedBodyTypes.isNotEmpty && !state.selectedBodyTypes.contains(car.bodyType)) {
         return false;
@@ -112,6 +121,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void updateTypeSelection(CarType newType) {
     //todo: maybe better to save Map<> for each type, so the user can easily switch between tabs
     updateModelListFromEntities(state.results, newType);
+    updateColorListFromEntities(state.results, state.currentSelectedType);
 
     emit(state.copyWith(currentSelectedType: newType, selectedModels: [], selectedBodyTypes: []));
   }
@@ -123,6 +133,17 @@ class SearchPageCubit extends Cubit<SearchPageState> {
         .toSet()
         .toList();
     emit(state.copyWith(allModels: allModels));
+  }
+
+  void updateColorListFromEntities(List<CarEntity> cars, CarType type) {
+    final allColors = cars
+        .where((element) => element.type == state.currentSelectedType.name)
+        .map((element) => element.color?.capitalizeFirst())
+        .whereType<String>()
+        .toSet()
+        .toList();
+
+    emit(state.copyWith(allColors: allColors));
   }
 
   void updateModelSelection(List<String> newList) {
@@ -141,6 +162,20 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void removeCarModelFromSelection(String model) {
     final newSelection = List<String>.from(state.selectedModels)..remove(model);
     emit(state.copyWith(selectedModels: newSelection));
+
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void addCarColorToSelection(String color) {
+    final newSelection = List<String>.from(state.selectedColors)..add(color);
+    emit(state.copyWith(selectedColors: newSelection));
+
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void removeCarColorFromSelection(String color) {
+    final newSelection = List<String>.from(state.selectedColors)..remove(color);
+    emit(state.copyWith(selectedColors: newSelection));
 
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
@@ -263,6 +298,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       state.selectedBodyTypes,
       state.selectedTransmissionTypes,
       state.selectedFuelTypes,
+      state.selectedColors,
     ].fold(0, (sum, list) => sum + list.length);
 
     final fields = [

@@ -40,6 +40,8 @@ class AppLocalisations {
 
   static final String parameterYearName = get('filters.parameters.year');
 
+  static final String parameterColorName = get('filters.parameters.color');
+
   static final String parameterBodyTypeName = get('filters.parameters.bodyTypes.title');
 
   static final String parameterPriceRangeName = get('filters.parameters.priceRange');

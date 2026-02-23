@@ -18,6 +18,8 @@ abstract class SearchPageState with _$SearchPageState {
     @Default([]) List<String> selectedModels,
     @Default(null) String? selectedMinYear,
     @Default(null) String? selectedMaxYear,
+    @Default([]) List<String> allColors,
+    @Default([]) List<String> selectedColors,
     @Default(null) String? minYearError,
     @Default(null) String? maxYearError,
     @Default([]) List<String> selectedBodyTypes,

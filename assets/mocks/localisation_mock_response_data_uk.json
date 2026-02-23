@@ -83,6 +83,7 @@
     "parameters": {
       "title": "Filters",
       "year": "Year",
+      "color": "Color",
       "bodyTypes": {
         "title": "Body Type",
         "sedan": "Sedan",

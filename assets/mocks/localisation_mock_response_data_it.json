@@ -83,6 +83,7 @@
     "parameters": {
       "title": "Filtri",
       "year": "Anno",
+      "color": "Colore",
       "bodyTypes": {
         "title": "Tipo di carrozzeria",
         "sedan": "Berlina",

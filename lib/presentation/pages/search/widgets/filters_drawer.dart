@@ -8,6 +8,7 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
+import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/debounced_text_form_field.dart';
@@ -61,6 +62,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
         final selectedBodyTypeSet = Set<String>.from(state.selectedBodyTypes);
         final selectedFuelTypeSet = Set<String>.from(state.selectedFuelTypes);
         final selectedTransmissionTypeSet = Set<String>.from(state.selectedTransmissionTypes);
+        final selectedColorSet = Set<String>.from(state.selectedColors);
 
         return Drawer(
           backgroundColor: AppColors.scaffoldColor,
@@ -72,6 +74,22 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                   style: AppTextStyles.zonaPro20,
                 ),
               ),
+
+              ListTile(
+                title: Text(AppLocalisations.parameterColorName, style: AppTextStyles.zonaPro18),
+              ),
+
+              ...state.allColors.map((element) {
+                final capitalisedElement = element.capitalizeFirst();
+
+                return _buildCheckboxTile(
+                  semanticsLabel: '',
+                  label: element.capitalizeFirst(),
+                  isChecked: selectedColorSet.contains(capitalisedElement),
+                  onChecked: () => cubit.addCarColorToSelection(capitalisedElement),
+                  onUnChecked: () => cubit.removeCarColorFromSelection(capitalisedElement),
+                );
+              }),
 
               ListTile(
                 title: Text(AppLocalisations.parameterYearName, style: AppTextStyles.zonaPro18),
