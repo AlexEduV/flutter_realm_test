@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity_short.dart';
@@ -23,6 +24,8 @@ void main() {
   late UserEntity testUser;
 
   setUp(() {
+    SharedPreferences.setMockInitialValues({});
+
     mockLocalStorage = MockBaseLocalStorage();
     mockRequestLocationPermissionUseCase = MockRequestLocationPermissionUseCase();
     cubit = UserDataCubit(mockLocalStorage, mockRequestLocationPermissionUseCase);
@@ -37,13 +40,13 @@ void main() {
   });
 
   group('UserDataCubit', () {
-    // test('init sets user from local storage', () {
-    //   when(mockLocalStorage.initUser()).thenReturn(testUser);
-    //
-    //   cubit.init();
-    //
-    //   expect(cubit.user, testUser);
-    // });
+    test('init sets user from local storage', () async {
+      when(mockLocalStorage.initUser()).thenReturn(testUser);
+
+      await cubit.init();
+
+      expect(cubit.user, testUser);
+    });
 
     blocTest<UserDataCubit, UserDataState>(
       'requestLocationPermission does nothing if permission not granted',

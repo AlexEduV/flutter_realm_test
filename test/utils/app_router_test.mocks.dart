@@ -294,10 +294,13 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
           as bool);
 
   @override
-  void init() => super.noSuchMethod(
-    Invocation.method(#init, []),
-    returnValueForMissingStub: null,
-  );
+  _i10.Future<void> init() =>
+      (super.noSuchMethod(
+            Invocation.method(#init, []),
+            returnValue: _i10.Future<void>.value(),
+            returnValueForMissingStub: _i10.Future<void>.value(),
+          )
+          as _i10.Future<void>);
 
   @override
   _i10.Future<void> requestLocationPermission() =>

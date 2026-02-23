@@ -17,7 +17,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   late UserEntity user;
 
-  void init() async {
+  Future<void> init() async {
     user = _localStorage.initUser();
     final userSession = await AuthSessionUtil.getUserSession();
 
