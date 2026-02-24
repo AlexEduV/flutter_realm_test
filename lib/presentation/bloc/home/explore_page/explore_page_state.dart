@@ -8,5 +8,6 @@ abstract class ExplorePageState with _$ExplorePageState {
   const factory ExplorePageState({
     @Default([]) List<CarEntity> cars,
     @Default(false) bool isLoading,
+    @Default(null) CarEntity? lastSeenCar,
   }) = _ExplorePageState;
 }

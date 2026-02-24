@@ -37,6 +37,10 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(cars: cars));
   }
 
+  void setLastSeenCar(CarEntity? car) {
+    emit(state.copyWith(lastSeenCar: car));
+  }
+
   @override
   Future<void> close() async {
     await _carSubscription?.cancel();
