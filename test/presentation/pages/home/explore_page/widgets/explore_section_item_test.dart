@@ -7,7 +7,11 @@ import 'package:test_futter_project/presentation/pages/home/explore_page/widgets
 void main() {
   group('ExploreSectionItem', () {
     testWidgets('has default height and width', (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: ExploreSectionItem())));
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: ExploreSectionItem(articleName: '')),
+        ),
+      );
 
       final containerFinder = find.byType(Container);
       final size = tester.getSize(containerFinder);
@@ -17,7 +21,9 @@ void main() {
 
     testWidgets('uses custom height when provided', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(home: Scaffold(body: ExploreSectionItem(height: 200.0))),
+        const MaterialApp(
+          home: Scaffold(body: ExploreSectionItem(height: 200.0, articleName: '')),
+        ),
       );
 
       final containerFinder = find.byType(Container);
@@ -27,7 +33,11 @@ void main() {
     });
 
     testWidgets('has correct color and border radius', (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: ExploreSectionItem())));
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: ExploreSectionItem(articleName: '')),
+        ),
+      );
 
       final containerWidget = tester.widget<Container>(find.byType(Container));
       final decoration = containerWidget.decoration as BoxDecoration;

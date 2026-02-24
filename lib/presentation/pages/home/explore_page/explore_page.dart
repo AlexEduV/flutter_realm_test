@@ -72,15 +72,15 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                 final itemHeight = (currentHeight - 20).clamp(100.0, 180.0); // Example logic
 
                 return Padding(
-                  padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 40, top: 120),
+                  padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 30, top: 120),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       spacing: AppDimensions.normalXL,
                       children: [
-                        ExploreSectionItem(height: itemHeight),
-                        ExploreSectionItem(height: itemHeight),
-                        ExploreSectionItem(height: itemHeight),
+                        ExploreSectionItem(height: itemHeight, articleName: 'Some Article here'),
+                        ExploreSectionItem(height: itemHeight, articleName: 'Another one'),
+                        ExploreSectionItem(height: itemHeight, articleName: 'And another one'),
                         const SizedBox.shrink(),
                       ],
                     ),
