@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_colors.dart';
 
-import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
-import '../../../../../utils/l10n.dart';
 
 class AnimatedAddButton extends StatefulWidget {
   final VoidCallback onPressed;
@@ -38,15 +37,23 @@ class _AnimatedAddButtonState extends State<AnimatedAddButton> {
         scale: _scale,
         duration: const Duration(milliseconds: 120),
         curve: Curves.easeOut,
-        child: IconButton(
-          style: ButtonStyle(
-            backgroundColor: const WidgetStatePropertyAll(AppColors.headerColor),
-            foregroundColor: const WidgetStatePropertyAll(Colors.white),
-            overlayColor: WidgetStatePropertyAll(Colors.white.withAlpha(60)),
+        child: Material(
+          color: AppColors.headerColor,
+          shape: const CircleBorder(),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(100),
+            splashColor: AppColors.accentColor.withAlpha(60), // Custom splash
+            highlightColor: Colors.transparent,
+            onTap: widget.onPressed,
+            child: const Padding(
+              padding: EdgeInsets.all(AppDimensions.minorL),
+              child: Icon(
+                Icons.add,
+                size: AppDimensions.bottomAppBarIconEnlargedSize,
+                color: Colors.white,
+              ),
+            ),
           ),
-          icon: const Icon(Icons.add, size: AppDimensions.bottomAppBarIconEnlargedSize),
-          onPressed: widget.onPressed,
-          tooltip: AppLocalisations.addCarButtonTooltip,
         ),
       ),
     );
