@@ -71,16 +71,10 @@ void main() {
         ),
       );
 
-      final iconButton = tester.widget<IconButton>(find.widgetWithIcon(IconButton, Icons.add));
-      final style = iconButton.style;
-      final backgroundColor = style?.backgroundColor?.resolve({});
-      final foregroundColor = style?.foregroundColor?.resolve({});
-      final overlayColor = style?.overlayColor?.resolve({});
+      final iconButton = tester.widget<InkWell>(find.widgetWithIcon(InkWell, Icons.add));
 
-      expect(backgroundColor, AppColors.headerColor);
-      expect(foregroundColor, Colors.white);
-      expect(overlayColor, Colors.white.withAlpha(60));
-      expect(iconButton.tooltip, AppLocalisations.addCarButtonTooltip);
+      expect(iconButton.splashColor, AppColors.accentColor.withAlpha(60));
+      expect(iconButton.highlightColor, Colors.transparent);
     });
 
     testWidgets('container has correct decoration', (WidgetTester tester) async {
