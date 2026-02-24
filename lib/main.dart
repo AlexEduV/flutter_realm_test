@@ -36,10 +36,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (isPopped, result) async {
         await SystemNavigator.pop();
-        return false;
       },
       child: MultiBlocProvider(
         providers: [
