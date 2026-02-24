@@ -109,14 +109,14 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                   color: AppColors.headerColor.withAlpha(60),
                   borderRadius: BorderRadius.circular(AppDimensions.normalL),
                 ),
-                padding: const EdgeInsetsGeometry.symmetric(vertical: AppDimensions.minorM),
+                padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
                 child: Row(
-                  spacing: AppDimensions.minorS,
+                  spacing: AppDimensions.normalM,
                   children: [
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                        color: AppColors.placeholderColor,
+                        color: AppColors.headerColor,
                       ),
                       height: 60,
                       width: 60,
