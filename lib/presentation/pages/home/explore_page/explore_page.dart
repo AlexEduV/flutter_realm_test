@@ -62,7 +62,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
               ),
             ],
             actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
-            expandedHeight: 200,
+            expandedHeight: 240,
             collapsedHeight: 60,
             flexibleSpace: LayoutBuilder(
               builder: (context, constraints) {
