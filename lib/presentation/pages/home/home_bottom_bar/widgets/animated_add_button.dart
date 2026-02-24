@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/app_colors.dart';
 
+import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 
 class AnimatedAddButton extends StatefulWidget {
@@ -20,7 +20,6 @@ class _AnimatedAddButtonState extends State<AnimatedAddButton> {
 
   void _onTapUp(TapUpDetails details) {
     setState(() => _scale = 1.0);
-    widget.onPressed();
   }
 
   void _onTapCancel() {
@@ -29,29 +28,27 @@ class _AnimatedAddButtonState extends State<AnimatedAddButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: _onTapDown,
-      onTapUp: _onTapUp,
-      onTapCancel: _onTapCancel,
-      child: AnimatedScale(
-        scale: _scale,
-        duration: const Duration(milliseconds: 120),
-        curve: Curves.easeOut,
-        child: Material(
-          color: AppColors.headerColor,
-          shape: const CircleBorder(),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(100),
-            splashColor: AppColors.accentColor.withAlpha(60), // Custom splash
-            highlightColor: Colors.transparent,
-            onTap: widget.onPressed,
-            child: const Padding(
-              padding: EdgeInsets.all(AppDimensions.minorL),
-              child: Icon(
-                Icons.add,
-                size: AppDimensions.bottomAppBarIconEnlargedSize,
-                color: Colors.white,
-              ),
+    return AnimatedScale(
+      scale: _scale,
+      duration: const Duration(milliseconds: 120),
+      curve: Curves.easeOut,
+      child: Material(
+        color: AppColors.headerColor,
+        shape: const CircleBorder(),
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          splashColor: AppColors.accentColor.withAlpha(60),
+          highlightColor: Colors.transparent,
+          onTap: widget.onPressed,
+          onTapDown: _onTapDown,
+          onTapUp: _onTapUp,
+          onTapCancel: _onTapCancel,
+          child: const Padding(
+            padding: EdgeInsets.all(AppDimensions.minorL),
+            child: Icon(
+              Icons.add,
+              size: AppDimensions.bottomAppBarIconEnlargedSize,
+              color: Colors.white,
             ),
           ),
         ),
