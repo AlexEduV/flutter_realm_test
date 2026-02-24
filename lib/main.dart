@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
@@ -35,27 +36,39 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<ExplorePageCubit>(
-          create: (context) => serviceLocator<ExplorePageCubit>()..init(),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, Object? result) async {
+        if (didPop) return;
+
+        await SystemNavigator.pop();
+      },
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<ExplorePageCubit>(
+            create: (context) => serviceLocator<ExplorePageCubit>()..init(),
+          ),
+          BlocProvider<SearchPageCubit>(
+            create: (context) => serviceLocator<SearchPageCubit>()..init(),
+          ),
+          BlocProvider<UserDataCubit>(create: (context) => serviceLocator<UserDataCubit>()..init()),
+          BlocProvider<HomeBottomBarCubit>(
+            create: (context) => serviceLocator<HomeBottomBarCubit>(),
+          ),
+          BlocProvider<DetailsPageCubit>(create: (context) => serviceLocator<DetailsPageCubit>()),
+          BlocProvider<AuthenticationCubit>(
+            create: (context) => serviceLocator<AuthenticationCubit>()..init(),
+          ),
+          BlocProvider<InboxPageCubit>(
+            create: (context) => serviceLocator<InboxPageCubit>()..init(),
+          ),
+        ],
+        child: MaterialApp.router(
+          title: AppLocalisations.appName,
+          theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor)),
+          routerConfig: AppRouter.router,
+          debugShowCheckedModeBanner: false,
         ),
-        BlocProvider<SearchPageCubit>(
-          create: (context) => serviceLocator<SearchPageCubit>()..init(),
-        ),
-        BlocProvider<UserDataCubit>(create: (context) => serviceLocator<UserDataCubit>()..init()),
-        BlocProvider<HomeBottomBarCubit>(create: (context) => serviceLocator<HomeBottomBarCubit>()),
-        BlocProvider<DetailsPageCubit>(create: (context) => serviceLocator<DetailsPageCubit>()),
-        BlocProvider<AuthenticationCubit>(
-          create: (context) => serviceLocator<AuthenticationCubit>()..init(),
-        ),
-        BlocProvider<InboxPageCubit>(create: (context) => serviceLocator<InboxPageCubit>()..init()),
-      ],
-      child: MaterialApp.router(
-        title: AppLocalisations.appName,
-        theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor)),
-        routerConfig: AppRouter.router,
-        debugShowCheckedModeBanner: false,
       ),
     );
   }
