@@ -37,8 +37,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      //sometimes, 1 out of 10, the app will restart on pressing 'back' on root. Worked well with
-      //WillPopScope, but it was deprecated.
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
