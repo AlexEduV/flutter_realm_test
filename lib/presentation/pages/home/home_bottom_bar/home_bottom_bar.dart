@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/app_dimensions.dart';
-import '../../../../utils/l10n.dart';
 
 class HomeBottomBar extends StatelessWidget {
   final void Function() onAddPressed;
@@ -51,16 +50,7 @@ class HomeBottomBar extends StatelessWidget {
             AppSemantics(
               button: true,
               label: AppSemanticsLabels.homeBottomBarItemAdd,
-              child: IconButton(
-                style: ButtonStyle(
-                  backgroundColor: const WidgetStatePropertyAll(AppColors.headerColor),
-                  foregroundColor: const WidgetStatePropertyAll(Colors.white),
-                  overlayColor: WidgetStatePropertyAll(Colors.white.withAlpha(60)),
-                ),
-                icon: const Icon(Icons.add, size: AppDimensions.bottomAppBarIconEnlargedSize),
-                onPressed: onAddPressed,
-                tooltip: AppLocalisations.addCarButtonTooltip,
-              ),
+              child: AnimatedAddButton(onPressed: onAddPressed),
             ),
 
             const HomeBottomBarItem(
