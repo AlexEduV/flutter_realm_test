@@ -13,6 +13,7 @@ class AppTextStyles {
   static final zonaPro30White = zonaPro30.copyWith(color: Colors.white);
   static final zonaPro24White = zonaPro24.copyWith(color: Colors.white);
   static final zonaPro16White = zonaPro16.copyWith(color: Colors.white);
+  static final zonaPro14White = zonaPro14.copyWith(color: Colors.white);
 
   static final zonaPro16Grey = zonaPro16.copyWith(color: AppColors.placeholderColorDark);
 }

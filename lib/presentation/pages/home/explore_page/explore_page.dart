@@ -90,6 +90,54 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             ),
           ),
 
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.only(left: AppDimensions.normalL, top: AppDimensions.normalL),
+              child: Text('Last seen', style: AppTextStyles.zonaPro18),
+            ),
+          ),
+
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: AppDimensions.normalL,
+                right: AppDimensions.normalL,
+                top: AppDimensions.minorM,
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.headerColor.withAlpha(60),
+                  borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                ),
+                padding: const EdgeInsetsGeometry.symmetric(vertical: AppDimensions.minorM),
+                child: Row(
+                  spacing: AppDimensions.minorS,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                        color: AppColors.placeholderColor,
+                      ),
+                      height: 60,
+                      width: 60,
+                    ),
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'BMW X1 II (F48) 2019',
+                          style: AppTextStyles.zonaPro16White.copyWith(fontWeight: FontWeight.w600),
+                        ),
+                        Text('\$ 29 000', style: AppTextStyles.zonaPro14White),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(
