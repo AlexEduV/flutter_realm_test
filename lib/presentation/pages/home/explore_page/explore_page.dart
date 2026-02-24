@@ -62,7 +62,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
               ),
             ],
             actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
-            expandedHeight: 240,
+            expandedHeight: 220,
             collapsedHeight: 60,
             flexibleSpace: LayoutBuilder(
               builder: (context, constraints) {
@@ -72,7 +72,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                 final itemHeight = (currentHeight - 20).clamp(100.0, 180.0); // Example logic
 
                 return Padding(
-                  padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 30, top: 120),
+                  padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 30, top: 100),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(

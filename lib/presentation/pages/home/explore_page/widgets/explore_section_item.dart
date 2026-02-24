@@ -19,7 +19,7 @@ class ExploreSectionItem extends StatelessWidget {
       enabled: false,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppDimensions.normalS),
+          borderRadius: BorderRadius.circular(AppDimensions.normalL),
           color: AppColors.placeholderColor,
         ),
         height: height,
