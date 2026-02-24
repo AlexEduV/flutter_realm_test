@@ -76,7 +76,10 @@ Future<void> initDependenciesContainer() async {
   );
 
   if (!serviceLocator.isRegistered<Realm>()) {
-    serviceLocator.registerLazySingleton<Realm>(() => Realm(config));
+    serviceLocator.registerLazySingleton<Realm>(
+      () => Realm(config),
+      dispose: (realm) => realm.close(),
+    );
   }
 
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
