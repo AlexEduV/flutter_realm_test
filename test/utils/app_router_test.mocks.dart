@@ -216,6 +216,12 @@ class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
   );
 
   @override
+  void setLastSeenCar(_i13.CarEntity? car) => super.noSuchMethod(
+    Invocation.method(#setLastSeenCar, [car]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   _i10.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),

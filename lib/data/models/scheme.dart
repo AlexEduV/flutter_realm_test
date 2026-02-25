@@ -41,4 +41,11 @@ class _User {
   late String email;
   late bool isLocationPermissionGranted;
   late List<String> favoriteIds;
+  late _LastSeenCar? lastSeenCar;
+}
+
+@RealmModel()
+class _LastSeenCar {
+  late DateTime date;
+  late _Car? car;
 }

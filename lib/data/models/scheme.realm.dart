@@ -381,6 +381,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     String email,
     bool isLocationPermissionGranted, {
     Iterable<String> favoriteIds = const [],
+    LastSeenCar? lastSeenCar,
   }) {
     RealmObjectBase.set(this, 'userId', userId);
     RealmObjectBase.set(this, 'firstName', firstName);
@@ -396,6 +397,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'favoriteIds',
       RealmList<String>(favoriteIds),
     );
+    RealmObjectBase.set(this, 'lastSeenCar', lastSeenCar);
   }
 
   User._();
@@ -437,6 +439,13 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       throw RealmUnsupportedSetError();
 
   @override
+  LastSeenCar? get lastSeenCar =>
+      RealmObjectBase.get<LastSeenCar>(this, 'lastSeenCar') as LastSeenCar?;
+  @override
+  set lastSeenCar(covariant LastSeenCar? value) =>
+      RealmObjectBase.set(this, 'lastSeenCar', value);
+
+  @override
   Stream<RealmObjectChanges<User>> get changes =>
       RealmObjectBase.getChanges<User>(this);
 
@@ -455,6 +464,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'email': email.toEJson(),
       'isLocationPermissionGranted': isLocationPermissionGranted.toEJson(),
       'favoriteIds': favoriteIds.toEJson(),
+      'lastSeenCar': lastSeenCar.toEJson(),
     };
   }
 
@@ -476,6 +486,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
           fromEJson(email),
           fromEJson(isLocationPermissionGranted),
           favoriteIds: fromEJson(ejson['favoriteIds']),
+          lastSeenCar: fromEJson(ejson['lastSeenCar']),
         ),
       _ => raiseInvalidEJson(ejson),
     };
@@ -495,7 +506,83 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
         RealmPropertyType.string,
         collectionType: RealmCollectionType.list,
       ),
+      SchemaProperty(
+        'lastSeenCar',
+        RealmPropertyType.object,
+        optional: true,
+        linkTarget: 'LastSeenCar',
+      ),
     ]);
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
+}
+
+class LastSeenCar extends _LastSeenCar
+    with RealmEntity, RealmObjectBase, RealmObject {
+  LastSeenCar(DateTime date, {Car? car}) {
+    RealmObjectBase.set(this, 'date', date);
+    RealmObjectBase.set(this, 'car', car);
+  }
+
+  LastSeenCar._();
+
+  @override
+  DateTime get date => RealmObjectBase.get<DateTime>(this, 'date') as DateTime;
+  @override
+  set date(DateTime value) => RealmObjectBase.set(this, 'date', value);
+
+  @override
+  Car? get car => RealmObjectBase.get<Car>(this, 'car') as Car?;
+  @override
+  set car(covariant Car? value) => RealmObjectBase.set(this, 'car', value);
+
+  @override
+  Stream<RealmObjectChanges<LastSeenCar>> get changes =>
+      RealmObjectBase.getChanges<LastSeenCar>(this);
+
+  @override
+  Stream<RealmObjectChanges<LastSeenCar>> changesFor([
+    List<String>? keyPaths,
+  ]) => RealmObjectBase.getChangesFor<LastSeenCar>(this, keyPaths);
+
+  @override
+  LastSeenCar freeze() => RealmObjectBase.freezeObject<LastSeenCar>(this);
+
+  EJsonValue toEJson() {
+    return <String, dynamic>{'date': date.toEJson(), 'car': car.toEJson()};
+  }
+
+  static EJsonValue _toEJson(LastSeenCar value) => value.toEJson();
+  static LastSeenCar _fromEJson(EJsonValue ejson) {
+    if (ejson is! Map<String, dynamic>) return raiseInvalidEJson(ejson);
+    return switch (ejson) {
+      {'date': EJsonValue date} => LastSeenCar(
+        fromEJson(date),
+        car: fromEJson(ejson['car']),
+      ),
+      _ => raiseInvalidEJson(ejson),
+    };
+  }
+
+  static final schema = () {
+    RealmObjectBase.registerFactory(LastSeenCar._);
+    register(_toEJson, _fromEJson);
+    return const SchemaObject(
+      ObjectType.realmObject,
+      LastSeenCar,
+      'LastSeenCar',
+      [
+        SchemaProperty('date', RealmPropertyType.timestamp),
+        SchemaProperty(
+          'car',
+          RealmPropertyType.object,
+          optional: true,
+          linkTarget: 'Car',
+        ),
+      ],
+    );
   }();
 
   @override
