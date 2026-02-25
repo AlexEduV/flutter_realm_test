@@ -33,7 +33,6 @@ class _DetailsPageState extends State<DetailsPage> {
     context.read<DetailsPageCubit>().loadData(widget.carId);
     context.read<DetailsPageCubit>().setVehicleSpecsExpansionState(true);
 
-    //todo: save it to local storage with the date stamp, and remove when the week passes
     final car = context.read<DetailsPageCubit>().state.car;
     context.read<UserDataCubit>().setLastSeenCar(car);
   }
