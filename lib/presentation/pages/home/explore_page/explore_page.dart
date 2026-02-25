@@ -91,62 +91,72 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
           ),
 
           SliverToBoxAdapter(
-            child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
-              builder: (context, state) {
-                final car = context.read<UserDataCubit>().state.lastSeenCar?.entries.first.value;
-                if (car == null) return const SizedBox.shrink();
+            child: BlocBuilder<UserDataCubit, UserDataState>(
+              buildWhen: (previous, current) => previous.lastSeenCar != current.lastSeenCar,
+              builder: (context, userState) {
+                return BlocBuilder<ExplorePageCubit, ExplorePageState>(
+                  builder: (context, state) {
+                    final car = userState.lastSeenCar?.entries.first.value;
+                    if (car == null) {
+                      return const SizedBox.shrink();
+                    }
 
-                return Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(
-                        left: AppDimensions.normalL,
-                        top: AppDimensions.normalL,
-                      ),
-                      child: Text('Last seen', style: AppTextStyles.zonaPro18),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: AppDimensions.normalL,
-                        right: AppDimensions.normalL,
-                        top: AppDimensions.minorM,
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.headerColor.withAlpha(60),
-                          borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                    return Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(
+                            left: AppDimensions.normalL,
+                            top: AppDimensions.normalL,
+                          ),
+                          child: Text('Last seen', style: AppTextStyles.zonaPro18),
                         ),
-                        padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
-                        child: Row(
-                          spacing: AppDimensions.normalM,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                                color: AppColors.headerColor,
-                              ),
-                              height: 60,
-                              width: 60,
-                            ),
 
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: AppDimensions.normalL,
+                            right: AppDimensions.normalL,
+                            top: AppDimensions.minorM,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.headerColor.withAlpha(60),
+                              borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                            ),
+                            padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
+                            child: Row(
+                              spacing: AppDimensions.normalM,
                               children: [
-                                Text(
-                                  '${car.manufacturer} ${car.model} ${car.year ?? ''}',
-                                  style: AppTextStyles.zonaPro16White.copyWith(
-                                    fontWeight: FontWeight.w600,
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                                    color: AppColors.headerColor,
                                   ),
+                                  height: 60,
+                                  width: 60,
                                 ),
-                                Text('\$ ${car.price ?? 0}', style: AppTextStyles.zonaPro14White),
+
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${car.manufacturer} ${car.model} ${car.year ?? ''}',
+                                      style: AppTextStyles.zonaPro16White.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      '\$ ${car.price ?? 0}',
+                                      style: AppTextStyles.zonaPro14White,
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
+                      ],
+                    );
+                  },
                 );
               },
             ),
