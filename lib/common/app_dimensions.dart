@@ -28,4 +28,6 @@ class AppDimensions {
   static const detailsPageItemIconSize = 24.0;
 
   static const splashButtonProgressBarSize = 23.0;
+
+  static const lastSeenSectionImageSize = 50.0;
 }
