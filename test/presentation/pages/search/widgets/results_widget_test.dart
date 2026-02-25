@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
-import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/results_widget.dart';
+import 'package:test_futter_project/presentation/pages/search/widgets/results_widget.dart';
 import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 

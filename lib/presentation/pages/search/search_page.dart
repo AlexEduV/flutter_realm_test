@@ -21,7 +21,7 @@ import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../widgets/announcement_list_item.dart';
-import '../home/explore_page/widgets/results_widget.dart';
+import 'widgets/results_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
