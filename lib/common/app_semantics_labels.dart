@@ -9,7 +9,7 @@ class AppSemanticsLabels {
   static const announcementTitle = 'announcementTitle';
   static const favoriteButton = 'favoriteButton';
 
-  static const exploreSectionItem = 'exploreSectionItem';
+  static const exploreArticleItem = 'exploreArticleItem';
   static const resultsLabel = 'resultsLabel';
   static const lastSeenSectionItem = 'lastSeenSectionItem';
 

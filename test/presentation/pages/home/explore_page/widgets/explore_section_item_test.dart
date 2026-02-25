@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_section_item.dart';
+import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_article_item.dart';
 
 void main() {
   group('ExploreSectionItem', () {
     testWidgets('has default height and width', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(body: ExploreSectionItem(articleName: '')),
+          home: Scaffold(body: ExploreArticleItem(articleName: '')),
         ),
       );
 
@@ -22,7 +22,7 @@ void main() {
     testWidgets('uses custom height when provided', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(body: ExploreSectionItem(height: 200.0, articleName: '')),
+          home: Scaffold(body: ExploreArticleItem(height: 200.0, articleName: '')),
         ),
       );
 
@@ -35,7 +35,7 @@ void main() {
     testWidgets('has correct color and border radius', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(body: ExploreSectionItem(articleName: '')),
+          home: Scaffold(body: ExploreArticleItem(articleName: '')),
         ),
       );
 

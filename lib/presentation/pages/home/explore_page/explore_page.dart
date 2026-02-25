@@ -13,7 +13,7 @@ import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_us
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_section_item.dart';
+import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_article_item.dart';
 import 'package:test_futter_project/presentation/widgets/announcement_list_item.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
@@ -79,9 +79,9 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                     child: Row(
                       spacing: AppDimensions.normalXL,
                       children: [
-                        ExploreSectionItem(height: itemHeight, articleName: 'Some Article here'),
-                        ExploreSectionItem(height: itemHeight, articleName: 'Another one'),
-                        ExploreSectionItem(height: itemHeight, articleName: 'And another one'),
+                        ExploreArticleItem(height: itemHeight, articleName: 'Some Article here'),
+                        ExploreArticleItem(height: itemHeight, articleName: 'Another one'),
+                        ExploreArticleItem(height: itemHeight, articleName: 'And another one'),
                         const SizedBox.shrink(),
                       ],
                     ),

@@ -5,16 +5,16 @@ import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
-class ExploreSectionItem extends StatelessWidget {
+class ExploreArticleItem extends StatelessWidget {
   final double height;
   final String articleName;
 
-  const ExploreSectionItem({required this.articleName, this.height = 120.0, super.key});
+  const ExploreArticleItem({required this.articleName, this.height = 120.0, super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppSemantics(
-      label: AppSemanticsLabels.exploreSectionItem,
+      label: AppSemanticsLabels.exploreArticleItem,
       button: true,
       enabled: false,
       child: Container(
