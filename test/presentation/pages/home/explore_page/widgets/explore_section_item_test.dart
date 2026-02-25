@@ -43,7 +43,7 @@ void main() {
       final decoration = containerWidget.decoration as BoxDecoration;
 
       expect(decoration.color, AppColors.placeholderColor);
-      expect(decoration.borderRadius, BorderRadius.circular(AppDimensions.normalS));
+      expect(decoration.borderRadius, BorderRadius.circular(AppDimensions.normalL));
     });
   });
 }
