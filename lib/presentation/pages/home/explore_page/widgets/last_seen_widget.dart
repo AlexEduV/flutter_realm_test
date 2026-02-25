@@ -18,6 +18,12 @@ class LastSeenWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserDataCubit, UserDataState>(
       builder: (context, userState) {
+        if (userState.isLoading) {
+          return const Center(
+            child: CircularProgressIndicator(padding: EdgeInsets.all(AppDimensions.minorL)),
+          );
+        }
+
         final carEntity = userState.lastSeenCar?.entries.first.value;
         if (carEntity == null) {
           return const SizedBox.shrink();

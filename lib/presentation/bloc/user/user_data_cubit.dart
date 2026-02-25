@@ -19,6 +19,8 @@ class UserDataCubit extends Cubit<UserDataState> {
   late UserEntity user;
 
   Future<void> init() async {
+    emit(state.copyWith(isLoading: true));
+
     user = _localStorage.initUser();
     final userSession = await AuthSessionUtil.getUserSession();
 
@@ -26,6 +28,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     emit(
       state.copyWith(
+        isLoading: false,
         favoriteIds: user.favoriteIds,
         isLocationPermissionGranted: user.isLocationPermissionGranted,
         isUserAuthenticated: userSession != null,
