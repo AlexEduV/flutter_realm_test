@@ -12,6 +12,7 @@ void main() {
         isLocationPermissionGranted: true,
         favoriteIds: ['1'],
         email: 'mock@gmail.com',
+        lastSeenCar: null,
       );
 
       final user = UserExtensions.fromEntity(entity);

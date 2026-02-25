@@ -135,6 +135,7 @@ void main() {
         isLocationPermissionGranted: true,
         favoriteIds: [],
         email: 'mock@gmail.com',
+        lastSeenCar: null,
       );
 
       when(mockStorage.initUser()).thenReturn(user);

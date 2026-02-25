@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
+import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
@@ -29,8 +30,13 @@ class UserDataCubit extends Cubit<UserDataState> {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        lastSeenCar: user.lastSeenCar,
       ),
     );
+  }
+
+  void setLastSeenCar(CarEntity? car) {
+    _localStorage.update(UserExtensions.fromEntity(user));
   }
 
   Future<void> requestLocationPermission() async {

@@ -309,6 +309,12 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
           as _i10.Future<void>);
 
   @override
+  void setLastSeenCar(_i13.CarEntity? car) => super.noSuchMethod(
+    Invocation.method(#setLastSeenCar, [car]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   _i10.Future<void> requestLocationPermission() =>
       (super.noSuchMethod(
             Invocation.method(#requestLocationPermission, []),

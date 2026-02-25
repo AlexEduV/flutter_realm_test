@@ -1,3 +1,4 @@
+import 'package:test_futter_project/common/extensions/car_scheme_extension.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity_short.dart';
 
@@ -12,6 +13,12 @@ extension UserExtensions on User {
       entity.email,
       entity.isLocationPermissionGranted,
       favoriteIds: entity.favoriteIds,
+      lastSeenCar: entity.lastSeenCar == null
+          ? null
+          : LastSeenCar(
+              entity.lastSeenCar!.entries.first.key,
+              car: CarExtensions.fromEntity(entity.lastSeenCar!.entries.first.value),
+            ),
     );
   }
 
@@ -24,6 +31,7 @@ extension UserExtensions on User {
       //todo: might be a bug in future, since I am using defaults, not exact user data
       true,
       favoriteIds: [],
+      lastSeenCar: null,
     );
   }
 }

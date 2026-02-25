@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../domain/entities/car_entity.dart';
+
 part 'user_data_state.freezed.dart';
 
 @freezed
@@ -12,5 +14,6 @@ abstract class UserDataState with _$UserDataState {
     @Default('') String lastName,
     @Default('') String email,
     @Default('') String password,
+    @Default(null) Map<DateTime, CarEntity>? lastSeenCar,
   }) = _UserDataState;
 }

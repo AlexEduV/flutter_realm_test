@@ -1,3 +1,5 @@
+import 'package:test_futter_project/domain/entities/car_entity.dart';
+
 import '../../data/models/scheme.dart';
 
 class UserEntity {
@@ -7,6 +9,7 @@ class UserEntity {
   final String email;
   final bool isLocationPermissionGranted;
   final List<String> favoriteIds;
+  final Map<DateTime, CarEntity>? lastSeenCar;
 
   const UserEntity({
     required this.userId,
@@ -15,6 +18,7 @@ class UserEntity {
     required this.isLocationPermissionGranted,
     required this.favoriteIds,
     required this.email,
+    required this.lastSeenCar,
   });
 
   factory UserEntity.fromSchema(User user) {
@@ -25,6 +29,9 @@ class UserEntity {
       isLocationPermissionGranted: user.isLocationPermissionGranted,
       favoriteIds: user.favoriteIds,
       email: user.email,
+      lastSeenCar: user.lastSeenCar != null && user.lastSeenCar!.car != null
+          ? {user.lastSeenCar!.date: CarEntity.fromSchema(user.lastSeenCar!.car!)}
+          : null,
     );
   }
 
@@ -35,6 +42,7 @@ class UserEntity {
     bool? isLocationPermissionGranted,
     List<String>? favoriteIds,
     String? email,
+    Map<DateTime, CarEntity>? lastSeenCar,
   }) {
     return UserEntity(
       userId: userId ?? this.userId,
@@ -43,6 +51,7 @@ class UserEntity {
       isLocationPermissionGranted: isLocationPermissionGranted ?? this.isLocationPermissionGranted,
       favoriteIds: favoriteIds ?? this.favoriteIds,
       email: email ?? this.email,
+      lastSeenCar: lastSeenCar ?? this.lastSeenCar,
     );
   }
 }

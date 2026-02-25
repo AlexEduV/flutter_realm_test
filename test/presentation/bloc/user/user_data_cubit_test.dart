@@ -36,6 +36,7 @@ void main() {
       isLocationPermissionGranted: false,
       favoriteIds: [],
       email: 'mock@gmail.com',
+      lastSeenCar: null,
     );
   });
 
@@ -101,6 +102,7 @@ void main() {
         lastName: 'User',
         userId: '1',
         isLocationPermissionGranted: false,
+        lastSeenCar: null,
       );
       cubit.addCarIdToFavorites('3');
       expect(cubit.user.favoriteIds, contains('3'));
@@ -115,6 +117,7 @@ void main() {
         lastName: 'User',
         userId: '1',
         isLocationPermissionGranted: false,
+        lastSeenCar: null,
       );
 
       cubit.addCarIdToFavorites('1');
@@ -132,6 +135,7 @@ void main() {
         lastName: 'User',
         userId: '1',
         isLocationPermissionGranted: false,
+        lastSeenCar: null,
       );
 
       cubit.removeCarIdFromFavorites('1');

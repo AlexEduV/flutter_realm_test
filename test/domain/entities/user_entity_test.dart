@@ -13,6 +13,7 @@ void main() {
         isLocationPermissionGranted: true,
         favoriteIds: [],
         email: 'mock@gmail.com',
+        lastSeenCar: null,
       );
 
       expect(entity.userId, 'u1');
@@ -50,6 +51,7 @@ void main() {
         isLocationPermissionGranted: false,
         favoriteIds: [],
         email: 'mock@gmail.com',
+        lastSeenCar: null,
       );
 
       final updated = original.copyWith(firstName: 'Alicia', isLocationPermissionGranted: true);
@@ -68,6 +70,7 @@ void main() {
         isLocationPermissionGranted: true,
         favoriteIds: [],
         email: 'mock@gmail.com',
+        lastSeenCar: null,
       );
 
       final copy = original.copyWith();
