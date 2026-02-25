@@ -125,16 +125,24 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                             ),
                             padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
                             child: Row(
-                              spacing: AppDimensions.normalM,
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                                    color: AppColors.headerColor,
+                                    borderRadius: BorderRadius.circular(AppDimensions.normalXS),
+                                    color: car.images.isEmpty ? AppColors.headerColor : null,
+                                    image: car.images.isNotEmpty
+                                        ? DecorationImage(
+                                            image: AssetImage(car.images.first),
+                                            fit: BoxFit.cover,
+                                          )
+                                        : null,
                                   ),
-                                  height: 60,
-                                  width: 60,
+                                  height: 50,
+                                  width: 50,
+                                  margin: const EdgeInsetsGeometry.all(AppDimensions.minorL),
                                 ),
+
+                                const SizedBox(width: AppDimensions.minorL),
 
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
