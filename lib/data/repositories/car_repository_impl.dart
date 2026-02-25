@@ -27,7 +27,7 @@ class CarRepositoryImpl implements CarRepository {
       final entities = results.map((car) => car.toEntity()).toList();
 
       // Deduplicate by carId
-      final uniqueEntities = {for (var car in entities) car.carId: car}.values.toList();
+      final uniqueEntities = {for (final car in entities) car.carId: car}.values.toList();
 
       // Sort by carId
       uniqueEntities.sort((a, b) => a.carId.compareTo(b.carId));
