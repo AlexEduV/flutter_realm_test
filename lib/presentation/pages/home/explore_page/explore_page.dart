@@ -19,6 +19,7 @@ import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/extensions/car_scheme_extension.dart';
+import '../../../../utils/app_router.dart';
 import '../../../bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -108,6 +109,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                         left: AppDimensions.normalL,
                         top: AppDimensions.normalL,
                       ),
+                      //todo: localise
                       child: Text('Last seen', style: AppTextStyles.zonaPro18),
                     ),
 
@@ -117,45 +119,49 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                         right: AppDimensions.normalL,
                         top: AppDimensions.minorM,
                       ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.headerColor.withAlpha(60),
-                          borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                        ),
-                        padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
-                        child: Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppDimensions.normalXS),
-                                color: image == null ? AppColors.headerColor : null,
-                                image: image != null
-                                    ? DecorationImage(image: AssetImage(image), fit: BoxFit.cover)
-                                    : null,
+                      child: InkWell(
+                        onTap: () => AppRouter.goToDetailsRouteFromExplore(carEntity.carId),
+                        borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.headerColor.withAlpha(60),
+                            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                          ),
+                          padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
+                          child: Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(AppDimensions.normalXS),
+                                  color: image == null ? AppColors.headerColor : null,
+                                  image: image != null
+                                      ? DecorationImage(image: AssetImage(image), fit: BoxFit.cover)
+                                      : null,
+                                ),
+                                height: 50,
+                                width: 50,
+                                margin: const EdgeInsetsGeometry.all(AppDimensions.minorL),
                               ),
-                              height: 50,
-                              width: 50,
-                              margin: const EdgeInsetsGeometry.all(AppDimensions.minorL),
-                            ),
 
-                            const SizedBox(width: AppDimensions.minorL),
+                              const SizedBox(width: AppDimensions.minorL),
 
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${carEntity.manufacturer} ${carEntity.model} ${carEntity.year ?? ''}',
-                                  style: AppTextStyles.zonaPro16White.copyWith(
-                                    fontWeight: FontWeight.w600,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${carEntity.manufacturer} ${carEntity.model} ${carEntity.year ?? ''}',
+                                    style: AppTextStyles.zonaPro16White.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  '\$ ${carEntity.price ?? 0}',
-                                  style: AppTextStyles.zonaPro14White,
-                                ),
-                              ],
-                            ),
-                          ],
+                                  Text(
+                                    '\$ ${carEntity.price ?? 0}',
+                                    style: AppTextStyles.zonaPro14White,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
