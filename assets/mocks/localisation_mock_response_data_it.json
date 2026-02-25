@@ -4,10 +4,16 @@
   },
   "pages": {
     "explore": {
-      "title": "Esplora"
+      "title": "Esplora",
+      "recommendedSection": {
+        "title": "Consigliato"
+      },
+      "lastSeenSection": {
+        "title": "Ultima visualizzazione"
+      }
     },
     "favorites": {
-      "title": "Preferite",
+      "title": "Preferiti",
       "emptyPlaceholder": "Non ci sono ancora preferiti."
     },
     "search": {
@@ -17,22 +23,19 @@
         "bikes": "Moto",
         "trucks": "Camion"
       },
-      "emptyPlaceholder": "Nessun risultato trovato per questa ricerca."
-    },
-    "results": {
-      "title": "Risultati"
-    },
-    "recommended": {
-      "sectionTitle": "Consigliati"
+      "emptyPlaceholder": "Nessun risultato trovato per questa ricerca.",
+      "resultsSection": {
+        "title": "Risultati"
+      }
     },
     "comingSoon": {
       "title": "Prossimamente",
       "subtitle": "Questa funzione non è ancora disponibile."
     },
     "inbox": {
-      "title": "Posta in arrivo",
+      "title": "Messaggi",
       "emptyPlaceholderText": "Nessun messaggio ancora.",
-      "loggedOutPlaceholderText": "Effettua il login per vedere i messaggi."
+      "loggedOutPlaceholderText": "Per favore, accedi per vedere i messaggi."
     },
     "vehicleDetails": {
       "sectionTitle": "Specifiche del veicolo",
@@ -52,12 +55,12 @@
     "account": {
       "title": "Il mio account",
       "items": {
-        "personalDetails": "Dati personali",
+        "personalDetails": "Dettagli personali",
         "location": "Posizione",
         "myItems": "I miei articoli",
         "recentlyViewed": "Visualizzati di recente",
         "clearData": "Cancella dati",
-        "logOut": "Disconnetti",
+        "logOut": "Esci",
         "deleteAccount": "Elimina account"
       }
     }
@@ -88,7 +91,7 @@
         "title": "Tipo di carrozzeria",
         "sedan": "Berlina",
         "hatchback": "Hatchback",
-        "universal": "Station Wagon",
+        "universal": "Station wagon",
         "minivan": "Minivan",
         "coupe": "Coupé",
         "crossover": "Crossover",
@@ -109,7 +112,7 @@
         "automatic": "Automatica",
         "hybrid": "Ibrida"
       },
-      "filterValidationMessage": "Valore errato"
+      "filterValidationMessage": "Valore non corretto"
     }
   },
   "forms": {
@@ -124,7 +127,7 @@
     "warnings": {
       "userNotFound": "Utente non trovato.",
       "incorrectPassword": "Password errata.",
-      "userAlreadyExists": "L'utente esiste già."
+      "userAlreadyExists": "Utente già esistente."
     },
     "hints": {
       "passwordMinLength": "La lunghezza minima della password è",

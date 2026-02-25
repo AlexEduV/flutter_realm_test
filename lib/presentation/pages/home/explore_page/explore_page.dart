@@ -104,13 +104,15 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(
+                    Padding(
+                      padding: const EdgeInsets.only(
                         left: AppDimensions.normalL,
                         top: AppDimensions.normalL,
                       ),
-                      //todo: localise
-                      child: Text('Last seen', style: AppTextStyles.zonaPro18),
+                      child: Text(
+                        AppLocalisations.lastSeenSectionTitle,
+                        style: AppTextStyles.zonaPro18,
+                      ),
                     ),
 
                     Padding(

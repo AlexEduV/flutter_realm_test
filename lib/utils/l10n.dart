@@ -8,7 +8,7 @@ class AppLocalisations {
 
   static final String explorePageTitle = get('pages.explore.title');
 
-  static final String results = get('pages.results.title');
+  static final String results = get('pages.search.resultsSection.title');
 
   static final String favoritesPageTitle = get('pages.favorites.title');
 
@@ -20,7 +20,9 @@ class AppLocalisations {
 
   static final String distanceWidgetText = get('widgets.distance.text');
 
-  static final String recommendedSectionTitle = get('pages.recommended.sectionTitle');
+  static final String recommendedSectionTitle = get('pages.explore.recommendedSection.title');
+
+  static final String lastSeenSectionTitle = get('pages.explore.lastSeenSection.title');
 
   static final String searchPageTitle = get('pages.search.title');
 

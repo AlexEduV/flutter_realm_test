@@ -4,7 +4,13 @@
   },
   "pages": {
     "explore": {
-      "title": "Explore"
+      "title": "Explore",
+      "recommendedSection": {
+        "title": "Recommended"
+      },
+      "lastSeenSection": {
+        "title": "Last Seen"
+      }
     },
     "favorites": {
       "title": "Favorites",
@@ -17,13 +23,10 @@
         "bikes": "Bikes",
         "trucks": "Trucks"
       },
-      "emptyPlaceholder": "No results were found for this search."
-    },
-    "results": {
-      "title": "Results"
-    },
-    "recommended": {
-      "sectionTitle": "Recommended"
+      "emptyPlaceholder": "No results were found for this search.",
+      "resultsSection": {
+        "title": "Results"
+      }
     },
     "comingSoon": {
       "title": "Coming Soon",
