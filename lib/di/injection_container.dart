@@ -44,8 +44,8 @@ final serviceLocator = GetIt.instance;
 Future<void> initDependenciesContainer() async {
   //Register Realm
   final config = Configuration.local(
-    [Car.schema, Person.schema, User.schema],
-    schemaVersion: 16,
+    [Car.schema, Person.schema, User.schema, LastSeenCar.schema],
+    schemaVersion: 18,
     migrationCallback: (migration, oldVersion) {
       //add object id
       if (oldVersion < 2) {

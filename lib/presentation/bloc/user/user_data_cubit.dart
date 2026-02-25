@@ -43,8 +43,11 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   void checkLastSeenCarExpiration(int days) {
     final lastSeenCar = user.lastSeenCar;
+
+    if (lastSeenCar == null) return;
+
     final daysAgo = DateTime.now().subtract(Duration(days: days));
-    if (lastSeenCar!.entries.first.key.isBefore(daysAgo)) {
+    if (lastSeenCar.entries.first.key.isBefore(daysAgo)) {
       setLastSeenCar(null);
     }
   }
