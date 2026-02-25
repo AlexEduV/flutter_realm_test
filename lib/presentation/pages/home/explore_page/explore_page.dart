@@ -128,7 +128,6 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(AppDimensions.normalXS),
-                                //todo: this is  an error-causing line;
                                 color: image == null ? AppColors.headerColor : null,
                                 image: image != null
                                     ? DecorationImage(image: AssetImage(image), fit: BoxFit.cover)
