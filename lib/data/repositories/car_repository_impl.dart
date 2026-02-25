@@ -22,10 +22,10 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   Stream<List<CarEntity>>? watchCars() {
+    //todo: function under question;
     return localStorage.watch<Car>().map((changes) {
       final results = changes.results as RealmResults<Car>;
-      final list = results.map((schema) => schema.toEntity()).toList();
-      return list.cast<CarEntity>();
+      return results.map((car) => car.toEntity()).toList();
     });
   }
 
