@@ -137,7 +137,7 @@ class CarEntity {
       fuelType: car.fuelType ?? '',
       bodyType: car.bodyType ?? '',
       transmissionType: car.transmissionType ?? '',
-      images: car.images,
+      images: car.images.toList(),
     );
   }
 

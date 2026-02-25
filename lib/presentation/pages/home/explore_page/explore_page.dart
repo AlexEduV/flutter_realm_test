@@ -92,80 +92,75 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
 
           SliverToBoxAdapter(
             child: BlocBuilder<UserDataCubit, UserDataState>(
-              buildWhen: (previous, current) => previous.lastSeenCar != current.lastSeenCar,
               builder: (context, userState) {
-                return BlocBuilder<ExplorePageCubit, ExplorePageState>(
-                  builder: (context, state) {
-                    final car = userState.lastSeenCar?.entries.first.value;
-                    if (car == null) {
-                      return const SizedBox.shrink();
-                    }
+                final carEntity = userState.lastSeenCar?.entries.first.value;
+                if (carEntity == null) {
+                  return const SizedBox.shrink();
+                }
 
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(
-                            left: AppDimensions.normalL,
-                            top: AppDimensions.normalL,
-                          ),
-                          child: Text('Last seen', style: AppTextStyles.zonaPro18),
+                final image = carEntity.images.firstOrNull;
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        left: AppDimensions.normalL,
+                        top: AppDimensions.normalL,
+                      ),
+                      child: Text('Last seen', style: AppTextStyles.zonaPro18),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: AppDimensions.normalL,
+                        right: AppDimensions.normalL,
+                        top: AppDimensions.minorM,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.headerColor.withAlpha(60),
+                          borderRadius: BorderRadius.circular(AppDimensions.normalL),
                         ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: AppDimensions.normalL,
-                            right: AppDimensions.normalL,
-                            top: AppDimensions.minorM,
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: AppColors.headerColor.withAlpha(60),
-                              borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                        padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(AppDimensions.normalXS),
+                                //todo: this is  an error-causing line;
+                                color: image == null ? AppColors.headerColor : null,
+                                image: image != null
+                                    ? DecorationImage(image: AssetImage(image), fit: BoxFit.cover)
+                                    : null,
+                              ),
+                              height: 50,
+                              width: 50,
+                              margin: const EdgeInsetsGeometry.all(AppDimensions.minorL),
                             ),
-                            padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
-                            child: Row(
+
+                            const SizedBox(width: AppDimensions.minorL),
+
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(AppDimensions.normalXS),
-                                    color: car.images.isEmpty ? AppColors.headerColor : null,
-                                    image: car.images.isNotEmpty
-                                        ? DecorationImage(
-                                            image: AssetImage(car.images.first),
-                                            fit: BoxFit.cover,
-                                          )
-                                        : null,
+                                Text(
+                                  '${carEntity.manufacturer} ${carEntity.model} ${carEntity.year ?? ''}',
+                                  style: AppTextStyles.zonaPro16White.copyWith(
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  height: 50,
-                                  width: 50,
-                                  margin: const EdgeInsetsGeometry.all(AppDimensions.minorL),
                                 ),
-
-                                const SizedBox(width: AppDimensions.minorL),
-
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${car.manufacturer} ${car.model} ${car.year ?? ''}',
-                                      style: AppTextStyles.zonaPro16White.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Text(
-                                      '\$ ${car.price ?? 0}',
-                                      style: AppTextStyles.zonaPro14White,
-                                    ),
-                                  ],
+                                Text(
+                                  '\$ ${carEntity.price ?? 0}',
+                                  style: AppTextStyles.zonaPro14White,
                                 ),
                               ],
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    );
-                  },
+                      ),
+                    ),
+                  ],
                 );
               },
             ),
