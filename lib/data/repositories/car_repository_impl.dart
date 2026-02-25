@@ -21,11 +21,18 @@ class CarRepositoryImpl implements CarRepository {
   }
 
   @override
-  Stream<List<CarEntity>>? watchCars() {
-    //todo: function under question;
+  Stream<List<CarEntity>> watchCars() {
     return localStorage.watch<Car>().map((changes) {
       final results = changes.results as RealmResults<Car>;
-      return results.map((car) => car.toEntity()).toList();
+      final entities = results.map((car) => car.toEntity()).toList();
+
+      // Deduplicate by carId
+      final uniqueEntities = {for (var car in entities) car.carId: car}.values.toList();
+
+      // Sort by carId
+      uniqueEntities.sort((a, b) => a.carId.compareTo(b.carId));
+
+      return uniqueEntities;
     });
   }
 
