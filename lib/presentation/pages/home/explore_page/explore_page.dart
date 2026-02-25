@@ -100,7 +100,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
           SliverToBoxAdapter(
             child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
               builder: (context, state) {
-                final car = state.lastSeenCar;
+                final car = context.read<UserDataCubit>().state.lastSeenCar?.entries.first.value;
                 if (car == null) return const SizedBox.shrink();
 
                 return Padding(

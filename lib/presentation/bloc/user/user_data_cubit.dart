@@ -22,6 +22,8 @@ class UserDataCubit extends Cubit<UserDataState> {
     user = _localStorage.initUser();
     final userSession = await AuthSessionUtil.getUserSession();
 
+    checkLastSeenCarExpiration(7);
+
     emit(
       state.copyWith(
         favoriteIds: user.favoriteIds,
@@ -37,6 +39,14 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   void setLastSeenCar(CarEntity? car) {
     _localStorage.update(UserExtensions.fromEntity(user));
+  }
+
+  void checkLastSeenCarExpiration(int days) {
+    final lastSeenCar = user.lastSeenCar;
+    final daysAgo = DateTime.now().subtract(Duration(days: days));
+    if (lastSeenCar!.entries.first.key.isBefore(daysAgo)) {
+      setLastSeenCar(null);
+    }
   }
 
   Future<void> requestLocationPermission() async {
