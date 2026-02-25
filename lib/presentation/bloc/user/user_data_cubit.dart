@@ -38,6 +38,9 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void setLastSeenCar(CarEntity? car) {
+    user = user.copyWith(lastSeenCar: car == null ? null : {DateTime.now(): car});
+    emit(state.copyWith(lastSeenCar: user.lastSeenCar));
+
     _localStorage.update(UserExtensions.fromEntity(user));
   }
 

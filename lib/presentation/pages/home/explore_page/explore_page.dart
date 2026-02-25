@@ -102,6 +102,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                     }
 
                     return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Padding(
                           padding: EdgeInsets.only(
