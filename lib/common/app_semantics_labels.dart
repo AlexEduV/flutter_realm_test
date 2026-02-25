@@ -7,10 +7,11 @@ class AppSemanticsLabels {
   static const announcementListItem = 'announcementListItem';
   static const announcementDeleteButton = 'announcementDeleteButton';
   static const announcementTitle = 'announcementTitle';
-  static const favoriteButton = 'FavoriteButton';
+  static const favoriteButton = 'favoriteButton';
 
   static const exploreSectionItem = 'exploreSectionItem';
   static const resultsLabel = 'resultsLabel';
+  static const lastSeenSectionItem = 'lastSeenSectionItem';
 
   static const homeBottomBarItemHome = 'homeBottomBarItemHome';
   static const homeBottomBarItemFavorites = 'homeBottomBarItemFavorites';
