@@ -1,4 +1,6 @@
 import 'package:intl/intl.dart';
+import 'package:test_futter_project/common/extensions/string_extension.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 class DateFormatter {
   static String formatSmartDate(DateTime date) {
@@ -11,11 +13,12 @@ class DateFormatter {
       return DateFormat.Hm().format(date); // e.g., "14:23"
     } else if (dateDay == today.subtract(const Duration(days: 1))) {
       // Yesterday
-      //todo: localise this date
-      return 'Yesterday';
+      return AppLocalisations.dateFormattingYesterday;
     } else {
       // Day of the week
-      return DateFormat.EEEE().format(date); // e.g., "Monday"
+      return DateFormat.EEEE(
+        AppLocalisations.locale,
+      ).format(date).capitalizeFirst(); // e.g., "Monday"
     }
   }
 }

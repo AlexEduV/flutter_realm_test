@@ -6,6 +6,8 @@ class AppLocalisations {
   //todo: maybe move to slang for strong typing
   static final String appName = get('app.name');
 
+  static final String locale = get('app.locale');
+
   static final String explorePageTitle = get('pages.explore.title');
 
   static final String results = get('pages.search.resultsSection.title');
@@ -167,4 +169,6 @@ class AppLocalisations {
   static final String accountItemClearData = get('pages.account.items.clearData');
   static final String accountItemLogout = get('pages.account.items.logOut');
   static final String accountItemDeleteAccount = get('pages.account.items.deleteAccount');
+
+  static final String dateFormattingYesterday = get('dateFormatting.yesterday');
 }

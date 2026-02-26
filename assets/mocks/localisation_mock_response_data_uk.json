@@ -1,6 +1,7 @@
 {
   "app": {
-    "name": "Flutter Realm Demo"
+    "name": "Flutter Realm Demo",
+    "locale": "en"
   },
   "pages": {
     "explore": {
@@ -154,5 +155,8 @@
         "regexErrorMessage": "The full name is not valid."
       }
     }
+  },
+  "dateFormatting": {
+    "yesterday": "Yesterday"
   }
 }
