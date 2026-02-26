@@ -13,6 +13,7 @@ void main() {
       'actions.delete.title': 'Delete',
       'widgets.distance.text': 'km away',
       'pages.explore.recommendedSection.title': 'Recommended',
+      'pages.explore.lastSeenSection.title': 'Last Seen',
       'pages.search.title': 'Search',
       'pages.search.tabs.cars': 'Cars',
       'pages.search.tabs.bikes': 'Bikes',
@@ -71,6 +72,11 @@ void main() {
       'forms.warnings.userNotFound': 'The user not found.',
       'forms.warnings.incorrectPassword': 'Incorrect password.',
       'forms.warnings.userAlreadyExists': 'User already exists.',
+      'forms.hints.passwordMinLength': 'The password should contain more than 8 characters.',
+      'forms.hints.passwordLowercaseChar': 'The password should contain a lower case char.',
+      'forms.hints.passwordUpperCaseChar': 'The password should contain an upper case char.',
+      'forms.hints.passwordDigitChar': 'The password should contain at least one digit.',
+      'forms.hints.passwordSpecialChar': 'The password should contain at least one special char.',
     };
   });
 
@@ -95,6 +101,7 @@ void main() {
       expect(AppLocalisations.deleteButtonTitle, 'Delete');
       expect(AppLocalisations.distanceWidgetText, 'km away');
       expect(AppLocalisations.recommendedSectionTitle, 'Recommended');
+      expect(AppLocalisations.lastSeenSectionTitle, 'Last Seen');
       expect(AppLocalisations.searchPageTitle, 'Search');
       expect(AppLocalisations.searchTabCars, 'Cars');
       expect(AppLocalisations.searchTabBikes, 'Bikes');
@@ -156,6 +163,26 @@ void main() {
       expect(AppLocalisations.authErrorUserNotFoundMessage, 'The user not found.');
       expect(AppLocalisations.authErrorIncorrectPassword, 'Incorrect password.');
       expect(AppLocalisations.authErrorUserAlreadyExists, 'User already exists.');
+      expect(
+        AppLocalisations.authPasswordStrengthLengthHint,
+        'The password should contain more than 8 characters.',
+      );
+      expect(
+        AppLocalisations.authPasswordStrengthLowercaseHint,
+        'The password should contain a lower case char.',
+      );
+      expect(
+        AppLocalisations.authPasswordStrengthUppercaseHint,
+        'The password should contain an upper case char.',
+      );
+      expect(
+        AppLocalisations.authPasswordStrengthDigitHint,
+        'The password should contain at least one digit.',
+      );
+      expect(
+        AppLocalisations.authPasswordStrengthSpecialCharacterHint,
+        'The password should contain at least one special char.',
+      );
     });
   });
 }
