@@ -34,62 +34,67 @@ class InboxListItem extends StatelessWidget {
             onTap: () => context.go(AppRoutes.home + AppRoutes.inbox, extra: message.sender.id),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalXS),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: AppColors.placeholderColor,
-                    radius: AppDimensions.normalXL,
-                  ),
-
-                  const SizedBox(width: AppDimensions.normalM),
-
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          message.sender.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          '${message.text}\n',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400),
-                        ),
-                      ],
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: AppColors.placeholderColor,
+                      radius: AppDimensions.normalXL,
                     ),
-                  ),
 
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Row(
+                    const SizedBox(width: AppDimensions.normalM),
+
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(_getMessageStatusIcon()),
-
-                          const SizedBox(width: AppDimensions.minorM),
-
                           Text(
-                            DateFormatter.formatSmartDate(message.date),
+                            message.sender.name,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            '${message.text}\n',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                             style: AppTextStyles.zonaPro16Grey.copyWith(
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
                       ),
+                    ),
 
-                      if (message.messageStatus == MessageStatus.unknown) ...[
-                        const SizedBox(height: AppDimensions.minorL),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(_getMessageStatusIcon()),
 
-                        const AppBadge(text: '1'),
+                            const SizedBox(width: AppDimensions.minorM),
+
+                            Text(
+                              DateFormatter.formatSmartDate(message.date),
+                              style: AppTextStyles.zonaPro16Grey.copyWith(
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        if (message.messageStatus == MessageStatus.unknown) ...[
+                          const SizedBox(height: AppDimensions.minorL),
+
+                          const AppBadge(text: '1'),
+                        ],
                       ],
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
