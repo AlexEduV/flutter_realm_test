@@ -22,3 +22,6 @@ show-coverage:
 
 run-all-tests:
 	flutter test
+
+generate-native-splash:
+	dart run flutter_native_splash:create
