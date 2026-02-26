@@ -45,6 +45,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                 return SliverPersistentHeader(
                   pinned: true,
                   delegate: ExploreHeaderDelegate(
+                    //todo: manual adjustment os size is not good for architecture;
                     minHeight: 100, // Height of collapsed app bar
                     maxHeightWithLastSeen: 380,
                     maxHeightWithoutLastSeen: 241,
