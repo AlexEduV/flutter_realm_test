@@ -40,12 +40,19 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
         backgroundColor: AppColors.scaffoldColor,
         body: CustomScrollView(
           slivers: [
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: ExploreHeaderDelegate(
-                minHeight: 100, // Height of collapsed app bar
-                maxHeight: 380, // Height when fully expanded (adjust as needed)
-              ),
+            BlocBuilder<UserDataCubit, UserDataState>(
+              builder: (context, state) {
+                return SliverPersistentHeader(
+                  pinned: true,
+                  delegate: ExploreHeaderDelegate(
+                    minHeight: 100, // Height of collapsed app bar
+                    maxHeightWithLastSeen: 380,
+                    maxHeightWithoutLastSeen: 241,
+                    showLastSeen:
+                        state.lastSeenCar != null, // Height when fully expanded (adjust as needed)
+                  ),
+                );
+              },
             ),
 
             SliverToBoxAdapter(

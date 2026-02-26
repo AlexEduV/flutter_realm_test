@@ -12,25 +12,29 @@ import 'explore_article_item.dart';
 import 'last_seen_widget.dart';
 
 class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final double minHeight; // Height of collapsed app bar
-  final double maxHeight; // Height when fully expanded
+  final double minHeight;
+  final double maxHeightWithLastSeen;
+  final double maxHeightWithoutLastSeen;
+  final bool showLastSeen;
 
-  ExploreHeaderDelegate({required this.minHeight, required this.maxHeight});
+  ExploreHeaderDelegate({
+    required this.minHeight,
+    required this.maxHeightWithLastSeen,
+    required this.maxHeightWithoutLastSeen,
+    required this.showLastSeen,
+  });
 
   @override
   double get minExtent => minHeight;
 
   @override
-  double get maxExtent => maxHeight;
+  double get maxExtent => showLastSeen ? maxHeightWithLastSeen : maxHeightWithoutLastSeen;
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    // Calculate how much the header is collapsed (0.0 = expanded, 1.0 = collapsed)
     final progress = (shrinkOffset / (maxExtent - minExtent)).clamp(0.0, 1.0);
-
-    // Interpolate heights for the article list and last seen widget
-    final articleHeight = lerpDouble(120, 60, progress)!; // Example values
-    final lastSeenOpacity = 1.0 - progress; // Fades out as you scroll
+    final articleHeight = lerpDouble(120, 60, progress)!;
+    final lastSeenOpacity = showLastSeen ? (1.0 - progress) : 0.0;
 
     return Material(
       color: AppColors.headerColor,
@@ -84,13 +88,14 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
               ),
             ),
           ),
-          // Last Seen Widget (fades out as you scroll)
-          Positioned(
-            top: minHeight + articleHeight + AppDimensions.minorL,
-            left: 0,
-            right: 0,
-            child: Opacity(opacity: lastSeenOpacity, child: const LastSeenWidget()),
-          ),
+          // Last Seen Widget (only if not empty)
+          if (showLastSeen)
+            Positioned(
+              top: minHeight + articleHeight + AppDimensions.minorL,
+              left: 0,
+              right: 0,
+              child: Opacity(opacity: lastSeenOpacity, child: const LastSeenWidget()),
+            ),
         ],
       ),
     );
@@ -98,6 +103,9 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant ExploreHeaderDelegate oldDelegate) {
-    return minHeight != oldDelegate.minHeight || maxHeight != oldDelegate.maxHeight;
+    return minHeight != oldDelegate.minHeight ||
+        maxHeightWithLastSeen != oldDelegate.maxHeightWithLastSeen ||
+        maxHeightWithoutLastSeen != oldDelegate.maxHeightWithoutLastSeen ||
+        showLastSeen != oldDelegate.showLastSeen;
   }
 }
