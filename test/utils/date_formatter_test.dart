@@ -1,8 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 void main() {
+  initializeDateFormatting('en');
+  AppLocalisations.localisations = {'app.locale': 'en', 'dateFormatting.yesterday': 'Yesterday'};
+
   group('DateFormatter.formatSmartDate', () {
     test('returns time for today\'s date', () {
       final now = DateTime.now();
