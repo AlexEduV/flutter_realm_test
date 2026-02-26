@@ -30,4 +30,6 @@ class AppDimensions {
   static const splashButtonProgressBarSize = 23.0;
 
   static const lastSeenSectionImageSize = 50.0;
+
+  static const inboxItemHeight = 72.0;
 }

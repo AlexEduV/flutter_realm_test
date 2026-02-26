@@ -35,7 +35,7 @@ class InboxListItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalXS),
               child: SizedBox(
-                height: 72,
+                height: AppDimensions.inboxItemHeight,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -69,7 +69,6 @@ class InboxListItem extends StatelessWidget {
                     ),
 
                     Column(
-                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Row(
