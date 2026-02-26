@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
@@ -34,57 +35,69 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
-      body: CustomScrollView(
-        slivers: [
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: ExploreHeaderDelegate(
-              minHeight: 100, // Height of collapsed app bar
-              maxHeight: 380, // Height when fully expanded (adjust as needed)
-            ),
-          ),
-
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: AppDimensions.normalL,
-                top: AppDimensions.normalL,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light, //Android
+        statusBarBrightness: Brightness.dark, //iOS
+      ),
+      child: Scaffold(
+        backgroundColor: AppColors.scaffoldColor,
+        body: CustomScrollView(
+          slivers: [
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: ExploreHeaderDelegate(
+                minHeight: 100, // Height of collapsed app bar
+                maxHeight: 380, // Height when fully expanded (adjust as needed)
               ),
-              child: Text(AppLocalisations.recommendedSectionTitle, style: AppTextStyles.zonaPro18),
             ),
-          ),
 
-          BlocBuilder<ExplorePageCubit, ExplorePageState>(
-            builder: (context, state) {
-              if (state.isLoading) {
-                //todo: maybe add opacity transition between loading and the list.
-                //and the list items can be shown one at a time.
-                return const SliverFillRemaining(child: Center(child: CircularProgressIndicator()));
-              } else {
-                final cars = state.cars;
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: AppDimensions.normalL,
+                  top: AppDimensions.normalL,
+                ),
+                child: Text(
+                  AppLocalisations.recommendedSectionTitle,
+                  style: AppTextStyles.zonaPro18,
+                ),
+              ),
+            ),
 
-                return SliverPadding(
-                  padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
-                  sliver: BlocBuilder<UserDataCubit, UserDataState>(
-                    buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
-                    builder: (context, state) {
-                      return SliverList(
-                        key: cars.isEmpty ? const ValueKey('empty') : widget.listKey,
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          final car = cars[index];
+            BlocBuilder<ExplorePageCubit, ExplorePageState>(
+              builder: (context, state) {
+                if (state.isLoading) {
+                  //todo: maybe add opacity transition between loading and the list.
+                  //and the list items can be shown one at a time.
+                  return const SliverFillRemaining(
+                    child: Center(child: CircularProgressIndicator()),
+                  );
+                } else {
+                  final cars = state.cars;
 
-                          return _buildItem(CarExtensions.fromEntity(car), index);
-                        }, childCount: cars.length),
-                      );
-                    },
-                  ),
-                );
-              }
-            },
-          ),
-        ],
+                  return SliverPadding(
+                    padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
+                    sliver: BlocBuilder<UserDataCubit, UserDataState>(
+                      buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
+                      builder: (context, state) {
+                        return SliverList(
+                          key: cars.isEmpty ? const ValueKey('empty') : widget.listKey,
+                          delegate: SliverChildBuilderDelegate((context, index) {
+                            final car = cars[index];
+
+                            return _buildItem(CarExtensions.fromEntity(car), index);
+                          }, childCount: cars.length),
+                        );
+                      },
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
