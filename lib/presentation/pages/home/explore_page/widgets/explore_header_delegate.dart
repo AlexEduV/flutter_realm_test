@@ -64,7 +64,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
           // Horizontal article list
           Positioned(
             left: AppDimensions.normalL,
-            right: AppDimensions.normalL,
+            right: 0,
             top: minHeight,
             height: articleHeight,
             child: Opacity(
