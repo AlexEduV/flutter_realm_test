@@ -39,7 +39,10 @@ class LastSeenWidget extends StatelessWidget {
                 left: AppDimensions.normalL,
                 top: AppDimensions.normalL,
               ),
-              child: Text(AppLocalisations.lastSeenSectionTitle, style: AppTextStyles.zonaPro18),
+              child: Text(
+                AppLocalisations.lastSeenSectionTitle,
+                style: AppTextStyles.zonaPro18White,
+              ),
             ),
 
             Padding(
@@ -56,7 +59,7 @@ class LastSeenWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(AppDimensions.normalL),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: AppColors.headerColor.withAlpha(60),
+                      color: AppColors.accentColor.withAlpha(60),
                       borderRadius: BorderRadius.circular(AppDimensions.normalL),
                     ),
                     padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
@@ -95,6 +98,8 @@ class LastSeenWidget extends StatelessWidget {
                 ),
               ),
             ),
+
+            const SizedBox(height: AppDimensions.minorL),
           ],
         );
       },

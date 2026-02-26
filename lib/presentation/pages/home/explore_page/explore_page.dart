@@ -1,10 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_routes.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/di/injection_container.dart';
@@ -16,7 +17,6 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart'
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_article_item.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/last_seen_widget.dart';
 import 'package:test_futter_project/presentation/widgets/announcement_list_item.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/extensions/car_scheme_extension.dart';
@@ -38,60 +38,13 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
       backgroundColor: AppColors.scaffoldColor,
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
+          SliverPersistentHeader(
             pinned: true,
-            backgroundColor: AppColors.headerColor,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(AppDimensions.normalL),
-                bottomRight: Radius.circular(AppDimensions.normalL),
-              ),
-            ),
-            title: Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
-            actions: [
-              AppSemantics(
-                label: AppSemanticsLabels.homePageSearchButton,
-                button: true,
-                child: IconButton(
-                  onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
-                  icon: const Icon(
-                    Icons.search,
-                    size: AppDimensions.appBarIconSize,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-            actionsPadding: const EdgeInsets.only(right: AppDimensions.normalL),
-            expandedHeight: 220,
-            collapsedHeight: 60,
-            flexibleSpace: LayoutBuilder(
-              builder: (context, constraints) {
-                // constraints.maxHeight will be between collapsedHeight and expandedHeight
-                final currentHeight = constraints.maxHeight;
-                // Calculate the item height based on the header's current height
-                final itemHeight = (currentHeight - 20).clamp(100.0, 180.0); // Example logic
-
-                return Padding(
-                  padding: const EdgeInsets.only(left: AppDimensions.normalL, bottom: 30, top: 100),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      spacing: AppDimensions.normalXL,
-                      children: [
-                        ExploreArticleItem(height: itemHeight, articleName: 'Some Article here'),
-                        ExploreArticleItem(height: itemHeight, articleName: 'Another one'),
-                        ExploreArticleItem(height: itemHeight, articleName: 'And another one'),
-                        const SizedBox.shrink(),
-                      ],
-                    ),
-                  ),
-                );
-              },
+            delegate: ExploreHeaderDelegate(
+              minHeight: 70, // Height of collapsed app bar
+              maxHeight: 350, // Height when fully expanded (adjust as needed)
             ),
           ),
-
-          const SliverToBoxAdapter(child: LastSeenWidget()),
 
           SliverToBoxAdapter(
             child: Padding(
@@ -162,5 +115,96 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     serviceLocator<DeleteCarByIdUseCase>().call(id);
 
     context.read<ExplorePageCubit>().removeCarAt(index);
+  }
+}
+
+class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final double minHeight; // Height of collapsed app bar
+  final double maxHeight; // Height when fully expanded
+
+  ExploreHeaderDelegate({required this.minHeight, required this.maxHeight});
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  double get maxExtent => maxHeight;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    // Calculate how much the header is collapsed (0.0 = expanded, 1.0 = collapsed)
+    final progress = (shrinkOffset / (maxExtent - minExtent)).clamp(0.0, 1.0);
+
+    // Interpolate heights for the article list and last seen widget
+    final articleHeight = lerpDouble(120, 60, progress)!; // Example values
+    final lastSeenOpacity = 1.0 - progress; // Fades out as you scroll
+
+    return Material(
+      color: AppColors.headerColor,
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(AppDimensions.normalL),
+        bottomRight: Radius.circular(AppDimensions.normalL),
+      ),
+      child: Stack(
+        children: [
+          // App bar title and search icon
+          Positioned(
+            left: AppDimensions.normalL,
+            right: AppDimensions.normalL,
+            top: 12,
+            height: minHeight,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
+                IconButton(
+                  onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
+                  icon: const Icon(
+                    Icons.search,
+                    size: AppDimensions.appBarIconSize,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Horizontal article list
+          Positioned(
+            left: AppDimensions.normalL,
+            right: AppDimensions.normalL,
+            top: minHeight,
+            height: articleHeight,
+            child: Opacity(
+              opacity: 1.0,
+              child: ListView.separated(
+                itemCount: 3,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return ExploreArticleItem(
+                    height: articleHeight,
+                    articleName: 'Some Article here',
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(width: AppDimensions.normalS);
+                },
+              ),
+            ),
+          ),
+          // Last Seen Widget (fades out as you scroll)
+          Positioned(
+            top: minHeight + articleHeight + AppDimensions.minorL,
+            left: 0,
+            right: 0,
+            child: Opacity(opacity: lastSeenOpacity, child: const LastSeenWidget()),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  bool shouldRebuild(covariant ExploreHeaderDelegate oldDelegate) {
+    return minHeight != oldDelegate.minHeight || maxHeight != oldDelegate.maxHeight;
   }
 }
