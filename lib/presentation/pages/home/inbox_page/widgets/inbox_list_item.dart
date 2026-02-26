@@ -34,7 +34,8 @@ class InboxListItem extends StatelessWidget {
             onTap: () => context.go(AppRoutes.home + AppRoutes.inbox, extra: message.sender.id),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalXS),
-              child: IntrinsicHeight(
+              child: SizedBox(
+                height: 72,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -68,7 +69,7 @@ class InboxListItem extends StatelessWidget {
                     ),
 
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Row(
@@ -86,10 +87,15 @@ class InboxListItem extends StatelessWidget {
                           ],
                         ),
 
+                        const Spacer(),
+
                         if (message.messageStatus == MessageStatus.unknown) ...[
                           const SizedBox(height: AppDimensions.minorL),
 
-                          const AppBadge(text: '1'),
+                          const Align(
+                            alignment: AlignmentGeometry.bottomRight,
+                            child: AppBadge(text: '1'),
+                          ),
                         ],
                       ],
                     ),
