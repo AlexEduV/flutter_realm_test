@@ -1,18 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
+import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 
 void main() {
   group('UserExtensions', () {
     test('fromEntity should convert UserEntity to User correctly', () {
-      final entity = const UserEntity(
+      final entity = UserEntity(
         userId: 'user123',
         firstName: 'John',
         lastName: 'Doe',
         isLocationPermissionGranted: true,
-        favoriteIds: ['1'],
+        favoriteIds: const ['1'],
         email: 'mock@gmail.com',
-        lastSeenCar: null,
+        lastSeenCar: {DateTime.now(): CarEntity.empty()},
       );
 
       final user = UserExtensions.fromEntity(entity);
@@ -23,6 +24,7 @@ void main() {
       expect(user.isLocationPermissionGranted, true);
       expect(user.favoriteIds, ['1']);
       expect(user.email, 'mock@gmail.com');
+      expect(user.lastSeenCar?.car?.model, 'Test Model');
     });
   });
 }
