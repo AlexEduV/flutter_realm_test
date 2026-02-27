@@ -521,9 +521,9 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
 
 class LastSeenCar extends _LastSeenCar
     with RealmEntity, RealmObjectBase, RealmObject {
-  LastSeenCar(DateTime date, {Car? car}) {
+  LastSeenCar(DateTime date, {String? carId}) {
     RealmObjectBase.set(this, 'date', date);
-    RealmObjectBase.set(this, 'car', car);
+    RealmObjectBase.set(this, 'carId', carId);
   }
 
   LastSeenCar._();
@@ -534,9 +534,9 @@ class LastSeenCar extends _LastSeenCar
   set date(DateTime value) => RealmObjectBase.set(this, 'date', value);
 
   @override
-  Car? get car => RealmObjectBase.get<Car>(this, 'car') as Car?;
+  String? get carId => RealmObjectBase.get<String>(this, 'carId') as String?;
   @override
-  set car(covariant Car? value) => RealmObjectBase.set(this, 'car', value);
+  set carId(String? value) => RealmObjectBase.set(this, 'carId', value);
 
   @override
   Stream<RealmObjectChanges<LastSeenCar>> get changes =>
@@ -551,7 +551,7 @@ class LastSeenCar extends _LastSeenCar
   LastSeenCar freeze() => RealmObjectBase.freezeObject<LastSeenCar>(this);
 
   EJsonValue toEJson() {
-    return <String, dynamic>{'date': date.toEJson(), 'car': car.toEJson()};
+    return <String, dynamic>{'date': date.toEJson(), 'carId': carId.toEJson()};
   }
 
   static EJsonValue _toEJson(LastSeenCar value) => value.toEJson();
@@ -560,7 +560,7 @@ class LastSeenCar extends _LastSeenCar
     return switch (ejson) {
       {'date': EJsonValue date} => LastSeenCar(
         fromEJson(date),
-        car: fromEJson(ejson['car']),
+        carId: fromEJson(ejson['carId']),
       ),
       _ => raiseInvalidEJson(ejson),
     };
@@ -575,12 +575,7 @@ class LastSeenCar extends _LastSeenCar
       'LastSeenCar',
       [
         SchemaProperty('date', RealmPropertyType.timestamp),
-        SchemaProperty(
-          'car',
-          RealmPropertyType.object,
-          optional: true,
-          linkTarget: 'Car',
-        ),
+        SchemaProperty('carId', RealmPropertyType.string, optional: true),
       ],
     );
   }();

@@ -47,5 +47,5 @@ class _User {
 @RealmModel()
 class _LastSeenCar {
   late DateTime date;
-  late _Car? car;
+  late String? carId;
 }

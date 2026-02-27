@@ -1,5 +1,3 @@
-import 'package:test_futter_project/common/extensions/car_scheme_extension.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity_short.dart';
 
@@ -18,15 +16,12 @@ extension UserExtensions on User {
     );
   }
 
-  static LastSeenCar? _getLastSeenCar(Map<DateTime, CarEntity>? data) {
+  static LastSeenCar? _getLastSeenCar(Map<DateTime, String>? data) {
     if (data == null) {
       return null;
     }
 
-    return LastSeenCar(
-      data.entries.first.key,
-      car: CarExtensions.fromEntity(data.entries.first.value),
-    );
+    return LastSeenCar(data.entries.first.key, carId: data.entries.first.value);
   }
 
   static User fromUserEntityShort(UserEntityShort entity) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -24,12 +26,14 @@ class LastSeenWidget extends StatelessWidget {
           );
         }
 
-        final carEntity = userState.lastSeenCar?.entries.first.value;
-        if (carEntity == null) {
+        //todo: will try getting all the data by id;
+        final carId = userState.lastSeenCar?.entries.first.value;
+        final carEntityFull = serviceLocator<GetCarByIdUseCase>().call(carId ?? '');
+        if (carEntityFull.carId == 'testId') {
           return const SizedBox.shrink();
         }
 
-        final image = carEntity.images.firstOrNull;
+        final image = carEntityFull.images.firstOrNull;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +59,7 @@ class LastSeenWidget extends StatelessWidget {
                 label: AppSemanticsLabels.lastSeenSectionItem,
                 button: true,
                 child: InkWell(
-                  onTap: () => AppRouter.goToDetailsRouteFromExplore(carEntity.carId),
+                  onTap: () => AppRouter.goToDetailsRouteFromExplore(carEntityFull.carId),
                   borderRadius: BorderRadius.circular(AppDimensions.normalL),
                   child: Container(
                     decoration: BoxDecoration(
@@ -84,12 +88,15 @@ class LastSeenWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${carEntity.manufacturer} ${carEntity.model} ${carEntity.year ?? ''}',
+                              '${carEntityFull.manufacturer} ${carEntityFull.model} ${carEntityFull.year ?? ''}',
                               style: AppTextStyles.zonaPro16White.copyWith(
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            Text('\$ ${carEntity.price ?? 0}', style: AppTextStyles.zonaPro14White),
+                            Text(
+                              '\$ ${carEntityFull.price ?? 0}',
+                              style: AppTextStyles.zonaPro14White,
+                            ),
                           ],
                         ),
                       ],

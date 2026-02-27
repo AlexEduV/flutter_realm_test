@@ -13,7 +13,7 @@ void main() {
         isLocationPermissionGranted: true,
         favoriteIds: const ['1'],
         email: 'mock@gmail.com',
-        lastSeenCar: {DateTime.now(): CarEntity.empty()},
+        lastSeenCar: {DateTime.now(): CarEntity.empty().carId},
       );
 
       final user = UserExtensions.fromEntity(entity);
@@ -24,7 +24,7 @@ void main() {
       expect(user.isLocationPermissionGranted, true);
       expect(user.favoriteIds, ['1']);
       expect(user.email, 'mock@gmail.com');
-      expect(user.lastSeenCar?.car?.model, 'Test Model');
+      expect(user.lastSeenCar?.carId, '');
     });
   });
 }
