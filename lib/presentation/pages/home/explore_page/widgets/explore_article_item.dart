@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
@@ -47,26 +48,41 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
             onTapCancel: () => _setPressed(false),
             borderRadius: BorderRadius.circular(AppDimensions.normalL),
             child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                image: DecorationImage(
-                  image: NetworkImage(widget.article.imageUrl ?? ''),
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(Colors.black.withAlpha(70), BlendMode.darken),
-                ),
-              ),
               height: widget.height,
               width: 120,
-              child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.minorL),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    widget.article.title,
-                    maxLines: 2,
-                    style: AppTextStyles.zonaPro16White,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                color: AppColors.accentColor.withAlpha(60),
+              ),
+              child: Stack(
+                children: [
+                  // Cached network image as background
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                    child: CachedNetworkImage(
+                      imageUrl: widget.article.imageUrl ?? '',
+                      fit: BoxFit.cover,
+                      width: 120,
+                      height: widget.height,
+                      placeholder: (context, url) => Container(color: Colors.grey[300]),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                      color: Colors.black.withAlpha(70),
+                      colorBlendMode: BlendMode.darken,
+                    ),
                   ),
-                ),
+                  // Article title
+                  Padding(
+                    padding: const EdgeInsets.all(AppDimensions.minorL),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        widget.article.title,
+                        maxLines: 2,
+                        style: AppTextStyles.zonaPro16White,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
