@@ -43,8 +43,16 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(cars: cars));
   }
 
-  Future<void> syncCars() async {
+  Future<void> syncCars({bool isStandalone = false}) async {
+    if (isStandalone) {
+      emit(state.copyWith(isLoading: true));
+    }
+
     await _syncCarsUseCase.call();
+
+    if (isStandalone) {
+      emit(state.copyWith(isLoading: false));
+    }
   }
 
   @override

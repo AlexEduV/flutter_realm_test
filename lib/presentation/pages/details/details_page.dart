@@ -53,7 +53,7 @@ class _DetailsPageState extends State<DetailsPage> {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
-            context.read<ExplorePageCubit>().syncCars();
+            context.read<ExplorePageCubit>().syncCars(isStandalone: true);
             context.pop();
           },
           icon: const AppSemantics(
