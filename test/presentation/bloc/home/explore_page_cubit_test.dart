@@ -72,6 +72,7 @@ void main() {
     act: (cubit) => cubit.init(),
     expect: () => [
       isA<ExplorePageState>().having((s) => s.isLoading, 'isLoading', true),
+      isA<ExplorePageState>().having((s) => s.isLoading, 'isLoading', true),
       isA<ExplorePageState>().having((s) => s.isLoading, 'isLoading', false),
       isA<ExplorePageState>().having((s) => s.cars, 'cars', carList),
     ],
