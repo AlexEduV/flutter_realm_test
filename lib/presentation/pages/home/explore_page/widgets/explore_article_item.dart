@@ -64,7 +64,7 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
                       fit: BoxFit.cover,
                       width: 120,
                       height: widget.height,
-                      placeholder: (context, url) => Container(color: Colors.grey[300]),
+                      placeholder: (context, url) => Container(color: AppColors.placeholderColor),
                       errorWidget: (context, url, error) => const Icon(Icons.error),
                       color: Colors.black.withAlpha(70),
                       colorBlendMode: BlendMode.darken,

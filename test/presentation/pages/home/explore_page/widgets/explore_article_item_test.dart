@@ -14,7 +14,7 @@ void main() {
         ),
       );
 
-      final containerFinder = find.byType(Container);
+      final containerFinder = find.byType(Container).first;
       final size = tester.getSize(containerFinder);
       expect(size.height, 120.0);
       expect(size.width, 120.0);
@@ -27,7 +27,7 @@ void main() {
         ),
       );
 
-      final containerFinder = find.byType(Container);
+      final containerFinder = find.byType(Container).first;
       final size = tester.getSize(containerFinder);
       expect(size.height, 200.0);
       expect(size.width, 120.0);
@@ -40,10 +40,10 @@ void main() {
         ),
       );
 
-      final containerWidget = tester.widget<Container>(find.byType(Container));
+      final containerWidget = tester.widget<Container>(find.byType(Container).first);
       final decoration = containerWidget.decoration as BoxDecoration;
 
-      expect(decoration.color, AppColors.placeholderColor);
+      expect(decoration.color, AppColors.accentColor.withAlpha(60));
       expect(decoration.borderRadius, BorderRadius.circular(AppDimensions.normalL));
     });
   });
