@@ -1,15 +1,22 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 
 class ArticleRepositoryImpl implements ArticleRepository {
-  List<ArticleEntity> articles = [
-    const ArticleEntity(id: '1', title: 'World news of this week', imageSrc: ''),
-    const ArticleEntity(id: '2', title: 'Scoda Kodiaq I Crush Test', imageSrc: ''),
-    const ArticleEntity(id: '3', title: 'Best sellers 2021', imageSrc: ''),
-  ];
+  List<ArticleEntity> articles = [];
 
   @override
   Future<List<ArticleEntity>> fetchArticles() async {
+    final jsonString = await rootBundle.loadString(
+      'assets/mocks/articles_mock_response_data_global.json',
+    );
+    final List jsonList = json.decode(jsonString);
+    for (final article in jsonList) {
+      articles.add(ArticleEntity.fromJson(article));
+    }
+
     return articles;
   }
 

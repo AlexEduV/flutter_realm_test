@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "title": "The Future of Electric Cars",
+    "summary": "Electric cars are changing the automotive industry.",
+    "paragraphs": [
+      "Electric vehicles (EVs) are becoming more popular every year.",
+      "Major manufacturers are investing heavily in EV technology.",
+      "Charging infrastructure is expanding rapidly worldwide."
+    ],
+    "imageUrl": "https://example.com/electric_car.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Top 5 Sports Cars of 2026",
+    "summary": "A look at the most exciting sports cars released this year.",
+    "paragraphs": [
+      "2026 has seen the release of several high-performance sports cars.",
+      "Brands like Ferrari, Porsche, and Lamborghini lead the pack.",
+      "Advanced aerodynamics and hybrid engines are common features."
+    ],
+    "imageUrl": "https://example.com/sports_car.jpg"
+  },
+  {
+    "id": "3",
+    "title": "How Autonomous Cars Work",
+    "summary": "Understanding the technology behind self-driving vehicles.",
+    "paragraphs": [
+      "Autonomous cars use a combination of sensors and AI.",
+      "Lidar, radar, and cameras help the car perceive its environment.",
+      "Machine learning algorithms process data to make driving decisions."
+    ],
+    "imageUrl": "https://example.com/autonomous_car.jpg"
+  }
+]
