@@ -8,6 +8,7 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
@@ -15,10 +16,11 @@ import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_
 
 import 'explore_page_cubit_test.mocks.dart';
 
-@GenerateMocks([SyncCarsUseCase, WatchCarsUseCase])
+@GenerateMocks([SyncCarsUseCase, WatchCarsUseCase, ArticleRepository])
 void main() {
   late MockSyncCarsUseCase mockSyncCarsUseCase;
   late MockWatchCarsUseCase mockWatchCarsUseCase;
+  late MockArticleRepository mockArticleRepository;
 
   late ExplorePageCubit cubit;
 
@@ -49,7 +51,8 @@ void main() {
   setUp(() {
     mockWatchCarsUseCase = MockWatchCarsUseCase();
     mockSyncCarsUseCase = MockSyncCarsUseCase();
-    cubit = ExplorePageCubit(mockWatchCarsUseCase, mockSyncCarsUseCase);
+    mockArticleRepository = MockArticleRepository();
+    cubit = ExplorePageCubit(mockWatchCarsUseCase, mockSyncCarsUseCase, mockArticleRepository);
   });
 
   tearDown(() async {
@@ -61,6 +64,7 @@ void main() {
     setUp: () {
       when(mockSyncCarsUseCase.call()).thenAnswer((_) async => {});
       when(mockWatchCarsUseCase.call()).thenAnswer((_) => Stream.value(carList));
+      when(mockArticleRepository.fetchArticles()).thenAnswer((_) async => []);
     },
     build: () {
       return cubit;

@@ -3,13 +3,16 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:test_futter_project/domain/entities/article_entity.dart' as _i2;
+import 'package:test_futter_project/domain/repositories/article_repository.dart'
+    as _i6;
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart'
-    as _i2;
+    as _i3;
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart'
-    as _i4;
+    as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,29 +28,66 @@ import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
+  _FakeArticleEntity_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [SyncCarsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSyncCarsUseCase extends _i1.Mock implements _i2.SyncCarsUseCase {
+class MockSyncCarsUseCase extends _i1.Mock implements _i3.SyncCarsUseCase {
   MockSyncCarsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> call() =>
+  _i4.Future<void> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
           )
-          as _i3.Future<void>);
+          as _i4.Future<void>);
 }
 
 /// A class which mocks [WatchCarsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockWatchCarsUseCase extends _i1.Mock implements _i4.WatchCarsUseCase {
+class MockWatchCarsUseCase extends _i1.Mock implements _i5.WatchCarsUseCase {
   MockWatchCarsUseCase() {
     _i1.throwOnMissingStub(this);
   }
+}
+
+/// A class which mocks [ArticleRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockArticleRepository extends _i1.Mock implements _i6.ArticleRepository {
+  MockArticleRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<List<_i2.ArticleEntity>> fetchArticles() =>
+      (super.noSuchMethod(
+            Invocation.method(#fetchArticles, []),
+            returnValue: _i4.Future<List<_i2.ArticleEntity>>.value(
+              <_i2.ArticleEntity>[],
+            ),
+          )
+          as _i4.Future<List<_i2.ArticleEntity>>);
+
+  @override
+  _i4.Future<_i2.ArticleEntity> getArticleById(String? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#getArticleById, [id]),
+            returnValue: _i4.Future<_i2.ArticleEntity>.value(
+              _FakeArticleEntity_0(
+                this,
+                Invocation.method(#getArticleById, [id]),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.ArticleEntity>);
 }
