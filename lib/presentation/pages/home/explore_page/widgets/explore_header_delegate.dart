@@ -78,22 +78,33 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
               opacity: 1.0,
               child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
                 builder: (context, state) {
-                  if (state.isLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  return ListView.separated(
-                    itemCount: state.articles.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return ExploreArticleItem(
-                        height: articleHeight,
-                        articleName: state.articles[index].title,
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(width: AppDimensions.normalS);
-                    },
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 400),
+                    switchInCurve: Curves.easeIn,
+                    switchOutCurve: Curves.easeOut,
+                    child: state.isLoading
+                        ? const Center(
+                            key: ValueKey('loading'),
+                            child: SizedBox(
+                              height: AppDimensions.smallProgressBarSize,
+                              width: AppDimensions.smallProgressBarSize,
+                              child: CircularProgressIndicator(),
+                            ),
+                          )
+                        : ListView.separated(
+                            key: const ValueKey('list'),
+                            itemCount: state.articles.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return ExploreArticleItem(
+                                height: articleHeight,
+                                articleName: state.articles[index].title,
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(width: AppDimensions.normalS);
+                            },
+                          ),
                   );
                 },
               ),

@@ -32,4 +32,6 @@ class AppDimensions {
   static const lastSeenSectionImageSize = 50.0;
 
   static const inboxItemHeight = 72.0;
+
+  static const smallProgressBarSize = 24.0;
 }
