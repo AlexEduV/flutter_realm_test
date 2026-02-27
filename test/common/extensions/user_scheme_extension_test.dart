@@ -24,7 +24,7 @@ void main() {
       expect(user.isLocationPermissionGranted, true);
       expect(user.favoriteIds, ['1']);
       expect(user.email, 'mock@gmail.com');
-      expect(user.lastSeenCar?.carId, '');
+      expect(user.lastSeenCar?.carId, 'testId');
     });
   });
 }
