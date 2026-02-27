@@ -88,7 +88,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                             child: SizedBox(
                               height: AppDimensions.smallProgressBarSize,
                               width: AppDimensions.smallProgressBarSize,
-                              child: CircularProgressIndicator(),
+                              child: CircularProgressIndicator(color: Colors.white),
                             ),
                           )
                         : ListView.separated(
