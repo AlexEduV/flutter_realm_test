@@ -1,7 +1,7 @@
-import 'package:test_futter_project/domain/models/article_model.dart';
+import 'package:test_futter_project/domain/entities/article_entity.dart';
 
 abstract class ArticleService {
-  Future<List<ArticleModel>> fetchArticles();
+  Future<List<ArticleEntity>> fetchArticles();
 
-  Future<ArticleModel> getArticleById(String id);
+  Future<ArticleEntity> getArticleById(String id);
 }
