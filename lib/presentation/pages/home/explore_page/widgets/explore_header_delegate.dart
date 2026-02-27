@@ -98,7 +98,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                             itemBuilder: (context, index) {
                               return ExploreArticleItem(
                                 height: articleHeight,
-                                articleName: state.articles[index].title,
+                                article: state.articles[index],
                               );
                             },
                             separatorBuilder: (context, index) {

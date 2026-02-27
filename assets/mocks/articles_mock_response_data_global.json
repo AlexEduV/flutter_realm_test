@@ -8,7 +8,7 @@
       "Major manufacturers are investing heavily in EV technology.",
       "Charging infrastructure is expanding rapidly worldwide."
     ],
-    "imageUrl": "https://example.com/electric_car.jpg"
+    "imageUrl": "https://images.pexels.com/photos/2526127/pexels-photo-2526127.jpeg"
   },
   {
     "id": "2",
@@ -19,7 +19,7 @@
       "Brands like Ferrari, Porsche, and Lamborghini lead the pack.",
       "Advanced aerodynamics and hybrid engines are common features."
     ],
-    "imageUrl": "https://example.com/sports_car.jpg"
+    "imageUrl": "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg"
   },
   {
     "id": "3",
@@ -30,6 +30,6 @@
       "Lidar, radar, and cameras help the car perceive its environment.",
       "Machine learning algorithms process data to make driving decisions."
     ],
-    "imageUrl": "https://example.com/autonomous_car.jpg"
+    "imageUrl": "https://images.pexels.com/photos/4077271/pexels-photo-4077271.jpeg"
   }
 ]

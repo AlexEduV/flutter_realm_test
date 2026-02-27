@@ -4,15 +4,16 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/app_colors.dart';
 
 class ExploreArticleItem extends StatefulWidget {
   final double height;
-  final String articleName;
+  final ArticleEntity article;
 
-  const ExploreArticleItem({required this.articleName, this.height = 120.0, super.key});
+  const ExploreArticleItem({required this.article, this.height = 120.0, super.key});
 
   @override
   State<ExploreArticleItem> createState() => _ExploreArticleItemState();
@@ -46,14 +47,24 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
             onTapCancel: () => _setPressed(false),
             borderRadius: BorderRadius.circular(AppDimensions.normalL),
             child: Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalL)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                image: DecorationImage(
+                  image: NetworkImage(widget.article.imageUrl ?? ''),
+                  fit: BoxFit.cover,
+                ),
+              ),
               height: widget.height,
               width: 120,
               child: Padding(
                 padding: const EdgeInsets.all(AppDimensions.minorL),
                 child: Align(
                   alignment: Alignment.bottomLeft,
-                  child: Text(widget.articleName, maxLines: 2, style: AppTextStyles.zonaPro16White),
+                  child: Text(
+                    widget.article.title,
+                    maxLines: 2,
+                    style: AppTextStyles.zonaPro16White,
+                  ),
                 ),
               ),
             ),
