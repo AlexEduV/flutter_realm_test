@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
@@ -38,9 +40,7 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
           color: AppColors.accentColor.withAlpha(60),
           borderRadius: BorderRadius.circular(AppDimensions.normalL),
           child: InkWell(
-            onTap: () {
-              // Your tap logic here
-            },
+            onTap: () => context.go(AppRoutes.home + AppRoutes.articleDetails),
             onTapDown: (_) => _setPressed(true),
             onTapUp: (_) => _setPressed(false),
             onTapCancel: () => _setPressed(false),

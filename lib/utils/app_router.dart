@@ -49,6 +49,12 @@ class AppRouter {
               return const CupertinoPage(child: PlaceholderPage());
             },
           ),
+          GoRoute(
+            path: AppRoutes.articleDetails,
+            pageBuilder: (context, state) {
+              return const CupertinoPage(child: PlaceholderPage());
+            },
+          ),
         ],
       ),
     ],
