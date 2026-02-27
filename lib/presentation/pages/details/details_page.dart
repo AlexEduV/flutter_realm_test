@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/owner_widget.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
@@ -51,7 +52,10 @@ class _DetailsPageState extends State<DetailsPage> {
         leadingWidth: 70,
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () => context.pop(),
+          onPressed: () {
+            context.read<ExplorePageCubit>().syncCars();
+            context.pop();
+          },
           icon: const AppSemantics(
             button: true,
             label: AppSemanticsLabels.backButton,

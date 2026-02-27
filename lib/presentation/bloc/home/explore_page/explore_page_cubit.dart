@@ -20,7 +20,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
 
-    await _syncCarsUseCase.call();
+    await syncCars();
 
     final articles = await _fetchArticlesUseCase.call();
     emit(state.copyWith(articles: articles));
@@ -41,6 +41,10 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     cars.removeAt(index);
 
     emit(state.copyWith(cars: cars));
+  }
+
+  Future<void> syncCars() async {
+    await _syncCarsUseCase.call();
   }
 
   @override
