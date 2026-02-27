@@ -52,6 +52,7 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
                 image: DecorationImage(
                   image: NetworkImage(widget.article.imageUrl ?? ''),
                   fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(Colors.black.withAlpha(70), BlendMode.darken),
                 ),
               ),
               height: widget.height,
