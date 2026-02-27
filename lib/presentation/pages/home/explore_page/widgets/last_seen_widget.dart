@@ -26,7 +26,6 @@ class LastSeenWidget extends StatelessWidget {
           );
         }
 
-        //todo: will try getting all the data by id;
         final carId = userState.lastSeenCar?.entries.first.value;
         final carEntityFull = serviceLocator<GetCarByIdUseCase>().call(carId ?? '');
         if (carEntityFull.carId == 'testId') {
