@@ -1,7 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -73,17 +76,25 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
             height: articleHeight,
             child: Opacity(
               opacity: 1.0,
-              child: ListView.separated(
-                itemCount: 3,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return ExploreArticleItem(
-                    height: articleHeight,
-                    articleName: 'Some Article here',
+              child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  return ListView.separated(
+                    itemCount: state.articles.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return ExploreArticleItem(
+                        height: articleHeight,
+                        articleName: state.articles[index].title,
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(width: AppDimensions.normalS);
+                    },
                   );
-                },
-                separatorBuilder: (context, index) {
-                  return const SizedBox(width: AppDimensions.normalS);
                 },
               ),
             ),
