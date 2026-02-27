@@ -6,8 +6,10 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/domain/entities/article_entity.dart' as _i2;
+import 'package:test_futter_project/domain/entities/article_entity.dart' as _i7;
 import 'package:test_futter_project/domain/repositories/article_repository.dart'
+    as _i2;
+import 'package:test_futter_project/domain/usecases/articles/fetch_articles_use_case.dart'
     as _i6;
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart'
     as _i3;
@@ -28,8 +30,9 @@ import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
-  _FakeArticleEntity_0(Object parent, Invocation parentInvocation)
+class _FakeArticleRepository_0 extends _i1.SmartFake
+    implements _i2.ArticleRepository {
+  _FakeArticleRepository_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -60,34 +63,33 @@ class MockWatchCarsUseCase extends _i1.Mock implements _i5.WatchCarsUseCase {
   }
 }
 
-/// A class which mocks [ArticleRepository].
+/// A class which mocks [FetchArticlesUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockArticleRepository extends _i1.Mock implements _i6.ArticleRepository {
-  MockArticleRepository() {
+class MockFetchArticlesUseCase extends _i1.Mock
+    implements _i6.FetchArticlesUseCase {
+  MockFetchArticlesUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<List<_i2.ArticleEntity>> fetchArticles() =>
+  _i2.ArticleRepository get articleRepository =>
       (super.noSuchMethod(
-            Invocation.method(#fetchArticles, []),
-            returnValue: _i4.Future<List<_i2.ArticleEntity>>.value(
-              <_i2.ArticleEntity>[],
+            Invocation.getter(#articleRepository),
+            returnValue: _FakeArticleRepository_0(
+              this,
+              Invocation.getter(#articleRepository),
             ),
           )
-          as _i4.Future<List<_i2.ArticleEntity>>);
+          as _i2.ArticleRepository);
 
   @override
-  _i4.Future<_i2.ArticleEntity> getArticleById(String? id) =>
+  _i4.Future<List<_i7.ArticleEntity>> call() =>
       (super.noSuchMethod(
-            Invocation.method(#getArticleById, [id]),
-            returnValue: _i4.Future<_i2.ArticleEntity>.value(
-              _FakeArticleEntity_0(
-                this,
-                Invocation.method(#getArticleById, [id]),
-              ),
+            Invocation.method(#call, []),
+            returnValue: _i4.Future<List<_i7.ArticleEntity>>.value(
+              <_i7.ArticleEntity>[],
             ),
           )
-          as _i4.Future<_i2.ArticleEntity>);
+          as _i4.Future<List<_i7.ArticleEntity>>);
 }
