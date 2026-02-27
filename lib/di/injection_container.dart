@@ -17,6 +17,7 @@ import 'package:test_futter_project/domain/repositories/article_repository.dart'
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
 import 'package:test_futter_project/domain/usecases/articles/fetch_articles_use_case.dart';
+import 'package:test_futter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/delete_account_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
@@ -32,6 +33,7 @@ import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case
 import 'package:test_futter_project/domain/usecases/inbox/fetch_messages_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
+import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
@@ -153,4 +155,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => FetchMessagesUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => FetchArticlesUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetArticleByIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => ArticlePageCubit(serviceLocator()));
 }

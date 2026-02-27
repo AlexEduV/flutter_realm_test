@@ -42,7 +42,8 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
           color: AppColors.accentColor.withAlpha(60),
           borderRadius: BorderRadius.circular(AppDimensions.normalL),
           child: InkWell(
-            onTap: () => context.go(AppRoutes.home + AppRoutes.articleDetails),
+            onTap: () =>
+                context.go(AppRoutes.home + AppRoutes.articleDetails, extra: widget.article.id),
             onTapDown: (_) => _setPressed(true),
             onTapUp: (_) => _setPressed(false),
             onTapCancel: () => _setPressed(false),
