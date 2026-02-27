@@ -82,7 +82,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                     duration: const Duration(milliseconds: 400),
                     switchInCurve: Curves.easeIn,
                     switchOutCurve: Curves.easeOut,
-                    child: state.isLoading
+                    child: state.isArticleListLoading
                         ? const Center(
                             key: ValueKey('loading'),
                             child: SizedBox(

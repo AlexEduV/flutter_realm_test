@@ -216,6 +216,15 @@ class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
   );
 
   @override
+  _i10.Future<void> syncCars({bool? isStandalone = false}) =>
+      (super.noSuchMethod(
+            Invocation.method(#syncCars, [], {#isStandalone: isStandalone}),
+            returnValue: _i10.Future<void>.value(),
+            returnValueForMissingStub: _i10.Future<void>.value(),
+          )
+          as _i10.Future<void>);
+
+  @override
   _i10.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),

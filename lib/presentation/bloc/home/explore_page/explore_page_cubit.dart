@@ -18,12 +18,12 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
   final FetchArticlesUseCase _fetchArticlesUseCase;
 
   Future<void> init() async {
-    emit(state.copyWith(isLoading: true));
+    emit(state.copyWith(isLoading: true, isArticleListLoading: true));
 
     await syncCars();
 
     final articles = await _fetchArticlesUseCase.call();
-    emit(state.copyWith(articles: articles));
+    emit(state.copyWith(articles: articles, isArticleListLoading: false));
 
     emit(state.copyWith(isLoading: false));
 

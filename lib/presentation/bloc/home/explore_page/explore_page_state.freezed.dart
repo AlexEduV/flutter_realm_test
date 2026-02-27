@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ExplorePageState {
 
- List<CarEntity> get cars; List<ArticleEntity> get articles; bool get isLoading; CarEntity? get lastSeenCar;
+ List<CarEntity> get cars; bool get isLoading; List<ArticleEntity> get articles; bool get isArticleListLoading; CarEntity? get lastSeenCar;
 /// Create a copy of ExplorePageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $ExplorePageStateCopyWith<ExplorePageState> get copyWith => _$ExplorePageStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExplorePageState&&const DeepCollectionEquality().equals(other.cars, cars)&&const DeepCollectionEquality().equals(other.articles, articles)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.lastSeenCar, lastSeenCar) || other.lastSeenCar == lastSeenCar));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ExplorePageState&&const DeepCollectionEquality().equals(other.cars, cars)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&const DeepCollectionEquality().equals(other.articles, articles)&&(identical(other.isArticleListLoading, isArticleListLoading) || other.isArticleListLoading == isArticleListLoading)&&(identical(other.lastSeenCar, lastSeenCar) || other.lastSeenCar == lastSeenCar));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(cars),const DeepCollectionEquality().hash(articles),isLoading,lastSeenCar);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(cars),isLoading,const DeepCollectionEquality().hash(articles),isArticleListLoading,lastSeenCar);
 
 @override
 String toString() {
-  return 'ExplorePageState(cars: $cars, articles: $articles, isLoading: $isLoading, lastSeenCar: $lastSeenCar)';
+  return 'ExplorePageState(cars: $cars, isLoading: $isLoading, articles: $articles, isArticleListLoading: $isArticleListLoading, lastSeenCar: $lastSeenCar)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $ExplorePageStateCopyWith<$Res>  {
   factory $ExplorePageStateCopyWith(ExplorePageState value, $Res Function(ExplorePageState) _then) = _$ExplorePageStateCopyWithImpl;
 @useResult
 $Res call({
- List<CarEntity> cars, List<ArticleEntity> articles, bool isLoading, CarEntity? lastSeenCar
+ List<CarEntity> cars, bool isLoading, List<ArticleEntity> articles, bool isArticleListLoading, CarEntity? lastSeenCar
 });
 
 
@@ -63,11 +63,12 @@ class _$ExplorePageStateCopyWithImpl<$Res>
 
 /// Create a copy of ExplorePageState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cars = null,Object? articles = null,Object? isLoading = null,Object? lastSeenCar = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cars = null,Object? isLoading = null,Object? articles = null,Object? isArticleListLoading = null,Object? lastSeenCar = freezed,}) {
   return _then(_self.copyWith(
 cars: null == cars ? _self.cars : cars // ignore: cast_nullable_to_non_nullable
-as List<CarEntity>,articles: null == articles ? _self.articles : articles // ignore: cast_nullable_to_non_nullable
-as List<ArticleEntity>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as List<CarEntity>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,articles: null == articles ? _self.articles : articles // ignore: cast_nullable_to_non_nullable
+as List<ArticleEntity>,isArticleListLoading: null == isArticleListLoading ? _self.isArticleListLoading : isArticleListLoading // ignore: cast_nullable_to_non_nullable
 as bool,lastSeenCar: freezed == lastSeenCar ? _self.lastSeenCar : lastSeenCar // ignore: cast_nullable_to_non_nullable
 as CarEntity?,
   ));
@@ -80,7 +81,7 @@ as CarEntity?,
 
 
 class _ExplorePageState implements ExplorePageState {
-  const _ExplorePageState({final  List<CarEntity> cars = const [], final  List<ArticleEntity> articles = const [], this.isLoading = false, this.lastSeenCar = null}): _cars = cars,_articles = articles;
+  const _ExplorePageState({final  List<CarEntity> cars = const [], this.isLoading = false, final  List<ArticleEntity> articles = const [], this.isArticleListLoading = false, this.lastSeenCar = null}): _cars = cars,_articles = articles;
   
 
  final  List<CarEntity> _cars;
@@ -90,6 +91,7 @@ class _ExplorePageState implements ExplorePageState {
   return EqualUnmodifiableListView(_cars);
 }
 
+@override@JsonKey() final  bool isLoading;
  final  List<ArticleEntity> _articles;
 @override@JsonKey() List<ArticleEntity> get articles {
   if (_articles is EqualUnmodifiableListView) return _articles;
@@ -97,7 +99,7 @@ class _ExplorePageState implements ExplorePageState {
   return EqualUnmodifiableListView(_articles);
 }
 
-@override@JsonKey() final  bool isLoading;
+@override@JsonKey() final  bool isArticleListLoading;
 @override@JsonKey() final  CarEntity? lastSeenCar;
 
 /// Create a copy of ExplorePageState
@@ -110,16 +112,16 @@ _$ExplorePageStateCopyWith<_ExplorePageState> get copyWith => __$ExplorePageStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExplorePageState&&const DeepCollectionEquality().equals(other._cars, _cars)&&const DeepCollectionEquality().equals(other._articles, _articles)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.lastSeenCar, lastSeenCar) || other.lastSeenCar == lastSeenCar));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ExplorePageState&&const DeepCollectionEquality().equals(other._cars, _cars)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&const DeepCollectionEquality().equals(other._articles, _articles)&&(identical(other.isArticleListLoading, isArticleListLoading) || other.isArticleListLoading == isArticleListLoading)&&(identical(other.lastSeenCar, lastSeenCar) || other.lastSeenCar == lastSeenCar));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_cars),const DeepCollectionEquality().hash(_articles),isLoading,lastSeenCar);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_cars),isLoading,const DeepCollectionEquality().hash(_articles),isArticleListLoading,lastSeenCar);
 
 @override
 String toString() {
-  return 'ExplorePageState(cars: $cars, articles: $articles, isLoading: $isLoading, lastSeenCar: $lastSeenCar)';
+  return 'ExplorePageState(cars: $cars, isLoading: $isLoading, articles: $articles, isArticleListLoading: $isArticleListLoading, lastSeenCar: $lastSeenCar)';
 }
 
 
@@ -130,7 +132,7 @@ abstract mixin class _$ExplorePageStateCopyWith<$Res> implements $ExplorePageSta
   factory _$ExplorePageStateCopyWith(_ExplorePageState value, $Res Function(_ExplorePageState) _then) = __$ExplorePageStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<CarEntity> cars, List<ArticleEntity> articles, bool isLoading, CarEntity? lastSeenCar
+ List<CarEntity> cars, bool isLoading, List<ArticleEntity> articles, bool isArticleListLoading, CarEntity? lastSeenCar
 });
 
 
@@ -147,11 +149,12 @@ class __$ExplorePageStateCopyWithImpl<$Res>
 
 /// Create a copy of ExplorePageState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cars = null,Object? articles = null,Object? isLoading = null,Object? lastSeenCar = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cars = null,Object? isLoading = null,Object? articles = null,Object? isArticleListLoading = null,Object? lastSeenCar = freezed,}) {
   return _then(_ExplorePageState(
 cars: null == cars ? _self._cars : cars // ignore: cast_nullable_to_non_nullable
-as List<CarEntity>,articles: null == articles ? _self._articles : articles // ignore: cast_nullable_to_non_nullable
-as List<ArticleEntity>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as List<CarEntity>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,articles: null == articles ? _self._articles : articles // ignore: cast_nullable_to_non_nullable
+as List<ArticleEntity>,isArticleListLoading: null == isArticleListLoading ? _self.isArticleListLoading : isArticleListLoading // ignore: cast_nullable_to_non_nullable
 as bool,lastSeenCar: freezed == lastSeenCar ? _self.lastSeenCar : lastSeenCar // ignore: cast_nullable_to_non_nullable
 as CarEntity?,
   ));
