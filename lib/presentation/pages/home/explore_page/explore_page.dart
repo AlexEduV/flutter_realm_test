@@ -47,7 +47,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                   delegate: ExploreHeaderDelegate(
                     //todo: manual adjustment os size is not good for architecture;
                     minHeight: 100, // Height of collapsed app bar
-                    maxHeightWithLastSeen: 160 + AppDimensions.exploreArticleItemBaseSize,
+                    maxHeightWithLastSeen: 260 + AppDimensions.exploreArticleItemBaseSize,
                     maxHeightWithoutLastSeen: 121 + AppDimensions.exploreArticleItemBaseSize,
                     showLastSeen:
                         state.lastSeenCar != null, // Height when fully expanded (adjust as needed)
