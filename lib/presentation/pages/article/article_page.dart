@@ -62,17 +62,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         style: const TextStyle(fontStyle: FontStyle.italic),
                       ),
 
-                      Expanded(
-                        child: ListView.separated(
-                          itemCount: state.article?.paragraphs.length ?? 0,
-                          itemBuilder: (context, index) {
-                            return Text(state.article?.paragraphs[index] ?? '');
-                          },
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(height: AppDimensions.normalL);
-                          },
-                        ),
-                      ),
+                      ...?state.article?.paragraphs.map((paragraph) => Text(paragraph)),
                     ],
                   ),
                 ),
