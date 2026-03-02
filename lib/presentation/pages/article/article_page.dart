@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
@@ -9,6 +10,7 @@ import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../common/app_semantics_labels.dart';
+import '../../../common/utils/share_debouncer.dart';
 import '../../widgets/app_semantics.dart';
 
 class ArticlePage extends StatefulWidget {
@@ -43,8 +45,13 @@ class _ArticlePageState extends State<ArticlePage> {
                 padding: const EdgeInsets.only(right: AppDimensions.normalS),
                 child: IconButton(
                   tooltip: AppLocalisations.shareButtonLabel,
-                  onPressed: () {
-                    //todo: connect to share plus
+                  onPressed: () async {
+                    await ShareDebouncer.share(
+                      ShareParams(
+                        title: '${state.article?.title}',
+                        text: 'https://example.com/articles/?id=${widget.articleId}',
+                      ),
+                    );
                   },
                   icon: const AppSemantics(
                     button: true,
