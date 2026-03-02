@@ -35,5 +35,5 @@ class AppDimensions {
 
   static const smallProgressBarSize = 24.0;
 
-  static const exploreArticleItemBaseSize = 150.0;
+  static const exploreArticleItemBaseSize = 120.0;
 }
