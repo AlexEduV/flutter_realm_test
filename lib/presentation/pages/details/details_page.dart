@@ -13,6 +13,7 @@ import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_s
 import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 
 import '../../../common/app_semantics_labels.dart';
+import '../../../utils/l10n.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';
 import '../../widgets/verified_badge.dart';
@@ -68,6 +69,22 @@ class _DetailsPageState extends State<DetailsPage> {
           style: appBarButtonStyle,
         ),
         actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: AppDimensions.normalS),
+            child: IconButton(
+              tooltip: AppLocalisations.shareButtonLabel,
+              onPressed: () {
+                //todo: connect to share plus
+              },
+              icon: const AppSemantics(
+                button: true,
+                label: AppSemanticsLabels.shareButton,
+                child: Icon(Icons.ios_share_rounded, size: AppDimensions.appBarIconSize),
+              ),
+              style: appBarButtonStyle,
+            ),
+          ),
+
           BlocBuilder<UserDataCubit, UserDataState>(
             builder: (context, userState) {
               return BlocBuilder<DetailsPageCubit, DetailsPageState>(
@@ -93,7 +110,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         child: AnimatedFavoriteIcon(
                           decorated: false,
                           isFavorite: isCarFavorite,
-                          size: AppDimensions.favoriteButtonSize,
+                          size: AppDimensions.appBarIconSize,
                         ),
                       ),
                       style: appBarButtonStyle,
