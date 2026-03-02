@@ -8,6 +8,8 @@ import 'package:test_futter_project/presentation/bloc/article/article_page_state
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/app_colors.dart';
+import '../../../common/app_semantics_labels.dart';
+import '../../widgets/app_semantics.dart';
 
 class ArticlePage extends StatefulWidget {
   final String articleId;
@@ -36,6 +38,21 @@ class _ArticlePageState extends State<ArticlePage> {
           appBar: AppBar(
             title: Text(state.article?.title ?? '', style: AppTextStyles.zonaPro20),
             centerTitle: true,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: AppDimensions.normalM),
+                child: IconButton(
+                  onPressed: () {
+                    //todo: connect to share plus
+                  },
+                  icon: const AppSemantics(
+                    button: true,
+                    label: AppSemanticsLabels.shareButton,
+                    child: Icon(Icons.ios_share_rounded, size: AppDimensions.appBarIconSize / 1.2),
+                  ),
+                ),
+              ),
+            ],
           ),
           body: state.isLoading
               ? const Center(child: CircularProgressIndicator())

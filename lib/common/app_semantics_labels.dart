@@ -8,6 +8,7 @@ class AppSemanticsLabels {
   static const announcementDeleteButton = 'announcementDeleteButton';
   static const announcementTitle = 'announcementTitle';
   static const favoriteButton = 'favoriteButton';
+  static const shareButton = 'shareButton';
 
   static const exploreArticleItem = 'exploreArticleItem';
   static const resultsLabel = 'resultsLabel';
