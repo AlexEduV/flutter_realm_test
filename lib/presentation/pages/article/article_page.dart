@@ -29,6 +29,8 @@ class _ArticlePageState extends State<ArticlePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<ArticlePageCubit, ArticlePageState>(
       builder: (context, state) {
+        final minsToRead = state.article?.minsToRead;
+
         return Scaffold(
           appBar: AppBar(
             title: Text(state.article?.title ?? '', style: AppTextStyles.zonaPro20),
@@ -58,12 +60,42 @@ class _ArticlePageState extends State<ArticlePage> {
                           ),
                         ),
 
-                        Text(
-                          state.article?.summary ?? '',
-                          style: const TextStyle(fontStyle: FontStyle.italic),
+                        Row(
+                          spacing: AppDimensions.minorL,
+                          children: [
+                            if (minsToRead != null) ...[
+                              Text('${state.article?.minsToRead} mins to read'),
+                            ],
+
+                            Text(state.article?.datePublished ?? ''),
+                          ],
                         ),
 
-                        ...?state.article?.paragraphs.map((paragraph) => Text(paragraph)),
+                        Row(
+                          spacing: AppDimensions.minorL,
+                          children: [
+                            const CircleAvatar(radius: AppDimensions.normalS),
+                            Text(
+                              state.article?.authorFullName ?? '',
+                              style: AppTextStyles.zonaPro14,
+                            ),
+                          ],
+                        ),
+
+                        Text(
+                          state.article?.summary ?? '',
+                          style: AppTextStyles.zonaPro14.copyWith(
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+
+                        ...?state.article?.paragraphs.map(
+                          (paragraph) => Text(
+                            paragraph,
+                            style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w400),
+                          ),
+                        ),
 
                         const SizedBox(height: AppDimensions.normalL),
                       ],
