@@ -45,9 +45,15 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                 return SliverPersistentHeader(
                   pinned: true,
                   delegate: ExploreHeaderDelegate(
-                    minHeight: 100, // Height of collapsed app bar
-                    maxHeightWithLastSeen: 260 + AppDimensions.exploreArticleItemBaseSize,
-                    maxHeightWithoutLastSeen: 121 + AppDimensions.exploreArticleItemBaseSize,
+                    minHeight: AppDimensions.exploreAppBarBaseSize, // Height of collapsed app bar
+                    maxHeightWithLastSeen:
+                        AppDimensions.exploreAppBarBaseSize +
+                        160 +
+                        AppDimensions.exploreArticleItemBaseSize,
+                    maxHeightWithoutLastSeen:
+                        AppDimensions.exploreAppBarBaseSize +
+                        21 +
+                        AppDimensions.exploreArticleItemBaseSize,
                     showLastSeen: state.lastSeenCar != null,
                   ),
                 );
