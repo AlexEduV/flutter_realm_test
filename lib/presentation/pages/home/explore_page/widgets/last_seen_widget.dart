@@ -32,9 +32,7 @@ class LastSeenWidget extends StatelessWidget {
           builder: (context, state) {
             final carId = userState.lastSeenCar?.entries.first.value;
             final carEntityFull = serviceLocator<GetCarByIdUseCase>().call(carId ?? '');
-            if (carEntityFull.carId == 'testId') {
-              return const SizedBox.shrink();
-            }
+            final isTestCar = carEntityFull.carId == 'testId';
 
             final image = carEntityFull.images.firstOrNull;
 
@@ -87,21 +85,23 @@ class LastSeenWidget extends StatelessWidget {
 
                             const SizedBox(width: AppDimensions.minorL),
 
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${carEntityFull.manufacturer} ${carEntityFull.model} ${carEntityFull.year ?? ''}',
-                                  style: AppTextStyles.zonaPro16White.copyWith(
-                                    fontWeight: FontWeight.w600,
+                            if (!isTestCar) ...[
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${carEntityFull.manufacturer} ${carEntityFull.model} ${carEntityFull.year ?? ''}',
+                                    style: AppTextStyles.zonaPro16White.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  '\$ ${carEntityFull.price ?? 0}',
-                                  style: AppTextStyles.zonaPro14White,
-                                ),
-                              ],
-                            ),
+                                  Text(
+                                    '\$ ${carEntityFull.price ?? 0}',
+                                    style: AppTextStyles.zonaPro14White,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ],
                         ),
                       ),
