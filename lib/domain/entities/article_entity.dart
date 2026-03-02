@@ -1,7 +1,9 @@
+import 'package:test_futter_project/domain/entities/author_entity.dart';
+
 class ArticleEntity {
   final String id;
   final String title;
-  final String authorFullName;
+  final AuthorEntity author;
   final String datePublished;
   final int? minsToRead;
   final String summary;
@@ -14,7 +16,7 @@ class ArticleEntity {
     required this.title,
     required this.summary,
     required this.paragraphs,
-    required this.authorFullName,
+    required this.author,
     required this.datePublished,
     this.minsToRead,
     this.imageUrl,
@@ -27,7 +29,7 @@ class ArticleEntity {
       title: '',
       summary: '',
       paragraphs: [],
-      authorFullName: 'Anonymous',
+      author: AuthorEntity(id: 'testId', fullName: 'Test Author'),
       datePublished: '20/11/2022',
     );
   }
@@ -40,7 +42,9 @@ class ArticleEntity {
       paragraphs: List<String>.from(json['paragraphs'] as List),
       imageUrl: json['imageUrl'] as String?,
       minsToRead: json['mins_to_read'] as int?,
-      authorFullName: json['author'] ?? 'Anonymous',
+      author: json['author'] != null
+          ? AuthorEntity.fromJson(json['author'])
+          : const AuthorEntity(id: '', fullName: 'Anonymous'),
       datePublished: json['date_published'] as String,
     );
   }
@@ -48,7 +52,7 @@ class ArticleEntity {
   ArticleEntity copyWith({
     String? id,
     String? title,
-    String? authorFullName,
+    AuthorEntity? author,
     String? datePublished,
     int? minsToRead,
     String? summary,
@@ -61,7 +65,7 @@ class ArticleEntity {
       title: title ?? this.title,
       summary: summary ?? this.summary,
       paragraphs: paragraphs ?? this.paragraphs,
-      authorFullName: authorFullName ?? this.authorFullName,
+      author: author ?? this.author,
       datePublished: datePublished ?? this.datePublished,
       minsToRead: minsToRead ?? this.minsToRead,
       imageUrl: imageUrl ?? this.imageUrl,

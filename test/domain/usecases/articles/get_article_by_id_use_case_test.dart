@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
+import 'package:test_futter_project/domain/entities/author_entity.dart';
 import 'package:test_futter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
 
 import 'fetch_articles_use_case_test.mocks.dart';
@@ -23,7 +24,7 @@ void main() {
       imageUrl: '',
       summary: '',
       paragraphs: [],
-      authorFullName: 'Test author',
+      author: AuthorEntity(id: '1', fullName: 'Test Author'),
       datePublished: 'April 12',
     );
     when(mockRepository.getArticleById(articleId)).thenAnswer((_) async => article);

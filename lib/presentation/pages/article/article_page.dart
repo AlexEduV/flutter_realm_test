@@ -79,7 +79,7 @@ class _ArticlePageState extends State<ArticlePage> {
                           children: [
                             const CircleAvatar(radius: AppDimensions.normalS),
                             Text(
-                              state.article?.authorFullName ?? '',
+                              state.article?.author.fullName ?? '',
                               style: AppTextStyles.zonaPro14,
                             ),
                           ],
