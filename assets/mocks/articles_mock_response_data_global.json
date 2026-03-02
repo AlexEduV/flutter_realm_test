@@ -8,7 +8,10 @@
       "Major automotive manufacturers are making significant investments in electric vehicle technology, launching new models across various price ranges and vehicle types. Companies like Tesla, Ford, and Volkswagen are not only improving battery efficiency but also focusing on design, safety, and user experience to appeal to a broader market.",
       "The expansion of charging infrastructure is playing a crucial role in the widespread adoption of electric cars. Governments and private companies are working together to install fast-charging stations in urban centers, highways, and remote areas, making it more convenient than ever for drivers to recharge their vehicles and embark on longer journeys."
     ],
-    "imageUrl": "https://images.pexels.com/photos/2526127/pexels-photo-2526127.jpeg"
+    "imageUrl": "https://images.pexels.com/photos/2526127/pexels-photo-2526127.jpeg",
+    "author": "Joel Miller",
+    "date_published": "June 14, 2013",
+    "mins_to_read": 5
   },
   {
     "id": "2",
@@ -19,7 +22,9 @@
       "Brands like Ferrari, Porsche, and Lamborghini lead the pack.",
       "Advanced aerodynamics and hybrid engines are common features."
     ],
-    "imageUrl": "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg"
+    "imageUrl": "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg",
+    "author": "Ellie Williams",
+    "date_published": "2019"
   },
   {
     "id": "3",
@@ -30,6 +35,7 @@
       "Lidar, radar, and cameras help the car perceive its environment.",
       "Machine learning algorithms process data to make driving decisions."
     ],
-    "imageUrl": "https://images.pexels.com/photos/4077271/pexels-photo-4077271.jpeg"
+    "imageUrl": "https://images.pexels.com/photos/4077271/pexels-photo-4077271.jpeg",
+    "date_published": "2022"
   }
 ]
