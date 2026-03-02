@@ -38,32 +38,36 @@ class _ArticlePageState extends State<ArticlePage> {
               ? const Center(child: CircularProgressIndicator())
               : Padding(
                   padding: const EdgeInsetsGeometry.symmetric(horizontal: AppDimensions.normalL),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: AppDimensions.normalL,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                        child: CachedNetworkImage(
-                          imageUrl: state.article?.imageUrl ?? '',
-                          fit: BoxFit.cover,
-                          height: 200,
-                          width: double.infinity,
-                          placeholder: (context, url) =>
-                              Container(color: AppColors.placeholderColor),
-                          errorWidget: (context, url, error) => const Icon(Icons.error),
-                          color: Colors.black.withAlpha(70),
-                          colorBlendMode: BlendMode.darken,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: AppDimensions.normalL,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                          child: CachedNetworkImage(
+                            imageUrl: state.article?.imageUrl ?? '',
+                            fit: BoxFit.cover,
+                            height: 200,
+                            width: double.infinity,
+                            placeholder: (context, url) =>
+                                Container(color: AppColors.placeholderColor),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                            color: Colors.black.withAlpha(70),
+                            colorBlendMode: BlendMode.darken,
+                          ),
                         ),
-                      ),
 
-                      Text(
-                        state.article?.summary ?? '',
-                        style: const TextStyle(fontStyle: FontStyle.italic),
-                      ),
+                        Text(
+                          state.article?.summary ?? '',
+                          style: const TextStyle(fontStyle: FontStyle.italic),
+                        ),
 
-                      ...?state.article?.paragraphs.map((paragraph) => Text(paragraph)),
-                    ],
+                        ...?state.article?.paragraphs.map((paragraph) => Text(paragraph)),
+
+                        const SizedBox(height: AppDimensions.normalL),
+                      ],
+                    ),
                   ),
                 ),
         );
