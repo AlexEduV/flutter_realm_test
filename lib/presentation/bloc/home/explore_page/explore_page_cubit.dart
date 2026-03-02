@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
@@ -53,6 +54,20 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     if (isStandalone) {
       emit(state.copyWith(isLoading: false));
     }
+  }
+
+  void hoverArticle(int index, bool newValue) {
+    final articles = List<ArticleEntity>.from(state.articles);
+    articles[index] = state.articles[index].copyWith(isHovering: newValue);
+
+    emit(state.copyWith(articles: articles));
+  }
+
+  void resetArticleHover(int index) {
+    final articles = List<ArticleEntity>.from(state.articles);
+    articles[index] = state.articles[index].copyWith(isHovering: false);
+
+    emit(state.copyWith(articles: articles));
   }
 
   @override

@@ -95,11 +95,23 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                             key: const ValueKey('list'),
                             itemCount: state.articles.length,
                             scrollDirection: Axis.horizontal,
+                            //todo: move onPressed values to state, use them here
+                            /// padding: EdgeInsets.symmetric(
+                            //         vertical: isPressed ? (maxArticleHeight - baseArticleHeight) / 2 : 0,
+                            //       ),
                             padding: const EdgeInsets.only(right: AppDimensions.normalL),
                             itemBuilder: (context, index) {
-                              return ExploreArticleItem(
-                                height: articleHeight,
-                                article: state.articles[index],
+                              return Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: !state.articles[index].isHovering
+                                      ? (120 * 1.07 - 120) / 2
+                                      : 0,
+                                ),
+                                child: ExploreArticleItem(
+                                  height: articleHeight,
+                                  article: state.articles[index],
+                                  index: index,
+                                ),
                               );
                             },
                             separatorBuilder: (context, index) {

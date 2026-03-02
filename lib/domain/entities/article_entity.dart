@@ -7,6 +7,7 @@ class ArticleEntity {
   final String summary;
   final List<String> paragraphs;
   final String? imageUrl;
+  final bool isHovering;
 
   const ArticleEntity({
     required this.id,
@@ -17,6 +18,7 @@ class ArticleEntity {
     required this.datePublished,
     this.minsToRead,
     this.imageUrl,
+    this.isHovering = false,
   });
 
   factory ArticleEntity.empty() {
@@ -40,6 +42,30 @@ class ArticleEntity {
       minsToRead: json['mins_to_read'] as int?,
       authorFullName: json['author'] ?? 'Anonymous',
       datePublished: json['date_published'] as String,
+    );
+  }
+
+  ArticleEntity copyWith({
+    String? id,
+    String? title,
+    String? authorFullName,
+    String? datePublished,
+    int? minsToRead,
+    String? summary,
+    List<String>? paragraphs,
+    String? imageUrl,
+    bool? isHovering,
+  }) {
+    return ArticleEntity(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      summary: summary ?? this.summary,
+      paragraphs: paragraphs ?? this.paragraphs,
+      authorFullName: authorFullName ?? this.authorFullName,
+      datePublished: datePublished ?? this.datePublished,
+      minsToRead: minsToRead ?? this.minsToRead,
+      imageUrl: imageUrl ?? this.imageUrl,
+      isHovering: isHovering ?? this.isHovering,
     );
   }
 }
