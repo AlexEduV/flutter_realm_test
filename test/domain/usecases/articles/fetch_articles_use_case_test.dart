@@ -26,6 +26,8 @@ void main() {
         imageUrl: '',
         summary: '',
         paragraphs: [],
+        authorFullName: 'Author 1',
+        datePublished: 'April 15',
       ),
       const ArticleEntity(
         id: '2',
@@ -33,6 +35,8 @@ void main() {
         imageUrl: '',
         summary: '',
         paragraphs: [],
+        authorFullName: 'Author 2',
+        datePublished: 'April 19',
       ),
     ];
     when(mockRepository.fetchArticles()).thenAnswer((_) async => articles);

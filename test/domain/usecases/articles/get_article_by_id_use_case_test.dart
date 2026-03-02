@@ -23,6 +23,8 @@ void main() {
       imageUrl: '',
       summary: '',
       paragraphs: [],
+      authorFullName: 'Test author',
+      datePublished: 'April 12',
     );
     when(mockRepository.getArticleById(articleId)).thenAnswer((_) async => article);
 
