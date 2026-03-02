@@ -63,10 +63,13 @@ class _ArticlePageState extends State<ArticlePage> {
                       ),
 
                       Expanded(
-                        child: ListView.builder(
+                        child: ListView.separated(
                           itemCount: state.article?.paragraphs.length ?? 0,
                           itemBuilder: (context, index) {
                             return Text(state.article?.paragraphs[index] ?? '');
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(height: AppDimensions.normalL);
                           },
                         ),
                       ),
