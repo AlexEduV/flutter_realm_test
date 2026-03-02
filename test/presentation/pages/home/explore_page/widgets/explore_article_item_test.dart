@@ -10,7 +10,7 @@ void main() {
     testWidgets('has default height and width', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: ExploreArticleItem(article: ArticleEntity.empty())),
+          home: Scaffold(body: ExploreArticleItem(article: ArticleEntity.empty(), index: 0)),
         ),
       );
 
@@ -23,7 +23,9 @@ void main() {
     testWidgets('uses custom height when provided', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: ExploreArticleItem(height: 200.0, article: ArticleEntity.empty())),
+          home: Scaffold(
+            body: ExploreArticleItem(height: 200.0, article: ArticleEntity.empty(), index: 0),
+          ),
         ),
       );
 
@@ -36,7 +38,7 @@ void main() {
     testWidgets('has correct color and border radius', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(body: ExploreArticleItem(article: ArticleEntity.empty())),
+          home: Scaffold(body: ExploreArticleItem(article: ArticleEntity.empty(), index: 0)),
         ),
       );
 
