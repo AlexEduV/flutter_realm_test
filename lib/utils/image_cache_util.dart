@@ -15,6 +15,9 @@ import 'package:flutter/cupertino.dart' show PaintingBinding;
 /// ```
 class ImageCacheUtil {
   static void initExtendedCacheSize() {
-    PaintingBinding.instance.imageCache.maximumSizeBytes = 150 << 20; // 150 MB, Default: 100 MB
+    const cacheMaxSizeMb = 150;
+
+    //default is 100 Mb;
+    PaintingBinding.instance.imageCache.maximumSizeBytes = cacheMaxSizeMb << 20;
   }
 }
