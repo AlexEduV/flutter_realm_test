@@ -67,7 +67,7 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
                 borderRadius: BorderRadius.circular(AppDimensions.normalL),
                 child: Container(
                   height: widget.height,
-                  width: 120,
+                  width: AppDimensions.exploreArticleItemBaseSize,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(AppDimensions.normalL),
                     color: AppColors.accentColor.withAlpha(60),
@@ -80,7 +80,7 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
                         child: CachedNetworkImage(
                           imageUrl: widget.article.imageUrl ?? '',
                           fit: BoxFit.cover,
-                          width: 120,
+                          width: AppDimensions.exploreArticleItemBaseSize,
                           height: widget.height,
                           placeholder: (context, url) =>
                               Container(color: AppColors.placeholderColor),
