@@ -42,15 +42,14 @@ class _ArticlePageState extends State<ArticlePage> {
               Padding(
                 padding: const EdgeInsets.only(right: AppDimensions.normalS),
                 child: IconButton(
-                  //todo: add localisation
-                  tooltip: 'Share',
+                  tooltip: AppLocalisations.shareButtonLabel,
                   onPressed: () {
                     //todo: connect to share plus
                   },
                   icon: const AppSemantics(
                     button: true,
                     label: AppSemanticsLabels.shareButton,
-                    child: Icon(Icons.ios_share_rounded, size: AppDimensions.appBarIconSize / 1.2),
+                    child: Icon(Icons.ios_share_rounded, size: AppDimensions.normalXL),
                   ),
                 ),
               ),

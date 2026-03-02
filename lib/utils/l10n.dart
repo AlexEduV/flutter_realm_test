@@ -173,4 +173,7 @@ class AppLocalisations {
   static final String dateFormattingYesterday = get('dateFormatting.yesterday');
 
   static final String articlePageMinsToRead = get('pages.article.minsToRead');
+
+  //todo: add localisations
+  static final String shareButtonLabel = 'Share';
 }
