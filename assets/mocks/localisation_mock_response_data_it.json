@@ -64,6 +64,9 @@
         "logOut": "Esci",
         "deleteAccount": "Elimina account"
       }
+    },
+    "article": {
+      "minsToRead": "minuti di lettura"
     }
   },
   "actions": {

@@ -171,4 +171,6 @@ class AppLocalisations {
   static final String accountItemDeleteAccount = get('pages.account.items.deleteAccount');
 
   static final String dateFormattingYesterday = get('dateFormatting.yesterday');
+
+  static final String articlePageMinsToRead = get('pages.article.minsToRead');
 }

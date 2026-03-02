@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_state.dart';
+import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/app_colors.dart';
 
@@ -64,7 +65,9 @@ class _ArticlePageState extends State<ArticlePage> {
                           spacing: AppDimensions.minorL,
                           children: [
                             if (minsToRead != null) ...[
-                              Text('${state.article?.minsToRead} mins to read'),
+                              Text(
+                                '${state.article?.minsToRead} ${AppLocalisations.articlePageMinsToRead}',
+                              ),
                             ],
 
                             Text(state.article?.datePublished ?? ''),

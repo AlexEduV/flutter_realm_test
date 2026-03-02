@@ -64,6 +64,9 @@
         "logOut": "Log out",
         "deleteAccount": "Delete account"
       }
+    },
+    "article": {
+      "minsToRead": "mins to read"
     }
   },
   "actions": {
