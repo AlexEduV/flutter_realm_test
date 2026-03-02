@@ -31,6 +31,9 @@ void main() async {
   await initializeDateFormatting(AppLocalisations.locale, null);
   await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);
 
+  PaintingBinding.instance.imageCache.maximumSize = 1000;
+  PaintingBinding.instance.imageCache.maximumSizeBytes = 200 << 20; // 200 MB
+
   runApp(const MyApp());
 }
 
