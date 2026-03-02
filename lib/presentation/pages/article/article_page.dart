@@ -40,7 +40,7 @@ class _ArticlePageState extends State<ArticlePage> {
             centerTitle: true,
             actions: [
               Padding(
-                padding: const EdgeInsets.only(right: AppDimensions.normalM),
+                padding: const EdgeInsets.only(right: AppDimensions.normalS),
                 child: IconButton(
                   //todo: add localisation
                   tooltip: 'Share',
