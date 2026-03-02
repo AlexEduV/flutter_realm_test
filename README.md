@@ -9,7 +9,6 @@ A clean‑architecture Flutter sample app that showcases **RealmDB**, **GoRouter
 ## Table of Contents
 - [Features](#features)
 - [Architecture](#architecture)
-- [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
 - [Running Tests](#running-tests)
 - [Roadmap](#roadmap)
