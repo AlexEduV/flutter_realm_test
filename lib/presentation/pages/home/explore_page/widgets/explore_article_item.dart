@@ -21,7 +21,7 @@ class ExploreArticleItem extends StatefulWidget {
   const ExploreArticleItem({
     required this.index,
     required this.article,
-    this.height = 120.0,
+    this.height = AppDimensions.exploreArticleItemBaseSize,
     super.key,
   });
 

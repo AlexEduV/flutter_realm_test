@@ -63,13 +63,6 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(articles: articles));
   }
 
-  void resetArticleHover(int index) {
-    final articles = List<ArticleEntity>.from(state.articles);
-    articles[index] = state.articles[index].copyWith(isHovering: false);
-
-    emit(state.copyWith(articles: articles));
-  }
-
   @override
   Future<void> close() async {
     await _carSubscription?.cancel();

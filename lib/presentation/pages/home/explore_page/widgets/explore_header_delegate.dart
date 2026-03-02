@@ -102,7 +102,9 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                                 duration: const Duration(milliseconds: 120),
                                 padding: EdgeInsets.symmetric(
                                   vertical: !state.articles[index].isHovering
-                                      ? (120 * 1.07 - 120) / 2
+                                      ? (AppDimensions.exploreArticleItemBaseSize * 1.07 -
+                                                AppDimensions.exploreArticleItemBaseSize) /
+                                            2
                                       : 0,
                                 ),
                                 child: ExploreArticleItem(

@@ -34,4 +34,6 @@ class AppDimensions {
   static const inboxItemHeight = 72.0;
 
   static const smallProgressBarSize = 24.0;
+
+  static const exploreArticleItemBaseSize = 120.0;
 }
