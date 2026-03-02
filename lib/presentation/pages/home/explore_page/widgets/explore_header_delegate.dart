@@ -36,7 +36,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     final progress = (shrinkOffset / (maxExtent - minExtent)).clamp(0.0, 1.0);
-    final articleHeight = lerpDouble(AppDimensions.exploreArticleItemBaseSize, 60, progress)!;
+    final articleHeight = lerpDouble(AppDimensions.exploreArticleItemBaseSize, 90, progress)!;
     final lastSeenOpacity = showLastSeen ? (1.0 - progress) : 0.0;
 
     return ClipRRect(
