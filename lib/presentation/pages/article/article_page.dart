@@ -82,9 +82,7 @@ class _ArticlePageState extends State<ArticlePage> {
                           spacing: AppDimensions.minorL,
                           children: [
                             if (minsToRead != null) ...[
-                              Text(
-                                '${state.article?.minsToRead} ${AppLocalisations.articlePageMinsToRead}',
-                              ),
+                              Text('$minsToRead ${AppLocalisations.articlePageMinsToRead}'),
                             ],
 
                             Text(state.article?.datePublished ?? ''),
