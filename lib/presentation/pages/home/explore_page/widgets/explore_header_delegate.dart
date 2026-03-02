@@ -95,6 +95,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                             key: const ValueKey('list'),
                             itemCount: state.articles.length,
                             scrollDirection: Axis.horizontal,
+                            padding: const EdgeInsets.only(right: AppDimensions.normalL),
                             itemBuilder: (context, index) {
                               return ExploreArticleItem(
                                 height: articleHeight,
