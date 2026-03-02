@@ -78,6 +78,8 @@ class _DetailsPageState extends State<DetailsPage> {
               onPressed: () async {
                 final car = context.read<DetailsPageCubit>().state.car;
 
+                //todo: move to separate model class,
+                // test that one issue with ios 26,
                 await ShareDebouncer.share(
                   ShareParams(
                     title: '${car?.manufacturer} ${car?.model} ${car?.year}',
