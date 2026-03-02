@@ -97,7 +97,9 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                             scrollDirection: Axis.horizontal,
                             padding: const EdgeInsets.only(right: AppDimensions.normalL),
                             itemBuilder: (context, index) {
-                              return Padding(
+                              return AnimatedPadding(
+                                curve: Curves.easeOut,
+                                duration: const Duration(milliseconds: 120),
                                 padding: EdgeInsets.symmetric(
                                   vertical: !state.articles[index].isHovering
                                       ? (120 * 1.07 - 120) / 2

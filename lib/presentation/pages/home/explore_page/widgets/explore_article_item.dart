@@ -38,12 +38,20 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
   Widget build(BuildContext context) {
     return BlocBuilder<ExplorePageCubit, ExplorePageState>(
       builder: (context, state) {
-        return AnimatedScale(
-          scale: state.articles[widget.index].isHovering
-              ? 1.07
-              : 1.0, // Slightly enlarge when pressed
-          duration: const Duration(milliseconds: 120),
+        return TweenAnimationBuilder<double>(
+          tween: Tween<double>(
+            begin: 1.0,
+            end: state.articles[widget.index].isHovering ? 1.07 : 1.0,
+          ),
           curve: Curves.easeOut,
+          duration: const Duration(milliseconds: 120),
+          builder: (context, scaleX, child) {
+            return Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.diagonal3Values(scaleX, 1.0, 1.0),
+              child: child,
+            );
+          },
           child: AppSemantics(
             label: AppSemanticsLabels.exploreArticleItem,
             button: true,
