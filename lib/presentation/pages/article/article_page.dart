@@ -1,7 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/domain/entities/article_entity.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/article/article_page_state.dart';
+
+import '../../../common/app_colors.dart';
 
 class ArticlePage extends StatefulWidget {
   final String articleId;
@@ -13,8 +18,6 @@ class ArticlePage extends StatefulWidget {
 }
 
 class _ArticlePageState extends State<ArticlePage> {
-  late ArticleEntity? article;
-
   @override
   void initState() {
     super.initState();
@@ -24,10 +27,54 @@ class _ArticlePageState extends State<ArticlePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
-        children: [Text('Article Title'), Text('Article Summary'), Text('Article Text')],
-      ),
+    return BlocBuilder<ArticlePageCubit, ArticlePageState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(state.article?.title ?? '', style: AppTextStyles.zonaPro20),
+            centerTitle: true,
+          ),
+          body: state.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Padding(
+                  padding: const EdgeInsetsGeometry.symmetric(horizontal: AppDimensions.normalL),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: AppDimensions.normalL,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                        child: CachedNetworkImage(
+                          imageUrl: state.article?.imageUrl ?? '',
+                          fit: BoxFit.cover,
+                          height: 200,
+                          width: double.infinity,
+                          placeholder: (context, url) =>
+                              Container(color: AppColors.placeholderColor),
+                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                          color: Colors.black.withAlpha(70),
+                          colorBlendMode: BlendMode.darken,
+                        ),
+                      ),
+
+                      Text(
+                        state.article?.summary ?? '',
+                        style: const TextStyle(fontStyle: FontStyle.italic),
+                      ),
+
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: state.article?.paragraphs.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return Text(state.article?.paragraphs[index] ?? '');
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+        );
+      },
     );
   }
 }
