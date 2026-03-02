@@ -39,99 +39,101 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
     final articleHeight = lerpDouble(AppDimensions.exploreArticleItemBaseSize, 60, progress)!;
     final lastSeenOpacity = showLastSeen ? (1.0 - progress) : 0.0;
 
-    return Material(
-      color: AppColors.headerColor,
+    return ClipRRect(
       borderRadius: const BorderRadius.only(
         bottomLeft: Radius.circular(AppDimensions.normalL),
         bottomRight: Radius.circular(AppDimensions.normalL),
       ),
-      child: Stack(
-        children: [
-          // App bar title and search icon
-          Positioned(
-            left: AppDimensions.normalL,
-            right: AppDimensions.normalL,
-            top: 12,
-            height: minHeight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
-                IconButton(
-                  onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
-                  icon: const Icon(
-                    Icons.search,
-                    size: AppDimensions.appBarIconSize,
-                    color: Colors.white,
+      child: Material(
+        color: AppColors.headerColor,
+        child: Stack(
+          children: [
+            // App bar title and search icon
+            Positioned(
+              left: AppDimensions.normalL,
+              right: AppDimensions.normalL,
+              top: 12,
+              height: minHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
+                  IconButton(
+                    onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
+                    icon: const Icon(
+                      Icons.search,
+                      size: AppDimensions.appBarIconSize,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          // Horizontal article list
-          Positioned(
-            left: AppDimensions.normalL,
-            right: 0,
-            top: minHeight,
-            height: articleHeight,
-            child: Opacity(
-              opacity: 1.0,
-              child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
-                builder: (context, state) {
-                  return AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 400),
-                    switchInCurve: Curves.easeIn,
-                    switchOutCurve: Curves.easeOut,
-                    child: state.isArticleListLoading
-                        ? const Center(
-                            key: ValueKey('loading'),
-                            child: SizedBox(
-                              height: AppDimensions.smallProgressBarSize,
-                              width: AppDimensions.smallProgressBarSize,
-                              child: CircularProgressIndicator(color: Colors.white),
-                            ),
-                          )
-                        : ListView.separated(
-                            key: const ValueKey('list'),
-                            itemCount: state.articles.length,
-                            scrollDirection: Axis.horizontal,
-                            padding: const EdgeInsets.only(right: AppDimensions.normalL),
-                            itemBuilder: (context, index) {
-                              return AnimatedPadding(
-                                curve: Curves.easeOut,
-                                duration: const Duration(milliseconds: 120),
-                                padding: EdgeInsets.symmetric(
-                                  vertical: !state.articles[index].isHovering
-                                      ? (AppDimensions.exploreArticleItemBaseSize * 1.07 -
-                                                AppDimensions.exploreArticleItemBaseSize) /
-                                            2
-                                      : 0,
-                                ),
-                                child: ExploreArticleItem(
-                                  height: articleHeight,
-                                  article: state.articles[index],
-                                  index: index,
-                                ),
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return const SizedBox(width: AppDimensions.normalS);
-                            },
-                          ),
-                  );
-                },
+                ],
               ),
             ),
-          ),
-          // Last Seen Widget (only if not empty)
-          if (showLastSeen)
+            // Horizontal article list
             Positioned(
-              top: minHeight + articleHeight + AppDimensions.minorL,
-              left: 0,
+              left: AppDimensions.normalL,
               right: 0,
-              child: Opacity(opacity: lastSeenOpacity, child: const LastSeenWidget()),
+              top: minHeight,
+              height: articleHeight,
+              child: Opacity(
+                opacity: 1.0,
+                child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
+                  builder: (context, state) {
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 400),
+                      switchInCurve: Curves.easeIn,
+                      switchOutCurve: Curves.easeOut,
+                      child: state.isArticleListLoading
+                          ? const Center(
+                              key: ValueKey('loading'),
+                              child: SizedBox(
+                                height: AppDimensions.smallProgressBarSize,
+                                width: AppDimensions.smallProgressBarSize,
+                                child: CircularProgressIndicator(color: Colors.white),
+                              ),
+                            )
+                          : ListView.separated(
+                              key: const ValueKey('list'),
+                              itemCount: state.articles.length,
+                              scrollDirection: Axis.horizontal,
+                              padding: const EdgeInsets.only(right: AppDimensions.normalL),
+                              itemBuilder: (context, index) {
+                                return AnimatedPadding(
+                                  curve: Curves.easeOut,
+                                  duration: const Duration(milliseconds: 120),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: !state.articles[index].isHovering
+                                        ? (AppDimensions.exploreArticleItemBaseSize * 1.07 -
+                                                  AppDimensions.exploreArticleItemBaseSize) /
+                                              2
+                                        : 0,
+                                  ),
+                                  child: ExploreArticleItem(
+                                    height: articleHeight,
+                                    article: state.articles[index],
+                                    index: index,
+                                  ),
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return const SizedBox(width: AppDimensions.normalS);
+                              },
+                            ),
+                    );
+                  },
+                ),
+              ),
             ),
-        ],
+            // Last Seen Widget (only if not empty)
+            if (showLastSeen)
+              Positioned(
+                top: minHeight + articleHeight + AppDimensions.minorL,
+                left: 0,
+                right: 0,
+                child: Opacity(opacity: lastSeenOpacity, child: const LastSeenWidget()),
+              ),
+          ],
+        ),
       ),
     );
   }
