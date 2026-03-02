@@ -42,6 +42,8 @@ class _ArticlePageState extends State<ArticlePage> {
               Padding(
                 padding: const EdgeInsets.only(right: AppDimensions.normalM),
                 child: IconButton(
+                  //todo: add localisation
+                  tooltip: 'Share',
                   onPressed: () {
                     //todo: connect to share plus
                   },
