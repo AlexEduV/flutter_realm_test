@@ -13,6 +13,7 @@ import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
+import 'package:test_futter_project/utils/image_cache_util.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 import 'package:test_futter_project/utils/localisation_util.dart';
 
@@ -31,8 +32,7 @@ void main() async {
   await initializeDateFormatting(AppLocalisations.locale, null);
   await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);
 
-  PaintingBinding.instance.imageCache.maximumSize = 1000;
-  PaintingBinding.instance.imageCache.maximumSizeBytes = 200 << 20; // 200 MB
+  ImageCacheUtil.initExtendedCacheSize();
 
   runApp(const MyApp());
 }
