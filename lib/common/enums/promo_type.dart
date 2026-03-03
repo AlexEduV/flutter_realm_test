@@ -1,6 +1,7 @@
 import 'package:test_futter_project/utils/l10n.dart';
 
 enum PromoType {
+  //todo: not the best idea. localisation keys should only be in the l10n file;
   bestPrice('best_price', 'pages.vehicleDetails.promoType.bestPrice'),
   limitedTimeOffer('limited_time_offer', 'pages.vehicleDetails.promoType.limitedTimeOffer'),
   oneOwner('one_owner', 'pages.vehicleDetails.promoType.oneOwner'),
@@ -20,7 +21,6 @@ enum PromoType {
     );
   }
 
-  //todo: not the best idea. localisation keys should only be in the l10n file;
   String? fromLocalisations() {
     return AppLocalisations.get(localized);
   }
