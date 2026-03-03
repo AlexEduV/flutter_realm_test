@@ -170,9 +170,11 @@ class AppLocalisations {
   static final String personalDetailsItemLastName = get(
     'pages.account.items.personalDetails.lastNameItem',
   );
-  static final String personalDetailsItemEmail = get('pages.account.items.personalDetails.email');
+  static final String personalDetailsItemEmail = get(
+    'pages.account.items.personalDetails.emailItem',
+  );
   static final String personalDetailsItemPassword = get(
-    'pages.account.items.personalDetails.password',
+    'pages.account.items.personalDetails.passwordItem',
   );
 
   static final String accountItemLocation = get('pages.account.items.location');
