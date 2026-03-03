@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
@@ -15,6 +14,7 @@ import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_s
 import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 
 import '../../../common/app_semantics_labels.dart';
+import '../../../domain/models/share_params_model.dart';
 import '../../../utils/l10n.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';
@@ -78,10 +78,8 @@ class _DetailsPageState extends State<DetailsPage> {
               onPressed: () async {
                 final car = context.read<DetailsPageCubit>().state.car;
 
-                //todo: move to separate model class,
-                // test that one issue with ios 26,
                 await ShareDebouncer.share(
-                  ShareParams(
+                  ShareParamsModel(
                     title: '${car?.manufacturer} ${car?.model} ${car?.year}',
                     text: 'https://example.com/cars/?carId=${car?.carId}',
                   ),
