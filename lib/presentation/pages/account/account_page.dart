@@ -86,7 +86,7 @@ class AccountPage extends StatelessWidget {
                           text: AppLocalisations.accountItemViewedItems,
                         ),
                         AccountItem(
-                          icon: Icons.delete_outline,
+                          icon: Icons.cleaning_services,
                           text: AppLocalisations.accountItemClearData,
                         ),
                         AccountItem(
