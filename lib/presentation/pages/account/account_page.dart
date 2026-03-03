@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_routes.dart';
+import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -70,29 +71,24 @@ class AccountPage extends StatelessWidget {
                           text: AppLocalisations.accountItemPersonalDetails,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
                         ),
-                        const CustomDivider(),
 
                         //todo: in the personal details -> Change password
                         AccountItem(
                           icon: Icons.location_on_outlined,
                           text: AppLocalisations.accountItemLocation,
                         ),
-                        const CustomDivider(),
                         AccountItem(
                           icon: Icons.checklist_outlined,
                           text: AppLocalisations.accountItemMyItems,
                         ),
-                        const CustomDivider(),
                         AccountItem(
                           icon: Icons.remove_red_eye_outlined,
                           text: AppLocalisations.accountItemViewedItems,
                         ),
-                        const CustomDivider(),
                         AccountItem(
                           icon: Icons.delete_outline,
                           text: AppLocalisations.accountItemClearData,
                         ),
-                        const CustomDivider(),
                         AccountItem(
                           icon: Icons.logout_outlined,
                           text: AppLocalisations.accountItemLogout,
@@ -104,7 +100,7 @@ class AccountPage extends StatelessWidget {
                             context.read<UserDataCubit>().logOutUser();
                           },
                         ),
-                      ],
+                      ].withDividers(divider: const CustomDivider()),
                     ),
                   ),
                 ),
