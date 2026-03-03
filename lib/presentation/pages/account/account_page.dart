@@ -97,19 +97,27 @@ class AccountPage extends StatelessWidget {
                             context.read<UserDataCubit>().logOutUser();
                           },
                         ),
-                        AccountItem(
-                          text: AppLocalisations.accountItemDeleteAccount,
-                          textStyle: AppTextStyles.zonaPro14.copyWith(color: AppColors.accentColor),
-                          onTap: () async {
-                            await context.read<AuthenticationCubit>().deleteAccount(state.email);
-
-                            if (!context.mounted) return;
-
-                            context.read<UserDataCubit>().logOutUser();
-                          },
-                          isCentered: true,
-                        ),
                       ],
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(AppDimensions.normalS),
+                  child: Material(
+                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                    clipBehavior: Clip.antiAlias,
+                    child: AccountItem(
+                      text: AppLocalisations.accountItemDeleteAccount,
+                      textStyle: AppTextStyles.zonaPro14.copyWith(color: Colors.redAccent),
+                      onTap: () async {
+                        await context.read<AuthenticationCubit>().deleteAccount(state.email);
+
+                        if (!context.mounted) return;
+
+                        context.read<UserDataCubit>().logOutUser();
+                      },
+                      isCentered: true,
                     ),
                   ),
                 ),
