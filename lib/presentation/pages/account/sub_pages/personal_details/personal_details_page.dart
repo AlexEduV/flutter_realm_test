@@ -17,37 +17,35 @@ class PersonalDetailsPage extends StatelessWidget {
         title: Text(AppLocalisations.accountItemPersonalDetails, style: AppTextStyles.zonaPro20),
         centerTitle: true,
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(AppDimensions.minorL),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PersonalDetailsListItem(
-              title: 'First Name',
-              description: 'Test',
-              icon: Icons.person_pin_outlined,
-            ),
-            PersonalDetailsListItem(
-              title: 'Last Name',
-              description: 'Test',
-              icon: Icons.person_outlined,
-            ),
-            PersonalDetailsListItem(
-              title: 'Email',
-              description: 'Test',
-              icon: Icons.email_outlined,
-            ),
-            PersonalDetailsListItem(
-              title: 'Phone Number',
-              description: 'Test',
-              icon: Icons.phone_outlined,
-            ),
-            PersonalDetailsListItem(
-              title: 'Date of Birth',
-              description: 'Test',
-              icon: Icons.cake_outlined,
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(AppDimensions.minorL),
+        child: Container(
+          margin: EdgeInsets.all(AppDimensions.minorL),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+          ),
+          child: ListView.separated(
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(AppDimensions.minorL),
+            itemCount: 5,
+            separatorBuilder: (context, index) => const Divider(),
+            itemBuilder: (context, index) {
+              final items = [
+                {'title': 'First Name', 'description': 'Test', 'icon': Icons.person_pin_outlined},
+                {'title': 'Last Name', 'description': 'Test', 'icon': Icons.person_outlined},
+                {'title': 'Email', 'description': 'Test', 'icon': Icons.email_outlined},
+                {'title': 'Phone Number', 'description': 'Test', 'icon': Icons.phone_outlined},
+                {'title': 'Date of Birth', 'description': 'Test', 'icon': Icons.cake_outlined},
+              ];
+              final item = items[index];
+              return PersonalDetailsListItem(
+                title: item['title']! as String,
+                description: item['description']! as String,
+                icon: item['icon'] as IconData,
+              );
+            },
+          ),
         ),
       ),
     );

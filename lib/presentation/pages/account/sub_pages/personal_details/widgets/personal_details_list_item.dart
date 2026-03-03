@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 
 class PersonalDetailsListItem extends StatelessWidget {
@@ -18,16 +17,10 @@ class PersonalDetailsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppDimensions.minorM),
-      child: ListTile(
-        title: Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w400)),
-        subtitle: Text(
-          description,
-          style: AppTextStyles.zonaPro16.copyWith(color: Colors.grey[600]),
-        ),
-        leading: Icon(icon),
-      ),
+    return ListTile(
+      title: Text(title, style: AppTextStyles.zonaPro16),
+      subtitle: Text(description, style: AppTextStyles.zonaPro16.copyWith(color: Colors.grey[600])),
+      leading: Icon(icon),
     );
   }
 }
