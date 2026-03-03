@@ -13,8 +13,9 @@ import 'package:realm_common/realm_common.dart' as _i7;
 import 'package:realm_dart/src/configuration.dart' as _i3;
 import 'package:realm_dart/src/realm_object.dart' as _i9;
 import 'package:realm_dart/src/results.dart' as _i5;
+import 'package:test_futter_project/common/enums/promo_type.dart' as _i15;
 import 'package:test_futter_project/data/data_sources/realm_local_storage.dart'
-    as _i15;
+    as _i16;
 import 'package:test_futter_project/data/dto/car_dto.dart' as _i13;
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart'
     as _i12;
@@ -469,7 +470,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
     String? fuelType,
     String? transmissionType,
     bool? isVerified,
-    String? hotPromotionDescription,
+    _i15.PromoType? promoType,
     int? kilometers,
     int? distanceTo,
     int? price,
@@ -488,7 +489,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
               #fuelType: fuelType,
               #transmissionType: transmissionType,
               #isVerified: isVerified,
-              #hotPromotionDescription: hotPromotionDescription,
+              #promoType: promoType,
               #kilometers: kilometers,
               #distanceTo: distanceTo,
               #price: price,
@@ -508,7 +509,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
                 #fuelType: fuelType,
                 #transmissionType: transmissionType,
                 #isVerified: isVerified,
-                #hotPromotionDescription: hotPromotionDescription,
+                #promoType: promoType,
                 #kilometers: kilometers,
                 #distanceTo: distanceTo,
                 #price: price,
@@ -650,7 +651,7 @@ class MockCarDto extends _i1.Mock implements _i13.CarDto {
 /// A class which mocks [RealmLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRealmLocalStorage extends _i1.Mock implements _i15.RealmLocalStorage {
+class MockRealmLocalStorage extends _i1.Mock implements _i16.RealmLocalStorage {
   MockRealmLocalStorage() {
     _i1.throwOnMissingStub(this);
   }

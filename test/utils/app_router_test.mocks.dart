@@ -225,6 +225,12 @@ class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
           as _i10.Future<void>);
 
   @override
+  void hoverArticle(int? index, bool? newValue) => super.noSuchMethod(
+    Invocation.method(#hoverArticle, [index, newValue]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   _i10.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),
