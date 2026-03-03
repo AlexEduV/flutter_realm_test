@@ -8,6 +8,7 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/account_item.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -61,6 +62,7 @@ class AccountPage extends StatelessWidget {
                   child: Material(
                     clipBehavior: Clip.antiAlias,
                     borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                    color: Colors.white,
                     child: Column(
                       children: [
                         AccountItem(
@@ -68,24 +70,29 @@ class AccountPage extends StatelessWidget {
                           text: AppLocalisations.accountItemPersonalDetails,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
                         ),
+                        const CustomDivider(),
 
                         //todo: in the personal details -> Change password
                         AccountItem(
                           icon: Icons.location_on_outlined,
                           text: AppLocalisations.accountItemLocation,
                         ),
+                        const CustomDivider(),
                         AccountItem(
                           icon: Icons.checklist_outlined,
                           text: AppLocalisations.accountItemMyItems,
                         ),
+                        const CustomDivider(),
                         AccountItem(
                           icon: Icons.remove_red_eye_outlined,
                           text: AppLocalisations.accountItemViewedItems,
                         ),
+                        const CustomDivider(),
                         AccountItem(
                           icon: Icons.delete_outline,
                           text: AppLocalisations.accountItemClearData,
                         ),
+                        const CustomDivider(),
                         AccountItem(
                           icon: Icons.logout_outlined,
                           text: AppLocalisations.accountItemLogout,
