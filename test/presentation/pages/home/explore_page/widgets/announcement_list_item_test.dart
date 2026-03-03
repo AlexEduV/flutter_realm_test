@@ -43,6 +43,7 @@ void main() {
       isLocationPermissionGranted: true,
       favoriteIds: [],
       email: 'mock@gmail.com',
+      password: '',
       lastSeenCar: null,
     );
 
@@ -148,6 +149,7 @@ void main() {
         isLocationPermissionGranted: false,
         favoriteIds: [],
         email: 'mock@gmail.com',
+        password: '',
         lastSeenCar: null,
       );
 

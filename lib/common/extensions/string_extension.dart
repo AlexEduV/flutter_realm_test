@@ -3,4 +3,10 @@ extension StringCasingExtension on String {
     if (isEmpty) return this;
     return this[0].toUpperCase() + substring(1);
   }
+
+  String obscure() {
+    if (isEmpty) return this;
+
+    return '*' * length;
+  }
 }

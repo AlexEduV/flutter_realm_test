@@ -162,7 +162,19 @@ class AppLocalisations {
   static final String inboxPageTitle = get('pages.inbox.title');
 
   static final String accountPageTitle = get('pages.account.title');
-  static final String accountItemPersonalDetails = get('pages.account.items.personalDetails');
+
+  static final String accountItemPersonalDetails = get('pages.account.items.personalDetails.title');
+  static final String personalDetailsItemFirstName = get(
+    'pages.account.items.personalDetails.firstNameItem',
+  );
+  static final String personalDetailsItemLastName = get(
+    'pages.account.items.personalDetails.lastNameItem',
+  );
+  static final String personalDetailsItemEmail = get('pages.account.items.personalDetails.email');
+  static final String personalDetailsItemPassword = get(
+    'pages.account.items.personalDetails.password',
+  );
+
   static final String accountItemLocation = get('pages.account.items.location');
   static final String accountItemMyItems = get('pages.account.items.myItems');
   static final String accountItemViewedItems = get('pages.account.items.recentlyViewed');

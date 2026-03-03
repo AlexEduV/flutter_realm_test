@@ -36,6 +36,7 @@ void main() {
       isLocationPermissionGranted: false,
       favoriteIds: [],
       email: 'mock@gmail.com',
+      password: '',
       lastSeenCar: null,
     );
   });
@@ -98,6 +99,7 @@ void main() {
       cubit.user = const UserEntity(
         favoriteIds: ['1', '2'],
         email: 'test@example.com',
+        password: '',
         firstName: 'Test',
         lastName: 'User',
         userId: '1',
@@ -113,6 +115,7 @@ void main() {
       cubit.user = const UserEntity(
         favoriteIds: ['1', '2'],
         email: 'test@example.com',
+        password: '',
         firstName: 'Test',
         lastName: 'User',
         userId: '1',
@@ -131,6 +134,7 @@ void main() {
       cubit.user = const UserEntity(
         favoriteIds: ['1', '2'],
         email: 'test@example.com',
+        password: '',
         firstName: 'Test',
         lastName: 'User',
         userId: '1',

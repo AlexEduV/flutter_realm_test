@@ -62,7 +62,13 @@
     "account": {
       "title": "My account",
       "items": {
-        "personalDetails": "Personal details",
+        "personalDetails": {
+          "title": "Personal details",
+          "firstNameItem": "First Name",
+          "lastNameItem": "Last Name",
+          "emailItem": "Email",
+          "passwordItem": "Password"
+        },
         "location": "Location",
         "myItems": "My items",
         "recentlyViewed": "Recently viewed",

@@ -13,6 +13,7 @@ void main() {
         isLocationPermissionGranted: true,
         favoriteIds: [],
         email: 'mock@gmail.com',
+        password: '',
         lastSeenCar: null,
       );
 
@@ -29,6 +30,7 @@ void main() {
         'Jane',
         'Smith',
         'mock@gmail.com',
+        '',
         false,
         favoriteIds: RealmList([]),
       );
@@ -51,6 +53,7 @@ void main() {
         isLocationPermissionGranted: false,
         favoriteIds: [],
         email: 'mock@gmail.com',
+        password: '',
         lastSeenCar: null,
       );
 
@@ -69,6 +72,7 @@ void main() {
         lastName: 'Marley',
         isLocationPermissionGranted: true,
         favoriteIds: [],
+        password: '',
         email: 'mock@gmail.com',
         lastSeenCar: null,
       );

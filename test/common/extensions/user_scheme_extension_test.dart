@@ -13,6 +13,7 @@ void main() {
         isLocationPermissionGranted: true,
         favoriteIds: const ['1'],
         email: 'mock@gmail.com',
+        password: '',
         lastSeenCar: {DateTime.now(): CarEntity.empty().carId},
       );
 

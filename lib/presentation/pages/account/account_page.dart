@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_routes.dart';
+import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/account_item.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -54,49 +58,71 @@ class AccountPage extends StatelessWidget {
                   ),
                 ),
 
-                AccountItem(
-                  icon: Icons.person_outlined,
-                  text: AppLocalisations.accountItemPersonalDetails,
-                ),
-                //todo: in the personal details -> Change password
-                AccountItem(
-                  icon: Icons.location_on_outlined,
-                  text: AppLocalisations.accountItemLocation,
-                ),
-                AccountItem(
-                  icon: Icons.checklist_outlined,
-                  text: AppLocalisations.accountItemMyItems,
-                ),
-                AccountItem(
-                  icon: Icons.remove_red_eye_outlined,
-                  text: AppLocalisations.accountItemViewedItems,
-                ),
-                AccountItem(
-                  icon: Icons.delete_outline,
-                  text: AppLocalisations.accountItemClearData,
-                ),
-                AccountItem(
-                  icon: Icons.logout_outlined,
-                  text: AppLocalisations.accountItemLogout,
-                  onTap: () async {
-                    await context.read<AuthenticationCubit>().logOut();
+                Padding(
+                  padding: const EdgeInsets.all(AppDimensions.normalS),
+                  child: Material(
+                    clipBehavior: Clip.antiAlias,
+                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                    color: Colors.white,
+                    child: Column(
+                      children: [
+                        AccountItem(
+                          icon: Icons.person_outlined,
+                          text: AppLocalisations.accountItemPersonalDetails,
+                          onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
+                        ),
 
-                    if (!context.mounted) return;
+                        //todo: in the personal details -> Change password
+                        AccountItem(
+                          icon: Icons.location_on_outlined,
+                          text: AppLocalisations.accountItemLocation,
+                        ),
+                        AccountItem(
+                          icon: Icons.checklist_outlined,
+                          text: AppLocalisations.accountItemMyItems,
+                        ),
+                        AccountItem(
+                          icon: Icons.remove_red_eye_outlined,
+                          text: AppLocalisations.accountItemViewedItems,
+                        ),
+                        AccountItem(
+                          icon: Icons.cleaning_services,
+                          text: AppLocalisations.accountItemClearData,
+                        ),
+                        AccountItem(
+                          icon: Icons.logout_outlined,
+                          text: AppLocalisations.accountItemLogout,
+                          onTap: () async {
+                            await context.read<AuthenticationCubit>().logOut();
 
-                    context.read<UserDataCubit>().logOutUser();
-                  },
+                            if (!context.mounted) return;
+
+                            context.read<UserDataCubit>().logOutUser();
+                          },
+                        ),
+                      ].withDividers(divider: const CustomDivider()),
+                    ),
+                  ),
                 ),
-                AccountItem(
-                  text: AppLocalisations.accountItemDeleteAccount,
-                  textStyle: AppTextStyles.zonaPro14.copyWith(color: AppColors.accentColor),
-                  onTap: () async {
-                    await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
-                    if (!context.mounted) return;
+                Padding(
+                  padding: const EdgeInsets.all(AppDimensions.normalS),
+                  child: Material(
+                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                    clipBehavior: Clip.antiAlias,
+                    child: AccountItem(
+                      text: AppLocalisations.accountItemDeleteAccount,
+                      textStyle: AppTextStyles.zonaPro14.copyWith(color: Colors.redAccent),
+                      onTap: () async {
+                        await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
-                    context.read<UserDataCubit>().logOutUser();
-                  },
-                  isCentered: true,
+                        if (!context.mounted) return;
+
+                        context.read<UserDataCubit>().logOutUser();
+                      },
+                      isCentered: true,
+                    ),
+                  ),
                 ),
               ],
             ),

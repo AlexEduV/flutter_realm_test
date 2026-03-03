@@ -1,0 +1,15 @@
+import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
+
+class CustomDivider extends StatelessWidget {
+  const CustomDivider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Divider(
+      height: 1.0,
+      indent: AppDimensions.normalM,
+      endIndent: AppDimensions.normalM,
+    );
+  }
+}

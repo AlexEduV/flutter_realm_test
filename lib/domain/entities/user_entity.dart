@@ -8,6 +8,7 @@ class UserEntity {
   final bool isLocationPermissionGranted;
   final List<String> favoriteIds;
   final Map<DateTime, String>? lastSeenCar;
+  final String password;
 
   const UserEntity({
     required this.userId,
@@ -17,6 +18,7 @@ class UserEntity {
     required this.favoriteIds,
     required this.email,
     required this.lastSeenCar,
+    required this.password,
   });
 
   factory UserEntity.fromSchema(User user) {
@@ -30,6 +32,7 @@ class UserEntity {
       lastSeenCar: user.lastSeenCar != null && user.lastSeenCar!.carId != null
           ? {user.lastSeenCar!.date: user.lastSeenCar!.carId!}
           : null,
+      password: user.password,
     );
   }
 
@@ -40,6 +43,7 @@ class UserEntity {
     bool? isLocationPermissionGranted,
     List<String>? favoriteIds,
     String? email,
+    String? password,
     Map<DateTime, String>? lastSeenCar,
   }) {
     return UserEntity(
@@ -50,6 +54,7 @@ class UserEntity {
       favoriteIds: favoriteIds ?? this.favoriteIds,
       email: email ?? this.email,
       lastSeenCar: lastSeenCar ?? this.lastSeenCar,
+      password: password ?? this.password,
     );
   }
 }
