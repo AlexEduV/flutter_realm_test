@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/domain/models/personal_details_item_model.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -20,29 +24,57 @@ class PersonalDetailsPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(AppDimensions.minorL),
         child: Container(
-          margin: EdgeInsets.all(AppDimensions.minorL),
+          margin: const EdgeInsets.all(AppDimensions.minorL),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(AppDimensions.normalL),
           ),
-          child: ListView.separated(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(AppDimensions.minorL),
-            itemCount: 5,
-            separatorBuilder: (context, index) => const Divider(),
-            itemBuilder: (context, index) {
+          child: BlocBuilder<UserDataCubit, UserDataState>(
+            builder: (context, state) {
               final items = [
-                {'title': 'First Name', 'description': 'Test', 'icon': Icons.person_pin_outlined},
-                {'title': 'Last Name', 'description': 'Test', 'icon': Icons.person_outlined},
-                {'title': 'Email', 'description': 'Test', 'icon': Icons.email_outlined},
-                {'title': 'Phone Number', 'description': 'Test', 'icon': Icons.phone_outlined},
-                {'title': 'Date of Birth', 'description': 'Test', 'icon': Icons.cake_outlined},
+                //todo: add localisations and semantics
+                PersonalDetailsItemModel(
+                  title: 'First Name',
+                  subtitle: state.firstName,
+                  icon: Icons.person_pin_outlined,
+                ),
+                PersonalDetailsItemModel(
+                  title: 'Last Name',
+                  subtitle: state.lastName,
+                  icon: Icons.person_outlined,
+                ),
+                //todo: add items later
+                // PersonalDetailsItemModel(
+                //   title: 'Phone Number',
+                //   subtitle: 'Test',
+                //   icon: Icons.phone_outlined,
+                // ),
+                // PersonalDetailsItemModel(
+                //   title: 'Date of Birth',
+                //   subtitle: 'Test',
+                //   icon: Icons.cake_outlined,
+                // ),
+                PersonalDetailsItemModel(
+                  title: 'Email',
+                  subtitle: state.email,
+                  icon: Icons.email_outlined,
+                ),
+                PersonalDetailsItemModel(title: 'Password', subtitle: '', icon: Icons.password),
               ];
-              final item = items[index];
-              return PersonalDetailsListItem(
-                title: item['title']! as String,
-                description: item['description']! as String,
-                icon: item['icon'] as IconData,
+
+              return ListView.separated(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(AppDimensions.minorL),
+                itemCount: items.length,
+                separatorBuilder: (context, index) => const Divider(),
+                itemBuilder: (context, index) {
+                  final item = items[index];
+                  return PersonalDetailsListItem(
+                    title: item.title,
+                    description: item.subtitle,
+                    icon: item.icon,
+                  );
+                },
               );
             },
           ),
