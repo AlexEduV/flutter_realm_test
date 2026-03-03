@@ -30,6 +30,7 @@ class MockCarApiService implements CarApiService {
     // Simulate initial load
     await Future.delayed(const Duration(seconds: 2));
 
+    //todo: remove duplications between initial data and the generate in the heartbeat;
     final initialData = [
       CarDto(
         id: initIds[0],
