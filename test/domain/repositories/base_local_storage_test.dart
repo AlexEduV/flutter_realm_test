@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
@@ -97,7 +98,7 @@ void main() {
           manufacturer: 'Ford',
           type: CarType.car.name,
           isVerified: true,
-          hotPromotionDescription: 'Hot Promo',
+          promoType: PromoType.oneOwner,
           year: '2021',
           kilometers: 3000,
           distanceTo: 2,

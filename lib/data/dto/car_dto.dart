@@ -1,6 +1,8 @@
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/domain/models/owner_model.dart';
 
+import '../../common/enums/promo_type.dart';
+
 class CarDto {
   final ObjectId id;
   final String carId;
@@ -14,7 +16,7 @@ class CarDto {
   final String transmissionType;
   final OwnerModel? owner;
   final bool isVerified;
-  final String? hotPromotionDescription;
+  final PromoType? promoType;
   int? kilometers;
   int? distanceTo;
   int? price;
@@ -30,7 +32,7 @@ class CarDto {
     required this.bodyType,
     required this.fuelType,
     required this.transmissionType,
-    this.hotPromotionDescription,
+    this.promoType,
     this.color,
     this.year,
     this.owner,
@@ -50,7 +52,7 @@ class CarDto {
       year: json['year'] as String?,
       isVerified: json['is_verified'] as bool,
       price: json['price'] as int?,
-      hotPromotionDescription: json['hot_promotion_description'] as String?,
+      promoType: promoTypeFromString(json['promo_type'] as String?),
       transmissionType: json['transmission_type'] as String,
       fuelType: json['fuel_type'] as String,
       bodyType: json['body_type'] as String,

@@ -3,6 +3,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
@@ -45,7 +46,7 @@ void main() {
       model: 'Civic',
       manufacturer: 'Honda',
       isVerified: false,
-      hotPromotionDescription: 'Hot Promo',
+      promoType: PromoType.oneOwner,
       type: 'car',
       fuelType: FuelType.hybrid.name,
       bodyType: BodyType.sedan.name,

@@ -153,7 +153,7 @@ class AnnouncementListItem extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              if (car?.hotPromotionDescription != null)
+                              if (car?.promoType != null)
                                 getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                             ],
                           ),

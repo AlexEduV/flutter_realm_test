@@ -3,6 +3,7 @@ import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/common/extensions/car_scheme_extension.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
@@ -32,7 +33,7 @@ void main() {
       expect(entity.manufacturer, 'Toyota');
       expect(entity.type, CarType.car.name);
       expect(entity.isVerified, true);
-      expect(entity.hotPromotionDescription, isNull);
+      expect(entity.promoType, isNull);
       expect(entity.year, '2020');
       expect(entity.kilometers, 15000);
       expect(entity.distanceTo, 10);
@@ -48,7 +49,7 @@ void main() {
         type: CarType.bike.name,
         year: '2018',
         isVerified: false,
-        hotPromotionDescription: 'Hot Promotion',
+        promoType: promoTypeFromString('hot_promotion'),
         kilometers: 8000,
         distanceTo: 5,
         price: 7500,
@@ -81,7 +82,7 @@ void main() {
         manufacturer: 'Tesla',
         type: CarType.car.name,
         isVerified: true,
-        hotPromotionDescription: 'Hot Promotion',
+        promoType: promoTypeFromString('hot_promotion'),
         year: '2022',
         kilometers: 5000,
         distanceTo: 2,

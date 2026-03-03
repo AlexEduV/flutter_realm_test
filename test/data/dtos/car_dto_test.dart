@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/domain/models/owner_model.dart';
@@ -33,7 +34,7 @@ void main() {
       expect(car.manufacturer, 'Tesla');
       expect(car.type, 'car');
       expect(car.isVerified, true);
-      expect(car.hotPromotionDescription, isNull);
+      expect(car.promoType, isNull);
       expect(car.year, '2020');
       expect(car.owner?.name ?? '', 'John Doe');
       expect(car.kilometers, 10000);
@@ -73,7 +74,7 @@ void main() {
         'year': '2018',
         'is_verified': false,
         'price': 20000,
-        'hot_promotion_description': 'Hot Promo',
+        'promo_type': 'One Owner',
         'type': 'car',
         'body_type': 'sedan',
         'transmission_type': 'automatic',
@@ -91,7 +92,7 @@ void main() {
       expect(car.year, '2018');
       expect(car.isVerified, false);
       expect(car.price, 20000);
-      expect(car.hotPromotionDescription, 'Hot Promo');
+      expect(car.promoType, PromoType.oneOwner);
       expect(car.id, isA<ObjectId>());
     });
   });

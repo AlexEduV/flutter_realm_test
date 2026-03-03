@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/utils/share_debouncer.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
@@ -185,13 +186,13 @@ class _DetailsPageState extends State<DetailsPage> {
                             style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                           ),
 
-                          if (car?.hotPromotionDescription != null) ...[
+                          if (car?.promoType != null) ...[
                             Row(
                               spacing: AppDimensions.minorL,
                               children: [
                                 const Icon(Icons.whatshot, size: 18, color: Colors.red),
 
-                                Text(car?.hotPromotionDescription ?? ''),
+                                Text(stringFromPromoType(car?.promoType) ?? ''),
                               ],
                             ),
                           ],

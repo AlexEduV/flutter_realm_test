@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
@@ -25,7 +26,7 @@ void main() {
       manufacturer: 'Tesla',
       type: CarType.car.name,
       isVerified: true,
-      hotPromotionDescription: 'Hot Promo',
+      promoType: PromoType.limitedTimeOffer,
       year: '2022',
       kilometers: 1000,
       distanceTo: 5,

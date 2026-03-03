@@ -65,7 +65,7 @@ void main() {
     when(carEntity.year).thenReturn('2007');
     when(carEntity.owner).thenReturn(OwnerModel(id: 'test', name: 'Elon', linkedItemIds: []));
     when(carEntity.isVerified).thenReturn(true);
-    when(carEntity.hotPromotionDescription).thenReturn(null);
+    when(carEntity.promoType).thenReturn(null);
     when(carEntity.kilometers).thenReturn(12345);
     when(carEntity.distanceTo).thenReturn(50);
     when(carEntity.price).thenReturn(60000);
@@ -159,7 +159,7 @@ void main() {
     when(carDto.model).thenReturn('Model X');
     when(carDto.year).thenReturn('2010');
     when(carDto.isVerified).thenReturn(false);
-    when(carDto.hotPromotionDescription).thenReturn(null);
+    when(carDto.promoType).thenReturn(null);
     when(carDto.kilometers).thenReturn(100);
     when(carDto.distanceTo).thenReturn(0);
     when(carDto.price).thenReturn(2000);

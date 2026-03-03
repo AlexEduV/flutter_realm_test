@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
@@ -51,7 +52,7 @@ void main() {
       expect(entity.model, 'Model S');
       expect(entity.manufacturer, 'Tesla');
       expect(entity.isVerified, true);
-      expect(entity.hotPromotionDescription, null);
+      expect(entity.promoType, null);
       expect(entity.year, '2020');
       expect(entity.owner?.name, 'John Doe');
       expect(entity.kilometers, 10000);
@@ -70,7 +71,7 @@ void main() {
         manufacturer: 'Honda',
         type: 'car',
         isVerified: false,
-        hotPromotionDescription: 'Hot Promo',
+        promoType: PromoType.oneOwner,
         year: '2018',
         owner: OwnerModel(id: 'test', name: 'Jane Doe', linkedItemIds: []),
         kilometers: 50000,
@@ -87,7 +88,7 @@ void main() {
       expect(entity.model, 'Civic');
       expect(entity.manufacturer, 'Honda');
       expect(entity.isVerified, false);
-      expect(entity.hotPromotionDescription, 'Hot Promo');
+      expect(entity.promoType, PromoType.oneOwner);
       expect(entity.year, '2018');
       expect(entity.owner?.name, 'Jane Doe');
       expect(entity.kilometers, 50000);
@@ -105,7 +106,7 @@ void main() {
       expect(entity.model, 'Model S');
       expect(entity.manufacturer, 'Tesla');
       expect(entity.isVerified, true);
-      expect(entity.hotPromotionDescription, null);
+      expect(entity.promoType, null);
       expect(entity.year, '2020');
       expect(entity.owner?.name, 'John Doe');
       expect(entity.kilometers, 10000);
@@ -125,7 +126,7 @@ void main() {
 
       expect(entity.model, ''); // default for null model
       expect(entity.isVerified, false); // default for null isChecked
-      expect(entity.hotPromotionDescription, isNull); // default for null isHotProposition
+      expect(entity.promoType, isNull); // default for null isHotProposition
       expect(entity.owner?.name, 'John Doe'); // default for null owner
     });
   });

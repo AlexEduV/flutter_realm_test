@@ -1,5 +1,6 @@
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/models/owner_model.dart';
 
@@ -18,7 +19,7 @@ class CarEntity {
   final String fuelType;
   final String transmissionType;
   final bool isVerified;
-  final String? hotPromotionDescription;
+  final PromoType? promoType;
   int? kilometers = 0;
   int? distanceTo;
   int? price = 0;
@@ -33,7 +34,7 @@ class CarEntity {
     required this.bodyType,
     required this.fuelType,
     required this.transmissionType,
-    this.hotPromotionDescription,
+    this.promoType,
     this.year,
     this.color,
     this.owner,
@@ -84,7 +85,7 @@ class CarEntity {
       bodyType: bodyType ?? this.bodyType,
       fuelType: fuelType ?? this.fuelType,
       transmissionType: transmissionType ?? this.transmissionType,
-      hotPromotionDescription: hotPromotionDescription ?? this.hotPromotionDescription,
+      promoType: promoType ?? this.promoType,
       year: year ?? this.year,
       color: color ?? this.color,
       owner: owner ?? this.owner,
@@ -101,7 +102,7 @@ class CarEntity {
       model: dto.model,
       manufacturer: dto.manufacturer,
       isVerified: dto.isVerified,
-      hotPromotionDescription: dto.hotPromotionDescription,
+      promoType: dto.promoType,
       type: dto.type,
       color: dto.color,
       price: dto.price,
@@ -123,7 +124,7 @@ class CarEntity {
       manufacturer: car.manufacturer,
       type: car.type,
       isVerified: car.isChecked ?? false,
-      hotPromotionDescription: car.hotPromotionDescription,
+      promoType: promoTypeFromString(car.hotPromotionDescription),
       price: car.price,
       distanceTo: car.distanceTo,
       color: car.color,
@@ -157,7 +158,7 @@ class CarEntity {
           fuelType == other.fuelType &&
           transmissionType == other.transmissionType &&
           isVerified == other.isVerified &&
-          hotPromotionDescription == other.hotPromotionDescription &&
+          promoType == other.promoType &&
           kilometers == other.kilometers &&
           distanceTo == other.distanceTo &&
           price == other.price &&
@@ -176,7 +177,7 @@ class CarEntity {
       fuelType.hashCode ^
       transmissionType.hashCode ^
       isVerified.hashCode ^
-      (hotPromotionDescription?.hashCode ?? 0) ^
+      (promoType?.hashCode ?? 0) ^
       (kilometers ?? 0).hashCode ^
       (distanceTo ?? 0).hashCode ^
       (price ?? 0).hashCode ^

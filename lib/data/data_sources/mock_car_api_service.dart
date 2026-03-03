@@ -7,6 +7,7 @@ import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
@@ -38,7 +39,7 @@ class MockCarApiService implements CarApiService {
         model: '911',
         price: 120000,
         isVerified: true,
-        hotPromotionDescription: 'Best Price',
+        promoType: PromoType.bestPrice,
         year: '2010',
         bodyType: BodyType.coupe.name,
         fuelType: FuelType.diesel.name,
@@ -55,7 +56,7 @@ class MockCarApiService implements CarApiService {
         type: CarType.car.name,
         price: 25000,
         isVerified: false,
-        hotPromotionDescription: 'Best Price',
+        promoType: PromoType.bestPrice,
         year: '2007',
         bodyType: BodyType.sedan.name,
         fuelType: FuelType.hybrid.name,
@@ -72,8 +73,7 @@ class MockCarApiService implements CarApiService {
         type: CarType.truck.name,
         price: 50000,
         isVerified: true,
-        //todo: this is not localised properly
-        hotPromotionDescription: 'Best Price',
+        promoType: PromoType.bestPrice,
         year: '2002',
         bodyType: BodyType.semi.name,
         fuelType: FuelType.diesel.name,
@@ -116,7 +116,7 @@ class MockCarApiService implements CarApiService {
         price: 120000 + Random().nextInt(1000), // Randomize!
         distanceTo: Random().nextInt(60),
         isVerified: true,
-        hotPromotionDescription: 'Best Price',
+        promoType: PromoType.bestPrice,
         year: '2010',
         bodyType: BodyType.coupe.name,
         fuelType: FuelType.diesel.name,
@@ -134,7 +134,7 @@ class MockCarApiService implements CarApiService {
         price: 25000 + Random().nextInt(500), // Randomize!
         distanceTo: Random().nextInt(50),
         isVerified: false,
-        hotPromotionDescription: 'Best Price',
+        promoType: PromoType.bestPrice,
         year: '2007',
         bodyType: BodyType.sedan.name,
         fuelType: FuelType.hybrid.name,
@@ -152,7 +152,7 @@ class MockCarApiService implements CarApiService {
         price: 50000 + Random().nextInt(1000),
         distanceTo: Random().nextInt(50),
         isVerified: true,
-        hotPromotionDescription: 'Best Price',
+        promoType: PromoType.bestPrice,
         year: '2002',
         bodyType: BodyType.semi.name,
         fuelType: FuelType.diesel.name,

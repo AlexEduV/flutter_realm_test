@@ -1,4 +1,5 @@
 import 'package:realm/realm.dart' show ObjectId;
+import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/domain/models/owner_model.dart';
 
 import '../../data/dto/car_dto.dart';
@@ -13,7 +14,7 @@ extension CarExtensions on Car {
       manufacturer: manufacturer,
       type: type,
       isVerified: isChecked ?? false,
-      hotPromotionDescription: hotPromotionDescription,
+      promoType: promoTypeFromString(hotPromotionDescription),
       year: year,
       kilometers: kilometers,
       distanceTo: distanceTo,
@@ -40,7 +41,7 @@ extension CarExtensions on Car {
       model: dto.model,
       year: dto.year,
       isChecked: dto.isVerified,
-      hotPromotionDescription: dto.hotPromotionDescription,
+      hotPromotionDescription: dto.promoType?.name,
       kilometers: dto.kilometers,
       distanceTo: dto.distanceTo,
       price: dto.price ?? 0,
@@ -66,7 +67,7 @@ extension CarExtensions on Car {
       model: entity.model,
       year: entity.year,
       isChecked: entity.isVerified,
-      hotPromotionDescription: entity.hotPromotionDescription,
+      hotPromotionDescription: entity.promoType?.name,
       kilometers: entity.kilometers,
       distanceTo: entity.distanceTo,
       price: entity.price ?? 0,
