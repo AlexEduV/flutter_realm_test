@@ -22,6 +22,59 @@ class MockCarApiService implements CarApiService {
 
   List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
 
+  late final initialData = [
+    CarDto(
+      id: initIds[0],
+      carId: '1',
+      manufacturer: 'Porsche',
+      type: CarType.car.name,
+      model: '911',
+      price: 120000,
+      isVerified: true,
+      promoType: PromoType.featured,
+      year: '2010',
+      bodyType: BodyType.coupe.name,
+      fuelType: FuelType.diesel.name,
+      transmissionType: TransmissionType.hybrid.name,
+      color: 'Yellow',
+      owner: OwnerModel(id: '1', name: 'James Norrington', linkedItemIds: ['1', '25']),
+      images: [AppAssetRoutes.porscheYellowImage],
+    ),
+    CarDto(
+      id: initIds[1],
+      carId: '2',
+      manufacturer: 'Honda',
+      model: 'Civic',
+      type: CarType.car.name,
+      price: 25000,
+      isVerified: false,
+      promoType: PromoType.bestPrice,
+      year: '2007',
+      bodyType: BodyType.sedan.name,
+      fuelType: FuelType.hybrid.name,
+      transmissionType: TransmissionType.manual.name,
+      color: 'Red',
+      owner: OwnerModel(id: '2', name: 'Jack Smith', linkedItemIds: ['2', '23']),
+      images: [AppAssetRoutes.hondaCivicRedImage],
+    ),
+    CarDto(
+      id: initIds[2],
+      carId: '3',
+      manufacturer: 'Scania',
+      model: 'Nova',
+      type: CarType.truck.name,
+      price: 50000,
+      isVerified: true,
+      year: '2002',
+      bodyType: BodyType.semi.name,
+      fuelType: FuelType.diesel.name,
+      transmissionType: TransmissionType.hybrid.name,
+      color: 'Black',
+      owner: OwnerModel(id: '3', name: 'Arya Stark', linkedItemIds: ['3', '26']),
+      images: [],
+    ),
+  ];
+
   // Track the subscription so we can stop the timer if needed
   StreamSubscription? _liveUpdateSubscription;
 
@@ -29,60 +82,6 @@ class MockCarApiService implements CarApiService {
   Future<List<CarDto>> fetchCars() async {
     // Simulate initial load
     await Future.delayed(const Duration(seconds: 2));
-
-    //todo: remove duplications between initial data and the generate in the heartbeat;
-    final initialData = [
-      CarDto(
-        id: initIds[0],
-        carId: '1',
-        manufacturer: 'Porsche',
-        type: CarType.car.name,
-        model: '911',
-        price: 120000,
-        isVerified: true,
-        promoType: PromoType.featured,
-        year: '2010',
-        bodyType: BodyType.coupe.name,
-        fuelType: FuelType.diesel.name,
-        transmissionType: TransmissionType.hybrid.name,
-        color: 'Yellow',
-        owner: OwnerModel(id: '1', name: 'James Norrington', linkedItemIds: ['1', '25']),
-        images: [AppAssetRoutes.porscheYellowImage],
-      ),
-      CarDto(
-        id: initIds[1],
-        carId: '2',
-        manufacturer: 'Honda',
-        model: 'Civic',
-        type: CarType.car.name,
-        price: 25000,
-        isVerified: false,
-        promoType: PromoType.bestPrice,
-        year: '2007',
-        bodyType: BodyType.sedan.name,
-        fuelType: FuelType.hybrid.name,
-        transmissionType: TransmissionType.manual.name,
-        color: 'Red',
-        owner: OwnerModel(id: '2', name: 'Jack Smith', linkedItemIds: ['2', '23']),
-        images: [AppAssetRoutes.hondaCivicRedImage],
-      ),
-      CarDto(
-        id: initIds[2],
-        carId: '3',
-        manufacturer: 'Scania',
-        model: 'Nova',
-        type: CarType.truck.name,
-        price: 50000,
-        isVerified: true,
-        year: '2002',
-        bodyType: BodyType.semi.name,
-        fuelType: FuelType.diesel.name,
-        transmissionType: TransmissionType.hybrid.name,
-        color: 'Black',
-        owner: OwnerModel(id: '3', name: 'Arya Stark', linkedItemIds: ['3', '26']),
-        images: [],
-      ),
-    ];
 
     _carStreamController.add(initialData);
 
@@ -106,61 +105,26 @@ class MockCarApiService implements CarApiService {
   }
 
   List<CarDto> _generateRandomUpdates() {
-    return [
-      CarDto(
-        id: initIds[0],
-        carId: '1',
-        manufacturer: 'Porsche',
-        model: '911',
-        type: CarType.car.name,
-        price: 120000 + Random().nextInt(1000), // Randomize!
-        distanceTo: Random().nextInt(60),
-        isVerified: true,
-        promoType: PromoType.featured,
-        year: '2010',
-        bodyType: BodyType.coupe.name,
-        fuelType: FuelType.diesel.name,
-        transmissionType: TransmissionType.hybrid.name,
-        color: 'Yellow',
-        owner: OwnerModel(id: '1', name: 'James Norrington', linkedItemIds: ['1', '25']),
-        images: [AppAssetRoutes.porscheYellowImage],
-      ),
-      CarDto(
-        id: initIds[1],
-        carId: '2',
-        manufacturer: 'Honda',
-        model: 'Civic',
-        type: CarType.car.name,
-        price: 25000 + Random().nextInt(500), // Randomize!
-        distanceTo: Random().nextInt(50),
-        isVerified: false,
-        promoType: PromoType.bestPrice,
-        year: '2007',
-        bodyType: BodyType.sedan.name,
-        fuelType: FuelType.hybrid.name,
-        transmissionType: TransmissionType.manual.name,
-        color: 'Red',
-        owner: OwnerModel(id: '2', name: 'Jack Smith', linkedItemIds: ['2', '23']),
-        images: [AppAssetRoutes.hondaCivicRedImage],
-      ),
-      CarDto(
-        id: initIds[2],
-        carId: '3',
-        manufacturer: 'Scania',
-        model: 'Nova',
-        type: CarType.truck.name,
-        price: 50000 + Random().nextInt(1000),
-        distanceTo: Random().nextInt(50),
-        isVerified: true,
-        year: '2002',
-        bodyType: BodyType.semi.name,
-        fuelType: FuelType.diesel.name,
-        transmissionType: TransmissionType.hybrid.name,
-        color: 'Black',
-        owner: OwnerModel(id: '3', name: 'Arya Stark', linkedItemIds: ['3', '26']),
-        images: [],
-      ),
-    ];
+    return initialData.map((car) {
+      final random = Random();
+      int priceDelta = 0;
+      int? distanceTo;
+      switch (car.carId) {
+        case '1':
+          priceDelta = random.nextInt(1000);
+          distanceTo = random.nextInt(60);
+          break;
+        case '2':
+          priceDelta = random.nextInt(500);
+          distanceTo = random.nextInt(50);
+          break;
+        case '3':
+          priceDelta = random.nextInt(1000);
+          distanceTo = random.nextInt(50);
+          break;
+      }
+      return car.copyWith(price: (car.price ?? 0) + priceDelta, distanceTo: distanceTo);
+    }).toList();
   }
 
   @override

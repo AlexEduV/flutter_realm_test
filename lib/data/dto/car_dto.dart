@@ -42,6 +42,46 @@ class CarDto {
     this.images = const [],
   });
 
+  CarDto copyWith({
+    ObjectId? id,
+    String? carId,
+    String? model,
+    String? manufacturer,
+    String? type,
+    String? year,
+    String? color,
+    String? bodyType,
+    String? fuelType,
+    String? transmissionType,
+    OwnerModel? owner,
+    bool? isVerified,
+    PromoType? promoType,
+    int? kilometers,
+    int? distanceTo,
+    int? price,
+    List<String>? images,
+  }) {
+    return CarDto(
+      id: id ?? this.id,
+      carId: carId ?? this.carId,
+      model: model ?? this.model,
+      manufacturer: manufacturer ?? this.manufacturer,
+      type: type ?? this.type,
+      year: year ?? this.year,
+      color: color ?? this.color,
+      bodyType: bodyType ?? this.bodyType,
+      fuelType: fuelType ?? this.fuelType,
+      transmissionType: transmissionType ?? this.transmissionType,
+      owner: owner ?? this.owner,
+      isVerified: isVerified ?? this.isVerified,
+      promoType: promoType ?? this.promoType,
+      kilometers: kilometers ?? this.kilometers,
+      distanceTo: distanceTo ?? this.distanceTo,
+      price: price ?? this.price,
+      images: images ?? this.images,
+    );
+  }
+
   factory CarDto.fromJson(Map<String, dynamic> json) {
     return CarDto(
       id: ObjectId(),
