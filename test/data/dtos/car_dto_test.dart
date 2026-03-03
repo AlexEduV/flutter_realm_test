@@ -74,7 +74,7 @@ void main() {
         'year': '2018',
         'is_verified': false,
         'price': 20000,
-        'promo_type': 'One Owner',
+        'promo_type': 'one_owner',
         'type': 'car',
         'body_type': 'sedan',
         'transmission_type': 'automatic',
