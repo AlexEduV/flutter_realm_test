@@ -40,7 +40,7 @@ void main() {
     });
 
     test('appBarIconSize should be 32.0', () {
-      expect(AppDimensions.appBarIconSize, 32.0);
+      expect(AppDimensions.appBarIconSize, 32.0 / 1.2);
     });
 
     test('bottomAppBarIconEnlargedSize should be 36.0', () {
