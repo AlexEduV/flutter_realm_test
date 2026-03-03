@@ -56,50 +56,62 @@ class AccountPage extends StatelessWidget {
                   ),
                 ),
 
-                AccountItem(
-                  icon: Icons.person_outlined,
-                  text: AppLocalisations.accountItemPersonalDetails,
-                  onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
-                ),
-                //todo: in the personal details -> Change password
-                AccountItem(
-                  icon: Icons.location_on_outlined,
-                  text: AppLocalisations.accountItemLocation,
-                ),
-                AccountItem(
-                  icon: Icons.checklist_outlined,
-                  text: AppLocalisations.accountItemMyItems,
-                ),
-                AccountItem(
-                  icon: Icons.remove_red_eye_outlined,
-                  text: AppLocalisations.accountItemViewedItems,
-                ),
-                AccountItem(
-                  icon: Icons.delete_outline,
-                  text: AppLocalisations.accountItemClearData,
-                ),
-                AccountItem(
-                  icon: Icons.logout_outlined,
-                  text: AppLocalisations.accountItemLogout,
-                  onTap: () async {
-                    await context.read<AuthenticationCubit>().logOut();
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(AppDimensions.minorL),
+                  ),
+                  margin: const EdgeInsets.all(AppDimensions.normalM),
+                  child: Column(
+                    children: [
+                      AccountItem(
+                        icon: Icons.person_outlined,
+                        text: AppLocalisations.accountItemPersonalDetails,
+                        onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
+                      ),
 
-                    if (!context.mounted) return;
+                      //todo: in the personal details -> Change password
+                      AccountItem(
+                        icon: Icons.location_on_outlined,
+                        text: AppLocalisations.accountItemLocation,
+                      ),
+                      AccountItem(
+                        icon: Icons.checklist_outlined,
+                        text: AppLocalisations.accountItemMyItems,
+                      ),
+                      AccountItem(
+                        icon: Icons.remove_red_eye_outlined,
+                        text: AppLocalisations.accountItemViewedItems,
+                      ),
+                      AccountItem(
+                        icon: Icons.delete_outline,
+                        text: AppLocalisations.accountItemClearData,
+                      ),
+                      AccountItem(
+                        icon: Icons.logout_outlined,
+                        text: AppLocalisations.accountItemLogout,
+                        onTap: () async {
+                          await context.read<AuthenticationCubit>().logOut();
 
-                    context.read<UserDataCubit>().logOutUser();
-                  },
-                ),
-                AccountItem(
-                  text: AppLocalisations.accountItemDeleteAccount,
-                  textStyle: AppTextStyles.zonaPro14.copyWith(color: AppColors.accentColor),
-                  onTap: () async {
-                    await context.read<AuthenticationCubit>().deleteAccount(state.email);
+                          if (!context.mounted) return;
 
-                    if (!context.mounted) return;
+                          context.read<UserDataCubit>().logOutUser();
+                        },
+                      ),
+                      AccountItem(
+                        text: AppLocalisations.accountItemDeleteAccount,
+                        textStyle: AppTextStyles.zonaPro14.copyWith(color: AppColors.accentColor),
+                        onTap: () async {
+                          await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
-                    context.read<UserDataCubit>().logOutUser();
-                  },
-                  isCentered: true,
+                          if (!context.mounted) return;
+
+                          context.read<UserDataCubit>().logOutUser();
+                        },
+                        isCentered: true,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
