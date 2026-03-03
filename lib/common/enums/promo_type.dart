@@ -12,6 +12,7 @@ enum PromoType {
 
   static PromoType? fromCode(String? code) {
     if (code == null) return null;
+
     return PromoType.values.cast<PromoType?>().firstWhere(
       (e) => e?.code == code,
       orElse: () => null,
