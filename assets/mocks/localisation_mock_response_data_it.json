@@ -161,5 +161,8 @@
   },
   "dateFormatting": {
     "yesterday": "Oggi"
+  },
+  "general": {
+    "share": "Condividere"
   }
 }

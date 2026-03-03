@@ -174,6 +174,5 @@ class AppLocalisations {
 
   static final String articlePageMinsToRead = get('pages.article.minsToRead');
 
-  //todo: add localisations
-  static final String shareButtonLabel = 'Share';
+  static final String shareButtonLabel = get('general.share');
 }
