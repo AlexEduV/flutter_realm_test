@@ -22,11 +22,31 @@ class PersonalDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PersonalDetailsListItem(title: 'First Name', description: 'Test'),
-            PersonalDetailsListItem(title: 'Last Name', description: 'Test'),
-            PersonalDetailsListItem(title: 'Email', description: 'Test'),
-            PersonalDetailsListItem(title: 'Phone Number', description: 'Test'),
-            PersonalDetailsListItem(title: 'Date of Birth', description: 'Test'),
+            PersonalDetailsListItem(
+              title: 'First Name',
+              description: 'Test',
+              icon: Icons.person_pin_outlined,
+            ),
+            PersonalDetailsListItem(
+              title: 'Last Name',
+              description: 'Test',
+              icon: Icons.person_outlined,
+            ),
+            PersonalDetailsListItem(
+              title: 'Email',
+              description: 'Test',
+              icon: Icons.email_outlined,
+            ),
+            PersonalDetailsListItem(
+              title: 'Phone Number',
+              description: 'Test',
+              icon: Icons.phone_outlined,
+            ),
+            PersonalDetailsListItem(
+              title: 'Date of Birth',
+              description: 'Test',
+              icon: Icons.cake_outlined,
+            ),
           ],
         ),
       ),
