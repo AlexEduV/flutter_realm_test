@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details_page.dart';
+import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/personal_details_page.dart';
 import 'package:test_futter_project/presentation/pages/article/article_page.dart';
 import 'package:test_futter_project/presentation/pages/details/details_page.dart';
 import 'package:test_futter_project/presentation/pages/home/home_page.dart';

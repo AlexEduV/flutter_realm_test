@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
-import '../../../../common/app_text_styles.dart';
+import '../../../../../common/app_text_styles.dart';
 
 class PersonalDetailsPage extends StatelessWidget {
   const PersonalDetailsPage({super.key});
@@ -20,7 +21,13 @@ class PersonalDetailsPage extends StatelessWidget {
         padding: EdgeInsets.all(AppDimensions.minorL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Text('First Name'), Text('Last Name'), Text('Email'), Text('Phone Number')],
+          children: [
+            PersonalDetailsListItem(title: 'First Name', description: 'Test'),
+            PersonalDetailsListItem(title: 'Last Name', description: 'Test'),
+            PersonalDetailsListItem(title: 'Email', description: 'Test'),
+            PersonalDetailsListItem(title: 'Phone Number', description: 'Test'),
+            PersonalDetailsListItem(title: 'Date of Birth', description: 'Test'),
+          ],
         ),
       ),
     );
