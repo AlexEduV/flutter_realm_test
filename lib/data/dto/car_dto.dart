@@ -52,7 +52,7 @@ class CarDto {
       year: json['year'] as String?,
       isVerified: json['is_verified'] as bool,
       price: json['price'] as int?,
-      promoType: promoTypeFromString(json['promo_type'] as String?),
+      promoType: PromoType.fromCode(json['promo_type'] as String?),
       transmissionType: json['transmission_type'] as String,
       fuelType: json['fuel_type'] as String,
       bodyType: json['body_type'] as String,

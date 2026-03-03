@@ -1,33 +1,17 @@
-enum PromoType { bestPrice, limitedTimeOffer, oneOwner, featured }
+enum PromoType {
+  //todo: add localisations in the second set;
+  bestPrice('best_price', 'Best Price'),
+  limitedTimeOffer('limited_time_offer', 'Limited Time Offer'),
+  oneOwner('one_owner', 'One Owner'),
+  featured('featured', 'Featured');
 
-//todo: not very efficient to extend two functions when adding every next value
-PromoType? promoTypeFromString(String? value) {
-  switch (value) {
-    case 'best_price':
-      return PromoType.bestPrice;
-    case 'one_owner':
-      return PromoType.oneOwner;
-    case 'limited_time_offer':
-      return PromoType.limitedTimeOffer;
-    case 'featured':
-      return PromoType.featured;
-    default:
-      return null;
-  }
-}
+  final String code;
+  final String localized;
 
-//todo: add localisations here
-String? stringFromPromoType(PromoType? value) {
-  switch (value) {
-    case PromoType.bestPrice:
-      return 'Best Price';
-    case PromoType.limitedTimeOffer:
-      return 'Limited Time Offer';
-    case PromoType.oneOwner:
-      return 'One Owner';
-    case PromoType.featured:
-      return 'Featured';
-    default:
-      return null;
+  const PromoType(this.code, this.localized);
+
+  static PromoType? fromCode(String? code) {
+    if (code == null) return null;
+    return PromoType.values.firstWhere((e) => e.code == code);
   }
 }

@@ -14,7 +14,7 @@ extension CarExtensions on Car {
       manufacturer: manufacturer,
       type: type,
       isVerified: isChecked ?? false,
-      promoType: promoTypeFromString(hotPromotionDescription),
+      promoType: PromoType.fromCode(hotPromotionDescription),
       year: year,
       kilometers: kilometers,
       distanceTo: distanceTo,
