@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
@@ -27,69 +28,83 @@ class _LoginPageState extends State<LoginPage> {
             ? AppLocalisations.loginPageLoginWelcomeText
             : AppLocalisations.loginPageRegistrationWelcomeText;
 
-        return Scaffold(
-          backgroundColor: AppColors.scaffoldColor,
-          body: Stack(
-            children: [
-              FractionallySizedBox(
-                alignment: Alignment.bottomCenter, // or any alignment you need
-                heightFactor: 0.5, // 50% of the parent's height
-                widthFactor: 1.0, // full width
-                child: ShaderMask(
-                  shaderCallback: (Rect bounds) {
-                    //todo: the system UI in the status bar is not so visible;
-                    return const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: [0.0, 0.7, 1.0],
-                      colors: [
-                        Colors.white, // Fully visible image
-                        Colors.white, // Start fading
-                        Colors.transparent, // Fully faded (shows background)
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.light, //Android
+            statusBarBrightness: Brightness.dark, //iOS
+          ),
+          child: Scaffold(
+            backgroundColor: AppColors.scaffoldColor,
+            body: Stack(
+              children: [
+                FractionallySizedBox(
+                  alignment: Alignment.bottomCenter, // or any alignment you need
+                  heightFactor: 0.5, // 50% of the parent's height
+                  widthFactor: 1.0, // full width
+                  child: ShaderMask(
+                    shaderCallback: (Rect bounds) {
+                      return const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [0.0, 0.7, 1.0],
+                        colors: [
+                          Colors.white, // Fully visible image
+                          Colors.white, // Start fading
+                          Colors.transparent, // Fully faded (shows background)
+                        ],
+                      ).createShader(bounds);
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Image.asset(
+                          AppAssetRoutes.yellowCarLoginBackground,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: double.infinity,
+                          alignment: Alignment.bottomCenter,
+                        ),
+                        Container(
+                          color: Colors.black.withAlpha(70), // Adjust opacity as needed
+                        ),
                       ],
-                    ).createShader(bounds);
-                  },
-                  blendMode: BlendMode.dstIn,
-                  child: Image.asset(
-                    AppAssetRoutes.yellowCarLoginBackground,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                    alignment: Alignment.bottomCenter,
+                    ),
                   ),
                 ),
-              ),
 
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsetsGeometry.only(
-                        left: AppDimensions.normalXL,
-                        top: 120,
-                      ),
-                      child: Text(
-                        welcomeText,
-                        style: AppTextStyles.zonaPro30White.copyWith(
-                          shadows: [
-                            const Shadow(
-                              blurRadius: 2.0,
-                              color: Colors.black,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsetsGeometry.only(
+                          left: AppDimensions.normalXL,
+                          top: 120,
+                        ),
+                        child: Text(
+                          welcomeText,
+                          style: AppTextStyles.zonaPro30White.copyWith(
+                            shadows: [
+                              const Shadow(
+                                blurRadius: 2.0,
+                                color: Colors.black,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
 
-                  AuthErrorWidget(text: state.authenticationErrorText),
+                    AuthErrorWidget(text: state.authenticationErrorText),
 
-                  AuthFormsSwitcher(isLoginMode: state.isLoginMode),
-                ],
-              ),
-            ],
+                    AuthFormsSwitcher(isLoginMode: state.isLoginMode),
+                  ],
+                ),
+              ],
+            ),
           ),
         );
       },
