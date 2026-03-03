@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -57,6 +59,7 @@ class AccountPage extends StatelessWidget {
                 AccountItem(
                   icon: Icons.person_outlined,
                   text: AppLocalisations.accountItemPersonalDetails,
+                  onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
                 ),
                 //todo: in the personal details -> Change password
                 AccountItem(
