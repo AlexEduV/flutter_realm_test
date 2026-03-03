@@ -21,7 +21,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
   Future<void> init() async {
     emit(state.copyWith(isLoading: true, isArticleListLoading: true));
 
-    await syncCars();
+    await _syncCarsUseCase.call();
 
     final articles = await _fetchArticlesUseCase.call();
     emit(state.copyWith(articles: articles, isArticleListLoading: false));
@@ -42,18 +42,6 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     cars.removeAt(index);
 
     emit(state.copyWith(cars: cars));
-  }
-
-  Future<void> syncCars({bool isStandalone = false}) async {
-    if (isStandalone) {
-      emit(state.copyWith(isLoading: true));
-    }
-
-    await _syncCarsUseCase.call();
-
-    if (isStandalone) {
-      emit(state.copyWith(isLoading: false));
-    }
   }
 
   void hoverArticle(int index, bool newValue) {
