@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/domain/models/personal_details_item_model.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -43,7 +44,7 @@ class PersonalDetailsPage extends StatelessWidget {
                   subtitle: state.lastName,
                   icon: Icons.person_outlined,
                 ),
-                //todo: add items later
+                //todo: add phone number and date of birth items to the state later
                 // PersonalDetailsItemModel(
                 //   title: 'Phone Number',
                 //   subtitle: 'Test',
@@ -59,7 +60,11 @@ class PersonalDetailsPage extends StatelessWidget {
                   subtitle: state.email,
                   icon: Icons.email_outlined,
                 ),
-                PersonalDetailsItemModel(title: 'Password', subtitle: '', icon: Icons.password),
+                PersonalDetailsItemModel(
+                  title: 'Password',
+                  subtitle: state.password.obscure(),
+                  icon: Icons.password,
+                ),
               ];
 
               return ListView.separated(
