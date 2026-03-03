@@ -62,7 +62,13 @@
     "account": {
       "title": "Il mio account",
       "items": {
-        "personalDetails": "Dettagli personali",
+        "personalDetails": {
+          "title": "Dati personali",
+          "firstNameItem": "Nome",
+          "lastNameItem": "Cognome",
+          "emailItem": "Email",
+          "passwordItem": "Password"
+        },
         "location": "Posizione",
         "myItems": "I miei articoli",
         "recentlyViewed": "Visualizzati di recente",

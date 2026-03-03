@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 class PersonalDetailsListItem extends StatelessWidget {
   final IconData icon;
@@ -17,10 +19,16 @@ class PersonalDetailsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(title, style: AppTextStyles.zonaPro16),
-      subtitle: Text(description, style: AppTextStyles.zonaPro16.copyWith(color: Colors.grey[600])),
-      leading: Icon(icon),
+    return AppSemantics(
+      label: '${AppSemanticsLabels.personalDetailsItem} $title',
+      child: ListTile(
+        title: Text(title, style: AppTextStyles.zonaPro16),
+        subtitle: Text(
+          description,
+          style: AppTextStyles.zonaPro16.copyWith(color: Colors.grey[600]),
+        ),
+        leading: Icon(icon),
+      ),
     );
   }
 }

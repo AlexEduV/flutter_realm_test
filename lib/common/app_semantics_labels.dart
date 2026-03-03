@@ -49,4 +49,5 @@ class AppSemanticsLabels {
   static const favoriteListItem = 'favoriteListItem';
 
   static const accountItem = 'accountItem';
+  static const personalDetailsItem = 'personalDetailsItem';
 }

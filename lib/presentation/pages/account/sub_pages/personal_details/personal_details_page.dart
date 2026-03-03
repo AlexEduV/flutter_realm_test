@@ -33,14 +33,13 @@ class PersonalDetailsPage extends StatelessWidget {
           child: BlocBuilder<UserDataCubit, UserDataState>(
             builder: (context, state) {
               final items = [
-                //todo: add localisations and semantics
                 PersonalDetailsItemModel(
-                  title: 'First Name',
+                  title: AppLocalisations.personalDetailsItemFirstName,
                   subtitle: state.firstName,
                   icon: Icons.person_pin_outlined,
                 ),
                 PersonalDetailsItemModel(
-                  title: 'Last Name',
+                  title: AppLocalisations.personalDetailsItemLastName,
                   subtitle: state.lastName,
                   icon: Icons.person_outlined,
                 ),
@@ -56,12 +55,12 @@ class PersonalDetailsPage extends StatelessWidget {
                 //   icon: Icons.cake_outlined,
                 // ),
                 PersonalDetailsItemModel(
-                  title: 'Email',
+                  title: AppLocalisations.personalDetailsItemEmail,
                   subtitle: state.email,
                   icon: Icons.email_outlined,
                 ),
                 PersonalDetailsItemModel(
-                  title: 'Password',
+                  title: AppLocalisations.personalDetailsItemPassword,
                   subtitle: state.password.obscure(),
                   icon: Icons.password,
                 ),
