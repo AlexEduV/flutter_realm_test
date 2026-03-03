@@ -1,9 +1,10 @@
+import 'package:test_futter_project/utils/l10n.dart';
+
 enum PromoType {
-  //todo: add localisations in the second set;
-  bestPrice('best_price', 'Best Price'),
-  limitedTimeOffer('limited_time_offer', 'Limited Time Offer'),
-  oneOwner('one_owner', 'One Owner'),
-  featured('featured', 'Featured');
+  bestPrice('best_price', 'pages.vehicleDetails.promoType.bestPrice'),
+  limitedTimeOffer('limited_time_offer', 'pages.vehicleDetails.promoType.limitedTimeOffer'),
+  oneOwner('one_owner', 'pages.vehicleDetails.promoType.oneOwner'),
+  featured('featured', 'pages.vehicleDetails.promoType.featured');
 
   final String code;
   final String localized;
@@ -17,5 +18,10 @@ enum PromoType {
       (e) => e?.code == code,
       orElse: () => null,
     );
+  }
+
+  //todo: not the best idea. localisation keys should only be in the l10n file;
+  String? fromLocalisations() {
+    return AppLocalisations.get(localized);
   }
 }

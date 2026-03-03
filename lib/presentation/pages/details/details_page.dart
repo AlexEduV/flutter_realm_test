@@ -191,7 +191,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               children: [
                                 const Icon(Icons.whatshot, size: 18, color: Colors.red),
 
-                                Text(car?.promoType?.localized ?? ''),
+                                Text(car?.promoType?.fromLocalisations() ?? ''),
                               ],
                             ),
                           ],

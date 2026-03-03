@@ -51,6 +51,12 @@
       "ownerSection": {
         "personTypeOwner": "Owner",
         "contactButtonTitle": "Send Message"
+      },
+      "promoType": {
+        "bestPrice": "Best Price",
+        "limitedTimeOffer": "Limited Time Offer",
+        "oneOwner": "One Owner",
+        "featured": "Featured"
       }
     },
     "account": {
