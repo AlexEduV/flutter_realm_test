@@ -13,7 +13,7 @@ import '../../../../utils/app_router_test.mocks.dart';
 void main() {
   setUp(() {
     AppLocalisations.localisations = {
-      'pages.vehicleDetails.sectionTitle': 'Vehicle Specs',
+      'pages.vehicleDetails.sectionTitle': 'Vehicle Details',
       'pages.vehicleDetails.specifications.body': 'Body',
       'pages.vehicleDetails.specifications.engine': 'Engine',
       'pages.vehicleDetails.specifications.transmission': 'Transmission',
@@ -38,23 +38,23 @@ void main() {
   );
 
   //todo: test is not working in the global run;
-  // testWidgets('displays section title and expand button', (tester) async {
-  //   final cubit = MockDetailsPageCubit();
-  //   when(cubit.stream).thenAnswer((_) => const Stream.empty());
-  //   when(cubit.state).thenReturn(const DetailsPageState());
-  //
-  //   await tester.pumpWidget(
-  //     MaterialApp(
-  //       home: BlocProvider<DetailsPageCubit>(
-  //         create: (_) => cubit,
-  //         child: VehicleSpecsWidget(car: testCar),
-  //       ),
-  //     ),
-  //   );
-  //
-  //   expect(find.text('Vehicle Specs'), findsOneWidget);
-  //   expect(find.byIcon(Icons.keyboard_arrow_down), findsOneWidget);
-  // });
+  testWidgets('displays section title and expand button', (tester) async {
+    final cubit = MockDetailsPageCubit();
+    when(cubit.stream).thenAnswer((_) => const Stream.empty());
+    when(cubit.state).thenReturn(const DetailsPageState());
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider<DetailsPageCubit>(
+          create: (_) => cubit,
+          child: VehicleSpecsWidget(car: testCar),
+        ),
+      ),
+    );
+
+    expect(find.text('Vehicle Details'), findsOneWidget);
+    expect(find.byIcon(Icons.keyboard_arrow_down), findsOneWidget);
+  });
 
   testWidgets('expands and shows specifications when button is pressed', (tester) async {
     final cubit = MockDetailsPageCubit();
