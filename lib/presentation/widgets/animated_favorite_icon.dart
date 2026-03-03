@@ -65,7 +65,7 @@ class _AnimatedFavoriteIconState extends State<AnimatedFavoriteIcon>
             children: [
               Icon(
                 widget.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: widget.isFavorite ? AppColors.gold : Colors.grey,
+                color: widget.isFavorite ? AppColors.gold : Colors.black,
               ),
 
               if (widget.isFavorite) ...[
