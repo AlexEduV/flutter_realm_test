@@ -20,7 +20,7 @@ class MockCarApiService implements CarApiService {
   @override
   Stream<List<CarDto>> get carStream => _carStreamController.stream;
 
-  List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
+  final List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
 
   late final initialData = [
     CarDto(
