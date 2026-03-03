@@ -49,7 +49,7 @@ void main() {
         type: CarType.bike.name,
         year: '2018',
         isVerified: false,
-        promoType: PromoType.fromCode('hot_promotion'),
+        promoType: PromoType.fromCode('best_price'),
         kilometers: 8000,
         distanceTo: 5,
         price: 7500,
@@ -65,7 +65,7 @@ void main() {
       expect(car.manufacturer, 'Honda');
       expect(car.type, CarType.bike.name);
       expect(car.isChecked, false);
-      expect(car.hotPromotionDescription, 'Hot Promotion');
+      expect(car.hotPromotionDescription, 'best_price');
       expect(car.year, '2018');
       expect(car.kilometers, 8000);
       expect(car.distanceTo, 5);
@@ -82,7 +82,7 @@ void main() {
         manufacturer: 'Tesla',
         type: CarType.car.name,
         isVerified: true,
-        promoType: PromoType.fromCode('hot_promotion'),
+        promoType: PromoType.fromCode('one_owner'),
         year: '2022',
         kilometers: 5000,
         distanceTo: 2,
@@ -99,7 +99,7 @@ void main() {
       expect(car.manufacturer, 'Tesla');
       expect(car.type, CarType.car.name);
       expect(car.isChecked, true);
-      expect(car.hotPromotionDescription, 'Hot Promotion');
+      expect(car.hotPromotionDescription, 'one_owner');
       expect(car.year, '2022');
       expect(car.kilometers, 5000);
       expect(car.distanceTo, 2);
