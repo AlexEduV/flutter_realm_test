@@ -94,11 +94,11 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
           ),
 
-          BlocBuilder<UserDataCubit, UserDataState>(
-            builder: (context, userState) {
-              return BlocBuilder<DetailsPageCubit, DetailsPageState>(
-                builder: (context, state) {
-                  final car = state.car;
+          BlocBuilder<DetailsPageCubit, DetailsPageState>(
+            builder: (context, detailsState) {
+              return BlocBuilder<UserDataCubit, UserDataState>(
+                builder: (context, userState) {
+                  final car = detailsState.car;
                   final isCarFavorite = userState.favoriteIds.contains(car?.carId);
 
                   return Padding(
