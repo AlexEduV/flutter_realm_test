@@ -71,6 +71,7 @@ class RealmLocalStorage implements BaseLocalStorage {
       favoriteIds: [],
       email: 'mock@gmail.com',
       lastSeenCar: null,
+      password: '',
     );
 
     realm.write(() {

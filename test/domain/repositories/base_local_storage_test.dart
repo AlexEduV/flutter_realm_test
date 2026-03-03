@@ -135,6 +135,7 @@ void main() {
         lastName: 'Doe',
         isLocationPermissionGranted: true,
         favoriteIds: [],
+        password: '',
         email: 'mock@gmail.com',
         lastSeenCar: null,
       );

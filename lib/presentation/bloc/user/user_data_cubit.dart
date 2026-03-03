@@ -36,6 +36,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         lastName: user.lastName,
         email: user.email,
         lastSeenCar: user.lastSeenCar,
+        password: user.password,
       ),
     );
   }
@@ -111,6 +112,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
+        password: user.password,
       ),
     );
   }

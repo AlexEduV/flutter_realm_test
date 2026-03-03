@@ -379,6 +379,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     String firstName,
     String lastName,
     String email,
+    String password,
     bool isLocationPermissionGranted, {
     Iterable<String> favoriteIds = const [],
     LastSeenCar? lastSeenCar,
@@ -387,6 +388,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'firstName', firstName);
     RealmObjectBase.set(this, 'lastName', lastName);
     RealmObjectBase.set(this, 'email', email);
+    RealmObjectBase.set(this, 'password', password);
     RealmObjectBase.set(
       this,
       'isLocationPermissionGranted',
@@ -423,6 +425,12 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
   String get email => RealmObjectBase.get<String>(this, 'email') as String;
   @override
   set email(String value) => RealmObjectBase.set(this, 'email', value);
+
+  @override
+  String get password =>
+      RealmObjectBase.get<String>(this, 'password') as String;
+  @override
+  set password(String value) => RealmObjectBase.set(this, 'password', value);
 
   @override
   bool get isLocationPermissionGranted =>
@@ -462,6 +470,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'firstName': firstName.toEJson(),
       'lastName': lastName.toEJson(),
       'email': email.toEJson(),
+      'password': password.toEJson(),
       'isLocationPermissionGranted': isLocationPermissionGranted.toEJson(),
       'favoriteIds': favoriteIds.toEJson(),
       'lastSeenCar': lastSeenCar.toEJson(),
@@ -477,6 +486,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
         'firstName': EJsonValue firstName,
         'lastName': EJsonValue lastName,
         'email': EJsonValue email,
+        'password': EJsonValue password,
         'isLocationPermissionGranted': EJsonValue isLocationPermissionGranted,
       } =>
         User(
@@ -484,6 +494,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
           fromEJson(firstName),
           fromEJson(lastName),
           fromEJson(email),
+          fromEJson(password),
           fromEJson(isLocationPermissionGranted),
           favoriteIds: fromEJson(ejson['favoriteIds']),
           lastSeenCar: fromEJson(ejson['lastSeenCar']),
@@ -500,6 +511,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('firstName', RealmPropertyType.string),
       SchemaProperty('lastName', RealmPropertyType.string),
       SchemaProperty('email', RealmPropertyType.string),
+      SchemaProperty('password', RealmPropertyType.string),
       SchemaProperty('isLocationPermissionGranted', RealmPropertyType.bool),
       SchemaProperty(
         'favoriteIds',
