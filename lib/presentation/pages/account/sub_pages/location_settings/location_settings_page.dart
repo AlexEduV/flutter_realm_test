@@ -32,10 +32,7 @@ class LocationSettingsPage extends StatelessWidget {
           children: [
             const SizedBox(height: AppDimensions.minorS),
 
-            const Text(
-              'We use this data to calculate the distance and to get you the most relevant content.',
-              style: AppTextStyles.zonaPro14,
-            ),
+            Text(AppLocalisations.locationUsageDescription, style: AppTextStyles.zonaPro14),
 
             const SizedBox(height: AppDimensions.normalXS),
 
@@ -50,13 +47,15 @@ class LocationSettingsPage extends StatelessWidget {
 
                   final items = [
                     PersonalDetailsItemModel(
-                      title: 'Location access',
-                      subtitle: state.isLocationPermissionGranted ? 'On' : 'Off',
+                      title: AppLocalisations.locationSettingsItemAccess,
+                      subtitle: state.isLocationPermissionGranted
+                          ? AppLocalisations.onLabel
+                          : AppLocalisations.offLabel,
                       icon: Icons.location_on_outlined,
                       showEnabled: state.isLocationPermissionGranted,
                     ),
                     PersonalDetailsItemModel(
-                      title: 'Region',
+                      title: AppLocalisations.locationSettingsItemRegion,
                       subtitle: region?.countryName ?? '',
                       icon: Icons.public,
                     ),
@@ -88,8 +87,14 @@ class LocationSettingsPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  InkWell(onTap: () {}, child: const Text('Conditions')),
-                  InkWell(onTap: () {}, child: const Text('Privacy Policy')),
+                  InkWell(
+                    onTap: () {},
+                    child: Text(AppLocalisations.locationSettingsPrivacyItemConditions),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: Text(AppLocalisations.locationSettingsPrivacyItemPrivacyPolicy),
+                  ),
                 ],
               ),
             ),

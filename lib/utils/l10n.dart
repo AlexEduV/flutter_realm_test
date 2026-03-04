@@ -189,4 +189,14 @@ class AppLocalisations {
   static final String articlePageMinsToRead = get('pages.article.minsToRead');
 
   static final String shareButtonLabel = get('general.share');
+  static final String onLabel = 'On';
+  static final String offLabel = 'Off';
+
+  static final String locationUsageDescription =
+      'We use this data to calculate the distance and to get you the most relevant content.';
+  static final String locationSettingsItemAccess = 'Location access';
+  static final String locationSettingsItemRegion = 'Region';
+
+  static final String locationSettingsPrivacyItemConditions = 'Conditions';
+  static final String locationSettingsPrivacyItemPrivacyPolicy = 'Privacy Policy';
 }
