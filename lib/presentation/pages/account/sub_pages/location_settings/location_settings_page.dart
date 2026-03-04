@@ -25,11 +25,14 @@ class LocationSettingsPage extends StatelessWidget {
         padding: const EdgeInsets.all(AppDimensions.normalM),
         child: Column(
           children: [
+            const SizedBox(height: AppDimensions.minorS),
+
             const Text(
               'We use this data to calculate the distance and to get you the most relevant content.',
+              style: AppTextStyles.zonaPro14,
             ),
 
-            const SizedBox(height: AppDimensions.minorL),
+            const SizedBox(height: AppDimensions.normalXS),
 
             Container(
               decoration: BoxDecoration(
