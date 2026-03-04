@@ -38,6 +38,7 @@ void main() {
       email: 'mock@gmail.com',
       password: '',
       lastSeenCar: null,
+      region: 'uk',
     );
   });
 
@@ -105,6 +106,7 @@ void main() {
         userId: '1',
         isLocationPermissionGranted: false,
         lastSeenCar: null,
+        region: 'uk',
       );
       cubit.addCarIdToFavorites('3');
       expect(cubit.user.favoriteIds, contains('3'));
@@ -121,6 +123,7 @@ void main() {
         userId: '1',
         isLocationPermissionGranted: false,
         lastSeenCar: null,
+        region: 'uk',
       );
 
       cubit.addCarIdToFavorites('1');
@@ -140,6 +143,7 @@ void main() {
         userId: '1',
         isLocationPermissionGranted: false,
         lastSeenCar: null,
+        region: 'uk',
       );
 
       cubit.removeCarIdFromFavorites('1');
@@ -157,6 +161,7 @@ void main() {
           password: 'qwertyUI10!',
           firstName: 'Auth',
           lastName: 'User',
+          region: 'uk',
         ),
       };
 

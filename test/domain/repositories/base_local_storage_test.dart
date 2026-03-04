@@ -138,6 +138,7 @@ void main() {
         password: '',
         email: 'mock@gmail.com',
         lastSeenCar: null,
+        region: 'uk',
       );
 
       when(mockStorage.initUser()).thenReturn(user);

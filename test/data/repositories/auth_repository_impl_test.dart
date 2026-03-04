@@ -20,6 +20,7 @@ void main() {
         password: 'Password1!',
         firstName: 'Alex',
         lastName: 'Smith',
+        region: 'uk',
       ),
       '2': const UserEntityShort(
         userId: '2',
@@ -27,6 +28,7 @@ void main() {
         password: 'AdminPass123!',
         firstName: 'admin',
         lastName: '',
+        region: 'it',
       ),
     };
 

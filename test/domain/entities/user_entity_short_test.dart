@@ -9,6 +9,7 @@ void main() {
       password: 'secret',
       firstName: 'John',
       lastName: 'Doe',
+      region: 'uk',
     );
 
     test('constructor assigns properties correctly', () {
@@ -17,6 +18,7 @@ void main() {
       expect(user.password, 'secret');
       expect(user.firstName, 'John');
       expect(user.lastName, 'Doe');
+      expect(user.region, 'uk');
     });
 
     test('toJson returns correct map', () {
