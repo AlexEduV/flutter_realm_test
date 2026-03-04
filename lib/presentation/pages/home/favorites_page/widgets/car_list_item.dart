@@ -36,7 +36,9 @@ class CarListItem extends StatelessWidget {
           color: Colors.white,
           child: InkWell(
             borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-            onTap: () => AppRouter.goToDetailsRouteFromExplore(car.carId),
+            onTap: () => isFavoriteItem
+                ? AppRouter.goToDetailsRouteFromExplore(car.carId)
+                : AppRouter.goToDetailsFromAccountSettings(car.carId),
             child: Container(
               key: ValueKey(car.carId),
               decoration: BoxDecoration(
