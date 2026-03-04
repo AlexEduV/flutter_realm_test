@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/repositories/region_repository.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -87,13 +89,19 @@ class LocationSettingsPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Text(AppLocalisations.locationSettingsPrivacyItemConditions),
+                  AppSemantics(
+                    label: AppSemanticsLabels.privacyLinkItem,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Text(AppLocalisations.locationSettingsPrivacyItemConditions),
+                    ),
                   ),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(AppLocalisations.locationSettingsPrivacyItemPrivacyPolicy),
+                  AppSemantics(
+                    label: AppSemanticsLabels.privacyLinkItem,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Text(AppLocalisations.locationSettingsPrivacyItemPrivacyPolicy),
+                    ),
                   ),
                 ],
               ),
