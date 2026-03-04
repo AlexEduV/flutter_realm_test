@@ -81,6 +81,7 @@ class AccountPage extends StatelessWidget {
                         AccountItem(
                           icon: Icons.checklist_outlined,
                           text: AppLocalisations.accountItemMyItems,
+                          onTap: () => context.go(AppRoutes.home + AppRoutes.myItems),
                         ),
                         AccountItem(
                           icon: Icons.remove_red_eye_outlined,
