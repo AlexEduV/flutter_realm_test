@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/repositories/region_repository.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -33,6 +34,8 @@ void main() async {
   await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);
 
   ImageCacheUtil.initExtendedCacheSize();
+
+  await serviceLocator<RegionRepository>().loadRegions();
 
   runApp(const MyApp());
 }

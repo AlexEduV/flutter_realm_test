@@ -8,6 +8,7 @@ import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/article_service.dart';
 import 'package:test_futter_project/domain/data_sources/auth_service.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
@@ -16,6 +17,7 @@ import 'package:test_futter_project/domain/data_sources/messages_service.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_futter_project/domain/repositories/region_repository.dart';
 import 'package:test_futter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_futter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/delete_account_use_case.dart';
@@ -94,6 +96,8 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<ArticleRepository>(() => ArticleRepositoryImpl());
   serviceLocator.registerLazySingleton<ArticleService>(() => MockArticleService(serviceLocator()));
+
+  serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
 
   //Register Repository (passing Realm from GetIt)
   serviceLocator.registerLazySingleton<CarRepository>(

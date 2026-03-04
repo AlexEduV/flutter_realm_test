@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/repositories/region_repository.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -44,6 +46,8 @@ class LocationSettingsPage extends StatelessWidget {
               ),
               child: BlocBuilder<UserDataCubit, UserDataState>(
                 builder: (context, state) {
+                  final region = serviceLocator<RegionRepository>().getRegionByCode(state.region);
+
                   final items = [
                     PersonalDetailsItemModel(
                       title: 'Location access',
@@ -53,7 +57,7 @@ class LocationSettingsPage extends StatelessWidget {
                     ),
                     PersonalDetailsItemModel(
                       title: 'Region',
-                      subtitle: 'The UK',
+                      subtitle: region?.countryName ?? '',
                       icon: Icons.public,
                     ),
                   ];
