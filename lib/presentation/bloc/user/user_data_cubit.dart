@@ -106,7 +106,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void addCarIdToCreated(String carId) {
-    final newList = user.favoriteIds.toList()..add(carId);
+    final newList = user.createdIds.toList()..add(carId);
     final cleanedList = newList.toSet().toList();
 
     user = user.copyWith(createdIds: cleanedList);
