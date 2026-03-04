@@ -29,6 +29,7 @@ void main() {
         'password': 'secret',
         'firstName': 'John',
         'lastName': 'Doe',
+        'region': 'uk',
       });
     });
 
