@@ -9,6 +9,9 @@ import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/utils/auth_session_util.dart';
 
+import '../../../di/injection_container.dart';
+import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
+
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(this._localStorage, this._requestLocationPermissionUseCase)
     : super(const UserDataState());
@@ -118,6 +121,8 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     user = user.copyWith(createdIds: newList);
     emit(state.copyWith(createdIds: newList));
+
+    serviceLocator<DeleteCarByIdUseCase>().call(carId);
   }
 
   void authUser(String email) {
