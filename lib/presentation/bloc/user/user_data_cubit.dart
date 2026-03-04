@@ -99,9 +99,9 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   void removeCarIdFromFavorites(String carId) {
     final newList = user.favoriteIds.toList()..remove(carId);
-    _localStorage.update(UserExtensions.fromEntity(user));
-
     user = user.copyWith(favoriteIds: newList);
+
+    _localStorage.update(UserExtensions.fromEntity(user));
     emit(state.copyWith(favoriteIds: newList));
   }
 
@@ -117,9 +117,9 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   void removeCarIdFromCreated(String carId) {
     final newList = user.createdIds.toList()..remove(carId);
-    _localStorage.update(UserExtensions.fromEntity(user));
-
     user = user.copyWith(createdIds: newList);
+
+    _localStorage.update(UserExtensions.fromEntity(user));
     emit(state.copyWith(createdIds: newList));
 
     serviceLocator<DeleteCarByIdUseCase>().call(carId);
