@@ -23,47 +23,58 @@ class LocationSettingsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(AppDimensions.minorL),
-        child: Container(
-          margin: const EdgeInsets.all(AppDimensions.minorL),
-          padding: const EdgeInsets.all(AppDimensions.minorL),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(AppDimensions.normalL),
-          ),
-          child: BlocBuilder<UserDataCubit, UserDataState>(
-            builder: (context, state) {
-              final items = [
-                PersonalDetailsItemModel(
-                  title: 'Location access',
-                  subtitle: 'On',
-                  icon: Icons.location_on_outlined,
-                ),
-                PersonalDetailsItemModel(
-                  title: 'Show content for country',
-                  subtitle: 'The UK',
-                  icon: Icons.public,
-                ),
-              ];
+        padding: const EdgeInsets.all(AppDimensions.normalM),
+        child: Column(
+          children: [
+            const Text(
+              'We use this data to calculate the distance and to get you the most relevant content',
+            ),
 
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  PersonalDetailsListItem(
-                    icon: items[0].icon,
-                    title: items[0].title,
-                    description: items[0].subtitle,
-                  ),
-                  const CustomDivider(),
-                  PersonalDetailsListItem(
-                    icon: items[1].icon,
-                    title: items[1].title,
-                    description: items[1].subtitle,
-                  ),
-                ],
-              );
-            },
-          ),
+            const SizedBox(height: AppDimensions.minorL),
+
+            Container(
+              padding: const EdgeInsets.all(AppDimensions.minorL),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+              ),
+              child: BlocBuilder<UserDataCubit, UserDataState>(
+                builder: (context, state) {
+                  final items = [
+                    PersonalDetailsItemModel(
+                      title: 'Location access',
+                      subtitle: 'On',
+                      icon: Icons.location_on_outlined,
+                      showEnabled: true,
+                    ),
+                    PersonalDetailsItemModel(
+                      title: 'Show content for country',
+                      subtitle: 'The UK',
+                      icon: Icons.public,
+                    ),
+                  ];
+
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      PersonalDetailsListItem(
+                        icon: items[0].icon,
+                        title: items[0].title,
+                        description: items[0].subtitle,
+                        showEnabled: items[0].showEnabled,
+                      ),
+                      const CustomDivider(),
+                      PersonalDetailsListItem(
+                        icon: items[1].icon,
+                        title: items[1].title,
+                        description: items[1].subtitle,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
