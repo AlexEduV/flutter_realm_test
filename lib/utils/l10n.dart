@@ -177,7 +177,7 @@ class AppLocalisations {
     'pages.account.items.personalDetails.passwordItem',
   );
 
-  static final String accountItemLocation = get('pages.account.items.location');
+  static final String accountItemLocation = get('pages.account.items.location.title');
   static final String accountItemMyItems = get('pages.account.items.myItems');
   static final String accountItemViewedItems = get('pages.account.items.recentlyViewed');
   static final String accountItemClearData = get('pages.account.items.clearData');
@@ -189,14 +189,21 @@ class AppLocalisations {
   static final String articlePageMinsToRead = get('pages.article.minsToRead');
 
   static final String shareButtonLabel = get('general.share');
-  static final String onLabel = 'On';
-  static final String offLabel = 'Off';
+  static final String onLabel = get('general.on');
+  static final String offLabel = get('general.off');
 
-  static final String locationUsageDescription =
-      'We use this data to calculate the distance and to get you the most relevant content.';
-  static final String locationSettingsItemAccess = 'Location access';
-  static final String locationSettingsItemRegion = 'Region';
+  static final String locationUsageDescription = get(
+    'pages.account.items.location.locationUsageDescription',
+  );
+  static final String locationSettingsItemAccess = get(
+    'pages.account.items.location.locationAccessItem',
+  );
+  static final String locationSettingsItemRegion = get('pages.account.items.location.regionItem');
 
-  static final String locationSettingsPrivacyItemConditions = 'Conditions';
-  static final String locationSettingsPrivacyItemPrivacyPolicy = 'Privacy Policy';
+  static final String locationSettingsPrivacyItemConditions = get(
+    'pages.account.items.location.privacyPolicyItemConditions',
+  );
+  static final String locationSettingsPrivacyItemPrivacyPolicy = get(
+    'pages.account.items.location.privacyPolicyItemPolicy',
+  );
 }

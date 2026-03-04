@@ -1,16 +1,16 @@
 {
   "app": {
-    "name": "Demo Flutter Realm",
+    "name": "Flutter Realm Demo",
     "locale": "it"
   },
   "pages": {
     "explore": {
       "title": "Esplora",
       "recommendedSection": {
-        "title": "Consigliato"
+        "title": "Consigliati"
       },
       "lastSeenSection": {
-        "title": "Ultima visualizzazione"
+        "title": "Visti di recente"
       }
     },
     "favorites": {
@@ -34,7 +34,7 @@
       "subtitle": "Questa funzione non è ancora disponibile."
     },
     "inbox": {
-      "title": "Messaggi",
+      "title": "Posta in arrivo",
       "emptyPlaceholderText": "Nessun messaggio ancora.",
       "loggedOutPlaceholderText": "Per favore, accedi per vedere i messaggi."
     },
@@ -53,10 +53,10 @@
         "contactButtonTitle": "Invia messaggio"
       },
       "promoType": {
-        "bestPrice": "Miglior Prezzo",
-        "limitedTimeOffer": "Offerta a Tempo Limitato",
-        "oneOwner": "Unico Proprietario",
-        "featured": "In Evidenza"
+        "bestPrice": "Miglior prezzo",
+        "limitedTimeOffer": "Offerta a tempo limitato",
+        "oneOwner": "Un solo proprietario",
+        "featured": "In evidenza"
       }
     },
     "account": {
@@ -69,11 +69,18 @@
           "emailItem": "Email",
           "passwordItem": "Password"
         },
-        "location": "Posizione",
-        "myItems": "I miei articoli",
-        "recentlyViewed": "Visualizzati di recente",
+        "location": {
+          "title": "Posizione",
+          "locationAccessItem": "Accesso alla posizione",
+          "regionItem": "Regione",
+          "locationUsageDescription": "Utilizziamo questi dati per calcolare la distanza e offrirti i contenuti più rilevanti.",
+          "privacyPolicyItemPolicy": "Informativa sulla privacy",
+          "privacyPolicyItemConditions": "Condizioni"
+        },
+        "myItems": "I miei oggetti",
+        "recentlyViewed": "Visti di recente",
         "clearData": "Cancella dati",
-        "logOut": "Esci",
+        "logOut": "Disconnetti",
         "deleteAccount": "Elimina account"
       }
     },
@@ -111,7 +118,7 @@
         "minivan": "Minivan",
         "coupe": "Coupé",
         "crossover": "Crossover",
-        "semi": "Semirimorchio",
+        "semi": "Camion",
         "bike": "Moto"
       },
       "priceRange": "Fascia di prezzo",
@@ -143,7 +150,7 @@
     "warnings": {
       "userNotFound": "Utente non trovato.",
       "incorrectPassword": "Password errata.",
-      "userAlreadyExists": "Utente già esistente."
+      "userAlreadyExists": "L'utente esiste già."
     },
     "hints": {
       "passwordMinLength": "La lunghezza minima della password è",
@@ -172,9 +179,11 @@
     }
   },
   "dateFormatting": {
-    "yesterday": "Oggi"
+    "yesterday": "Ieri"
   },
   "general": {
-    "share": "Condividere"
+    "share": "Condividi",
+    "on": "Attivo",
+    "off": "Disattivo"
   }
 }
