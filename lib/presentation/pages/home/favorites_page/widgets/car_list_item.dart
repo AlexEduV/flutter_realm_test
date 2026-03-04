@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
-import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
@@ -132,12 +131,12 @@ class CarListItem extends StatelessWidget {
   }
 
   IconData getIconByCarType(String type) {
-    if (type == CarType.truck.name) {
-      return Icons.local_shipping_outlined;
-    } else if (type == CarType.bike.name) {
-      return Icons.motorcycle_outlined;
-    } else {
-      return Icons.directions_car_outlined;
-    }
+    const iconMap = {
+      'truck': Icons.local_shipping_outlined,
+      'bike': Icons.motorcycle_outlined,
+      'car': Icons.directions_car_outlined,
+    };
+
+    return iconMap[type] ?? Icons.directions_car_outlined;
   }
 }
