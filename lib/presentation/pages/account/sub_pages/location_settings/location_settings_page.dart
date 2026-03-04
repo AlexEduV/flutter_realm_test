@@ -22,7 +22,10 @@ class LocationSettingsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(AppDimensions.normalM),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimensions.normalM,
+          vertical: AppDimensions.normalL,
+        ),
         child: Column(
           children: [
             const SizedBox(height: AppDimensions.minorS),
@@ -71,6 +74,16 @@ class LocationSettingsPage extends StatelessWidget {
                     },
                   );
                 },
+              ),
+            ),
+
+            const Spacer(),
+
+            const Padding(
+              padding: EdgeInsets.only(bottom: AppDimensions.normalS),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [Text('Conditions'), Text('Privacy Policy')],
               ),
             ),
           ],
