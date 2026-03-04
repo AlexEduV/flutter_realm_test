@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -27,13 +26,12 @@ class LocationSettingsPage extends StatelessWidget {
         child: Column(
           children: [
             const Text(
-              'We use this data to calculate the distance and to get you the most relevant content',
+              'We use this data to calculate the distance and to get you the most relevant content.',
             ),
 
             const SizedBox(height: AppDimensions.minorL),
 
             Container(
-              padding: const EdgeInsets.all(AppDimensions.minorL),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(AppDimensions.normalL),
@@ -54,22 +52,20 @@ class LocationSettingsPage extends StatelessWidget {
                     ),
                   ];
 
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      PersonalDetailsListItem(
-                        icon: items[0].icon,
-                        title: items[0].title,
-                        description: items[0].subtitle,
-                        showEnabled: items[0].showEnabled,
-                      ),
-                      const CustomDivider(),
-                      PersonalDetailsListItem(
-                        icon: items[1].icon,
-                        title: items[1].title,
-                        description: items[1].subtitle,
-                      ),
-                    ],
+                  return ListView.separated(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(AppDimensions.minorL),
+                    itemCount: items.length,
+                    separatorBuilder: (context, index) => const Divider(),
+                    itemBuilder: (context, index) {
+                      final item = items[index];
+                      return PersonalDetailsListItem(
+                        title: item.title,
+                        description: item.subtitle,
+                        icon: item.icon,
+                        showEnabled: item.showEnabled,
+                      );
+                    },
                   );
                 },
               ),
