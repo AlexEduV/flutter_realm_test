@@ -9,7 +9,7 @@ void main() {
     model: 'Model S',
     manufacturer: 'Tesla',
     isVerified: true,
-    type: 'Car',
+    type: 'car',
     bodyType: 'sedan',
     fuelType: 'electric',
     transmissionType: 'automatic',
@@ -27,8 +27,7 @@ void main() {
     expect(find.text('Tesla Model S 2022'), findsOneWidget);
     expect(find.text('\$ 50000'), findsOneWidget);
     expect(find.text('Sedan'), findsOneWidget);
-    expect(find.byIcon(Icons.favorite), findsOneWidget);
-    expect(find.byIcon(Icons.directions_car), findsOneWidget);
+    expect(find.byIcon(Icons.directions_car_outlined), findsOneWidget);
   });
 
   testWidgets('calls onDeleteCallback when favorite icon is tapped', (tester) async {

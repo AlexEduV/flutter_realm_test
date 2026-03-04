@@ -24,7 +24,7 @@ void main() {
     AppLocalisations.localisations = {
       'pages.account.items.personalDetails.title': 'Personal Details',
       'pages.account.items.location.title': 'Location',
-      'pages.account.items.myItems': 'My Items',
+      'pages.account.items.myItems.title': 'My Items',
       'pages.account.items.recentlyViewed': 'Viewed',
       'pages.account.items.clearData': 'Clear Data',
       'pages.account.items.logOut': 'Logout',
