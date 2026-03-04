@@ -52,7 +52,7 @@ class LocationSettingsPage extends StatelessWidget {
                       showEnabled: true,
                     ),
                     PersonalDetailsItemModel(
-                      title: 'Show content for country',
+                      title: 'Region',
                       subtitle: 'The UK',
                       icon: Icons.public,
                     ),
@@ -79,11 +79,14 @@ class LocationSettingsPage extends StatelessWidget {
 
             const Spacer(),
 
-            const Padding(
-              padding: EdgeInsets.only(bottom: AppDimensions.normalS),
+            Padding(
+              padding: const EdgeInsets.only(bottom: AppDimensions.normalS),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [Text('Conditions'), Text('Privacy Policy')],
+                children: [
+                  InkWell(onTap: () {}, child: const Text('Conditions')),
+                  InkWell(onTap: () {}, child: const Text('Privacy Policy')),
+                ],
               ),
             ),
           ],
