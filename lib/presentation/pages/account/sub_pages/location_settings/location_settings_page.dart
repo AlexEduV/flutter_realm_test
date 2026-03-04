@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -25,6 +26,7 @@ class LocationSettingsPage extends StatelessWidget {
         padding: const EdgeInsets.all(AppDimensions.minorL),
         child: Container(
           margin: const EdgeInsets.all(AppDimensions.minorL),
+          padding: const EdgeInsets.all(AppDimensions.minorL),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(AppDimensions.normalL),
@@ -44,19 +46,21 @@ class LocationSettingsPage extends StatelessWidget {
                 ),
               ];
 
-              return ListView.separated(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(AppDimensions.minorL),
-                itemCount: items.length,
-                separatorBuilder: (context, index) => const Divider(),
-                itemBuilder: (context, index) {
-                  final item = items[index];
-                  return PersonalDetailsListItem(
-                    title: item.title,
-                    description: item.subtitle,
-                    icon: item.icon,
-                  );
-                },
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  PersonalDetailsListItem(
+                    icon: items[0].icon,
+                    title: items[0].title,
+                    description: items[0].subtitle,
+                  ),
+                  const CustomDivider(),
+                  PersonalDetailsListItem(
+                    icon: items[1].icon,
+                    title: items[1].title,
+                    description: items[1].subtitle,
+                  ),
+                ],
               );
             },
           ),
