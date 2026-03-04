@@ -41,28 +41,33 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
         backgroundColor: AppColors.scaffoldColor,
         body: CustomScrollView(
           slivers: [
-            BlocBuilder<UserDataCubit, UserDataState>(
-              builder: (context, state) {
-                String? carId = state.lastSeenCar?.values.first;
-                if (carId != null) {
-                  final car = serviceLocator<GetCarByIdUseCase>().call(carId);
-                  if (car.carId == 'testId') carId = null;
-                }
+            BlocBuilder<ExplorePageCubit, ExplorePageState>(
+              builder: (context, exploreState) {
+                return BlocBuilder<UserDataCubit, UserDataState>(
+                  builder: (context, state) {
+                    String? carId = state.lastSeenCar?.values.first;
+                    if (carId != null) {
+                      final car = serviceLocator<GetCarByIdUseCase>().call(carId);
+                      if (car.carId == 'testId') carId = null;
+                    }
 
-                return SliverPersistentHeader(
-                  pinned: true,
-                  delegate: ExploreHeaderDelegate(
-                    minHeight: AppDimensions.exploreAppBarBaseSize, // Height of collapsed app bar
-                    maxHeightWithLastSeen:
-                        AppDimensions.exploreAppBarBaseSize +
-                        160 +
-                        AppDimensions.exploreArticleItemBaseSize,
-                    maxHeightWithoutLastSeen:
-                        AppDimensions.exploreAppBarBaseSize +
-                        21 +
-                        AppDimensions.exploreArticleItemBaseSize,
-                    showLastSeen: state.lastSeenCar != null && carId != null,
-                  ),
+                    return SliverPersistentHeader(
+                      pinned: true,
+                      delegate: ExploreHeaderDelegate(
+                        minHeight:
+                            AppDimensions.exploreAppBarBaseSize, // Height of collapsed app bar
+                        maxHeightWithLastSeen:
+                            AppDimensions.exploreAppBarBaseSize +
+                            160 +
+                            AppDimensions.exploreArticleItemBaseSize,
+                        maxHeightWithoutLastSeen:
+                            AppDimensions.exploreAppBarBaseSize +
+                            21 +
+                            AppDimensions.exploreArticleItemBaseSize,
+                        showLastSeen: state.lastSeenCar != null && carId != null,
+                      ),
+                    );
+                  },
                 );
               },
             ),
