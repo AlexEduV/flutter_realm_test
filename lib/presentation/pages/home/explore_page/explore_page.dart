@@ -43,6 +43,8 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
           slivers: [
             BlocBuilder<UserDataCubit, UserDataState>(
               builder: (context, state) {
+                //fixme: the state is empty on start for the last seen entity, but when it's been updated, the function
+                // is not called here.
                 String? carId = state.lastSeenCar?.values.first;
                 if (carId != null) {
                   final car = serviceLocator<GetCarByIdUseCase>().call(carId);
