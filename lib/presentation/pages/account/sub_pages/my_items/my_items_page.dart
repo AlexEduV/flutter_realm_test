@@ -10,7 +10,7 @@ import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../../../bloc/home/explore_page/explore_page_state.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
-import '../../../home/favorites_page/widgets/favorites_list_item.dart';
+import '../../../home/favorites_page/widgets/car_list_item.dart';
 import '../../../search/widgets/empty_search_placeholder_widget.dart';
 
 class MyItemsPage extends StatelessWidget {
@@ -45,7 +45,13 @@ class MyItemsPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final car = createdEntities[index];
 
-                  return FavoritesListItem(car: car);
+                  return CarListItem(
+                    car: car,
+                    isFavoriteItem: false,
+                    onDeleteCallback: () {
+                      context.read<UserDataCubit>().removeCarIdFromCreated(car.carId);
+                    },
+                  );
                 },
                 itemCount: createdEntities.length,
               );

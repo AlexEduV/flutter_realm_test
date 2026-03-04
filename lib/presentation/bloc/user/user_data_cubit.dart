@@ -102,6 +102,24 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(favoriteIds: newList));
   }
 
+  void addCarIdToCreated(String carId) {
+    final newList = user.favoriteIds.toList()..add(carId);
+    final cleanedList = newList.toSet().toList();
+
+    user = user.copyWith(createdIds: cleanedList);
+    _localStorage.update(UserExtensions.fromEntity(user));
+
+    emit(state.copyWith(createdIds: cleanedList));
+  }
+
+  void removeCarIdFromCreated(String carId) {
+    final newList = user.createdIds.toList()..remove(carId);
+    _localStorage.update(UserExtensions.fromEntity(user));
+
+    user = user.copyWith(createdIds: newList);
+    emit(state.copyWith(createdIds: newList));
+  }
+
   void authUser(String email) {
     final user = MockUsers.getUserByEmail(email);
 

@@ -8,7 +8,7 @@ import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_futter_project/presentation/pages/home/favorites_page/widgets/favorites_list_item.dart';
+import 'package:test_futter_project/presentation/pages/home/favorites_page/widgets/car_list_item.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -46,7 +46,7 @@ class FavoritesPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final car = favoriteEntities[index];
 
-                  return FavoritesListItem(
+                  return CarListItem(
                     car: car,
                     onDeleteCallback: () =>
                         context.read<UserDataCubit>().removeCarIdFromFavorites(car.carId),
