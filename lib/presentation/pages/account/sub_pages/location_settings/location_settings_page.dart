@@ -33,12 +33,12 @@ class LocationSettingsPage extends StatelessWidget {
             builder: (context, state) {
               final items = [
                 PersonalDetailsItemModel(
-                  title: 'Location',
+                  title: 'Location access',
                   subtitle: 'On',
                   icon: Icons.location_on_outlined,
                 ),
                 PersonalDetailsItemModel(
-                  title: 'Current Country',
+                  title: 'Show content for country',
                   subtitle: 'The UK',
                   icon: Icons.public,
                 ),
