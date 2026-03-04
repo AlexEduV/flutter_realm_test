@@ -44,7 +44,10 @@ class PersonalDetailsListItem extends StatelessWidget {
               ),
             ],
 
-            Text(description, style: AppTextStyles.zonaPro16.copyWith(color: Colors.grey[700])),
+            Text(
+              description,
+              style: AppTextStyles.zonaPro16.copyWith(color: AppColors.placeholderColorDark),
+            ),
           ],
         ),
         leading: Icon(icon),
