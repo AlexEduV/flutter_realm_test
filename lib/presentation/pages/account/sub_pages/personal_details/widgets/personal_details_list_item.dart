@@ -36,15 +36,15 @@ class PersonalDetailsListItem extends StatelessWidget {
                     ? AppColors.headerColor
                     : Colors.grey, // Your desired color
                 radius: AppDimensions.normalXS, // Adjust size as needed
-                child: const Icon(
-                  Icons.check, // or Icons.check
+                child: Icon(
+                  (showEnabled ?? false) ? Icons.check : Icons.pause, // or Icons.check
                   color: Colors.white, // Icon color
-                  size: 14, // Adjust icon size as needed
+                  size: AppDimensions.normalS, // Adjust icon size as needed
                 ),
               ),
             ],
 
-            Text(description, style: AppTextStyles.zonaPro16.copyWith(color: Colors.grey[600])),
+            Text(description, style: AppTextStyles.zonaPro16.copyWith(color: Colors.grey[700])),
           ],
         ),
         leading: Icon(icon),
