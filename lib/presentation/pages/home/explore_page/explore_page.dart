@@ -8,6 +8,7 @@ import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
+import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -42,6 +43,12 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
           slivers: [
             BlocBuilder<UserDataCubit, UserDataState>(
               builder: (context, state) {
+                String? carId = state.lastSeenCar?.values.first;
+                if (carId != null) {
+                  final car = serviceLocator<GetCarByIdUseCase>().call(carId);
+                  if (car.carId == 'testId') carId = null;
+                }
+
                 return SliverPersistentHeader(
                   pinned: true,
                   delegate: ExploreHeaderDelegate(
@@ -54,7 +61,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                         AppDimensions.exploreAppBarBaseSize +
                         21 +
                         AppDimensions.exploreArticleItemBaseSize,
-                    showLastSeen: state.lastSeenCar != null,
+                    showLastSeen: state.lastSeenCar != null && carId != null,
                   ),
                 );
               },
