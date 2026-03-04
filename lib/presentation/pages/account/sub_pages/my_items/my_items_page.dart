@@ -37,7 +37,9 @@ class MyItemsPage extends StatelessWidget {
                   .toList();
 
               if (createdEntities.isEmpty) {
-                return const EmptyResultsPlaceholderWidget(text: 'No items were created.');
+                return EmptyResultsPlaceholderWidget(
+                  text: AppLocalisations.myItemsNoResultsPlaceholder,
+                );
               }
 
               return ListView.builder(

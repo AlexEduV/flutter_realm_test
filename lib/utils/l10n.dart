@@ -178,20 +178,6 @@ class AppLocalisations {
   );
 
   static final String accountItemLocation = get('pages.account.items.location.title');
-  static final String accountItemMyItems = get('pages.account.items.myItems');
-  static final String accountItemViewedItems = get('pages.account.items.recentlyViewed');
-  static final String accountItemClearData = get('pages.account.items.clearData');
-  static final String accountItemLogout = get('pages.account.items.logOut');
-  static final String accountItemDeleteAccount = get('pages.account.items.deleteAccount');
-
-  static final String dateFormattingYesterday = get('dateFormatting.yesterday');
-
-  static final String articlePageMinsToRead = get('pages.article.minsToRead');
-
-  static final String shareButtonLabel = get('general.share');
-  static final String onLabel = get('general.on');
-  static final String offLabel = get('general.off');
-
   static final String locationUsageDescription = get(
     'pages.account.items.location.locationUsageDescription',
   );
@@ -206,4 +192,22 @@ class AppLocalisations {
   static final String locationSettingsPrivacyItemPrivacyPolicy = get(
     'pages.account.items.location.privacyPolicyItemPolicy',
   );
+
+  static final String accountItemMyItems = get('pages.account.items.myItems.title');
+  static final String myItemsNoResultsPlaceholder = get(
+    'pages.account.items.myItems.emptyPlaceholder',
+  );
+
+  static final String accountItemViewedItems = get('pages.account.items.recentlyViewed');
+  static final String accountItemClearData = get('pages.account.items.clearData');
+  static final String accountItemLogout = get('pages.account.items.logOut');
+  static final String accountItemDeleteAccount = get('pages.account.items.deleteAccount');
+
+  static final String dateFormattingYesterday = get('dateFormatting.yesterday');
+
+  static final String articlePageMinsToRead = get('pages.article.minsToRead');
+
+  static final String shareButtonLabel = get('general.share');
+  static final String onLabel = get('general.on');
+  static final String offLabel = get('general.off');
 }

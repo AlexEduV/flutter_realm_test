@@ -77,7 +77,10 @@
           "privacyPolicyItemPolicy": "Privacy policy",
           "privacyPolicyItemConditions": "Conditions"
         },
-        "myItems": "My items",
+        "myItems": {
+          "title": "My items",
+          "emptyPlaceholder": "No items were created yet."
+        },
         "recentlyViewed": "Recently viewed",
         "clearData": "Clear data",
         "logOut": "Log out",

@@ -77,7 +77,10 @@
           "privacyPolicyItemPolicy": "Informativa sulla privacy",
           "privacyPolicyItemConditions": "Condizioni"
         },
-        "myItems": "I miei oggetti",
+        "myItems": {
+          "title": "I miei oggetti",
+          "emptyPlaceholder": "Nessun oggetto è stato ancora creato."
+        },
         "recentlyViewed": "Visti di recente",
         "clearData": "Cancella dati",
         "logOut": "Disconnetti",
