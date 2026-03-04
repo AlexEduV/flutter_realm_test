@@ -7,6 +7,7 @@ import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
+import '../../../../../common/enums/car_type.dart';
 import '../../../../../utils/app_router.dart';
 
 class CarListItem extends StatelessWidget {
@@ -131,10 +132,10 @@ class CarListItem extends StatelessWidget {
   }
 
   IconData getIconByCarType(String type) {
-    const iconMap = {
-      'truck': Icons.local_shipping_outlined,
-      'bike': Icons.motorcycle_outlined,
-      'car': Icons.directions_car_outlined,
+    final iconMap = {
+      CarType.truck.name: Icons.local_shipping_outlined,
+      CarType.bike.name: Icons.motorcycle_outlined,
+      CarType.car.name: Icons.directions_car_outlined,
     };
 
     return iconMap[type] ?? Icons.directions_car_outlined;
