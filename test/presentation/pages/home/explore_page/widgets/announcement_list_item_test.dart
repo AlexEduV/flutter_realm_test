@@ -46,6 +46,7 @@ void main() {
       password: '',
       lastSeenCar: null,
       region: 'uk',
+      createdIds: [],
     );
 
     testWidgets('displays car manufacturer, model, and year', (WidgetTester tester) async {
@@ -153,6 +154,7 @@ void main() {
         password: '',
         lastSeenCar: null,
         region: 'uk',
+        createdIds: [],
       );
 
       await tester.pumpWidget(

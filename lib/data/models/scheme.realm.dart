@@ -383,6 +383,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     bool isLocationPermissionGranted,
     String region, {
     Iterable<String> favoriteIds = const [],
+    Iterable<String> createdIds = const [],
     LastSeenCar? lastSeenCar,
   }) {
     RealmObjectBase.set(this, 'userId', userId);
@@ -400,6 +401,11 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       this,
       'favoriteIds',
       RealmList<String>(favoriteIds),
+    );
+    RealmObjectBase.set<RealmList<String>>(
+      this,
+      'createdIds',
+      RealmList<String>(createdIds),
     );
     RealmObjectBase.set(this, 'lastSeenCar', lastSeenCar);
   }
@@ -454,6 +460,13 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       throw RealmUnsupportedSetError();
 
   @override
+  RealmList<String> get createdIds =>
+      RealmObjectBase.get<String>(this, 'createdIds') as RealmList<String>;
+  @override
+  set createdIds(covariant RealmList<String> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
   LastSeenCar? get lastSeenCar =>
       RealmObjectBase.get<LastSeenCar>(this, 'lastSeenCar') as LastSeenCar?;
   @override
@@ -481,6 +494,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'isLocationPermissionGranted': isLocationPermissionGranted.toEJson(),
       'region': region.toEJson(),
       'favoriteIds': favoriteIds.toEJson(),
+      'createdIds': createdIds.toEJson(),
       'lastSeenCar': lastSeenCar.toEJson(),
     };
   }
@@ -507,6 +521,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
           fromEJson(isLocationPermissionGranted),
           fromEJson(region),
           favoriteIds: fromEJson(ejson['favoriteIds']),
+          createdIds: fromEJson(ejson['createdIds']),
           lastSeenCar: fromEJson(ejson['lastSeenCar']),
         ),
       _ => raiseInvalidEJson(ejson),
@@ -526,6 +541,11 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('region', RealmPropertyType.string),
       SchemaProperty(
         'favoriteIds',
+        RealmPropertyType.string,
+        collectionType: RealmCollectionType.list,
+      ),
+      SchemaProperty(
+        'createdIds',
         RealmPropertyType.string,
         collectionType: RealmCollectionType.list,
       ),

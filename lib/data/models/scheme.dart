@@ -43,6 +43,7 @@ class _User {
   late bool isLocationPermissionGranted;
   late String region;
   late List<String> favoriteIds;
+  late List<String> createdIds;
   _LastSeenCar? lastSeenCar;
 }
 

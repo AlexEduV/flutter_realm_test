@@ -16,6 +16,7 @@ void main() {
         password: '',
         lastSeenCar: null,
         region: 'uk',
+        createdIds: [],
       );
 
       expect(entity.userId, 'u1');
@@ -58,6 +59,7 @@ void main() {
         password: '',
         lastSeenCar: null,
         region: 'uk',
+        createdIds: [],
       );
 
       final updated = original.copyWith(firstName: 'Alicia', isLocationPermissionGranted: true);
@@ -79,6 +81,7 @@ void main() {
         email: 'mock@gmail.com',
         lastSeenCar: null,
         region: 'uk',
+        createdIds: [],
       );
 
       final copy = original.copyWith();
