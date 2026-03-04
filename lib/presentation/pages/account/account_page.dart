@@ -76,6 +76,7 @@ class AccountPage extends StatelessWidget {
                         AccountItem(
                           icon: Icons.location_on_outlined,
                           text: AppLocalisations.accountItemLocation,
+                          onTap: () => context.go(AppRoutes.home + AppRoutes.locationSettings),
                         ),
                         AccountItem(
                           icon: Icons.checklist_outlined,

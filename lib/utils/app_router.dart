@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/location_settings_page.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/personal_details_page.dart';
 import 'package:test_futter_project/presentation/pages/article/article_page.dart';
 import 'package:test_futter_project/presentation/pages/details/details_page.dart';
@@ -39,10 +40,13 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.personalDetails,
             pageBuilder: (context, state) {
-              //todo: pass the id to the next page
-              //final userId = state.extra as String? ?? '';
-
               return const CupertinoPage(child: PersonalDetailsPage());
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.locationSettings,
+            pageBuilder: (context, state) {
+              return const CupertinoPage(child: LocationSettingsPage());
             },
           ),
           GoRoute(
