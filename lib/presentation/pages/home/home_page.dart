@@ -92,10 +92,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
 
     final currentMaxCarId = serviceLocator<GetCurrentMaxCarIdUseCase>().call();
+    final newCarId = (currentMaxCarId + 1).toString();
+
+    context.read<UserDataCubit>().addCarIdToCreated(newCarId);
 
     serviceLocator<AddCarUseCase>().call(
       CarEntity(
-        carId: (currentMaxCarId + 1).toString(),
+        carId: newCarId,
         model: 'Model Y',
         manufacturer: 'Tesla',
         isVerified: false,

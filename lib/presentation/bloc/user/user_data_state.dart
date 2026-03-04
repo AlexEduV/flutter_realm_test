@@ -8,6 +8,7 @@ abstract class UserDataState with _$UserDataState {
     @Default(false) bool isLoading,
     @Default(false) bool isLocationPermissionGranted,
     @Default([]) List<String> favoriteIds,
+    @Default([]) List<String> createdIds,
     @Default(false) bool isUserAuthenticated,
     @Default('') String firstName,
     @Default('') String lastName,

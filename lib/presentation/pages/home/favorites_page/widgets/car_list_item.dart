@@ -7,13 +7,20 @@ import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
+import '../../../../../common/enums/car_type.dart';
 import '../../../../../utils/app_router.dart';
 
-class FavoritesListItem extends StatelessWidget {
+class CarListItem extends StatelessWidget {
   final CarEntity car;
   final Function()? onDeleteCallback;
+  final bool isFavoriteItem;
 
-  const FavoritesListItem({required this.car, this.onDeleteCallback, super.key});
+  const CarListItem({
+    required this.car,
+    this.onDeleteCallback,
+    this.isFavoriteItem = true,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,9 @@ class FavoritesListItem extends StatelessWidget {
           color: Colors.white,
           child: InkWell(
             borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-            onTap: () => AppRouter.goToDetailsRouteFromExplore(car.carId),
+            onTap: () => isFavoriteItem
+                ? AppRouter.goToDetailsRouteFromExplore(car.carId)
+                : AppRouter.goToDetailsFromAccountSettings(car.carId),
             child: Container(
               key: ValueKey(car.carId),
               decoration: BoxDecoration(
@@ -59,14 +68,14 @@ class FavoritesListItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${car.manufacturer} ${car.model} ${car.year}',
+                          '${car.manufacturer} ${car.model} ${car.year ?? ''}',
                           style: AppTextStyles.zonaPro18,
                         ),
                         const SizedBox(height: AppDimensions.minorS),
                         Row(
                           children: [
                             Icon(
-                              Icons.directions_car,
+                              getIconByCarType(car.type),
                               size: AppDimensions.normalM,
                               color: AppColors.placeholderColorDark,
                             ),
@@ -87,27 +96,32 @@ class FavoritesListItem extends StatelessWidget {
                       ],
                     ),
                   ),
+
                   // Favorite Icon
-                  AppSemantics(
-                    button: true,
-                    label: AppSemanticsLabels.favoriteButton,
-                    child: Material(
-                      borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                      child: InkWell(
+                  if (onDeleteCallback != null) ...[
+                    AppSemantics(
+                      button: true,
+                      label: AppSemanticsLabels.favoriteButton,
+                      child: Material(
                         borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                        onTap: () => onDeleteCallback?.call(),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.gold.withAlpha(30),
-                            borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                          onTap: () => onDeleteCallback?.call(),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.gold.withAlpha(30),
+                              borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                            ),
+                            width: AppDimensions.favoriteButtonSize,
+                            height: AppDimensions.favoriteButtonSize,
+                            child: isFavoriteItem
+                                ? const Icon(Icons.favorite, color: AppColors.gold)
+                                : const Icon(Icons.remove_circle, color: Colors.red),
                           ),
-                          width: AppDimensions.favoriteButtonSize,
-                          height: AppDimensions.favoriteButtonSize,
-                          child: const Icon(Icons.favorite, color: AppColors.gold),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ],
               ),
             ),
@@ -115,5 +129,15 @@ class FavoritesListItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  IconData getIconByCarType(String type) {
+    final iconMap = {
+      CarType.truck.name: Icons.local_shipping_outlined,
+      CarType.bike.name: Icons.motorcycle_outlined,
+      CarType.car.name: Icons.directions_car_outlined,
+    };
+
+    return iconMap[type] ?? Icons.directions_car_outlined;
   }
 }

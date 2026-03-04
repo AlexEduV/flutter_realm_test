@@ -8,6 +8,7 @@ class UserEntity {
   final bool isLocationPermissionGranted;
   final String region;
   final List<String> favoriteIds;
+  final List<String> createdIds;
   final Map<DateTime, String>? lastSeenCar;
   final String password;
 
@@ -17,6 +18,7 @@ class UserEntity {
     required this.lastName,
     required this.isLocationPermissionGranted,
     required this.favoriteIds,
+    required this.createdIds,
     required this.email,
     required this.lastSeenCar,
     required this.password,
@@ -30,6 +32,7 @@ class UserEntity {
       lastName: user.lastName,
       isLocationPermissionGranted: user.isLocationPermissionGranted,
       favoriteIds: user.favoriteIds,
+      createdIds: user.createdIds,
       email: user.email,
       lastSeenCar: user.lastSeenCar != null && user.lastSeenCar!.carId != null
           ? {user.lastSeenCar!.date: user.lastSeenCar!.carId!}
@@ -45,6 +48,7 @@ class UserEntity {
     String? lastName,
     bool? isLocationPermissionGranted,
     List<String>? favoriteIds,
+    List<String>? createdIds,
     String? email,
     String? password,
     Map<DateTime, String>? lastSeenCar,
@@ -56,6 +60,7 @@ class UserEntity {
       lastName: lastName ?? this.lastName,
       isLocationPermissionGranted: isLocationPermissionGranted ?? this.isLocationPermissionGranted,
       favoriteIds: favoriteIds ?? this.favoriteIds,
+      createdIds: createdIds ?? this.createdIds,
       email: email ?? this.email,
       lastSeenCar: lastSeenCar ?? this.lastSeenCar,
       password: password ?? this.password,

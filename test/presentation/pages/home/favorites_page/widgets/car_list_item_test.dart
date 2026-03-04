@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/presentation/pages/home/favorites_page/widgets/favorites_list_item.dart';
+import 'package:test_futter_project/presentation/pages/home/favorites_page/widgets/car_list_item.dart';
 
 void main() {
   final testCar = CarEntity(
@@ -9,7 +9,7 @@ void main() {
     model: 'Model S',
     manufacturer: 'Tesla',
     isVerified: true,
-    type: 'Car',
+    type: 'car',
     bodyType: 'sedan',
     fuelType: 'electric',
     transmissionType: 'automatic',
@@ -20,15 +20,14 @@ void main() {
   testWidgets('displays car details', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(body: FavoritesListItem(car: testCar)),
+        home: Scaffold(body: CarListItem(car: testCar)),
       ),
     );
 
     expect(find.text('Tesla Model S 2022'), findsOneWidget);
     expect(find.text('\$ 50000'), findsOneWidget);
     expect(find.text('Sedan'), findsOneWidget);
-    expect(find.byIcon(Icons.favorite), findsOneWidget);
-    expect(find.byIcon(Icons.directions_car), findsOneWidget);
+    expect(find.byIcon(Icons.directions_car_outlined), findsOneWidget);
   });
 
   testWidgets('calls onDeleteCallback when favorite icon is tapped', (tester) async {
@@ -36,7 +35,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: FavoritesListItem(
+          body: CarListItem(
             car: testCar,
             onDeleteCallback: () {
               tapped = true;
@@ -59,7 +58,7 @@ void main() {
     // For now, just check that the InkWell exists and is tappable.
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(body: FavoritesListItem(car: testCar)),
+        home: Scaffold(body: CarListItem(car: testCar)),
       ),
     );
 

@@ -39,6 +39,7 @@ void main() {
       password: '',
       lastSeenCar: null,
       region: 'uk',
+      createdIds: [],
     );
   });
 
@@ -107,6 +108,7 @@ void main() {
         isLocationPermissionGranted: false,
         lastSeenCar: null,
         region: 'uk',
+        createdIds: [],
       );
       cubit.addCarIdToFavorites('3');
       expect(cubit.user.favoriteIds, contains('3'));
@@ -124,6 +126,7 @@ void main() {
         isLocationPermissionGranted: false,
         lastSeenCar: null,
         region: 'uk',
+        createdIds: [],
       );
 
       cubit.addCarIdToFavorites('1');
@@ -144,6 +147,7 @@ void main() {
         isLocationPermissionGranted: false,
         lastSeenCar: null,
         region: 'uk',
+        createdIds: [],
       );
 
       cubit.removeCarIdFromFavorites('1');

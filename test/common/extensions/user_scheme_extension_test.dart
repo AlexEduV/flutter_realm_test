@@ -16,6 +16,7 @@ void main() {
         password: '',
         lastSeenCar: {DateTime.now(): CarEntity.empty().carId},
         region: 'uk',
+        createdIds: [],
       );
 
       final user = UserExtensions.fromEntity(entity);
