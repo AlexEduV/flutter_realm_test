@@ -52,7 +52,7 @@ Future<void> initDependenciesContainer() async {
   //Register Realm
   final config = Configuration.local(
     [Car.schema, Person.schema, User.schema, LastSeenCar.schema],
-    schemaVersion: 21,
+    schemaVersion: 22,
     migrationCallback: (migration, oldVersion) {
       //add object id
       if (oldVersion < 2) {

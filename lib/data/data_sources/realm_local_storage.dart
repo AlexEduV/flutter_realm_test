@@ -72,6 +72,7 @@ class RealmLocalStorage implements BaseLocalStorage {
       email: 'mock@gmail.com',
       lastSeenCar: null,
       password: '',
+      region: 'uk',
     );
 
     realm.write(() {

@@ -47,9 +47,9 @@ class LocationSettingsPage extends StatelessWidget {
                   final items = [
                     PersonalDetailsItemModel(
                       title: 'Location access',
-                      subtitle: 'On',
+                      subtitle: state.isLocationPermissionGranted ? 'On' : 'Off',
                       icon: Icons.location_on_outlined,
-                      showEnabled: true,
+                      showEnabled: state.isLocationPermissionGranted,
                     ),
                     PersonalDetailsItemModel(
                       title: 'Region',
