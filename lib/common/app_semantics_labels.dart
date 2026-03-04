@@ -50,4 +50,6 @@ class AppSemanticsLabels {
 
   static const accountItem = 'accountItem';
   static const personalDetailsItem = 'personalDetailsItem';
+
+  static const privacyLinkItem = 'privacyLinkItem';
 }

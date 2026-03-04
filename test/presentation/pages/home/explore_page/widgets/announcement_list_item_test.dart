@@ -45,6 +45,7 @@ void main() {
       email: 'mock@gmail.com',
       password: '',
       lastSeenCar: null,
+      region: 'uk',
     );
 
     testWidgets('displays car manufacturer, model, and year', (WidgetTester tester) async {
@@ -151,6 +152,7 @@ void main() {
         email: 'mock@gmail.com',
         password: '',
         lastSeenCar: null,
+        region: 'uk',
       );
 
       await tester.pumpWidget(

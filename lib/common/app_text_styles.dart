@@ -3,7 +3,7 @@ import 'package:flutter/material.dart' show Colors;
 import 'package:test_futter_project/common/app_colors.dart';
 
 class AppTextStyles {
-  static const zonaPro14 = TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
+  static const zonaPro14 = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
   static const zonaPro16 = TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
   static const zonaPro18 = TextStyle(fontSize: 18, fontWeight: FontWeight.w500);
   static const zonaPro20 = TextStyle(fontSize: 20, fontWeight: FontWeight.w600);

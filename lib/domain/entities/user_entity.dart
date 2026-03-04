@@ -6,6 +6,7 @@ class UserEntity {
   final String lastName;
   final String email;
   final bool isLocationPermissionGranted;
+  final String region;
   final List<String> favoriteIds;
   final Map<DateTime, String>? lastSeenCar;
   final String password;
@@ -19,6 +20,7 @@ class UserEntity {
     required this.email,
     required this.lastSeenCar,
     required this.password,
+    required this.region,
   });
 
   factory UserEntity.fromSchema(User user) {
@@ -33,6 +35,7 @@ class UserEntity {
           ? {user.lastSeenCar!.date: user.lastSeenCar!.carId!}
           : null,
       password: user.password,
+      region: user.region,
     );
   }
 
@@ -45,6 +48,7 @@ class UserEntity {
     String? email,
     String? password,
     Map<DateTime, String>? lastSeenCar,
+    String? region,
   }) {
     return UserEntity(
       userId: userId ?? this.userId,
@@ -55,6 +59,7 @@ class UserEntity {
       email: email ?? this.email,
       lastSeenCar: lastSeenCar ?? this.lastSeenCar,
       password: password ?? this.password,
+      region: region ?? this.region,
     );
   }
 }

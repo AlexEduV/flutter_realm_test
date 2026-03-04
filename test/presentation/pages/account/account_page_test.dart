@@ -22,8 +22,8 @@ void main() {
     authenticationCubit = MockAuthenticationCubit();
 
     AppLocalisations.localisations = {
-      'pages.account.items.personalDetails': 'Personal Details',
-      'pages.account.items.location': 'Location',
+      'pages.account.items.personalDetails.title': 'Personal Details',
+      'pages.account.items.location.title': 'Location',
       'pages.account.items.myItems': 'My Items',
       'pages.account.items.recentlyViewed': 'Viewed',
       'pages.account.items.clearData': 'Clear Data',

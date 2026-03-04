@@ -41,6 +41,7 @@ class _User {
   late String email;
   late String password;
   late bool isLocationPermissionGranted;
+  late String region;
   late List<String> favoriteIds;
   _LastSeenCar? lastSeenCar;
 }

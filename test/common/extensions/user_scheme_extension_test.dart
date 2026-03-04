@@ -15,6 +15,7 @@ void main() {
         email: 'mock@gmail.com',
         password: '',
         lastSeenCar: {DateTime.now(): CarEntity.empty().carId},
+        region: 'uk',
       );
 
       final user = UserExtensions.fromEntity(entity);

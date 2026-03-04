@@ -380,7 +380,8 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     String lastName,
     String email,
     String password,
-    bool isLocationPermissionGranted, {
+    bool isLocationPermissionGranted,
+    String region, {
     Iterable<String> favoriteIds = const [],
     LastSeenCar? lastSeenCar,
   }) {
@@ -394,6 +395,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'isLocationPermissionGranted',
       isLocationPermissionGranted,
     );
+    RealmObjectBase.set(this, 'region', region);
     RealmObjectBase.set<RealmList<String>>(
       this,
       'favoriteIds',
@@ -440,6 +442,11 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.set(this, 'isLocationPermissionGranted', value);
 
   @override
+  String get region => RealmObjectBase.get<String>(this, 'region') as String;
+  @override
+  set region(String value) => RealmObjectBase.set(this, 'region', value);
+
+  @override
   RealmList<String> get favoriteIds =>
       RealmObjectBase.get<String>(this, 'favoriteIds') as RealmList<String>;
   @override
@@ -472,6 +479,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'email': email.toEJson(),
       'password': password.toEJson(),
       'isLocationPermissionGranted': isLocationPermissionGranted.toEJson(),
+      'region': region.toEJson(),
       'favoriteIds': favoriteIds.toEJson(),
       'lastSeenCar': lastSeenCar.toEJson(),
     };
@@ -488,6 +496,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
         'email': EJsonValue email,
         'password': EJsonValue password,
         'isLocationPermissionGranted': EJsonValue isLocationPermissionGranted,
+        'region': EJsonValue region,
       } =>
         User(
           fromEJson(userId),
@@ -496,6 +505,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
           fromEJson(email),
           fromEJson(password),
           fromEJson(isLocationPermissionGranted),
+          fromEJson(region),
           favoriteIds: fromEJson(ejson['favoriteIds']),
           lastSeenCar: fromEJson(ejson['lastSeenCar']),
         ),
@@ -513,6 +523,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('email', RealmPropertyType.string),
       SchemaProperty('password', RealmPropertyType.string),
       SchemaProperty('isLocationPermissionGranted', RealmPropertyType.bool),
+      SchemaProperty('region', RealmPropertyType.string),
       SchemaProperty(
         'favoriteIds',
         RealmPropertyType.string,

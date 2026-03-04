@@ -12,6 +12,7 @@ extension UserExtensions on User {
       entity.email,
       entity.password,
       entity.isLocationPermissionGranted,
+      entity.region,
       favoriteIds: entity.favoriteIds,
       lastSeenCar: _getLastSeenCar(entity.lastSeenCar),
     );
@@ -34,6 +35,7 @@ extension UserExtensions on User {
       entity.password,
       //todo: might be a bug in future, since I am using defaults, not exact user data
       true,
+      entity.region,
       favoriteIds: [],
       lastSeenCar: null,
     );

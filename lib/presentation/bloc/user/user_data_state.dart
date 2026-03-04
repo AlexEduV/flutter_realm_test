@@ -13,6 +13,7 @@ abstract class UserDataState with _$UserDataState {
     @Default('') String lastName,
     @Default('') String email,
     @Default('') String password,
+    @Default('') String region,
     @Default(null) Map<DateTime, String>? lastSeenCar,
   }) = _UserDataState;
 }

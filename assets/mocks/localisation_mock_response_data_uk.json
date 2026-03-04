@@ -69,7 +69,14 @@
           "emailItem": "Email",
           "passwordItem": "Password"
         },
-        "location": "Location",
+        "location": {
+          "title": "Location",
+          "locationAccessItem": "Location access",
+          "regionItem": "Region",
+          "locationUsageDescription": "We use this data to calculate the distance and to get you the most relevant content.",
+          "privacyPolicyItemPolicy": "Privacy policy",
+          "privacyPolicyItemConditions": "Conditions"
+        },
         "myItems": "My items",
         "recentlyViewed": "Recently viewed",
         "clearData": "Clear data",
@@ -175,6 +182,8 @@
     "yesterday": "Yesterday"
   },
   "general": {
-    "share": "Share"
+    "share": "Share",
+    "on": "On",
+    "off": "Off"
   }
 }

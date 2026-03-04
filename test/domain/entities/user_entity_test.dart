@@ -15,6 +15,7 @@ void main() {
         email: 'mock@gmail.com',
         password: '',
         lastSeenCar: null,
+        region: 'uk',
       );
 
       expect(entity.userId, 'u1');
@@ -32,6 +33,7 @@ void main() {
         'mock@gmail.com',
         '',
         false,
+        'uk',
         favoriteIds: RealmList([]),
       );
 
@@ -55,6 +57,7 @@ void main() {
         email: 'mock@gmail.com',
         password: '',
         lastSeenCar: null,
+        region: 'uk',
       );
 
       final updated = original.copyWith(firstName: 'Alicia', isLocationPermissionGranted: true);
@@ -75,6 +78,7 @@ void main() {
         password: '',
         email: 'mock@gmail.com',
         lastSeenCar: null,
+        region: 'uk',
       );
 
       final copy = original.copyWith();
