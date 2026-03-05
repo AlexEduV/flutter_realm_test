@@ -31,6 +31,7 @@ void main() {
         'firstName': 'John',
         'lastName': 'Doe',
         'region': 'uk',
+        'avatarImageSrc': null,
       });
     });
 
