@@ -309,8 +309,8 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
           as _i10.Future<void>);
 
   @override
-  void setLastSeenCar(_i13.CarEntity? car) => super.noSuchMethod(
-    Invocation.method(#setLastSeenCar, [car]),
+  void setLastSeenCar(String? carId) => super.noSuchMethod(
+    Invocation.method(#setLastSeenCar, [carId]),
     returnValueForMissingStub: null,
   );
 
@@ -362,6 +362,12 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
   @override
   void removeCarIdFromCreated(String? carId) => super.noSuchMethod(
     Invocation.method(#removeCarIdFromCreated, [carId]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void addCarToRecentlyViewed(String? carId) => super.noSuchMethod(
+    Invocation.method(#addCarToRecentlyViewed, [carId]),
     returnValueForMissingStub: null,
   );
 
