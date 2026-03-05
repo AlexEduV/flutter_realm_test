@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +12,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/account_item.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/user_avatar.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -40,44 +39,7 @@ class AccountPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
-                  child: Center(
-                    child: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage:
-                              (state.avatarImageSrc != null && state.avatarImageSrc!.isNotEmpty)
-                              ? FileImage(File(state.avatarImageSrc!))
-                              : null,
-                          backgroundColor:
-                              state.avatarImageSrc == null || state.avatarImageSrc!.isEmpty
-                              ? AppColors.placeholderColor
-                              : null,
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Material(
-                            color: AppColors.accentColor,
-                            shape: const CircleBorder(),
-                            child: InkWell(
-                              onTap: () => pickImageFromGallery(),
-                              customBorder: const CircleBorder(),
-                              child: const CircleAvatar(
-                                radius: 17,
-                                backgroundColor: Colors.transparent,
-                                child: Icon(Icons.add, color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                UserAvatar(imageSrc: state.avatarImageSrc, onTap: pickImageFromGallery),
 
                 ListTile(
                   title: Center(
