@@ -10,6 +10,7 @@ void main() {
       firstName: 'John',
       lastName: 'Doe',
       region: 'uk',
+      avatarImageSrc: null,
     );
 
     test('constructor assigns properties correctly', () {

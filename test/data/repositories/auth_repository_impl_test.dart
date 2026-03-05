@@ -21,6 +21,7 @@ void main() {
         firstName: 'Alex',
         lastName: 'Smith',
         region: 'uk',
+        avatarImageSrc: null,
       ),
       '2': const UserEntityShort(
         userId: '2',
@@ -29,6 +30,7 @@ void main() {
         firstName: 'admin',
         lastName: '',
         region: 'it',
+        avatarImageSrc: null,
       ),
     };
 

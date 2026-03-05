@@ -34,6 +34,7 @@ class UserAvatar extends StatelessWidget {
               child: Material(
                 color: AppColors.accentColor,
                 shape: const CircleBorder(),
+                //todo: add animated (enlarge) on hover, just as the main plus button
                 child: InkWell(
                   onTap: onTap,
                   customBorder: const CircleBorder(),
