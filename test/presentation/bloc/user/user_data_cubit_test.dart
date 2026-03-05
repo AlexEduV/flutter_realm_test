@@ -41,6 +41,7 @@ void main() {
       region: 'uk',
       createdIds: [],
       avatarImageSrc: null,
+      viewedIds: [],
     );
   });
 
@@ -111,6 +112,7 @@ void main() {
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,
+        viewedIds: [],
       );
       cubit.addCarIdToFavorites('3');
       expect(cubit.user.favoriteIds, contains('3'));
@@ -130,6 +132,7 @@ void main() {
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,
+        viewedIds: [],
       );
 
       cubit.addCarIdToFavorites('1');
@@ -152,6 +155,7 @@ void main() {
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,
+        viewedIds: [],
       );
 
       cubit.removeCarIdFromFavorites('1');

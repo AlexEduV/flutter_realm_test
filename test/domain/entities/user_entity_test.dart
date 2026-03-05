@@ -18,6 +18,7 @@ void main() {
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,
+        viewedIds: [],
       );
 
       expect(entity.userId, 'u1');
@@ -62,6 +63,7 @@ void main() {
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,
+        viewedIds: [],
       );
 
       final updated = original.copyWith(firstName: 'Alicia', isLocationPermissionGranted: true);
@@ -85,6 +87,7 @@ void main() {
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,
+        viewedIds: [],
       );
 
       final copy = original.copyWith();

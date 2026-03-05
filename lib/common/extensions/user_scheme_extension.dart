@@ -14,6 +14,7 @@ extension UserExtensions on User {
       entity.isLocationPermissionGranted,
       entity.region,
       favoriteIds: entity.favoriteIds,
+      viewedIds: entity.viewedIds,
       lastSeenCar: _getLastSeenCar(entity.lastSeenCar),
       avatarImage: entity.avatarImageSrc,
     );
@@ -38,6 +39,7 @@ extension UserExtensions on User {
       true,
       entity.region,
       favoriteIds: [],
+      viewedIds: [],
       lastSeenCar: null,
       avatarImage: null,
     );

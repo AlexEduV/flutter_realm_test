@@ -14,50 +14,48 @@ import '../../../../bloc/user/user_data_state.dart';
 import '../../../home/favorites_page/widgets/car_list_item.dart';
 import '../../../search/widgets/empty_search_placeholder_widget.dart';
 
-class MyItemsPage extends StatelessWidget {
-  const MyItemsPage({super.key});
+class RecentlyViewedPage extends StatelessWidget {
+  const RecentlyViewedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.accountItemMyItems, style: AppTextStyles.zonaPro20),
+        title: Text(AppLocalisations.accountItemViewedItems, style: AppTextStyles.zonaPro20),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
-        buildWhen: (previous, current) => previous.createdIds != current.createdIds,
+        buildWhen: (previous, current) => previous.viewedIds != current.viewedIds,
         builder: (context, state) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
               final allCars = state.cars;
 
-              final createdIds = serviceLocator<UserDataCubit>().state.createdIds;
-              final createdEntities = allCars
-                  .where((entity) => createdIds.contains(entity.carId))
+              final viewedIds = serviceLocator<UserDataCubit>().state.viewedIds.reversed;
+
+              final viewedEntities = viewedIds
+                  .map((id) => allCars.firstWhere((entity) => entity.carId == id))
                   .toList();
 
-              if (createdEntities.isEmpty) {
+              if (viewedEntities.isEmpty) {
                 return EmptyResultsPlaceholderWidget(
-                  text: AppLocalisations.myItemsNoResultsPlaceholder,
+                  text: AppLocalisations.viewedItemsNoResultsPlaceholder,
                 );
               }
 
               return ListView.builder(
                 padding: const EdgeInsets.only(top: AppDimensions.normalL),
                 itemBuilder: (context, index) {
-                  final car = createdEntities[index];
+                  final car = viewedEntities[index];
 
                   return CarListItem(
                     car: car,
                     isFavoriteItem: false,
-                    source: DetailsPageSource.myItems,
-                    onDeleteCallback: () {
-                      context.read<UserDataCubit>().removeCarIdFromCreated(car.carId);
-                    },
+                    source: DetailsPageSource.recentlyViewed,
                   );
                 },
-                itemCount: createdEntities.length,
+                itemCount: viewedEntities.length,
               );
             },
           );

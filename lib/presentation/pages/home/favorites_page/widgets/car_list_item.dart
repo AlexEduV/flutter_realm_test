@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/enums/details_page_source.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
@@ -13,11 +14,13 @@ import '../../../../../utils/app_router.dart';
 class CarListItem extends StatelessWidget {
   final CarEntity car;
   final Function()? onDeleteCallback;
+  final DetailsPageSource source;
   final bool isFavoriteItem;
 
   const CarListItem({
     required this.car,
     this.onDeleteCallback,
+    this.source = DetailsPageSource.explore,
     this.isFavoriteItem = true,
     super.key,
   });
@@ -37,9 +40,7 @@ class CarListItem extends StatelessWidget {
           color: Colors.white,
           child: InkWell(
             borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-            onTap: () => isFavoriteItem
-                ? AppRouter.goToDetailsRouteFromExplore(car.carId)
-                : AppRouter.goToDetailsFromAccountSettings(car.carId),
+            onTap: () => AppRouter.routeBySource(source, car.carId),
             child: Container(
               key: ValueKey(car.carId),
               decoration: BoxDecoration(

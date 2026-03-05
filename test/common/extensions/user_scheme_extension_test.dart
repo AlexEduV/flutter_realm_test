@@ -18,6 +18,7 @@ void main() {
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,
+        viewedIds: [],
       );
 
       final user = UserExtensions.fromEntity(entity);

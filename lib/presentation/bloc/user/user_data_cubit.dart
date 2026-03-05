@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
@@ -33,6 +32,8 @@ class UserDataCubit extends Cubit<UserDataState> {
       state.copyWith(
         isLoading: false,
         favoriteIds: user.favoriteIds,
+        createdIds: user.createdIds,
+        viewedIds: user.viewedIds,
         isLocationPermissionGranted: user.isLocationPermissionGranted,
         isUserAuthenticated: userSession != null,
         firstName: user.firstName,
@@ -46,8 +47,8 @@ class UserDataCubit extends Cubit<UserDataState> {
     );
   }
 
-  void setLastSeenCar(CarEntity? car) {
-    final newLastSeenCarData = car == null ? null : {DateTime.now(): car.carId};
+  void setLastSeenCar(String? carId) {
+    final newLastSeenCarData = carId == null ? null : {DateTime.now(): carId};
 
     user = user.copyWith(lastSeenCar: newLastSeenCarData);
     emit(state.copyWith(lastSeenCar: newLastSeenCarData));
@@ -133,10 +134,31 @@ class UserDataCubit extends Cubit<UserDataState> {
     serviceLocator<DeleteCarByIdUseCase>().call(carId);
   }
 
+  void addCarToRecentlyViewed(String carId) {
+    if (carId.isEmpty) return;
+
+    if (user.viewedIds.lastOrNull == carId) return;
+
+    final newList = user.viewedIds.toList()..add(carId);
+
+    final int maxEntriesAllowed = 20;
+    final limitedList = newList.length > maxEntriesAllowed
+        ? newList.sublist(newList.length - maxEntriesAllowed)
+        : newList;
+
+    user = user.copyWith(viewedIds: limitedList);
+    emit(state.copyWith(viewedIds: limitedList));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+  }
+
   void authUser(String email) {
     final user = MockUsers.getUserByEmail(email);
 
     if (user == null) return;
+
+    //todo: probably favorite, viewed and created items are needed to be here too,
+    // but all the data that was created in the guest mode also should be synced
 
     emit(
       state.copyWith(

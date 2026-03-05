@@ -87,6 +87,7 @@ class AccountPage extends StatelessWidget {
                         AccountItem(
                           icon: Icons.remove_red_eye_outlined,
                           text: AppLocalisations.accountItemViewedItems,
+                          onTap: () => context.go(AppRoutes.home + AppRoutes.recentlyViewed),
                         ),
                         AccountItem(
                           icon: Icons.cleaning_services,

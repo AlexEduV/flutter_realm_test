@@ -3,12 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/location_settings_page.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/my_items/my_items_page.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/personal_details_page.dart';
+import 'package:test_futter_project/presentation/pages/account/sub_pages/recently_viewed/recently_viewed_page.dart';
 import 'package:test_futter_project/presentation/pages/article/article_page.dart';
 import 'package:test_futter_project/presentation/pages/details/details_page.dart';
 import 'package:test_futter_project/presentation/pages/home/home_page.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
 
 import '../common/app_routes.dart';
+import '../common/enums/details_page_source.dart';
 import '../presentation/pages/search/search_page.dart';
 
 class AppRouter {
@@ -66,6 +68,21 @@ class AppRouter {
             ],
           ),
           GoRoute(
+            path: AppRoutes.recentlyViewed,
+            pageBuilder: (context, state) {
+              return const CupertinoPage(child: RecentlyViewedPage());
+            },
+            routes: <RouteBase>[
+              GoRoute(
+                path: AppRoutes.details,
+                pageBuilder: (context, state) {
+                  final carId = state.extra as String? ?? '';
+                  return CupertinoPage(child: DetailsPage(carId: carId));
+                },
+              ),
+            ],
+          ),
+          GoRoute(
             path: AppRoutes.forgotPassword,
             pageBuilder: (context, state) {
               return const CupertinoPage(child: PlaceholderPage());
@@ -99,11 +116,27 @@ class AppRouter {
     _router.go('${AppRoutes.home}${AppRoutes.details}', extra: carId);
   }
 
-  static void goToDetailsFromAccountSettings(String carId) {
+  static void goToDetailsFromAccountMyItems(String carId) {
     _router.go('${AppRoutes.home}${AppRoutes.myItems}/${AppRoutes.details}', extra: carId);
+  }
+
+  static void goToDetailsFromAccountRecentItems(String carId) {
+    _router.go('${AppRoutes.home}${AppRoutes.recentlyViewed}/${AppRoutes.details}', extra: carId);
   }
 
   static void goToDetailsRouteFromSearch(String carId) {
     _router.go('${AppRoutes.home}${AppRoutes.search}/${AppRoutes.details}', extra: carId);
+  }
+
+  static final Map<DetailsPageSource, void Function(String)> _routeMap = {
+    DetailsPageSource.myItems: AppRouter.goToDetailsFromAccountMyItems,
+    DetailsPageSource.recentlyViewed: AppRouter.goToDetailsFromAccountRecentItems,
+    DetailsPageSource.search: AppRouter.goToDetailsRouteFromSearch,
+    DetailsPageSource.explore: AppRouter.goToDetailsRouteFromExplore,
+  };
+
+  static void routeBySource(DetailsPageSource source, String carId) {
+    final routeFunction = _routeMap[source] ?? AppRouter.goToDetailsRouteFromExplore;
+    routeFunction(carId);
   }
 }

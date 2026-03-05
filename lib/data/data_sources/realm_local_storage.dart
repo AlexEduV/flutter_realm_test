@@ -70,6 +70,7 @@ class RealmLocalStorage implements BaseLocalStorage {
       isLocationPermissionGranted: false,
       favoriteIds: [],
       createdIds: [],
+      viewedIds: [],
       email: 'mock@gmail.com',
       lastSeenCar: null,
       password: '',

@@ -141,6 +141,7 @@ void main() {
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,
+        viewedIds: [],
       );
 
       when(mockStorage.initUser()).thenReturn(user);

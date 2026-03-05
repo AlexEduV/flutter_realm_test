@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/enums/details_page_source.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -62,8 +63,8 @@ class AnnouncementListItem extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
               onTap: () => isExploreItem
-                  ? AppRouter.goToDetailsRouteFromExplore(car?.carId ?? '')
-                  : AppRouter.goToDetailsRouteFromSearch(car?.carId ?? ''),
+                  ? AppRouter.routeBySource(DetailsPageSource.explore, car?.carId ?? '')
+                  : AppRouter.routeBySource(DetailsPageSource.search, car?.carId ?? ''),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: AppDimensions.contentPadding,

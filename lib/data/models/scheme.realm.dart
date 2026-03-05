@@ -384,6 +384,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     String region, {
     Iterable<String> favoriteIds = const [],
     Iterable<String> createdIds = const [],
+    Iterable<String> viewedIds = const [],
     LastSeenCar? lastSeenCar,
     String? avatarImage,
   }) {
@@ -407,6 +408,11 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       this,
       'createdIds',
       RealmList<String>(createdIds),
+    );
+    RealmObjectBase.set<RealmList<String>>(
+      this,
+      'viewedIds',
+      RealmList<String>(viewedIds),
     );
     RealmObjectBase.set(this, 'lastSeenCar', lastSeenCar);
     RealmObjectBase.set(this, 'avatarImage', avatarImage);
@@ -469,6 +475,13 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       throw RealmUnsupportedSetError();
 
   @override
+  RealmList<String> get viewedIds =>
+      RealmObjectBase.get<String>(this, 'viewedIds') as RealmList<String>;
+  @override
+  set viewedIds(covariant RealmList<String> value) =>
+      throw RealmUnsupportedSetError();
+
+  @override
   LastSeenCar? get lastSeenCar =>
       RealmObjectBase.get<LastSeenCar>(this, 'lastSeenCar') as LastSeenCar?;
   @override
@@ -504,6 +517,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'region': region.toEJson(),
       'favoriteIds': favoriteIds.toEJson(),
       'createdIds': createdIds.toEJson(),
+      'viewedIds': viewedIds.toEJson(),
       'lastSeenCar': lastSeenCar.toEJson(),
       'avatarImage': avatarImage.toEJson(),
     };
@@ -532,6 +546,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
           fromEJson(region),
           favoriteIds: fromEJson(ejson['favoriteIds']),
           createdIds: fromEJson(ejson['createdIds']),
+          viewedIds: fromEJson(ejson['viewedIds']),
           lastSeenCar: fromEJson(ejson['lastSeenCar']),
           avatarImage: fromEJson(ejson['avatarImage']),
         ),
@@ -557,6 +572,11 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       ),
       SchemaProperty(
         'createdIds',
+        RealmPropertyType.string,
+        collectionType: RealmCollectionType.list,
+      ),
+      SchemaProperty(
+        'viewedIds',
         RealmPropertyType.string,
         collectionType: RealmCollectionType.list,
       ),

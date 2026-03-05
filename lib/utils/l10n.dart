@@ -199,6 +199,8 @@ class AppLocalisations {
   );
 
   static final String accountItemViewedItems = get('pages.account.items.recentlyViewed');
+  static final String viewedItemsNoResultsPlaceholder = 'You haven\'t viewed any item yet.';
+
   static final String accountItemClearData = get('pages.account.items.clearData');
   static final String accountItemLogout = get('pages.account.items.logOut');
   static final String accountItemDeleteAccount = get('pages.account.items.deleteAccount');

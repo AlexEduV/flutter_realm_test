@@ -36,8 +36,8 @@ class _DetailsPageState extends State<DetailsPage> {
     context.read<DetailsPageCubit>().loadData(widget.carId);
     context.read<DetailsPageCubit>().setVehicleSpecsExpansionState(true);
 
-    final car = context.read<DetailsPageCubit>().state.car;
-    context.read<UserDataCubit>().setLastSeenCar(car);
+    context.read<UserDataCubit>().setLastSeenCar(widget.carId);
+    context.read<UserDataCubit>().addCarToRecentlyViewed(widget.carId);
   }
 
   @override
