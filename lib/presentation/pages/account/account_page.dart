@@ -47,14 +47,14 @@ class AccountPage extends StatelessWidget {
                           bottom: 0,
                           right: 0,
                           child: Material(
-                            color: Colors.transparent,
+                            color: AppColors.headerColor,
                             shape: const CircleBorder(),
                             child: InkWell(
                               onTap: () {},
                               customBorder: const CircleBorder(),
                               child: const CircleAvatar(
                                 radius: 17,
-                                backgroundColor: AppColors.headerColor,
+                                backgroundColor: Colors.transparent,
                                 child: Icon(Icons.add, color: Colors.white),
                               ),
                             ),
