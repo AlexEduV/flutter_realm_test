@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_routes.dart';
@@ -50,7 +51,7 @@ class AccountPage extends StatelessWidget {
                             color: AppColors.headerColor,
                             shape: const CircleBorder(),
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () => pickImageFromGallery(),
                               customBorder: const CircleBorder(),
                               child: const CircleAvatar(
                                 radius: 17,
@@ -154,5 +155,15 @@ class AccountPage extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> pickImageFromGallery() async {
+    final picker = ImagePicker();
+
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      // Use the image.path or image.readAsBytes()
+      print('Picked image path: ${image.path}');
+    }
   }
 }
