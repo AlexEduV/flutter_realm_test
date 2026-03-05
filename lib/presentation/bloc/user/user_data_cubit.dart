@@ -175,13 +175,15 @@ class UserDataCubit extends Cubit<UserDataState> {
   void clearMyItems() {
     if (state.createdIds.isEmpty) return;
 
+    for (final id in state.createdIds) {
+      serviceLocator<DeleteCarByIdUseCase>().call(id);
+    }
+
     final List<String> newList = [];
     user = user.copyWith(createdIds: newList);
     emit(state.copyWith(createdIds: newList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
-
-    //todo: maybe update the mock service data as well;
   }
 
   void clearAllData() {
