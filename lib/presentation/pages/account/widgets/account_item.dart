@@ -30,6 +30,9 @@ class AccountItem extends StatelessWidget {
         leading: icon != null ? Icon(icon) : null,
         onTap: onTap,
         tileColor: Colors.white,
+        trailing: (onTap != null && !isCentered)
+            ? const Icon(Icons.chevron_right_outlined, color: Colors.grey)
+            : null,
       ),
     );
   }
