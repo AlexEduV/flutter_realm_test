@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
@@ -48,8 +48,8 @@ class UserDataCubit extends Cubit<UserDataState> {
     );
   }
 
-  void setLastSeenCar(CarEntity? car) {
-    final newLastSeenCarData = car == null ? null : {DateTime.now(): car.carId};
+  void setLastSeenCar(String? carId) {
+    final newLastSeenCarData = carId == null ? null : {DateTime.now(): carId};
 
     user = user.copyWith(lastSeenCar: newLastSeenCarData);
     emit(state.copyWith(lastSeenCar: newLastSeenCarData));
@@ -133,6 +133,18 @@ class UserDataCubit extends Cubit<UserDataState> {
     _localStorage.update(UserExtensions.fromEntity(user));
 
     serviceLocator<DeleteCarByIdUseCase>().call(carId);
+  }
+
+  void addCarToRecentlyViewed(String carId) {
+    if (carId.isEmpty) return;
+
+    final newList = user.viewedIds.toList()..add(carId);
+    final cleanedList = newList.squashConsecutive();
+
+    user = user.copyWith(viewedIds: cleanedList);
+    emit(state.copyWith(viewedIds: cleanedList));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
   }
 
   void authUser(String email) {

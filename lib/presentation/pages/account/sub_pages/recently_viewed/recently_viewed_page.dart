@@ -25,18 +25,18 @@ class RecentlyViewedPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
-        buildWhen: (previous, current) => previous.createdIds != current.createdIds,
+        buildWhen: (previous, current) => previous.viewedIds != current.viewedIds,
         builder: (context, state) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
               final allCars = state.cars;
 
-              final createdIds = serviceLocator<UserDataCubit>().state.createdIds;
-              final createdEntities = allCars
-                  .where((entity) => createdIds.contains(entity.carId))
+              final viewedIds = serviceLocator<UserDataCubit>().state.viewedIds.reversed;
+              final viewedEntities = allCars
+                  .where((entity) => viewedIds.contains(entity.carId))
                   .toList();
 
-              if (createdEntities.isEmpty) {
+              if (viewedEntities.isEmpty) {
                 return EmptyResultsPlaceholderWidget(
                   text: AppLocalisations.viewedItemsNoResultsPlaceholder,
                 );
@@ -45,17 +45,11 @@ class RecentlyViewedPage extends StatelessWidget {
               return ListView.builder(
                 padding: const EdgeInsets.only(top: AppDimensions.normalL),
                 itemBuilder: (context, index) {
-                  final car = createdEntities[index];
+                  final car = viewedEntities[index];
 
-                  return CarListItem(
-                    car: car,
-                    isFavoriteItem: false,
-                    onDeleteCallback: () {
-                      context.read<UserDataCubit>().removeCarIdFromCreated(car.carId);
-                    },
-                  );
+                  return CarListItem(car: car, isFavoriteItem: false);
                 },
-                itemCount: createdEntities.length,
+                itemCount: viewedEntities.length,
               );
             },
           );
