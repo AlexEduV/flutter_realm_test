@@ -198,10 +198,20 @@ class AppLocalisations {
     'pages.account.items.myItems.emptyPlaceholder',
   );
 
-  static final String accountItemViewedItems = get('pages.account.items.recentlyViewed');
-  static final String viewedItemsNoResultsPlaceholder = 'You haven\'t viewed any item yet.';
+  static final String accountItemViewedItems = get('pages.account.items.recentlyViewed.title');
+  static final String viewedItemsNoResultsPlaceholder = get(
+    'pages.account.items.recentlyViewed.emptyPlaceholder',
+  );
 
-  static final String accountItemClearData = get('pages.account.items.clearData');
+  static final String accountItemClearData = get('pages.account.items.clearData.title');
+  static final String dataDeletionDescription = get(
+    'pages.account.items.clearData.dataDeletionDescription',
+  );
+  static final String clearViewHistoryItem = get('pages.account.items.clearData.viewedHistoryItem');
+  static final String clearFavoritesItem = get('pages.account.items.clearData.favoritesItem');
+  static final String clearMyItemsItem = get('pages.account.items.clearData.myItemsItem');
+  static final String clearAllDataItem = get('pages.account.items.clearData.clearAllDataItem');
+
   static final String accountItemLogout = get('pages.account.items.logOut');
   static final String accountItemDeleteAccount = get('pages.account.items.deleteAccount');
 

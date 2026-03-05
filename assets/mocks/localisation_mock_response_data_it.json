@@ -81,8 +81,18 @@
           "title": "I miei oggetti",
           "emptyPlaceholder": "Nessun oggetto è stato ancora creato."
         },
-        "recentlyViewed": "Visti di recente",
-        "clearData": "Cancella dati",
+        "recentlyViewed": {
+          "title": "Visti di recente",
+          "emptyPlaceholder": "Non hai ancora visualizzato nessun elemento."
+        },
+        "clearData": {
+          "title": "Cancella dati",
+          "dataDeletionDescription": "Per favore, scegli quali dati desideri cancellare dai dati dell'account.",
+          "viewedHistoryItem": "Cronologia degli elementi visualizzati",
+          "favoritesItem": "Elementi preferiti",
+          "myItemsItem": "I miei elementi",
+          "clearAllDataItem": "Elimina tutti i dati"
+        },
         "logOut": "Disconnetti",
         "deleteAccount": "Elimina account"
       }

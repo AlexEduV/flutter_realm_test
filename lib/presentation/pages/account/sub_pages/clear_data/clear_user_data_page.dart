@@ -32,10 +32,7 @@ class ClearUserDataPage extends StatelessWidget {
           children: [
             const SizedBox(height: AppDimensions.minorS),
 
-            const Text(
-              'Choose, which data you would like to clear from the account data.',
-              style: AppTextStyles.zonaPro14,
-            ),
+            Text(AppLocalisations.dataDeletionDescription, style: AppTextStyles.zonaPro14),
 
             const SizedBox(height: AppDimensions.normalXS),
 
@@ -48,7 +45,7 @@ class ClearUserDataPage extends StatelessWidget {
                 builder: (context, state) {
                   final items = [
                     PersonalDetailsItemModel(
-                      title: 'History of viewed items',
+                      title: AppLocalisations.clearViewHistoryItem,
                       subtitle: state.viewedIds.isNotEmpty
                           ? AppLocalisations.onLabel
                           : AppLocalisations.offLabel,
@@ -59,7 +56,7 @@ class ClearUserDataPage extends StatelessWidget {
                       },
                     ),
                     PersonalDetailsItemModel(
-                      title: 'Favorite items',
+                      title: AppLocalisations.clearFavoritesItem,
                       subtitle: state.favoriteIds.isNotEmpty
                           ? AppLocalisations.onLabel
                           : AppLocalisations.offLabel,
@@ -70,7 +67,7 @@ class ClearUserDataPage extends StatelessWidget {
                       },
                     ),
                     PersonalDetailsItemModel(
-                      title: 'My items',
+                      title: AppLocalisations.clearMyItemsItem,
                       subtitle: state.createdIds.isNotEmpty
                           ? AppLocalisations.onLabel
                           : AppLocalisations.offLabel,

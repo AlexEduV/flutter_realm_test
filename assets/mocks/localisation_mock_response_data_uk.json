@@ -81,8 +81,18 @@
           "title": "My items",
           "emptyPlaceholder": "No items were created yet."
         },
-        "recentlyViewed": "Recently viewed",
-        "clearData": "Clear data",
+        "recentlyViewed": {
+          "title": "Recently viewed",
+          "emptyPlaceholder": "You haven't viewed any item yet."
+        },
+        "clearData": {
+          "title": "Clear data",
+          "dataDeletionDescription": "Please, choose, which data you would like to clear from the account data.",
+          "viewedHistoryItem": "History of viewed items",
+          "favoritesItem": "Favorite items",
+          "myItemsItem": "My items",
+          "clearAllDataItem": "Delete all data"
+        },
         "logOut": "Log out",
         "deleteAccount": "Delete account"
       }
