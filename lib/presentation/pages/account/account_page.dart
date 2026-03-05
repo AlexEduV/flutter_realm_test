@@ -39,7 +39,29 @@ class AccountPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
                   child: Center(
-                    child: CircleAvatar(radius: 50, backgroundColor: AppColors.placeholderColor),
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        CircleAvatar(radius: 50, backgroundColor: AppColors.placeholderColor),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Material(
+                            color: Colors.transparent,
+                            shape: const CircleBorder(),
+                            child: InkWell(
+                              onTap: () {},
+                              customBorder: const CircleBorder(),
+                              child: const CircleAvatar(
+                                radius: 17,
+                                backgroundColor: AppColors.headerColor,
+                                child: Icon(Icons.add, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
 
