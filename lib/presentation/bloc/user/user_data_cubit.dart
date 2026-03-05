@@ -26,7 +26,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     user = _localStorage.initUser();
     final userSession = await AuthSessionUtil.getUserSession();
 
-    checkLastSeenCarExpiration(7);
+    checkLastSeenCarExpiration(days: 7);
 
     emit(
       state.copyWith(
@@ -56,7 +56,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     _localStorage.update(UserExtensions.fromEntity(user));
   }
 
-  void checkLastSeenCarExpiration(int days) {
+  void checkLastSeenCarExpiration({required int days}) {
     final lastSeenCar = user.lastSeenCar;
 
     if (lastSeenCar == null) return;
@@ -150,6 +150,46 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(viewedIds: limitedList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+  }
+
+  void clearFavorites() {
+    if (state.favoriteIds.isEmpty) return;
+
+    final List<String> newList = [];
+    user = user.copyWith(favoriteIds: newList);
+    emit(state.copyWith(favoriteIds: newList));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+  }
+
+  void clearRecentItems() {
+    if (state.viewedIds.isEmpty) return;
+
+    final List<String> newList = [];
+    user = user.copyWith(viewedIds: newList);
+    emit(state.copyWith(viewedIds: newList));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+  }
+
+  void clearMyItems() {
+    if (state.createdIds.isEmpty) return;
+
+    for (final id in state.createdIds) {
+      serviceLocator<DeleteCarByIdUseCase>().call(id);
+    }
+
+    final List<String> newList = [];
+    user = user.copyWith(createdIds: newList);
+    emit(state.copyWith(createdIds: newList));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+  }
+
+  void clearAllData() {
+    clearFavorites();
+    clearMyItems();
+    clearMyItems();
   }
 
   void authUser(String email) {

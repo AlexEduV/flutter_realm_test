@@ -10,4 +10,5 @@ class AppRoutes {
   static const String locationSettings = 'locationSettings';
   static const String myItems = 'myItems';
   static const String recentlyViewed = 'recentlyViewed';
+  static const String clearUserData = 'clearUserData';
 }
