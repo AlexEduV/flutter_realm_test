@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/enums/details_page_source.dart';
 
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
@@ -50,6 +51,7 @@ class MyItemsPage extends StatelessWidget {
                   return CarListItem(
                     car: car,
                     isFavoriteItem: false,
+                    source: DetailsPageSource.myItems,
                     onDeleteCallback: () {
                       context.read<UserDataCubit>().removeCarIdFromCreated(car.carId);
                     },

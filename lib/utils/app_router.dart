@@ -71,6 +71,15 @@ class AppRouter {
             pageBuilder: (context, state) {
               return const CupertinoPage(child: RecentlyViewedPage());
             },
+            routes: <RouteBase>[
+              GoRoute(
+                path: AppRoutes.details,
+                pageBuilder: (context, state) {
+                  final carId = state.extra as String? ?? '';
+                  return CupertinoPage(child: DetailsPage(carId: carId));
+                },
+              ),
+            ],
           ),
           GoRoute(
             path: AppRoutes.forgotPassword,
@@ -106,8 +115,12 @@ class AppRouter {
     _router.go('${AppRoutes.home}${AppRoutes.details}', extra: carId);
   }
 
-  static void goToDetailsFromAccountSettings(String carId) {
+  static void goToDetailsFromAccountMyItems(String carId) {
     _router.go('${AppRoutes.home}${AppRoutes.myItems}/${AppRoutes.details}', extra: carId);
+  }
+
+  static void goToDetailsFromAccountRecentItems(String carId) {
+    _router.go('${AppRoutes.home}${AppRoutes.recentlyViewed}/${AppRoutes.details}', extra: carId);
   }
 
   static void goToDetailsRouteFromSearch(String carId) {
