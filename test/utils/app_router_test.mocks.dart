@@ -315,8 +315,8 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
   );
 
   @override
-  void checkLastSeenCarExpiration(int? days) => super.noSuchMethod(
-    Invocation.method(#checkLastSeenCarExpiration, [days]),
+  void checkLastSeenCarExpiration({required int? days}) => super.noSuchMethod(
+    Invocation.method(#checkLastSeenCarExpiration, [], {#days: days}),
     returnValueForMissingStub: null,
   );
 
@@ -368,6 +368,30 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
   @override
   void addCarToRecentlyViewed(String? carId) => super.noSuchMethod(
     Invocation.method(#addCarToRecentlyViewed, [carId]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void clearFavorites() => super.noSuchMethod(
+    Invocation.method(#clearFavorites, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void clearRecentItems() => super.noSuchMethod(
+    Invocation.method(#clearRecentItems, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void clearMyItems() => super.noSuchMethod(
+    Invocation.method(#clearMyItems, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void clearAllData() => super.noSuchMethod(
+    Invocation.method(#clearAllData, []),
     returnValueForMissingStub: null,
   );
 

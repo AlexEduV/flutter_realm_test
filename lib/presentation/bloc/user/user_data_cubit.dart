@@ -26,7 +26,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     user = _localStorage.initUser();
     final userSession = await AuthSessionUtil.getUserSession();
 
-    checkLastSeenCarExpiration(7);
+    checkLastSeenCarExpiration(days: 7);
 
     emit(
       state.copyWith(
@@ -56,7 +56,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     _localStorage.update(UserExtensions.fromEntity(user));
   }
 
-  void checkLastSeenCarExpiration(int days) {
+  void checkLastSeenCarExpiration({required int days}) {
     final lastSeenCar = user.lastSeenCar;
 
     if (lastSeenCar == null) return;
