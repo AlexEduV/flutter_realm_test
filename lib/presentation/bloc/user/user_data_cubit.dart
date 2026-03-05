@@ -33,6 +33,8 @@ class UserDataCubit extends Cubit<UserDataState> {
       state.copyWith(
         isLoading: false,
         favoriteIds: user.favoriteIds,
+        createdIds: user.createdIds,
+        viewedIds: user.viewedIds,
         isLocationPermissionGranted: user.isLocationPermissionGranted,
         isUserAuthenticated: userSession != null,
         firstName: user.firstName,
@@ -137,6 +139,9 @@ class UserDataCubit extends Cubit<UserDataState> {
     final user = MockUsers.getUserByEmail(email);
 
     if (user == null) return;
+
+    //todo: probably favorite, viewed and created items are needed to be here too,
+    // but all the data that was created in the guest mode also should be synced
 
     emit(
       state.copyWith(

@@ -336,6 +336,12 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
   );
 
   @override
+  void updateAvatarImage(String? src) => super.noSuchMethod(
+    Invocation.method(#updateAvatarImage, [src]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   void addCarIdToFavorites(String? carId) => super.noSuchMethod(
     Invocation.method(#addCarIdToFavorites, [carId]),
     returnValueForMissingStub: null,

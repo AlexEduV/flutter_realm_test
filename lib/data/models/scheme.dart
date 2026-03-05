@@ -44,6 +44,7 @@ class _User {
   late String region;
   late List<String> favoriteIds;
   late List<String> createdIds;
+  late List<String> viewedIds;
   _LastSeenCar? lastSeenCar;
   late String? avatarImage;
 }
