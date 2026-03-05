@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -20,7 +21,7 @@ class UserAvatar extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             CircleAvatar(
-              radius: 50,
+              radius: AppDimensions.avatarImageSize,
               backgroundImage: (imageSrc != null && imageSrc!.isNotEmpty)
                   ? FileImage(File(imageSrc!))
                   : null,
@@ -31,19 +32,10 @@ class UserAvatar extends StatelessWidget {
             Positioned(
               bottom: 0,
               right: 0,
-              child: Material(
-                color: AppColors.accentColor,
-                shape: const CircleBorder(),
-                //todo: add animated (enlarge) on hover, just as the main plus button
-                child: InkWell(
-                  onTap: onTap,
-                  customBorder: const CircleBorder(),
-                  child: const CircleAvatar(
-                    radius: 17,
-                    backgroundColor: Colors.transparent,
-                    child: Icon(Icons.add, color: Colors.white),
-                  ),
-                ),
+              child: AnimatedAddButton(
+                onPressed: onTap,
+                backgroundColor: AppColors.accentColor,
+                size: AppDimensions.avatarImageAddIconSize,
               ),
             ),
           ],
