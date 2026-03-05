@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/account_item.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/user_avatar.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
@@ -36,12 +39,7 @@ class AccountPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
-                  child: Center(
-                    child: CircleAvatar(radius: 50, backgroundColor: AppColors.placeholderColor),
-                  ),
-                ),
+                UserAvatar(imageSrc: state.avatarImageSrc, onTap: pickImageFromGallery),
 
                 ListTile(
                   title: Center(
@@ -53,7 +51,10 @@ class AccountPage extends StatelessWidget {
                   subtitle: Center(
                     child: Text(
                       state.email,
-                      style: AppTextStyles.zonaPro16.copyWith(color: AppColors.accentColor),
+                      style: AppTextStyles.zonaPro16.copyWith(
+                        color: AppColors.placeholderColorDark,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ),
@@ -132,5 +133,14 @@ class AccountPage extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> pickImageFromGallery() async {
+    final picker = ImagePicker();
+
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      serviceLocator<UserDataCubit>().updateAvatarImage(image.path);
+    }
   }
 }

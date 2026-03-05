@@ -17,6 +17,7 @@ void main() {
         lastSeenCar: null,
         region: 'uk',
         createdIds: [],
+        avatarImageSrc: null,
       );
 
       expect(entity.userId, 'u1');
@@ -60,6 +61,7 @@ void main() {
         lastSeenCar: null,
         region: 'uk',
         createdIds: [],
+        avatarImageSrc: null,
       );
 
       final updated = original.copyWith(firstName: 'Alicia', isLocationPermissionGranted: true);
@@ -82,6 +84,7 @@ void main() {
         lastSeenCar: null,
         region: 'uk',
         createdIds: [],
+        avatarImageSrc: null,
       );
 
       final copy = original.copyWith();

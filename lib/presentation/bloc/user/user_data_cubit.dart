@@ -41,6 +41,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         lastSeenCar: user.lastSeenCar,
         password: user.password,
         region: user.region,
+        avatarImageSrc: user.avatarImageSrc,
       ),
     );
   }
@@ -85,6 +86,13 @@ class UserDataCubit extends Cubit<UserDataState> {
     _localStorage.update(UserExtensions.fromEntity(user));
 
     emit(state.copyWith(isLocationPermissionGranted: newStatus));
+  }
+
+  void updateAvatarImage(String? src) {
+    user = user.copyWith(avatarImageSrc: src);
+    emit(state.copyWith(avatarImageSrc: src));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
   }
 
   void addCarIdToFavorites(String carId) {
@@ -138,6 +146,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         lastName: user.lastName,
         password: user.password,
         region: user.region,
+        avatarImageSrc: user.avatarImageSrc,
       ),
     );
   }

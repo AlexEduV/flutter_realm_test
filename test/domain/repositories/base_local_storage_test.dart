@@ -140,6 +140,7 @@ void main() {
         lastSeenCar: null,
         region: 'uk',
         createdIds: [],
+        avatarImageSrc: null,
       );
 
       when(mockStorage.initUser()).thenReturn(user);

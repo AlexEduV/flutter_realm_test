@@ -17,6 +17,7 @@ void main() {
         lastSeenCar: {DateTime.now(): CarEntity.empty().carId},
         region: 'uk',
         createdIds: [],
+        avatarImageSrc: null,
       );
 
       final user = UserExtensions.fromEntity(entity);

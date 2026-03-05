@@ -16,5 +16,6 @@ abstract class UserDataState with _$UserDataState {
     @Default('') String password,
     @Default('') String region,
     @Default(null) Map<DateTime, String>? lastSeenCar,
+    @Default(null) String? avatarImageSrc,
   }) = _UserDataState;
 }

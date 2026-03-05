@@ -385,6 +385,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     Iterable<String> favoriteIds = const [],
     Iterable<String> createdIds = const [],
     LastSeenCar? lastSeenCar,
+    String? avatarImage,
   }) {
     RealmObjectBase.set(this, 'userId', userId);
     RealmObjectBase.set(this, 'firstName', firstName);
@@ -408,6 +409,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       RealmList<String>(createdIds),
     );
     RealmObjectBase.set(this, 'lastSeenCar', lastSeenCar);
+    RealmObjectBase.set(this, 'avatarImage', avatarImage);
   }
 
   User._();
@@ -474,6 +476,13 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.set(this, 'lastSeenCar', value);
 
   @override
+  String? get avatarImage =>
+      RealmObjectBase.get<String>(this, 'avatarImage') as String?;
+  @override
+  set avatarImage(String? value) =>
+      RealmObjectBase.set(this, 'avatarImage', value);
+
+  @override
   Stream<RealmObjectChanges<User>> get changes =>
       RealmObjectBase.getChanges<User>(this);
 
@@ -496,6 +505,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       'favoriteIds': favoriteIds.toEJson(),
       'createdIds': createdIds.toEJson(),
       'lastSeenCar': lastSeenCar.toEJson(),
+      'avatarImage': avatarImage.toEJson(),
     };
   }
 
@@ -523,6 +533,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
           favoriteIds: fromEJson(ejson['favoriteIds']),
           createdIds: fromEJson(ejson['createdIds']),
           lastSeenCar: fromEJson(ejson['lastSeenCar']),
+          avatarImage: fromEJson(ejson['avatarImage']),
         ),
       _ => raiseInvalidEJson(ejson),
     };
@@ -555,6 +566,7 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
         optional: true,
         linkTarget: 'LastSeenCar',
       ),
+      SchemaProperty('avatarImage', RealmPropertyType.string, optional: true),
     ]);
   }();
 

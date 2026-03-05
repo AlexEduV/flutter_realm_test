@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
@@ -50,7 +51,11 @@ class HomeBottomBar extends StatelessWidget {
             AppSemantics(
               button: true,
               label: AppSemanticsLabels.homeBottomBarItemAdd,
-              child: AnimatedAddButton(onPressed: onAddPressed),
+              child: AnimatedAddButton(
+                onPressed: onAddPressed,
+                backgroundColor: AppColors.headerColor,
+                size: AppDimensions.bottomAppBarIconEnlargedSize,
+              ),
             ),
 
             const HomeBottomBarItem(

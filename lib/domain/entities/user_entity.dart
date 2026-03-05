@@ -11,6 +11,7 @@ class UserEntity {
   final List<String> createdIds;
   final Map<DateTime, String>? lastSeenCar;
   final String password;
+  final String? avatarImageSrc;
 
   const UserEntity({
     required this.userId,
@@ -23,6 +24,7 @@ class UserEntity {
     required this.lastSeenCar,
     required this.password,
     required this.region,
+    required this.avatarImageSrc,
   });
 
   factory UserEntity.fromSchema(User user) {
@@ -39,6 +41,7 @@ class UserEntity {
           : null,
       password: user.password,
       region: user.region,
+      avatarImageSrc: user.avatarImage,
     );
   }
 
@@ -53,6 +56,7 @@ class UserEntity {
     String? password,
     Map<DateTime, String>? lastSeenCar,
     String? region,
+    String? avatarImageSrc,
   }) {
     return UserEntity(
       userId: userId ?? this.userId,
@@ -65,6 +69,7 @@ class UserEntity {
       lastSeenCar: lastSeenCar ?? this.lastSeenCar,
       password: password ?? this.password,
       region: region ?? this.region,
+      avatarImageSrc: avatarImageSrc ?? this.avatarImageSrc,
     );
   }
 }

@@ -43,8 +43,8 @@ void main() {
       expect(AppDimensions.appBarIconSize, 32.0 / 1.2);
     });
 
-    test('bottomAppBarIconEnlargedSize should be 36.0', () {
-      expect(AppDimensions.bottomAppBarIconEnlargedSize, 36.0);
+    test('bottomAppBarIconEnlargedSize should be 26.0', () {
+      expect(AppDimensions.bottomAppBarIconEnlargedSize, 26.0);
     });
 
     test('bottomAppBarIconSize should be 24.0', () {

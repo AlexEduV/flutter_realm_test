@@ -88,7 +88,7 @@ void main() {
       );
 
       final container = tester.widget<Container>(
-        find.descendant(of: find.byType(HomeBottomBar), matching: find.byType(Container)),
+        find.descendant(of: find.byType(HomeBottomBar), matching: find.byType(Container).first),
       );
 
       final decoration = container.decoration as BoxDecoration;

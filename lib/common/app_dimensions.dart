@@ -17,7 +17,7 @@ class AppDimensions {
 
   static const appBarIconSize = majorM / 1.2;
 
-  static const bottomAppBarIconEnlargedSize = 36.0;
+  static const bottomAppBarIconEnlargedSize = 26.0;
   static const bottomAppBarIconSize = 24.0;
 
   static const placeholderPageIconSize = 64.0;
@@ -37,4 +37,7 @@ class AppDimensions {
 
   static const exploreAppBarBaseSize = 115.0;
   static const exploreArticleItemBaseSize = 120.0;
+
+  static const avatarImageAddIconSize = 17.0;
+  static const avatarImageSize = 50.0;
 }

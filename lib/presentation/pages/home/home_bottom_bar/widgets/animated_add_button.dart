@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../common/app_colors.dart';
-import '../../../../../common/app_dimensions.dart';
 
 class AnimatedAddButton extends StatefulWidget {
   final VoidCallback onPressed;
-  const AnimatedAddButton({required this.onPressed, super.key});
+  final Color backgroundColor;
+  final double size;
+
+  const AnimatedAddButton({
+    required this.onPressed,
+    required this.backgroundColor,
+    required this.size,
+    super.key,
+  });
 
   @override
   State<AnimatedAddButton> createState() => _AnimatedAddButtonState();
@@ -33,7 +40,7 @@ class _AnimatedAddButtonState extends State<AnimatedAddButton> {
       duration: const Duration(milliseconds: 120),
       curve: Curves.easeOut,
       child: Material(
-        color: AppColors.headerColor,
+        color: widget.backgroundColor,
         shape: const CircleBorder(),
         child: InkWell(
           customBorder: const CircleBorder(),
@@ -43,13 +50,10 @@ class _AnimatedAddButtonState extends State<AnimatedAddButton> {
           onTapDown: _onTapDown,
           onTapUp: _onTapUp,
           onTapCancel: _onTapCancel,
-          child: const Padding(
-            padding: EdgeInsets.all(AppDimensions.minorL),
-            child: Icon(
-              Icons.add,
-              size: AppDimensions.bottomAppBarIconEnlargedSize,
-              color: Colors.white,
-            ),
+          child: CircleAvatar(
+            backgroundColor: widget.backgroundColor,
+            radius: widget.size,
+            child: Icon(Icons.add, color: Colors.white, size: widget.size * 1.2),
           ),
         ),
       ),

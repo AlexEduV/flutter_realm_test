@@ -45,6 +45,7 @@ class _User {
   late List<String> favoriteIds;
   late List<String> createdIds;
   _LastSeenCar? lastSeenCar;
+  late String? avatarImage;
 }
 
 @RealmModel()
