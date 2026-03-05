@@ -10,6 +10,7 @@ import 'package:test_futter_project/presentation/pages/home/home_page.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
 
 import '../common/app_routes.dart';
+import '../common/enums/details_page_source.dart';
 import '../presentation/pages/search/search_page.dart';
 
 class AppRouter {
@@ -125,5 +126,17 @@ class AppRouter {
 
   static void goToDetailsRouteFromSearch(String carId) {
     _router.go('${AppRoutes.home}${AppRoutes.search}/${AppRoutes.details}', extra: carId);
+  }
+
+  static final Map<DetailsPageSource, void Function(String)> _routeMap = {
+    DetailsPageSource.myItems: AppRouter.goToDetailsFromAccountMyItems,
+    DetailsPageSource.recentlyViewed: AppRouter.goToDetailsFromAccountRecentItems,
+    DetailsPageSource.search: AppRouter.goToDetailsRouteFromSearch,
+    DetailsPageSource.explore: AppRouter.goToDetailsRouteFromExplore,
+  };
+
+  static void routeBySource(DetailsPageSource source, String carId) {
+    final routeFunction = _routeMap[source] ?? AppRouter.goToDetailsRouteFromExplore;
+    routeFunction(carId);
   }
 }

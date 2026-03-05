@@ -40,7 +40,7 @@ class CarListItem extends StatelessWidget {
           color: Colors.white,
           child: InkWell(
             borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-            onTap: () => routeBySource(source),
+            onTap: () => AppRouter.routeBySource(source, car.carId),
             child: Container(
               key: ValueKey(car.carId),
               decoration: BoxDecoration(
@@ -140,16 +140,5 @@ class CarListItem extends StatelessWidget {
     };
 
     return iconMap[type] ?? Icons.directions_car_outlined;
-  }
-
-  //todo: probably needs rework, including the app_router
-  void routeBySource(DetailsPageSource source) {
-    if (source == DetailsPageSource.myItems) {
-      return AppRouter.goToDetailsFromAccountMyItems(car.carId);
-    } else if (source == DetailsPageSource.recentlyViewed) {
-      return AppRouter.goToDetailsFromAccountRecentItems(car.carId);
-    }
-
-    return AppRouter.goToDetailsRouteFromExplore(car.carId);
   }
 }

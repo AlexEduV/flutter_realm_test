@@ -1,1 +1,1 @@
-enum DetailsPageSource { explore, myItems, recentlyViewed }
+enum DetailsPageSource { explore, myItems, recentlyViewed, search }
