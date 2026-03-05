@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
-import 'package:test_futter_project/domain/models/personal_details_item_model.dart';
+import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../../common/app_text_styles.dart';
+import '../../widgets/custom_divider.dart';
 
 class PersonalDetailsPage extends StatelessWidget {
   const PersonalDetailsPage({super.key});
@@ -23,62 +24,54 @@ class PersonalDetailsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(AppDimensions.minorL),
-        child: Container(
-          margin: const EdgeInsets.all(AppDimensions.minorL),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(AppDimensions.normalL),
-          ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimensions.normalM,
+          vertical: AppDimensions.normalL,
+        ),
+        child: Material(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(AppDimensions.normalL),
+          clipBehavior: Clip.antiAlias,
           child: BlocBuilder<UserDataCubit, UserDataState>(
             builder: (context, state) {
-              final items = [
-                PersonalDetailsItemModel(
-                  title: AppLocalisations.personalDetailsItemFirstName,
-                  subtitle: state.firstName,
-                  icon: Icons.person_pin_outlined,
-                ),
-                PersonalDetailsItemModel(
-                  title: AppLocalisations.personalDetailsItemLastName,
-                  subtitle: state.lastName,
-                  icon: Icons.person_outlined,
-                ),
-                //todo: add phone number and date of birth items to the state later
-                // PersonalDetailsItemModel(
-                //   title: 'Phone Number',
-                //   subtitle: 'Test',
-                //   icon: Icons.phone_outlined,
-                // ),
-                // PersonalDetailsItemModel(
-                //   title: 'Date of Birth',
-                //   subtitle: 'Test',
-                //   icon: Icons.cake_outlined,
-                // ),
-                PersonalDetailsItemModel(
-                  title: AppLocalisations.personalDetailsItemEmail,
-                  subtitle: state.email,
-                  icon: Icons.email_outlined,
-                ),
-                PersonalDetailsItemModel(
-                  title: AppLocalisations.personalDetailsItemPassword,
-                  subtitle: state.password.obscure(),
-                  icon: Icons.password,
-                ),
-              ];
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  PersonalDetailsListItem(
+                    title: AppLocalisations.personalDetailsItemFirstName,
+                    description: state.firstName,
+                    icon: Icons.person_pin_outlined,
+                  ),
 
-              return ListView.separated(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(AppDimensions.minorL),
-                itemCount: items.length,
-                separatorBuilder: (context, index) => const Divider(),
-                itemBuilder: (context, index) {
-                  final item = items[index];
-                  return PersonalDetailsListItem(
-                    title: item.title,
-                    description: item.subtitle,
-                    icon: item.icon,
-                  );
-                },
+                  PersonalDetailsListItem(
+                    title: AppLocalisations.personalDetailsItemLastName,
+                    description: state.lastName,
+                    icon: Icons.person_outlined,
+                  ),
+
+                  //todo: add phone number and date of birth items to the state later
+                  // PersonalDetailsListItem(
+                  //    title: 'Phone Number',
+                  //    subtitle: 'Test',
+                  //    icon: Icons.phone_outlined,
+                  // ),
+                  //PersonalDetailsListItem(
+                  //title: 'Date of Birth',
+                  //   subtitle: 'Test',
+                  //   icon: Icons.cake_outlined,
+                  //),
+                  PersonalDetailsListItem(
+                    title: AppLocalisations.personalDetailsItemEmail,
+                    description: state.email,
+                    icon: Icons.email_outlined,
+                  ),
+
+                  PersonalDetailsListItem(
+                    title: AppLocalisations.personalDetailsItemPassword,
+                    description: state.password.obscure(),
+                    icon: Icons.password,
+                  ),
+                ].withDividers(divider: const CustomDivider()),
               );
             },
           ),
