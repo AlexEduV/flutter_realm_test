@@ -27,7 +27,7 @@ class AccountItem extends StatelessWidget {
       label: '${AppSemanticsLabels.accountItem} $text',
       child: ListTile(
         title: textWidget,
-        leading: Icon(icon),
+        leading: icon != null ? Icon(icon) : null,
         onTap: onTap,
         tileColor: Colors.white,
       ),
