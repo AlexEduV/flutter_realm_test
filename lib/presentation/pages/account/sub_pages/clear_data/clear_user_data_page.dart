@@ -105,7 +105,7 @@ class ClearUserDataPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimensions.normalM),
               clipBehavior: Clip.antiAlias,
               child: AccountItem(
-                text: 'Delete All Data',
+                text: AppLocalisations.clearAllDataItem,
                 textStyle: AppTextStyles.zonaPro14.copyWith(color: Colors.redAccent),
                 onTap: () {
                   context.read<UserDataCubit>().clearAllData();
