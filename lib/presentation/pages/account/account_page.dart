@@ -48,16 +48,20 @@ class AccountPage extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 50,
-                          backgroundColor: state.avatarImageSrc == null
+                          backgroundImage:
+                              (state.avatarImageSrc != null && state.avatarImageSrc!.isNotEmpty)
+                              ? FileImage(File(state.avatarImageSrc!))
+                              : null,
+                          backgroundColor:
+                              state.avatarImageSrc == null || state.avatarImageSrc!.isEmpty
                               ? AppColors.placeholderColor
                               : null,
-                          backgroundImage: FileImage(File(state.avatarImageSrc ?? '')),
                         ),
                         Positioned(
                           bottom: 0,
                           right: 0,
                           child: Material(
-                            color: AppColors.headerColor,
+                            color: AppColors.accentColor,
                             shape: const CircleBorder(),
                             child: InkWell(
                               onTap: () => pickImageFromGallery(),
