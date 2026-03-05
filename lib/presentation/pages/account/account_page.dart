@@ -51,7 +51,10 @@ class AccountPage extends StatelessWidget {
                   subtitle: Center(
                     child: Text(
                       state.email,
-                      style: AppTextStyles.zonaPro16.copyWith(color: AppColors.accentColor),
+                      style: AppTextStyles.zonaPro16.copyWith(
+                        color: AppColors.placeholderColorDark,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
                 ),
