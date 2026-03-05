@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
@@ -45,11 +46,19 @@ class CarRepositoryImpl implements CarRepository {
     }
 
     // 3. Listen to the stream for the 5-second updates
-    apiService.carStream.listen((updatedDtos) {
-      for (final dto in updatedDtos) {
-        localStorage.update(CarExtensions.fromDto(dto));
-      }
-    });
+    apiService.carStream.listen(
+      (updatedDtos) {
+        for (final dto in updatedDtos) {
+          localStorage.update(CarExtensions.fromDto(dto));
+        }
+      },
+      onError: (error, _) {
+        debugPrint('car stream error: $error');
+      },
+      onDone: () {
+        debugPrint('car stream closed.');
+      },
+    );
   }
 
   @override
