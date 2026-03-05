@@ -35,6 +35,9 @@ import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case
 import 'package:test_futter_project/domain/usecases/inbox/fetch_messages_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
+import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
+import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_case.dart';
+import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -161,4 +164,8 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => FetchArticlesUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetArticleByIdUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => ArticlePageCubit(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => FetchRegionsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetRegionByCodeUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
 }
