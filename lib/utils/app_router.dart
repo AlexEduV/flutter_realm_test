@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/presentation/pages/account/sub_pages/clear_data/clear_user_data_page.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/location_settings_page.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/my_items/my_items_page.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/personal_details_page.dart';
@@ -81,6 +82,12 @@ class AppRouter {
                 },
               ),
             ],
+          ),
+          GoRoute(
+            path: AppRoutes.clearUserData,
+            pageBuilder: (context, state) {
+              return const CupertinoPage(child: ClearUserDataPage());
+            },
           ),
           GoRoute(
             path: AppRoutes.forgotPassword,

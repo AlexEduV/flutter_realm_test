@@ -92,6 +92,7 @@ class AccountPage extends StatelessWidget {
                         AccountItem(
                           icon: Icons.cleaning_services,
                           text: AppLocalisations.accountItemClearData,
+                          onTap: () => context.go(AppRoutes.home + AppRoutes.clearUserData),
                         ),
                         AccountItem(
                           icon: Icons.logout_outlined,
