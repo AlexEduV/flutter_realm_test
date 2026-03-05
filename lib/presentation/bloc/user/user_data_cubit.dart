@@ -141,8 +141,13 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     final newList = user.viewedIds.toList()..add(carId);
 
-    user = user.copyWith(viewedIds: newList);
-    emit(state.copyWith(viewedIds: newList));
+    final int maxEntriesAllowed = 20;
+    final limitedList = newList.length > maxEntriesAllowed
+        ? newList.sublist(newList.length - maxEntriesAllowed)
+        : newList;
+
+    user = user.copyWith(viewedIds: limitedList);
+    emit(state.copyWith(viewedIds: limitedList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
   }
