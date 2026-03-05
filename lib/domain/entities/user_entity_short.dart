@@ -5,6 +5,7 @@ class UserEntityShort {
   final String firstName;
   final String lastName;
   final String region;
+  final String? avatarImageSrc;
 
   const UserEntityShort({
     required this.userId,
@@ -13,6 +14,7 @@ class UserEntityShort {
     required this.firstName,
     required this.lastName,
     required this.region,
+    required this.avatarImageSrc,
   });
 
   Map<String, dynamic> toJson() => {
@@ -22,6 +24,7 @@ class UserEntityShort {
     'firstName': firstName,
     'lastName': lastName,
     'region': region,
+    'avatarImageSrc': avatarImageSrc,
   };
 
   factory UserEntityShort.fromJson(Map<String, dynamic> json) {
@@ -32,6 +35,7 @@ class UserEntityShort {
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
       region: (json['region'] ?? '') as String,
+      avatarImageSrc: json['avatarImageSrc'] as String?,
     );
   }
 }

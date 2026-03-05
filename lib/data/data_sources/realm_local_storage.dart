@@ -74,6 +74,7 @@ class RealmLocalStorage implements BaseLocalStorage {
       lastSeenCar: null,
       password: '',
       region: 'uk',
+      avatarImageSrc: null,
     );
 
     realm.write(() {

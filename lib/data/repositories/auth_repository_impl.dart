@@ -69,6 +69,7 @@ class AuthRepositoryImpl implements AuthRepository {
       firstName: firstName,
       lastName: lastName,
       region: 'uk',
+      avatarImageSrc: null,
     );
 
     users.addAll({'$newUserId': user});

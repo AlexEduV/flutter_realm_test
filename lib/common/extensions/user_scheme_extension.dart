@@ -15,6 +15,7 @@ extension UserExtensions on User {
       entity.region,
       favoriteIds: entity.favoriteIds,
       lastSeenCar: _getLastSeenCar(entity.lastSeenCar),
+      avatarImage: entity.avatarImageSrc,
     );
   }
 
@@ -38,6 +39,7 @@ extension UserExtensions on User {
       entity.region,
       favoriteIds: [],
       lastSeenCar: null,
+      avatarImage: null,
     );
   }
 }
