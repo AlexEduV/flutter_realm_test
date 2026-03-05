@@ -152,6 +152,44 @@ class UserDataCubit extends Cubit<UserDataState> {
     _localStorage.update(UserExtensions.fromEntity(user));
   }
 
+  void clearFavorites() {
+    if (state.favoriteIds.isEmpty) return;
+
+    final List<String> newList = [];
+    user = user.copyWith(favoriteIds: newList);
+    emit(state.copyWith(favoriteIds: newList));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+  }
+
+  void clearRecentItems() {
+    if (state.viewedIds.isEmpty) return;
+
+    final List<String> newList = [];
+    user = user.copyWith(viewedIds: newList);
+    emit(state.copyWith(viewedIds: newList));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+  }
+
+  void clearMyItems() {
+    if (state.createdIds.isEmpty) return;
+
+    final List<String> newList = [];
+    user = user.copyWith(createdIds: newList);
+    emit(state.copyWith(createdIds: newList));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+
+    //todo: maybe update the mock service data as well;
+  }
+
+  void clearAllData() {
+    clearFavorites();
+    clearMyItems();
+    clearMyItems();
+  }
+
   void authUser(String email) {
     final user = MockUsers.getUserByEmail(email);
 

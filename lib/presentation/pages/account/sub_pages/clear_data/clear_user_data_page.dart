@@ -33,7 +33,7 @@ class ClearUserDataPage extends StatelessWidget {
             const SizedBox(height: AppDimensions.minorS),
 
             const Text(
-              'Choose, which data you would like to clear.',
+              'Choose, which data you would like to clear from the account data.',
               style: AppTextStyles.zonaPro14,
             ),
 
@@ -49,21 +49,36 @@ class ClearUserDataPage extends StatelessWidget {
                   final items = [
                     PersonalDetailsItemModel(
                       title: 'History of viewed items',
-                      subtitle: AppLocalisations.onLabel,
+                      subtitle: state.viewedIds.isNotEmpty
+                          ? AppLocalisations.onLabel
+                          : AppLocalisations.offLabel,
                       icon: Icons.history_outlined,
-                      showEnabled: true,
+                      showEnabled: state.viewedIds.isNotEmpty,
+                      onTap: () {
+                        context.read<UserDataCubit>().clearRecentItems();
+                      },
                     ),
                     PersonalDetailsItemModel(
                       title: 'Favorite items',
-                      subtitle: AppLocalisations.onLabel,
+                      subtitle: state.favoriteIds.isNotEmpty
+                          ? AppLocalisations.onLabel
+                          : AppLocalisations.offLabel,
                       icon: Icons.favorite_border_outlined,
-                      showEnabled: true,
+                      showEnabled: state.favoriteIds.isNotEmpty,
+                      onTap: () {
+                        context.read<UserDataCubit>().clearFavorites();
+                      },
                     ),
                     PersonalDetailsItemModel(
                       title: 'My items',
-                      subtitle: AppLocalisations.onLabel,
+                      subtitle: state.createdIds.isNotEmpty
+                          ? AppLocalisations.onLabel
+                          : AppLocalisations.offLabel,
                       icon: Icons.ballot_outlined,
-                      showEnabled: true,
+                      showEnabled: state.createdIds.isNotEmpty,
+                      onTap: () {
+                        context.read<UserDataCubit>().clearMyItems();
+                      },
                     ),
                   ];
 
@@ -79,6 +94,7 @@ class ClearUserDataPage extends StatelessWidget {
                         description: item.subtitle,
                         icon: item.icon,
                         showEnabled: item.showEnabled,
+                        onTap: item.onTap,
                       );
                     },
                   );
@@ -94,7 +110,9 @@ class ClearUserDataPage extends StatelessWidget {
               child: AccountItem(
                 text: 'Delete All Data',
                 textStyle: AppTextStyles.zonaPro14.copyWith(color: Colors.redAccent),
-                onTap: () {},
+                onTap: () {
+                  context.read<UserDataCubit>().clearAllData();
+                },
                 isCentered: true,
               ),
             ),
