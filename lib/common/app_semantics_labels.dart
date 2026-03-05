@@ -52,4 +52,6 @@ class AppSemanticsLabels {
   static const personalDetailsItem = 'personalDetailsItem';
 
   static const privacyLinkItem = 'privacyLinkItem';
+
+  static const avatarSetImageButton = 'avatarSetImageButton';
 }
