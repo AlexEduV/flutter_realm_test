@@ -32,8 +32,9 @@ class RecentlyViewedPage extends StatelessWidget {
               final allCars = state.cars;
 
               final viewedIds = serviceLocator<UserDataCubit>().state.viewedIds.reversed;
-              final viewedEntities = allCars
-                  .where((entity) => viewedIds.contains(entity.carId))
+
+              final viewedEntities = viewedIds
+                  .map((id) => allCars.firstWhere((entity) => entity.carId == id))
                   .toList();
 
               if (viewedEntities.isEmpty) {

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
@@ -138,11 +137,12 @@ class UserDataCubit extends Cubit<UserDataState> {
   void addCarToRecentlyViewed(String carId) {
     if (carId.isEmpty) return;
 
-    final newList = user.viewedIds.toList()..add(carId);
-    final cleanedList = newList.squashConsecutive();
+    if (user.viewedIds.lastOrNull == carId) return;
 
-    user = user.copyWith(viewedIds: cleanedList);
-    emit(state.copyWith(viewedIds: cleanedList));
+    final newList = user.viewedIds.toList()..add(carId);
+
+    user = user.copyWith(viewedIds: newList);
+    emit(state.copyWith(viewedIds: newList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
   }
