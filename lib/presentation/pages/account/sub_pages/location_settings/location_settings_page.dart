@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/repositories/region_repository.dart';
+import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/app_colors.dart';
@@ -45,7 +45,7 @@ class LocationSettingsPage extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: BlocBuilder<UserDataCubit, UserDataState>(
                 builder: (context, state) {
-                  final region = serviceLocator<RegionRepository>().getRegionByCode(state.region);
+                  final region = serviceLocator<GetRegionByCodeUseCase>().call(state.region);
 
                   return Column(
                     children: [
