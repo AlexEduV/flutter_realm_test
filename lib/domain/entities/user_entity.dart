@@ -112,7 +112,7 @@ class UserEntity {
     'favoriteIds': favoriteIds,
     'viewedIds': viewedIds,
     'createdIds': createdIds,
-    'lastSeenCar': lastSeenCar,
+    'lastSeenCar': lastSeenCar?.map((key, value) => MapEntry(key.toIso8601String(), value)),
     'isLocationPermissionGranted': isLocationPermissionGranted,
   };
 
