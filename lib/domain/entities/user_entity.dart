@@ -48,6 +48,29 @@ class UserEntity {
     );
   }
 
+  factory UserEntity.initial({
+    required String userId,
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String password,
+  }) {
+    return UserEntity(
+      userId: userId,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      region: 'uk',
+      isLocationPermissionGranted: false,
+      favoriteIds: [],
+      createdIds: [],
+      viewedIds: [],
+      lastSeenCar: null,
+      avatarImageSrc: null,
+    );
+  }
+
   UserEntity copyWith({
     String? userId,
     String? firstName,
@@ -75,6 +98,38 @@ class UserEntity {
       password: password ?? this.password,
       region: region ?? this.region,
       avatarImageSrc: avatarImageSrc ?? this.avatarImageSrc,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'userId': userId,
+    'email': email,
+    'password': password,
+    'firstName': firstName,
+    'lastName': lastName,
+    'region': region,
+    'avatarImageSrc': avatarImageSrc,
+    'favoriteIds': favoriteIds,
+    'viewedIds': viewedIds,
+    'createdIds': createdIds,
+    'lastSeenCar': lastSeenCar,
+    'isLocationPermissionGranted': isLocationPermissionGranted,
+  };
+
+  factory UserEntity.fromJson(Map<String, dynamic> json) {
+    return UserEntity(
+      userId: json['userId'] as String,
+      email: json['email'] as String,
+      password: json['password'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      region: (json['region'] ?? '') as String,
+      avatarImageSrc: json['avatarImageSrc'] as String?,
+      lastSeenCar: json['lastSeenCar'] as Map<DateTime, String>?,
+      viewedIds: json['viewedIds'] as List<String>,
+      createdIds: json['createdIds'] as List<String>,
+      favoriteIds: json['favoriteIds'] as List<String>,
+      isLocationPermissionGranted: json['isLocationPermissionGranted'] as bool,
     );
   }
 }
