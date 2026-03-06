@@ -14,6 +14,7 @@ extension UserExtensions on User {
       entity.region,
       favoriteIds: entity.favoriteIds,
       viewedIds: entity.viewedIds,
+      createdIds: entity.createdIds,
       lastSeenCar: _getLastSeenCar(entity.lastSeenCar),
       avatarImage: entity.avatarImageSrc,
     );

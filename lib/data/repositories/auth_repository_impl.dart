@@ -47,6 +47,8 @@ class AuthRepositoryImpl implements AuthRepository {
     final user = users.firstWhere((element) => element.email == email);
 
     await AuthSessionUtil.saveUserSession(user.userId);
+
+    //todo: problem getting viewedIds
     _localStorage.update(UserExtensions.fromEntity(user));
 
     isAuthenticated = true;
