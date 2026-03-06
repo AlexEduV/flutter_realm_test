@@ -88,25 +88,38 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             BlocBuilder<ExplorePageCubit, ExplorePageState>(
               builder: (context, state) {
                 if (state.isLoading) {
-                  //todo: maybe add opacity transition between loading and the list.
-                  //and the list items can be shown one at a time.
-                  return const SliverFillRemaining(
-                    child: Center(child: CircularProgressIndicator()),
+                  return SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: AnimatedOpacity(
+                      opacity: state.isLoading ? 1.0 : 0.0,
+                      duration: const Duration(milliseconds: 400),
+                      child: const Center(child: CircularProgressIndicator()),
+                    ),
                   );
                 } else {
                   final cars = state.cars;
-
                   return SliverPadding(
                     padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
                     sliver: BlocBuilder<UserDataCubit, UserDataState>(
                       buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
-                      builder: (context, state) {
+                      builder: (context, userState) {
                         return SliverList(
                           key: cars.isEmpty ? const ValueKey('empty') : widget.listKey,
                           delegate: SliverChildBuilderDelegate((context, index) {
                             final car = cars[index];
-
-                            return _buildItem(CarExtensions.fromEntity(car), index);
+                            return TweenAnimationBuilder<double>(
+                              tween: Tween(begin: 0, end: 1),
+                              duration: Duration(milliseconds: 300 + index * 200),
+                              builder: (context, value, child) {
+                                return Opacity(
+                                  opacity: value,
+                                  child: Transform.scale(
+                                    scale: 0.95 + 0.05 * value,
+                                    child: _buildItem(CarExtensions.fromEntity(car), index),
+                                  ),
+                                );
+                              },
+                            );
                           }, childCount: cars.length),
                         );
                       },
