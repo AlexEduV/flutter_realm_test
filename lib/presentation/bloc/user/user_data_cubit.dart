@@ -47,6 +47,13 @@ class UserDataCubit extends Cubit<UserDataState> {
     );
   }
 
+  void updateCloudUsers() {
+    //todo: push any updates not only to the local storage, but to the mockUsers as well,
+    //so the data can be reused on logging in again.
+
+    //update by id, or email.
+  }
+
   void setLastSeenCar(String? carId) {
     final newLastSeenCarData = carId == null ? null : {DateTime.now(): carId};
 
