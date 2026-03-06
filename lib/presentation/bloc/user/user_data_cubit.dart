@@ -197,20 +197,8 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     if (user == null) return;
 
-    //todo: probably favorite, viewed and created items are needed to be here too,
-    // but all the data that was created in the guest mode also should be synced
-
-    emit(
-      state.copyWith(
-        isUserAuthenticated: true,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        password: user.password,
-        region: user.region,
-        avatarImageSrc: user.avatarImageSrc,
-      ),
-    );
+    //todo: if the user was in the guest mode, migrate the favorites and created items to the account;
+    init();
   }
 
   void logOutUser() {
