@@ -86,6 +86,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await MockUsers.saveMockUsers(users);
   }
 
+  @override
   Future<void> updateUser(String email, UserEntity data) async {
     users.removeWhere((element) => element.email == email);
     users.add(data);
