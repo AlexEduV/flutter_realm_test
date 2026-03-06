@@ -1,5 +1,4 @@
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
-import 'package:test_futter_project/domain/entities/user_entity_short.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
@@ -7,13 +6,14 @@ import 'package:test_futter_project/utils/auth_session_util.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../common/extensions/user_scheme_extension.dart';
+import '../../domain/entities/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final BaseLocalStorage _localStorage;
 
   AuthRepositoryImpl(this._localStorage);
 
-  late final Map<String, UserEntityShort> users;
+  late final Map<String, UserEntity> users;
 
   @override
   Future<void> init() async {
@@ -43,7 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
     final user = users.values.firstWhere((element) => element.email == email);
 
     await AuthSessionUtil.saveUserSession(user.userId);
-    _localStorage.update(UserExtensions.fromUserEntityShort(user));
+    _localStorage.update(UserExtensions.fromEntity(user));
 
     return AuthResult(success: true);
   }
@@ -62,20 +62,18 @@ class AuthRepositoryImpl implements AuthRepository {
     }
 
     final newUserId = users.length;
-    final user = UserEntityShort(
+    final user = UserEntity.initial(
       userId: '$newUserId',
       email: email,
       password: password,
       firstName: firstName,
       lastName: lastName,
-      region: 'uk',
-      avatarImageSrc: null,
     );
 
     users.addAll({'$newUserId': user});
     await MockUsers.saveMockUsers(users);
     await AuthSessionUtil.saveUserSession(newUserId.toString());
-    _localStorage.update(UserExtensions.fromUserEntityShort(user));
+    _localStorage.update(UserExtensions.fromEntity(user));
 
     return AuthResult(success: true);
   }
