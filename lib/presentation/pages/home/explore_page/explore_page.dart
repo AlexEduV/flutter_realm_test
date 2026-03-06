@@ -109,11 +109,14 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                             final car = cars[index];
                             return TweenAnimationBuilder<double>(
                               tween: Tween(begin: 0, end: 1),
-                              duration: Duration(milliseconds: 300 + index * 100),
-                              builder: (context, opacity, child) {
+                              duration: Duration(milliseconds: 300 + index * 200),
+                              builder: (context, value, child) {
                                 return Opacity(
-                                  opacity: opacity,
-                                  child: _buildItem(CarExtensions.fromEntity(car), index),
+                                  opacity: value,
+                                  child: Transform.scale(
+                                    scale: 0.95 + 0.05 * value,
+                                    child: _buildItem(CarExtensions.fromEntity(car), index),
+                                  ),
                                 );
                               },
                             );
