@@ -27,6 +27,7 @@ class AuthRepositoryImpl implements AuthRepository {
     _localStorage.clearUser();
     await Future.delayed(const Duration(milliseconds: 200));
 
+    _localStorage.initUser();
     isAuthenticated = false;
   }
 
