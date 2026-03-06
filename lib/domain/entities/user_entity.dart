@@ -126,9 +126,9 @@ class UserEntity {
       region: (json['region'] ?? '') as String,
       avatarImageSrc: json['avatarImageSrc'] as String?,
       lastSeenCar: json['lastSeenCar'] as Map<DateTime, String>?,
-      viewedIds: json['viewedIds'] as List<String>,
-      createdIds: json['createdIds'] as List<String>,
-      favoriteIds: json['favoriteIds'] as List<String>,
+      viewedIds: (json['viewedIds'] as List<dynamic>).map((e) => e as String).toList(),
+      createdIds: (json['createdIds'] as List<dynamic>).map((e) => e as String).toList(),
+      favoriteIds: (json['favoriteIds'] as List<dynamic>).map((e) => e as String).toList(),
       isLocationPermissionGranted: json['isLocationPermissionGranted'] as bool,
     );
   }
