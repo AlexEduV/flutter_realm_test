@@ -6,7 +6,6 @@ import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
-import 'package:test_futter_project/domain/entities/user_entity_short.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -166,17 +165,15 @@ void main() {
   group('authUser', () {
     test('emits authenticated state with user data', () {
       // Mock the user returned by MockUsers.getUserByEmail
-      MockUsers.initialUsers = {
-        '1': const UserEntityShort(
+      MockUsers.initialUsers = [
+        UserEntity.initial(
           userId: '1',
           email: 'auth@example.com',
           password: 'qwertyUI10!',
           firstName: 'Auth',
           lastName: 'User',
-          region: 'uk',
-          avatarImageSrc: null,
         ),
-      };
+      ];
 
       cubit.authUser('auth@example.com');
       expect(cubit.state.isUserAuthenticated, true);

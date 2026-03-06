@@ -13,7 +13,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   AuthRepositoryImpl(this._localStorage);
 
-  late final Map<String, UserEntity> users;
+  late final List<UserEntity> users;
 
   @override
   Future<void> init() async {
@@ -32,15 +32,15 @@ class AuthRepositoryImpl implements AuthRepository {
     // Simulate network delay
     await Future.delayed(const Duration(milliseconds: 1500));
 
-    if (!users.values.any((element) => element.email == email)) {
+    if (!users.any((element) => element.email == email)) {
       return AuthResult(success: false, message: AppLocalisations.authErrorUserNotFoundMessage);
     }
 
-    if (!users.values.any((element) => element.password == password && element.email == email)) {
+    if (!users.any((element) => element.password == password && element.email == email)) {
       return AuthResult(success: false, message: AppLocalisations.authErrorIncorrectPassword);
     }
 
-    final user = users.values.firstWhere((element) => element.email == email);
+    final user = users.firstWhere((element) => element.email == email);
 
     await AuthSessionUtil.saveUserSession(user.userId);
     _localStorage.update(UserExtensions.fromEntity(user));
@@ -57,7 +57,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     await Future.delayed(const Duration(milliseconds: 1500));
 
-    if (users.values.any((element) => element.email == email)) {
+    if (users.any((element) => element.email == email)) {
       return AuthResult(success: false, message: AppLocalisations.authErrorUserAlreadyExists);
     }
 
@@ -70,7 +70,7 @@ class AuthRepositoryImpl implements AuthRepository {
       lastName: lastName,
     );
 
-    users.addAll({'$newUserId': user});
+    users.add(user);
     await MockUsers.saveMockUsers(users);
     await AuthSessionUtil.saveUserSession(newUserId.toString());
     _localStorage.update(UserExtensions.fromEntity(user));
@@ -82,7 +82,14 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> deleteAccount(String email) async {
     await logOut();
 
-    users.removeWhere((elementId, element) => element.email == email);
+    users.removeWhere((element) => element.email == email);
+    await MockUsers.saveMockUsers(users);
+  }
+
+  Future<void> updateUser(String email, UserEntity data) async {
+    users.removeWhere((element) => element.email == email);
+    users.add(data);
+
     await MockUsers.saveMockUsers(users);
   }
 }
