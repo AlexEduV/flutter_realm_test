@@ -40,7 +40,7 @@ void main() {
       final expectedStyle = AppTextStyles.zonaPro16.copyWith(color: Colors.white);
 
       expect(textWidget.style?.fontSize, expectedStyle.fontSize);
-      expect(textWidget.style?.fontWeight, expectedStyle.fontWeight);
+      expect(textWidget.style?.fontWeight, FontWeight.w600);
       expect(textWidget.style?.color, expectedStyle.color);
     });
 
