@@ -88,7 +88,8 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
             BlocBuilder<ExplorePageCubit, ExplorePageState>(
               builder: (context, state) {
                 if (state.isLoading) {
-                  return SliverToBoxAdapter(
+                  return SliverFillRemaining(
+                    hasScrollBody: false,
                     child: AnimatedOpacity(
                       opacity: state.isLoading ? 1.0 : 0.0,
                       duration: const Duration(milliseconds: 400),
