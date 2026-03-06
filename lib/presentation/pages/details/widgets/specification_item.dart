@@ -14,8 +14,8 @@ class SpecificationItem extends StatelessWidget {
       spacing: AppDimensions.minorS / 2,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w400)),
-        Text(subtitle, style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w400)),
+        Text(title, style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w500)),
+        Text(subtitle, style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600)),
       ],
     );
   }

@@ -46,7 +46,7 @@ class LastSeenWidget extends StatelessWidget {
                   ),
                   child: Text(
                     AppLocalisations.lastSeenSectionTitle,
-                    style: AppTextStyles.zonaPro18White,
+                    style: AppTextStyles.zonaPro18White.copyWith(fontWeight: FontWeight.w600),
                   ),
                 ),
 

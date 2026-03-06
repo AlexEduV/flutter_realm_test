@@ -97,7 +97,9 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
                           child: Text(
                             widget.article.title,
                             maxLines: 2,
-                            style: AppTextStyles.zonaPro16White,
+                            style: AppTextStyles.zonaPro16White.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
