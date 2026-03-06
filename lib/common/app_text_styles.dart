@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart' show FontWeight, TextStyle;
-import 'package:flutter/material.dart' show Colors;
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/extensions/text_style_extension.dart';
 
 class AppTextStyles {
   static const zonaPro14 = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
@@ -10,11 +10,11 @@ class AppTextStyles {
   static const zonaPro24 = TextStyle(fontSize: 24, fontWeight: FontWeight.w600);
   static const zonaPro30 = TextStyle(fontSize: 30, fontWeight: FontWeight.w700);
 
-  static final zonaPro30White = zonaPro30.copyWith(color: Colors.white);
-  static final zonaPro24White = zonaPro24.copyWith(color: Colors.white);
-  static final zonaPro18White = zonaPro18.copyWith(color: Colors.white);
-  static final zonaPro16White = zonaPro16.copyWith(color: Colors.white);
-  static final zonaPro14White = zonaPro14.copyWith(color: Colors.white);
+  static final zonaPro30White = zonaPro30.whiten();
+  static final zonaPro24White = zonaPro24.whiten();
+  static final zonaPro18White = zonaPro18.whiten();
+  static final zonaPro16White = zonaPro16.whiten();
+  static final zonaPro14White = zonaPro14.whiten();
 
   static final zonaPro16Grey = zonaPro16.copyWith(color: AppColors.placeholderColorDark);
 }
