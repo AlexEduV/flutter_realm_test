@@ -124,6 +124,9 @@ class RealmLocalStorage implements BaseLocalStorage {
 
     //exception - list is no longer available.
 
+    //the usual update still does not work after fixing conversions;
+    //the changed lists work fine, but the unchanged - throw this exception
+
     final currentUser = realm.all<User>().first;
 
     realm.write(() {
