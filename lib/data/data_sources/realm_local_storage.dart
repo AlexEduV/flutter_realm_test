@@ -113,6 +113,17 @@ class RealmLocalStorage implements BaseLocalStorage {
 
   @override
   void updateUserFull(UserEntity user) {
+    //todo: this seems like a solution, but still does not work
+
+    //steps to reproduce:
+    //logout
+    //login to the main account
+    //change favorites, go to details;
+    //logout
+    //login again with the same account.
+
+    //exception - list is no longer available.
+
     final currentUser = realm.all<User>().first;
 
     realm.write(() {
