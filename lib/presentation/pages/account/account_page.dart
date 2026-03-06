@@ -11,6 +11,7 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/account_item.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/account_item_separated.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/user_avatar.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
@@ -23,6 +24,8 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final itemTextStyle = AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600);
+
     return BlocBuilder<UserDataCubit, UserDataState>(
       builder: (context, state) {
         if (!state.isUserAuthenticated) {
@@ -68,6 +71,7 @@ class AccountPage extends StatelessWidget {
                     child: Column(
                       children: [
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.person_outlined,
                           text: AppLocalisations.accountItemPersonalDetails,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
@@ -75,26 +79,31 @@ class AccountPage extends StatelessWidget {
 
                         //todo: in the personal details -> Change password
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.location_on_outlined,
                           text: AppLocalisations.accountItemLocation,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.locationSettings),
                         ),
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.checklist_outlined,
                           text: AppLocalisations.accountItemMyItems,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.myItems),
                         ),
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.remove_red_eye_outlined,
                           text: AppLocalisations.accountItemViewedItems,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.recentlyViewed),
                         ),
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.cleaning_services,
                           text: AppLocalisations.accountItemClearData,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.clearUserData),
                         ),
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.logout_outlined,
                           text: AppLocalisations.accountItemLogout,
                           onTap: () async {
@@ -112,21 +121,14 @@ class AccountPage extends StatelessWidget {
 
                 Padding(
                   padding: const EdgeInsets.all(AppDimensions.normalS),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                    clipBehavior: Clip.antiAlias,
-                    child: AccountItem(
-                      text: AppLocalisations.accountItemDeleteAccount,
-                      textStyle: AppTextStyles.zonaPro14.copyWith(color: Colors.redAccent),
-                      onTap: () async {
-                        await context.read<AuthenticationCubit>().deleteAccount(state.email);
+                  child: AccountItemSeparated(
+                    onTap: () async {
+                      await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
-                        if (!context.mounted) return;
+                      if (!context.mounted) return;
 
-                        context.read<UserDataCubit>().logOutUser();
-                      },
-                      isCentered: true,
-                    ),
+                      context.read<UserDataCubit>().logOutUser();
+                    },
                   ),
                 ),
               ],

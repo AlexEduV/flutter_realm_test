@@ -164,7 +164,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           Flexible(
                             child: Text(
                               '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
-                              style: AppTextStyles.zonaPro24.copyWith(fontWeight: FontWeight.w500),
+                              style: AppTextStyles.zonaPro24.copyWith(fontWeight: FontWeight.w600),
                               maxLines: 2,
                             ),
                           ),

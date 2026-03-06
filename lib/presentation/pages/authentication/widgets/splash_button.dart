@@ -43,7 +43,11 @@ class SplashButton extends StatelessWidget {
                   width: AppDimensions.splashButtonProgressBarSize,
                   child: CircularProgressIndicator(color: foregroundColor),
                 )
-              : Text(title, style: AppTextStyles.zonaPro16, textAlign: TextAlign.center),
+              : Text(
+                  title,
+                  style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.center,
+                ),
         ),
       ),
     );

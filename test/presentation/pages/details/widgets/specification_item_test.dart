@@ -35,7 +35,7 @@ void main() {
     final subtitleText = tester.widget<Text>(find.text(subtitle));
 
     // You can check fontWeight or color if AppTextStyles.zonaPro16Grey/zonaPro18 are public
-    expect(titleText.style?.fontWeight, FontWeight.w400);
-    expect(subtitleText.style?.fontWeight, FontWeight.w400);
+    expect(titleText.style?.fontWeight, FontWeight.w500);
+    expect(subtitleText.style?.fontWeight, FontWeight.w600);
   });
 }

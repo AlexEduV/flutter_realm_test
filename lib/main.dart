@@ -75,7 +75,10 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp.router(
           title: AppLocalisations.appName,
-          theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor)),
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
+            fontFamily: 'Zona Pro',
+          ),
           routerConfig: AppRouter.router,
           debugShowCheckedModeBanner: false,
         ),

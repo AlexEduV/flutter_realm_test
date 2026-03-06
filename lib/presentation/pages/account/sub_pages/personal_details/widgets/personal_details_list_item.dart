@@ -27,7 +27,7 @@ class PersonalDetailsListItem extends StatelessWidget {
       label: '${AppSemanticsLabels.personalDetailsItem} $title',
       child: ListTile(
         contentPadding: const EdgeInsets.all(AppDimensions.normalS),
-        title: Text(title, style: AppTextStyles.zonaPro16),
+        title: Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
         onTap: onTap,
         subtitle: Row(
           spacing: AppDimensions.minorL,

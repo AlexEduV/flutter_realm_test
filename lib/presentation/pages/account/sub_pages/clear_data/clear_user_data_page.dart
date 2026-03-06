@@ -8,7 +8,7 @@ import '../../../../../common/app_text_styles.dart';
 import '../../../../../utils/l10n.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
-import '../../widgets/account_item.dart';
+import '../../widgets/account_item_separated.dart';
 import '../../widgets/custom_divider.dart';
 import '../personal_details/widgets/personal_details_list_item.dart';
 
@@ -88,17 +88,10 @@ class ClearUserDataPage extends StatelessWidget {
 
             const SizedBox(height: AppDimensions.normalS),
 
-            Material(
-              borderRadius: BorderRadius.circular(AppDimensions.normalM),
-              clipBehavior: Clip.antiAlias,
-              child: AccountItem(
-                text: AppLocalisations.clearAllDataItem,
-                textStyle: AppTextStyles.zonaPro14.copyWith(color: Colors.redAccent),
-                onTap: () {
-                  context.read<UserDataCubit>().clearAllData();
-                },
-                isCentered: true,
-              ),
+            AccountItemSeparated(
+              onTap: () {
+                context.read<UserDataCubit>().clearAllData();
+              },
             ),
           ],
         ),

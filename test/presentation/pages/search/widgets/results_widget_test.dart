@@ -43,7 +43,7 @@ void main() {
 
       final textWidget = tester.widget<Text>(find.text(AppLocalisations.results));
       expect(textWidget.style?.fontSize, AppTextStyles.zonaPro16.fontSize);
-      expect(textWidget.style?.fontWeight, AppTextStyles.zonaPro16.fontWeight);
+      expect(textWidget.style?.fontWeight, FontWeight.w600);
     });
 
     testWidgets('row has correct spacing', (WidgetTester tester) async {

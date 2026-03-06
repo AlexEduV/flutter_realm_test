@@ -103,7 +103,7 @@ class _ArticlePageState extends State<ArticlePage> {
                             const CircleAvatar(radius: AppDimensions.normalS),
                             Text(
                               state.article?.author.fullName ?? '',
-                              style: AppTextStyles.zonaPro14,
+                              style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),
