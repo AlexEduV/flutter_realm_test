@@ -23,6 +23,8 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final itemTextStyle = AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600);
+
     return BlocBuilder<UserDataCubit, UserDataState>(
       builder: (context, state) {
         if (!state.isUserAuthenticated) {
@@ -68,6 +70,7 @@ class AccountPage extends StatelessWidget {
                     child: Column(
                       children: [
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.person_outlined,
                           text: AppLocalisations.accountItemPersonalDetails,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
@@ -75,26 +78,31 @@ class AccountPage extends StatelessWidget {
 
                         //todo: in the personal details -> Change password
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.location_on_outlined,
                           text: AppLocalisations.accountItemLocation,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.locationSettings),
                         ),
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.checklist_outlined,
                           text: AppLocalisations.accountItemMyItems,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.myItems),
                         ),
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.remove_red_eye_outlined,
                           text: AppLocalisations.accountItemViewedItems,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.recentlyViewed),
                         ),
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.cleaning_services,
                           text: AppLocalisations.accountItemClearData,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.clearUserData),
                         ),
                         AccountItem(
+                          textStyle: itemTextStyle,
                           icon: Icons.logout_outlined,
                           text: AppLocalisations.accountItemLogout,
                           onTap: () async {
@@ -117,7 +125,7 @@ class AccountPage extends StatelessWidget {
                     clipBehavior: Clip.antiAlias,
                     child: AccountItem(
                       text: AppLocalisations.accountItemDeleteAccount,
-                      textStyle: AppTextStyles.zonaPro14.copyWith(color: Colors.redAccent),
+                      textStyle: itemTextStyle.copyWith(color: Colors.redAccent),
                       onTap: () async {
                         await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
