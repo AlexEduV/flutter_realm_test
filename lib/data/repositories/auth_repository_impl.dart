@@ -14,6 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._localStorage);
 
   late final List<UserEntity> users;
+  late bool isAuthenticated = false;
 
   @override
   Future<void> init() async {
@@ -25,6 +26,8 @@ class AuthRepositoryImpl implements AuthRepository {
     await AuthSessionUtil.clearUserSession();
     _localStorage.clearUser();
     await Future.delayed(const Duration(milliseconds: 200));
+
+    isAuthenticated = false;
   }
 
   @override
@@ -45,6 +48,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await AuthSessionUtil.saveUserSession(user.userId);
     _localStorage.update(UserExtensions.fromEntity(user));
 
+    isAuthenticated = true;
     return AuthResult(success: true);
   }
 
@@ -75,6 +79,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await AuthSessionUtil.saveUserSession(newUserId.toString());
     _localStorage.update(UserExtensions.fromEntity(user));
 
+    isAuthenticated = true;
     return AuthResult(success: true);
   }
 
@@ -88,6 +93,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> updateUser(String email, UserEntity data) async {
+    if (!isAuthenticated) return;
+
     users.removeWhere((element) => element.email == email);
     users.add(data);
 
