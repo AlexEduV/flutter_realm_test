@@ -11,6 +11,7 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/account_item.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/account_item_separated.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/user_avatar.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
@@ -120,21 +121,14 @@ class AccountPage extends StatelessWidget {
 
                 Padding(
                   padding: const EdgeInsets.all(AppDimensions.normalS),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                    clipBehavior: Clip.antiAlias,
-                    child: AccountItem(
-                      text: AppLocalisations.accountItemDeleteAccount,
-                      textStyle: itemTextStyle.copyWith(color: Colors.redAccent),
-                      onTap: () async {
-                        await context.read<AuthenticationCubit>().deleteAccount(state.email);
+                  child: AccountItemSeparated(
+                    onTap: () async {
+                      await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
-                        if (!context.mounted) return;
+                      if (!context.mounted) return;
 
-                        context.read<UserDataCubit>().logOutUser();
-                      },
-                      isCentered: true,
-                    ),
+                      context.read<UserDataCubit>().logOutUser();
+                    },
                   ),
                 ),
               ],
