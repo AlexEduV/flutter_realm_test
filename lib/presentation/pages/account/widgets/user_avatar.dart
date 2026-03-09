@@ -22,14 +22,25 @@ class UserAvatar extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            CircleAvatar(
-              radius: AppDimensions.avatarImageSize,
-              backgroundImage: (imageSrc != null && imageSrc!.isNotEmpty)
-                  ? FileImage(File(imageSrc!))
-                  : null,
-              backgroundColor: imageSrc == null || imageSrc!.isEmpty
-                  ? AppColors.placeholderColor
-                  : null,
+            Container(
+              width: AppDimensions.avatarImageSize * 2,
+              height: AppDimensions.avatarImageSize * 2,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.white, // Set your desired border color
+                  width: 3.0, // Set your desired border width
+                ),
+              ),
+              child: CircleAvatar(
+                radius: AppDimensions.avatarImageSize,
+                backgroundImage: (imageSrc != null && imageSrc!.isNotEmpty)
+                    ? FileImage(File(imageSrc!))
+                    : null,
+                backgroundColor: imageSrc == null || imageSrc!.isEmpty
+                    ? AppColors.placeholderColor
+                    : null,
+              ),
             ),
             Positioned(
               bottom: 0,

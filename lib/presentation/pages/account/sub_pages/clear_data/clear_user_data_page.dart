@@ -101,7 +101,7 @@ class ClearUserDataPage extends StatelessWidget {
                         description: state.createdIds.isNotEmpty
                             ? AppLocalisations.onLabel
                             : AppLocalisations.offLabel,
-                        icon: Icons.ballot_outlined,
+                        icon: Icons.checklist_outlined,
                         showEnabled: state.createdIds.isNotEmpty,
                         onTap: state.createdIds.isEmpty
                             ? null
