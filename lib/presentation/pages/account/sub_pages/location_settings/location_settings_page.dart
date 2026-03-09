@@ -61,7 +61,7 @@ class LocationSettingsPage extends StatelessWidget {
                       PersonalDetailsListItem(
                         title: AppLocalisations.locationSettingsItemRegion,
                         description: region?.countryName ?? '',
-                        icon: Icons.public,
+                        icon: Icons.language,
                       ),
                     ].withDividers(divider: const CustomDivider()),
                   );
