@@ -36,7 +36,6 @@ class UserDataCubit extends Cubit<UserDataState> {
         createdIds: user.createdIds,
         viewedIds: user.viewedIds,
         isLocationPermissionGranted: user.isLocationPermissionGranted,
-        isUserAuthenticated: userSession != null,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
@@ -44,6 +43,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         password: user.password,
         region: user.region,
         avatarImageSrc: user.avatarImageSrc,
+        isUserAuthenticated: userSession != null,
       ),
     );
   }
