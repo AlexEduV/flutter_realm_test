@@ -8,7 +8,7 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_error_widget.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_form_switcher.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import 'login_page_test.mocks.dart';
 

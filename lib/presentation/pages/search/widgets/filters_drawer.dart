@@ -13,7 +13,7 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/debounced_text_form_field.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 class FiltersDrawer extends StatefulWidget {
   const FiltersDrawer({super.key});

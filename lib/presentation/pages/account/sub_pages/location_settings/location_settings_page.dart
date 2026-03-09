@@ -11,7 +11,7 @@ import 'package:test_futter_project/utils/localisation_util.dart';
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
-import '../../../../../utils/l10n.dart';
+import '../../../../../utils/l10n/l10n.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
 import '../../widgets/custom_divider.dart';

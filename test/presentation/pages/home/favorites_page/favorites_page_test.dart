@@ -9,7 +9,7 @@ import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/home/favorites_page/favorites_page.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 

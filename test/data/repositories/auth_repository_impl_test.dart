@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
 

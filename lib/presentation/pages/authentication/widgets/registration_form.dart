@@ -5,7 +5,7 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/pages/authentication/widgets/password_strength_bar_widget.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';

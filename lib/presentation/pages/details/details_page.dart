@@ -14,7 +14,7 @@ import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.
 
 import '../../../common/app_semantics_labels.dart';
 import '../../../domain/models/share_params_model.dart';
-import '../../../utils/l10n.dart';
+import '../../../utils/l10n/l10n.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';
 import '../../widgets/verified_badge.dart';

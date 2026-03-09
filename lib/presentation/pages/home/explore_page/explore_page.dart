@@ -14,7 +14,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/explore_header_delegate.dart';
 import 'package:test_futter_project/presentation/widgets/announcement_list_item.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../../common/extensions/car_scheme_extension.dart';
 import '../../../bloc/home/explore_page/explore_page_state.dart';

@@ -8,7 +8,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/account_page.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
 import '../authentication/login_page_test.mocks.dart';

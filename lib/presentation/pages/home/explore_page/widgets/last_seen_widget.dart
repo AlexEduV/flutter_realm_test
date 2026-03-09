@@ -10,7 +10,7 @@ import '../../../../../common/app_text_styles.dart';
 import '../../../../../di/injection_container.dart';
 import '../../../../../domain/usecases/database/get_car_by_id_use_case.dart';
 import '../../../../../utils/app_router.dart';
-import '../../../../../utils/l10n.dart';
+import '../../../../../utils/l10n/l10n.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
 import '../../../../widgets/app_semantics.dart';

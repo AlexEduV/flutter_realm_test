@@ -18,7 +18,7 @@ import 'package:test_futter_project/presentation/pages/search/widgets/model_filt
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../widgets/announcement_list_item.dart';
 import 'widgets/results_widget.dart';

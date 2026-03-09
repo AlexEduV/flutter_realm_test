@@ -7,7 +7,7 @@ import 'package:test_futter_project/common/extensions/widget_list_extension.dart
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../../../common/app_text_styles.dart';
 import '../../widgets/custom_divider.dart';

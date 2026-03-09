@@ -7,7 +7,7 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/specification_item.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';

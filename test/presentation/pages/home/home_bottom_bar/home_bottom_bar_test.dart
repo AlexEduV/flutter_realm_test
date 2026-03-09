@@ -8,7 +8,7 @@ import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/home_bottom_bar.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 

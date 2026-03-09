@@ -14,7 +14,7 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/image_cache_util.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

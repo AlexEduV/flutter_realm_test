@@ -10,7 +10,7 @@ import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_routes.dart';
 import '../../../../../common/app_text_styles.dart';
-import '../../../../../utils/l10n.dart';
+import '../../../../../utils/l10n/l10n.dart';
 import 'explore_article_item.dart';
 import 'last_seen_widget.dart';
 
@@ -57,7 +57,10 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
+                  Text(
+                    AppLocalisations.of(context).explorePageTitle,
+                    style: AppTextStyles.zonaPro30White,
+                  ),
                   IconButton(
                     onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
                     icon: const Icon(

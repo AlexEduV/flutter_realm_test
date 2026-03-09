@@ -8,7 +8,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/home/inbox_page/widgets/inbox_list_item.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../../common/app_text_styles.dart';
 

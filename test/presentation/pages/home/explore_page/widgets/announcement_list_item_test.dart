@@ -9,7 +9,7 @@ import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/presentation/widgets/announcement_list_item.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 void main() {
   setUp(() {

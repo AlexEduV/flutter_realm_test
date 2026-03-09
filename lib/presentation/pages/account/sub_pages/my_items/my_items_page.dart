@@ -6,7 +6,7 @@ import 'package:test_futter_project/common/enums/details_page_source.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
 import '../../../../../di/injection_container.dart';
-import '../../../../../utils/l10n.dart';
+import '../../../../../utils/l10n/l10n.dart';
 import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../../../bloc/home/explore_page/explore_page_state.dart';
 import '../../../../bloc/user/user_data_cubit.dart';

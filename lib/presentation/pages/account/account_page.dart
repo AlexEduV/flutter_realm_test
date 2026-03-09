@@ -16,7 +16,7 @@ import 'package:test_futter_project/presentation/pages/account/widgets/custom_di
 import 'package:test_futter_project/presentation/pages/account/widgets/user_avatar.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../common/app_text_styles.dart';
 

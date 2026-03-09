@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 
 class AppLocalisations {
   final Map<String, String> localisations;
+  final String locale;
 
-  AppLocalisations(this.localisations);
+  AppLocalisations(this.localisations, this.locale);
 
   static AppLocalisations of(BuildContext context) {
     // This assumes you have an InheritedWidget or Localizations widget set up.
@@ -14,7 +15,6 @@ class AppLocalisations {
 
   //todo: maybe move to slang for strong typing
   String get appName => get('app.name');
-  String get locale => get('app.locale');
 
   String get explorePageTitle => get('pages.explore.title');
 

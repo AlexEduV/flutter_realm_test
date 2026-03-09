@@ -6,7 +6,7 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 

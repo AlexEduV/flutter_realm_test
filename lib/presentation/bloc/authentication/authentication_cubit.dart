@@ -9,7 +9,7 @@ import 'package:test_futter_project/domain/usecases/authentication/logout_use_ca
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(const AuthenticationState());

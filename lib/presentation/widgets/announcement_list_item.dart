@@ -12,7 +12,7 @@ import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 import 'package:test_futter_project/presentation/widgets/verified_badge.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../utils/app_router.dart';
 import 'app_semantics.dart';
@@ -45,7 +45,7 @@ class AnnouncementListItem extends StatelessWidget {
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,
-            label: AppLocalisations.deleteButtonTitle,
+            label: AppLocalisations.of(context).deleteButtonTitle,
           ),
         ],
       ),
@@ -167,7 +167,7 @@ class AnnouncementListItem extends StatelessWidget {
                                 getSpanIcon(icon: Icons.location_pin),
                                 TextSpan(
                                   text:
-                                      '${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
+                                      '${car?.distanceTo ?? 0} ${AppLocalisations.of(context).distanceWidgetText}',
                                   style: AppTextStyles.zonaPro20.copyWith(
                                     fontWeight: FontWeight.w400,
                                   ),

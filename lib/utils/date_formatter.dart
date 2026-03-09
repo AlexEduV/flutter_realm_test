@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 class DateFormatter {
   static String formatSmartDate(DateTime date) {

@@ -10,7 +10,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/home/favorites_page/widgets/car_list_item.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -20,7 +20,10 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.favoritesPageTitle, style: AppTextStyles.zonaPro20),
+        title: Text(
+          AppLocalisations.of(context).favoritesPageTitle,
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
@@ -37,7 +40,7 @@ class FavoritesPage extends StatelessWidget {
 
               if (favoriteEntities.isEmpty) {
                 return EmptyResultsPlaceholderWidget(
-                  text: AppLocalisations.favoritesEmptyPlaceholder,
+                  text: AppLocalisations.of(context).favoritesEmptyPlaceholder,
                 );
               }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 enum PromoType {
   //todo: not the best idea. localisation keys should only be in the l10n file;

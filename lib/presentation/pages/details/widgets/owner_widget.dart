@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';

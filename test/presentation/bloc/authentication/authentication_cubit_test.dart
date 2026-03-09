@@ -11,7 +11,7 @@ import 'package:test_futter_project/domain/usecases/authentication/register_use_
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 import '../../../data/data_sources/mock_auth_service_test.mocks.dart';
 import '../../../utils/app_router_test.mocks.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/models/owner_model.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/owner_widget.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n/l10n.dart';
 
 void main() {
   setUp(() {

@@ -1,20 +1,18 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/utils/json_util.dart';
-
-import 'l10n.dart';
+import 'package:test_futter_project/utils/l10n/app_localisations_delegate.dart';
 
 class LocalisationUtil {
   static Future<void> init(String locale) async {
-    AppLocalisations.localisations = await LocalisationUtil.loadLocalisations(
-      'assets/mocks/localisation_mock_response_data_$locale.json',
-    );
+    final localisations = await const AppLocalisationsDelegate().load(Locale(locale));
 
-    await initializeDateFormatting(AppLocalisations.locale, null);
-    await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);
+    await initializeDateFormatting(locale, null);
+    await LocalisationUtil.saveLocalisations(localisations);
   }
 
   //todo: use abstraction of shared preferences storage, so that the vendor might be changed easily
