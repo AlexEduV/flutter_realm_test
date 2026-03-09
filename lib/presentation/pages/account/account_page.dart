@@ -15,6 +15,7 @@ import 'package:test_futter_project/presentation/pages/account/widgets/account_i
 import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/user_avatar.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
+import 'package:test_futter_project/utils/dialog_helper.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/app_text_styles.dart';
@@ -123,12 +124,19 @@ class AccountPage extends StatelessWidget {
                   padding: const EdgeInsets.all(AppDimensions.normalS),
                   child: AccountItemSeparated(
                     title: AppLocalisations.accountItemDeleteAccount,
-                    onTap: () async {
-                      await context.read<AuthenticationCubit>().deleteAccount(state.email);
+                    onTap: () {
+                      DialogHelper.showConfirmationDialog(
+                        context,
+                        title: AppLocalisations.accountItemDeleteAccount,
+                        description: AppLocalisations.deleteAccountDialogDescription,
+                        onConfirm: () async {
+                          await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
-                      if (!context.mounted) return;
+                          if (!context.mounted) return;
 
-                      context.read<UserDataCubit>().logOutUser();
+                          context.read<UserDataCubit>().logOutUser();
+                        },
+                      );
                     },
                   ),
                 ),

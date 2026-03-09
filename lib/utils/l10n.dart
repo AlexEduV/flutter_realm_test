@@ -230,4 +230,6 @@ class AppLocalisations {
   static final clearFavoriteItemsDialogDescription = get('dialogs.clearFavoriteItems.description');
   static final clearMyItemsDialogDescription = get('dialogs.clearMyItems.description');
   static final clearAllDataDialogDescription = get('dialogs.clearAllData.description');
+
+  static final deleteAccountDialogDescription = get('dialogs.deleteAccount.description');
 }

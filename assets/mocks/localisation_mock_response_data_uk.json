@@ -213,6 +213,9 @@
     },
     "clearAllData": {
       "description": "Are you sure you want to delete all data? This action cannot be undone."
+    },
+    "deleteAccount": {
+      "description": "Are you sure you want to delete the account?"
     }
   }
 }

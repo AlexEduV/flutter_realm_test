@@ -213,6 +213,9 @@
     },
     "clearAllData": {
       "description": "Sei sicuro di voler eliminare tutti i dati? Questa azione non può essere annullata."
+    },
+    "deleteAccount": {
+      "description": "Sei sicuro di voler eliminare l'account?"
     }
   }
 }
