@@ -57,9 +57,8 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 showConfirmationDialog(
                                   context,
-                                  title: 'Clear recent items',
-                                  description:
-                                      'Are you sure you want to delete all recently viewed history?',
+                                  title: AppLocalisations.clearViewHistoryItem,
+                                  description: AppLocalisations.clearViewHistoryDialogDescription,
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearRecentItems();
                                   },
@@ -80,8 +79,8 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 showConfirmationDialog(
                                   context,
-                                  title: 'Clear favorite items',
-                                  description: 'Are you sure you want to clear favorite items?',
+                                  title: AppLocalisations.clearFavoritesItem,
+                                  description: AppLocalisations.clearFavoriteItemsDialogDescription,
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearFavorites();
                                   },
@@ -102,9 +101,8 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 showConfirmationDialog(
                                   context,
-                                  title: 'Clear my items',
-                                  description:
-                                      'Are you sure you want to delete all created items? This action cannot be undone.',
+                                  title: AppLocalisations.clearMyItemsItem,
+                                  description: AppLocalisations.clearMyItemsDialogDescription,
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearMyItems();
                                   },
@@ -130,9 +128,8 @@ class ClearUserDataPage extends StatelessWidget {
                       : () {
                           showConfirmationDialog(
                             context,
-                            title: 'Clear all data',
-                            description:
-                                'Are you sure you want to delete all data? This action cannot be undone',
+                            title: AppLocalisations.clearAllDataItem,
+                            description: AppLocalisations.clearAllDataDialogDescription,
                             onConfirm: () {
                               context.read<UserDataCubit>().clearAllData();
                             },
@@ -167,14 +164,14 @@ class ClearUserDataPage extends StatelessWidget {
                 Navigator.of(context).pop();
                 onCancel();
               },
-              child: const Text('Cancel'),
+              child: Text(AppLocalisations.cancelLabel),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 onConfirm();
               },
-              child: const Text('Confirm'),
+              child: Text(AppLocalisations.confirmLabel),
             ),
           ],
         );

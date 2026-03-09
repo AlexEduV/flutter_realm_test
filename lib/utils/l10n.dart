@@ -222,4 +222,16 @@ class AppLocalisations {
   static final String shareButtonLabel = get('general.share');
   static final String onLabel = get('general.on');
   static final String offLabel = get('general.off');
+
+  static final String confirmLabel = 'Confirm';
+  static final String cancelLabel = 'Cancel';
+
+  static final clearViewHistoryDialogDescription =
+      'Are you sure you want to delete all recently viewed history?';
+  static final clearFavoriteItemsDialogDescription =
+      'Are you sure you want to clear favorite items?';
+  static final clearMyItemsDialogDescription =
+      'Are you sure you want to delete all created items? This action cannot be undone.';
+  static final clearAllDataDialogDescription =
+      'Are you sure you want to delete all data? This action cannot be undone.';
 }
