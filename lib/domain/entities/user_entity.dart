@@ -125,7 +125,9 @@ class UserEntity {
       lastName: json['lastName'] as String,
       region: (json['region'] ?? '') as String,
       avatarImageSrc: json['avatarImageSrc'] as String?,
-      lastSeenCar: json['lastSeenCar'] as Map<DateTime, String>?,
+      lastSeenCar: (json['lastSeenCar'] as Map<String, dynamic>?)?.map(
+        (key, value) => MapEntry(DateTime.parse(key), value as String),
+      ),
       viewedIds: (json['viewedIds'] as List<dynamic>).map((e) => e as String).toList(),
       createdIds: (json['createdIds'] as List<dynamic>).map((e) => e as String).toList(),
       favoriteIds: (json['favoriteIds'] as List<dynamic>).map((e) => e as String).toList(),
