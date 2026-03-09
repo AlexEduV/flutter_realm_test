@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
@@ -16,28 +15,19 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/image_cache_util.dart';
 import 'package:test_futter_project/utils/l10n.dart';
-import 'package:test_futter_project/utils/localisation_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await initDependenciesContainer();
 
+  await MockRegionService.init();
+
   //todo: added flavors, but had to revert, because they broke the Android project.
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
 
-  //todo: get current region from the user
-  AppLocalisations.localisations = await LocalisationUtil.loadLocalisations(
-    'assets/mocks/localisation_mock_response_data_uk.json',
-  );
-
-  await initializeDateFormatting(AppLocalisations.locale, null);
-  await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);
-
   ImageCacheUtil.initExtendedCacheSize();
-
-  await MockRegionService.init();
 
   runApp(const MyApp());
 }

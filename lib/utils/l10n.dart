@@ -4,247 +4,231 @@ class AppLocalisations {
   static String get(String key) => localisations[key] ?? '';
 
   //todo: maybe move to slang for strong typing
-  static final String appName = get('app.name');
+  static String appName = get('app.name');
 
-  static final String locale = get('app.locale');
+  static String locale = get('app.locale');
 
-  static final String explorePageTitle = get('pages.explore.title');
+  static String explorePageTitle = get('pages.explore.title');
 
-  static final String results = get('pages.search.resultsSection.title');
+  static String results = get('pages.search.resultsSection.title');
 
-  static final String favoritesPageTitle = get('pages.favorites.title');
+  static String favoritesPageTitle = get('pages.favorites.title');
 
-  static final String favoritesEmptyPlaceholder = get('pages.favorites.emptyPlaceholder');
+  static String favoritesEmptyPlaceholder = get('pages.favorites.emptyPlaceholder');
 
-  static final String addCarButtonTooltip = get('actions.addCar.tooltip');
+  static String addCarButtonTooltip = get('actions.addCar.tooltip');
 
-  static final String deleteButtonTitle = get('actions.delete.title');
+  static String deleteButtonTitle = get('actions.delete.title');
 
-  static final String distanceWidgetText = get('widgets.distance.text');
+  static String distanceWidgetText = get('widgets.distance.text');
 
-  static final String recommendedSectionTitle = get('pages.explore.recommendedSection.title');
+  static String recommendedSectionTitle = get('pages.explore.recommendedSection.title');
 
-  static final String lastSeenSectionTitle = get('pages.explore.lastSeenSection.title');
+  static String lastSeenSectionTitle = get('pages.explore.lastSeenSection.title');
 
-  static final String searchPageTitle = get('pages.search.title');
+  static String searchPageTitle = get('pages.search.title');
 
   static final String searchTabCars = get('pages.search.tabs.cars');
 
   static final String searchTabBikes = get('pages.search.tabs.bikes');
 
-  static final String searchTabTrucks = get('pages.search.tabs.trucks');
+  static String searchTabTrucks = get('pages.search.tabs.trucks');
 
-  static final String emptySearchPlaceholderText = get('pages.search.emptyPlaceholder');
+  static String emptySearchPlaceholderText = get('pages.search.emptyPlaceholder');
 
-  static final String searchFilterModelTitle = get('filters.model.title');
+  static String searchFilterModelTitle = get('filters.model.title');
 
-  static final String searchFilterParametersTitle = get('filters.parameters.title');
+  static String searchFilterParametersTitle = get('filters.parameters.title');
 
-  static final String searchFilterModelPlaceholder = get('filters.model.placeholder');
+  static String searchFilterModelPlaceholder = get('filters.model.placeholder');
 
-  static final String parameterYearName = get('filters.parameters.year');
+  static String parameterYearName = get('filters.parameters.year');
 
-  static final String parameterColorName = get('filters.parameters.color');
+  static String parameterColorName = get('filters.parameters.color');
 
-  static final String parameterBodyTypeName = get('filters.parameters.bodyTypes.title');
+  static String parameterBodyTypeName = get('filters.parameters.bodyTypes.title');
 
-  static final String parameterPriceRangeName = get('filters.parameters.priceRange');
+  static String parameterPriceRangeName = get('filters.parameters.priceRange');
 
-  static final String parameterFuelTypeName = get('filters.parameters.fuelTypes.title');
+  static String parameterFuelTypeName = get('filters.parameters.fuelTypes.title');
 
-  static final String parameterTransmissionTypeName = get(
-    'filters.parameters.transmissionTypes.title',
-  );
+  static String parameterTransmissionTypeName = get('filters.parameters.transmissionTypes.title');
 
-  static final String filterValidationMessage = get('filters.parameters.filterValidationMessage');
+  static String filterValidationMessage = get('filters.parameters.filterValidationMessage');
 
-  static final String comingSoonPlaceholderPageTitle = get('pages.comingSoon.title');
+  static String comingSoonPlaceholderPageTitle = get('pages.comingSoon.title');
 
-  static final String comingSoonPlaceholderPageSubTitle = get('pages.comingSoon.subtitle');
+  static String comingSoonPlaceholderPageSubTitle = get('pages.comingSoon.subtitle');
 
-  static final String bodyTypeSedan = get('filters.parameters.bodyTypes.sedan');
+  static String bodyTypeSedan = get('filters.parameters.bodyTypes.sedan');
 
-  static final String bodyTypeHatchback = get('filters.parameters.bodyTypes.hatchback');
+  static String bodyTypeHatchback = get('filters.parameters.bodyTypes.hatchback');
 
-  static final String bodyTypeUniversal = get('filters.parameters.bodyTypes.universal');
+  static String bodyTypeUniversal = get('filters.parameters.bodyTypes.universal');
 
-  static final String bodyTypeMinivan = get('filters.parameters.bodyTypes.minivan');
+  static String bodyTypeMinivan = get('filters.parameters.bodyTypes.minivan');
 
-  static final String bodyTypeCoupe = get('filters.parameters.bodyTypes.coupe');
+  static String bodyTypeCoupe = get('filters.parameters.bodyTypes.coupe');
 
-  static final String bodyTypeCrossover = get('filters.parameters.bodyTypes.crossover');
+  static String bodyTypeCrossover = get('filters.parameters.bodyTypes.crossover');
 
-  static final String bodyTypeSemi = get('filters.parameters.bodyTypes.semi');
+  static String bodyTypeSemi = get('filters.parameters.bodyTypes.semi');
 
-  static final String bodyTypeBike = get('filters.parameters.bodyTypes.bike');
+  static String bodyTypeBike = get('filters.parameters.bodyTypes.bike');
 
-  static final String fuelTypeDiesel = get('filters.parameters.fuelTypes.diesel');
+  static String fuelTypeDiesel = get('filters.parameters.fuelTypes.diesel');
 
-  static final String fuelTypeGasoline = get('filters.parameters.fuelTypes.gasoline');
+  static String fuelTypeGasoline = get('filters.parameters.fuelTypes.gasoline');
 
-  static final String fuelTypeEv = get('filters.parameters.fuelTypes.ev');
+  static String fuelTypeEv = get('filters.parameters.fuelTypes.ev');
 
-  static final String fuelTypeHybrid = get('filters.parameters.fuelTypes.hybrid');
+  static String fuelTypeHybrid = get('filters.parameters.fuelTypes.hybrid');
 
-  static final String transmissionTypeManual = get('filters.parameters.transmissionTypes.manual');
+  static String transmissionTypeManual = get('filters.parameters.transmissionTypes.manual');
 
-  static final String transmissionTypeAutomatic = get(
-    'filters.parameters.transmissionTypes.automatic',
-  );
+  static String transmissionTypeAutomatic = get('filters.parameters.transmissionTypes.automatic');
 
-  static final String transmissionTypeHybrid = get('filters.parameters.transmissionTypes.hybrid');
+  static String transmissionTypeHybrid = get('filters.parameters.transmissionTypes.hybrid');
 
-  static final String vehicleSpecificationsSectionTitle = get('pages.vehicleDetails.sectionTitle');
-  static final String vehicleSpecificationBody = get('pages.vehicleDetails.specifications.body');
-  static final String vehicleSpecificationEngine = get(
-    'pages.vehicleDetails.specifications.engine',
-  );
-  static final String vehicleSpecificationTransmission = get(
+  static String vehicleSpecificationsSectionTitle = get('pages.vehicleDetails.sectionTitle');
+  static String vehicleSpecificationBody = get('pages.vehicleDetails.specifications.body');
+  static String vehicleSpecificationEngine = get('pages.vehicleDetails.specifications.engine');
+  static String vehicleSpecificationTransmission = get(
     'pages.vehicleDetails.specifications.transmission',
   );
-  static final String vehicleSpecificationMileage = get(
-    'pages.vehicleDetails.specifications.mileage',
-  );
-  static final String vehicleSpecificationColor = get('pages.vehicleDetails.specifications.color');
-  static final String vehicleSpecificationYear = get('pages.vehicleDetails.specifications.year');
+  static String vehicleSpecificationMileage = get('pages.vehicleDetails.specifications.mileage');
+  static String vehicleSpecificationColor = get('pages.vehicleDetails.specifications.color');
+  static String vehicleSpecificationYear = get('pages.vehicleDetails.specifications.year');
 
-  static final String ownerSectionPersonTypeOwner = get(
+  static String ownerSectionPersonTypeOwner = get(
     'pages.vehicleDetails.ownerSection.personTypeOwner',
   );
-  static final String ownerSectionContactButtonTitle = get(
+  static String ownerSectionContactButtonTitle = get(
     'pages.vehicleDetails.ownerSection.contactButtonTitle',
   );
 
-  static final String loginPageLoginWelcomeText = get('forms.ui.welcomeLoginTitle');
-  static final String loginPageRegistrationWelcomeText = get('forms.ui.welcomeRegisterTitle');
+  static String loginPageLoginWelcomeText = get('forms.ui.welcomeLoginTitle');
+  static String loginPageRegistrationWelcomeText = get('forms.ui.welcomeRegisterTitle');
 
-  static final String forgotPasswordButtonTitle = get('forms.ui.forgotPasswordButtonText');
+  static String forgotPasswordButtonTitle = get('forms.ui.forgotPasswordButtonText');
 
-  static final String loginButtonTitle = get('forms.ui.loginButtonTitle');
-  static final String signUpButtonTitle = get('forms.ui.signUpButtonTitle');
+  static String loginButtonTitle = get('forms.ui.loginButtonTitle');
+  static String signUpButtonTitle = get('forms.ui.signUpButtonTitle');
 
-  static final String orDividerTitle = get('forms.ui.orDividerTitle');
+  static String orDividerTitle = get('forms.ui.orDividerTitle');
 
-  static final String fieldParamsValidationMessage = get('forms.validationMessage');
+  static String fieldParamsValidationMessage = get('forms.validationMessage');
 
-  static final String fieldParamsEmailLabel = get('forms.fieldParams.email.label');
-  static final String fieldParamsEmailHintText = get('forms.fieldParams.email.hintText');
-  static final String fieldParamsEmailRegexErrorMessage = get(
+  static String fieldParamsEmailLabel = get('forms.fieldParams.email.label');
+  static String fieldParamsEmailHintText = get('forms.fieldParams.email.hintText');
+  static String fieldParamsEmailRegexErrorMessage = get(
     'forms.fieldParams.email.regexErrorMessage',
   );
 
-  static final String fieldParamsPasswordLabel = get('forms.fieldParams.password.label');
-  static final String fieldParamsPasswordHintText = get('forms.fieldParams.password.hintText');
-  static final String fieldParamsPasswordRegexErrorMessage = get(
+  static String fieldParamsPasswordLabel = get('forms.fieldParams.password.label');
+  static String fieldParamsPasswordHintText = get('forms.fieldParams.password.hintText');
+  static String fieldParamsPasswordRegexErrorMessage = get(
     'forms.fieldParams.password.regexErrorMessage',
   );
 
-  static final String fieldParamsFullNameLabel = get('forms.fieldParams.fullName.label');
-  static final String fieldParamsFullNameHintText = get('forms.fieldParams.fullName.hintText');
-  static final String fieldParamsFullNameRegexErrorMessage = get(
+  static String fieldParamsFullNameLabel = get('forms.fieldParams.fullName.label');
+  static String fieldParamsFullNameHintText = get('forms.fieldParams.fullName.hintText');
+  static String fieldParamsFullNameRegexErrorMessage = get(
     'forms.fieldParams.fullName.regexErrorMessage',
   );
 
-  static final String authErrorUserNotFoundMessage = get('forms.warnings.userNotFound');
-  static final String authErrorIncorrectPassword = get('forms.warnings.incorrectPassword');
-  static final String authErrorUserAlreadyExists = get('forms.warnings.userAlreadyExists');
+  static String authErrorUserNotFoundMessage = get('forms.warnings.userNotFound');
+  static String authErrorIncorrectPassword = get('forms.warnings.incorrectPassword');
+  static String authErrorUserAlreadyExists = get('forms.warnings.userAlreadyExists');
 
-  static final String authPasswordStrengthLengthHint = get('forms.hints.passwordMinLength');
-  static final String authPasswordStrengthLowercaseHint = get('forms.hints.passwordLowercaseChar');
-  static final String authPasswordStrengthUppercaseHint = get('forms.hints.passwordUpperCaseChar');
-  static final String authPasswordStrengthDigitHint = get('forms.hints.passwordDigitChar');
-  static final String authPasswordStrengthSpecialCharacterHint = get(
-    'forms.hints.passwordSpecialChar',
-  );
+  static String authPasswordStrengthLengthHint = get('forms.hints.passwordMinLength');
+  static String authPasswordStrengthLowercaseHint = get('forms.hints.passwordLowercaseChar');
+  static String authPasswordStrengthUppercaseHint = get('forms.hints.passwordUpperCaseChar');
+  static String authPasswordStrengthDigitHint = get('forms.hints.passwordDigitChar');
+  static String authPasswordStrengthSpecialCharacterHint = get('forms.hints.passwordSpecialChar');
 
-  static final String inboxPageLoggedOutText = get('pages.inbox.loggedOutPlaceholderText');
-  static final String inboxPageEmptyText = get('pages.inbox.emptyPlaceholderText');
-  static final String inboxPageTitle = get('pages.inbox.title');
+  static String inboxPageLoggedOutText = get('pages.inbox.loggedOutPlaceholderText');
+  static String inboxPageEmptyText = get('pages.inbox.emptyPlaceholderText');
+  static String inboxPageTitle = get('pages.inbox.title');
 
-  static final String accountPageTitle = get('pages.account.title');
+  static String accountPageTitle = get('pages.account.title');
 
-  static final String accountItemPersonalDetails = get('pages.account.items.personalDetails.title');
-  static final String personalDetailsItemFirstName = get(
+  static String accountItemPersonalDetails = get('pages.account.items.personalDetails.title');
+  static String personalDetailsItemFirstName = get(
     'pages.account.items.personalDetails.firstNameItem',
   );
-  static final String personalDetailsItemLastName = get(
+  static String personalDetailsItemLastName = get(
     'pages.account.items.personalDetails.lastNameItem',
   );
-  static final String personalDetailsItemEmail = get(
-    'pages.account.items.personalDetails.emailItem',
-  );
-  static final String personalDetailsItemPassword = get(
+  static String personalDetailsItemEmail = get('pages.account.items.personalDetails.emailItem');
+  static String personalDetailsItemPassword = get(
     'pages.account.items.personalDetails.passwordItem',
   );
 
-  static final String accountItemLocation = get('pages.account.items.location.title');
-  static final String locationUsageDescription = get(
+  static String accountItemLocation = get('pages.account.items.location.title');
+  static String locationUsageDescription = get(
     'pages.account.items.location.locationUsageDescription',
   );
-  static final String locationSettingsItemAccess = get(
-    'pages.account.items.location.locationAccessItem',
-  );
-  static final String locationSettingsItemRegion = get('pages.account.items.location.regionItem');
+  static String locationSettingsItemAccess = get('pages.account.items.location.locationAccessItem');
+  static String locationSettingsItemRegion = get('pages.account.items.location.regionItem');
 
-  static final String locationSettingsPrivacyItemConditions = get(
+  static String locationSettingsPrivacyItemConditions = get(
     'pages.account.items.location.privacyPolicyItemConditions',
   );
-  static final String locationSettingsPrivacyItemPrivacyPolicy = get(
+  static String locationSettingsPrivacyItemPrivacyPolicy = get(
     'pages.account.items.location.privacyPolicyItemPolicy',
   );
 
-  static final String accountItemMyItems = get('pages.account.items.myItems.title');
-  static final String myItemsNoResultsPlaceholder = get(
-    'pages.account.items.myItems.emptyPlaceholder',
-  );
+  static String accountItemMyItems = get('pages.account.items.myItems.title');
+  static String myItemsNoResultsPlaceholder = get('pages.account.items.myItems.emptyPlaceholder');
 
-  static final String accountItemViewedItems = get('pages.account.items.recentlyViewed.title');
-  static final String viewedItemsNoResultsPlaceholder = get(
+  static String accountItemViewedItems = get('pages.account.items.recentlyViewed.title');
+  static String viewedItemsNoResultsPlaceholder = get(
     'pages.account.items.recentlyViewed.emptyPlaceholder',
   );
 
-  static final String accountItemClearData = get('pages.account.items.clearData.title');
-  static final String dataDeletionDescription = get(
+  static String accountItemClearData = get('pages.account.items.clearData.title');
+  static String dataDeletionDescription = get(
     'pages.account.items.clearData.dataDeletionDescription',
   );
-  static final String clearViewHistoryItem = get('pages.account.items.clearData.viewedHistoryItem');
-  static final String clearFavoritesItem = get('pages.account.items.clearData.favoritesItem');
-  static final String clearMyItemsItem = get('pages.account.items.clearData.myItemsItem');
-  static final String clearAllDataItem = get('pages.account.items.clearData.clearAllDataItem');
+  static String clearViewHistoryItem = get('pages.account.items.clearData.viewedHistoryItem');
+  static String clearFavoritesItem = get('pages.account.items.clearData.favoritesItem');
+  static String clearMyItemsItem = get('pages.account.items.clearData.myItemsItem');
+  static String clearAllDataItem = get('pages.account.items.clearData.clearAllDataItem');
 
-  static final String accountItemLogout = get('pages.account.items.logOut');
-  static final String accountItemDeleteAccount = get('pages.account.items.deleteAccount');
+  static String accountItemLogout = get('pages.account.items.logOut');
+  static String accountItemDeleteAccount = get('pages.account.items.deleteAccount');
 
-  static final String dateFormattingYesterday = get('dateFormatting.yesterday');
+  static String dateFormattingYesterday = get('dateFormatting.yesterday');
 
-  static final String articlePageMinsToRead = get('pages.article.minsToRead');
+  static String articlePageMinsToRead = get('pages.article.minsToRead');
 
-  static final String shareButtonLabel = get('general.share');
-  static final String onLabel = get('general.on');
-  static final String offLabel = get('general.off');
+  static String shareButtonLabel = get('general.share');
+  static String onLabel = get('general.on');
+  static String offLabel = get('general.off');
 
-  static final String confirmLabel = get('general.confirm');
-  static final String cancelLabel = get('general.cancel');
+  static String confirmLabel = get('general.confirm');
+  static String cancelLabel = get('general.cancel');
 
-  static final clearViewHistoryDialogDescription = get('dialogs.clearViewHistory.description');
-  static final clearViewHistoryDialogConfirmLabel = get('dialogs.clearViewHistory.confirmLabel');
-  static final clearViewHistoryDialogCancelLabel = get('dialogs.clearViewHistory.cancelLabel');
+  static String clearViewHistoryDialogDescription = get('dialogs.clearViewHistory.description');
+  static String clearViewHistoryDialogConfirmLabel = get('dialogs.clearViewHistory.confirmLabel');
+  static String clearViewHistoryDialogCancelLabel = get('dialogs.clearViewHistory.cancelLabel');
 
-  static final clearFavoriteItemsDialogDescription = get('dialogs.clearFavoriteItems.description');
-  static final clearFavoriteItemsDialogConfirmLabel = get(
+  static String clearFavoriteItemsDialogDescription = get('dialogs.clearFavoriteItems.description');
+  static String clearFavoriteItemsDialogConfirmLabel = get(
     'dialogs.clearFavoriteItems.confirmLabel',
   );
-  static final clearFavoriteItemsDialogCancelLabel = get('dialogs.clearFavoriteItems.cancelLabel');
+  static String clearFavoriteItemsDialogCancelLabel = get('dialogs.clearFavoriteItems.cancelLabel');
 
-  static final clearMyItemsDialogDescription = get('dialogs.clearMyItems.description');
-  static final clearMyItemsDialogConfirmLabel = get('dialogs.clearMyItems.confirmLabel');
-  static final clearMyItemsDialogCancelLabel = get('dialogs.clearMyItems.cancelLabel');
+  static String clearMyItemsDialogDescription = get('dialogs.clearMyItems.description');
+  static String clearMyItemsDialogConfirmLabel = get('dialogs.clearMyItems.confirmLabel');
+  static String clearMyItemsDialogCancelLabel = get('dialogs.clearMyItems.cancelLabel');
 
-  static final clearAllDataDialogDescription = get('dialogs.clearAllData.description');
-  static final clearAllDataDialogConfirmLabel = get('dialogs.clearAllData.confirmLabel');
-  static final clearAllDataDialogCancelLabel = get('dialogs.clearAllData.cancelLabel');
+  static String clearAllDataDialogDescription = get('dialogs.clearAllData.description');
+  static String clearAllDataDialogConfirmLabel = get('dialogs.clearAllData.confirmLabel');
+  static String clearAllDataDialogCancelLabel = get('dialogs.clearAllData.cancelLabel');
 
-  static final deleteAccountDialogDescription = get('dialogs.deleteAccount.description');
-  static final deleteAccountDialogConfirmLabel = get('dialogs.deleteAccount.confirmLabel');
-  static final deleteAccountDialogCancelLabel = get('dialogs.deleteAccount.cancelLabel');
+  static String deleteAccountDialogDescription = get('dialogs.deleteAccount.description');
+  static String deleteAccountDialogConfirmLabel = get('dialogs.deleteAccount.confirmLabel');
+  static String deleteAccountDialogCancelLabel = get('dialogs.deleteAccount.cancelLabel');
 }

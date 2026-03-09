@@ -6,6 +6,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
+import 'package:test_futter_project/utils/localisation_util.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -74,9 +75,14 @@ class LocationSettingsPage extends StatelessWidget {
 
                           if (pickedRegion == null) return;
 
-                          //load locale
+                          if (!context.mounted) return;
 
-                          //save to the cubit and the base
+                          final localeName = MockRegionService.regions
+                              .firstWhere((element) => element.countryName == pickedRegion)
+                              .locale;
+                          context.read<UserDataCubit>().updateRegion(localeName);
+
+                          await LocalisationUtil.init(localeName);
                         },
                       ),
                     ].withDividers(divider: const CustomDivider()),

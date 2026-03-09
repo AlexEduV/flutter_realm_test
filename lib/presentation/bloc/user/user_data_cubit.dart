@@ -12,6 +12,7 @@ import 'package:test_futter_project/utils/auth_session_util.dart';
 import '../../../di/injection_container.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
+import '../../../utils/localisation_util.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(
@@ -31,6 +32,9 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     user = _localStorage.initUser();
     final userSession = await AuthSessionUtil.getUserSession();
+
+    //todo: what if it's the guest user?
+    await LocalisationUtil.init(user.region);
 
     checkLastSeenCarExpiration(days: 7);
     final isLocationPermissionGranted = await _checkLocationPermissionStatusUseCase.call();
@@ -97,6 +101,14 @@ class UserDataCubit extends Cubit<UserDataState> {
   void updateLocationPermissionStatus(bool newStatus) {
     user = user.copyWith(isLocationPermissionGranted: newStatus);
     emit(state.copyWith(isLocationPermissionGranted: newStatus));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
+  }
+
+  void updateRegion(String region) {
+    user = user.copyWith(region: region);
+    emit(state.copyWith(region: region));
 
     _localStorage.update(UserExtensions.fromEntity(user));
     updateCloudUser(user);
