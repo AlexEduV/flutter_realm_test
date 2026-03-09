@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
+import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
@@ -55,14 +56,13 @@ class ClearUserDataPage extends StatelessWidget {
                         onTap: state.viewedIds.isEmpty
                             ? null
                             : () {
-                                showConfirmationDialog(
+                                DialogHelper.showConfirmationDialog(
                                   context,
                                   title: AppLocalisations.clearViewHistoryItem,
                                   description: AppLocalisations.clearViewHistoryDialogDescription,
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearRecentItems();
                                   },
-                                  onCancel: () {},
                                 );
                               },
                       ),
@@ -77,14 +77,13 @@ class ClearUserDataPage extends StatelessWidget {
                         onTap: state.favoriteIds.isEmpty
                             ? null
                             : () {
-                                showConfirmationDialog(
+                                DialogHelper.showConfirmationDialog(
                                   context,
                                   title: AppLocalisations.clearFavoritesItem,
                                   description: AppLocalisations.clearFavoriteItemsDialogDescription,
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearFavorites();
                                   },
-                                  onCancel: () {},
                                 );
                               },
                       ),
@@ -99,14 +98,13 @@ class ClearUserDataPage extends StatelessWidget {
                         onTap: state.createdIds.isEmpty
                             ? null
                             : () {
-                                showConfirmationDialog(
+                                DialogHelper.showConfirmationDialog(
                                   context,
                                   title: AppLocalisations.clearMyItemsItem,
                                   description: AppLocalisations.clearMyItemsDialogDescription,
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearMyItems();
                                   },
-                                  onCancel: () {},
                                 );
                               },
                       ),
@@ -125,14 +123,13 @@ class ClearUserDataPage extends StatelessWidget {
                   isEnabled: !state.isDataClear,
                   onTap: !state.isDataClear
                       ? () {
-                          showConfirmationDialog(
+                          DialogHelper.showConfirmationDialog(
                             context,
                             title: AppLocalisations.clearAllDataItem,
                             description: AppLocalisations.clearAllDataDialogDescription,
                             onConfirm: () {
                               context.read<UserDataCubit>().clearAllData();
                             },
-                            onCancel: () {},
                           );
                         }
                       : null,
@@ -142,40 +139,6 @@ class ClearUserDataPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  void showConfirmationDialog(
-    BuildContext context, {
-    required String title,
-    required String description,
-    required VoidCallback onConfirm,
-    required VoidCallback onCancel,
-  }) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(description),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                onCancel();
-              },
-              child: Text(AppLocalisations.cancelLabel),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                onConfirm();
-              },
-              child: Text(AppLocalisations.confirmLabel),
-            ),
-          ],
-        );
-      },
     );
   }
 }
