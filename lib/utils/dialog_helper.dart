@@ -48,4 +48,23 @@ class DialogHelper {
       },
     );
   }
+
+  static Future<String?> showTextPicker(BuildContext context, List<String> items) async {
+    return await showModalBottomSheet<String>(
+      context: context,
+      builder: (BuildContext context) {
+        return ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(items[index]),
+              onTap: () {
+                Navigator.pop(context, items[index]);
+              },
+            );
+          },
+        );
+      },
+    );
+  }
 }

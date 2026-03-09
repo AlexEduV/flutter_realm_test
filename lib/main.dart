@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -26,6 +26,8 @@ void main() async {
   //todo: added flavors, but had to revert, because they broke the Android project.
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
+
+  //todo: get current region from the user
   AppLocalisations.localisations = await LocalisationUtil.loadLocalisations(
     'assets/mocks/localisation_mock_response_data_uk.json',
   );
@@ -35,7 +37,7 @@ void main() async {
 
   ImageCacheUtil.initExtendedCacheSize();
 
-  await serviceLocator<FetchRegionsUseCase>().call();
+  await MockRegionService.init();
 
   runApp(const MyApp());
 }
