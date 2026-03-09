@@ -53,7 +53,18 @@ class ClearUserDataPage extends StatelessWidget {
                         icon: Icons.history_outlined,
                         showEnabled: state.viewedIds.isNotEmpty,
                         onTap: () {
-                          context.read<UserDataCubit>().clearRecentItems();
+                          if (state.viewedIds.isEmpty) return;
+
+                          showConfirmationDialog(
+                            context,
+                            title: 'Clear recent items',
+                            description:
+                                'Are you sure you want to delete all recently viewed history?',
+                            onConfirm: () {
+                              context.read<UserDataCubit>().clearRecentItems();
+                            },
+                            onCancel: () {},
+                          );
                         },
                       ),
 
@@ -65,7 +76,17 @@ class ClearUserDataPage extends StatelessWidget {
                         icon: Icons.favorite_border_outlined,
                         showEnabled: state.favoriteIds.isNotEmpty,
                         onTap: () {
-                          context.read<UserDataCubit>().clearFavorites();
+                          if (state.favoriteIds.isEmpty) return;
+
+                          showConfirmationDialog(
+                            context,
+                            title: 'Clear favorite items',
+                            description: 'Are you sure you want to clear favorite items?',
+                            onConfirm: () {
+                              context.read<UserDataCubit>().clearFavorites();
+                            },
+                            onCancel: () {},
+                          );
                         },
                       ),
 
@@ -77,7 +98,18 @@ class ClearUserDataPage extends StatelessWidget {
                         icon: Icons.ballot_outlined,
                         showEnabled: state.createdIds.isNotEmpty,
                         onTap: () {
-                          context.read<UserDataCubit>().clearMyItems();
+                          if (state.createdIds.isEmpty) return;
+
+                          showConfirmationDialog(
+                            context,
+                            title: 'Clear my items',
+                            description:
+                                'Are you sure you want to delete all created items? This action cannot be undone.',
+                            onConfirm: () {
+                              context.read<UserDataCubit>().clearMyItems();
+                            },
+                            onCancel: () {},
+                          );
                         },
                       ),
                     ].withDividers(divider: const CustomDivider()),
@@ -91,12 +123,55 @@ class ClearUserDataPage extends StatelessWidget {
             AccountItemSeparated(
               title: AppLocalisations.clearAllDataItem,
               onTap: () {
-                context.read<UserDataCubit>().clearAllData();
+                showConfirmationDialog(
+                  context,
+                  title: 'Clear all data',
+                  description:
+                      'Are you sure you want to delete all data? This action cannot be undone',
+                  onConfirm: () {
+                    context.read<UserDataCubit>().clearAllData();
+                  },
+                  onCancel: () {},
+                );
               },
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void showConfirmationDialog(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required VoidCallback onConfirm,
+    required VoidCallback onCancel,
+  }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(description),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                onCancel();
+              },
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                onConfirm();
+              },
+              child: const Text('Confirm'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
