@@ -18,6 +18,7 @@ class DialogHelper {
         return AlertDialog(
           title: Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700)),
           content: Text(description),
+          backgroundColor: Colors.white,
           actions: [
             TextButton(
               onPressed: () {
