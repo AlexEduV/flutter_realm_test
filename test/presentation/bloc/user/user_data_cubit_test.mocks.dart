@@ -14,6 +14,8 @@ import 'package:test_futter_project/domain/data_sources/base_local_storage.dart'
     as _i5;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
+    as _i10;
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
     as _i7;
 
@@ -309,4 +311,22 @@ class MockGeolocatorPlatform extends _i1.Mock
             returnValue: 0.0,
           )
           as double);
+}
+
+/// A class which mocks [CheckLocationPermissionStatusUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
+    implements _i10.CheckLocationPermissionStatusUseCase {
+  MockCheckLocationPermissionStatusUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.Future<bool> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i6.Future<bool>.value(false),
+          )
+          as _i6.Future<bool>);
 }
