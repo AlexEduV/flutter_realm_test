@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
@@ -40,6 +41,8 @@ void main() {
     };
     repo = AuthRepositoryImpl(mockLocalStorage);
     repo.users = initUsers;
+
+    when(mockLocalStorage.initUser()).thenReturn(initUsers.first);
   });
 
   group('login', () {
