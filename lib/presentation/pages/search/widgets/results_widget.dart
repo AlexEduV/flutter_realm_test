@@ -20,7 +20,7 @@ class ResultsWidget extends StatelessWidget {
         spacing: AppDimensions.minorL,
         children: [
           Text(
-            AppLocalisations.results,
+            AppLocalisations.of(context).results,
             style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
           ),
 

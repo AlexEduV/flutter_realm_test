@@ -129,7 +129,7 @@ class _LoginFormState extends State<LoginForm> {
                   button: true,
                   child: GestureDetector(
                     child: Text(
-                      AppLocalisations.forgotPasswordButtonTitle,
+                      AppLocalisations.of(context).forgotPasswordButtonTitle,
                       style: AppTextStyles.zonaPro16.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppColors.headerColor,
@@ -148,7 +148,7 @@ class _LoginFormState extends State<LoginForm> {
               button: true,
               label: AppSemanticsLabels.loginButton,
               child: SplashButton(
-                title: AppLocalisations.loginButtonTitle,
+                title: AppLocalisations.of(context).loginButtonTitle,
                 onPressed: () {
                   if (state.isLoading) {
                     return;
@@ -168,15 +168,15 @@ class _LoginFormState extends State<LoginForm> {
             //Or Divider
             AppSemantics(
               label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
+              child: AnimatedDividerWithText(text: AppLocalisations.of(context).orDividerTitle),
             ),
 
             // join us button if not registered
             AppSemantics(
-              label: AppLocalisations.signUpButtonTitle,
+              label: AppLocalisations.of(context).signUpButtonTitle,
               button: true,
               child: SplashButton(
-                title: AppLocalisations.signUpButtonTitle,
+                title: AppLocalisations.of(context).signUpButtonTitle,
                 onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
                 foregroundColor: Colors.grey,
                 backgroundColor: Colors.white,

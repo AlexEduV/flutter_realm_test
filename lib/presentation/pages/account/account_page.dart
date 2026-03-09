@@ -36,7 +36,10 @@ class AccountPage extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
-            title: Text(AppLocalisations.accountPageTitle, style: AppTextStyles.zonaPro20),
+            title: Text(
+              AppLocalisations.of(context).accountPageTitle,
+              style: AppTextStyles.zonaPro20,
+            ),
             centerTitle: true,
           ),
           body: SingleChildScrollView(
@@ -74,7 +77,7 @@ class AccountPage extends StatelessWidget {
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.person_outlined,
-                          text: AppLocalisations.accountItemPersonalDetails,
+                          text: AppLocalisations.of(context).accountItemPersonalDetails,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
                         ),
 
@@ -82,31 +85,31 @@ class AccountPage extends StatelessWidget {
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.location_on_outlined,
-                          text: AppLocalisations.accountItemLocation,
+                          text: AppLocalisations.of(context).accountItemLocation,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.locationSettings),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.checklist_outlined,
-                          text: AppLocalisations.accountItemMyItems,
+                          text: AppLocalisations.of(context).accountItemMyItems,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.myItems),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.remove_red_eye_outlined,
-                          text: AppLocalisations.accountItemViewedItems,
+                          text: AppLocalisations.of(context).accountItemViewedItems,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.recentlyViewed),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.cleaning_services,
-                          text: AppLocalisations.accountItemClearData,
+                          text: AppLocalisations.of(context).accountItemClearData,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.clearUserData),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.logout_outlined,
-                          text: AppLocalisations.accountItemLogout,
+                          text: AppLocalisations.of(context).accountItemLogout,
                           onTap: () async {
                             await context.read<AuthenticationCubit>().logOut();
 
@@ -123,14 +126,18 @@ class AccountPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(AppDimensions.normalS),
                   child: AccountItemSeparated(
-                    title: AppLocalisations.accountItemDeleteAccount,
+                    title: AppLocalisations.of(context).accountItemDeleteAccount,
                     onTap: () {
                       DialogHelper.showConfirmationDialog(
                         context,
-                        title: AppLocalisations.accountItemDeleteAccount,
-                        description: AppLocalisations.deleteAccountDialogDescription,
-                        cancelButtonTitle: AppLocalisations.deleteAccountDialogCancelLabel,
-                        confirmButtonTitle: AppLocalisations.deleteAccountDialogConfirmLabel,
+                        title: AppLocalisations.of(context).accountItemDeleteAccount,
+                        description: AppLocalisations.of(context).deleteAccountDialogDescription,
+                        cancelButtonTitle: AppLocalisations.of(
+                          context,
+                        ).deleteAccountDialogCancelLabel,
+                        confirmButtonTitle: AppLocalisations.of(
+                          context,
+                        ).deleteAccountDialogConfirmLabel,
                         onConfirm: () async {
                           await context.read<AuthenticationCubit>().deleteAccount(state.email);
 

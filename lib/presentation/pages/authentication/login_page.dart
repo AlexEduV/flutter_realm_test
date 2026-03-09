@@ -25,8 +25,8 @@ class _LoginPageState extends State<LoginPage> {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
       builder: (context, state) {
         final welcomeText = state.isLoginMode
-            ? AppLocalisations.loginPageLoginWelcomeText
-            : AppLocalisations.loginPageRegistrationWelcomeText;
+            ? AppLocalisations.of(context).loginPageLoginWelcomeText
+            : AppLocalisations.of(context).loginPageRegistrationWelcomeText;
 
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: const SystemUiOverlayStyle(

@@ -24,7 +24,7 @@ class ModelFilterDrawer extends StatelessWidget {
             children: [
               DrawerHeader(
                 child: Text(
-                  AppLocalisations.searchFilterModelTitle,
+                  AppLocalisations.of(context).searchFilterModelTitle,
                   style: AppTextStyles.zonaPro20,
                 ),
               ),
@@ -38,7 +38,7 @@ class ModelFilterDrawer extends StatelessWidget {
                     context.read<SearchPageCubit>().updateModelSelection([]);
                   }
                 },
-                title: Text(AppLocalisations.searchFilterModelPlaceholder),
+                title: Text(AppLocalisations.of(context).searchFilterModelPlaceholder),
                 controlAffinity: ListTileControlAffinity.leading,
               ),
 

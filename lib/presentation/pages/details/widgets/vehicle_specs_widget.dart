@@ -36,7 +36,7 @@ class VehicleSpecsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                AppLocalisations.vehicleSpecificationsSectionTitle,
+                AppLocalisations.of(context).vehicleSpecificationsSectionTitle,
                 style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w600),
               ),
 
@@ -87,17 +87,21 @@ class VehicleSpecsWidget extends StatelessWidget {
                                   spacing: AppDimensions.normalS,
                                   children: [
                                     SpecificationItem(
-                                      title: AppLocalisations.vehicleSpecificationBody,
+                                      title: AppLocalisations.of(context).vehicleSpecificationBody,
                                       subtitle: car.bodyType.capitalizeFirst(),
                                     ),
 
                                     SpecificationItem(
-                                      title: AppLocalisations.vehicleSpecificationEngine,
+                                      title: AppLocalisations.of(
+                                        context,
+                                      ).vehicleSpecificationEngine,
                                       subtitle: car.fuelType.capitalizeFirst(),
                                     ),
 
                                     SpecificationItem(
-                                      title: AppLocalisations.vehicleSpecificationTransmission,
+                                      title: AppLocalisations.of(
+                                        context,
+                                      ).vehicleSpecificationTransmission,
                                       subtitle: car.transmissionType.capitalizeFirst(),
                                     ),
                                   ],
@@ -110,17 +114,19 @@ class VehicleSpecsWidget extends StatelessWidget {
                                   spacing: AppDimensions.normalS,
                                   children: [
                                     SpecificationItem(
-                                      title: AppLocalisations.vehicleSpecificationMileage,
+                                      title: AppLocalisations.of(
+                                        context,
+                                      ).vehicleSpecificationMileage,
                                       subtitle: car.kilometers.toString(),
                                     ),
 
                                     SpecificationItem(
-                                      title: AppLocalisations.vehicleSpecificationYear,
+                                      title: AppLocalisations.of(context).vehicleSpecificationYear,
                                       subtitle: car.year ?? '',
                                     ),
 
                                     SpecificationItem(
-                                      title: AppLocalisations.vehicleSpecificationColor,
+                                      title: AppLocalisations.of(context).vehicleSpecificationColor,
                                       subtitle: car.color ?? ''.capitalizeFirst(),
                                     ),
                                   ],

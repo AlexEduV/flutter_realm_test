@@ -70,13 +70,16 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
             children: [
               DrawerHeader(
                 child: Text(
-                  AppLocalisations.searchFilterParametersTitle,
+                  AppLocalisations.of(context).searchFilterParametersTitle,
                   style: AppTextStyles.zonaPro20,
                 ),
               ),
 
               ListTile(
-                title: Text(AppLocalisations.parameterColorName, style: AppTextStyles.zonaPro18),
+                title: Text(
+                  AppLocalisations.of(context).parameterColorName,
+                  style: AppTextStyles.zonaPro18,
+                ),
               ),
 
               ...state.allColors.map((element) {
@@ -92,7 +95,10 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               }),
 
               ListTile(
-                title: Text(AppLocalisations.parameterYearName, style: AppTextStyles.zonaPro18),
+                title: Text(
+                  AppLocalisations.of(context).parameterYearName,
+                  style: AppTextStyles.zonaPro18,
+                ),
               ),
 
               Row(
@@ -123,13 +129,16 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               ),
 
               ListTile(
-                title: Text(AppLocalisations.parameterBodyTypeName, style: AppTextStyles.zonaPro18),
+                title: Text(
+                  AppLocalisations.of(context).parameterBodyTypeName,
+                  style: AppTextStyles.zonaPro18,
+                ),
               ),
 
               if (state.currentSelectedType == CarType.car) ...[
                 _buildCheckboxTile(
                   semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: AppLocalisations.bodyTypeSedan,
+                  label: AppLocalisations.of(context).bodyTypeSedan,
                   isChecked: selectedBodyTypeSet.contains(BodyType.sedan.name),
                   onChecked: () => cubit.addBodyTypeToSelection(BodyType.sedan.name),
                   onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.sedan.name),
@@ -137,7 +146,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
                 _buildCheckboxTile(
                   semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: AppLocalisations.bodyTypeHatchback,
+                  label: AppLocalisations.of(context).bodyTypeHatchback,
                   isChecked: selectedBodyTypeSet.contains(BodyType.hatchback.name),
                   onChecked: () => cubit.addBodyTypeToSelection(BodyType.hatchback.name),
                   onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.hatchback.name),
@@ -145,7 +154,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
                 _buildCheckboxTile(
                   semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: AppLocalisations.bodyTypeUniversal,
+                  label: AppLocalisations.of(context).bodyTypeUniversal,
                   isChecked: selectedBodyTypeSet.contains(BodyType.universal.name),
                   onChecked: () => cubit.addBodyTypeToSelection(BodyType.universal.name),
                   onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.universal.name),
@@ -153,7 +162,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
                 _buildCheckboxTile(
                   semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: AppLocalisations.bodyTypeMinivan,
+                  label: AppLocalisations.of(context).bodyTypeMinivan,
                   isChecked: selectedBodyTypeSet.contains(BodyType.minivan.name),
                   onChecked: () => cubit.addBodyTypeToSelection(BodyType.minivan.name),
                   onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.minivan.name),
@@ -161,7 +170,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
                 _buildCheckboxTile(
                   semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: AppLocalisations.bodyTypeCoupe,
+                  label: AppLocalisations.of(context).bodyTypeCoupe,
                   isChecked: selectedBodyTypeSet.contains(BodyType.coupe.name),
                   onChecked: () => cubit.addBodyTypeToSelection(BodyType.coupe.name),
                   onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.coupe.name),
@@ -169,7 +178,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
                 _buildCheckboxTile(
                   semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: AppLocalisations.bodyTypeCrossover,
+                  label: AppLocalisations.of(context).bodyTypeCrossover,
                   isChecked: selectedBodyTypeSet.contains(BodyType.crossover.name),
                   onChecked: () => cubit.addBodyTypeToSelection(BodyType.crossover.name),
                   onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.crossover.name),
@@ -177,7 +186,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               ] else if (state.currentSelectedType == CarType.truck) ...[
                 _buildCheckboxTile(
                   semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: AppLocalisations.bodyTypeSemi,
+                  label: AppLocalisations.of(context).bodyTypeSemi,
                   isChecked: selectedBodyTypeSet.contains(BodyType.semi.name),
                   onChecked: () => cubit.addBodyTypeToSelection(BodyType.semi.name),
                   onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.semi.name),
@@ -185,7 +194,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               ] else ...[
                 _buildCheckboxTile(
                   semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: AppLocalisations.bodyTypeBike,
+                  label: AppLocalisations.of(context).bodyTypeBike,
                   isChecked: selectedBodyTypeSet.contains(BodyType.bike.name),
                   onChecked: () => cubit.addBodyTypeToSelection(BodyType.bike.name),
                   onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.bike.name),
@@ -194,7 +203,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ListTile(
                 title: Text(
-                  AppLocalisations.parameterPriceRangeName,
+                  AppLocalisations.of(context).parameterPriceRangeName,
                   style: AppTextStyles.zonaPro18,
                 ),
               ),
@@ -227,12 +236,15 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               ),
 
               ListTile(
-                title: Text(AppLocalisations.parameterFuelTypeName, style: AppTextStyles.zonaPro18),
+                title: Text(
+                  AppLocalisations.of(context).parameterFuelTypeName,
+                  style: AppTextStyles.zonaPro18,
+                ),
               ),
 
               _buildCheckboxTile(
                 semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
-                label: AppLocalisations.fuelTypeDiesel,
+                label: AppLocalisations.of(context).fuelTypeDiesel,
                 isChecked: selectedFuelTypeSet.contains(FuelType.diesel.name),
                 onChecked: () => cubit.addFuelTypeToSelection(FuelType.diesel.name),
                 onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.diesel.name),
@@ -240,7 +252,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               _buildCheckboxTile(
                 semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
-                label: AppLocalisations.fuelTypeGasoline,
+                label: AppLocalisations.of(context).fuelTypeGasoline,
                 isChecked: selectedFuelTypeSet.contains(FuelType.gasoline.name),
                 onChecked: () => cubit.addFuelTypeToSelection(FuelType.gasoline.name),
                 onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.gasoline.name),
@@ -248,7 +260,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               _buildCheckboxTile(
                 semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
-                label: AppLocalisations.fuelTypeEv,
+                label: AppLocalisations.of(context).fuelTypeEv,
                 isChecked: selectedFuelTypeSet.contains(FuelType.ev.name),
                 onChecked: () => cubit.addFuelTypeToSelection(FuelType.ev.name),
                 onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.ev.name),
@@ -256,7 +268,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               _buildCheckboxTile(
                 semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
-                label: AppLocalisations.fuelTypeHybrid,
+                label: AppLocalisations.of(context).fuelTypeHybrid,
                 isChecked: selectedFuelTypeSet.contains(FuelType.hybrid.name),
                 onChecked: () => cubit.addFuelTypeToSelection(FuelType.hybrid.name),
                 onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.hybrid.name),
@@ -264,14 +276,14 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ListTile(
                 title: Text(
-                  AppLocalisations.parameterTransmissionTypeName,
+                  AppLocalisations.of(context).parameterTransmissionTypeName,
                   style: AppTextStyles.zonaPro18,
                 ),
               ),
 
               _buildCheckboxTile(
                 semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
-                label: AppLocalisations.transmissionTypeManual,
+                label: AppLocalisations.of(context).transmissionTypeManual,
                 isChecked: selectedTransmissionTypeSet.contains(TransmissionType.manual.name),
                 onChecked: () => cubit.addTransmissionTypeToSelection(TransmissionType.manual.name),
                 onUnChecked: () =>
@@ -280,7 +292,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               _buildCheckboxTile(
                 semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
-                label: AppLocalisations.transmissionTypeAutomatic,
+                label: AppLocalisations.of(context).transmissionTypeAutomatic,
                 isChecked: selectedTransmissionTypeSet.contains(TransmissionType.automatic.name),
                 onChecked: () =>
                     cubit.addTransmissionTypeToSelection(TransmissionType.automatic.name),
@@ -290,7 +302,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               _buildCheckboxTile(
                 semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
-                label: AppLocalisations.transmissionTypeHybrid,
+                label: AppLocalisations.of(context).transmissionTypeHybrid,
                 isChecked: selectedTransmissionTypeSet.contains(TransmissionType.hybrid.name),
                 onChecked: () => cubit.addTransmissionTypeToSelection(TransmissionType.hybrid.name),
                 onUnChecked: () =>

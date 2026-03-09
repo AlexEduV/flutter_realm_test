@@ -70,7 +70,7 @@ class _DetailsPageState extends State<DetailsPage> {
           Padding(
             padding: const EdgeInsets.only(right: AppDimensions.normalS),
             child: IconButton(
-              tooltip: AppLocalisations.shareButtonLabel,
+              tooltip: AppLocalisations.of(context).shareButtonLabel,
               onPressed: () async {
                 final car = context.read<DetailsPageCubit>().state.car;
 
@@ -187,7 +187,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               children: [
                                 const Icon(Icons.whatshot, size: 18, color: Colors.red),
 
-                                Text(car?.promoType?.fromLocalisations() ?? ''),
+                                Text(car?.promoType?.fromLocalisations(context) ?? ''),
                               ],
                             ),
                           ],

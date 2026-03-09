@@ -55,7 +55,10 @@ class _SearchPageState extends State<SearchPage> {
           appBar: AppBar(
             scrolledUnderElevation: isDrawerOpened ? 0.0 : null,
             centerTitle: true,
-            title: Text(AppLocalisations.searchPageTitle, style: AppTextStyles.zonaPro20),
+            title: Text(
+              AppLocalisations.of(context).searchPageTitle,
+              style: AppTextStyles.zonaPro20,
+            ),
             leading: AppSemantics(
               label: AppSemanticsLabels.backButton,
               button: true,
@@ -82,9 +85,9 @@ class _SearchPageState extends State<SearchPage> {
                       return SegmentedSwitch(
                         selectedIndex: state.currentSelectedType.index,
                         options: [
-                          AppLocalisations.searchTabCars,
-                          AppLocalisations.searchTabBikes,
-                          AppLocalisations.searchTabTrucks,
+                          AppLocalisations.of(context).searchTabCars,
+                          AppLocalisations.of(context).searchTabBikes,
+                          AppLocalisations.of(context).searchTabTrucks,
                         ],
                         onChanged: (newIndex) {
                           context.read<SearchPageCubit>().updateTypeSelection(
@@ -103,12 +106,12 @@ class _SearchPageState extends State<SearchPage> {
                   builder: (context) {
                     final isFilterEmpty = state.selectedModels.isEmpty;
                     final modelFilters = isFilterEmpty
-                        ? AppLocalisations.searchFilterModelPlaceholder
+                        ? AppLocalisations.of(context).searchFilterModelPlaceholder
                         : state.selectedModels.join(', ');
 
                     return SearchFilterButton(
                       icon: Icons.directions_car,
-                      title: '${AppLocalisations.searchFilterModelTitle}: ',
+                      title: '${AppLocalisations.of(context).searchFilterModelTitle}: ',
                       text: modelFilters,
                       selectionCount: state.selectedModels.length.toString(),
                       onPressed: () {
@@ -126,7 +129,7 @@ class _SearchPageState extends State<SearchPage> {
                   builder: (context) {
                     return SearchFilterButton(
                       icon: Icons.filter_list_sharp,
-                      title: AppLocalisations.searchFilterParametersTitle,
+                      title: AppLocalisations.of(context).searchFilterParametersTitle,
                       selectionCount: selectedFilterCount.toString(),
                       onPressed: () {
                         context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);
@@ -153,7 +156,7 @@ class _SearchPageState extends State<SearchPage> {
                   if (state.results.isEmpty) {
                     return SliverToBoxAdapter(
                       child: EmptyResultsPlaceholderWidget(
-                        text: AppLocalisations.emptySearchPlaceholderText,
+                        text: AppLocalisations.of(context).emptySearchPlaceholderText,
                       ),
                     );
                   }

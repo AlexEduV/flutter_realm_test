@@ -22,7 +22,10 @@ class MyItemsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.accountItemMyItems, style: AppTextStyles.zonaPro20),
+        title: Text(
+          AppLocalisations.of(context).accountItemMyItems,
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
@@ -39,7 +42,7 @@ class MyItemsPage extends StatelessWidget {
 
               if (createdEntities.isEmpty) {
                 return EmptyResultsPlaceholderWidget(
-                  text: AppLocalisations.myItemsNoResultsPlaceholder,
+                  text: AppLocalisations.of(context).myItemsNoResultsPlaceholder,
                 );
               }
 

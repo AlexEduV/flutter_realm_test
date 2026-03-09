@@ -30,13 +30,15 @@ class _InboxPageState extends State<InboxPage> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.inboxPageTitle, style: AppTextStyles.zonaPro20),
+        title: Text(AppLocalisations.of(context).inboxPageTitle, style: AppTextStyles.zonaPro20),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         builder: (context, state) {
           if (!state.isUserAuthenticated) {
-            return EmptyResultsPlaceholderWidget(text: AppLocalisations.inboxPageLoggedOutText);
+            return EmptyResultsPlaceholderWidget(
+              text: AppLocalisations.of(context).inboxPageLoggedOutText,
+            );
           }
 
           return BlocBuilder<InboxPageCubit, InboxPageState>(
@@ -48,7 +50,9 @@ class _InboxPageState extends State<InboxPage> {
               }
 
               if (state.messages.isEmpty) {
-                return EmptyResultsPlaceholderWidget(text: AppLocalisations.inboxPageEmptyText);
+                return EmptyResultsPlaceholderWidget(
+                  text: AppLocalisations.of(context).inboxPageEmptyText,
+                );
               }
 
               return ListView.builder(

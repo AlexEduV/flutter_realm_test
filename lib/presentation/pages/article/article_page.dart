@@ -44,7 +44,7 @@ class _ArticlePageState extends State<ArticlePage> {
               Padding(
                 padding: const EdgeInsets.only(right: AppDimensions.normalS),
                 child: IconButton(
-                  tooltip: AppLocalisations.shareButtonLabel,
+                  tooltip: AppLocalisations.of(context).shareButtonLabel,
                   onPressed: () async {
                     await ShareDebouncer.share(
                       ShareParamsModel(
@@ -90,7 +90,9 @@ class _ArticlePageState extends State<ArticlePage> {
                           spacing: AppDimensions.minorL,
                           children: [
                             if (minsToRead != null) ...[
-                              Text('$minsToRead ${AppLocalisations.articlePageMinsToRead}'),
+                              Text(
+                                '$minsToRead ${AppLocalisations.of(context).articlePageMinsToRead}',
+                              ),
                             ],
 
                             Text(state.article?.datePublished ?? ''),

@@ -20,7 +20,10 @@ class PersonalDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.accountItemPersonalDetails, style: AppTextStyles.zonaPro20),
+        title: Text(
+          AppLocalisations.of(context).accountItemPersonalDetails,
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -38,13 +41,13 @@ class PersonalDetailsPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   PersonalDetailsListItem(
-                    title: AppLocalisations.personalDetailsItemFirstName,
+                    title: AppLocalisations.of(context).personalDetailsItemFirstName,
                     description: state.firstName,
                     icon: Icons.person_pin_outlined,
                   ),
 
                   PersonalDetailsListItem(
-                    title: AppLocalisations.personalDetailsItemLastName,
+                    title: AppLocalisations.of(context).personalDetailsItemLastName,
                     description: state.lastName,
                     icon: Icons.person_outlined,
                   ),
@@ -61,13 +64,13 @@ class PersonalDetailsPage extends StatelessWidget {
                   //   icon: Icons.cake_outlined,
                   //),
                   PersonalDetailsListItem(
-                    title: AppLocalisations.personalDetailsItemEmail,
+                    title: AppLocalisations.of(context).personalDetailsItemEmail,
                     description: state.email,
                     icon: Icons.email_outlined,
                   ),
 
                   PersonalDetailsListItem(
-                    title: AppLocalisations.personalDetailsItemPassword,
+                    title: AppLocalisations.of(context).personalDetailsItemPassword,
                     description: state.password.obscure(),
                     icon: Icons.password,
                   ),

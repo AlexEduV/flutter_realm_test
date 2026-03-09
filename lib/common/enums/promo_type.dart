@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 enum PromoType {
@@ -21,7 +22,7 @@ enum PromoType {
     );
   }
 
-  String? fromLocalisations() {
-    return AppLocalisations.get(localized);
+  String? fromLocalisations(BuildContext context) {
+    return AppLocalisations.of(context).get(localized);
   }
 }

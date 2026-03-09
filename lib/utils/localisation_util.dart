@@ -12,7 +12,6 @@ class LocalisationUtil {
     AppLocalisations.localisations = await LocalisationUtil.loadLocalisations(
       'assets/mocks/localisation_mock_response_data_$locale.json',
     );
-    AppLocalisations.locale = locale;
 
     await initializeDateFormatting(AppLocalisations.locale, null);
     await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);

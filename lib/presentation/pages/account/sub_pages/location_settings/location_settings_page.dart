@@ -25,7 +25,10 @@ class LocationSettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.accountItemLocation, style: AppTextStyles.zonaPro20),
+        title: Text(
+          AppLocalisations.of(context).accountItemLocation,
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -37,7 +40,10 @@ class LocationSettingsPage extends StatelessWidget {
           children: [
             const SizedBox(height: AppDimensions.minorS),
 
-            Text(AppLocalisations.locationUsageDescription, style: AppTextStyles.zonaPro14),
+            Text(
+              AppLocalisations.of(context).locationUsageDescription,
+              style: AppTextStyles.zonaPro14,
+            ),
 
             const SizedBox(height: AppDimensions.normalXS),
 
@@ -52,16 +58,16 @@ class LocationSettingsPage extends StatelessWidget {
                   return Column(
                     children: [
                       PersonalDetailsListItem(
-                        title: AppLocalisations.locationSettingsItemAccess,
+                        title: AppLocalisations.of(context).locationSettingsItemAccess,
                         description: state.isLocationPermissionGranted
-                            ? AppLocalisations.onLabel
-                            : AppLocalisations.offLabel,
+                            ? AppLocalisations.of(context).onLabel
+                            : AppLocalisations.of(context).offLabel,
                         icon: Icons.location_on_outlined,
                         showEnabled: state.isLocationPermissionGranted,
                       ),
 
                       PersonalDetailsListItem(
-                        title: AppLocalisations.locationSettingsItemRegion,
+                        title: AppLocalisations.of(context).locationSettingsItemRegion,
                         description: region?.countryName ?? '',
                         icon: Icons.language,
                         onTap: () async {
@@ -98,8 +104,12 @@ class LocationSettingsPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  FooterText(text: AppLocalisations.locationSettingsPrivacyItemConditions),
-                  FooterText(text: AppLocalisations.locationSettingsPrivacyItemPrivacyPolicy),
+                  FooterText(
+                    text: AppLocalisations.of(context).locationSettingsPrivacyItemConditions,
+                  ),
+                  FooterText(
+                    text: AppLocalisations.of(context).locationSettingsPrivacyItemPrivacyPolicy,
+                  ),
                 ],
               ),
             ),

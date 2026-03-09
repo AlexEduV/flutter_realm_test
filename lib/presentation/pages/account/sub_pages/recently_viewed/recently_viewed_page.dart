@@ -40,7 +40,7 @@ class RecentlyViewedPage extends StatelessWidget {
 
               if (viewedEntities.isEmpty) {
                 return EmptyResultsPlaceholderWidget(
-                  text: AppLocalisations.viewedItemsNoResultsPlaceholder,
+                  text: AppLocalisations.of(context).viewedItemsNoResultsPlaceholder,
                 );
               }
 

@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
           BlocProvider<ArticlePageCubit>(create: (context) => serviceLocator<ArticlePageCubit>()),
         ],
         child: MaterialApp.router(
-          title: AppLocalisations.appName,
+          title: AppLocalisations.of(context).appName,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
             fontFamily: 'Zona Pro',

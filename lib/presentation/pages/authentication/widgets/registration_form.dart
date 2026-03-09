@@ -156,9 +156,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
             // Sign up button
             AppSemantics(
               button: true,
-              label: AppLocalisations.signUpButtonTitle,
+              label: AppLocalisations.of(context).signUpButtonTitle,
               child: SplashButton(
-                title: AppLocalisations.signUpButtonTitle,
+                title: AppLocalisations.of(context).signUpButtonTitle,
                 onPressed: () {
                   if (state.isLoading) {
                     return;
@@ -179,7 +179,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             //Or Divider
             AppSemantics(
               label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
+              child: AnimatedDividerWithText(text: AppLocalisations.of(context).orDividerTitle),
             ),
 
             // join us button if not registered
@@ -187,7 +187,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               button: true,
               label: AppSemanticsLabels.loginButton,
               child: SplashButton(
-                title: AppLocalisations.loginButtonTitle,
+                title: AppLocalisations.of(context).loginButtonTitle,
                 onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
                 foregroundColor: Colors.grey,
                 backgroundColor: Colors.white,

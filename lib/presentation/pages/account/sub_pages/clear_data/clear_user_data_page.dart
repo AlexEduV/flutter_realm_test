@@ -21,7 +21,10 @@ class ClearUserDataPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.accountItemClearData, style: AppTextStyles.zonaPro20),
+        title: Text(
+          AppLocalisations.of(context).accountItemClearData,
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -34,7 +37,10 @@ class ClearUserDataPage extends StatelessWidget {
           children: [
             const SizedBox(height: AppDimensions.minorS),
 
-            Text(AppLocalisations.dataDeletionDescription, style: AppTextStyles.zonaPro14),
+            Text(
+              AppLocalisations.of(context).dataDeletionDescription,
+              style: AppTextStyles.zonaPro14,
+            ),
 
             const SizedBox(height: AppDimensions.normalXS),
 
@@ -47,10 +53,10 @@ class ClearUserDataPage extends StatelessWidget {
                   return Column(
                     children: [
                       PersonalDetailsListItem(
-                        title: AppLocalisations.clearViewHistoryItem,
+                        title: AppLocalisations.of(context).clearViewHistoryItem,
                         description: state.viewedIds.isNotEmpty
-                            ? AppLocalisations.onLabel
-                            : AppLocalisations.offLabel,
+                            ? AppLocalisations.of(context).onLabel
+                            : AppLocalisations.of(context).offLabel,
                         icon: Icons.history_outlined,
                         showEnabled: state.viewedIds.isNotEmpty,
                         onTap: state.viewedIds.isEmpty
@@ -58,12 +64,16 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: AppLocalisations.clearViewHistoryItem,
-                                  description: AppLocalisations.clearViewHistoryDialogDescription,
-                                  cancelButtonTitle:
-                                      AppLocalisations.clearViewHistoryDialogCancelLabel,
-                                  confirmButtonTitle:
-                                      AppLocalisations.clearViewHistoryDialogConfirmLabel,
+                                  title: AppLocalisations.of(context).clearViewHistoryItem,
+                                  description: AppLocalisations.of(
+                                    context,
+                                  ).clearViewHistoryDialogDescription,
+                                  cancelButtonTitle: AppLocalisations.of(
+                                    context,
+                                  ).clearViewHistoryDialogCancelLabel,
+                                  confirmButtonTitle: AppLocalisations.of(
+                                    context,
+                                  ).clearViewHistoryDialogConfirmLabel,
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearRecentItems();
                                   },
@@ -72,10 +82,10 @@ class ClearUserDataPage extends StatelessWidget {
                       ),
 
                       PersonalDetailsListItem(
-                        title: AppLocalisations.clearFavoritesItem,
+                        title: AppLocalisations.of(context).clearFavoritesItem,
                         description: state.favoriteIds.isNotEmpty
-                            ? AppLocalisations.onLabel
-                            : AppLocalisations.offLabel,
+                            ? AppLocalisations.of(context).onLabel
+                            : AppLocalisations.of(context).offLabel,
                         icon: Icons.favorite_border_outlined,
                         showEnabled: state.favoriteIds.isNotEmpty,
                         onTap: state.favoriteIds.isEmpty
@@ -83,12 +93,16 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: AppLocalisations.clearFavoritesItem,
-                                  description: AppLocalisations.clearFavoriteItemsDialogDescription,
-                                  cancelButtonTitle:
-                                      AppLocalisations.clearFavoriteItemsDialogCancelLabel,
-                                  confirmButtonTitle:
-                                      AppLocalisations.clearFavoriteItemsDialogConfirmLabel,
+                                  title: AppLocalisations.of(context).clearFavoritesItem,
+                                  description: AppLocalisations.of(
+                                    context,
+                                  ).clearFavoriteItemsDialogDescription,
+                                  cancelButtonTitle: AppLocalisations.of(
+                                    context,
+                                  ).clearFavoriteItemsDialogCancelLabel,
+                                  confirmButtonTitle: AppLocalisations.of(
+                                    context,
+                                  ).clearFavoriteItemsDialogConfirmLabel,
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearFavorites();
                                   },
@@ -97,10 +111,10 @@ class ClearUserDataPage extends StatelessWidget {
                       ),
 
                       PersonalDetailsListItem(
-                        title: AppLocalisations.clearMyItemsItem,
+                        title: AppLocalisations.of(context).clearMyItemsItem,
                         description: state.createdIds.isNotEmpty
-                            ? AppLocalisations.onLabel
-                            : AppLocalisations.offLabel,
+                            ? AppLocalisations.of(context).onLabel
+                            : AppLocalisations.of(context).offLabel,
                         icon: Icons.ballot_outlined,
                         showEnabled: state.createdIds.isNotEmpty,
                         onTap: state.createdIds.isEmpty
@@ -108,11 +122,16 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: AppLocalisations.clearMyItemsItem,
-                                  description: AppLocalisations.clearMyItemsDialogDescription,
-                                  cancelButtonTitle: AppLocalisations.clearMyItemsDialogCancelLabel,
-                                  confirmButtonTitle:
-                                      AppLocalisations.clearMyItemsDialogConfirmLabel,
+                                  title: AppLocalisations.of(context).clearMyItemsItem,
+                                  description: AppLocalisations.of(
+                                    context,
+                                  ).clearMyItemsDialogDescription,
+                                  cancelButtonTitle: AppLocalisations.of(
+                                    context,
+                                  ).clearMyItemsDialogCancelLabel,
+                                  confirmButtonTitle: AppLocalisations.of(
+                                    context,
+                                  ).clearMyItemsDialogConfirmLabel,
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearMyItems();
                                   },
@@ -130,16 +149,20 @@ class ClearUserDataPage extends StatelessWidget {
             BlocBuilder<UserDataCubit, UserDataState>(
               builder: (context, state) {
                 return AccountItemSeparated(
-                  title: AppLocalisations.clearAllDataItem,
+                  title: AppLocalisations.of(context).clearAllDataItem,
                   isEnabled: !state.isDataClear,
                   onTap: !state.isDataClear
                       ? () {
                           DialogHelper.showConfirmationDialog(
                             context,
-                            title: AppLocalisations.clearAllDataItem,
-                            description: AppLocalisations.clearAllDataDialogDescription,
-                            cancelButtonTitle: AppLocalisations.clearAllDataDialogCancelLabel,
-                            confirmButtonTitle: AppLocalisations.clearAllDataDialogConfirmLabel,
+                            title: AppLocalisations.of(context).clearAllDataItem,
+                            description: AppLocalisations.of(context).clearAllDataDialogDescription,
+                            cancelButtonTitle: AppLocalisations.of(
+                              context,
+                            ).clearAllDataDialogCancelLabel,
+                            confirmButtonTitle: AppLocalisations.of(
+                              context,
+                            ).clearAllDataDialogConfirmLabel,
                             onConfirm: () {
                               context.read<UserDataCubit>().clearAllData();
                             },

@@ -79,7 +79,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                   top: AppDimensions.normalL,
                 ),
                 child: Text(
-                  AppLocalisations.recommendedSectionTitle,
+                  AppLocalisations.of(context).recommendedSectionTitle,
                   style: AppTextStyles.zonaPro18,
                 ),
               ),

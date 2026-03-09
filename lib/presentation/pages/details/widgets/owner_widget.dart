@@ -54,7 +54,7 @@ class OwnerWidget extends StatelessWidget {
                           Expanded(
                             child: Text(
                               maxLines: 1,
-                              AppLocalisations.ownerSectionPersonTypeOwner,
+                              AppLocalisations.of(context).ownerSectionPersonTypeOwner,
                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                 fontWeight: FontWeight.w400,
                               ),
@@ -71,7 +71,7 @@ class OwnerWidget extends StatelessWidget {
                             child: Text(
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              '${car.distanceTo ?? ''} ${AppLocalisations.distanceWidgetText}',
+                              '${car.distanceTo ?? ''} ${AppLocalisations.of(context).distanceWidgetText}',
                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                 fontWeight: FontWeight.w400,
                               ),
@@ -110,7 +110,7 @@ class OwnerWidget extends StatelessWidget {
                   foregroundColor: Colors.white,
                 ),
                 child: Text(
-                  AppLocalisations.ownerSectionContactButtonTitle,
+                  AppLocalisations.of(context).ownerSectionContactButtonTitle,
                   style: AppTextStyles.zonaPro16,
                   textAlign: TextAlign.center,
                 ),
