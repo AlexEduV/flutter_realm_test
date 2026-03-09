@@ -48,7 +48,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
     await AuthSessionUtil.saveUserSession(user.userId);
 
-    //todo: problem getting viewedIds
     _localStorage.update(UserExtensions.fromEntity(user));
 
     isAuthenticated = true;
