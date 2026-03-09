@@ -63,8 +63,4 @@ class ModelFilterDrawer extends StatelessWidget {
       },
     );
   }
-
-  bool areTwoListsEqual(List listA, List listB) {
-    return Set<String>.from(listA).containsAll(listB) && Set<String>.from(listB).containsAll(listA);
-  }
 }
