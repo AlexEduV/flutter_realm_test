@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
@@ -25,6 +26,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   final CheckLocationPermissionStatusUseCase _checkLocationPermissionStatusUseCase;
 
   late UserEntity user;
+  final _imagePicker = ImagePicker();
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
@@ -102,12 +104,17 @@ class UserDataCubit extends Cubit<UserDataState> {
     updateCloudUser(user);
   }
 
-  void updateAvatarImage(String? src) {
-    user = user.copyWith(avatarImageSrc: src);
-    emit(state.copyWith(avatarImageSrc: src));
+  Future<void> updateAvatarImage() async {
+    final XFile? image = await _imagePicker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      final src = image.path;
 
-    _localStorage.update(UserExtensions.fromEntity(user));
-    updateCloudUser(user);
+      user = user.copyWith(avatarImageSrc: src);
+      emit(state.copyWith(avatarImageSrc: src));
+
+      _localStorage.update(UserExtensions.fromEntity(user));
+      updateCloudUser(user);
+    }
   }
 
   void addCarIdToFavorites(String carId) {
