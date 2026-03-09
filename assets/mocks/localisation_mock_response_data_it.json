@@ -196,7 +196,23 @@
   },
   "general": {
     "share": "Condividi",
-    "on": "Attivo",
-    "off": "Disattivo"
+    "on": "Acceso",
+    "off": "Spento",
+    "confirm": "Conferma",
+    "cancel": "Annulla"
+  },
+  "dialogs": {
+    "clearViewHistory": {
+      "description": "Sei sicuro di voler eliminare tutta la cronologia visualizzata di recente?"
+    },
+    "clearFavoriteItems": {
+      "description": "Sei sicuro di voler cancellare gli elementi preferiti?"
+    },
+    "clearMyItems": {
+      "description": "Sei sicuro di voler eliminare tutti gli elementi creati? Questa azione non può essere annullata."
+    },
+    "clearAllData": {
+      "description": "Sei sicuro di voler eliminare tutti i dati? Questa azione non può essere annullata."
+    }
   }
 }

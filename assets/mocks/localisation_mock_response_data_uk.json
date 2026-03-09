@@ -197,6 +197,22 @@
   "general": {
     "share": "Share",
     "on": "On",
-    "off": "Off"
+    "off": "Off",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "dialogs": {
+    "clearViewHistory": {
+      "description": "Are you sure you want to delete all recently viewed history?"
+    },
+    "clearFavoriteItems": {
+      "description": "Are you sure you want to clear favorite items?"
+    },
+    "clearMyItems": {
+      "description": "Are you sure you want to delete all created items? This action cannot be undone."
+    },
+    "clearAllData": {
+      "description": "Are you sure you want to delete all data? This action cannot be undone."
+    }
   }
 }
