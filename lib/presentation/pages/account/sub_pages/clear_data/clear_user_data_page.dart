@@ -124,8 +124,7 @@ class ClearUserDataPage extends StatelessWidget {
                   title: AppLocalisations.clearAllDataItem,
                   isEnabled: !state.isDataClear,
                   onTap: !state.isDataClear
-                      ? null
-                      : () {
+                      ? () {
                           showConfirmationDialog(
                             context,
                             title: AppLocalisations.clearAllDataItem,
@@ -135,7 +134,8 @@ class ClearUserDataPage extends StatelessWidget {
                             },
                             onCancel: () {},
                           );
-                        },
+                        }
+                      : null,
                 );
               },
             ),
