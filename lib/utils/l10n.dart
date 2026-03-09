@@ -227,9 +227,24 @@ class AppLocalisations {
   static final String cancelLabel = get('general.cancel');
 
   static final clearViewHistoryDialogDescription = get('dialogs.clearViewHistory.description');
+  static final clearViewHistoryDialogConfirmLabel = get('dialogs.clearViewHistory.confirmLabel');
+  static final clearViewHistoryDialogCancelLabel = get('dialogs.clearViewHistory.cancelLabel');
+
   static final clearFavoriteItemsDialogDescription = get('dialogs.clearFavoriteItems.description');
+  static final clearFavoriteItemsDialogConfirmLabel = get(
+    'dialogs.clearFavoriteItems.confirmLabel',
+  );
+  static final clearFavoriteItemsDialogCancelLabel = get('dialogs.clearFavoriteItems.cancelLabel');
+
   static final clearMyItemsDialogDescription = get('dialogs.clearMyItems.description');
+  static final clearMyItemsDialogConfirmLabel = get('dialogs.clearMyItems.confirmLabel');
+  static final clearMyItemsDialogCancelLabel = get('dialogs.clearMyItems.cancelLabel');
+
   static final clearAllDataDialogDescription = get('dialogs.clearAllData.description');
+  static final clearAllDataDialogConfirmLabel = get('dialogs.clearAllData.confirmLabel');
+  static final clearAllDataDialogCancelLabel = get('dialogs.clearAllData.cancelLabel');
 
   static final deleteAccountDialogDescription = get('dialogs.deleteAccount.description');
+  static final deleteAccountDialogConfirmLabel = get('dialogs.deleteAccount.confirmLabel');
+  static final deleteAccountDialogCancelLabel = get('dialogs.deleteAccount.cancelLabel');
 }

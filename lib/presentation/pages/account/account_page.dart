@@ -129,8 +129,8 @@ class AccountPage extends StatelessWidget {
                         context,
                         title: AppLocalisations.accountItemDeleteAccount,
                         description: AppLocalisations.deleteAccountDialogDescription,
-                        cancelButtonTitle: 'No, keep it.',
-                        confirmButtonTitle: 'Yes, delete it.',
+                        cancelButtonTitle: AppLocalisations.deleteAccountDialogCancelLabel,
+                        confirmButtonTitle: AppLocalisations.deleteAccountDialogConfirmLabel,
                         onConfirm: () async {
                           await context.read<AuthenticationCubit>().deleteAccount(state.email);
 
