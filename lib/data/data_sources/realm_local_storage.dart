@@ -110,29 +110,4 @@ class RealmLocalStorage implements BaseLocalStorage {
       realm.deleteAll<User>();
     });
   }
-
-  @override
-  void updateUserFull(UserEntity user) {
-    realm.write(() {
-      final oldUsers = realm.all<User>();
-      realm.deleteMany(oldUsers);
-
-      realm.add(
-        User(
-          user.userId,
-          user.firstName,
-          user.lastName,
-          user.email,
-          user.password,
-          avatarImage: user.avatarImageSrc,
-          user.isLocationPermissionGranted,
-          user.region,
-          lastSeenCar: UserExtensions.getLastSeenCar(user.lastSeenCar),
-          favoriteIds: user.favoriteIds,
-          viewedIds: user.viewedIds,
-          createdIds: user.createdIds,
-        ),
-      );
-    });
-  }
 }

@@ -49,7 +49,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await AuthSessionUtil.saveUserSession(user.userId);
 
     //todo: problem getting viewedIds
-    _localStorage.updateUserFull(user);
+    _localStorage.update(UserExtensions.fromEntity(user));
 
     isAuthenticated = true;
     return AuthResult(success: true);

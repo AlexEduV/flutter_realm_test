@@ -9,8 +9,6 @@ abstract class BaseLocalStorage {
 
   void update(T);
 
-  void updateUserFull(UserEntity user);
-
   Stream watch<T>();
 
   void deleteAllCars();
