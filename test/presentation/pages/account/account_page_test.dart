@@ -29,6 +29,7 @@ void main() {
       'pages.account.items.clearData.title': 'Clear Data',
       'pages.account.items.logOut': 'Logout',
       'pages.account.items.deleteAccount': 'Delete Account',
+      'dialogs.deleteAccount.confirmLabel': 'Yes, delete it.',
     };
   });
 
@@ -150,6 +151,13 @@ void main() {
     expect(deleteAccountFinder, findsOneWidget);
 
     await tester.tap(deleteAccountFinder);
+    await tester.pumpAndSettle();
+
+    //tap confirm button
+    final confirmButtonFinder = find.textContaining('Yes, delete it.');
+    expect(confirmButtonFinder, findsOneWidget);
+
+    await tester.tap(confirmButtonFinder);
     await tester.pumpAndSettle();
 
     verify(authenticationCubit.deleteAccount('john.doe@example.com')).called(1);

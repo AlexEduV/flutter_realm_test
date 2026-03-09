@@ -4,6 +4,8 @@ part 'user_data_state.freezed.dart';
 
 @freezed
 abstract class UserDataState with _$UserDataState {
+  const UserDataState._();
+
   const factory UserDataState({
     @Default(false) bool isLoading,
     @Default(false) bool isLocationPermissionGranted,
@@ -16,7 +18,9 @@ abstract class UserDataState with _$UserDataState {
     @Default('') String email,
     @Default('') String password,
     @Default('') String region,
-    @Default(null) Map<DateTime, String>? lastSeenCar,
-    @Default(null) String? avatarImageSrc,
+    Map<DateTime, String>? lastSeenCar,
+    String? avatarImageSrc,
   }) = _UserDataState;
+
+  bool get isDataClear => favoriteIds.isEmpty && viewedIds.isEmpty && createdIds.isEmpty;
 }

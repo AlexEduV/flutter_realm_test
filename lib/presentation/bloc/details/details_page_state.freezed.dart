@@ -79,11 +79,11 @@ as bool,
 
 
 class _DetailsPageState implements DetailsPageState {
-  const _DetailsPageState({this.isLoading = false, this.car = null, this.isVehicleSpecsExpanded = true});
+  const _DetailsPageState({this.isLoading = false, this.car, this.isVehicleSpecsExpanded = true});
   
 
 @override@JsonKey() final  bool isLoading;
-@override@JsonKey() final  CarEntity? car;
+@override final  CarEntity? car;
 @override@JsonKey() final  bool isVehicleSpecsExpanded;
 
 /// Create a copy of DetailsPageState

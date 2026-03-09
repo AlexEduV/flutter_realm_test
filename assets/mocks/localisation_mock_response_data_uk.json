@@ -197,6 +197,35 @@
   "general": {
     "share": "Share",
     "on": "On",
-    "off": "Off"
+    "off": "Off",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "dialogs": {
+    "clearViewHistory": {
+      "description": "Are you sure you want to delete all recently viewed history?",
+      "confirmLabel": "Yes, delete it.",
+      "cancelLabel": "No, keep it."
+    },
+    "clearFavoriteItems": {
+      "description": "Are you sure you want to clear favorite items?",
+      "confirmLabel": "Yes, delete them.",
+      "cancelLabel": "No, keep them."
+    },
+    "clearMyItems": {
+      "description": "Are you sure you want to delete all created items? This action cannot be undone.",
+      "confirmLabel": "Yes, delete them.",
+      "cancelLabel": "No, keep them."
+    },
+    "clearAllData": {
+      "description": "Are you sure you want to delete all data? This action cannot be undone.",
+      "confirmLabel": "Yes, delete it.",
+      "cancelLabel": "No, keep it."
+    },
+    "deleteAccount": {
+      "description": "Are you sure you want to delete the account?",
+      "confirmLabel": "Yes, delete it.",
+      "cancelLabel": "No, keep it."
+    }
   }
 }

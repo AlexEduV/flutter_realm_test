@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
+import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
@@ -52,9 +53,22 @@ class ClearUserDataPage extends StatelessWidget {
                             : AppLocalisations.offLabel,
                         icon: Icons.history_outlined,
                         showEnabled: state.viewedIds.isNotEmpty,
-                        onTap: () {
-                          context.read<UserDataCubit>().clearRecentItems();
-                        },
+                        onTap: state.viewedIds.isEmpty
+                            ? null
+                            : () {
+                                DialogHelper.showConfirmationDialog(
+                                  context,
+                                  title: AppLocalisations.clearViewHistoryItem,
+                                  description: AppLocalisations.clearViewHistoryDialogDescription,
+                                  cancelButtonTitle:
+                                      AppLocalisations.clearViewHistoryDialogCancelLabel,
+                                  confirmButtonTitle:
+                                      AppLocalisations.clearViewHistoryDialogConfirmLabel,
+                                  onConfirm: () {
+                                    context.read<UserDataCubit>().clearRecentItems();
+                                  },
+                                );
+                              },
                       ),
 
                       PersonalDetailsListItem(
@@ -64,9 +78,22 @@ class ClearUserDataPage extends StatelessWidget {
                             : AppLocalisations.offLabel,
                         icon: Icons.favorite_border_outlined,
                         showEnabled: state.favoriteIds.isNotEmpty,
-                        onTap: () {
-                          context.read<UserDataCubit>().clearFavorites();
-                        },
+                        onTap: state.favoriteIds.isEmpty
+                            ? null
+                            : () {
+                                DialogHelper.showConfirmationDialog(
+                                  context,
+                                  title: AppLocalisations.clearFavoritesItem,
+                                  description: AppLocalisations.clearFavoriteItemsDialogDescription,
+                                  cancelButtonTitle:
+                                      AppLocalisations.clearFavoriteItemsDialogCancelLabel,
+                                  confirmButtonTitle:
+                                      AppLocalisations.clearFavoriteItemsDialogConfirmLabel,
+                                  onConfirm: () {
+                                    context.read<UserDataCubit>().clearFavorites();
+                                  },
+                                );
+                              },
                       ),
 
                       PersonalDetailsListItem(
@@ -76,9 +103,21 @@ class ClearUserDataPage extends StatelessWidget {
                             : AppLocalisations.offLabel,
                         icon: Icons.ballot_outlined,
                         showEnabled: state.createdIds.isNotEmpty,
-                        onTap: () {
-                          context.read<UserDataCubit>().clearMyItems();
-                        },
+                        onTap: state.createdIds.isEmpty
+                            ? null
+                            : () {
+                                DialogHelper.showConfirmationDialog(
+                                  context,
+                                  title: AppLocalisations.clearMyItemsItem,
+                                  description: AppLocalisations.clearMyItemsDialogDescription,
+                                  cancelButtonTitle: AppLocalisations.clearMyItemsDialogCancelLabel,
+                                  confirmButtonTitle:
+                                      AppLocalisations.clearMyItemsDialogConfirmLabel,
+                                  onConfirm: () {
+                                    context.read<UserDataCubit>().clearMyItems();
+                                  },
+                                );
+                              },
                       ),
                     ].withDividers(divider: const CustomDivider()),
                   );
@@ -88,9 +127,26 @@ class ClearUserDataPage extends StatelessWidget {
 
             const SizedBox(height: AppDimensions.normalS),
 
-            AccountItemSeparated(
-              onTap: () {
-                context.read<UserDataCubit>().clearAllData();
+            BlocBuilder<UserDataCubit, UserDataState>(
+              builder: (context, state) {
+                return AccountItemSeparated(
+                  title: AppLocalisations.clearAllDataItem,
+                  isEnabled: !state.isDataClear,
+                  onTap: !state.isDataClear
+                      ? () {
+                          DialogHelper.showConfirmationDialog(
+                            context,
+                            title: AppLocalisations.clearAllDataItem,
+                            description: AppLocalisations.clearAllDataDialogDescription,
+                            cancelButtonTitle: AppLocalisations.clearAllDataDialogCancelLabel,
+                            confirmButtonTitle: AppLocalisations.clearAllDataDialogConfirmLabel,
+                            onConfirm: () {
+                              context.read<UserDataCubit>().clearAllData();
+                            },
+                          );
+                        }
+                      : null,
+                );
               },
             ),
           ],

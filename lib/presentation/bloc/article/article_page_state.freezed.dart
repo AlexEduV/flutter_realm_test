@@ -78,11 +78,11 @@ as ArticleEntity?,
 
 
 class _ArticlePageState implements ArticlePageState {
-  const _ArticlePageState({this.isLoading = false, this.article = null});
+  const _ArticlePageState({this.isLoading = false, this.article});
   
 
 @override@JsonKey() final  bool isLoading;
-@override@JsonKey() final  ArticleEntity? article;
+@override final  ArticleEntity? article;
 
 /// Create a copy of ArticlePageState
 /// with the given fields replaced by the non-null parameter values.

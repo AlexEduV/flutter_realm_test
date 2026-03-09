@@ -196,7 +196,36 @@
   },
   "general": {
     "share": "Condividi",
-    "on": "Attivo",
-    "off": "Disattivo"
+    "on": "Acceso",
+    "off": "Spento",
+    "confirm": "Conferma",
+    "cancel": "Annulla"
+  },
+  "dialogs": {
+    "clearViewHistory": {
+      "description": "Sei sicuro di voler eliminare tutta la cronologia visualizzata di recente?",
+      "confirmLabel": "Sì, elimina.",
+      "cancelLabel": "No, mantieni."
+    },
+    "clearFavoriteItems": {
+      "description": "Sei sicuro di voler cancellare gli elementi preferiti?",
+      "confirmLabel": "Sì, elimina.",
+      "cancelLabel": "No, mantieni."
+    },
+    "clearMyItems": {
+      "description": "Sei sicuro di voler eliminare tutti gli elementi creati? Questa azione non può essere annullata.",
+      "confirmLabel": "Sì, elimina.",
+      "cancelLabel": "No, mantieni."
+    },
+    "clearAllData": {
+      "description": "Sei sicuro di voler eliminare tutti i dati? Questa azione non può essere annullata.",
+      "confirmLabel": "Sì, elimina.",
+      "cancelLabel": "No, mantieni."
+    },
+    "deleteAccount": {
+      "description": "Sei sicuro di voler eliminare l'account?",
+      "confirmLabel": "Sì, elimina.",
+      "cancelLabel": "No, mantieni."
+    }
   }
 }

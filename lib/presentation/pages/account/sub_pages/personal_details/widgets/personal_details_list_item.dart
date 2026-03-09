@@ -34,14 +34,12 @@ class PersonalDetailsListItem extends StatelessWidget {
           children: [
             if (showEnabled != null) ...[
               CircleAvatar(
-                backgroundColor: (showEnabled ?? false)
-                    ? AppColors.headerColor
-                    : Colors.grey, // Your desired color
-                radius: AppDimensions.normalXS, // Adjust size as needed
+                backgroundColor: (showEnabled ?? false) ? AppColors.tealColor : Colors.grey,
+                radius: AppDimensions.normalXS,
                 child: Icon(
-                  (showEnabled ?? false) ? Icons.check : Icons.pause, // or Icons.check
-                  color: Colors.white, // Icon color
-                  size: AppDimensions.normalS, // Adjust icon size as needed
+                  (showEnabled ?? false) ? Icons.check : Icons.pause,
+                  color: Colors.white,
+                  size: AppDimensions.normalS,
                 ),
               ),
             ],

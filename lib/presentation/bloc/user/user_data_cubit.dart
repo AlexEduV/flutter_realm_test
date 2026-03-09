@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -13,11 +14,15 @@ import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
-  UserDataCubit(this._localStorage, this._requestLocationPermissionUseCase)
-    : super(const UserDataState());
+  UserDataCubit(
+    this._localStorage,
+    this._requestLocationPermissionUseCase,
+    this._checkLocationPermissionStatusUseCase,
+  ) : super(const UserDataState());
 
   final BaseLocalStorage _localStorage;
   final RequestLocationPermissionUseCase _requestLocationPermissionUseCase;
+  final CheckLocationPermissionStatusUseCase _checkLocationPermissionStatusUseCase;
 
   late UserEntity user;
 
@@ -28,6 +33,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     final userSession = await AuthSessionUtil.getUserSession();
 
     checkLastSeenCarExpiration(days: 7);
+    final isLocationPermissionGranted = await _checkLocationPermissionStatusUseCase.call();
 
     emit(
       state.copyWith(
@@ -35,7 +41,7 @@ class UserDataCubit extends Cubit<UserDataState> {
         favoriteIds: user.favoriteIds,
         createdIds: user.createdIds,
         viewedIds: user.viewedIds,
-        isLocationPermissionGranted: user.isLocationPermissionGranted,
+        isLocationPermissionGranted: isLocationPermissionGranted,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,

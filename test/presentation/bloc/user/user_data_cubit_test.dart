@@ -8,6 +8,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -15,23 +16,36 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart'
 import '../../../data/data_sources/mock_auth_service_test.mocks.dart';
 import 'user_data_cubit_test.mocks.dart';
 
-@GenerateMocks([BaseLocalStorage, RequestLocationPermissionUseCase, GeolocatorPlatform])
+@GenerateMocks([
+  BaseLocalStorage,
+  RequestLocationPermissionUseCase,
+  GeolocatorPlatform,
+  CheckLocationPermissionStatusUseCase,
+])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late MockBaseLocalStorage mockLocalStorage;
   late MockRequestLocationPermissionUseCase mockRequestLocationPermissionUseCase;
+  late MockCheckLocationPermissionStatusUseCase mockCheckLocationPermissionStatusUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
 
   final mockAuthRepository = MockAuthRepository();
 
+  mockRequestLocationPermissionUseCase = MockRequestLocationPermissionUseCase();
+  mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
+
   setUp(() {
     SharedPreferences.setMockInitialValues({});
 
     mockLocalStorage = MockBaseLocalStorage();
-    mockRequestLocationPermissionUseCase = MockRequestLocationPermissionUseCase();
-    cubit = UserDataCubit(mockLocalStorage, mockRequestLocationPermissionUseCase);
+
+    cubit = UserDataCubit(
+      mockLocalStorage,
+      mockRequestLocationPermissionUseCase,
+      mockCheckLocationPermissionStatusUseCase,
+    );
     testUser = const UserEntity(
       userId: 'u1',
       firstName: 'John',
@@ -51,10 +65,16 @@ void main() {
 
   setUpAll(() {
     serviceLocator.registerLazySingleton<AuthRepository>(() => mockAuthRepository);
+
+    serviceLocator.registerLazySingleton<CheckLocationPermissionStatusUseCase>(
+      () => mockCheckLocationPermissionStatusUseCase,
+    );
+    when(mockCheckLocationPermissionStatusUseCase.call()).thenAnswer((_) async => true);
   });
 
   tearDownAll(() {
     serviceLocator.unregister<AuthRepository>();
+    serviceLocator.unregister<CheckLocationPermissionStatusUseCase>();
   });
 
   group('UserDataCubit', () {

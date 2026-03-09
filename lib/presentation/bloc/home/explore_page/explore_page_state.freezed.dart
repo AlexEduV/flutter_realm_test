@@ -81,7 +81,7 @@ as CarEntity?,
 
 
 class _ExplorePageState implements ExplorePageState {
-  const _ExplorePageState({final  List<CarEntity> cars = const [], this.isLoading = false, final  List<ArticleEntity> articles = const [], this.isArticleListLoading = false, this.lastSeenCar = null}): _cars = cars,_articles = articles;
+  const _ExplorePageState({final  List<CarEntity> cars = const [], this.isLoading = false, final  List<ArticleEntity> articles = const [], this.isArticleListLoading = false, this.lastSeenCar}): _cars = cars,_articles = articles;
   
 
  final  List<CarEntity> _cars;
@@ -100,7 +100,7 @@ class _ExplorePageState implements ExplorePageState {
 }
 
 @override@JsonKey() final  bool isArticleListLoading;
-@override@JsonKey() final  CarEntity? lastSeenCar;
+@override final  CarEntity? lastSeenCar;
 
 /// Create a copy of ExplorePageState
 /// with the given fields replaced by the non-null parameter values.

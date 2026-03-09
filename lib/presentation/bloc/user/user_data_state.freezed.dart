@@ -88,8 +88,8 @@ as String?,
 /// @nodoc
 
 
-class _UserDataState implements UserDataState {
-  const _UserDataState({this.isLoading = false, this.isLocationPermissionGranted = false, final  List<String> favoriteIds = const [], final  List<String> createdIds = const [], final  List<String> viewedIds = const [], this.isUserAuthenticated = false, this.firstName = '', this.lastName = '', this.email = '', this.password = '', this.region = '', final  Map<DateTime, String>? lastSeenCar = null, this.avatarImageSrc = null}): _favoriteIds = favoriteIds,_createdIds = createdIds,_viewedIds = viewedIds,_lastSeenCar = lastSeenCar;
+class _UserDataState extends UserDataState {
+  const _UserDataState({this.isLoading = false, this.isLocationPermissionGranted = false, final  List<String> favoriteIds = const [], final  List<String> createdIds = const [], final  List<String> viewedIds = const [], this.isUserAuthenticated = false, this.firstName = '', this.lastName = '', this.email = '', this.password = '', this.region = '', final  Map<DateTime, String>? lastSeenCar, this.avatarImageSrc}): _favoriteIds = favoriteIds,_createdIds = createdIds,_viewedIds = viewedIds,_lastSeenCar = lastSeenCar,super._();
   
 
 @override@JsonKey() final  bool isLoading;
@@ -122,7 +122,7 @@ class _UserDataState implements UserDataState {
 @override@JsonKey() final  String password;
 @override@JsonKey() final  String region;
  final  Map<DateTime, String>? _lastSeenCar;
-@override@JsonKey() Map<DateTime, String>? get lastSeenCar {
+@override Map<DateTime, String>? get lastSeenCar {
   final value = _lastSeenCar;
   if (value == null) return null;
   if (_lastSeenCar is EqualUnmodifiableMapView) return _lastSeenCar;
@@ -130,7 +130,7 @@ class _UserDataState implements UserDataState {
   return EqualUnmodifiableMapView(value);
 }
 
-@override@JsonKey() final  String? avatarImageSrc;
+@override final  String? avatarImageSrc;
 
 /// Create a copy of UserDataState
 /// with the given fields replaced by the non-null parameter values.

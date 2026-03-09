@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -61,7 +60,7 @@ class LocationSettingsPage extends StatelessWidget {
                       PersonalDetailsListItem(
                         title: AppLocalisations.locationSettingsItemRegion,
                         description: region?.countryName ?? '',
-                        icon: Icons.public,
+                        icon: Icons.language,
                       ),
                     ].withDividers(divider: const CustomDivider()),
                   );
@@ -76,20 +75,8 @@ class LocationSettingsPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  AppSemantics(
-                    label: AppSemanticsLabels.privacyLinkItem,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Text(AppLocalisations.locationSettingsPrivacyItemConditions),
-                    ),
-                  ),
-                  AppSemantics(
-                    label: AppSemanticsLabels.privacyLinkItem,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Text(AppLocalisations.locationSettingsPrivacyItemPrivacyPolicy),
-                    ),
-                  ),
+                  FooterText(text: AppLocalisations.locationSettingsPrivacyItemConditions),
+                  FooterText(text: AppLocalisations.locationSettingsPrivacyItemPrivacyPolicy),
                 ],
               ),
             ),

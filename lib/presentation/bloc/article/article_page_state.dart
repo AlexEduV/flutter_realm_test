@@ -5,8 +5,6 @@ part 'article_page_state.freezed.dart';
 
 @freezed
 abstract class ArticlePageState with _$ArticlePageState {
-  const factory ArticlePageState({
-    @Default(false) bool isLoading,
-    @Default(null) ArticleEntity? article,
-  }) = _ArticlePageState;
+  const factory ArticlePageState({@Default(false) bool isLoading, ArticleEntity? article}) =
+      _ArticlePageState;
 }
