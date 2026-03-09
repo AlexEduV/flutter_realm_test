@@ -6,9 +6,15 @@ import 'account_item.dart';
 
 class AccountItemSeparated extends StatelessWidget {
   final String title;
-  final Function() onTap;
+  final Function()? onTap;
+  final bool isEnabled;
 
-  const AccountItemSeparated({required this.title, required this.onTap, super.key});
+  const AccountItemSeparated({
+    required this.title,
+    required this.onTap,
+    this.isEnabled = true,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,7 @@ class AccountItemSeparated extends StatelessWidget {
         text: title,
         textStyle: AppTextStyles.zonaPro14
             .copyWith(fontWeight: FontWeight.w600)
-            .copyWith(color: Colors.redAccent),
+            .copyWith(color: isEnabled ? Colors.redAccent : Colors.grey),
         onTap: onTap,
         isCentered: true,
       ),

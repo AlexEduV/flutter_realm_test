@@ -52,20 +52,20 @@ class ClearUserDataPage extends StatelessWidget {
                             : AppLocalisations.offLabel,
                         icon: Icons.history_outlined,
                         showEnabled: state.viewedIds.isNotEmpty,
-                        onTap: () {
-                          if (state.viewedIds.isEmpty) return;
-
-                          showConfirmationDialog(
-                            context,
-                            title: 'Clear recent items',
-                            description:
-                                'Are you sure you want to delete all recently viewed history?',
-                            onConfirm: () {
-                              context.read<UserDataCubit>().clearRecentItems();
-                            },
-                            onCancel: () {},
-                          );
-                        },
+                        onTap: state.viewedIds.isEmpty
+                            ? null
+                            : () {
+                                showConfirmationDialog(
+                                  context,
+                                  title: 'Clear recent items',
+                                  description:
+                                      'Are you sure you want to delete all recently viewed history?',
+                                  onConfirm: () {
+                                    context.read<UserDataCubit>().clearRecentItems();
+                                  },
+                                  onCancel: () {},
+                                );
+                              },
                       ),
 
                       PersonalDetailsListItem(
@@ -75,19 +75,19 @@ class ClearUserDataPage extends StatelessWidget {
                             : AppLocalisations.offLabel,
                         icon: Icons.favorite_border_outlined,
                         showEnabled: state.favoriteIds.isNotEmpty,
-                        onTap: () {
-                          if (state.favoriteIds.isEmpty) return;
-
-                          showConfirmationDialog(
-                            context,
-                            title: 'Clear favorite items',
-                            description: 'Are you sure you want to clear favorite items?',
-                            onConfirm: () {
-                              context.read<UserDataCubit>().clearFavorites();
-                            },
-                            onCancel: () {},
-                          );
-                        },
+                        onTap: state.favoriteIds.isEmpty
+                            ? null
+                            : () {
+                                showConfirmationDialog(
+                                  context,
+                                  title: 'Clear favorite items',
+                                  description: 'Are you sure you want to clear favorite items?',
+                                  onConfirm: () {
+                                    context.read<UserDataCubit>().clearFavorites();
+                                  },
+                                  onCancel: () {},
+                                );
+                              },
                       ),
 
                       PersonalDetailsListItem(
@@ -97,20 +97,20 @@ class ClearUserDataPage extends StatelessWidget {
                             : AppLocalisations.offLabel,
                         icon: Icons.ballot_outlined,
                         showEnabled: state.createdIds.isNotEmpty,
-                        onTap: () {
-                          if (state.createdIds.isEmpty) return;
-
-                          showConfirmationDialog(
-                            context,
-                            title: 'Clear my items',
-                            description:
-                                'Are you sure you want to delete all created items? This action cannot be undone.',
-                            onConfirm: () {
-                              context.read<UserDataCubit>().clearMyItems();
-                            },
-                            onCancel: () {},
-                          );
-                        },
+                        onTap: state.createdIds.isEmpty
+                            ? null
+                            : () {
+                                showConfirmationDialog(
+                                  context,
+                                  title: 'Clear my items',
+                                  description:
+                                      'Are you sure you want to delete all created items? This action cannot be undone.',
+                                  onConfirm: () {
+                                    context.read<UserDataCubit>().clearMyItems();
+                                  },
+                                  onCancel: () {},
+                                );
+                              },
                       ),
                     ].withDividers(divider: const CustomDivider()),
                   );
@@ -120,18 +120,25 @@ class ClearUserDataPage extends StatelessWidget {
 
             const SizedBox(height: AppDimensions.normalS),
 
-            AccountItemSeparated(
-              title: AppLocalisations.clearAllDataItem,
-              onTap: () {
-                showConfirmationDialog(
-                  context,
-                  title: 'Clear all data',
-                  description:
-                      'Are you sure you want to delete all data? This action cannot be undone',
-                  onConfirm: () {
-                    context.read<UserDataCubit>().clearAllData();
-                  },
-                  onCancel: () {},
+            BlocBuilder<UserDataCubit, UserDataState>(
+              builder: (context, state) {
+                return AccountItemSeparated(
+                  title: AppLocalisations.clearAllDataItem,
+                  isEnabled: !isDataClear(state),
+                  onTap: !isDataClear(state)
+                      ? null
+                      : () {
+                          showConfirmationDialog(
+                            context,
+                            title: 'Clear all data',
+                            description:
+                                'Are you sure you want to delete all data? This action cannot be undone',
+                            onConfirm: () {
+                              context.read<UserDataCubit>().clearAllData();
+                            },
+                            onCancel: () {},
+                          );
+                        },
                 );
               },
             ),
@@ -139,6 +146,11 @@ class ClearUserDataPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  //todo: move to the state / cubit class
+  bool isDataClear(UserDataState state) {
+    return state.favoriteIds.isEmpty && state.viewedIds.isEmpty && state.createdIds.isEmpty;
   }
 
   void showConfirmationDialog(
