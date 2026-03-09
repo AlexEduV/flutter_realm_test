@@ -31,10 +31,13 @@ class DialogHelper {
                 Navigator.of(context).pop();
                 onConfirm?.call();
               },
+              style: isDeletion
+                  ? const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.red))
+                  : null,
               child: Text(
                 confirmButtonTitle,
                 style: TextStyle(
-                  color: isDeletion ? Colors.redAccent : null,
+                  color: isDeletion ? Colors.white : null,
                   fontWeight: FontWeight.w600,
                 ),
               ),
