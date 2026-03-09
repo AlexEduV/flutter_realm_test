@@ -122,6 +122,7 @@ class AccountPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(AppDimensions.normalS),
                   child: AccountItemSeparated(
+                    title: AppLocalisations.accountItemDeleteAccount,
                     onTap: () async {
                       await context.read<AuthenticationCubit>().deleteAccount(state.email);
 

@@ -89,6 +89,7 @@ class ClearUserDataPage extends StatelessWidget {
             const SizedBox(height: AppDimensions.normalS),
 
             AccountItemSeparated(
+              title: AppLocalisations.clearAllDataItem,
               onTap: () {
                 context.read<UserDataCubit>().clearAllData();
               },
