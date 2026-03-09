@@ -124,8 +124,8 @@ class ClearUserDataPage extends StatelessWidget {
               builder: (context, state) {
                 return AccountItemSeparated(
                   title: AppLocalisations.clearAllDataItem,
-                  isEnabled: !isDataClear(state),
-                  onTap: !isDataClear(state)
+                  isEnabled: !state.isDataClear,
+                  onTap: !state.isDataClear
                       ? null
                       : () {
                           showConfirmationDialog(
@@ -146,11 +146,6 @@ class ClearUserDataPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  //todo: move to the state / cubit class
-  bool isDataClear(UserDataState state) {
-    return state.favoriteIds.isEmpty && state.viewedIds.isEmpty && state.createdIds.isEmpty;
   }
 
   void showConfirmationDialog(

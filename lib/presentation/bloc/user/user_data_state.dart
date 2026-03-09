@@ -19,4 +19,6 @@ abstract class UserDataState with _$UserDataState {
     Map<DateTime, String>? lastSeenCar,
     String? avatarImageSrc,
   }) = _UserDataState;
+
+  bool get isDataClear => favoriteIds.isEmpty && viewedIds.isEmpty && createdIds.isEmpty;
 }
