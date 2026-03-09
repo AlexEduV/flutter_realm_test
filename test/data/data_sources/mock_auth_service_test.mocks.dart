@@ -6,6 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:test_futter_project/domain/entities/user_entity.dart' as _i5;
 import 'package:test_futter_project/domain/models/auth_result.dart' as _i2;
 import 'package:test_futter_project/domain/repositories/auth_repository.dart'
     as _i3;
@@ -106,6 +107,15 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
   _i4.Future<void> deleteAccount(String? email) =>
       (super.noSuchMethod(
             Invocation.method(#deleteAccount, [email]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> updateUser(String? email, _i5.UserEntity? data) =>
+      (super.noSuchMethod(
+            Invocation.method(#updateUser, [email, data]),
             returnValue: _i4.Future<void>.value(),
             returnValueForMissingStub: _i4.Future<void>.value(),
           )

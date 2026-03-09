@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
-import 'package:test_futter_project/domain/entities/user_entity_short.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
@@ -13,28 +14,24 @@ void main() {
   final mockLocalStorage = MockBaseLocalStorage();
 
   setUp(() {
-    final initUsers = {
-      '1': const UserEntityShort(
+    final initUsers = [
+      UserEntity.initial(
         userId: '1',
         email: 'mock@example.com',
         password: 'Password1!',
         firstName: 'Alex',
         lastName: 'Smith',
-        region: 'uk',
-        avatarImageSrc: null,
       ),
-      '2': const UserEntityShort(
+      UserEntity.initial(
         userId: '2',
         email: 'admin@example.com',
         password: 'AdminPass123!',
         firstName: 'admin',
         lastName: '',
-        region: 'it',
-        avatarImageSrc: null,
       ),
-    };
+    ];
 
-    SharedPreferences.setMockInitialValues(initUsers);
+    SharedPreferences.setMockInitialValues({'mock_users': initUsers});
 
     // Set up localisations for error messages
     AppLocalisations.localisations = {
@@ -44,6 +41,8 @@ void main() {
     };
     repo = AuthRepositoryImpl(mockLocalStorage);
     repo.users = initUsers;
+
+    when(mockLocalStorage.initUser()).thenReturn(initUsers.first);
   });
 
   group('login', () {

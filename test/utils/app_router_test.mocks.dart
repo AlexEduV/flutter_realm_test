@@ -309,6 +309,12 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
           as _i10.Future<void>);
 
   @override
+  void updateCloudUser(_i4.UserEntity? user) => super.noSuchMethod(
+    Invocation.method(#updateCloudUser, [user]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   void setLastSeenCar(String? carId) => super.noSuchMethod(
     Invocation.method(#setLastSeenCar, [carId]),
     returnValueForMissingStub: null,

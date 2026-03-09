@@ -1,5 +1,7 @@
 import 'package:test_futter_project/domain/models/auth_result.dart';
 
+import '../entities/user_entity.dart';
+
 abstract class AuthRepository {
   Future<void> init();
 
@@ -15,4 +17,6 @@ abstract class AuthRepository {
   Future<void> logOut();
 
   Future<void> deleteAccount(String email);
+
+  Future<void> updateUser(String email, UserEntity data);
 }

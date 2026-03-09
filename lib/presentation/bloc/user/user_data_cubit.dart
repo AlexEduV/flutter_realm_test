@@ -9,6 +9,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart'
 import 'package:test_futter_project/utils/auth_session_util.dart';
 
 import '../../../di/injection_container.dart';
+import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
@@ -35,7 +36,6 @@ class UserDataCubit extends Cubit<UserDataState> {
         createdIds: user.createdIds,
         viewedIds: user.viewedIds,
         isLocationPermissionGranted: user.isLocationPermissionGranted,
-        isUserAuthenticated: userSession != null,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
@@ -43,8 +43,13 @@ class UserDataCubit extends Cubit<UserDataState> {
         password: user.password,
         region: user.region,
         avatarImageSrc: user.avatarImageSrc,
+        isUserAuthenticated: userSession != null,
       ),
     );
+  }
+
+  void updateCloudUser(UserEntity user) {
+    serviceLocator<AuthRepository>().updateUser(state.email, user);
   }
 
   void setLastSeenCar(String? carId) {
@@ -54,6 +59,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(lastSeenCar: newLastSeenCarData));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void checkLastSeenCarExpiration({required int days}) {
@@ -84,9 +90,10 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   void updateLocationPermissionStatus(bool newStatus) {
     user = user.copyWith(isLocationPermissionGranted: newStatus);
-    _localStorage.update(UserExtensions.fromEntity(user));
-
     emit(state.copyWith(isLocationPermissionGranted: newStatus));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void updateAvatarImage(String? src) {
@@ -94,6 +101,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(avatarImageSrc: src));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void addCarIdToFavorites(String carId) {
@@ -104,6 +112,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(favoriteIds: cleanedList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void removeCarIdFromFavorites(String carId) {
@@ -112,6 +121,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(favoriteIds: newList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void addCarIdToCreated(String carId) {
@@ -122,6 +132,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(createdIds: cleanedList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void removeCarIdFromCreated(String carId) {
@@ -130,6 +141,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(createdIds: newList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
 
     serviceLocator<DeleteCarByIdUseCase>().call(carId);
   }
@@ -150,6 +162,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(viewedIds: limitedList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void clearFavorites() {
@@ -160,6 +173,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(favoriteIds: newList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void clearRecentItems() {
@@ -170,6 +184,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(viewedIds: newList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void clearMyItems() {
@@ -184,6 +199,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(createdIds: newList));
 
     _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
   }
 
   void clearAllData() {
@@ -197,20 +213,8 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     if (user == null) return;
 
-    //todo: probably favorite, viewed and created items are needed to be here too,
-    // but all the data that was created in the guest mode also should be synced
-
-    emit(
-      state.copyWith(
-        isUserAuthenticated: true,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        password: user.password,
-        region: user.region,
-        avatarImageSrc: user.avatarImageSrc,
-      ),
-    );
+    //todo: if the user was in the guest mode, migrate the favorites and created items to the account;
+    init();
   }
 
   void logOutUser() {
