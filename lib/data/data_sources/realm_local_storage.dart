@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
@@ -114,59 +113,26 @@ class RealmLocalStorage implements BaseLocalStorage {
 
   @override
   void updateUserFull(UserEntity user) {
-    //todo: this seems like a solution, but still does not work
-
-    //steps to reproduce:
-    //logout
-    //login to the main account
-    //change favorites, go to details;
-    //logout
-    //login again with the same account.
-
-    //exception - list is no longer available.
-
-    //the usual update still does not work after fixing conversions;
-    //the changed lists work fine, but the unchanged - throw this exception
-
-    //in clearing out the user, using deleteFirst did not change anything.
-    //updating every user operation with full update did not help;
-
-    //using .isValid check did not help either
-
-    final currentUser = realm.all<User>().firstOrNull;
-    if (currentUser == null) return;
-
     realm.write(() {
-      currentUser.firstName = user.firstName;
-      currentUser.lastName = user.lastName;
-      currentUser.email = user.email;
-      currentUser.password = user.password;
-      currentUser.avatarImage = user.avatarImageSrc;
-      currentUser.isLocationPermissionGranted = user.isLocationPermissionGranted;
-      currentUser.region = user.region;
-      currentUser.lastSeenCar = UserExtensions.getLastSeenCar(user.lastSeenCar);
+      final oldUsers = realm.all<User>();
+      realm.deleteMany(oldUsers);
 
-      try {
-        if (currentUser.favoriteIds.isValid) {
-          currentUser.favoriteIds
-            ..clear()
-            ..addAll(user.favoriteIds);
-        }
-
-        if (currentUser.viewedIds.isValid) {
-          currentUser.viewedIds
-            ..clear()
-            ..addAll(user.viewedIds);
-        }
-
-        if (currentUser.createdIds.isValid) {
-          currentUser.createdIds
-            ..clear()
-            ..addAll(user.createdIds);
-        }
-      } catch (e) {
-        debugPrint('database exception on updating the user: $e');
-      }
+      realm.add(
+        User(
+          user.userId,
+          user.firstName,
+          user.lastName,
+          user.email,
+          user.password,
+          avatarImage: user.avatarImageSrc,
+          user.isLocationPermissionGranted,
+          user.region,
+          lastSeenCar: UserExtensions.getLastSeenCar(user.lastSeenCar),
+          favoriteIds: user.favoriteIds,
+          viewedIds: user.viewedIds,
+          createdIds: user.createdIds,
+        ),
+      );
     });
   }
 }

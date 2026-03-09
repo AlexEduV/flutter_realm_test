@@ -35,9 +35,9 @@ class UserEntity {
       firstName: user.firstName,
       lastName: user.lastName,
       isLocationPermissionGranted: user.isLocationPermissionGranted,
-      favoriteIds: user.favoriteIds,
-      createdIds: user.createdIds,
-      viewedIds: user.viewedIds,
+      favoriteIds: List<String>.from(user.favoriteIds),
+      createdIds: List<String>.from(user.createdIds),
+      viewedIds: List<String>.from(user.viewedIds),
       email: user.email,
       lastSeenCar: user.lastSeenCar != null && user.lastSeenCar!.carId != null
           ? {user.lastSeenCar!.date: user.lastSeenCar!.carId!}
