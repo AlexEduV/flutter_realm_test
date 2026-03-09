@@ -8,6 +8,7 @@ class DialogHelper {
     required String title,
     required String description,
     required VoidCallback? onConfirm,
+    bool isDeletion = true,
     VoidCallback? onCancel,
   }) {
     showDialog(
@@ -22,14 +23,23 @@ class DialogHelper {
                 Navigator.of(context).pop();
                 onCancel?.call();
               },
-              child: Text(AppLocalisations.cancelLabel),
+              child: Text(
+                AppLocalisations.cancelLabel,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
                 onConfirm?.call();
               },
-              child: Text(AppLocalisations.confirmLabel),
+              child: Text(
+                AppLocalisations.confirmLabel,
+                style: TextStyle(
+                  color: isDeletion ? Colors.redAccent : null,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ],
         );
