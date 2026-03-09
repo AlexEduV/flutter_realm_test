@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
@@ -127,7 +128,13 @@ class RealmLocalStorage implements BaseLocalStorage {
     //the usual update still does not work after fixing conversions;
     //the changed lists work fine, but the unchanged - throw this exception
 
-    final currentUser = realm.all<User>().first;
+    //in clearing out the user, using deleteFirst did not change anything.
+    //updating every user operation with full update did not help;
+
+    //using .isValid check did not help either
+
+    final currentUser = realm.all<User>().firstOrNull;
+    if (currentUser == null) return;
 
     realm.write(() {
       currentUser.firstName = user.firstName;
@@ -139,17 +146,27 @@ class RealmLocalStorage implements BaseLocalStorage {
       currentUser.region = user.region;
       currentUser.lastSeenCar = UserExtensions.getLastSeenCar(user.lastSeenCar);
 
-      currentUser.favoriteIds
-        ..clear()
-        ..addAll(user.favoriteIds);
+      try {
+        if (currentUser.favoriteIds.isValid) {
+          currentUser.favoriteIds
+            ..clear()
+            ..addAll(user.favoriteIds);
+        }
 
-      currentUser.viewedIds
-        ..clear()
-        ..addAll(user.viewedIds);
+        if (currentUser.viewedIds.isValid) {
+          currentUser.viewedIds
+            ..clear()
+            ..addAll(user.viewedIds);
+        }
 
-      currentUser.createdIds
-        ..clear()
-        ..addAll(user.createdIds);
+        if (currentUser.createdIds.isValid) {
+          currentUser.createdIds
+            ..clear()
+            ..addAll(user.createdIds);
+        }
+      } catch (e) {
+        debugPrint('database exception on updating the user: $e');
+      }
     });
   }
 }
