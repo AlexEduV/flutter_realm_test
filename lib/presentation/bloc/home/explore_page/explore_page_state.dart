@@ -11,6 +11,6 @@ abstract class ExplorePageState with _$ExplorePageState {
     @Default(false) bool isLoading,
     @Default([]) List<ArticleEntity> articles,
     @Default(false) bool isArticleListLoading,
-    @Default(null) CarEntity? lastSeenCar,
+    CarEntity? lastSeenCar,
   }) = _ExplorePageState;
 }
