@@ -4,6 +4,8 @@ part 'user_data_state.freezed.dart';
 
 @freezed
 abstract class UserDataState with _$UserDataState {
+  const UserDataState._();
+
   const factory UserDataState({
     @Default(false) bool isLoading,
     @Default(false) bool isLocationPermissionGranted,

@@ -88,8 +88,8 @@ as String?,
 /// @nodoc
 
 
-class _UserDataState implements UserDataState {
-  const _UserDataState({this.isLoading = false, this.isLocationPermissionGranted = false, final  List<String> favoriteIds = const [], final  List<String> createdIds = const [], final  List<String> viewedIds = const [], this.isUserAuthenticated = false, this.firstName = '', this.lastName = '', this.email = '', this.password = '', this.region = '', final  Map<DateTime, String>? lastSeenCar, this.avatarImageSrc}): _favoriteIds = favoriteIds,_createdIds = createdIds,_viewedIds = viewedIds,_lastSeenCar = lastSeenCar;
+class _UserDataState extends UserDataState {
+  const _UserDataState({this.isLoading = false, this.isLocationPermissionGranted = false, final  List<String> favoriteIds = const [], final  List<String> createdIds = const [], final  List<String> viewedIds = const [], this.isUserAuthenticated = false, this.firstName = '', this.lastName = '', this.email = '', this.password = '', this.region = '', final  Map<DateTime, String>? lastSeenCar, this.avatarImageSrc}): _favoriteIds = favoriteIds,_createdIds = createdIds,_viewedIds = viewedIds,_lastSeenCar = lastSeenCar,super._();
   
 
 @override@JsonKey() final  bool isLoading;

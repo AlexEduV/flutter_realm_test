@@ -100,7 +100,7 @@ as SearchDrawerType,
 
 
 class _SearchPageState implements SearchPageState {
-  const _SearchPageState({final  List<CarEntity> results = const [], final  List<CarEntity> allResults = const [], this.currentSelectedType = CarType.car, this.isLoading = false, final  List<String> allModels = const [], final  List<String> selectedModels = const [], this.selectedMinYear = null, this.selectedMaxYear = null, final  List<String> allColors = const [], final  List<String> selectedColors = const [], this.minYearError = null, this.maxYearError = null, final  List<String> selectedBodyTypes = const [], this.selectedMinPrice = null, this.selectedMaxPrice = null, this.minPriceError = null, this.maxPriceError = null, this.minYearFieldParamsModel, this.maxYearFieldParamsModel, this.minPriceFieldParamsModel, this.maxPriceFieldParamsModel, final  List<String> selectedFuelTypes = const [], final  List<String> selectedTransmissionTypes = const [], this.drawerOpened = SearchDrawerType.empty}): _results = results,_allResults = allResults,_allModels = allModels,_selectedModels = selectedModels,_allColors = allColors,_selectedColors = selectedColors,_selectedBodyTypes = selectedBodyTypes,_selectedFuelTypes = selectedFuelTypes,_selectedTransmissionTypes = selectedTransmissionTypes;
+  const _SearchPageState({final  List<CarEntity> results = const [], final  List<CarEntity> allResults = const [], this.currentSelectedType = CarType.car, this.isLoading = false, final  List<String> allModels = const [], final  List<String> selectedModels = const [], this.selectedMinYear, this.selectedMaxYear, final  List<String> allColors = const [], final  List<String> selectedColors = const [], this.minYearError, this.maxYearError, final  List<String> selectedBodyTypes = const [], this.selectedMinPrice, this.selectedMaxPrice, this.minPriceError, this.maxPriceError, this.minYearFieldParamsModel, this.maxYearFieldParamsModel, this.minPriceFieldParamsModel, this.maxPriceFieldParamsModel, final  List<String> selectedFuelTypes = const [], final  List<String> selectedTransmissionTypes = const [], this.drawerOpened = SearchDrawerType.empty}): _results = results,_allResults = allResults,_allModels = allModels,_selectedModels = selectedModels,_allColors = allColors,_selectedColors = selectedColors,_selectedBodyTypes = selectedBodyTypes,_selectedFuelTypes = selectedFuelTypes,_selectedTransmissionTypes = selectedTransmissionTypes;
   
 
  final  List<CarEntity> _results;
@@ -133,8 +133,8 @@ class _SearchPageState implements SearchPageState {
   return EqualUnmodifiableListView(_selectedModels);
 }
 
-@override@JsonKey() final  String? selectedMinYear;
-@override@JsonKey() final  String? selectedMaxYear;
+@override final  String? selectedMinYear;
+@override final  String? selectedMaxYear;
  final  List<String> _allColors;
 @override@JsonKey() List<String> get allColors {
   if (_allColors is EqualUnmodifiableListView) return _allColors;
@@ -149,8 +149,8 @@ class _SearchPageState implements SearchPageState {
   return EqualUnmodifiableListView(_selectedColors);
 }
 
-@override@JsonKey() final  String? minYearError;
-@override@JsonKey() final  String? maxYearError;
+@override final  String? minYearError;
+@override final  String? maxYearError;
  final  List<String> _selectedBodyTypes;
 @override@JsonKey() List<String> get selectedBodyTypes {
   if (_selectedBodyTypes is EqualUnmodifiableListView) return _selectedBodyTypes;
@@ -158,10 +158,10 @@ class _SearchPageState implements SearchPageState {
   return EqualUnmodifiableListView(_selectedBodyTypes);
 }
 
-@override@JsonKey() final  String? selectedMinPrice;
-@override@JsonKey() final  String? selectedMaxPrice;
-@override@JsonKey() final  String? minPriceError;
-@override@JsonKey() final  String? maxPriceError;
+@override final  String? selectedMinPrice;
+@override final  String? selectedMaxPrice;
+@override final  String? minPriceError;
+@override final  String? maxPriceError;
 @override final  FieldParamsModel? minYearFieldParamsModel;
 @override final  FieldParamsModel? maxYearFieldParamsModel;
 @override final  FieldParamsModel? minPriceFieldParamsModel;
