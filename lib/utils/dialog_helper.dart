@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'l10n.dart';
+import 'package:test_futter_project/common/app_text_styles.dart';
 
 class DialogHelper {
   static void showConfirmationDialog(
@@ -8,6 +7,8 @@ class DialogHelper {
     required String title,
     required String description,
     required VoidCallback? onConfirm,
+    required String confirmButtonTitle,
+    required String cancelButtonTitle,
     bool isDeletion = true,
     VoidCallback? onCancel,
   }) {
@@ -15,7 +16,7 @@ class DialogHelper {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(title),
+          title: Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700)),
           content: Text(description),
           actions: [
             TextButton(
@@ -23,10 +24,7 @@ class DialogHelper {
                 Navigator.of(context).pop();
                 onCancel?.call();
               },
-              child: Text(
-                AppLocalisations.cancelLabel,
-                style: const TextStyle(fontWeight: FontWeight.w600),
-              ),
+              child: Text(cancelButtonTitle, style: const TextStyle(fontWeight: FontWeight.w600)),
             ),
             ElevatedButton(
               onPressed: () {
@@ -34,7 +32,7 @@ class DialogHelper {
                 onConfirm?.call();
               },
               child: Text(
-                AppLocalisations.confirmLabel,
+                confirmButtonTitle,
                 style: TextStyle(
                   color: isDeletion ? Colors.redAccent : null,
                   fontWeight: FontWeight.w600,

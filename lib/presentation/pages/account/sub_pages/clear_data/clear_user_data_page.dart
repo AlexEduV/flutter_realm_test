@@ -60,6 +60,8 @@ class ClearUserDataPage extends StatelessWidget {
                                   context,
                                   title: AppLocalisations.clearViewHistoryItem,
                                   description: AppLocalisations.clearViewHistoryDialogDescription,
+                                  cancelButtonTitle: 'No, keep it.',
+                                  confirmButtonTitle: 'Yes, delete it.',
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearRecentItems();
                                   },
@@ -81,6 +83,8 @@ class ClearUserDataPage extends StatelessWidget {
                                   context,
                                   title: AppLocalisations.clearFavoritesItem,
                                   description: AppLocalisations.clearFavoriteItemsDialogDescription,
+                                  cancelButtonTitle: 'No, keep them.',
+                                  confirmButtonTitle: 'Yes, delete them.',
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearFavorites();
                                   },
@@ -102,6 +106,8 @@ class ClearUserDataPage extends StatelessWidget {
                                   context,
                                   title: AppLocalisations.clearMyItemsItem,
                                   description: AppLocalisations.clearMyItemsDialogDescription,
+                                  cancelButtonTitle: 'No, keep them.',
+                                  confirmButtonTitle: 'Yes, delete them.',
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearMyItems();
                                   },
@@ -127,6 +133,8 @@ class ClearUserDataPage extends StatelessWidget {
                             context,
                             title: AppLocalisations.clearAllDataItem,
                             description: AppLocalisations.clearAllDataDialogDescription,
+                            cancelButtonTitle: 'No, keep it.',
+                            confirmButtonTitle: 'Yes, delete it.',
                             onConfirm: () {
                               context.read<UserDataCubit>().clearAllData();
                             },
