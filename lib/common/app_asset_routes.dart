@@ -2,6 +2,9 @@ class AppAssetRoutes {
   static const assetFolder = 'assets/';
   static const imagesFolder = 'images/';
   static const mocksFolder = 'mocks/';
+  static const flagsFolder = 'country_flags/';
+
+  static const flagRoute = '$assetFolder$imagesFolder$flagsFolder';
 
   static const yellowCarLoginBackground = '$assetFolder${imagesFolder}car-yellow.jpg';
 

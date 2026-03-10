@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_asset_routes.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/domain/models/region_ui_model.dart';
 
 class DialogHelper {
   static void showConfirmationDialog(
@@ -49,15 +52,27 @@ class DialogHelper {
     );
   }
 
-  static Future<String?> showTextPicker(BuildContext context, List<String> items) async {
-    return await showModalBottomSheet<String>(
+  static Future<RegionUiModel?> showTextPicker(
+    BuildContext context,
+    List<RegionUiModel> items,
+  ) async {
+    return await showModalBottomSheet<RegionUiModel>(
       context: context,
       builder: (BuildContext context) {
         return ListView.builder(
+          padding: const EdgeInsets.all(AppDimensions.minorL),
           itemCount: items.length,
           itemBuilder: (context, index) {
             return ListTile(
-              title: Text(items[index]),
+              leading: Image.asset(
+                '${AppAssetRoutes.flagRoute}${items[index].code}.png',
+                height: 32,
+                width: 32,
+              ),
+              title: Text(
+                items[index].countryName,
+                style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
+              ),
               onTap: () {
                 Navigator.pop(context, items[index]);
               },

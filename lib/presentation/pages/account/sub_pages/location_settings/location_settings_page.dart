@@ -4,6 +4,7 @@ import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/models/region_ui_model.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
@@ -70,11 +71,13 @@ class LocationSettingsPage extends StatelessWidget {
 
                           final availableCountries = regions
                               .map(
-                                (element) =>
-                                    serviceLocator<AppLocalisationsCubit>()
-                                        .state
-                                        .localisations['${L10nKeys.countryPrefix}${element.locale}'] ??
-                                    '',
+                                (element) => RegionUiModel(
+                                  code: element.locale,
+                                  countryName: serviceLocator<AppLocalisationsCubit>()
+                                      .getLocalisationByKey(
+                                        '${L10nKeys.countryPrefix}${element.locale}',
+                                      ),
+                                ),
                               )
                               .toList();
 
@@ -86,8 +89,7 @@ class LocationSettingsPage extends StatelessWidget {
                           if (region == null) return;
                           if (!context.mounted) return;
 
-                          final index = availableCountries.indexOf(region);
-                          final locale = regions[index].locale;
+                          final locale = region.code;
 
                           context.read<UserDataCubit>().updateRegion(locale);
                         },
