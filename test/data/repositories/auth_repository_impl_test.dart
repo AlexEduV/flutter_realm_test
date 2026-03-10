@@ -43,7 +43,7 @@ void main() {
       'forms.warnings.userAlreadyExists': 'User already exists',
     };
 
-    serviceLocator<AppLocalisationsCubit>().load(localisations);
+    appLocalisationsCubit.load(localisations);
 
     repo = AuthRepositoryImpl(mockLocalStorage);
     repo.users = initUsers;
