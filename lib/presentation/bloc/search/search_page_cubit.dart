@@ -9,7 +9,10 @@ import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+
+import '../../../di/injection_container.dart';
+import '../../../utils/l10n_keys.dart';
+import '../l10n/app_localisations_cubit.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
   SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase) : super(const SearchPageState());
@@ -22,18 +25,26 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void init() {
     emit(
       state.copyWith(
-        minYearFieldParamsModel: FieldParamsModel.withLabel(
-          'Min:',
-        ).copyWith(validationMessage: AppLocalisations.filterValidationMessage),
-        maxYearFieldParamsModel: FieldParamsModel.withLabel(
-          'Max:',
-        ).copyWith(validationMessage: AppLocalisations.filterValidationMessage),
-        minPriceFieldParamsModel: FieldParamsModel.withLabel(
-          'Min:',
-        ).copyWith(validationMessage: AppLocalisations.filterValidationMessage),
-        maxPriceFieldParamsModel: FieldParamsModel.withLabel(
-          'Max:',
-        ).copyWith(validationMessage: AppLocalisations.filterValidationMessage),
+        minYearFieldParamsModel: FieldParamsModel.withLabel('Min:').copyWith(
+          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.filterValidationMessage,
+          ),
+        ),
+        maxYearFieldParamsModel: FieldParamsModel.withLabel('Max:').copyWith(
+          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.filterValidationMessage,
+          ),
+        ),
+        minPriceFieldParamsModel: FieldParamsModel.withLabel('Min:').copyWith(
+          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.filterValidationMessage,
+          ),
+        ),
+        maxPriceFieldParamsModel: FieldParamsModel.withLabel('Max:').copyWith(
+          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.filterValidationMessage,
+          ),
+        ),
       ),
     );
 

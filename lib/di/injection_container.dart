@@ -43,6 +43,7 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
@@ -170,4 +171,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => FetchRegionsUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetRegionByCodeUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 }

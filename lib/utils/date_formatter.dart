@@ -1,6 +1,8 @@
 import 'package:intl/intl.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 class DateFormatter {
   static String formatSmartDate(DateTime date) {
@@ -13,11 +15,13 @@ class DateFormatter {
       return DateFormat.Hm().format(date); // e.g., "14:23"
     } else if (dateDay == today.subtract(const Duration(days: 1))) {
       // Yesterday
-      return AppLocalisations.dateFormattingYesterday;
+      return serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+        L10nKeys.dateFormattingYesterday,
+      );
     } else {
       // Day of the week
       return DateFormat.EEEE(
-        AppLocalisations.locale,
+        serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.locale),
       ).format(date).capitalizeFirst(); // e.g., "Monday"
     }
   }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_asset_routes.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/domain/models/region_ui_model.dart';
 
 class DialogHelper {
   static void showConfirmationDialog(
@@ -44,6 +47,41 @@ class DialogHelper {
               ),
             ),
           ],
+        );
+      },
+    );
+  }
+
+  static Future<RegionUiModel?> showTextPicker(
+    BuildContext context,
+    List<RegionUiModel> items,
+  ) async {
+    return await showModalBottomSheet<RegionUiModel>(
+      context: context,
+      builder: (BuildContext context) {
+        return ListView.builder(
+          padding: const EdgeInsets.symmetric(vertical: AppDimensions.normalM),
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              contentPadding: const EdgeInsetsGeometry.symmetric(
+                horizontal: AppDimensions.normalM,
+                vertical: AppDimensions.minorM,
+              ),
+              leading: Image.asset(
+                '${AppAssetRoutes.flagRoute}${items[index].code}.png',
+                height: AppDimensions.regionFlagIconSize,
+                width: AppDimensions.regionFlagIconSize,
+              ),
+              title: Text(
+                items[index].countryName,
+                style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
+              ),
+              onTap: () {
+                Navigator.pop(context, items[index]);
+              },
+            );
+          },
         );
       },
     );

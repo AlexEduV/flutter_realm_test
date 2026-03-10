@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_state.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../common/app_semantics_labels.dart';
 import '../../../common/utils/share_debouncer.dart';
 import '../../../domain/models/share_params_model.dart';
+import '../../../utils/l10n_keys.dart';
 import '../../widgets/app_semantics.dart';
 
 class ArticlePage extends StatefulWidget {
@@ -44,7 +45,7 @@ class _ArticlePageState extends State<ArticlePage> {
               Padding(
                 padding: const EdgeInsets.only(right: AppDimensions.normalS),
                 child: IconButton(
-                  tooltip: AppLocalisations.shareButtonLabel,
+                  tooltip: context.tr(L10nKeys.shareButtonLabel),
                   onPressed: () async {
                     await ShareDebouncer.share(
                       ShareParamsModel(
@@ -90,7 +91,7 @@ class _ArticlePageState extends State<ArticlePage> {
                           spacing: AppDimensions.minorL,
                           children: [
                             if (minsToRead != null) ...[
-                              Text('$minsToRead ${AppLocalisations.articlePageMinsToRead}'),
+                              Text('$minsToRead ${context.tr(L10nKeys.articlePageMinsToRead)}'),
                             ],
 
                             Text(state.article?.datePublished ?? ''),

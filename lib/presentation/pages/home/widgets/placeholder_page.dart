@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 
 import '../../../../common/app_text_styles.dart';
+import '../../../../utils/l10n_keys.dart';
 
 class PlaceholderPage extends StatelessWidget {
   const PlaceholderPage({super.key});
@@ -22,10 +23,13 @@ class PlaceholderPage extends StatelessWidget {
               color: Colors.grey,
             ),
             const SizedBox(height: AppDimensions.normalM),
-            Text(AppLocalisations.comingSoonPlaceholderPageTitle, style: AppTextStyles.zonaPro24),
+            Text(
+              context.tr(L10nKeys.comingSoonPlaceholderPageTitle),
+              style: AppTextStyles.zonaPro24,
+            ),
             const SizedBox(height: AppDimensions.minorL),
             Text(
-              AppLocalisations.comingSoonPlaceholderPageSubTitle,
+              context.tr(L10nKeys.comingSoonPlaceholderPageSubTitle),
               style: AppTextStyles.zonaPro16.copyWith(color: Colors.grey),
               textAlign: TextAlign.center,
             ),

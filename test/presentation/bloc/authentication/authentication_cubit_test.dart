@@ -10,8 +10,8 @@ import 'package:test_futter_project/domain/usecases/authentication/logout_use_ca
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../data/data_sources/mock_auth_service_test.mocks.dart';
 import '../../../utils/app_router_test.mocks.dart';
@@ -27,9 +27,11 @@ void main() {
   late MockRegisterUseCase mockRegisterUseCase;
   late MockLogoutUseCase mockLogoutUseCase;
 
+  final appLocalisationsCubit = AppLocalisationsCubit();
+
   setUp(() {
     // Setup mock localisations
-    AppLocalisations.localisations = {
+    final localisations = {
       'forms.fieldParams.email.label': 'Email',
       'forms.fieldParams.email.regexErrorMessage': 'Invalid email',
       'forms.fieldParams.validationMessage': 'Required',
@@ -41,6 +43,9 @@ void main() {
       'forms.fieldParams.fullName.regexErrorMessage': 'Invalid name',
       'forms.fieldParams.fullName.hintText': 'Enter name',
     };
+
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+    appLocalisationsCubit.load(localisations);
 
     mockAuthRepository = MockAuthRepository();
     mockUserDataCubit = MockUserDataCubit();

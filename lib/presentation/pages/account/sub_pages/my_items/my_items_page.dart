@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/enums/details_page_source.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
 import '../../../../../di/injection_container.dart';
-import '../../../../../utils/l10n.dart';
+import '../../../../../utils/l10n_keys.dart';
 import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../../../bloc/home/explore_page/explore_page_state.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
@@ -22,7 +23,7 @@ class MyItemsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.accountItemMyItems, style: AppTextStyles.zonaPro20),
+        title: Text(context.tr(L10nKeys.accountItemMyItems), style: AppTextStyles.zonaPro20),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
@@ -39,7 +40,7 @@ class MyItemsPage extends StatelessWidget {
 
               if (createdEntities.isEmpty) {
                 return EmptyResultsPlaceholderWidget(
-                  text: AppLocalisations.myItemsNoResultsPlaceholder,
+                  text: context.tr(L10nKeys.myItemsNoResultsPlaceholder),
                 );
               }
 

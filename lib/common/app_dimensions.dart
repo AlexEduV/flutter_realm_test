@@ -40,4 +40,6 @@ class AppDimensions {
 
   static const avatarImageAddIconSize = 17.0;
   static const avatarImageSize = 50.0;
+
+  static const regionFlagIconSize = 32.0;
 }

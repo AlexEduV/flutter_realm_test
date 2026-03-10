@@ -7,14 +7,15 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/details_page_source.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 import 'package:test_futter_project/presentation/widgets/verified_badge.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../utils/app_router.dart';
+import '../../utils/l10n_keys.dart';
 import 'app_semantics.dart';
 
 class AnnouncementListItem extends StatelessWidget {
@@ -45,7 +46,7 @@ class AnnouncementListItem extends StatelessWidget {
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,
-            label: AppLocalisations.deleteButtonTitle,
+            label: context.tr(L10nKeys.deleteButtonTitle),
           ),
         ],
       ),
@@ -167,7 +168,7 @@ class AnnouncementListItem extends StatelessWidget {
                                 getSpanIcon(icon: Icons.location_pin),
                                 TextSpan(
                                   text:
-                                      '${car?.distanceTo ?? 0} ${AppLocalisations.distanceWidgetText}',
+                                      '${car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceWidgetText)}',
                                   style: AppTextStyles.zonaPro20.copyWith(
                                     fontWeight: FontWeight.w400,
                                   ),

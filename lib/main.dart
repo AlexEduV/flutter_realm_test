@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/image_cache_util.dart';
-import 'package:test_futter_project/utils/l10n.dart';
-import 'package:test_futter_project/utils/localisation_util.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,16 +25,10 @@ void main() async {
   //todo: added flavors, but had to revert, because they broke the Android project.
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
-  AppLocalisations.localisations = await LocalisationUtil.loadLocalisations(
-    'assets/mocks/localisation_mock_response_data_uk.json',
-  );
 
-  await initializeDateFormatting(AppLocalisations.locale, null);
-  await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);
+  await MockRegionService.init();
 
   ImageCacheUtil.initExtendedCacheSize();
-
-  await serviceLocator<FetchRegionsUseCase>().call();
 
   runApp(const MyApp());
 }
@@ -72,9 +65,12 @@ class MyApp extends StatelessWidget {
             create: (context) => serviceLocator<InboxPageCubit>()..init(),
           ),
           BlocProvider<ArticlePageCubit>(create: (context) => serviceLocator<ArticlePageCubit>()),
+          BlocProvider<AppLocalisationsCubit>(
+            create: (context) => serviceLocator<AppLocalisationsCubit>(),
+          ),
         ],
         child: MaterialApp.router(
-          title: AppLocalisations.appName,
+          title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
             fontFamily: 'Zona Pro',

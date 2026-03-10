@@ -2,15 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 void main() {
+  final appLocalisationsCubit = AppLocalisationsCubit();
+
   setUp(() {
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+
     // Set up localisation values for the test
-    AppLocalisations.localisations = {
+    final localisations = {
       'pages.search.emptyPlaceholder': 'No results were found for this search.',
     };
+
+    appLocalisationsCubit.load(localisations);
+  });
+
+  tearDown(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
   group('EmptySearchPlaceholderWidget', () {
@@ -18,25 +30,32 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: EmptyResultsPlaceholderWidget(text: AppLocalisations.emptySearchPlaceholderText),
+            body: EmptyResultsPlaceholderWidget(
+              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+            ),
           ),
         ),
       );
 
-      expect(find.text(AppLocalisations.emptySearchPlaceholderText), findsOneWidget);
+      expect(
+        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText)),
+        findsOneWidget,
+      );
     });
 
     testWidgets('uses correct text style and maxLines', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: EmptyResultsPlaceholderWidget(text: AppLocalisations.emptySearchPlaceholderText),
+            body: EmptyResultsPlaceholderWidget(
+              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+            ),
           ),
         ),
       );
 
       final textWidget = tester.widget<Text>(
-        find.text(AppLocalisations.emptySearchPlaceholderText),
+        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText)),
       );
       expect(textWidget.style?.fontSize, AppTextStyles.zonaPro18.fontSize);
       expect(textWidget.style?.fontWeight, AppTextStyles.zonaPro18.fontWeight);
@@ -47,7 +66,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: EmptyResultsPlaceholderWidget(text: AppLocalisations.emptySearchPlaceholderText),
+            body: EmptyResultsPlaceholderWidget(
+              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+            ),
           ),
         ),
       );
@@ -60,7 +81,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: EmptyResultsPlaceholderWidget(text: AppLocalisations.emptySearchPlaceholderText),
+            body: EmptyResultsPlaceholderWidget(
+              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+            ),
           ),
         ),
       );

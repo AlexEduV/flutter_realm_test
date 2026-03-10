@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
-import '../../../../utils/l10n.dart';
+import '../../../../utils/l10n_keys.dart';
 
 class ResultsWidget extends StatelessWidget {
   final String results;
@@ -20,7 +21,7 @@ class ResultsWidget extends StatelessWidget {
         spacing: AppDimensions.minorL,
         children: [
           Text(
-            AppLocalisations.results,
+            context.tr(L10nKeys.results),
             style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
           ),
 

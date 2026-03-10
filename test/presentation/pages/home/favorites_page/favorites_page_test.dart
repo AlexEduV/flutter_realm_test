@@ -6,22 +6,26 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/home/favorites_page/favorites_page.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 
 void main() {
   final MockExplorePageCubit explorePageCubit = MockExplorePageCubit();
   final MockUserDataCubit userDataCubit = MockUserDataCubit();
+  final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUpAll(() {
     serviceLocator.registerSingleton<ExplorePageCubit>(explorePageCubit);
     serviceLocator.registerSingleton<UserDataCubit>(userDataCubit);
 
-    AppLocalisations.localisations = {'pages.favorites.title': 'Favorites'};
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+    final localisations = {'pages.favorites.title': 'Favorites'};
+    appLocalisationsCubit.load(localisations);
   });
 
   tearDownAll(() async {
@@ -33,6 +37,7 @@ void main() {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<ExplorePageCubit>.value(value: explorePageCubit),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           BlocProvider<UserDataCubit>.value(value: userDataCubit),
         ],
         child: child,
@@ -49,7 +54,10 @@ void main() {
 
     await tester.pumpWidget(makeTestableWidget(const FavoritesPage()));
 
-    expect(find.text(AppLocalisations.favoritesPageTitle), findsOneWidget);
+    expect(
+      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.favoritesPageTitle)),
+      findsOneWidget,
+    );
   });
 
   testWidgets('shows only favorite cars', (tester) async {
@@ -74,7 +82,10 @@ void main() {
     await tester.pumpWidget(makeTestableWidget(const FavoritesPage()));
 
     // Replace with your actual empty state text
-    expect(find.text(AppLocalisations.favoritesEmptyPlaceholder), findsOneWidget);
+    expect(
+      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.favoritesEmptyPlaceholder)),
+      findsOneWidget,
+    );
   });
 
   testWidgets('delete button calls removeCarIdFromFavorites', (tester) async {

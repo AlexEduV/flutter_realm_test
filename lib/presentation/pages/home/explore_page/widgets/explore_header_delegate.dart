@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
@@ -10,7 +11,7 @@ import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_routes.dart';
 import '../../../../../common/app_text_styles.dart';
-import '../../../../../utils/l10n.dart';
+import '../../../../../utils/l10n_keys.dart';
 import 'explore_article_item.dart';
 import 'last_seen_widget.dart';
 
@@ -57,7 +58,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppLocalisations.explorePageTitle, style: AppTextStyles.zonaPro30White),
+                  Text(context.tr(L10nKeys.explorePageTitle), style: AppTextStyles.zonaPro30White),
                   IconButton(
                     onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
                     icon: const Icon(

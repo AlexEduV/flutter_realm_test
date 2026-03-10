@@ -9,7 +9,9 @@ import 'package:test_futter_project/domain/usecases/authentication/logout_use_ca
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
+
+import '../l10n/app_localisations_cubit.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(const AuthenticationState());
@@ -17,28 +19,58 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   void init() {
     emit(
       state.copyWith(
-        emailFieldParams: FieldParamsModel.withLabel(AppLocalisations.fieldParamsEmailLabel)
-            .copyWith(
+        emailFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsEmailLabel,
+              ),
+            ).copyWith(
               regex: r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$',
-              regexErrorMessage: AppLocalisations.fieldParamsEmailRegexErrorMessage,
-              validationMessage: AppLocalisations.fieldParamsValidationMessage,
-              hintText: AppLocalisations.fieldParamsEmailHintText,
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsEmailRegexErrorMessage,
+              ),
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
+              hintText: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsEmailHintText,
+              ),
             ),
-        passwordFieldParams: FieldParamsModel.withLabel(AppLocalisations.fieldParamsPasswordLabel)
-            .copyWith(
+        passwordFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsPasswordLabel,
+              ),
+            ).copyWith(
               minLength: 8,
               maxLength: 20,
-              validationMessage: AppLocalisations.fieldParamsValidationMessage,
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
               regex: r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{8,}$',
-              regexErrorMessage: AppLocalisations.fieldParamsPasswordRegexErrorMessage,
-              hintText: AppLocalisations.fieldParamsPasswordHintText,
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsPasswordRegexErrorMessage,
+              ),
+              hintText: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsPasswordHintText,
+              ),
             ),
-        fullNameFieldParams: FieldParamsModel.withLabel(AppLocalisations.fieldParamsFullNameLabel)
-            .copyWith(
+        fullNameFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsFullNameLabel,
+              ),
+            ).copyWith(
               regex: r"^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$",
-              validationMessage: AppLocalisations.fieldParamsValidationMessage,
-              regexErrorMessage: AppLocalisations.fieldParamsFullNameRegexErrorMessage,
-              hintText: AppLocalisations.fieldParamsFullNameHintText,
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsFullNameRegexErrorMessage,
+              ),
+              hintText: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsFullNameHintText,
+              ),
             ),
       ),
     );
@@ -129,7 +161,8 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(
         state.copyWith(
           passwordValidationStage: 0,
-          passwordStrengthHintText: '${AppLocalisations.authPasswordStrengthLengthHint} $minLength',
+          passwordStrengthHintText:
+              '${serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.authPasswordStrengthLengthHint)} $minLength',
         ),
       );
       return false;
@@ -139,7 +172,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(
         state.copyWith(
           passwordValidationStage: 1,
-          passwordStrengthHintText: AppLocalisations.authPasswordStrengthLowercaseHint,
+          passwordStrengthHintText: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.authPasswordStrengthLowercaseHint,
+          ),
         ),
       );
       return false;
@@ -149,7 +184,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(
         state.copyWith(
           passwordValidationStage: 2,
-          passwordStrengthHintText: AppLocalisations.authPasswordStrengthUppercaseHint,
+          passwordStrengthHintText: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.authPasswordStrengthUppercaseHint,
+          ),
         ),
       );
       return false;
@@ -159,7 +196,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(
         state.copyWith(
           passwordValidationStage: 3,
-          passwordStrengthHintText: AppLocalisations.authPasswordStrengthDigitHint,
+          passwordStrengthHintText: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.authPasswordStrengthDigitHint,
+          ),
         ),
       );
       return false;
@@ -170,7 +209,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(
         state.copyWith(
           passwordValidationStage: 4,
-          passwordStrengthHintText: AppLocalisations.authPasswordStrengthSpecialCharacterHint,
+          passwordStrengthHintText: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.authPasswordStrengthSpecialCharacterHint,
+          ),
         ),
       );
       return false;

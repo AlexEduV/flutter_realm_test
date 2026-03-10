@@ -2,8 +2,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
 
@@ -12,6 +14,7 @@ void main() {
   late AuthRepositoryImpl repo;
 
   final mockLocalStorage = MockBaseLocalStorage();
+  final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
     final initUsers = [
@@ -34,15 +37,26 @@ void main() {
     SharedPreferences.setMockInitialValues({'mock_users': initUsers});
 
     // Set up localisations for error messages
-    AppLocalisations.localisations = {
+    final localisations = {
       'forms.warnings.userNotFound': 'User not found',
       'forms.warnings.incorrectPassword': 'Incorrect password',
       'forms.warnings.userAlreadyExists': 'User already exists',
     };
+
+    appLocalisationsCubit.load(localisations);
+
     repo = AuthRepositoryImpl(mockLocalStorage);
     repo.users = initUsers;
 
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);
+  });
+
+  setUpAll(() {
+    serviceLocator.registerLazySingleton(() => appLocalisationsCubit);
+  });
+
+  tearDownAll(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
   group('login', () {
@@ -55,13 +69,23 @@ void main() {
     test('returns user not found for unknown email', () async {
       final result = await repo.login(email: 'unknown@example.com', password: 'Password1!');
       expect(result.success, isFalse);
-      expect(result.message, AppLocalisations.authErrorUserNotFoundMessage);
+      expect(
+        result.message,
+        serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+          L10nKeys.authErrorUserNotFoundMessage,
+        ),
+      );
     });
 
     test('returns incorrect password for wrong password', () async {
       final result = await repo.login(email: 'mock@example.com', password: 'wrongpassword');
       expect(result.success, isFalse);
-      expect(result.message, AppLocalisations.authErrorIncorrectPassword);
+      expect(
+        result.message,
+        serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+          L10nKeys.authErrorIncorrectPassword,
+        ),
+      );
     });
   });
 
@@ -85,7 +109,12 @@ void main() {
         lastName: 'User',
       );
       expect(result.success, isFalse);
-      expect(result.message, AppLocalisations.authErrorUserAlreadyExists);
+      expect(
+        result.message,
+        serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+          L10nKeys.authErrorUserAlreadyExists,
+        ),
+      );
     });
 
     test('actually adds the user to the repository', () async {

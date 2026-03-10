@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+
+import '../../../../utils/l10n_keys.dart';
 
 class ModelFilterDrawer extends StatelessWidget {
   final List<String> models;
@@ -24,7 +26,7 @@ class ModelFilterDrawer extends StatelessWidget {
             children: [
               DrawerHeader(
                 child: Text(
-                  AppLocalisations.searchFilterModelTitle,
+                  context.tr(L10nKeys.searchFilterModelTitle),
                   style: AppTextStyles.zonaPro20,
                 ),
               ),
@@ -38,7 +40,7 @@ class ModelFilterDrawer extends StatelessWidget {
                     context.read<SearchPageCubit>().updateModelSelection([]);
                   }
                 },
-                title: Text(AppLocalisations.searchFilterModelPlaceholder),
+                title: Text(context.tr(L10nKeys.searchFilterModelPlaceholder)),
                 controlAffinity: ListTileControlAffinity.leading,
               ),
 

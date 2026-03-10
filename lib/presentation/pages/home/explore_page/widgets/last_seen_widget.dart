@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
@@ -10,7 +11,7 @@ import '../../../../../common/app_text_styles.dart';
 import '../../../../../di/injection_container.dart';
 import '../../../../../domain/usecases/database/get_car_by_id_use_case.dart';
 import '../../../../../utils/app_router.dart';
-import '../../../../../utils/l10n.dart';
+import '../../../../../utils/l10n_keys.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
 import '../../../../widgets/app_semantics.dart';
@@ -45,7 +46,7 @@ class LastSeenWidget extends StatelessWidget {
                     top: AppDimensions.normalL,
                   ),
                   child: Text(
-                    AppLocalisations.lastSeenSectionTitle,
+                    context.tr(L10nKeys.lastSeenSectionTitle),
                     style: AppTextStyles.zonaPro18White.copyWith(fontWeight: FontWeight.w600),
                   ),
                 ),

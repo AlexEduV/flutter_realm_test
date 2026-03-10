@@ -1,11 +1,12 @@
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 enum PromoType {
-  //todo: not the best idea. localisation keys should only be in the l10n file;
-  bestPrice('best_price', 'pages.vehicleDetails.promoType.bestPrice'),
-  limitedTimeOffer('limited_time_offer', 'pages.vehicleDetails.promoType.limitedTimeOffer'),
-  oneOwner('one_owner', 'pages.vehicleDetails.promoType.oneOwner'),
-  featured('featured', 'pages.vehicleDetails.promoType.featured');
+  bestPrice('best_price', L10nKeys.promoTypeBestPrice),
+  limitedTimeOffer('limited_time_offer', L10nKeys.promoTypeLimitedTimeOffer),
+  oneOwner('one_owner', L10nKeys.promoTypeOneOwner),
+  featured('featured', L10nKeys.promoTypeFeatured);
 
   final String code;
   final String localized;
@@ -22,6 +23,6 @@ enum PromoType {
   }
 
   String? fromLocalisations() {
-    return AppLocalisations.get(localized);
+    return serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(localized);
   }
 }
