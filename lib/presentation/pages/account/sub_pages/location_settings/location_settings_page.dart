@@ -92,11 +92,10 @@ class LocationSettingsPage extends StatelessWidget {
                             currentIndex,
                           );
 
-                          if (region == null) return;
+                          if (region == null || region == availableCountries[currentIndex]) return;
                           if (!context.mounted) return;
 
                           final locale = region.code;
-
                           context.read<UserDataCubit>().updateRegion(locale);
                         },
                       ),
