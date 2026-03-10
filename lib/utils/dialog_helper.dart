@@ -60,14 +60,18 @@ class DialogHelper {
       context: context,
       builder: (BuildContext context) {
         return ListView.builder(
-          padding: const EdgeInsets.all(AppDimensions.minorL),
+          padding: const EdgeInsets.symmetric(vertical: AppDimensions.normalM),
           itemCount: items.length,
           itemBuilder: (context, index) {
             return ListTile(
+              contentPadding: const EdgeInsetsGeometry.symmetric(
+                horizontal: AppDimensions.normalM,
+                vertical: AppDimensions.minorM,
+              ),
               leading: Image.asset(
                 '${AppAssetRoutes.flagRoute}${items[index].code}.png',
-                height: 32,
-                width: 32,
+                height: AppDimensions.regionFlagIconSize,
+                width: AppDimensions.regionFlagIconSize,
               ),
               title: Text(
                 items[index].countryName,
