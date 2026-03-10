@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/utils/share_debouncer.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
@@ -15,7 +14,6 @@ import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.
 
 import '../../../common/app_semantics_labels.dart';
 import '../../../domain/models/share_params_model.dart';
-import '../../../utils/l10n_keys.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';
 import '../../widgets/verified_badge.dart';
@@ -71,7 +69,6 @@ class _DetailsPageState extends State<DetailsPage> {
           Padding(
             padding: const EdgeInsets.only(right: AppDimensions.normalS),
             child: IconButton(
-              tooltip: context.tr(L10nKeys.shareButtonLabel),
               onPressed: () async {
                 final car = context.read<DetailsPageCubit>().state.car;
 
@@ -179,14 +176,18 @@ class _DetailsPageState extends State<DetailsPage> {
                         children: [
                           Text(
                             '\$ ${car?.price ?? ''}',
-                            style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                            style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w600),
                           ),
 
                           if (car?.promoType != null) ...[
                             Row(
                               spacing: AppDimensions.minorL,
                               children: [
-                                const Icon(Icons.whatshot, size: 18, color: Colors.red),
+                                const Icon(
+                                  Icons.whatshot,
+                                  size: AppDimensions.hotLabelIconSize,
+                                  color: Colors.red,
+                                ),
 
                                 Text(car?.promoType?.fromLocalisations() ?? ''),
                               ],

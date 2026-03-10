@@ -14,5 +14,5 @@ class AppColors {
 
   static const cherryRed = Color(0xff7b2d26);
 
-  static const tealColor = Color(0xff2e959e);
+  static const teal = Color(0xff2e959e);
 }
