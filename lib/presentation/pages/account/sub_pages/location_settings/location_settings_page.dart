@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
+import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
+import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -62,6 +64,25 @@ class LocationSettingsPage extends StatelessWidget {
                         title: context.tr(L10nKeys.locationSettingsItemRegion),
                         description: region?.countryName ?? '',
                         icon: Icons.language,
+                        onTap: () async {
+                          final regions = MockRegionService.regions;
+
+                          final availableCountries = regions
+                              .map((element) => element.countryName)
+                              .toList();
+
+                          final region = await DialogHelper.showTextPicker(
+                            context,
+                            availableCountries,
+                          );
+                          if (region == null) return;
+                          if (!context.mounted) return;
+
+                          final locale = regions
+                              .firstWhere((element) => element.countryName == region)
+                              .locale;
+                          context.read<UserDataCubit>().updateRegion(locale);
+                        },
                       ),
                     ].withDividers(divider: const CustomDivider()),
                   );

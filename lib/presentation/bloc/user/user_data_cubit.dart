@@ -238,6 +238,17 @@ class UserDataCubit extends Cubit<UserDataState> {
     clearMyItems();
   }
 
+  void updateRegion(String region) {
+    user = user.copyWith(region: region);
+    emit(state.copyWith(region: region));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+
+    initLocalisation(region);
+
+    updateCloudUser(user);
+  }
+
   void authUser(String email) {
     final user = MockUsers.getUserByEmail(email);
 
