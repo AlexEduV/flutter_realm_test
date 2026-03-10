@@ -182,8 +182,10 @@ class L10nKeys {
   static const String deleteAccountDialogConfirmLabel = 'dialogs.deleteAccount.confirmLabel';
   static const String deleteAccountDialogCancelLabel = 'dialogs.deleteAccount.cancelLabel';
 
-  static const String countryItaly = 'countries.it';
-  static const String countryUnitedKingdom = 'countries.uk';
-
   static const String countryPrefix = 'countries.';
+
+  static const String promoTypeBestPrice = 'pages.vehicleDetails.promoType.bestPrice';
+  static const String promoTypeLimitedTimeOffer = 'pages.vehicleDetails.promoType.limitedTimeOffer';
+  static const String promoTypeOneOwner = 'pages.vehicleDetails.promoType.oneOwner';
+  static const String promoTypeFeatured = 'pages.vehicleDetails.promoType.featured';
 }
