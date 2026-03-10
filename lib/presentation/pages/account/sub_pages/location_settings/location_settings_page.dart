@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/extensions/widget_list_extension.dart
 import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
@@ -62,25 +63,32 @@ class LocationSettingsPage extends StatelessWidget {
 
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.locationSettingsItemRegion),
-                        description: region?.countryName ?? '',
+                        description: context.tr('countries.${region?.locale}'),
                         icon: Icons.language,
                         onTap: () async {
                           final regions = MockRegionService.regions;
 
                           final availableCountries = regions
-                              .map((element) => element.countryName)
+                              .map(
+                                (element) =>
+                                    serviceLocator<AppLocalisationsCubit>()
+                                        .state
+                                        .localisations['countries.${element.locale}'] ??
+                                    '',
+                              )
                               .toList();
 
                           final region = await DialogHelper.showTextPicker(
                             context,
                             availableCountries,
                           );
+
                           if (region == null) return;
                           if (!context.mounted) return;
 
-                          final locale = regions
-                              .firstWhere((element) => element.countryName == region)
-                              .locale;
+                          final index = availableCountries.indexOf(region);
+                          final locale = regions[index].locale;
+
                           context.read<UserDataCubit>().updateRegion(locale);
                         },
                       ),

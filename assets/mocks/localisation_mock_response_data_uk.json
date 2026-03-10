@@ -227,5 +227,9 @@
       "confirmLabel": "Yes, delete it.",
       "cancelLabel": "No, keep it."
     }
+  },
+  "countries": {
+    "uk": "United Kingdom",
+    "it": "Italy"
   }
 }

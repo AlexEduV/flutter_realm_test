@@ -1,10 +1,9 @@
 class RegionEntity {
   final String locale;
-  final String countryName;
 
-  const RegionEntity({required this.locale, required this.countryName});
+  const RegionEntity({required this.locale});
 
   static RegionEntity fromJson(Map<String, dynamic> json) {
-    return RegionEntity(locale: json['code'] as String, countryName: json['fullName'] as String);
+    return RegionEntity(locale: json['code'] as String);
   }
 }

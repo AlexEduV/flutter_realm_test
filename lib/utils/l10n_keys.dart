@@ -181,4 +181,7 @@ class L10nKeys {
   static const String deleteAccountDialogDescription = 'dialogs.deleteAccount.description';
   static const String deleteAccountDialogConfirmLabel = 'dialogs.deleteAccount.confirmLabel';
   static const String deleteAccountDialogCancelLabel = 'dialogs.deleteAccount.cancelLabel';
+
+  static const String countryItaly = 'countries.it';
+  static const String countryUnitedKingdom = 'countries.uk';
 }
