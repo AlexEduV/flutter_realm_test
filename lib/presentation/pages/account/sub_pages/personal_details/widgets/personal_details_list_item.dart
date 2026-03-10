@@ -3,6 +3,7 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/spinning_icon.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 class PersonalDetailsListItem extends StatelessWidget {
@@ -11,6 +12,7 @@ class PersonalDetailsListItem extends StatelessWidget {
   final String description;
   final Function()? onTap;
   final bool? showEnabled;
+  final bool animated;
 
   const PersonalDetailsListItem({
     required this.icon,
@@ -18,6 +20,7 @@ class PersonalDetailsListItem extends StatelessWidget {
     required this.description,
     this.onTap,
     this.showEnabled,
+    this.animated = false,
     super.key,
   });
 
@@ -50,7 +53,7 @@ class PersonalDetailsListItem extends StatelessWidget {
             ),
           ],
         ),
-        leading: Icon(icon),
+        leading: SpinningIcon(spin: animated, icon: icon),
       ),
     );
   }

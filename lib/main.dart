@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/presentation/bloc/account/location_settings_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -67,6 +68,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<ArticlePageCubit>(create: (context) => serviceLocator<ArticlePageCubit>()),
           BlocProvider<AppLocalisationsCubit>(
             create: (context) => serviceLocator<AppLocalisationsCubit>(),
+          ),
+          BlocProvider<LocationSettingsPageCubit>(
+            create: (context) => serviceLocator<LocationSettingsPageCubit>(),
           ),
         ],
         child: MaterialApp.router(
