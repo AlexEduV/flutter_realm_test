@@ -45,7 +45,6 @@ class _ArticlePageState extends State<ArticlePage> {
               Padding(
                 padding: const EdgeInsets.only(right: AppDimensions.normalS),
                 child: IconButton(
-                  tooltip: context.tr(L10nKeys.shareButtonLabel),
                   onPressed: () async {
                     await ShareDebouncer.share(
                       ShareParamsModel(
