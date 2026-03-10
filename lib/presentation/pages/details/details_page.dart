@@ -179,14 +179,18 @@ class _DetailsPageState extends State<DetailsPage> {
                         children: [
                           Text(
                             '\$ ${car?.price ?? ''}',
-                            style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
+                            style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w600),
                           ),
 
                           if (car?.promoType != null) ...[
                             Row(
                               spacing: AppDimensions.minorL,
                               children: [
-                                const Icon(Icons.whatshot, size: 18, color: Colors.red),
+                                const Icon(
+                                  Icons.whatshot,
+                                  size: AppDimensions.hotLabelIconSize,
+                                  color: Colors.red,
+                                ),
 
                                 Text(car?.promoType?.fromLocalisations() ?? ''),
                               ],
