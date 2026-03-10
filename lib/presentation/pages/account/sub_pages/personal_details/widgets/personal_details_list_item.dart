@@ -34,7 +34,7 @@ class PersonalDetailsListItem extends StatelessWidget {
           children: [
             if (showEnabled != null) ...[
               CircleAvatar(
-                backgroundColor: (showEnabled ?? false) ? AppColors.tealColor : Colors.grey,
+                backgroundColor: (showEnabled ?? false) ? AppColors.teal : Colors.grey,
                 radius: AppDimensions.normalXS,
                 child: Icon(
                   (showEnabled ?? false) ? Icons.check : Icons.pause,

@@ -81,7 +81,7 @@ class LocationSettingsPage extends StatelessWidget {
                               )
                               .toList();
 
-                          final region = await DialogHelper.showTextPicker(
+                          final region = await DialogHelper.showCountryPicker(
                             context,
                             availableCountries,
                           );
