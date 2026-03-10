@@ -64,6 +64,6 @@ void main() {
     expect(find.text('Paragraph 1'), findsOneWidget);
     expect(find.text('Paragraph 2'), findsOneWidget);
     expect(find.text('John Doe'), findsOneWidget);
-    expect(find.byType(CachedNetworkImage), findsOneWidget);
+    expect(find.byType(CachedNetworkImage), findsAtLeast(1));
   });
 }

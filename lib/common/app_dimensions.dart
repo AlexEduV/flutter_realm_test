@@ -44,4 +44,6 @@ class AppDimensions {
   static const regionFlagIconSize = 32.0;
 
   static const hotLabelIconSize = 20.0;
+
+  static const authorImageSize = 48.0;
 }

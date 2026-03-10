@@ -56,9 +56,12 @@ class DialogHelper {
   static Future<RegionUiModel?> showCountryPicker(
     BuildContext context,
     List<RegionUiModel> items,
+    int currentIndex,
   ) async {
     return await showModalBottomSheet<RegionUiModel>(
       context: context,
+      backgroundColor: Colors.white,
+      clipBehavior: Clip.antiAlias,
       builder: (BuildContext context) {
         return ListView.builder(
           padding: const EdgeInsets.symmetric(vertical: AppDimensions.normalM),
@@ -86,6 +89,8 @@ class DialogHelper {
                 items[index].countryName,
                 style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
               ),
+              selected: index == currentIndex,
+              selectedTileColor: AppColors.lightGrey,
               onTap: () => Navigator.pop(context, items[index]),
             );
           },

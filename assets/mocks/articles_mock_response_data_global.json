@@ -11,7 +11,8 @@
     "imageUrl": "https://images.pexels.com/photos/2526127/pexels-photo-2526127.jpeg",
     "author": {
       "id" : "2",
-      "full_name": "Joel Miller"
+      "full_name": "Joel Miller",
+      "image_src": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
     },
     "date_published": "June 14, 2013",
     "mins_to_read": 5
@@ -28,7 +29,8 @@
     "imageUrl": "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg",
     "author": {
       "id" : "3",
-      "full_name": "Ellie Williams"
+      "full_name": "Ellie Williams",
+      "image_src": "https://images.pexels.com/photos/5704720/pexels-photo-5704720.jpeg"
     },
     "date_published": "April 1, 2019"
   },

@@ -98,9 +98,21 @@ class _ArticlePageState extends State<ArticlePage> {
                         ),
 
                         Row(
-                          spacing: AppDimensions.minorL,
+                          spacing: AppDimensions.normalXS,
                           children: [
-                            const CircleAvatar(radius: AppDimensions.normalS),
+                            ClipOval(
+                              child: CachedNetworkImage(
+                                imageUrl: state.article?.author.imageSrc ?? '',
+                                fit: BoxFit.cover,
+                                height: AppDimensions.authorImageSize,
+                                width: AppDimensions.authorImageSize,
+                                placeholder: (context, url) =>
+                                    ColoredBox(color: AppColors.placeholderColor),
+                                errorWidget: (context, url, error) =>
+                                    ColoredBox(color: AppColors.placeholderColor),
+                              ),
+                            ),
+
                             Text(
                               state.article?.author.fullName ?? '',
                               style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600),
