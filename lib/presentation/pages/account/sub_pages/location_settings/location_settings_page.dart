@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
@@ -104,7 +106,7 @@ class LocationSettingsPage extends StatelessWidget {
 
                               if (!context.mounted) return;
 
-                              context.read<LocationSettingsPageCubit>().tickAnimation();
+                              unawaited(context.read<LocationSettingsPageCubit>().tickAnimation());
 
                               final locale = region.code;
                               context.read<UserDataCubit>().updateRegion(locale);
