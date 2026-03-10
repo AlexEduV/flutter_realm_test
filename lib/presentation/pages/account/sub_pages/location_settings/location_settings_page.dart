@@ -65,7 +65,7 @@ class LocationSettingsPage extends StatelessWidget {
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.locationSettingsItemRegion),
                         description: context.tr('${L10nKeys.countryPrefix}${region?.locale}'),
-                        icon: Icons.language,
+                        icon: Icons.explore,
                         onTap: () async {
                           final regions = MockRegionService.regions;
 
@@ -94,6 +94,8 @@ class LocationSettingsPage extends StatelessWidget {
 
                           if (region == null || region == availableCountries[currentIndex]) return;
                           if (!context.mounted) return;
+
+                          //todo: animation here
 
                           final locale = region.code;
                           context.read<UserDataCubit>().updateRegion(locale);
