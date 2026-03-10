@@ -86,9 +86,7 @@ class DialogHelper {
                 items[index].countryName,
                 style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
               ),
-              onTap: () {
-                Navigator.pop(context, items[index]);
-              },
+              onTap: () => Navigator.pop(context, items[index]),
             );
           },
         );
