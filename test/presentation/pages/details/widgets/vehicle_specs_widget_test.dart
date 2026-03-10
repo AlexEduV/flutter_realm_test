@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 
 void main() {
+  final appLocalisationsCubit = AppLocalisationsCubit();
+
   setUp(() {
-    AppLocalisations.localisations = {
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+
+    final localisations = {
       'pages.vehicleDetails.sectionTitle': 'Vehicle Details',
       'pages.vehicleDetails.specifications.body': 'Body',
       'pages.vehicleDetails.specifications.engine': 'Engine',
@@ -21,6 +26,12 @@ void main() {
       'pages.vehicleDetails.specifications.color': 'Color',
       'pages.vehicleDetails.specifications.year': 'Year',
     };
+
+    appLocalisationsCubit.load(localisations);
+  });
+
+  tearDown(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
   CarEntity testCar = CarEntity(
@@ -44,8 +55,11 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: BlocProvider<DetailsPageCubit>(
-          create: (_) => cubit,
+        home: MultiBlocProvider(
+          providers: [
+            BlocProvider<DetailsPageCubit>.value(value: cubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          ],
           child: VehicleSpecsWidget(car: testCar),
         ),
       ),
@@ -62,8 +76,11 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: BlocProvider<DetailsPageCubit>(
-          create: (_) => cubit,
+        home: MultiBlocProvider(
+          providers: [
+            BlocProvider<DetailsPageCubit>.value(value: cubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          ],
           child: VehicleSpecsWidget(car: testCar),
         ),
       ),
@@ -100,8 +117,11 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        home: BlocProvider<DetailsPageCubit>(
-          create: (_) => cubit,
+        home: MultiBlocProvider(
+          providers: [
+            BlocProvider<DetailsPageCubit>.value(value: cubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          ],
           child: VehicleSpecsWidget(car: testCar),
         ),
       ),

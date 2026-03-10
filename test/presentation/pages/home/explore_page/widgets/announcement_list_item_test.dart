@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
@@ -6,17 +7,24 @@ import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/widgets/announcement_list_item.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 void main() {
+  final appLocalisationsCubit = AppLocalisationsCubit();
+
   setUp(() {
-    AppLocalisations.localisations = {
-      'actions.delete.title': 'Delete',
-      'widgets.distance.text': 'km away',
-    };
+    final localisations = {'actions.delete.title': 'Delete', 'widgets.distance.text': 'km away'};
+
+    serviceLocator.registerLazySingleton(() => appLocalisationsCubit);
+    appLocalisationsCubit.load(localisations);
+  });
+
+  tearDown(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
   group('ExploreListItem', () {
@@ -53,8 +61,11 @@ void main() {
 
     testWidgets('displays car manufacturer, model, and year', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+        MultiBlocProvider(
+          providers: [BlocProvider.value(value: appLocalisationsCubit)],
+          child: MaterialApp(
+            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+          ),
         ),
       );
 
@@ -63,8 +74,11 @@ void main() {
 
     testWidgets('displays price and hot promotion icon', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+        MultiBlocProvider(
+          providers: [BlocProvider.value(value: appLocalisationsCubit)],
+          child: MaterialApp(
+            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+          ),
         ),
       );
 
@@ -83,8 +97,11 @@ void main() {
 
     testWidgets('displays location info if permission granted', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+        MultiBlocProvider(
+          providers: [BlocProvider.value(value: appLocalisationsCubit)],
+          child: MaterialApp(
+            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+          ),
         ),
       );
 
@@ -102,8 +119,11 @@ void main() {
 
     testWidgets('displays verified icon if car is verified', (WidgetTester tester) async {
       await tester.pumpWidget(
-        MaterialApp(
-          home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+        MultiBlocProvider(
+          providers: [BlocProvider.value(value: appLocalisationsCubit)],
+          child: MaterialApp(
+            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+          ),
         ),
       );
 
@@ -113,13 +133,16 @@ void main() {
     testWidgets('calls onDismissed when delete action is pressed', (WidgetTester tester) async {
       bool dismissed = false;
       await tester.pumpWidget(
-        MaterialApp(
-          home: AnnouncementListItem(
-            car: car,
-            user: user,
-            onDismissed: () {
-              dismissed = true;
-            },
+        MultiBlocProvider(
+          providers: [BlocProvider.value(value: appLocalisationsCubit)],
+          child: MaterialApp(
+            home: AnnouncementListItem(
+              car: car,
+              user: user,
+              onDismissed: () {
+                dismissed = true;
+              },
+            ),
           ),
         ),
       );
@@ -162,8 +185,11 @@ void main() {
       );
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: AnnouncementListItem(car: car, user: userNoLocation, onDismissed: () {}),
+        MultiBlocProvider(
+          providers: [BlocProvider.value(value: appLocalisationsCubit)],
+          child: MaterialApp(
+            home: AnnouncementListItem(car: car, user: userNoLocation, onDismissed: () {}),
+          ),
         ),
       );
 
@@ -190,8 +216,11 @@ void main() {
       );
 
       await tester.pumpWidget(
-        MaterialApp(
-          home: AnnouncementListItem(car: carNotVerified, user: user, onDismissed: () {}),
+        MultiBlocProvider(
+          providers: [BlocProvider.value(value: appLocalisationsCubit)],
+          child: MaterialApp(
+            home: AnnouncementListItem(car: carNotVerified, user: user, onDismissed: () {}),
+          ),
         ),
       );
 
