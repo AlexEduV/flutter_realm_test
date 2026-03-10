@@ -92,7 +92,10 @@ class CarListItem extends StatelessWidget {
                         const SizedBox(height: AppDimensions.normalL),
                         Text(
                           '\$ ${car.price}',
-                          style: AppTextStyles.zonaPro16.copyWith(color: Colors.green),
+                          style: AppTextStyles.zonaPro16.copyWith(
+                            color: Colors.green,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
