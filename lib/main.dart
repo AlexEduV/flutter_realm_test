@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
@@ -17,7 +16,6 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/image_cache_util.dart';
 import 'package:test_futter_project/utils/l10n_keys.dart';
-import 'package:test_futter_project/utils/localisation_util.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,17 +25,10 @@ void main() async {
   //todo: added flavors, but had to revert, because they broke the Android project.
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
-  final localisations = await LocalisationUtil.loadLocalisations(
-    'assets/mocks/localisation_mock_response_data_uk.json',
-  );
-  serviceLocator<AppLocalisationsCubit>().load(localisations);
-
-  await initializeDateFormatting(localisations[L10nKeys.locale], null);
-  await LocalisationUtil.saveLocalisations(localisations);
-
-  ImageCacheUtil.initExtendedCacheSize();
 
   await serviceLocator<FetchRegionsUseCase>().call();
+
+  ImageCacheUtil.initExtendedCacheSize();
 
   runApp(const MyApp());
 }

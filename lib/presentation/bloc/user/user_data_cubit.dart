@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
@@ -13,6 +14,8 @@ import 'package:test_futter_project/utils/auth_session_util.dart';
 import '../../../di/injection_container.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
+import '../../../utils/localisation_util.dart';
+import '../l10n/app_localisations_cubit.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(
@@ -33,6 +36,15 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     user = _localStorage.initUser();
     final userSession = await AuthSessionUtil.getUserSession();
+
+    final locale = serviceLocator<UserDataCubit>().user.region;
+    final localisations = await LocalisationUtil.loadLocalisations(
+      'assets/mocks/localisation_mock_response_data_$locale.json',
+    );
+    serviceLocator<AppLocalisationsCubit>().load(localisations);
+
+    await initializeDateFormatting(locale, null);
+    await LocalisationUtil.saveLocalisations(localisations);
 
     checkLastSeenCarExpiration(days: 7);
     final isLocationPermissionGranted = await _checkLocationPermissionStatusUseCase.call();
