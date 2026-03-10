@@ -130,10 +130,12 @@ class AccountPage extends StatelessWidget {
                     onTap: () {
                       DialogHelper.showConfirmationDialog(
                         context,
-                        title: context.tr(L10nKeys.accountItemDeleteAccount),
-                        description: context.tr(L10nKeys.deleteAccountDialogDescription),
-                        cancelButtonTitle: context.tr(L10nKeys.deleteAccountDialogCancelLabel),
-                        confirmButtonTitle: context.tr(L10nKeys.deleteAccountDialogConfirmLabel),
+                        title: context.trRead(L10nKeys.accountItemDeleteAccount),
+                        description: context.trRead(L10nKeys.deleteAccountDialogDescription),
+                        cancelButtonTitle: context.trRead(L10nKeys.deleteAccountDialogCancelLabel),
+                        confirmButtonTitle: context.trRead(
+                          L10nKeys.deleteAccountDialogConfirmLabel,
+                        ),
                         onConfirm: () async {
                           await context.read<AuthenticationCubit>().deleteAccount(state.email);
 

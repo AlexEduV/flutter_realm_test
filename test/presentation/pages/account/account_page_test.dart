@@ -135,7 +135,6 @@ void main() {
     verify(userDataCubit.logOutUser()).called(1);
   });
 
-  //todo: the test does not work;
   testWidgets('tapping delete account calls cubit methods', (tester) async {
     when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
     when(
