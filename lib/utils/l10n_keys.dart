@@ -184,4 +184,6 @@ class L10nKeys {
 
   static const String countryItaly = 'countries.it';
   static const String countryUnitedKingdom = 'countries.uk';
+
+  static const String countryPrefix = 'countries.';
 }

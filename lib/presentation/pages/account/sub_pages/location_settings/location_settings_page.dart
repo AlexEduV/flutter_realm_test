@@ -63,7 +63,7 @@ class LocationSettingsPage extends StatelessWidget {
 
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.locationSettingsItemRegion),
-                        description: context.tr('countries.${region?.locale}'),
+                        description: context.tr('${L10nKeys.countryPrefix}${region?.locale}'),
                         icon: Icons.language,
                         onTap: () async {
                           final regions = MockRegionService.regions;
@@ -73,7 +73,7 @@ class LocationSettingsPage extends StatelessWidget {
                                 (element) =>
                                     serviceLocator<AppLocalisationsCubit>()
                                         .state
-                                        .localisations['countries.${element.locale}'] ??
+                                        .localisations['${L10nKeys.countryPrefix}${element.locale}'] ??
                                     '',
                               )
                               .toList();
