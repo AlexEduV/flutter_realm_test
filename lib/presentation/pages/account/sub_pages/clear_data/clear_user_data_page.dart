@@ -59,14 +59,14 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: context.tr(L10nKeys.clearViewHistoryItem),
-                                  description: context.tr(
+                                  title: context.trRead(L10nKeys.clearViewHistoryItem),
+                                  description: context.trRead(
                                     L10nKeys.clearViewHistoryDialogDescription,
                                   ),
-                                  cancelButtonTitle: context.tr(
+                                  cancelButtonTitle: context.trRead(
                                     L10nKeys.clearViewHistoryDialogCancelLabel,
                                   ),
-                                  confirmButtonTitle: context.tr(
+                                  confirmButtonTitle: context.trRead(
                                     L10nKeys.clearViewHistoryDialogConfirmLabel,
                                   ),
                                   onConfirm: () {
@@ -88,14 +88,14 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: context.tr(L10nKeys.clearFavoritesItem),
-                                  description: context.tr(
+                                  title: context.trRead(L10nKeys.clearFavoritesItem),
+                                  description: context.trRead(
                                     L10nKeys.clearFavoriteItemsDialogDescription,
                                   ),
-                                  cancelButtonTitle: context.tr(
+                                  cancelButtonTitle: context.trRead(
                                     L10nKeys.clearFavoriteItemsDialogCancelLabel,
                                   ),
-                                  confirmButtonTitle: context.tr(
+                                  confirmButtonTitle: context.trRead(
                                     L10nKeys.clearFavoriteItemsDialogConfirmLabel,
                                   ),
                                   onConfirm: () {
@@ -117,12 +117,14 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: context.tr(L10nKeys.clearMyItemsItem),
-                                  description: context.tr(L10nKeys.clearMyItemsDialogDescription),
-                                  cancelButtonTitle: context.tr(
+                                  title: context.trRead(L10nKeys.clearMyItemsItem),
+                                  description: context.trRead(
+                                    L10nKeys.clearMyItemsDialogDescription,
+                                  ),
+                                  cancelButtonTitle: context.trRead(
                                     L10nKeys.clearMyItemsDialogCancelLabel,
                                   ),
-                                  confirmButtonTitle: context.tr(
+                                  confirmButtonTitle: context.trRead(
                                     L10nKeys.clearMyItemsDialogConfirmLabel,
                                   ),
                                   onConfirm: () {
@@ -148,10 +150,14 @@ class ClearUserDataPage extends StatelessWidget {
                       ? () {
                           DialogHelper.showConfirmationDialog(
                             context,
-                            title: context.tr(L10nKeys.clearAllDataItem),
-                            description: context.tr(L10nKeys.clearAllDataDialogDescription),
-                            cancelButtonTitle: context.tr(L10nKeys.clearAllDataDialogCancelLabel),
-                            confirmButtonTitle: context.tr(L10nKeys.clearAllDataDialogConfirmLabel),
+                            title: context.trRead(L10nKeys.clearAllDataItem),
+                            description: context.trRead(L10nKeys.clearAllDataDialogDescription),
+                            cancelButtonTitle: context.trRead(
+                              L10nKeys.clearAllDataDialogCancelLabel,
+                            ),
+                            confirmButtonTitle: context.trRead(
+                              L10nKeys.clearAllDataDialogConfirmLabel,
+                            ),
                             onConfirm: () {
                               context.read<UserDataCubit>().clearAllData();
                             },
