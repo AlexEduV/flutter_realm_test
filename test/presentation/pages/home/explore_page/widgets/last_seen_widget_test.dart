@@ -7,6 +7,7 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/home/explore_page/widgets/last_seen_widget.dart';
@@ -18,6 +19,7 @@ void main() {
   late MockUserDataCubit mockUserDataCubit;
   late MockExplorePageCubit mockExplorePageCubit;
   late MockGetCarByIdUseCase mockGetCarByIdUseCase;
+  final appLocalisationsCubit = AppLocalisationsCubit();
 
   final carEntity = CarEntity(
     carId: 'car124',
@@ -65,6 +67,7 @@ void main() {
       providers: [
         BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
         BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
+        BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
       ],
       child: const MaterialApp(home: Material(child: LastSeenWidget())),
     );

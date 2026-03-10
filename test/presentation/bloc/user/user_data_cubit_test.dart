@@ -10,6 +10,7 @@ import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 
@@ -32,6 +33,7 @@ void main() {
   late UserEntity testUser;
 
   final mockAuthRepository = MockAuthRepository();
+  final appLocalisationsCubit = AppLocalisationsCubit();
 
   mockRequestLocationPermissionUseCase = MockRequestLocationPermissionUseCase();
   mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
@@ -65,6 +67,7 @@ void main() {
 
   setUpAll(() {
     serviceLocator.registerLazySingleton<AuthRepository>(() => mockAuthRepository);
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
 
     serviceLocator.registerLazySingleton<CheckLocationPermissionStatusUseCase>(
       () => mockCheckLocationPermissionStatusUseCase,
@@ -75,6 +78,7 @@ void main() {
   tearDownAll(() {
     serviceLocator.unregister<AuthRepository>();
     serviceLocator.unregister<CheckLocationPermissionStatusUseCase>();
+    serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
   group('UserDataCubit', () {

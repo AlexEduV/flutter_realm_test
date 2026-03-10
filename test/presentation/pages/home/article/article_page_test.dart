@@ -8,6 +8,7 @@ import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/entities/author_entity.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_state.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/article/article_page.dart';
 
 import 'article_page_test.mocks.dart';
@@ -15,6 +16,7 @@ import 'article_page_test.mocks.dart';
 @GenerateMocks([ArticlePageCubit])
 void main() {
   late MockArticlePageCubit mockArticlePageCubit;
+  final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
     mockArticlePageCubit = MockArticlePageCubit();
@@ -24,8 +26,11 @@ void main() {
     when(mockArticlePageCubit.state).thenReturn(state);
     when(mockArticlePageCubit.stream).thenAnswer((_) => const Stream.empty());
 
-    return BlocProvider<ArticlePageCubit>.value(
-      value: mockArticlePageCubit,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ArticlePageCubit>.value(value: mockArticlePageCubit),
+        BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+      ],
       child: const MaterialApp(home: ArticlePage(articleId: '1')),
     );
   }
