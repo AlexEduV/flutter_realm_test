@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
@@ -37,14 +38,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     user = _localStorage.initUser();
     final userSession = await AuthSessionUtil.getUserSession();
 
-    final locale = serviceLocator<UserDataCubit>().user.region;
-    final localisations = await LocalisationUtil.loadLocalisations(
-      'assets/mocks/localisation_mock_response_data_$locale.json',
-    );
-    serviceLocator<AppLocalisationsCubit>().load(localisations);
-
-    await initializeDateFormatting(locale, null);
-    await LocalisationUtil.saveLocalisations(localisations);
+    await initLocalisation(user.region);
 
     checkLastSeenCarExpiration(days: 7);
     final isLocationPermissionGranted = await _checkLocationPermissionStatusUseCase.call();
@@ -70,6 +64,17 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   void updateCloudUser(UserEntity user) {
     serviceLocator<AuthRepository>().updateUser(state.email, user);
+  }
+
+  Future<void> initLocalisation(String locale) async {
+    final localisations = await LocalisationUtil.loadLocalisations(
+      '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}localisation_mock_response_data_$locale.json',
+    );
+
+    serviceLocator<AppLocalisationsCubit>().load(localisations);
+
+    await initializeDateFormatting(locale, null);
+    await LocalisationUtil.saveLocalisations(localisations);
   }
 
   void setLastSeenCar(String? carId) {
