@@ -11,6 +11,7 @@ import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -35,6 +36,7 @@ void main() {
   final MockUserDataCubit mockUserDataCubit = MockUserDataCubit();
   final MockSearchPageCubit mockSearchPageCubit = MockSearchPageCubit();
   final MockDetailsPageCubit mockDetailsPageCubit = MockDetailsPageCubit();
+  final AppLocalisationsCubit appLocalisationsCubit = AppLocalisationsCubit();
 
   late Widget widget;
 
@@ -65,6 +67,7 @@ void main() {
         BlocProvider<UserDataCubit>(create: (context) => mockUserDataCubit),
         BlocProvider<SearchPageCubit>(create: (context) => mockSearchPageCubit),
         BlocProvider<DetailsPageCubit>(create: (context) => mockDetailsPageCubit),
+        BlocProvider<AppLocalisationsCubit>(create: (context) => appLocalisationsCubit),
       ],
       child: MaterialApp.router(routerConfig: AppRouter.router),
     );
