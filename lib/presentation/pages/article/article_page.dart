@@ -104,12 +104,12 @@ class _ArticlePageState extends State<ArticlePage> {
                               child: CachedNetworkImage(
                                 imageUrl: state.article?.author.imageSrc ?? '',
                                 fit: BoxFit.cover,
-                                height: AppDimensions.normalXL * 2,
-                                width: AppDimensions.normalXL * 2,
+                                height: AppDimensions.authorImageSize,
+                                width: AppDimensions.authorImageSize,
                                 placeholder: (context, url) =>
-                                    ColoredBox(color: AppColors.placeholderColor as Color),
+                                    ColoredBox(color: AppColors.placeholderColor),
                                 errorWidget: (context, url, error) =>
-                                    ColoredBox(color: AppColors.placeholderColor as Color),
+                                    ColoredBox(color: AppColors.placeholderColor),
                               ),
                             ),
 
