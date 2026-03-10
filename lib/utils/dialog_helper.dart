@@ -67,7 +67,7 @@ class DialogHelper {
             return ListTile(
               contentPadding: const EdgeInsetsGeometry.symmetric(
                 horizontal: AppDimensions.normalM,
-                vertical: AppDimensions.minorM,
+                vertical: AppDimensions.minorS,
               ),
               leading: Container(
                 height: AppDimensions.regionFlagIconSize,
