@@ -11,11 +11,13 @@ import 'package:test_futter_project/presentation/bloc/details/details_page_cubit
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/image_cache_util.dart';
 import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 import 'package:test_futter_project/utils/localisation_util.dart';
 
 void main() async {
@@ -26,12 +28,13 @@ void main() async {
   //todo: added flavors, but had to revert, because they broke the Android project.
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
-  AppLocalisations.localisations = await LocalisationUtil.loadLocalisations(
+  final localisations = await LocalisationUtil.loadLocalisations(
     'assets/mocks/localisation_mock_response_data_uk.json',
   );
+  serviceLocator<AppLocalisationsCubit>().load(localisations);
 
-  await initializeDateFormatting(AppLocalisations.locale, null);
-  await LocalisationUtil.saveLocalisations(AppLocalisations.localisations);
+  await initializeDateFormatting(localisations[L10nKeys.locale], null);
+  await LocalisationUtil.saveLocalisations(localisations);
 
   ImageCacheUtil.initExtendedCacheSize();
 
@@ -72,6 +75,9 @@ class MyApp extends StatelessWidget {
             create: (context) => serviceLocator<InboxPageCubit>()..init(),
           ),
           BlocProvider<ArticlePageCubit>(create: (context) => serviceLocator<ArticlePageCubit>()),
+          BlocProvider<AppLocalisationsCubit>(
+            create: (context) => serviceLocator<AppLocalisationsCubit>(),
+          ),
         ],
         child: MaterialApp.router(
           title: AppLocalisations.appName,
