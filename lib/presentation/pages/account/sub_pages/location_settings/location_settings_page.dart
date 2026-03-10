@@ -72,6 +72,7 @@ class LocationSettingsPage extends StatelessWidget {
                             icon: Icons.explore,
                             animated: state.isLocationItemAnimating,
                             onTap: () async {
+                              //todo: not the best solution, needs to be out of the ui layer
                               final regions = MockRegionService.regions;
 
                               final availableCountries = regions
