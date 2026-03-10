@@ -315,6 +315,15 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
   );
 
   @override
+  _i10.Future<void> initLocalisation(String? locale) =>
+      (super.noSuchMethod(
+            Invocation.method(#initLocalisation, [locale]),
+            returnValue: _i10.Future<void>.value(),
+            returnValueForMissingStub: _i10.Future<void>.value(),
+          )
+          as _i10.Future<void>);
+
+  @override
   void setLastSeenCar(String? carId) => super.noSuchMethod(
     Invocation.method(#setLastSeenCar, [carId]),
     returnValueForMissingStub: null,
@@ -401,6 +410,12 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
   @override
   void clearAllData() => super.noSuchMethod(
     Invocation.method(#clearAllData, []),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void updateRegion(String? region) => super.noSuchMethod(
+    Invocation.method(#updateRegion, [region]),
     returnValueForMissingStub: null,
   );
 
