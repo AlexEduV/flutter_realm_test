@@ -4,5 +4,5 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../presentation/bloc/l10n/app_localisations_cubit.dart';
 
 extension L10nX on BuildContext {
-  String tr(String key) => read<AppLocalisationsCubit>().state.get(key);
+  String tr(String key) => watch<AppLocalisationsCubit>().state.get(key);
 }
