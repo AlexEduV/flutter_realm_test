@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/account_page.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
 import '../authentication/login_page_test.mocks.dart';
@@ -16,12 +17,10 @@ import '../authentication/login_page_test.mocks.dart';
 void main() {
   late MockUserDataCubit userDataCubit;
   late MockAuthenticationCubit authenticationCubit;
+  final appLocalisationCubit = AppLocalisationsCubit();
 
-  setUp(() {
-    userDataCubit = MockUserDataCubit();
-    authenticationCubit = MockAuthenticationCubit();
-
-    AppLocalisations.localisations = {
+  setUpAll(() {
+    final localisations = {
       'pages.account.items.personalDetails.title': 'Personal Details',
       'pages.account.items.location.title': 'Location',
       'pages.account.items.myItems.title': 'My Items',
@@ -31,6 +30,18 @@ void main() {
       'pages.account.items.deleteAccount': 'Delete Account',
       'dialogs.deleteAccount.confirmLabel': 'Yes, delete it.',
     };
+
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationCubit);
+    appLocalisationCubit.load(localisations);
+  });
+
+  tearDownAll(() {
+    serviceLocator.reset();
+  });
+
+  setUp(() {
+    userDataCubit = MockUserDataCubit();
+    authenticationCubit = MockAuthenticationCubit();
   });
 
   Widget makeTestableWidget(Widget child) {
@@ -38,6 +49,7 @@ void main() {
       providers: [
         BlocProvider<UserDataCubit>.value(value: userDataCubit),
         BlocProvider<AuthenticationCubit>.value(value: authenticationCubit),
+        BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationCubit),
       ],
       child: MaterialApp(home: child),
     );
@@ -123,6 +135,7 @@ void main() {
     verify(userDataCubit.logOutUser()).called(1);
   });
 
+  //todo: the test does not work;
   testWidgets('tapping delete account calls cubit methods', (tester) async {
     when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
     when(

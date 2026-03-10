@@ -3,30 +3,47 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_error_widget.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_form_switcher.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 import 'login_page_test.mocks.dart';
 
 @GenerateMocks([AuthenticationCubit])
 void main() {
   late MockAuthenticationCubit authenticationCubit;
+  final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
     authenticationCubit = MockAuthenticationCubit();
-    AppLocalisations.localisations = {
+
+    serviceLocator.registerLazySingleton(() => appLocalisationsCubit);
+    final localisations = {
       'forms.ui.welcomeLoginTitle': 'Welcome Back',
       'forms.ui.welcomeRegisterTitle': 'Join us',
     };
+
+    appLocalisationsCubit.load(localisations);
+  });
+
+  tearDown(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
   Widget makeTestableWidget(Widget child) {
     return MaterialApp(
-      home: BlocProvider<AuthenticationCubit>.value(value: authenticationCubit, child: child),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthenticationCubit>.value(value: authenticationCubit),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+        ],
+        child: child,
+      ),
     );
   }
 
@@ -36,7 +53,10 @@ void main() {
 
     await tester.pumpWidget(makeTestableWidget(const LoginPage()));
 
-    expect(find.text(AppLocalisations.loginPageLoginWelcomeText), findsOneWidget);
+    expect(
+      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.loginPageLoginWelcomeText)),
+      findsOneWidget,
+    );
   });
 
   testWidgets('shows registration welcome text in registration mode', (tester) async {
@@ -45,7 +65,12 @@ void main() {
 
     await tester.pumpWidget(makeTestableWidget(const LoginPage()));
 
-    expect(find.text(AppLocalisations.loginPageRegistrationWelcomeText), findsOneWidget);
+    expect(
+      find.text(
+        appLocalisationsCubit.getLocalisationByKey(L10nKeys.loginPageRegistrationWelcomeText),
+      ),
+      findsOneWidget,
+    );
   });
 
   testWidgets('shows error message when authenticationErrorText is set', (tester) async {
