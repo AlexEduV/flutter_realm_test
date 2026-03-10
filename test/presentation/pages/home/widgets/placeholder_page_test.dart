@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 void main() {
+  final appLocalisationsCubit = AppLocalisationsCubit();
+
   setUp(() {
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+
     // Set up localisation values for the test
-    AppLocalisations.localisations = {
+    final localisations = {
       'pages.comingSoon.title': 'Coming Soon',
       'pages.comingSoon.subtitle': 'This feature is not available yet.',
     };
+
+    appLocalisationsCubit.load(localisations);
+  });
+
+  tearDown(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
   group('PlaceholderPage', () {
     testWidgets('displays the hourglass icon', (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(home: PlaceholderPage()));
+      await tester.pumpWidget(
+        MultiBlocProvider(
+          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+          child: const MaterialApp(home: PlaceholderPage()),
+        ),
+      );
 
       final iconFinder = find.byIcon(Icons.hourglass_empty);
       expect(iconFinder, findsOneWidget);
@@ -28,23 +46,47 @@ void main() {
     });
 
     testWidgets('displays the correct title and subtitle', (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(home: PlaceholderPage()));
+      await tester.pumpWidget(
+        MultiBlocProvider(
+          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+          child: const MaterialApp(home: PlaceholderPage()),
+        ),
+      );
 
-      expect(find.text(AppLocalisations.comingSoonPlaceholderPageTitle), findsOneWidget);
-      expect(find.text(AppLocalisations.comingSoonPlaceholderPageSubTitle), findsOneWidget);
+      expect(
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(L10nKeys.comingSoonPlaceholderPageTitle),
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(L10nKeys.comingSoonPlaceholderPageSubTitle),
+        ),
+        findsOneWidget,
+      );
     });
 
     testWidgets('uses correct text styles', (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(home: PlaceholderPage()));
+      await tester.pumpWidget(
+        MultiBlocProvider(
+          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+          child: const MaterialApp(home: PlaceholderPage()),
+        ),
+      );
 
       final titleText = tester.widget<Text>(
-        find.text(AppLocalisations.comingSoonPlaceholderPageTitle),
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(L10nKeys.comingSoonPlaceholderPageTitle),
+        ),
       );
       expect(titleText.style?.fontSize, AppTextStyles.zonaPro24.fontSize);
       expect(titleText.style?.fontWeight, AppTextStyles.zonaPro24.fontWeight);
 
       final subtitleText = tester.widget<Text>(
-        find.text(AppLocalisations.comingSoonPlaceholderPageSubTitle),
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(L10nKeys.comingSoonPlaceholderPageSubTitle),
+        ),
       );
       expect(subtitleText.style?.fontSize, AppTextStyles.zonaPro16.fontSize);
       expect(subtitleText.style?.fontWeight, AppTextStyles.zonaPro16.fontWeight);
@@ -53,7 +95,12 @@ void main() {
     });
 
     testWidgets('has correct background color', (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(home: PlaceholderPage()));
+      await tester.pumpWidget(
+        MultiBlocProvider(
+          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+          child: const MaterialApp(home: PlaceholderPage()),
+        ),
+      );
 
       final scaffold = tester.widget<Scaffold>(find.byType(Scaffold));
       expect(scaffold.backgroundColor, AppColors.scaffoldColor);

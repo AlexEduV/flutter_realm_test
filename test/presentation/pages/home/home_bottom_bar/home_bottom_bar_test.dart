@@ -4,25 +4,34 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/home_bottom_bar.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 
 void main() {
   final mockHomeBottomBarCubit = MockHomeBottomBarCubit();
+  final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
-    AppLocalisations.localisations = {'actions.addCar.tooltip': 'Add a car'};
+    final localisations = {'actions.addCar.tooltip': 'Add a car'};
+    appLocalisationsCubit.load(localisations);
+
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
 
     when(
       mockHomeBottomBarCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const HomeBottomBarState()]));
 
     when(mockHomeBottomBarCubit.state).thenReturn(const HomeBottomBarState());
+  });
+
+  tearDown(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
   group('HomeBottomBar', () {
