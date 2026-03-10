@@ -90,7 +90,7 @@ class DialogHelper {
                 style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
               ),
               selected: index == currentIndex,
-              selectedTileColor: Colors.grey[300],
+              selectedTileColor: AppColors.lightGrey,
               onTap: () => Navigator.pop(context, items[index]),
             );
           },

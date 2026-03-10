@@ -2,6 +2,8 @@ import 'package:flutter/material.dart' show Colors, Color;
 
 class AppColors {
   static const mainThemeColor = Colors.indigo;
+
+  static final lightGrey = Colors.grey[300] as Color;
   static final placeholderColor = Colors.grey[400] as Color;
   static final placeholderColorDark = Colors.grey[700] as Color;
 
