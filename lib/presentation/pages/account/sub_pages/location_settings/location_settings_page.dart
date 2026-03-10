@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
@@ -8,7 +9,7 @@ import 'package:test_futter_project/presentation/pages/account/sub_pages/locatio
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
-import '../../../../../utils/l10n.dart';
+import '../../../../../utils/l10n_keys.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
 import '../../widgets/custom_divider.dart';
@@ -22,7 +23,7 @@ class LocationSettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.accountItemLocation, style: AppTextStyles.zonaPro20),
+        title: Text(context.tr(L10nKeys.accountItemLocation), style: AppTextStyles.zonaPro20),
         centerTitle: true,
       ),
       body: Padding(
@@ -34,7 +35,7 @@ class LocationSettingsPage extends StatelessWidget {
           children: [
             const SizedBox(height: AppDimensions.minorS),
 
-            Text(AppLocalisations.locationUsageDescription, style: AppTextStyles.zonaPro14),
+            Text(context.tr(L10nKeys.locationUsageDescription), style: AppTextStyles.zonaPro14),
 
             const SizedBox(height: AppDimensions.normalXS),
 
@@ -49,16 +50,16 @@ class LocationSettingsPage extends StatelessWidget {
                   return Column(
                     children: [
                       PersonalDetailsListItem(
-                        title: AppLocalisations.locationSettingsItemAccess,
+                        title: context.tr(L10nKeys.locationSettingsItemAccess),
                         description: state.isLocationPermissionGranted
-                            ? AppLocalisations.onLabel
-                            : AppLocalisations.offLabel,
+                            ? context.tr(L10nKeys.onLabel)
+                            : context.tr(L10nKeys.offLabel),
                         icon: Icons.location_on_outlined,
                         showEnabled: state.isLocationPermissionGranted,
                       ),
 
                       PersonalDetailsListItem(
-                        title: AppLocalisations.locationSettingsItemRegion,
+                        title: context.tr(L10nKeys.locationSettingsItemRegion),
                         description: region?.countryName ?? '',
                         icon: Icons.language,
                       ),
@@ -75,8 +76,8 @@ class LocationSettingsPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  FooterText(text: AppLocalisations.locationSettingsPrivacyItemConditions),
-                  FooterText(text: AppLocalisations.locationSettingsPrivacyItemPrivacyPolicy),
+                  FooterText(text: context.tr(L10nKeys.locationSettingsPrivacyItemConditions)),
+                  FooterText(text: context.tr(L10nKeys.locationSettingsPrivacyItemPrivacyPolicy)),
                 ],
               ),
             ),

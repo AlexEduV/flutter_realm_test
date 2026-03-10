@@ -8,6 +8,7 @@ import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -18,8 +19,8 @@ import 'package:test_futter_project/presentation/pages/search/widgets/model_filt
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
+import '../../../utils/l10n_keys.dart';
 import '../../widgets/announcement_list_item.dart';
 import 'widgets/results_widget.dart';
 
@@ -55,7 +56,7 @@ class _SearchPageState extends State<SearchPage> {
           appBar: AppBar(
             scrolledUnderElevation: isDrawerOpened ? 0.0 : null,
             centerTitle: true,
-            title: Text(AppLocalisations.searchPageTitle, style: AppTextStyles.zonaPro20),
+            title: Text(context.tr(L10nKeys.searchPageTitle), style: AppTextStyles.zonaPro20),
             leading: AppSemantics(
               label: AppSemanticsLabels.backButton,
               button: true,
@@ -82,9 +83,9 @@ class _SearchPageState extends State<SearchPage> {
                       return SegmentedSwitch(
                         selectedIndex: state.currentSelectedType.index,
                         options: [
-                          AppLocalisations.searchTabCars,
-                          AppLocalisations.searchTabBikes,
-                          AppLocalisations.searchTabTrucks,
+                          context.tr(L10nKeys.searchTabCars),
+                          context.tr(L10nKeys.searchTabBikes),
+                          context.tr(L10nKeys.searchTabTrucks),
                         ],
                         onChanged: (newIndex) {
                           context.read<SearchPageCubit>().updateTypeSelection(
@@ -103,12 +104,12 @@ class _SearchPageState extends State<SearchPage> {
                   builder: (context) {
                     final isFilterEmpty = state.selectedModels.isEmpty;
                     final modelFilters = isFilterEmpty
-                        ? AppLocalisations.searchFilterModelPlaceholder
+                        ? context.tr(L10nKeys.searchFilterModelPlaceholder)
                         : state.selectedModels.join(', ');
 
                     return SearchFilterButton(
                       icon: Icons.directions_car,
-                      title: '${AppLocalisations.searchFilterModelTitle}: ',
+                      title: '${context.tr(L10nKeys.searchFilterModelTitle)}: ',
                       text: modelFilters,
                       selectionCount: state.selectedModels.length.toString(),
                       onPressed: () {
@@ -126,7 +127,7 @@ class _SearchPageState extends State<SearchPage> {
                   builder: (context) {
                     return SearchFilterButton(
                       icon: Icons.filter_list_sharp,
-                      title: AppLocalisations.searchFilterParametersTitle,
+                      title: context.tr(L10nKeys.searchFilterParametersTitle),
                       selectionCount: selectedFilterCount.toString(),
                       onPressed: () {
                         context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);
@@ -153,7 +154,7 @@ class _SearchPageState extends State<SearchPage> {
                   if (state.results.isEmpty) {
                     return SliverToBoxAdapter(
                       child: EmptyResultsPlaceholderWidget(
-                        text: AppLocalisations.emptySearchPlaceholderText,
+                        text: context.tr(L10nKeys.emptySearchPlaceholderText),
                       ),
                     );
                   }

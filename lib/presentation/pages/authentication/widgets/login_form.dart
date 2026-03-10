@@ -3,15 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/animated_divider_with_text.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
+import '../../../../utils/l10n_keys.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';
 import 'login_field.dart';
 
@@ -129,7 +130,7 @@ class _LoginFormState extends State<LoginForm> {
                   button: true,
                   child: GestureDetector(
                     child: Text(
-                      AppLocalisations.forgotPasswordButtonTitle,
+                      context.tr(L10nKeys.forgotPasswordButtonTitle),
                       style: AppTextStyles.zonaPro16.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppColors.headerColor,
@@ -148,7 +149,7 @@ class _LoginFormState extends State<LoginForm> {
               button: true,
               label: AppSemanticsLabels.loginButton,
               child: SplashButton(
-                title: AppLocalisations.loginButtonTitle,
+                title: context.tr(L10nKeys.loginButtonTitle),
                 onPressed: () {
                   if (state.isLoading) {
                     return;
@@ -168,15 +169,15 @@ class _LoginFormState extends State<LoginForm> {
             //Or Divider
             AppSemantics(
               label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
+              child: AnimatedDividerWithText(text: context.tr(L10nKeys.orDividerTitle)),
             ),
 
             // join us button if not registered
             AppSemantics(
-              label: AppLocalisations.signUpButtonTitle,
+              label: context.tr(L10nKeys.signUpButtonTitle),
               button: true,
               child: SplashButton(
-                title: AppLocalisations.signUpButtonTitle,
+                title: context.tr(L10nKeys.signUpButtonTitle),
                 onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
                 foregroundColor: Colors.grey,
                 backgroundColor: Colors.white,

@@ -1,9 +1,11 @@
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/utils/auth_session_util.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 import '../../common/extensions/user_scheme_extension.dart';
 import '../../domain/entities/user_entity.dart';
@@ -37,11 +39,21 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (!users.any((element) => element.email == email)) {
-      return AuthResult(success: false, message: AppLocalisations.authErrorUserNotFoundMessage);
+      return AuthResult(
+        success: false,
+        message: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+          L10nKeys.authErrorUserNotFoundMessage,
+        ),
+      );
     }
 
     if (!users.any((element) => element.password == password && element.email == email)) {
-      return AuthResult(success: false, message: AppLocalisations.authErrorIncorrectPassword);
+      return AuthResult(
+        success: false,
+        message: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+          L10nKeys.authErrorIncorrectPassword,
+        ),
+      );
     }
 
     final user = users.firstWhere((element) => element.email == email);
@@ -64,7 +76,12 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (users.any((element) => element.email == email)) {
-      return AuthResult(success: false, message: AppLocalisations.authErrorUserAlreadyExists);
+      return AuthResult(
+        success: false,
+        message: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+          L10nKeys.authErrorUserAlreadyExists,
+        ),
+      );
     }
 
     final newUserId = users.length;

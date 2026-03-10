@@ -1,4 +1,5 @@
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
 enum PromoType {
   //todo: not the best idea. localisation keys should only be in the l10n file;
@@ -22,6 +23,6 @@ enum PromoType {
   }
 
   String? fromLocalisations() {
-    return AppLocalisations.get(localized);
+    return serviceLocator<AppLocalisationsCubit>().state.localisations[localized] ?? '';
   }
 }

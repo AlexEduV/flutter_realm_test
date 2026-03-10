@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../../common/app_text_styles.dart';
+import '../../../../../utils/l10n_keys.dart';
 import '../../widgets/custom_divider.dart';
 
 class PersonalDetailsPage extends StatelessWidget {
@@ -20,7 +21,10 @@ class PersonalDetailsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(AppLocalisations.accountItemPersonalDetails, style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(L10nKeys.accountItemPersonalDetails),
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -38,13 +42,13 @@ class PersonalDetailsPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   PersonalDetailsListItem(
-                    title: AppLocalisations.personalDetailsItemFirstName,
+                    title: context.tr(L10nKeys.personalDetailsItemFirstName),
                     description: state.firstName,
                     icon: Icons.person_pin_outlined,
                   ),
 
                   PersonalDetailsListItem(
-                    title: AppLocalisations.personalDetailsItemLastName,
+                    title: context.tr(L10nKeys.personalDetailsItemLastName),
                     description: state.lastName,
                     icon: Icons.person_outlined,
                   ),
@@ -61,13 +65,13 @@ class PersonalDetailsPage extends StatelessWidget {
                   //   icon: Icons.cake_outlined,
                   //),
                   PersonalDetailsListItem(
-                    title: AppLocalisations.personalDetailsItemEmail,
+                    title: context.tr(L10nKeys.personalDetailsItemEmail),
                     description: state.email,
                     icon: Icons.email_outlined,
                   ),
 
                   PersonalDetailsListItem(
-                    title: AppLocalisations.personalDetailsItemPassword,
+                    title: context.tr(L10nKeys.personalDetailsItemPassword),
                     description: state.password.obscure(),
                     icon: Icons.password,
                   ),

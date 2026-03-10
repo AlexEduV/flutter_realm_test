@@ -16,7 +16,6 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/image_cache_util.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 import 'package:test_futter_project/utils/l10n_keys.dart';
 import 'package:test_futter_project/utils/localisation_util.dart';
 
@@ -80,7 +79,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp.router(
-          title: AppLocalisations.appName,
+          title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
             fontFamily: 'Zona Pro',

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/password_strength_bar_widget.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
+import '../../../../utils/l10n_keys.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';
 import 'animated_divider_with_text.dart';
 import 'login_field.dart';
@@ -156,9 +157,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
             // Sign up button
             AppSemantics(
               button: true,
-              label: AppLocalisations.signUpButtonTitle,
+              label: context.tr(L10nKeys.signUpButtonTitle),
               child: SplashButton(
-                title: AppLocalisations.signUpButtonTitle,
+                title: context.tr(L10nKeys.signUpButtonTitle),
                 onPressed: () {
                   if (state.isLoading) {
                     return;
@@ -179,7 +180,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             //Or Divider
             AppSemantics(
               label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: AppLocalisations.orDividerTitle),
+              child: AnimatedDividerWithText(text: context.tr(L10nKeys.orDividerTitle)),
             ),
 
             // join us button if not registered
@@ -187,7 +188,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               button: true,
               label: AppSemanticsLabels.loginButton,
               child: SplashButton(
-                title: AppLocalisations.loginButtonTitle,
+                title: context.tr(L10nKeys.loginButtonTitle),
                 onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
                 foregroundColor: Colors.grey,
                 backgroundColor: Colors.white,

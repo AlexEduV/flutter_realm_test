@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
-import 'package:test_futter_project/utils/l10n.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
+import '../../../../utils/l10n_keys.dart';
 
 class OwnerWidget extends StatelessWidget {
   final CarEntity car;
@@ -54,7 +55,7 @@ class OwnerWidget extends StatelessWidget {
                           Expanded(
                             child: Text(
                               maxLines: 1,
-                              AppLocalisations.ownerSectionPersonTypeOwner,
+                              context.tr(L10nKeys.ownerSectionPersonTypeOwner),
                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                 fontWeight: FontWeight.w400,
                               ),
@@ -71,7 +72,7 @@ class OwnerWidget extends StatelessWidget {
                             child: Text(
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              '${car.distanceTo ?? ''} ${AppLocalisations.distanceWidgetText}',
+                              '${car.distanceTo ?? ''} ${context.tr(L10nKeys.distanceWidgetText)}',
                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                 fontWeight: FontWeight.w400,
                               ),
@@ -110,7 +111,7 @@ class OwnerWidget extends StatelessWidget {
                   foregroundColor: Colors.white,
                 ),
                 child: Text(
-                  AppLocalisations.ownerSectionContactButtonTitle,
+                  context.tr(L10nKeys.ownerSectionContactButtonTitle),
                   style: AppTextStyles.zonaPro16,
                   textAlign: TextAlign.center,
                 ),

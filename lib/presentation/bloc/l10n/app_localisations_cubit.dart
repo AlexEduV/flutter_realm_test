@@ -9,6 +9,10 @@ class AppLocalisationsCubit extends Cubit<AppLocalisationsState> {
     emit(AppLocalisationsState(localisations: newLocalisations));
   }
 
+  String getLocalisationByKey(String key) {
+    return state.localisations[key] ?? '';
+  }
+
   void clear() {
     emit(const AppLocalisationsState(localisations: {}));
   }
