@@ -81,9 +81,15 @@ class LocationSettingsPage extends StatelessWidget {
                               )
                               .toList();
 
+                          final currentRegion = context.read<UserDataCubit>().user.region;
+                          final currentIndex = availableCountries.indexWhere(
+                            (element) => element.code == currentRegion,
+                          );
+
                           final region = await DialogHelper.showCountryPicker(
                             context,
                             availableCountries,
+                            currentIndex,
                           );
 
                           if (region == null) return;
