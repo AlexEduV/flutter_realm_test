@@ -3,20 +3,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
-import 'package:test_futter_project/utils/l10n.dart';
+import 'package:test_futter_project/utils/l10n_keys.dart';
 
 import 'model_filter_drawer_test.mocks.dart';
 
 @GenerateMocks([SearchPageCubit])
 void main() {
+  final appLocalisationsCubit = AppLocalisationsCubit();
+
   setUp(() {
-    AppLocalisations.localisations = {
-      'filters.model.title': 'Model',
-      'filters.model.placeholder': 'All',
-    };
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+
+    final localisations = {'filters.model.title': 'Model', 'filters.model.placeholder': 'All'};
+    appLocalisationsCubit.load(localisations);
+  });
+
+  tearDown(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
   group('ModelFilterDrawer', () {
@@ -31,8 +39,12 @@ void main() {
 
     Widget buildTestWidget(SearchPageState state) {
       return MaterialApp(
-        home: BlocProvider<SearchPageCubit>.value(
-          value: mockCubit,
+        home: MultiBlocProvider(
+          providers: [
+            BlocProvider<SearchPageCubit>.value(value: mockCubit),
+
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          ],
           child: ModelFilterDrawer(models: models),
         ),
       );
@@ -45,8 +57,16 @@ void main() {
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
 
-      expect(find.text(AppLocalisations.searchFilterModelTitle), findsOneWidget);
-      expect(find.text(AppLocalisations.searchFilterModelPlaceholder), findsOneWidget);
+      expect(
+        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.searchFilterModelTitle)),
+        findsOneWidget,
+      );
+      expect(
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(L10nKeys.searchFilterModelPlaceholder),
+        ),
+        findsOneWidget,
+      );
       expect(find.byType(CheckboxListTile), findsNWidgets(models.length + 1)); // "All" + each model
     });
 
@@ -69,7 +89,11 @@ void main() {
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text(AppLocalisations.searchFilterModelPlaceholder));
+      await tester.tap(
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(L10nKeys.searchFilterModelPlaceholder),
+        ),
+      );
       await tester.pump();
 
       verify(mockCubit.updateModelSelection(models)).called(1);
