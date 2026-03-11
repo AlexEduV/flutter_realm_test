@@ -103,13 +103,8 @@ class LocationSettingsPage extends StatelessWidget {
 
     final region = await DialogHelper.showCountryPicker(context, availableCountries, currentIndex);
 
-    final locale = region?.code;
-    if (region == null || locale == null || locale == currentRegion) {
-      return;
-    }
-
     if (!context.mounted) return;
 
-    context.read<UserDataCubit>().updateRegion(locale);
+    context.read<UserDataCubit>().updateRegion(region?.code);
   }
 }
