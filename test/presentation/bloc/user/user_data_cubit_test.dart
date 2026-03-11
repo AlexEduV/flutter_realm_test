@@ -10,6 +10,7 @@ import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
+import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -39,7 +40,7 @@ void main() {
   mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
 
   setUp(() {
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({'userId': ''});
 
     mockLocalStorage = MockBaseLocalStorage();
 
@@ -200,25 +201,25 @@ void main() {
   });
 
   group('authUser', () {
-    //todo: test does not work
-    // test('emits authenticated state with user data', () {
-    //   // Mock the user returned by MockUsers.getUserByEmail
-    //   MockUsers.initialUsers = [
-    //     UserEntity.initial(
-    //       userId: '1',
-    //       email: 'auth@example.com',
-    //       password: 'qwertyUI10!',
-    //       firstName: 'Auth',
-    //       lastName: 'User',
-    //     ),
-    //   ];
-    //
-    //   cubit.authUser('auth@example.com');
-    //   expect(cubit.state.isUserAuthenticated, true);
-    //   expect(cubit.state.email, 'auth@example.com');
-    //   expect(cubit.state.firstName, 'Auth');
-    //   expect(cubit.state.lastName, 'User');
-    // });
+    test('emits authenticated state with user data', () async {
+      final user = UserEntity.initial(
+        userId: '1',
+        email: 'auth@example.com',
+        password: 'qwertyUI10!',
+        firstName: 'Auth',
+        lastName: 'User',
+      );
+
+      MockUsers.initialUsers = [user];
+
+      when(mockLocalStorage.initUser()).thenReturn(user);
+
+      await cubit.authUser('auth@example.com');
+      expect(cubit.state.isUserAuthenticated, true);
+      expect(cubit.state.email, 'auth@example.com');
+      expect(cubit.state.firstName, 'Auth');
+      expect(cubit.state.lastName, 'User');
+    });
 
     test('does nothing if user not found', () {
       final prevState = cubit.state;

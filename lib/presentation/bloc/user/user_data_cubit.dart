@@ -251,13 +251,13 @@ class UserDataCubit extends Cubit<UserDataState> {
     updateCloudUser(user);
   }
 
-  void authUser(String email) {
+  Future<void> authUser(String email) async {
     final user = MockUsers.getUserByEmail(email);
 
     if (user == null) return;
 
     //todo: if the user was in the guest mode, migrate the favorites and created items to the account;
-    init();
+    await init();
   }
 
   void logOutUser() {
