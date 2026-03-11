@@ -8,8 +8,7 @@ clean:
 # File Generation
 clean-build:
 	dart run build_runner clean
-	dart run build_runner build -v --delete-conflicting-outputs
-
+	$(MAKE) build-verbose-delete-conflicting-outputs
 
 build-verbose-delete-conflicting-outputs:
 	dart run build_runner build -v --delete-conflicting-outputs
