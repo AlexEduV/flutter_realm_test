@@ -4,9 +4,7 @@ import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/models/region_ui_model.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
@@ -93,26 +91,17 @@ class LocationSettingsPage extends StatelessWidget {
   }
 
   Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
-    //todo: not the best solution, needs to be out of the ui layer
-    final regions = MockRegionService.regions;
-
-    final availableCountries = regions
-        .map(
-          (element) => RegionUiModel(
-            code: element.locale,
-            countryName: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-              '${L10nKeys.countryPrefix}${element.locale}',
-            ),
-          ),
-        )
-        .toList();
+    final availableCountries = MockRegionService.getAvailableCountries();
 
     final currentRegion = state.region;
-    final currentIndex = availableCountries.indexWhere((element) => element.code == currentRegion);
+    final currentIndex = availableCountries.indexWhere(
+      (element) => element.code == currentRegion,
+    ); //todo: might return index out of bounds
 
     final region = await DialogHelper.showCountryPicker(context, availableCountries, currentIndex);
 
     if (region == null || region == availableCountries[currentIndex]) {
+      //todo: might return bad state: no element
       return;
     }
 
