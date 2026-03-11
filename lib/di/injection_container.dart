@@ -57,6 +57,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import '../data/models/scheme.dart';
 import '../data/repositories/car_repository_impl.dart';
 import '../domain/repositories/car_repository.dart';
+import '../domain/repositories/geolocator_repository.dart';
 import '../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
@@ -192,7 +193,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 
-  serviceLocator.registerLazySingleton<GeolocatorRepositoryImpl>(
+  serviceLocator.registerLazySingleton<GeolocatorRepository>(
     () => GeolocatorRepositoryImpl(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<OpenAppSettingsUseCase>(
