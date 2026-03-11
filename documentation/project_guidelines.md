@@ -27,7 +27,7 @@ This document consolidates best‑practice guidelines for developing, testing, a
 ## 3. Testing Policy
 - Write **unit tests** for business logic and **widget tests** for UI components.
 - Place tests in `test/` mirroring the `lib/` structure.
-- Aim for **≥ 80 % coverage** on new code.
+- Aim for **≥80% coverage** on new code.
 - Run tests locally with `flutter test` before pushing.
 - Use **Mockito** for mocking dependencies and `bloc_test` for cubit/bloc verification.
 
