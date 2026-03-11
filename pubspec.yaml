@@ -53,8 +53,10 @@ flutter:
         - asset: assets/fonts/ZonaPro-ExtraLight.otf
           weight: 200
         - asset: assets/fonts/ZonaPro-Light.otf
+          weight: 300
+        - asset: assets/fonts/ZonaPro-Regular.ttf
           weight: 400
         - asset: assets/fonts/ZonaPro-SemiBold.otf
-          weight: 500
+          weight: 600
         - asset: assets/fonts/ZonaPro-Bold.otf
           weight: 700
