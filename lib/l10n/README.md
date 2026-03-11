@@ -17,10 +17,16 @@ changes in the text widgets. But it's not suited for the callbacks, like `onTap`
 outside of the widget lifecycle, while the watcher forces the State.build on value change. So,
 use `context.trRead` extension to only read the localisation.
 
-```
+```dart
 //watcher function
-context.tr(String: key)
+@override
+Widget build(BuildContext context) {
+  return Text(context.tr('hello_world'));
+}
 
 //read-only function
-context.trRead(String: key)
+@override
+Widget build(BuildContext context) {
+  return showDialog(title: context.trRead('hello_world'));
+}
 ```
