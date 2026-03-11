@@ -8,14 +8,16 @@ import 'dart:async' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart'
     as _i4;
-import 'package:test_futter_project/domain/data_sources/geolocator_service.dart'
-    as _i6;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
-import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
-    as _i8;
-import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
+import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
     as _i7;
+import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
+    as _i6;
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
+    as _i9;
+import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
+    as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -123,26 +125,37 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
   );
 }
 
-/// A class which mocks [GeolocatorService].
+/// A class which mocks [OpenAppSettingsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGeolocatorService extends _i1.Mock implements _i6.GeolocatorService {
-  MockGeolocatorService() {
+class MockOpenAppSettingsUseCase extends _i1.Mock
+    implements _i6.OpenAppSettingsUseCase {
+  MockOpenAppSettingsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<bool> checkLocationServiceStatus() =>
+  _i5.Future<bool> call() =>
       (super.noSuchMethod(
-            Invocation.method(#checkLocationServiceStatus, []),
+            Invocation.method(#call, []),
             returnValue: _i5.Future<bool>.value(false),
           )
           as _i5.Future<bool>);
+}
+
+/// A class which mocks [CheckLocationServiceStatusUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCheckLocationServiceStatusUseCase extends _i1.Mock
+    implements _i7.CheckLocationServiceStatusUseCase {
+  MockCheckLocationServiceStatusUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
 
   @override
-  _i5.Future<bool> openLocationSettings() =>
+  _i5.Future<bool> call() =>
       (super.noSuchMethod(
-            Invocation.method(#openLocationSettings, []),
+            Invocation.method(#call, []),
             returnValue: _i5.Future<bool>.value(false),
           )
           as _i5.Future<bool>);
@@ -152,7 +165,7 @@ class MockGeolocatorService extends _i1.Mock implements _i6.GeolocatorService {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRequestLocationPermissionUseCase extends _i1.Mock
-    implements _i7.RequestLocationPermissionUseCase {
+    implements _i8.RequestLocationPermissionUseCase {
   MockRequestLocationPermissionUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -170,7 +183,7 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
-    implements _i8.CheckLocationPermissionStatusUseCase {
+    implements _i9.CheckLocationPermissionStatusUseCase {
   MockCheckLocationPermissionStatusUseCase() {
     _i1.throwOnMissingStub(this);
   }

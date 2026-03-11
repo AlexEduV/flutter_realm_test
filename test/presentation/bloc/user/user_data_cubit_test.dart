@@ -5,9 +5,10 @@ import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
-import 'package:test_futter_project/domain/data_sources/geolocator_service.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
@@ -20,7 +21,8 @@ import 'user_data_cubit_test.mocks.dart';
 
 @GenerateMocks([
   BaseLocalStorage,
-  GeolocatorService,
+  OpenAppSettingsUseCase,
+  CheckLocationServiceStatusUseCase,
   RequestLocationPermissionUseCase,
   CheckLocationPermissionStatusUseCase,
 ])
@@ -30,7 +32,8 @@ void main() {
   late MockBaseLocalStorage mockLocalStorage;
   late MockRequestLocationPermissionUseCase mockRequestLocationPermissionUseCase;
   late MockCheckLocationPermissionStatusUseCase mockCheckLocationPermissionStatusUseCase;
-  late MockGeolocatorService mockGeolocatorService;
+  late MockCheckLocationServiceStatusUseCase mockCheckLocationServiceStatusUseCase;
+  late MockOpenAppSettingsUseCase mockOpenAppSettingsUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
 
@@ -39,16 +42,18 @@ void main() {
 
   mockRequestLocationPermissionUseCase = MockRequestLocationPermissionUseCase();
   mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
+  mockCheckLocationServiceStatusUseCase = MockCheckLocationServiceStatusUseCase();
+  mockOpenAppSettingsUseCase = MockOpenAppSettingsUseCase();
 
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});
 
     mockLocalStorage = MockBaseLocalStorage();
-    mockGeolocatorService = MockGeolocatorService();
 
     cubit = UserDataCubit(
       mockLocalStorage,
-      mockGeolocatorService,
+      mockCheckLocationServiceStatusUseCase,
+      mockOpenAppSettingsUseCase,
       mockRequestLocationPermissionUseCase,
       mockCheckLocationPermissionStatusUseCase,
     );
@@ -113,8 +118,8 @@ void main() {
         when(mockLocalStorage.initUser()).thenReturn(testUser);
         when(mockLocalStorage.update(any)).thenReturn(null);
 
-        when(mockGeolocatorService.checkLocationServiceStatus()).thenAnswer((_) async => false);
-        when(mockGeolocatorService.openLocationSettings()).thenAnswer((_) async => true);
+        when(mockCheckLocationServiceStatusUseCase.call()).thenAnswer((_) async => false);
+        when(mockOpenAppSettingsUseCase.call()).thenAnswer((_) async => true);
 
         cubit.init();
         return cubit;
@@ -137,8 +142,8 @@ void main() {
             ),
       ],
       verify: (cubit) {
-        verify(mockGeolocatorService.checkLocationServiceStatus()).called(1);
-        verify(mockGeolocatorService.openLocationSettings()).called(1);
+        verify(mockOpenAppSettingsUseCase.call()).called(1);
+        verify(mockCheckLocationServiceStatusUseCase.call()).called(1);
       },
     );
 

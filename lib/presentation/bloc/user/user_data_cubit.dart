@@ -4,8 +4,9 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
-import 'package:test_futter_project/domain/data_sources/geolocator_service.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
@@ -21,13 +22,17 @@ import '../l10n/app_localisations_cubit.dart';
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(
     this._localStorage,
-    this._geolocatorService,
+    this._checkLocationServiceStatusUseCase,
+    this._openAppSettingsUseCase,
     this._requestLocationPermissionUseCase,
     this._checkLocationPermissionStatusUseCase,
   ) : super(const UserDataState());
 
   final BaseLocalStorage _localStorage;
-  final GeolocatorService _geolocatorService;
+
+  final OpenAppSettingsUseCase _openAppSettingsUseCase;
+  final CheckLocationServiceStatusUseCase _checkLocationServiceStatusUseCase;
+
   final RequestLocationPermissionUseCase _requestLocationPermissionUseCase;
   final CheckLocationPermissionStatusUseCase _checkLocationPermissionStatusUseCase;
 
@@ -109,9 +114,9 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     updateLocationPermissionStatus(isGranted);
 
-    final isServiceEnabled = await _geolocatorService.checkLocationServiceStatus();
+    final isServiceEnabled = await _checkLocationServiceStatusUseCase.call();
     if (!isServiceEnabled) {
-      await _geolocatorService.openLocationSettings();
+      await _openAppSettingsUseCase.call();
     }
   }
 

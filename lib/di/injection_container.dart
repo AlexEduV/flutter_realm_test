@@ -9,6 +9,7 @@ import 'package:test_futter_project/data/data_sources/mock_messages_service.dart
 import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/article_service.dart';
@@ -36,6 +37,8 @@ import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_c
 import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_messages_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
@@ -132,7 +135,13 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerLazySingleton(
-    () => UserDataCubit(serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator()),
+    () => UserDataCubit(
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+    ),
   );
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
@@ -182,4 +191,14 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
+
+  serviceLocator.registerLazySingleton<GeolocatorRepositoryImpl>(
+    () => GeolocatorRepositoryImpl(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<OpenAppSettingsUseCase>(
+    () => OpenAppSettingsUseCase(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<CheckLocationServiceStatusUseCase>(
+    () => CheckLocationServiceStatusUseCase(serviceLocator()),
+  );
 }
