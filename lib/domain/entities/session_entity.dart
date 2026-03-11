@@ -1,5 +1,6 @@
 class SessionEntity {
   final String userId;
+  final String sessionId;
 
-  const SessionEntity(this.userId);
+  const SessionEntity({required this.sessionId, required this.userId});
 }
