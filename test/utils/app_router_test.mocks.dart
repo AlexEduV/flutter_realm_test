@@ -420,10 +420,13 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
   );
 
   @override
-  void authUser(String? email) => super.noSuchMethod(
-    Invocation.method(#authUser, [email]),
-    returnValueForMissingStub: null,
-  );
+  _i10.Future<void> authUser(String? email) =>
+      (super.noSuchMethod(
+            Invocation.method(#authUser, [email]),
+            returnValue: _i10.Future<void>.value(),
+            returnValueForMissingStub: _i10.Future<void>.value(),
+          )
+          as _i10.Future<void>);
 
   @override
   void logOutUser() => super.noSuchMethod(

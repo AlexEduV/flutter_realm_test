@@ -1,63 +1,51 @@
-//todo: permission platform is not mocked easily
-
-/*
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
-import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_futter_project/domain/data_sources/permission_service.dart';
 
-@GenerateMocks([Permission, PermissionStatus])
+import 'permission_repository_impl_test.mocks.dart'; // Import the generated mock
+
+@GenerateMocks([PermissionService])
 void main() {
-  late PermissionRepositoryImpl repository;
-  late MockPermission mockPermission;
-  late MockPermissionStatus mockStatus;
+  late MockPermissionService mockPermissionService;
+  late PermissionRepositoryImpl permissionRepository;
 
   setUp(() {
-    repository = PermissionRepositoryImpl();
-    mockPermission = MockPermission();
-    mockStatus = MockPermissionStatus();
+    mockPermissionService = MockPermissionService();
+    permissionRepository = PermissionRepositoryImpl(mockPermissionService);
   });
 
-  group('PermissionRepositoryImpl', () {
-    test('requestLocationPermission returns true when permission is granted', () async {
-      // Arrange
-      when(Permission.location.request()).thenAnswer((_) async => PermissionStatus.granted);
+  test('requestLocationPermission returns true when permission is granted', () async {
+    when(mockPermissionService.requestLocation()).thenAnswer((_) async => PermissionStatus.granted);
 
-      // Act
-      final result = await repository.requestLocationPermission();
+    final result = await permissionRepository.requestLocationPermission();
+    expect(result, isTrue);
+  });
 
-      // Assert
-      expect(result, isTrue);
-    });
+  test('requestLocationPermission returns false when permission is denied', () async {
+    when(mockPermissionService.requestLocation()).thenAnswer((_) async => PermissionStatus.denied);
 
-    test('requestLocationPermission returns false when permission is denied', () async {
-      when(Permission.location.request()).thenAnswer((_) async => PermissionStatus.denied);
+    final result = await permissionRepository.requestLocationPermission();
+    expect(result, isFalse);
+  });
 
-      final result = await repository.requestLocationPermission();
+  test('checkLocationPermissionState returns true when permission is granted', () async {
+    when(
+      mockPermissionService.checkLocationStatus(),
+    ).thenAnswer((_) async => PermissionStatus.granted);
 
-      expect(result, isFalse);
-    });
+    final result = await permissionRepository.checkLocationPermissionState();
+    expect(result, isTrue);
+  });
 
-    test('checkLocationPermissionState returns true when permission is granted', () async {
-      when(Permission.location.status).thenAnswer((_) async => PermissionStatus.granted);
+  test('checkLocationPermissionState returns false when permission is denied', () async {
+    when(
+      mockPermissionService.checkLocationStatus(),
+    ).thenAnswer((_) async => PermissionStatus.denied);
 
-      final result = await repository.checkLocationPermissionState();
-
-      expect(result, isTrue);
-    });
-
-    test('checkLocationPermissionState returns false when permission is denied', () async {
-      when(Permission.location.status).thenAnswer((_) async => PermissionStatus.denied);
-
-      final result = await repository.checkLocationPermissionState();
-
-      expect(result, isFalse);
-    });
+    final result = await permissionRepository.checkLocationPermissionState();
+    expect(result, isFalse);
   });
 }
-
- */
-
-void main() {}

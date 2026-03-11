@@ -3,21 +3,21 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
+import 'dart:async' as _i5;
 
-import 'package:geolocator_platform_interface/src/enums/enums.dart' as _i9;
-import 'package:geolocator_platform_interface/src/geolocator_platform_interface.dart'
-    as _i8;
-import 'package:geolocator_platform_interface/src/models/models.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart'
-    as _i5;
+    as _i4;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
-import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
-    as _i10;
-import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
+import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
     as _i7;
+import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
+    as _i6;
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
+    as _i9;
+import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
+    as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -43,15 +43,10 @@ class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
     : super(parent, parentInvocation);
 }
 
-class _FakePosition_2 extends _i1.SmartFake implements _i4.Position {
-  _FakePosition_2(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
-}
-
 /// A class which mocks [BaseLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBaseLocalStorage extends _i1.Mock implements _i5.BaseLocalStorage {
+class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
   MockBaseLocalStorage() {
     _i1.throwOnMissingStub(this);
   }
@@ -77,12 +72,12 @@ class MockBaseLocalStorage extends _i1.Mock implements _i5.BaseLocalStorage {
   );
 
   @override
-  _i6.Stream<dynamic> watch<T>() =>
+  _i5.Stream<dynamic> watch<T>() =>
       (super.noSuchMethod(
             Invocation.method(#watch, []),
-            returnValue: _i6.Stream<dynamic>.empty(),
+            returnValue: _i5.Stream<dynamic>.empty(),
           )
-          as _i6.Stream<dynamic>);
+          as _i5.Stream<dynamic>);
 
   @override
   void deleteAllCars() => super.noSuchMethod(
@@ -130,203 +125,74 @@ class MockBaseLocalStorage extends _i1.Mock implements _i5.BaseLocalStorage {
   );
 }
 
+/// A class which mocks [OpenAppSettingsUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockOpenAppSettingsUseCase extends _i1.Mock
+    implements _i6.OpenAppSettingsUseCase {
+  MockOpenAppSettingsUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<bool> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i5.Future<bool>.value(false),
+          )
+          as _i5.Future<bool>);
+}
+
+/// A class which mocks [CheckLocationServiceStatusUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCheckLocationServiceStatusUseCase extends _i1.Mock
+    implements _i7.CheckLocationServiceStatusUseCase {
+  MockCheckLocationServiceStatusUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<bool> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i5.Future<bool>.value(false),
+          )
+          as _i5.Future<bool>);
+}
+
 /// A class which mocks [RequestLocationPermissionUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRequestLocationPermissionUseCase extends _i1.Mock
-    implements _i7.RequestLocationPermissionUseCase {
+    implements _i8.RequestLocationPermissionUseCase {
   MockRequestLocationPermissionUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<bool> call() =>
+  _i5.Future<bool> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i6.Future<bool>.value(false),
+            returnValue: _i5.Future<bool>.value(false),
           )
-          as _i6.Future<bool>);
-}
-
-/// A class which mocks [GeolocatorPlatform].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGeolocatorPlatform extends _i1.Mock
-    implements _i8.GeolocatorPlatform {
-  MockGeolocatorPlatform() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i6.Future<_i9.LocationPermission> checkPermission() =>
-      (super.noSuchMethod(
-            Invocation.method(#checkPermission, []),
-            returnValue: _i6.Future<_i9.LocationPermission>.value(
-              _i9.LocationPermission.denied,
-            ),
-          )
-          as _i6.Future<_i9.LocationPermission>);
-
-  @override
-  _i6.Future<_i9.LocationPermission> requestPermission() =>
-      (super.noSuchMethod(
-            Invocation.method(#requestPermission, []),
-            returnValue: _i6.Future<_i9.LocationPermission>.value(
-              _i9.LocationPermission.denied,
-            ),
-          )
-          as _i6.Future<_i9.LocationPermission>);
-
-  @override
-  _i6.Future<bool> isLocationServiceEnabled() =>
-      (super.noSuchMethod(
-            Invocation.method(#isLocationServiceEnabled, []),
-            returnValue: _i6.Future<bool>.value(false),
-          )
-          as _i6.Future<bool>);
-
-  @override
-  _i6.Future<_i4.Position?> getLastKnownPosition({
-    bool? forceLocationManager = false,
-  }) =>
-      (super.noSuchMethod(
-            Invocation.method(#getLastKnownPosition, [], {
-              #forceLocationManager: forceLocationManager,
-            }),
-            returnValue: _i6.Future<_i4.Position?>.value(),
-          )
-          as _i6.Future<_i4.Position?>);
-
-  @override
-  _i6.Future<_i4.Position> getCurrentPosition({
-    _i4.LocationSettings? locationSettings,
-  }) =>
-      (super.noSuchMethod(
-            Invocation.method(#getCurrentPosition, [], {
-              #locationSettings: locationSettings,
-            }),
-            returnValue: _i6.Future<_i4.Position>.value(
-              _FakePosition_2(
-                this,
-                Invocation.method(#getCurrentPosition, [], {
-                  #locationSettings: locationSettings,
-                }),
-              ),
-            ),
-          )
-          as _i6.Future<_i4.Position>);
-
-  @override
-  _i6.Stream<_i9.ServiceStatus> getServiceStatusStream() =>
-      (super.noSuchMethod(
-            Invocation.method(#getServiceStatusStream, []),
-            returnValue: _i6.Stream<_i9.ServiceStatus>.empty(),
-          )
-          as _i6.Stream<_i9.ServiceStatus>);
-
-  @override
-  _i6.Stream<_i4.Position> getPositionStream({
-    _i4.LocationSettings? locationSettings,
-  }) =>
-      (super.noSuchMethod(
-            Invocation.method(#getPositionStream, [], {
-              #locationSettings: locationSettings,
-            }),
-            returnValue: _i6.Stream<_i4.Position>.empty(),
-          )
-          as _i6.Stream<_i4.Position>);
-
-  @override
-  _i6.Future<_i9.LocationAccuracyStatus> requestTemporaryFullAccuracy({
-    required String? purposeKey,
-  }) =>
-      (super.noSuchMethod(
-            Invocation.method(#requestTemporaryFullAccuracy, [], {
-              #purposeKey: purposeKey,
-            }),
-            returnValue: _i6.Future<_i9.LocationAccuracyStatus>.value(
-              _i9.LocationAccuracyStatus.reduced,
-            ),
-          )
-          as _i6.Future<_i9.LocationAccuracyStatus>);
-
-  @override
-  _i6.Future<_i9.LocationAccuracyStatus> getLocationAccuracy() =>
-      (super.noSuchMethod(
-            Invocation.method(#getLocationAccuracy, []),
-            returnValue: _i6.Future<_i9.LocationAccuracyStatus>.value(
-              _i9.LocationAccuracyStatus.reduced,
-            ),
-          )
-          as _i6.Future<_i9.LocationAccuracyStatus>);
-
-  @override
-  _i6.Future<bool> openAppSettings() =>
-      (super.noSuchMethod(
-            Invocation.method(#openAppSettings, []),
-            returnValue: _i6.Future<bool>.value(false),
-          )
-          as _i6.Future<bool>);
-
-  @override
-  _i6.Future<bool> openLocationSettings() =>
-      (super.noSuchMethod(
-            Invocation.method(#openLocationSettings, []),
-            returnValue: _i6.Future<bool>.value(false),
-          )
-          as _i6.Future<bool>);
-
-  @override
-  double distanceBetween(
-    double? startLatitude,
-    double? startLongitude,
-    double? endLatitude,
-    double? endLongitude,
-  ) =>
-      (super.noSuchMethod(
-            Invocation.method(#distanceBetween, [
-              startLatitude,
-              startLongitude,
-              endLatitude,
-              endLongitude,
-            ]),
-            returnValue: 0.0,
-          )
-          as double);
-
-  @override
-  double bearingBetween(
-    double? startLatitude,
-    double? startLongitude,
-    double? endLatitude,
-    double? endLongitude,
-  ) =>
-      (super.noSuchMethod(
-            Invocation.method(#bearingBetween, [
-              startLatitude,
-              startLongitude,
-              endLatitude,
-              endLongitude,
-            ]),
-            returnValue: 0.0,
-          )
-          as double);
+          as _i5.Future<bool>);
 }
 
 /// A class which mocks [CheckLocationPermissionStatusUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
-    implements _i10.CheckLocationPermissionStatusUseCase {
+    implements _i9.CheckLocationPermissionStatusUseCase {
   MockCheckLocationPermissionStatusUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<bool> call() =>
+  _i5.Future<bool> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i6.Future<bool>.value(false),
+            returnValue: _i5.Future<bool>.value(false),
           )
-          as _i6.Future<bool>);
+          as _i5.Future<bool>);
 }

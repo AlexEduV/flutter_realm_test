@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/data/data_sources/app_geolocator_service.dart';
+import 'package:test_futter_project/data/data_sources/app_permission_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_article_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_auth_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_car_api_service.dart';
@@ -7,13 +9,16 @@ import 'package:test_futter_project/data/data_sources/mock_messages_service.dart
 import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/article_service.dart';
 import 'package:test_futter_project/domain/data_sources/auth_service.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
+import 'package:test_futter_project/domain/data_sources/geolocator_service.dart';
 import 'package:test_futter_project/domain/data_sources/messages_service.dart';
+import 'package:test_futter_project/domain/data_sources/permission_service.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
@@ -32,6 +37,8 @@ import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_c
 import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_messages_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
@@ -50,6 +57,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import '../data/models/scheme.dart';
 import '../data/repositories/car_repository_impl.dart';
 import '../domain/repositories/car_repository.dart';
+import '../domain/repositories/geolocator_repository.dart';
 import '../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
@@ -97,9 +105,12 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<CarApiService>(() => MockCarApiService());
 
   serviceLocator.registerLazySingleton<AuthService>(() => MockAuthService(serviceLocator()));
+  serviceLocator.registerLazySingleton<GeolocatorService>(() => AppGeolocatorService());
 
   serviceLocator.registerLazySingleton<ArticleRepository>(() => ArticleRepositoryImpl());
   serviceLocator.registerLazySingleton<ArticleService>(() => MockArticleService(serviceLocator()));
+
+  serviceLocator.registerLazySingleton<PermissionService>(() => AppPermissionService());
 
   serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
 
@@ -108,7 +119,9 @@ Future<void> initDependenciesContainer() async {
     () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<PermissionRepository>(() => PermissionRepositoryImpl());
+  serviceLocator.registerLazySingleton<PermissionRepository>(
+    () => PermissionRepositoryImpl(serviceLocator()),
+  );
 
   final authRepositoryImpl = AuthRepositoryImpl(serviceLocator());
   await authRepositoryImpl.init();
@@ -123,7 +136,13 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerLazySingleton(
-    () => UserDataCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+    () => UserDataCubit(
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+    ),
   );
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
@@ -173,4 +192,14 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
+
+  serviceLocator.registerLazySingleton<GeolocatorRepository>(
+    () => GeolocatorRepositoryImpl(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<OpenAppSettingsUseCase>(
+    () => OpenAppSettingsUseCase(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<CheckLocationServiceStatusUseCase>(
+    () => CheckLocationServiceStatusUseCase(serviceLocator()),
+  );
 }

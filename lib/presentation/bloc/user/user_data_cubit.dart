@@ -1,11 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
+import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
@@ -21,11 +22,17 @@ import '../l10n/app_localisations_cubit.dart';
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(
     this._localStorage,
+    this._checkLocationServiceStatusUseCase,
+    this._openAppSettingsUseCase,
     this._requestLocationPermissionUseCase,
     this._checkLocationPermissionStatusUseCase,
   ) : super(const UserDataState());
 
   final BaseLocalStorage _localStorage;
+
+  final OpenAppSettingsUseCase _openAppSettingsUseCase;
+  final CheckLocationServiceStatusUseCase _checkLocationServiceStatusUseCase;
+
   final RequestLocationPermissionUseCase _requestLocationPermissionUseCase;
   final CheckLocationPermissionStatusUseCase _checkLocationPermissionStatusUseCase;
 
@@ -107,9 +114,9 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     updateLocationPermissionStatus(isGranted);
 
-    final bool isServiceEnabled = await Geolocator.isLocationServiceEnabled();
+    final isServiceEnabled = await _checkLocationServiceStatusUseCase.call();
     if (!isServiceEnabled) {
-      await Geolocator.openLocationSettings();
+      await _openAppSettingsUseCase.call();
     }
   }
 
@@ -251,13 +258,13 @@ class UserDataCubit extends Cubit<UserDataState> {
     updateCloudUser(user);
   }
 
-  void authUser(String email) {
+  Future<void> authUser(String email) async {
     final user = MockUsers.getUserByEmail(email);
 
     if (user == null) return;
 
     //todo: if the user was in the guest mode, migrate the favorites and created items to the account;
-    init();
+    await init();
   }
 
   void logOutUser() {
