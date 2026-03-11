@@ -4,6 +4,7 @@ import 'package:test_futter_project/data/data_sources/mock_article_service.dart'
 import 'package:test_futter_project/data/data_sources/mock_auth_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_car_api_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_messages_service.dart';
+import 'package:test_futter_project/data/data_sources/permission_handler_service.dart';
 import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
@@ -14,6 +15,7 @@ import 'package:test_futter_project/domain/data_sources/auth_service.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
 import 'package:test_futter_project/domain/data_sources/messages_service.dart';
+import 'package:test_futter_project/domain/data_sources/permission_service.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
@@ -101,6 +103,8 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<ArticleRepository>(() => ArticleRepositoryImpl());
   serviceLocator.registerLazySingleton<ArticleService>(() => MockArticleService(serviceLocator()));
 
+  serviceLocator.registerLazySingleton<PermissionService>(() => PermissionHandlerService());
+
   serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
 
   //Register Repository (passing Realm from GetIt)
@@ -108,7 +112,9 @@ Future<void> initDependenciesContainer() async {
     () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<PermissionRepository>(() => PermissionRepositoryImpl());
+  serviceLocator.registerLazySingleton<PermissionRepository>(
+    () => PermissionRepositoryImpl(serviceLocator()),
+  );
 
   final authRepositoryImpl = AuthRepositoryImpl(serviceLocator());
   await authRepositoryImpl.init();
