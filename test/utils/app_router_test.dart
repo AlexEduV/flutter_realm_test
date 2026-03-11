@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/common/app_routes.dart';
+import 'package:test_futter_project/common/enums/details_page_source.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
@@ -98,7 +99,7 @@ void main() {
   testWidgets('Navigates to DetailsPage from Explore', (tester) async {
     await tester.pumpWidget(widget);
 
-    AppRouter.goToDetailsRouteFromExplore('car123');
+    AppRouter.goToDetails(carId: 'car123', from: DetailsPageSource.explore);
     await tester.pumpAndSettle();
     expect(find.byType(DetailsPage), findsOneWidget);
     final detailsPage = tester.widget<DetailsPage>(find.byType(DetailsPage));
@@ -108,7 +109,7 @@ void main() {
   testWidgets('Navigates to DetailsPage from Search', (tester) async {
     await tester.pumpWidget(widget);
 
-    AppRouter.goToDetailsRouteFromSearch('car456');
+    AppRouter.goToDetails(from: DetailsPageSource.search, carId: 'car456');
     await tester.pumpAndSettle();
     expect(find.byType(DetailsPage), findsOneWidget);
     final detailsPage = tester.widget<DetailsPage>(find.byType(DetailsPage));

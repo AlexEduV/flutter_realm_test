@@ -64,8 +64,8 @@ class AnnouncementListItem extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
               onTap: () => isExploreItem
-                  ? AppRouter.routeBySource(DetailsPageSource.explore, car?.carId ?? '')
-                  : AppRouter.routeBySource(DetailsPageSource.search, car?.carId ?? ''),
+                  ? AppRouter.goToDetails(from: DetailsPageSource.explore, carId: car?.carId ?? '')
+                  : AppRouter.goToDetails(from: DetailsPageSource.search, carId: car?.carId ?? ''),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: AppDimensions.contentPadding,

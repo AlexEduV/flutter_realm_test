@@ -40,7 +40,7 @@ class CarListItem extends StatelessWidget {
           color: Colors.white,
           child: InkWell(
             borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-            onTap: () => AppRouter.routeBySource(source, car.carId),
+            onTap: () => AppRouter.goToDetails(from: source, carId: car.carId),
             child: Container(
               key: ValueKey(car.carId),
               decoration: BoxDecoration(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/enums/details_page_source.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
@@ -61,7 +62,10 @@ class LastSeenWidget extends StatelessWidget {
                     label: AppSemanticsLabels.lastSeenSectionItem,
                     button: true,
                     child: InkWell(
-                      onTap: () => AppRouter.goToDetailsRouteFromExplore(carEntityFull.carId),
+                      onTap: () => AppRouter.goToDetails(
+                        from: DetailsPageSource.explore,
+                        carId: carEntityFull.carId,
+                      ),
                       borderRadius: BorderRadius.circular(AppDimensions.normalL),
                       child: Container(
                         decoration: BoxDecoration(
