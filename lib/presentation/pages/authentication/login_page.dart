@@ -11,7 +11,7 @@ import 'package:test_futter_project/presentation/pages/authentication/widgets/au
 import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_form_switcher.dart';
 
 import '../../../common/app_colors.dart';
-import '../../../utils/l10n_keys.dart';
+import '../../../l10n/l10n_keys.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

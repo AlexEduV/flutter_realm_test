@@ -5,9 +5,9 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
-import 'package:test_futter_project/utils/l10n_keys.dart';
 
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();

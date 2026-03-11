@@ -2,10 +2,10 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/utils/auth_session_util.dart';
-import 'package:test_futter_project/utils/l10n_keys.dart';
 
 import '../../common/extensions/user_scheme_extension.dart';
 import '../../domain/entities/user_entity.dart';

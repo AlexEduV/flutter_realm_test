@@ -11,7 +11,7 @@ import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 
 import '../../../di/injection_container.dart';
-import '../../../utils/l10n_keys.dart';
+import '../../../l10n/l10n_keys.dart';
 import '../l10n/app_localisations_cubit.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {

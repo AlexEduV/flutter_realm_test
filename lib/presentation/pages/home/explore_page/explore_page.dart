@@ -17,7 +17,7 @@ import 'package:test_futter_project/presentation/pages/home/explore_page/widgets
 import 'package:test_futter_project/presentation/widgets/announcement_list_item.dart';
 
 import '../../../../common/extensions/car_scheme_extension.dart';
-import '../../../../utils/l10n_keys.dart';
+import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePage extends StatefulWidget {

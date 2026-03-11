@@ -11,7 +11,7 @@ import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_routes.dart';
 import '../../../../../common/app_text_styles.dart';
-import '../../../../../utils/l10n_keys.dart';
+import '../../../../../l10n/l10n_keys.dart';
 import 'explore_article_item.dart';
 import 'last_seen_widget.dart';
 

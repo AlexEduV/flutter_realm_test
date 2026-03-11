@@ -4,7 +4,7 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 
 import '../../../../common/app_text_styles.dart';
-import '../../../../utils/l10n_keys.dart';
+import '../../../../l10n/l10n_keys.dart';
 
 class PlaceholderPage extends StatelessWidget {
   const PlaceholderPage({super.key});

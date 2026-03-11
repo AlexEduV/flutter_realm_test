@@ -5,7 +5,7 @@ import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 
-import '../../../../utils/l10n_keys.dart';
+import '../../../../l10n/l10n_keys.dart';
 
 class ModelFilterDrawer extends StatelessWidget {
   final List<String> models;

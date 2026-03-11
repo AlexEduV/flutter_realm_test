@@ -12,7 +12,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart'
 import 'package:test_futter_project/presentation/pages/home/favorites_page/widgets/car_list_item.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
 
-import '../../../../utils/l10n_keys.dart';
+import '../../../../l10n/l10n_keys.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});

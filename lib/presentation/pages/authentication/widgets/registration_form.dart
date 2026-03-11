@@ -8,7 +8,7 @@ import 'package:test_futter_project/presentation/pages/authentication/widgets/sp
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/app_colors.dart';
-import '../../../../utils/l10n_keys.dart';
+import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';
 import 'animated_divider_with_text.dart';
 import 'login_field.dart';
