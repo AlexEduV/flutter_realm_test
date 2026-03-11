@@ -14,7 +14,6 @@ import '../common/app_routes.dart';
 import '../common/enums/details_page_source.dart';
 import '../presentation/pages/search/search_page.dart';
 
-//todo: duplicate details route
 class AppRouter {
   static final GoRouter _router = GoRouter(
     routes: <RouteBase>[
@@ -25,23 +24,9 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.search,
             pageBuilder: (context, state) => const CupertinoPage(child: SearchPage()),
-            routes: <RouteBase>[
-              GoRoute(
-                path: AppRoutes.details,
-                pageBuilder: (context, state) {
-                  final carId = state.extra as String? ?? '';
-                  return CupertinoPage(child: DetailsPage(carId: carId));
-                },
-              ),
-            ],
+            routes: <RouteBase>[_detailsRoute],
           ),
-          GoRoute(
-            path: AppRoutes.details,
-            pageBuilder: (context, state) {
-              final carId = state.extra as String? ?? '';
-              return CupertinoPage(child: DetailsPage(carId: carId));
-            },
-          ),
+          _detailsRoute,
           GoRoute(
             path: AppRoutes.personalDetails,
             pageBuilder: (context, state) {
@@ -59,30 +44,14 @@ class AppRouter {
             pageBuilder: (context, state) {
               return const CupertinoPage(child: MyItemsPage());
             },
-            routes: <RouteBase>[
-              GoRoute(
-                path: AppRoutes.details,
-                pageBuilder: (context, state) {
-                  final carId = state.extra as String? ?? '';
-                  return CupertinoPage(child: DetailsPage(carId: carId));
-                },
-              ),
-            ],
+            routes: <RouteBase>[_detailsRoute],
           ),
           GoRoute(
             path: AppRoutes.recentlyViewed,
             pageBuilder: (context, state) {
               return const CupertinoPage(child: RecentlyViewedPage());
             },
-            routes: <RouteBase>[
-              GoRoute(
-                path: AppRoutes.details,
-                pageBuilder: (context, state) {
-                  final carId = state.extra as String? ?? '';
-                  return CupertinoPage(child: DetailsPage(carId: carId));
-                },
-              ),
-            ],
+            routes: <RouteBase>[_detailsRoute],
           ),
           GoRoute(
             path: AppRoutes.clearUserData,
@@ -119,6 +88,14 @@ class AppRouter {
   );
 
   static GoRouter get router => _router;
+
+  static final _detailsRoute = GoRoute(
+    path: AppRoutes.details,
+    pageBuilder: (context, state) {
+      final carId = state.extra as String? ?? '';
+      return CupertinoPage(child: DetailsPage(carId: carId));
+    },
+  );
 
   static void goToDetailsRouteFromExplore(String carId) {
     _router.go('${AppRoutes.home}${AppRoutes.details}', extra: carId);
