@@ -98,21 +98,6 @@ class AppRouter {
   );
 
   static void goToDetails({required DetailsPageSource from, required String carId}) {
-    String path;
-    switch (from) {
-      case DetailsPageSource.myItems:
-        path = '${AppRoutes.home}${AppRoutes.myItems}/${AppRoutes.details}';
-        break;
-      case DetailsPageSource.recentlyViewed:
-        path = '${AppRoutes.home}${AppRoutes.recentlyViewed}/${AppRoutes.details}';
-        break;
-      case DetailsPageSource.search:
-        path = '${AppRoutes.home}${AppRoutes.search}/${AppRoutes.details}';
-        break;
-      default:
-        path = '${AppRoutes.home}${AppRoutes.details}';
-        break;
-    }
-    _router.go(path, extra: carId);
+    _router.go(from.detailsPath, extra: carId);
   }
 }
