@@ -1,10 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/data/data_sources/app_geolocator_service.dart';
+import 'package:test_futter_project/data/data_sources/app_permission_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_article_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_auth_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_car_api_service.dart';
 import 'package:test_futter_project/data/data_sources/mock_messages_service.dart';
-import 'package:test_futter_project/data/data_sources/permission_handler_service.dart';
 import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
@@ -14,6 +15,7 @@ import 'package:test_futter_project/domain/data_sources/article_service.dart';
 import 'package:test_futter_project/domain/data_sources/auth_service.dart';
 import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
+import 'package:test_futter_project/domain/data_sources/geolocator_service.dart';
 import 'package:test_futter_project/domain/data_sources/messages_service.dart';
 import 'package:test_futter_project/domain/data_sources/permission_service.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
@@ -99,11 +101,12 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<CarApiService>(() => MockCarApiService());
 
   serviceLocator.registerLazySingleton<AuthService>(() => MockAuthService(serviceLocator()));
+  serviceLocator.registerLazySingleton<GeolocatorService>(() => AppGeolocatorService());
 
   serviceLocator.registerLazySingleton<ArticleRepository>(() => ArticleRepositoryImpl());
   serviceLocator.registerLazySingleton<ArticleService>(() => MockArticleService(serviceLocator()));
 
-  serviceLocator.registerLazySingleton<PermissionService>(() => PermissionHandlerService());
+  serviceLocator.registerLazySingleton<PermissionService>(() => AppPermissionService());
 
   serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
 
@@ -129,7 +132,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerLazySingleton(
-    () => UserDataCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+    () => UserDataCubit(serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator()),
   );
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
