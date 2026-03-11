@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
@@ -94,20 +95,21 @@ class LocationSettingsPage extends StatelessWidget {
     final availableCountries = MockRegionService.getAvailableCountries();
 
     final currentRegion = state.region;
-    final currentIndex = availableCountries.indexWhere(
+    final currentIndex = availableCountries.indexWhereOrNull(
       (element) => element.code == currentRegion,
-    ); //todo: might return index out of bounds
+    );
+
+    if (currentIndex == null) return;
 
     final region = await DialogHelper.showCountryPicker(context, availableCountries, currentIndex);
 
-    if (region == null || region == availableCountries[currentIndex]) {
-      //todo: might return bad state: no element
+    final locale = region?.code;
+    if (region == null || locale == null || locale == currentRegion) {
       return;
     }
 
     if (!context.mounted) return;
 
-    final locale = region.code;
     context.read<UserDataCubit>().updateRegion(locale);
   }
 }
