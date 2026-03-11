@@ -66,42 +66,7 @@ class LocationSettingsPage extends StatelessWidget {
                         title: context.tr(L10nKeys.locationSettingsItemRegion),
                         description: context.tr('${L10nKeys.countryPrefix}${region?.locale}'),
                         icon: Icons.explore,
-                        onTap: () async {
-                          //todo: not the best solution, needs to be out of the ui layer
-                          final regions = MockRegionService.regions;
-
-                          final availableCountries = regions
-                              .map(
-                                (element) => RegionUiModel(
-                                  code: element.locale,
-                                  countryName: serviceLocator<AppLocalisationsCubit>()
-                                      .getLocalisationByKey(
-                                        '${L10nKeys.countryPrefix}${element.locale}',
-                                      ),
-                                ),
-                              )
-                              .toList();
-
-                          final currentRegion = context.read<UserDataCubit>().user.region;
-                          final currentIndex = availableCountries.indexWhere(
-                            (element) => element.code == currentRegion,
-                          );
-
-                          final region = await DialogHelper.showCountryPicker(
-                            context,
-                            availableCountries,
-                            currentIndex,
-                          );
-
-                          if (region == null || region == availableCountries[currentIndex]) {
-                            return;
-                          }
-
-                          if (!context.mounted) return;
-
-                          final locale = region.code;
-                          context.read<UserDataCubit>().updateRegion(locale);
-                        },
+                        onTap: () => onRegionItemTap(state, context),
                       ),
                     ].withDividers(divider: const CustomDivider()),
                   );
@@ -125,5 +90,35 @@ class LocationSettingsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
+    //todo: not the best solution, needs to be out of the ui layer
+    final regions = MockRegionService.regions;
+
+    final availableCountries = regions
+        .map(
+          (element) => RegionUiModel(
+            code: element.locale,
+            countryName: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              '${L10nKeys.countryPrefix}${element.locale}',
+            ),
+          ),
+        )
+        .toList();
+
+    final currentRegion = state.region;
+    final currentIndex = availableCountries.indexWhere((element) => element.code == currentRegion);
+
+    final region = await DialogHelper.showCountryPicker(context, availableCountries, currentIndex);
+
+    if (region == null || region == availableCountries[currentIndex]) {
+      return;
+    }
+
+    if (!context.mounted) return;
+
+    final locale = region.code;
+    context.read<UserDataCubit>().updateRegion(locale);
   }
 }
