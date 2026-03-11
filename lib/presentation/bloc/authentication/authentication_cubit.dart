@@ -239,7 +239,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     if (!result.success) {
       emit(state.copyWith(authenticationErrorText: result.message));
     } else {
-      serviceLocator<UserDataCubit>().authUser(state.emailValue);
+      await serviceLocator<UserDataCubit>().authUser(state.emailValue);
     }
 
     emit(state.copyWith(isLoading: false));
@@ -274,7 +274,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     if (!result.success) {
       emit(state.copyWith(authenticationErrorText: result.message));
     } else {
-      serviceLocator<UserDataCubit>().authUser(state.emailValue);
+      await serviceLocator<UserDataCubit>().authUser(state.emailValue);
     }
 
     emit(state.copyWith(isLoading: false));
