@@ -4,7 +4,7 @@ This directory includes static keys for localisation. The actual structure comes
 external data source, but for this project I use the mock data, which is then parsed and saved
 to the local storage.
 
-## Adding a localisation
+### Adding a localisation
 
 To add localisation, add a new key the mock data for all languages in `assets/mocks/`.
 Then use this key in the `l10n_keys.dart` to get a static const which can be used in the UI.
