@@ -14,6 +14,7 @@ import '../common/app_routes.dart';
 import '../common/enums/details_page_source.dart';
 import '../presentation/pages/search/search_page.dart';
 
+//todo: duplicate details route
 class AppRouter {
   static final GoRouter _router = GoRouter(
     routes: <RouteBase>[
