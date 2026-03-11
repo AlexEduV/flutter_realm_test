@@ -18,7 +18,7 @@ import 'package:test_futter_project/presentation/pages/authentication/login_page
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../common/app_text_styles.dart';
-import '../../../utils/l10n_keys.dart';
+import '../../../l10n/l10n_keys.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});

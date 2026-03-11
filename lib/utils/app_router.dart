@@ -24,23 +24,9 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.search,
             pageBuilder: (context, state) => const CupertinoPage(child: SearchPage()),
-            routes: <RouteBase>[
-              GoRoute(
-                path: AppRoutes.details,
-                pageBuilder: (context, state) {
-                  final carId = state.extra as String? ?? '';
-                  return CupertinoPage(child: DetailsPage(carId: carId));
-                },
-              ),
-            ],
+            routes: <RouteBase>[_detailsRoute],
           ),
-          GoRoute(
-            path: AppRoutes.details,
-            pageBuilder: (context, state) {
-              final carId = state.extra as String? ?? '';
-              return CupertinoPage(child: DetailsPage(carId: carId));
-            },
-          ),
+          _detailsRoute,
           GoRoute(
             path: AppRoutes.personalDetails,
             pageBuilder: (context, state) {
@@ -58,30 +44,14 @@ class AppRouter {
             pageBuilder: (context, state) {
               return const CupertinoPage(child: MyItemsPage());
             },
-            routes: <RouteBase>[
-              GoRoute(
-                path: AppRoutes.details,
-                pageBuilder: (context, state) {
-                  final carId = state.extra as String? ?? '';
-                  return CupertinoPage(child: DetailsPage(carId: carId));
-                },
-              ),
-            ],
+            routes: <RouteBase>[_detailsRoute],
           ),
           GoRoute(
             path: AppRoutes.recentlyViewed,
             pageBuilder: (context, state) {
               return const CupertinoPage(child: RecentlyViewedPage());
             },
-            routes: <RouteBase>[
-              GoRoute(
-                path: AppRoutes.details,
-                pageBuilder: (context, state) {
-                  final carId = state.extra as String? ?? '';
-                  return CupertinoPage(child: DetailsPage(carId: carId));
-                },
-              ),
-            ],
+            routes: <RouteBase>[_detailsRoute],
           ),
           GoRoute(
             path: AppRoutes.clearUserData,
@@ -119,31 +89,15 @@ class AppRouter {
 
   static GoRouter get router => _router;
 
-  static void goToDetailsRouteFromExplore(String carId) {
-    _router.go('${AppRoutes.home}${AppRoutes.details}', extra: carId);
-  }
+  static final _detailsRoute = GoRoute(
+    path: AppRoutes.details,
+    pageBuilder: (context, state) {
+      final carId = state.extra as String? ?? '';
+      return CupertinoPage(child: DetailsPage(carId: carId));
+    },
+  );
 
-  static void goToDetailsFromAccountMyItems(String carId) {
-    _router.go('${AppRoutes.home}${AppRoutes.myItems}/${AppRoutes.details}', extra: carId);
-  }
-
-  static void goToDetailsFromAccountRecentItems(String carId) {
-    _router.go('${AppRoutes.home}${AppRoutes.recentlyViewed}/${AppRoutes.details}', extra: carId);
-  }
-
-  static void goToDetailsRouteFromSearch(String carId) {
-    _router.go('${AppRoutes.home}${AppRoutes.search}/${AppRoutes.details}', extra: carId);
-  }
-
-  static final Map<DetailsPageSource, void Function(String)> _routeMap = {
-    DetailsPageSource.myItems: AppRouter.goToDetailsFromAccountMyItems,
-    DetailsPageSource.recentlyViewed: AppRouter.goToDetailsFromAccountRecentItems,
-    DetailsPageSource.search: AppRouter.goToDetailsRouteFromSearch,
-    DetailsPageSource.explore: AppRouter.goToDetailsRouteFromExplore,
-  };
-
-  static void routeBySource(DetailsPageSource source, String carId) {
-    final routeFunction = _routeMap[source] ?? AppRouter.goToDetailsRouteFromExplore;
-    routeFunction(carId);
+  static void goToDetails({required DetailsPageSource from, required String carId}) {
+    _router.go(from.detailsPath, extra: carId);
   }
 }

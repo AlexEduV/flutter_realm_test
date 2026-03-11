@@ -14,8 +14,8 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 import 'package:test_futter_project/presentation/widgets/verified_badge.dart';
 
+import '../../l10n/l10n_keys.dart';
 import '../../utils/app_router.dart';
-import '../../utils/l10n_keys.dart';
 import 'app_semantics.dart';
 
 class AnnouncementListItem extends StatelessWidget {
@@ -64,8 +64,8 @@ class AnnouncementListItem extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
               onTap: () => isExploreItem
-                  ? AppRouter.routeBySource(DetailsPageSource.explore, car?.carId ?? '')
-                  : AppRouter.routeBySource(DetailsPageSource.search, car?.carId ?? ''),
+                  ? AppRouter.goToDetails(from: DetailsPageSource.explore, carId: car?.carId ?? '')
+                  : AppRouter.goToDetails(from: DetailsPageSource.search, carId: car?.carId ?? ''),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: AppDimensions.contentPadding,

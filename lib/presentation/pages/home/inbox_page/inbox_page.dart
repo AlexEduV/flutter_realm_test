@@ -11,7 +11,7 @@ import 'package:test_futter_project/presentation/pages/home/inbox_page/widgets/i
 import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
 
 import '../../../../common/app_text_styles.dart';
-import '../../../../utils/l10n_keys.dart';
+import '../../../../l10n/l10n_keys.dart';
 
 class InboxPage extends StatefulWidget {
   const InboxPage({super.key});

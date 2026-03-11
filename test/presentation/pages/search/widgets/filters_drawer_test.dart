@@ -8,11 +8,11 @@ import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/filters_drawer.dart';
-import 'package:test_futter_project/utils/l10n_keys.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 

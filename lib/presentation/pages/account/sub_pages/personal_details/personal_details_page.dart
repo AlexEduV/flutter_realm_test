@@ -10,7 +10,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart'
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 
 import '../../../../../common/app_text_styles.dart';
-import '../../../../../utils/l10n_keys.dart';
+import '../../../../../l10n/l10n_keys.dart';
 import '../../widgets/custom_divider.dart';
 
 class PersonalDetailsPage extends StatelessWidget {

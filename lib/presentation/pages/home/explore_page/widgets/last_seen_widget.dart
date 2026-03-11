@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/enums/details_page_source.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
@@ -10,8 +11,8 @@ import '../../../../../common/app_semantics_labels.dart';
 import '../../../../../common/app_text_styles.dart';
 import '../../../../../di/injection_container.dart';
 import '../../../../../domain/usecases/database/get_car_by_id_use_case.dart';
+import '../../../../../l10n/l10n_keys.dart';
 import '../../../../../utils/app_router.dart';
-import '../../../../../utils/l10n_keys.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
 import '../../../../widgets/app_semantics.dart';
@@ -61,7 +62,10 @@ class LastSeenWidget extends StatelessWidget {
                     label: AppSemanticsLabels.lastSeenSectionItem,
                     button: true,
                     child: InkWell(
-                      onTap: () => AppRouter.goToDetailsRouteFromExplore(carEntityFull.carId),
+                      onTap: () => AppRouter.goToDetails(
+                        from: DetailsPageSource.explore,
+                        carId: carEntityFull.carId,
+                      ),
                       borderRadius: BorderRadius.circular(AppDimensions.normalL),
                       child: Container(
                         decoration: BoxDecoration(

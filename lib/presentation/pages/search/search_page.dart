@@ -20,7 +20,7 @@ import 'package:test_futter_project/presentation/pages/search/widgets/search_fil
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 
-import '../../../utils/l10n_keys.dart';
+import '../../../l10n/l10n_keys.dart';
 import '../../widgets/announcement_list_item.dart';
 import 'widgets/results_widget.dart';
 

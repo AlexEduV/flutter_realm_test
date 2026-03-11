@@ -11,7 +11,7 @@ import '../../../common/app_colors.dart';
 import '../../../common/app_semantics_labels.dart';
 import '../../../common/utils/share_debouncer.dart';
 import '../../../domain/models/share_params_model.dart';
-import '../../../utils/l10n_keys.dart';
+import '../../../l10n/l10n_keys.dart';
 import '../../widgets/app_semantics.dart';
 
 class ArticlePage extends StatefulWidget {

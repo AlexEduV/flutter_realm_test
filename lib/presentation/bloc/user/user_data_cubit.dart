@@ -238,8 +238,8 @@ class UserDataCubit extends Cubit<UserDataState> {
     clearMyItems();
   }
 
-  void updateRegion(String region) {
-    if (region == user.region) return;
+  void updateRegion(String? region) {
+    if (region == null || region == user.region) return;
 
     user = user.copyWith(region: region);
     emit(state.copyWith(region: region));

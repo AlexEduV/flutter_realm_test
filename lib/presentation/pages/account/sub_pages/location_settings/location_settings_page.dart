@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/models/region_ui_model.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
-import '../../../../../utils/l10n_keys.dart';
+import '../../../../../l10n/l10n_keys.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
 import '../../widgets/custom_divider.dart';
@@ -66,42 +65,7 @@ class LocationSettingsPage extends StatelessWidget {
                         title: context.tr(L10nKeys.locationSettingsItemRegion),
                         description: context.tr('${L10nKeys.countryPrefix}${region?.locale}'),
                         icon: Icons.explore,
-                        onTap: () async {
-                          //todo: not the best solution, needs to be out of the ui layer
-                          final regions = MockRegionService.regions;
-
-                          final availableCountries = regions
-                              .map(
-                                (element) => RegionUiModel(
-                                  code: element.locale,
-                                  countryName: serviceLocator<AppLocalisationsCubit>()
-                                      .getLocalisationByKey(
-                                        '${L10nKeys.countryPrefix}${element.locale}',
-                                      ),
-                                ),
-                              )
-                              .toList();
-
-                          final currentRegion = context.read<UserDataCubit>().user.region;
-                          final currentIndex = availableCountries.indexWhere(
-                            (element) => element.code == currentRegion,
-                          );
-
-                          final region = await DialogHelper.showCountryPicker(
-                            context,
-                            availableCountries,
-                            currentIndex,
-                          );
-
-                          if (region == null || region == availableCountries[currentIndex]) {
-                            return;
-                          }
-
-                          if (!context.mounted) return;
-
-                          final locale = region.code;
-                          context.read<UserDataCubit>().updateRegion(locale);
-                        },
+                        onTap: () => onRegionItemTap(state, context),
                       ),
                     ].withDividers(divider: const CustomDivider()),
                   );
@@ -125,5 +89,22 @@ class LocationSettingsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
+    final availableCountries = MockRegionService.getAvailableCountries();
+
+    final currentRegion = state.region;
+    final currentIndex = availableCountries.indexWhereOrNull(
+      (element) => element.code == currentRegion,
+    );
+
+    if (currentIndex == null) return;
+
+    final region = await DialogHelper.showCountryPicker(context, availableCountries, currentIndex);
+
+    if (!context.mounted) return;
+
+    context.read<UserDataCubit>().updateRegion(region?.code);
   }
 }
