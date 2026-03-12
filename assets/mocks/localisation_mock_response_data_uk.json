@@ -1,235 +1,241 @@
 {
-  "app": {
-    "name": "Flutter Realm Demo",
-    "locale": "en"
-  },
-  "pages": {
-    "explore": {
-      "title": "Explore",
-      "recommendedSection": {
-        "title": "Recommended"
+  "status": "success",
+  "message": "data retrieved successfully",
+  "results": [
+    {
+      "app": {
+        "name": "Flutter Realm Demo",
+        "locale": "en"
       },
-      "lastSeenSection": {
-        "title": "Last Seen"
-      }
-    },
-    "favorites": {
-      "title": "Favorites",
-      "emptyPlaceholder": "There are no favorites yet."
-    },
-    "search": {
-      "title": "Search",
-      "tabs": {
-        "cars": "Cars",
-        "bikes": "Bikes",
-        "trucks": "Trucks"
-      },
-      "emptyPlaceholder": "No results were found for this search.",
-      "resultsSection": {
-        "title": "Results"
-      }
-    },
-    "comingSoon": {
-      "title": "Coming Soon",
-      "subtitle": "This feature is not available yet."
-    },
-    "inbox": {
-      "title": "Inbox",
-      "emptyPlaceholderText": "No messages yet.",
-      "loggedOutPlaceholderText": "Please, login to see the messages."
-    },
-    "vehicleDetails": {
-      "sectionTitle": "Vehicle Specifications",
-      "specifications": {
-        "body": "Body",
-        "engine": "Engine",
-        "transmission": "Transmission",
-        "mileage": "Mileage",
-        "color": "Color",
-        "year": "Year"
-      },
-      "ownerSection": {
-        "personTypeOwner": "Owner",
-        "contactButtonTitle": "Send Message"
-      },
-      "promoType": {
-        "bestPrice": "Best Price",
-        "limitedTimeOffer": "Limited Time Offer",
-        "oneOwner": "One Owner",
-        "featured": "Featured"
-      }
-    },
-    "account": {
-      "title": "My account",
-      "items": {
-        "personalDetails": {
-          "title": "Personal details",
-          "firstNameItem": "First Name",
-          "lastNameItem": "Last Name",
-          "emailItem": "Email",
-          "passwordItem": "Password"
+      "pages": {
+        "explore": {
+          "title": "Explore",
+          "recommendedSection": {
+            "title": "Recommended"
+          },
+          "lastSeenSection": {
+            "title": "Last Seen"
+          }
         },
-        "location": {
-          "title": "Location",
-          "locationAccessItem": "Location access",
-          "regionItem": "Region",
-          "locationUsageDescription": "We use this data to calculate the distance and to get you the most relevant content.",
-          "privacyPolicyItemPolicy": "Privacy policy",
-          "privacyPolicyItemConditions": "Conditions"
+        "favorites": {
+          "title": "Favorites",
+          "emptyPlaceholder": "There are no favorites yet."
         },
-        "myItems": {
-          "title": "My items",
-          "emptyPlaceholder": "No items were created yet."
+        "search": {
+          "title": "Search",
+          "tabs": {
+            "cars": "Cars",
+            "bikes": "Bikes",
+            "trucks": "Trucks"
+          },
+          "emptyPlaceholder": "No results were found for this search.",
+          "resultsSection": {
+            "title": "Results"
+          }
         },
-        "recentlyViewed": {
-          "title": "Recently viewed",
-          "emptyPlaceholder": "You haven't viewed any item yet."
+        "comingSoon": {
+          "title": "Coming Soon",
+          "subtitle": "This feature is not available yet."
         },
-        "clearData": {
-          "title": "Clear data",
-          "dataDeletionDescription": "Please, choose, which data you would like to clear from the account data.",
-          "viewedHistoryItem": "History of viewed items",
-          "favoritesItem": "Favorite items",
-          "myItemsItem": "My items",
-          "clearAllDataItem": "Delete all data"
+        "inbox": {
+          "title": "Inbox",
+          "emptyPlaceholderText": "No messages yet.",
+          "loggedOutPlaceholderText": "Please, login to see the messages."
         },
-        "logOut": "Log out",
-        "deleteAccount": "Delete account"
+        "vehicleDetails": {
+          "sectionTitle": "Vehicle Specifications",
+          "specifications": {
+            "body": "Body",
+            "engine": "Engine",
+            "transmission": "Transmission",
+            "mileage": "Mileage",
+            "color": "Color",
+            "year": "Year"
+          },
+          "ownerSection": {
+            "personTypeOwner": "Owner",
+            "contactButtonTitle": "Send Message"
+          },
+          "promoType": {
+            "bestPrice": "Best Price",
+            "limitedTimeOffer": "Limited Time Offer",
+            "oneOwner": "One Owner",
+            "featured": "Featured"
+          }
+        },
+        "account": {
+          "title": "My account",
+          "items": {
+            "personalDetails": {
+              "title": "Personal details",
+              "firstNameItem": "First Name",
+              "lastNameItem": "Last Name",
+              "emailItem": "Email",
+              "passwordItem": "Password"
+            },
+            "location": {
+              "title": "Location",
+              "locationAccessItem": "Location access",
+              "regionItem": "Region",
+              "locationUsageDescription": "We use this data to calculate the distance and to get you the most relevant content.",
+              "privacyPolicyItemPolicy": "Privacy policy",
+              "privacyPolicyItemConditions": "Conditions"
+            },
+            "myItems": {
+              "title": "My items",
+              "emptyPlaceholder": "No items were created yet."
+            },
+            "recentlyViewed": {
+              "title": "Recently viewed",
+              "emptyPlaceholder": "You haven't viewed any item yet."
+            },
+            "clearData": {
+              "title": "Clear data",
+              "dataDeletionDescription": "Please, choose, which data you would like to clear from the account data.",
+              "viewedHistoryItem": "History of viewed items",
+              "favoritesItem": "Favorite items",
+              "myItemsItem": "My items",
+              "clearAllDataItem": "Delete all data"
+            },
+            "logOut": "Log out",
+            "deleteAccount": "Delete account"
+          }
+        },
+        "article": {
+          "minsToRead": "mins to read"
+        }
+      },
+      "actions": {
+        "addCar": {
+          "tooltip": "Add a car"
+        },
+        "delete": {
+          "title": "Delete"
+        }
+      },
+      "widgets": {
+        "distance": {
+          "text": "km away"
+        }
+      },
+      "filters": {
+        "model": {
+          "title": "Model",
+          "placeholder": "All"
+        },
+        "parameters": {
+          "title": "Filters",
+          "year": "Year",
+          "color": "Color",
+          "bodyTypes": {
+            "title": "Body Type",
+            "sedan": "Sedan",
+            "hatchback": "Hatchback",
+            "universal": "Universal",
+            "minivan": "Minivan",
+            "coupe": "Coupe",
+            "crossover": "Crossover",
+            "semi": "Semi",
+            "bike": "Bike"
+          },
+          "priceRange": "Price Range",
+          "fuelTypes":  {
+            "title": "Fuel Type",
+            "diesel": "Diesel",
+            "gasoline": "Gasoline",
+            "ev": "EV",
+            "hybrid": "Hybrid"
+          },
+          "transmissionTypes": {
+            "title": "Transmission Type",
+            "manual": "Manual",
+            "automatic": "Automatic",
+            "hybrid": "Hybrid"
+          },
+          "filterValidationMessage": "Incorrect value"
+        }
+      },
+      "forms": {
+        "ui": {
+          "welcomeLoginTitle": "Welcome \nBack",
+          "welcomeRegisterTitle": "Join us",
+          "forgotPasswordButtonText": "Forgot password?",
+          "loginButtonTitle": "Log in",
+          "signUpButtonTitle": "Sign up",
+          "orDividerTitle": "Or"
+        },
+        "warnings": {
+          "userNotFound": "The user not found.",
+          "incorrectPassword": "Incorrect password.",
+          "userAlreadyExists": "User already exists."
+        },
+        "hints": {
+          "passwordMinLength": "The minimum password length is",
+          "passwordLowerCaseChar": "The password should contain at least one lower case character.",
+          "passwordUpperCaseChar": "The password should contain at least one upper case character.",
+          "passwordDigitChar": "The password should contain at least one digit.",
+          "passwordSpecialChar": "The password should contain at least one special character."
+        },
+        "validationMessage": "This field is required.",
+        "fieldParams": {
+          "email": {
+            "label": "Email",
+            "hintText": "Enter your email:",
+            "regexErrorMessage": "The email is not valid."
+          },
+          "password": {
+            "label": "Password",
+            "hintText": "Enter your password:",
+            "regexErrorMessage": "The password is not valid."
+          },
+          "fullName": {
+            "label": "Full name",
+            "hintText": "Enter your full name:",
+            "regexErrorMessage": "The full name is not valid."
+          }
+        }
+      },
+      "dateFormatting": {
+        "yesterday": "Yesterday"
+      },
+      "general": {
+        "share": "Share",
+        "on": "On",
+        "off": "Off",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+      },
+      "dialogs": {
+        "clearViewHistory": {
+          "description": "Are you sure you want to delete all recently viewed history?",
+          "confirmLabel": "Yes, delete it.",
+          "cancelLabel": "No, keep it."
+        },
+        "clearFavoriteItems": {
+          "description": "Are you sure you want to clear favorite items?",
+          "confirmLabel": "Yes, delete them.",
+          "cancelLabel": "No, keep them."
+        },
+        "clearMyItems": {
+          "description": "Are you sure you want to delete all created items? This action cannot be undone.",
+          "confirmLabel": "Yes, delete them.",
+          "cancelLabel": "No, keep them."
+        },
+        "clearAllData": {
+          "description": "Are you sure you want to delete all data? This action cannot be undone.",
+          "confirmLabel": "Yes, delete it.",
+          "cancelLabel": "No, keep it."
+        },
+        "deleteAccount": {
+          "description": "Are you sure you want to delete the account?",
+          "confirmLabel": "Yes, delete it.",
+          "cancelLabel": "No, keep it."
+        }
+      },
+      "countries": {
+        "uk": "United Kingdom",
+        "it": "Italy"
       }
-    },
-    "article": {
-      "minsToRead": "mins to read"
     }
-  },
-  "actions": {
-    "addCar": {
-      "tooltip": "Add a car"
-    },
-    "delete": {
-      "title": "Delete"
-    }
-  },
-  "widgets": {
-    "distance": {
-      "text": "km away"
-    }
-  },
-  "filters": {
-    "model": {
-      "title": "Model",
-      "placeholder": "All"
-    },
-    "parameters": {
-      "title": "Filters",
-      "year": "Year",
-      "color": "Color",
-      "bodyTypes": {
-        "title": "Body Type",
-        "sedan": "Sedan",
-        "hatchback": "Hatchback",
-        "universal": "Universal",
-        "minivan": "Minivan",
-        "coupe": "Coupe",
-        "crossover": "Crossover",
-        "semi": "Semi",
-        "bike": "Bike"
-      },
-      "priceRange": "Price Range",
-      "fuelTypes":  {
-        "title": "Fuel Type",
-        "diesel": "Diesel",
-        "gasoline": "Gasoline",
-        "ev": "EV",
-        "hybrid": "Hybrid"
-      },
-      "transmissionTypes": {
-        "title": "Transmission Type",
-        "manual": "Manual",
-        "automatic": "Automatic",
-        "hybrid": "Hybrid"
-      },
-      "filterValidationMessage": "Incorrect value"
-    }
-  },
-  "forms": {
-    "ui": {
-      "welcomeLoginTitle": "Welcome \nBack",
-      "welcomeRegisterTitle": "Join us",
-      "forgotPasswordButtonText": "Forgot password?",
-      "loginButtonTitle": "Log in",
-      "signUpButtonTitle": "Sign up",
-      "orDividerTitle": "Or"
-    },
-    "warnings": {
-      "userNotFound": "The user not found.",
-      "incorrectPassword": "Incorrect password.",
-      "userAlreadyExists": "User already exists."
-    },
-    "hints": {
-      "passwordMinLength": "The minimum password length is",
-      "passwordLowerCaseChar": "The password should contain at least one lower case character.",
-      "passwordUpperCaseChar": "The password should contain at least one upper case character.",
-      "passwordDigitChar": "The password should contain at least one digit.",
-      "passwordSpecialChar": "The password should contain at least one special character."
-    },
-    "validationMessage": "This field is required.",
-    "fieldParams": {
-      "email": {
-        "label": "Email",
-        "hintText": "Enter your email:",
-        "regexErrorMessage": "The email is not valid."
-      },
-      "password": {
-        "label": "Password",
-        "hintText": "Enter your password:",
-        "regexErrorMessage": "The password is not valid."
-      },
-      "fullName": {
-        "label": "Full name",
-        "hintText": "Enter your full name:",
-        "regexErrorMessage": "The full name is not valid."
-      }
-    }
-  },
-  "dateFormatting": {
-    "yesterday": "Yesterday"
-  },
-  "general": {
-    "share": "Share",
-    "on": "On",
-    "off": "Off",
-    "confirm": "Confirm",
-    "cancel": "Cancel"
-  },
-  "dialogs": {
-    "clearViewHistory": {
-      "description": "Are you sure you want to delete all recently viewed history?",
-      "confirmLabel": "Yes, delete it.",
-      "cancelLabel": "No, keep it."
-    },
-    "clearFavoriteItems": {
-      "description": "Are you sure you want to clear favorite items?",
-      "confirmLabel": "Yes, delete them.",
-      "cancelLabel": "No, keep them."
-    },
-    "clearMyItems": {
-      "description": "Are you sure you want to delete all created items? This action cannot be undone.",
-      "confirmLabel": "Yes, delete them.",
-      "cancelLabel": "No, keep them."
-    },
-    "clearAllData": {
-      "description": "Are you sure you want to delete all data? This action cannot be undone.",
-      "confirmLabel": "Yes, delete it.",
-      "cancelLabel": "No, keep it."
-    },
-    "deleteAccount": {
-      "description": "Are you sure you want to delete the account?",
-      "confirmLabel": "Yes, delete it.",
-      "cancelLabel": "No, keep it."
-    }
-  },
-  "countries": {
-    "uk": "United Kingdom",
-    "it": "Italy"
-  }
+  ]
 }
