@@ -84,7 +84,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void _addCarToBase() {
-    final isUserAuthenticated = context.read<UserDataCubit>().state.isUserAuthenticated;
+    final userDataCubit = context.read<UserDataCubit>();
+    final isUserAuthenticated = userDataCubit.state.isUserAuthenticated;
 
     if (!isUserAuthenticated) {
       context.read<HomeBottomBarCubit>().updateSelectedIndex(AppConstants.homeTabAccount);
@@ -94,7 +95,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     final currentMaxCarId = serviceLocator<GetCurrentMaxCarIdUseCase>().call();
     final newCarId = (currentMaxCarId + 1).toString();
 
-    context.read<UserDataCubit>().addCarIdToCreated(newCarId);
+    userDataCubit.addCarIdToCreated(newCarId);
 
     serviceLocator<AddCarUseCase>().call(
       CarEntity(
