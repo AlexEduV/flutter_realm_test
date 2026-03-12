@@ -13,7 +13,7 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
-import '../../../data/data_sources/remote/auth_remote_data_source_test.mocks.dart';
+import '../../../data/data_sources/remote/auth_remote_data_source_impl_test.mocks.dart';
 import '../../../utils/app_router_test.mocks.dart';
 import 'authentication_cubit_test.mocks.dart';
 

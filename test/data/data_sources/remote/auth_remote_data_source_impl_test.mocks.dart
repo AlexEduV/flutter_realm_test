@@ -8,7 +8,8 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i5;
 import 'package:test_futter_project/domain/models/auth_result.dart' as _i2;
-import 'package:test_futter_project/domain/repositories/auth_repository.dart' as _i3;
+import 'package:test_futter_project/domain/repositories/auth_repository.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,7 +26,8 @@ import 'package:test_futter_project/domain/repositories/auth_repository.dart' as
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeAuthResult_0 extends _i1.SmartFake implements _i2.AuthResult {
-  _FakeAuthResult_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeAuthResult_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthRepository].
@@ -46,13 +48,19 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
           as _i4.Future<void>);
 
   @override
-  _i4.Future<_i2.AuthResult> login({required String? email, required String? password}) =>
+  _i4.Future<_i2.AuthResult> login({
+    required String? email,
+    required String? password,
+  }) =>
       (super.noSuchMethod(
             Invocation.method(#login, [], {#email: email, #password: password}),
             returnValue: _i4.Future<_i2.AuthResult>.value(
               _FakeAuthResult_0(
                 this,
-                Invocation.method(#login, [], {#email: email, #password: password}),
+                Invocation.method(#login, [], {
+                  #email: email,
+                  #password: password,
+                }),
               ),
             ),
           )

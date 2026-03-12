@@ -12,7 +12,7 @@ import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
 import '../../../common/extensions/context_extension_test.mocks.dart';
-import 'region_remote_data_source_test.mocks.dart'; // for serviceLocator
+import 'region_remote_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([FetchRegionsUseCase, GetAllRegionsUseCase])
 void main() {

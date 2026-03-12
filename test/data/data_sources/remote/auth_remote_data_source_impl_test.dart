@@ -6,7 +6,7 @@ import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 
-import 'auth_remote_data_source_test.mocks.dart';
+import 'auth_remote_data_source_impl_test.mocks.dart';
 
 @GenerateMocks([AuthRepository])
 void main() {
