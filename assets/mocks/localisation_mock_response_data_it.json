@@ -1,235 +1,241 @@
 {
-  "app": {
-    "name": "Flutter Realm Demo",
-    "locale": "it"
-  },
-  "pages": {
-    "explore": {
-      "title": "Esplora",
-      "recommendedSection": {
-        "title": "Consigliati"
+  "status": "success",
+  "message": "data retrieved successfully",
+  "results": [
+    {
+      "app": {
+        "name": "Flutter Realm Demo",
+        "locale": "it"
       },
-      "lastSeenSection": {
-        "title": "Visti di recente"
-      }
-    },
-    "favorites": {
-      "title": "Preferiti",
-      "emptyPlaceholder": "Non ci sono ancora preferiti."
-    },
-    "search": {
-      "title": "Cerca",
-      "tabs": {
-        "cars": "Auto",
-        "bikes": "Moto",
-        "trucks": "Camion"
-      },
-      "emptyPlaceholder": "Nessun risultato trovato per questa ricerca.",
-      "resultsSection": {
-        "title": "Risultati"
-      }
-    },
-    "comingSoon": {
-      "title": "Prossimamente",
-      "subtitle": "Questa funzione non è ancora disponibile."
-    },
-    "inbox": {
-      "title": "Posta in arrivo",
-      "emptyPlaceholderText": "Nessun messaggio ancora.",
-      "loggedOutPlaceholderText": "Per favore, accedi per vedere i messaggi."
-    },
-    "vehicleDetails": {
-      "sectionTitle": "Specifiche del veicolo",
-      "specifications": {
-        "body": "Carrozzeria",
-        "engine": "Motore",
-        "transmission": "Trasmissione",
-        "mileage": "Chilometraggio",
-        "color": "Colore",
-        "year": "Anno"
-      },
-      "ownerSection": {
-        "personTypeOwner": "Proprietario",
-        "contactButtonTitle": "Invia messaggio"
-      },
-      "promoType": {
-        "bestPrice": "Miglior prezzo",
-        "limitedTimeOffer": "Offerta a tempo limitato",
-        "oneOwner": "Un solo proprietario",
-        "featured": "In evidenza"
-      }
-    },
-    "account": {
-      "title": "Il mio account",
-      "items": {
-        "personalDetails": {
-          "title": "Dati personali",
-          "firstNameItem": "Nome",
-          "lastNameItem": "Cognome",
-          "emailItem": "Email",
-          "passwordItem": "Password"
+      "pages": {
+        "explore": {
+          "title": "Esplora",
+          "recommendedSection": {
+            "title": "Consigliati"
+          },
+          "lastSeenSection": {
+            "title": "Visti di recente"
+          }
         },
-        "location": {
-          "title": "Posizione",
-          "locationAccessItem": "Accesso alla posizione",
-          "regionItem": "Regione",
-          "locationUsageDescription": "Utilizziamo questi dati per calcolare la distanza e offrirti i contenuti più rilevanti.",
-          "privacyPolicyItemPolicy": "Informativa sulla privacy",
-          "privacyPolicyItemConditions": "Condizioni"
+        "favorites": {
+          "title": "Preferiti",
+          "emptyPlaceholder": "Non ci sono ancora preferiti."
         },
-        "myItems": {
-          "title": "I miei oggetti",
-          "emptyPlaceholder": "Nessun oggetto è stato ancora creato."
+        "search": {
+          "title": "Cerca",
+          "tabs": {
+            "cars": "Auto",
+            "bikes": "Moto",
+            "trucks": "Camion"
+          },
+          "emptyPlaceholder": "Nessun risultato trovato per questa ricerca.",
+          "resultsSection": {
+            "title": "Risultati"
+          }
         },
-        "recentlyViewed": {
-          "title": "Visti di recente",
-          "emptyPlaceholder": "Non hai ancora visualizzato nessun elemento."
+        "comingSoon": {
+          "title": "Prossimamente",
+          "subtitle": "Questa funzione non è ancora disponibile."
         },
-        "clearData": {
-          "title": "Cancella dati",
-          "dataDeletionDescription": "Per favore, scegli quali dati desideri cancellare dai dati dell'account.",
-          "viewedHistoryItem": "Cronologia degli elementi visualizzati",
-          "favoritesItem": "Elementi preferiti",
-          "myItemsItem": "I miei elementi",
-          "clearAllDataItem": "Elimina tutti i dati"
+        "inbox": {
+          "title": "Posta in arrivo",
+          "emptyPlaceholderText": "Nessun messaggio ancora.",
+          "loggedOutPlaceholderText": "Per favore, accedi per vedere i messaggi."
         },
-        "logOut": "Disconnetti",
-        "deleteAccount": "Elimina account"
+        "vehicleDetails": {
+          "sectionTitle": "Specifiche del veicolo",
+          "specifications": {
+            "body": "Carrozzeria",
+            "engine": "Motore",
+            "transmission": "Trasmissione",
+            "mileage": "Chilometraggio",
+            "color": "Colore",
+            "year": "Anno"
+          },
+          "ownerSection": {
+            "personTypeOwner": "Proprietario",
+            "contactButtonTitle": "Invia messaggio"
+          },
+          "promoType": {
+            "bestPrice": "Miglior prezzo",
+            "limitedTimeOffer": "Offerta a tempo limitato",
+            "oneOwner": "Un solo proprietario",
+            "featured": "In evidenza"
+          }
+        },
+        "account": {
+          "title": "Il mio account",
+          "items": {
+            "personalDetails": {
+              "title": "Dati personali",
+              "firstNameItem": "Nome",
+              "lastNameItem": "Cognome",
+              "emailItem": "Email",
+              "passwordItem": "Password"
+            },
+            "location": {
+              "title": "Posizione",
+              "locationAccessItem": "Accesso alla posizione",
+              "regionItem": "Regione",
+              "locationUsageDescription": "Utilizziamo questi dati per calcolare la distanza e offrirti i contenuti più rilevanti.",
+              "privacyPolicyItemPolicy": "Informativa sulla privacy",
+              "privacyPolicyItemConditions": "Condizioni"
+            },
+            "myItems": {
+              "title": "I miei oggetti",
+              "emptyPlaceholder": "Nessun oggetto è stato ancora creato."
+            },
+            "recentlyViewed": {
+              "title": "Visti di recente",
+              "emptyPlaceholder": "Non hai ancora visualizzato nessun elemento."
+            },
+            "clearData": {
+              "title": "Cancella dati",
+              "dataDeletionDescription": "Per favore, scegli quali dati desideri cancellare dai dati dell'account.",
+              "viewedHistoryItem": "Cronologia degli elementi visualizzati",
+              "favoritesItem": "Elementi preferiti",
+              "myItemsItem": "I miei elementi",
+              "clearAllDataItem": "Elimina tutti i dati"
+            },
+            "logOut": "Disconnetti",
+            "deleteAccount": "Elimina account"
+          }
+        },
+        "article": {
+          "minsToRead": "minuti di lettura"
+        }
+      },
+      "actions": {
+        "addCar": {
+          "tooltip": "Aggiungi un'auto"
+        },
+        "delete": {
+          "title": "Elimina"
+        }
+      },
+      "widgets": {
+        "distance": {
+          "text": "km di distanza"
+        }
+      },
+      "filters": {
+        "model": {
+          "title": "Modello",
+          "placeholder": "Tutti"
+        },
+        "parameters": {
+          "title": "Filtri",
+          "year": "Anno",
+          "color": "Colore",
+          "bodyTypes": {
+            "title": "Tipo di carrozzeria",
+            "sedan": "Berlina",
+            "hatchback": "Hatchback",
+            "universal": "Station wagon",
+            "minivan": "Minivan",
+            "coupe": "Coupé",
+            "crossover": "Crossover",
+            "semi": "Camion",
+            "bike": "Moto"
+          },
+          "priceRange": "Fascia di prezzo",
+          "fuelTypes":  {
+            "title": "Tipo di carburante",
+            "diesel": "Diesel",
+            "gasoline": "Benzina",
+            "ev": "Elettrica",
+            "hybrid": "Ibrida"
+          },
+          "transmissionTypes": {
+            "title": "Tipo di trasmissione",
+            "manual": "Manuale",
+            "automatic": "Automatica",
+            "hybrid": "Ibrida"
+          },
+          "filterValidationMessage": "Valore non corretto"
+        }
+      },
+      "forms": {
+        "ui": {
+          "welcomeLoginTitle": "Bentornato",
+          "welcomeRegisterTitle": "Unisciti a noi",
+          "forgotPasswordButtonText": "Password dimenticata?",
+          "loginButtonTitle": "Accedi",
+          "signUpButtonTitle": "Registrati",
+          "orDividerTitle": "Oppure"
+        },
+        "warnings": {
+          "userNotFound": "Utente non trovato.",
+          "incorrectPassword": "Password errata.",
+          "userAlreadyExists": "L'utente esiste già."
+        },
+        "hints": {
+          "passwordMinLength": "La lunghezza minima della password è",
+          "passwordLowerCaseChar": "La password deve contenere almeno una lettera minuscola.",
+          "passwordUpperCaseChar": "La password deve contenere almeno una lettera maiuscola.",
+          "passwordDigitChar": "La password deve contenere almeno una cifra.",
+          "passwordSpecialChar": "La password deve contenere almeno un carattere speciale."
+        },
+        "validationMessage": "Questo campo è obbligatorio.",
+        "fieldParams": {
+          "email": {
+            "label": "Email",
+            "hintText": "Inserisci la tua email:",
+            "regexErrorMessage": "L'email non è valida."
+          },
+          "password": {
+            "label": "Password",
+            "hintText": "Inserisci la tua password:",
+            "regexErrorMessage": "La password non è valida."
+          },
+          "fullName": {
+            "label": "Nome completo",
+            "hintText": "Inserisci il tuo nome completo:",
+            "regexErrorMessage": "Il nome completo non è valido."
+          }
+        }
+      },
+      "dateFormatting": {
+        "yesterday": "Ieri"
+      },
+      "general": {
+        "share": "Condividi",
+        "on": "Acceso",
+        "off": "Spento",
+        "confirm": "Conferma",
+        "cancel": "Annulla"
+      },
+      "dialogs": {
+        "clearViewHistory": {
+          "description": "Sei sicuro di voler eliminare tutta la cronologia visualizzata di recente?",
+          "confirmLabel": "Sì, elimina.",
+          "cancelLabel": "No, mantieni."
+        },
+        "clearFavoriteItems": {
+          "description": "Sei sicuro di voler cancellare gli elementi preferiti?",
+          "confirmLabel": "Sì, elimina.",
+          "cancelLabel": "No, mantieni."
+        },
+        "clearMyItems": {
+          "description": "Sei sicuro di voler eliminare tutti gli elementi creati? Questa azione non può essere annullata.",
+          "confirmLabel": "Sì, elimina.",
+          "cancelLabel": "No, mantieni."
+        },
+        "clearAllData": {
+          "description": "Sei sicuro di voler eliminare tutti i dati? Questa azione non può essere annullata.",
+          "confirmLabel": "Sì, elimina.",
+          "cancelLabel": "No, mantieni."
+        },
+        "deleteAccount": {
+          "description": "Sei sicuro di voler eliminare l'account?",
+          "confirmLabel": "Sì, elimina.",
+          "cancelLabel": "No, mantieni."
+        }
+      },
+      "countries": {
+        "uk": "Regno Unito",
+        "it": "Italia"
       }
-    },
-    "article": {
-      "minsToRead": "minuti di lettura"
     }
-  },
-  "actions": {
-    "addCar": {
-      "tooltip": "Aggiungi un'auto"
-    },
-    "delete": {
-      "title": "Elimina"
-    }
-  },
-  "widgets": {
-    "distance": {
-      "text": "km di distanza"
-    }
-  },
-  "filters": {
-    "model": {
-      "title": "Modello",
-      "placeholder": "Tutti"
-    },
-    "parameters": {
-      "title": "Filtri",
-      "year": "Anno",
-      "color": "Colore",
-      "bodyTypes": {
-        "title": "Tipo di carrozzeria",
-        "sedan": "Berlina",
-        "hatchback": "Hatchback",
-        "universal": "Station wagon",
-        "minivan": "Minivan",
-        "coupe": "Coupé",
-        "crossover": "Crossover",
-        "semi": "Camion",
-        "bike": "Moto"
-      },
-      "priceRange": "Fascia di prezzo",
-      "fuelTypes":  {
-        "title": "Tipo di carburante",
-        "diesel": "Diesel",
-        "gasoline": "Benzina",
-        "ev": "Elettrica",
-        "hybrid": "Ibrida"
-      },
-      "transmissionTypes": {
-        "title": "Tipo di trasmissione",
-        "manual": "Manuale",
-        "automatic": "Automatica",
-        "hybrid": "Ibrida"
-      },
-      "filterValidationMessage": "Valore non corretto"
-    }
-  },
-  "forms": {
-    "ui": {
-      "welcomeLoginTitle": "Bentornato",
-      "welcomeRegisterTitle": "Unisciti a noi",
-      "forgotPasswordButtonText": "Password dimenticata?",
-      "loginButtonTitle": "Accedi",
-      "signUpButtonTitle": "Registrati",
-      "orDividerTitle": "Oppure"
-    },
-    "warnings": {
-      "userNotFound": "Utente non trovato.",
-      "incorrectPassword": "Password errata.",
-      "userAlreadyExists": "L'utente esiste già."
-    },
-    "hints": {
-      "passwordMinLength": "La lunghezza minima della password è",
-      "passwordLowerCaseChar": "La password deve contenere almeno una lettera minuscola.",
-      "passwordUpperCaseChar": "La password deve contenere almeno una lettera maiuscola.",
-      "passwordDigitChar": "La password deve contenere almeno una cifra.",
-      "passwordSpecialChar": "La password deve contenere almeno un carattere speciale."
-    },
-    "validationMessage": "Questo campo è obbligatorio.",
-    "fieldParams": {
-      "email": {
-        "label": "Email",
-        "hintText": "Inserisci la tua email:",
-        "regexErrorMessage": "L'email non è valida."
-      },
-      "password": {
-        "label": "Password",
-        "hintText": "Inserisci la tua password:",
-        "regexErrorMessage": "La password non è valida."
-      },
-      "fullName": {
-        "label": "Nome completo",
-        "hintText": "Inserisci il tuo nome completo:",
-        "regexErrorMessage": "Il nome completo non è valido."
-      }
-    }
-  },
-  "dateFormatting": {
-    "yesterday": "Ieri"
-  },
-  "general": {
-    "share": "Condividi",
-    "on": "Acceso",
-    "off": "Spento",
-    "confirm": "Conferma",
-    "cancel": "Annulla"
-  },
-  "dialogs": {
-    "clearViewHistory": {
-      "description": "Sei sicuro di voler eliminare tutta la cronologia visualizzata di recente?",
-      "confirmLabel": "Sì, elimina.",
-      "cancelLabel": "No, mantieni."
-    },
-    "clearFavoriteItems": {
-      "description": "Sei sicuro di voler cancellare gli elementi preferiti?",
-      "confirmLabel": "Sì, elimina.",
-      "cancelLabel": "No, mantieni."
-    },
-    "clearMyItems": {
-      "description": "Sei sicuro di voler eliminare tutti gli elementi creati? Questa azione non può essere annullata.",
-      "confirmLabel": "Sì, elimina.",
-      "cancelLabel": "No, mantieni."
-    },
-    "clearAllData": {
-      "description": "Sei sicuro di voler eliminare tutti i dati? Questa azione non può essere annullata.",
-      "confirmLabel": "Sì, elimina.",
-      "cancelLabel": "No, mantieni."
-    },
-    "deleteAccount": {
-      "description": "Sei sicuro di voler eliminare l'account?",
-      "confirmLabel": "Sì, elimina.",
-      "cancelLabel": "No, mantieni."
-    }
-  },
-  "countries": {
-    "uk": "Regno Unito",
-    "it": "Italia"
-  }
+  ]
 }

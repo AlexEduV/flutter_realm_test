@@ -1,8 +1,16 @@
-[
-  {
-    "code": "uk"
-  },
-  {
-    "code": "it"
-  }
-]
+{
+  "status": "success",
+  "message": "data retrieved successfully",
+  "results": [
+    {
+      "regions": [
+        {
+          "code": "uk"
+        },
+        {
+          "code": "it"
+        }
+      ]
+    }
+  ]
+}
