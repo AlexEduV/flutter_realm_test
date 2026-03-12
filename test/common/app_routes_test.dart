@@ -3,17 +3,16 @@ import 'package:test_futter_project/common/app_routes.dart';
 
 void main() {
   group('AppRoutes', () {
-    test('home route should be "/"', () {
-      expect(AppRoutes.home, '/');
-    });
-
-    test('search route should be "search"', () {
-      expect(AppRoutes.search, 'search');
-    });
-
-    test('all routes should be of type String', () {
-      expect(AppRoutes.home, isA<String>());
-      expect(AppRoutes.search, isA<String>());
-    });
+    test('home', () => expect(AppRoutes.home, '/'));
+    test('search', () => expect(AppRoutes.search, 'search'));
+    test('details', () => expect(AppRoutes.details, 'details'));
+    test('inbox', () => expect(AppRoutes.inbox, 'inbox'));
+    test('forgotPassword', () => expect(AppRoutes.forgotPassword, 'forgotPassword'));
+    test('articleDetails', () => expect(AppRoutes.articleDetails, 'articleDetails'));
+    test('personalDetails', () => expect(AppRoutes.personalDetails, 'personalDetails'));
+    test('locationSettings', () => expect(AppRoutes.locationSettings, 'locationSettings'));
+    test('myItems', () => expect(AppRoutes.myItems, 'myItems'));
+    test('recentlyViewed', () => expect(AppRoutes.recentlyViewed, 'recentlyViewed'));
+    test('clearUserData', () => expect(AppRoutes.clearUserData, 'clearUserData'));
   });
 }
