@@ -51,6 +51,7 @@ import 'package:test_futter_project/domain/usecases/permissions/request_location
 import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
+import 'package:test_futter_project/domain/usecases/share/share_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -58,6 +59,7 @@ import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../data/models/scheme.dart';
@@ -222,4 +224,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<CheckLocationServiceStatusUseCase>(
     () => CheckLocationServiceStatusUseCase(serviceLocator()),
   );
+  serviceLocator.registerLazySingleton<ShareUseCase>(() => ShareUseCase(serviceLocator()));
+  serviceLocator.registerFactory(() => ShareCubit(serviceLocator()));
 }
