@@ -3,6 +3,7 @@ import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/data_sources/local/geolocator_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/permission_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart';
+import 'package:test_futter_project/data/data_sources/local/share_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
@@ -13,9 +14,11 @@ import 'package:test_futter_project/data/repositories/auth_repository_impl.dart'
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/share_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/local/share_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/article_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
@@ -25,6 +28,7 @@ import 'package:test_futter_project/domain/repositories/article_repository.dart'
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
 import 'package:test_futter_project/domain/repositories/region_repository.dart';
+import 'package:test_futter_project/domain/repositories/share_repository.dart';
 import 'package:test_futter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_futter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/delete_account_use_case.dart';
@@ -47,6 +51,7 @@ import 'package:test_futter_project/domain/usecases/permissions/request_location
 import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
+import 'package:test_futter_project/domain/usecases/share/share_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -54,6 +59,7 @@ import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../data/models/scheme.dart';
@@ -114,6 +120,10 @@ Future<void> initDependenciesContainer() async {
   );
   serviceLocator.registerLazySingleton<GeolocatorLocalDataSource>(
     () => GeolocatorLocalDataSourceImpl(),
+  );
+  serviceLocator.registerLazySingleton<ShareLocalDataSource>(() => ShareLocalDataSourceImpl());
+  serviceLocator.registerLazySingleton<ShareRepository>(
+    () => ShareRepositoryImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<ArticleRepository>(() => ArticleRepositoryImpl());
@@ -214,4 +224,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<CheckLocationServiceStatusUseCase>(
     () => CheckLocationServiceStatusUseCase(serviceLocator()),
   );
+  serviceLocator.registerLazySingleton<ShareUseCase>(() => ShareUseCase(serviceLocator()));
+  serviceLocator.registerFactory(() => ShareCubit(serviceLocator()));
 }
