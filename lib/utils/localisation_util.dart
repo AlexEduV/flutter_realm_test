@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_futter_project/domain/models/api_response.dart';
 import 'package:test_futter_project/utils/json_util.dart';
 
 class LocalisationUtil {
@@ -11,11 +12,13 @@ class LocalisationUtil {
     final jsonString = await rootBundle.loadString(path);
     final Map<String, dynamic> jsonDecoded = json.decode(jsonString);
 
-    if (jsonDecoded['status'] != 'success') {
+    final response = ApiResponse.fromJson(jsonDecoded, (json) => json as List);
+
+    if (response.status != 'success' || response.results == null) {
       return {};
     }
 
-    final Map<String, dynamic> jsonMap = jsonDecoded['results'][0];
+    final Map<String, dynamic> jsonMap = response.results?.firstOrNull ?? {};
     final flatMap = JsonUtil.flattenJson(jsonMap);
 
     return flatMap;

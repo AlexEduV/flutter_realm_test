@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/domain/repositories/region_repository.dart';
 
 import '../../domain/entities/region_entity.dart';
+import '../../domain/models/api_response.dart';
 
 class RegionRepositoryImpl implements RegionRepository {
   static final RegionRepositoryImpl _instance = RegionRepositoryImpl._internal();
@@ -21,12 +22,16 @@ class RegionRepositoryImpl implements RegionRepository {
     );
 
     final jsonDecoded = json.decode(jsonString);
-    if (jsonDecoded['status'] != 'success') {
+    final response = ApiResponse.fromJson(
+      jsonDecoded,
+      (data) => (data as List).map((item) => RegionEntity.fromJson(item['regions'][0])).toList(),
+    );
+
+    if (response.status != 'success') {
       return;
     }
 
-    final List data = jsonDecoded['results'][0]['regions'];
-    _regions = data.map((e) => RegionEntity.fromJson(e)).toList();
+    _regions = response.results;
   }
 
   // Get region by code

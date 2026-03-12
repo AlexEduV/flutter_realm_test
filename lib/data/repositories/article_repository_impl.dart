@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 
+import '../../domain/models/api_response.dart';
+
 class ArticleRepositoryImpl implements ArticleRepository {
   List<ArticleEntity> articles = [];
 
@@ -13,17 +15,19 @@ class ArticleRepositoryImpl implements ArticleRepository {
       'assets/mocks/articles_mock_response_data_global.json',
     );
     final jsonDecoded = json.decode(jsonString);
+    final response = ApiResponse.fromJson(
+      jsonDecoded,
+      (data) => (data as List)
+          .map((item) => ArticleEntity.fromJson(item as Map<String, dynamic>))
+          .toList(),
+    );
 
-    if (jsonDecoded['status'] != 'success') {
+    if (response.status != 'success') {
       //todo: add logs;
       return [];
     }
 
-    final List jsonList = jsonDecoded['results'];
-
-    for (final article in jsonList) {
-      articles.add(ArticleEntity.fromJson(article));
-    }
+    articles = response.results ?? [];
 
     return articles;
   }
