@@ -8,6 +8,14 @@ objects in one place and then call them by using `serviceLocator<T>()` where I n
 I am not using `Injectable` package. While it might reduce boilerplate, the project is too small to
 justify the constant regeneration of dependencies.
 
+
+### Usage
+
+* `factory` registration creates a new class instance every call.
+* `singleton` registration creates one instance at the initial stage.
+* `lazySingleton` registration creates one instance only when it's needed.
+
+
 ### Recommendations
 
 Register cubits as `factory` for most cases. Use `singletons` or `lazySingletons` only for cubits that should persist for
