@@ -1,4 +1,4 @@
-import 'package:share_plus/share_plus.dart';
+import 'package:share_plus/share_plus.dart' show SharePlus;
 
 import '../../domain/models/share_params_model.dart';
 
