@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/repositories/share_repository.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_state.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../common/app_semantics_labels.dart';
-import '../../../common/utils/share_debouncer.dart';
 import '../../../domain/models/share_params_model.dart';
 import '../../../l10n/l10n_keys.dart';
 import '../../widgets/app_semantics.dart';
@@ -46,7 +47,7 @@ class _ArticlePageState extends State<ArticlePage> {
                 padding: const EdgeInsets.only(right: AppDimensions.normalS),
                 child: IconButton(
                   onPressed: () async {
-                    await ShareDebouncer.share(
+                    await serviceLocator<ShareRepository>().share(
                       ShareParamsModel(
                         title: '${state.article?.title}',
                         text: 'https://example.com/articles/?id=${widget.articleId}',

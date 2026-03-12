@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
-import 'package:test_futter_project/common/utils/share_debouncer.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -13,7 +12,9 @@ import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_s
 import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 
 import '../../../common/app_semantics_labels.dart';
+import '../../../di/injection_container.dart';
 import '../../../domain/models/share_params_model.dart';
+import '../../../domain/repositories/share_repository.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';
 import '../../widgets/verified_badge.dart';
@@ -72,7 +73,7 @@ class _DetailsPageState extends State<DetailsPage> {
               onPressed: () async {
                 final car = context.read<DetailsPageCubit>().state.car;
 
-                await ShareDebouncer.share(
+                await serviceLocator<ShareRepository>().share(
                   ShareParamsModel(
                     title: '${car?.manufacturer} ${car?.model} ${car?.year}',
                     text: 'https://example.com/cars/?carId=${car?.carId}',
