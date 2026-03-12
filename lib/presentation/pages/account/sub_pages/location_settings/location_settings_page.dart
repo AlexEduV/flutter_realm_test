@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
-import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
@@ -92,7 +92,7 @@ class LocationSettingsPage extends StatelessWidget {
   }
 
   Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
-    final availableCountries = MockRegionService.getAvailableCountries();
+    final availableCountries = serviceLocator<RegionRemoteDataSource>().getAvailableCountries();
 
     final currentRegion = state.region;
     final currentIndex = availableCountries.indexWhereOrNull(

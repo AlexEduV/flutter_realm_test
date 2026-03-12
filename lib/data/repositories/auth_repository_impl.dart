@@ -1,5 +1,5 @@
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
+import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';

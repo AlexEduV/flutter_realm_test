@@ -1,22 +1,25 @@
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/region_entity.dart';
 import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_case.dart';
 
-import '../../domain/models/region_ui_model.dart';
-import '../../l10n/l10n_keys.dart';
-import '../../presentation/bloc/l10n/app_localisations_cubit.dart';
+import '../../../domain/models/region_ui_model.dart';
+import '../../../l10n/l10n_keys.dart';
+import '../../../presentation/bloc/l10n/app_localisations_cubit.dart';
 
-class MockRegionService {
+class MockRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
   static late List<RegionEntity> regions;
 
-  static Future<void> init() async {
+  @override
+  Future<void> init() async {
     await serviceLocator<FetchRegionsUseCase>().call();
 
     regions = serviceLocator<GetAllRegionsUseCase>().call();
   }
 
-  static List<RegionUiModel> getAvailableCountries() {
+  @override
+  List<RegionUiModel> getAvailableCountries() {
     final availableCountries = regions
         .map(
           (element) => RegionUiModel(

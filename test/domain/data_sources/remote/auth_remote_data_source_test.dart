@@ -1,17 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/mock_auth_service.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 
-import '../../data/data_sources/mock_auth_service_test.mocks.dart';
+import '../../../data/data_sources/remote/auth_remote_data_source_impl_test.mocks.dart';
 
 void main() {
-  late MockAuthService mockService;
+  late MockAuthRemoteDataSourceImpl mockService;
   late MockAuthRepository repository;
 
   setUp(() {
     repository = MockAuthRepository();
-    mockService = MockAuthService(repository);
+    mockService = MockAuthRemoteDataSourceImpl(repository);
   });
 
   test('login returns AuthResult from service', () async {

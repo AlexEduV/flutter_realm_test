@@ -8,20 +8,20 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/data/data_sources/realm_local_storage.dart';
+import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/data/repositories/car_repository_impl.dart';
-import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
+import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/models/owner_model.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 
-@GenerateMocks([Realm, CarApiService, CarEntity, CarDto, RealmLocalStorage])
+@GenerateMocks([Realm, CarRemoteDataSource, CarEntity, CarDto, RealmLocalStorage])
 void main() {
   late MockRealm realm;
-  late MockCarApiService apiService;
+  late MockCarRemoteDataSource apiService;
   late CarRepositoryImpl repository;
   late MockRealmLocalStorage localStorage;
 
@@ -51,7 +51,7 @@ void main() {
 
   setUp(() {
     realm = MockRealm();
-    apiService = MockCarApiService();
+    apiService = MockCarRemoteDataSource();
     localStorage = MockRealmLocalStorage();
     repository = CarRepositoryImpl(localStorage, apiService);
   });

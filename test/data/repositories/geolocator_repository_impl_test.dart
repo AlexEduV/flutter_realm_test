@@ -1,18 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/app_geolocator_service.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
+import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
 
 import 'geolocator_repository_impl_test.mocks.dart';
 
-@GenerateMocks([AppGeolocatorService])
+@GenerateMocks([GeolocatorLocalDataSource])
 void main() {
-  late MockAppGeolocatorService mockGeolocatorService;
+  late MockGeolocatorLocalDataSource mockGeolocatorService;
   late GeolocatorRepositoryImpl repository;
 
   setUp(() {
-    mockGeolocatorService = MockAppGeolocatorService();
+    mockGeolocatorService = MockGeolocatorLocalDataSource();
     repository = GeolocatorRepositoryImpl(mockGeolocatorService);
   });
 

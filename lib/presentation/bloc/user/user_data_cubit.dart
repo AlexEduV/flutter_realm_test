@@ -3,7 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
-import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
+import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';

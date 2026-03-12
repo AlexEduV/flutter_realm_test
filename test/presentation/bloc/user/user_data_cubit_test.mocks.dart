@@ -6,7 +6,7 @@
 import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/domain/data_sources/base_local_storage.dart'
+import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart'
     as _i4;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;

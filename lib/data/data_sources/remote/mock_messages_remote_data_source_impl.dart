@@ -1,10 +1,10 @@
-import 'package:test_futter_project/domain/data_sources/messages_service.dart';
+import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 
-import '../../common/enums/message_status.dart';
-import '../../domain/models/owner_model.dart';
+import '../../../common/enums/message_status.dart';
+import '../../../domain/models/owner_model.dart';
 
-class MockMessagesService implements MessagesService {
+class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   List<MessageModel> _list = [];
 
   @override
