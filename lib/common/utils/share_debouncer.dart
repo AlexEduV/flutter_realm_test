@@ -11,6 +11,7 @@ class ShareDebouncer {
     //iOS 26 fix is not needed when using the newest version of plugin;
 
     _isShareInProgress = true;
+    //todo: move this to the service too
     await SharePlus.instance.share(model.toShareParams());
     _isShareInProgress = false;
   }
