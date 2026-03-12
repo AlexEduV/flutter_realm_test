@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/mock_auth_service.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_auth_service.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 
 import '../../data/data_sources/mock_auth_service_test.mocks.dart';

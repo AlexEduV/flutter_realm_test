@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/mock_article_service.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_article_service.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/entities/author_entity.dart';
 

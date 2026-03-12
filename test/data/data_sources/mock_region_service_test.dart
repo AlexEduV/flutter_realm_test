@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/region_entity.dart';
 import 'package:test_futter_project/domain/models/region_ui_model.dart';

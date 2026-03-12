@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/data/data_sources/mock_car_api_service.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_car_api_service.dart';
 
 void main() {
   late MockCarApiService service;

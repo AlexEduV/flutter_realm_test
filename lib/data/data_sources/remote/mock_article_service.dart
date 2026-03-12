@@ -1,7 +1,7 @@
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 
-import '../../domain/data_sources/article_service.dart';
+import '../../../domain/data_sources/article_service.dart';
 
 class MockArticleService implements ArticleService {
   final ArticleRepository _articleRepository;

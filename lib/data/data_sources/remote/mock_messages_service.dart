@@ -1,8 +1,8 @@
 import 'package:test_futter_project/domain/data_sources/messages_service.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 
-import '../../common/enums/message_status.dart';
-import '../../domain/models/owner_model.dart';
+import '../../../common/enums/message_status.dart';
+import '../../../domain/models/owner_model.dart';
 
 class MockMessagesService implements MessagesService {
   List<MessageModel> _list = [];

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/data/data_sources/mock_region_service.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_region_service.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
