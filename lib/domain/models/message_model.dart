@@ -8,4 +8,17 @@ class MessageModel {
   final DateTime date;
 
   MessageModel(this.sender, this.messageStatus, this.text, this.date);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MessageModel &&
+          runtimeType == other.runtimeType &&
+          sender == other.sender &&
+          messageStatus == other.messageStatus &&
+          text == other.text &&
+          date == other.date;
+
+  @override
+  int get hashCode => sender.hashCode ^ messageStatus.hashCode ^ text.hashCode ^ date.hashCode;
 }

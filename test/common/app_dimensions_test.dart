@@ -3,72 +3,61 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 
 void main() {
   group('AppDimensions', () {
-    test('contentPadding should be 12.0', () {
-      expect(AppDimensions.contentPadding, 12.0);
-    });
+    test('contentPadding', () => expect(AppDimensions.contentPadding, 12.0));
 
-    test('normalXL should be 24.0', () {
-      expect(AppDimensions.normalXL, 24.0);
-    });
+    test('majorS', () => expect(AppDimensions.majorS, 28.0));
+    test('majorM', () => expect(AppDimensions.majorM, 32.0));
 
-    test('normalL should be 18.0', () {
-      expect(AppDimensions.normalL, 18.0);
-    });
+    test('normalXL', () => expect(AppDimensions.normalXL, 24.0));
+    test('normalL', () => expect(AppDimensions.normalL, 18.0));
+    test('normalM', () => expect(AppDimensions.normalM, 16.0));
+    test('normalS', () => expect(AppDimensions.normalS, 12.0));
+    test('normalXS', () => expect(AppDimensions.normalXS, 10.0));
 
-    test('normalM should be 16.0', () {
-      expect(AppDimensions.normalM, 16.0);
-    });
+    test('minorL', () => expect(AppDimensions.minorL, 8.0));
+    test('minorM', () => expect(AppDimensions.minorM, 6.0));
+    test('minorS', () => expect(AppDimensions.minorS, 4.0));
+    test('minorXS', () => expect(AppDimensions.minorXS, 2.0));
 
-    test('normalS should be 12.0', () {
-      expect(AppDimensions.normalS, 12.0);
-    });
+    test('appBarIconSize', () => expect(AppDimensions.appBarIconSize, AppDimensions.majorM / 1.2));
 
-    test('normalXS should be 10.0', () {
-      expect(AppDimensions.normalXS, 10.0);
-    });
+    test(
+      'bottomAppBarIconEnlargedSize',
+      () => expect(AppDimensions.bottomAppBarIconEnlargedSize, 26.0),
+    );
+    test('bottomAppBarIconSize', () => expect(AppDimensions.bottomAppBarIconSize, 24.0));
 
-    test('minorL should be 8.0', () {
-      expect(AppDimensions.minorL, 8.0);
-    });
+    test('placeholderPageIconSize', () => expect(AppDimensions.placeholderPageIconSize, 64.0));
 
-    test('minorM should be 6.0', () {
-      expect(AppDimensions.minorM, 6.0);
-    });
+    test('favoriteButtonSize', () => expect(AppDimensions.favoriteButtonSize, 36.0));
+    test('favoriteItemPictureSize', () => expect(AppDimensions.favoriteItemPictureSize, 100.0));
 
-    test('minorS should be 4.0', () {
-      expect(AppDimensions.minorS, 4.0);
-    });
+    test('detailsPageItemIconSize', () => expect(AppDimensions.detailsPageItemIconSize, 24.0));
 
-    test('appBarIconSize should be 32.0', () {
-      expect(AppDimensions.appBarIconSize, 32.0 / 1.2);
-    });
+    test(
+      'splashButtonProgressBarSize',
+      () => expect(AppDimensions.splashButtonProgressBarSize, 23.0),
+    );
 
-    test('bottomAppBarIconEnlargedSize should be 26.0', () {
-      expect(AppDimensions.bottomAppBarIconEnlargedSize, 26.0);
-    });
+    test('lastSeenSectionImageSize', () => expect(AppDimensions.lastSeenSectionImageSize, 50.0));
 
-    test('bottomAppBarIconSize should be 24.0', () {
-      expect(AppDimensions.bottomAppBarIconSize, 24.0);
-    });
+    test('inboxItemHeight', () => expect(AppDimensions.inboxItemHeight, 72.0));
 
-    test('placeholderPageIconSize should be 64.0', () {
-      expect(AppDimensions.placeholderPageIconSize, 64.0);
-    });
+    test('smallProgressBarSize', () => expect(AppDimensions.smallProgressBarSize, 24.0));
 
-    test('all dimensions should be of type double', () {
-      expect(AppDimensions.contentPadding, isA<double>());
-      expect(AppDimensions.normalXL, isA<double>());
-      expect(AppDimensions.normalL, isA<double>());
-      expect(AppDimensions.normalM, isA<double>());
-      expect(AppDimensions.normalS, isA<double>());
-      expect(AppDimensions.normalXS, isA<double>());
-      expect(AppDimensions.minorL, isA<double>());
-      expect(AppDimensions.minorM, isA<double>());
-      expect(AppDimensions.minorS, isA<double>());
-      expect(AppDimensions.appBarIconSize, isA<double>());
-      expect(AppDimensions.bottomAppBarIconEnlargedSize, isA<double>());
-      expect(AppDimensions.bottomAppBarIconSize, isA<double>());
-      expect(AppDimensions.placeholderPageIconSize, isA<double>());
-    });
+    test('exploreAppBarBaseSize', () => expect(AppDimensions.exploreAppBarBaseSize, 115.0));
+    test(
+      'exploreArticleItemBaseSize',
+      () => expect(AppDimensions.exploreArticleItemBaseSize, 120.0),
+    );
+
+    test('avatarImageAddIconSize', () => expect(AppDimensions.avatarImageAddIconSize, 17.0));
+    test('avatarImageSize', () => expect(AppDimensions.avatarImageSize, 50.0));
+
+    test('regionFlagIconSize', () => expect(AppDimensions.regionFlagIconSize, 32.0));
+
+    test('hotLabelIconSize', () => expect(AppDimensions.hotLabelIconSize, 20.0));
+
+    test('authorImageSize', () => expect(AppDimensions.authorImageSize, 48.0));
   });
 }
