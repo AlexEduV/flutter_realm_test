@@ -2,10 +2,10 @@ import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 
-class MockAuthRemoteDataSource implements AuthRemoteDataSource {
+class MockAuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final AuthRepository _authRepository;
 
-  MockAuthRemoteDataSource(this._authRepository);
+  MockAuthRemoteDataSourceImpl(this._authRepository);
 
   @override
   Future<AuthResult> login(String email, String password) {

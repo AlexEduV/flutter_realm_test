@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/remote/mock_article_remote_data_source.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/entities/author_entity.dart';
 
@@ -8,11 +8,11 @@ import '../../../domain/usecases/articles/fetch_articles_use_case_test.mocks.dar
 
 void main() {
   late MockArticleRepository mockArticleRepository;
-  late MockArticleRemoteDataSource mockArticleService;
+  late MockArticleRemoteDataSourceImpl mockArticleService;
 
   setUp(() {
     mockArticleRepository = MockArticleRepository();
-    mockArticleService = MockArticleRemoteDataSource(mockArticleRepository);
+    mockArticleService = MockArticleRemoteDataSourceImpl(mockArticleRepository);
   });
 
   group('MockArticleService', () {

@@ -1,18 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/remote/mock_article_remote_data_source.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/entities/author_entity.dart';
 
 import '../../usecases/articles/fetch_articles_use_case_test.mocks.dart';
 
 void main() {
-  late MockArticleRemoteDataSource mockService;
+  late MockArticleRemoteDataSourceImpl mockService;
   late MockArticleRepository repository;
 
   setUp(() {
     repository = MockArticleRepository();
-    mockService = MockArticleRemoteDataSource(repository);
+    mockService = MockArticleRemoteDataSourceImpl(repository);
   });
 
   test('getAllArticles returns articles from service', () async {

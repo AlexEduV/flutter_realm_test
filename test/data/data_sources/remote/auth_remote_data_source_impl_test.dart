@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
@@ -15,7 +15,7 @@ void main() {
 
   setUp(() {
     mockRepo = MockAuthRepository();
-    authService = MockAuthRemoteDataSource(mockRepo);
+    authService = MockAuthRemoteDataSourceImpl(mockRepo);
   });
 
   group('MockAuthService', () {

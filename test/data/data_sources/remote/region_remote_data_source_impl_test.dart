@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_data_source.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/region_entity.dart';
@@ -30,7 +30,7 @@ void main() {
     getIt.registerSingleton<FetchRegionsUseCase>(mockFetchRegionsUseCase);
     getIt.registerSingleton<GetAllRegionsUseCase>(mockGetAllRegionsUseCase);
     getIt.registerSingleton<AppLocalisationsCubit>(mockAppLocalisationsCubit);
-    getIt.registerSingleton<RegionRemoteDataSource>(MockRegionRemoteDataSource());
+    getIt.registerSingleton<RegionRemoteDataSource>(MockRegionRemoteDataSourceImpl());
   });
 
   tearDown(() {
@@ -48,13 +48,13 @@ void main() {
 
     await serviceLocator<RegionRemoteDataSource>().init();
 
-    expect(MockRegionRemoteDataSource.regions, regionEntities);
+    expect(MockRegionRemoteDataSourceImpl.regions, regionEntities);
     verify(mockFetchRegionsUseCase.call()).called(1);
     verify(mockGetAllRegionsUseCase.call()).called(1);
   });
 
   test('getAvailableCountries maps regions to RegionUiModel with localized names', () {
-    MockRegionRemoteDataSource.regions = [
+    MockRegionRemoteDataSourceImpl.regions = [
       const RegionEntity(locale: 'US'),
       const RegionEntity(locale: 'DE'),
     ];

@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
 
 void main() {
-  late MockCarRemoteDataSource service;
+  late MockCarRemoteDataSourceImpl service;
 
   setUp(() {
-    service = MockCarRemoteDataSource();
+    service = MockCarRemoteDataSourceImpl();
   });
 
   tearDown(() async {

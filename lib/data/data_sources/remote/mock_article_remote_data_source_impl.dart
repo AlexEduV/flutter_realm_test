@@ -3,10 +3,10 @@ import 'package:test_futter_project/domain/repositories/article_repository.dart'
 
 import '../../../domain/data_sources/remote/article_remote_data_source.dart';
 
-class MockArticleRemoteDataSource implements ArticleRemoteDataSource {
+class MockArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   final ArticleRepository _articleRepository;
 
-  MockArticleRemoteDataSource(this._articleRepository);
+  MockArticleRemoteDataSourceImpl(this._articleRepository);
 
   @override
   Future<List<ArticleEntity>> fetchArticles() {

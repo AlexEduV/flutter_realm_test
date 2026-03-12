@@ -8,7 +8,7 @@ import '../../../domain/models/region_ui_model.dart';
 import '../../../l10n/l10n_keys.dart';
 import '../../../presentation/bloc/l10n/app_localisations_cubit.dart';
 
-class MockRegionRemoteDataSource implements RegionRemoteDataSource {
+class MockRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
   static late List<RegionEntity> regions;
 
   @override

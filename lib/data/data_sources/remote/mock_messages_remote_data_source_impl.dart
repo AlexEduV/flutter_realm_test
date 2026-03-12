@@ -4,7 +4,7 @@ import 'package:test_futter_project/domain/models/message_model.dart';
 import '../../../common/enums/message_status.dart';
 import '../../../domain/models/owner_model.dart';
 
-class MockMessagesRemoteDataSource implements MessagesRemoteDataSource {
+class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   List<MessageModel> _list = [];
 
   @override
