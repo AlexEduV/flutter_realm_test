@@ -7,6 +7,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_article_remote
 import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_messages_remote_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
@@ -19,6 +20,7 @@ import 'package:test_futter_project/domain/data_sources/remote/article_remote_da
 import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
@@ -103,6 +105,9 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
+  serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
+    () => MockRegionRemoteDataSourceImpl(),
+  );
 
   serviceLocator.registerLazySingleton<AuthRemoteDataSource>(
     () => MockAuthRemoteDataSourceImpl(serviceLocator()),
