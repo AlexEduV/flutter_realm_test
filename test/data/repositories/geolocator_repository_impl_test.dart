@@ -3,16 +3,17 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/data/data_sources/local/geolocator_local_data_source_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
+import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
 
 import 'geolocator_repository_impl_test.mocks.dart';
 
-@GenerateMocks([GeolocatorLocalDataSourceImpl])
+@GenerateMocks([GeolocatorLocalDataSource])
 void main() {
-  late MockAppGeolocatorService mockGeolocatorService;
+  late MockGeolocatorLocalDataSource mockGeolocatorService;
   late GeolocatorRepositoryImpl repository;
 
   setUp(() {
-    mockGeolocatorService = MockAppGeolocatorService();
+    mockGeolocatorService = MockGeolocatorLocalDataSource();
     repository = GeolocatorRepositoryImpl(mockGeolocatorService);
   });
 

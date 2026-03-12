@@ -24,11 +24,12 @@ import 'package:test_futter_project/domain/data_sources/local/permission_local_d
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [PermissionService].
+/// A class which mocks [PermissionLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPermissionService extends _i1.Mock implements _i2.PermissionLocalDataSource {
-  MockPermissionService() {
+class MockPermissionLocalDataSource extends _i1.Mock
+    implements _i2.PermissionLocalDataSource {
+  MockPermissionLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -36,7 +37,9 @@ class MockPermissionService extends _i1.Mock implements _i2.PermissionLocalDataS
   _i3.Future<_i4.PermissionStatus> requestLocation() =>
       (super.noSuchMethod(
             Invocation.method(#requestLocation, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+            returnValue: _i3.Future<_i4.PermissionStatus>.value(
+              _i4.PermissionStatus.denied,
+            ),
           )
           as _i3.Future<_i4.PermissionStatus>);
 
@@ -44,7 +47,9 @@ class MockPermissionService extends _i1.Mock implements _i2.PermissionLocalDataS
   _i3.Future<_i4.PermissionStatus> checkLocationStatus() =>
       (super.noSuchMethod(
             Invocation.method(#checkLocationStatus, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+            returnValue: _i3.Future<_i4.PermissionStatus>.value(
+              _i4.PermissionStatus.denied,
+            ),
           )
           as _i3.Future<_i4.PermissionStatus>);
 }

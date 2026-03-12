@@ -16,7 +16,7 @@ import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cub
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 
-import '../../../data/data_sources/remote/mock_auth_service_test.mocks.dart';
+import '../../../data/data_sources/remote/auth_remote_data_source_test.mocks.dart';
 import 'user_data_cubit_test.mocks.dart';
 
 @GenerateMocks([

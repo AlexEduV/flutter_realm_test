@@ -4,7 +4,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_article_remote
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/entities/author_entity.dart';
 
-import '../usecases/articles/fetch_articles_use_case_test.mocks.dart';
+import '../../usecases/articles/fetch_articles_use_case_test.mocks.dart';
 
 void main() {
   late MockArticleRemoteDataSource mockService;

@@ -9,11 +9,11 @@ import 'permission_repository_impl_test.mocks.dart'; // Import the generated moc
 
 @GenerateMocks([PermissionLocalDataSource])
 void main() {
-  late MockPermissionService mockPermissionService;
+  late MockPermissionLocalDataSource mockPermissionService;
   late PermissionRepositoryImpl permissionRepository;
 
   setUp(() {
-    mockPermissionService = MockPermissionService();
+    mockPermissionService = MockPermissionLocalDataSource();
     permissionRepository = PermissionRepositoryImpl(mockPermissionService);
   });
 

@@ -7,13 +7,13 @@ import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 
-import '../../data/repositories/car_repository_impl_test.mocks.dart';
+import '../../../data/repositories/car_repository_impl_test.mocks.dart';
 
 void main() {
-  late MockCarApiService mockService;
+  late MockCarRemoteDataSource mockService;
 
   setUp(() {
-    mockService = MockCarApiService();
+    mockService = MockCarRemoteDataSource();
   });
 
   group('CarApiService', () {

@@ -21,7 +21,7 @@ import 'car_repository_impl_test.mocks.dart';
 @GenerateMocks([Realm, CarRemoteDataSource, CarEntity, CarDto, RealmLocalStorage])
 void main() {
   late MockRealm realm;
-  late MockCarApiService apiService;
+  late MockCarRemoteDataSource apiService;
   late CarRepositoryImpl repository;
   late MockRealmLocalStorage localStorage;
 
@@ -51,7 +51,7 @@ void main() {
 
   setUp(() {
     realm = MockRealm();
-    apiService = MockCarApiService();
+    apiService = MockCarRemoteDataSource();
     localStorage = MockRealmLocalStorage();
     repository = CarRepositoryImpl(localStorage, apiService);
   });
