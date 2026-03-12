@@ -12,7 +12,15 @@ class ArticleRepositoryImpl implements ArticleRepository {
     final jsonString = await rootBundle.loadString(
       'assets/mocks/articles_mock_response_data_global.json',
     );
-    final List jsonList = json.decode(jsonString);
+    final jsonDecoded = json.decode(jsonString);
+
+    if (jsonDecoded['status'] != 'success') {
+      //todo: add logs;
+      return [];
+    }
+
+    final List jsonList = jsonDecoded['results'];
+
     for (final article in jsonList) {
       articles.add(ArticleEntity.fromJson(article));
     }

@@ -9,8 +9,13 @@ class LocalisationUtil {
 
   static Future<Map<String, String>> loadLocalisations(String path) async {
     final jsonString = await rootBundle.loadString(path);
-    final Map<String, dynamic> jsonMap = json.decode(jsonString);
+    final Map<String, dynamic> jsonDecoded = json.decode(jsonString);
 
+    if (jsonDecoded['status'] != 'success') {
+      return {};
+    }
+
+    final Map<String, dynamic> jsonMap = jsonDecoded['results'][0];
     final flatMap = JsonUtil.flattenJson(jsonMap);
 
     return flatMap;

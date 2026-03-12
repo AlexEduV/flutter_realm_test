@@ -19,7 +19,13 @@ class RegionRepositoryImpl implements RegionRepository {
     final jsonString = await rootBundle.loadString(
       '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}regions_data.json',
     );
-    final List data = json.decode(jsonString);
+
+    final jsonDecoded = json.decode(jsonString);
+    if (jsonDecoded['status'] != 'success') {
+      return;
+    }
+
+    final List data = jsonDecoded['results'][0]['regions'];
     _regions = data.map((e) => RegionEntity.fromJson(e)).toList();
   }
 
