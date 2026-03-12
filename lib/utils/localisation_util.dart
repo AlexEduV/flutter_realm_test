@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/domain/models/api_response.dart';
 import 'package:test_futter_project/utils/json_util.dart';
 
@@ -14,7 +15,7 @@ class LocalisationUtil {
 
     final response = ApiResponse.fromJson(jsonDecoded, (json) => json as List);
 
-    if (response.status != 'success' || response.results == null) {
+    if (response.status != AppConstants.apiSuccessStatus || response.results == null) {
       return {};
     }
 

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/domain/repositories/region_repository.dart';
 
 import '../../domain/entities/region_entity.dart';
@@ -27,7 +28,7 @@ class RegionRepositoryImpl implements RegionRepository {
       (data) => (data as List).map((item) => RegionEntity.fromJson(item['regions'][0])).toList(),
     );
 
-    if (response.status != 'success') {
+    if (response.status != AppConstants.apiSuccessStatus) {
       return;
     }
 

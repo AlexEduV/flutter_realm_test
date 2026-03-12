@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 
@@ -22,7 +23,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
           .toList(),
     );
 
-    if (response.status != 'success') {
+    if (response.status != AppConstants.apiSuccessStatus) {
       //todo: add logs;
       return [];
     }
