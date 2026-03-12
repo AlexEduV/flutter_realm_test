@@ -1,6 +1,6 @@
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 
-import '../entities/user_entity.dart';
+import '../../entities/user_entity.dart';
 
 abstract class BaseLocalStorage {
   List<CarEntity> getAll();

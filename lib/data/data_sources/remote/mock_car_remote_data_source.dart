@@ -10,10 +10,10 @@ import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
-import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
+import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_futter_project/domain/models/owner_model.dart';
 
-class MockCarApiService implements CarApiService {
+class MockCarRemoteDataSource implements CarRemoteDataSource {
   // 1. Single source of truth
   final _carStreamController = BehaviorSubject<List<CarDto>>();
 

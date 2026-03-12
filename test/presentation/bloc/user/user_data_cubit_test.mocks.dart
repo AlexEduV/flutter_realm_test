@@ -6,8 +6,7 @@
 import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/domain/data_sources/base_local_storage.dart'
-    as _i4;
+import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart' as _i4;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
@@ -34,13 +33,11 @@ import 'package:test_futter_project/domain/usecases/permissions/request_location
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
-  _FakeUserEntity_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeUserEntity_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
-  _FakeCarEntity_1(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeCarEntity_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 /// A class which mocks [BaseLocalStorage].
@@ -53,52 +50,35 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
 
   @override
   List<_i3.CarEntity> getAll() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAll, []),
-            returnValue: <_i3.CarEntity>[],
-          )
+      (super.noSuchMethod(Invocation.method(#getAll, []), returnValue: <_i3.CarEntity>[])
           as List<_i3.CarEntity>);
 
   @override
-  void add(dynamic T) => super.noSuchMethod(
-    Invocation.method(#add, [T]),
-    returnValueForMissingStub: null,
-  );
+  void add(dynamic T) =>
+      super.noSuchMethod(Invocation.method(#add, [T]), returnValueForMissingStub: null);
 
   @override
-  void update(dynamic T) => super.noSuchMethod(
-    Invocation.method(#update, [T]),
-    returnValueForMissingStub: null,
-  );
+  void update(dynamic T) =>
+      super.noSuchMethod(Invocation.method(#update, [T]), returnValueForMissingStub: null);
 
   @override
   _i5.Stream<dynamic> watch<T>() =>
-      (super.noSuchMethod(
-            Invocation.method(#watch, []),
-            returnValue: _i5.Stream<dynamic>.empty(),
-          )
+      (super.noSuchMethod(Invocation.method(#watch, []), returnValue: _i5.Stream<dynamic>.empty())
           as _i5.Stream<dynamic>);
 
   @override
-  void deleteAllCars() => super.noSuchMethod(
-    Invocation.method(#deleteAllCars, []),
-    returnValueForMissingStub: null,
-  );
+  void deleteAllCars() =>
+      super.noSuchMethod(Invocation.method(#deleteAllCars, []), returnValueForMissingStub: null);
 
   @override
-  void deleteById(String? id) => super.noSuchMethod(
-    Invocation.method(#deleteById, [id]),
-    returnValueForMissingStub: null,
-  );
+  void deleteById(String? id) =>
+      super.noSuchMethod(Invocation.method(#deleteById, [id]), returnValueForMissingStub: null);
 
   @override
   _i2.UserEntity initUser() =>
       (super.noSuchMethod(
             Invocation.method(#initUser, []),
-            returnValue: _FakeUserEntity_0(
-              this,
-              Invocation.method(#initUser, []),
-            ),
+            returnValue: _FakeUserEntity_0(this, Invocation.method(#initUser, [])),
           )
           as _i2.UserEntity);
 
@@ -106,40 +86,30 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
   _i3.CarEntity getCarById(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getCarById, [id]),
-            returnValue: _FakeCarEntity_1(
-              this,
-              Invocation.method(#getCarById, [id]),
-            ),
+            returnValue: _FakeCarEntity_1(this, Invocation.method(#getCarById, [id])),
           )
           as _i3.CarEntity);
 
   @override
   int getMaxCarId() =>
-      (super.noSuchMethod(Invocation.method(#getMaxCarId, []), returnValue: 0)
-          as int);
+      (super.noSuchMethod(Invocation.method(#getMaxCarId, []), returnValue: 0) as int);
 
   @override
-  void clearUser() => super.noSuchMethod(
-    Invocation.method(#clearUser, []),
-    returnValueForMissingStub: null,
-  );
+  void clearUser() =>
+      super.noSuchMethod(Invocation.method(#clearUser, []), returnValueForMissingStub: null);
 }
 
 /// A class which mocks [OpenAppSettingsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOpenAppSettingsUseCase extends _i1.Mock
-    implements _i6.OpenAppSettingsUseCase {
+class MockOpenAppSettingsUseCase extends _i1.Mock implements _i6.OpenAppSettingsUseCase {
   MockOpenAppSettingsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
   _i5.Future<bool> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i5.Future<bool>.value(false),
-          )
+      (super.noSuchMethod(Invocation.method(#call, []), returnValue: _i5.Future<bool>.value(false))
           as _i5.Future<bool>);
 }
 
@@ -154,10 +124,7 @@ class MockCheckLocationServiceStatusUseCase extends _i1.Mock
 
   @override
   _i5.Future<bool> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i5.Future<bool>.value(false),
-          )
+      (super.noSuchMethod(Invocation.method(#call, []), returnValue: _i5.Future<bool>.value(false))
           as _i5.Future<bool>);
 }
 
@@ -172,10 +139,7 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
 
   @override
   _i5.Future<bool> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i5.Future<bool>.value(false),
-          )
+      (super.noSuchMethod(Invocation.method(#call, []), returnValue: _i5.Future<bool>.value(false))
           as _i5.Future<bool>);
 }
 
@@ -190,9 +154,6 @@ class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
 
   @override
   _i5.Future<bool> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i5.Future<bool>.value(false),
-          )
+      (super.noSuchMethod(Invocation.method(#call, []), returnValue: _i5.Future<bool>.value(false))
           as _i5.Future<bool>);
 }

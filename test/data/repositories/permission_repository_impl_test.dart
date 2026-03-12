@@ -3,11 +3,11 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
-import 'package:test_futter_project/domain/data_sources/permission_service.dart';
+import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart';
 
 import 'permission_repository_impl_test.mocks.dart'; // Import the generated mock
 
-@GenerateMocks([PermissionService])
+@GenerateMocks([PermissionLocalDataSource])
 void main() {
   late MockPermissionService mockPermissionService;
   late PermissionRepositoryImpl permissionRepository;

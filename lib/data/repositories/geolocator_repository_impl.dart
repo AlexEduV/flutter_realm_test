@@ -1,8 +1,8 @@
-import 'package:test_futter_project/domain/data_sources/geolocator_service.dart';
+import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
 import 'package:test_futter_project/domain/repositories/geolocator_repository.dart';
 
 class GeolocatorRepositoryImpl implements GeolocatorRepository {
-  final GeolocatorService _geolocatorService;
+  final GeolocatorLocalDataSource _geolocatorService;
 
   GeolocatorRepositoryImpl(this._geolocatorService);
 

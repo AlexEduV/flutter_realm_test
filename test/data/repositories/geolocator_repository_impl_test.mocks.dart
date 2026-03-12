@@ -6,7 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/data/data_sources/local/app_geolocator_service.dart' as _i2;
+import 'package:test_futter_project/data/data_sources/local/geolocator_local_data_source_impl.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,7 +26,7 @@ import 'package:test_futter_project/data/data_sources/local/app_geolocator_servi
 /// A class which mocks [AppGeolocatorService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAppGeolocatorService extends _i1.Mock implements _i2.AppGeolocatorService {
+class MockAppGeolocatorService extends _i1.Mock implements _i2.GeolocatorLocalDataSourceImpl {
   MockAppGeolocatorService() {
     _i1.throwOnMissingStub(this);
   }

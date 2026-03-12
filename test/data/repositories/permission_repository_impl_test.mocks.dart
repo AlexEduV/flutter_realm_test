@@ -7,7 +7,7 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:permission_handler/permission_handler.dart' as _i4;
-import 'package:test_futter_project/domain/data_sources/permission_service.dart'
+import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart'
     as _i2;
 
 // ignore_for_file: type=lint
@@ -27,7 +27,7 @@ import 'package:test_futter_project/domain/data_sources/permission_service.dart'
 /// A class which mocks [PermissionService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPermissionService extends _i1.Mock implements _i2.PermissionService {
+class MockPermissionService extends _i1.Mock implements _i2.PermissionLocalDataSource {
   MockPermissionService() {
     _i1.throwOnMissingStub(this);
   }
@@ -36,9 +36,7 @@ class MockPermissionService extends _i1.Mock implements _i2.PermissionService {
   _i3.Future<_i4.PermissionStatus> requestLocation() =>
       (super.noSuchMethod(
             Invocation.method(#requestLocation, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(
-              _i4.PermissionStatus.denied,
-            ),
+            returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
           )
           as _i3.Future<_i4.PermissionStatus>);
 
@@ -46,9 +44,7 @@ class MockPermissionService extends _i1.Mock implements _i2.PermissionService {
   _i3.Future<_i4.PermissionStatus> checkLocationStatus() =>
       (super.noSuchMethod(
             Invocation.method(#checkLocationStatus, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(
-              _i4.PermissionStatus.denied,
-            ),
+            returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
           )
           as _i3.Future<_i4.PermissionStatus>);
 }

@@ -4,7 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
+import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
@@ -16,7 +16,7 @@ import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cub
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 
-import '../../../data/data_sources/mock_auth_service_test.mocks.dart';
+import '../../../data/data_sources/remote/mock_auth_service_test.mocks.dart';
 import 'user_data_cubit_test.mocks.dart';
 
 @GenerateMocks([

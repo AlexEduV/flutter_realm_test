@@ -1,7 +1,7 @@
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test_futter_project/domain/data_sources/permission_service.dart';
+import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart';
 
-class AppPermissionService implements PermissionService {
+class AppPermissionService implements PermissionLocalDataSource {
   @override
   Future<PermissionStatus> requestLocation() {
     return Permission.location.request();

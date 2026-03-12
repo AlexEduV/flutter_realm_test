@@ -2,9 +2,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/data_sources/auth_service.dart';
-import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
-import 'package:test_futter_project/domain/data_sources/car_api_service.dart';
+import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/car_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
@@ -25,7 +25,7 @@ import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
-import '../data/data_sources/realm_local_storage_test.mocks.dart';
+import '../data/data_sources/local/realm_local_storage_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -44,9 +44,9 @@ void main() {
   });
 
   test('All dependencies are registered and resolvable', () {
-    expect(serviceLocator.isRegistered<AuthService>(), isTrue);
+    expect(serviceLocator.isRegistered<AuthRemoteDataSource>(), isTrue);
     expect(serviceLocator.isRegistered<BaseLocalStorage>(), isTrue);
-    expect(serviceLocator.isRegistered<CarApiService>(), isTrue);
+    expect(serviceLocator.isRegistered<CarRemoteDataSource>(), isTrue);
     expect(serviceLocator.isRegistered<CarRepository>(), isTrue);
     expect(serviceLocator.isRegistered<PermissionRepository>(), isTrue);
     expect(serviceLocator.isRegistered<AuthRepository>(), isTrue);
@@ -71,9 +71,9 @@ void main() {
   });
 
   test('All dependencies can be resolved', () {
-    expect(serviceLocator<AuthService>(), isA<AuthService>());
+    expect(serviceLocator<AuthRemoteDataSource>(), isA<AuthRemoteDataSource>());
     expect(serviceLocator<BaseLocalStorage>(), isA<BaseLocalStorage>());
-    expect(serviceLocator<CarApiService>(), isA<CarApiService>());
+    expect(serviceLocator<CarRemoteDataSource>(), isA<CarRemoteDataSource>());
     expect(serviceLocator<CarRepository>(), isA<CarRepository>());
     expect(serviceLocator<PermissionRepository>(), isA<PermissionRepository>());
     expect(serviceLocator<AuthRepository>(), isA<AuthRepository>());

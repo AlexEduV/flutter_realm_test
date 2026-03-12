@@ -16,7 +16,7 @@ import 'package:realm_dart/src/results.dart' as _i5;
 import 'package:test_futter_project/common/enums/promo_type.dart' as _i15;
 import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart' as _i16;
 import 'package:test_futter_project/data/dto/car_dto.dart' as _i8;
-import 'package:test_futter_project/domain/data_sources/car_api_service.dart' as _i13;
+import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart' as _i13;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i6;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i9;
 import 'package:test_futter_project/domain/models/owner_model.dart' as _i14;
@@ -264,7 +264,7 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
 /// A class which mocks [CarApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarApiService extends _i1.Mock implements _i13.CarApiService {
+class MockCarApiService extends _i1.Mock implements _i13.CarRemoteDataSource {
   MockCarApiService() {
     _i1.throwOnMissingStub(this);
   }

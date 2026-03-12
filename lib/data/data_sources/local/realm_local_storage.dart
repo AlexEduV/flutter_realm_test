@@ -1,6 +1,6 @@
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
-import 'package:test_futter_project/domain/data_sources/base_local_storage.dart';
+import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 
 import '../../../common/extensions/car_scheme_extension.dart';
