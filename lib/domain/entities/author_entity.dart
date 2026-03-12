@@ -12,4 +12,16 @@ class AuthorEntity {
       imageSrc: json['image_src'] as String?,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is AuthorEntity &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          fullName == other.fullName &&
+          imageSrc == other.imageSrc;
+
+  @override
+  int get hashCode => id.hashCode ^ fullName.hashCode ^ (imageSrc?.hashCode ?? 0);
 }
