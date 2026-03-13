@@ -47,7 +47,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       context.read<UserDataCubit>().updateLocationPermissionStatus(status.isGranted);
 
       final hasToAskPermission =
-          status != PermissionStatus.granted && status != PermissionStatus.permanentlyDenied;
+          status != PermissionStatus.granted &&
+          status != PermissionStatus.permanentlyDenied &&
+          status != PermissionStatus.denied;
       if (!hasToAskPermission) return;
 
       await context.read<UserDataCubit>().requestLocationPermission();
