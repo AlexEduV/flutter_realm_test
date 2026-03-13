@@ -133,6 +133,7 @@ class CarEntity {
         id: car.owner?.id ?? '',
         name: car.owner?.name ?? '',
         linkedItemIds: car.owner?.linkedIds ?? [],
+        imageSrc: car.owner?.imageSrc,
       ),
       kilometers: car.kilometers,
       fuelType: car.fuelType ?? '',

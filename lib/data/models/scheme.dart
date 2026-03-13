@@ -29,6 +29,7 @@ class _Person {
   late String name;
   late String id;
   late List<String> linkedIds;
+  late String? imageSrc;
   int age = 1;
 }
 

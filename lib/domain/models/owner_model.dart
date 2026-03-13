@@ -2,14 +2,16 @@ class OwnerModel {
   final String id;
   final String name;
   final List<String> linkedItemIds;
+  final String? imageSrc;
 
-  OwnerModel({required this.id, required this.name, required this.linkedItemIds});
+  OwnerModel({required this.id, required this.name, required this.linkedItemIds, this.imageSrc});
 
   factory OwnerModel.fromJson(Map<String, dynamic> json) {
     return OwnerModel(
       id: json['id'] as String,
       name: json['full_name'] as String,
       linkedItemIds: List<String>.from(json['linked_ids'] as List),
+      imageSrc: json['image_src'] as String?,
     );
   }
 
@@ -20,10 +22,11 @@ class OwnerModel {
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&
+          imageSrc == other.imageSrc &&
           _listEquals(linkedItemIds, other.linkedItemIds);
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ _listHash(linkedItemIds);
+  int get hashCode => id.hashCode ^ name.hashCode ^ imageSrc.hashCode ^ _listHash(linkedItemIds);
 
   static bool _listEquals(List a, List b) {
     if (a.length != b.length) return false;
