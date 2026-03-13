@@ -4,7 +4,9 @@ import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/models/region_ui_model.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.dart';
 
@@ -168,8 +170,7 @@ class DialogHelper {
                 mainAxisSize: MainAxisSize.min,
                 spacing: AppDimensions.minorL,
                 children: [
-                  //todo: localise
-                  const Text('New password'),
+                  Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogLabel)),
 
                   TextFormField(
                     controller: textEditingController,
@@ -186,7 +187,7 @@ class DialogHelper {
 
                   const SizedBox(height: AppDimensions.minorS),
 
-                  const Text('Confirm new password'),
+                  Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogSecondLabel)),
 
                   TextFormField(
                     controller: confirmationTextEditingController,
