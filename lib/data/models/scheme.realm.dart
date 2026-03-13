@@ -281,6 +281,7 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
     String name,
     String id, {
     Iterable<String> linkedIds = const [],
+    String? imageSrc,
     int age = 1,
   }) {
     if (!_defaultsSet) {
@@ -293,6 +294,7 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
       'linkedIds',
       RealmList<String>(linkedIds),
     );
+    RealmObjectBase.set(this, 'imageSrc', imageSrc);
     RealmObjectBase.set(this, 'age', age);
   }
 
@@ -316,6 +318,12 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
       throw RealmUnsupportedSetError();
 
   @override
+  String? get imageSrc =>
+      RealmObjectBase.get<String>(this, 'imageSrc') as String?;
+  @override
+  set imageSrc(String? value) => RealmObjectBase.set(this, 'imageSrc', value);
+
+  @override
   int get age => RealmObjectBase.get<int>(this, 'age') as int;
   @override
   set age(int value) => RealmObjectBase.set(this, 'age', value);
@@ -336,6 +344,7 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
       'name': name.toEJson(),
       'id': id.toEJson(),
       'linkedIds': linkedIds.toEJson(),
+      'imageSrc': imageSrc.toEJson(),
       'age': age.toEJson(),
     };
   }
@@ -348,6 +357,7 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
         fromEJson(name),
         fromEJson(id),
         linkedIds: fromEJson(ejson['linkedIds']),
+        imageSrc: fromEJson(ejson['imageSrc']),
         age: fromEJson(ejson['age'], defaultValue: 1),
       ),
       _ => raiseInvalidEJson(ejson),
@@ -365,6 +375,7 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
         RealmPropertyType.string,
         collectionType: RealmCollectionType.list,
       ),
+      SchemaProperty('imageSrc', RealmPropertyType.string, optional: true),
       SchemaProperty('age', RealmPropertyType.int),
     ]);
   }();

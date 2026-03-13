@@ -37,7 +37,12 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.diesel.name,
       transmissionType: TransmissionType.hybrid.name,
       color: 'Yellow',
-      owner: OwnerModel(id: '1', name: 'James Norrington', linkedItemIds: ['1', '25']),
+      owner: OwnerModel(
+        id: '1',
+        name: 'James Norrington',
+        linkedItemIds: ['1', '25'],
+        imageSrc: 'https://images.pexels.com/photos/18333478/pexels-photo-18333478.jpeg',
+      ),
       images: [AppAssetRoutes.porscheYellowImage],
     ),
     CarDto(
@@ -54,7 +59,12 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.hybrid.name,
       transmissionType: TransmissionType.manual.name,
       color: 'Red',
-      owner: OwnerModel(id: '2', name: 'Jack Smith', linkedItemIds: ['2', '23']),
+      owner: OwnerModel(
+        id: '2',
+        name: 'Jack Smith',
+        linkedItemIds: ['2', '23'],
+        imageSrc: 'https://images.pexels.com/photos/12158581/pexels-photo-12158581.jpeg',
+      ),
       images: [AppAssetRoutes.hondaCivicRedImage],
     ),
     CarDto(
@@ -70,7 +80,12 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.diesel.name,
       transmissionType: TransmissionType.hybrid.name,
       color: 'Black',
-      owner: OwnerModel(id: '3', name: 'Arya Stark', linkedItemIds: ['3', '26']),
+      owner: OwnerModel(
+        id: '3',
+        name: 'Arya Stark',
+        linkedItemIds: ['3', '26'],
+        imageSrc: 'https://images.pexels.com/photos/31350033/pexels-photo-31350033.jpeg',
+      ),
       images: [],
     ),
   ];
