@@ -159,7 +159,7 @@ class DialogHelper {
         final textEditingController = TextEditingController();
         final confirmationTextEditingController = TextEditingController();
         final focusNode = FocusNode();
-        final confirmationFocusNode = FocusNode();
+        //final confirmationFocusNode = FocusNode();
 
         _validateEditField(context, textEditingController.text, validationCallback);
         _validateEditField(context, confirmationTextEditingController.text, validationCallback);
@@ -184,6 +184,10 @@ class DialogHelper {
                     onChanged: (newValue) =>
                         _validateEditField(context, newValue, validationCallback),
                     decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: AppDimensions.minorL,
+                        horizontal: AppDimensions.minorL,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(AppDimensions.normalS),
                         borderSide: const BorderSide(color: AppColors.accentColor),
@@ -200,36 +204,35 @@ class DialogHelper {
                     ),
                     obscureText: state.isPasswordFieldObscure,
                     keyboardType: TextInputType.visiblePassword,
-                    maxLines: 1,
                   ),
 
-                  const SizedBox(height: AppDimensions.minorS),
-
-                  Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogSecondLabel)),
-
-                  TextFormField(
-                    controller: confirmationTextEditingController,
-                    focusNode: confirmationFocusNode,
-                    onChanged: (newValue) =>
-                        _validateEditField(context, newValue, validationCallback),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                        borderSide: const BorderSide(color: AppColors.accentColor),
-                      ),
-                      suffix: getFieldSuffixWidget(
-                        state.isConfirmationPasswordFieldObscure,
-                        AppSemanticsLabels.obscurePasswordButton,
-                        () {
-                          context.read<EditDialogCubit>().setPasswordObscurity(
-                            !state.isConfirmationPasswordFieldObscure,
-                          );
-                        },
-                      ),
-                    ),
-                    obscureText: state.isConfirmationPasswordFieldObscure,
-                    keyboardType: TextInputType.visiblePassword,
-                  ),
+                  // const SizedBox(height: AppDimensions.minorS),
+                  //
+                  // Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogSecondLabel)),
+                  //
+                  // TextFormField(
+                  //   controller: confirmationTextEditingController,
+                  //   focusNode: confirmationFocusNode,
+                  //   onChanged: (newValue) =>
+                  //       _validateEditField(context, newValue, validationCallback),
+                  //   decoration: InputDecoration(
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                  //       borderSide: const BorderSide(color: AppColors.accentColor),
+                  //     ),
+                  //     suffix: getFieldSuffixWidget(
+                  //       state.isConfirmationPasswordFieldObscure,
+                  //       AppSemanticsLabels.obscurePasswordButton,
+                  //       () {
+                  //         context.read<EditDialogCubit>().setPasswordObscurity(
+                  //           !state.isConfirmationPasswordFieldObscure,
+                  //         );
+                  //       },
+                  //     ),
+                  //   ),
+                  //   obscureText: state.isConfirmationPasswordFieldObscure,
+                  //   keyboardType: TextInputType.visiblePassword,
+                  // ),
                 ],
               ),
               backgroundColor: Colors.white,
@@ -335,19 +338,19 @@ class DialogHelper {
     String? trailingActionSemanticsLabel,
     Function() onTap,
   ) {
-    return Padding(
-      padding: const EdgeInsets.only(right: AppDimensions.normalS),
-      child: AppSemantics(
-        label: trailingActionSemanticsLabel ?? '',
-        button: true,
-        isSelected: isObscureText,
-        child: Material(
-          shape: const CircleBorder(),
-          child: InkWell(
-            //this will prevent refocusing on the text field on icon long press;
-            onLongPress: () {},
-            onTap: onTap,
-            customBorder: const CircleBorder(),
+    return AppSemantics(
+      label: trailingActionSemanticsLabel ?? '',
+      button: true,
+      isSelected: isObscureText,
+      child: Material(
+        shape: const CircleBorder(),
+        child: InkWell(
+          //this will prevent refocusing on the text field on icon long press;
+          onLongPress: () {},
+          onTap: onTap,
+          customBorder: const CircleBorder(),
+          child: Padding(
+            padding: const EdgeInsets.all(AppDimensions.minorL),
             child: AnimatedVisibilityIcon(isObscure: isObscureText),
           ),
         ),
