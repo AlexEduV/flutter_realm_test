@@ -327,7 +327,7 @@ void main() {
       'personalDetailsItemPassword',
       () => expect(
         L10nKeys.personalDetailsItemPassword,
-        'pages.account.items.personalDetails.passwordItem',
+        'pages.account.items.personalDetails.passwordItem.title',
       ),
     );
     test(

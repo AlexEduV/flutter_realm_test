@@ -17,16 +17,22 @@ class RegionRepositoryImpl implements RegionRepository {
 
   @override
   Future<void> loadRegions() async {
-    if (_regions != null) return; // Already loaded
+    if (_regions != null) return;
+
     final jsonString = await rootBundle.loadString(
       '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}regions_data.json',
     );
 
     final jsonDecoded = json.decode(jsonString);
-    final response = ApiResponse.fromJson(
-      jsonDecoded,
-      (data) => (data as List).map((item) => RegionEntity.fromJson(item['regions'][0])).toList(),
-    );
+    final response = ApiResponse.fromJson(jsonDecoded, (data) {
+      final results = data as List;
+
+      return results.expand((item) {
+        final regionsList = item['regions'] as List;
+
+        return regionsList.map((element) => RegionEntity.fromJson(element));
+      }).toList();
+    });
 
     if (response.status != AppConstants.apiSuccessStatus) {
       return;

@@ -54,4 +54,8 @@ class AppSemanticsLabels {
   static const privacyLinkItem = 'privacyLinkItem';
 
   static const avatarSetImageButton = 'avatarSetImageButton';
+
+  static const dialogConfirmButton = 'dialogConfirmButton';
+  static const dialogCancelButton = 'dialogCancelButton';
+  static const dialogEditField = 'dialogEditField';
 }

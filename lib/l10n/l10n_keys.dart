@@ -117,7 +117,12 @@ class L10nKeys {
       'pages.account.items.personalDetails.lastNameItem';
   static const String personalDetailsItemEmail = 'pages.account.items.personalDetails.emailItem';
   static const String personalDetailsItemPassword =
-      'pages.account.items.personalDetails.passwordItem';
+      'pages.account.items.personalDetails.passwordItem.title';
+
+  static const String personalDetailsItemPasswordDialogLabel =
+      'pages.account.items.personalDetails.passwordItem.dialog.label';
+  static const String personalDetailsItemPasswordDialogSecondLabel =
+      'pages.account.items.personalDetails.passwordItem.dialog.secondLabel';
 
   static const String accountItemLocation = 'pages.account.items.location.title';
   static const String locationUsageDescription =

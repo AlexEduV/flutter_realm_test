@@ -71,7 +71,13 @@
               "firstNameItem": "Nome",
               "lastNameItem": "Cognome",
               "emailItem": "Email",
-              "passwordItem": "Password"
+              "passwordItem": {
+                "title": "Password",
+                "dialog": {
+                  "label": "Nuova password",
+                  "secondLabel": "Conferma nuova password"
+                }
+              }
             },
             "location": {
               "title": "Posizione",
