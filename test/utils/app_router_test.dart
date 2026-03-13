@@ -6,6 +6,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/enums/details_page_source.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
@@ -22,6 +24,7 @@ import 'package:test_futter_project/presentation/pages/home/home_page.dart';
 import 'package:test_futter_project/presentation/pages/search/search_page.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 
+import '../presentation/bloc/user/user_data_cubit_test.mocks.dart';
 import 'app_router_test.mocks.dart';
 
 @GenerateMocks([
@@ -38,10 +41,18 @@ void main() {
   final MockSearchPageCubit mockSearchPageCubit = MockSearchPageCubit();
   final MockDetailsPageCubit mockDetailsPageCubit = MockDetailsPageCubit();
   final AppLocalisationsCubit appLocalisationsCubit = AppLocalisationsCubit();
+  final MockCheckLocationPermissionStatusUseCase mockCheckLocationPermissionStatusUseCase =
+      MockCheckLocationPermissionStatusUseCase();
 
   late Widget widget;
 
   setUpAll(() {
+    serviceLocator.registerLazySingleton<CheckLocationPermissionStatusUseCase>(
+      () => mockCheckLocationPermissionStatusUseCase,
+    );
+
+    when(mockCheckLocationPermissionStatusUseCase.call()).thenAnswer((_) async => true);
+
     when(homeBottomBarCubit.stream).thenAnswer((_) => const Stream.empty());
     when(homeBottomBarCubit.state).thenReturn(const HomeBottomBarState());
 
@@ -72,6 +83,10 @@ void main() {
       ],
       child: MaterialApp.router(routerConfig: AppRouter.router),
     );
+  });
+
+  tearDownAll(() {
+    serviceLocator.unregister<CheckLocationPermissionStatusUseCase>();
   });
 
   testWidgets('Navigates to HomePage on root route', (WidgetTester tester) async {
