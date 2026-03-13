@@ -50,9 +50,6 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
         child: Stack(
           children: [
             // App bar title and search icon
-
-            //todo: investigate: while adding a builder fixes explore title missing on load, I do not know what happened,
-            // as it has always worked;
             Positioned(
               left: AppDimensions.normalL,
               right: AppDimensions.normalL,
