@@ -40,14 +40,14 @@ void main() {
       // Pick a date 2 days ago
       final twoDaysAgo = DateTime.now().subtract(const Duration(days: 2));
       final formatted = DateFormatter.formatSmartDate(twoDaysAgo);
-      final expected = DateFormat.EEEE().format(twoDaysAgo);
+      final expected = DateFormat.E().format(twoDaysAgo);
       expect(formatted, expected);
     });
 
     test('returns weekday for a date in the future', () {
       final futureDate = DateTime.now().add(const Duration(days: 3));
       final formatted = DateFormatter.formatSmartDate(futureDate);
-      final expected = DateFormat.EEEE().format(futureDate);
+      final expected = DateFormat.E().format(futureDate);
       expect(formatted, expected);
     });
   });
