@@ -16,6 +16,8 @@ class PermissionRepositoryImpl implements PermissionRepository {
   @override
   Future<bool> checkLocationPermissionState() async {
     final status = await permissionService.checkLocationStatus();
-    return status.isGranted;
+    final hasToAskPermission = !status.isGranted || !status.isPermanentlyDenied;
+
+    return hasToAskPermission;
   }
 }

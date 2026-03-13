@@ -147,6 +147,10 @@ class UserDataCubit extends Cubit<UserDataState> {
     }
   }
 
+  Future<void> openLocationSettings() async {
+    await _openAppSettingsUseCase.call();
+  }
+
   void updateLocationPermissionStatus(bool newStatus) {
     user = user.copyWith(isLocationPermissionGranted: newStatus);
     emit(state.copyWith(isLocationPermissionGranted: newStatus));

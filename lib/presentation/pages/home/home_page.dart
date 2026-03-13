@@ -7,6 +7,7 @@ import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_futter_project/presentation/pages/account/account_page.dart';
@@ -39,6 +40,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final hasToAskPermission = await serviceLocator<CheckLocationPermissionStatusUseCase>()
+          .call();
+      if (!hasToAskPermission) return;
+
+      if (!mounted) return;
       await context.read<UserDataCubit>().requestLocationPermission();
     });
   }
