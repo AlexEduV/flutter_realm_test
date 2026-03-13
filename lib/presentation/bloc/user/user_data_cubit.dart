@@ -97,7 +97,14 @@ class UserDataCubit extends Cubit<UserDataState> {
     user = user.copyWith(lastName: lastName);
     emit(state.copyWith(lastName: lastName));
 
-    //todo: move to the separate function to reduce duplication
+    _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
+  }
+
+  void setEmail(String email) {
+    user = user.copyWith(email: email);
+    emit(state.copyWith(email: email));
+
     _localStorage.update(UserExtensions.fromEntity(user));
     updateCloudUser(user);
   }

@@ -98,6 +98,17 @@ class PersonalDetailsPage extends StatelessWidget {
                     title: context.tr(L10nKeys.personalDetailsItemEmail),
                     description: state.email,
                     icon: Icons.email_outlined,
+                    onTap: () => DialogHelper.showEditDialog(
+                      context,
+                      title: context.trRead(L10nKeys.personalDetailsItemEmail),
+                      description: state.email,
+                      confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
+                      cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
+                      onConfirm: context.read<UserDataCubit>().setEmail,
+                      validationCallback: (newValue) {
+                        return context.read<AuthenticationCubit>().validateEmail(newValue, false);
+                      },
+                    ),
                   ),
 
                   PersonalDetailsListItem(
