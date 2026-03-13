@@ -6,8 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_state.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -55,32 +53,25 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
 
             //todo: investigate: while adding a builder fixes explore title missing on load, I do not know what happened,
             // as it has always worked;
-            BlocBuilder<AppLocalisationsCubit, AppLocalisationsState>(
-              builder: (context, state) {
-                return Positioned(
-                  left: AppDimensions.normalL,
-                  right: AppDimensions.normalL,
-                  top: 12,
-                  height: minHeight,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        context.tr(L10nKeys.explorePageTitle),
-                        style: AppTextStyles.zonaPro30White,
-                      ),
-                      IconButton(
-                        onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
-                        icon: const Icon(
-                          Icons.search,
-                          size: AppDimensions.appBarIconSize,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
+            Positioned(
+              left: AppDimensions.normalL,
+              right: AppDimensions.normalL,
+              top: AppDimensions.normalS,
+              height: minHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(context.tr(L10nKeys.explorePageTitle), style: AppTextStyles.zonaPro30White),
+                  IconButton(
+                    onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
+                    icon: const Icon(
+                      Icons.search,
+                      size: AppDimensions.appBarIconSize,
+                      color: Colors.white,
+                    ),
                   ),
-                );
-              },
+                ],
+              ),
             ),
             // Horizontal article list
             Positioned(
