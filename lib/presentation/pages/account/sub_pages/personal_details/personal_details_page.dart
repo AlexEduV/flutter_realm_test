@@ -67,6 +67,20 @@ class PersonalDetailsPage extends StatelessWidget {
                     title: context.tr(L10nKeys.personalDetailsItemLastName),
                     description: state.lastName,
                     icon: Icons.person_outlined,
+                    onTap: () => DialogHelper.showEditDialog(
+                      context,
+                      title: context.trRead(L10nKeys.personalDetailsItemLastName),
+                      description: state.lastName,
+                      confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
+                      cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
+                      onConfirm: context.read<UserDataCubit>().setLastName,
+                      validationCallback: (newValue) {
+                        return context.read<AuthenticationCubit>().validateFullName(
+                          newValue,
+                          false,
+                        );
+                      },
+                    ),
                   ),
 
                   //todo: add phone number and date of birth items to the state later
