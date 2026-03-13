@@ -324,6 +324,30 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
           as _i10.Future<void>);
 
   @override
+  void setFirstName(String? firstName) => super.noSuchMethod(
+    Invocation.method(#setFirstName, [firstName]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void setLastName(String? lastName) => super.noSuchMethod(
+    Invocation.method(#setLastName, [lastName]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void setEmail(String? email) => super.noSuchMethod(
+    Invocation.method(#setEmail, [email]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  void setPassword(String? password) => super.noSuchMethod(
+    Invocation.method(#setPassword, [password]),
+    returnValueForMissingStub: null,
+  );
+
+  @override
   void setLastSeenCar(String? carId) => super.noSuchMethod(
     Invocation.method(#setLastSeenCar, [carId]),
     returnValueForMissingStub: null,
@@ -433,6 +457,16 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
     Invocation.method(#logOutUser, []),
     returnValueForMissingStub: null,
   );
+
+  @override
+  void updateUser({required _i4.UserEntity? user, bool? updateCloud = true}) =>
+      super.noSuchMethod(
+        Invocation.method(#updateUser, [], {
+          #user: user,
+          #updateCloud: updateCloud,
+        }),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void emit(_i5.UserDataState? state) => super.noSuchMethod(

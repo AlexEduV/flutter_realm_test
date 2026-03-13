@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EditDialogState {
 
- bool get isConfirmButtonEnabled;
+ bool get isConfirmButtonEnabled; bool get isPasswordFieldObscure; bool get isConfirmationPasswordFieldObscure;
 /// Create a copy of EditDialogState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $EditDialogStateCopyWith<EditDialogState> get copyWith => _$EditDialogStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditDialogState&&(identical(other.isConfirmButtonEnabled, isConfirmButtonEnabled) || other.isConfirmButtonEnabled == isConfirmButtonEnabled));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditDialogState&&(identical(other.isConfirmButtonEnabled, isConfirmButtonEnabled) || other.isConfirmButtonEnabled == isConfirmButtonEnabled)&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure)&&(identical(other.isConfirmationPasswordFieldObscure, isConfirmationPasswordFieldObscure) || other.isConfirmationPasswordFieldObscure == isConfirmationPasswordFieldObscure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isConfirmButtonEnabled);
+int get hashCode => Object.hash(runtimeType,isConfirmButtonEnabled,isPasswordFieldObscure,isConfirmationPasswordFieldObscure);
 
 @override
 String toString() {
-  return 'EditDialogState(isConfirmButtonEnabled: $isConfirmButtonEnabled)';
+  return 'EditDialogState(isConfirmButtonEnabled: $isConfirmButtonEnabled, isPasswordFieldObscure: $isPasswordFieldObscure, isConfirmationPasswordFieldObscure: $isConfirmationPasswordFieldObscure)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $EditDialogStateCopyWith<$Res>  {
   factory $EditDialogStateCopyWith(EditDialogState value, $Res Function(EditDialogState) _then) = _$EditDialogStateCopyWithImpl;
 @useResult
 $Res call({
- bool isConfirmButtonEnabled
+ bool isConfirmButtonEnabled, bool isPasswordFieldObscure, bool isConfirmationPasswordFieldObscure
 });
 
 
@@ -63,9 +63,11 @@ class _$EditDialogStateCopyWithImpl<$Res>
 
 /// Create a copy of EditDialogState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isConfirmButtonEnabled = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isConfirmButtonEnabled = null,Object? isPasswordFieldObscure = null,Object? isConfirmationPasswordFieldObscure = null,}) {
   return _then(_self.copyWith(
 isConfirmButtonEnabled: null == isConfirmButtonEnabled ? _self.isConfirmButtonEnabled : isConfirmButtonEnabled // ignore: cast_nullable_to_non_nullable
+as bool,isPasswordFieldObscure: null == isPasswordFieldObscure ? _self.isPasswordFieldObscure : isPasswordFieldObscure // ignore: cast_nullable_to_non_nullable
+as bool,isConfirmationPasswordFieldObscure: null == isConfirmationPasswordFieldObscure ? _self.isConfirmationPasswordFieldObscure : isConfirmationPasswordFieldObscure // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -77,10 +79,12 @@ as bool,
 
 
 class _EditDialogState implements EditDialogState {
-  const _EditDialogState({this.isConfirmButtonEnabled = true});
+  const _EditDialogState({this.isConfirmButtonEnabled = true, this.isPasswordFieldObscure = true, this.isConfirmationPasswordFieldObscure = true});
   
 
 @override@JsonKey() final  bool isConfirmButtonEnabled;
+@override@JsonKey() final  bool isPasswordFieldObscure;
+@override@JsonKey() final  bool isConfirmationPasswordFieldObscure;
 
 /// Create a copy of EditDialogState
 /// with the given fields replaced by the non-null parameter values.
@@ -92,16 +96,16 @@ _$EditDialogStateCopyWith<_EditDialogState> get copyWith => __$EditDialogStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditDialogState&&(identical(other.isConfirmButtonEnabled, isConfirmButtonEnabled) || other.isConfirmButtonEnabled == isConfirmButtonEnabled));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditDialogState&&(identical(other.isConfirmButtonEnabled, isConfirmButtonEnabled) || other.isConfirmButtonEnabled == isConfirmButtonEnabled)&&(identical(other.isPasswordFieldObscure, isPasswordFieldObscure) || other.isPasswordFieldObscure == isPasswordFieldObscure)&&(identical(other.isConfirmationPasswordFieldObscure, isConfirmationPasswordFieldObscure) || other.isConfirmationPasswordFieldObscure == isConfirmationPasswordFieldObscure));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isConfirmButtonEnabled);
+int get hashCode => Object.hash(runtimeType,isConfirmButtonEnabled,isPasswordFieldObscure,isConfirmationPasswordFieldObscure);
 
 @override
 String toString() {
-  return 'EditDialogState(isConfirmButtonEnabled: $isConfirmButtonEnabled)';
+  return 'EditDialogState(isConfirmButtonEnabled: $isConfirmButtonEnabled, isPasswordFieldObscure: $isPasswordFieldObscure, isConfirmationPasswordFieldObscure: $isConfirmationPasswordFieldObscure)';
 }
 
 
@@ -112,7 +116,7 @@ abstract mixin class _$EditDialogStateCopyWith<$Res> implements $EditDialogState
   factory _$EditDialogStateCopyWith(_EditDialogState value, $Res Function(_EditDialogState) _then) = __$EditDialogStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isConfirmButtonEnabled
+ bool isConfirmButtonEnabled, bool isPasswordFieldObscure, bool isConfirmationPasswordFieldObscure
 });
 
 
@@ -129,9 +133,11 @@ class __$EditDialogStateCopyWithImpl<$Res>
 
 /// Create a copy of EditDialogState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isConfirmButtonEnabled = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isConfirmButtonEnabled = null,Object? isPasswordFieldObscure = null,Object? isConfirmationPasswordFieldObscure = null,}) {
   return _then(_EditDialogState(
 isConfirmButtonEnabled: null == isConfirmButtonEnabled ? _self.isConfirmButtonEnabled : isConfirmButtonEnabled // ignore: cast_nullable_to_non_nullable
+as bool,isPasswordFieldObscure: null == isPasswordFieldObscure ? _self.isPasswordFieldObscure : isPasswordFieldObscure // ignore: cast_nullable_to_non_nullable
+as bool,isConfirmationPasswordFieldObscure: null == isConfirmationPasswordFieldObscure ? _self.isConfirmationPasswordFieldObscure : isConfirmationPasswordFieldObscure // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

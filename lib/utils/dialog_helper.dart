@@ -3,12 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/models/region_ui_model.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.dart';
+
+import '../presentation/pages/authentication/widgets/animated_password_visibility_icon.dart';
+import '../presentation/widgets/app_semantics.dart';
 
 class DialogHelper {
   static void showConfirmationDialog(
@@ -67,6 +71,7 @@ class DialogHelper {
     required void Function(String)? onConfirm,
     VoidCallback? onCancel,
     bool Function(String)? validationCallback,
+    TextInputType textInputType = TextInputType.text,
   }) {
     showDialog(
       context: context,
@@ -94,6 +99,7 @@ class DialogHelper {
                     borderSide: const BorderSide(color: AppColors.accentColor),
                   ),
                 ),
+                keyboardType: textInputType,
               ),
               backgroundColor: Colors.white,
               actions: [
@@ -182,7 +188,19 @@ class DialogHelper {
                         borderRadius: BorderRadius.circular(AppDimensions.normalS),
                         borderSide: const BorderSide(color: AppColors.accentColor),
                       ),
+                      suffix: getFieldSuffixWidget(
+                        state.isPasswordFieldObscure,
+                        AppSemanticsLabels.obscurePasswordButton,
+                        () {
+                          context.read<EditDialogCubit>().setPasswordObscurity(
+                            !state.isPasswordFieldObscure,
+                          );
+                        },
+                      ),
                     ),
+                    obscureText: state.isPasswordFieldObscure,
+                    keyboardType: TextInputType.visiblePassword,
+                    maxLines: 1,
                   ),
 
                   const SizedBox(height: AppDimensions.minorS),
@@ -199,7 +217,18 @@ class DialogHelper {
                         borderRadius: BorderRadius.circular(AppDimensions.normalS),
                         borderSide: const BorderSide(color: AppColors.accentColor),
                       ),
+                      suffix: getFieldSuffixWidget(
+                        state.isConfirmationPasswordFieldObscure,
+                        AppSemanticsLabels.obscurePasswordButton,
+                        () {
+                          context.read<EditDialogCubit>().setPasswordObscurity(
+                            !state.isConfirmationPasswordFieldObscure,
+                          );
+                        },
+                      ),
                     ),
+                    obscureText: state.isConfirmationPasswordFieldObscure,
+                    keyboardType: TextInputType.visiblePassword,
                   ),
                 ],
               ),
@@ -299,5 +328,30 @@ class DialogHelper {
   ) {
     final isValid = validationCallback?.call(newValue);
     context.read<EditDialogCubit>().setConfirmButtonEnabled(isValid ?? false);
+  }
+
+  static Widget getFieldSuffixWidget(
+    bool isObscureText,
+    String? trailingActionSemanticsLabel,
+    Function() onTap,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(right: AppDimensions.normalS),
+      child: AppSemantics(
+        label: trailingActionSemanticsLabel ?? '',
+        button: true,
+        isSelected: isObscureText,
+        child: Material(
+          shape: const CircleBorder(),
+          child: InkWell(
+            //this will prevent refocusing on the text field on icon long press;
+            onLongPress: () {},
+            onTap: onTap,
+            customBorder: const CircleBorder(),
+            child: AnimatedVisibilityIcon(isObscure: isObscureText),
+          ),
+        ),
+      ),
+    );
   }
 }

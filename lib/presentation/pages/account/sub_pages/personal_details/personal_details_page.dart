@@ -108,6 +108,7 @@ class PersonalDetailsPage extends StatelessWidget {
                       validationCallback: (newValue) {
                         return context.read<AuthenticationCubit>().validateEmail(newValue, false);
                       },
+                      textInputType: TextInputType.emailAddress,
                     ),
                   ),
 
