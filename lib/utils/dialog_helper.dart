@@ -65,14 +65,16 @@ class DialogHelper {
     required void Function(String)? onConfirm,
     VoidCallback? onCancel,
     bool Function(String)? validationCallback,
+    bool isPasswordField = false,
   }) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        final textEditingController = TextEditingController(text: description);
+        final textEditingController = TextEditingController();
         final focusNode = FocusNode();
 
-        _validateEditField(context, description, validationCallback);
+        textEditingController.text = isPasswordField ? '' : description;
+        _validateEditField(context, textEditingController.text, validationCallback);
 
         return BlocBuilder<EditDialogCubit, EditDialogState>(
           builder: (context, state) {

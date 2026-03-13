@@ -115,6 +115,21 @@ class PersonalDetailsPage extends StatelessWidget {
                     title: context.tr(L10nKeys.personalDetailsItemPassword),
                     description: state.password.obscure(),
                     icon: Icons.password,
+                    onTap: () => DialogHelper.showEditDialog(
+                      context,
+                      title: context.trRead(L10nKeys.personalDetailsItemPassword),
+                      description: state.password,
+                      confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
+                      cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
+                      onConfirm: context.read<UserDataCubit>().setPassword,
+                      validationCallback: (newValue) {
+                        return context.read<AuthenticationCubit>().validatePassword(
+                          newValue,
+                          false,
+                        );
+                      },
+                      isPasswordField: true,
+                    ),
                   ),
                 ].withDividers(divider: const CustomDivider()),
               );

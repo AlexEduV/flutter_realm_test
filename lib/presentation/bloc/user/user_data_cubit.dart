@@ -109,6 +109,14 @@ class UserDataCubit extends Cubit<UserDataState> {
     updateCloudUser(user);
   }
 
+  void setPassword(String password) {
+    user = user.copyWith(password: password);
+    emit(state.copyWith(password: password));
+
+    _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
+  }
+
   void setLastSeenCar(String? carId) {
     final newLastSeenCarData = carId == null ? null : {DateTime.now(): carId};
 
