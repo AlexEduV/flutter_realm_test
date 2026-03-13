@@ -31,21 +31,21 @@ void main() {
     expect(result, isFalse);
   });
 
-  test('checkLocationPermissionState returns true when permission is granted', () async {
+  test('checkLocationPermissionState returns granted when permission is granted', () async {
     when(
       mockPermissionService.checkLocationStatus(),
     ).thenAnswer((_) async => PermissionStatus.granted);
 
     final result = await permissionRepository.checkLocationPermissionState();
-    expect(result, isFalse);
+    expect(result, PermissionStatus.granted);
   });
 
-  test('checkLocationPermissionState returns false when permission is denied', () async {
+  test('checkLocationPermissionState returns denied when permission is denied', () async {
     when(
       mockPermissionService.checkLocationStatus(),
     ).thenAnswer((_) async => PermissionStatus.denied);
 
     final result = await permissionRepository.checkLocationPermissionState();
-    expect(result, isTrue);
+    expect(result, PermissionStatus.denied);
   });
 }

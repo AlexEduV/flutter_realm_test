@@ -22,7 +22,7 @@ void main() {
 
       final result = await useCase.call();
 
-      expect(result, isTrue);
+      expect(result, PermissionStatus.granted);
       verify(mockPermissionRepository.checkLocationPermissionState()).called(1);
     });
   });
