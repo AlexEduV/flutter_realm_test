@@ -19,10 +19,10 @@ class DateFormatter {
         L10nKeys.dateFormattingYesterday,
       );
     } else {
-      // Day of the week
-      return DateFormat.EEEE(
+      // Day of the week shortened, e.g. "Mon"
+      return DateFormat.E(
         serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.locale),
-      ).format(date).capitalizeFirst(); // e.g., "Monday"
+      ).format(date).capitalizeFirst();
     }
   }
 }
