@@ -295,7 +295,7 @@ class DialogHelper {
   static void _validateEditField(
     BuildContext context,
     String newValue,
-    Function(String)? validationCallback,
+    bool Function(String)? validationCallback,
   ) {
     final isValid = validationCallback?.call(newValue);
     context.read<EditDialogCubit>().setConfirmButtonEnabled(isValid ?? false);
