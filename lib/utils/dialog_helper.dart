@@ -86,6 +86,12 @@ class DialogHelper {
                 controller: textEditingController,
                 focusNode: focusNode,
                 onChanged: (newValue) => _validateEditField(context, newValue, validationCallback),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                    borderSide: const BorderSide(color: AppColors.accentColor),
+                  ),
+                ),
               ),
               backgroundColor: Colors.white,
               actions: [
@@ -158,19 +164,41 @@ class DialogHelper {
                 style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
               ),
               content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
+                spacing: AppDimensions.minorL,
                 children: [
+                  //todo: localise
+                  const Text('New Password'),
+
                   TextFormField(
                     controller: textEditingController,
                     focusNode: focusNode,
                     onChanged: (newValue) =>
                         _validateEditField(context, newValue, validationCallback),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                        borderSide: const BorderSide(color: AppColors.accentColor),
+                      ),
+                    ),
                   ),
+
+                  const SizedBox(height: AppDimensions.minorS),
+
+                  const Text('Confirm New Password'),
+
                   TextFormField(
                     controller: confirmationTextEditingController,
                     focusNode: confirmationFocusNode,
                     onChanged: (newValue) =>
                         _validateEditField(context, newValue, validationCallback),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                        borderSide: const BorderSide(color: AppColors.accentColor),
+                      ),
+                    ),
                   ),
                 ],
               ),
