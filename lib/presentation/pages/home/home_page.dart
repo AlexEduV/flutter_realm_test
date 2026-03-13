@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
@@ -40,11 +41,17 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final hasToAskPermission = await serviceLocator<CheckLocationPermissionStatusUseCase>()
-          .call();
-      if (!hasToAskPermission) return;
+      final status = await serviceLocator<CheckLocationPermissionStatusUseCase>().call();
 
       if (!mounted) return;
+      context.read<UserDataCubit>().updateLocationPermissionStatus(status.isGranted);
+
+      final hasToAskPermission =
+          status != PermissionStatus.granted &&
+          status != PermissionStatus.permanentlyDenied &&
+          status != PermissionStatus.denied;
+      if (!hasToAskPermission) return;
+
       await context.read<UserDataCubit>().requestLocationPermission();
     });
   }

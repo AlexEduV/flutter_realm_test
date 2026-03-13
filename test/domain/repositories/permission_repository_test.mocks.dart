@@ -6,6 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:permission_handler/permission_handler.dart' as _i4;
 import 'package:test_futter_project/domain/repositories/permission_repository.dart'
     as _i2;
 
@@ -41,10 +42,12 @@ class MockPermissionRepository extends _i1.Mock
           as _i3.Future<bool>);
 
   @override
-  _i3.Future<bool> checkLocationPermissionState() =>
+  _i3.Future<_i4.PermissionStatus> checkLocationPermissionState() =>
       (super.noSuchMethod(
             Invocation.method(#checkLocationPermissionState, []),
-            returnValue: _i3.Future<bool>.value(false),
+            returnValue: _i3.Future<_i4.PermissionStatus>.value(
+              _i4.PermissionStatus.denied,
+            ),
           )
-          as _i3.Future<bool>);
+          as _i3.Future<_i4.PermissionStatus>);
 }
