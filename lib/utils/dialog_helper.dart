@@ -72,6 +72,8 @@ class DialogHelper {
         final textEditingController = TextEditingController(text: description);
         final focusNode = FocusNode();
 
+        _validateEditField(context, description, validationCallback);
+
         return BlocBuilder<EditDialogCubit, EditDialogState>(
           builder: (context, state) {
             return AlertDialog(
@@ -82,12 +84,7 @@ class DialogHelper {
               content: TextFormField(
                 controller: textEditingController,
                 focusNode: focusNode,
-                onChanged: (newValue) {
-                  final isValid = validationCallback?.call(newValue);
-
-                  if (isValid == null) return;
-                  context.read<EditDialogCubit>().setConfirmButtonEnabled(isValid);
-                },
+                onChanged: (newValue) => _validateEditField(context, newValue, validationCallback),
               ),
               backgroundColor: Colors.white,
               actions: [
@@ -108,9 +105,14 @@ class DialogHelper {
                           onConfirm?.call();
                         }
                       : null,
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(AppColors.headerColor),
-                    foregroundColor: WidgetStatePropertyAll(Colors.white),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
+                      if (states.contains(WidgetState.disabled)) {
+                        return Colors.grey;
+                      }
+                      return AppColors.headerColor;
+                    }),
+                    foregroundColor: const WidgetStatePropertyAll(Colors.white),
                   ),
                   child: Text(
                     confirmButtonTitle,
@@ -169,5 +171,14 @@ class DialogHelper {
         );
       },
     );
+  }
+
+  static void _validateEditField(
+    BuildContext context,
+    String newValue,
+    Function(String)? validationCallback,
+  ) {
+    final isValid = validationCallback?.call(newValue);
+    context.read<EditDialogCubit>().setConfirmButtonEnabled(isValid ?? false);
   }
 }
