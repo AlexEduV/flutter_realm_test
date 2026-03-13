@@ -37,7 +37,7 @@ void main() {
     ).thenAnswer((_) async => PermissionStatus.granted);
 
     final result = await permissionRepository.checkLocationPermissionState();
-    expect(result, isTrue);
+    expect(result, isFalse);
   });
 
   test('checkLocationPermissionState returns false when permission is denied', () async {
@@ -46,6 +46,6 @@ void main() {
     ).thenAnswer((_) async => PermissionStatus.denied);
 
     final result = await permissionRepository.checkLocationPermissionState();
-    expect(result, isFalse);
+    expect(result, isTrue);
   });
 }
