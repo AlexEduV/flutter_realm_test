@@ -179,6 +179,10 @@ class DialogHelper {
                     textEditingController: textEditingController,
                     focusNode: focusNode,
                     validateEditField: _validateEditField,
+                    isObscureText: state.isPasswordFieldObscure,
+                    onSuffixIconTap: () => context
+                        .read<EditDialogCubit>()
+                        .setPasswordFieldObscurity(!state.isPasswordFieldObscure),
                   ),
 
                   const SizedBox(height: AppDimensions.minorS),
@@ -189,6 +193,11 @@ class DialogHelper {
                     textEditingController: confirmationTextEditingController,
                     focusNode: confirmationFocusNode,
                     validateEditField: _validateEditField,
+                    isObscureText: state.isConfirmationPasswordFieldObscure,
+                    onSuffixIconTap: () =>
+                        context.read<EditDialogCubit>().setPasswordConfirmationFieldObscurity(
+                          !state.isConfirmationPasswordFieldObscure,
+                        ),
                   ),
                 ],
               ),

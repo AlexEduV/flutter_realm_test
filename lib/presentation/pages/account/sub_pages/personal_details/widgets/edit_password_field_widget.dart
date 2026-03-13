@@ -14,11 +14,15 @@ class EditPasswordFieldWidget extends StatelessWidget {
   final FocusNode focusNode;
   final bool Function(String)? validationCallback;
   final void Function(BuildContext, String, bool Function(String)?) validateEditField;
+  final void Function() onSuffixIconTap;
+  final bool isObscureText;
 
   const EditPasswordFieldWidget({
     required this.textEditingController,
     required this.focusNode,
     required this.validateEditField,
+    required this.onSuffixIconTap,
+    required this.isObscureText,
     super.key,
     this.validationCallback,
   });
@@ -41,14 +45,12 @@ class EditPasswordFieldWidget extends StatelessWidget {
               borderSide: const BorderSide(color: AppColors.accentColor),
             ),
             suffixIcon: _getFieldSuffixWidget(
-              state.isPasswordFieldObscure,
+              isObscureText,
               AppSemanticsLabels.obscurePasswordButton,
-              () {
-                context.read<EditDialogCubit>().setPasswordObscurity(!state.isPasswordFieldObscure);
-              },
+              onSuffixIconTap,
             ),
           ),
-          obscureText: state.isPasswordFieldObscure,
+          obscureText: isObscureText,
           keyboardType: TextInputType.visiblePassword,
         );
       },
@@ -58,7 +60,7 @@ class EditPasswordFieldWidget extends StatelessWidget {
   Widget _getFieldSuffixWidget(
     bool isObscureText,
     String? trailingActionSemanticsLabel,
-    Function() onTap,
+    final void Function() onTap,
   ) {
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.minorS).copyWith(right: AppDimensions.normalS),
