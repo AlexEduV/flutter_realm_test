@@ -53,7 +53,7 @@ class PersonalDetailsPage extends StatelessWidget {
                       description: state.firstName,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
-                      onConfirm: () {},
+                      onConfirm: context.read<UserDataCubit>().setFirstName,
                       validationCallback: (newValue) {
                         return context.read<AuthenticationCubit>().validateFullName(
                           newValue,

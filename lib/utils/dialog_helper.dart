@@ -62,7 +62,7 @@ class DialogHelper {
     required String description,
     required String confirmButtonTitle,
     required String cancelButtonTitle,
-    required VoidCallback? onConfirm,
+    required void Function(String)? onConfirm,
     VoidCallback? onCancel,
     bool Function(String)? validationCallback,
   }) {
@@ -102,7 +102,7 @@ class DialogHelper {
                   onPressed: state.isConfirmButtonEnabled
                       ? () {
                           Navigator.of(context).pop();
-                          onConfirm?.call();
+                          onConfirm?.call(textEditingController.text);
                         }
                       : null,
                   style: ButtonStyle(

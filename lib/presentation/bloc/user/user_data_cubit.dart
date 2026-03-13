@@ -84,6 +84,15 @@ class UserDataCubit extends Cubit<UserDataState> {
     await LocalisationUtil.saveLocalisations(localisations);
   }
 
+  void setFirstName(String firstName) {
+    user = user.copyWith(firstName: firstName);
+    emit(state.copyWith(firstName: firstName));
+
+    //todo: move to the separate function to reduce duplication
+    _localStorage.update(UserExtensions.fromEntity(user));
+    updateCloudUser(user);
+  }
+
   void setLastSeenCar(String? carId) {
     final newLastSeenCarData = carId == null ? null : {DateTime.now(): carId};
 
@@ -251,10 +260,9 @@ class UserDataCubit extends Cubit<UserDataState> {
     user = user.copyWith(region: region);
     emit(state.copyWith(region: region));
 
-    _localStorage.update(UserExtensions.fromEntity(user));
-
     initLocalisation(region);
 
+    _localStorage.update(UserExtensions.fromEntity(user));
     updateCloudUser(user);
   }
 
