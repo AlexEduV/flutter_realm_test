@@ -115,6 +115,8 @@ class PersonalDetailsPage extends StatelessWidget {
                     title: context.tr(L10nKeys.personalDetailsItemPassword),
                     description: state.password.obscure(),
                     icon: Icons.password,
+                    //todo: the password field needs a second 'confirmation' field, maybe a dedicated
+                    //dialog
                     onTap: () => DialogHelper.showEditDialog(
                       context,
                       title: context.trRead(L10nKeys.personalDetailsItemPassword),
