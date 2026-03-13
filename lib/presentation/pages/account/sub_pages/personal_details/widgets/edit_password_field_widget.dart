@@ -31,27 +31,31 @@ class EditPasswordFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<EditDialogCubit, EditDialogState>(
       builder: (context, state) {
-        return TextFormField(
-          controller: textEditingController,
-          focusNode: focusNode,
-          onChanged: (newValue) => validateEditField(context, newValue, validationCallback),
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: AppDimensions.minorL,
-              horizontal: AppDimensions.minorL,
+        return AppSemantics(
+          textField: true,
+          label: AppSemanticsLabels.dialogEditField,
+          child: TextFormField(
+            controller: textEditingController,
+            focusNode: focusNode,
+            onChanged: (newValue) => validateEditField(context, newValue, validationCallback),
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: AppDimensions.minorL,
+                horizontal: AppDimensions.minorL,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                borderSide: const BorderSide(color: AppColors.accentColor),
+              ),
+              suffixIcon: _getFieldSuffixWidget(
+                isObscureText,
+                AppSemanticsLabels.obscurePasswordButton,
+                onSuffixIconTap,
+              ),
             ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppDimensions.normalS),
-              borderSide: const BorderSide(color: AppColors.accentColor),
-            ),
-            suffixIcon: _getFieldSuffixWidget(
-              isObscureText,
-              AppSemanticsLabels.obscurePasswordButton,
-              onSuffixIconTap,
-            ),
+            obscureText: isObscureText,
+            keyboardType: TextInputType.visiblePassword,
           ),
-          obscureText: isObscureText,
-          keyboardType: TextInputType.visiblePassword,
         );
       },
     );
