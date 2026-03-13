@@ -179,6 +179,7 @@ class DialogHelper {
                     textEditingController: textEditingController,
                     focusNode: focusNode,
                     validateEditField: _validateEditField,
+                    validationCallback: validationCallback,
                     isObscureText: state.isPasswordFieldObscure,
                     onSuffixIconTap: () => context
                         .read<EditDialogCubit>()
@@ -192,6 +193,7 @@ class DialogHelper {
                   EditPasswordFieldWidget(
                     textEditingController: confirmationTextEditingController,
                     focusNode: confirmationFocusNode,
+                    validationCallback: validationCallback,
                     validateEditField: _validateEditField,
                     isObscureText: state.isConfirmationPasswordFieldObscure,
                     onSuffixIconTap: () =>
