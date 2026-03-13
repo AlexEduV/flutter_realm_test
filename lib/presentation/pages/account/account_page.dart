@@ -81,7 +81,6 @@ class AccountPage extends StatelessWidget {
                           onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
                         ),
 
-                        //todo: in the personal details -> Change password
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.location_on_outlined,
