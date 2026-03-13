@@ -9,6 +9,11 @@ class EditDialogCubit extends Cubit<EditDialogState> {
   }
 
   void setPasswordObscurity(bool newValue) {
-    emit(state.copyWith(isPasswordFieldObscure: true, isConfirmationPasswordFieldObscure: true));
+    emit(
+      state.copyWith(
+        isPasswordFieldObscure: newValue,
+        isConfirmationPasswordFieldObscure: newValue,
+      ),
+    );
   }
 }
