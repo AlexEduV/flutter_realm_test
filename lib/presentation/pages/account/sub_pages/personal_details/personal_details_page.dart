@@ -5,9 +5,11 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
+import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
+import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/app_text_styles.dart';
 import '../../../../../l10n/l10n_keys.dart';
@@ -45,6 +47,20 @@ class PersonalDetailsPage extends StatelessWidget {
                     title: context.tr(L10nKeys.personalDetailsItemFirstName),
                     description: state.firstName,
                     icon: Icons.person_pin_outlined,
+                    onTap: () => DialogHelper.showEditDialog(
+                      context,
+                      title: context.trRead(L10nKeys.personalDetailsItemFirstName),
+                      description: state.firstName,
+                      confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
+                      cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
+                      onConfirm: () {},
+                      validationCallback: (newValue) {
+                        return context.read<AuthenticationCubit>().validateFullName(
+                          newValue,
+                          false,
+                        );
+                      },
+                    ),
                   ),
 
                   PersonalDetailsListItem(

@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
+import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -13,6 +14,7 @@ import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/utils/app_router.dart';
 import 'package:test_futter_project/utils/image_cache_util.dart';
@@ -68,6 +70,8 @@ class MyApp extends StatelessWidget {
           BlocProvider<AppLocalisationsCubit>(
             create: (context) => serviceLocator<AppLocalisationsCubit>(),
           ),
+          BlocProvider<ShareCubit>(create: (context) => serviceLocator<ShareCubit>()),
+          BlocProvider<EditDialogCubit>(create: (context) => serviceLocator<EditDialogCubit>()),
         ],
         child: MaterialApp.router(
           title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),

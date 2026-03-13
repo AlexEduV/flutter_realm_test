@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/domain/models/region_ui_model.dart';
+import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.dart';
 
 class DialogHelper {
   static void showConfirmationDialog(
@@ -48,6 +51,75 @@ class DialogHelper {
               ),
             ),
           ],
+        );
+      },
+    );
+  }
+
+  static void showEditDialog(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required String confirmButtonTitle,
+    required String cancelButtonTitle,
+    required VoidCallback? onConfirm,
+    VoidCallback? onCancel,
+    bool Function(String)? validationCallback,
+  }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final textEditingController = TextEditingController(text: description);
+        final focusNode = FocusNode();
+
+        return BlocBuilder<EditDialogCubit, EditDialogState>(
+          builder: (context, state) {
+            return AlertDialog(
+              title: Text(
+                title,
+                style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
+              ),
+              content: TextFormField(
+                controller: textEditingController,
+                focusNode: focusNode,
+                onChanged: (newValue) {
+                  final isValid = validationCallback?.call(newValue);
+
+                  if (isValid == null) return;
+                  context.read<EditDialogCubit>().setConfirmButtonEnabled(isValid);
+                },
+              ),
+              backgroundColor: Colors.white,
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    onCancel?.call();
+                  },
+                  child: Text(
+                    cancelButtonTitle,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: state.isConfirmButtonEnabled
+                      ? () {
+                          Navigator.of(context).pop();
+                          onConfirm?.call();
+                        }
+                      : null,
+                  style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(AppColors.headerColor),
+                    foregroundColor: WidgetStatePropertyAll(Colors.white),
+                  ),
+                  child: Text(
+                    confirmButtonTitle,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            );
+          },
         );
       },
     );
