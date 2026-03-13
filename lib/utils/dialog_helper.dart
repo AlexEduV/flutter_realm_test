@@ -3,16 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/models/region_ui_model.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.dart';
-
-import '../presentation/pages/authentication/widgets/animated_password_visibility_icon.dart';
-import '../presentation/widgets/app_semantics.dart';
+import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/edit_password_field_widget.dart';
 
 class DialogHelper {
   static void showConfirmationDialog(
@@ -159,7 +156,7 @@ class DialogHelper {
         final textEditingController = TextEditingController();
         final confirmationTextEditingController = TextEditingController();
         final focusNode = FocusNode();
-        //final confirmationFocusNode = FocusNode();
+        final confirmationFocusNode = FocusNode();
 
         _validateEditField(context, textEditingController.text, validationCallback);
         _validateEditField(context, confirmationTextEditingController.text, validationCallback);
@@ -178,61 +175,21 @@ class DialogHelper {
                 children: [
                   Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogLabel)),
 
-                  TextFormField(
-                    controller: textEditingController,
+                  EditPasswordFieldWidget(
+                    textEditingController: textEditingController,
                     focusNode: focusNode,
-                    onChanged: (newValue) =>
-                        _validateEditField(context, newValue, validationCallback),
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: AppDimensions.minorL,
-                        horizontal: AppDimensions.minorL,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                        borderSide: const BorderSide(color: AppColors.accentColor),
-                      ),
-                      suffix: getFieldSuffixWidget(
-                        state.isPasswordFieldObscure,
-                        AppSemanticsLabels.obscurePasswordButton,
-                        () {
-                          context.read<EditDialogCubit>().setPasswordObscurity(
-                            !state.isPasswordFieldObscure,
-                          );
-                        },
-                      ),
-                    ),
-                    obscureText: state.isPasswordFieldObscure,
-                    keyboardType: TextInputType.visiblePassword,
+                    validateEditField: _validateEditField,
                   ),
 
-                  // const SizedBox(height: AppDimensions.minorS),
-                  //
-                  // Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogSecondLabel)),
-                  //
-                  // TextFormField(
-                  //   controller: confirmationTextEditingController,
-                  //   focusNode: confirmationFocusNode,
-                  //   onChanged: (newValue) =>
-                  //       _validateEditField(context, newValue, validationCallback),
-                  //   decoration: InputDecoration(
-                  //     border: OutlineInputBorder(
-                  //       borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                  //       borderSide: const BorderSide(color: AppColors.accentColor),
-                  //     ),
-                  //     suffix: getFieldSuffixWidget(
-                  //       state.isConfirmationPasswordFieldObscure,
-                  //       AppSemanticsLabels.obscurePasswordButton,
-                  //       () {
-                  //         context.read<EditDialogCubit>().setPasswordObscurity(
-                  //           !state.isConfirmationPasswordFieldObscure,
-                  //         );
-                  //       },
-                  //     ),
-                  //   ),
-                  //   obscureText: state.isConfirmationPasswordFieldObscure,
-                  //   keyboardType: TextInputType.visiblePassword,
-                  // ),
+                  const SizedBox(height: AppDimensions.minorS),
+
+                  Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogSecondLabel)),
+
+                  EditPasswordFieldWidget(
+                    textEditingController: confirmationTextEditingController,
+                    focusNode: confirmationFocusNode,
+                    validateEditField: _validateEditField,
+                  ),
                 ],
               ),
               backgroundColor: Colors.white,
@@ -331,30 +288,5 @@ class DialogHelper {
   ) {
     final isValid = validationCallback?.call(newValue);
     context.read<EditDialogCubit>().setConfirmButtonEnabled(isValid ?? false);
-  }
-
-  static Widget getFieldSuffixWidget(
-    bool isObscureText,
-    String? trailingActionSemanticsLabel,
-    Function() onTap,
-  ) {
-    return AppSemantics(
-      label: trailingActionSemanticsLabel ?? '',
-      button: true,
-      isSelected: isObscureText,
-      child: Material(
-        shape: const CircleBorder(),
-        child: InkWell(
-          //this will prevent refocusing on the text field on icon long press;
-          onLongPress: () {},
-          onTap: onTap,
-          customBorder: const CircleBorder(),
-          child: Padding(
-            padding: const EdgeInsets.all(AppDimensions.minorL),
-            child: AnimatedVisibilityIcon(isObscure: isObscureText),
-          ),
-        ),
-      ),
-    );
   }
 }
