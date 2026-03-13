@@ -59,13 +59,12 @@ class DialogHelper {
   static void showEditDialog(
     BuildContext context, {
     required String title,
-    required String description,
+    required String initialValue,
     required String confirmButtonTitle,
     required String cancelButtonTitle,
     required void Function(String)? onConfirm,
     VoidCallback? onCancel,
     bool Function(String)? validationCallback,
-    bool isPasswordField = false,
   }) {
     showDialog(
       context: context,
@@ -73,7 +72,7 @@ class DialogHelper {
         final textEditingController = TextEditingController();
         final focusNode = FocusNode();
 
-        textEditingController.text = isPasswordField ? '' : description;
+        textEditingController.text = initialValue;
         _validateEditField(context, textEditingController.text, validationCallback);
 
         return BlocBuilder<EditDialogCubit, EditDialogState>(
@@ -87,6 +86,93 @@ class DialogHelper {
                 controller: textEditingController,
                 focusNode: focusNode,
                 onChanged: (newValue) => _validateEditField(context, newValue, validationCallback),
+              ),
+              backgroundColor: Colors.white,
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    onCancel?.call();
+                  },
+                  child: Text(
+                    cancelButtonTitle,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: state.isConfirmButtonEnabled
+                      ? () {
+                          Navigator.of(context).pop();
+                          onConfirm?.call(textEditingController.text);
+                        }
+                      : null,
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
+                      if (states.contains(WidgetState.disabled)) {
+                        return Colors.grey;
+                      }
+                      return AppColors.headerColor;
+                    }),
+                    foregroundColor: const WidgetStatePropertyAll(Colors.white),
+                  ),
+                  child: Text(
+                    confirmButtonTitle,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  static void showEditPasswordDialog(
+    BuildContext context, {
+    required String title,
+    required String initialValue,
+    required String confirmButtonTitle,
+    required String cancelButtonTitle,
+    required void Function(String)? onConfirm,
+    VoidCallback? onCancel,
+    bool Function(String)? validationCallback,
+    bool isPasswordField = false,
+  }) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final textEditingController = TextEditingController();
+        final confirmationTextEditingController = TextEditingController();
+        final focusNode = FocusNode();
+        final confirmationFocusNode = FocusNode();
+
+        _validateEditField(context, textEditingController.text, validationCallback);
+        _validateEditField(context, confirmationTextEditingController.text, validationCallback);
+
+        return BlocBuilder<EditDialogCubit, EditDialogState>(
+          builder: (context, state) {
+            return AlertDialog(
+              title: Text(
+                title,
+                style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFormField(
+                    controller: textEditingController,
+                    focusNode: focusNode,
+                    onChanged: (newValue) =>
+                        _validateEditField(context, newValue, validationCallback),
+                  ),
+                  TextFormField(
+                    controller: confirmationTextEditingController,
+                    focusNode: confirmationFocusNode,
+                    onChanged: (newValue) =>
+                        _validateEditField(context, newValue, validationCallback),
+                  ),
+                ],
               ),
               backgroundColor: Colors.white,
               actions: [

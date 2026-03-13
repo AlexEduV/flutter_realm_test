@@ -50,7 +50,7 @@ class PersonalDetailsPage extends StatelessWidget {
                     onTap: () => DialogHelper.showEditDialog(
                       context,
                       title: context.trRead(L10nKeys.personalDetailsItemFirstName),
-                      description: state.firstName,
+                      initialValue: state.firstName,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setFirstName,
@@ -70,7 +70,7 @@ class PersonalDetailsPage extends StatelessWidget {
                     onTap: () => DialogHelper.showEditDialog(
                       context,
                       title: context.trRead(L10nKeys.personalDetailsItemLastName),
-                      description: state.lastName,
+                      initialValue: state.lastName,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setLastName,
@@ -101,7 +101,7 @@ class PersonalDetailsPage extends StatelessWidget {
                     onTap: () => DialogHelper.showEditDialog(
                       context,
                       title: context.trRead(L10nKeys.personalDetailsItemEmail),
-                      description: state.email,
+                      initialValue: state.email,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setEmail,
@@ -115,12 +115,10 @@ class PersonalDetailsPage extends StatelessWidget {
                     title: context.tr(L10nKeys.personalDetailsItemPassword),
                     description: state.password.obscure(),
                     icon: Icons.password,
-                    //todo: the password field needs a second 'confirmation' field, maybe a dedicated
-                    //dialog
-                    onTap: () => DialogHelper.showEditDialog(
+                    onTap: () => DialogHelper.showEditPasswordDialog(
                       context,
                       title: context.trRead(L10nKeys.personalDetailsItemPassword),
-                      description: state.password,
+                      initialValue: state.password,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setPassword,
@@ -130,7 +128,6 @@ class PersonalDetailsPage extends StatelessWidget {
                           false,
                         );
                       },
-                      isPasswordField: true,
                     ),
                   ),
                 ].withDividers(divider: const CustomDivider()),
