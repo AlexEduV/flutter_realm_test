@@ -169,7 +169,7 @@ class DialogHelper {
                 spacing: AppDimensions.minorL,
                 children: [
                   //todo: localise
-                  const Text('New Password'),
+                  const Text('New password'),
 
                   TextFormField(
                     controller: textEditingController,
@@ -186,7 +186,7 @@ class DialogHelper {
 
                   const SizedBox(height: AppDimensions.minorS),
 
-                  const Text('Confirm New Password'),
+                  const Text('Confirm new password'),
 
                   TextFormField(
                     controller: confirmationTextEditingController,
@@ -215,7 +215,9 @@ class DialogHelper {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: state.isConfirmButtonEnabled
+                  onPressed:
+                      (state.isConfirmButtonEnabled &&
+                          textEditingController.text == confirmationTextEditingController.text)
                       ? () {
                           Navigator.of(context).pop();
                           onConfirm?.call(textEditingController.text);
