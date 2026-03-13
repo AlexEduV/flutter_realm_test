@@ -6,6 +6,7 @@
 import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:permission_handler/permission_handler.dart' as _i10;
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart'
     as _i4;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i3;
@@ -189,10 +190,12 @@ class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
   }
 
   @override
-  _i5.Future<bool> call() =>
+  _i5.Future<_i10.PermissionStatus> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i5.Future<bool>.value(false),
+            returnValue: _i5.Future<_i10.PermissionStatus>.value(
+              _i10.PermissionStatus.denied,
+            ),
           )
-          as _i5.Future<bool>);
+          as _i5.Future<_i10.PermissionStatus>);
 }

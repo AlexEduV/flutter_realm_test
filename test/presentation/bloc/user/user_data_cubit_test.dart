@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
@@ -81,7 +82,9 @@ void main() {
     serviceLocator.registerLazySingleton<CheckLocationPermissionStatusUseCase>(
       () => mockCheckLocationPermissionStatusUseCase,
     );
-    when(mockCheckLocationPermissionStatusUseCase.call()).thenAnswer((_) async => true);
+    when(
+      mockCheckLocationPermissionStatusUseCase.call(),
+    ).thenAnswer((_) async => PermissionStatus.granted);
   });
 
   tearDownAll(() {
