@@ -4,6 +4,10 @@ get:
 clean:
 	flutter clean
 
+clean-get:
+	$(MAKE) clean
+	$(MAKE) get
+
 
 # File Generation
 clean-build:
