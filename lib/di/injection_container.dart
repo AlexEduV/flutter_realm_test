@@ -14,6 +14,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/inbox_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/owner_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
@@ -32,6 +33,7 @@ import 'package:test_futter_project/domain/data_sources/remote/owners_remote_dat
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/repositories/inbox_repository.dart';
 import 'package:test_futter_project/domain/repositories/owner_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
 import 'package:test_futter_project/domain/repositories/region_repository.dart';
@@ -257,4 +259,8 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<ShareUseCase>(() => ShareUseCase(serviceLocator()));
   serviceLocator.registerFactory(() => ShareCubit(serviceLocator()));
   serviceLocator.registerFactory(() => EditDialogCubit());
+
+  serviceLocator.registerLazySingleton<InboxRepository>(
+    () => InboxRepositoryImpl(serviceLocator()),
+  );
 }
