@@ -588,22 +588,38 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
   );
 
   @override
-  void updateModelSelection(List<String>? newList) => super.noSuchMethod(
-    Invocation.method(#updateModelSelection, [newList]),
+  void updateModelSelection(Map<String, List<String>>? newList) =>
+      super.noSuchMethod(
+        Invocation.method(#updateModelSelection, [newList]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addManufacturerToSelection(String? manufacturer) => super.noSuchMethod(
+    Invocation.method(#addManufacturerToSelection, [manufacturer]),
     returnValueForMissingStub: null,
   );
 
   @override
-  void addCarModelToSelection(String? model) => super.noSuchMethod(
-    Invocation.method(#addCarModelToSelection, [model]),
-    returnValueForMissingStub: null,
-  );
+  void removeManufacturerFromSelection(String? manufacturer) =>
+      super.noSuchMethod(
+        Invocation.method(#removeManufacturerFromSelection, [manufacturer]),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void removeCarModelFromSelection(String? model) => super.noSuchMethod(
-    Invocation.method(#removeCarModelFromSelection, [model]),
-    returnValueForMissingStub: null,
-  );
+  void addCarModelToSelection(String? manufacturer, String? model) =>
+      super.noSuchMethod(
+        Invocation.method(#addCarModelToSelection, [manufacturer, model]),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeCarModelFromSelection(String? manufacturer, String? model) =>
+      super.noSuchMethod(
+        Invocation.method(#removeCarModelFromSelection, [manufacturer, model]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void addCarColorToSelection(String? color) => super.noSuchMethod(

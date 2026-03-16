@@ -113,13 +113,17 @@ void main() {
       await tester.tap(find.text('A'));
       await tester.pump();
 
-      verify(mockCubit.addCarModelToSelection('A')).called(1);
+      verify(mockCubit.addCarModelToSelection('manufacturer', 'A')).called(1);
     });
 
     testWidgets('unchecking a model checkbox calls removeCarModelFromSelection', (
       WidgetTester tester,
     ) async {
-      final selectedState = const SearchPageState(selectedModels: ['A']);
+      final selectedState = const SearchPageState(
+        selectedModels: {
+          'Manufacturer': ['A'],
+        },
+      );
       when(mockCubit.state).thenReturn(selectedState);
       when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([selectedState]));
 
@@ -129,7 +133,7 @@ void main() {
       await tester.tap(find.text('A'));
       await tester.pump();
 
-      verify(mockCubit.removeCarModelFromSelection('A')).called(1);
+      verify(mockCubit.removeCarModelFromSelection('Manufacturer', 'A')).called(1);
     });
   });
 }
