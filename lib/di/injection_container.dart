@@ -9,6 +9,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_article_remote
 import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_messages_remote_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
@@ -117,6 +118,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
+  serviceLocator.registerLazySingleton(() => MockOwnersRemoteDataSource());
   serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
     () => UrlLaunchLocalDataSourceImpl(),
   );

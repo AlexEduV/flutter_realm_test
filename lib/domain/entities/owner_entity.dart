@@ -15,6 +15,10 @@ class OwnerEntity {
     );
   }
 
+  factory OwnerEntity.empty() {
+    return OwnerEntity(id: '', name: '', linkedItemIds: []);
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||

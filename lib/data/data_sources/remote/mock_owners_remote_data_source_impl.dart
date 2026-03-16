@@ -28,7 +28,8 @@ class MockOwnersRemoteDataSource {
     return _owners;
   }
 
-  Future<OwnerEntity?> getOwnerById(String id) async {
-    return _owners.where((element) => element.id == id).firstOrNull;
+  OwnerEntity getOwnerById(String id) {
+    final owner = _owners.where((element) => element.id == id).firstOrNull;
+    return owner ?? OwnerEntity.empty();
   }
 }

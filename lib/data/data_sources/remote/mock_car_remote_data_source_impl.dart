@@ -9,9 +9,10 @@ import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
   // 1. Single source of truth
@@ -37,12 +38,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.diesel.name,
       transmissionType: TransmissionType.hybrid.name,
       color: 'Yellow',
-      owner: OwnerEntity(
-        id: '1',
-        name: 'James Norrington',
-        linkedItemIds: ['1', '25'],
-        imageSrc: 'https://images.pexels.com/photos/18333478/pexels-photo-18333478.jpeg',
-      ),
+      owner: serviceLocator<MockOwnersRemoteDataSource>().getOwnerById('1'),
       images: [AppAssetRoutes.porscheYellowImage],
     ),
     CarDto(
@@ -59,12 +55,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.hybrid.name,
       transmissionType: TransmissionType.manual.name,
       color: 'Red',
-      owner: OwnerEntity(
-        id: '2',
-        name: 'Jack Smith',
-        linkedItemIds: ['2', '23'],
-        imageSrc: 'https://images.pexels.com/photos/12158581/pexels-photo-12158581.jpeg',
-      ),
+      owner: serviceLocator<MockOwnersRemoteDataSource>().getOwnerById('2'),
       images: [AppAssetRoutes.hondaCivicRedImage],
     ),
     CarDto(
@@ -80,12 +71,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.diesel.name,
       transmissionType: TransmissionType.hybrid.name,
       color: 'Black',
-      owner: OwnerEntity(
-        id: '3',
-        name: 'Arya Stark',
-        linkedItemIds: ['3', '26'],
-        imageSrc: 'https://images.pexels.com/photos/31350033/pexels-photo-31350033.jpeg',
-      ),
+      owner: serviceLocator<MockOwnersRemoteDataSource>().getOwnerById('3'),
       images: [],
     ),
   ];
