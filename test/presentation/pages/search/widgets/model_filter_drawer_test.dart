@@ -121,7 +121,7 @@ void main() {
     ) async {
       final selectedState = const SearchPageState(
         selectedModels: {
-          'Manufacturer': ['A'],
+          'manufacturer': ['A'],
         },
       );
       when(mockCubit.state).thenReturn(selectedState);
@@ -133,7 +133,7 @@ void main() {
       await tester.tap(find.text('A'));
       await tester.pump();
 
-      verify(mockCubit.removeCarModelFromSelection('Manufacturer', 'A')).called(1);
+      verify(mockCubit.removeCarModelFromSelection('manufacturer', 'A')).called(1);
     });
   });
 }

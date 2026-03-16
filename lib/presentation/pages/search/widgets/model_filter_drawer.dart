@@ -86,7 +86,7 @@ class ModelFilterDrawer extends StatelessWidget {
                       ),
                     ),
                     ...models.map((model) {
-                      final isSelected = (selectedSet[manufacturer]?.contains(model) ?? false);
+                      final isSelected = selectedSet[manufacturer]?.contains(model) ?? false;
                       return CheckboxListTile(
                         value: isSelected,
                         onChanged: (bool? newValue) {
