@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/models/owner_model.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/owner_widget.dart';
 
@@ -38,7 +38,7 @@ void main() {
       bodyType: 'sedan',
       fuelType: 'electric',
       transmissionType: 'automatic',
-      owner: OwnerModel(id: 'test', name: 'Elon Musk', linkedItemIds: []),
+      owner: OwnerEntity(id: 'test', name: 'Elon Musk', linkedItemIds: []),
       distanceTo: 42,
     );
 
@@ -75,7 +75,7 @@ void main() {
       bodyType: 'sedan',
       fuelType: 'electric',
       transmissionType: 'automatic',
-      owner: OwnerModel(id: 'test', name: 'Elon Musk', linkedItemIds: []),
+      owner: OwnerEntity(id: 'test', name: 'Elon Musk', linkedItemIds: []),
       distanceTo: 42,
     );
 

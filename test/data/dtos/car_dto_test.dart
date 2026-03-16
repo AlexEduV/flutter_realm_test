@@ -5,7 +5,7 @@ import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
-import 'package:test_futter_project/domain/models/owner_model.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 void main() {
   group('CarDto', () {
@@ -19,7 +19,7 @@ void main() {
         type: 'car',
         isVerified: true,
         year: '2020',
-        owner: OwnerModel(id: 'test', name: 'John Doe', linkedItemIds: []),
+        owner: OwnerEntity(id: 'test', name: 'John Doe', linkedItemIds: []),
         kilometers: 10000,
         distanceTo: 50,
         price: 80000,

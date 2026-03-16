@@ -1,5 +1,5 @@
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/domain/models/owner_model.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 import '../../common/enums/promo_type.dart';
 
@@ -14,7 +14,7 @@ class CarDto {
   final String bodyType;
   final String fuelType;
   final String transmissionType;
-  final OwnerModel? owner;
+  final OwnerEntity? owner;
   final bool isVerified;
   final PromoType? promoType;
   int? kilometers;
@@ -53,7 +53,7 @@ class CarDto {
     String? bodyType,
     String? fuelType,
     String? transmissionType,
-    OwnerModel? owner,
+    OwnerEntity? owner,
     bool? isVerified,
     PromoType? promoType,
     int? kilometers,
@@ -97,7 +97,7 @@ class CarDto {
       fuelType: json['fuel_type'] as String,
       bodyType: json['body_type'] as String,
       color: json['color'] as String,
-      owner: OwnerModel.fromJson(json['owner'] as Map<String, dynamic>),
+      owner: OwnerEntity.fromJson(json['owner'] as Map<String, dynamic>),
       images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
     );
   }

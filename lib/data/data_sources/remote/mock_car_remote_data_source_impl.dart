@@ -11,7 +11,7 @@ import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
-import 'package:test_futter_project/domain/models/owner_model.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
   // 1. Single source of truth
@@ -37,7 +37,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.diesel.name,
       transmissionType: TransmissionType.hybrid.name,
       color: 'Yellow',
-      owner: OwnerModel(
+      owner: OwnerEntity(
         id: '1',
         name: 'James Norrington',
         linkedItemIds: ['1', '25'],
@@ -59,7 +59,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.hybrid.name,
       transmissionType: TransmissionType.manual.name,
       color: 'Red',
-      owner: OwnerModel(
+      owner: OwnerEntity(
         id: '2',
         name: 'Jack Smith',
         linkedItemIds: ['2', '23'],
@@ -80,7 +80,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.diesel.name,
       transmissionType: TransmissionType.hybrid.name,
       color: 'Black',
-      owner: OwnerModel(
+      owner: OwnerEntity(
         id: '3',
         name: 'Arya Stark',
         linkedItemIds: ['3', '26'],

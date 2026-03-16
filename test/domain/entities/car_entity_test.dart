@@ -7,7 +7,7 @@ import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/models/owner_model.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 void main() {
   final mockCar = Car(
@@ -39,7 +39,7 @@ void main() {
         isVerified: true,
         type: 'car',
         year: '2020',
-        owner: OwnerModel(id: 'test', name: 'John Doe', linkedItemIds: []),
+        owner: OwnerEntity(id: 'test', name: 'John Doe', linkedItemIds: []),
         kilometers: 10000,
         distanceTo: 50,
         price: 80000,
@@ -73,7 +73,7 @@ void main() {
         isVerified: false,
         promoType: PromoType.oneOwner,
         year: '2018',
-        owner: OwnerModel(id: 'test', name: 'Jane Doe', linkedItemIds: []),
+        owner: OwnerEntity(id: 'test', name: 'Jane Doe', linkedItemIds: []),
         kilometers: 50000,
         distanceTo: 100,
         price: 20000,

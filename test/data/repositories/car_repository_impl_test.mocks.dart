@@ -14,14 +14,12 @@ import 'package:realm_dart/src/configuration.dart' as _i3;
 import 'package:realm_dart/src/realm_object.dart' as _i10;
 import 'package:realm_dart/src/results.dart' as _i5;
 import 'package:test_futter_project/common/enums/promo_type.dart' as _i15;
-import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart'
-    as _i16;
+import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart' as _i16;
 import 'package:test_futter_project/data/dto/car_dto.dart' as _i8;
-import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart'
-    as _i13;
+import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart' as _i13;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i6;
+import 'package:test_futter_project/domain/entities/owner_entity.dart' as _i14;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i9;
-import 'package:test_futter_project/domain/models/owner_model.dart' as _i14;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -38,8 +36,7 @@ import 'package:test_futter_project/domain/models/owner_model.dart' as _i14;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeDynamicRealm_0 extends _i1.SmartFake implements _i2.DynamicRealm {
-  _FakeDynamicRealm_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeDynamicRealm_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeConfiguration_1 extends _i1.SmartFake implements _i3.Configuration {
@@ -48,49 +45,40 @@ class _FakeConfiguration_1 extends _i1.SmartFake implements _i3.Configuration {
 }
 
 class _FakeRealmSchema_2 extends _i1.SmartFake implements _i3.RealmSchema {
-  _FakeRealmSchema_2(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeRealmSchema_2(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeTransaction_3 extends _i1.SmartFake implements _i2.Transaction {
-  _FakeTransaction_3(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeTransaction_3(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeFuture_4<T1> extends _i1.SmartFake implements _i4.Future<T1> {
-  _FakeFuture_4(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeFuture_4(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeRealmResults_5<T1 extends Object?> extends _i1.SmartFake
     implements _i5.RealmResults<T1> {
-  _FakeRealmResults_5(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeRealmResults_5(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeRealm_6 extends _i1.SmartFake implements _i2.Realm {
-  _FakeRealm_6(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeRealm_6(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeCarEntity_7 extends _i1.SmartFake implements _i6.CarEntity {
-  _FakeCarEntity_7(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeCarEntity_7(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeObjectId_8 extends _i1.SmartFake implements _i7.ObjectId {
-  _FakeObjectId_8(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeObjectId_8(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeCarDto_9 extends _i1.SmartFake implements _i8.CarDto {
-  _FakeCarDto_9(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeCarDto_9(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeUserEntity_10 extends _i1.SmartFake implements _i9.UserEntity {
-  _FakeUserEntity_10(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeUserEntity_10(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 /// A class which mocks [Realm].
@@ -127,27 +115,19 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
 
   @override
   bool get isFrozen =>
-      (super.noSuchMethod(Invocation.getter(#isFrozen), returnValue: false)
-          as bool);
+      (super.noSuchMethod(Invocation.getter(#isFrozen), returnValue: false) as bool);
 
   @override
   bool get isInTransaction =>
-      (super.noSuchMethod(
-            Invocation.getter(#isInTransaction),
-            returnValue: false,
-          )
-          as bool);
+      (super.noSuchMethod(Invocation.getter(#isInTransaction), returnValue: false) as bool);
 
   @override
   bool get isClosed =>
-      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
-          as bool);
+      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false) as bool);
 
   @override
-  set schema(_i3.RealmSchema? _schema) => super.noSuchMethod(
-    Invocation.setter(#schema, _schema),
-    returnValueForMissingStub: null,
-  );
+  set schema(_i3.RealmSchema? _schema) =>
+      super.noSuchMethod(Invocation.setter(#schema, _schema), returnValueForMissingStub: null);
 
   @override
   T add<T extends _i10.RealmObject>(T? object, {bool? update = false}) =>
@@ -161,35 +141,25 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
           as T);
 
   @override
-  void addAll<T extends _i10.RealmObject>(
-    Iterable<T>? items, {
-    bool? update = false,
-  }) => super.noSuchMethod(
-    Invocation.method(#addAll, [items], {#update: update}),
-    returnValueForMissingStub: null,
-  );
+  void addAll<T extends _i10.RealmObject>(Iterable<T>? items, {bool? update = false}) =>
+      super.noSuchMethod(
+        Invocation.method(#addAll, [items], {#update: update}),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void delete<T extends _i10.RealmObjectBase>(T? object) => super.noSuchMethod(
-    Invocation.method(#delete, [object]),
-    returnValueForMissingStub: null,
-  );
+  void delete<T extends _i10.RealmObjectBase>(T? object) =>
+      super.noSuchMethod(Invocation.method(#delete, [object]), returnValueForMissingStub: null);
 
   @override
   void deleteMany<T extends _i10.RealmObject>(Iterable<T>? items) =>
-      super.noSuchMethod(
-        Invocation.method(#deleteMany, [items]),
-        returnValueForMissingStub: null,
-      );
+      super.noSuchMethod(Invocation.method(#deleteMany, [items]), returnValueForMissingStub: null);
 
   @override
   T write<T>(T Function()? writeCallback) =>
       (super.noSuchMethod(
             Invocation.method(#write, [writeCallback]),
-            returnValue: _i11.dummyValue<T>(
-              this,
-              Invocation.method(#write, [writeCallback]),
-            ),
+            returnValue: _i11.dummyValue<T>(this, Invocation.method(#write, [writeCallback])),
           )
           as T);
 
@@ -197,24 +167,16 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
   _i2.Transaction beginWrite() =>
       (super.noSuchMethod(
             Invocation.method(#beginWrite, []),
-            returnValue: _FakeTransaction_3(
-              this,
-              Invocation.method(#beginWrite, []),
-            ),
+            returnValue: _FakeTransaction_3(this, Invocation.method(#beginWrite, [])),
           )
           as _i2.Transaction);
 
   @override
-  _i4.Future<_i2.Transaction> beginWriteAsync([
-    _i12.CancellationToken? cancellationToken,
-  ]) =>
+  _i4.Future<_i2.Transaction> beginWriteAsync([_i12.CancellationToken? cancellationToken]) =>
       (super.noSuchMethod(
             Invocation.method(#beginWriteAsync, [cancellationToken]),
             returnValue: _i4.Future<_i2.Transaction>.value(
-              _FakeTransaction_3(
-                this,
-                Invocation.method(#beginWriteAsync, [cancellationToken]),
-              ),
+              _FakeTransaction_3(this, Invocation.method(#beginWriteAsync, [cancellationToken])),
             ),
           )
           as _i4.Future<_i2.Transaction>);
@@ -230,37 +192,26 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
                 _i11.ifNotNull(
                   _i11.dummyValueOrNull<T>(
                     this,
-                    Invocation.method(#writeAsync, [
-                      writeCallback,
-                      cancellationToken,
-                    ]),
+                    Invocation.method(#writeAsync, [writeCallback, cancellationToken]),
                   ),
                   (T v) => _i4.Future<T>.value(v),
                 ) ??
                 _FakeFuture_4<T>(
                   this,
-                  Invocation.method(#writeAsync, [
-                    writeCallback,
-                    cancellationToken,
-                  ]),
+                  Invocation.method(#writeAsync, [writeCallback, cancellationToken]),
                 ),
           )
           as _i4.Future<T>);
 
   @override
-  void close() => super.noSuchMethod(
-    Invocation.method(#close, []),
-    returnValueForMissingStub: null,
-  );
+  void close() =>
+      super.noSuchMethod(Invocation.method(#close, []), returnValueForMissingStub: null);
 
   @override
   _i5.RealmResults<T> all<T extends _i10.RealmObject>() =>
       (super.noSuchMethod(
             Invocation.method(#all, []),
-            returnValue: _FakeRealmResults_5<T>(
-              this,
-              Invocation.method(#all, []),
-            ),
+            returnValue: _FakeRealmResults_5<T>(this, Invocation.method(#all, [])),
           )
           as _i5.RealmResults<T>);
 
@@ -271,18 +222,13 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
   ]) =>
       (super.noSuchMethod(
             Invocation.method(#query, [query, args]),
-            returnValue: _FakeRealmResults_5<T>(
-              this,
-              Invocation.method(#query, [query, args]),
-            ),
+            returnValue: _FakeRealmResults_5<T>(this, Invocation.method(#query, [query, args])),
           )
           as _i5.RealmResults<T>);
 
   @override
-  void deleteAll<T extends _i10.RealmObject>() => super.noSuchMethod(
-    Invocation.method(#deleteAll, []),
-    returnValueForMissingStub: null,
-  );
+  void deleteAll<T extends _i10.RealmObject>() =>
+      super.noSuchMethod(Invocation.method(#deleteAll, []), returnValueForMissingStub: null);
 
   @override
   _i2.Realm freeze() =>
@@ -293,15 +239,12 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
           as _i2.Realm);
 
   @override
-  void writeCopy(_i3.Configuration? config) => super.noSuchMethod(
-    Invocation.method(#writeCopy, [config]),
-    returnValueForMissingStub: null,
-  );
+  void writeCopy(_i3.Configuration? config) =>
+      super.noSuchMethod(Invocation.method(#writeCopy, [config]), returnValueForMissingStub: null);
 
   @override
   bool refresh() =>
-      (super.noSuchMethod(Invocation.method(#refresh, []), returnValue: false)
-          as bool);
+      (super.noSuchMethod(Invocation.method(#refresh, []), returnValue: false) as bool);
 
   @override
   _i4.Future<bool> refreshAsync() =>
@@ -321,8 +264,7 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
 /// A class which mocks [CarRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarRemoteDataSource extends _i1.Mock
-    implements _i13.CarRemoteDataSource {
+class MockCarRemoteDataSource extends _i1.Mock implements _i13.CarRemoteDataSource {
   MockCarRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -344,10 +286,8 @@ class MockCarRemoteDataSource extends _i1.Mock
           as _i4.Future<List<_i8.CarDto>>);
 
   @override
-  void dispose() => super.noSuchMethod(
-    Invocation.method(#dispose, []),
-    returnValueForMissingStub: null,
-  );
+  void dispose() =>
+      super.noSuchMethod(Invocation.method(#dispose, []), returnValueForMissingStub: null);
 }
 
 /// A class which mocks [CarEntity].
@@ -362,10 +302,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
   String get carId =>
       (super.noSuchMethod(
             Invocation.getter(#carId),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#carId),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#carId)),
           )
           as String);
 
@@ -373,10 +310,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
   String get model =>
       (super.noSuchMethod(
             Invocation.getter(#model),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#model),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#model)),
           )
           as String);
 
@@ -384,10 +318,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
   String get manufacturer =>
       (super.noSuchMethod(
             Invocation.getter(#manufacturer),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#manufacturer),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#manufacturer)),
           )
           as String);
 
@@ -395,10 +326,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
   String get type =>
       (super.noSuchMethod(
             Invocation.getter(#type),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#type),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#type)),
           )
           as String);
 
@@ -406,10 +334,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
   String get bodyType =>
       (super.noSuchMethod(
             Invocation.getter(#bodyType),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#bodyType),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#bodyType)),
           )
           as String);
 
@@ -417,10 +342,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
   String get fuelType =>
       (super.noSuchMethod(
             Invocation.getter(#fuelType),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#fuelType),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#fuelType)),
           )
           as String);
 
@@ -428,22 +350,17 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
   String get transmissionType =>
       (super.noSuchMethod(
             Invocation.getter(#transmissionType),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#transmissionType),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#transmissionType)),
           )
           as String);
 
   @override
   bool get isVerified =>
-      (super.noSuchMethod(Invocation.getter(#isVerified), returnValue: false)
-          as bool);
+      (super.noSuchMethod(Invocation.getter(#isVerified), returnValue: false) as bool);
 
   @override
   List<String> get images =>
-      (super.noSuchMethod(Invocation.getter(#images), returnValue: <String>[])
-          as List<String>);
+      (super.noSuchMethod(Invocation.getter(#images), returnValue: <String>[]) as List<String>);
 
   @override
   set kilometers(int? _kilometers) => super.noSuchMethod(
@@ -458,10 +375,8 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
   );
 
   @override
-  set price(int? _price) => super.noSuchMethod(
-    Invocation.setter(#price, _price),
-    returnValueForMissingStub: null,
-  );
+  set price(int? _price) =>
+      super.noSuchMethod(Invocation.setter(#price, _price), returnValueForMissingStub: null);
 
   @override
   _i6.CarEntity copyWith({
@@ -471,7 +386,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
     String? type,
     String? year,
     String? color,
-    _i14.OwnerModel? owner,
+    _i14.OwnerEntity? owner,
     String? bodyType,
     String? fuelType,
     String? transmissionType,
@@ -546,10 +461,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
   String get carId =>
       (super.noSuchMethod(
             Invocation.getter(#carId),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#carId),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#carId)),
           )
           as String);
 
@@ -557,10 +469,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
   String get model =>
       (super.noSuchMethod(
             Invocation.getter(#model),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#model),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#model)),
           )
           as String);
 
@@ -568,10 +477,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
   String get manufacturer =>
       (super.noSuchMethod(
             Invocation.getter(#manufacturer),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#manufacturer),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#manufacturer)),
           )
           as String);
 
@@ -579,10 +485,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
   String get type =>
       (super.noSuchMethod(
             Invocation.getter(#type),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#type),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#type)),
           )
           as String);
 
@@ -590,10 +493,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
   String get bodyType =>
       (super.noSuchMethod(
             Invocation.getter(#bodyType),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#bodyType),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#bodyType)),
           )
           as String);
 
@@ -601,10 +501,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
   String get fuelType =>
       (super.noSuchMethod(
             Invocation.getter(#fuelType),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#fuelType),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#fuelType)),
           )
           as String);
 
@@ -612,22 +509,17 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
   String get transmissionType =>
       (super.noSuchMethod(
             Invocation.getter(#transmissionType),
-            returnValue: _i11.dummyValue<String>(
-              this,
-              Invocation.getter(#transmissionType),
-            ),
+            returnValue: _i11.dummyValue<String>(this, Invocation.getter(#transmissionType)),
           )
           as String);
 
   @override
   bool get isVerified =>
-      (super.noSuchMethod(Invocation.getter(#isVerified), returnValue: false)
-          as bool);
+      (super.noSuchMethod(Invocation.getter(#isVerified), returnValue: false) as bool);
 
   @override
   List<String> get images =>
-      (super.noSuchMethod(Invocation.getter(#images), returnValue: <String>[])
-          as List<String>);
+      (super.noSuchMethod(Invocation.getter(#images), returnValue: <String>[]) as List<String>);
 
   @override
   set kilometers(int? _kilometers) => super.noSuchMethod(
@@ -642,16 +534,12 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
   );
 
   @override
-  set price(int? _price) => super.noSuchMethod(
-    Invocation.setter(#price, _price),
-    returnValueForMissingStub: null,
-  );
+  set price(int? _price) =>
+      super.noSuchMethod(Invocation.setter(#price, _price), returnValueForMissingStub: null);
 
   @override
-  set images(List<String>? _images) => super.noSuchMethod(
-    Invocation.setter(#images, _images),
-    returnValueForMissingStub: null,
-  );
+  set images(List<String>? _images) =>
+      super.noSuchMethod(Invocation.setter(#images, _images), returnValueForMissingStub: null);
 
   @override
   _i8.CarDto copyWith({
@@ -665,7 +553,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
     String? bodyType,
     String? fuelType,
     String? transmissionType,
-    _i14.OwnerModel? owner,
+    _i14.OwnerEntity? owner,
     bool? isVerified,
     _i15.PromoType? promoType,
     int? kilometers,
@@ -736,53 +624,36 @@ class MockRealmLocalStorage extends _i1.Mock implements _i16.RealmLocalStorage {
           as _i2.Realm);
 
   @override
-  void add(dynamic T) => super.noSuchMethod(
-    Invocation.method(#add, [T]),
-    returnValueForMissingStub: null,
-  );
+  void add(dynamic T) =>
+      super.noSuchMethod(Invocation.method(#add, [T]), returnValueForMissingStub: null);
 
   @override
-  void update(dynamic T) => super.noSuchMethod(
-    Invocation.method(#update, [T]),
-    returnValueForMissingStub: null,
-  );
+  void update(dynamic T) =>
+      super.noSuchMethod(Invocation.method(#update, [T]), returnValueForMissingStub: null);
 
   @override
   _i4.Stream<dynamic> watch<T>() =>
-      (super.noSuchMethod(
-            Invocation.method(#watch, []),
-            returnValue: _i4.Stream<dynamic>.empty(),
-          )
+      (super.noSuchMethod(Invocation.method(#watch, []), returnValue: _i4.Stream<dynamic>.empty())
           as _i4.Stream<dynamic>);
 
   @override
   List<_i6.CarEntity> getAll() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAll, []),
-            returnValue: <_i6.CarEntity>[],
-          )
+      (super.noSuchMethod(Invocation.method(#getAll, []), returnValue: <_i6.CarEntity>[])
           as List<_i6.CarEntity>);
 
   @override
-  void deleteById(String? id) => super.noSuchMethod(
-    Invocation.method(#deleteById, [id]),
-    returnValueForMissingStub: null,
-  );
+  void deleteById(String? id) =>
+      super.noSuchMethod(Invocation.method(#deleteById, [id]), returnValueForMissingStub: null);
 
   @override
-  void deleteAllCars() => super.noSuchMethod(
-    Invocation.method(#deleteAllCars, []),
-    returnValueForMissingStub: null,
-  );
+  void deleteAllCars() =>
+      super.noSuchMethod(Invocation.method(#deleteAllCars, []), returnValueForMissingStub: null);
 
   @override
   _i9.UserEntity initUser() =>
       (super.noSuchMethod(
             Invocation.method(#initUser, []),
-            returnValue: _FakeUserEntity_10(
-              this,
-              Invocation.method(#initUser, []),
-            ),
+            returnValue: _FakeUserEntity_10(this, Invocation.method(#initUser, [])),
           )
           as _i9.UserEntity);
 
@@ -790,21 +661,15 @@ class MockRealmLocalStorage extends _i1.Mock implements _i16.RealmLocalStorage {
   _i6.CarEntity getCarById(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getCarById, [id]),
-            returnValue: _FakeCarEntity_7(
-              this,
-              Invocation.method(#getCarById, [id]),
-            ),
+            returnValue: _FakeCarEntity_7(this, Invocation.method(#getCarById, [id])),
           )
           as _i6.CarEntity);
 
   @override
   int getMaxCarId() =>
-      (super.noSuchMethod(Invocation.method(#getMaxCarId, []), returnValue: 0)
-          as int);
+      (super.noSuchMethod(Invocation.method(#getMaxCarId, []), returnValue: 0) as int);
 
   @override
-  void clearUser() => super.noSuchMethod(
-    Invocation.method(#clearUser, []),
-    returnValueForMissingStub: null,
-  );
+  void clearUser() =>
+      super.noSuchMethod(Invocation.method(#clearUser, []), returnValueForMissingStub: null);
 }

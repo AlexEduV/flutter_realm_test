@@ -1,8 +1,8 @@
 import 'package:test_futter_project/common/enums/message_status.dart';
-import 'package:test_futter_project/domain/models/owner_model.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 class MessageModel {
-  final OwnerModel sender;
+  final OwnerEntity sender;
   final MessageStatus messageStatus;
   final String text;
   final DateTime date;
