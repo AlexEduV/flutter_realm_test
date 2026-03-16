@@ -1,6 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
@@ -24,6 +24,7 @@ class ModelFilterDrawer extends StatelessWidget {
         final allSet = models;
 
         final equality = const DeepCollectionEquality.unordered().equals;
+        final unorderedListEquality = const UnorderedIterableEquality();
         final areAllSelected = equality(selectedSet, allSet);
 
         return Drawer(
@@ -62,7 +63,10 @@ class ModelFilterDrawer extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: AppDimensions.minorL),
                       child: CheckboxListTile(
-                        value: state.selectedModels[manufacturer] == state.allModels[manufacturer],
+                        value: unorderedListEquality.equals(
+                          state.selectedModels[manufacturer],
+                          state.allModels[manufacturer],
+                        ),
                         onChanged: (bool? newValue) {
                           if (newValue == true) {
                             context.read<SearchPageCubit>().addManufacturerToSelection(
