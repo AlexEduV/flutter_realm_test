@@ -4,6 +4,7 @@ import 'package:test_futter_project/data/data_sources/local/geolocator_local_dat
 import 'package:test_futter_project/data/data_sources/local/permission_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart';
 import 'package:test_futter_project/data/data_sources/local/share_local_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/local/url_launch_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
@@ -15,10 +16,12 @@ import 'package:test_futter_project/data/repositories/geolocator_repository_impl
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/share_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/url_launch_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/share_local_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/local/url_launch_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/article_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
@@ -52,6 +55,7 @@ import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_ca
 import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/domain/usecases/share/share_use_case.dart';
+import 'package:test_futter_project/domain/usecases/url/open_url_link_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
@@ -67,6 +71,7 @@ import '../data/models/scheme.dart';
 import '../data/repositories/car_repository_impl.dart';
 import '../domain/repositories/car_repository.dart';
 import '../domain/repositories/geolocator_repository.dart';
+import '../domain/repositories/url_launch_repository.dart';
 import '../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
@@ -112,6 +117,9 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
+  serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
+    () => UrlLaunchLocalDataSourceImpl(),
+  );
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
     () => MockRegionRemoteDataSourceImpl(),
   );
@@ -214,10 +222,15 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => GetRegionByCodeUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
 
+  serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
+
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 
   serviceLocator.registerLazySingleton<GeolocatorRepository>(
     () => GeolocatorRepositoryImpl(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<UrlLaunchRepository>(
+    () => UrlLaunchRepositoryImpl(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<OpenAppSettingsUseCase>(
     () => OpenAppSettingsUseCase(serviceLocator()),

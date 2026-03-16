@@ -4,6 +4,11 @@
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need access to your photo library to set images for the user account.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>http</string>
+		<string>https</string>
+	</array>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We use this data to function in the background</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

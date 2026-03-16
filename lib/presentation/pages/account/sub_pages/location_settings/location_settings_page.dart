@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
@@ -82,8 +83,14 @@ class LocationSettingsPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  FooterText(text: context.tr(L10nKeys.locationSettingsPrivacyItemConditions)),
-                  FooterText(text: context.tr(L10nKeys.locationSettingsPrivacyItemPrivacyPolicy)),
+                  FooterText(
+                    text: context.tr(L10nKeys.locationSettingsPrivacyItemConditions),
+                    url: AppConstants.termsAndConditionsUrl,
+                  ),
+                  FooterText(
+                    text: context.tr(L10nKeys.locationSettingsPrivacyItemPrivacyPolicy),
+                    url: AppConstants.privacyPolicyUrl,
+                  ),
                 ],
               ),
             ),
