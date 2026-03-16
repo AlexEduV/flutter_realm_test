@@ -42,7 +42,10 @@ class ModelFilterDrawer extends StatelessWidget {
                     context.read<SearchPageCubit>().updateModelSelection({});
                   }
                 },
-                title: Text(context.tr(L10nKeys.searchFilterModelPlaceholder)),
+                title: Text(
+                  context.tr(L10nKeys.searchFilterModelPlaceholder),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
                 controlAffinity: checkBoxPosition,
               ),
 
@@ -54,13 +57,25 @@ class ModelFilterDrawer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: AppDimensions.minorL,
-                        horizontal: AppDimensions.majorM,
-                      ),
-                      child: Text(
-                        manufacturer,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      padding: const EdgeInsets.symmetric(vertical: AppDimensions.minorL),
+                      child: CheckboxListTile(
+                        value: state.selectedModels[manufacturer] == state.allModels[manufacturer],
+                        onChanged: (bool? newValue) {
+                          if (newValue == true) {
+                            context.read<SearchPageCubit>().addManufacturerToSelection(
+                              manufacturer,
+                            );
+                          } else {
+                            context.read<SearchPageCubit>().removeManufacturerFromSelection(
+                              manufacturer,
+                            );
+                          }
+                        },
+                        title: Text(
+                          manufacturer,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        controlAffinity: checkBoxPosition,
                       ),
                     ),
                     ...models.map((model) {

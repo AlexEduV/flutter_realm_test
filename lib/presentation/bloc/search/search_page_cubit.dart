@@ -168,6 +168,22 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
+  void addManufacturerToSelection(String manufacturer) {
+    final map = Map<String, List<String>>.from(state.selectedModels);
+    map[manufacturer] = state.allModels[manufacturer] ?? [];
+
+    emit(state.copyWith(selectedModels: map));
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void removeManufacturerFromSelection(String manufacturer) {
+    final map = Map<String, List<String>>.from(state.selectedModels);
+    map.remove(manufacturer);
+
+    emit(state.copyWith(selectedModels: map));
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
   void addCarModelToSelection(String manufacturer, String model) {
     final map = Map<String, List<String>>.from(state.selectedModels);
 
