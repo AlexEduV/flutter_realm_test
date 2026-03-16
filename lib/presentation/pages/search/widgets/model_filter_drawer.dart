@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
@@ -21,7 +22,9 @@ class ModelFilterDrawer extends StatelessWidget {
       builder: (context, state) {
         final selectedSet = state.selectedModels;
         final allSet = models;
-        final areAllSelected = selectedSet == allSet;
+
+        final equality = const DeepCollectionEquality.unordered().equals;
+        final areAllSelected = equality(selectedSet, allSet);
 
         return Drawer(
           child: ListView(
