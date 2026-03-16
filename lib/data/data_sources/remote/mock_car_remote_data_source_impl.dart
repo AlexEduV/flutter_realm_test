@@ -9,10 +9,10 @@ import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/dto/car_dto.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
+import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 
 class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
   // 1. Single source of truth
@@ -38,7 +38,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.diesel.name,
       transmissionType: TransmissionType.hybrid.name,
       color: 'Yellow',
-      owner: serviceLocator<MockOwnersRemoteDataSource>().getOwnerById('1'),
+      owner: serviceLocator<GetOwnerByIdUseCase>().call('1'),
       images: [AppAssetRoutes.porscheYellowImage],
     ),
     CarDto(
@@ -55,7 +55,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.hybrid.name,
       transmissionType: TransmissionType.manual.name,
       color: 'Red',
-      owner: serviceLocator<MockOwnersRemoteDataSource>().getOwnerById('2'),
+      owner: serviceLocator<GetOwnerByIdUseCase>().call('2'),
       images: [AppAssetRoutes.hondaCivicRedImage],
     ),
     CarDto(
@@ -71,7 +71,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       fuelType: FuelType.diesel.name,
       transmissionType: TransmissionType.hybrid.name,
       color: 'Black',
-      owner: serviceLocator<MockOwnersRemoteDataSource>().getOwnerById('3'),
+      owner: serviceLocator<GetOwnerByIdUseCase>().call('3'),
       images: [],
     ),
   ];

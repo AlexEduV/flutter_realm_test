@@ -12,7 +12,7 @@ void main() {
 
   setUp(() {
     repository = MockArticleRepository();
-    mockService = MockArticleRemoteDataSourceImpl(repository);
+    mockService = MockArticleRemoteDataSourceImpl();
   });
 
   test('getAllArticles returns articles from service', () async {

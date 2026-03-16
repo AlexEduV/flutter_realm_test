@@ -1,43 +1,21 @@
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
-import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/domain/data_sources/remote/article_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 
-import '../../domain/models/api_response.dart';
-
 class ArticleRepositoryImpl implements ArticleRepository {
-  //todo: move logic to the data source
+  final ArticleRemoteDataSource _articleRemoteDataSource;
+
+  ArticleRepositoryImpl(this._articleRemoteDataSource);
 
   List<ArticleEntity> articles = [];
 
   @override
-  Future<List<ArticleEntity>> fetchArticles() async {
-    final jsonString = await rootBundle.loadString(
-      'assets/mocks/articles_mock_response_data_global.json',
-    );
-    final jsonDecoded = json.decode(jsonString);
-    final response = ApiResponse.fromJson(
-      jsonDecoded,
-      (data) => (data as List)
-          .map((item) => ArticleEntity.fromJson(item as Map<String, dynamic>))
-          .toList(),
-    );
-
-    if (response.status != AppConstants.apiSuccessStatus) {
-      //todo: add logs;
-      return [];
-    }
-
-    articles = response.results ?? [];
-
-    return articles;
+  Future<List<ArticleEntity>> fetchArticles() {
+    return _articleRemoteDataSource.fetchArticles();
   }
 
   @override
-  Future<ArticleEntity> getArticleById(String id) async {
-    final article = articles.where((element) => element.id == id).firstOrNull;
-    return article ?? ArticleEntity.empty();
+  Future<ArticleEntity> getArticleById(String id) {
+    return _articleRemoteDataSource.getArticleById(id);
   }
 }

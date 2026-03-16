@@ -142,9 +142,11 @@ Future<void> initDependenciesContainer() async {
     () => ShareRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<ArticleRepository>(() => ArticleRepositoryImpl());
+  serviceLocator.registerLazySingleton<ArticleRepository>(
+    () => ArticleRepositoryImpl(serviceLocator()),
+  );
   serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
-    () => MockArticleRemoteDataSourceImpl(serviceLocator()),
+    () => MockArticleRemoteDataSourceImpl(),
   );
 
   serviceLocator.registerLazySingleton<PermissionLocalDataSource>(() => AppPermissionService());

@@ -12,7 +12,7 @@ void main() {
 
   setUp(() {
     mockArticleRepository = MockArticleRepository();
-    mockArticleService = MockArticleRemoteDataSourceImpl(mockArticleRepository);
+    mockArticleService = MockArticleRemoteDataSourceImpl();
   });
 
   group('MockArticleService', () {
