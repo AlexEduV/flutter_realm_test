@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_routes.dart';
@@ -39,9 +40,18 @@ class InboxListItem extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: AppColors.placeholderColor,
-                      radius: AppDimensions.normalXL,
+                    //todo: move to separate widget
+                    ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl: message.sender.imageSrc ?? '',
+                        fit: BoxFit.cover,
+                        height: AppDimensions.authorImageSize,
+                        width: AppDimensions.authorImageSize,
+                        placeholder: (context, url) =>
+                            ColoredBox(color: AppColors.placeholderColor),
+                        errorWidget: (context, url, error) =>
+                            ColoredBox(color: AppColors.placeholderColor),
+                      ),
                     ),
 
                     const SizedBox(width: AppDimensions.normalM),
