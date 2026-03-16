@@ -85,7 +85,7 @@ class LocationSettingsPage extends StatelessWidget {
                   FooterText(
                     text: context.tr(L10nKeys.locationSettingsPrivacyItemConditions),
                     //todo: move to const
-                    url: 'https://example.com/privacy-policy',
+                    url: 'https://example.com/terms-and-conditions',
                   ),
                   FooterText(
                     text: context.tr(L10nKeys.locationSettingsPrivacyItemPrivacyPolicy),
