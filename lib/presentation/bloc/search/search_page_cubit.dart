@@ -169,7 +169,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   void addCarModelToSelection(String manufacturer, String model) {
-    final map = state.selectedModels;
+    final map = Map<String, List<String>>.from(state.selectedModels);
 
     map.putIfAbsent(manufacturer, () => []);
     if (!map[manufacturer]!.contains(model)) {
@@ -181,9 +181,18 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   void removeCarModelFromSelection(String manufacturer, String model) {
-    final map = state.selectedModels;
+    final map = Map<String, List<String>>.from(state.selectedModels);
 
-    map[manufacturer]?.remove(model);
+    if (map.containsKey(manufacturer)) {
+      final models = List<String>.from(map[manufacturer]!);
+      models.remove(model);
+
+      if (models.isEmpty) {
+        map.remove(manufacturer);
+      } else {
+        map[manufacturer] = models;
+      }
+    }
 
     emit(state.copyWith(selectedModels: map));
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
