@@ -19,13 +19,11 @@ class FooterText extends StatelessWidget {
         onTap: url != null
             ? () async {
                 final link = Uri.parse(url ?? '');
-
-                if (!await canLaunchUrl(link)) {
-                  debugPrint('cannot launch url: $url');
-                  return;
+                try {
+                  await launchUrl(link);
+                } catch (e) {
+                  debugPrint('Could not launch $url: $e');
                 }
-
-                await launchUrl(link);
               }
             : null,
         child: Text(text, style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w600)),
