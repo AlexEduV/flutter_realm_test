@@ -30,11 +30,13 @@ void main() {
   group('ModelFilterDrawer', () {
     late MockSearchPageCubit mockCubit;
     late SearchPageState initialState;
-    final models = ['A', 'B', 'C'];
+    final models = {
+      'manufacturer': ['A', 'B', 'C'],
+    };
 
     setUp(() {
       mockCubit = MockSearchPageCubit();
-      initialState = const SearchPageState(selectedModels: []);
+      initialState = const SearchPageState(selectedModels: {});
     });
 
     Widget buildTestWidget(SearchPageState state) {
@@ -67,7 +69,7 @@ void main() {
         ),
         findsOneWidget,
       );
-      expect(find.byType(CheckboxListTile), findsNWidgets(models.length + 1)); // "All" + each model
+      expect(find.byType(CheckboxListTile), findsNWidgets(5)); // "All" + each model
     });
 
     testWidgets('displays model checkboxes', (WidgetTester tester) async {
@@ -77,7 +79,7 @@ void main() {
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
 
-      for (final model in models) {
+      for (final model in models['manufacturer'] ?? []) {
         expect(find.text(model), findsOneWidget);
       }
     });
@@ -111,13 +113,17 @@ void main() {
       await tester.tap(find.text('A'));
       await tester.pump();
 
-      verify(mockCubit.addCarModelToSelection('A')).called(1);
+      verify(mockCubit.addCarModelToSelection('manufacturer', 'A')).called(1);
     });
 
     testWidgets('unchecking a model checkbox calls removeCarModelFromSelection', (
       WidgetTester tester,
     ) async {
-      final selectedState = const SearchPageState(selectedModels: ['A']);
+      final selectedState = const SearchPageState(
+        selectedModels: {
+          'manufacturer': ['A'],
+        },
+      );
       when(mockCubit.state).thenReturn(selectedState);
       when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([selectedState]));
 
@@ -127,7 +133,7 @@ void main() {
       await tester.tap(find.text('A'));
       await tester.pump();
 
-      verify(mockCubit.removeCarModelFromSelection('A')).called(1);
+      verify(mockCubit.removeCarModelFromSelection('manufacturer', 'A')).called(1);
     });
   });
 }

@@ -169,7 +169,11 @@ void main() {
     });
 
     test('applyAllFilters returns only cars with selected models', () {
-      final state = cubit.state.copyWith(selectedModels: ['Tesla Model S']);
+      final state = cubit.state.copyWith(
+        selectedModels: {
+          'Tesla': ['Model S'],
+        },
+      );
       cubit.emit(state);
       final filtered = cubit.applyAllFilters(carList);
       expect(filtered, [car1]);
@@ -203,20 +207,25 @@ void main() {
       'updateModelSelection updates selectedModels and results',
       build: () => cubit,
       seed: () => SearchPageState(allResults: carList),
-      act: (cubit) => cubit.updateModelSelection(['Tesla Model S']),
+      act: (cubit) => cubit.updateModelSelection({
+        'Tesla': ['Tesla Model S'],
+      }),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', ['Tesla Model S']),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', {
+          'Tesla': ['Tesla Model S'],
+        }),
       ],
     );
 
     blocTest<SearchPageCubit, SearchPageState>(
       'addCarModelToSelection adds model and updates results',
       build: () => cubit,
-      seed: () => SearchPageState(allResults: carList, selectedModels: []),
-      act: (cubit) => cubit.addCarModelToSelection('Tesla Model S'),
+      seed: () => SearchPageState(allResults: carList, selectedModels: {}),
+      act: (cubit) => cubit.addCarModelToSelection('Tesla', 'Model S'),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', ['Tesla Model S']),
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', {
+          'Tesla': ['Model S'],
+        }),
         isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
       ],
     );
@@ -224,8 +233,13 @@ void main() {
     blocTest<SearchPageCubit, SearchPageState>(
       'removeCarModelFromSelection removes model and updates results',
       build: () => cubit,
-      seed: () => SearchPageState(allResults: carList, selectedModels: ['Tesla Model S']),
-      act: (cubit) => cubit.removeCarModelFromSelection('Tesla Model S'),
+      seed: () => SearchPageState(
+        allResults: carList,
+        selectedModels: {
+          'Tesla': ['Tesla Model S'],
+        },
+      ),
+      act: (cubit) => cubit.removeCarModelFromSelection('Tesla', 'Tesla Model S'),
       expect: () => [
         isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', isEmpty),
         isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),

@@ -101,7 +101,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       }
       // Model filter
       if (state.selectedModels.isNotEmpty &&
-          !state.selectedModels.contains('${car.manufacturer} ${car.model}')) {
+          !(state.selectedModels[car.manufacturer]?.contains(car.model) ?? false)) {
         return false;
       }
 
@@ -134,16 +134,21 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     updateModelListFromEntities(state.results, newType);
     updateColorListFromEntities(state.results, state.currentSelectedType);
 
-    emit(state.copyWith(currentSelectedType: newType, selectedModels: [], selectedBodyTypes: []));
+    emit(state.copyWith(currentSelectedType: newType, selectedModels: {}, selectedBodyTypes: []));
   }
 
   void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
-    final allModels = cars
-        .where((element) => element.type == state.currentSelectedType.name)
-        .map((element) => '${element.manufacturer} ${element.model}')
-        .toSet()
-        .toList();
-    emit(state.copyWith(allModels: allModels));
+    final Map<String, List<String>> modelsByManufacturer = {};
+
+    for (final car in cars) {
+      if (car.type == state.currentSelectedType.name) {
+        modelsByManufacturer.putIfAbsent(car.manufacturer, () => []);
+        if (!modelsByManufacturer[car.manufacturer]!.contains(car.model)) {
+          modelsByManufacturer[car.manufacturer]!.add(car.model);
+        }
+      }
+    }
+    emit(state.copyWith(allModels: modelsByManufacturer));
   }
 
   void updateColorListFromEntities(List<CarEntity> cars, CarType type) {
@@ -157,23 +162,55 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(allColors: allColors));
   }
 
-  void updateModelSelection(List<String> newList) {
+  void updateModelSelection(Map<String, List<String>> newList) {
     emit(state.copyWith(selectedModels: newList));
 
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
-  void addCarModelToSelection(String model) {
-    final newSelection = List<String>.from(state.selectedModels)..add(model);
-    emit(state.copyWith(selectedModels: newSelection));
+  void addManufacturerToSelection(String manufacturer) {
+    final map = Map<String, List<String>>.from(state.selectedModels);
+    map[manufacturer] = state.allModels[manufacturer] ?? [];
 
+    emit(state.copyWith(selectedModels: map));
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 
-  void removeCarModelFromSelection(String model) {
-    final newSelection = List<String>.from(state.selectedModels)..remove(model);
-    emit(state.copyWith(selectedModels: newSelection));
+  void removeManufacturerFromSelection(String manufacturer) {
+    final map = Map<String, List<String>>.from(state.selectedModels);
+    map.remove(manufacturer);
 
+    emit(state.copyWith(selectedModels: map));
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void addCarModelToSelection(String manufacturer, String model) {
+    final map = Map<String, List<String>>.from(state.selectedModels);
+
+    map.putIfAbsent(manufacturer, () => []);
+    if (!map[manufacturer]!.contains(model)) {
+      map[manufacturer]!.add(model);
+    }
+
+    emit(state.copyWith(selectedModels: map));
+    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+  }
+
+  void removeCarModelFromSelection(String manufacturer, String model) {
+    final map = Map<String, List<String>>.from(state.selectedModels);
+
+    if (map.containsKey(manufacturer)) {
+      final models = List<String>.from(map[manufacturer]!);
+      models.remove(model);
+
+      if (models.isEmpty) {
+        map.remove(manufacturer);
+      } else {
+        map[manufacturer] = models;
+      }
+    }
+
+    emit(state.copyWith(selectedModels: map));
     emit(state.copyWith(results: applyAllFilters(state.allResults)));
   }
 

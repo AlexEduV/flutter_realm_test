@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SearchPageState {
 
- List<CarEntity> get results; List<CarEntity> get allResults; CarType get currentSelectedType; bool get isLoading; List<String> get allModels; List<String> get selectedModels; String? get selectedMinYear; String? get selectedMaxYear; List<String> get allColors; List<String> get selectedColors; String? get minYearError; String? get maxYearError; List<String> get selectedBodyTypes; String? get selectedMinPrice; String? get selectedMaxPrice; String? get minPriceError; String? get maxPriceError; FieldParamsModel? get minYearFieldParamsModel; FieldParamsModel? get maxYearFieldParamsModel; FieldParamsModel? get minPriceFieldParamsModel; FieldParamsModel? get maxPriceFieldParamsModel; List<String> get selectedFuelTypes; List<String> get selectedTransmissionTypes; SearchDrawerType get drawerOpened;
+ List<CarEntity> get results; List<CarEntity> get allResults; CarType get currentSelectedType; bool get isLoading; Map<String, List<String>> get allModels; Map<String, List<String>> get selectedModels; String? get selectedMinYear; String? get selectedMaxYear; List<String> get allColors; List<String> get selectedColors; String? get minYearError; String? get maxYearError; List<String> get selectedBodyTypes; String? get selectedMinPrice; String? get selectedMaxPrice; String? get minPriceError; String? get maxPriceError; FieldParamsModel? get minYearFieldParamsModel; FieldParamsModel? get maxYearFieldParamsModel; FieldParamsModel? get minPriceFieldParamsModel; FieldParamsModel? get maxPriceFieldParamsModel; List<String> get selectedFuelTypes; List<String> get selectedTransmissionTypes; SearchDrawerType get drawerOpened;
 /// Create a copy of SearchPageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,7 +46,7 @@ abstract mixin class $SearchPageStateCopyWith<$Res>  {
   factory $SearchPageStateCopyWith(SearchPageState value, $Res Function(SearchPageState) _then) = _$SearchPageStateCopyWithImpl;
 @useResult
 $Res call({
- List<CarEntity> results, List<CarEntity> allResults, CarType currentSelectedType, bool isLoading, List<String> allModels, List<String> selectedModels, String? selectedMinYear, String? selectedMaxYear, List<String> allColors, List<String> selectedColors, String? minYearError, String? maxYearError, List<String> selectedBodyTypes, String? selectedMinPrice, String? selectedMaxPrice, String? minPriceError, String? maxPriceError, FieldParamsModel? minYearFieldParamsModel, FieldParamsModel? maxYearFieldParamsModel, FieldParamsModel? minPriceFieldParamsModel, FieldParamsModel? maxPriceFieldParamsModel, List<String> selectedFuelTypes, List<String> selectedTransmissionTypes, SearchDrawerType drawerOpened
+ List<CarEntity> results, List<CarEntity> allResults, CarType currentSelectedType, bool isLoading, Map<String, List<String>> allModels, Map<String, List<String>> selectedModels, String? selectedMinYear, String? selectedMaxYear, List<String> allColors, List<String> selectedColors, String? minYearError, String? maxYearError, List<String> selectedBodyTypes, String? selectedMinPrice, String? selectedMaxPrice, String? minPriceError, String? maxPriceError, FieldParamsModel? minYearFieldParamsModel, FieldParamsModel? maxYearFieldParamsModel, FieldParamsModel? minPriceFieldParamsModel, FieldParamsModel? maxPriceFieldParamsModel, List<String> selectedFuelTypes, List<String> selectedTransmissionTypes, SearchDrawerType drawerOpened
 });
 
 
@@ -70,8 +70,8 @@ as List<CarEntity>,allResults: null == allResults ? _self.allResults : allResult
 as List<CarEntity>,currentSelectedType: null == currentSelectedType ? _self.currentSelectedType : currentSelectedType // ignore: cast_nullable_to_non_nullable
 as CarType,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,allModels: null == allModels ? _self.allModels : allModels // ignore: cast_nullable_to_non_nullable
-as List<String>,selectedModels: null == selectedModels ? _self.selectedModels : selectedModels // ignore: cast_nullable_to_non_nullable
-as List<String>,selectedMinYear: freezed == selectedMinYear ? _self.selectedMinYear : selectedMinYear // ignore: cast_nullable_to_non_nullable
+as Map<String, List<String>>,selectedModels: null == selectedModels ? _self.selectedModels : selectedModels // ignore: cast_nullable_to_non_nullable
+as Map<String, List<String>>,selectedMinYear: freezed == selectedMinYear ? _self.selectedMinYear : selectedMinYear // ignore: cast_nullable_to_non_nullable
 as String?,selectedMaxYear: freezed == selectedMaxYear ? _self.selectedMaxYear : selectedMaxYear // ignore: cast_nullable_to_non_nullable
 as String?,allColors: null == allColors ? _self.allColors : allColors // ignore: cast_nullable_to_non_nullable
 as List<String>,selectedColors: null == selectedColors ? _self.selectedColors : selectedColors // ignore: cast_nullable_to_non_nullable
@@ -100,7 +100,7 @@ as SearchDrawerType,
 
 
 class _SearchPageState implements SearchPageState {
-  const _SearchPageState({final  List<CarEntity> results = const [], final  List<CarEntity> allResults = const [], this.currentSelectedType = CarType.car, this.isLoading = false, final  List<String> allModels = const [], final  List<String> selectedModels = const [], this.selectedMinYear, this.selectedMaxYear, final  List<String> allColors = const [], final  List<String> selectedColors = const [], this.minYearError, this.maxYearError, final  List<String> selectedBodyTypes = const [], this.selectedMinPrice, this.selectedMaxPrice, this.minPriceError, this.maxPriceError, this.minYearFieldParamsModel, this.maxYearFieldParamsModel, this.minPriceFieldParamsModel, this.maxPriceFieldParamsModel, final  List<String> selectedFuelTypes = const [], final  List<String> selectedTransmissionTypes = const [], this.drawerOpened = SearchDrawerType.empty}): _results = results,_allResults = allResults,_allModels = allModels,_selectedModels = selectedModels,_allColors = allColors,_selectedColors = selectedColors,_selectedBodyTypes = selectedBodyTypes,_selectedFuelTypes = selectedFuelTypes,_selectedTransmissionTypes = selectedTransmissionTypes;
+  const _SearchPageState({final  List<CarEntity> results = const [], final  List<CarEntity> allResults = const [], this.currentSelectedType = CarType.car, this.isLoading = false, final  Map<String, List<String>> allModels = const {}, final  Map<String, List<String>> selectedModels = const {}, this.selectedMinYear, this.selectedMaxYear, final  List<String> allColors = const [], final  List<String> selectedColors = const [], this.minYearError, this.maxYearError, final  List<String> selectedBodyTypes = const [], this.selectedMinPrice, this.selectedMaxPrice, this.minPriceError, this.maxPriceError, this.minYearFieldParamsModel, this.maxYearFieldParamsModel, this.minPriceFieldParamsModel, this.maxPriceFieldParamsModel, final  List<String> selectedFuelTypes = const [], final  List<String> selectedTransmissionTypes = const [], this.drawerOpened = SearchDrawerType.empty}): _results = results,_allResults = allResults,_allModels = allModels,_selectedModels = selectedModels,_allColors = allColors,_selectedColors = selectedColors,_selectedBodyTypes = selectedBodyTypes,_selectedFuelTypes = selectedFuelTypes,_selectedTransmissionTypes = selectedTransmissionTypes;
   
 
  final  List<CarEntity> _results;
@@ -119,18 +119,18 @@ class _SearchPageState implements SearchPageState {
 
 @override@JsonKey() final  CarType currentSelectedType;
 @override@JsonKey() final  bool isLoading;
- final  List<String> _allModels;
-@override@JsonKey() List<String> get allModels {
-  if (_allModels is EqualUnmodifiableListView) return _allModels;
+ final  Map<String, List<String>> _allModels;
+@override@JsonKey() Map<String, List<String>> get allModels {
+  if (_allModels is EqualUnmodifiableMapView) return _allModels;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_allModels);
+  return EqualUnmodifiableMapView(_allModels);
 }
 
- final  List<String> _selectedModels;
-@override@JsonKey() List<String> get selectedModels {
-  if (_selectedModels is EqualUnmodifiableListView) return _selectedModels;
+ final  Map<String, List<String>> _selectedModels;
+@override@JsonKey() Map<String, List<String>> get selectedModels {
+  if (_selectedModels is EqualUnmodifiableMapView) return _selectedModels;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_selectedModels);
+  return EqualUnmodifiableMapView(_selectedModels);
 }
 
 @override final  String? selectedMinYear;
@@ -212,7 +212,7 @@ abstract mixin class _$SearchPageStateCopyWith<$Res> implements $SearchPageState
   factory _$SearchPageStateCopyWith(_SearchPageState value, $Res Function(_SearchPageState) _then) = __$SearchPageStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<CarEntity> results, List<CarEntity> allResults, CarType currentSelectedType, bool isLoading, List<String> allModels, List<String> selectedModels, String? selectedMinYear, String? selectedMaxYear, List<String> allColors, List<String> selectedColors, String? minYearError, String? maxYearError, List<String> selectedBodyTypes, String? selectedMinPrice, String? selectedMaxPrice, String? minPriceError, String? maxPriceError, FieldParamsModel? minYearFieldParamsModel, FieldParamsModel? maxYearFieldParamsModel, FieldParamsModel? minPriceFieldParamsModel, FieldParamsModel? maxPriceFieldParamsModel, List<String> selectedFuelTypes, List<String> selectedTransmissionTypes, SearchDrawerType drawerOpened
+ List<CarEntity> results, List<CarEntity> allResults, CarType currentSelectedType, bool isLoading, Map<String, List<String>> allModels, Map<String, List<String>> selectedModels, String? selectedMinYear, String? selectedMaxYear, List<String> allColors, List<String> selectedColors, String? minYearError, String? maxYearError, List<String> selectedBodyTypes, String? selectedMinPrice, String? selectedMaxPrice, String? minPriceError, String? maxPriceError, FieldParamsModel? minYearFieldParamsModel, FieldParamsModel? maxYearFieldParamsModel, FieldParamsModel? minPriceFieldParamsModel, FieldParamsModel? maxPriceFieldParamsModel, List<String> selectedFuelTypes, List<String> selectedTransmissionTypes, SearchDrawerType drawerOpened
 });
 
 
@@ -236,8 +236,8 @@ as List<CarEntity>,allResults: null == allResults ? _self._allResults : allResul
 as List<CarEntity>,currentSelectedType: null == currentSelectedType ? _self.currentSelectedType : currentSelectedType // ignore: cast_nullable_to_non_nullable
 as CarType,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,allModels: null == allModels ? _self._allModels : allModels // ignore: cast_nullable_to_non_nullable
-as List<String>,selectedModels: null == selectedModels ? _self._selectedModels : selectedModels // ignore: cast_nullable_to_non_nullable
-as List<String>,selectedMinYear: freezed == selectedMinYear ? _self.selectedMinYear : selectedMinYear // ignore: cast_nullable_to_non_nullable
+as Map<String, List<String>>,selectedModels: null == selectedModels ? _self._selectedModels : selectedModels // ignore: cast_nullable_to_non_nullable
+as Map<String, List<String>>,selectedMinYear: freezed == selectedMinYear ? _self.selectedMinYear : selectedMinYear // ignore: cast_nullable_to_non_nullable
 as String?,selectedMaxYear: freezed == selectedMaxYear ? _self.selectedMaxYear : selectedMaxYear // ignore: cast_nullable_to_non_nullable
 as String?,allColors: null == allColors ? _self._allColors : allColors // ignore: cast_nullable_to_non_nullable
 as List<String>,selectedColors: null == selectedColors ? _self._selectedColors : selectedColors // ignore: cast_nullable_to_non_nullable
