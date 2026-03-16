@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -36,17 +36,7 @@ class OwnerWidget extends StatelessWidget {
               spacing: AppDimensions.normalM,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ClipOval(
-                  child: CachedNetworkImage(
-                    imageUrl: car.owner?.imageSrc ?? '',
-                    fit: BoxFit.cover,
-                    height: AppDimensions.authorImageSize,
-                    width: AppDimensions.authorImageSize,
-                    placeholder: (context, url) => ColoredBox(color: AppColors.placeholderColor),
-                    errorWidget: (context, url, error) =>
-                        ColoredBox(color: AppColors.placeholderColor),
-                  ),
-                ),
+                AvatarWidget(imageSrc: car.owner?.imageSrc),
 
                 Expanded(
                   child: Column(

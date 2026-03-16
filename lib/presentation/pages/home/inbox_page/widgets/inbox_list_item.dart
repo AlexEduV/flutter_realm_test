@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_routes.dart';
@@ -7,9 +6,9 @@ import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
 
-import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
 
@@ -40,19 +39,7 @@ class InboxListItem extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //todo: move to separate widget
-                    ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl: message.sender.imageSrc ?? '',
-                        fit: BoxFit.cover,
-                        height: AppDimensions.authorImageSize,
-                        width: AppDimensions.authorImageSize,
-                        placeholder: (context, url) =>
-                            ColoredBox(color: AppColors.placeholderColor),
-                        errorWidget: (context, url, error) =>
-                            ColoredBox(color: AppColors.placeholderColor),
-                      ),
-                    ),
+                    AvatarWidget(imageSrc: message.sender.imageSrc),
 
                     const SizedBox(width: AppDimensions.normalM),
 
