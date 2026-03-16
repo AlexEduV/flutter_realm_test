@@ -6,6 +6,7 @@ import '../usecase.dart';
 class FetchMessagesUseCase extends UseCaseNoParams<Future<List<MessageModel>>> {
   final MessagesRemoteDataSource messagesService;
 
+  //todo: there needs to be a repository
   FetchMessagesUseCase(this.messagesService);
 
   @override

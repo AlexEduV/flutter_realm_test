@@ -8,6 +8,8 @@ import 'package:test_futter_project/domain/repositories/article_repository.dart'
 import '../../domain/models/api_response.dart';
 
 class ArticleRepositoryImpl implements ArticleRepository {
+  //todo: move logic to the data source
+
   List<ArticleEntity> articles = [];
 
   @override
