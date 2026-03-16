@@ -14,6 +14,8 @@ class ModelFilterDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final checkBoxPosition = ListTileControlAffinity.leading;
+
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       builder: (context, state) {
         final selectedSet = Set<String>.from(state.selectedModels);
@@ -41,7 +43,7 @@ class ModelFilterDrawer extends StatelessWidget {
                   }
                 },
                 title: Text(context.tr(L10nKeys.searchFilterModelPlaceholder)),
-                controlAffinity: ListTileControlAffinity.leading,
+                controlAffinity: checkBoxPosition,
               ),
 
               ...models.map((model) {
@@ -56,7 +58,7 @@ class ModelFilterDrawer extends StatelessWidget {
                     }
                   },
                   title: Text(model),
-                  controlAffinity: ListTileControlAffinity.leading,
+                  controlAffinity: checkBoxPosition,
                 );
               }),
             ],
