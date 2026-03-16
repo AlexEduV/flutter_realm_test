@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
-import 'package:test_futter_project/domain/models/owner_model.dart';
 
 void main() {
   group('MessageModel', () {
-    final sender = OwnerModel(id: 'owner1', name: 'Alice', linkedItemIds: []);
+    final sender = OwnerEntity(id: 'owner1', name: 'Alice', linkedItemIds: []);
     final date = DateTime(2023, 1, 1, 12, 0, 0);
 
     test('constructor assigns values correctly', () {

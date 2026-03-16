@@ -2,7 +2,7 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/promo_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/domain/models/owner_model.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 import '../../data/dto/car_dto.dart';
 import '../../data/models/scheme.dart';
@@ -14,7 +14,7 @@ class CarEntity {
   final String type;
   final String? year;
   final String? color;
-  final OwnerModel? owner;
+  final OwnerEntity? owner;
   final String bodyType;
   final String fuelType;
   final String transmissionType;
@@ -65,7 +65,7 @@ class CarEntity {
     String? type,
     String? year,
     String? color,
-    OwnerModel? owner,
+    OwnerEntity? owner,
     String? bodyType,
     String? fuelType,
     String? transmissionType,
@@ -129,7 +129,7 @@ class CarEntity {
       distanceTo: car.distanceTo,
       color: car.color,
       year: car.year,
-      owner: OwnerModel(
+      owner: OwnerEntity(
         id: car.owner?.id ?? '',
         name: car.owner?.name ?? '',
         linkedItemIds: car.owner?.linkedIds ?? [],

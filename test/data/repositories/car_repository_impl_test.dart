@@ -14,7 +14,7 @@ import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/data/repositories/car_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/models/owner_model.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 
@@ -63,7 +63,7 @@ void main() {
     when(carEntity.model).thenReturn('Model Y');
     when(carEntity.manufacturer).thenReturn('Tesla');
     when(carEntity.year).thenReturn('2007');
-    when(carEntity.owner).thenReturn(OwnerModel(id: 'test', name: 'Elon', linkedItemIds: []));
+    when(carEntity.owner).thenReturn(OwnerEntity(id: 'test', name: 'Elon', linkedItemIds: []));
     when(carEntity.isVerified).thenReturn(true);
     when(carEntity.promoType).thenReturn(null);
     when(carEntity.kilometers).thenReturn(12345);
@@ -171,7 +171,7 @@ void main() {
     when(carDto.images).thenReturn([]);
     when(
       carDto.owner,
-    ).thenReturn(OwnerModel(id: 'test', name: 'James Morrison', linkedItemIds: []));
+    ).thenReturn(OwnerEntity(id: 'test', name: 'James Morrison', linkedItemIds: []));
 
     final carDtos = [carDto];
     when(apiService.fetchCars()).thenAnswer((_) async => carDtos);

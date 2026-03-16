@@ -72,4 +72,33 @@ class ArticleEntity {
       isHovering: isHovering ?? this.isHovering,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other.runtimeType != runtimeType) return false;
+    return other is ArticleEntity &&
+        other.id == id &&
+        other.title == title &&
+        other.summary == summary &&
+        other.paragraphs == paragraphs &&
+        other.author == author &&
+        other.datePublished == datePublished &&
+        other.minsToRead == minsToRead &&
+        other.imageUrl == imageUrl &&
+        other.isHovering == isHovering;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    title,
+    summary,
+    Object.hashAll(paragraphs),
+    author,
+    datePublished,
+    minsToRead,
+    imageUrl,
+    isHovering,
+  );
 }

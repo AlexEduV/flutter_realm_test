@@ -7,6 +7,7 @@ import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_state.dart';
+import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../common/app_semantics_labels.dart';
@@ -101,18 +102,7 @@ class _ArticlePageState extends State<ArticlePage> {
                         Row(
                           spacing: AppDimensions.normalXS,
                           children: [
-                            ClipOval(
-                              child: CachedNetworkImage(
-                                imageUrl: state.article?.author.imageSrc ?? '',
-                                fit: BoxFit.cover,
-                                height: AppDimensions.authorImageSize,
-                                width: AppDimensions.authorImageSize,
-                                placeholder: (context, url) =>
-                                    ColoredBox(color: AppColors.placeholderColor),
-                                errorWidget: (context, url, error) =>
-                                    ColoredBox(color: AppColors.placeholderColor),
-                              ),
-                            ),
+                            AvatarWidget(imageSrc: state.article?.author.imageSrc),
 
                             Text(
                               state.article?.author.fullName ?? '',

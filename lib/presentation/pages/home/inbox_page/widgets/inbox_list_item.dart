@@ -6,9 +6,9 @@ import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
 
-import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
 
@@ -39,10 +39,7 @@ class InboxListItem extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: AppColors.placeholderColor,
-                      radius: AppDimensions.normalXL,
-                    ),
+                    AvatarWidget(imageSrc: message.sender.imageSrc),
 
                     const SizedBox(width: AppDimensions.normalM),
 

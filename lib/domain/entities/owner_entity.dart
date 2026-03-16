@@ -1,24 +1,28 @@
-class OwnerModel {
+class OwnerEntity {
   final String id;
   final String name;
   final List<String> linkedItemIds;
   final String? imageSrc;
 
-  OwnerModel({required this.id, required this.name, required this.linkedItemIds, this.imageSrc});
+  OwnerEntity({required this.id, required this.name, required this.linkedItemIds, this.imageSrc});
 
-  factory OwnerModel.fromJson(Map<String, dynamic> json) {
-    return OwnerModel(
+  factory OwnerEntity.fromJson(Map<String, dynamic> json) {
+    return OwnerEntity(
       id: json['id'] as String,
-      name: json['full_name'] as String,
+      name: '${json['first_name'] as String} ${json['last_name'] as String}',
       linkedItemIds: List<String>.from(json['linked_ids'] as List),
       imageSrc: json['image_src'] as String?,
     );
   }
 
+  factory OwnerEntity.empty() {
+    return OwnerEntity(id: '', name: '', linkedItemIds: []);
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is OwnerModel &&
+      other is OwnerEntity &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&

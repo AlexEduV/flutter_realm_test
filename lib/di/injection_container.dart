@@ -9,10 +9,13 @@ import 'package:test_futter_project/data/data_sources/remote/mock_article_remote
 import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_messages_remote_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/inbox_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/owner_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/share_repository_impl.dart';
@@ -26,9 +29,12 @@ import 'package:test_futter_project/domain/data_sources/remote/article_remote_da
 import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/repositories/inbox_repository.dart';
+import 'package:test_futter_project/domain/repositories/owner_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
 import 'package:test_futter_project/domain/repositories/region_repository.dart';
 import 'package:test_futter_project/domain/repositories/share_repository.dart';
@@ -49,6 +55,8 @@ import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_messages_use_case.dart';
+import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart';
+import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
@@ -117,6 +125,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
+  serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(() => MockOwnersRemoteDataSource());
   serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
     () => UrlLaunchLocalDataSourceImpl(),
   );
@@ -135,14 +144,20 @@ Future<void> initDependenciesContainer() async {
     () => ShareRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<ArticleRepository>(() => ArticleRepositoryImpl());
+  serviceLocator.registerLazySingleton<ArticleRepository>(
+    () => ArticleRepositoryImpl(serviceLocator()),
+  );
   serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
-    () => MockArticleRemoteDataSourceImpl(serviceLocator()),
+    () => MockArticleRemoteDataSourceImpl(),
   );
 
   serviceLocator.registerLazySingleton<PermissionLocalDataSource>(() => AppPermissionService());
 
   serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
+
+  serviceLocator.registerLazySingleton<OwnerRepository>(
+    () => OwnerRepositoryImpl(serviceLocator()),
+  );
 
   //Register Repository (passing Realm from GetIt)
   serviceLocator.registerLazySingleton<CarRepository>(
@@ -224,6 +239,9 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
 
+  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
+
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 
   serviceLocator.registerLazySingleton<GeolocatorRepository>(
@@ -241,4 +259,8 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<ShareUseCase>(() => ShareUseCase(serviceLocator()));
   serviceLocator.registerFactory(() => ShareCubit(serviceLocator()));
   serviceLocator.registerFactory(() => EditDialogCubit());
+
+  serviceLocator.registerLazySingleton<InboxRepository>(
+    () => InboxRepositoryImpl(serviceLocator()),
+  );
 }

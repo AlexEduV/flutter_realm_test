@@ -20,8 +20,8 @@ import 'package:test_futter_project/data/dto/car_dto.dart' as _i8;
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart'
     as _i13;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i6;
+import 'package:test_futter_project/domain/entities/owner_entity.dart' as _i14;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i9;
-import 'package:test_futter_project/domain/models/owner_model.dart' as _i14;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -471,7 +471,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
     String? type,
     String? year,
     String? color,
-    _i14.OwnerModel? owner,
+    _i14.OwnerEntity? owner,
     String? bodyType,
     String? fuelType,
     String? transmissionType,
@@ -665,7 +665,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
     String? bodyType,
     String? fuelType,
     String? transmissionType,
-    _i14.OwnerModel? owner,
+    _i14.OwnerEntity? owner,
     bool? isVerified,
     _i15.PromoType? promoType,
     int? kilometers,
