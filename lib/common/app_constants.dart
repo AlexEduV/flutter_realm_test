@@ -5,4 +5,8 @@ class AppConstants {
   static const int homeTabAccount = 3;
 
   static const String apiSuccessStatus = 'success';
+
+  static const webHost = 'https://example.com/';
+  static const termsAndConditionsUrl = 'terms-and-conditions';
+  static const privacyPolicyUrl = 'privacy-policy';
 }

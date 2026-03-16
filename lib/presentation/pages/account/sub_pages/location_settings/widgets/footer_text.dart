@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,7 +19,7 @@ class FooterText extends StatelessWidget {
       child: InkWell(
         onTap: url != null
             ? () async {
-                final link = Uri.parse(url ?? '');
+                final link = Uri.parse('${AppConstants.webHost}${url ?? ''}');
                 try {
                   await launchUrl(link);
                 } catch (e) {
