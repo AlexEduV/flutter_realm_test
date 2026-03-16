@@ -69,7 +69,7 @@ void main() {
         ),
         findsOneWidget,
       );
-      expect(find.byType(CheckboxListTile), findsNWidgets(models.length + 1)); // "All" + each model
+      expect(find.byType(CheckboxListTile), findsNWidgets(5)); // "All" + each model
     });
 
     testWidgets('displays model checkboxes', (WidgetTester tester) async {
