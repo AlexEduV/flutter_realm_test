@@ -82,8 +82,15 @@ class LocationSettingsPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  FooterText(text: context.tr(L10nKeys.locationSettingsPrivacyItemConditions)),
-                  FooterText(text: context.tr(L10nKeys.locationSettingsPrivacyItemPrivacyPolicy)),
+                  FooterText(
+                    text: context.tr(L10nKeys.locationSettingsPrivacyItemConditions),
+                    //todo: move to const
+                    url: 'https://example.com/privacy-policy',
+                  ),
+                  FooterText(
+                    text: context.tr(L10nKeys.locationSettingsPrivacyItemPrivacyPolicy),
+                    url: 'https://example.com/privacy-policy',
+                  ),
                 ],
               ),
             ),
