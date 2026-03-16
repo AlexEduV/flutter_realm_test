@@ -7,8 +7,13 @@ import '../../common/app_dimensions.dart';
 
 class AvatarWidget extends StatelessWidget {
   final String? imageSrc;
+  final double? size;
 
-  const AvatarWidget({required this.imageSrc, super.key});
+  const AvatarWidget({
+    required this.imageSrc,
+    this.size = AppDimensions.authorImageSize,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +21,8 @@ class AvatarWidget extends StatelessWidget {
       child: CachedNetworkImage(
         imageUrl: imageSrc ?? '',
         fit: BoxFit.cover,
-        height: AppDimensions.authorImageSize,
-        width: AppDimensions.authorImageSize,
+        height: size,
+        width: size,
         placeholder: (context, url) => ColoredBox(color: AppColors.placeholderColor),
         errorWidget: (context, url, error) => ColoredBox(color: AppColors.placeholderColor),
       ),
