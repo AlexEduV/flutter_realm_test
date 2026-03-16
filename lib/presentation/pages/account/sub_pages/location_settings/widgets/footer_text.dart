@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/data_sources/local/url_launch_local_data_source.dart';
+import 'package:test_futter_project/domain/usecases/url/open_url_link_use_case.dart';
 
 import '../../../../../../common/app_text_styles.dart';
 import '../../../../../widgets/app_semantics.dart';
@@ -18,7 +18,7 @@ class FooterText extends StatelessWidget {
       label: AppSemanticsLabels.privacyLinkItem,
       child: InkWell(
         onTap: url != null
-            ? () async => await serviceLocator<UrlLaunchLocalDataSource>().openUrl(url)
+            ? () async => await serviceLocator<OpenUrlLinkUseCase>().call(url ?? '')
             : null,
         child: Text(text, style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w600)),
       ),
