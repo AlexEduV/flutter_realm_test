@@ -9,6 +9,7 @@ import 'package:test_futter_project/presentation/pages/article/article_page.dart
 import 'package:test_futter_project/presentation/pages/details/details_page.dart';
 import 'package:test_futter_project/presentation/pages/home/home_page.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
+import 'package:test_futter_project/presentation/pages/messages/messages_page.dart';
 
 import '../common/app_routes.dart';
 import '../common/enums/details_page_source.dart';
@@ -68,10 +69,9 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.inbox,
             pageBuilder: (context, state) {
-              //todo: pass the id to the next page
-              //final ownerId = state.extra as String? ?? '';
+              final ownerId = state.extra as String? ?? '';
 
-              return const CupertinoPage(child: PlaceholderPage());
+              return CupertinoPage(child: MessagesPage(ownerId: ownerId));
             },
           ),
           GoRoute(
