@@ -211,8 +211,9 @@ void main() {
         'Tesla': ['Tesla Model S'],
       }),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', ['Tesla Model S']),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', {
+          'Tesla': ['Tesla Model S'],
+        }),
       ],
     );
 
@@ -222,7 +223,9 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedModels: {}),
       act: (cubit) => cubit.addCarModelToSelection('Tesla', 'Model S'),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', ['Tesla Model S']),
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', {
+          'Tesla': ['Model S'],
+        }),
         isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
       ],
     );
