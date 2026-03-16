@@ -13,12 +13,13 @@ void main() {
     test('fromJson creates correct OwnerModel', () {
       final json = {
         'id': '2',
-        'full_name': 'Bob',
+        'first_name': 'Bob',
+        'last_name': 'Chaise',
         'linked_ids': ['x', 'y'],
       };
       final owner = OwnerEntity.fromJson(json);
       expect(owner.id, '2');
-      expect(owner.name, 'Bob');
+      expect(owner.name, 'Bob Chaise');
       expect(owner.linkedItemIds, ['x', 'y']);
     });
 
