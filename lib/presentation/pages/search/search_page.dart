@@ -37,7 +37,7 @@ class _SearchPageState extends State<SearchPage> {
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       buildWhen: (previous, current) =>
           previous.drawerOpened != current.drawerOpened ||
-          !listEquals(previous.selectedModels, current.selectedModels) ||
+          previous.selectedModels != current.selectedModels ||
           previous.currentSelectedType != current.currentSelectedType ||
           previous.allModels != current.allModels ||
           !listEquals(previous.selectedBodyTypes, current.selectedBodyTypes) ||
@@ -105,7 +105,9 @@ class _SearchPageState extends State<SearchPage> {
                     final isFilterEmpty = state.selectedModels.isEmpty;
                     final modelFilters = isFilterEmpty
                         ? context.tr(L10nKeys.searchFilterModelPlaceholder)
-                        : state.selectedModels.join(', ');
+                        : state.selectedModels.entries
+                              .map((entry) => '${entry.key}: ${entry.value.join(', ')}')
+                              .join('; ');
 
                     return SearchFilterButton(
                       icon: Icons.directions_car,

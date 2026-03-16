@@ -30,11 +30,13 @@ void main() {
   group('ModelFilterDrawer', () {
     late MockSearchPageCubit mockCubit;
     late SearchPageState initialState;
-    final models = ['A', 'B', 'C'];
+    final models = {
+      'manufacturer': ['A', 'B', 'C'],
+    };
 
     setUp(() {
       mockCubit = MockSearchPageCubit();
-      initialState = const SearchPageState(selectedModels: []);
+      initialState = const SearchPageState(selectedModels: {});
     });
 
     Widget buildTestWidget(SearchPageState state) {
@@ -77,7 +79,7 @@ void main() {
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
 
-      for (final model in models) {
+      for (final model in models['manufacturer'] ?? []) {
         expect(find.text(model), findsOneWidget);
       }
     });

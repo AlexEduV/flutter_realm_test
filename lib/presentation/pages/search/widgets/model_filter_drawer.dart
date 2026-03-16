@@ -8,7 +8,7 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_state.d
 import '../../../../l10n/l10n_keys.dart';
 
 class ModelFilterDrawer extends StatelessWidget {
-  final List<String> models;
+  final Map<String, List<String>> models;
 
   const ModelFilterDrawer({required this.models, super.key});
 
