@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
@@ -18,10 +19,9 @@ class ModelFilterDrawer extends StatelessWidget {
 
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       builder: (context, state) {
-        final selectedSet = Set<String>.from(state.selectedModels);
-        final allSet = Set<String>.from(models);
-        final areAllSelected =
-            selectedSet.length == allSet.length && selectedSet.containsAll(allSet);
+        final selectedSet = state.selectedModels;
+        final allSet = models;
+        final areAllSelected = selectedSet == allSet;
 
         return Drawer(
           child: ListView(
@@ -39,26 +39,52 @@ class ModelFilterDrawer extends StatelessWidget {
                   if (value ?? false) {
                     context.read<SearchPageCubit>().updateModelSelection(models);
                   } else {
-                    context.read<SearchPageCubit>().updateModelSelection([]);
+                    context.read<SearchPageCubit>().updateModelSelection({});
                   }
                 },
                 title: Text(context.tr(L10nKeys.searchFilterModelPlaceholder)),
                 controlAffinity: checkBoxPosition,
               ),
 
-              ...models.map((model) {
-                final isSelected = selectedSet.contains(model);
-                return CheckboxListTile(
-                  value: isSelected,
-                  onChanged: (bool? newValue) {
-                    if (newValue == true) {
-                      context.read<SearchPageCubit>().addCarModelToSelection(model);
-                    } else {
-                      context.read<SearchPageCubit>().removeCarModelFromSelection(model);
-                    }
-                  },
-                  title: Text(model),
-                  controlAffinity: checkBoxPosition,
+              ...allSet.entries.map((entry) {
+                final manufacturer = entry.key;
+                final models = entry.value;
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: AppDimensions.minorL,
+                        horizontal: AppDimensions.majorM,
+                      ),
+                      child: Text(
+                        manufacturer,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    ...models.map((model) {
+                      final isSelected = (selectedSet[manufacturer]?.contains(model) ?? false);
+                      return CheckboxListTile(
+                        value: isSelected,
+                        onChanged: (bool? newValue) {
+                          if (newValue == true) {
+                            context.read<SearchPageCubit>().addCarModelToSelection(
+                              manufacturer,
+                              model,
+                            );
+                          } else {
+                            context.read<SearchPageCubit>().removeCarModelFromSelection(
+                              manufacturer,
+                              model,
+                            );
+                          }
+                        },
+                        title: Text(model),
+                        controlAffinity: checkBoxPosition,
+                      );
+                    }),
+                  ],
                 );
               }),
             ],
