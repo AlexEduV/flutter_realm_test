@@ -8,11 +8,11 @@ import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
 
-class UserAvatar extends StatelessWidget {
+class UserAvatarEnhanced extends StatelessWidget {
   final String? imageSrc;
   final Function() onTap;
 
-  const UserAvatar({required this.imageSrc, required this.onTap, super.key});
+  const UserAvatarEnhanced({required this.imageSrc, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {

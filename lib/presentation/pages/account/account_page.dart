@@ -13,7 +13,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart'
 import 'package:test_futter_project/presentation/pages/account/widgets/account_item.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/account_item_separated.dart';
 import 'package:test_futter_project/presentation/pages/account/widgets/custom_divider.dart';
-import 'package:test_futter_project/presentation/pages/account/widgets/user_avatar.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/user_avatar_enhanced.dart';
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
@@ -43,7 +43,7 @@ class AccountPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                UserAvatar(
+                UserAvatarEnhanced(
                   imageSrc: state.avatarImageSrc,
                   onTap: () => serviceLocator<UserDataCubit>().updateAvatarImage(),
                 ),
