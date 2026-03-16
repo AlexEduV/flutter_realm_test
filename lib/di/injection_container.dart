@@ -4,6 +4,7 @@ import 'package:test_futter_project/data/data_sources/local/geolocator_local_dat
 import 'package:test_futter_project/data/data_sources/local/permission_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart';
 import 'package:test_futter_project/data/data_sources/local/share_local_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/local/url_launch_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
@@ -19,6 +20,7 @@ import 'package:test_futter_project/domain/data_sources/local/base_local_storage
 import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/share_local_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/local/url_launch_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/article_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
@@ -112,6 +114,9 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
+  serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
+    () => UrlLaunchLocalDataSourceImpl(),
+  );
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
     () => MockRegionRemoteDataSourceImpl(),
   );
