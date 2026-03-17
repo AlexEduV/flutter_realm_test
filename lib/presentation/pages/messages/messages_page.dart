@@ -35,8 +35,17 @@ class MessagesPage extends StatelessWidget {
             left: AppDimensions.minorL,
             right: AppDimensions.minorL,
             child: Row(
-              spacing: AppDimensions.minorL,
+              spacing: AppDimensions.normalS,
               children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.attach_file),
+                  style: const ButtonStyle(
+                    iconSize: WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
+                    foregroundColor: WidgetStatePropertyAll(AppColors.headerColor),
+                    backgroundColor: WidgetStatePropertyAll(Colors.white),
+                  ),
+                ),
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.all(AppDimensions.normalS),
@@ -44,14 +53,14 @@ class MessagesPage extends StatelessWidget {
                       color: AppColors.whiteGrey,
                       borderRadius: BorderRadius.circular(AppDimensions.normalM),
                     ),
-                    child: const Text('Write Something...', style: AppTextStyles.zonaPro16),
+                    child: const Text('Message', style: AppTextStyles.zonaPro16),
                   ),
                 ),
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.send),
                   style: const ButtonStyle(
-                    iconSize: WidgetStatePropertyAll(36),
+                    iconSize: WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
                     foregroundColor: WidgetStatePropertyAll(AppColors.headerColor),
                     backgroundColor: WidgetStatePropertyAll(Colors.white),
                   ),
