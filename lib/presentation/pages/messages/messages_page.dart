@@ -3,7 +3,8 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
-import 'package:test_futter_project/presentation/pages/article/widgets/message_bar.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/message_bar.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../common/app_text_styles.dart';
@@ -39,6 +40,12 @@ class _MessagesPageState extends State<MessagesPage> {
       ),
       body: Stack(
         children: [
+          ListView(
+            children: [
+              MessageItem(name: owner.name, imageSrc: owner.imageSrc, message: 'Test Message'),
+            ],
+          ),
+
           Positioned(
             bottom: AppDimensions.majorM,
             left: AppDimensions.minorL,
