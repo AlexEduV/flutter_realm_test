@@ -53,7 +53,7 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
             OwnerEntity.fromUser(serviceLocator<UserDataCubit>().user),
             MessageStatus.sent,
             'Hello there again.',
-            DateTime.now().subtract(const Duration(days: 3, minutes: 15)),
+            DateTime.now().subtract(const Duration(days: 2)),
           ),
         ],
       ),
