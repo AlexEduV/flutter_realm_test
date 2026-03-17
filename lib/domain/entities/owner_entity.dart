@@ -1,3 +1,5 @@
+import 'package:test_futter_project/domain/entities/user_entity.dart';
+
 class OwnerEntity {
   final String id;
   final String name;
@@ -17,6 +19,14 @@ class OwnerEntity {
 
   factory OwnerEntity.empty() {
     return OwnerEntity(id: '', name: '', linkedItemIds: []);
+  }
+
+  factory OwnerEntity.fromUser(UserEntity user) {
+    return OwnerEntity(
+      id: user.userId,
+      name: '${user.firstName} ${user.lastName}',
+      linkedItemIds: user.createdIds,
+    );
   }
 
   @override
