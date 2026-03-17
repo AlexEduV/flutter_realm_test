@@ -11,6 +11,7 @@ import 'package:test_futter_project/presentation/pages/messages/widgets/message_
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../common/app_text_styles.dart';
+import '../../../utils/date_formatter.dart';
 
 class MessagesPage extends StatefulWidget {
   final String conversationId;
@@ -52,31 +53,19 @@ class _MessagesPageState extends State<MessagesPage> {
       ),
       body: Stack(
         children: [
-          ListView(
-            //todo: when the time between messages is less then 1 minute, use only one avatar per batch
-            children: [
-              MessageItem(
-                name: owner.name,
-                imageSrc: owner.imageSrc,
-                message: 'Test Message',
-                time: '12:03 PM',
-                isMyMessage: false,
-              ),
-              MessageItem(
-                name: owner.name,
-                imageSrc: owner.imageSrc,
-                message: 'Test Message',
-                time: '12:03 PM',
-                isMyMessage: true,
-              ),
-              MessageItem(
-                name: owner.name,
-                imageSrc: owner.imageSrc,
-                message: 'Test Message',
-                time: '12:03 PM',
-                isMyMessage: true,
-              ),
-            ],
+          ListView.builder(
+            itemBuilder: (context, index) {
+              final message = conversation.messages[index];
+
+              return MessageItem(
+                name: message.sender.name,
+                imageSrc: message.sender.imageSrc,
+                message: message.text,
+                time: DateFormatter.formatSmartDate(message.date),
+                isMyMessage: message.sender.id != owner.id,
+              );
+            },
+            itemCount: conversation.messages.length,
           ),
 
           Positioned(
