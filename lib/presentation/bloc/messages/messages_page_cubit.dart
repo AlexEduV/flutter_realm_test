@@ -7,4 +7,8 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
   void setCurrentConversationId(String conversationId) {
     emit(state.copyWith(currentConversationId: conversationId));
   }
+
+  void updateMessageText(String newText) {
+    emit(state.copyWith(currentMessageText: newText));
+  }
 }

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MessagesPageState {
 
- bool get isLoading; String? get currentConversationId;
+ bool get isLoading; String? get currentConversationId; String get currentMessageText;
 /// Create a copy of MessagesPageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $MessagesPageStateCopyWith<MessagesPageState> get copyWith => _$MessagesPageStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MessagesPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentConversationId, currentConversationId) || other.currentConversationId == currentConversationId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MessagesPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentConversationId, currentConversationId) || other.currentConversationId == currentConversationId)&&(identical(other.currentMessageText, currentMessageText) || other.currentMessageText == currentMessageText));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,currentConversationId);
+int get hashCode => Object.hash(runtimeType,isLoading,currentConversationId,currentMessageText);
 
 @override
 String toString() {
-  return 'MessagesPageState(isLoading: $isLoading, currentConversationId: $currentConversationId)';
+  return 'MessagesPageState(isLoading: $isLoading, currentConversationId: $currentConversationId, currentMessageText: $currentMessageText)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $MessagesPageStateCopyWith<$Res>  {
   factory $MessagesPageStateCopyWith(MessagesPageState value, $Res Function(MessagesPageState) _then) = _$MessagesPageStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, String? currentConversationId
+ bool isLoading, String? currentConversationId, String currentMessageText
 });
 
 
@@ -63,11 +63,12 @@ class _$MessagesPageStateCopyWithImpl<$Res>
 
 /// Create a copy of MessagesPageState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? currentConversationId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? currentConversationId = freezed,Object? currentMessageText = null,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,currentConversationId: freezed == currentConversationId ? _self.currentConversationId : currentConversationId // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,currentMessageText: null == currentMessageText ? _self.currentMessageText : currentMessageText // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -78,11 +79,12 @@ as String?,
 
 
 class _MessagesPageState implements MessagesPageState {
-  const _MessagesPageState({this.isLoading = false, this.currentConversationId});
+  const _MessagesPageState({this.isLoading = false, this.currentConversationId, this.currentMessageText = ''});
   
 
 @override@JsonKey() final  bool isLoading;
 @override final  String? currentConversationId;
+@override@JsonKey() final  String currentMessageText;
 
 /// Create a copy of MessagesPageState
 /// with the given fields replaced by the non-null parameter values.
@@ -94,16 +96,16 @@ _$MessagesPageStateCopyWith<_MessagesPageState> get copyWith => __$MessagesPageS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MessagesPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentConversationId, currentConversationId) || other.currentConversationId == currentConversationId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MessagesPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentConversationId, currentConversationId) || other.currentConversationId == currentConversationId)&&(identical(other.currentMessageText, currentMessageText) || other.currentMessageText == currentMessageText));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,currentConversationId);
+int get hashCode => Object.hash(runtimeType,isLoading,currentConversationId,currentMessageText);
 
 @override
 String toString() {
-  return 'MessagesPageState(isLoading: $isLoading, currentConversationId: $currentConversationId)';
+  return 'MessagesPageState(isLoading: $isLoading, currentConversationId: $currentConversationId, currentMessageText: $currentMessageText)';
 }
 
 
@@ -114,7 +116,7 @@ abstract mixin class _$MessagesPageStateCopyWith<$Res> implements $MessagesPageS
   factory _$MessagesPageStateCopyWith(_MessagesPageState value, $Res Function(_MessagesPageState) _then) = __$MessagesPageStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, String? currentConversationId
+ bool isLoading, String? currentConversationId, String currentMessageText
 });
 
 
@@ -131,11 +133,12 @@ class __$MessagesPageStateCopyWithImpl<$Res>
 
 /// Create a copy of MessagesPageState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? currentConversationId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? currentConversationId = freezed,Object? currentMessageText = null,}) {
   return _then(_MessagesPageState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,currentConversationId: freezed == currentConversationId ? _self.currentConversationId : currentConversationId // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,currentMessageText: null == currentMessageText ? _self.currentMessageText : currentMessageText // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

@@ -45,6 +45,7 @@ class MessageBar extends StatelessWidget {
                 focusNode: messageFocusNode,
                 controller: messageTextController,
                 decoration: InputDecoration(
+                  //todo: localise
                   hintText: 'Message',
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: AppDimensions.normalM,
@@ -73,10 +74,13 @@ class MessageBar extends StatelessWidget {
                   ),
                 ),
                 style: AppTextStyles.zonaPro16,
+                keyboardType: TextInputType.text,
+                onChanged: (newValue) =>
+                    context.read<MessagesPageCubit>().updateMessageText(newValue),
               ),
             ),
             IconButton(
-              onPressed: messageTextController.text.isEmpty
+              onPressed: state.currentMessageText.isEmpty
                   ? null
                   : () {
                       final user = context.read<UserDataCubit>().user;
