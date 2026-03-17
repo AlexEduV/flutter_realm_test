@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -23,46 +25,56 @@ class MessageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final senderInfo = [
+      Text(
+        isMyMessage ? context.tr(L10nKeys.messageSenderYou) : name,
+        style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600),
+      ),
+      const SizedBox(width: AppDimensions.minorM),
+      Text(time),
+    ];
+
+    final messageContent = Column(
+      crossAxisAlignment: isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: isMyMessage ? senderInfo.reversed.toList() : senderInfo,
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: AppDimensions.normalS,
+            horizontal: AppDimensions.normalM,
+          ),
+          decoration: BoxDecoration(
+            color: isMyMessage ? Colors.blue : AppColors.whiteGrey,
+            borderRadius: BorderRadius.only(
+              topLeft: isMyMessage ? const Radius.circular(AppDimensions.normalS) : Radius.zero,
+              topRight: isMyMessage ? Radius.zero : const Radius.circular(AppDimensions.normalS),
+              bottomLeft: const Radius.circular(AppDimensions.normalS),
+              bottomRight: const Radius.circular(AppDimensions.normalS),
+            ),
+          ),
+          child: Text(message, style: isMyMessage ? const TextStyle(color: Colors.white) : null),
+        ),
+      ],
+    );
+
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalS),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: AppDimensions.minorL,
-        children: [
-          AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM),
-
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: AppDimensions.minorL,
-            children: [
-              Row(
-                spacing: AppDimensions.minorM,
-                children: [
-                  Text(name, style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600)),
-
-                  Text(time),
-                ],
-              ),
-
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: AppDimensions.normalS,
-                  horizontal: AppDimensions.normalM,
-                ),
-                decoration: BoxDecoration(
-                  color: isMyMessage ? Colors.blue : AppColors.whiteGrey,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(AppDimensions.normalS),
-                  ).copyWith(topLeft: Radius.zero),
-                ),
-                child: Text(
-                  message,
-                  style: isMyMessage ? const TextStyle(color: Colors.white) : null,
-                ),
-              ),
-            ],
-          ),
-        ],
+        mainAxisAlignment: isMyMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: isMyMessage
+            ? [
+                Expanded(child: messageContent),
+                AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM),
+              ]
+            : [
+                AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM),
+                Expanded(child: messageContent),
+              ],
       ),
     );
   }

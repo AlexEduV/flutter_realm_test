@@ -193,4 +193,6 @@ class L10nKeys {
   static const String promoTypeLimitedTimeOffer = 'pages.vehicleDetails.promoType.limitedTimeOffer';
   static const String promoTypeOneOwner = 'pages.vehicleDetails.promoType.oneOwner';
   static const String promoTypeFeatured = 'pages.vehicleDetails.promoType.featured';
+
+  static const String messageSenderYou = 'pages.inbox.general.senderYou';
 }

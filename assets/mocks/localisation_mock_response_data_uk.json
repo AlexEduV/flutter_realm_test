@@ -40,7 +40,10 @@
         "inbox": {
           "title": "Inbox",
           "emptyPlaceholderText": "No messages yet.",
-          "loggedOutPlaceholderText": "Please, login to see the messages."
+          "loggedOutPlaceholderText": "Please, login to see the messages.",
+          "general": {
+            "senderYou": "You"
+          }
         },
         "vehicleDetails": {
           "sectionTitle": "Vehicle Specifications",
