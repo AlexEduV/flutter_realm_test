@@ -63,7 +63,7 @@ class _MessagesPageState extends State<MessagesPage> {
                       hintText: 'Message',
                       contentPadding: const EdgeInsets.symmetric(
                         vertical: AppDimensions.normalM,
-                        horizontal: 12.0,
+                        horizontal: AppDimensions.normalS,
                       ),
                       border: OutlineInputBorder(
                         borderRadius: textFieldBorderRadius,
