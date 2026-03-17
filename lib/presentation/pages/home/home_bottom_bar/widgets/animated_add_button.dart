@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../common/app_colors.dart';
 
 class AnimatedAddButton extends StatefulWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color backgroundColor;
   final double size;
 

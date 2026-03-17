@@ -26,6 +26,7 @@ class OwnerEntity {
       id: user.userId,
       name: '${user.firstName} ${user.lastName}',
       linkedItemIds: user.createdIds,
+      imageSrc: user.avatarImageSrc,
     );
   }
 

@@ -10,9 +10,17 @@ import '../../../../common/app_dimensions.dart';
 
 class UserAvatarEnhanced extends StatelessWidget {
   final String? imageSrc;
-  final Function() onTap;
+  final Function()? onTap;
+  final double size;
+  final bool isDecorated;
 
-  const UserAvatarEnhanced({required this.imageSrc, required this.onTap, super.key});
+  const UserAvatarEnhanced({
+    required this.imageSrc,
+    required this.onTap,
+    this.size = AppDimensions.avatarImageSize * 2,
+    this.isDecorated = true,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +31,19 @@ class UserAvatarEnhanced extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Container(
-              width: AppDimensions.avatarImageSize * 2,
-              height: AppDimensions.avatarImageSize * 2,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: Colors.white, // Set your desired border color
-                  width: 3.0, // Set your desired border width
-                ),
-              ),
+              width: size,
+              height: size,
+              decoration: isDecorated
+                  ? BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.white, // Set your desired border color
+                        width: 3.0, // Set your desired border width
+                      ),
+                    )
+                  : null,
               child: CircleAvatar(
-                radius: AppDimensions.avatarImageSize,
+                radius: size / 2,
                 backgroundImage: (imageSrc != null && imageSrc!.isNotEmpty)
                     ? FileImage(File(imageSrc!))
                     : null,
@@ -42,19 +52,22 @@ class UserAvatarEnhanced extends StatelessWidget {
                     : null,
               ),
             ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: AppSemantics(
-                button: true,
-                label: AppSemanticsLabels.avatarSetImageButton,
-                child: AnimatedAddButton(
-                  onPressed: onTap,
-                  backgroundColor: AppColors.accentColor,
-                  size: AppDimensions.avatarImageAddIconSize,
+
+            if (onTap != null) ...[
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: AppSemantics(
+                  button: true,
+                  label: AppSemanticsLabels.avatarSetImageButton,
+                  child: AnimatedAddButton(
+                    onPressed: onTap,
+                    backgroundColor: AppColors.accentColor,
+                    size: AppDimensions.avatarImageAddIconSize,
+                  ),
                 ),
               ),
-            ),
+            ],
           ],
         ),
       ),

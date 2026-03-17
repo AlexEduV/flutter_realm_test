@@ -75,7 +75,7 @@ class MessageItem extends StatelessWidget {
               ],
             ),
           ),
-          AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM),
+          AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM, isLocal: isMyMessage),
         ],
       ),
     );
