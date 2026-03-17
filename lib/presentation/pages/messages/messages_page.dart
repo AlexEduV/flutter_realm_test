@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
@@ -22,10 +23,17 @@ class _MessagesPageState extends State<MessagesPage> {
   final messageInputTextController = TextEditingController();
   final messageInputFocusNode = FocusNode();
 
+  late OwnerEntity owner;
+
+  @override
+  void initState() {
+    owner = serviceLocator<GetOwnerByIdUseCase>().call(widget.ownerId);
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final owner = serviceLocator<GetOwnerByIdUseCase>().call(widget.ownerId);
-
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
