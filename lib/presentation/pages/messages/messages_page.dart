@@ -4,6 +4,7 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
+import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_bar.dart';
@@ -56,16 +57,7 @@ class _MessagesPageState extends State<MessagesPage> {
           ListView.builder(
             itemBuilder: (context, index) {
               final message = conversation.messages[index];
-              bool isExpanded = true;
-
-              if (index > 0) {
-                final previousMessage = conversation.messages[index - 1];
-
-                if (previousMessage.sender == message.sender &&
-                    message.date.difference(previousMessage.date).inMinutes < 2) {
-                  isExpanded = false;
-                }
-              }
+              final isExpanded = shouldExpandMessage(index, message);
 
               return MessageItem(
                 name: message.sender.name,
@@ -91,5 +83,18 @@ class _MessagesPageState extends State<MessagesPage> {
         ],
       ),
     );
+  }
+
+  bool shouldExpandMessage(int index, MessageModel currentMessage) {
+    if (index > 0) {
+      final previousMessage = conversation.messages[index - 1];
+
+      if (previousMessage.sender == currentMessage.sender &&
+          currentMessage.date.difference(previousMessage.date).inMinutes < 2) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }
