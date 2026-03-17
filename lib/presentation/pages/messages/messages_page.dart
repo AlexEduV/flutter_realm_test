@@ -47,7 +47,7 @@ class _MessagesPageState extends State<MessagesPage> {
                 imageSrc: owner.imageSrc,
                 message: 'Test Message',
                 time: '12:03 PM',
-                isMyMessage: true,
+                isMyMessage: false,
               ),
             ],
           ),
