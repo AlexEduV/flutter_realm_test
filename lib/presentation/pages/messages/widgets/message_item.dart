@@ -28,9 +28,12 @@ class MessageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(
-        AppDimensions.normalS,
-      ).copyWith(bottom: expanded ? null : 0.0, top: expanded ? null : 0.0),
+      padding: EdgeInsets.only(
+        right: AppDimensions.normalS,
+        left: AppDimensions.normalS,
+        top: expanded ? AppDimensions.normalS : 0.0,
+        bottom: AppDimensions.minorS,
+      ),
       child: Row(
         textDirection: isMyMessage ? TextDirection.ltr : TextDirection.rtl,
         crossAxisAlignment: CrossAxisAlignment.start,
