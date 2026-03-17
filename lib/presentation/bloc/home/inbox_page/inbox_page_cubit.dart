@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_messages_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 
@@ -10,5 +11,20 @@ class InboxPageCubit extends Cubit<InboxPageState> {
   Future<void> init() async {
     final conversationsList = await _fetchMessagesUseCase.call();
     emit(state.copyWith(conversations: conversationsList));
+  }
+
+  void sendMessage(String? conversationId, MessageModel message) {
+    if (conversationId == null) return;
+
+    final conversations = List.of(state.conversations);
+
+    final conversationIndex = conversations.indexWhere(
+      (element) => element.conversationId == conversationId,
+    );
+
+    conversations[conversationIndex].messages.add(message);
+    emit(state.copyWith(conversations: conversations));
+
+    //todo: update local storage and cloud;
   }
 }

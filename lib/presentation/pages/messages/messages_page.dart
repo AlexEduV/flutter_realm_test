@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/di/injection_container.dart';
@@ -7,6 +8,7 @@ import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
+import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
@@ -32,6 +34,8 @@ class _MessagesPageState extends State<MessagesPage> {
 
   @override
   void initState() {
+    context.read<MessagesPageCubit>().setCurrentConversationId(widget.conversationId);
+
     conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
     owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 

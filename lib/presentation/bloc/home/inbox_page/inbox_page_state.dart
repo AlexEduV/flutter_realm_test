@@ -6,7 +6,7 @@ part 'inbox_page_state.freezed.dart';
 @freezed
 abstract class InboxPageState with _$InboxPageState {
   const factory InboxPageState({
-    @Default([]) List<ConversationModel> conversations,
     @Default(false) bool isLoading,
+    @Default([]) List<ConversationModel> conversations,
   }) = _InboxPageState;
 }
