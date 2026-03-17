@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -9,8 +9,17 @@ class MessageItem extends StatelessWidget {
   final String name;
   final String? imageSrc;
   final String message;
+  final String time;
+  final bool isMyMessage;
 
-  const MessageItem({required this.name, required this.imageSrc, required this.message, super.key});
+  const MessageItem({
+    required this.name,
+    required this.imageSrc,
+    required this.message,
+    required this.time,
+    this.isMyMessage = true,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +35,14 @@ class MessageItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: AppDimensions.minorL,
             children: [
-              Text(name, style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600)),
+              Row(
+                spacing: AppDimensions.minorM,
+                children: [
+                  Text(name, style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600)),
+
+                  Text(time),
+                ],
+              ),
 
               Container(
                 padding: const EdgeInsets.symmetric(
@@ -34,12 +50,15 @@ class MessageItem extends StatelessWidget {
                   horizontal: AppDimensions.normalM,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.whiteGrey,
+                  color: isMyMessage ? Colors.blue : AppColors.whiteGrey,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(AppDimensions.normalS),
                   ).copyWith(topLeft: Radius.zero),
                 ),
-                child: Text(message),
+                child: Text(
+                  message,
+                  style: isMyMessage ? const TextStyle(color: Colors.white) : null,
+                ),
               ),
             ],
           ),

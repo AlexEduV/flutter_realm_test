@@ -42,7 +42,12 @@ class _MessagesPageState extends State<MessagesPage> {
         children: [
           ListView(
             children: [
-              MessageItem(name: owner.name, imageSrc: owner.imageSrc, message: 'Test Message'),
+              MessageItem(
+                name: owner.name,
+                imageSrc: owner.imageSrc,
+                message: 'Test Message',
+                time: '12:03 PM',
+              ),
             ],
           ),
 
