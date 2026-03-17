@@ -5,6 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
+import 'package:cancellation_token/cancellation_token.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:realm_dart/src/configuration.dart' as _i3;
@@ -174,7 +175,9 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
           as _i2.Transaction);
 
   @override
-  _i4.Future<_i2.Transaction> beginWriteAsync([dynamic cancellationToken]) =>
+  _i4.Future<_i2.Transaction> beginWriteAsync([
+    _i8.CancellationToken? cancellationToken,
+  ]) =>
       (super.noSuchMethod(
             Invocation.method(#beginWriteAsync, [cancellationToken]),
             returnValue: _i4.Future<_i2.Transaction>.value(
@@ -189,7 +192,7 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
   @override
   _i4.Future<T> writeAsync<T>(
     T Function()? writeCallback, [
-    dynamic cancellationToken,
+    _i8.CancellationToken? cancellationToken,
   ]) =>
       (super.noSuchMethod(
             Invocation.method(#writeAsync, [writeCallback, cancellationToken]),
