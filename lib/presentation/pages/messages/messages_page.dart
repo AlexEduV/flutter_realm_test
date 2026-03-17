@@ -11,9 +11,9 @@ import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 import '../../../common/app_text_styles.dart';
 
 class MessagesPage extends StatefulWidget {
-  final String ownerId;
+  final String conversationId;
 
-  const MessagesPage({required this.ownerId, super.key});
+  const MessagesPage({required this.conversationId, super.key});
 
   @override
   State<MessagesPage> createState() => _MessagesPageState();
@@ -27,7 +27,9 @@ class _MessagesPageState extends State<MessagesPage> {
 
   @override
   void initState() {
-    owner = serviceLocator<GetOwnerByIdUseCase>().call(widget.ownerId);
+    //todo: this is not working. get owner from the service by the conversation id;
+
+    owner = serviceLocator<GetOwnerByIdUseCase>().call(widget.conversationId);
 
     super.initState();
   }

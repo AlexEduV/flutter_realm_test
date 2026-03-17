@@ -69,9 +69,9 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.inbox,
             pageBuilder: (context, state) {
-              final ownerId = state.extra as String? ?? '';
+              final conversationId = state.extra as String? ?? '';
 
-              return CupertinoPage(child: MessagesPage(ownerId: ownerId));
+              return CupertinoPage(child: MessagesPage(conversationId: conversationId));
             },
           ),
           GoRoute(

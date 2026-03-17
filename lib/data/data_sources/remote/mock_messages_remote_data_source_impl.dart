@@ -1,3 +1,4 @@
+import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
@@ -44,13 +45,28 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   List<ConversationModel> get list => _list;
 
   @override
-  void addMessage(MessageModel message, String id) {
-    final conversationIndex = _list.indexWhere((element) => element.conversationId == id);
+  void addMessage(MessageModel message, String conversationId) {
+    final conversationIndex = _list.indexWhere(
+      (element) => element.conversationId == conversationId,
+    );
     _list[conversationIndex].messages.add(message);
   }
 
   @override
   void dispose() {
     _list.clear();
+  }
+
+  @override
+  Future<ConversationModel> getConversationById(String conversationId) async {
+    final conversationIndex = _list.indexWhereOrNull(
+      (element) => element.conversationId == conversationId,
+    );
+
+    if (conversationIndex == null) {
+      return ConversationModel.empty();
+    }
+
+    return _list[conversationIndex];
   }
 }

@@ -6,4 +6,8 @@ class ConversationModel {
   final List<MessageModel> messages;
 
   ConversationModel({required this.conversationId, required this.ownerId, required this.messages});
+
+  factory ConversationModel.empty() {
+    return ConversationModel(conversationId: '', ownerId: '', messages: []);
+  }
 }
