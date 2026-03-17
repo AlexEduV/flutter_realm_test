@@ -29,21 +29,32 @@ class MessagesPage extends StatelessWidget {
         ],
       ),
       body: Stack(
-        fit: StackFit.expand,
         children: [
           Positioned(
             bottom: AppDimensions.majorM,
-            right: AppDimensions.minorL,
             left: AppDimensions.minorL,
+            right: AppDimensions.minorL,
             child: Row(
+              spacing: AppDimensions.minorL,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(AppDimensions.minorL),
-                  decoration: BoxDecoration(
-                    color: AppColors.whiteGrey,
-                    borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(AppDimensions.normalS),
+                    decoration: BoxDecoration(
+                      color: AppColors.whiteGrey,
+                      borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                    ),
+                    child: const Text('Write Something...', style: AppTextStyles.zonaPro16),
                   ),
-                  child: const Text('Write Something...'),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.send),
+                  style: const ButtonStyle(
+                    iconSize: WidgetStatePropertyAll(36),
+                    foregroundColor: WidgetStatePropertyAll(AppColors.headerColor),
+                    backgroundColor: WidgetStatePropertyAll(Colors.white),
+                  ),
                 ),
               ],
             ),
