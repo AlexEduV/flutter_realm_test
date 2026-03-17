@@ -56,6 +56,16 @@ class _MessagesPageState extends State<MessagesPage> {
           ListView.builder(
             itemBuilder: (context, index) {
               final message = conversation.messages[index];
+              bool isExpanded = true;
+
+              if (index > 0) {
+                final previousMessage = conversation.messages[index - 1];
+
+                if (previousMessage.sender == message.sender &&
+                    message.date.difference(previousMessage.date).inMinutes < 2) {
+                  isExpanded = false;
+                }
+              }
 
               return MessageItem(
                 name: message.sender.name,
@@ -63,6 +73,7 @@ class _MessagesPageState extends State<MessagesPage> {
                 message: message.text,
                 time: DateFormatter.formatSmartDate(message.date),
                 isMyMessage: message.sender.id != owner.id,
+                expanded: isExpanded,
               );
             },
             itemCount: conversation.messages.length,

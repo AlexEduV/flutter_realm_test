@@ -13,6 +13,7 @@ class MessageItem extends StatelessWidget {
   final String message;
   final String time;
   final bool isMyMessage;
+  final bool expanded;
 
   const MessageItem({
     required this.name,
@@ -20,13 +21,16 @@ class MessageItem extends StatelessWidget {
     required this.message,
     required this.time,
     this.isMyMessage = true,
+    this.expanded = true,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppDimensions.normalS),
+      padding: const EdgeInsets.all(
+        AppDimensions.normalS,
+      ).copyWith(bottom: expanded ? null : 0.0, top: expanded ? null : 0.0),
       child: Row(
         textDirection: isMyMessage ? TextDirection.ltr : TextDirection.rtl,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,20 +39,23 @@ class MessageItem extends StatelessWidget {
         children: [
           Expanded(
             child: Column(
+              spacing: AppDimensions.minorS,
               crossAxisAlignment: isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
-                Row(
-                  spacing: AppDimensions.minorM,
-                  mainAxisSize: MainAxisSize.min,
-                  textDirection: isMyMessage ? TextDirection.rtl : TextDirection.ltr,
-                  children: [
-                    Text(
-                      isMyMessage ? context.tr(L10nKeys.messageSenderYou) : name,
-                      style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600),
-                    ),
-                    Text(time),
-                  ],
-                ),
+                if (expanded) ...[
+                  Row(
+                    spacing: AppDimensions.minorM,
+                    mainAxisSize: MainAxisSize.min,
+                    textDirection: isMyMessage ? TextDirection.rtl : TextDirection.ltr,
+                    children: [
+                      Text(
+                        isMyMessage ? context.tr(L10nKeys.messageSenderYou) : name,
+                        style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600),
+                      ),
+                      Text(time),
+                    ],
+                  ),
+                ],
                 Container(
                   padding: const EdgeInsets.symmetric(
                     vertical: AppDimensions.normalS,
@@ -75,7 +82,14 @@ class MessageItem extends StatelessWidget {
               ],
             ),
           ),
-          AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM, isLocal: isMyMessage),
+          Opacity(
+            opacity: expanded ? 1.0 : 0.0,
+            child: AvatarWidget(
+              imageSrc: imageSrc,
+              size: AppDimensions.majorM,
+              isLocal: isMyMessage,
+            ),
+          ),
         ],
       ),
     );
