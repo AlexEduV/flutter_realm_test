@@ -8,7 +8,7 @@ class InboxPageCubit extends Cubit<InboxPageState> {
   InboxPageCubit(this._fetchMessagesUseCase) : super(const InboxPageState());
 
   Future<void> init() async {
-    final messagesList = await _fetchMessagesUseCase.call();
-    emit(state.copyWith(messages: messagesList));
+    final conversationsList = await _fetchMessagesUseCase.call();
+    emit(state.copyWith(conversations: conversationsList));
   }
 }

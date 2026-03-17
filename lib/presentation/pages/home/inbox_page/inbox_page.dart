@@ -42,20 +42,20 @@ class _InboxPageState extends State<InboxPage> {
 
           return BlocBuilder<InboxPageCubit, InboxPageState>(
             builder: (context, state) {
-              final items = state.messages;
+              final items = state.conversations;
 
               if (state.isLoading) {
                 return const Center(child: CircularProgressIndicator());
               }
 
-              if (state.messages.isEmpty) {
+              if (state.conversations.isEmpty) {
                 return EmptyResultsPlaceholderWidget(text: context.tr(L10nKeys.inboxPageEmptyText));
               }
 
               return ListView.builder(
                 padding: const EdgeInsets.only(top: AppDimensions.normalL),
                 itemBuilder: (context, index) {
-                  return InboxListItem(message: items[index]);
+                  return InboxListItem(conversation: state.conversations[index]);
                 },
                 itemCount: items.length,
               );
