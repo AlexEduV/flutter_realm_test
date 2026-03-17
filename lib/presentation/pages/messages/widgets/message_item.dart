@@ -55,7 +55,7 @@ class MessageItem extends StatelessWidget {
                     horizontal: AppDimensions.normalM,
                   ),
                   decoration: BoxDecoration(
-                    color: isMyMessage ? Colors.blue : AppColors.whiteGrey,
+                    color: isMyMessage ? AppColors.darkBlue : AppColors.whiteGrey,
                     borderRadius: BorderRadius.only(
                       topLeft: isMyMessage
                           ? const Radius.circular(AppDimensions.normalS)

@@ -41,6 +41,7 @@ class _MessagesPageState extends State<MessagesPage> {
       body: Stack(
         children: [
           ListView(
+            //todo: when the time between messages is less then 1 minute, use only one avatar per batch
             children: [
               MessageItem(
                 name: owner.name,
@@ -48,6 +49,20 @@ class _MessagesPageState extends State<MessagesPage> {
                 message: 'Test Message',
                 time: '12:03 PM',
                 isMyMessage: false,
+              ),
+              MessageItem(
+                name: owner.name,
+                imageSrc: owner.imageSrc,
+                message: 'Test Message',
+                time: '12:03 PM',
+                isMyMessage: true,
+              ),
+              MessageItem(
+                name: owner.name,
+                imageSrc: owner.imageSrc,
+                message: 'Test Message',
+                time: '12:03 PM',
+                isMyMessage: true,
               ),
             ],
           ),
