@@ -7,14 +7,23 @@ import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../common/app_text_styles.dart';
 
-class MessagesPage extends StatelessWidget {
+class MessagesPage extends StatefulWidget {
   final String ownerId;
 
   const MessagesPage({required this.ownerId, super.key});
 
   @override
+  State<MessagesPage> createState() => _MessagesPageState();
+}
+
+class _MessagesPageState extends State<MessagesPage> {
+  final messageInputTextController = TextEditingController();
+  final messageInputFocusNode = FocusNode();
+
+  @override
   Widget build(BuildContext context) {
-    final owner = serviceLocator<GetOwnerByIdUseCase>().call(ownerId);
+    final owner = serviceLocator<GetOwnerByIdUseCase>().call(widget.ownerId);
+    final textFieldBorderRadius = BorderRadius.circular(AppDimensions.normalM);
 
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
@@ -35,7 +44,7 @@ class MessagesPage extends StatelessWidget {
             left: AppDimensions.minorL,
             right: AppDimensions.minorL,
             child: Row(
-              spacing: AppDimensions.normalS,
+              spacing: AppDimensions.minorL,
               children: [
                 IconButton(
                   onPressed: () {},
@@ -47,13 +56,38 @@ class MessagesPage extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(AppDimensions.normalS),
-                    decoration: BoxDecoration(
-                      color: AppColors.whiteGrey,
-                      borderRadius: BorderRadius.circular(AppDimensions.normalM),
+                  child: TextFormField(
+                    focusNode: messageInputFocusNode,
+                    controller: messageInputTextController,
+                    decoration: InputDecoration(
+                      hintText: 'Message',
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: AppDimensions.normalM,
+                        horizontal: 12.0,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: textFieldBorderRadius,
+                        borderSide: const BorderSide(color: AppColors.accentColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: textFieldBorderRadius,
+                        borderSide: BorderSide(color: Colors.grey.shade300),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: textFieldBorderRadius,
+                        borderSide: const BorderSide(
+                          color: AppColors.accentColor,
+                          width: AppDimensions.minorXS,
+                        ),
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: textFieldBorderRadius,
+                        borderSide: const BorderSide(color: Colors.red),
+                      ),
                     ),
-                    child: const Text('Message', style: AppTextStyles.zonaPro16),
+                    style: AppTextStyles.zonaPro16,
                   ),
                 ),
                 IconButton(
