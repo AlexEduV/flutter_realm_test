@@ -88,9 +88,9 @@ class _MessagesPageState extends State<MessagesPage> {
   bool shouldExpandMessage(int index, MessageModel currentMessage) {
     if (index > 0) {
       final previousMessage = conversation.messages[index - 1];
+      final differenceInMinutes = currentMessage.date.difference(previousMessage.date).inMinutes;
 
-      if (previousMessage.sender == currentMessage.sender &&
-          currentMessage.date.difference(previousMessage.date).inMinutes < 2) {
+      if (previousMessage.sender == currentMessage.sender && differenceInMinutes.abs() < 2) {
         return false;
       }
     }
