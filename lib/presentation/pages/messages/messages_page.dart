@@ -3,6 +3,8 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
+import 'package:test_futter_project/domain/models/conversation_model.dart';
+import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
@@ -23,13 +25,13 @@ class _MessagesPageState extends State<MessagesPage> {
   final messageInputTextController = TextEditingController();
   final messageInputFocusNode = FocusNode();
 
+  late ConversationModel conversation;
   late OwnerEntity owner;
 
   @override
   void initState() {
-    //todo: this is not working. get owner from the service by the conversation id;
-
-    owner = serviceLocator<GetOwnerByIdUseCase>().call(widget.conversationId);
+    conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
+    owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
     super.initState();
   }

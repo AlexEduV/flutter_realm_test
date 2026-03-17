@@ -13,7 +13,7 @@ class InboxRepositoryImpl implements InboxRepository {
   }
 
   @override
-  Future<ConversationModel> getConversationById(String conversationId) {
+  ConversationModel getConversationById(String conversationId) {
     return _messagesRemoteDataSource.getConversationById(conversationId);
   }
 }

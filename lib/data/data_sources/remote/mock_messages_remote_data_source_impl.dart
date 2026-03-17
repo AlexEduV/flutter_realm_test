@@ -58,7 +58,7 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   }
 
   @override
-  Future<ConversationModel> getConversationById(String conversationId) async {
+  ConversationModel getConversationById(String conversationId) {
     final conversationIndex = _list.indexWhereOrNull(
       (element) => element.conversationId == conversationId,
     );
