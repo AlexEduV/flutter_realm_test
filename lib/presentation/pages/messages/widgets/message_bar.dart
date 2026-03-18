@@ -79,7 +79,11 @@ class MessageBar extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 onChanged: (newValue) =>
                     context.read<MessagesPageCubit>().updateMessageText(newValue),
-                onFieldSubmitted: (_) => sendMessage(context, state),
+                onFieldSubmitted: (value) {
+                  if (value.isEmpty) return;
+
+                  sendMessage(context, state);
+                },
               ),
             ),
             IconButton(
