@@ -29,8 +29,13 @@ class MockOwnersRemoteDataSource implements OwnersRemoteDataSource {
 
     _owners = response.results ?? [];
 
-    //todo: need to remove duplicates
-    MockUsers.initialUsers.addAll(_owners.map((element) => UserEntity.fromOwner(element)));
+    for (final owner in _owners) {
+      final newUser = UserEntity.fromOwner(owner);
+      final exists = MockUsers.initialUsers.any((u) => u.userId == newUser.userId);
+      if (!exists) {
+        MockUsers.initialUsers.add(newUser);
+      }
+    }
     await MockUsers.saveMockUsers(MockUsers.initialUsers);
 
     return _owners;
