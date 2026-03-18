@@ -63,14 +63,6 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   List<ConversationModel> get list => _list;
 
   @override
-  void addMessage(MessageModel message, String conversationId) {
-    final conversationIndex = _list.indexWhere(
-      (element) => element.conversationId == conversationId,
-    );
-    _list[conversationIndex].messages.add(message);
-  }
-
-  @override
   void dispose() {
     _list.clear();
   }
