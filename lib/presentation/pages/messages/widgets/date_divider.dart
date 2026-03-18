@@ -12,13 +12,16 @@ class DateDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: AppDimensions.normalS),
+      padding: const EdgeInsets.only(bottom: AppDimensions.normalS, top: AppDimensions.normalL),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimensions.normalM,
+              vertical: AppDimensions.minorXS,
+            ),
             decoration: BoxDecoration(
               color: AppColors.whiteGrey,
               borderRadius: BorderRadius.circular(AppDimensions.normalM),
