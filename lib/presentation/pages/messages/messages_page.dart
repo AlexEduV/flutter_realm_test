@@ -9,6 +9,7 @@ import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
+import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
@@ -74,12 +75,14 @@ class _MessagesPageState extends State<MessagesPage> {
                   final message = conversation.messages[index];
                   final isExpanded = shouldExpandMessage(index, message, conversation);
 
+                  final sender = MockUsers.getUserById(message.senderId);
+
                   return MessageItem(
-                    name: '${message.sender.firstName} ${message.sender.lastName}',
-                    imageSrc: message.sender.imageSrc,
+                    name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
+                    imageSrc: sender?.avatarImageSrc,
                     message: message.text,
                     time: DateFormatter.formatSmartDate(message.date),
-                    isMyMessage: message.sender.id != owner.id,
+                    isMyMessage: sender?.userId != owner.id,
                     expanded: isExpanded,
                   );
                 },
@@ -107,7 +110,7 @@ class _MessagesPageState extends State<MessagesPage> {
       final previousMessage = conversation.messages[index - 1];
       final differenceInMinutes = currentMessage.date.difference(previousMessage.date).inMinutes;
 
-      if (previousMessage.sender == currentMessage.sender && differenceInMinutes.abs() < 2) {
+      if (previousMessage.senderId == currentMessage.senderId && differenceInMinutes.abs() < 2) {
         return false;
       }
     }

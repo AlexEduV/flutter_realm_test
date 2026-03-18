@@ -1,10 +1,8 @@
 import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
-import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../../../common/enums/message_status.dart';
@@ -20,7 +18,7 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
         ownerId: '1',
         messages: [
           MessageModel(
-            serviceLocator<GetOwnerByIdUseCase>().call('1'),
+            '1',
             MessageStatus.unknown,
             'Some Message here.',
             DateTime.now().subtract(const Duration(hours: 4)),
@@ -32,25 +30,25 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
         ownerId: '4',
         messages: [
           MessageModel(
-            serviceLocator<GetOwnerByIdUseCase>().call('4'),
+            '4',
             MessageStatus.sent,
             'Some Message here.',
             DateTime.now().subtract(const Duration(days: 2)),
           ),
           MessageModel(
-            serviceLocator<GetOwnerByIdUseCase>().call('4'),
+            '4',
             MessageStatus.sent,
             'Other message is here.',
             DateTime.now().subtract(const Duration(days: 2)),
           ),
           MessageModel(
-            OwnerEntity.fromUser(serviceLocator<UserDataCubit>().user),
+            serviceLocator<UserDataCubit>().user.userId,
             MessageStatus.sent,
             'Hello there.',
             DateTime.now().subtract(const Duration(days: 2)),
           ),
           MessageModel(
-            OwnerEntity.fromUser(serviceLocator<UserDataCubit>().user),
+            serviceLocator<UserDataCubit>().user.userId,
             MessageStatus.sent,
             'Hello there again.',
             DateTime.now().subtract(const Duration(days: 2)),
