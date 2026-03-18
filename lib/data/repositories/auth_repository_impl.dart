@@ -65,6 +65,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
     await AuthSessionUtil.saveUserSession(user.userId);
 
+    _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
 
     isAuthenticated = true;
@@ -101,6 +102,8 @@ class AuthRepositoryImpl implements AuthRepository {
     users.add(user);
     await MockUsers.saveMockUsers(users);
     await AuthSessionUtil.saveUserSession(newUserId.toString());
+
+    _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
 
     isAuthenticated = true;
