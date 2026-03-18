@@ -5,7 +5,9 @@ import 'package:test_futter_project/common/app_text_styles.dart';
 import '../../../../common/app_colors.dart';
 
 class DateDivider extends StatelessWidget {
-  const DateDivider({super.key});
+  final String text;
+
+  const DateDivider({required this.text, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,7 @@ class DateDivider extends StatelessWidget {
               color: AppColors.whiteGrey,
               borderRadius: BorderRadius.circular(AppDimensions.normalM),
             ),
-            child: Text(
-              'Yesterday',
-              style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
-            ),
+            child: Text(text, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
           ),
         ],
       ),

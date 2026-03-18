@@ -206,7 +206,8 @@
         }
       },
       "dateFormatting": {
-        "yesterday": "Ieri"
+        "yesterday": "Ieri",
+        "today": "Oggi"
       },
       "general": {
         "share": "Condividi",

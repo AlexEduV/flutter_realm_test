@@ -206,7 +206,8 @@
         }
       },
       "dateFormatting": {
-        "yesterday": "Yesterday"
+        "yesterday": "Yesterday",
+        "today": "Today"
       },
       "general": {
         "share": "Share",

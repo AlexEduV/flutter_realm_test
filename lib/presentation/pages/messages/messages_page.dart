@@ -7,7 +7,6 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
-import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_case.dart';
@@ -100,27 +99,36 @@ class _MessagesPageState extends State<MessagesPage> {
               final conversation = getConversationFromState(state);
               final users = getUsersFromConversation(conversation);
 
-              return ListView.separated(
+              return ListView.builder(
                 controller: listViewScrollController,
                 padding: EdgeInsets.only(bottom: messageBarHeight + (AppDimensions.normalXL * 2)),
+                itemCount: conversation.messages.length,
                 itemBuilder: (context, index) {
                   final message = conversation.messages[index];
-                  final isExpanded = shouldExpandMessage(index, message, conversation);
+                  final isExpanded = shouldExpandMessage(index, conversation);
                   final sender = users[message.senderId];
 
-                  return MessageItem(
-                    name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
-                    imageSrc: sender?.avatarImageSrc,
-                    message: message.text,
-                    time: DateFormatter.formatSmartDate(message.date),
-                    isMyMessage: sender?.userId != owner.id,
-                    expanded: isExpanded,
+                  final showDivider = shouldShowDivider(index, conversation);
+
+                  // Build a list of widgets: divider + message item
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (showDivider) ...[
+                        DateDivider(text: DateFormatter.formatMessageDividerDate(message.date)),
+                      ],
+
+                      MessageItem(
+                        name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
+                        imageSrc: sender?.avatarImageSrc,
+                        message: message.text,
+                        time: DateFormatter.formatSmartDate(message.date),
+                        isMyMessage: sender?.userId != owner.id,
+                        expanded: isExpanded,
+                      ),
+                    ],
                   );
                 },
-                separatorBuilder: (context, index) {
-                  return const DateDivider();
-                },
-                itemCount: conversation.messages.length,
               );
             },
           ),
@@ -141,8 +149,9 @@ class _MessagesPageState extends State<MessagesPage> {
     );
   }
 
-  bool shouldExpandMessage(int index, MessageModel currentMessage, ConversationModel conversation) {
+  bool shouldExpandMessage(int index, ConversationModel conversation) {
     if (index > 0) {
+      final currentMessage = conversation.messages[index];
       final previousMessage = conversation.messages[index - 1];
       final differenceInMinutes = currentMessage.date.difference(previousMessage.date).inMinutes;
 
@@ -152,6 +161,17 @@ class _MessagesPageState extends State<MessagesPage> {
     }
 
     return true;
+  }
+
+  bool shouldShowDivider(int index, ConversationModel conversation) {
+    if (index == 0) return true;
+
+    final currentMessage = conversation.messages[index];
+    final lastMessage = conversation.messages[index - 1];
+
+    if (lastMessage.date.day != currentMessage.date.day) return true;
+
+    return false;
   }
 
   ConversationModel getConversationFromState(InboxPageState state) {
