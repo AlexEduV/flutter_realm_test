@@ -36,14 +36,4 @@ class InboxPageCubit extends Cubit<InboxPageState> {
 
     //todo: update local storage and cloud;
   }
-
-  // void updateUser({required UserEntity user, isMyAccount = true}) {
-  //
-  //   if (isMyAccount) {
-  //     final conversations = List.of(state.conversations);
-  //
-  //     final updatedConversations = conversations.map((element) => element.messages.)
-  //   }
-  //
-  // }
 }
