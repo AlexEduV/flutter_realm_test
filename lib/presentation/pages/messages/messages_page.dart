@@ -34,6 +34,11 @@ class _MessagesPageState extends State<MessagesPage> {
   final messageInputTextController = TextEditingController();
   final messageInputFocusNode = FocusNode();
 
+  final messageBarKey = GlobalKey();
+  double messageBarHeight = 0.0;
+
+  final listViewScrollController = ScrollController();
+
   late ConversationModel conversation;
   late OwnerEntity owner;
 
@@ -46,7 +51,35 @@ class _MessagesPageState extends State<MessagesPage> {
     conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
     owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final context = messageBarKey.currentContext;
+      if (context != null) {
+        final box = context.findRenderObject() as RenderBox;
+        setState(() {
+          messageBarHeight = box.size.height;
+        });
+      }
+
+      if (listViewScrollController.hasClients) {
+        listViewScrollController.animateTo(
+          listViewScrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    messageInputFocusNode.dispose();
+    messageInputTextController.dispose();
+
+    listViewScrollController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -71,6 +104,8 @@ class _MessagesPageState extends State<MessagesPage> {
               final users = getUsersFromConversation(conversation);
 
               return ListView.builder(
+                controller: listViewScrollController,
+                padding: EdgeInsets.only(bottom: messageBarHeight + (AppDimensions.normalXL * 2)),
                 itemBuilder: (context, index) {
                   final message = conversation.messages[index];
                   final isExpanded = shouldExpandMessage(index, message, conversation);
@@ -95,6 +130,7 @@ class _MessagesPageState extends State<MessagesPage> {
             left: AppDimensions.minorL,
             right: AppDimensions.minorL,
             child: MessageBar(
+              key: messageBarKey,
               messageTextController: messageInputTextController,
               messageFocusNode: messageInputFocusNode,
             ),
