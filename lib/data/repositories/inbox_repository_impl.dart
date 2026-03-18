@@ -21,4 +21,9 @@ class InboxRepositoryImpl implements InboxRepository {
   Future<void> saveConversations(List<ConversationModel> conversations) {
     return _messagesRemoteDataSource.saveConversations(conversations);
   }
+
+  @override
+  ConversationModel getConversationByOwnerId(String ownerId) {
+    return _messagesRemoteDataSource.getConversationByOwnerId(ownerId);
+  }
 }

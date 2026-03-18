@@ -56,6 +56,7 @@ import 'package:test_futter_project/domain/usecases/geolocator/check_location_se
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
+import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
@@ -292,4 +293,5 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => MessagesPageCubit());
 
   serviceLocator.registerLazySingleton(() => GetUserByIdUseCase());
+  serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
 }

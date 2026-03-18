@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/extensions/list_extension.dart';
+import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/save_conversations_use_case.dart';
@@ -22,7 +23,7 @@ class InboxPageCubit extends Cubit<InboxPageState> {
 
     final conversations = List.of(state.conversations);
 
-    final conversationIndex = conversations.indexWhereOrNull(
+    final conversationIndex = conversations.indexWhereOrNull<ConversationModel>(
       (element) => element.conversationId == conversationId,
     );
 

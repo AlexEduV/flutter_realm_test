@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
+import '../../../../common/app_routes.dart';
 import '../../../../common/app_text_styles.dart';
 import '../../../../l10n/l10n_keys.dart';
 
@@ -17,6 +21,8 @@ class OwnerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final owner = car.owner;
+
     return Container(
       padding: const EdgeInsets.only(top: AppDimensions.normalL),
       decoration: const BoxDecoration(
@@ -36,14 +42,14 @@ class OwnerWidget extends StatelessWidget {
               spacing: AppDimensions.normalM,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AvatarWidget(imageSrc: car.owner?.imageSrc),
+                AvatarWidget(imageSrc: owner?.imageSrc),
 
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${car.owner?.firstName ?? ''} ${car.owner?.lastName ?? ''}',
+                        '${owner?.firstName ?? ''} ${owner?.lastName ?? ''}',
                         style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                       ),
 
@@ -94,7 +100,13 @@ class OwnerWidget extends StatelessWidget {
               label: AppSemanticsLabels.detailsPageContactButton,
               child: ElevatedButton(
                 onPressed: () {
-                  // Your action here
+                  final ownerId = owner?.id;
+                  if (ownerId == null) return;
+
+                  final conversationId = serviceLocator<GetConversationByOwnerIdUseCase>().call(
+                    ownerId,
+                  );
+                  context.go(AppRoutes.home + AppRoutes.inbox, extra: conversationId);
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
