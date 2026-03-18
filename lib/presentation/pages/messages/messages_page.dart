@@ -9,7 +9,7 @@ import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
-import 'package:test_futter_project/mocks/mock_users.dart';
+import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
@@ -75,7 +75,10 @@ class _MessagesPageState extends State<MessagesPage> {
                   final message = conversation.messages[index];
                   final isExpanded = shouldExpandMessage(index, message, conversation);
 
-                  final sender = MockUsers.getUserById(message.senderId);
+                  //maybe there is a way to cache this data.
+                  //for one conversation I need only 2 (for now) users. To get them for every message
+                  // is not efficient
+                  final sender = serviceLocator<GetUserByIdUseCase>().call(message.senderId);
 
                   return MessageItem(
                     name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',

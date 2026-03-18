@@ -65,6 +65,7 @@ import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/domain/usecases/share/share_use_case.dart';
 import 'package:test_futter_project/domain/usecases/url/open_url_link_use_case.dart';
+import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
@@ -287,4 +288,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
 
   serviceLocator.registerFactory(() => MessagesPageCubit());
+
+  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase());
 }
