@@ -10,4 +10,16 @@ class ConversationModel {
   factory ConversationModel.empty() {
     return ConversationModel(conversationId: '', ownerId: '', messages: []);
   }
+
+  ConversationModel copyWith({
+    String? conversationId,
+    String? ownerId,
+    List<MessageModel>? messages,
+  }) {
+    return ConversationModel(
+      conversationId: conversationId ?? this.conversationId,
+      ownerId: ownerId ?? this.ownerId,
+      messages: messages ?? this.messages,
+    );
+  }
 }
