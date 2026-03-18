@@ -5,6 +5,7 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
@@ -35,6 +36,8 @@ class _MessagesPageState extends State<MessagesPage> {
 
   late ConversationModel conversation;
   late OwnerEntity owner;
+
+  final getUserById = serviceLocator<GetUserByIdUseCase>();
 
   @override
   void initState() {
@@ -70,15 +73,18 @@ class _MessagesPageState extends State<MessagesPage> {
                   ) ??
                   ConversationModel.empty();
 
+              final senderIds = conversation.messages.map((m) => m.senderId).toSet();
+
+              final userMap = <String, UserEntity?>{
+                for (final id in senderIds) id: getUserById.call(id),
+              };
+
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final message = conversation.messages[index];
                   final isExpanded = shouldExpandMessage(index, message, conversation);
 
-                  //maybe there is a way to cache this data.
-                  //for one conversation I need only 2 (for now) users. To get them for every message
-                  // is not efficient
-                  final sender = serviceLocator<GetUserByIdUseCase>().call(message.senderId);
+                  final sender = userMap[message.senderId];
 
                   return MessageItem(
                     name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
