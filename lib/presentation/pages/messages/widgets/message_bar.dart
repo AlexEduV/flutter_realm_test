@@ -94,6 +94,8 @@ class MessageBar extends StatelessWidget {
                           DateTime.now(),
                         ),
                       );
+
+                      context.read<MessagesPageCubit>().updateMessageText('');
                     },
               icon: const Icon(Icons.send),
               style: ButtonStyle(
