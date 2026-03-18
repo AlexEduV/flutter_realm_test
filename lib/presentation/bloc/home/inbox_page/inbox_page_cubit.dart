@@ -34,6 +34,6 @@ class InboxPageCubit extends Cubit<InboxPageState> {
 
     emit(state.copyWith(conversations: conversations));
 
-    //todo: update local storage and cloud;
+    //todo: update message service data and cloud (shared preferences);
   }
 }
