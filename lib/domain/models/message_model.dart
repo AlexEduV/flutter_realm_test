@@ -8,6 +8,24 @@ class MessageModel {
 
   MessageModel(this.senderId, this.messageStatus, this.text, this.date);
 
+  Map<String, dynamic> toJson() {
+    return {
+      'senderId': senderId,
+      'messageStatus': messageStatus.name, // Dart 2.15+ .name for enum to String
+      'text': text,
+      'date': date.toIso8601String(),
+    };
+  }
+
+  factory MessageModel.fromJson(Map<String, dynamic> json) {
+    return MessageModel(
+      json['senderId'] as String,
+      MessageStatus.values.byName(json['messageStatus'] as String),
+      json['text'] as String,
+      DateTime.parse(json['date'] as String),
+    );
+  }
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||

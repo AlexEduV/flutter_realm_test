@@ -22,4 +22,22 @@ class ConversationModel {
       messages: messages ?? this.messages,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'conversationId': conversationId,
+      'ownerId': ownerId,
+      'messages': messages.map((m) => m.toJson()).toList(),
+    };
+  }
+
+  factory ConversationModel.fromJson(Map<String, dynamic> json) {
+    return ConversationModel(
+      conversationId: json['conversationId'] as String,
+      ownerId: json['ownerId'] as String,
+      messages: (json['messages'] as List<dynamic>)
+          .map((m) => MessageModel.fromJson(m as Map<String, dynamic>))
+          .toList(),
+    );
+  }
 }
