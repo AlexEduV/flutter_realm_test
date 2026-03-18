@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
-import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
@@ -31,7 +30,6 @@ void main() async {
   // the android folder, not from `flutter run`. Updating gradle files did not help
 
   await serviceLocator<RegionRemoteDataSource>().init();
-  await serviceLocator<FetchOwnersUseCase>().call();
 
   ImageCacheUtil.initExtendedCacheSize();
 

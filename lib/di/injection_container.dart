@@ -186,7 +186,9 @@ Future<void> initDependenciesContainer() async {
     () => PermissionRepositoryImpl(serviceLocator()),
   );
 
-  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator());
+  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
+
+  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator(), serviceLocator());
   await authRepositoryImpl.init();
 
   serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
@@ -257,7 +259,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
+  //here
   serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
