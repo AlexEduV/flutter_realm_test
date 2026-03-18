@@ -77,27 +77,13 @@ class MessageBar extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 onChanged: (newValue) =>
                     context.read<MessagesPageCubit>().updateMessageText(newValue),
+                onFieldSubmitted: (_) => sendMessage(context, state),
               ),
             ),
             IconButton(
               onPressed: state.currentMessageText.isEmpty
                   ? null
-                  : () {
-                      final user = context.read<UserDataCubit>().user;
-
-                      context.read<InboxPageCubit>().sendMessage(
-                        state.currentConversationId,
-                        MessageModel(
-                          user.userId,
-                          MessageStatus.unknown,
-                          messageTextController.text,
-                          DateTime.now(),
-                        ),
-                      );
-
-                      context.read<MessagesPageCubit>().updateMessageText('');
-                      messageTextController.clear();
-                    },
+                  : () => sendMessage(context, state),
               icon: const Icon(Icons.send),
               style: ButtonStyle(
                 iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
@@ -114,5 +100,17 @@ class MessageBar extends StatelessWidget {
         );
       },
     );
+  }
+
+  void sendMessage(BuildContext context, MessagesPageState state) {
+    final user = context.read<UserDataCubit>().user;
+
+    context.read<InboxPageCubit>().sendMessage(
+      state.currentConversationId,
+      MessageModel(user.userId, MessageStatus.unknown, messageTextController.text, DateTime.now()),
+    );
+
+    context.read<MessagesPageCubit>().updateMessageText('');
+    messageTextController.clear();
   }
 }
