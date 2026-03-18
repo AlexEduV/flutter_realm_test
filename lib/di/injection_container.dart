@@ -54,7 +54,7 @@ import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
-import 'package:test_futter_project/domain/usecases/inbox/fetch_messages_use_case.dart';
+import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
@@ -83,6 +83,7 @@ import '../data/repositories/car_repository_impl.dart';
 import '../domain/repositories/car_repository.dart';
 import '../domain/repositories/geolocator_repository.dart';
 import '../domain/repositories/url_launch_repository.dart';
+import '../domain/usecases/inbox/save_conversations_use_case.dart';
 import '../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
@@ -241,14 +242,15 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
     () => MockMessagesRemoteDataSourceImpl(),
   );
-  serviceLocator.registerLazySingleton(() => InboxPageCubit(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => InboxPageCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => DeleteAccountUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => FetchMessagesUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => FetchConversationsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SaveConversationsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => FetchArticlesUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetArticleByIdUseCase(serviceLocator()));

@@ -8,12 +8,17 @@ class InboxRepositoryImpl implements InboxRepository {
   InboxRepositoryImpl(this._messagesRemoteDataSource);
 
   @override
-  Future<List<ConversationModel>> fetchMessages() {
-    return _messagesRemoteDataSource.fetchMessages();
+  Future<List<ConversationModel>> fetchConversations() {
+    return _messagesRemoteDataSource.loadConversations();
   }
 
   @override
   ConversationModel getConversationById(String conversationId) {
     return _messagesRemoteDataSource.getConversationById(conversationId);
+  }
+
+  @override
+  Future<void> saveConversations(List<ConversationModel> conversations) {
+    return _messagesRemoteDataSource.saveConversations(conversations);
   }
 }

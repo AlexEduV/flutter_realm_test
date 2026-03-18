@@ -3,13 +3,13 @@ import 'package:test_futter_project/domain/repositories/inbox_repository.dart';
 
 import '../usecase.dart';
 
-class FetchMessagesUseCase extends UseCaseNoParams<Future<List<ConversationModel>>> {
+class FetchConversationsUseCase extends UseCaseNoParams<Future<List<ConversationModel>>> {
   final InboxRepository inboxRepository;
 
-  FetchMessagesUseCase(this.inboxRepository);
+  FetchConversationsUseCase(this.inboxRepository);
 
   @override
   Future<List<ConversationModel>> call() {
-    return inboxRepository.fetchMessages();
+    return inboxRepository.fetchConversations();
   }
 }

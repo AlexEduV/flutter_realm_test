@@ -11,7 +11,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import '../../../common/enums/message_status.dart';
 
 class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
-  final List<ConversationModel> _list = [
+  List<ConversationModel> _list = [
     ConversationModel(
       conversationId: '1',
       ownerId: '1',
@@ -57,14 +57,38 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   ];
 
   @override
-  Future<List<ConversationModel>> fetchMessages() async {
-    return _list;
-  }
-
   Future<void> saveConversations(List<ConversationModel> conversations) async {
+    _list = conversations;
+
     final prefs = await SharedPreferences.getInstance();
     final conversationsJsonList = conversations.map((c) => c.toJson()).toList();
     await prefs.setString('mock_conversations', jsonEncode(conversationsJsonList));
+  }
+
+  @override
+  Future<List<ConversationModel>> loadConversations() async {
+    final prefs = await SharedPreferences.getInstance();
+    final usersJson = prefs.getString('mock_conversations');
+    if (usersJson != null) {
+      final decoded = jsonDecode(usersJson);
+
+      if (decoded is! List) {
+        await saveConversations(_list);
+        return _list;
+      }
+
+      final conversations = decoded
+          .map<ConversationModel>(
+            (value) => ConversationModel.fromJson(value as Map<String, dynamic>),
+          )
+          .toList();
+
+      _list = conversations;
+      return conversations;
+    }
+
+    await saveConversations(_list);
+    return _list;
   }
 
   List<ConversationModel> get list => _list;
