@@ -55,7 +55,6 @@ class _MessagesPageState extends State<MessagesPage> {
       final context = messageBarKey.currentContext;
       if (context != null) {
         final box = context.findRenderObject() as RenderBox;
-        //todo: state update is needed here, but maybe move this to cubit
         setState(() {
           messageBarHeight = box.size.height;
         });
