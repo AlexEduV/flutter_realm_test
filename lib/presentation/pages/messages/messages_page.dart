@@ -14,6 +14,7 @@ import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_cas
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/date_divider.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
@@ -99,7 +100,7 @@ class _MessagesPageState extends State<MessagesPage> {
               final conversation = getConversationFromState(state);
               final users = getUsersFromConversation(conversation);
 
-              return ListView.builder(
+              return ListView.separated(
                 controller: listViewScrollController,
                 padding: EdgeInsets.only(bottom: messageBarHeight + (AppDimensions.normalXL * 2)),
                 itemBuilder: (context, index) {
@@ -115,6 +116,9 @@ class _MessagesPageState extends State<MessagesPage> {
                     isMyMessage: sender?.userId != owner.id,
                     expanded: isExpanded,
                   );
+                },
+                separatorBuilder: (context, index) {
+                  return const DateDivider();
                 },
                 itemCount: conversation.messages.length,
               );
