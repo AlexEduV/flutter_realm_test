@@ -131,7 +131,8 @@ class CarEntity {
       year: car.year,
       owner: OwnerEntity(
         id: car.owner?.id ?? '',
-        name: car.owner?.name ?? '',
+        firstName: car.owner?.firstName ?? '',
+        lastName: car.owner?.lastName ?? '',
         linkedItemIds: car.owner?.linkedIds ?? [],
         imageSrc: car.owner?.imageSrc,
       ),

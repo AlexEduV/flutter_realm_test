@@ -1,19 +1,25 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
+import 'auth_repository_impl_test.mocks.dart';
 
+@GenerateMocks([FetchOwnersUseCase])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late AuthRepositoryImpl repo;
 
   final mockLocalStorage = MockBaseLocalStorage();
+  final mockFetchOwnersUseCase = MockFetchOwnersUseCase();
+
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
@@ -45,7 +51,7 @@ void main() {
 
     appLocalisationsCubit.load(localisations);
 
-    repo = AuthRepositoryImpl(mockLocalStorage);
+    repo = AuthRepositoryImpl(mockLocalStorage, mockFetchOwnersUseCase);
     repo.users = initUsers;
 
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);

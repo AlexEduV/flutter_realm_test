@@ -36,7 +36,7 @@ void main() {
     price: 80000,
     distanceTo: 50,
     year: '2020',
-    owner: Person('John Doe', 'test', linkedIds: []),
+    owner: Person('John', 'Doe', 'test', linkedIds: []),
     kilometers: 10000,
     bodyType: 'sedan',
     fuelType: 'ev',
@@ -63,7 +63,9 @@ void main() {
     when(carEntity.model).thenReturn('Model Y');
     when(carEntity.manufacturer).thenReturn('Tesla');
     when(carEntity.year).thenReturn('2007');
-    when(carEntity.owner).thenReturn(OwnerEntity(id: 'test', name: 'Elon', linkedItemIds: []));
+    when(
+      carEntity.owner,
+    ).thenReturn(OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []));
     when(carEntity.isVerified).thenReturn(true);
     when(carEntity.promoType).thenReturn(null);
     when(carEntity.kilometers).thenReturn(12345);
@@ -169,9 +171,9 @@ void main() {
     when(carDto.transmissionType).thenReturn('hybrid');
     when(carDto.color).thenReturn('White');
     when(carDto.images).thenReturn([]);
-    when(
-      carDto.owner,
-    ).thenReturn(OwnerEntity(id: 'test', name: 'James Morrison', linkedItemIds: []));
+    when(carDto.owner).thenReturn(
+      OwnerEntity(id: 'test', firstName: 'James', lastName: 'Morrison', linkedItemIds: []),
+    );
 
     final carDtos = [carDto];
     when(apiService.fetchCars()).thenAnswer((_) async => carDtos);

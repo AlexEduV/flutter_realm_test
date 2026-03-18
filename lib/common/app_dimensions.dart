@@ -46,4 +46,6 @@ class AppDimensions {
   static const hotLabelIconSize = 20.0;
 
   static const authorImageSize = 48.0;
+
+  static const bottomMessageBarIconSize = 30.0;
 }

@@ -38,7 +38,7 @@ void main() {
       bodyType: 'sedan',
       fuelType: 'electric',
       transmissionType: 'automatic',
-      owner: OwnerEntity(id: 'test', name: 'Elon Musk', linkedItemIds: []),
+      owner: OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []),
       distanceTo: 42,
     );
 
@@ -75,7 +75,7 @@ void main() {
       bodyType: 'sedan',
       fuelType: 'electric',
       transmissionType: 'automatic',
-      owner: OwnerEntity(id: 'test', name: 'Elon Musk', linkedItemIds: []),
+      owner: OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []),
       distanceTo: 42,
     );
 

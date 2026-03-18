@@ -5,7 +5,9 @@ import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
 class DateFormatter {
-  static String formatSmartDate(DateTime date) {
+  static String formatSmartDate(DateTime? date) {
+    if (date == null) return '';
+
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
     final dateDay = DateTime(date.year, date.month, date.day);

@@ -43,7 +43,7 @@ class OwnerWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        car.owner?.name ?? '',
+                        '${car.owner?.firstName ?? ''} ${car.owner?.lastName ?? ''}',
                         style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                       ),
 

@@ -55,6 +55,7 @@ import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_messages_use_case.dart';
+import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
@@ -64,6 +65,7 @@ import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/domain/usecases/share/share_use_case.dart';
 import 'package:test_futter_project/domain/usecases/url/open_url_link_use_case.dart';
+import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
@@ -71,6 +73,7 @@ import 'package:test_futter_project/presentation/bloc/details/details_page_cubit
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -88,7 +91,7 @@ Future<void> initDependenciesContainer() async {
   //Register Realm
   final config = Configuration.local(
     [Car.schema, Person.schema, User.schema, LastSeenCar.schema],
-    schemaVersion: 26,
+    schemaVersion: 27,
     migrationCallback: (migration, oldVersion) {
       //add object id
       if (oldVersion < 2) {
@@ -113,6 +116,22 @@ Future<void> initDependenciesContainer() async {
 
           // Ensure userId is unique and not null
           newUser.userId = oldUser.dynamic.get<String>('userId');
+        }
+      }
+
+      if (oldVersion < 27) {
+        final oldUsers = migration.oldRealm.all('User');
+        final newUsers = migration.newRealm.all<User>();
+
+        for (var i = 0; i < oldUsers.length; i++) {
+          final oldUser = oldUsers[i];
+          final newUser = newUsers[i];
+
+          // Move the old 'name' to 'firstName'
+          final oldName = oldUser.dynamic.get<String>('name');
+          final parts = oldName.split(' ');
+          newUser.firstName = parts.isNotEmpty ? parts.first : '';
+          newUser.lastName = parts.length > 1 ? parts.sublist(1).join(' ') : '';
         }
       }
     },
@@ -168,7 +187,9 @@ Future<void> initDependenciesContainer() async {
     () => PermissionRepositoryImpl(serviceLocator()),
   );
 
-  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator());
+  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
+
+  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator(), serviceLocator());
   await authRepositoryImpl.init();
 
   serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
@@ -239,7 +260,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
+  //here
   serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
@@ -263,4 +284,10 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<InboxRepository>(
     () => InboxRepositoryImpl(serviceLocator()),
   );
+
+  serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
+
+  serviceLocator.registerFactory(() => MessagesPageCubit());
+
+  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase());
 }

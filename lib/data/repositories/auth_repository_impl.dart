@@ -2,6 +2,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
@@ -12,15 +13,19 @@ import '../../domain/entities/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final BaseLocalStorage _localStorage;
+  final FetchOwnersUseCase _fetchOwnersUseCase;
 
-  AuthRepositoryImpl(this._localStorage);
+  AuthRepositoryImpl(this._localStorage, this._fetchOwnersUseCase);
 
   late final List<UserEntity> users;
   late bool isAuthenticated = false;
 
   @override
   Future<void> init() async {
-    users = await MockUsers.loadMockUsers();
+    await MockUsers.loadMockUsers();
+    await _fetchOwnersUseCase.call();
+
+    users = MockUsers.initialUsers;
   }
 
   @override
@@ -60,6 +65,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
     await AuthSessionUtil.saveUserSession(user.userId);
 
+    _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
 
     isAuthenticated = true;
@@ -84,7 +90,7 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     }
 
-    final newUserId = users.length;
+    final newUserId = MockUsers.getMaxUserId() + 1;
     final user = UserEntity.initial(
       userId: '$newUserId',
       email: email,
@@ -96,6 +102,8 @@ class AuthRepositoryImpl implements AuthRepository {
     users.add(user);
     await MockUsers.saveMockUsers(users);
     await AuthSessionUtil.saveUserSession(newUserId.toString());
+
+    _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
 
     isAuthenticated = true;

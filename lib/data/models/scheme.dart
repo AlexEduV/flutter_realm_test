@@ -26,7 +26,8 @@ class _Car {
 
 @RealmModel()
 class _Person {
-  late String name;
+  late String firstName;
+  late String lastName;
   late String id;
   late List<String> linkedIds;
   late String? imageSrc;

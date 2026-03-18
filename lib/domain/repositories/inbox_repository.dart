@@ -1,5 +1,7 @@
-import '../models/message_model.dart';
+import 'package:test_futter_project/domain/models/conversation_model.dart';
 
 abstract class InboxRepository {
-  Future<List<MessageModel>> fetchMessages();
+  Future<List<ConversationModel>> fetchMessages();
+
+  ConversationModel getConversationById(String conversationId);
 }

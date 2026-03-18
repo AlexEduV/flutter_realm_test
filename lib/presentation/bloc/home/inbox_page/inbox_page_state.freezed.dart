@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$InboxPageState {
 
- List<MessageModel> get messages; bool get isLoading;
+ bool get isLoading; List<ConversationModel> get conversations;
 /// Create a copy of InboxPageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $InboxPageStateCopyWith<InboxPageState> get copyWith => _$InboxPageStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InboxPageState&&const DeepCollectionEquality().equals(other.messages, messages)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InboxPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&const DeepCollectionEquality().equals(other.conversations, conversations));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(messages),isLoading);
+int get hashCode => Object.hash(runtimeType,isLoading,const DeepCollectionEquality().hash(conversations));
 
 @override
 String toString() {
-  return 'InboxPageState(messages: $messages, isLoading: $isLoading)';
+  return 'InboxPageState(isLoading: $isLoading, conversations: $conversations)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $InboxPageStateCopyWith<$Res>  {
   factory $InboxPageStateCopyWith(InboxPageState value, $Res Function(InboxPageState) _then) = _$InboxPageStateCopyWithImpl;
 @useResult
 $Res call({
- List<MessageModel> messages, bool isLoading
+ bool isLoading, List<ConversationModel> conversations
 });
 
 
@@ -63,11 +63,11 @@ class _$InboxPageStateCopyWithImpl<$Res>
 
 /// Create a copy of InboxPageState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? messages = null,Object? isLoading = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? conversations = null,}) {
   return _then(_self.copyWith(
-messages: null == messages ? _self.messages : messages // ignore: cast_nullable_to_non_nullable
-as List<MessageModel>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,conversations: null == conversations ? _self.conversations : conversations // ignore: cast_nullable_to_non_nullable
+as List<ConversationModel>,
   ));
 }
 
@@ -78,17 +78,17 @@ as bool,
 
 
 class _InboxPageState implements InboxPageState {
-  const _InboxPageState({final  List<MessageModel> messages = const [], this.isLoading = false}): _messages = messages;
+  const _InboxPageState({this.isLoading = false, final  List<ConversationModel> conversations = const []}): _conversations = conversations;
   
 
- final  List<MessageModel> _messages;
-@override@JsonKey() List<MessageModel> get messages {
-  if (_messages is EqualUnmodifiableListView) return _messages;
+@override@JsonKey() final  bool isLoading;
+ final  List<ConversationModel> _conversations;
+@override@JsonKey() List<ConversationModel> get conversations {
+  if (_conversations is EqualUnmodifiableListView) return _conversations;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_messages);
+  return EqualUnmodifiableListView(_conversations);
 }
 
-@override@JsonKey() final  bool isLoading;
 
 /// Create a copy of InboxPageState
 /// with the given fields replaced by the non-null parameter values.
@@ -100,16 +100,16 @@ _$InboxPageStateCopyWith<_InboxPageState> get copyWith => __$InboxPageStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InboxPageState&&const DeepCollectionEquality().equals(other._messages, _messages)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InboxPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&const DeepCollectionEquality().equals(other._conversations, _conversations));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_messages),isLoading);
+int get hashCode => Object.hash(runtimeType,isLoading,const DeepCollectionEquality().hash(_conversations));
 
 @override
 String toString() {
-  return 'InboxPageState(messages: $messages, isLoading: $isLoading)';
+  return 'InboxPageState(isLoading: $isLoading, conversations: $conversations)';
 }
 
 
@@ -120,7 +120,7 @@ abstract mixin class _$InboxPageStateCopyWith<$Res> implements $InboxPageStateCo
   factory _$InboxPageStateCopyWith(_InboxPageState value, $Res Function(_InboxPageState) _then) = __$InboxPageStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<MessageModel> messages, bool isLoading
+ bool isLoading, List<ConversationModel> conversations
 });
 
 
@@ -137,11 +137,11 @@ class __$InboxPageStateCopyWithImpl<$Res>
 
 /// Create a copy of InboxPageState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? messages = null,Object? isLoading = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? conversations = null,}) {
   return _then(_InboxPageState(
-messages: null == messages ? _self._messages : messages // ignore: cast_nullable_to_non_nullable
-as List<MessageModel>,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,conversations: null == conversations ? _self._conversations : conversations // ignore: cast_nullable_to_non_nullable
+as List<ConversationModel>,
   ));
 }
 

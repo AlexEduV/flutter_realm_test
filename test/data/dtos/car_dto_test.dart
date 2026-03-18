@@ -19,7 +19,7 @@ void main() {
         type: 'car',
         isVerified: true,
         year: '2020',
-        owner: OwnerEntity(id: 'test', name: 'John Doe', linkedItemIds: []),
+        owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
         kilometers: 10000,
         distanceTo: 50,
         price: 80000,
@@ -36,7 +36,8 @@ void main() {
       expect(car.isVerified, true);
       expect(car.promoType, isNull);
       expect(car.year, '2020');
-      expect(car.owner?.name ?? '', 'John Doe');
+      expect(car.owner?.firstName ?? '', 'John');
+      expect(car.owner?.lastName ?? '', 'Doe');
       expect(car.kilometers, 10000);
       expect(car.distanceTo, 50);
       expect(car.price, 80000);

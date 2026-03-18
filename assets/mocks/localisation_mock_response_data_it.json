@@ -40,7 +40,11 @@
         "inbox": {
           "title": "Posta in arrivo",
           "emptyPlaceholderText": "Nessun messaggio ancora.",
-          "loggedOutPlaceholderText": "Per favore, accedi per vedere i messaggi."
+          "loggedOutPlaceholderText": "Per favore, accedi per vedere i messaggi.",
+          "general": {
+            "senderYou": "Voi",
+            "messageHint": "Messaggio"
+          }
         },
         "vehicleDetails": {
           "sectionTitle": "Specifiche del veicolo",

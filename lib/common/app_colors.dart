@@ -3,6 +3,7 @@ import 'package:flutter/material.dart' show Colors, Color;
 class AppColors {
   static const mainThemeColor = Colors.indigo;
 
+  static final whiteGrey = Colors.grey[100] as Color;
   static final lightGrey = Colors.grey[300] as Color;
   static final placeholderColor = Colors.grey[400] as Color;
   static final placeholderColorDark = Colors.grey[700] as Color;
@@ -17,4 +18,6 @@ class AppColors {
   static const cherryRed = Color(0xff7b2d26);
 
   static const teal = Color(0xff2e959e);
+
+  static const darkBlue = Color(0xff1E88E5);
 }
