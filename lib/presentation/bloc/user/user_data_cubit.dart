@@ -11,6 +11,7 @@ import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
+import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/utils/auth_session_util.dart';
 
@@ -296,5 +297,8 @@ class UserDataCubit extends Cubit<UserDataState> {
   void updateUser({required UserEntity user, bool updateCloud = true}) {
     _localStorage.update(UserExtensions.fromEntity(user));
     updateCloudUser(user);
+
+    //todo: while this does update the user avatar, it's bad architecture
+    serviceLocator<InboxPageCubit>().init();
   }
 }
