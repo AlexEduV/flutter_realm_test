@@ -60,9 +60,11 @@ class _MessagesPageState extends State<MessagesPage> {
         });
       }
 
+      //todo: maybe I should save the scroll position on exit, and do not scroll initially, only on
+      // adding a message
       if (listViewScrollController.hasClients) {
         listViewScrollController.animateTo(
-          listViewScrollController.position.maxScrollExtent,
+          listViewScrollController.position.maxScrollExtent + messageBarHeight,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
         );
