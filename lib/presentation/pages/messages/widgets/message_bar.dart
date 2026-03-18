@@ -113,7 +113,7 @@ class MessageBar extends StatelessWidget {
 
     context.read<InboxPageCubit>().sendMessage(
       state.currentConversationId,
-      MessageModel(user.userId, MessageStatus.unknown, messageTextController.text, DateTime.now()),
+      MessageModel(user.userId, MessageStatus.sent, messageTextController.text, DateTime.now()),
     );
 
     onMessageSent?.call();

@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
@@ -8,67 +11,87 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import '../../../common/enums/message_status.dart';
 
 class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
-  List<ConversationModel> _list = [];
+  List<ConversationModel> _list = [
+    ConversationModel(
+      conversationId: '1',
+      ownerId: '1',
+      messages: [
+        MessageModel(
+          '1',
+          MessageStatus.unknown,
+          'Some Message here.',
+          DateTime.now().subtract(const Duration(hours: 4)),
+        ),
+      ],
+    ),
+    ConversationModel(
+      conversationId: '2',
+      ownerId: '4',
+      messages: [
+        MessageModel(
+          '4',
+          MessageStatus.sent,
+          'Some Message here.',
+          DateTime.now().subtract(const Duration(days: 2)),
+        ),
+        MessageModel(
+          '4',
+          MessageStatus.sent,
+          'Other message is here.',
+          DateTime.now().subtract(const Duration(days: 2)),
+        ),
+        MessageModel(
+          serviceLocator<UserDataCubit>().user.userId,
+          MessageStatus.sent,
+          'Hello there.',
+          DateTime.now().subtract(const Duration(days: 2)),
+        ),
+        MessageModel(
+          serviceLocator<UserDataCubit>().user.userId,
+          MessageStatus.sent,
+          'Hello there again.',
+          DateTime.now().subtract(const Duration(days: 2)),
+        ),
+      ],
+    ),
+  ];
 
   @override
-  Future<List<ConversationModel>> fetchMessages() async {
-    _list = [
-      ConversationModel(
-        conversationId: '1',
-        ownerId: '1',
-        messages: [
-          MessageModel(
-            '1',
-            MessageStatus.unknown,
-            'Some Message here.',
-            DateTime.now().subtract(const Duration(hours: 4)),
-          ),
-        ],
-      ),
-      ConversationModel(
-        conversationId: '2',
-        ownerId: '4',
-        messages: [
-          MessageModel(
-            '4',
-            MessageStatus.sent,
-            'Some Message here.',
-            DateTime.now().subtract(const Duration(days: 2)),
-          ),
-          MessageModel(
-            '4',
-            MessageStatus.sent,
-            'Other message is here.',
-            DateTime.now().subtract(const Duration(days: 2)),
-          ),
-          MessageModel(
-            serviceLocator<UserDataCubit>().user.userId,
-            MessageStatus.sent,
-            'Hello there.',
-            DateTime.now().subtract(const Duration(days: 2)),
-          ),
-          MessageModel(
-            serviceLocator<UserDataCubit>().user.userId,
-            MessageStatus.sent,
-            'Hello there again.',
-            DateTime.now().subtract(const Duration(days: 2)),
-          ),
-        ],
-      ),
-    ];
+  Future<void> saveConversations(List<ConversationModel> conversations) async {
+    _list = conversations;
 
+    final prefs = await SharedPreferences.getInstance();
+    final conversationsJsonList = conversations.map((c) => c.toJson()).toList();
+    await prefs.setString('mock_conversations', jsonEncode(conversationsJsonList));
+  }
+
+  @override
+  Future<List<ConversationModel>> loadConversations() async {
+    final prefs = await SharedPreferences.getInstance();
+    final usersJson = prefs.getString('mock_conversations');
+    if (usersJson != null) {
+      final decoded = jsonDecode(usersJson);
+
+      if (decoded is! List) {
+        await saveConversations(_list);
+        return _list;
+      }
+
+      final conversations = decoded
+          .map<ConversationModel>(
+            (value) => ConversationModel.fromJson(value as Map<String, dynamic>),
+          )
+          .toList();
+
+      _list = conversations;
+      return conversations;
+    }
+
+    await saveConversations(_list);
     return _list;
   }
 
   List<ConversationModel> get list => _list;
-
-  @override
-  void addMessage(MessageModel message, String conversationId) {
-    final conversationIndex = _list.indexWhere(
-      (element) => element.conversationId == conversationId,
-    );
-    _list[conversationIndex].messages.add(message);
-  }
 
   @override
   void dispose() {

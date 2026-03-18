@@ -155,6 +155,7 @@ class L10nKeys {
   static const String accountItemDeleteAccount = 'pages.account.items.deleteAccount';
 
   static const String dateFormattingYesterday = 'dateFormatting.yesterday';
+  static const String dateFormattingToday = 'dateFormatting.today';
 
   static const String articlePageMinsToRead = 'pages.article.minsToRead';
 
