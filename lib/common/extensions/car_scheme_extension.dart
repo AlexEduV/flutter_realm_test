@@ -24,7 +24,8 @@ extension CarExtensions on Car {
       transmissionType: transmissionType ?? '',
       owner: OwnerEntity(
         id: owner?.id ?? '0',
-        name: owner?.name ?? '',
+        firstName: owner?.firstName ?? '',
+        lastName: owner?.lastName ?? '',
         linkedItemIds: owner?.linkedIds ?? [],
         imageSrc: owner?.imageSrc,
       ),
@@ -50,7 +51,8 @@ extension CarExtensions on Car {
       fuelType: dto.fuelType,
       transmissionType: dto.transmissionType,
       owner: Person(
-        dto.owner?.name ?? '',
+        dto.owner?.firstName ?? '',
+        dto.owner?.lastName ?? '',
         dto.owner?.id ?? '',
         linkedIds: dto.owner?.linkedItemIds ?? [],
         imageSrc: dto.owner?.imageSrc,
@@ -77,7 +79,8 @@ extension CarExtensions on Car {
       fuelType: entity.fuelType,
       transmissionType: entity.transmissionType,
       owner: Person(
-        entity.owner?.name ?? '',
+        entity.owner?.firstName ?? '',
+        entity.owner?.lastName ?? '',
         entity.owner?.id ?? '',
         linkedIds: entity.owner?.linkedItemIds ?? [],
         imageSrc: entity.owner?.imageSrc,

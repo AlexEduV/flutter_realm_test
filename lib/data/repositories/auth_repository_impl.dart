@@ -84,6 +84,8 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     }
 
+    //todo: error here:
+    //the owners are also the users, so the data base needs to be synced here
     final newUserId = users.length;
     final user = UserEntity.initial(
       userId: '$newUserId',

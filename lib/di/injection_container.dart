@@ -90,7 +90,7 @@ Future<void> initDependenciesContainer() async {
   //Register Realm
   final config = Configuration.local(
     [Car.schema, Person.schema, User.schema, LastSeenCar.schema],
-    schemaVersion: 26,
+    schemaVersion: 27,
     migrationCallback: (migration, oldVersion) {
       //add object id
       if (oldVersion < 2) {
@@ -115,6 +115,22 @@ Future<void> initDependenciesContainer() async {
 
           // Ensure userId is unique and not null
           newUser.userId = oldUser.dynamic.get<String>('userId');
+        }
+      }
+
+      if (oldVersion < 27) {
+        final oldUsers = migration.oldRealm.all('User');
+        final newUsers = migration.newRealm.all<User>();
+
+        for (var i = 0; i < oldUsers.length; i++) {
+          final oldUser = oldUsers[i];
+          final newUser = newUsers[i];
+
+          // Move the old 'name' to 'firstName'
+          final oldName = oldUser.dynamic.get<String>('name');
+          final parts = oldName.split(' ');
+          newUser.firstName = parts.isNotEmpty ? parts.first : '';
+          newUser.lastName = parts.length > 1 ? parts.sublist(1).join(' ') : '';
         }
       }
     },

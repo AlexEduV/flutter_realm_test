@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:test_futter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_futter_project/mocks/mock_users.dart';
 
 import '../../../common/app_constants.dart';
 import '../../../domain/models/api_response.dart';
@@ -26,6 +28,9 @@ class MockOwnersRemoteDataSource implements OwnersRemoteDataSource {
     }
 
     _owners = response.results ?? [];
+
+    MockUsers.initialUsers.addAll(_owners.map((element) => UserEntity.fromOwner(element)));
+    await MockUsers.saveMockUsers(MockUsers.initialUsers);
 
     return _owners;
   }

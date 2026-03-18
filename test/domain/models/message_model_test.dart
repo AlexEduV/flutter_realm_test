@@ -5,7 +5,7 @@ import 'package:test_futter_project/domain/models/message_model.dart';
 
 void main() {
   group('MessageModel', () {
-    final sender = OwnerEntity(id: 'owner1', name: 'Alice', linkedItemIds: []);
+    final sender = OwnerEntity(id: 'owner1', firstName: 'Alice', lastName: '', linkedItemIds: []);
     final date = DateTime(2023, 1, 1, 12, 0, 0);
 
     test('constructor assigns values correctly', () {

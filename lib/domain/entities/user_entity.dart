@@ -1,3 +1,5 @@
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
+
 import '../../data/models/scheme.dart';
 
 class UserEntity {
@@ -133,5 +135,15 @@ class UserEntity {
       favoriteIds: (json['favoriteIds'] as List<dynamic>).map((e) => e as String).toList(),
       isLocationPermissionGranted: json['isLocationPermissionGranted'] as bool,
     );
+  }
+
+  factory UserEntity.fromOwner(OwnerEntity owner) {
+    return UserEntity.initial(
+      userId: owner.id,
+      firstName: owner.firstName,
+      lastName: owner.lastName,
+      email: '',
+      password: '',
+    ).copyWith(avatarImageSrc: owner.imageSrc);
   }
 }

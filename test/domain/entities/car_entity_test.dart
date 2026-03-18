@@ -21,7 +21,7 @@ void main() {
     price: 80000,
     distanceTo: 50,
     year: '2020',
-    owner: Person('John Doe', 'test', linkedIds: []),
+    owner: Person('John', 'Doe', 'test', linkedIds: []),
     kilometers: 10000,
     bodyType: 'sedan',
     fuelType: 'ev',
@@ -39,7 +39,7 @@ void main() {
         isVerified: true,
         type: 'car',
         year: '2020',
-        owner: OwnerEntity(id: 'test', name: 'John Doe', linkedItemIds: []),
+        owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
         kilometers: 10000,
         distanceTo: 50,
         price: 80000,
@@ -54,7 +54,8 @@ void main() {
       expect(entity.isVerified, true);
       expect(entity.promoType, null);
       expect(entity.year, '2020');
-      expect(entity.owner?.name, 'John Doe');
+      expect(entity.owner?.firstName, 'John');
+      expect(entity.owner?.lastName, 'Doe');
       expect(entity.kilometers, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
@@ -73,7 +74,7 @@ void main() {
         isVerified: false,
         promoType: PromoType.oneOwner,
         year: '2018',
-        owner: OwnerEntity(id: 'test', name: 'Jane Doe', linkedItemIds: []),
+        owner: OwnerEntity(id: 'test', firstName: 'Jane', lastName: 'Doe', linkedItemIds: []),
         kilometers: 50000,
         distanceTo: 100,
         price: 20000,
@@ -90,7 +91,8 @@ void main() {
       expect(entity.isVerified, false);
       expect(entity.promoType, PromoType.oneOwner);
       expect(entity.year, '2018');
-      expect(entity.owner?.name, 'Jane Doe');
+      expect(entity.owner?.firstName, 'Jane');
+      expect(entity.owner?.lastName, 'Doe');
       expect(entity.kilometers, 50000);
       expect(entity.distanceTo, 100);
       expect(entity.price, 20000);
@@ -108,7 +110,8 @@ void main() {
       expect(entity.isVerified, true);
       expect(entity.promoType, null);
       expect(entity.year, '2020');
-      expect(entity.owner?.name, 'John Doe');
+      expect(entity.owner?.firstName, 'John');
+      expect(entity.owner?.lastName, 'Doe');
       expect(entity.kilometers, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
@@ -127,7 +130,8 @@ void main() {
       expect(entity.model, ''); // default for null model
       expect(entity.isVerified, false); // default for null isChecked
       expect(entity.promoType, isNull); // default for null isHotProposition
-      expect(entity.owner?.name, 'John Doe'); // default for null owner
+      expect(entity.owner?.firstName, 'John'); // default for null owner
+      expect(entity.owner?.lastName, 'Doe'); // default for null owner
     });
   });
 }

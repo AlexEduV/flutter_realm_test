@@ -31,7 +31,7 @@ class InboxListItem extends StatelessWidget {
         vertical: AppDimensions.minorM,
       ),
       child: AppSemantics(
-        label: '${AppSemanticsLabels.inboxItem} ${owner.name}',
+        label: '${AppSemanticsLabels.inboxItem} ${owner.firstName} ${owner.lastName}',
         child: Material(
           color: Colors.white,
           borderRadius: BorderRadius.circular(AppDimensions.normalM),
@@ -55,7 +55,7 @@ class InboxListItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            owner.name,
+                            '${owner.firstName} ${owner.lastName}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),

@@ -50,7 +50,7 @@ class _MessagesPageState extends State<MessagesPage> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(owner.name, style: AppTextStyles.zonaPro20),
+        title: Text('${owner.firstName} ${owner.lastName}', style: AppTextStyles.zonaPro20),
         centerTitle: true,
         actions: [
           Padding(
@@ -75,7 +75,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   final isExpanded = shouldExpandMessage(index, message, conversation);
 
                   return MessageItem(
-                    name: message.sender.name,
+                    name: '${message.sender.firstName} ${message.sender.lastName}',
                     imageSrc: message.sender.imageSrc,
                     message: message.text,
                     time: DateFormatter.formatSmartDate(message.date),

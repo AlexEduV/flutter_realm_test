@@ -2,29 +2,38 @@ import 'package:test_futter_project/domain/entities/user_entity.dart';
 
 class OwnerEntity {
   final String id;
-  final String name;
+  final String firstName;
+  final String lastName;
   final List<String> linkedItemIds;
   final String? imageSrc;
 
-  OwnerEntity({required this.id, required this.name, required this.linkedItemIds, this.imageSrc});
+  OwnerEntity({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.linkedItemIds,
+    this.imageSrc,
+  });
 
   factory OwnerEntity.fromJson(Map<String, dynamic> json) {
     return OwnerEntity(
       id: json['id'] as String,
-      name: '${json['first_name'] as String} ${json['last_name'] as String}',
+      firstName: json['first_name'] as String,
+      lastName: json['last_name'] as String,
       linkedItemIds: List<String>.from(json['linked_ids'] as List),
       imageSrc: json['image_src'] as String?,
     );
   }
 
   factory OwnerEntity.empty() {
-    return OwnerEntity(id: '', name: '', linkedItemIds: []);
+    return OwnerEntity(id: '', firstName: '', lastName: '', linkedItemIds: []);
   }
 
   factory OwnerEntity.fromUser(UserEntity user) {
     return OwnerEntity(
       id: user.userId,
-      name: '${user.firstName} ${user.lastName}',
+      firstName: user.firstName,
+      lastName: user.lastName,
       linkedItemIds: user.createdIds,
       imageSrc: user.avatarImageSrc,
     );
@@ -36,12 +45,18 @@ class OwnerEntity {
       other is OwnerEntity &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          name == other.name &&
+          firstName == other.firstName &&
+          lastName == other.lastName &&
           imageSrc == other.imageSrc &&
           _listEquals(linkedItemIds, other.linkedItemIds);
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ imageSrc.hashCode ^ _listHash(linkedItemIds);
+  int get hashCode =>
+      id.hashCode ^
+      firstName.hashCode ^
+      lastName.hashCode ^
+      imageSrc.hashCode ^
+      _listHash(linkedItemIds);
 
   static bool _listEquals(List a, List b) {
     if (a.length != b.length) return false;
