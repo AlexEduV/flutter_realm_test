@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
@@ -44,8 +46,7 @@ class MessageBar extends StatelessWidget {
                 focusNode: messageFocusNode,
                 controller: messageTextController,
                 decoration: InputDecoration(
-                  //todo: localise
-                  hintText: 'Message',
+                  hintText: context.tr(L10nKeys.messageBarHint),
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: AppDimensions.normalM,
                     horizontal: AppDimensions.normalS,

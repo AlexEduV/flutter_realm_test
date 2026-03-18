@@ -42,7 +42,8 @@
           "emptyPlaceholderText": "Nessun messaggio ancora.",
           "loggedOutPlaceholderText": "Per favore, accedi per vedere i messaggi.",
           "general": {
-            "senderYou": "Voi"
+            "senderYou": "Voi",
+            "messageHint": "Messaggio"
           }
         },
         "vehicleDetails": {

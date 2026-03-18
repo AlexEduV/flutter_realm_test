@@ -42,7 +42,8 @@
           "emptyPlaceholderText": "No messages yet.",
           "loggedOutPlaceholderText": "Please, login to see the messages.",
           "general": {
-            "senderYou": "You"
+            "senderYou": "You",
+            "messageHint": "Message"
           }
         },
         "vehicleDetails": {

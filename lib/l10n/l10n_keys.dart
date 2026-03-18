@@ -195,4 +195,5 @@ class L10nKeys {
   static const String promoTypeFeatured = 'pages.vehicleDetails.promoType.featured';
 
   static const String messageSenderYou = 'pages.inbox.general.senderYou';
+  static const String messageBarHint = 'pages.inbox.general.messageHint';
 }
