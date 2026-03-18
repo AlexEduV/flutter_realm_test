@@ -85,14 +85,11 @@ class MessageItem extends StatelessWidget {
               ],
             ),
           ),
-          Opacity(
-            opacity: expanded ? 1.0 : 0.0,
-            child: AvatarWidget(
-              imageSrc: imageSrc,
-              size: AppDimensions.majorM,
-              isLocal: isMyMessage,
-            ),
-          ),
+          if (expanded) ...[
+            AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM, isLocal: isMyMessage),
+          ] else ...[
+            const SizedBox(width: AppDimensions.majorM),
+          ],
         ],
       ),
     );
