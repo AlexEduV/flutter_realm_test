@@ -67,24 +67,14 @@ class _MessagesPageState extends State<MessagesPage> {
         children: [
           BlocBuilder<InboxPageCubit, InboxPageState>(
             builder: (context, state) {
-              final conversation =
-                  state.conversations.firstWhereOrNull(
-                    (element) => element.conversationId == widget.conversationId,
-                  ) ??
-                  ConversationModel.empty();
-
-              final senderIds = conversation.messages.map((m) => m.senderId).toSet();
-
-              final userMap = <String, UserEntity?>{
-                for (final id in senderIds) id: getUserById.call(id),
-              };
+              final conversation = getConversationFromState(state);
+              final users = getUsersFromConversation(conversation);
 
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final message = conversation.messages[index];
                   final isExpanded = shouldExpandMessage(index, message, conversation);
-
-                  final sender = userMap[message.senderId];
+                  final sender = users[message.senderId];
 
                   return MessageItem(
                     name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
@@ -125,5 +115,23 @@ class _MessagesPageState extends State<MessagesPage> {
     }
 
     return true;
+  }
+
+  ConversationModel getConversationFromState(InboxPageState state) {
+    final conversation =
+        state.conversations.firstWhereOrNull(
+          (element) => element.conversationId == widget.conversationId,
+        ) ??
+        ConversationModel.empty();
+
+    return conversation;
+  }
+
+  Map<String, UserEntity?> getUsersFromConversation(ConversationModel conversation) {
+    final senderIds = conversation.messages.map((m) => m.senderId).toSet();
+
+    final userMap = <String, UserEntity?>{for (final id in senderIds) id: getUserById.call(id)};
+
+    return userMap;
   }
 }
