@@ -55,6 +55,7 @@ class _MessagesPageState extends State<MessagesPage> {
       final context = messageBarKey.currentContext;
       if (context != null) {
         final box = context.findRenderObject() as RenderBox;
+        //todo: state update is needed here, but maybe move this to cubit
         setState(() {
           messageBarHeight = box.size.height;
         });
@@ -62,13 +63,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
       //todo: maybe I should save the scroll position on exit, and do not scroll initially, only on
       // adding a message
-      if (listViewScrollController.hasClients) {
-        listViewScrollController.animateTo(
-          listViewScrollController.position.maxScrollExtent + messageBarHeight,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
-      }
+      scrollToBottom();
     });
 
     super.initState();
@@ -132,6 +127,7 @@ class _MessagesPageState extends State<MessagesPage> {
             left: AppDimensions.minorL,
             right: AppDimensions.minorL,
             child: MessageBar(
+              onMessageSent: scrollToBottom,
               key: messageBarKey,
               messageTextController: messageInputTextController,
               messageFocusNode: messageInputFocusNode,
@@ -171,5 +167,15 @@ class _MessagesPageState extends State<MessagesPage> {
     final userMap = <String, UserEntity?>{for (final id in senderIds) id: getUserById.call(id)};
 
     return userMap;
+  }
+
+  void scrollToBottom() {
+    if (listViewScrollController.hasClients) {
+      listViewScrollController.animateTo(
+        listViewScrollController.position.maxScrollExtent + messageBarHeight,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
   }
 }

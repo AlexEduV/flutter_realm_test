@@ -16,10 +16,12 @@ import '../../../../common/app_text_styles.dart';
 class MessageBar extends StatelessWidget {
   final TextEditingController messageTextController;
   final FocusNode messageFocusNode;
+  final VoidCallback? onMessageSent;
 
   const MessageBar({
     required this.messageTextController,
     required this.messageFocusNode,
+    this.onMessageSent,
     super.key,
   });
 
@@ -110,7 +112,11 @@ class MessageBar extends StatelessWidget {
       MessageModel(user.userId, MessageStatus.unknown, messageTextController.text, DateTime.now()),
     );
 
+    onMessageSent?.call();
+
     context.read<MessagesPageCubit>().updateMessageText('');
     messageTextController.clear();
+
+    messageFocusNode.requestFocus();
   }
 }
