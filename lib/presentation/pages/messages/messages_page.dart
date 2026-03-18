@@ -170,9 +170,11 @@ class _MessagesPageState extends State<MessagesPage> {
   }
 
   void scrollToBottom() {
-    if (listViewScrollController.hasClients) {
-      listViewScrollController.animateTo(
-        listViewScrollController.position.maxScrollExtent + messageBarHeight,
+    final controller = listViewScrollController;
+
+    if (controller.hasClients) {
+      controller.animateTo(
+        controller.position.maxScrollExtent + messageBarHeight,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,
       );
