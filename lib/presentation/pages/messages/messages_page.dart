@@ -93,11 +93,16 @@ class _MessagesPageState extends State<MessagesPage> {
         ],
       ),
       body: Stack(
+        fit: StackFit.expand,
         children: [
           BlocBuilder<InboxPageCubit, InboxPageState>(
             builder: (context, state) {
               final conversation = getConversationFromState(state);
               final users = getUsersFromConversation(conversation);
+
+              if (conversation.messages.isEmpty) {
+                return const Center(child: Text('No messages yet.'));
+              }
 
               return ListView.builder(
                 controller: listViewScrollController,
