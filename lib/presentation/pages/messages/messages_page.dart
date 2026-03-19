@@ -126,12 +126,15 @@ class _MessagesPageState extends State<MessagesPage> {
                   ],
 
                   MessageItem(
-                    name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
+                    senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
                     imageSrc: sender?.avatarImageSrc,
                     message: message.text,
                     time: DateFormatter.formatSmartDate(message.date),
                     isMyMessage: sender?.userId != owner.id,
                     expanded: isExpanded,
+                    messageStatus: message.messageStatus,
+                    conversationId: conversation.conversationId,
+                    messageIndex: index,
                   ),
                 ],
               );

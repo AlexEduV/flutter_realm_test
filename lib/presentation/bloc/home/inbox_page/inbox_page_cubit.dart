@@ -1,5 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/extensions/list_extension.dart';
+import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/save_conversations_use_case.dart';
@@ -20,24 +21,47 @@ class InboxPageCubit extends Cubit<InboxPageState> {
   Future<void> sendMessage(String? conversationId, MessageModel message) async {
     if (conversationId == null) return;
 
-    final conversations = List.of(state.conversations);
+    final conversation = state.conversations.firstWhereOrNull(
+      (c) => c.conversationId == conversationId,
+    );
+    if (conversation == null) return;
 
-    final conversationIndex = conversations.indexWhereOrNull(
-      (element) => element.conversationId == conversationId,
+    final updatedConversation = conversation.copyWith(
+      messages: [...conversation.messages, message],
     );
 
-    if (conversationIndex == null) return;
+    final updatedConversations = state.conversations
+        .map((c) => c.conversationId == conversationId ? updatedConversation : c)
+        .toList();
 
-    final oldConversation = conversations[conversationIndex];
-    final updatedMessages = List<MessageModel>.from(oldConversation.messages)..add(message);
+    emit(state.copyWith(conversations: updatedConversations));
 
-    final updatedConversation = oldConversation.copyWith(messages: updatedMessages);
+    //todo: save to local storage cache as well
+    await _saveConversationsUseCase.call(updatedConversations);
+  }
 
-    conversations[conversationIndex] = updatedConversation;
+  Future<void> markMessageAsRead(String conversationId, int messageIndex) async {
+    final conversation = state.conversations.firstWhereOrNull(
+      (c) => c.conversationId == conversationId,
+    );
 
-    emit(state.copyWith(conversations: conversations));
+    if (conversation == null) return;
+    if (messageIndex < 0 || messageIndex >= conversation.messages.length) return;
+
+    final updatedMessages = List<MessageModel>.from(conversation.messages);
+    updatedMessages[messageIndex] = updatedMessages[messageIndex].copyWith(
+      messageStatus: MessageStatus.read,
+    );
+
+    final updatedConversation = conversation.copyWith(messages: updatedMessages);
+
+    final updatedConversations = state.conversations
+        .map((c) => c.conversationId == conversationId ? updatedConversation : c)
+        .toList();
+
+    emit(state.copyWith(conversations: updatedConversations));
 
     //todo: this saves messages to the mock cloud, but per offline-first approach we also should cache messages to the local storage
-    await _saveConversationsUseCase.call(conversations);
+    await _saveConversationsUseCase.call(updatedConversations);
   }
 }

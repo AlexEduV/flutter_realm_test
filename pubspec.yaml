@@ -32,6 +32,7 @@ dependencies:
   image_picker: ^1.2.1
   collection: ^1.19.1
   url_launcher: ^6.3.2
+  visibility_detector: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:

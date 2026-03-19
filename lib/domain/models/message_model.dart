@@ -8,6 +8,20 @@ class MessageModel {
 
   MessageModel(this.senderId, this.messageStatus, this.text, this.date);
 
+  MessageModel copyWith({
+    String? senderId,
+    MessageStatus? messageStatus,
+    String? text,
+    DateTime? date,
+  }) {
+    return MessageModel(
+      senderId ?? this.senderId,
+      messageStatus ?? this.messageStatus,
+      text ?? this.text,
+      date ?? this.date,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'senderId': senderId,

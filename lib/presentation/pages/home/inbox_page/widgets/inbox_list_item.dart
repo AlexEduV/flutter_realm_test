@@ -9,13 +9,13 @@ import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
-import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
 
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
+import '../../../../widgets/app_badge.dart';
 
 class InboxListItem extends StatelessWidget {
   final ConversationModel conversation;
@@ -26,6 +26,8 @@ class InboxListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final message = conversation.messages.lastOrNull;
     final owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
+
+    final unreadCount = getUnreadCount();
 
     return Padding(
       padding: const EdgeInsetsGeometry.symmetric(
@@ -47,10 +49,9 @@ class InboxListItem extends StatelessWidget {
                 height: AppDimensions.inboxItemHeight,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: AppDimensions.normalM,
                   children: [
                     AvatarWidget(imageSrc: owner.imageSrc),
-
-                    const SizedBox(width: AppDimensions.normalM),
 
                     Expanded(
                       child: Column(
@@ -75,13 +76,14 @@ class InboxListItem extends StatelessWidget {
                     ),
 
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
+                      spacing: AppDimensions.minorL,
                       children: [
                         Row(
+                          spacing: AppDimensions.minorM,
                           children: [
                             Icon(_getMessageStatusIcon(message)),
-
-                            const SizedBox(width: AppDimensions.minorM),
 
                             Text(
                               message == null ? '' : DateFormatter.formatSmartDate(message.date),
@@ -92,17 +94,7 @@ class InboxListItem extends StatelessWidget {
                           ],
                         ),
 
-                        const Spacer(),
-
-                        if (message?.messageStatus == MessageStatus.unknown) ...[
-                          const SizedBox(height: AppDimensions.minorL),
-
-                          const Align(
-                            alignment: AlignmentGeometry.bottomRight,
-                            //todo: unfinished logic
-                            child: AppBadge(text: '1'),
-                          ),
-                        ],
+                        if (unreadCount > 0) ...[AppBadge(text: unreadCount.toString())],
                       ],
                     ),
                   ],
@@ -125,5 +117,17 @@ class InboxListItem extends StatelessWidget {
       default:
         return null;
     }
+  }
+
+  int getUnreadCount() {
+    final unreadCount = conversation.messages
+        .where(
+          (element) =>
+              element.senderId == conversation.ownerId &&
+              element.messageStatus == MessageStatus.sent,
+        )
+        .length;
+
+    return unreadCount;
   }
 }
