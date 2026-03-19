@@ -52,7 +52,7 @@ class _MessagesPageState extends State<MessagesPage> {
     conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
     owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       // final context = messageBarKey.currentContext;
       // if (context != null) {
       //   final box = context.findRenderObject() as RenderBox;
@@ -63,7 +63,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
       //todo: maybe I should save the scroll position on exit, and do not scroll initially, only on
       // adding a message
-      scrollToBottom(isInit: true);
+      await scrollToBottom(isInit: true);
     });
 
     super.initState();
@@ -195,7 +195,7 @@ class _MessagesPageState extends State<MessagesPage> {
     return userMap;
   }
 
-  void scrollToBottom({bool isInit = false}) {
+  Future<void> scrollToBottom({bool isInit = false}) async {
     final controller = listViewScrollController;
 
     if (!controller.hasClients) return;
@@ -207,7 +207,7 @@ class _MessagesPageState extends State<MessagesPage> {
       return;
     }
 
-    controller.animateTo(
+    await controller.animateTo(
       position,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
