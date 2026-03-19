@@ -35,9 +35,6 @@ class _MessagesPageState extends State<MessagesPage> {
   final messageInputTextController = TextEditingController();
   final messageInputFocusNode = FocusNode();
 
-  final messageBarKey = GlobalKey();
-  double messageBarHeight = 0.0;
-
   final listViewScrollController = ScrollController();
 
   late ConversationModel conversation;
@@ -53,16 +50,10 @@ class _MessagesPageState extends State<MessagesPage> {
     owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      // final context = messageBarKey.currentContext;
-      // if (context != null) {
-      //   final box = context.findRenderObject() as RenderBox;
-      //   setState(() {
-      //     messageBarHeight = box.size.height;
-      //   });
-      // }
-
       //todo: maybe I should save the scroll position on exit, and do not scroll initially, only on
       // adding a message
+
+      //the controller is assigned in the initial frame, so the post frame is needed;
       await scrollToBottom(isInit: true);
     });
 
@@ -102,7 +93,6 @@ class _MessagesPageState extends State<MessagesPage> {
         ),
         child: MessageBar(
           onMessageSent: scrollToBottom,
-          key: messageBarKey,
           messageTextController: messageInputTextController,
           messageFocusNode: messageInputFocusNode,
         ),
