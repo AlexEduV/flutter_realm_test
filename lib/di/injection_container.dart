@@ -11,6 +11,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_dat
 import 'package:test_futter_project/data/data_sources/remote/mock_messages_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_users_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
@@ -20,6 +21,7 @@ import 'package:test_futter_project/data/repositories/permission_repository_impl
 import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/share_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/url_launch_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/user_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart';
@@ -31,6 +33,7 @@ import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_s
 import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/inbox_repository.dart';
@@ -38,6 +41,7 @@ import 'package:test_futter_project/domain/repositories/owner_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
 import 'package:test_futter_project/domain/repositories/region_repository.dart';
 import 'package:test_futter_project/domain/repositories/share_repository.dart';
+import 'package:test_futter_project/domain/repositories/user_repository.dart';
 import 'package:test_futter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_futter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/delete_account_use_case.dart';
@@ -66,7 +70,11 @@ import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_futter_project/domain/usecases/share/share_use_case.dart';
 import 'package:test_futter_project/domain/usecases/url/open_url_link_use_case.dart';
+import 'package:test_futter_project/domain/usecases/users/get_max_user_id_use_case.dart';
+import 'package:test_futter_project/domain/usecases/users/get_user_by_email_use_case.dart';
 import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_case.dart';
+import 'package:test_futter_project/domain/usecases/users/load_users_use_case.dart';
+import 'package:test_futter_project/domain/usecases/users/save_users_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
@@ -147,6 +155,9 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
   serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(() => MockOwnersRemoteDataSource());
+  serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
+    () => MockUsersRemoteDataSourceImpl(),
+  );
   serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
     () => UrlLaunchLocalDataSourceImpl(),
   );
@@ -292,6 +303,13 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerFactory(() => MessagesPageCubit());
 
-  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase());
   serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
 }
