@@ -42,13 +42,6 @@ class _MessagesPageState extends State<MessagesPage> {
 
   final getUserById = serviceLocator<GetUserByIdUseCase>();
 
-  //todo: when opening a large list, there's a scroll bouncing effect.
-  // It persists, even when disabling animation and setting different scroll physics.
-  // It happens because the list scroll extent is changing on a large list load, so the position is
-  // incorrect. Waiting for the list to load results in delay and then sudden jump.
-
-  //flutter limitation.
-
   @override
   void initState() {
     context.read<MessagesPageCubit>().setCurrentConversationId(widget.conversationId);
@@ -115,7 +108,9 @@ class _MessagesPageState extends State<MessagesPage> {
 
           return ListView.builder(
             controller: listViewScrollController,
-            padding: const EdgeInsets.only(bottom: 56.0 + AppDimensions.majorXL),
+            padding: const EdgeInsets.only(
+              bottom: AppDimensions.bottomMessageBarHeight + AppDimensions.majorXL,
+            ),
             itemCount: conversation.messages.length,
             itemBuilder: (context, index) {
               final message = conversation.messages[index];
@@ -192,6 +187,15 @@ class _MessagesPageState extends State<MessagesPage> {
   }
 
   Future<void> scrollToBottom({bool isInit = false}) async {
+    //todo: when opening a large list, there's a scroll bouncing effect.
+    // It persists, even when disabling animation and setting different scroll physics.
+    // It happens because the list scroll extent is changing on a large list load, so the position is
+    // incorrect. Waiting for the list to load results in delay and then sudden jump.
+
+    //recalculating the position until it's stable also did not help
+
+    //flutter limitation.
+
     final controller = listViewScrollController;
 
     if (!controller.hasClients) return;

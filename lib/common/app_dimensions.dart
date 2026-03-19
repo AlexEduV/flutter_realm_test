@@ -47,4 +47,5 @@ class AppDimensions {
   static const hotLabelIconSize = 20.0;
 
   static const bottomMessageBarIconSize = 30.0;
+  static const bottomMessageBarHeight = 56.0;
 }
