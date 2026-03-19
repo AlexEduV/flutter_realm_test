@@ -11,8 +11,8 @@ import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cub
 import 'package:test_futter_project/utils/auth_session_util.dart';
 
 import '../../common/extensions/user_scheme_extension.dart';
+import '../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../domain/entities/user_entity.dart';
-import '../data_sources/remote/mock_users_remote_data_source_impl.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final BaseLocalStorage _localStorage;
@@ -28,7 +28,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await serviceLocator<LoadUsersUseCase>().call();
     await _fetchOwnersUseCase.call();
 
-    users = serviceLocator<MockUsersRemoteDataSourceImpl>().initialUsers;
+    users = serviceLocator<UsersRemoteDataSource>().users;
   }
 
   @override

@@ -183,9 +183,19 @@ Future<void> initDependenciesContainer() async {
     () => MockArticleRemoteDataSourceImpl(),
   );
 
-  serviceLocator.registerLazySingleton<PermissionLocalDataSource>(() => AppPermissionService());
+  serviceLocator.registerLazySingleton<PermissionLocalDataSource>(
+    () => PermissionLocalDataSourceImpl(),
+  );
 
   serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
+
+  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton<OwnerRepository>(
     () => OwnerRepositoryImpl(serviceLocator()),
@@ -305,12 +315,4 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => MessagesPageCubit());
 
   serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
 }

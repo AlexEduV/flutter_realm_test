@@ -13,7 +13,6 @@ import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/domain/usecases/users/get_user_by_email_use_case.dart';
-import 'package:test_futter_project/mocks/mock_users.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -244,7 +243,8 @@ void main() {
         lastName: 'User',
       );
 
-      MockUsers.initialUsers = [user];
+      //todo: this is outdated
+      //MockUsers.initialUsers = [user];
 
       when(mockLocalStorage.initUser()).thenReturn(user);
 

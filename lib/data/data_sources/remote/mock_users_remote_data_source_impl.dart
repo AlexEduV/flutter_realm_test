@@ -7,12 +7,10 @@ import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
 
 class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
-  late List<UserEntity> initialUsers = MockUsers.initialUsers;
-
   @override
   int getMaxUserId() {
-    final maxId = initialUsers.isNotEmpty
-        ? initialUsers.map((e) => int.parse(e.userId)).reduce((a, b) => a > b ? a : b)
+    final maxId = users.isNotEmpty
+        ? users.map((e) => int.parse(e.userId)).reduce((a, b) => a > b ? a : b)
         : 0;
 
     return maxId;
@@ -20,12 +18,12 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
 
   @override
   UserEntity? getUserByEmail(String email) {
-    return initialUsers.where((element) => element.email == email).firstOrNull;
+    return users.where((element) => element.email == email).firstOrNull;
   }
 
   @override
   UserEntity? getUserById(String id) {
-    final user = initialUsers.firstWhereOrNull((element) => element.userId == id);
+    final user = users.firstWhereOrNull((element) => element.userId == id);
 
     return user;
   }
@@ -38,20 +36,20 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
       final decoded = jsonDecode(usersJson);
 
       if (decoded is! List) {
-        await saveMockUsers(initialUsers);
-        return initialUsers;
+        await saveMockUsers(this.users);
+        return this.users;
       }
 
       final users = decoded
           .map<UserEntity>((value) => UserEntity.fromJson(value as Map<String, dynamic>))
           .toList();
 
-      initialUsers = users;
+      this.users = users;
       return users;
     }
 
-    await saveMockUsers(initialUsers);
-    return initialUsers;
+    await saveMockUsers(users);
+    return users;
   }
 
   @override
@@ -60,4 +58,7 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
     final usersJsonList = users.map((u) => u.toJson()).toList();
     await prefs.setString('mock_users', jsonEncode(usersJsonList));
   }
+
+  @override
+  List<UserEntity> users = MockUsers.initialUsers;
 }
