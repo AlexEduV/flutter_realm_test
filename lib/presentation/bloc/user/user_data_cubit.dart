@@ -10,7 +10,7 @@ import 'package:test_futter_project/domain/usecases/geolocator/check_location_se
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
-import 'package:test_futter_project/mocks/mock_users.dart';
+import 'package:test_futter_project/domain/usecases/users/get_user_by_email_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/utils/auth_session_util.dart';
 
@@ -27,6 +27,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._openAppSettingsUseCase,
     this._requestLocationPermissionUseCase,
     this._checkLocationPermissionStatusUseCase,
+    this._getUserByEmailUseCase,
   ) : super(const UserDataState());
 
   final BaseLocalStorage _localStorage;
@@ -36,6 +37,8 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   final RequestLocationPermissionUseCase _requestLocationPermissionUseCase;
   final CheckLocationPermissionStatusUseCase _checkLocationPermissionStatusUseCase;
+
+  final GetUserByEmailUseCase _getUserByEmailUseCase;
 
   late UserEntity user;
   final _imagePicker = ImagePicker();
@@ -281,7 +284,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> authUser(String email) async {
-    final user = MockUsers.getUserByEmail(email);
+    final user = _getUserByEmailUseCase.call(email);
 
     if (user == null) return;
 

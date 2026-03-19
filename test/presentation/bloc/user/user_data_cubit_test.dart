@@ -12,7 +12,7 @@ import 'package:test_futter_project/domain/usecases/geolocator/check_location_se
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
-import 'package:test_futter_project/mocks/mock_users.dart';
+import 'package:test_futter_project/domain/usecases/users/get_user_by_email_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
@@ -26,6 +26,7 @@ import 'user_data_cubit_test.mocks.dart';
   CheckLocationServiceStatusUseCase,
   RequestLocationPermissionUseCase,
   CheckLocationPermissionStatusUseCase,
+  GetUserByEmailUseCase,
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +35,7 @@ void main() {
   late MockRequestLocationPermissionUseCase mockRequestLocationPermissionUseCase;
   late MockCheckLocationPermissionStatusUseCase mockCheckLocationPermissionStatusUseCase;
   late MockCheckLocationServiceStatusUseCase mockCheckLocationServiceStatusUseCase;
+  late MockGetUserByEmailUseCase mockGetUserByEmailUseCase;
   late MockOpenAppSettingsUseCase mockOpenAppSettingsUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
@@ -45,6 +47,7 @@ void main() {
   mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
   mockCheckLocationServiceStatusUseCase = MockCheckLocationServiceStatusUseCase();
   mockOpenAppSettingsUseCase = MockOpenAppSettingsUseCase();
+  mockGetUserByEmailUseCase = MockGetUserByEmailUseCase();
 
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});
@@ -57,6 +60,7 @@ void main() {
       mockOpenAppSettingsUseCase,
       mockRequestLocationPermissionUseCase,
       mockCheckLocationPermissionStatusUseCase,
+      mockGetUserByEmailUseCase,
     );
     testUser = const UserEntity(
       userId: 'u1',
@@ -239,8 +243,7 @@ void main() {
         lastName: 'User',
       );
 
-      MockUsers.initialUsers = [user];
-
+      when(mockGetUserByEmailUseCase.call('auth@example.com')).thenReturn(user);
       when(mockLocalStorage.initUser()).thenReturn(user);
 
       await cubit.authUser('auth@example.com');
@@ -252,6 +255,8 @@ void main() {
 
     test('does nothing if user not found', () {
       final prevState = cubit.state;
+      when(mockGetUserByEmailUseCase.call('notfound@example.com')).thenReturn(null);
+
       cubit.authUser('notfound@example.com');
       expect(cubit.state, prevState);
     });
