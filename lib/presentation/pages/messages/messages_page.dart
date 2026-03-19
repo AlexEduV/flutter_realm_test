@@ -63,7 +63,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
       //todo: maybe I should save the scroll position on exit, and do not scroll initially, only on
       // adding a message
-      scrollToBottom();
+      scrollToBottom(isInit: true);
     });
 
     super.initState();
@@ -195,17 +195,22 @@ class _MessagesPageState extends State<MessagesPage> {
     return userMap;
   }
 
-  void scrollToBottom() {
+  void scrollToBottom({bool isInit = false}) {
     final controller = listViewScrollController;
 
-    if (controller.hasClients) {
-      //todo: if already on the bottom edge - do not do anything
+    if (!controller.hasClients) return;
 
-      controller.animateTo(
-        controller.position.maxScrollExtent + messageBarHeight,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
+    final position = controller.position.maxScrollExtent + messageBarHeight;
+
+    if (isInit) {
+      controller.jumpTo(position);
+      return;
     }
+
+    controller.animateTo(
+      position,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
   }
 }
