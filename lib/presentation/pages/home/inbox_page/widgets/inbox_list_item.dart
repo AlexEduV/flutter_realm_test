@@ -9,13 +9,13 @@ import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
-import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
 
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
+import '../../../../widgets/app_badge.dart';
 
 class InboxListItem extends StatelessWidget {
   final ConversationModel conversation;
@@ -93,11 +93,7 @@ class InboxListItem extends StatelessWidget {
                         ),
 
                         if (message?.messageStatus == MessageStatus.unknown) ...[
-                          const Align(
-                            alignment: AlignmentGeometry.bottomRight,
-                            //todo: unfinished logic
-                            child: AppBadge(text: '1'),
-                          ),
+                          const AppBadge(text: '1'),
                         ],
                       ],
                     ),
