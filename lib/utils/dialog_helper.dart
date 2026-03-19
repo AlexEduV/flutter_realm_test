@@ -340,18 +340,15 @@ class DialogHelper {
       builder: (context) {
         return CupertinoActionSheet(
           actions: [
-            ColoredBox(
-              color: Colors.white,
-              child: CupertinoActionSheetAction(
-                onPressed: () async {
-                  await context.read<InboxPageCubit>().deleteConversation(conversationId);
+            CupertinoActionSheetAction(
+              onPressed: () async {
+                await context.read<InboxPageCubit>().deleteConversation(conversationId);
 
-                  if (!context.mounted) return;
-                  context.pop();
-                },
-                isDestructiveAction: true,
-                child: Text(context.tr(L10nKeys.deleteButtonTitle)),
-              ),
+                if (!context.mounted) return;
+                context.pop();
+              },
+              isDestructiveAction: true,
+              child: Text(context.tr(L10nKeys.deleteButtonTitle)),
             ),
           ],
         );
