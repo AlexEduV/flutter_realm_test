@@ -220,6 +220,7 @@ Future<void> initDependenciesContainer() async {
       serviceLocator(),
       serviceLocator(),
       serviceLocator(),
+      serviceLocator(),
     ),
   );
 

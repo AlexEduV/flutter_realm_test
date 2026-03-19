@@ -19,6 +19,8 @@ import 'package:test_futter_project/domain/usecases/permissions/check_location_p
     as _i9;
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
     as _i8;
+import 'package:test_futter_project/domain/usecases/users/get_user_by_email_use_case.dart'
+    as _i11;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -198,4 +200,19 @@ class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
             ),
           )
           as _i5.Future<_i10.PermissionStatus>);
+}
+
+/// A class which mocks [GetUserByEmailUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetUserByEmailUseCase extends _i1.Mock
+    implements _i11.GetUserByEmailUseCase {
+  MockGetUserByEmailUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.UserEntity? call(String? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]))
+          as _i2.UserEntity?);
 }
