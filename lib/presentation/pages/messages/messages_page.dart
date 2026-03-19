@@ -14,6 +14,7 @@ import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/date_divider.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
@@ -82,6 +83,7 @@ class _MessagesPageState extends State<MessagesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
+      extendBody: true,
       appBar: AppBar(
         title: Text('${owner.firstName} ${owner.lastName}', style: AppTextStyles.zonaPro20),
         centerTitle: true,
@@ -92,64 +94,60 @@ class _MessagesPageState extends State<MessagesPage> {
           ),
         ],
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          BlocBuilder<InboxPageCubit, InboxPageState>(
-            builder: (context, state) {
-              final conversation = getConversationFromState(state);
-              final users = getUsersFromConversation(conversation);
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(
+          bottom: AppDimensions.majorM,
+          left: AppDimensions.minorL,
+          right: AppDimensions.minorL,
+        ),
+        child: MessageBar(
+          onMessageSent: scrollToBottom,
+          key: messageBarKey,
+          messageTextController: messageInputTextController,
+          messageFocusNode: messageInputFocusNode,
+        ),
+      ),
+      body: BlocBuilder<InboxPageCubit, InboxPageState>(
+        builder: (context, state) {
+          final conversation = getConversationFromState(state);
+          final users = getUsersFromConversation(conversation);
 
-              if (conversation.messages.isEmpty) {
-                return const Center(child: Text('No messages yet.'));
-              }
+          if (conversation.messages.isEmpty) {
+            return const EmptyConversationPlaceholder();
+          }
 
-              return ListView.builder(
-                controller: listViewScrollController,
-                padding: EdgeInsets.only(bottom: messageBarHeight + (AppDimensions.normalXL * 2)),
-                itemCount: conversation.messages.length,
-                itemBuilder: (context, index) {
-                  final message = conversation.messages[index];
-                  final isExpanded = shouldExpandMessage(index, conversation);
-                  final sender = users[message.senderId];
+          return ListView.builder(
+            controller: listViewScrollController,
+            padding: EdgeInsets.only(bottom: messageBarHeight + (AppDimensions.normalXL * 2)),
+            itemCount: conversation.messages.length,
+            itemBuilder: (context, index) {
+              final message = conversation.messages[index];
+              final isExpanded = shouldExpandMessage(index, conversation);
+              final sender = users[message.senderId];
 
-                  final showDivider = shouldShowDivider(index, conversation);
+              final showDivider = shouldShowDivider(index, conversation);
 
-                  // Build a list of widgets: divider + message item
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      if (showDivider) ...[
-                        DateDivider(text: DateFormatter.formatMessageDividerDate(message.date)),
-                      ],
+              // Build a list of widgets: divider + message item
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (showDivider) ...[
+                    DateDivider(text: DateFormatter.formatMessageDividerDate(message.date)),
+                  ],
 
-                      MessageItem(
-                        name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
-                        imageSrc: sender?.avatarImageSrc,
-                        message: message.text,
-                        time: DateFormatter.formatSmartDate(message.date),
-                        isMyMessage: sender?.userId != owner.id,
-                        expanded: isExpanded,
-                      ),
-                    ],
-                  );
-                },
+                  MessageItem(
+                    name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
+                    imageSrc: sender?.avatarImageSrc,
+                    message: message.text,
+                    time: DateFormatter.formatSmartDate(message.date),
+                    isMyMessage: sender?.userId != owner.id,
+                    expanded: isExpanded,
+                  ),
+                ],
               );
             },
-          ),
-
-          Positioned(
-            bottom: AppDimensions.majorM,
-            left: AppDimensions.minorL,
-            right: AppDimensions.minorL,
-            child: MessageBar(
-              onMessageSent: scrollToBottom,
-              key: messageBarKey,
-              messageTextController: messageInputTextController,
-              messageFocusNode: messageInputFocusNode,
-            ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
@@ -201,6 +199,8 @@ class _MessagesPageState extends State<MessagesPage> {
     final controller = listViewScrollController;
 
     if (controller.hasClients) {
+      //todo: if already on the bottom edge - do not do anything
+
       controller.animateTo(
         controller.position.maxScrollExtent + messageBarHeight,
         duration: const Duration(milliseconds: 300),
