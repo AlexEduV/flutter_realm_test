@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
@@ -99,7 +98,8 @@ class _MessagesPageState extends State<MessagesPage> {
       ),
       body: BlocBuilder<InboxPageCubit, InboxPageState>(
         builder: (context, state) {
-          final conversation = getConversationFromState(state);
+          //todo: move higher;
+          final conversation = getConversationById(widget.conversationId);
           final users = getUsersFromConversation(conversation);
 
           if (conversation.messages.isEmpty) {
@@ -168,13 +168,8 @@ class _MessagesPageState extends State<MessagesPage> {
     return false;
   }
 
-  ConversationModel getConversationFromState(InboxPageState state) {
-    final conversation =
-        state.conversations.firstWhereOrNull(
-          (element) => element.conversationId == widget.conversationId,
-        ) ??
-        ConversationModel.empty();
-
+  ConversationModel getConversationById(String conversationId) {
+    final conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
     return conversation;
   }
 
