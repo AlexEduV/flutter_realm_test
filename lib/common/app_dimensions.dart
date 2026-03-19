@@ -1,8 +1,9 @@
 class AppDimensions {
   static const contentPadding = 12.0;
 
-  static const majorS = 28.0;
+  static const majorXL = 48.0;
   static const majorM = 32.0;
+  static const majorS = 28.0;
 
   static const normalXL = 24.0;
   static const normalL = 18.0;
@@ -44,8 +45,6 @@ class AppDimensions {
   static const regionFlagIconSize = 32.0;
 
   static const hotLabelIconSize = 20.0;
-
-  static const authorImageSize = 48.0;
 
   static const bottomMessageBarIconSize = 30.0;
 }
