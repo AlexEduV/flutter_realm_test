@@ -129,7 +129,6 @@ class _MessagesPageState extends State<MessagesPage> {
 
               // Build a list of widgets: divider + message item
               return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   if (showDivider) ...[
                     DateDivider(text: DateFormatter.formatMessageDividerDate(message.date)),
