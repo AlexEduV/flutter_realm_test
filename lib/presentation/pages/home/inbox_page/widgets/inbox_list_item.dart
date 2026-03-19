@@ -27,13 +27,7 @@ class InboxListItem extends StatelessWidget {
     final message = conversation.messages.lastOrNull;
     final owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
-    final unreadCount = conversation.messages
-        .where(
-          (element) =>
-              element.senderId == conversation.ownerId &&
-              element.messageStatus == MessageStatus.sent,
-        )
-        .length;
+    final unreadCount = getUnreadCount();
 
     return Padding(
       padding: const EdgeInsetsGeometry.symmetric(
@@ -123,5 +117,17 @@ class InboxListItem extends StatelessWidget {
       default:
         return null;
     }
+  }
+
+  int getUnreadCount() {
+    final unreadCount = conversation.messages
+        .where(
+          (element) =>
+              element.senderId == conversation.ownerId &&
+              element.messageStatus == MessageStatus.sent,
+        )
+        .length;
+
+    return unreadCount;
   }
 }
