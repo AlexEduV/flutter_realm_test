@@ -3,10 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/widgets/app_badge.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
@@ -61,7 +63,7 @@ class InboxListItem extends StatelessWidget {
                             style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                           ),
                           Text(
-                            '${message?.text ?? ''}\n',
+                            '${message?.text ?? context.tr(L10nKeys.inboxPageEmptyText)}\n',
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: AppTextStyles.zonaPro16Grey.copyWith(
@@ -97,6 +99,7 @@ class InboxListItem extends StatelessWidget {
 
                           const Align(
                             alignment: AlignmentGeometry.bottomRight,
+                            //todo: unfinished logic
                             child: AppBadge(text: '1'),
                           ),
                         ],

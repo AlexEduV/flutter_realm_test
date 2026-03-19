@@ -57,7 +57,5 @@ void main() {
     test('regionFlagIconSize', () => expect(AppDimensions.regionFlagIconSize, 32.0));
 
     test('hotLabelIconSize', () => expect(AppDimensions.hotLabelIconSize, 20.0));
-
-    test('authorImageSize', () => expect(AppDimensions.authorImageSize, 48.0));
   });
 }

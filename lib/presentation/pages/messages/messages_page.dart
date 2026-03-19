@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
@@ -14,6 +13,7 @@ import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/date_divider.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
@@ -34,9 +34,6 @@ class _MessagesPageState extends State<MessagesPage> {
   final messageInputTextController = TextEditingController();
   final messageInputFocusNode = FocusNode();
 
-  final messageBarKey = GlobalKey();
-  double messageBarHeight = 0.0;
-
   final listViewScrollController = ScrollController();
 
   late ConversationModel conversation;
@@ -51,18 +48,12 @@ class _MessagesPageState extends State<MessagesPage> {
     conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
     owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final context = messageBarKey.currentContext;
-      if (context != null) {
-        final box = context.findRenderObject() as RenderBox;
-        setState(() {
-          messageBarHeight = box.size.height;
-        });
-      }
-
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       //todo: maybe I should save the scroll position on exit, and do not scroll initially, only on
       // adding a message
-      scrollToBottom();
+
+      //the controller is assigned in the initial frame, so the post frame is needed;
+      await scrollToBottom(isInit: true);
     });
 
     super.initState();
@@ -82,6 +73,7 @@ class _MessagesPageState extends State<MessagesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
+      extendBody: true,
       appBar: AppBar(
         title: Text('${owner.firstName} ${owner.lastName}', style: AppTextStyles.zonaPro20),
         centerTitle: true,
@@ -92,59 +84,60 @@ class _MessagesPageState extends State<MessagesPage> {
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          BlocBuilder<InboxPageCubit, InboxPageState>(
-            builder: (context, state) {
-              final conversation = getConversationFromState(state);
-              final users = getUsersFromConversation(conversation);
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(
+          bottom: AppDimensions.majorM,
+          left: AppDimensions.minorL,
+          right: AppDimensions.minorL,
+        ),
+        child: MessageBar(
+          onMessageSent: scrollToBottom,
+          messageTextController: messageInputTextController,
+          messageFocusNode: messageInputFocusNode,
+        ),
+      ),
+      body: BlocBuilder<InboxPageCubit, InboxPageState>(
+        builder: (context, state) {
+          final conversation = getConversationById(widget.conversationId);
+          final users = getUsersFromConversation(conversation);
 
-              return ListView.builder(
-                controller: listViewScrollController,
-                padding: EdgeInsets.only(bottom: messageBarHeight + (AppDimensions.normalXL * 2)),
-                itemCount: conversation.messages.length,
-                itemBuilder: (context, index) {
-                  final message = conversation.messages[index];
-                  final isExpanded = shouldExpandMessage(index, conversation);
-                  final sender = users[message.senderId];
+          if (conversation.messages.isEmpty) {
+            return const EmptyConversationPlaceholder();
+          }
 
-                  final showDivider = shouldShowDivider(index, conversation);
+          return ListView.builder(
+            controller: listViewScrollController,
+            padding: const EdgeInsets.only(
+              bottom: AppDimensions.bottomMessageBarHeight + AppDimensions.majorXL,
+            ),
+            itemCount: conversation.messages.length,
+            itemBuilder: (context, index) {
+              final message = conversation.messages[index];
+              final isExpanded = shouldExpandMessage(index, conversation);
+              final sender = users[message.senderId];
 
-                  // Build a list of widgets: divider + message item
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      if (showDivider) ...[
-                        DateDivider(text: DateFormatter.formatMessageDividerDate(message.date)),
-                      ],
+              final showDivider = shouldShowDivider(index, conversation);
 
-                      MessageItem(
-                        name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
-                        imageSrc: sender?.avatarImageSrc,
-                        message: message.text,
-                        time: DateFormatter.formatSmartDate(message.date),
-                        isMyMessage: sender?.userId != owner.id,
-                        expanded: isExpanded,
-                      ),
-                    ],
-                  );
-                },
+              // Build a list of widgets: divider + message item
+              return Column(
+                children: [
+                  if (showDivider) ...[
+                    DateDivider(text: DateFormatter.formatMessageDividerDate(message.date)),
+                  ],
+
+                  MessageItem(
+                    name: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
+                    imageSrc: sender?.avatarImageSrc,
+                    message: message.text,
+                    time: DateFormatter.formatSmartDate(message.date),
+                    isMyMessage: sender?.userId != owner.id,
+                    expanded: isExpanded,
+                  ),
+                ],
               );
             },
-          ),
-
-          Positioned(
-            bottom: AppDimensions.majorM,
-            left: AppDimensions.minorL,
-            right: AppDimensions.minorL,
-            child: MessageBar(
-              onMessageSent: scrollToBottom,
-              key: messageBarKey,
-              messageTextController: messageInputTextController,
-              messageFocusNode: messageInputFocusNode,
-            ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
@@ -174,13 +167,8 @@ class _MessagesPageState extends State<MessagesPage> {
     return false;
   }
 
-  ConversationModel getConversationFromState(InboxPageState state) {
-    final conversation =
-        state.conversations.firstWhereOrNull(
-          (element) => element.conversationId == widget.conversationId,
-        ) ??
-        ConversationModel.empty();
-
+  ConversationModel getConversationById(String conversationId) {
+    final conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
     return conversation;
   }
 
@@ -192,15 +180,31 @@ class _MessagesPageState extends State<MessagesPage> {
     return userMap;
   }
 
-  void scrollToBottom() {
+  Future<void> scrollToBottom({bool isInit = false}) async {
+    //todo: when opening a large list, there's a scroll bouncing effect.
+    // It persists, even when disabling animation and setting different scroll physics.
+    // It happens because the list scroll extent is changing on a large list load, so the position is
+    // incorrect. Waiting for the list to load results in delay and then sudden jump.
+
+    //recalculating the position until it's stable also did not help
+
+    //flutter limitation.
+
     final controller = listViewScrollController;
 
-    if (controller.hasClients) {
-      controller.animateTo(
-        controller.position.maxScrollExtent + messageBarHeight,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
+    if (!controller.hasClients) return;
+
+    final position = controller.position.maxScrollExtent;
+
+    if (isInit) {
+      controller.jumpTo(position);
+      return;
     }
+
+    await controller.animateTo(
+      position,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
   }
 }

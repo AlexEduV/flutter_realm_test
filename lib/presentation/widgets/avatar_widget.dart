@@ -13,7 +13,7 @@ class AvatarWidget extends StatelessWidget {
 
   const AvatarWidget({
     required this.imageSrc,
-    this.size = AppDimensions.authorImageSize,
+    this.size = AppDimensions.majorXL,
     this.isLocal = false,
     super.key,
   });

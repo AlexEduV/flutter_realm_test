@@ -5,5 +5,7 @@ abstract class InboxRepository {
 
   ConversationModel getConversationById(String conversationId);
 
+  ConversationModel getConversationByOwnerId(String ownerId);
+
   Future<void> saveConversations(List<ConversationModel> conversations);
 }
