@@ -53,13 +53,13 @@ class _MessagesPageState extends State<MessagesPage> {
     owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final context = messageBarKey.currentContext;
-      if (context != null) {
-        final box = context.findRenderObject() as RenderBox;
-        setState(() {
-          messageBarHeight = box.size.height;
-        });
-      }
+      // final context = messageBarKey.currentContext;
+      // if (context != null) {
+      //   final box = context.findRenderObject() as RenderBox;
+      //   setState(() {
+      //     messageBarHeight = box.size.height;
+      //   });
+      // }
 
       //todo: maybe I should save the scroll position on exit, and do not scroll initially, only on
       // adding a message
@@ -118,7 +118,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
           return ListView.builder(
             controller: listViewScrollController,
-            padding: EdgeInsets.only(bottom: messageBarHeight + (AppDimensions.normalXL * 2)),
+            padding: const EdgeInsets.only(bottom: 56.0 + AppDimensions.majorXL),
             itemCount: conversation.messages.length,
             itemBuilder: (context, index) {
               final message = conversation.messages[index];
@@ -200,7 +200,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
     if (!controller.hasClients) return;
 
-    final position = controller.position.maxScrollExtent + messageBarHeight;
+    final position = controller.position.maxScrollExtent;
 
     if (isInit) {
       controller.jumpTo(position);
