@@ -243,9 +243,7 @@ void main() {
         lastName: 'User',
       );
 
-      //todo: this is outdated
-      //MockUsers.initialUsers = [user];
-
+      when(mockGetUserByEmailUseCase.call('auth@example.com')).thenReturn(user);
       when(mockLocalStorage.initUser()).thenReturn(user);
 
       await cubit.authUser('auth@example.com');
@@ -257,6 +255,8 @@ void main() {
 
     test('does nothing if user not found', () {
       final prevState = cubit.state;
+      when(mockGetUserByEmailUseCase.call('notfound@example.com')).thenReturn(null);
+
       cubit.authUser('notfound@example.com');
       expect(cubit.state, prevState);
     });

@@ -6,19 +6,23 @@ import 'package:test_futter_project/data/repositories/auth_repository_impl.dart'
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart';
+import 'package:test_futter_project/domain/usecases/users/get_max_user_id_use_case.dart';
+import 'package:test_futter_project/domain/usecases/users/save_users_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'auth_repository_impl_test.mocks.dart';
 
-@GenerateMocks([FetchOwnersUseCase])
+@GenerateMocks([FetchOwnersUseCase, GetMaxUserIdUseCase, SaveUsersUseCase])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late AuthRepositoryImpl repo;
 
   final mockLocalStorage = MockBaseLocalStorage();
   final mockFetchOwnersUseCase = MockFetchOwnersUseCase();
+  final mockGetMaxUserIdUseCase = MockGetMaxUserIdUseCase();
+  final mockSaveUsersUseCase = MockSaveUsersUseCase();
 
   final appLocalisationsCubit = AppLocalisationsCubit();
 
@@ -55,14 +59,19 @@ void main() {
     repo.users = initUsers;
 
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);
+    when(mockGetMaxUserIdUseCase.call()).thenReturn(1);
   });
 
   setUpAll(() {
     serviceLocator.registerLazySingleton(() => appLocalisationsCubit);
+    serviceLocator.registerLazySingleton<GetMaxUserIdUseCase>(() => mockGetMaxUserIdUseCase);
+    serviceLocator.registerLazySingleton<SaveUsersUseCase>(() => mockSaveUsersUseCase);
   });
 
   tearDownAll(() {
     serviceLocator.unregister<AppLocalisationsCubit>();
+    serviceLocator.unregister<GetMaxUserIdUseCase>();
+    serviceLocator.unregister<SaveUsersUseCase>();
   });
 
   group('login', () {

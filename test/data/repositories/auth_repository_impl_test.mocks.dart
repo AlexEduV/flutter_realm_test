@@ -7,10 +7,15 @@ import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_futter_project/domain/entities/owner_entity.dart' as _i5;
+import 'package:test_futter_project/domain/entities/user_entity.dart' as _i8;
 import 'package:test_futter_project/domain/repositories/owner_repository.dart'
     as _i2;
 import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart'
     as _i3;
+import 'package:test_futter_project/domain/usecases/users/get_max_user_id_use_case.dart'
+    as _i6;
+import 'package:test_futter_project/domain/usecases/users/save_users_use_case.dart'
+    as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -61,4 +66,36 @@ class MockFetchOwnersUseCase extends _i1.Mock
             ),
           )
           as _i4.Future<List<_i5.OwnerEntity>>);
+}
+
+/// A class which mocks [GetMaxUserIdUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetMaxUserIdUseCase extends _i1.Mock
+    implements _i6.GetMaxUserIdUseCase {
+  MockGetMaxUserIdUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  int call() =>
+      (super.noSuchMethod(Invocation.method(#call, []), returnValue: 0) as int);
+}
+
+/// A class which mocks [SaveUsersUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSaveUsersUseCase extends _i1.Mock implements _i7.SaveUsersUseCase {
+  MockSaveUsersUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<void> call(List<_i8.UserEntity>? params) =>
+      (super.noSuchMethod(
+            Invocation.method(#call, [params]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 }
