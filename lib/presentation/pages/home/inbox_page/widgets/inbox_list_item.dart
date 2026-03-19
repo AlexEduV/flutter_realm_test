@@ -47,10 +47,9 @@ class InboxListItem extends StatelessWidget {
                 height: AppDimensions.inboxItemHeight,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: AppDimensions.normalM,
                   children: [
                     AvatarWidget(imageSrc: owner.imageSrc),
-
-                    const SizedBox(width: AppDimensions.normalM),
 
                     Expanded(
                       child: Column(
@@ -75,13 +74,14 @@ class InboxListItem extends StatelessWidget {
                     ),
 
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
+                      spacing: AppDimensions.minorL,
                       children: [
                         Row(
+                          spacing: AppDimensions.minorM,
                           children: [
                             Icon(_getMessageStatusIcon(message)),
-
-                            const SizedBox(width: AppDimensions.minorM),
 
                             Text(
                               message == null ? '' : DateFormatter.formatSmartDate(message.date),
@@ -92,11 +92,7 @@ class InboxListItem extends StatelessWidget {
                           ],
                         ),
 
-                        const Spacer(),
-
                         if (message?.messageStatus == MessageStatus.unknown) ...[
-                          const SizedBox(height: AppDimensions.minorL),
-
                           const Align(
                             alignment: AlignmentGeometry.bottomRight,
                             //todo: unfinished logic
