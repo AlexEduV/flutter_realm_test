@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
@@ -18,6 +19,7 @@ class InboxPageCubit extends Cubit<InboxPageState> {
   }
 
   Future<void> sendMessage(String? conversationId, MessageModel message) async {
+    //todo: these functions are too verbose
     if (conversationId == null) return;
 
     final conversations = List.of(state.conversations);
@@ -30,6 +32,31 @@ class InboxPageCubit extends Cubit<InboxPageState> {
 
     final oldConversation = conversations[conversationIndex];
     final updatedMessages = List<MessageModel>.from(oldConversation.messages)..add(message);
+
+    final updatedConversation = oldConversation.copyWith(messages: updatedMessages);
+
+    conversations[conversationIndex] = updatedConversation;
+
+    emit(state.copyWith(conversations: conversations));
+
+    //todo: this saves messages to the mock cloud, but per offline-first approach we also should cache messages to the local storage
+    await _saveConversationsUseCase.call(conversations);
+  }
+
+  Future<void> markMessageAsRead(String conversationId, int messageIndex) async {
+    final conversations = List.of(state.conversations);
+
+    final conversationIndex = conversations.indexWhereOrNull(
+      (element) => element.conversationId == conversationId,
+    );
+
+    if (conversationIndex == null) return;
+
+    final oldConversation = conversations[conversationIndex];
+    final updatedMessages = List<MessageModel>.from(oldConversation.messages);
+    updatedMessages[messageIndex] = updatedMessages[messageIndex].copyWith(
+      messageStatus: MessageStatus.read,
+    );
 
     final updatedConversation = oldConversation.copyWith(messages: updatedMessages);
 

@@ -27,6 +27,14 @@ class InboxListItem extends StatelessWidget {
     final message = conversation.messages.lastOrNull;
     final owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
+    final unreadCount = conversation.messages
+        .where(
+          (element) =>
+              element.senderId == conversation.ownerId &&
+              element.messageStatus == MessageStatus.sent,
+        )
+        .length;
+
     return Padding(
       padding: const EdgeInsetsGeometry.symmetric(
         horizontal: AppDimensions.normalXS,
@@ -92,9 +100,7 @@ class InboxListItem extends StatelessWidget {
                           ],
                         ),
 
-                        if (message?.messageStatus == MessageStatus.unknown) ...[
-                          const AppBadge(text: '1'),
-                        ],
+                        if (unreadCount > 0) ...[AppBadge(text: unreadCount.toString())],
                       ],
                     ),
                   ],
