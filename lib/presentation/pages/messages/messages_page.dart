@@ -42,6 +42,13 @@ class _MessagesPageState extends State<MessagesPage> {
 
   final getUserById = serviceLocator<GetUserByIdUseCase>();
 
+  //todo: when opening a large list, there's a scroll bouncing effect.
+  // It persists, even when disabling animation and setting different scroll physics.
+  // It happens because the list scroll extent is changing on a large list load, so the position is
+  // incorrect. Waiting for the list to load results in delay and then sudden jump.
+
+  //flutter limitation.
+
   @override
   void initState() {
     context.read<MessagesPageCubit>().setCurrentConversationId(widget.conversationId);
