@@ -71,6 +71,9 @@ class _MessagesPageState extends State<MessagesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final conversation = getConversationById(widget.conversationId);
+    final users = getUsersFromConversation(conversation);
+
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       extendBody: true,
@@ -98,10 +101,6 @@ class _MessagesPageState extends State<MessagesPage> {
       ),
       body: BlocBuilder<InboxPageCubit, InboxPageState>(
         builder: (context, state) {
-          //todo: move higher;
-          final conversation = getConversationById(widget.conversationId);
-          final users = getUsersFromConversation(conversation);
-
           if (conversation.messages.isEmpty) {
             return const EmptyConversationPlaceholder();
           }
