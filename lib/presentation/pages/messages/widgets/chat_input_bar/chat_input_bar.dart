@@ -28,6 +28,8 @@ class ChatInputBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MessagesPageCubit, MessagesPageState>(
       builder: (context, state) {
+        final isTextFieldEmpty = state.currentMessageText.isEmpty;
+
         return Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           spacing: AppDimensions.minorL,
@@ -48,9 +50,9 @@ class ChatInputBar extends StatelessWidget {
             ),
 
             ChatInputButton(
-              icon: Icons.send,
-              onTap: state.currentMessageText.isEmpty ? null : () => sendMessage(context, state),
-              iconRotationAngleDegrees: -40,
+              icon: isTextFieldEmpty ? Icons.gif : Icons.send,
+              onTap: isTextFieldEmpty ? pickGif : () => sendMessage(context, state),
+              iconRotationAngleDegrees: isTextFieldEmpty ? 0.0 : -40,
               semanticsLabel: AppSemanticsLabels.chatInputBarSendMessageButton,
             ),
           ],
@@ -58,6 +60,8 @@ class ChatInputBar extends StatelessWidget {
       },
     );
   }
+
+  void pickGif() {}
 
   void sendMessage(BuildContext context, MessagesPageState state) {
     final user = context.read<UserDataCubit>().user;
