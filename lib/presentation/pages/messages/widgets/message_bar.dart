@@ -32,6 +32,7 @@ class MessageBar extends StatelessWidget {
     return BlocBuilder<MessagesPageCubit, MessagesPageState>(
       builder: (context, state) {
         return Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           spacing: AppDimensions.minorL,
           children: [
             IconButton(
