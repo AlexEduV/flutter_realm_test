@@ -61,12 +61,7 @@ class _MessageBarState extends State<MessageBar> {
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
                 child: TextFormField(
-                  onTap: () async {
-                    setState(() => textFieldScale = 1.2); // Slightly enlarge
-                    await Future.delayed(const Duration(milliseconds: 100));
-                    setState(() => textFieldScale = 1.0); // Return to normal
-                    widget.messageFocusNode.requestFocus(); // Optionally focus the field
-                  },
+                  onTap: onTextFieldTap,
                   focusNode: widget.messageFocusNode,
                   controller: widget.messageTextController,
                   decoration: InputDecoration(
@@ -135,6 +130,12 @@ class _MessageBarState extends State<MessageBar> {
         );
       },
     );
+  }
+
+  Future<void> onTextFieldTap() async {
+    setState(() => textFieldScale = 1.2);
+    await Future.delayed(const Duration(milliseconds: 100));
+    setState(() => textFieldScale = 1.0);
   }
 
   void sendMessage(BuildContext context, MessagesPageState state) {
