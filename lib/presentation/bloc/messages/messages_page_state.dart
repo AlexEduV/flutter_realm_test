@@ -10,6 +10,7 @@ abstract class MessagesPageState with _$MessagesPageState {
     @Default('') String currentMessageText,
     @Default('') String currentGifSearchText,
     @Default(false) bool areGifsLoading,
+    @Default('') String latestQuery,
     @Default([]) List<String> gifsUrls,
   }) = _MessagesPageState;
 }

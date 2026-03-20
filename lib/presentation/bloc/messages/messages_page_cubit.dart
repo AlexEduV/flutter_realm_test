@@ -7,6 +7,8 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
 
   MessagesPageCubit(this._searchGifsUseCase) : super(const MessagesPageState());
 
+  int activeRequestId = 0;
+
   void setCurrentConversationId(String conversationId) {
     emit(state.copyWith(currentConversationId: conversationId));
   }
@@ -16,12 +18,18 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
   }
 
   Future<void> updateGifsSearch(String query) async {
-    emit(state.copyWith(currentGifSearchText: query));
+    final requestId = ++activeRequestId;
 
-    //todo: add debouncer for input
+    emit(state.copyWith(currentGifSearchText: query));
 
     emit(state.copyWith(areGifsLoading: true));
     final gifs = await _searchGifsUseCase.call(query);
-    emit(state.copyWith(gifsUrls: gifs, areGifsLoading: false));
+
+    if (requestId != activeRequestId) {
+      // A newer search has started, discard this result silently
+      return;
+    }
+
+    emit(state.copyWith(gifsUrls: gifs, areGifsLoading: false, latestQuery: query));
   }
 }

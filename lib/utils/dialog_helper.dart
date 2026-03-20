@@ -381,6 +381,7 @@ class DialogHelper {
                     onChanged: (newValue) =>
                         context.read<MessagesPageCubit>().updateGifsSearch(newValue),
                     decoration: InputDecoration(
+                      //todo: localise
                       hintText: 'Search Gifs',
                       fillColor: Colors.white,
                       filled: true,
@@ -390,6 +391,12 @@ class DialogHelper {
                       ),
                     ),
                   ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(AppDimensions.minorL),
+                  //todo: localise
+                  child: Text('Showing results for "${state.latestQuery}"'),
                 ),
 
                 Expanded(
