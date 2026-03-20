@@ -15,7 +15,7 @@ import 'package:test_futter_project/presentation/pages/messages/widgets/chat_inp
 
 import '../../../../../common/app_dimensions.dart';
 
-class ChatInputBar extends StatelessWidget {
+class ChatInputBar extends StatefulWidget {
   final TextEditingController messageTextController;
   final FocusNode messageFocusNode;
   final VoidCallback? onMessageSent;
@@ -26,6 +26,14 @@ class ChatInputBar extends StatelessWidget {
     this.onMessageSent,
     super.key,
   });
+
+  @override
+  State<ChatInputBar> createState() => _ChatInputBarState();
+}
+
+class _ChatInputBarState extends State<ChatInputBar> {
+  final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
+  List gifs = [];
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +54,8 @@ class ChatInputBar extends StatelessWidget {
 
             Expanded(
               child: ChatInputTextField(
-                focusNode: messageFocusNode,
-                textEditingController: messageTextController,
+                focusNode: widget.messageFocusNode,
+                textEditingController: widget.messageTextController,
                 sendMessage: (context, state) => sendMessage(context, state),
               ),
             ),
@@ -65,8 +73,7 @@ class ChatInputBar extends StatelessWidget {
   }
 
   void pickGif() {
-    final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
-
+    //todo:
     return;
   }
 
@@ -75,14 +82,19 @@ class ChatInputBar extends StatelessWidget {
 
     context.read<InboxPageCubit>().sendMessage(
       state.currentConversationId,
-      MessageModel(user.userId, MessageStatus.sent, messageTextController.text, DateTime.now()),
+      MessageModel(
+        user.userId,
+        MessageStatus.sent,
+        widget.messageTextController.text,
+        DateTime.now(),
+      ),
     );
 
-    onMessageSent?.call();
+    widget.onMessageSent?.call();
 
     context.read<MessagesPageCubit>().updateMessageText('');
-    messageTextController.clear();
+    widget.messageTextController.clear();
 
-    messageFocusNode.requestFocus();
+    widget.messageFocusNode.requestFocus();
   }
 }
