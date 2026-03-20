@@ -13,12 +13,12 @@ import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
 
-class MessageBar extends StatefulWidget {
+class ChatInputBar extends StatefulWidget {
   final TextEditingController messageTextController;
   final FocusNode messageFocusNode;
   final VoidCallback? onMessageSent;
 
-  const MessageBar({
+  const ChatInputBar({
     required this.messageTextController,
     required this.messageFocusNode,
     this.onMessageSent,
@@ -26,10 +26,10 @@ class MessageBar extends StatefulWidget {
   });
 
   @override
-  State<MessageBar> createState() => _MessageBarState();
+  State<ChatInputBar> createState() => _ChatInputBarState();
 }
 
-class _MessageBarState extends State<MessageBar> {
+class _ChatInputBarState extends State<ChatInputBar> {
   double textFieldScale = 1.0;
 
   @override
