@@ -197,15 +197,15 @@ class _MessagesPageState extends State<MessagesPage> {
 
     if (!controller.hasClients) return;
 
-    final position = controller.position.maxScrollExtent;
+    final maxExtent = controller.position.maxScrollExtent;
 
     if (isInit) {
-      controller.jumpTo(position);
+      controller.jumpTo(maxExtent);
       return;
     }
 
     await controller.animateTo(
-      position,
+      maxExtent + AppDimensions.bottomMessageBarHeight,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
