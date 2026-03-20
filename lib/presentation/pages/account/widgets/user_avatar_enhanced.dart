@@ -24,51 +24,54 @@ class UserAvatarEnhanced extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
-      child: Center(
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              width: size,
-              height: size,
-              decoration: isDecorated
-                  ? BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white, // Set your desired border color
-                        width: 3.0, // Set your desired border width
-                      ),
-                    )
-                  : null,
-              child: CircleAvatar(
-                radius: size / 2,
-                backgroundImage: (imageSrc != null && imageSrc!.isNotEmpty)
-                    ? FileImage(File(imageSrc!))
+    return AppSemantics(
+      label: AppSemanticsLabels.avatarWidgetEnhanced,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
+        child: Center(
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                width: size,
+                height: size,
+                decoration: isDecorated
+                    ? BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white, // Set your desired border color
+                          width: 3.0, // Set your desired border width
+                        ),
+                      )
                     : null,
-                backgroundColor: imageSrc == null || imageSrc!.isEmpty
-                    ? AppColors.placeholderColor
-                    : null,
-              ),
-            ),
-
-            if (onTap != null) ...[
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: AppSemantics(
-                  button: true,
-                  label: AppSemanticsLabels.avatarSetImageButton,
-                  child: AnimatedAddButton(
-                    onPressed: onTap,
-                    backgroundColor: AppColors.accentColor,
-                    size: AppDimensions.avatarImageAddIconSize,
-                  ),
+                child: CircleAvatar(
+                  radius: size / 2,
+                  backgroundImage: (imageSrc != null && imageSrc!.isNotEmpty)
+                      ? FileImage(File(imageSrc!))
+                      : null,
+                  backgroundColor: imageSrc == null || imageSrc!.isEmpty
+                      ? AppColors.placeholderColor
+                      : null,
                 ),
               ),
+
+              if (onTap != null) ...[
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: AppSemantics(
+                    button: true,
+                    label: AppSemanticsLabels.avatarSetImageButton,
+                    child: AnimatedAddButton(
+                      onPressed: onTap,
+                      backgroundColor: AppColors.accentColor,
+                      size: AppDimensions.avatarImageAddIconSize,
+                    ),
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

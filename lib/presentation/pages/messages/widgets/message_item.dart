@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../common/app_colors.dart';
@@ -80,27 +82,30 @@ class MessageItem extends StatelessWidget {
                       ],
                     ),
                   ],
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: AppDimensions.normalS,
-                      horizontal: AppDimensions.normalM,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isMyMessage ? AppColors.darkBlue : AppColors.whiteGrey,
-                      borderRadius: BorderRadius.only(
-                        topLeft: isMyMessage
-                            ? const Radius.circular(AppDimensions.normalS)
-                            : Radius.zero,
-                        topRight: isMyMessage
-                            ? Radius.zero
-                            : const Radius.circular(AppDimensions.normalS),
-                        bottomLeft: const Radius.circular(AppDimensions.normalS),
-                        bottomRight: const Radius.circular(AppDimensions.normalS),
+                  AppSemantics(
+                    label: AppSemanticsLabels.messageItemText,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: AppDimensions.normalS,
+                        horizontal: AppDimensions.normalM,
                       ),
-                    ),
-                    child: Text(
-                      message,
-                      style: isMyMessage ? const TextStyle(color: Colors.white) : null,
+                      decoration: BoxDecoration(
+                        color: isMyMessage ? AppColors.darkBlue : AppColors.whiteGrey,
+                        borderRadius: BorderRadius.only(
+                          topLeft: isMyMessage
+                              ? const Radius.circular(AppDimensions.normalS)
+                              : Radius.zero,
+                          topRight: isMyMessage
+                              ? Radius.zero
+                              : const Radius.circular(AppDimensions.normalS),
+                          bottomLeft: const Radius.circular(AppDimensions.normalS),
+                          bottomRight: const Radius.circular(AppDimensions.normalS),
+                        ),
+                      ),
+                      child: Text(
+                        message,
+                        style: isMyMessage ? const TextStyle(color: Colors.white) : null,
+                      ),
                     ),
                   ),
                 ],

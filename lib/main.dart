@@ -83,6 +83,7 @@ class MyApp extends StatelessWidget {
           ),
           routerConfig: AppRouter.router,
           debugShowCheckedModeBanner: false,
+          showSemanticsDebugger: true,
         ),
       ),
     );
