@@ -53,7 +53,10 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
                 suffixIcon: Padding(
                   padding: const EdgeInsets.all(AppDimensions.minorM),
                   child: IconButton(
-                    icon: const Icon(Icons.gif),
+                    onLongPress: () {
+                      //this blocks refocus on field when long pressing the button
+                    },
+                    icon: const Icon(Icons.gif, size: AppDimensions.bottomMessageBarIconSize),
                     onPressed: () async {
                       await DialogHelper.showGifsPickerModalBottomSheet(context);
                     },
