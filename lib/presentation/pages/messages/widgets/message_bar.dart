@@ -13,7 +13,7 @@ import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
 
-class MessageBar extends StatelessWidget {
+class MessageBar extends StatefulWidget {
   final TextEditingController messageTextController;
   final FocusNode messageFocusNode;
   final VoidCallback? onMessageSent;
@@ -26,8 +26,16 @@ class MessageBar extends StatelessWidget {
   });
 
   @override
+  State<MessageBar> createState() => _MessageBarState();
+}
+
+class _MessageBarState extends State<MessageBar> {
+  double textFieldScale = 1.0;
+
+  @override
   Widget build(BuildContext context) {
     final textFieldBorderRadius = BorderRadius.circular(AppDimensions.normalM);
+    final buttonsBottomPadding = AppDimensions.minorS;
 
     return BlocBuilder<MessagesPageCubit, MessagesPageState>(
       builder: (context, state) {
@@ -35,73 +43,92 @@ class MessageBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           spacing: AppDimensions.minorL,
           children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.attach_file),
-              style: const ButtonStyle(
-                iconSize: WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
-                foregroundColor: WidgetStatePropertyAll(AppColors.headerColor),
-                backgroundColor: WidgetStatePropertyAll(Colors.white),
+            Padding(
+              padding: EdgeInsets.only(bottom: buttonsBottomPadding),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.attach_file),
+                style: const ButtonStyle(
+                  iconSize: WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
+                  foregroundColor: WidgetStatePropertyAll(AppColors.headerColor),
+                  backgroundColor: WidgetStatePropertyAll(Colors.white),
+                ),
               ),
             ),
             Expanded(
-              child: TextFormField(
-                focusNode: messageFocusNode,
-                controller: messageTextController,
-                decoration: InputDecoration(
-                  hintText: context.tr(L10nKeys.messageBarHint),
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: AppDimensions.normalM,
-                    horizontal: AppDimensions.normalS,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: textFieldBorderRadius,
-                    borderSide: const BorderSide(color: AppColors.accentColor),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: textFieldBorderRadius,
-                    borderSide: BorderSide(color: Colors.grey.shade300),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: textFieldBorderRadius,
-                    borderSide: const BorderSide(
-                      color: AppColors.accentColor,
-                      width: AppDimensions.minorXS,
+              child: AnimatedScale(
+                scale: textFieldScale,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                child: TextFormField(
+                  onTap: () async {
+                    setState(() => textFieldScale = 1.2); // Slightly enlarge
+                    await Future.delayed(const Duration(milliseconds: 100));
+                    setState(() => textFieldScale = 1.0); // Return to normal
+                    widget.messageFocusNode.requestFocus(); // Optionally focus the field
+                  },
+                  focusNode: widget.messageFocusNode,
+                  controller: widget.messageTextController,
+                  decoration: InputDecoration(
+                    hintText: context.tr(L10nKeys.messageBarHint),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: AppDimensions.normalM,
+                      horizontal: AppDimensions.normalS,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: textFieldBorderRadius,
+                      borderSide: const BorderSide(color: AppColors.accentColor),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: textFieldBorderRadius,
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: textFieldBorderRadius,
+                      borderSide: const BorderSide(
+                        color: AppColors.accentColor,
+                        width: AppDimensions.minorXS,
+                      ),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: textFieldBorderRadius,
+                      borderSide: const BorderSide(color: Colors.red),
                     ),
                   ),
-                  fillColor: Colors.white,
-                  filled: true,
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: textFieldBorderRadius,
-                    borderSide: const BorderSide(color: Colors.red),
-                  ),
-                ),
-                style: AppTextStyles.zonaPro16,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                onChanged: (newValue) =>
-                    context.read<MessagesPageCubit>().updateMessageText(newValue),
-                onFieldSubmitted: (value) {
-                  if (value.isEmpty) return;
+                  style: AppTextStyles.zonaPro16,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  onChanged: (newValue) =>
+                      context.read<MessagesPageCubit>().updateMessageText(newValue),
+                  onFieldSubmitted: (value) {
+                    if (value.isEmpty) return;
 
-                  sendMessage(context, state);
-                },
+                    sendMessage(context, state);
+                  },
+                ),
               ),
             ),
-            IconButton(
-              onPressed: state.currentMessageText.isEmpty
-                  ? null
-                  : () => sendMessage(context, state),
-              icon: const Icon(Icons.send),
-              style: ButtonStyle(
-                iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
-                foregroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
-                  if (states.contains(WidgetState.disabled)) {
-                    return AppColors.lightGrey; // your disabled color here
-                  }
-                  return AppColors.headerColor; // default color
-                }),
-                backgroundColor: const WidgetStatePropertyAll(Colors.white),
+            Padding(
+              padding: EdgeInsets.only(bottom: buttonsBottomPadding),
+              child: IconButton(
+                onPressed: state.currentMessageText.isEmpty
+                    ? null
+                    : () => sendMessage(context, state),
+                icon: const Icon(Icons.send),
+                style: ButtonStyle(
+                  iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
+                  foregroundColor: WidgetStateProperty.resolveWith<Color>((
+                    Set<WidgetState> states,
+                  ) {
+                    if (states.contains(WidgetState.disabled)) {
+                      return AppColors.lightGrey; // your disabled color here
+                    }
+                    return AppColors.headerColor; // default color
+                  }),
+                  backgroundColor: const WidgetStatePropertyAll(Colors.white),
+                ),
               ),
             ),
           ],
@@ -115,14 +142,19 @@ class MessageBar extends StatelessWidget {
 
     context.read<InboxPageCubit>().sendMessage(
       state.currentConversationId,
-      MessageModel(user.userId, MessageStatus.sent, messageTextController.text, DateTime.now()),
+      MessageModel(
+        user.userId,
+        MessageStatus.sent,
+        widget.messageTextController.text,
+        DateTime.now(),
+      ),
     );
 
-    onMessageSent?.call();
+    widget.onMessageSent?.call();
 
     context.read<MessagesPageCubit>().updateMessageText('');
-    messageTextController.clear();
+    widget.messageTextController.clear();
 
-    messageFocusNode.requestFocus();
+    widget.messageFocusNode.requestFocus();
   }
 }
