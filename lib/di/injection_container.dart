@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/data_sources/local/env_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/geolocator_local_data_source_impl.dart';
@@ -6,6 +7,7 @@ import 'package:test_futter_project/data/data_sources/local/permission_local_dat
 import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart';
 import 'package:test_futter_project/data/data_sources/local/share_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/url_launch_local_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/remote/gifs_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
@@ -16,6 +18,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_users_remote_d
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/gifs_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/inbox_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/owner_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
@@ -32,12 +35,14 @@ import 'package:test_futter_project/domain/data_sources/local/url_launch_local_d
 import 'package:test_futter_project/domain/data_sources/remote/article_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/repositories/gifs_repository.dart';
 import 'package:test_futter_project/domain/repositories/inbox_repository.dart';
 import 'package:test_futter_project/domain/repositories/owner_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
@@ -60,6 +65,7 @@ import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
+import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
@@ -155,8 +161,14 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
+  final client = http.Client();
+  serviceLocator.registerLazySingleton<GifsRemoteDataSource>(
+    () => GifsRemoteDataSourceImpl(client),
+  );
+
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
   serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl());
+
   serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(() => MockOwnersRemoteDataSource());
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
     () => MockUsersRemoteDataSourceImpl(),
@@ -299,6 +311,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<UrlLaunchRepository>(
     () => UrlLaunchRepositoryImpl(serviceLocator()),
   );
+  serviceLocator.registerLazySingleton<GifsRepository>(() => GifsRepositoryImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<OpenAppSettingsUseCase>(
     () => OpenAppSettingsUseCase(serviceLocator()),
   );
@@ -318,4 +331,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => MessagesPageCubit());
 
   serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => SearchGifsUseCase(serviceLocator()));
 }
