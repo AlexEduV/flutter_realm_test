@@ -15,18 +15,33 @@ class ChatInputButton extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(bottom: buttonsBottomPadding),
-      child: IconButton(
-        onPressed: onTap,
-        icon: Icon(icon),
-        style: ButtonStyle(
-          iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
-          foregroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
-            if (states.contains(WidgetState.disabled)) {
-              return AppColors.lightGrey; // your disabled color here
-            }
-            return AppColors.headerColor; // default color
-          }),
-          backgroundColor: const WidgetStatePropertyAll(Colors.white),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: onTap != null
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withAlpha(25),
+                    spreadRadius: 1,
+                    blurRadius: 4,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  ),
+                ]
+              : null,
+        ),
+        child: IconButton(
+          onPressed: onTap,
+          icon: Icon(icon),
+          style: ButtonStyle(
+            iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
+            foregroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+              if (states.contains(WidgetState.disabled)) {
+                return AppColors.lightGrey;
+              }
+              return AppColors.headerColor;
+            }),
+            backgroundColor: const WidgetStatePropertyAll(Colors.white),
+          ),
         ),
       ),
     );
