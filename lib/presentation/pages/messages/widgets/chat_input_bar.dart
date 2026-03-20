@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
@@ -9,6 +10,7 @@ import 'package:test_futter_project/presentation/bloc/messages/messages_page_cub
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_button.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -43,55 +45,64 @@ class _ChatInputBarState extends State<ChatInputBar> {
           crossAxisAlignment: CrossAxisAlignment.end,
           spacing: AppDimensions.minorL,
           children: [
-            ChatInputButton(icon: Icons.attach_file, onTap: () {}, iconRotationAngleDegrees: 40),
+            ChatInputButton(
+              icon: Icons.attach_file,
+              onTap: () {},
+              iconRotationAngleDegrees: 40,
+              semanticsLabel: AppSemanticsLabels.chatInputBarAttachmentButton,
+            ),
 
             Expanded(
               child: AnimatedScale(
                 scale: textFieldScale,
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                child: TextFormField(
-                  onTap: onTextFieldTap,
-                  focusNode: widget.messageFocusNode,
-                  controller: widget.messageTextController,
-                  decoration: InputDecoration(
-                    hintText: context.tr(L10nKeys.messageBarHint),
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: AppDimensions.normalM,
-                      horizontal: AppDimensions.normalS,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: textFieldBorderRadius,
-                      borderSide: const BorderSide(color: AppColors.accentColor),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: textFieldBorderRadius,
-                      borderSide: BorderSide(color: Colors.grey.shade300),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: textFieldBorderRadius,
-                      borderSide: const BorderSide(
-                        color: AppColors.accentColor,
-                        width: AppDimensions.minorXS,
+                child: AppSemantics(
+                  label: AppSemanticsLabels.chatInputBarMessageTextField,
+                  textField: true,
+                  child: TextFormField(
+                    onTap: onTextFieldTap,
+                    focusNode: widget.messageFocusNode,
+                    controller: widget.messageTextController,
+                    decoration: InputDecoration(
+                      hintText: context.tr(L10nKeys.messageBarHint),
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: AppDimensions.normalM,
+                        horizontal: AppDimensions.normalS,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: textFieldBorderRadius,
+                        borderSide: const BorderSide(color: AppColors.accentColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: textFieldBorderRadius,
+                        borderSide: BorderSide(color: Colors.grey.shade300),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: textFieldBorderRadius,
+                        borderSide: const BorderSide(
+                          color: AppColors.accentColor,
+                          width: AppDimensions.minorXS,
+                        ),
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: textFieldBorderRadius,
+                        borderSide: const BorderSide(color: Colors.red),
                       ),
                     ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: textFieldBorderRadius,
-                      borderSide: const BorderSide(color: Colors.red),
-                    ),
-                  ),
-                  style: AppTextStyles.zonaPro16,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  onChanged: (newValue) =>
-                      context.read<MessagesPageCubit>().updateMessageText(newValue),
-                  onFieldSubmitted: (value) {
-                    if (value.isEmpty) return;
+                    style: AppTextStyles.zonaPro16,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    onChanged: (newValue) =>
+                        context.read<MessagesPageCubit>().updateMessageText(newValue),
+                    onFieldSubmitted: (value) {
+                      if (value.isEmpty) return;
 
-                    sendMessage(context, state);
-                  },
+                      sendMessage(context, state);
+                    },
+                  ),
                 ),
               ),
             ),
@@ -100,6 +111,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
               icon: Icons.send,
               onTap: state.currentMessageText.isEmpty ? null : () => sendMessage(context, state),
               iconRotationAngleDegrees: -40,
+              semanticsLabel: AppSemanticsLabels.chatInputBarSendMessageButton,
             ),
           ],
         );
