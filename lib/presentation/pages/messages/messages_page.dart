@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
@@ -12,10 +13,11 @@ import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_cas
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/date_divider.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
-import 'package:test_futter_project/presentation/pages/messages/widgets/message_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../common/app_text_styles.dart';
@@ -90,7 +92,7 @@ class _MessagesPageState extends State<MessagesPage> {
           left: AppDimensions.minorL,
           right: AppDimensions.minorL,
         ),
-        child: MessageBar(
+        child: ChatInputBar(
           onMessageSent: scrollToBottom,
           messageTextController: messageInputTextController,
           messageFocusNode: messageInputFocusNode,
@@ -122,19 +124,27 @@ class _MessagesPageState extends State<MessagesPage> {
               return Column(
                 children: [
                   if (showDivider) ...[
-                    DateDivider(text: DateFormatter.formatMessageDividerDate(message.date)),
+                    AppSemantics(
+                      label: AppSemanticsLabels.dateDivider,
+                      child: DateDivider(
+                        text: DateFormatter.formatMessageDividerDate(message.date),
+                      ),
+                    ),
                   ],
 
-                  MessageItem(
-                    senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
-                    imageSrc: sender?.avatarImageSrc,
-                    message: message.text,
-                    time: DateFormatter.formatSmartDate(message.date),
-                    isMyMessage: sender?.userId != owner.id,
-                    expanded: isExpanded,
-                    messageStatus: message.messageStatus,
-                    conversationId: conversation.conversationId,
-                    messageIndex: index,
+                  AppSemantics(
+                    label: AppSemanticsLabels.messageListItem,
+                    child: MessageItem(
+                      senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
+                      imageSrc: sender?.avatarImageSrc,
+                      message: message.text,
+                      time: DateFormatter.formatSmartDate(message.date),
+                      isMyMessage: sender?.userId != owner.id,
+                      expanded: isExpanded,
+                      messageStatus: message.messageStatus,
+                      conversationId: conversation.conversationId,
+                      messageIndex: index,
+                    ),
                   ),
                 ],
               );
@@ -197,15 +207,15 @@ class _MessagesPageState extends State<MessagesPage> {
 
     if (!controller.hasClients) return;
 
-    final position = controller.position.maxScrollExtent;
+    final maxExtent = controller.position.maxScrollExtent;
 
     if (isInit) {
-      controller.jumpTo(position);
+      controller.jumpTo(maxExtent);
       return;
     }
 
     await controller.animateTo(
-      position,
+      maxExtent + AppDimensions.expandedMessageHeight,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
