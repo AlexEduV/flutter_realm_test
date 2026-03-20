@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
+import 'package:test_futter_project/common/enums/message_type.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
@@ -38,6 +39,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
     return BlocBuilder<MessagesPageCubit, MessagesPageState>(
       builder: (context, state) {
         final isTextFieldEmpty = state.currentMessageText.isEmpty;
+        final isGifTypeSelected = state.selectedMessageType == MessageType.gif;
 
         return Row(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -59,11 +61,9 @@ class _ChatInputBarState extends State<ChatInputBar> {
             ),
 
             ChatInputButton(
-              icon: isTextFieldEmpty ? Icons.gif : Icons.send,
-              onTap: isTextFieldEmpty
-                  ? () => pickGif(widget.messageTextController.text)
-                  : () => sendMessage(context, state),
-              iconRotationAngleDegrees: isTextFieldEmpty ? 0.0 : -40,
+              icon: isGifTypeSelected ? Icons.gif : Icons.send,
+              onTap: () => onSendButtonTap(isTextFieldEmpty),
+              iconRotationAngleDegrees: isGifTypeSelected ? 0.0 : -40,
               semanticsLabel: AppSemanticsLabels.chatInputBarSendMessageButton,
             ),
           ],
@@ -72,8 +72,25 @@ class _ChatInputBarState extends State<ChatInputBar> {
     );
   }
 
-  Future<void> pickGif(String text) async {
-    final gifs = await serviceLocator<SearchGifsUseCase>().call('maia mitchell');
+  Future<void> onSendButtonTap(bool isTextFieldEmpty) async {
+    final cubit = context.read<MessagesPageCubit>();
+
+    if (isTextFieldEmpty) {
+      cubit.toggleMessageType();
+      return;
+    }
+
+    if (cubit.state.selectedMessageType == MessageType.text) {
+      sendMessage(context, cubit.state);
+      return;
+    }
+
+    await pickGif(query: cubit.state.currentMessageText);
+    return;
+  }
+
+  Future<void> pickGif({required String query}) async {
+    final gifs = await serviceLocator<SearchGifsUseCase>().call(query);
 
     return;
   }
