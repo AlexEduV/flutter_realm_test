@@ -348,7 +348,7 @@ class DialogHelper {
                 context.pop();
               },
               isDestructiveAction: true,
-              child: Text(context.tr(L10nKeys.deleteButtonTitle)),
+              child: Text(context.tr(L10nKeys.conversationDialogDeleteItemTitle)),
             ),
           ],
         );
