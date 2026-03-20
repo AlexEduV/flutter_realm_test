@@ -10,7 +10,6 @@ import 'package:test_futter_project/presentation/bloc/messages/messages_page_sta
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_button.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_text_field.dart';
-import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/app_dimensions.dart';
 
@@ -60,36 +59,15 @@ class _ChatInputBarState extends State<ChatInputBar> {
             ),
 
             ChatInputButton(
-              icon: isGifTypeSelected ? Icons.gif : Icons.send,
-              onTap: () => onSendButtonTap(isTextFieldEmpty),
-              iconRotationAngleDegrees: isGifTypeSelected ? 0.0 : -40,
+              icon: Icons.send,
+              onTap: isTextFieldEmpty ? null : () => sendMessage(context, state),
+              iconRotationAngleDegrees: -40,
               semanticsLabel: AppSemanticsLabels.chatInputBarSendMessageButton,
             ),
           ],
         );
       },
     );
-  }
-
-  Future<void> onSendButtonTap(bool isTextFieldEmpty) async {
-    final cubit = context.read<MessagesPageCubit>();
-
-    if (isTextFieldEmpty) {
-      cubit.toggleMessageType();
-      return;
-    }
-
-    if (cubit.state.selectedMessageType == MessageType.text) {
-      sendMessage(context, cubit.state);
-      return;
-    }
-
-    await pickGif();
-    return;
-  }
-
-  Future<void> pickGif() async {
-    await DialogHelper.showGifsPickerModalBottomSheet(context);
   }
 
   void sendMessage(BuildContext context, MessagesPageState state) {

@@ -7,6 +7,7 @@ import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_semantics_labels.dart';
 import '../../../../../common/app_text_styles.dart';
 import '../../../../../l10n/l10n_keys.dart';
+import '../../../../../utils/dialog_helper.dart';
 import '../../../../bloc/messages/messages_page_cubit.dart';
 import '../../../../bloc/messages/messages_page_state.dart';
 import '../../../../widgets/app_semantics.dart';
@@ -49,6 +50,15 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
               focusNode: widget.focusNode,
               controller: widget.textEditingController,
               decoration: InputDecoration(
+                suffixIcon: Padding(
+                  padding: const EdgeInsets.all(AppDimensions.minorM),
+                  child: IconButton(
+                    icon: const Icon(Icons.gif),
+                    onPressed: () async {
+                      await DialogHelper.showGifsPickerModalBottomSheet(context);
+                    },
+                  ),
+                ),
                 hintText: context.tr(L10nKeys.messageBarHint),
                 contentPadding: const EdgeInsets.symmetric(
                   vertical: AppDimensions.normalM,

@@ -364,11 +364,16 @@ class DialogHelper {
       backgroundColor: AppColors.scaffoldColor,
       context: context,
       builder: (context) {
+        final textEditingController = TextEditingController();
+
         return BlocBuilder<MessagesPageCubit, MessagesPageState>(
           builder: (context, state) {
             return Column(
               children: [
-                Text('Text here'),
+                TextFormField(
+                  controller: textEditingController,
+                  onChanged: (newValue) => context.read<MessagesPageCubit>().updateGifs(newValue),
+                ),
 
                 Expanded(
                   child: GridView.builder(

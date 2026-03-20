@@ -28,7 +28,7 @@ class _ChatInputButtonState extends State<ChatInputButton> {
 
   @override
   Widget build(BuildContext context) {
-    final buttonsBottomPadding = AppDimensions.minorS;
+    final buttonsBottomPadding = AppDimensions.minorM;
 
     return AnimatedScale(
       duration: const Duration(milliseconds: 300),

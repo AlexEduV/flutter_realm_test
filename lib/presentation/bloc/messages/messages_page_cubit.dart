@@ -14,14 +14,16 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
 
   Future<void> updateMessageText(String newText) async {
     emit(state.copyWith(currentMessageText: newText));
+  }
 
-    if (state.selectedMessageType == MessageType.gif) {
-      if (newText.isEmpty) return;
+  Future<void> updateGifs(String query) async {
+    if (query.isEmpty) return;
 
-      emit(state.copyWith(areGifsLoading: true));
-      final gifs = await _searchGifsUseCase.call(newText);
-      emit(state.copyWith(gifsUrls: gifs, areGifsLoading: false));
-    }
+    //todo: add debouncer for input
+
+    emit(state.copyWith(areGifsLoading: true));
+    final gifs = await _searchGifsUseCase.call(query);
+    emit(state.copyWith(gifsUrls: gifs, areGifsLoading: false));
   }
 
   void toggleMessageType() {
