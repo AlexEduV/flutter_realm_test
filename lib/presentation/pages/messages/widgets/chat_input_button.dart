@@ -6,8 +6,9 @@ import '../../../../common/app_dimensions.dart';
 class ChatInputButton extends StatelessWidget {
   final VoidCallback? onTap;
   final IconData icon;
+  final double iconRotationAngle;
 
-  const ChatInputButton({required this.icon, this.onTap, super.key});
+  const ChatInputButton({required this.icon, this.onTap, this.iconRotationAngle = 0.0, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class ChatInputButton extends StatelessWidget {
         ),
         child: IconButton(
           onPressed: onTap,
-          icon: Icon(icon),
+          icon: Transform.rotate(angle: iconRotationAngle, child: Icon(icon)),
           style: ButtonStyle(
             iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
             foregroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {

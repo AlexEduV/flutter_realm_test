@@ -43,7 +43,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
           crossAxisAlignment: CrossAxisAlignment.end,
           spacing: AppDimensions.minorL,
           children: [
-            ChatInputButton(icon: Icons.attach_file, onTap: () {}),
+            ChatInputButton(icon: Icons.attach_file, onTap: () {}, iconRotationAngle: 0.7),
 
             Expanded(
               child: AnimatedScale(
@@ -99,6 +99,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
             ChatInputButton(
               icon: Icons.send,
               onTap: state.currentMessageText.isEmpty ? null : () => sendMessage(context, state),
+              iconRotationAngle: -0.7,
             ),
           ],
         );
