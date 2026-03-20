@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MessagesPageState {
 
- bool get isLoading; String? get currentConversationId; String get currentMessageText; MessageType get selectedMessageType; bool get areGifsLoading;
+ bool get isLoading; String? get currentConversationId; String get currentMessageText; MessageType get selectedMessageType; bool get areGifsLoading; List<String> get gifsUrls;
 /// Create a copy of MessagesPageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $MessagesPageStateCopyWith<MessagesPageState> get copyWith => _$MessagesPageStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MessagesPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentConversationId, currentConversationId) || other.currentConversationId == currentConversationId)&&(identical(other.currentMessageText, currentMessageText) || other.currentMessageText == currentMessageText)&&(identical(other.selectedMessageType, selectedMessageType) || other.selectedMessageType == selectedMessageType)&&(identical(other.areGifsLoading, areGifsLoading) || other.areGifsLoading == areGifsLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MessagesPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentConversationId, currentConversationId) || other.currentConversationId == currentConversationId)&&(identical(other.currentMessageText, currentMessageText) || other.currentMessageText == currentMessageText)&&(identical(other.selectedMessageType, selectedMessageType) || other.selectedMessageType == selectedMessageType)&&(identical(other.areGifsLoading, areGifsLoading) || other.areGifsLoading == areGifsLoading)&&const DeepCollectionEquality().equals(other.gifsUrls, gifsUrls));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,currentConversationId,currentMessageText,selectedMessageType,areGifsLoading);
+int get hashCode => Object.hash(runtimeType,isLoading,currentConversationId,currentMessageText,selectedMessageType,areGifsLoading,const DeepCollectionEquality().hash(gifsUrls));
 
 @override
 String toString() {
-  return 'MessagesPageState(isLoading: $isLoading, currentConversationId: $currentConversationId, currentMessageText: $currentMessageText, selectedMessageType: $selectedMessageType, areGifsLoading: $areGifsLoading)';
+  return 'MessagesPageState(isLoading: $isLoading, currentConversationId: $currentConversationId, currentMessageText: $currentMessageText, selectedMessageType: $selectedMessageType, areGifsLoading: $areGifsLoading, gifsUrls: $gifsUrls)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $MessagesPageStateCopyWith<$Res>  {
   factory $MessagesPageStateCopyWith(MessagesPageState value, $Res Function(MessagesPageState) _then) = _$MessagesPageStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, String? currentConversationId, String currentMessageText, MessageType selectedMessageType, bool areGifsLoading
+ bool isLoading, String? currentConversationId, String currentMessageText, MessageType selectedMessageType, bool areGifsLoading, List<String> gifsUrls
 });
 
 
@@ -63,14 +63,15 @@ class _$MessagesPageStateCopyWithImpl<$Res>
 
 /// Create a copy of MessagesPageState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? currentConversationId = freezed,Object? currentMessageText = null,Object? selectedMessageType = null,Object? areGifsLoading = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? currentConversationId = freezed,Object? currentMessageText = null,Object? selectedMessageType = null,Object? areGifsLoading = null,Object? gifsUrls = null,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,currentConversationId: freezed == currentConversationId ? _self.currentConversationId : currentConversationId // ignore: cast_nullable_to_non_nullable
 as String?,currentMessageText: null == currentMessageText ? _self.currentMessageText : currentMessageText // ignore: cast_nullable_to_non_nullable
 as String,selectedMessageType: null == selectedMessageType ? _self.selectedMessageType : selectedMessageType // ignore: cast_nullable_to_non_nullable
 as MessageType,areGifsLoading: null == areGifsLoading ? _self.areGifsLoading : areGifsLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,gifsUrls: null == gifsUrls ? _self.gifsUrls : gifsUrls // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 
@@ -81,7 +82,7 @@ as bool,
 
 
 class _MessagesPageState implements MessagesPageState {
-  const _MessagesPageState({this.isLoading = false, this.currentConversationId, this.currentMessageText = '', this.selectedMessageType = MessageType.text, this.areGifsLoading = false});
+  const _MessagesPageState({this.isLoading = false, this.currentConversationId, this.currentMessageText = '', this.selectedMessageType = MessageType.text, this.areGifsLoading = false, final  List<String> gifsUrls = const []}): _gifsUrls = gifsUrls;
   
 
 @override@JsonKey() final  bool isLoading;
@@ -89,6 +90,13 @@ class _MessagesPageState implements MessagesPageState {
 @override@JsonKey() final  String currentMessageText;
 @override@JsonKey() final  MessageType selectedMessageType;
 @override@JsonKey() final  bool areGifsLoading;
+ final  List<String> _gifsUrls;
+@override@JsonKey() List<String> get gifsUrls {
+  if (_gifsUrls is EqualUnmodifiableListView) return _gifsUrls;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_gifsUrls);
+}
+
 
 /// Create a copy of MessagesPageState
 /// with the given fields replaced by the non-null parameter values.
@@ -100,16 +108,16 @@ _$MessagesPageStateCopyWith<_MessagesPageState> get copyWith => __$MessagesPageS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MessagesPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentConversationId, currentConversationId) || other.currentConversationId == currentConversationId)&&(identical(other.currentMessageText, currentMessageText) || other.currentMessageText == currentMessageText)&&(identical(other.selectedMessageType, selectedMessageType) || other.selectedMessageType == selectedMessageType)&&(identical(other.areGifsLoading, areGifsLoading) || other.areGifsLoading == areGifsLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MessagesPageState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentConversationId, currentConversationId) || other.currentConversationId == currentConversationId)&&(identical(other.currentMessageText, currentMessageText) || other.currentMessageText == currentMessageText)&&(identical(other.selectedMessageType, selectedMessageType) || other.selectedMessageType == selectedMessageType)&&(identical(other.areGifsLoading, areGifsLoading) || other.areGifsLoading == areGifsLoading)&&const DeepCollectionEquality().equals(other._gifsUrls, _gifsUrls));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,currentConversationId,currentMessageText,selectedMessageType,areGifsLoading);
+int get hashCode => Object.hash(runtimeType,isLoading,currentConversationId,currentMessageText,selectedMessageType,areGifsLoading,const DeepCollectionEquality().hash(_gifsUrls));
 
 @override
 String toString() {
-  return 'MessagesPageState(isLoading: $isLoading, currentConversationId: $currentConversationId, currentMessageText: $currentMessageText, selectedMessageType: $selectedMessageType, areGifsLoading: $areGifsLoading)';
+  return 'MessagesPageState(isLoading: $isLoading, currentConversationId: $currentConversationId, currentMessageText: $currentMessageText, selectedMessageType: $selectedMessageType, areGifsLoading: $areGifsLoading, gifsUrls: $gifsUrls)';
 }
 
 
@@ -120,7 +128,7 @@ abstract mixin class _$MessagesPageStateCopyWith<$Res> implements $MessagesPageS
   factory _$MessagesPageStateCopyWith(_MessagesPageState value, $Res Function(_MessagesPageState) _then) = __$MessagesPageStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, String? currentConversationId, String currentMessageText, MessageType selectedMessageType, bool areGifsLoading
+ bool isLoading, String? currentConversationId, String currentMessageText, MessageType selectedMessageType, bool areGifsLoading, List<String> gifsUrls
 });
 
 
@@ -137,14 +145,15 @@ class __$MessagesPageStateCopyWithImpl<$Res>
 
 /// Create a copy of MessagesPageState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? currentConversationId = freezed,Object? currentMessageText = null,Object? selectedMessageType = null,Object? areGifsLoading = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? currentConversationId = freezed,Object? currentMessageText = null,Object? selectedMessageType = null,Object? areGifsLoading = null,Object? gifsUrls = null,}) {
   return _then(_MessagesPageState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,currentConversationId: freezed == currentConversationId ? _self.currentConversationId : currentConversationId // ignore: cast_nullable_to_non_nullable
 as String?,currentMessageText: null == currentMessageText ? _self.currentMessageText : currentMessageText // ignore: cast_nullable_to_non_nullable
 as String,selectedMessageType: null == selectedMessageType ? _self.selectedMessageType : selectedMessageType // ignore: cast_nullable_to_non_nullable
 as MessageType,areGifsLoading: null == areGifsLoading ? _self.areGifsLoading : areGifsLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,gifsUrls: null == gifsUrls ? _self._gifsUrls : gifsUrls // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 

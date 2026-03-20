@@ -328,7 +328,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
 
-  serviceLocator.registerFactory(() => MessagesPageCubit());
+  serviceLocator.registerFactory(() => MessagesPageCubit(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
 

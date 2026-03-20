@@ -3,15 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/enums/message_type.dart';
-import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
-import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_button.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_text_field.dart';
+import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/app_dimensions.dart';
 
@@ -85,14 +84,12 @@ class _ChatInputBarState extends State<ChatInputBar> {
       return;
     }
 
-    await pickGif(query: cubit.state.currentMessageText);
+    await pickGif();
     return;
   }
 
-  Future<void> pickGif({required String query}) async {
-    final gifs = await serviceLocator<SearchGifsUseCase>().call(query);
-
-    return;
+  Future<void> pickGif() async {
+    await DialogHelper.showGifsPickerModalBottomSheet(context);
   }
 
   void sendMessage(BuildContext context, MessagesPageState state) {

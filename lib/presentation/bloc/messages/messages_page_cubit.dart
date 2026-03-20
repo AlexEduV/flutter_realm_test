@@ -1,16 +1,27 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/enums/message_type.dart';
+import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
 
 class MessagesPageCubit extends Cubit<MessagesPageState> {
-  MessagesPageCubit() : super(const MessagesPageState());
+  final SearchGifsUseCase _searchGifsUseCase;
+
+  MessagesPageCubit(this._searchGifsUseCase) : super(const MessagesPageState());
 
   void setCurrentConversationId(String conversationId) {
     emit(state.copyWith(currentConversationId: conversationId));
   }
 
-  void updateMessageText(String newText) {
+  Future<void> updateMessageText(String newText) async {
     emit(state.copyWith(currentMessageText: newText));
+
+    if (state.selectedMessageType == MessageType.gif) {
+      if (newText.isEmpty) return;
+
+      emit(state.copyWith(areGifsLoading: true));
+      final gifs = await _searchGifsUseCase.call(newText);
+      emit(state.copyWith(gifsUrls: gifs, areGifsLoading: false));
+    }
   }
 
   void toggleMessageType() {

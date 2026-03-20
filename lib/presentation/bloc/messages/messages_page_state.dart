@@ -11,5 +11,6 @@ abstract class MessagesPageState with _$MessagesPageState {
     @Default('') String currentMessageText,
     @Default(MessageType.text) MessageType selectedMessageType,
     @Default(false) bool areGifsLoading,
+    @Default([]) List<String> gifsUrls,
   }) = _MessagesPageState;
 }
