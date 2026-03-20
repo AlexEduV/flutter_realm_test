@@ -8,6 +8,7 @@ import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_button.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -35,7 +36,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
   @override
   Widget build(BuildContext context) {
     final textFieldBorderRadius = BorderRadius.circular(AppDimensions.normalM);
-    final buttonsBottomPadding = AppDimensions.minorS;
 
     return BlocBuilder<MessagesPageCubit, MessagesPageState>(
       builder: (context, state) {
@@ -43,18 +43,8 @@ class _ChatInputBarState extends State<ChatInputBar> {
           crossAxisAlignment: CrossAxisAlignment.end,
           spacing: AppDimensions.minorL,
           children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: buttonsBottomPadding),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.attach_file),
-                style: const ButtonStyle(
-                  iconSize: WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
-                  foregroundColor: WidgetStatePropertyAll(AppColors.headerColor),
-                  backgroundColor: WidgetStatePropertyAll(Colors.white),
-                ),
-              ),
-            ),
+            ChatInputButton(icon: Icons.attach_file, onTap: () {}),
+
             Expanded(
               child: AnimatedScale(
                 scale: textFieldScale,
@@ -105,26 +95,10 @@ class _ChatInputBarState extends State<ChatInputBar> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: buttonsBottomPadding),
-              child: IconButton(
-                onPressed: state.currentMessageText.isEmpty
-                    ? null
-                    : () => sendMessage(context, state),
-                icon: const Icon(Icons.send),
-                style: ButtonStyle(
-                  iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
-                  foregroundColor: WidgetStateProperty.resolveWith<Color>((
-                    Set<WidgetState> states,
-                  ) {
-                    if (states.contains(WidgetState.disabled)) {
-                      return AppColors.lightGrey; // your disabled color here
-                    }
-                    return AppColors.headerColor; // default color
-                  }),
-                  backgroundColor: const WidgetStatePropertyAll(Colors.white),
-                ),
-              ),
+
+            ChatInputButton(
+              icon: Icons.send,
+              onTap: state.currentMessageText.isEmpty ? null : () => sendMessage(context, state),
             ),
           ],
         );
