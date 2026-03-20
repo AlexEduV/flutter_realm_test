@@ -32,6 +32,7 @@ class MessageBar extends StatelessWidget {
     return BlocBuilder<MessagesPageCubit, MessagesPageState>(
       builder: (context, state) {
         return Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           spacing: AppDimensions.minorL,
           children: [
             IconButton(
@@ -76,7 +77,8 @@ class MessageBar extends StatelessWidget {
                   ),
                 ),
                 style: AppTextStyles.zonaPro16,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
                 onChanged: (newValue) =>
                     context.read<MessagesPageCubit>().updateMessageText(newValue),
                 onFieldSubmitted: (value) {

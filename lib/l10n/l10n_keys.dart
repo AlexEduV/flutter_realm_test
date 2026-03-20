@@ -197,4 +197,7 @@ class L10nKeys {
 
   static const String messageSenderYou = 'pages.inbox.general.senderYou';
   static const String messageBarHint = 'pages.inbox.general.messageHint';
+
+  static const String conversationDialogDeleteItemTitle =
+      'pages.inbox.conversationDialog.deleteItemTitle';
 }

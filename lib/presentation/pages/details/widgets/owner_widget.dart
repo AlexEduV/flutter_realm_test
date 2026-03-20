@@ -106,7 +106,11 @@ class OwnerWidget extends StatelessWidget {
                   final conversationId = serviceLocator<GetConversationByOwnerIdUseCase>()
                       .call(ownerId)
                       .conversationId;
-                  context.go(AppRoutes.home + AppRoutes.inbox, extra: conversationId);
+
+                  context.go(
+                    '${AppRoutes.home}${AppRoutes.details}/${AppRoutes.inbox}',
+                    extra: conversationId,
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(

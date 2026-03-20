@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
@@ -10,6 +12,7 @@ import 'package:test_futter_project/domain/models/region_ui_model.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.dart';
+import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/edit_password_field_widget.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
@@ -322,6 +325,32 @@ class DialogHelper {
               onTap: () => Navigator.pop(context, items[index]),
             );
           },
+        );
+      },
+    );
+  }
+
+  static Future<void> showInboxItemModalBottomSheet(
+    BuildContext context,
+    String conversationId,
+  ) async {
+    await showModalBottomSheet(
+      backgroundColor: AppColors.scaffoldColor,
+      context: context,
+      builder: (context) {
+        return CupertinoActionSheet(
+          actions: [
+            CupertinoActionSheetAction(
+              onPressed: () async {
+                await context.read<InboxPageCubit>().deleteConversation(conversationId);
+
+                if (!context.mounted) return;
+                context.pop();
+              },
+              isDestructiveAction: true,
+              child: Text(context.tr(L10nKeys.conversationDialogDeleteItemTitle)),
+            ),
+          ],
         );
       },
     );

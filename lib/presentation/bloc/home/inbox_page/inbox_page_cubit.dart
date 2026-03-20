@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
+import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/save_conversations_use_case.dart';
@@ -62,6 +63,14 @@ class InboxPageCubit extends Cubit<InboxPageState> {
     emit(state.copyWith(conversations: updatedConversations));
 
     //todo: this saves messages to the mock cloud, but per offline-first approach we also should cache messages to the local storage
+    await _saveConversationsUseCase.call(updatedConversations);
+  }
+
+  Future<void> deleteConversation(String conversationId) async {
+    final updatedConversations = List<ConversationModel>.from(state.conversations);
+    updatedConversations.removeWhere((element) => element.conversationId == conversationId);
+
+    emit(state.copyWith(conversations: updatedConversations));
     await _saveConversationsUseCase.call(updatedConversations);
   }
 }

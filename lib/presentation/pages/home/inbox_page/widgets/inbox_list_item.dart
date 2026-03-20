@@ -12,6 +12,7 @@ import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
+import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
@@ -40,6 +41,8 @@ class InboxListItem extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(AppDimensions.normalM),
           child: InkWell(
+            onLongPress: () =>
+                DialogHelper.showInboxItemModalBottomSheet(context, conversation.conversationId),
             borderRadius: BorderRadius.circular(AppDimensions.normalM),
             onTap: () =>
                 context.go(AppRoutes.home + AppRoutes.inbox, extra: conversation.conversationId),
