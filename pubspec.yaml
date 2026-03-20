@@ -33,6 +33,7 @@ dependencies:
   collection: ^1.19.1
   url_launcher: ^6.3.2
   visibility_detector: ^0.4.0+2
+  flutter_dotenv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +50,7 @@ flutter:
     - assets/mocks/
     - assets/images/
     - assets/images/country_flags/
+    - assets/env/
 
   fonts:
     - family: Zona Pro

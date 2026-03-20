@@ -61,7 +61,9 @@ class ChatInputBar extends StatelessWidget {
     );
   }
 
-  void pickGif() {}
+  void pickGif() {
+    //todo: use KLIPY API here
+  }
 
   void sendMessage(BuildContext context, MessagesPageState state) {
     final user = context.read<UserDataCubit>().user;
