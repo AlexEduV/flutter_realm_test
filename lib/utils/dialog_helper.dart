@@ -393,10 +393,13 @@ class DialogHelper {
                   ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.all(AppDimensions.minorL),
-                  //todo: localise
-                  child: Text('Showing results for "${state.latestQuery}"'),
+                Opacity(
+                  opacity: state.latestQuery.isEmpty ? 0.0 : 1.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppDimensions.normalS),
+                    //todo: localise
+                    child: Row(children: [Text('Showing results for "${state.latestQuery}"')]),
+                  ),
                 ),
 
                 Expanded(

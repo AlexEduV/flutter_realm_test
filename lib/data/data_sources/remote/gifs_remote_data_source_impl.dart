@@ -16,15 +16,14 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
   @override
   Future<List<String>> searchGifs(String query) async {
-    //todo: currently, the empty query returns [], so that's just a redundant request
-    //but maybe it would be cool to have default gifs
-    if (query.isEmpty) return [];
-
     final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
     final limit = '15';
 
-    final url = Uri.https(AppConstants.klipyApiHost, '/v2/search', {
-      'q': query,
+    final showTrending = query.trim().isEmpty;
+    final path = '/v2/search';
+
+    final url = Uri.https(AppConstants.klipyApiHost, path, {
+      'q': showTrending ? 'trending' : query,
       'key': klipyApiKey,
       'limit': limit,
     });
