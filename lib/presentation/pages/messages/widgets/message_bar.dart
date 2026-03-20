@@ -76,7 +76,8 @@ class MessageBar extends StatelessWidget {
                   ),
                 ),
                 style: AppTextStyles.zonaPro16,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
                 onChanged: (newValue) =>
                     context.read<MessagesPageCubit>().updateMessageText(newValue),
                 onFieldSubmitted: (value) {
