@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/extensions/num_extension.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -6,9 +7,14 @@ import '../../../../common/app_dimensions.dart';
 class ChatInputButton extends StatefulWidget {
   final VoidCallback? onTap;
   final IconData icon;
-  final double iconRotationAngle;
+  final double iconRotationAngleDegrees;
 
-  const ChatInputButton({required this.icon, this.onTap, this.iconRotationAngle = 0.0, super.key});
+  const ChatInputButton({
+    required this.icon,
+    this.onTap,
+    this.iconRotationAngleDegrees = 0.0,
+    super.key,
+  });
 
   @override
   State<ChatInputButton> createState() => _ChatInputButtonState();
@@ -48,7 +54,10 @@ class _ChatInputButtonState extends State<ChatInputButton> {
                     await animateOnTap();
                   }
                 : null,
-            icon: Transform.rotate(angle: widget.iconRotationAngle, child: Icon(widget.icon)),
+            icon: Transform.rotate(
+              angle: widget.iconRotationAngleDegrees.toRadians,
+              child: Icon(widget.icon),
+            ),
             style: ButtonStyle(
               iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
               foregroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
