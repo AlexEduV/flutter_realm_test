@@ -66,12 +66,14 @@ class InboxListItem extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                           ),
-                          Text(
-                            '${message?.text ?? context.tr(L10nKeys.inboxPageEmptyText)}\n',
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppTextStyles.zonaPro16Grey.copyWith(
-                              fontWeight: FontWeight.w400,
+                          ExcludeSemantics(
+                            child: Text(
+                              '${message?.text ?? context.tr(L10nKeys.inboxPageEmptyText)}\n',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppTextStyles.zonaPro16Grey.copyWith(
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
                         ],
