@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/data/data_sources/local/env_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/geolocator_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/permission_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart';
@@ -23,6 +24,7 @@ import 'package:test_futter_project/data/repositories/share_repository_impl.dart
 import 'package:test_futter_project/data/repositories/url_launch_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/user_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/share_local_data_source.dart';
@@ -154,6 +156,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
+  serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl());
   serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(() => MockOwnersRemoteDataSource());
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
     () => MockUsersRemoteDataSourceImpl(),

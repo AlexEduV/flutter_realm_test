@@ -9,4 +9,6 @@ class AppConstants {
   static const webHost = 'https://example.com/';
   static const termsAndConditionsUrl = 'terms-and-conditions';
   static const privacyPolicyUrl = 'privacy-policy';
+
+  static const envKlipyKeyPath = 'KLIPY_API_KEY';
 }

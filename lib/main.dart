@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
@@ -24,10 +24,6 @@ import 'package:test_futter_project/utils/image_cache_util.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  //todo: move to util or service
-  await dotenv.load(fileName: 'assets/env/environment.env');
-  final klipyApiKey = dotenv.get('KLIPY_API_KEY', fallback: '');
-
   await initDependenciesContainer();
 
   //todo: added flavors, but had to revert, because they broke the Android project.
@@ -35,6 +31,7 @@ void main() async {
   // the android folder, not from `flutter run`. Updating gradle files did not help
 
   await serviceLocator<RegionRemoteDataSource>().init();
+  await serviceLocator<EnvLocalDataSource>().init();
 
   ImageCacheUtil.initExtendedCacheSize();
 
