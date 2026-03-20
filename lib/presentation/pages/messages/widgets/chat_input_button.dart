@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
 
-class ChatInputButton extends StatelessWidget {
+class ChatInputButton extends StatefulWidget {
   final VoidCallback? onTap;
   final IconData icon;
   final double iconRotationAngle;
@@ -11,40 +11,63 @@ class ChatInputButton extends StatelessWidget {
   const ChatInputButton({required this.icon, this.onTap, this.iconRotationAngle = 0.0, super.key});
 
   @override
+  State<ChatInputButton> createState() => _ChatInputButtonState();
+}
+
+class _ChatInputButtonState extends State<ChatInputButton> {
+  double _scale = 1.0;
+
+  @override
   Widget build(BuildContext context) {
     final buttonsBottomPadding = AppDimensions.minorS;
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: buttonsBottomPadding),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          boxShadow: onTap != null
-              ? [
-                  BoxShadow(
-                    color: Colors.black.withAlpha(25),
-                    spreadRadius: 1,
-                    blurRadius: 4,
-                    offset: const Offset(0, 2), // changes position of shadow
-                  ),
-                ]
-              : null,
-        ),
-        child: IconButton(
-          onPressed: onTap,
-          icon: Transform.rotate(angle: iconRotationAngle, child: Icon(icon)),
-          style: ButtonStyle(
-            iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
-            foregroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
-              if (states.contains(WidgetState.disabled)) {
-                return AppColors.lightGrey;
-              }
-              return AppColors.headerColor;
-            }),
-            backgroundColor: const WidgetStatePropertyAll(Colors.white),
+    return AnimatedScale(
+      duration: const Duration(milliseconds: 300),
+      scale: _scale,
+      curve: Curves.easeInOut,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: buttonsBottomPadding),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: widget.onTap != null
+                ? [
+                    BoxShadow(
+                      color: Colors.black.withAlpha(25),
+                      spreadRadius: 1,
+                      blurRadius: 4,
+                      offset: const Offset(0, 2), // changes position of shadow
+                    ),
+                  ]
+                : null,
+          ),
+          child: IconButton(
+            onPressed: widget.onTap != null
+                ? () async {
+                    widget.onTap?.call();
+                    await animateOnTap();
+                  }
+                : null,
+            icon: Transform.rotate(angle: widget.iconRotationAngle, child: Icon(widget.icon)),
+            style: ButtonStyle(
+              iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
+              foregroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+                if (states.contains(WidgetState.disabled)) {
+                  return AppColors.lightGrey;
+                }
+                return AppColors.headerColor;
+              }),
+              backgroundColor: const WidgetStatePropertyAll(Colors.white),
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Future<void> animateOnTap() async {
+    setState(() => _scale = 1.5);
+    await Future.delayed(const Duration(milliseconds: 100));
+    setState(() => _scale = 1.0);
   }
 }
