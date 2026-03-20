@@ -205,7 +205,7 @@ class _MessagesPageState extends State<MessagesPage> {
     }
 
     await controller.animateTo(
-      maxExtent + AppDimensions.bottomMessageBarHeight,
+      maxExtent + AppDimensions.expandedMessageHeight,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
