@@ -11,5 +11,5 @@ class AppConstants {
   static const privacyPolicyUrl = 'privacy-policy';
 
   static const envKlipyKeyPath = 'KLIPY_API_KEY';
-  static const klipyApiHost = 'https://api.klipy.com';
+  static const klipyApiHost = 'api.klipy.com';
 }

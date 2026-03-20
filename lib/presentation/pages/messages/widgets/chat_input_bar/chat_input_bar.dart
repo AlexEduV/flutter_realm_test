@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/di/injection_container.dart';
-import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
+import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
@@ -32,7 +31,6 @@ class ChatInputBar extends StatefulWidget {
 }
 
 class _ChatInputBarState extends State<ChatInputBar> {
-  final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
   List gifs = [];
 
   @override
@@ -62,7 +60,9 @@ class _ChatInputBarState extends State<ChatInputBar> {
 
             ChatInputButton(
               icon: isTextFieldEmpty ? Icons.gif : Icons.send,
-              onTap: isTextFieldEmpty ? pickGif : () => sendMessage(context, state),
+              onTap: isTextFieldEmpty
+                  ? () => pickGif(widget.messageTextController.text)
+                  : () => sendMessage(context, state),
               iconRotationAngleDegrees: isTextFieldEmpty ? 0.0 : -40,
               semanticsLabel: AppSemanticsLabels.chatInputBarSendMessageButton,
             ),
@@ -72,8 +72,9 @@ class _ChatInputBarState extends State<ChatInputBar> {
     );
   }
 
-  void pickGif() {
-    //todo:
+  Future<void> pickGif(String text) async {
+    final gifs = await serviceLocator<SearchGifsUseCase>().call('maia mitchell');
+
     return;
   }
 
