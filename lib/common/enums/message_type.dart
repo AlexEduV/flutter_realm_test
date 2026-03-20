@@ -1,1 +1,0 @@
-enum MessageType { text, gif }

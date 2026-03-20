@@ -364,15 +364,32 @@ class DialogHelper {
       backgroundColor: AppColors.scaffoldColor,
       context: context,
       builder: (context) {
+        final initialText = context.read<MessagesPageCubit>().state.currentGifSearchText;
+
         final textEditingController = TextEditingController();
+        textEditingController.text = initialText;
+        context.read<MessagesPageCubit>().updateGifsSearch(initialText);
 
         return BlocBuilder<MessagesPageCubit, MessagesPageState>(
           builder: (context, state) {
             return Column(
               children: [
-                TextFormField(
-                  controller: textEditingController,
-                  onChanged: (newValue) => context.read<MessagesPageCubit>().updateGifs(newValue),
+                Padding(
+                  padding: const EdgeInsets.all(AppDimensions.minorL),
+                  child: TextFormField(
+                    controller: textEditingController,
+                    onChanged: (newValue) =>
+                        context.read<MessagesPageCubit>().updateGifsSearch(newValue),
+                    decoration: InputDecoration(
+                      hintText: 'Search Gifs',
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                        borderSide: const BorderSide(color: AppColors.accentColor),
+                      ),
+                    ),
+                  ),
                 ),
 
                 Expanded(

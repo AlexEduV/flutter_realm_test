@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
-import 'package:test_futter_project/common/enums/message_type.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
@@ -37,7 +36,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
     return BlocBuilder<MessagesPageCubit, MessagesPageState>(
       builder: (context, state) {
         final isTextFieldEmpty = state.currentMessageText.isEmpty;
-        final isGifTypeSelected = state.selectedMessageType == MessageType.gif;
 
         return Row(
           crossAxisAlignment: CrossAxisAlignment.end,
