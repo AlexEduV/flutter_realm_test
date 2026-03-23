@@ -51,7 +51,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
         return Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(AppDimensions.minorL),
+              padding: const EdgeInsets.all(AppDimensions.normalS).copyWith(bottom: 0.0),
               child: AnimatedScale(
                 duration: const Duration(milliseconds: 300),
                 scale: textFieldScale,
@@ -82,7 +82,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(AppDimensions.normalS),
+                    padding: const EdgeInsets.all(AppDimensions.normalM),
                     child: Text.rich(
                       TextSpan(
                         style: AppTextStyles.zonaPro18,
