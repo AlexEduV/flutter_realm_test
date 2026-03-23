@@ -372,6 +372,8 @@ class DialogHelper {
 
         return BlocBuilder<MessagesPageCubit, MessagesPageState>(
           builder: (context, state) {
+            final isQueryEmpty = state.latestQuery.isEmpty;
+
             return Column(
               children: [
                 Padding(
@@ -393,22 +395,22 @@ class DialogHelper {
                   ),
                 ),
 
-                Opacity(
-                  opacity: state.latestQuery.isEmpty ? 0.0 : 1.0,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(AppDimensions.normalS),
-                          child: Text(
-                            'Showing results for "${state.latestQuery}"' * 20,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppDimensions.normalS),
+                        child: Text(
+                          isQueryEmpty ? 'Trending' : 'Showing results for "${state.latestQuery}"',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: isQueryEmpty
+                              ? AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.bold)
+                              : null,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
 
                 Expanded(
