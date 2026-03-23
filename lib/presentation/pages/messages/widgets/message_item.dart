@@ -116,12 +116,35 @@ class MessageItem extends StatelessWidget {
                               message,
                               style: isMyMessage ? const TextStyle(color: Colors.white) : null,
                             )
-                          : SizedBox(
-                              width: AppDimensions.imageMessageSize,
-                              height: imageMetaData == null
-                                  ? AppDimensions.imageMessageSize
-                                  : AppDimensions.imageMessageSize *
-                                        getImageFactorFromMetaData(imageMetaData),
+                          : Stack(
+                              children: [
+                                SizedBox(
+                                  width: AppDimensions.imageMessageSize,
+                                  height: imageMetaData == null
+                                      ? AppDimensions.imageMessageSize
+                                      : AppDimensions.imageMessageSize *
+                                            getImageFactorFromMetaData(imageMetaData),
+                                ),
+
+                                Positioned(
+                                  bottom: 0.0,
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: AppDimensions.minorM,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                                    ),
+                                    child: Text(
+                                      context.tr(L10nKeys.gifMessagePlaceholder),
+                                      style: AppTextStyles.zonaPro14.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                     ),
                   ),
