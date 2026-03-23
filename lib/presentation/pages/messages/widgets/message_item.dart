@@ -140,8 +140,10 @@ class MessageItem extends StatelessWidget {
   }
 
   double getImageFactorFromMetaData(SentImageMetaDataModel? metaData) {
-    final height = metaData?.height ?? 0.0;
-    final width = metaData?.width ?? 0.0;
+    if (metaData == null) return 1.0;
+
+    final height = metaData.height;
+    final width = metaData.width;
 
     if (width == 0) return 1.0;
 
