@@ -51,6 +51,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
                 focusNode: widget.messageFocusNode,
                 textEditingController: widget.messageTextController,
                 sendMessage: (context, state) => sendMessage(context, state),
+                onMessageSent: widget.onMessageSent,
               ),
             ),
 

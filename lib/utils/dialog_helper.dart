@@ -363,8 +363,10 @@ class DialogHelper {
     );
   }
 
-  static Future<void> showGifsPickerModalBottomSheet(BuildContext context) async {
-    await showModalBottomSheet(
+  static Future<String?> showGifsPickerModalBottomSheet(BuildContext context) async {
+    String? result;
+
+    await showModalBottomSheet<String?>(
       backgroundColor: AppColors.scaffoldColor,
       context: context,
       builder: (context) {
@@ -446,20 +448,19 @@ class DialogHelper {
                         padding: const EdgeInsets.all(AppDimensions.minorXS),
                         child: InkWell(
                           onTap: () {
+                            final message = 'gifUrl: $gifUrl';
+                            final userId = context.read<UserDataCubit>().user.userId;
+
                             final conversationId = context
                                 .read<MessagesPageCubit>()
                                 .state
                                 .currentConversationId;
                             context.read<InboxPageCubit>().sendMessage(
                               conversationId,
-                              MessageModel(
-                                context.read<UserDataCubit>().user.userId,
-                                MessageStatus.sent,
-                                'gifUrl: $gifUrl',
-                                DateTime.now(),
-                              ),
+                              MessageModel(userId, MessageStatus.sent, message, DateTime.now()),
                             );
 
+                            result = message;
                             context.pop();
                           },
                           child: FadeInImage.memoryNetwork(
@@ -478,6 +479,8 @@ class DialogHelper {
         );
       },
     );
+
+    return result;
   }
 
   static void _validateEditField(

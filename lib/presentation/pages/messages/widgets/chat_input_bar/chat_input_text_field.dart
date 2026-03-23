@@ -58,7 +58,10 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
                     },
                     icon: const Icon(Icons.gif, size: AppDimensions.bottomMessageBarIconSize),
                     onPressed: () async {
-                      await DialogHelper.showGifsPickerModalBottomSheet(context);
+                      final result = await DialogHelper.showGifsPickerModalBottomSheet(context);
+                      if (result != null) {
+                        widget.onMessageSent?.call();
+                      }
                     },
                   ),
                 ),
