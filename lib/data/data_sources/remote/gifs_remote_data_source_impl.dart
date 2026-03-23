@@ -17,18 +17,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
   @override
   Future<List<String>> searchGifs(String query) async {
-    final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
-    final limit = '15';
-
-    final showTrending = query.trim().isEmpty;
-    final path = showTrending ? '/v2/trending' : '/v2/search';
-
-    final url = Uri.https(AppConstants.klipyApiHost, path, {
-      if (!showTrending) 'q': query,
-      'key': klipyApiKey,
-      'limit': limit,
-    });
-
+    final url = getGifsUrl(query);
     final response = await client.get(url);
 
     if (response.statusCode != HttpStatus.ok) {
@@ -48,5 +37,26 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
     final urls = results.map((element) => element.imageUrl).toList();
     return urls;
+  }
+
+  Uri getGifsUrl(String query) {
+    final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
+    final limit = '15';
+
+    if (query.trim().isEmpty) {
+      final path = 'api/v1/$klipyApiKey/gifs/trending';
+
+      final url = Uri.https(AppConstants.klipyApiHost, path);
+      return url;
+    }
+
+    final path = '/v2/search';
+    final url = Uri.https(AppConstants.klipyApiHost, path, {
+      'q': query,
+      'key': klipyApiKey,
+      'limit': limit,
+    });
+
+    return url;
   }
 }
