@@ -364,7 +364,8 @@ class DialogHelper {
       backgroundColor: AppColors.scaffoldColor,
       context: context,
       builder: (context) {
-        final initialText = context.read<MessagesPageCubit>().state.currentGifSearchText;
+        context.read<MessagesPageCubit>().updateMessageText('');
+        final initialText = '';
 
         final textEditingController = TextEditingController();
         textEditingController.text = initialText;
