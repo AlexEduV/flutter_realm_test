@@ -17,6 +17,10 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
   @override
   Future<List<String>> searchGifs(String query) async {
+    if (query.trim().isEmpty) {
+      return getTrending();
+    }
+
     final url = getGifsUrl(query);
     final response = await client.get(url);
 
@@ -43,13 +47,6 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
     final limit = '15';
 
-    if (query.trim().isEmpty) {
-      final path = 'api/v1/$klipyApiKey/gifs/trending';
-
-      final url = Uri.https(AppConstants.klipyApiHost, path);
-      return url;
-    }
-
     final path = '/v2/search';
     final url = Uri.https(AppConstants.klipyApiHost, path, {
       'q': query,
@@ -58,5 +55,34 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     });
 
     return url;
+  }
+
+  Future<List<String>> getTrending() async {
+    final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
+    final limit = '15';
+
+    final path = 'api/v1/$klipyApiKey/gifs/trending';
+
+    final url = Uri.https(AppConstants.klipyApiHost, path, {'limit': limit});
+
+    final response = await client.get(url);
+
+    if (response.statusCode != HttpStatus.ok) {
+      debugPrint('Klipy: error while searching for gifs: trending');
+      return [];
+    }
+
+    if (response.body.isEmpty) {
+      debugPrint('Klipy: response is empty for gifs: trending');
+      return [];
+    }
+
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    final List<KlipyGifDto> results = (data['data']['data'] as List)
+        .map((json) => KlipyGifDto.fromV1Json(json as Map<String, dynamic>))
+        .toList();
+
+    final urls = results.map((element) => element.imageUrl).toList();
+    return urls;
   }
 }
