@@ -442,9 +442,9 @@ class DialogHelper {
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
-                    itemCount: state.gifs.length,
+                    itemCount: state.gifsInSearch.length,
                     itemBuilder: (context, index) {
-                      final gif = state.gifs[index];
+                      final gif = state.gifsInSearch[index];
 
                       return Padding(
                         padding: const EdgeInsets.all(AppDimensions.minorXS),
