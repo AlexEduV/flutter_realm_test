@@ -29,8 +29,6 @@ class ChatInputBar extends StatefulWidget {
 }
 
 class _ChatInputBarState extends State<ChatInputBar> {
-  List gifs = [];
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MessagesPageCubit, MessagesPageState>(
