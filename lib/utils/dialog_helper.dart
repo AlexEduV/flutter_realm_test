@@ -400,13 +400,29 @@ class DialogHelper {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(AppDimensions.normalS),
-                        child: Text(
-                          isQueryEmpty ? 'Trending' : 'Showing results for "${state.latestQuery}"',
+                        child: Text.rich(
+                          TextSpan(
+                            style: AppTextStyles.zonaPro18,
+                            children: [
+                              if (isQueryEmpty)
+                                const TextSpan(
+                                  text: 'Trending',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )
+                              else ...[
+                                const TextSpan(
+                                  text: 'Showing results for ',
+                                  style: AppTextStyles.zonaPro18,
+                                ),
+                                TextSpan(
+                                  text: '"${state.latestQuery}"',
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ],
+                          ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: isQueryEmpty
-                              ? AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.bold)
-                              : null,
                         ),
                       ),
                     ),
