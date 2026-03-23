@@ -39,6 +39,8 @@ class MessageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isImage = message.startsWith('gifUrl: ');
+
     return Padding(
       padding: EdgeInsets.only(
         right: AppDimensions.normalS,
@@ -101,11 +103,22 @@ class MessageItem extends StatelessWidget {
                           bottomLeft: const Radius.circular(AppDimensions.normalS),
                           bottomRight: const Radius.circular(AppDimensions.normalS),
                         ),
+                        image: isImage
+                            ? DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(message.replaceFirst('gifUrl: ', '')),
+                              )
+                            : null,
                       ),
-                      child: Text(
-                        message,
-                        style: isMyMessage ? const TextStyle(color: Colors.white) : null,
-                      ),
+                      child: !isImage
+                          ? Text(
+                              message,
+                              style: isMyMessage ? const TextStyle(color: Colors.white) : null,
+                            )
+                          : const SizedBox(
+                              width: AppDimensions.imageMessageSize,
+                              height: AppDimensions.imageMessageSize,
+                            ),
                     ),
                   ),
                 ],
