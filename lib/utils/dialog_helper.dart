@@ -1,10 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
 import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
@@ -441,15 +442,20 @@ class DialogHelper {
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
-                    itemCount: state.gifsUrls.length,
+                    itemCount: state.gifs.length,
                     itemBuilder: (context, index) {
-                      final gifUrl = state.gifsUrls[index];
+                      final gif = state.gifs[index];
 
                       return Padding(
                         padding: const EdgeInsets.all(AppDimensions.minorXS),
                         child: InkWell(
                           onTap: () {
-                            final message = '${AppConstants.gifIdentifier} $gifUrl';
+                            final message = jsonEncode({
+                              'url': gif.imageUrl,
+                              'width': gif.width.toString(),
+                              'height': gif.height.toString(),
+                            });
+
                             final userId = context.read<UserDataCubit>().user.userId;
 
                             final conversationId = context
@@ -466,7 +472,7 @@ class DialogHelper {
                           },
                           child: FadeInImage.memoryNetwork(
                             placeholder: kTransparentImage,
-                            image: gifUrl,
+                            image: gif.imageUrl,
                             fit: BoxFit.cover,
                           ),
                         ),

@@ -140,7 +140,7 @@ class _MessagesPageState extends State<MessagesPage> {
                       message: message.text,
                       time: DateFormatter.formatSmartDate(message.date),
                       isMyMessage: sender?.userId != owner.id,
-                      expanded: isExpanded,
+                      withExtendedData: isExpanded,
                       messageStatus: message.messageStatus,
                       conversationId: conversation.conversationId,
                       messageIndex: index,

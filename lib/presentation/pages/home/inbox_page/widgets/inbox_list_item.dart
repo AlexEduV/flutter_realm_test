@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
@@ -142,7 +141,7 @@ class InboxListItem extends StatelessWidget {
       return context.tr(L10nKeys.inboxPageEmptyText);
     }
 
-    if (message.startsWith(AppConstants.gifIdentifier)) {
+    if (message.contains('url')) {
       return context.tr(L10nKeys.gifMessagePlaceholder);
     }
 

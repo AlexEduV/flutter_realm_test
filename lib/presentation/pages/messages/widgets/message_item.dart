@@ -1,6 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
@@ -20,7 +21,7 @@ class MessageItem extends StatelessWidget {
   final String message;
   final String time;
   final bool isMyMessage;
-  final bool expanded;
+  final bool withExtendedData;
   final MessageStatus messageStatus;
   final String conversationId;
   final int messageIndex;
@@ -34,19 +35,19 @@ class MessageItem extends StatelessWidget {
     required this.messageIndex,
     required this.conversationId,
     this.isMyMessage = true,
-    this.expanded = true,
+    this.withExtendedData = true,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isImage = message.startsWith('${AppConstants.gifIdentifier} ');
+    final isImage = message.contains('url');
 
     return Padding(
       padding: EdgeInsets.only(
         right: AppDimensions.normalS,
         left: AppDimensions.normalS,
-        top: expanded ? AppDimensions.normalS : 0.0,
+        top: withExtendedData ? AppDimensions.normalS : 0.0,
         bottom: AppDimensions.minorS,
       ),
       child: VisibilityDetector(
@@ -71,7 +72,7 @@ class MessageItem extends StatelessWidget {
                 spacing: AppDimensions.minorS,
                 crossAxisAlignment: isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
-                  if (expanded) ...[
+                  if (withExtendedData) ...[
                     Row(
                       spacing: AppDimensions.minorM,
                       mainAxisSize: MainAxisSize.min,
@@ -107,9 +108,7 @@ class MessageItem extends StatelessWidget {
                         image: isImage
                             ? DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(
-                                  message.replaceFirst('${AppConstants.gifIdentifier} ', ''),
-                                ),
+                                image: NetworkImage(jsonDecode(message)['url'] ?? ''),
                               )
                             : null,
                       ),
@@ -119,6 +118,7 @@ class MessageItem extends StatelessWidget {
                               style: isMyMessage ? const TextStyle(color: Colors.white) : null,
                             )
                           : const SizedBox(
+                              //todo: use the actual size factor here
                               width: AppDimensions.imageMessageSize,
                               height: AppDimensions.imageMessageSize,
                             ),
@@ -127,7 +127,7 @@ class MessageItem extends StatelessWidget {
                 ],
               ),
             ),
-            if (expanded) ...[
+            if (withExtendedData) ...[
               AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM, isLocal: isMyMessage),
             ] else ...[
               const SizedBox(width: AppDimensions.majorM),

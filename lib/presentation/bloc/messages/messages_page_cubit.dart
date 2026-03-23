@@ -35,6 +35,6 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
       return;
     }
 
-    emit(state.copyWith(gifsUrls: gifs, areGifsLoading: false, latestQuery: query));
+    emit(state.copyWith(gifs: gifs, areGifsLoading: false, latestQuery: query));
   }
 }

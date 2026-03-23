@@ -1,5 +1,7 @@
-abstract class GifsRemoteDataSource {
-  Future<List<String>> searchGifs(String query);
+import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
 
-  Future<List<String>> getTrending();
+abstract class GifsRemoteDataSource {
+  Future<List<KlipyGifDto>> searchGifs(String query);
+
+  Future<List<KlipyGifDto>> getTrending();
 }

@@ -18,7 +18,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   final _apiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
 
   @override
-  Future<List<String>> searchGifs(String query) async {
+  Future<List<KlipyGifDto>> searchGifs(String query) async {
     final limit = '15';
 
     final path = AppConstants.klipySearchPath.replaceFirst('{API_KEY}', _apiKey);
@@ -29,7 +29,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   }
 
   @override
-  Future<List<String>> getTrending() async {
+  Future<List<KlipyGifDto>> getTrending() async {
     final path = AppConstants.klipyTrendingPath.replaceFirst('{API_KEY}', _apiKey);
     final url = Uri.https(AppConstants.klipyApiHost, path);
 
@@ -38,7 +38,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   }
 }
 
-List<String> processKlipyResponse(http.Response response, {String? query}) {
+List<KlipyGifDto> processKlipyResponse(http.Response response, {String? query}) {
   if (response.statusCode != HttpStatus.ok) {
     debugPrint(
       'Klipy: error while searching for gifs: ${response.reasonPhrase}. ${query ?? 'trending'}',
@@ -56,6 +56,5 @@ List<String> processKlipyResponse(http.Response response, {String? query}) {
       .map((json) => KlipyGifDto.fromV1Json(json as Map<String, dynamic>))
       .toList();
 
-  final urls = results.map((element) => element.imageUrl).toList();
-  return urls;
+  return results;
 }
