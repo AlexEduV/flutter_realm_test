@@ -142,9 +142,8 @@ class InboxListItem extends StatelessWidget {
       return context.tr(L10nKeys.inboxPageEmptyText);
     }
 
-    //todo: localise;
     if (message.startsWith(AppConstants.gifIdentifier)) {
-      return 'GIF';
+      return context.tr(L10nKeys.gifMessagePlaceholder);
     }
 
     return message;

@@ -51,7 +51,8 @@
           "gifs": {
             "inputHint": "Cerca GIF",
             "resultsTrending": "Di tendenza",
-            "resultsQuery": "Risultati per "
+            "resultsQuery": "Risultati per ",
+            "gifMessagePlaceholder": "Gif"
           }
         },
         "vehicleDetails": {
