@@ -47,6 +47,11 @@
           },
           "conversationDialog": {
             "deleteItemTitle": "Elimina conversazione"
+          },
+          "gifs": {
+            "inputHint": "Cerca GIF",
+            "resultsTrending": "Di tendenza",
+            "resultsQuery": "Risultati per "
           }
         },
         "vehicleDetails": {

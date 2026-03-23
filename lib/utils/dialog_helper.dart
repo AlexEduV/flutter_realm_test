@@ -383,8 +383,7 @@ class DialogHelper {
                     onChanged: (newValue) =>
                         context.read<MessagesPageCubit>().updateGifsSearch(newValue),
                     decoration: InputDecoration(
-                      //todo: localise
-                      hintText: 'Search Gifs',
+                      hintText: context.tr(L10nKeys.gifsTextFieldHint),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -405,13 +404,13 @@ class DialogHelper {
                             style: AppTextStyles.zonaPro18,
                             children: [
                               if (isQueryEmpty)
-                                const TextSpan(
-                                  text: 'Trending',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                TextSpan(
+                                  text: context.tr(L10nKeys.gifsResultsTrendingLabel),
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
                                 )
                               else ...[
-                                const TextSpan(
-                                  text: 'Showing results for ',
+                                TextSpan(
+                                  text: context.tr(L10nKeys.gifsResultsQueryLabel),
                                   style: AppTextStyles.zonaPro18,
                                 ),
                                 TextSpan(

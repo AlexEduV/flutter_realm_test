@@ -200,4 +200,8 @@ class L10nKeys {
 
   static const String conversationDialogDeleteItemTitle =
       'pages.inbox.conversationDialog.deleteItemTitle';
+
+  static const String gifsTextFieldHint = 'pages.inbox.gifs.inputHint';
+  static const String gifsResultsTrendingLabel = 'pages.inbox.gifs.resultsTrending';
+  static const String gifsResultsQueryLabel = 'pages.inbox.gifs.resultsQuery';
 }
