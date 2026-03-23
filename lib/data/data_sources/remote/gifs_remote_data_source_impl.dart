@@ -1,9 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:test_futter_project/common/app_constants.dart';
-import 'package:test_futter_project/common/enums/http_status.dart';
 import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
 import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
 
@@ -31,7 +31,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
     final response = await client.get(url);
 
-    if (response.statusCode != HttpStatus.status200.status) {
+    if (response.statusCode != HttpStatus.ok) {
       debugPrint('Klipy: error while searching for gifs: query=$query');
       return [];
     }
