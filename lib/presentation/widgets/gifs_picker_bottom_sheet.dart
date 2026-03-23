@@ -57,11 +57,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                 scale: textFieldScale,
                 curve: Curves.easeInOut,
                 child: TextFormField(
-                  onTap: () async {
-                    setState(() => textFieldScale = 1.2);
-                    await Future.delayed(const Duration(milliseconds: 100));
-                    setState(() => textFieldScale = 1.0);
-                  },
+                  onTap: onTextFieldTap,
                   controller: textController,
                   onChanged: (newValue) =>
                       context.read<MessagesPageCubit>().updateGifsSearch(newValue),
@@ -158,5 +154,11 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
         );
       },
     );
+  }
+
+  Future<void> onTextFieldTap() async {
+    setState(() => textFieldScale = 1.2);
+    await Future.delayed(const Duration(milliseconds: 100));
+    setState(() => textFieldScale = 1.0);
   }
 }
