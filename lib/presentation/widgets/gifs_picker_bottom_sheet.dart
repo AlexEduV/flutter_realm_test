@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/domain/entities/gif_entity.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../../common/app_colors.dart';
@@ -27,19 +28,12 @@ class GifsPickerBottomSheet extends StatefulWidget {
 class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
   double textFieldScale = 1.0;
   final textController = TextEditingController();
-  String? result;
 
   @override
   void initState() {
     context.read<MessagesPageCubit>().updateGifsSearch('');
+    context.read<MessagesPageCubit>().updateSelectedGif(null);
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    context.read<MessagesPageCubit>().updateSelectedGif(result);
-
-    super.dispose();
   }
 
   @override
@@ -118,28 +112,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                   return Padding(
                     padding: const EdgeInsets.all(AppDimensions.minorXS),
                     child: InkWell(
-                      onTap: () {
-                        //todo: not the best solution of storing the data
-                        final message = jsonEncode({
-                          'url': gif.imageUrl,
-                          'width': gif.width.toString(),
-                          'height': gif.height.toString(),
-                        });
-
-                        final userId = context.read<UserDataCubit>().user.userId;
-
-                        final conversationId = context
-                            .read<MessagesPageCubit>()
-                            .state
-                            .currentConversationId;
-                        context.read<InboxPageCubit>().sendMessage(
-                          conversationId,
-                          MessageModel(userId, MessageStatus.sent, message, DateTime.now()),
-                        );
-
-                        result = message;
-                        context.pop();
-                      },
+                      onTap: () => onGifItemTap(gif),
                       child: FadeInImage.memoryNetwork(
                         placeholder: kTransparentImage,
                         image: gif.imageUrl,
@@ -160,5 +133,27 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
     setState(() => textFieldScale = 1.2);
     await Future.delayed(const Duration(milliseconds: 100));
     setState(() => textFieldScale = 1.0);
+  }
+
+  void onGifItemTap(GifEntity gif) {
+    {
+      //todo: not the best solution of storing the data
+      final message = jsonEncode({
+        'url': gif.imageUrl,
+        'width': gif.width.toString(),
+        'height': gif.height.toString(),
+      });
+
+      final userId = context.read<UserDataCubit>().user.userId;
+
+      final conversationId = context.read<MessagesPageCubit>().state.currentConversationId;
+      context.read<InboxPageCubit>().sendMessage(
+        conversationId,
+        MessageModel(userId, MessageStatus.sent, message, DateTime.now()),
+      );
+
+      context.read<MessagesPageCubit>().updateSelectedGif(message);
+      context.pop();
+    }
   }
 }
