@@ -31,12 +31,13 @@ class KlipyGifDto {
 
   factory KlipyGifDto.fromV1Json(Map<String, dynamic> json) {
     final media = json['file']['sm']['gif'];
+    final previewMedia = json['file']['xs']['gif'];
 
     return KlipyGifDto(
       id: (json['id'] ?? 0).toString(),
       title: json['title'] ?? '',
       imageUrl: media['url'],
-      previewImageUrl: media['url'],
+      previewImageUrl: previewMedia['url'],
       width: (media['width'] as num).toDouble(),
       height: (media['height'] as num).toDouble(),
     );
