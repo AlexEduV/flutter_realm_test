@@ -73,10 +73,10 @@ class _ChatInputBarState extends State<ChatInputBar> {
     context.read<InboxPageCubit>().sendMessage(
       state.currentConversationId,
       MessageModel(
-        user.userId,
-        MessageStatus.sent,
-        widget.messageTextController.text,
-        DateTime.now(),
+        senderId: user.userId,
+        messageStatus: MessageStatus.sent,
+        payload: widget.messageTextController.text,
+        date: DateTime.now(),
       ),
     );
 

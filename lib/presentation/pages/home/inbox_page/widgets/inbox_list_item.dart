@@ -68,7 +68,7 @@ class InboxListItem extends StatelessWidget {
                           ),
                           ExcludeSemantics(
                             child: Text(
-                              '${formatMessageText(message?.text, context)}\n',
+                              '${formatMessageText(message?.payload, context)}\n',
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: AppTextStyles.zonaPro16Grey.copyWith(

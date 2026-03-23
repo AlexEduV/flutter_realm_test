@@ -140,15 +140,15 @@ class _MessagesPageState extends State<MessagesPage> {
                     child: MessageItem(
                       senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
                       imageSrc: sender?.avatarImageSrc,
-                      message: message.text,
+                      message: message.payload,
                       time: DateFormatter.formatSmartDate(message.date),
                       isMyMessage: sender?.userId != owner.id,
                       withExtendedData: isExpanded,
                       messageStatus: message.messageStatus,
                       conversationId: conversation.conversationId,
                       messageIndex: index,
-                      imageMetaData: message.text.contains('url')
-                          ? SentImageMetaDataModel.fromJson(jsonDecode(message.text))
+                      imageMetaData: message.payload.contains('url')
+                          ? SentImageMetaDataModel.fromJson(jsonDecode(message.payload))
                           : null,
                     ),
                   ),

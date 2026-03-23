@@ -136,24 +136,27 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
   }
 
   void onGifItemTap(GifEntity gif) {
-    {
-      //todo: not the best solution of storing the data
-      final message = jsonEncode({
-        'url': gif.imageUrl,
-        'width': gif.width.toString(),
-        'height': gif.height.toString(),
-      });
+    //todo: not the best solution of storing the data
+    final gifEncoded = jsonEncode({
+      'url': gif.imageUrl,
+      'width': gif.width.toString(),
+      'height': gif.height.toString(),
+    });
 
-      final userId = context.read<UserDataCubit>().user.userId;
+    final userId = context.read<UserDataCubit>().user.userId;
 
-      final conversationId = context.read<MessagesPageCubit>().state.currentConversationId;
-      context.read<InboxPageCubit>().sendMessage(
-        conversationId,
-        MessageModel(userId, MessageStatus.sent, message, DateTime.now()),
-      );
+    final conversationId = context.read<MessagesPageCubit>().state.currentConversationId;
+    context.read<InboxPageCubit>().sendMessage(
+      conversationId,
+      MessageModel(
+        senderId: userId,
+        messageStatus: MessageStatus.sent,
+        payload: gifEncoded,
+        date: DateTime.now(),
+      ),
+    );
 
-      context.read<MessagesPageCubit>().updateSelectedGif(message);
-      context.pop();
-    }
+    context.read<MessagesPageCubit>().updateSelectedGif(gifEncoded);
+    context.pop();
   }
 }

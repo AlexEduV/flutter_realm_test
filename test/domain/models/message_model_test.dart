@@ -9,29 +9,59 @@ void main() {
     final date = DateTime(2023, 1, 1, 12, 0, 0);
 
     test('constructor assigns values correctly', () {
-      final message = MessageModel(sender.id, MessageStatus.sent, 'Hello', date);
+      final message = MessageModel(
+        senderId: sender.id,
+        messageStatus: MessageStatus.sent,
+        payload: 'Hello',
+        date: date,
+      );
       expect(message.senderId, sender.id);
       expect(message.messageStatus, MessageStatus.sent);
-      expect(message.text, 'Hello');
+      expect(message.payload, 'Hello');
       expect(message.date, date);
     });
 
     test('equality and hashCode: identical objects', () {
-      final m1 = MessageModel(sender.id, MessageStatus.sent, 'Hello', date);
-      final m2 = MessageModel(sender.id, MessageStatus.sent, 'Hello', date);
+      final m1 = MessageModel(
+        senderId: sender.id,
+        messageStatus: MessageStatus.sent,
+        payload: 'Hello',
+        date: date,
+      );
+      final m2 = MessageModel(
+        senderId: sender.id,
+        messageStatus: MessageStatus.sent,
+        payload: 'Hello',
+        date: date,
+      );
       expect(m1, m2);
       expect(m1.hashCode, m2.hashCode);
     });
 
     test('equality and hashCode: different objects', () {
-      final m1 = MessageModel(sender.id, MessageStatus.sent, 'Hello', date);
-      final m2 = MessageModel(sender.id, MessageStatus.read, 'Hello', date);
-      final m3 = MessageModel(sender.id, MessageStatus.sent, 'Hi', date);
+      final m1 = MessageModel(
+        senderId: sender.id,
+        messageStatus: MessageStatus.sent,
+        payload: 'Hello',
+        date: date,
+      );
+      final m2 = MessageModel(
+        senderId: sender.id,
+        messageStatus: MessageStatus.read,
+        payload: 'Hello',
+        date: date,
+      );
+      final m3 = MessageModel(
+        senderId: sender.id,
+        messageStatus: MessageStatus.sent,
+        payload: 'Hi',
+        date: date,
+      );
       final m4 = MessageModel(
-        sender.id,
-        MessageStatus.sent,
-        'Hello',
-        DateTime(2023, 1, 1, 13, 0, 0),
+        senderId: sender.id,
+        messageStatus: MessageStatus.sent,
+        payload: 'Hello',
+        date: DateTime(2023, 1, 1, 13, 0, 0),
       );
       expect(m1 == m2, isFalse);
       expect(m1 == m3, isFalse);
