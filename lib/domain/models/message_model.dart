@@ -3,40 +3,45 @@ import 'package:test_futter_project/common/enums/message_status.dart';
 class MessageModel {
   final String senderId;
   final MessageStatus messageStatus;
-  final String text;
+  final String payload;
   final DateTime date;
 
-  MessageModel(this.senderId, this.messageStatus, this.text, this.date);
+  MessageModel({
+    required this.senderId,
+    required this.messageStatus,
+    required this.payload,
+    required this.date,
+  });
 
   MessageModel copyWith({
     String? senderId,
     MessageStatus? messageStatus,
-    String? text,
+    String? payload,
     DateTime? date,
   }) {
     return MessageModel(
-      senderId ?? this.senderId,
-      messageStatus ?? this.messageStatus,
-      text ?? this.text,
-      date ?? this.date,
+      senderId: senderId ?? this.senderId,
+      messageStatus: messageStatus ?? this.messageStatus,
+      payload: payload ?? this.payload,
+      date: date ?? this.date,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'senderId': senderId,
-      'messageStatus': messageStatus.name, // Dart 2.15+ .name for enum to String
-      'text': text,
+      'messageStatus': messageStatus.name,
+      'text': payload,
       'date': date.toIso8601String(),
     };
   }
 
   factory MessageModel.fromJson(Map<String, dynamic> json) {
     return MessageModel(
-      json['senderId'] as String,
-      MessageStatus.values.byName(json['messageStatus'] as String),
-      json['text'] as String,
-      DateTime.parse(json['date'] as String),
+      senderId: json['senderId'] as String,
+      messageStatus: MessageStatus.values.byName(json['messageStatus'] as String),
+      payload: json['text'] as String,
+      date: DateTime.parse(json['date'] as String),
     );
   }
 
@@ -47,9 +52,9 @@ class MessageModel {
           runtimeType == other.runtimeType &&
           senderId == other.senderId &&
           messageStatus == other.messageStatus &&
-          text == other.text &&
+          payload == other.payload &&
           date == other.date;
 
   @override
-  int get hashCode => senderId.hashCode ^ messageStatus.hashCode ^ text.hashCode ^ date.hashCode;
+  int get hashCode => senderId.hashCode ^ messageStatus.hashCode ^ payload.hashCode ^ date.hashCode;
 }

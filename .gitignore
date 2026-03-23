@@ -19,6 +19,8 @@ coverage/*
 /.fvm/release
 /.fvm/version
 
+/assets/env/*
+
 # FVM Version Cache
 .fvm/
 .DS_Store

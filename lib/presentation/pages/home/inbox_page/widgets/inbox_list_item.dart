@@ -68,7 +68,7 @@ class InboxListItem extends StatelessWidget {
                           ),
                           ExcludeSemantics(
                             child: Text(
-                              '${message?.text ?? context.tr(L10nKeys.inboxPageEmptyText)}\n',
+                              '${formatMessageText(message?.payload, context)}\n',
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: AppTextStyles.zonaPro16Grey.copyWith(
@@ -134,5 +134,17 @@ class InboxListItem extends StatelessWidget {
         .length;
 
     return unreadCount;
+  }
+
+  String formatMessageText(String? message, BuildContext context) {
+    if (message == null) {
+      return context.tr(L10nKeys.inboxPageEmptyText);
+    }
+
+    if (message.contains('url')) {
+      return context.tr(L10nKeys.gifMessagePlaceholder);
+    }
+
+    return message;
   }
 }

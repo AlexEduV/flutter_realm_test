@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
@@ -17,9 +18,10 @@ class MessageItem extends StatelessWidget {
   final String senderName;
   final String? imageSrc;
   final String message;
+  final SentImageMetaDataModel? imageMetaData;
   final String time;
   final bool isMyMessage;
-  final bool expanded;
+  final bool withExtendedData;
   final MessageStatus messageStatus;
   final String conversationId;
   final int messageIndex;
@@ -33,7 +35,8 @@ class MessageItem extends StatelessWidget {
     required this.messageIndex,
     required this.conversationId,
     this.isMyMessage = true,
-    this.expanded = true,
+    this.withExtendedData = true,
+    this.imageMetaData,
     super.key,
   });
 
@@ -43,7 +46,7 @@ class MessageItem extends StatelessWidget {
       padding: EdgeInsets.only(
         right: AppDimensions.normalS,
         left: AppDimensions.normalS,
-        top: expanded ? AppDimensions.normalS : 0.0,
+        top: withExtendedData ? AppDimensions.normalS : 0.0,
         bottom: AppDimensions.minorS,
       ),
       child: VisibilityDetector(
@@ -68,7 +71,7 @@ class MessageItem extends StatelessWidget {
                 spacing: AppDimensions.minorS,
                 crossAxisAlignment: isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
-                  if (expanded) ...[
+                  if (withExtendedData) ...[
                     Row(
                       spacing: AppDimensions.minorM,
                       mainAxisSize: MainAxisSize.min,
@@ -92,26 +95,63 @@ class MessageItem extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: isMyMessage ? AppColors.darkBlue : AppColors.whiteGrey,
                         borderRadius: BorderRadius.only(
-                          topLeft: isMyMessage
+                          topLeft: isMyMessage || !withExtendedData
                               ? const Radius.circular(AppDimensions.normalS)
                               : Radius.zero,
-                          topRight: isMyMessage
-                              ? Radius.zero
-                              : const Radius.circular(AppDimensions.normalS),
+                          topRight: !isMyMessage || !withExtendedData
+                              ? const Radius.circular(AppDimensions.normalS)
+                              : Radius.zero,
                           bottomLeft: const Radius.circular(AppDimensions.normalS),
                           bottomRight: const Radius.circular(AppDimensions.normalS),
                         ),
+                        image: imageMetaData != null
+                            ? DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(imageMetaData?.url ?? ''),
+                              )
+                            : null,
                       ),
-                      child: Text(
-                        message,
-                        style: isMyMessage ? const TextStyle(color: Colors.white) : null,
-                      ),
+                      child: imageMetaData == null
+                          ? Text(
+                              message,
+                              style: isMyMessage ? const TextStyle(color: Colors.white) : null,
+                            )
+                          : Stack(
+                              children: [
+                                SizedBox(
+                                  width: AppDimensions.imageMessageSize,
+                                  height: imageMetaData == null
+                                      ? AppDimensions.imageMessageSize
+                                      : AppDimensions.imageMessageSize *
+                                            getImageFactorFromMetaData(imageMetaData),
+                                ),
+
+                                Positioned(
+                                  bottom: 0.0,
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: AppDimensions.minorM,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                                    ),
+                                    child: Text(
+                                      context.tr(L10nKeys.gifMessagePlaceholder),
+                                      style: AppTextStyles.zonaPro14.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                     ),
                   ),
                 ],
               ),
             ),
-            if (expanded) ...[
+            if (withExtendedData) ...[
               AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM, isLocal: isMyMessage),
             ] else ...[
               const SizedBox(width: AppDimensions.majorM),
@@ -120,5 +160,16 @@ class MessageItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double getImageFactorFromMetaData(SentImageMetaDataModel? metaData) {
+    if (metaData == null) return 1.0;
+
+    final height = metaData.height;
+    final width = metaData.width;
+
+    if (width == 0) return 1.0;
+
+    return height / width;
   }
 }

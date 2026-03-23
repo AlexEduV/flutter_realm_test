@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
@@ -7,13 +9,14 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
+import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
-import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/date_divider.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
@@ -137,13 +140,16 @@ class _MessagesPageState extends State<MessagesPage> {
                     child: MessageItem(
                       senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
                       imageSrc: sender?.avatarImageSrc,
-                      message: message.text,
+                      message: message.payload,
                       time: DateFormatter.formatSmartDate(message.date),
                       isMyMessage: sender?.userId != owner.id,
-                      expanded: isExpanded,
+                      withExtendedData: isExpanded,
                       messageStatus: message.messageStatus,
                       conversationId: conversation.conversationId,
                       messageIndex: index,
+                      imageMetaData: message.payload.contains('url')
+                          ? SentImageMetaDataModel.fromJson(jsonDecode(message.payload))
+                          : null,
                     ),
                   ),
                 ],
