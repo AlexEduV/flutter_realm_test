@@ -36,6 +36,8 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final textFieldBorderRadius = BorderRadius.circular(AppDimensions.normalL);
+
     return BlocBuilder<MessagesPageCubit, MessagesPageState>(
       builder: (context, state) {
         final isQueryEmpty = state.latestQuery.isEmpty;
@@ -58,8 +60,19 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                     fillColor: Colors.white,
                     filled: true,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                      borderRadius: textFieldBorderRadius,
                       borderSide: const BorderSide(color: AppColors.accentColor),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: textFieldBorderRadius,
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: textFieldBorderRadius,
+                      borderSide: const BorderSide(
+                        color: AppColors.accentColor,
+                        width: AppDimensions.minorXS,
+                      ),
                     ),
                   ),
                 ),
