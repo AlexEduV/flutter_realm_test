@@ -339,19 +339,22 @@ class DialogHelper {
       backgroundColor: AppColors.scaffoldColor,
       context: context,
       builder: (context) {
-        return CupertinoActionSheet(
-          actions: [
-            CupertinoActionSheetAction(
-              onPressed: () async {
-                await context.read<InboxPageCubit>().deleteConversation(conversationId);
+        return Padding(
+          padding: const EdgeInsets.all(AppDimensions.minorL).copyWith(top: 0.0),
+          child: CupertinoActionSheet(
+            actions: [
+              CupertinoActionSheetAction(
+                onPressed: () async {
+                  await context.read<InboxPageCubit>().deleteConversation(conversationId);
 
-                if (!context.mounted) return;
-                context.pop();
-              },
-              isDestructiveAction: true,
-              child: Text(context.tr(L10nKeys.conversationDialogDeleteItemTitle)),
-            ),
-          ],
+                  if (!context.mounted) return;
+                  context.pop();
+                },
+                isDestructiveAction: true,
+                child: Text(context.tr(L10nKeys.conversationDialogDeleteItemTitle)),
+              ),
+            ],
+          ),
         );
       },
     );
