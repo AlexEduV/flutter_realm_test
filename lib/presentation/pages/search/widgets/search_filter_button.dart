@@ -80,7 +80,7 @@ class SearchFilterButton extends StatelessWidget {
                     const Spacer(),
                   ],
 
-                  AppBadge(text: selectionCount),
+                  if ((int.tryParse(selectionCount) ?? 0) > 0) ...[AppBadge(text: selectionCount)],
                 ],
               ),
             ),
