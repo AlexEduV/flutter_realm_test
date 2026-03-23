@@ -19,11 +19,9 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
   @override
   Future<List<String>> searchGifs(String query) async {
-    final klipyApiKey = _apiKey;
     final limit = '15';
 
-    //todo: move to constants
-    final path = 'api/v1/$klipyApiKey/gifs/search';
+    final path = AppConstants.klipySearchPath.replaceFirst('{API_KEY}', _apiKey);
     final url = Uri.https(AppConstants.klipyApiHost, path, {'q': query, 'limit': limit});
 
     final response = await client.get(url);
@@ -32,11 +30,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
   @override
   Future<List<String>> getTrending() async {
-    final klipyApiKey = _apiKey;
-
-    //todo: move to constants
-    final path = 'api/v1/$klipyApiKey/gifs/trending';
-
+    final path = AppConstants.klipyTrendingPath.replaceFirst('{API_KEY}', _apiKey);
     final url = Uri.https(AppConstants.klipyApiHost, path);
 
     final response = await client.get(url);
