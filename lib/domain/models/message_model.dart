@@ -30,7 +30,7 @@ class MessageModel {
   Map<String, dynamic> toJson() {
     return {
       'senderId': senderId,
-      'messageStatus': messageStatus.name, // Dart 2.15+ .name for enum to String
+      'messageStatus': messageStatus.name,
       'text': payload,
       'date': date.toIso8601String(),
     };

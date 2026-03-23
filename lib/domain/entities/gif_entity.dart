@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
 
 class GifEntity {
@@ -26,5 +28,9 @@ class GifEntity {
       height: dto.height,
       width: dto.width,
     );
+  }
+
+  String toPayload() {
+    return jsonEncode({'url': imageUrl, 'width': width.toString(), 'height': height.toString()});
   }
 }

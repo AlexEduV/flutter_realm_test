@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -136,12 +134,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
   }
 
   void onGifItemTap(GifEntity gif) {
-    //todo: not the best solution of storing the data
-    final gifEncoded = jsonEncode({
-      'url': gif.imageUrl,
-      'width': gif.width.toString(),
-      'height': gif.height.toString(),
-    });
+    final payload = gif.toPayload();
 
     final userId = context.read<UserDataCubit>().user.userId;
 
@@ -151,12 +144,12 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
       MessageModel(
         senderId: userId,
         messageStatus: MessageStatus.sent,
-        payload: gifEncoded,
+        payload: payload,
         date: DateTime.now(),
       ),
     );
 
-    context.read<MessagesPageCubit>().updateSelectedGif(gifEncoded);
+    context.read<MessagesPageCubit>().updateSelectedGif(payload);
     context.pop();
   }
 }
