@@ -26,7 +26,7 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
     emit(state.copyWith(currentGifSearchText: query));
 
     emit(state.copyWith(areGifsLoading: true));
-    final gifs = query.trim().isEmpty
+    final gifEntities = query.trim().isEmpty
         ? await _getTrendingGifsUseCase.call()
         : await _searchGifsUseCase.call(query);
 
@@ -35,6 +35,6 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
       return;
     }
 
-    emit(state.copyWith(gifs: gifs, areGifsLoading: false, latestQuery: query));
+    emit(state.copyWith(gifsInSearch: gifEntities, areGifsLoading: false, latestQuery: query));
   }
 }

@@ -1,7 +1,7 @@
-import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
+import 'package:test_futter_project/domain/entities/gif_entity.dart';
 
 abstract class GifsRepository {
-  Future<List<KlipyGifDto>> searchGifs(String query);
+  Future<List<GifEntity>> searchGifs(String query);
 
-  Future<List<KlipyGifDto>> getTrending();
+  Future<List<GifEntity>> getTrending();
 }
