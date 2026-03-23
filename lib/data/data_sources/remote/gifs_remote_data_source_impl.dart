@@ -21,10 +21,10 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     final limit = '15';
 
     final showTrending = query.trim().isEmpty;
-    final path = '/v2/search';
+    final path = showTrending ? '/v2/trending' : '/v2/search';
 
     final url = Uri.https(AppConstants.klipyApiHost, path, {
-      'q': showTrending ? 'trending' : query,
+      if (!showTrending) 'q': query,
       'key': klipyApiKey,
       'limit': limit,
     });
@@ -33,6 +33,11 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
     if (response.statusCode != HttpStatus.ok) {
       debugPrint('Klipy: error while searching for gifs: query=$query');
+      return [];
+    }
+
+    if (response.body.isEmpty) {
+      debugPrint('Klipy: response is empty for gifs: query=$query');
       return [];
     }
 
