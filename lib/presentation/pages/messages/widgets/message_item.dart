@@ -43,6 +43,12 @@ class MessageItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final isImage = message.contains('url');
 
+    //todo: move to entity
+    Map<String, dynamic>? imageMetaData = {};
+    if (isImage) {
+      imageMetaData = jsonDecode(message);
+    }
+
     return Padding(
       padding: EdgeInsets.only(
         right: AppDimensions.normalS,
@@ -108,7 +114,7 @@ class MessageItem extends StatelessWidget {
                         image: isImage
                             ? DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(jsonDecode(message)['url'] ?? ''),
+                                image: NetworkImage(imageMetaData?['url'] ?? ''),
                               )
                             : null,
                       ),
@@ -117,10 +123,12 @@ class MessageItem extends StatelessWidget {
                               message,
                               style: isMyMessage ? const TextStyle(color: Colors.white) : null,
                             )
-                          : const SizedBox(
-                              //todo: use the actual size factor here
+                          : SizedBox(
                               width: AppDimensions.imageMessageSize,
-                              height: AppDimensions.imageMessageSize,
+                              height: imageMetaData == null
+                                  ? AppDimensions.imageMessageSize
+                                  : AppDimensions.imageMessageSize *
+                                        getImageFactorFromMetaData(imageMetaData),
                             ),
                     ),
                   ),
@@ -136,5 +144,12 @@ class MessageItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double getImageFactorFromMetaData(Map<String, dynamic> metaData) {
+    final height = double.tryParse(metaData['height']) ?? 1.0;
+    final width = double.tryParse(metaData['width']) ?? 1.0;
+
+    return height / width;
   }
 }
