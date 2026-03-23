@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,20 +8,14 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/models/region_ui_model.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
-import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/edit_password_field_widget.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
-import 'package:transparent_image/transparent_image.dart';
-
-import '../common/enums/message_status.dart';
+import 'package:test_futter_project/presentation/widgets/gifs_picker_bottom_sheet.dart';
 
 class DialogHelper {
   static void showConfirmationDialog(
@@ -365,129 +357,14 @@ class DialogHelper {
     );
   }
 
-  static Future<String?> showGifsPickerModalBottomSheet(BuildContext context) async {
-    String? result;
-
-    await showModalBottomSheet<String?>(
+  static Future<void> showGifsPickerModalBottomSheet(BuildContext context) async {
+    await showModalBottomSheet(
       backgroundColor: AppColors.scaffoldColor,
       context: context,
       builder: (context) {
-        context.read<MessagesPageCubit>().updateMessageText('');
-        final initialText = '';
-
-        final textEditingController = TextEditingController();
-        textEditingController.text = initialText;
-        context.read<MessagesPageCubit>().updateGifsSearch(initialText);
-
-        return BlocBuilder<MessagesPageCubit, MessagesPageState>(
-          builder: (context, state) {
-            final isQueryEmpty = state.latestQuery.isEmpty;
-
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(AppDimensions.minorL),
-                  child: TextFormField(
-                    controller: textEditingController,
-                    onChanged: (newValue) =>
-                        context.read<MessagesPageCubit>().updateGifsSearch(newValue),
-                    decoration: InputDecoration(
-                      hintText: context.tr(L10nKeys.gifsTextFieldHint),
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                        borderSide: const BorderSide(color: AppColors.accentColor),
-                      ),
-                    ),
-                  ),
-                ),
-
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(AppDimensions.normalS),
-                        child: Text.rich(
-                          TextSpan(
-                            style: AppTextStyles.zonaPro18,
-                            children: [
-                              if (isQueryEmpty)
-                                TextSpan(
-                                  text: context.tr(L10nKeys.gifsResultsTrendingLabel),
-                                  style: const TextStyle(fontWeight: FontWeight.bold),
-                                )
-                              else ...[
-                                TextSpan(
-                                  text: context.tr(L10nKeys.gifsResultsQueryLabel),
-                                  style: AppTextStyles.zonaPro18,
-                                ),
-                                TextSpan(
-                                  text: '"${state.latestQuery}"',
-                                  style: const TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ],
-                          ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                Expanded(
-                  child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
-                    itemCount: state.gifsInSearch.length,
-                    itemBuilder: (context, index) {
-                      final gif = state.gifsInSearch[index];
-
-                      return Padding(
-                        padding: const EdgeInsets.all(AppDimensions.minorXS),
-                        child: InkWell(
-                          onTap: () {
-                            final message = jsonEncode({
-                              'url': gif.imageUrl,
-                              'width': gif.width.toString(),
-                              'height': gif.height.toString(),
-                            });
-
-                            final userId = context.read<UserDataCubit>().user.userId;
-
-                            final conversationId = context
-                                .read<MessagesPageCubit>()
-                                .state
-                                .currentConversationId;
-                            context.read<InboxPageCubit>().sendMessage(
-                              conversationId,
-                              MessageModel(userId, MessageStatus.sent, message, DateTime.now()),
-                            );
-
-                            result = message;
-                            context.pop();
-                          },
-                          child: FadeInImage.memoryNetwork(
-                            placeholder: kTransparentImage,
-                            image: gif.imageUrl,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            );
-          },
-        );
+        return const GifsPickerBottomSheet();
       },
     );
-
-    return result;
   }
 
   static void _validateEditField(

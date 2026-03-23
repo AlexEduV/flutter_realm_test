@@ -37,4 +37,8 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
 
     emit(state.copyWith(gifsInSearch: gifEntities, areGifsLoading: false, latestQuery: query));
   }
+
+  void updateSelectedGif(String? newGifUrl) {
+    emit(state.copyWith(selectedGif: newGifUrl));
+  }
 }

@@ -14,5 +14,6 @@ abstract class MessagesPageState with _$MessagesPageState {
     @Default(false) bool areGifsLoading,
     @Default('') String latestQuery,
     @Default([]) List<GifEntity> gifsInSearch,
+    String? selectedGif,
   }) = _MessagesPageState;
 }
