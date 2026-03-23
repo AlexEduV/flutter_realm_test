@@ -48,7 +48,7 @@ class AppDimensions {
 
   static const bottomMessageBarIconSize = 30.0;
   static const bottomMessageBarHeight = 56.0;
-  static const expandedMessageHeight = 80.0;
+  static const expandedMessageHeight = 320.0;
 
   static const imageMessageSize = 200.0;
 }
