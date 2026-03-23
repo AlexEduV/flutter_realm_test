@@ -1,10 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
@@ -19,6 +18,7 @@ class MessageItem extends StatelessWidget {
   final String senderName;
   final String? imageSrc;
   final String message;
+  final SentImageMetaDataModel? imageMetaData;
   final String time;
   final bool isMyMessage;
   final bool withExtendedData;
@@ -36,19 +36,12 @@ class MessageItem extends StatelessWidget {
     required this.conversationId,
     this.isMyMessage = true,
     this.withExtendedData = true,
+    this.imageMetaData,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isImage = message.contains('url');
-
-    //todo: move to entity
-    Map<String, dynamic>? imageMetaData = {};
-    if (isImage) {
-      imageMetaData = jsonDecode(message);
-    }
-
     return Padding(
       padding: EdgeInsets.only(
         right: AppDimensions.normalS,
@@ -111,14 +104,14 @@ class MessageItem extends StatelessWidget {
                           bottomLeft: const Radius.circular(AppDimensions.normalS),
                           bottomRight: const Radius.circular(AppDimensions.normalS),
                         ),
-                        image: isImage
+                        image: imageMetaData != null
                             ? DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(imageMetaData?['url'] ?? ''),
+                                image: NetworkImage(imageMetaData?.url ?? ''),
                               )
                             : null,
                       ),
-                      child: !isImage
+                      child: imageMetaData == null
                           ? Text(
                               message,
                               style: isMyMessage ? const TextStyle(color: Colors.white) : null,
@@ -146,9 +139,11 @@ class MessageItem extends StatelessWidget {
     );
   }
 
-  double getImageFactorFromMetaData(Map<String, dynamic> metaData) {
-    final height = double.tryParse(metaData['height']) ?? 1.0;
-    final width = double.tryParse(metaData['width']) ?? 1.0;
+  double getImageFactorFromMetaData(SentImageMetaDataModel? metaData) {
+    final height = metaData?.height ?? 0.0;
+    final width = metaData?.width ?? 0.0;
+
+    if (width == 0) return 1.0;
 
     return height / width;
   }
