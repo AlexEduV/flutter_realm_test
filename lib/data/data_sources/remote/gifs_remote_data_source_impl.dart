@@ -17,10 +17,6 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
   @override
   Future<List<String>> searchGifs(String query) async {
-    if (query.trim().isEmpty) {
-      return getTrending();
-    }
-
     final url = getGifsUrl(query);
     final response = await client.get(url);
 
@@ -57,6 +53,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     return url;
   }
 
+  @override
   Future<List<String>> getTrending() async {
     final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
 

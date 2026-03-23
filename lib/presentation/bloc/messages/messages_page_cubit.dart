@@ -1,11 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
 import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
 
 class MessagesPageCubit extends Cubit<MessagesPageState> {
   final SearchGifsUseCase _searchGifsUseCase;
+  final GetTrendingGifsUseCase _getTrendingGifsUseCase;
 
-  MessagesPageCubit(this._searchGifsUseCase) : super(const MessagesPageState());
+  MessagesPageCubit(this._searchGifsUseCase, this._getTrendingGifsUseCase)
+    : super(const MessagesPageState());
 
   int activeRequestId = 0;
 
@@ -23,7 +26,9 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
     emit(state.copyWith(currentGifSearchText: query));
 
     emit(state.copyWith(areGifsLoading: true));
-    final gifs = await _searchGifsUseCase.call(query);
+    final gifs = query.trim().isEmpty
+        ? await _getTrendingGifsUseCase.call()
+        : await _searchGifsUseCase.call(query);
 
     if (requestId != activeRequestId) {
       // A newer search has started, discard this result silently

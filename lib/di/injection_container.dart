@@ -65,6 +65,7 @@ import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
+import 'package:test_futter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
 import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
@@ -328,9 +329,10 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
 
-  serviceLocator.registerFactory(() => MessagesPageCubit(serviceLocator()));
+  serviceLocator.registerFactory(() => MessagesPageCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => SearchGifsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetTrendingGifsUseCase(serviceLocator()));
 }

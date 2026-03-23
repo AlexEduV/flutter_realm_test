@@ -10,4 +10,9 @@ class GifsRepositoryImpl implements GifsRepository {
   Future<List<String>> searchGifs(String query) {
     return _gifsRemoteDataSource.searchGifs(query);
   }
+
+  @override
+  Future<List<String>> getTrending() {
+    return _gifsRemoteDataSource.getTrending();
+  }
 }
