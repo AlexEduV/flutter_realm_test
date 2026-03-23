@@ -59,11 +59,10 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
   Future<List<String>> getTrending() async {
     final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
-    final limit = '15';
 
     final path = 'api/v1/$klipyApiKey/gifs/trending';
 
-    final url = Uri.https(AppConstants.klipyApiHost, path, {'limit': limit});
+    final url = Uri.https(AppConstants.klipyApiHost, path);
 
     final response = await client.get(url);
 
