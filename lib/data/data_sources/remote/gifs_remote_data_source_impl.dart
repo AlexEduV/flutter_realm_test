@@ -31,8 +31,8 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     }
 
     final Map<String, dynamic> data = jsonDecode(response.body);
-    final List<KlipyGifDto> results = (data['results'] as List)
-        .map((json) => KlipyGifDto.fromJson(json as Map<String, dynamic>))
+    final List<KlipyGifDto> results = (data['data']['data'] as List)
+        .map((json) => KlipyGifDto.fromV1Json(json as Map<String, dynamic>))
         .toList();
 
     final urls = results.map((element) => element.imageUrl).toList();
@@ -43,12 +43,8 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     final klipyApiKey = serviceLocator<EnvLocalDataSource>().get(key: AppConstants.envKlipyKeyPath);
     final limit = '15';
 
-    final path = '/v2/search';
-    final url = Uri.https(AppConstants.klipyApiHost, path, {
-      'q': query,
-      'key': klipyApiKey,
-      'limit': limit,
-    });
+    final path = 'api/v1/$klipyApiKey/gifs/search';
+    final url = Uri.https(AppConstants.klipyApiHost, path, {'q': query, 'limit': limit});
 
     return url;
   }
