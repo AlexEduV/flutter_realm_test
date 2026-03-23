@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
@@ -68,7 +69,7 @@ class InboxListItem extends StatelessWidget {
                           ),
                           ExcludeSemantics(
                             child: Text(
-                              '${message?.text ?? context.tr(L10nKeys.inboxPageEmptyText)}\n',
+                              '${formatMessageText(message?.text, context)}\n',
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: AppTextStyles.zonaPro16Grey.copyWith(
@@ -134,5 +135,18 @@ class InboxListItem extends StatelessWidget {
         .length;
 
     return unreadCount;
+  }
+
+  String formatMessageText(String? message, BuildContext context) {
+    if (message == null) {
+      return context.tr(L10nKeys.inboxPageEmptyText);
+    }
+
+    //todo: localise;
+    if (message.startsWith(AppConstants.gifIdentifier)) {
+      return 'GIF';
+    }
+
+    return message;
   }
 }

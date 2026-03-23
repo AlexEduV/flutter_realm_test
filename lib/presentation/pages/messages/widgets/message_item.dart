@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
@@ -39,7 +40,7 @@ class MessageItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isImage = message.startsWith('gifUrl: ');
+    final isImage = message.startsWith('${AppConstants.gifIdentifier} ');
 
     return Padding(
       padding: EdgeInsets.only(
@@ -106,7 +107,9 @@ class MessageItem extends StatelessWidget {
                         image: isImage
                             ? DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage(message.replaceFirst('gifUrl: ', '')),
+                                image: NetworkImage(
+                                  message.replaceFirst('${AppConstants.gifIdentifier} ', ''),
+                                ),
                               )
                             : null,
                       ),
