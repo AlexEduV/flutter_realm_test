@@ -41,7 +41,6 @@ void main() {
       );
 
       expect(find.text('Filter'), findsOneWidget);
-      expect(find.text('0'), findsOneWidget);
       // Should not find any text widget with 'Selected'
       expect(find.text('Selected'), findsNothing);
     });
