@@ -8,13 +8,14 @@ import 'package:test_futter_project/domain/models/sent_attachment_meta_data_mode
 import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/gif_label.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../../../common/app_colors.dart';
-import '../../../../common/app_dimensions.dart';
-import '../../../../common/app_text_styles.dart';
-import '../../../widgets/avatar_widget.dart';
+import '../../../../../common/app_colors.dart';
+import '../../../../../common/app_dimensions.dart';
+import '../../../../../common/app_text_styles.dart';
+import '../../../../widgets/avatar_widget.dart';
 
 class MessageItem extends StatelessWidget {
   final String senderName;
@@ -143,30 +144,12 @@ class MessageItem extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   width: AppDimensions.imageMessageSize,
-                                  height: imageMetaData == null
-                                      ? AppDimensions.imageMessageSize
-                                      : AppDimensions.imageMessageSize *
-                                            getImageFactorFromMetaData(imageMetaData),
+                                  height:
+                                      AppDimensions.imageMessageSize *
+                                      getImageFactorFromMetaData(imageMetaData),
                                 ),
 
-                                Positioned(
-                                  bottom: 0.0,
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: AppDimensions.minorM,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                                    ),
-                                    child: Text(
-                                      context.tr(L10nKeys.gifMessagePlaceholder),
-                                      style: AppTextStyles.zonaPro14.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                const Positioned(bottom: 0.0, child: GifLabel()),
                               ],
                             ),
                     ),
