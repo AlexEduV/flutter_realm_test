@@ -7,14 +7,15 @@ import 'dart:async' as _i10;
 
 import 'package:flutter_bloc/flutter_bloc.dart' as _i11;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i17;
 import 'package:test_futter_project/common/enums/car_type.dart' as _i16;
-import 'package:test_futter_project/common/enums/drawer_type.dart' as _i17;
+import 'package:test_futter_project/common/enums/drawer_type.dart' as _i18;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i13;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i4;
 import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_case.dart'
     as _i7;
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart'
-    as _i18;
+    as _i19;
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart'
     as _i8;
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart'
@@ -588,6 +589,62 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
   );
 
   @override
+  String getMinYearFromEntities(
+    List<_i13.CarEntity>? cars,
+    _i16.CarType? type,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#getMinYearFromEntities, [cars, type]),
+            returnValue: _i17.dummyValue<String>(
+              this,
+              Invocation.method(#getMinYearFromEntities, [cars, type]),
+            ),
+          )
+          as String);
+
+  @override
+  String getMaxYearFromEntities(
+    List<_i13.CarEntity>? cars,
+    _i16.CarType? type,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#getMaxYearFromEntities, [cars, type]),
+            returnValue: _i17.dummyValue<String>(
+              this,
+              Invocation.method(#getMaxYearFromEntities, [cars, type]),
+            ),
+          )
+          as String);
+
+  @override
+  String getMinPriceFromEntities(
+    List<_i13.CarEntity>? cars,
+    _i16.CarType? type,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#getMinPriceFromEntities, [cars, type]),
+            returnValue: _i17.dummyValue<String>(
+              this,
+              Invocation.method(#getMinPriceFromEntities, [cars, type]),
+            ),
+          )
+          as String);
+
+  @override
+  String getMaxPriceFromEntities(
+    List<_i13.CarEntity>? cars,
+    _i16.CarType? type,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#getMaxPriceFromEntities, [cars, type]),
+            returnValue: _i17.dummyValue<String>(
+              this,
+              Invocation.method(#getMaxPriceFromEntities, [cars, type]),
+            ),
+          )
+          as String);
+
+  @override
   void updateModelSelection(Map<String, List<String>>? newList) =>
       super.noSuchMethod(
         Invocation.method(#updateModelSelection, [newList]),
@@ -698,7 +755,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
   );
 
   @override
-  void openDrawer(_i17.SearchDrawerType? type) => super.noSuchMethod(
+  void openDrawer(_i18.SearchDrawerType? type) => super.noSuchMethod(
     Invocation.method(#openDrawer, [type]),
     returnValueForMissingStub: null,
   );
@@ -767,7 +824,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
 /// A class which mocks [DetailsPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDetailsPageCubit extends _i1.Mock implements _i18.DetailsPageCubit {
+class MockDetailsPageCubit extends _i1.Mock implements _i19.DetailsPageCubit {
   MockDetailsPageCubit() {
     _i1.throwOnMissingStub(this);
   }
