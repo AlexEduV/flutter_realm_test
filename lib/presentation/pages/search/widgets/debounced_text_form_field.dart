@@ -55,6 +55,8 @@ class _DebouncedTextFormFieldState extends State<DebouncedTextFormField> {
 
   @override
   Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(AppDimensions.minorL);
+
     return TextFormField(
       controller: widget.controller,
       focusNode: _focusNode,
@@ -69,15 +71,15 @@ class _DebouncedTextFormFieldState extends State<DebouncedTextFormField> {
         labelText: widget.label,
         border: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.lightGrey),
-          borderRadius: BorderRadius.circular(AppDimensions.minorL),
+          borderRadius: borderRadius,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.lightGrey),
-          borderRadius: BorderRadius.circular(AppDimensions.minorL),
+          borderRadius: borderRadius,
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: AppColors.placeholderColorDark),
-          borderRadius: BorderRadius.circular(AppDimensions.minorL),
+          borderRadius: borderRadius,
         ),
       ),
       keyboardType: TextInputType.number,
