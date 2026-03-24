@@ -122,6 +122,10 @@ void main() {
             ),
         isA<SearchPageState>().having((s) => s.isLoading, 'isLoading', true),
         isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
         isA<SearchPageState>()
             .having((s) => s.allResults, 'allResults', isNotEmpty)
             .having((s) => s.isLoading, 'isLoading', false),
@@ -139,6 +143,10 @@ void main() {
       expect: () => [
         const SearchPageState(isLoading: true),
         isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
         isA<SearchPageState>()
             .having((s) => s.allResults, 'allResults', isNotEmpty)
             .having((s) => s.isLoading, 'isLoading', false),
@@ -150,6 +158,26 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.updateTypeSelection(CarType.bike),
       expect: () => [
+        isA<SearchPageState>().having(
+          (s) => s.currentSelectedType,
+          'currentSelectedType',
+          CarType.car,
+        ),
+        isA<SearchPageState>().having(
+          (s) => s.currentSelectedType,
+          'currentSelectedType',
+          CarType.car,
+        ),
+        isA<SearchPageState>().having(
+          (s) => s.currentSelectedType,
+          'currentSelectedType',
+          CarType.car,
+        ),
+        isA<SearchPageState>().having(
+          (s) => s.currentSelectedType,
+          'currentSelectedType',
+          CarType.car,
+        ),
         isA<SearchPageState>().having(
           (s) => s.currentSelectedType,
           'currentSelectedType',

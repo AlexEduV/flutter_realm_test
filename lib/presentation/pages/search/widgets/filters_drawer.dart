@@ -77,18 +77,20 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 ),
               ),
 
-              ListTile(
-                title: Text(
-                  context.tr(L10nKeys.parameterColorName),
-                  style: AppTextStyles.zonaPro18,
+              if (state.allColors.isNotEmpty) ...[
+                ListTile(
+                  title: Text(
+                    context.tr(L10nKeys.parameterColorName),
+                    style: AppTextStyles.zonaPro18,
+                  ),
                 ),
-              ),
+              ],
 
               ...state.allColors.map((element) {
                 final capitalisedElement = element.capitalizeFirst();
 
                 return _buildCheckboxTile(
-                  semanticsLabel: '',
+                  semanticsLabel: AppSemanticsLabels.filterDrawerColorCheckbox,
                   label: element.capitalizeFirst(),
                   isChecked: selectedColorSet.contains(capitalisedElement),
                   onChecked: () => cubit.addCarColorToSelection(capitalisedElement),
@@ -100,6 +102,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 title: Text(context.tr(L10nKeys.parameterYearName), style: AppTextStyles.zonaPro18),
               ),
 
+              //todo: use a slider here
               Row(
                 children: [
                   Expanded(
@@ -107,7 +110,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: minYearTextController,
-                        label: state.minYearFieldParamsModel?.label ?? '',
+                        label: '',
                         onDebouncedChanged: (value) => cubit.updateSelectedMinYear(value),
                         errorText: state.minYearError,
                       ),
@@ -118,7 +121,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: maxYearTextController,
-                        label: state.maxYearFieldParamsModel?.label ?? '',
+                        label: '',
                         onDebouncedChanged: (value) => cubit.updateSelectedMaxYear(value),
                         errorText: state.maxYearError,
                       ),
@@ -214,7 +217,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: minPriceTextController,
-                        label: state.minPriceFieldParamsModel?.label ?? '',
+                        label: '',
                         onDebouncedChanged: (newValue) => cubit.updateSelectedMinPrice(newValue),
                         errorText: state.minPriceError,
                       ),
@@ -225,7 +228,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: maxPriceTextController,
-                        label: state.maxPriceFieldParamsModel?.label ?? '',
+                        label: '',
                         onDebouncedChanged: (newValue) => cubit.updateSelectedMaxPrice(newValue),
                         errorText: state.maxPriceError,
                       ),

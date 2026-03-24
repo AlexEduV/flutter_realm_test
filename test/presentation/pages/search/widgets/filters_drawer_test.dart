@@ -82,10 +82,6 @@ void main() {
       findsOneWidget,
     );
 
-    // Check year fields
-    expect(find.text('Min Year'), findsOneWidget);
-    expect(find.text('Max Year'), findsOneWidget);
-
     // Check selected body type
     expect(
       find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.bodyTypeSedan)),

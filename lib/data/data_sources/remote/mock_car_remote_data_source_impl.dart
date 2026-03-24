@@ -112,7 +112,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       int? distanceTo;
       switch (car.carId) {
         case '1':
-          priceDelta = random.nextInt(1000);
+          priceDelta = -random.nextInt(1000);
           distanceTo = random.nextInt(60);
           break;
         case '2':

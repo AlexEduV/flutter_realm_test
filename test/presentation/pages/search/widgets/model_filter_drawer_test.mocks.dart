@@ -5,10 +5,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i8;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:test_futter_project/common/enums/car_type.dart' as _i6;
-import 'package:test_futter_project/common/enums/drawer_type.dart' as _i7;
+import 'package:test_futter_project/common/enums/drawer_type.dart' as _i8;
 import 'package:test_futter_project/domain/entities/car_entity.dart' as _i5;
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart'
     as _i3;
@@ -110,6 +111,56 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
     Invocation.method(#updateColorListFromEntities, [cars, type]),
     returnValueForMissingStub: null,
   );
+
+  @override
+  String getMinYearFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
+      (super.noSuchMethod(
+            Invocation.method(#getMinYearFromEntities, [cars, type]),
+            returnValue: _i7.dummyValue<String>(
+              this,
+              Invocation.method(#getMinYearFromEntities, [cars, type]),
+            ),
+          )
+          as String);
+
+  @override
+  String getMaxYearFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
+      (super.noSuchMethod(
+            Invocation.method(#getMaxYearFromEntities, [cars, type]),
+            returnValue: _i7.dummyValue<String>(
+              this,
+              Invocation.method(#getMaxYearFromEntities, [cars, type]),
+            ),
+          )
+          as String);
+
+  @override
+  String getMinPriceFromEntities(
+    List<_i5.CarEntity>? cars,
+    _i6.CarType? type,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#getMinPriceFromEntities, [cars, type]),
+            returnValue: _i7.dummyValue<String>(
+              this,
+              Invocation.method(#getMinPriceFromEntities, [cars, type]),
+            ),
+          )
+          as String);
+
+  @override
+  String getMaxPriceFromEntities(
+    List<_i5.CarEntity>? cars,
+    _i6.CarType? type,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#getMaxPriceFromEntities, [cars, type]),
+            returnValue: _i7.dummyValue<String>(
+              this,
+              Invocation.method(#getMaxPriceFromEntities, [cars, type]),
+            ),
+          )
+          as String);
 
   @override
   void updateModelSelection(Map<String, List<String>>? newList) =>
@@ -222,7 +273,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   );
 
   @override
-  void openDrawer(_i7.SearchDrawerType? type) => super.noSuchMethod(
+  void openDrawer(_i8.SearchDrawerType? type) => super.noSuchMethod(
     Invocation.method(#openDrawer, [type]),
     returnValueForMissingStub: null,
   );
@@ -270,7 +321,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   );
 
   @override
-  void onChange(_i8.Change<_i2.SearchPageState>? change) => super.noSuchMethod(
+  void onChange(_i9.Change<_i2.SearchPageState>? change) => super.noSuchMethod(
     Invocation.method(#onChange, [change]),
     returnValueForMissingStub: null,
   );

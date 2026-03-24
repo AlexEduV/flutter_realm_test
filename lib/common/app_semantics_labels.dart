@@ -25,6 +25,7 @@ class AppSemanticsLabels {
   static const filterButton = 'filterButton';
 
   static const filterDrawerBodyTypeCheckbox = 'filterDrawerBodyTypeCheckbox';
+  static const filterDrawerColorCheckbox = 'filterDrawerColorCheckbox';
   static const filterDrawerFuelTypeCheckbox = 'filterDrawerFuelTypeCheckbox';
   static const filterDrawerTransmissionTypeCheckbox = 'filterDrawerTransmissionTypeCheckbox';
 
