@@ -206,7 +206,9 @@ class SearchPageCubit extends Cubit<SearchPageState> {
         .whereType<int>() // filters out nulls from failed parses
         .toList();
 
-    final minPrice = filteredPrices.isNotEmpty ? filteredPrices.reduce((a, b) => a < b ? a : b) : 0;
+    final minPrice = filteredPrices.isNotEmpty && filteredPrices.length != 1
+        ? filteredPrices.reduce((a, b) => a < b ? a : b)
+        : 0;
 
     return minPrice.toString();
   }
@@ -218,9 +220,9 @@ class SearchPageCubit extends Cubit<SearchPageState> {
         .whereType<int>() // filters out nulls from failed parses
         .toList();
 
-    final maxPrice = filteredPrices.isNotEmpty
+    final maxPrice = filteredPrices.isNotEmpty && filteredPrices.length != 1
         ? filteredPrices.reduce((a, b) => a > b ? a : b)
-        : 2056;
+        : 200000;
 
     return maxPrice.toString();
   }
