@@ -137,7 +137,6 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     updateModelListFromEntities(state.results, newType);
     updateColorListFromEntities(state.results, newType);
 
-    //todo: not working - exception on body type update, not loading initially
     updateSelectedMinYear(getMinYearFromEntities(state.results, newType));
     updateSelectedMaxYear(getMaxYearFromEntities(state.results, newType));
 
