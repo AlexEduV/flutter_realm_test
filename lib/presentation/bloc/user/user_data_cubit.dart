@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/app_asset_routes.dart';
@@ -8,6 +7,7 @@ import 'package:test_futter_project/domain/data_sources/local/base_local_storage
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
+import 'package:test_futter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/domain/usecases/users/get_user_by_email_use_case.dart';
@@ -28,12 +28,14 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._requestLocationPermissionUseCase,
     this._checkLocationPermissionStatusUseCase,
     this._getUserByEmailUseCase,
+    this._pickImageFromGalleryUseCase,
   ) : super(const UserDataState());
 
   final BaseLocalStorage _localStorage;
 
   final OpenAppSettingsUseCase _openAppSettingsUseCase;
   final CheckLocationServiceStatusUseCase _checkLocationServiceStatusUseCase;
+  final PickImageFromGalleryUseCase _pickImageFromGalleryUseCase;
 
   final RequestLocationPermissionUseCase _requestLocationPermissionUseCase;
   final CheckLocationPermissionStatusUseCase _checkLocationPermissionStatusUseCase;
@@ -41,8 +43,6 @@ class UserDataCubit extends Cubit<UserDataState> {
   final GetUserByEmailUseCase _getUserByEmailUseCase;
 
   late UserEntity user;
-  //todo: move to other layer;
-  final _imagePicker = ImagePicker();
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
@@ -166,15 +166,13 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> updateAvatarImage() async {
-    final XFile? image = await _imagePicker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      final src = image.path;
+    final path = await _pickImageFromGalleryUseCase.call();
+    if (path == null) return;
 
-      user = user.copyWith(avatarImageSrc: src);
-      emit(state.copyWith(avatarImageSrc: src));
+    user = user.copyWith(avatarImageSrc: path);
+    emit(state.copyWith(avatarImageSrc: path));
 
-      updateUser(user: user);
-    }
+    updateUser(user: user);
   }
 
   void addCarIdToFavorites(String carId) {
