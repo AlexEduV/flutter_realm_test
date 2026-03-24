@@ -77,6 +77,7 @@ import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings
 import 'package:test_futter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
 import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 import 'package:test_futter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
+import 'package:test_futter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
@@ -365,4 +366,6 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => PickAttachmentFileUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => ExtractUsersFromConversationUseCase(serviceLocator()));
 }

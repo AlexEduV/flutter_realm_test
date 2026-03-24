@@ -7,11 +7,11 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
-import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
+import 'package:test_futter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_case.dart';
@@ -106,7 +106,7 @@ class _MessagesPageState extends State<MessagesPage> {
       body: BlocBuilder<InboxPageCubit, InboxPageState>(
         builder: (context, state) {
           final conversation = getConversationById(widget.conversationId);
-          final users = getUsersFromConversation(conversation);
+          final users = serviceLocator<ExtractUsersFromConversationUseCase>().call(conversation);
 
           final messages = conversation.messages.reversed.toList();
 
@@ -201,14 +201,6 @@ class _MessagesPageState extends State<MessagesPage> {
   ConversationModel getConversationById(String conversationId) {
     final conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
     return conversation;
-  }
-
-  Map<String, UserEntity?> getUsersFromConversation(ConversationModel conversation) {
-    final senderIds = conversation.messages.map((m) => m.senderId).toSet();
-
-    final userMap = <String, UserEntity?>{for (final id in senderIds) id: getUserById.call(id)};
-
-    return userMap;
   }
 
   Future<void> scrollToBottom({bool isInit = false}) async {
