@@ -121,9 +121,23 @@ class MessageItem extends StatelessWidget {
                                     message,
                                     style: isMyMessage ? const TextStyle().whiten() : null,
                                   )
-                                : Text(
-                                    attachmentMetaData?.name ?? '',
-                                    style: isMyMessage ? const TextStyle().whiten() : null,
+                                : Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    spacing: AppDimensions.minorS,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          attachmentMetaData?.name ?? '',
+                                          style: isMyMessage ? const TextStyle().whiten() : null,
+                                        ),
+                                      ),
+
+                                      const Icon(
+                                        Icons.file_present_sharp,
+                                        color: Colors.white,
+                                        size: AppDimensions.majorS,
+                                      ),
+                                    ],
                                   )
                           : Stack(
                               children: [
