@@ -9,6 +9,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
+import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
@@ -19,7 +20,7 @@ import 'package:test_futter_project/presentation/bloc/messages/messages_page_cub
 import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/date_divider.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
-import 'package:test_futter_project/presentation/pages/messages/widgets/message_item.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/message_item.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
@@ -150,6 +151,9 @@ class _MessagesPageState extends State<MessagesPage> {
                       imageMetaData: message.payload.contains('url')
                           ? SentImageMetaDataModel.fromJson(jsonDecode(message.payload))
                           : null,
+                      attachmentMetaData: message.payload.contains('file')
+                          ? SentAttachmentMetaDataModel.fromJson(jsonDecode(message.payload))
+                          : null,
                     ),
                   ),
                 ],
@@ -213,7 +217,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
     if (!controller.hasClients) return;
 
-    final maxExtent = controller.position.maxScrollExtent;
+    final maxExtent = controller.position.maxScrollExtent + AppDimensions.expandedMessageHeight;
 
     if (isInit) {
       controller.jumpTo(maxExtent);

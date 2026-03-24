@@ -53,6 +53,9 @@
             "resultsTrending": "Trending",
             "resultsQuery": "Showing results for ",
             "gifMessagePlaceholder": "Gif"
+          },
+          "attachments": {
+            "attachmentMessagePlaceholder": "File"
           }
         },
         "vehicleDetails": {

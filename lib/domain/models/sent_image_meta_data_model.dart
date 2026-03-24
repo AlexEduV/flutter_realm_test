@@ -12,4 +12,10 @@ class SentImageMetaDataModel {
       height: double.tryParse(json['height']) ?? 0.0,
     );
   }
+
+  double getImageFactor() {
+    if (width == 0) return 1.0;
+
+    return height / width;
+  }
 }

@@ -1,7 +1,9 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
+import 'package:test_futter_project/domain/entities/attachment_entity.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
@@ -41,7 +43,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
           children: [
             ChatInputButton(
               icon: Icons.attach_file,
-              onTap: () {},
+              onTap: () async => await addAttachment(),
               iconRotationAngleDegrees: 40,
               semanticsLabel: AppSemanticsLabels.chatInputBarAttachmentButton,
             ),
@@ -50,14 +52,14 @@ class _ChatInputBarState extends State<ChatInputBar> {
               child: ChatInputTextField(
                 focusNode: widget.messageFocusNode,
                 textEditingController: widget.messageTextController,
-                sendMessage: (context, state) => sendMessage(context, state),
+                sendMessage: (context, state) => onSendMessageTap(context),
                 onMessageSent: widget.onMessageSent,
               ),
             ),
 
             ChatInputButton(
               icon: Icons.send,
-              onTap: isTextFieldEmpty ? null : () => sendMessage(context, state),
+              onTap: isTextFieldEmpty ? null : () => onSendMessageTap(context),
               iconRotationAngleDegrees: -40,
               semanticsLabel: AppSemanticsLabels.chatInputBarSendMessageButton,
             ),
@@ -67,24 +69,39 @@ class _ChatInputBarState extends State<ChatInputBar> {
     );
   }
 
-  void sendMessage(BuildContext context, MessagesPageState state) {
-    final user = context.read<UserDataCubit>().user;
-
-    context.read<InboxPageCubit>().sendMessage(
-      state.currentConversationId,
-      MessageModel(
-        senderId: user.userId,
-        messageStatus: MessageStatus.sent,
-        payload: widget.messageTextController.text,
-        date: DateTime.now(),
-      ),
-    );
-
-    widget.onMessageSent?.call();
+  void onSendMessageTap(BuildContext context) {
+    sendMessage(widget.messageTextController.text);
 
     context.read<MessagesPageCubit>().updateMessageText('');
     widget.messageTextController.clear();
 
     widget.messageFocusNode.requestFocus();
+  }
+
+  Future<void> addAttachment() async {
+    //todo: move to other layers
+    final filePicker = FilePickerIO();
+    final result = await filePicker.pickFiles(type: FileType.media);
+
+    if (result == null || result.files.isEmpty) return;
+    final resultConverted = AttachmentEntity.fromPlatformFile(result.files.first);
+    sendMessage(resultConverted.toPayload());
+  }
+
+  void sendMessage(String message) {
+    final conversationId = context.read<MessagesPageCubit>().state.currentConversationId ?? '';
+    final user = context.read<UserDataCubit>().user;
+
+    context.read<InboxPageCubit>().sendMessage(
+      conversationId,
+      MessageModel(
+        senderId: user.userId,
+        messageStatus: MessageStatus.sent,
+        payload: message,
+        date: DateTime.now(),
+      ),
+    );
+
+    widget.onMessageSent?.call();
   }
 }

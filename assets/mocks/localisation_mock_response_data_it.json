@@ -53,6 +53,9 @@
             "resultsTrending": "Di tendenza",
             "resultsQuery": "Risultati per ",
             "gifMessagePlaceholder": "Gif"
+          },
+          "attachments": {
+            "attachmentMessagePlaceholder": "Allega file"
           }
         },
         "vehicleDetails": {

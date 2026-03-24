@@ -145,6 +145,10 @@ class InboxListItem extends StatelessWidget {
       return context.tr(L10nKeys.gifMessagePlaceholder);
     }
 
+    if (message.contains('file')) {
+      return context.tr(L10nKeys.attachmentMessagePlaceholder);
+    }
+
     return message;
   }
 }
