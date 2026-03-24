@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
@@ -41,7 +42,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
           children: [
             ChatInputButton(
               icon: Icons.attach_file,
-              onTap: () {},
+              onTap: addAttachment,
               iconRotationAngleDegrees: 40,
               semanticsLabel: AppSemanticsLabels.chatInputBarAttachmentButton,
             ),
@@ -86,5 +87,10 @@ class _ChatInputBarState extends State<ChatInputBar> {
     widget.messageTextController.clear();
 
     widget.messageFocusNode.requestFocus();
+  }
+
+  Future<void> addAttachment() async {
+    final filePicker = FilePickerIO();
+    final result = await filePicker.pickFiles(type: FileType.media);
   }
 }
