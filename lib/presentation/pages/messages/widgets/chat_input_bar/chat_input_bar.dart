@@ -1,9 +1,7 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
-import 'package:test_futter_project/domain/entities/attachment_entity.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
@@ -79,13 +77,10 @@ class _ChatInputBarState extends State<ChatInputBar> {
   }
 
   Future<void> addAttachment() async {
-    //todo: move to other layers
-    final filePicker = FilePickerIO();
-    final result = await filePicker.pickFiles(type: FileType.media);
+    final attachment = await context.read<MessagesPageCubit>().getAttachmentFile();
+    if (attachment == null) return;
 
-    if (result == null || result.files.isEmpty) return;
-    final resultConverted = AttachmentEntity.fromPlatformFile(result.files.first);
-    sendMessage(resultConverted.toPayload());
+    sendMessage(attachment.toPayload());
   }
 
   void sendMessage(String message) {
