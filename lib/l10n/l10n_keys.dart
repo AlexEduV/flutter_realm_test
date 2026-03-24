@@ -205,4 +205,7 @@ class L10nKeys {
   static const String gifsResultsTrendingLabel = 'pages.inbox.gifs.resultsTrending';
   static const String gifsResultsQueryLabel = 'pages.inbox.gifs.resultsQuery';
   static const String gifMessagePlaceholder = 'pages.inbox.gifs.gifMessagePlaceholder';
+
+  static const String attachmentMessagePlaceholder =
+      'pages.inbox.attachments.attachmentMessagePlaceholder';
 }
