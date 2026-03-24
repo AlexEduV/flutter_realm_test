@@ -15,6 +15,8 @@ import 'package:test_futter_project/domain/usecases/geolocator/check_location_se
     as _i7;
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
     as _i6;
+import 'package:test_futter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart'
+    as _i12;
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
     as _i9;
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
@@ -215,4 +217,22 @@ class MockGetUserByEmailUseCase extends _i1.Mock
   _i2.UserEntity? call(String? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]))
           as _i2.UserEntity?);
+}
+
+/// A class which mocks [PickImageFromGalleryUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPickImageFromGalleryUseCase extends _i1.Mock
+    implements _i12.PickImageFromGalleryUseCase {
+  MockPickImageFromGalleryUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<String?> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i5.Future<String?>.value(),
+          )
+          as _i5.Future<String?>);
 }
