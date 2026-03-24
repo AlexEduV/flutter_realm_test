@@ -67,7 +67,18 @@ class _DebouncedTextFormFieldState extends State<DebouncedTextFormField> {
         fillColor: Colors.white,
         filled: true,
         labelText: widget.label,
-        border: const OutlineInputBorder(borderSide: BorderSide(color: AppColors.accentColor)),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.lightGrey),
+          borderRadius: BorderRadius.circular(AppDimensions.minorL),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.lightGrey),
+          borderRadius: BorderRadius.circular(AppDimensions.minorL),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.placeholderColorDark),
+          borderRadius: BorderRadius.circular(AppDimensions.minorL),
+        ),
       ),
       keyboardType: TextInputType.number,
     );
