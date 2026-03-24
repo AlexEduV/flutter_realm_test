@@ -43,9 +43,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
           children: [
             ChatInputButton(
               icon: Icons.attach_file,
-              onTap: () async {
-                await addAttachment();
-              },
+              onTap: () async => await addAttachment(),
               iconRotationAngleDegrees: 40,
               semanticsLabel: AppSemanticsLabels.chatInputBarAttachmentButton,
             ),
@@ -81,6 +79,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
   }
 
   Future<void> addAttachment() async {
+    //todo: move to other layers
     final filePicker = FilePickerIO();
     final result = await filePicker.pickFiles(type: FileType.media);
 
