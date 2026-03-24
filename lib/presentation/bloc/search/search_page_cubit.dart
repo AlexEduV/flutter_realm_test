@@ -59,6 +59,9 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     updateModelListFromEntities(results, state.currentSelectedType);
     updateColorListFromEntities(results, state.currentSelectedType);
 
+    updateSelectedMinYear(getMinYearFromEntities(results, state.currentSelectedType));
+    updateSelectedMaxYear(getMaxYearFromEntities(results, state.currentSelectedType));
+
     emit(state.copyWith(allResults: results, isLoading: false));
 
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
@@ -132,7 +135,11 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void updateTypeSelection(CarType newType) {
     //todo: maybe better to save Map<> for each type, so the user can easily switch between tabs
     updateModelListFromEntities(state.results, newType);
-    updateColorListFromEntities(state.results, state.currentSelectedType);
+    updateColorListFromEntities(state.results, newType);
+
+    //todo: not working - exception on body type update, not loading initially
+    updateSelectedMinYear(getMinYearFromEntities(state.results, newType));
+    updateSelectedMaxYear(getMaxYearFromEntities(state.results, newType));
 
     emit(state.copyWith(currentSelectedType: newType, selectedModels: {}, selectedBodyTypes: []));
   }
@@ -160,6 +167,30 @@ class SearchPageCubit extends Cubit<SearchPageState> {
         .toList();
 
     emit(state.copyWith(allColors: allColors));
+  }
+
+  String getMinYearFromEntities(List<CarEntity> cars, CarType type) {
+    final filteredYears = cars
+        .where((element) => element.type == state.currentSelectedType.name)
+        .map((element) => int.tryParse(element.year ?? ''))
+        .whereType<int>() // filters out nulls from failed parses
+        .toList();
+
+    final minYear = filteredYears.isNotEmpty ? filteredYears.reduce((a, b) => a < b ? a : b) : 0;
+
+    return minYear.toString();
+  }
+
+  String getMaxYearFromEntities(List<CarEntity> cars, CarType type) {
+    final filteredYears = cars
+        .where((element) => element.type == state.currentSelectedType.name)
+        .map((element) => int.tryParse(element.year ?? ''))
+        .whereType<int>() // filters out nulls from failed parses
+        .toList();
+
+    final maxYear = filteredYears.isNotEmpty ? filteredYears.reduce((a, b) => a > b ? a : b) : 2056;
+
+    return maxYear.toString();
   }
 
   void updateModelSelection(Map<String, List<String>> newList) {
