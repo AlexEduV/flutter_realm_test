@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/common/extensions/text_style_extension.dart';
+import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
@@ -19,6 +21,7 @@ class MessageItem extends StatelessWidget {
   final String? imageSrc;
   final String message;
   final SentImageMetaDataModel? imageMetaData;
+  final SentAttachmentMetaDataModel? attachmentMetaData;
   final String time;
   final bool isMyMessage;
   final bool withExtendedData;
@@ -37,6 +40,7 @@ class MessageItem extends StatelessWidget {
     this.isMyMessage = true,
     this.withExtendedData = true,
     this.imageMetaData,
+    this.attachmentMetaData,
     super.key,
   });
 
@@ -112,10 +116,15 @@ class MessageItem extends StatelessWidget {
                             : null,
                       ),
                       child: imageMetaData == null
-                          ? Text(
-                              message,
-                              style: isMyMessage ? const TextStyle(color: Colors.white) : null,
-                            )
+                          ? attachmentMetaData == null
+                                ? Text(
+                                    message,
+                                    style: isMyMessage ? const TextStyle().whiten() : null,
+                                  )
+                                : Text(
+                                    attachmentMetaData?.name ?? '',
+                                    style: isMyMessage ? const TextStyle().whiten() : null,
+                                  )
                           : Stack(
                               children: [
                                 SizedBox(

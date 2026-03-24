@@ -9,6 +9,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
+import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
@@ -149,6 +150,9 @@ class _MessagesPageState extends State<MessagesPage> {
                       messageIndex: index,
                       imageMetaData: message.payload.contains('url')
                           ? SentImageMetaDataModel.fromJson(jsonDecode(message.payload))
+                          : null,
+                      attachmentMetaData: message.payload.contains('file')
+                          ? SentAttachmentMetaDataModel.fromJson(jsonDecode(message.payload))
                           : null,
                     ),
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
+import 'package:test_futter_project/domain/entities/attachment_entity.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
@@ -84,8 +85,8 @@ class _ChatInputBarState extends State<ChatInputBar> {
     final result = await filePicker.pickFiles(type: FileType.media);
 
     if (result == null || result.files.isEmpty) return;
-
-    sendMessage(result.files.first.name);
+    final resultConverted = AttachmentEntity.fromPlatformFile(result.files.first);
+    sendMessage(resultConverted.toPayload());
   }
 
   void sendMessage(String message) {
