@@ -76,7 +76,7 @@ class MessageItemContent extends StatelessWidget {
                   SizedBox(
                     width: AppDimensions.imageMessageSize,
                     height:
-                        AppDimensions.imageMessageSize * getImageFactorFromMetaData(imageMetaData),
+                        AppDimensions.imageMessageSize * (imageMetaData?.getImageFactor() ?? 1.0),
                   ),
 
                   const Positioned(bottom: 0.0, child: GifLabel()),
@@ -84,16 +84,5 @@ class MessageItemContent extends StatelessWidget {
               ),
       ),
     );
-  }
-
-  double getImageFactorFromMetaData(SentImageMetaDataModel? metaData) {
-    if (metaData == null) return 1.0;
-
-    final height = metaData.height;
-    final width = metaData.width;
-
-    if (width == 0) return 1.0;
-
-    return height / width;
   }
 }
