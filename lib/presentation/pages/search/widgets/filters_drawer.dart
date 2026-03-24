@@ -77,12 +77,14 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 ),
               ),
 
-              ListTile(
-                title: Text(
-                  context.tr(L10nKeys.parameterColorName),
-                  style: AppTextStyles.zonaPro18,
+              if (state.allColors.isNotEmpty) ...[
+                ListTile(
+                  title: Text(
+                    context.tr(L10nKeys.parameterColorName),
+                    style: AppTextStyles.zonaPro18,
+                  ),
                 ),
-              ),
+              ],
 
               ...state.allColors.map((element) {
                 final capitalisedElement = element.capitalizeFirst();
