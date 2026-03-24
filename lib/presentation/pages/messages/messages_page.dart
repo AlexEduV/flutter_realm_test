@@ -170,12 +170,12 @@ class _MessagesPageState extends State<MessagesPage> {
   }
 
   bool shouldExpandMessage(int index, List<MessageModel> messages) {
-    if (index > 0) {
+    if (index < messages.length - 1) {
       final currentMessage = messages[index];
-      final previousMessage = messages[index - 1];
-      final differenceInMinutes = currentMessage.date.difference(previousMessage.date).inMinutes;
+      final nextMessage = messages[index + 1];
+      final differenceInMinutes = currentMessage.date.difference(nextMessage.date).inMinutes.abs();
 
-      if (previousMessage.senderId == currentMessage.senderId && differenceInMinutes.abs() < 2) {
+      if (nextMessage.senderId == currentMessage.senderId && differenceInMinutes < 2) {
         return false;
       }
     }
