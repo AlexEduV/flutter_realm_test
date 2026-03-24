@@ -9,6 +9,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
+import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
@@ -122,10 +123,10 @@ class _MessagesPageState extends State<MessagesPage> {
             itemCount: messages.length,
             itemBuilder: (context, index) {
               final message = messages[index];
-              final isExpanded = shouldExpandMessage(index, conversation);
+              final isExpanded = shouldExpandMessage(index, messages);
               final sender = users[message.senderId];
 
-              final showDivider = shouldShowDivider(index, conversation);
+              final showDivider = shouldShowDivider(index, messages);
 
               // Build a list of widgets: divider + message item
               return Column(
@@ -168,10 +169,10 @@ class _MessagesPageState extends State<MessagesPage> {
     );
   }
 
-  bool shouldExpandMessage(int index, ConversationModel conversation) {
+  bool shouldExpandMessage(int index, List<MessageModel> messages) {
     if (index > 0) {
-      final currentMessage = conversation.messages[index];
-      final previousMessage = conversation.messages[index - 1];
+      final currentMessage = messages[index];
+      final previousMessage = messages[index - 1];
       final differenceInMinutes = currentMessage.date.difference(previousMessage.date).inMinutes;
 
       if (previousMessage.senderId == currentMessage.senderId && differenceInMinutes.abs() < 2) {
@@ -182,22 +183,15 @@ class _MessagesPageState extends State<MessagesPage> {
     return true;
   }
 
-  bool shouldShowDivider(int index, ConversationModel conversation) {
-    //todo: this needs rework
-    //shows divider if the index is first
-    //shows divider when the current date does not equal last message date
-
-    //I need:
-    //show divider if the index is last
-    //show divider if future message date is not equal to the current.
-
-    final messages = conversation.messages;
+  bool shouldShowDivider(int index, List<MessageModel> messages) {
     if (index == messages.length - 1) return true; // Last message (oldest)
 
     final currentMessage = messages[index];
     final nextMessage = messages[index + 1];
 
-    if (nextMessage.date.day != currentMessage.date.day) {
+    final nextMessageDay = nextMessage.date.day;
+    final currentMessageDay = currentMessage.date.day;
+    if (nextMessageDay != currentMessageDay) {
       return true;
     }
 
