@@ -42,7 +42,9 @@ class _ChatInputBarState extends State<ChatInputBar> {
           children: [
             ChatInputButton(
               icon: Icons.attach_file,
-              onTap: addAttachment,
+              onTap: () async {
+                await addAttachment();
+              },
               iconRotationAngleDegrees: 40,
               semanticsLabel: AppSemanticsLabels.chatInputBarAttachmentButton,
             ),
@@ -51,14 +53,14 @@ class _ChatInputBarState extends State<ChatInputBar> {
               child: ChatInputTextField(
                 focusNode: widget.messageFocusNode,
                 textEditingController: widget.messageTextController,
-                sendMessage: (context, state) => sendMessage(context, state),
+                sendMessage: (context, state) => onSendMessageTap(context),
                 onMessageSent: widget.onMessageSent,
               ),
             ),
 
             ChatInputButton(
               icon: Icons.send,
-              onTap: isTextFieldEmpty ? null : () => sendMessage(context, state),
+              onTap: isTextFieldEmpty ? null : () => onSendMessageTap(context),
               iconRotationAngleDegrees: -40,
               semanticsLabel: AppSemanticsLabels.chatInputBarSendMessageButton,
             ),
@@ -68,20 +70,8 @@ class _ChatInputBarState extends State<ChatInputBar> {
     );
   }
 
-  void sendMessage(BuildContext context, MessagesPageState state) {
-    final user = context.read<UserDataCubit>().user;
-
-    context.read<InboxPageCubit>().sendMessage(
-      state.currentConversationId,
-      MessageModel(
-        senderId: user.userId,
-        messageStatus: MessageStatus.sent,
-        payload: widget.messageTextController.text,
-        date: DateTime.now(),
-      ),
-    );
-
-    widget.onMessageSent?.call();
+  void onSendMessageTap(BuildContext context) {
+    sendMessage(widget.messageTextController.text);
 
     context.read<MessagesPageCubit>().updateMessageText('');
     widget.messageTextController.clear();
@@ -92,5 +82,26 @@ class _ChatInputBarState extends State<ChatInputBar> {
   Future<void> addAttachment() async {
     final filePicker = FilePickerIO();
     final result = await filePicker.pickFiles(type: FileType.media);
+
+    if (result == null || result.files.isEmpty) return;
+
+    sendMessage(result.files.first.name);
+  }
+
+  void sendMessage(String message) {
+    final conversationId = context.read<MessagesPageCubit>().state.currentConversationId ?? '';
+    final user = context.read<UserDataCubit>().user;
+
+    context.read<InboxPageCubit>().sendMessage(
+      conversationId,
+      MessageModel(
+        senderId: user.userId,
+        messageStatus: MessageStatus.sent,
+        payload: message,
+        date: DateTime.now(),
+      ),
+    );
+
+    widget.onMessageSent?.call();
   }
 }
