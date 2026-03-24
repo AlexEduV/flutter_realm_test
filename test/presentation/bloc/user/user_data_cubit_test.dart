@@ -10,6 +10,7 @@ import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
+import 'package:test_futter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/domain/usecases/users/get_user_by_email_use_case.dart';
@@ -27,6 +28,7 @@ import 'user_data_cubit_test.mocks.dart';
   RequestLocationPermissionUseCase,
   CheckLocationPermissionStatusUseCase,
   GetUserByEmailUseCase,
+  PickImageFromGalleryUseCase,
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +39,7 @@ void main() {
   late MockCheckLocationServiceStatusUseCase mockCheckLocationServiceStatusUseCase;
   late MockGetUserByEmailUseCase mockGetUserByEmailUseCase;
   late MockOpenAppSettingsUseCase mockOpenAppSettingsUseCase;
+  late MockPickImageFromGalleryUseCase mockPickImageFromGalleryUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
 
@@ -48,6 +51,7 @@ void main() {
   mockCheckLocationServiceStatusUseCase = MockCheckLocationServiceStatusUseCase();
   mockOpenAppSettingsUseCase = MockOpenAppSettingsUseCase();
   mockGetUserByEmailUseCase = MockGetUserByEmailUseCase();
+  mockPickImageFromGalleryUseCase = MockPickImageFromGalleryUseCase();
 
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});
@@ -61,6 +65,7 @@ void main() {
       mockRequestLocationPermissionUseCase,
       mockCheckLocationPermissionStatusUseCase,
       mockGetUserByEmailUseCase,
+      mockPickImageFromGalleryUseCase,
     );
     testUser = const UserEntity(
       userId: 'u1',

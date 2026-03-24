@@ -2,7 +2,9 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/data/data_sources/local/env_local_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/local/file_picker_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/geolocator_local_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/local/image_picker_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/permission_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart';
 import 'package:test_futter_project/data/data_sources/local/share_local_data_source_impl.dart';
@@ -17,8 +19,10 @@ import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_
 import 'package:test_futter_project/data/data_sources/remote/mock_users_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/file_picker_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/gifs_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/image_picker_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/inbox_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/owner_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
@@ -28,7 +32,9 @@ import 'package:test_futter_project/data/repositories/url_launch_repository_impl
 import 'package:test_futter_project/data/repositories/user_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/local/file_picker_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/local/image_picker_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/share_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/url_launch_local_data_source.dart';
@@ -42,7 +48,9 @@ import 'package:test_futter_project/domain/data_sources/remote/region_remote_dat
 import 'package:test_futter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/repositories/file_picker_repository.dart';
 import 'package:test_futter_project/domain/repositories/gifs_repository.dart';
+import 'package:test_futter_project/domain/repositories/image_picker_repository.dart';
 import 'package:test_futter_project/domain/repositories/inbox_repository.dart';
 import 'package:test_futter_project/domain/repositories/owner_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
@@ -63,10 +71,12 @@ import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_c
 import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_futter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
 import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
+import 'package:test_futter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
@@ -169,6 +179,9 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
   serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl());
+  serviceLocator.registerLazySingleton<ImagePickerLocalDataSource>(
+    () => ImagePickerLocalDataSourceImpl(),
+  );
 
   serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(() => MockOwnersRemoteDataSource());
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
@@ -176,6 +189,9 @@ Future<void> initDependenciesContainer() async {
   );
   serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
     () => UrlLaunchLocalDataSourceImpl(),
+  );
+  serviceLocator.registerLazySingleton<FilePickerLocalDataSource>(
+    () => FilePickerLocalDataSourceImpl(),
   );
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
     () => MockRegionRemoteDataSourceImpl(),
@@ -201,6 +217,14 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<PermissionLocalDataSource>(
     () => PermissionLocalDataSourceImpl(),
+  );
+
+  serviceLocator.registerLazySingleton<ImagePickerRepository>(
+    () => ImagePickerRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<FilePickerRepository>(
+    () => FilePickerRepositoryImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
@@ -241,6 +265,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(
     () => UserDataCubit(
+      serviceLocator(),
       serviceLocator(),
       serviceLocator(),
       serviceLocator(),
@@ -329,10 +354,15 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
 
-  serviceLocator.registerFactory(() => MessagesPageCubit(serviceLocator(), serviceLocator()));
+  serviceLocator.registerFactory(
+    () => MessagesPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => SearchGifsUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetTrendingGifsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => PickAttachmentFileUseCase(serviceLocator()));
 }

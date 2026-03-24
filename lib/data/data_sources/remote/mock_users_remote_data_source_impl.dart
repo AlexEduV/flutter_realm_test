@@ -7,6 +7,8 @@ import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/mocks/mock_users.dart';
 
 class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
+  final mockUsersLocalStorageKey = 'mock_users';
+
   @override
   int getMaxUserId() {
     final maxId = users.isNotEmpty
@@ -31,7 +33,7 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   @override
   Future<List<UserEntity>> loadMockUsers() async {
     final prefs = await SharedPreferences.getInstance();
-    final usersJson = prefs.getString('mock_users');
+    final usersJson = prefs.getString(mockUsersLocalStorageKey);
     if (usersJson != null) {
       final decoded = jsonDecode(usersJson);
 
@@ -56,7 +58,7 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   Future<void> saveMockUsers(List<UserEntity> users) async {
     final prefs = await SharedPreferences.getInstance();
     final usersJsonList = users.map((u) => u.toJson()).toList();
-    await prefs.setString('mock_users', jsonEncode(usersJsonList));
+    await prefs.setString(mockUsersLocalStorageKey, jsonEncode(usersJsonList));
   }
 
   @override
