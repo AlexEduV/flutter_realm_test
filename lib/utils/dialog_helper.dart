@@ -367,9 +367,7 @@ class DialogHelper {
     await showModalBottomSheet(
       backgroundColor: AppColors.scaffoldColor,
       context: context,
-      builder: (context) {
-        return const GifsPickerBottomSheet();
-      },
+      builder: (context) => const GifsPickerBottomSheet(),
     );
   }
 
