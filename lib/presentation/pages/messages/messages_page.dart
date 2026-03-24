@@ -212,29 +212,19 @@ class _MessagesPageState extends State<MessagesPage> {
   }
 
   Future<void> scrollToBottom({bool isInit = false}) async {
-    //todo: when opening a large list, there's a scroll bouncing effect.
-    // It persists, even when disabling animation and setting different scroll physics.
-    // It happens because the list scroll extent is changing on a large list load, so the position is
-    // incorrect. Waiting for the list to load results in delay and then sudden jump.
-
-    //recalculating the position until it's stable also did not help
-
-    //flutter limitation.
-
     final controller = listViewScrollController;
 
     if (!controller.hasClients) return;
-    if (controller.position.atEdge) return;
 
-    final maxExtent = controller.position.maxScrollExtent;
+    final minExtent = controller.position.minScrollExtent;
 
     if (isInit) {
-      controller.jumpTo(maxExtent);
+      controller.jumpTo(minExtent);
       return;
     }
 
     await controller.animateTo(
-      maxExtent + AppDimensions.expandedMessageHeight,
+      minExtent,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
