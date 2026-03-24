@@ -55,12 +55,16 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(isLoading: true));
 
     final results = applyAllFilters(_getAllCarsUseCase.call());
+    final currentType = state.currentSelectedType;
 
-    updateModelListFromEntities(results, state.currentSelectedType);
-    updateColorListFromEntities(results, state.currentSelectedType);
+    updateModelListFromEntities(results, currentType);
+    updateColorListFromEntities(results, currentType);
 
-    updateSelectedMinYear(getMinYearFromEntities(results, state.currentSelectedType));
-    updateSelectedMaxYear(getMaxYearFromEntities(results, state.currentSelectedType));
+    updateSelectedMinYear(getMinYearFromEntities(results, currentType));
+    updateSelectedMaxYear(getMaxYearFromEntities(results, currentType));
+
+    updateSelectedMinPrice(getMinPriceFromEntities(results, currentType));
+    updateSelectedMaxPrice(getMaxPriceFromEntities(results, currentType));
 
     emit(state.copyWith(allResults: results, isLoading: false));
 
@@ -140,6 +144,9 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     updateSelectedMinYear(getMinYearFromEntities(state.results, newType));
     updateSelectedMaxYear(getMaxYearFromEntities(state.results, newType));
 
+    updateSelectedMinPrice(getMinPriceFromEntities(state.results, newType));
+    updateSelectedMaxPrice(getMaxPriceFromEntities(state.results, newType));
+
     emit(state.copyWith(currentSelectedType: newType, selectedModels: {}, selectedBodyTypes: []));
   }
 
@@ -190,6 +197,32 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     final maxYear = filteredYears.isNotEmpty ? filteredYears.reduce((a, b) => a > b ? a : b) : 2056;
 
     return maxYear.toString();
+  }
+
+  String getMinPriceFromEntities(List<CarEntity> cars, CarType type) {
+    final filteredPrices = cars
+        .where((element) => element.type == state.currentSelectedType.name)
+        .map((element) => element.price)
+        .whereType<int>() // filters out nulls from failed parses
+        .toList();
+
+    final minPrice = filteredPrices.isNotEmpty ? filteredPrices.reduce((a, b) => a < b ? a : b) : 0;
+
+    return minPrice.toString();
+  }
+
+  String getMaxPriceFromEntities(List<CarEntity> cars, CarType type) {
+    final filteredPrices = cars
+        .where((element) => element.type == state.currentSelectedType.name)
+        .map((element) => element.price)
+        .whereType<int>() // filters out nulls from failed parses
+        .toList();
+
+    final maxPrice = filteredPrices.isNotEmpty
+        ? filteredPrices.reduce((a, b) => a > b ? a : b)
+        : 2056;
+
+    return maxPrice.toString();
   }
 
   void updateModelSelection(Map<String, List<String>> newList) {
