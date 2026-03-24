@@ -41,6 +41,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   final GetUserByEmailUseCase _getUserByEmailUseCase;
 
   late UserEntity user;
+  //todo: move to other layer;
   final _imagePicker = ImagePicker();
 
   Future<void> init() async {
