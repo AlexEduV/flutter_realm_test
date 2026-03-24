@@ -9,6 +9,7 @@ import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
+import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
@@ -107,22 +108,25 @@ class _MessagesPageState extends State<MessagesPage> {
           final conversation = getConversationById(widget.conversationId);
           final users = getUsersFromConversation(conversation);
 
-          if (conversation.messages.isEmpty) {
+          final messages = conversation.messages.reversed.toList();
+
+          if (messages.isEmpty) {
             return const EmptyConversationPlaceholder();
           }
 
           return ListView.builder(
+            reverse: true,
             controller: listViewScrollController,
             padding: const EdgeInsets.only(
               bottom: AppDimensions.bottomMessageBarHeight + AppDimensions.majorXL,
             ),
-            itemCount: conversation.messages.length,
+            itemCount: messages.length,
             itemBuilder: (context, index) {
-              final message = conversation.messages[index];
-              final isExpanded = shouldExpandMessage(index, conversation);
+              final message = messages[index];
+              final isExpanded = shouldExpandMessage(index, messages);
               final sender = users[message.senderId];
 
-              final showDivider = shouldShowDivider(index, conversation);
+              final showDivider = shouldShowDivider(index, messages);
 
               // Build a list of widgets: divider + message item
               return Column(
@@ -165,13 +169,13 @@ class _MessagesPageState extends State<MessagesPage> {
     );
   }
 
-  bool shouldExpandMessage(int index, ConversationModel conversation) {
-    if (index > 0) {
-      final currentMessage = conversation.messages[index];
-      final previousMessage = conversation.messages[index - 1];
-      final differenceInMinutes = currentMessage.date.difference(previousMessage.date).inMinutes;
+  bool shouldExpandMessage(int index, List<MessageModel> messages) {
+    if (index < messages.length - 1) {
+      final currentMessage = messages[index];
+      final nextMessage = messages[index + 1];
+      final differenceInMinutes = currentMessage.date.difference(nextMessage.date).inMinutes.abs();
 
-      if (previousMessage.senderId == currentMessage.senderId && differenceInMinutes.abs() < 2) {
+      if (nextMessage.senderId == currentMessage.senderId && differenceInMinutes < 2) {
         return false;
       }
     }
@@ -179,13 +183,17 @@ class _MessagesPageState extends State<MessagesPage> {
     return true;
   }
 
-  bool shouldShowDivider(int index, ConversationModel conversation) {
-    if (index == 0) return true;
+  bool shouldShowDivider(int index, List<MessageModel> messages) {
+    if (index == messages.length - 1) return true; // Last message (oldest)
 
-    final currentMessage = conversation.messages[index];
-    final lastMessage = conversation.messages[index - 1];
+    final currentMessage = messages[index];
+    final nextMessage = messages[index + 1];
 
-    if (lastMessage.date.day != currentMessage.date.day) return true;
+    final nextMessageDay = nextMessage.date.day;
+    final currentMessageDay = currentMessage.date.day;
+    if (nextMessageDay != currentMessageDay) {
+      return true;
+    }
 
     return false;
   }
@@ -204,28 +212,19 @@ class _MessagesPageState extends State<MessagesPage> {
   }
 
   Future<void> scrollToBottom({bool isInit = false}) async {
-    //todo: when opening a large list, there's a scroll bouncing effect.
-    // It persists, even when disabling animation and setting different scroll physics.
-    // It happens because the list scroll extent is changing on a large list load, so the position is
-    // incorrect. Waiting for the list to load results in delay and then sudden jump.
-
-    //recalculating the position until it's stable also did not help
-
-    //flutter limitation.
-
     final controller = listViewScrollController;
 
     if (!controller.hasClients) return;
 
-    final maxExtent = controller.position.maxScrollExtent + AppDimensions.expandedMessageHeight;
+    final minExtent = controller.position.minScrollExtent;
 
     if (isInit) {
-      controller.jumpTo(maxExtent);
+      controller.jumpTo(minExtent);
       return;
     }
 
     await controller.animateTo(
-      maxExtent + AppDimensions.expandedMessageHeight,
+      minExtent,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
