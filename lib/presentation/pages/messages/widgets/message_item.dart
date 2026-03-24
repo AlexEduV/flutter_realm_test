@@ -174,11 +174,13 @@ class MessageItem extends StatelessWidget {
                 ],
               ),
             ),
-            if (withExtendedData) ...[
-              AvatarWidget(imageSrc: imageSrc, size: AppDimensions.majorM, isLocal: isMyMessage),
-            ] else ...[
-              const SizedBox(width: AppDimensions.majorM),
-            ],
+
+            AvatarWidget(
+              imageSrc: imageSrc,
+              size: AppDimensions.majorM,
+              isLocal: isMyMessage,
+              showPlaceholder: !withExtendedData,
+            ),
           ],
         ),
       ),
