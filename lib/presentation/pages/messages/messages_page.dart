@@ -107,18 +107,21 @@ class _MessagesPageState extends State<MessagesPage> {
           final conversation = getConversationById(widget.conversationId);
           final users = getUsersFromConversation(conversation);
 
-          if (conversation.messages.isEmpty) {
+          final messages = conversation.messages.reversed.toList();
+
+          if (messages.isEmpty) {
             return const EmptyConversationPlaceholder();
           }
 
           return ListView.builder(
+            reverse: true,
             controller: listViewScrollController,
             padding: const EdgeInsets.only(
               bottom: AppDimensions.bottomMessageBarHeight + AppDimensions.majorXL,
             ),
-            itemCount: conversation.messages.length,
+            itemCount: messages.length,
             itemBuilder: (context, index) {
-              final message = conversation.messages[index];
+              final message = messages[index];
               final isExpanded = shouldExpandMessage(index, conversation);
               final sender = users[message.senderId];
 
@@ -180,12 +183,23 @@ class _MessagesPageState extends State<MessagesPage> {
   }
 
   bool shouldShowDivider(int index, ConversationModel conversation) {
-    if (index == 0) return true;
+    //todo: this needs rework
+    //shows divider if the index is first
+    //shows divider when the current date does not equal last message date
 
-    final currentMessage = conversation.messages[index];
-    final lastMessage = conversation.messages[index - 1];
+    //I need:
+    //show divider if the index is last
+    //show divider if future message date is not equal to the current.
 
-    if (lastMessage.date.day != currentMessage.date.day) return true;
+    final messages = conversation.messages;
+    if (index == messages.length - 1) return true; // Last message (oldest)
+
+    final currentMessage = messages[index];
+    final nextMessage = messages[index + 1];
+
+    if (nextMessage.date.day != currentMessage.date.day) {
+      return true;
+    }
 
     return false;
   }
@@ -216,8 +230,9 @@ class _MessagesPageState extends State<MessagesPage> {
     final controller = listViewScrollController;
 
     if (!controller.hasClients) return;
+    if (controller.position.atEdge) return;
 
-    final maxExtent = controller.position.maxScrollExtent + AppDimensions.expandedMessageHeight;
+    final maxExtent = controller.position.maxScrollExtent;
 
     if (isInit) {
       controller.jumpTo(maxExtent);
