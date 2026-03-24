@@ -133,9 +133,9 @@ class MessageItem extends StatelessWidget {
                                         ),
                                       ),
 
-                                      const Icon(
+                                      Icon(
                                         Icons.file_present_sharp,
-                                        color: Colors.white,
+                                        color: isMyMessage ? Colors.white : null,
                                         size: AppDimensions.majorS,
                                       ),
                                     ],
