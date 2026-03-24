@@ -217,7 +217,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
     if (!controller.hasClients) return;
 
-    final maxExtent = controller.position.maxScrollExtent;
+    final maxExtent = controller.position.maxScrollExtent + AppDimensions.expandedMessageHeight;
 
     if (isInit) {
       controller.jumpTo(maxExtent);
