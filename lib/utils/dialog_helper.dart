@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -12,10 +11,12 @@ import 'package:test_futter_project/domain/models/region_ui_model.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.dart';
-import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/edit_password_field_widget.dart';
+import 'package:test_futter_project/presentation/pages/account/widgets/account_item_separated.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/gifs_picker_bottom_sheet.dart';
+
+import '../presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 
 class DialogHelper {
   static void showConfirmationDialog(
@@ -339,22 +340,24 @@ class DialogHelper {
       backgroundColor: AppColors.scaffoldColor,
       context: context,
       builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(AppDimensions.minorL).copyWith(top: 0.0),
-          child: CupertinoActionSheet(
-            actions: [
-              CupertinoActionSheetAction(
-                onPressed: () async {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(
+                AppDimensions.normalS,
+              ).copyWith(bottom: AppDimensions.majorS),
+              child: AccountItemSeparated(
+                title: context.tr(L10nKeys.conversationDialogDeleteItemTitle),
+                onTap: () async {
                   await context.read<InboxPageCubit>().deleteConversation(conversationId);
 
                   if (!context.mounted) return;
                   context.pop();
                 },
-                isDestructiveAction: true,
-                child: Text(context.tr(L10nKeys.conversationDialogDeleteItemTitle)),
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
