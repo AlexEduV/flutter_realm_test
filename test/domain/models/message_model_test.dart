@@ -1,74 +1,71 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 
 void main() {
   group('MessageModel', () {
-    final sender = OwnerEntity(id: 'owner1', firstName: 'Alice', lastName: '', linkedItemIds: []);
-    final date = DateTime(2023, 1, 1, 12, 0, 0);
+    final now = DateTime.now();
+    final model = MessageModel(
+      senderId: 'user1',
+      messageStatus: MessageStatus.sent,
+      payload: 'Hello',
+      date: now,
+    );
 
-    test('constructor assigns values correctly', () {
-      final message = MessageModel(
-        senderId: sender.id,
-        messageStatus: MessageStatus.sent,
-        payload: 'Hello',
-        date: date,
-      );
-      expect(message.senderId, sender.id);
-      expect(message.messageStatus, MessageStatus.sent);
-      expect(message.payload, 'Hello');
-      expect(message.date, date);
+    test('constructor and properties', () {
+      expect(model.senderId, 'user1');
+      expect(model.messageStatus, MessageStatus.sent);
+      expect(model.payload, 'Hello');
+      expect(model.date, now);
     });
 
-    test('equality and hashCode: identical objects', () {
-      final m1 = MessageModel(
-        senderId: sender.id,
-        messageStatus: MessageStatus.sent,
-        payload: 'Hello',
-        date: date,
-      );
-      final m2 = MessageModel(
-        senderId: sender.id,
-        messageStatus: MessageStatus.sent,
-        payload: 'Hello',
-        date: date,
-      );
-      expect(m1, m2);
-      expect(m1.hashCode, m2.hashCode);
-    });
-
-    test('equality and hashCode: different objects', () {
-      final m1 = MessageModel(
-        senderId: sender.id,
-        messageStatus: MessageStatus.sent,
-        payload: 'Hello',
-        date: date,
-      );
-      final m2 = MessageModel(
-        senderId: sender.id,
+    test('copyWith returns updated values', () {
+      final copy = model.copyWith(
+        senderId: 'user2',
         messageStatus: MessageStatus.read,
-        payload: 'Hello',
-        date: date,
+        payload: 'World',
+        date: now.add(const Duration(minutes: 1)),
       );
-      final m3 = MessageModel(
-        senderId: sender.id,
+      expect(copy.senderId, 'user2');
+      expect(copy.messageStatus, MessageStatus.read);
+      expect(copy.payload, 'World');
+      expect(copy.date, now.add(const Duration(minutes: 1)));
+
+      // Partial copy
+      final partialCopy = model.copyWith(payload: 'Changed');
+      expect(partialCopy.senderId, model.senderId);
+      expect(partialCopy.messageStatus, model.messageStatus);
+      expect(partialCopy.payload, 'Changed');
+      expect(partialCopy.date, model.date);
+    });
+
+    test('toJson and fromJson', () {
+      final json = model.toJson();
+      expect(json['senderId'], 'user1');
+      expect(json['messageStatus'], 'sent');
+      expect(json['text'], 'Hello');
+      expect(json['date'], now.toIso8601String());
+
+      final fromJson = MessageModel.fromJson(json);
+      expect(fromJson, model);
+    });
+
+    test('== and hashCode', () {
+      final model2 = MessageModel(
+        senderId: 'user1',
         messageStatus: MessageStatus.sent,
-        payload: 'Hi',
-        date: date,
+        payload: 'Hello',
+        date: now,
       );
-      final m4 = MessageModel(
-        senderId: sender.id,
+      final model3 = MessageModel(
+        senderId: 'user2',
         messageStatus: MessageStatus.sent,
         payload: 'Hello',
-        date: DateTime(2023, 1, 1, 13, 0, 0),
+        date: now,
       );
-      expect(m1 == m2, isFalse);
-      expect(m1 == m3, isFalse);
-      expect(m1 == m4, isFalse);
-      expect(m1.hashCode == m2.hashCode, isFalse);
-      expect(m1.hashCode == m3.hashCode, isFalse);
-      expect(m1.hashCode == m4.hashCode, isFalse);
+      expect(model, model2);
+      expect(model.hashCode, model2.hashCode);
+      expect(model == model3, false);
     });
   });
 }
