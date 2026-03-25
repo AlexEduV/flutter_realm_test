@@ -119,7 +119,6 @@ class PersonalDetailsPage extends StatelessWidget {
                     onTap: () => DialogHelper.showEditPasswordDialog(
                       context,
                       title: context.trRead(L10nKeys.personalDetailsItemPassword),
-                      initialValue: state.password,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setPassword,
