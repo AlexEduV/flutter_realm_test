@@ -15,4 +15,13 @@ class AppConstants {
 
   static const String klipySearchPath = 'api/v1/{API_KEY}/gifs/search';
   static const String klipyTrendingPath = 'api/v1/{API_KEY}/gifs/trending';
+
+  static final bool kIsTest = () {
+    var inTest = false;
+    assert(() {
+      inTest = true;
+      return true;
+    }());
+    return inTest;
+  }();
 }

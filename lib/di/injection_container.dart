@@ -26,6 +26,7 @@ import 'package:test_futter_project/data/repositories/image_picker_repository_im
 import 'package:test_futter_project/data/repositories/inbox_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/owner_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/permission_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/region_model_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/share_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/url_launch_repository_impl.dart';
@@ -54,6 +55,7 @@ import 'package:test_futter_project/domain/repositories/image_picker_repository.
 import 'package:test_futter_project/domain/repositories/inbox_repository.dart';
 import 'package:test_futter_project/domain/repositories/owner_repository.dart';
 import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_futter_project/domain/repositories/region_model_repository.dart';
 import 'package:test_futter_project/domain/repositories/region_repository.dart';
 import 'package:test_futter_project/domain/repositories/share_repository.dart';
 import 'package:test_futter_project/domain/repositories/user_repository.dart';
@@ -86,8 +88,10 @@ import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_c
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
+import 'package:test_futter_project/domain/usecases/regions/get_all_region_models_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
+import 'package:test_futter_project/domain/usecases/regions/init_region_models_use_case.dart';
 import 'package:test_futter_project/domain/usecases/share/share_use_case.dart';
 import 'package:test_futter_project/domain/usecases/url/open_url_link_use_case.dart';
 import 'package:test_futter_project/domain/usecases/users/get_max_user_id_use_case.dart';
@@ -251,6 +255,10 @@ Future<void> initDependenciesContainer() async {
     () => PermissionRepositoryImpl(serviceLocator()),
   );
 
+  serviceLocator.registerLazySingleton<RegionModelRepository>(
+    () => RegionModelRepositoryImpl(serviceLocator()),
+  );
+
   serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
 
   final authRepositoryImpl = AuthRepositoryImpl(serviceLocator(), serviceLocator());
@@ -368,4 +376,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => PickAttachmentFileUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => ExtractUsersFromConversationUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetAllRegionModelsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));
 }

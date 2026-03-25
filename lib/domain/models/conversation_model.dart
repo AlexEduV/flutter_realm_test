@@ -40,4 +40,25 @@ class ConversationModel {
           .toList(),
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ConversationModel) return false;
+    return conversationId == other.conversationId &&
+        ownerId == other.ownerId &&
+        _listEquals(messages, other.messages);
+  }
+
+  @override
+  int get hashCode => conversationId.hashCode ^ ownerId.hashCode ^ messages.hashCode;
+
+  // Helper for deep list equality
+  bool _listEquals(List<MessageModel> a, List<MessageModel> b) {
+    if (a.length != b.length) return false;
+    for (int i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
+  }
 }

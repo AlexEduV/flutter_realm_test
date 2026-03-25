@@ -3,12 +3,12 @@ import 'package:test_futter_project/domain/repositories/gifs_repository.dart';
 import 'package:test_futter_project/domain/usecases/usecase.dart';
 
 class SearchGifsUseCase implements UseCaseWithParams<String, Future<List<GifEntity>>> {
-  SearchGifsUseCase(this._klipyRepository);
+  SearchGifsUseCase(this._gifsRepository);
 
-  final GifsRepository _klipyRepository;
+  final GifsRepository _gifsRepository;
 
   @override
   Future<List<GifEntity>> call(String params) {
-    return _klipyRepository.searchGifs(params);
+    return _gifsRepository.searchGifs(params);
   }
 }
