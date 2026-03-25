@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
@@ -24,17 +26,24 @@ void main() {
     required AppLocalisationsCubit appLocalisationsCubit,
     required MessagesPageState state,
   }) {
-    return MaterialApp(
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider<MessagesPageCubit>.value(value: messagesCubit),
-          BlocProvider<InboxPageCubit>.value(value: inboxCubit),
-          BlocProvider<UserDataCubit>.value(value: userCubit),
-          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
-        ],
-        child: const Material(child: GifsPickerBottomSheet()),
-      ),
+    final router = GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider<MessagesPageCubit>.value(value: messagesCubit),
+              BlocProvider<InboxPageCubit>.value(value: inboxCubit),
+              BlocProvider<UserDataCubit>.value(value: userCubit),
+              BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+            ],
+            child: const Material(child: GifsPickerBottomSheet()),
+          ),
+        ),
+      ],
     );
+
+    return MaterialApp.router(routerConfig: router);
   }
 
   testWidgets('renders text field and trending label', (WidgetTester tester) async {
@@ -134,56 +143,55 @@ void main() {
     expect(find.byType(InkWell), findsOneWidget);
   });
 
-  //todo: no go router has been found in the context
-  // testWidgets('tapping a GIF calls sendMessage and updateSelectedGif', (WidgetTester tester) async {
-  //   final messagesCubit = MockMessagesPageCubit();
-  //   final inboxCubit = MockInboxPageCubit();
-  //   final userCubit = MockUserDataCubit();
-  //   final appLocalisationsCubit = MockAppLocalisationsCubit();
-  //
-  //   final gif = GifEntity(
-  //     id: '1',
-  //     title: 'Funny Cat',
-  //     previewImageUrl: 'http://preview.com/cat.gif',
-  //     imageUrl: 'http://image.com/cat.gif',
-  //     width: 320.0,
-  //     height: 240.0,
-  //   );
-  //
-  //   final user = UserEntity.initial(
-  //     userId: 'u1',
-  //     firstName: 'Alice',
-  //     lastName: 'Smith',
-  //     email: 'alice@mock.com',
-  //     password: '',
-  //   );
-  //
-  //   when(messagesCubit.state).thenReturn(
-  //     MessagesPageState(latestQuery: '', gifsInSearch: [gif], currentConversationId: 'c1'),
-  //   );
-  //   when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
-  //   when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-  //   when(appLocalisationsCubit.state).thenReturn(const AppLocalisationsState(localisations: {}));
-  //   when(userCubit.user).thenReturn(user);
-  //   when(userCubit.stream).thenAnswer((_) => const Stream.empty());
-  //   when(inboxCubit.stream).thenAnswer((_) => const Stream.empty());
-  //
-  //   await tester.pumpWidget(
-  //     buildTestableWidget(
-  //       messagesCubit: messagesCubit,
-  //       inboxCubit: inboxCubit,
-  //       userCubit: userCubit,
-  //       appLocalisationsCubit: appLocalisationsCubit,
-  //       state: MessagesPageState(latestQuery: '', gifsInSearch: [gif], currentConversationId: 'c1'),
-  //     ),
-  //   );
-  //
-  //   await tester.tap(find.byType(InkWell));
-  //   await tester.pumpAndSettle();
-  //
-  //   verify(inboxCubit.sendMessage('c1', any)).called(1);
-  //   verify(messagesCubit.updateSelectedGif(any)).called(1);
-  // });
+  testWidgets('tapping a GIF calls sendMessage and updateSelectedGif', (WidgetTester tester) async {
+    final messagesCubit = MockMessagesPageCubit();
+    final inboxCubit = MockInboxPageCubit();
+    final userCubit = MockUserDataCubit();
+    final appLocalisationsCubit = MockAppLocalisationsCubit();
+
+    final gif = GifEntity(
+      id: '1',
+      title: 'Funny Cat',
+      previewImageUrl: 'http://preview.com/cat.gif',
+      imageUrl: 'http://image.com/cat.gif',
+      width: 320.0,
+      height: 240.0,
+    );
+
+    final user = UserEntity.initial(
+      userId: 'u1',
+      firstName: 'Alice',
+      lastName: 'Smith',
+      email: 'alice@mock.com',
+      password: '',
+    );
+
+    when(messagesCubit.state).thenReturn(
+      MessagesPageState(latestQuery: '', gifsInSearch: [gif], currentConversationId: 'c1'),
+    );
+    when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(appLocalisationsCubit.state).thenReturn(const AppLocalisationsState(localisations: {}));
+    when(userCubit.user).thenReturn(user);
+    when(userCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(inboxCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(
+      buildTestableWidget(
+        messagesCubit: messagesCubit,
+        inboxCubit: inboxCubit,
+        userCubit: userCubit,
+        appLocalisationsCubit: appLocalisationsCubit,
+        state: MessagesPageState(latestQuery: '', gifsInSearch: [gif], currentConversationId: 'c1'),
+      ),
+    );
+
+    await tester.tap(find.byType(InkWell));
+    await tester.pumpAndSettle();
+
+    verify(inboxCubit.sendMessage('c1', any)).called(1);
+    verify(messagesCubit.updateSelectedGif(any)).called(2);
+  });
 
   testWidgets('tapping text field animates scale', (WidgetTester tester) async {
     final messagesCubit = MockMessagesPageCubit();

@@ -174,6 +174,9 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
     );
 
     context.read<MessagesPageCubit>().updateSelectedGif(payload);
-    context.pop();
+
+    if (context.canPop()) {
+      context.pop();
+    }
   }
 }
