@@ -18,7 +18,7 @@ void main() {
 
   test('should call openUrl on repository with correct link', () async {
     final link = 'https://example.com';
-    when(mockRepository.openUrl(link)).thenAnswer((_) async => null);
+    when(mockRepository.openUrl(link)).thenAnswer((_) async {});
 
     await useCase.call(link);
 

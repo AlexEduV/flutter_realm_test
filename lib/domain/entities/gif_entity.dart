@@ -33,4 +33,25 @@ class GifEntity {
   String toPayload() {
     return jsonEncode({'url': imageUrl, 'width': width.toString(), 'height': height.toString()});
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GifEntity &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          title == other.title &&
+          previewImageUrl == other.previewImageUrl &&
+          imageUrl == other.imageUrl &&
+          width == other.width &&
+          height == other.height;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      title.hashCode ^
+      previewImageUrl.hashCode ^
+      imageUrl.hashCode ^
+      width.hashCode ^
+      height.hashCode;
 }
