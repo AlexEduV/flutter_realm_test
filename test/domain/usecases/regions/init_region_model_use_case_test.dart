@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/repositories/region_model_repository.dart';
 import 'package:test_futter_project/domain/usecases/regions/init_region_models_use_case.dart';
 
-import 'init_region_model_ues_case_test.mocks.dart';
+import 'init_region_model_use_case_test.mocks.dart';
 
 @GenerateMocks([RegionModelRepository])
 void main() {
@@ -17,7 +17,7 @@ void main() {
   });
 
   test('calls init on repository and completes', () async {
-    when(mockRepository.init()).thenAnswer((_) async => null);
+    when(mockRepository.init()).thenAnswer((_) async {});
 
     await useCase.call();
 

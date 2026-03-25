@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_state.dart';
@@ -32,7 +33,7 @@ void main() {
           BlocProvider<UserDataCubit>.value(value: userCubit),
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
-        child: const GifsPickerBottomSheet(),
+        child: const Material(child: GifsPickerBottomSheet()),
       ),
     );
   }
@@ -48,7 +49,9 @@ void main() {
     ).thenReturn(const MessagesPageState(latestQuery: '', gifsInSearch: []));
     when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(appLocalisationsCubit.state).thenReturn(const AppLocalisationsState(localisations: {}));
+    when(appLocalisationsCubit.state).thenReturn(
+      const AppLocalisationsState(localisations: {L10nKeys.gifsResultsTrendingLabel: 'Trending'}),
+    );
 
     await tester.pumpWidget(
       buildTestableWidget(
@@ -75,7 +78,11 @@ void main() {
     ).thenReturn(const MessagesPageState(latestQuery: 'cat', gifsInSearch: []));
     when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(appLocalisationsCubit.state).thenReturn(const AppLocalisationsState(localisations: {}));
+    when(appLocalisationsCubit.state).thenReturn(
+      const AppLocalisationsState(
+        localisations: {L10nKeys.gifsResultsQueryLabel: 'Search results for '},
+      ),
+    );
 
     await tester.pumpWidget(
       buildTestableWidget(
@@ -88,7 +95,10 @@ void main() {
     );
 
     expect(find.textContaining('cat'), findsOneWidget);
-    expect(find.textContaining('Query'), findsOneWidget); // Adjust for your localization
+    expect(
+      find.textContaining('Search results for'),
+      findsOneWidget,
+    ); // Adjust for your localization
   });
 
   testWidgets('renders GIF grid', (WidgetTester tester) async {

@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/models/region_ui_model.dart';
 import 'package:test_futter_project/domain/usecases/regions/get_all_region_models_use_case.dart';
 
-import 'init_region_model_ues_case_test.mocks.dart';
+import 'init_region_model_use_case_test.mocks.dart';
 
 void main() {
   late MockRegionModelRepository mockRepository;
