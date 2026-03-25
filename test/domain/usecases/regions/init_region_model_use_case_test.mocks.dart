@@ -7,7 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_futter_project/domain/models/region_ui_model.dart' as _i4;
-import 'package:test_futter_project/domain/repositories/region_model_repository.dart' as _i2;
+import 'package:test_futter_project/domain/repositories/region_model_repository.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,7 +27,8 @@ import 'package:test_futter_project/domain/repositories/region_model_repository.
 /// A class which mocks [RegionModelRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRegionModelRepository extends _i1.Mock implements _i2.RegionModelRepository {
+class MockRegionModelRepository extends _i1.Mock
+    implements _i2.RegionModelRepository {
   MockRegionModelRepository() {
     _i1.throwOnMissingStub(this);
   }
