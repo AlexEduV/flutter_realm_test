@@ -19,9 +19,9 @@ class ConfirmationDialog extends StatelessWidget {
     required this.confirmButtonTitle,
     required this.cancelButtonTitle,
     this.isDeletion = true,
-    super.key,
     this.onConfirm,
     this.onCancel,
+    super.key,
   });
 
   @override

@@ -35,6 +35,9 @@ class DialogHelper {
           description: description,
           confirmButtonTitle: confirmButtonTitle,
           cancelButtonTitle: cancelButtonTitle,
+          onCancel: onCancel,
+          onConfirm: onConfirm,
+          isDeletion: isDeletion,
         );
       },
     );
