@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_state.dart';
@@ -55,6 +56,17 @@ void main() {
     when(searchCubit.getSelectedFilterCount()).thenReturn(0);
 
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(userCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(userCubit.user).thenReturn(
+      UserEntity.initial(
+        userId: '5',
+        firstName: 'Bobby',
+        lastName: 'Fischer',
+        email: 'fisher@mock.com',
+        password: '',
+      ),
+    );
+
     when(
       appLocalisationsCubit.state,
     ).thenReturn(const AppLocalisationsState(localisations: {L10nKeys.searchPageTitle: 'Search'}));
@@ -123,14 +135,12 @@ void main() {
     // Replace with your actual car/result model
     final car = CarEntity.empty();
 
-    when(searchCubit.state).thenReturn(SearchPageState(results: [car]));
-    when(userCubit.state).thenReturn(const UserDataState());
-
     await tester.pumpWidget(
       buildTestableWidget(
         searchCubit: searchCubit,
         userCubit: userCubit,
         appLocalisationsCubit: appLocalisationsCubit,
+        searchState: SearchPageState(results: [car]),
       ),
     );
 
@@ -144,14 +154,12 @@ void main() {
     final userCubit = MockUserDataCubit();
     final appLocalisationsCubit = MockAppLocalisationsCubit();
 
-    when(searchCubit.state).thenReturn(const SearchPageState(drawerOpened: SearchDrawerType.empty));
-    when(userCubit.state).thenReturn(const UserDataState());
-
     await tester.pumpWidget(
       buildTestableWidget(
         searchCubit: searchCubit,
         userCubit: userCubit,
         appLocalisationsCubit: appLocalisationsCubit,
+        searchState: const SearchPageState(drawerOpened: SearchDrawerType.model),
       ),
     );
 
