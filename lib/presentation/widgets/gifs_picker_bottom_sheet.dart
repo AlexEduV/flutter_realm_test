@@ -35,6 +35,12 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
   }
 
   @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final textFieldBorderRadius = BorderRadius.circular(AppDimensions.normalL);
 
