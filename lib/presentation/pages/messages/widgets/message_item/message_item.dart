@@ -5,8 +5,8 @@ import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/widgets/message_content.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/widgets/message_info_row.dart';
-import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/widgets/message_item_content.dart';
 import 'package:test_futter_project/presentation/widgets/skip_widget.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -80,7 +80,7 @@ class MessageItem extends StatelessWidget {
                       MessageInfoRow(time: time, isMyMessage: isMyMessage, senderName: senderName),
                     ],
 
-                    MessageItemContent(
+                    MessageContent(
                       isMyMessage: isMyMessage,
                       withExtendedData: withExtendedData,
                       message: message,
