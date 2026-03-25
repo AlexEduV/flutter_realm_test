@@ -133,5 +133,79 @@ void main() {
       expect(entity.owner?.firstName, 'John'); // default for null owner
       expect(entity.owner?.lastName, 'Doe'); // default for null owner
     });
+
+    test('hashCode returns the same value for equal objects', () {
+      final entity1 = CarEntity(
+        carId: 'car123',
+        model: 'Model S',
+        manufacturer: 'Tesla',
+        isVerified: true,
+        type: 'car',
+        year: '2020',
+        owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
+        kilometers: 10000,
+        distanceTo: 50,
+        price: 80000,
+        fuelType: FuelType.ev.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
+      );
+
+      final entity2 = CarEntity(
+        carId: 'car123',
+        model: 'Model S',
+        manufacturer: 'Tesla',
+        isVerified: true,
+        type: 'car',
+        year: '2020',
+        owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
+        kilometers: 10000,
+        distanceTo: 50,
+        price: 80000,
+        fuelType: FuelType.ev.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
+      );
+
+      expect(entity1, equals(entity2));
+      expect(entity1.hashCode, equals(entity2.hashCode));
+    });
+
+    test('hashCode returns different values for different objects', () {
+      final entity1 = CarEntity(
+        carId: 'car123',
+        model: 'Model S',
+        manufacturer: 'Tesla',
+        isVerified: true,
+        type: 'car',
+        year: '2020',
+        owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
+        kilometers: 10000,
+        distanceTo: 50,
+        price: 80000,
+        fuelType: FuelType.ev.name,
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
+      );
+
+      final entity2 = CarEntity(
+        carId: 'car456', // different carId
+        model: 'Model 3',
+        manufacturer: 'Tesla',
+        isVerified: false,
+        type: 'car',
+        year: '2021',
+        owner: OwnerEntity(id: 'test2', firstName: 'Jane', lastName: 'Doe', linkedItemIds: []),
+        kilometers: 5000,
+        distanceTo: 100,
+        price: 40000,
+        fuelType: FuelType.gasoline.name,
+        bodyType: BodyType.crossover.name,
+        transmissionType: TransmissionType.manual.name,
+      );
+
+      expect(entity1, isNot(equals(entity2)));
+      expect(entity1.hashCode, isNot(equals(entity2.hashCode)));
+    });
   });
 }

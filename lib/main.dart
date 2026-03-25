@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
-import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
+import 'package:test_futter_project/domain/usecases/regions/init_region_models_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
@@ -30,7 +30,7 @@ void main() async {
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
 
-  await serviceLocator<RegionRemoteDataSource>().init();
+  await serviceLocator<InitRegionModelsUseCase>().call();
   await serviceLocator<EnvLocalDataSource>().init();
 
   ImageCacheUtil.initExtendedCacheSize();

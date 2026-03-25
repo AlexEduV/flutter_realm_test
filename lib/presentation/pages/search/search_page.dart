@@ -61,7 +61,11 @@ class _SearchPageState extends State<SearchPage> {
               label: AppSemanticsLabels.backButton,
               button: true,
               child: IconButton(
-                onPressed: () => context.pop(),
+                onPressed: () {
+                  if (context.canPop()) {
+                    context.pop();
+                  }
+                },
                 icon: const Icon(
                   Icons.arrow_back,
                   size: AppDimensions.appBarIconSize,

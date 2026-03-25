@@ -97,5 +97,37 @@ void main() {
       expect(copy.lastName, original.lastName);
       expect(copy.isLocationPermissionGranted, original.isLocationPermissionGranted);
     });
+
+    test('fromJson creates UserEntity from JSON', () {
+      final json = {
+        'userId': 'u5',
+        'firstName': 'Charlie',
+        'lastName': 'Chaplin',
+        'isLocationPermissionGranted': false,
+        'favoriteIds': ['car1', 'car2'],
+        'email': 'charlie@gmail.com',
+        'password': 'secret',
+        'lastSeenCar': null,
+        'region': 'us',
+        'createdIds': ['id1'],
+        'avatarImageSrc': 'http://img.com/avatar.png',
+        'viewedIds': ['car3'],
+      };
+
+      final entity = UserEntity.fromJson(json);
+
+      expect(entity.userId, 'u5');
+      expect(entity.firstName, 'Charlie');
+      expect(entity.lastName, 'Chaplin');
+      expect(entity.isLocationPermissionGranted, false);
+      expect(entity.favoriteIds, ['car1', 'car2']);
+      expect(entity.email, 'charlie@gmail.com');
+      expect(entity.password, 'secret');
+      expect(entity.lastSeenCar, isNull);
+      expect(entity.region, 'us');
+      expect(entity.createdIds, ['id1']);
+      expect(entity.avatarImageSrc, 'http://img.com/avatar.png');
+      expect(entity.viewedIds, ['car3']);
+    });
   });
 }
