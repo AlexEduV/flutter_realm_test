@@ -18,6 +18,7 @@ import 'package:test_futter_project/presentation/widgets/gifs_picker_bottom_shee
 
 import '../presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 
+//todo: the file needs an architecture review and maybe refactoring
 class DialogHelper {
   static void showConfirmationDialog(
     BuildContext context, {
