@@ -12,7 +12,7 @@ import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_sta
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_futter_project/presentation/widgets/gifs_picker_bottom_sheet.dart';
+import 'package:test_futter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 
 import '../../common/extensions/context_extension_test.mocks.dart';
 import '../../utils/app_router_test.mocks.dart';
