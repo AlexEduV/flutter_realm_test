@@ -5,16 +5,16 @@ import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../../common/app_colors.dart';
-import '../../common/app_dimensions.dart';
-import '../../common/app_text_styles.dart';
-import '../../common/enums/message_status.dart';
-import '../../domain/models/message_model.dart';
-import '../../l10n/l10n_keys.dart';
-import '../bloc/home/inbox_page/inbox_page_cubit.dart';
-import '../bloc/messages/messages_page_cubit.dart';
-import '../bloc/messages/messages_page_state.dart';
-import '../bloc/user/user_data_cubit.dart';
+import '../../../common/app_colors.dart';
+import '../../../common/app_dimensions.dart';
+import '../../../common/app_text_styles.dart';
+import '../../../common/enums/message_status.dart';
+import '../../../domain/models/message_model.dart';
+import '../../../l10n/l10n_keys.dart';
+import '../../bloc/home/inbox_page/inbox_page_cubit.dart';
+import '../../bloc/messages/messages_page_cubit.dart';
+import '../../bloc/messages/messages_page_state.dart';
+import '../../bloc/user/user_data_cubit.dart';
 
 class GifsPickerBottomSheet extends StatefulWidget {
   const GifsPickerBottomSheet({super.key});
