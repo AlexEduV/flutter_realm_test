@@ -17,7 +17,7 @@ import 'package:test_futter_project/presentation/widgets/dialogs/gifs_picker_bot
 import 'package:test_futter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
 
 class DialogHelper {
-  static void showConfirmationDialog(
+  static Future<void> showConfirmationDialog(
     BuildContext context, {
     required String title,
     required String description,
@@ -26,8 +26,8 @@ class DialogHelper {
     required String cancelButtonTitle,
     bool isDeletion = true,
     VoidCallback? onCancel,
-  }) {
-    showDialog(
+  }) async {
+    await showDialog(
       context: context,
       builder: (BuildContext context) {
         return ConfirmationDialog(
@@ -43,7 +43,7 @@ class DialogHelper {
     );
   }
 
-  static void showEditDialog(
+  static Future<void> showEditDialog(
     BuildContext context, {
     required String title,
     required String initialValue,
@@ -53,8 +53,8 @@ class DialogHelper {
     VoidCallback? onCancel,
     bool Function(String)? validationCallback,
     TextInputType textInputType = TextInputType.text,
-  }) {
-    showDialog(
+  }) async {
+    await showDialog(
       context: context,
       builder: (BuildContext context) {
         final textEditingController = TextEditingController();
@@ -137,7 +137,7 @@ class DialogHelper {
     );
   }
 
-  static void showEditPasswordDialog(
+  static Future<void> showEditPasswordDialog(
     BuildContext context, {
     required String title,
     required String initialValue,
@@ -147,8 +147,8 @@ class DialogHelper {
     VoidCallback? onCancel,
     bool Function(String)? validationCallback,
     bool isPasswordField = false,
-  }) {
-    showDialog(
+  }) async {
+    await showDialog(
       context: context,
       builder: (BuildContext context) {
         final textEditingController = TextEditingController();
