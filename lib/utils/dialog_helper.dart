@@ -8,7 +8,6 @@ import 'package:test_futter_project/presentation/widgets/dialogs/edit_personal_i
 import 'package:test_futter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
 
-//todo: the file needs an architecture review and maybe refactoring
 class DialogHelper {
   static Future<void> showConfirmationDialog(
     BuildContext context, {
