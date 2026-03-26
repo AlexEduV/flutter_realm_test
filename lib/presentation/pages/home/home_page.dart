@@ -36,7 +36,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> exploreListKey = GlobalKey<AnimatedListState>();
   final PageController _pageController = PageController();
   int _bottomBarIndexDiff = 0;
+
   final ScrollController scrollController = ScrollController();
+  bool _didLockScrollOnce = false;
 
   @override
   void initState() {
@@ -138,7 +140,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      scrollController.jumpTo(offsetBefore);
+      if (!_didLockScrollOnce) {
+        scrollController.jumpTo(offsetBefore);
+        _didLockScrollOnce = true;
+      }
     });
   }
 }
