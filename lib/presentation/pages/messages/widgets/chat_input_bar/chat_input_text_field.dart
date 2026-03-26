@@ -44,16 +44,16 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
           scale: textFieldScale,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          child: AppSemantics(
-            label: AppSemanticsLabels.chatInputBarMessageTextField,
-            textField: true,
-            child: TextFormField(
-              onTap: onTextFieldTap,
-              focusNode: widget.focusNode,
-              controller: widget.textEditingController,
-              decoration: InputDecoration(
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.all(AppDimensions.minorM),
+          child: TextFormField(
+            onTap: onTextFieldTap,
+            focusNode: widget.focusNode,
+            controller: widget.textEditingController,
+            decoration: InputDecoration(
+              suffixIcon: Padding(
+                padding: const EdgeInsets.all(AppDimensions.minorM),
+                child: AppSemantics(
+                  button: true,
+                  label: AppSemanticsLabels.chatInputBarGifButton,
                   child: IconButton(
                     onLongPress: () {
                       //this blocks refocus on field when long pressing the button
@@ -70,44 +70,43 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
                     },
                   ),
                 ),
-                hintText: context.tr(L10nKeys.messageBarHint),
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: AppDimensions.normalM,
-                  horizontal: AppDimensions.normalS,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: textFieldBorderRadius,
-                  borderSide: const BorderSide(color: AppColors.accentColor),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: textFieldBorderRadius,
-                  borderSide: BorderSide(color: Colors.grey.shade300),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: textFieldBorderRadius,
-                  borderSide: const BorderSide(
-                    color: AppColors.accentColor,
-                    width: AppDimensions.minorXS,
-                  ),
-                ),
-                fillColor: Colors.white,
-                filled: true,
-                errorBorder: OutlineInputBorder(
-                  borderRadius: textFieldBorderRadius,
-                  borderSide: const BorderSide(color: Colors.red),
+              ),
+              hintText: context.tr(L10nKeys.messageBarHint),
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: AppDimensions.normalM,
+                horizontal: AppDimensions.normalS,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: textFieldBorderRadius,
+                borderSide: const BorderSide(color: AppColors.accentColor),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: textFieldBorderRadius,
+                borderSide: BorderSide(color: Colors.grey.shade300),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: textFieldBorderRadius,
+                borderSide: const BorderSide(
+                  color: AppColors.accentColor,
+                  width: AppDimensions.minorXS,
                 ),
               ),
-              style: AppTextStyles.zonaPro16,
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              onChanged: (newValue) =>
-                  context.read<MessagesPageCubit>().updateMessageText(newValue),
-              onFieldSubmitted: (value) {
-                if (value.isEmpty) return;
-
-                widget.sendMessage?.call(context, state);
-              },
+              fillColor: Colors.white,
+              filled: true,
+              errorBorder: OutlineInputBorder(
+                borderRadius: textFieldBorderRadius,
+                borderSide: const BorderSide(color: Colors.red),
+              ),
             ),
+            style: AppTextStyles.zonaPro16,
+            keyboardType: TextInputType.multiline,
+            maxLines: null,
+            onChanged: (newValue) => context.read<MessagesPageCubit>().updateMessageText(newValue),
+            onFieldSubmitted: (value) {
+              if (value.isEmpty) return;
+
+              widget.sendMessage?.call(context, state);
+            },
           ),
         );
       },

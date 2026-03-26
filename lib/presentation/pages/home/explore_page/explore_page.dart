@@ -97,36 +97,36 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                       child: const Center(child: CircularProgressIndicator()),
                     ),
                   );
-                } else {
-                  final cars = state.cars;
-                  return SliverPadding(
-                    padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
-                    sliver: BlocBuilder<UserDataCubit, UserDataState>(
-                      buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
-                      builder: (context, userState) {
-                        return SliverList(
-                          key: cars.isEmpty ? const ValueKey('empty') : widget.listKey,
-                          delegate: SliverChildBuilderDelegate((context, index) {
-                            final car = cars[index];
-                            return TweenAnimationBuilder<double>(
-                              tween: Tween(begin: 0, end: 1),
-                              duration: Duration(milliseconds: 300 + index * 200),
-                              builder: (context, value, child) {
-                                return Opacity(
-                                  opacity: value,
-                                  child: Transform.scale(
-                                    scale: 0.95 + 0.05 * value,
-                                    child: _buildItem(CarExtensions.fromEntity(car), index),
-                                  ),
-                                );
-                              },
-                            );
-                          }, childCount: cars.length),
-                        );
-                      },
-                    ),
-                  );
                 }
+
+                final cars = state.cars;
+                return SliverPadding(
+                  padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
+                  sliver: BlocBuilder<UserDataCubit, UserDataState>(
+                    buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
+                    builder: (context, userState) {
+                      return SliverList(
+                        key: cars.isEmpty ? const ValueKey('empty') : widget.listKey,
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          final car = cars[index];
+                          return TweenAnimationBuilder<double>(
+                            tween: Tween(begin: 0, end: 1),
+                            duration: Duration(milliseconds: 300 + index * 200),
+                            builder: (context, value, child) {
+                              return Opacity(
+                                opacity: value,
+                                child: Transform.scale(
+                                  scale: 0.95 + 0.05 * value,
+                                  child: _buildItem(CarExtensions.fromEntity(car), index),
+                                ),
+                              );
+                            },
+                          );
+                        }, childCount: cars.length),
+                      );
+                    },
+                  ),
+                );
               },
             ),
           ],

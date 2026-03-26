@@ -75,7 +75,6 @@ class _LoginFormState extends State<LoginForm> {
                   );
                 }
               },
-              semanticsLabel: AppSemanticsLabels.emailTextField,
             ),
 
             const SizedBox(height: 20),
@@ -113,7 +112,6 @@ class _LoginFormState extends State<LoginForm> {
                 }
               },
               maxLength: state.passwordFieldParams?.maxLength,
-              semanticsLabel: AppSemanticsLabels.passwordTextField,
               trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
             ),
 

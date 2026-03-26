@@ -45,6 +45,7 @@ class VehicleSpecsWidget extends StatelessWidget {
                 builder: (context, state) {
                   return AppSemantics(
                     button: true,
+                    expanded: state.isVehicleSpecsExpanded,
                     label: AppSemanticsLabels.detailsPageVehicleSpecsExpandButton,
                     child: IconButton(
                       onPressed: () => context
@@ -112,17 +113,21 @@ class VehicleSpecsWidget extends StatelessWidget {
                                   children: [
                                     SpecificationItem(
                                       title: context.tr(L10nKeys.vehicleSpecificationMileage),
-                                      subtitle: car.kilometers.toString(),
+                                      subtitle:
+                                          (car.kilometers ?? context.tr(L10nKeys.unknownLabel))
+                                              .toString(),
                                     ),
 
                                     SpecificationItem(
                                       title: context.tr(L10nKeys.vehicleSpecificationYear),
-                                      subtitle: car.year ?? '',
+                                      subtitle: car.year ?? context.tr(L10nKeys.unknownLabel),
                                     ),
 
                                     SpecificationItem(
                                       title: context.tr(L10nKeys.vehicleSpecificationColor),
-                                      subtitle: car.color ?? ''.capitalizeFirst(),
+                                      subtitle:
+                                          car.color?.capitalizeFirst() ??
+                                          context.tr(L10nKeys.unknownLabel),
                                     ),
                                   ],
                                 ),

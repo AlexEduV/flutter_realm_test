@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
+import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
+import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
@@ -110,17 +112,19 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
     userDataCubit.addCarIdToCreated(newCarId);
 
+    //todo: need a new form page to input the data manually
     serviceLocator<AddCarUseCase>().call(
       CarEntity(
         carId: newCarId,
         model: 'Model Y',
         manufacturer: 'Tesla',
         isVerified: false,
-        type: 'car',
+        type: CarType.car.name,
         bodyType: BodyType.sedan.name,
         fuelType: FuelType.ev.name,
         transmissionType: TransmissionType.automatic.name,
         color: 'White',
+        owner: OwnerEntity.fromUser(userDataCubit.user),
       ),
     );
 

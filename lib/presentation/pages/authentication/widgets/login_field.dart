@@ -19,7 +19,6 @@ class LoginField extends StatelessWidget {
   final Function()? onSuffixIconPressed;
   final Function(bool)? onFocusChange;
   final Function(String? value) onChanged;
-  final String? semanticsLabel;
   final String? trailingActionSemanticsLabel;
   final int? maxLength;
 
@@ -38,7 +37,6 @@ class LoginField extends StatelessWidget {
     this.isObscureText = false,
     this.maxLength,
     this.onSuffixIconPressed,
-    this.semanticsLabel,
     this.trailingActionSemanticsLabel,
     super.key,
   });
@@ -49,51 +47,47 @@ class LoginField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
       child: Focus(
         onFocusChange: onFocusChange,
-        child: AppSemantics(
-          textField: true,
-          label: semanticsLabel ?? '',
-          child: TextFormField(
-            maxLength: maxLength,
-            focusNode: focusNode,
-            controller: textEditingController,
-            decoration: InputDecoration(
-              errorText: errorText,
-              labelText: labelText,
-              hintText: hintText,
-              filled: true,
-              fillColor: Colors.white,
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: AppDimensions.normalM,
-                horizontal: 20.0,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                borderSide: const BorderSide(color: AppColors.accentColor),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                borderSide: BorderSide(color: Colors.grey.shade300),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                borderSide: const BorderSide(
-                  color: AppColors.accentColor,
-                  width: AppDimensions.minorXS,
-                ),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                borderSide: const BorderSide(color: Colors.red),
-              ),
-              prefixIcon: Icon(leadingIcon, color: AppColors.accentColor),
-              suffixIcon: onSuffixIconPressed != null ? getFieldSuffixWidget() : null,
+        child: TextFormField(
+          maxLength: maxLength,
+          focusNode: focusNode,
+          controller: textEditingController,
+          decoration: InputDecoration(
+            errorText: errorText,
+            labelText: labelText,
+            hintText: hintText,
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: AppDimensions.normalM,
+              horizontal: 20.0,
             ),
-            keyboardType: textInputType,
-            textInputAction: textInputAction,
-            obscureText: isObscureText,
-            onChanged: onChanged,
-            onEditingComplete: onEditingComplete,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppDimensions.normalS),
+              borderSide: const BorderSide(color: AppColors.accentColor),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppDimensions.normalS),
+              borderSide: BorderSide(color: Colors.grey.shade300),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppDimensions.normalS),
+              borderSide: const BorderSide(
+                color: AppColors.accentColor,
+                width: AppDimensions.minorXS,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppDimensions.normalS),
+              borderSide: const BorderSide(color: Colors.red),
+            ),
+            prefixIcon: Icon(leadingIcon, color: AppColors.accentColor),
+            suffixIcon: onSuffixIconPressed != null ? getFieldSuffixWidget() : null,
           ),
+          keyboardType: textInputType,
+          textInputAction: textInputAction,
+          obscureText: isObscureText,
+          onChanged: onChanged,
+          onEditingComplete: onEditingComplete,
         ),
       ),
     );

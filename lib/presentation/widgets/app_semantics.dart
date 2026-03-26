@@ -7,6 +7,7 @@ class AppSemantics extends StatelessWidget {
   final bool? enabled;
   final bool? isChecked;
   final bool? textField;
+  final bool? expanded;
 
   final Widget child;
 
@@ -18,6 +19,7 @@ class AppSemantics extends StatelessWidget {
     this.button,
     this.enabled,
     this.textField,
+    this.expanded,
     super.key,
   });
 
@@ -30,6 +32,7 @@ class AppSemantics extends StatelessWidget {
         button: button,
         selected: isSelected,
         checked: isChecked,
+        expanded: expanded,
         child: child,
       ),
     );

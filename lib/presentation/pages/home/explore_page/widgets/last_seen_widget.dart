@@ -52,15 +52,15 @@ class LastSeenWidget extends StatelessWidget {
                   ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: AppDimensions.normalL,
-                    right: AppDimensions.normalL,
-                    top: AppDimensions.minorM,
-                  ),
-                  child: AppSemantics(
-                    label: AppSemanticsLabels.lastSeenSectionItem,
-                    button: true,
+                AppSemantics(
+                  label: AppSemanticsLabels.lastSeenSectionItem,
+                  button: true,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: AppDimensions.normalL,
+                      right: AppDimensions.normalL,
+                      top: AppDimensions.minorM,
+                    ),
                     child: InkWell(
                       onTap: () => AppRouter.goToDetails(
                         from: DetailsPageSource.explore,

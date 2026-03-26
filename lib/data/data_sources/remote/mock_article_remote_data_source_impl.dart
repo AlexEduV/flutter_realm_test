@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 
-import '../../../common/app_constants.dart';
+import '../../../common/api_constants.dart';
 import '../../../domain/data_sources/remote/article_remote_data_source.dart';
 import '../../../domain/models/api_response.dart';
 
@@ -23,7 +23,7 @@ class MockArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
           .toList(),
     );
 
-    if (response.status != AppConstants.apiSuccessStatus) {
+    if (response.status != ApiConstants.apiSuccessStatus) {
       //todo: add logs;
       return [];
     }
