@@ -6,19 +6,36 @@ import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/owner_widget.dart';
 
+import '../../../../utils/app_router_test.mocks.dart';
 import 'owner_widget_test.mocks.dart';
 
 @GenerateMocks([GetConversationByOwnerIdUseCase])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
   final mockGetConversationByOwnerUseCase = MockGetConversationByOwnerIdUseCase();
+  final mockUserDataCubit = MockUserDataCubit();
 
   setUp(() {
+    when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(mockUserDataCubit.state).thenReturn(const UserDataState());
+    when(mockUserDataCubit.user).thenReturn(
+      UserEntity.initial(
+        userId: '1',
+        firstName: 'Alexander',
+        lastName: 'Banes',
+        email: 'banes@mock.com',
+        password: 'passowrd',
+      ),
+    );
+
     serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
     serviceLocator.registerLazySingleton<GetConversationByOwnerIdUseCase>(
       () => mockGetConversationByOwnerUseCase,
@@ -53,8 +70,11 @@ void main() {
     );
 
     await tester.pumpWidget(
-      BlocProvider<AppLocalisationsCubit>.value(
-        value: appLocalisationsCubit,
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+        ],
         child: MaterialApp(
           home: Scaffold(body: OwnerWidget(car: car)),
         ),
@@ -93,8 +113,11 @@ void main() {
 
     // Override OwnerWidget to inject a callback for testing
     await tester.pumpWidget(
-      BlocProvider<AppLocalisationsCubit>.value(
-        value: appLocalisationsCubit,
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+        ],
         child: MaterialApp(
           home: Scaffold(
             body: Builder(
