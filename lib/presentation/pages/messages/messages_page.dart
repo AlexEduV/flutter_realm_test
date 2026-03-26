@@ -38,6 +38,8 @@ class MessagesPage extends StatefulWidget {
 }
 
 class _MessagesPageState extends State<MessagesPage> {
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+
   final messageInputTextController = TextEditingController();
   final messageInputFocusNode = FocusNode();
 
@@ -98,6 +100,7 @@ class _MessagesPageState extends State<MessagesPage> {
           right: AppDimensions.minorL,
         ),
         child: ChatInputBar(
+          listKey: _listKey,
           onMessageSent: scrollToBottom,
           messageTextController: messageInputTextController,
           messageFocusNode: messageInputFocusNode,
@@ -114,14 +117,15 @@ class _MessagesPageState extends State<MessagesPage> {
             return const EmptyConversationPlaceholder();
           }
 
-          return ListView.builder(
+          return AnimatedList(
+            key: _listKey,
             reverse: true,
             controller: listViewScrollController,
             padding: const EdgeInsets.only(
               bottom: AppDimensions.bottomMessageBarHeight + AppDimensions.majorXL,
             ),
-            itemCount: messages.length,
-            itemBuilder: (context, index) {
+            initialItemCount: messages.length,
+            itemBuilder: (context, index, animation) {
               final message = messages[index];
               final isExpanded = shouldExpandMessage(index, messages);
               final sender = users[message.senderId];
@@ -129,38 +133,41 @@ class _MessagesPageState extends State<MessagesPage> {
               final showDivider = shouldShowDivider(index, messages);
 
               // Build a list of widgets: divider + message item
-              return Column(
-                children: [
-                  if (showDivider) ...[
+              return SizeTransition(
+                sizeFactor: animation,
+                child: Column(
+                  children: [
+                    if (showDivider) ...[
+                      AppSemantics(
+                        label: AppSemanticsLabels.dateDivider,
+                        child: DateDivider(
+                          text: DateFormatter.formatMessageDividerDate(message.date),
+                        ),
+                      ),
+                    ],
+
                     AppSemantics(
-                      label: AppSemanticsLabels.dateDivider,
-                      child: DateDivider(
-                        text: DateFormatter.formatMessageDividerDate(message.date),
+                      label: AppSemanticsLabels.messageListItem,
+                      child: MessageItem(
+                        senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
+                        imageSrc: sender?.avatarImageSrc,
+                        message: message.payload,
+                        time: DateFormatter.formatSmartDate(message.date),
+                        isMyMessage: sender?.userId != owner.id,
+                        withExtendedData: isExpanded,
+                        messageStatus: message.messageStatus,
+                        conversationId: conversation.conversationId,
+                        messageIndex: index,
+                        imageMetaData: message.payload.contains('url')
+                            ? SentImageMetaDataModel.fromJson(jsonDecode(message.payload))
+                            : null,
+                        attachmentMetaData: message.payload.contains('file')
+                            ? SentAttachmentMetaDataModel.fromJson(jsonDecode(message.payload))
+                            : null,
                       ),
                     ),
                   ],
-
-                  AppSemantics(
-                    label: AppSemanticsLabels.messageListItem,
-                    child: MessageItem(
-                      senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
-                      imageSrc: sender?.avatarImageSrc,
-                      message: message.payload,
-                      time: DateFormatter.formatSmartDate(message.date),
-                      isMyMessage: sender?.userId != owner.id,
-                      withExtendedData: isExpanded,
-                      messageStatus: message.messageStatus,
-                      conversationId: conversation.conversationId,
-                      messageIndex: index,
-                      imageMetaData: message.payload.contains('url')
-                          ? SentImageMetaDataModel.fromJson(jsonDecode(message.payload))
-                          : null,
-                      attachmentMetaData: message.payload.contains('file')
-                          ? SentAttachmentMetaDataModel.fromJson(jsonDecode(message.payload))
-                          : null,
-                    ),
-                  ),
-                ],
+                ),
               );
             },
           );

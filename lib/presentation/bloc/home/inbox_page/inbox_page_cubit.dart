@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
@@ -19,7 +20,11 @@ class InboxPageCubit extends Cubit<InboxPageState> {
     emit(state.copyWith(conversations: conversationsList));
   }
 
-  Future<void> sendMessage(String? conversationId, MessageModel message) async {
+  Future<void> sendMessage(
+    String? conversationId,
+    MessageModel message,
+    GlobalKey<AnimatedListState> listKey,
+  ) async {
     if (conversationId == null) return;
 
     final conversation = state.conversations.firstWhereOrNull(
@@ -36,6 +41,7 @@ class InboxPageCubit extends Cubit<InboxPageState> {
         .toList();
 
     emit(state.copyWith(conversations: updatedConversations));
+    listKey.currentState?.insertItem(0, duration: const Duration(milliseconds: 300));
 
     //todo: save to local storage cache as well
     await _saveConversationsUseCase.call(updatedConversations);

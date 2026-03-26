@@ -19,7 +19,9 @@ import '../../bloc/messages/messages_page_state.dart';
 import '../../bloc/user/user_data_cubit.dart';
 
 class GifsPickerBottomSheet extends StatefulWidget {
-  const GifsPickerBottomSheet({super.key});
+  final GlobalKey<AnimatedListState> listKey;
+
+  const GifsPickerBottomSheet({required this.listKey, super.key});
 
   @override
   State<GifsPickerBottomSheet> createState() => _GifsPickerBottomSheetState();
@@ -171,6 +173,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
         payload: payload,
         date: DateTime.now(),
       ),
+      widget.listKey,
     );
 
     context.read<MessagesPageCubit>().updateSelectedGif(payload);
