@@ -22,8 +22,9 @@ import '../../../bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePage extends StatefulWidget {
   final GlobalKey<AnimatedListState> listKey;
+  final ScrollController scrollController;
 
-  const ExplorePage({required this.listKey, super.key});
+  const ExplorePage({required this.listKey, required this.scrollController, super.key});
 
   @override
   State<ExplorePage> createState() => _ExplorePageState();
@@ -41,6 +42,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
       child: Scaffold(
         backgroundColor: AppColors.scaffoldColor,
         body: CustomScrollView(
+          controller: widget.scrollController,
           slivers: [
             BlocBuilder<ExplorePageCubit, ExplorePageState>(
               builder: (context, exploreState) {

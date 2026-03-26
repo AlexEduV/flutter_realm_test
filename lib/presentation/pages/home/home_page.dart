@@ -37,6 +37,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final PageController _pageController = PageController();
   int _bottomBarIndexDiff = 0;
 
+  final ScrollController scrollController = ScrollController();
+  bool _didLockScrollOnce = false;
+
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
@@ -86,7 +89,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            ExplorePage(listKey: exploreListKey),
+            ExplorePage(listKey: exploreListKey, scrollController: scrollController),
             const FavoritesPage(),
             const InboxPage(),
             const AccountPage(),
@@ -112,25 +115,38 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
     userDataCubit.addCarIdToCreated(newCarId);
 
+    final currentCars = serviceLocator<GetAllCarsUseCase>().call();
+    final insertionIndex = currentCars.length;
+
     //todo: need a new form page to input the data manually
-    serviceLocator<AddCarUseCase>().call(
-      CarEntity(
-        carId: newCarId,
-        model: 'Model Y',
-        manufacturer: 'Tesla',
-        isVerified: false,
-        type: CarType.car.name,
-        bodyType: BodyType.sedan.name,
-        fuelType: FuelType.ev.name,
-        transmissionType: TransmissionType.automatic.name,
-        color: 'White',
-        owner: OwnerEntity.fromUser(userDataCubit.user),
-      ),
+    final car = CarEntity(
+      carId: newCarId,
+      model: 'Model Y',
+      manufacturer: 'Tesla',
+      isVerified: false,
+      type: CarType.car.name,
+      bodyType: BodyType.sedan.name,
+      fuelType: FuelType.ev.name,
+      transmissionType: TransmissionType.automatic.name,
+      color: 'White',
+      owner: OwnerEntity.fromUser(userDataCubit.user),
     );
 
-    final cars = serviceLocator<GetAllCarsUseCase>().call();
+    serviceLocator<AddCarUseCase>().call(car);
 
-    exploreListKey.currentState?.insertItem(cars.length - 1);
-    context.read<ExplorePageCubit>().updateCars(cars);
+    final offsetBefore = scrollController.offset;
+
+    exploreListKey.currentState?.insertItem(insertionIndex);
+    context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
+
+    /// this is needed for the initial scroll anchoring of the main scroll view on manual insert
+    /// the next tries are all fine, but on first try the scroll position does not exist, so the
+    /// list scrolled up or down to the offset before the insertion.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_didLockScrollOnce) {
+        scrollController.jumpTo(offsetBefore);
+        _didLockScrollOnce = true;
+      }
+    });
   }
 }
