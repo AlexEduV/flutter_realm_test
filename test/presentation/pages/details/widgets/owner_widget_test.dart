@@ -94,6 +94,47 @@ void main() {
     expect(find.widgetWithText(ElevatedButton, 'Contact'), findsOneWidget);
   });
 
+  testWidgets('does not display contact button, when the user is the owner', (
+    WidgetTester tester,
+  ) async {
+    final car = CarEntity(
+      carId: '1',
+      model: 'Model S',
+      manufacturer: 'Tesla',
+      isVerified: true,
+      type: 'Car',
+      bodyType: 'sedan',
+      fuelType: 'electric',
+      transmissionType: 'automatic',
+      owner: OwnerEntity(id: '1', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []),
+      distanceTo: 42,
+    );
+
+    await tester.pumpWidget(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+        ],
+        child: MaterialApp(
+          home: Scaffold(body: OwnerWidget(car: car)),
+        ),
+      ),
+    );
+
+    // Owner name
+    expect(find.text('Elon Musk'), findsOneWidget);
+
+    // Owner type
+    expect(find.text('Owner'), findsOneWidget);
+
+    // Distance
+    expect(find.text('42 km away'), findsOneWidget);
+
+    // Contact button
+    expect(find.widgetWithText(ElevatedButton, 'Contact'), findsNothing);
+  });
+
   testWidgets('contact button can be tapped', (WidgetTester tester) async {
     //bool tapped = false;
     final car = CarEntity(
