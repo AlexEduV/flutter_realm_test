@@ -76,9 +76,6 @@ class InboxListItem extends StatelessWidget {
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: AppTextStyles.zonaPro16Grey.copyWith(
-                                fontWeight: FontWeight.w400,
-                              ),
                             ),
                           ),
                         ],
