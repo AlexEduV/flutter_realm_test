@@ -132,10 +132,15 @@ class _MessagesPageState extends State<MessagesPage> {
 
               final showDivider = shouldShowDivider(index, messages);
 
+              final curvedAnimation = CurvedAnimation(
+                parent: animation,
+                curve: Curves.fastOutSlowIn,
+              );
+
               // Build a list of widgets: divider + message item
               return SizeTransition(
                 axisAlignment: -1.0,
-                sizeFactor: animation,
+                sizeFactor: curvedAnimation,
                 child: Column(
                   children: [
                     if (showDivider) ...[
