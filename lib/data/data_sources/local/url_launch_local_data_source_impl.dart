@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../common/app_constants.dart';
+import '../../../common/api_constants.dart';
 import '../../../domain/data_sources/local/url_launch_local_data_source.dart';
 
 class UrlLaunchLocalDataSourceImpl implements UrlLaunchLocalDataSource {
   @override
   Future<void> openUrl(String? url) async {
-    final link = Uri.parse('${AppConstants.webHost}${url ?? ''}');
+    final link = Uri.parse('${ApiConstants.webHost}${url ?? ''}');
     try {
       await launchUrl(link);
     } catch (e) {

@@ -7,7 +7,7 @@ import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/users/save_users_use_case.dart';
 
-import '../../../common/app_constants.dart';
+import '../../../common/api_constants.dart';
 import '../../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../../domain/models/api_response.dart';
 
@@ -24,7 +24,7 @@ class MockOwnersRemoteDataSource implements OwnersRemoteDataSource {
           (data as List).map((item) => OwnerEntity.fromJson(item as Map<String, dynamic>)).toList(),
     );
 
-    if (response.status != AppConstants.apiSuccessStatus) {
+    if (response.status != ApiConstants.apiSuccessStatus) {
       //todo: add logs;
       return [];
     }

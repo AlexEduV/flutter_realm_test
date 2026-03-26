@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
@@ -11,6 +10,7 @@ import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_u
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
+import '../../../../../common/api_constants.dart';
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_text_styles.dart';
@@ -85,11 +85,11 @@ class LocationSettingsPage extends StatelessWidget {
                 children: [
                   FooterText(
                     text: context.tr(L10nKeys.locationSettingsPrivacyItemConditions),
-                    url: AppConstants.termsAndConditionsUrl,
+                    url: ApiConstants.termsAndConditionsUrl,
                   ),
                   FooterText(
                     text: context.tr(L10nKeys.locationSettingsPrivacyItemPrivacyPolicy),
-                    url: AppConstants.privacyPolicyUrl,
+                    url: ApiConstants.privacyPolicyUrl,
                   ),
                 ],
               ),
