@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final GlobalKey<AnimatedListState> exploreListKey = GlobalKey<AnimatedListState>();
   final PageController _pageController = PageController();
   int _bottomBarIndexDiff = 0;
+  final ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
@@ -86,7 +87,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            ExplorePage(listKey: exploreListKey),
+            ExplorePage(listKey: exploreListKey, scrollController: scrollController),
             const FavoritesPage(),
             const InboxPage(),
             const AccountPage(),
@@ -131,7 +132,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
     serviceLocator<AddCarUseCase>().call(car);
 
+    final offsetBefore = scrollController.offset;
+
     exploreListKey.currentState?.insertItem(insertionIndex);
     context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController.jumpTo(offsetBefore);
+    });
   }
 }
