@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
@@ -59,12 +61,16 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(context.tr(L10nKeys.explorePageTitle), style: AppTextStyles.zonaPro30White),
-                  IconButton(
-                    onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
-                    icon: const Icon(
-                      Icons.search,
-                      size: AppDimensions.appBarIconSize,
-                      color: Colors.white,
+                  AppSemantics(
+                    button: true,
+                    label: AppSemanticsLabels.homePageSearchButton,
+                    child: IconButton(
+                      onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
+                      icon: const Icon(
+                        Icons.search,
+                        size: AppDimensions.appBarIconSize,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],
