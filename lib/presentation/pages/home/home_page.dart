@@ -112,25 +112,26 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
     userDataCubit.addCarIdToCreated(newCarId);
 
+    final currentCars = serviceLocator<GetAllCarsUseCase>().call();
+    final insertionIndex = currentCars.length;
+
     //todo: need a new form page to input the data manually
-    serviceLocator<AddCarUseCase>().call(
-      CarEntity(
-        carId: newCarId,
-        model: 'Model Y',
-        manufacturer: 'Tesla',
-        isVerified: false,
-        type: CarType.car.name,
-        bodyType: BodyType.sedan.name,
-        fuelType: FuelType.ev.name,
-        transmissionType: TransmissionType.automatic.name,
-        color: 'White',
-        owner: OwnerEntity.fromUser(userDataCubit.user),
-      ),
+    final car = CarEntity(
+      carId: newCarId,
+      model: 'Model Y',
+      manufacturer: 'Tesla',
+      isVerified: false,
+      type: CarType.car.name,
+      bodyType: BodyType.sedan.name,
+      fuelType: FuelType.ev.name,
+      transmissionType: TransmissionType.automatic.name,
+      color: 'White',
+      owner: OwnerEntity.fromUser(userDataCubit.user),
     );
 
-    final cars = serviceLocator<GetAllCarsUseCase>().call();
+    serviceLocator<AddCarUseCase>().call(car);
 
-    exploreListKey.currentState?.insertItem(cars.length - 1);
-    context.read<ExplorePageCubit>().updateCars(cars);
+    exploreListKey.currentState?.insertItem(insertionIndex);
+    context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
   }
 }
