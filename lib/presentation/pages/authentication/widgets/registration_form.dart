@@ -76,7 +76,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   );
                 }
               },
-              semanticsLabel: AppSemanticsLabels.fullNameTextField,
             ),
 
             const SizedBox(height: 20),
@@ -109,7 +108,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   );
                 }
               },
-              semanticsLabel: AppSemanticsLabels.emailTextField,
             ),
 
             const SizedBox(height: 20),
@@ -145,7 +143,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 }
               },
               maxLength: state.passwordFieldParams?.maxLength,
-              semanticsLabel: AppSemanticsLabels.passwordTextField,
               trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
             ),
 
