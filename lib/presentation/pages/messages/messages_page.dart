@@ -134,6 +134,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
               // Build a list of widgets: divider + message item
               return SizeTransition(
+                axisAlignment: -1.0,
                 sizeFactor: animation,
                 child: Column(
                   children: [
