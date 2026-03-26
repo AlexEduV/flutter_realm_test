@@ -33,11 +33,11 @@ class CarListItem extends StatelessWidget {
         left: AppDimensions.normalL,
         right: AppDimensions.normalL,
       ),
-      child: AppSemantics(
-        label: AppSemanticsLabels.favoriteListItem,
-        child: Material(
-          borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-          color: Colors.white,
+      child: Material(
+        borderRadius: BorderRadius.circular(AppDimensions.normalXL),
+        color: Colors.white,
+        child: AppSemantics(
+          label: AppSemanticsLabels.favoriteListItem,
           child: InkWell(
             borderRadius: BorderRadius.circular(AppDimensions.normalXL),
             onTap: () => AppRouter.goToDetails(from: source, carId: car.carId),

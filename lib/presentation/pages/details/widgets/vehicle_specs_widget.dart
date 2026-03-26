@@ -45,6 +45,7 @@ class VehicleSpecsWidget extends StatelessWidget {
                 builder: (context, state) {
                   return AppSemantics(
                     button: true,
+                    expanded: state.isVehicleSpecsExpanded,
                     label: AppSemanticsLabels.detailsPageVehicleSpecsExpandButton,
                     child: IconButton(
                       onPressed: () => context
