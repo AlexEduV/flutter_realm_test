@@ -41,7 +41,7 @@ class InboxPageCubit extends Cubit<InboxPageState> {
         .toList();
 
     emit(state.copyWith(conversations: updatedConversations));
-    listKey.currentState?.insertItem(0, duration: const Duration(milliseconds: 300));
+    listKey.currentState?.insertItem(0, duration: const Duration(milliseconds: 200));
 
     //todo: save to local storage cache as well
     await _saveConversationsUseCase.call(updatedConversations);
