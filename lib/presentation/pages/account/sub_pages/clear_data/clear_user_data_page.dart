@@ -50,8 +50,8 @@ class ClearUserDataPage extends StatelessWidget {
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.clearViewHistoryItem),
                         description: state.viewedIds.isNotEmpty
-                            ? context.tr(L10nKeys.onLabel)
-                            : context.tr(L10nKeys.offLabel),
+                            ? context.tr(L10nKeys.activeStateLabel)
+                            : context.tr(L10nKeys.emptyStateLabel),
                         icon: Icons.history_outlined,
                         showEnabled: state.viewedIds.isNotEmpty,
                         onTap: state.viewedIds.isEmpty
@@ -79,8 +79,8 @@ class ClearUserDataPage extends StatelessWidget {
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.clearFavoritesItem),
                         description: state.favoriteIds.isNotEmpty
-                            ? context.tr(L10nKeys.onLabel)
-                            : context.tr(L10nKeys.offLabel),
+                            ? context.tr(L10nKeys.activeStateLabel)
+                            : context.tr(L10nKeys.emptyStateLabel),
                         icon: Icons.favorite_border_outlined,
                         showEnabled: state.favoriteIds.isNotEmpty,
                         onTap: state.favoriteIds.isEmpty
@@ -108,8 +108,8 @@ class ClearUserDataPage extends StatelessWidget {
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.clearMyItemsItem),
                         description: state.createdIds.isNotEmpty
-                            ? context.tr(L10nKeys.onLabel)
-                            : context.tr(L10nKeys.offLabel),
+                            ? context.tr(L10nKeys.activeStateLabel)
+                            : context.tr(L10nKeys.emptyStateLabel),
                         icon: Icons.checklist_outlined,
                         showEnabled: state.createdIds.isNotEmpty,
                         onTap: state.createdIds.isEmpty

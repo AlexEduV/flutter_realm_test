@@ -226,7 +226,9 @@
         "on": "On",
         "off": "Off",
         "confirm": "Confirm",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "activeState": "Active",
+        "emptyState": "Empty"
       },
       "dialogs": {
         "clearViewHistory": {

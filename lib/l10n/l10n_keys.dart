@@ -162,6 +162,8 @@ class L10nKeys {
   static const String shareButtonLabel = 'general.share';
   static const String onLabel = 'general.on';
   static const String offLabel = 'general.off';
+  static const String activeStateLabel = 'general.activeState';
+  static const String emptyStateLabel = 'general.emptyState';
   static const String confirmLabel = 'general.confirm';
   static const String cancelLabel = 'general.cancel';
 

@@ -226,7 +226,9 @@
         "on": "Acceso",
         "off": "Spento",
         "confirm": "Conferma",
-        "cancel": "Annulla"
+        "cancel": "Annulla",
+        "activeState": "Attivo",
+        "emptyState": "Vuoto"
       },
       "dialogs": {
         "clearViewHistory": {
