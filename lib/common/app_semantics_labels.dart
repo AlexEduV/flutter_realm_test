@@ -63,6 +63,7 @@ class AppSemanticsLabels {
   static const chatInputBarAttachmentButton = 'chatInputBarAttachmentButton';
   static const chatInputBarSendMessageButton = 'chatInputBarSendMessageButton';
   static const chatInputBarMessageTextField = 'chatInputBarMessageTextField';
+  static const chatInputBarGifButton = 'chatInputBarGifButton';
 
   static const messageListItem = 'messageListItem';
   static const messageItemText = 'messageItemText';
