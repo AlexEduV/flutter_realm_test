@@ -9,10 +9,10 @@ class InlineStyleTextController extends TextEditingController {
     required bool withComposing,
     TextStyle? style,
   }) {
-    return TextSpan(style: style, children: _parseText(text));
+    return TextSpan(style: style, children: parseText(text));
   }
 
-  List<TextSpan> _parseText(String text) {
+  static List<TextSpan> parseText(String text) {
     final spans = <TextSpan>[];
 
     final regex = RegExp(r'(_[^_]+_|-[^-]+-|\*[^*]+\*)');
