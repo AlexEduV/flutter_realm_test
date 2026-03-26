@@ -47,6 +47,7 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
           child: AppSemantics(
             label: AppSemanticsLabels.chatInputBarMessageTextField,
             textField: true,
+            //todo: widget in question
             child: TextFormField(
               onTap: onTextFieldTap,
               focusNode: widget.focusNode,
