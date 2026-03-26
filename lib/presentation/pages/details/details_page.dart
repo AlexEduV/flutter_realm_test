@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/common/api_constants.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
@@ -76,7 +77,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 await serviceLocator<ShareCubit>().share(
                   ShareParamsModel(
                     title: '${car?.manufacturer} ${car?.model} ${car?.year}',
-                    text: 'https://example.com/cars/?carId=${car?.carId}',
+                    text: '${ApiConstants.webHost}cars/?carId=${car?.carId}',
                   ),
                 );
               },
