@@ -106,6 +106,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                     buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                     builder: (context, userState) {
                       return SliverList(
+                        //todo: widget in question
                         key: cars.isEmpty ? const ValueKey('empty') : widget.listKey,
                         delegate: SliverChildBuilderDelegate((context, index) {
                           final car = cars[index];
