@@ -228,7 +228,8 @@
         "confirm": "Confirm",
         "cancel": "Cancel",
         "activeState": "Active",
-        "emptyState": "Empty"
+        "emptyState": "Empty",
+        "unknownState": "Unknown"
       },
       "dialogs": {
         "clearViewHistory": {

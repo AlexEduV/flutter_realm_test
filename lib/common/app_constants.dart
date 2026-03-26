@@ -4,7 +4,7 @@ class AppConstants {
   static const int homeTabInbox = 2;
   static const int homeTabAccount = 3;
 
-  static const bool showSemantics = true;
+  static const bool showSemantics = false;
 
   static final bool kIsTest = () {
     var inTest = false;
