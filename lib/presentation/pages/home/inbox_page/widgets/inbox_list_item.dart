@@ -9,6 +9,7 @@ import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
+import 'package:test_futter_project/presentation/controllers/inline_style_text_controller.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
@@ -67,13 +68,14 @@ class InboxListItem extends StatelessWidget {
                             style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                           ),
                           ExcludeSemantics(
-                            child: Text(
-                              '${formatMessageText(message?.payload, context)}\n',
+                            child: Text.rich(
+                              TextSpan(
+                                children: InlineStyleTextController.parseText(
+                                  '${formatMessageText(message?.payload, context)}\n',
+                                ),
+                              ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: AppTextStyles.zonaPro16Grey.copyWith(
-                                fontWeight: FontWeight.w400,
-                              ),
                             ),
                           ),
                         ],

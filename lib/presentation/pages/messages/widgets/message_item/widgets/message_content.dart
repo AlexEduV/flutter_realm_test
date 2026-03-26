@@ -8,6 +8,7 @@ import 'package:test_futter_project/presentation/pages/messages/widgets/message_
 import '../../../../../../common/app_colors.dart';
 import '../../../../../../common/app_dimensions.dart';
 import '../../../../../../common/app_semantics_labels.dart';
+import '../../../../../controllers/inline_style_text_controller.dart';
 import '../../../../../widgets/app_semantics.dart';
 
 class MessageContent extends StatelessWidget {
@@ -65,6 +66,9 @@ class MessageContent extends StatelessWidget {
       return MessageFileContent(attachmentMetaData: attachmentMetaData, isMyMessage: isMyMessage);
     }
 
-    return Text(message, style: isMyMessage ? const TextStyle().whiten() : null);
+    return Text.rich(
+      TextSpan(children: InlineStyleTextController.parseText(message)),
+      style: isMyMessage ? const TextStyle().whiten() : null,
+    );
   }
 }

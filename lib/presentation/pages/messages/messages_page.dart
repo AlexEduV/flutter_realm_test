@@ -18,6 +18,7 @@ import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_cas
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
+import 'package:test_futter_project/presentation/controllers/inline_style_text_controller.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/date_divider.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
@@ -40,7 +41,7 @@ class MessagesPage extends StatefulWidget {
 class _MessagesPageState extends State<MessagesPage> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
-  final messageInputTextController = TextEditingController();
+  final messageInputTextController = InlineStyleTextController();
   final messageInputFocusNode = FocusNode();
 
   final listViewScrollController = ScrollController();
