@@ -16,10 +16,12 @@ class ChatInputBar extends StatefulWidget {
   final TextEditingController messageTextController;
   final FocusNode messageFocusNode;
   final VoidCallback? onMessageSent;
+  final GlobalKey<AnimatedListState> listKey;
 
   const ChatInputBar({
     required this.messageTextController,
     required this.messageFocusNode,
+    required this.listKey,
     this.onMessageSent,
     super.key,
   });
@@ -52,6 +54,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
                 textEditingController: widget.messageTextController,
                 sendMessage: (context, state) => onSendMessageTap(context),
                 onMessageSent: widget.onMessageSent,
+                listKey: widget.listKey,
               ),
             ),
 
@@ -95,6 +98,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
         payload: message,
         date: DateTime.now(),
       ),
+      widget.listKey,
     );
 
     widget.onMessageSent?.call();

@@ -38,6 +38,8 @@ class MessagesPage extends StatefulWidget {
 }
 
 class _MessagesPageState extends State<MessagesPage> {
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+
   final messageInputTextController = TextEditingController();
   final messageInputFocusNode = FocusNode();
 
@@ -55,12 +57,12 @@ class _MessagesPageState extends State<MessagesPage> {
     conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
     owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       //todo: maybe I should save the scroll position on exit, and do not scroll initially, only on
       // adding a message
 
       //the controller is assigned in the initial frame, so the post frame is needed;
-      await scrollToBottom(isInit: true);
+      scrollToBottom(isInit: true);
     });
 
     super.initState();
@@ -98,6 +100,7 @@ class _MessagesPageState extends State<MessagesPage> {
           right: AppDimensions.minorL,
         ),
         child: ChatInputBar(
+          listKey: _listKey,
           onMessageSent: scrollToBottom,
           messageTextController: messageInputTextController,
           messageFocusNode: messageInputFocusNode,
@@ -114,53 +117,63 @@ class _MessagesPageState extends State<MessagesPage> {
             return const EmptyConversationPlaceholder();
           }
 
-          return ListView.builder(
+          return AnimatedList(
+            key: _listKey,
             reverse: true,
             controller: listViewScrollController,
             padding: const EdgeInsets.only(
               bottom: AppDimensions.bottomMessageBarHeight + AppDimensions.majorXL,
             ),
-            itemCount: messages.length,
-            itemBuilder: (context, index) {
+            initialItemCount: messages.length,
+            itemBuilder: (context, index, animation) {
               final message = messages[index];
               final isExpanded = shouldExpandMessage(index, messages);
               final sender = users[message.senderId];
 
               final showDivider = shouldShowDivider(index, messages);
 
+              final curvedAnimation = CurvedAnimation(
+                parent: animation,
+                curve: Curves.fastOutSlowIn,
+              );
+
               // Build a list of widgets: divider + message item
-              return Column(
-                children: [
-                  if (showDivider) ...[
+              return SizeTransition(
+                axisAlignment: -1.0,
+                sizeFactor: curvedAnimation,
+                child: Column(
+                  children: [
+                    if (showDivider) ...[
+                      AppSemantics(
+                        label: AppSemanticsLabels.dateDivider,
+                        child: DateDivider(
+                          text: DateFormatter.formatMessageDividerDate(message.date),
+                        ),
+                      ),
+                    ],
+
                     AppSemantics(
-                      label: AppSemanticsLabels.dateDivider,
-                      child: DateDivider(
-                        text: DateFormatter.formatMessageDividerDate(message.date),
+                      label: AppSemanticsLabels.messageListItem,
+                      child: MessageItem(
+                        senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
+                        imageSrc: sender?.avatarImageSrc,
+                        message: message.payload,
+                        time: DateFormatter.formatSmartDate(message.date),
+                        isMyMessage: sender?.userId != owner.id,
+                        withExtendedData: isExpanded,
+                        messageStatus: message.messageStatus,
+                        conversationId: conversation.conversationId,
+                        messageIndex: index,
+                        imageMetaData: message.payload.contains('url')
+                            ? SentImageMetaDataModel.fromJson(jsonDecode(message.payload))
+                            : null,
+                        attachmentMetaData: message.payload.contains('file')
+                            ? SentAttachmentMetaDataModel.fromJson(jsonDecode(message.payload))
+                            : null,
                       ),
                     ),
                   ],
-
-                  AppSemantics(
-                    label: AppSemanticsLabels.messageListItem,
-                    child: MessageItem(
-                      senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
-                      imageSrc: sender?.avatarImageSrc,
-                      message: message.payload,
-                      time: DateFormatter.formatSmartDate(message.date),
-                      isMyMessage: sender?.userId != owner.id,
-                      withExtendedData: isExpanded,
-                      messageStatus: message.messageStatus,
-                      conversationId: conversation.conversationId,
-                      messageIndex: index,
-                      imageMetaData: message.payload.contains('url')
-                          ? SentImageMetaDataModel.fromJson(jsonDecode(message.payload))
-                          : null,
-                      attachmentMetaData: message.payload.contains('file')
-                          ? SentAttachmentMetaDataModel.fromJson(jsonDecode(message.payload))
-                          : null,
-                    ),
-                  ),
-                ],
+                ),
               );
             },
           );
@@ -203,7 +216,7 @@ class _MessagesPageState extends State<MessagesPage> {
     return conversation;
   }
 
-  Future<void> scrollToBottom({bool isInit = false}) async {
+  void scrollToBottom({bool isInit = false}) {
     final controller = listViewScrollController;
 
     if (!controller.hasClients) return;
@@ -214,11 +227,5 @@ class _MessagesPageState extends State<MessagesPage> {
       controller.jumpTo(minExtent);
       return;
     }
-
-    await controller.animateTo(
-      minExtent,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeOut,
-    );
   }
 }

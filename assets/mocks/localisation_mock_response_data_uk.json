@@ -43,7 +43,7 @@
           "loggedOutPlaceholderText": "Please, login to see the messages.",
           "general": {
             "senderYou": "You",
-            "messageHint": "Message"
+            "messageHint": "A new message..."
           },
           "conversationDialog": {
             "deleteItemTitle": "Delete conversation"

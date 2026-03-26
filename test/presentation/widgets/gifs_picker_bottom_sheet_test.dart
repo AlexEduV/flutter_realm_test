@@ -26,6 +26,8 @@ void main() {
     required AppLocalisationsCubit appLocalisationsCubit,
     required MessagesPageState state,
   }) {
+    final listKey = GlobalKey<AnimatedListState>();
+
     final router = GoRouter(
       routes: [
         GoRoute(
@@ -37,7 +39,7 @@ void main() {
               BlocProvider<UserDataCubit>.value(value: userCubit),
               BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
             ],
-            child: const Material(child: GifsPickerBottomSheet()),
+            child: Material(child: GifsPickerBottomSheet(listKey: listKey)),
           ),
         ),
       ],
@@ -189,7 +191,7 @@ void main() {
     await tester.tap(find.byType(InkWell));
     await tester.pumpAndSettle();
 
-    verify(inboxCubit.sendMessage('c1', any)).called(1);
+    verify(inboxCubit.sendMessage('c1', any, any)).called(1);
     verify(messagesCubit.updateSelectedGif(any)).called(2);
   });
 

@@ -5,10 +5,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i12;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i14;
+import 'package:flutter/cupertino.dart' as _i14;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i15;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_futter_project/domain/entities/attachment_entity.dart'
-    as _i16;
+    as _i17;
 import 'package:test_futter_project/domain/entities/owner_entity.dart' as _i3;
 import 'package:test_futter_project/domain/entities/user_entity.dart' as _i9;
 import 'package:test_futter_project/domain/models/conversation_model.dart'
@@ -27,7 +28,7 @@ import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart'
     as _i4;
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart'
-    as _i15;
+    as _i16;
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart'
     as _i5;
 
@@ -185,9 +186,10 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
   _i12.Future<void> sendMessage(
     String? conversationId,
     _i13.MessageModel? message,
+    _i14.GlobalKey<_i14.AnimatedListState>? listKey,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#sendMessage, [conversationId, message]),
+            Invocation.method(#sendMessage, [conversationId, message, listKey]),
             returnValue: _i12.Future<void>.value(),
             returnValueForMissingStub: _i12.Future<void>.value(),
           )
@@ -224,7 +226,7 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
   );
 
   @override
-  void onChange(_i14.Change<_i4.InboxPageState>? change) => super.noSuchMethod(
+  void onChange(_i15.Change<_i4.InboxPageState>? change) => super.noSuchMethod(
     Invocation.method(#onChange, [change]),
     returnValueForMissingStub: null,
   );
@@ -254,7 +256,7 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
 /// A class which mocks [MessagesPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMessagesPageCubit extends _i1.Mock implements _i15.MessagesPageCubit {
+class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
   MockMessagesPageCubit() {
     _i1.throwOnMissingStub(this);
   }
@@ -325,12 +327,12 @@ class MockMessagesPageCubit extends _i1.Mock implements _i15.MessagesPageCubit {
   );
 
   @override
-  _i12.Future<_i16.AttachmentEntity?> getAttachmentFile() =>
+  _i12.Future<_i17.AttachmentEntity?> getAttachmentFile() =>
       (super.noSuchMethod(
             Invocation.method(#getAttachmentFile, []),
-            returnValue: _i12.Future<_i16.AttachmentEntity?>.value(),
+            returnValue: _i12.Future<_i17.AttachmentEntity?>.value(),
           )
-          as _i12.Future<_i16.AttachmentEntity?>);
+          as _i12.Future<_i17.AttachmentEntity?>);
 
   @override
   void emit(_i5.MessagesPageState? state) => super.noSuchMethod(
@@ -339,7 +341,7 @@ class MockMessagesPageCubit extends _i1.Mock implements _i15.MessagesPageCubit {
   );
 
   @override
-  void onChange(_i14.Change<_i5.MessagesPageState>? change) =>
+  void onChange(_i15.Change<_i5.MessagesPageState>? change) =>
       super.noSuchMethod(
         Invocation.method(#onChange, [change]),
         returnValueForMissingStub: null,
