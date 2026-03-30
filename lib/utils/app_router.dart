@@ -8,6 +8,7 @@ import 'package:test_futter_project/presentation/pages/account/sub_pages/recentl
 import 'package:test_futter_project/presentation/pages/article/article_page.dart';
 import 'package:test_futter_project/presentation/pages/details/details_page.dart';
 import 'package:test_futter_project/presentation/pages/home/home_page.dart';
+import 'package:test_futter_project/presentation/pages/home/new_item_page/new_item_page.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
 import 'package:test_futter_project/presentation/pages/messages/messages_page.dart';
 
@@ -31,7 +32,7 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.newItem,
             pageBuilder: (context, state) {
-              return const CupertinoPage(child: PlaceholderPage());
+              return const CupertinoPage(child: NewItemPage());
             },
           ),
           GoRoute(

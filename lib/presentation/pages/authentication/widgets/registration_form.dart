@@ -11,7 +11,7 @@ import '../../../../common/app_colors.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';
 import 'animated_divider_with_text.dart';
-import 'login_field.dart';
+import 'app_form_field.dart';
 
 class RegistrationForm extends StatefulWidget {
   const RegistrationForm({super.key});
@@ -48,7 +48,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
       builder: (context, state) {
         return Column(
           children: [
-            LoginField(
+            AppFormField(
               focusNode: fullNameFocusNode,
               textEditingController: fullNameTextController,
               labelText: state.fullNameFieldParams?.label ?? '',
@@ -80,7 +80,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
             const SizedBox(height: 20),
 
-            LoginField(
+            AppFormField(
               focusNode: emailFocusNode,
               textEditingController: emailTextController,
               labelText: state.emailFieldParams?.label ?? '',
@@ -113,7 +113,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             const SizedBox(height: 20),
 
             // password textField
-            LoginField(
+            AppFormField(
               focusNode: passwordFocusNode,
               textEditingController: passwordTextController,
               labelText: state.passwordFieldParams?.label ?? '',
