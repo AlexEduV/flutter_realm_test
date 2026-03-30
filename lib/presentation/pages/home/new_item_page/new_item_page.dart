@@ -49,6 +49,13 @@ class _NewItemPageState extends State<NewItemPage> {
   FuelType? selectedFuelType = FuelType.diesel;
 
   @override
+  void initState() {
+    super.initState();
+
+    context.read<NewItemPageCubit>().updateTabIndex(AppConstants.itemSetupTabType);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
