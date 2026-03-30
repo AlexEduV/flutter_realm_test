@@ -45,8 +45,13 @@ class AppFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isAddItemForm = padding != null;
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: padding ?? 0.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: padding ?? 0.0,
+        vertical: isAddItemForm ? AppDimensions.minorS : 0.0,
+      ),
       child: Focus(
         onFocusChange: onFocusChange,
         child: TextFormField(

@@ -112,6 +112,7 @@ class _NewItemPageState extends State<NewItemPage> {
 
                   //page 2
                   Column(
+                    spacing: AppDimensions.normalS,
                     children: [
                       AppFormField(
                         focusNode: manufacturerFocusNode,

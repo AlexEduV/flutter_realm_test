@@ -4,6 +4,9 @@ class AppConstants {
   static const int homeTabInbox = 2;
   static const int homeTabAccount = 3;
 
+  static const int itemSetupTabType = 0;
+  static const int itemSetupTabInfo = 1;
+
   static const bool showSemantics = false;
 
   static final bool kIsTest = () {
