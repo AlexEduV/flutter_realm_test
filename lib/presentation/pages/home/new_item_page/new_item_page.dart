@@ -124,6 +124,7 @@ class _NewItemPageState extends State<NewItemPage> {
                         onFocusChange: (hasFocus) {},
                         onChanged: (newText) {},
                         padding: 0.0,
+                        maxLength: 20,
                       ),
 
                       AppFormField(
