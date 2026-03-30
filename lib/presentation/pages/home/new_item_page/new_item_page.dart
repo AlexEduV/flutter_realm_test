@@ -217,7 +217,6 @@ class _NewItemPageState extends State<NewItemPage> {
     widget.exploreListKey.currentState?.insertItem(insertionIndex);
     context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
 
-    //todo: I would like to push, but disable the back button in home, since
-    context.push(AppRoutes.home);
+    context.go(AppRoutes.home, extra: {'fromSetup': true});
   }
 }

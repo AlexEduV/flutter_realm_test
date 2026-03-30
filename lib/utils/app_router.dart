@@ -21,7 +21,24 @@ class AppRouter {
     routes: <RouteBase>[
       GoRoute(
         path: AppRoutes.home,
-        pageBuilder: (context, state) => const CupertinoPage(child: HomePage()),
+        pageBuilder: (context, state) {
+          final fromSetup = (state.extra is Map && (state.extra as Map)['fromSetup'] == true);
+
+          if (fromSetup) {
+            return CustomTransitionPage(
+              child: const HomePage(),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0);
+                const end = Offset.zero;
+                var tween = Tween(begin: begin, end: end);
+                var offsetAnimation = animation.drive(tween);
+                return SlideTransition(position: offsetAnimation, child: child);
+              },
+            );
+          } else {
+            return const CupertinoPage(child: HomePage());
+          }
+        },
         routes: <RouteBase>[
           GoRoute(
             path: AppRoutes.search,
