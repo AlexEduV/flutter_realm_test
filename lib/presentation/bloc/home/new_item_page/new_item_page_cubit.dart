@@ -123,4 +123,34 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
     return true;
   }
+
+  void updateTabIndex(int newIndex) {
+    emit(state.copyWith(currentPageIndex: newIndex));
+  }
+
+  bool areAllFieldsValid(String manufacturer, String model, String year, String color) {
+    bool result = true;
+
+    final isManufacturerValid = validateManufacturer(manufacturer, false);
+    if (!isManufacturerValid) {
+      result = false;
+    }
+
+    final isModelValid = validateModel(model, false);
+    if (!isModelValid) {
+      result = false;
+    }
+
+    final isYearValid = validateYear(year, false);
+    if (!isYearValid) {
+      result = false;
+    }
+
+    final isColorValid = validateColor(color, false);
+    if (!isColorValid) {
+      result = false;
+    }
+
+    return result;
+  }
 }

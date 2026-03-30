@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
@@ -334,17 +335,46 @@ class _NewItemPageState extends State<NewItemPage> {
               spacing: AppDimensions.minorL,
               children: [
                 IconButton(
-                  onPressed: () => pageViewController.previousPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  ),
+                  onPressed: () {
+                    final cubit = context.read<NewItemPageCubit>();
+
+                    final currentIndex = cubit.state.currentPageIndex;
+                    cubit.updateTabIndex(currentIndex - 1);
+
+                    pageViewController.previousPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+
+                    clearAllFocuses();
+                  },
                   icon: const Icon(Icons.chevron_left_outlined, color: AppColors.headerColor),
                 ),
                 IconButton(
-                  onPressed: () => pageViewController.nextPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  ),
+                  onPressed: () {
+                    final cubit = context.read<NewItemPageCubit>();
+
+                    if (cubit.state.currentPageIndex == AppConstants.itemSetupTabInfo) {
+                      final areAllFieldsValid = cubit.areAllFieldsValid(
+                        manufacturerTextController.text,
+                        modelTextController.text,
+                        yearTextController.text,
+                        colorTextController.text,
+                      );
+
+                      if (!areAllFieldsValid) return;
+                    }
+
+                    pageViewController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+
+                    final currentIndex = cubit.state.currentPageIndex;
+                    cubit.updateTabIndex(currentIndex + 1);
+
+                    clearAllFocuses();
+                  },
                   icon: const Icon(Icons.chevron_right_outlined, color: AppColors.headerColor),
                 ),
               ],
@@ -353,5 +383,12 @@ class _NewItemPageState extends State<NewItemPage> {
         ),
       ),
     );
+  }
+
+  void clearAllFocuses() {
+    manufacturerFocusNode.unfocus();
+    modelFocusNode.unfocus();
+    yearFocusNode.unfocus();
+    colorFocusNode.unfocus();
   }
 }
