@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
@@ -21,6 +22,8 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
   Widget build(BuildContext context) {
     return BlocBuilder<NewItemPageCubit, NewItemPageState>(
       builder: (context, state) {
+        final bodyTypesList = carTypeToBodyTypes[state.selectedCarType] ?? [];
+
         return SingleChildScrollView(
           child: Column(
             spacing: AppDimensions.minorL,
@@ -30,36 +33,21 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                 children: [
                   const Text('Body type', style: AppTextStyles.zonaPro14),
 
-                  //todo: get body types according to selected car type
                   RadioGroup<BodyType>(
                     groupValue: state.selectedBodyType,
                     onChanged: (BodyType? value) {
                       context.read<NewItemPageCubit>().updateSelectedBodyType(value);
                     },
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        ListTile(
-                          title: Text('Sedan'),
-                          leading: Radio<BodyType>(toggleable: true, value: BodyType.sedan),
-                        ),
-                        ListTile(
-                          title: Text('Coupe'),
-                          leading: Radio<BodyType>(value: BodyType.coupe),
-                        ),
-                        ListTile(
-                          title: Text('Minivan'),
-                          leading: Radio<BodyType>(value: BodyType.minivan),
-                        ),
-                        ListTile(
-                          title: Text('Hatchback'),
-                          leading: Radio<BodyType>(value: BodyType.hatchback),
-                        ),
-                        ListTile(
-                          title: Text('Universal'),
-                          leading: Radio<BodyType>(value: BodyType.universal),
-                        ),
-                      ],
+                      children: bodyTypesList
+                          .map(
+                            (element) => ListTile(
+                              title: Text(element.name.capitalizeFirst()),
+                              leading: Radio<BodyType>(toggleable: true, value: element),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ),
                 ],
