@@ -27,6 +27,8 @@ class OwnerWidget extends StatelessWidget {
     final owner = car.owner;
     final user = context.read<UserDataCubit>().user;
 
+    final isUserNotTheOwner = owner?.id != null && owner?.id != user.userId;
+
     return Container(
       padding: const EdgeInsets.only(top: AppDimensions.normalL),
       decoration: const BoxDecoration(
@@ -46,14 +48,16 @@ class OwnerWidget extends StatelessWidget {
               spacing: AppDimensions.normalM,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AvatarWidget(imageSrc: owner?.imageSrc),
+                AvatarWidget(imageSrc: owner?.imageSrc, isLocal: !isUserNotTheOwner),
 
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${owner?.firstName ?? ''} ${owner?.lastName ?? ''}',
+                        isUserNotTheOwner
+                            ? '${owner?.firstName ?? ''} ${owner?.lastName ?? ''}'
+                            : context.tr(L10nKeys.messageSenderYou),
                         style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                       ),
 
@@ -97,7 +101,7 @@ class OwnerWidget extends StatelessWidget {
 
           const SizedBox(height: AppDimensions.normalL),
 
-          if (owner?.id != null && owner?.id != user.userId) ...[
+          if (isUserNotTheOwner) ...[
             SizedBox(
               width: double.infinity, // Makes the button full width
               child: AppSemantics(
