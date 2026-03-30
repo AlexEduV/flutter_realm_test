@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
@@ -19,6 +20,7 @@ import 'package:test_futter_project/presentation/pages/home/favorites_page/favor
 import 'package:test_futter_project/presentation/pages/home/inbox_page/inbox_page.dart';
 
 import '../../../common/app_colors.dart';
+import '../../../common/app_routes.dart';
 import '../../../di/injection_container.dart';
 import '../../../domain/entities/car_entity.dart';
 import '../../bloc/home/explore_page/explore_page_cubit.dart';
@@ -109,6 +111,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       context.read<HomeBottomBarCubit>().updateSelectedIndex(AppConstants.homeTabAccount);
       return;
     }
+
+    context.go(AppRoutes.home + AppRoutes.newItem);
+    return;
 
     final currentMaxCarId = serviceLocator<GetCurrentMaxCarIdUseCase>().call();
     final newCarId = (currentMaxCarId + 1).toString();

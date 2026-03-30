@@ -29,6 +29,12 @@ class AppRouter {
           ),
           _detailsRoute,
           GoRoute(
+            path: AppRoutes.newItem,
+            pageBuilder: (context, state) {
+              return const CupertinoPage(child: PlaceholderPage());
+            },
+          ),
+          GoRoute(
             path: AppRoutes.personalDetails,
             pageBuilder: (context, state) {
               return const CupertinoPage(child: PersonalDetailsPage());
