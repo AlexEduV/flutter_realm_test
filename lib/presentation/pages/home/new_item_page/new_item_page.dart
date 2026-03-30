@@ -52,7 +52,9 @@ class _NewItemPageState extends State<NewItemPage> {
   void initState() {
     super.initState();
 
-    context.read<NewItemPageCubit>().updateTabIndex(AppConstants.itemSetupTabType);
+    final cubit = context.read<NewItemPageCubit>();
+    cubit.updateTabIndex(AppConstants.itemSetupTabType);
+    cubit.clearInfoForm();
   }
 
   @override

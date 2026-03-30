@@ -189,4 +189,8 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
   void updateSelectedFuelType(FuelType? newType) {
     emit(state.copyWith(selectedFuelType: newType ?? FuelType.diesel));
   }
+
+  void clearInfoForm() {
+    emit(state.copyWith(manufacturerText: '', modelText: '', yearText: '', colorText: ''));
+  }
 }
