@@ -10,6 +10,7 @@ import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/item_info_form.dart';
+import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/item_specs_picker.dart';
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_semantics_labels.dart';
@@ -78,6 +79,8 @@ class _NewItemPageState extends State<NewItemPage> {
                     colorFocusNode: colorFocusNode,
                     yearFocusNode: yearFocusNode,
                   ),
+
+                  const ItemSpecsPicker(),
                 ],
               ),
             ),

@@ -20,101 +20,105 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
   Widget build(BuildContext context) {
     return BlocBuilder<NewItemPageCubit, NewItemPageState>(
       builder: (context, state) {
-        return Column(
-          children: [
-            const Text('Body type', style: AppTextStyles.zonaPro14),
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Body type', style: AppTextStyles.zonaPro14),
 
-            RadioGroup<BodyType>(
-              groupValue: state.selectedBodyType,
-              onChanged: (BodyType? value) {
-                context.read<NewItemPageCubit>().updateSelectedBodyType(value);
-              },
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ListTile(
-                    title: Text('Sedan'),
-                    leading: Radio<BodyType>(toggleable: true, value: BodyType.sedan),
-                  ),
-                  ListTile(
-                    title: Text('Coupe'),
-                    leading: Radio<BodyType>(value: BodyType.coupe),
-                  ),
-                  ListTile(
-                    title: Text('Minivan'),
-                    leading: Radio<BodyType>(value: BodyType.minivan),
-                  ),
-                  ListTile(
-                    title: Text('Hatchback'),
-                    leading: Radio<BodyType>(value: BodyType.hatchback),
-                  ),
-                  ListTile(
-                    title: Text('Universal'),
-                    leading: Radio<BodyType>(value: BodyType.universal),
-                  ),
-                ],
-              ),
-            ),
-
-            const Text('Fuel type', style: AppTextStyles.zonaPro14),
-
-            RadioGroup<FuelType>(
-              groupValue: state.selectedFuelType,
-              onChanged: (FuelType? value) {
-                context.read<NewItemPageCubit>().updateSelectedFuelType(value);
-              },
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ListTile(
-                    title: Text('Diesel'),
-                    leading: Radio<FuelType>(toggleable: true, value: FuelType.diesel),
-                  ),
-                  ListTile(
-                    title: Text('Gasoline'),
-                    leading: Radio<FuelType>(value: FuelType.gasoline),
-                  ),
-                  ListTile(
-                    title: Text('EV'),
-                    leading: Radio<FuelType>(value: FuelType.ev),
-                  ),
-                  ListTile(
-                    title: Text('Hybrid'),
-                    leading: Radio<FuelType>(value: FuelType.hybrid),
-                  ),
-                ],
-              ),
-            ),
-
-            const Text('Transmission type', style: AppTextStyles.zonaPro14),
-
-            RadioGroup<TransmissionType>(
-              groupValue: state.selectedTransmissionType,
-              onChanged: (TransmissionType? value) {
-                context.read<NewItemPageCubit>().updateSelectedTransmissionType(value);
-              },
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ListTile(
-                    title: Text('Manual'),
-                    leading: Radio<TransmissionType>(
-                      toggleable: true,
-                      value: TransmissionType.manual,
+              //todo: get body types according to selected car type
+              RadioGroup<BodyType>(
+                groupValue: state.selectedBodyType,
+                onChanged: (BodyType? value) {
+                  context.read<NewItemPageCubit>().updateSelectedBodyType(value);
+                },
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ListTile(
+                      title: Text('Sedan'),
+                      leading: Radio<BodyType>(toggleable: true, value: BodyType.sedan),
                     ),
-                  ),
-                  ListTile(
-                    title: Text('Automatic'),
-                    leading: Radio<TransmissionType>(value: TransmissionType.automatic),
-                  ),
-                  ListTile(
-                    title: Text('Hybrid'),
-                    leading: Radio<TransmissionType>(value: TransmissionType.hybrid),
-                  ),
-                ],
+                    ListTile(
+                      title: Text('Coupe'),
+                      leading: Radio<BodyType>(value: BodyType.coupe),
+                    ),
+                    ListTile(
+                      title: Text('Minivan'),
+                      leading: Radio<BodyType>(value: BodyType.minivan),
+                    ),
+                    ListTile(
+                      title: Text('Hatchback'),
+                      leading: Radio<BodyType>(value: BodyType.hatchback),
+                    ),
+                    ListTile(
+                      title: Text('Universal'),
+                      leading: Radio<BodyType>(value: BodyType.universal),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+
+              const Text('Fuel type', style: AppTextStyles.zonaPro14),
+
+              RadioGroup<FuelType>(
+                groupValue: state.selectedFuelType,
+                onChanged: (FuelType? value) {
+                  context.read<NewItemPageCubit>().updateSelectedFuelType(value);
+                },
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ListTile(
+                      title: Text('Diesel'),
+                      leading: Radio<FuelType>(toggleable: true, value: FuelType.diesel),
+                    ),
+                    ListTile(
+                      title: Text('Gasoline'),
+                      leading: Radio<FuelType>(value: FuelType.gasoline),
+                    ),
+                    ListTile(
+                      title: Text('EV'),
+                      leading: Radio<FuelType>(value: FuelType.ev),
+                    ),
+                    ListTile(
+                      title: Text('Hybrid'),
+                      leading: Radio<FuelType>(value: FuelType.hybrid),
+                    ),
+                  ],
+                ),
+              ),
+
+              const Text('Transmission type', style: AppTextStyles.zonaPro14),
+
+              RadioGroup<TransmissionType>(
+                groupValue: state.selectedTransmissionType,
+                onChanged: (TransmissionType? value) {
+                  context.read<NewItemPageCubit>().updateSelectedTransmissionType(value);
+                },
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ListTile(
+                      title: Text('Manual'),
+                      leading: Radio<TransmissionType>(
+                        toggleable: true,
+                        value: TransmissionType.manual,
+                      ),
+                    ),
+                    ListTile(
+                      title: Text('Automatic'),
+                      leading: Radio<TransmissionType>(value: TransmissionType.automatic),
+                    ),
+                    ListTile(
+                      title: Text('Hybrid'),
+                      leading: Radio<TransmissionType>(value: TransmissionType.hybrid),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
