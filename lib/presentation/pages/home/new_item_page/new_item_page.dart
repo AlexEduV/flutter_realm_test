@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
@@ -6,6 +7,8 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
+import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/app_form_field.dart';
 
 import '../../../../common/app_dimensions.dart';
@@ -111,58 +114,112 @@ class _NewItemPageState extends State<NewItemPage> {
                   ),
 
                   //page 2
-                  Column(
-                    spacing: AppDimensions.normalS,
-                    children: [
-                      AppFormField(
-                        focusNode: manufacturerFocusNode,
-                        textEditingController: manufacturerTextController,
-                        labelText: 'Manufacturer',
-                        hintText: 'Manufacturer',
-                        textInputType: TextInputType.text,
-                        textInputAction: TextInputAction.next,
-                        onFocusChange: (hasFocus) {},
-                        onChanged: (newText) {},
-                        padding: 0.0,
-                        maxLength: 20,
-                      ),
+                  BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                    builder: (context, state) {
+                      return Column(
+                        spacing: AppDimensions.normalS,
+                        children: [
+                          AppFormField(
+                            focusNode: manufacturerFocusNode,
+                            textEditingController: manufacturerTextController,
+                            labelText: state.manufacturerFieldParams?.label ?? '',
+                            hintText: state.manufacturerFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            onFocusChange: (hasFocus) {
+                              if (!hasFocus) {
+                                context.read<NewItemPageCubit>().validateManufacturer(
+                                  manufacturerTextController.text,
+                                  false,
+                                );
+                              }
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateManufacturer(
+                                manufacturerTextController.text,
+                                manufacturerFocusNode.hasFocus,
+                              );
+                            },
+                            padding: 0.0,
+                            maxLength: state.manufacturerFieldParams?.maxLength,
+                          ),
 
-                      AppFormField(
-                        focusNode: modelFocusNode,
-                        textEditingController: modelTextController,
-                        labelText: 'Model',
-                        hintText: 'Model',
-                        textInputType: TextInputType.text,
-                        textInputAction: TextInputAction.next,
-                        onFocusChange: (hasFocus) {},
-                        onChanged: (newText) {},
-                        padding: 0.0,
-                      ),
+                          AppFormField(
+                            focusNode: modelFocusNode,
+                            textEditingController: modelTextController,
+                            labelText: state.modelFieldParams?.label ?? '',
+                            hintText: state.modelFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            onFocusChange: (hasFocus) {
+                              if (!hasFocus) {
+                                context.read<NewItemPageCubit>().validateModel(
+                                  modelTextController.text,
+                                  false,
+                                );
+                              }
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateModel(
+                                modelTextController.text,
+                                modelFocusNode.hasFocus,
+                              );
+                            },
+                            padding: 0.0,
+                            maxLength: state.modelFieldParams?.maxLength,
+                          ),
 
-                      AppFormField(
-                        focusNode: yearFocusNode,
-                        textEditingController: yearTextController,
-                        labelText: 'Year',
-                        hintText: 'Year',
-                        textInputType: TextInputType.text,
-                        textInputAction: TextInputAction.next,
-                        onFocusChange: (hasFocus) {},
-                        onChanged: (newText) {},
-                        padding: 0.0,
-                      ),
+                          AppFormField(
+                            focusNode: yearFocusNode,
+                            textEditingController: yearTextController,
+                            labelText: state.yearFieldParams?.label ?? '',
+                            hintText: state.yearFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.number,
+                            textInputAction: TextInputAction.next,
+                            onFocusChange: (hasFocus) {
+                              if (!hasFocus) {
+                                context.read<NewItemPageCubit>().validateYear(
+                                  yearTextController.text,
+                                  false,
+                                );
+                              }
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateYear(
+                                yearTextController.text,
+                                yearFocusNode.hasFocus,
+                              );
+                            },
+                            padding: 0.0,
+                          ),
 
-                      AppFormField(
-                        focusNode: colorFocusNode,
-                        textEditingController: colorTextController,
-                        labelText: 'Color',
-                        hintText: 'Color',
-                        textInputType: TextInputType.text,
-                        textInputAction: TextInputAction.next,
-                        onFocusChange: (hasFocus) {},
-                        onChanged: (newText) {},
-                        padding: 0.0,
-                      ),
-                    ],
+                          AppFormField(
+                            focusNode: colorFocusNode,
+                            textEditingController: colorTextController,
+                            labelText: state.colorFieldParams?.label ?? '',
+                            hintText: state.colorFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.text,
+                            textInputAction: TextInputAction.done,
+                            onFocusChange: (hasFocus) {
+                              if (!hasFocus) {
+                                context.read<NewItemPageCubit>().validateColor(
+                                  colorTextController.text,
+                                  false,
+                                );
+                              }
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateColor(
+                                colorTextController.text,
+                                colorFocusNode.hasFocus,
+                              );
+                            },
+                            padding: 0.0,
+                            maxLength: state.colorFieldParams?.maxLength,
+                          ),
+                        ],
+                      );
+                    },
                   ),
 
                   // //page 3

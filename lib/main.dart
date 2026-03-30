@@ -14,6 +14,7 @@ import 'package:test_futter_project/presentation/bloc/details/details_page_cubit
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
@@ -77,6 +78,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<ShareCubit>(create: (context) => serviceLocator<ShareCubit>()),
           BlocProvider<EditDialogCubit>(create: (context) => serviceLocator<EditDialogCubit>()),
           BlocProvider<MessagesPageCubit>(create: (context) => serviceLocator<MessagesPageCubit>()),
+          BlocProvider<NewItemPageCubit>(
+            create: (context) => serviceLocator<NewItemPageCubit>()..init(),
+          ),
         ],
         child: MaterialApp.router(
           title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
