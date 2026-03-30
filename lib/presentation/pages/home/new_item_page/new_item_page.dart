@@ -72,113 +72,12 @@ class _NewItemPageState extends State<NewItemPage> {
                 children: [
                   const CarTypePicker(),
 
-                  //page 2
                   ItemInfoForm(
                     manufacturerFocusNode: manufacturerFocusNode,
                     modelFocusNode: modelFocusNode,
                     colorFocusNode: colorFocusNode,
                     yearFocusNode: yearFocusNode,
                   ),
-
-                  // //page 3
-                  // const Text('Body type', style: AppTextStyles.zonaPro14),
-                  //
-                  // RadioGroup<BodyType>(
-                  //   groupValue: selectedBodyType,
-                  //   onChanged: (BodyType? value) {
-                  //     setState(() {
-                  //       selectedBodyType = value;
-                  //     });
-                  //   },
-                  //   child: const Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: <Widget>[
-                  //       ListTile(
-                  //         title: Text('Sedan'),
-                  //         leading: Radio<BodyType>(toggleable: true, value: BodyType.sedan),
-                  //       ),
-                  //       ListTile(
-                  //         title: Text('Coupe'),
-                  //         leading: Radio<BodyType>(value: BodyType.coupe),
-                  //       ),
-                  //       ListTile(
-                  //         title: Text('Minivan'),
-                  //         leading: Radio<BodyType>(value: BodyType.minivan),
-                  //       ),
-                  //       ListTile(
-                  //         title: Text('Hatchback'),
-                  //         leading: Radio<BodyType>(value: BodyType.hatchback),
-                  //       ),
-                  //       ListTile(
-                  //         title: Text('Universal'),
-                  //         leading: Radio<BodyType>(value: BodyType.universal),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  //
-                  // const Text('Fuel type', style: AppTextStyles.zonaPro14),
-                  //
-                  // RadioGroup<FuelType>(
-                  //   groupValue: selectedFuelType,
-                  //   onChanged: (FuelType? value) {
-                  //     setState(() {
-                  //       selectedFuelType = value;
-                  //     });
-                  //   },
-                  //   child: const Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: <Widget>[
-                  //       ListTile(
-                  //         title: Text('Diesel'),
-                  //         leading: Radio<FuelType>(toggleable: true, value: FuelType.diesel),
-                  //       ),
-                  //       ListTile(
-                  //         title: Text('Gasoline'),
-                  //         leading: Radio<FuelType>(value: FuelType.gasoline),
-                  //       ),
-                  //       ListTile(
-                  //         title: Text('EV'),
-                  //         leading: Radio<FuelType>(value: FuelType.ev),
-                  //       ),
-                  //       ListTile(
-                  //         title: Text('Hybrid'),
-                  //         leading: Radio<FuelType>(value: FuelType.hybrid),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  //
-                  // const Text('Transmission type', style: AppTextStyles.zonaPro14),
-                  //
-                  // RadioGroup<TransmissionType>(
-                  //   groupValue: selectedTransmissionType,
-                  //   onChanged: (TransmissionType? value) {
-                  //     setState(() {
-                  //       selectedTransmissionType = value;
-                  //     });
-                  //   },
-                  //   child: const Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: <Widget>[
-                  //       ListTile(
-                  //         title: Text('Manual'),
-                  //         leading: Radio<TransmissionType>(
-                  //           toggleable: true,
-                  //           value: TransmissionType.manual,
-                  //         ),
-                  //       ),
-                  //       ListTile(
-                  //         title: Text('Automatic'),
-                  //         leading: Radio<TransmissionType>(value: TransmissionType.automatic),
-                  //       ),
-                  //       ListTile(
-                  //         title: Text('Hybrid'),
-                  //         leading: Radio<TransmissionType>(value: TransmissionType.hybrid),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               ),
             ),

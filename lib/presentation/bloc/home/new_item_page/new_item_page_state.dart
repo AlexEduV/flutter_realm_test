@@ -1,7 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
+
+import '../../../../common/enums/body_type.dart';
 
 part 'new_item_page_state.freezed.dart';
 
@@ -22,5 +26,8 @@ abstract class NewItemPageState with _$NewItemPageState {
     @Default('') String colorText,
     @Default(AppConstants.itemSetupTabType) int currentPageIndex,
     @Default(CarType.car) CarType selectedCarType,
+    BodyType? selectedBodyType,
+    @Default(FuelType.diesel) FuelType selectedFuelType,
+    @Default(TransmissionType.manual) TransmissionType selectedTransmissionType,
   }) = _NewItemPageState;
 }

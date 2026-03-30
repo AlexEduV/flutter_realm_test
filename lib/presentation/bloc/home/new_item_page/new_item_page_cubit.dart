@@ -1,5 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
@@ -173,5 +176,17 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
   void updateColorText(String newText) {
     emit(state.copyWith(colorText: newText));
+  }
+
+  void updateSelectedBodyType(BodyType? newType) {
+    emit(state.copyWith(selectedBodyType: newType));
+  }
+
+  void updateSelectedTransmissionType(TransmissionType? newType) {
+    emit(state.copyWith(selectedTransmissionType: newType ?? TransmissionType.manual));
+  }
+
+  void updateSelectedFuelType(FuelType? newType) {
+    emit(state.copyWith(selectedFuelType: newType ?? FuelType.diesel));
   }
 }
