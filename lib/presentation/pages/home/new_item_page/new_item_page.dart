@@ -200,20 +200,8 @@ class _NewItemPageState extends State<NewItemPage> {
 
     serviceLocator<AddCarUseCase>().call(car);
 
-    //final offsetBefore = scrollController.offset;
-
     widget.exploreListKey.currentState?.insertItem(insertionIndex);
     context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
-
-    // /// this is needed for the initial scroll anchoring of the main scroll view on manual insert
-    // /// the next tries are all fine, but on first try the scroll position does not exist, so the
-    // /// list scrolled up or down to the offset before the insertion.
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   if (!_didLockScrollOnce) {
-    //     scrollController.jumpTo(offsetBefore);
-    //     _didLockScrollOnce = true;
-    //   }
-    // });
 
     //todo: this navigates backwards, but would be nice to navigate forward
     context.go(AppRoutes.home);
