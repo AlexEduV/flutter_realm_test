@@ -210,6 +210,7 @@ class _NewItemPageState extends State<NewItemPage> {
       transmissionType: state.selectedTransmissionType.name,
       color: state.colorText.capitalizeFirst(),
       owner: OwnerEntity.fromUser(userDataCubit.user),
+      price: int.tryParse(state.priceText) ?? 0,
     );
 
     serviceLocator<AddCarUseCase>().call(car);

@@ -37,6 +37,13 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
           regexErrorMessage: 'Please, enter a valid year.',
           regex: r'^(198[0-9]|199[0-9]|200[0-9]|201[0-9]|202[0-6])$',
         ),
+        priceFieldParams: FieldParamsModel.withLabel('Price *').copyWith(
+          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.fieldParamsValidationMessage,
+          ),
+          regexErrorMessage: 'Please, enter a valid price.',
+          regex: r'^(0|[1-9]\d{0,7})$',
+        ),
         colorFieldParams: FieldParamsModel.withLabel('Color *').copyWith(
           validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
             L10nKeys.fieldParamsValidationMessage,
@@ -108,6 +115,26 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     return true;
   }
 
+  bool validatePrice(String price, bool isEditing) {
+    if (isEditing) {
+      emit(state.copyWith(priceErrorText: null));
+      return true;
+    }
+
+    if (price.isEmpty) {
+      emit(state.copyWith(priceErrorText: state.priceFieldParams?.validationMessage));
+      return false;
+    }
+
+    final priceRegex = RegExp(state.priceFieldParams?.regex ?? '');
+    if (!priceRegex.hasMatch(price)) {
+      emit(state.copyWith(priceErrorText: state.priceFieldParams?.regexErrorMessage));
+      return false;
+    }
+
+    return true;
+  }
+
   bool validateColor(String color, bool isEditing) {
     if (isEditing) {
       emit(state.copyWith(colorErrorText: null));
@@ -150,6 +177,11 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       result = false;
     }
 
+    final isPriceValid = validatePrice(state.priceText, false);
+    if (!isPriceValid) {
+      result = false;
+    }
+
     final isColorValid = validateColor(state.colorText, false);
     if (!isColorValid) {
       result = false;
@@ -172,6 +204,10 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
   void updateYearText(String newText) {
     emit(state.copyWith(yearText: newText));
+  }
+
+  void updatePriceText(String newPrice) {
+    emit(state.copyWith(priceText: newPrice));
   }
 
   void updateColorText(String newText) {

@@ -132,6 +132,30 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
             ),
 
             AppFormField(
+              focusNode: widget.priceFocusNode,
+              textEditingController: priceTextController,
+              labelText: state.priceFieldParams?.label ?? '',
+              hintText: state.priceFieldParams?.hintText ?? '',
+              textInputType: TextInputType.number,
+              textInputAction: TextInputAction.next,
+              errorText: state.priceErrorText,
+              onFocusChange: (hasFocus) {
+                if (!hasFocus) {
+                  context.read<NewItemPageCubit>().validatePrice(priceTextController.text, false);
+                }
+              },
+              onChanged: (newText) {
+                context.read<NewItemPageCubit>().validatePrice(
+                  priceTextController.text,
+                  widget.priceFocusNode.hasFocus,
+                );
+
+                context.read<NewItemPageCubit>().updatePriceText(priceTextController.text);
+              },
+              padding: 0.0,
+            ),
+
+            AppFormField(
               focusNode: widget.colorFocusNode,
               textEditingController: colorTextController,
               labelText: state.colorFieldParams?.label ?? '',

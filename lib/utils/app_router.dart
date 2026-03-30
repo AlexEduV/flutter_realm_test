@@ -27,6 +27,7 @@ class AppRouter {
           if (fromSetup) {
             return CustomTransitionPage(
               child: const HomePage(),
+              //reversed animation when going from the setup page
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 const begin = Offset(1.0, 0.0);
                 const end = Offset.zero;
