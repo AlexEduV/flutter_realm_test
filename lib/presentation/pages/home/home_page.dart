@@ -3,14 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/app_constants.dart';
-import 'package:test_futter_project/common/enums/body_type.dart';
-import 'package:test_futter_project/common/enums/car_type.dart';
-import 'package:test_futter_project/common/enums/fuel_type.dart';
-import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
-import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
-import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
-import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
@@ -22,8 +14,6 @@ import 'package:test_futter_project/presentation/pages/home/inbox_page/inbox_pag
 import '../../../common/app_colors.dart';
 import '../../../common/app_routes.dart';
 import '../../../di/injection_container.dart';
-import '../../../domain/entities/car_entity.dart';
-import '../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import 'home_bottom_bar/home_bottom_bar.dart';
 
@@ -40,7 +30,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   int _bottomBarIndexDiff = 0;
 
   final ScrollController scrollController = ScrollController();
-  bool _didLockScrollOnce = false;
 
   @override
   void initState() {
@@ -112,46 +101,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       return;
     }
 
-    context.go(AppRoutes.home + AppRoutes.newItem);
+    context.go(AppRoutes.home + AppRoutes.newItem, extra: exploreListKey);
     return;
-
-    final currentMaxCarId = serviceLocator<GetCurrentMaxCarIdUseCase>().call();
-    final newCarId = (currentMaxCarId + 1).toString();
-
-    userDataCubit.addCarIdToCreated(newCarId);
-
-    final currentCars = serviceLocator<GetAllCarsUseCase>().call();
-    final insertionIndex = currentCars.length;
-
-    //todo: need a new form page to input the data manually
-    final car = CarEntity(
-      carId: newCarId,
-      model: 'Model Y',
-      manufacturer: 'Tesla',
-      isVerified: false,
-      type: CarType.car.name,
-      bodyType: BodyType.sedan.name,
-      fuelType: FuelType.ev.name,
-      transmissionType: TransmissionType.automatic.name,
-      color: 'White',
-      owner: OwnerEntity.fromUser(userDataCubit.user),
-    );
-
-    serviceLocator<AddCarUseCase>().call(car);
-
-    final offsetBefore = scrollController.offset;
-
-    exploreListKey.currentState?.insertItem(insertionIndex);
-    context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
-
-    /// this is needed for the initial scroll anchoring of the main scroll view on manual insert
-    /// the next tries are all fine, but on first try the scroll position does not exist, so the
-    /// list scrolled up or down to the offset before the insertion.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!_didLockScrollOnce) {
-        scrollController.jumpTo(offsetBefore);
-        _didLockScrollOnce = true;
-      }
-    });
   }
 }

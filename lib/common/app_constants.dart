@@ -6,6 +6,7 @@ class AppConstants {
 
   static const int itemSetupTabType = 0;
   static const int itemSetupTabInfo = 1;
+  static const int itemSetupTabPickers = 2;
 
   static const bool showSemantics = false;
 
