@@ -56,6 +56,16 @@ class _NewItemPageState extends State<NewItemPage> {
   }
 
   @override
+  void dispose() {
+    manufacturerFocusNode.dispose();
+    modelFocusNode.dispose();
+    yearFocusNode.dispose();
+    colorFocusNode.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
