@@ -43,6 +43,7 @@ class _NewItemPageState extends State<NewItemPage> {
   final modelFocusNode = FocusNode();
   final yearFocusNode = FocusNode();
   final colorFocusNode = FocusNode();
+  final priceFocusNode = FocusNode();
 
   BodyType? selectedBodyType = BodyType.sedan;
   TransmissionType? selectedTransmissionType = TransmissionType.manual;
@@ -110,6 +111,7 @@ class _NewItemPageState extends State<NewItemPage> {
                     modelFocusNode: modelFocusNode,
                     colorFocusNode: colorFocusNode,
                     yearFocusNode: yearFocusNode,
+                    priceFocusNode: priceFocusNode,
                   ),
 
                   const ItemSpecsPicker(),
@@ -215,6 +217,7 @@ class _NewItemPageState extends State<NewItemPage> {
     widget.exploreListKey.currentState?.insertItem(insertionIndex);
     context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
 
+    //todo: I would like to push, but disable the back button in home, since
     context.push(AppRoutes.home);
   }
 }

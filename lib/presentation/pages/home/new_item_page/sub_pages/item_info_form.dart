@@ -11,12 +11,14 @@ class ItemInfoForm extends StatefulWidget {
   final FocusNode modelFocusNode;
   final FocusNode yearFocusNode;
   final FocusNode colorFocusNode;
+  final FocusNode priceFocusNode;
 
   const ItemInfoForm({
     required this.manufacturerFocusNode,
     required this.modelFocusNode,
     required this.yearFocusNode,
     required this.colorFocusNode,
+    required this.priceFocusNode,
     super.key,
   });
 
@@ -29,6 +31,7 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
   final modelTextController = TextEditingController();
   final yearTextController = TextEditingController();
   final colorTextController = TextEditingController();
+  final priceTextController = TextEditingController();
 
   @override
   void initState() {
@@ -39,6 +42,7 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
     modelTextController.text = cubit.state.modelText;
     yearTextController.text = cubit.state.yearText;
     colorTextController.text = cubit.state.colorText;
+    priceTextController.text = cubit.state.priceText;
   }
 
   @override
