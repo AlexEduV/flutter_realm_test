@@ -129,25 +129,25 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     emit(state.copyWith(currentPageIndex: newIndex));
   }
 
-  bool areAllFieldsValid(String manufacturer, String model, String year, String color) {
+  bool areAllFieldsValid() {
     bool result = true;
 
-    final isManufacturerValid = validateManufacturer(manufacturer, false);
+    final isManufacturerValid = validateManufacturer(state.manufacturerText, false);
     if (!isManufacturerValid) {
       result = false;
     }
 
-    final isModelValid = validateModel(model, false);
+    final isModelValid = validateModel(state.modelText, false);
     if (!isModelValid) {
       result = false;
     }
 
-    final isYearValid = validateYear(year, false);
+    final isYearValid = validateYear(state.yearText, false);
     if (!isYearValid) {
       result = false;
     }
 
-    final isColorValid = validateColor(color, false);
+    final isColorValid = validateColor(state.colorText, false);
     if (!isColorValid) {
       result = false;
     }
@@ -157,5 +157,21 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
   void updateSelectedCarType(CarType? newType) {
     emit(state.copyWith(selectedCarType: newType ?? CarType.car));
+  }
+
+  void updateManufacturerText(String newText) {
+    emit(state.copyWith(manufacturerText: newText));
+  }
+
+  void updateModelText(String newText) {
+    emit(state.copyWith(modelText: newText));
+  }
+
+  void updateYearText(String newText) {
+    emit(state.copyWith(yearText: newText));
+  }
+
+  void updateColorText(String newText) {
+    emit(state.copyWith(colorText: newText));
   }
 }

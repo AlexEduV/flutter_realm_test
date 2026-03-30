@@ -8,9 +8,8 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/app_form_field.dart';
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
+import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/item_info_form.dart';
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_semantics_labels.dart';
@@ -30,11 +29,6 @@ class _NewItemPageState extends State<NewItemPage> {
   final modelFocusNode = FocusNode();
   final yearFocusNode = FocusNode();
   final colorFocusNode = FocusNode();
-
-  final manufacturerTextController = TextEditingController();
-  final modelTextController = TextEditingController();
-  final yearTextController = TextEditingController();
-  final colorTextController = TextEditingController();
 
   BodyType? selectedBodyType = BodyType.sedan;
   TransmissionType? selectedTransmissionType = TransmissionType.manual;
@@ -79,116 +73,11 @@ class _NewItemPageState extends State<NewItemPage> {
                   const CarTypePicker(),
 
                   //page 2
-                  BlocBuilder<NewItemPageCubit, NewItemPageState>(
-                    builder: (context, state) {
-                      return Column(
-                        spacing: AppDimensions.normalS,
-                        children: [
-                          AppFormField(
-                            focusNode: manufacturerFocusNode,
-                            textEditingController: manufacturerTextController,
-                            labelText: state.manufacturerFieldParams?.label ?? '',
-                            hintText: state.manufacturerFieldParams?.hintText ?? '',
-                            textInputType: TextInputType.text,
-                            textInputAction: TextInputAction.next,
-                            errorText: state.manufacturerErrorText,
-                            onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                context.read<NewItemPageCubit>().validateManufacturer(
-                                  manufacturerTextController.text,
-                                  false,
-                                );
-                              }
-                            },
-                            onChanged: (newText) {
-                              context.read<NewItemPageCubit>().validateManufacturer(
-                                manufacturerTextController.text,
-                                manufacturerFocusNode.hasFocus,
-                              );
-                            },
-                            padding: 0.0,
-                            maxLength: state.manufacturerFieldParams?.maxLength,
-                          ),
-
-                          AppFormField(
-                            focusNode: modelFocusNode,
-                            textEditingController: modelTextController,
-                            labelText: state.modelFieldParams?.label ?? '',
-                            hintText: state.modelFieldParams?.hintText ?? '',
-                            textInputType: TextInputType.text,
-                            textInputAction: TextInputAction.next,
-                            errorText: state.modelErrorText,
-                            onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                context.read<NewItemPageCubit>().validateModel(
-                                  modelTextController.text,
-                                  false,
-                                );
-                              }
-                            },
-                            onChanged: (newText) {
-                              context.read<NewItemPageCubit>().validateModel(
-                                modelTextController.text,
-                                modelFocusNode.hasFocus,
-                              );
-                            },
-                            padding: 0.0,
-                            maxLength: state.modelFieldParams?.maxLength,
-                          ),
-
-                          AppFormField(
-                            focusNode: yearFocusNode,
-                            textEditingController: yearTextController,
-                            labelText: state.yearFieldParams?.label ?? '',
-                            hintText: state.yearFieldParams?.hintText ?? '',
-                            textInputType: TextInputType.number,
-                            textInputAction: TextInputAction.next,
-                            errorText: state.yearErrorText,
-                            onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                context.read<NewItemPageCubit>().validateYear(
-                                  yearTextController.text,
-                                  false,
-                                );
-                              }
-                            },
-                            onChanged: (newText) {
-                              context.read<NewItemPageCubit>().validateYear(
-                                yearTextController.text,
-                                yearFocusNode.hasFocus,
-                              );
-                            },
-                            padding: 0.0,
-                          ),
-
-                          AppFormField(
-                            focusNode: colorFocusNode,
-                            textEditingController: colorTextController,
-                            labelText: state.colorFieldParams?.label ?? '',
-                            hintText: state.colorFieldParams?.hintText ?? '',
-                            textInputType: TextInputType.text,
-                            textInputAction: TextInputAction.done,
-                            errorText: state.colorErrorText,
-                            onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                context.read<NewItemPageCubit>().validateColor(
-                                  colorTextController.text,
-                                  false,
-                                );
-                              }
-                            },
-                            onChanged: (newText) {
-                              context.read<NewItemPageCubit>().validateColor(
-                                colorTextController.text,
-                                colorFocusNode.hasFocus,
-                              );
-                            },
-                            padding: 0.0,
-                            maxLength: state.colorFieldParams?.maxLength,
-                          ),
-                        ],
-                      );
-                    },
+                  ItemInfoForm(
+                    manufacturerFocusNode: manufacturerFocusNode,
+                    modelFocusNode: modelFocusNode,
+                    colorFocusNode: colorFocusNode,
+                    yearFocusNode: yearFocusNode,
                   ),
 
                   // //page 3
@@ -319,12 +208,7 @@ class _NewItemPageState extends State<NewItemPage> {
                     final cubit = context.read<NewItemPageCubit>();
 
                     if (cubit.state.currentPageIndex == AppConstants.itemSetupTabInfo) {
-                      final areAllFieldsValid = cubit.areAllFieldsValid(
-                        manufacturerTextController.text,
-                        modelTextController.text,
-                        yearTextController.text,
-                        colorTextController.text,
-                      );
+                      final areAllFieldsValid = cubit.areAllFieldsValid();
 
                       if (!areAllFieldsValid) return;
                     }

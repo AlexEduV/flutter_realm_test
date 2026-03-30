@@ -16,6 +16,10 @@ abstract class NewItemPageState with _$NewItemPageState {
     String? modelErrorText,
     String? yearErrorText,
     String? colorErrorText,
+    @Default('') String manufacturerText,
+    @Default('') String modelText,
+    @Default('') String yearText,
+    @Default('') String colorText,
     @Default(AppConstants.itemSetupTabType) int currentPageIndex,
     @Default(CarType.car) CarType selectedCarType,
   }) = _NewItemPageState;
