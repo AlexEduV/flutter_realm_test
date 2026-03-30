@@ -2,16 +2,44 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
+import '../../../../di/injection_container.dart';
+import '../../../../l10n/l10n_keys.dart';
+import '../../l10n/app_localisations_cubit.dart';
+
 class NewItemPageCubit extends Cubit<NewItemPageState> {
   NewItemPageCubit() : super(const NewItemPageState());
 
   void init() {
     emit(
       state.copyWith(
-        manufacturerFieldParams: FieldParamsModel.withLabel('Manufacturer *'),
-        modelFieldParams: FieldParamsModel.withLabel('Model *'),
-        yearFieldParams: FieldParamsModel.withLabel('Year *'),
-        colorFieldParams: FieldParamsModel.withLabel('Color *'),
+        manufacturerFieldParams: FieldParamsModel.withLabel('Manufacturer *').copyWith(
+          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.fieldParamsValidationMessage,
+          ),
+          regexErrorMessage: 'Please, enter a valid manufacturer.',
+          regex: r'^[A-Za-z\s\-]+$',
+        ),
+        modelFieldParams: FieldParamsModel.withLabel('Model *').copyWith(
+          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.fieldParamsValidationMessage,
+          ),
+          regexErrorMessage: 'Please, enter a valid model.',
+          regex: r'^[A-Za-z0-9\s\-\/\+]+$',
+        ),
+        yearFieldParams: FieldParamsModel.withLabel('Year *').copyWith(
+          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.fieldParamsValidationMessage,
+          ),
+          regexErrorMessage: 'Please, enter a valid year.',
+          regex: r'^(198[0-9]|199[0-9]|200[0-9]|201[0-9]|202[0-6])$',
+        ),
+        colorFieldParams: FieldParamsModel.withLabel('Color *').copyWith(
+          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+            L10nKeys.fieldParamsValidationMessage,
+          ),
+          regexErrorMessage: 'Please, enter a valid color.',
+          regex: r'^[A-Za-z\s\-]+$',
+        ),
       ),
     );
   }

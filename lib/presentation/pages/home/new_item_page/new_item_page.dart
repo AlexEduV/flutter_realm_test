@@ -126,6 +126,7 @@ class _NewItemPageState extends State<NewItemPage> {
                             hintText: state.manufacturerFieldParams?.hintText ?? '',
                             textInputType: TextInputType.text,
                             textInputAction: TextInputAction.next,
+                            errorText: state.manufacturerErrorText,
                             onFocusChange: (hasFocus) {
                               if (!hasFocus) {
                                 context.read<NewItemPageCubit>().validateManufacturer(
@@ -151,6 +152,7 @@ class _NewItemPageState extends State<NewItemPage> {
                             hintText: state.modelFieldParams?.hintText ?? '',
                             textInputType: TextInputType.text,
                             textInputAction: TextInputAction.next,
+                            errorText: state.modelErrorText,
                             onFocusChange: (hasFocus) {
                               if (!hasFocus) {
                                 context.read<NewItemPageCubit>().validateModel(
@@ -176,6 +178,7 @@ class _NewItemPageState extends State<NewItemPage> {
                             hintText: state.yearFieldParams?.hintText ?? '',
                             textInputType: TextInputType.number,
                             textInputAction: TextInputAction.next,
+                            errorText: state.yearErrorText,
                             onFocusChange: (hasFocus) {
                               if (!hasFocus) {
                                 context.read<NewItemPageCubit>().validateYear(
@@ -200,6 +203,7 @@ class _NewItemPageState extends State<NewItemPage> {
                             hintText: state.colorFieldParams?.hintText ?? '',
                             textInputType: TextInputType.text,
                             textInputAction: TextInputAction.done,
+                            errorText: state.colorErrorText,
                             onFocusChange: (hasFocus) {
                               if (!hasFocus) {
                                 context.read<NewItemPageCubit>().validateColor(
