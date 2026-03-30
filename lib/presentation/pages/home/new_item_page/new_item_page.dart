@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/app_form_field.dart';
 
 import '../../../../common/app_dimensions.dart';
@@ -25,6 +26,8 @@ class _NewItemPageState extends State<NewItemPage> {
   final modelTextController = TextEditingController();
   final yearTextController = TextEditingController();
   final colorTextController = TextEditingController();
+
+  CarType? selectedCarType = CarType.car;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +65,32 @@ class _NewItemPageState extends State<NewItemPage> {
             const Text(
               'What kind of an item would you like to add?',
               style: AppTextStyles.zonaPro14,
+            ),
+
+            RadioGroup<CarType>(
+              groupValue: selectedCarType,
+              onChanged: (CarType? value) {
+                setState(() {
+                  selectedCarType = value;
+                });
+              },
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ListTile(
+                    title: Text('Car'),
+                    leading: Radio<CarType>(toggleable: true, value: CarType.car),
+                  ),
+                  ListTile(
+                    title: Text('Bike'),
+                    leading: Radio<CarType>(value: CarType.bike),
+                  ),
+                  ListTile(
+                    title: Text('Truck'),
+                    leading: Radio<CarType>(value: CarType.truck),
+                  ),
+                ],
+              ),
             ),
 
             AppFormField(
