@@ -43,9 +43,12 @@ class AccountPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                UserAvatarEnhanced(
-                  imageSrc: state.avatarImageSrc,
-                  onTap: () => serviceLocator<UserDataCubit>().updateAvatarImage(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
+                  child: UserAvatarEnhanced(
+                    imageSrc: state.avatarImageSrc,
+                    onTap: () => serviceLocator<UserDataCubit>().updateAvatarImage(),
+                  ),
                 ),
 
                 ListTile(
