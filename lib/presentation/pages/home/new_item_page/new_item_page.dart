@@ -211,6 +211,7 @@ class _NewItemPageState extends State<NewItemPage> {
       color: state.colorText.capitalizeFirst(),
       owner: OwnerEntity.fromUser(userDataCubit.user),
       price: int.tryParse(state.priceText) ?? 0,
+      year: state.yearText,
     );
 
     serviceLocator<AddCarUseCase>().call(car);
