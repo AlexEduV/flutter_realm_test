@@ -5,12 +5,12 @@ import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
-import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 import 'package:test_futter_project/presentation/pages/authentication/widgets/app_form_field.dart';
+import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_semantics_labels.dart';
@@ -36,7 +36,6 @@ class _NewItemPageState extends State<NewItemPage> {
   final yearTextController = TextEditingController();
   final colorTextController = TextEditingController();
 
-  CarType? selectedCarType = CarType.car;
   BodyType? selectedBodyType = BodyType.sedan;
   TransmissionType? selectedTransmissionType = TransmissionType.manual;
   FuelType? selectedFuelType = FuelType.diesel;
@@ -77,42 +76,7 @@ class _NewItemPageState extends State<NewItemPage> {
                 controller: pageViewController,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  //page 1
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'What kind of an item would you like to add?',
-                        style: AppTextStyles.zonaPro14,
-                      ),
-
-                      RadioGroup<CarType>(
-                        groupValue: selectedCarType,
-                        onChanged: (CarType? value) {
-                          setState(() {
-                            selectedCarType = value;
-                          });
-                        },
-                        child: const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            ListTile(
-                              title: Text('Car'),
-                              leading: Radio<CarType>(toggleable: true, value: CarType.car),
-                            ),
-                            ListTile(
-                              title: Text('Bike'),
-                              leading: Radio<CarType>(value: CarType.bike),
-                            ),
-                            ListTile(
-                              title: Text('Truck'),
-                              leading: Radio<CarType>(value: CarType.truck),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  const CarTypePicker(),
 
                   //page 2
                   BlocBuilder<NewItemPageCubit, NewItemPageState>(

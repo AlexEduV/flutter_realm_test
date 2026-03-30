@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
@@ -152,5 +153,9 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     }
 
     return result;
+  }
+
+  void updateSelectedCarType(CarType? newType) {
+    emit(state.copyWith(selectedCarType: newType ?? CarType.car));
   }
 }
