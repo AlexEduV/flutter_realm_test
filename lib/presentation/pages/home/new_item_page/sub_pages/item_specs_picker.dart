@@ -18,12 +18,21 @@ class ItemSpecsPicker extends StatefulWidget {
 }
 
 class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
+  List<BodyType> bodyTypesList = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    final cubit = context.read<NewItemPageCubit>();
+    bodyTypesList = carTypeToBodyTypes[cubit.state.selectedCarType] ?? [];
+    cubit.updateSelectedBodyType(bodyTypesList.firstOrNull);
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewItemPageCubit, NewItemPageState>(
       builder: (context, state) {
-        final bodyTypesList = carTypeToBodyTypes[state.selectedCarType] ?? [];
-
         return SingleChildScrollView(
           child: Column(
             spacing: AppDimensions.minorL,
