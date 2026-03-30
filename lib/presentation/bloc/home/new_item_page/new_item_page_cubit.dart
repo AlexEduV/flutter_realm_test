@@ -227,6 +227,14 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
   }
 
   void clearInfoForm() {
-    emit(state.copyWith(manufacturerText: '', modelText: '', yearText: '', colorText: ''));
+    emit(
+      state.copyWith(
+        manufacturerText: '',
+        modelText: '',
+        yearText: '',
+        colorText: '',
+        priceText: '',
+      ),
+    );
   }
 }
