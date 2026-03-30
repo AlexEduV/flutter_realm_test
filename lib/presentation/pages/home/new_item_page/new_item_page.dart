@@ -215,7 +215,6 @@ class _NewItemPageState extends State<NewItemPage> {
     widget.exploreListKey.currentState?.insertItem(insertionIndex);
     context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
 
-    //todo: this navigates backwards, but would be nice to navigate forward
-    context.go(AppRoutes.home);
+    context.push(AppRoutes.home);
   }
 }
