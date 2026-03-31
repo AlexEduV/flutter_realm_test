@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/common/extensions/string_extension.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../common/app_dimensions.dart';
@@ -18,28 +20,40 @@ class ColorPickerDialog extends StatefulWidget {
 }
 
 class _ColorPickerDialogState extends State<ColorPickerDialog> {
-  final List<Color> colors = [
-    Colors.red,
-    Colors.pink,
-    Colors.purple,
-    Colors.deepPurple,
-    Colors.indigo,
-    Colors.blue,
-    Colors.lightBlue,
-    Colors.cyan,
-    Colors.teal,
-    Colors.green,
-    Colors.lightGreen,
-    Colors.lime,
-    Colors.yellow,
-    Colors.white,
-    Colors.orange,
-    Colors.deepOrange,
-    Colors.brown,
-    Colors.grey,
-    Colors.blueGrey,
-    Colors.black,
-  ];
+  final Map<String, Color> colors = {
+    'red': Colors.red,
+    'pink': Colors.pink,
+    'purple': Colors.purple,
+    'deepPurple': Colors.deepPurple,
+    'indigo': Colors.indigo,
+    'blue': Colors.blue,
+    'lightBlue': Colors.lightBlue,
+    'cyan': Colors.cyan,
+    'teal': Colors.teal,
+    'green': Colors.green,
+    'lightGreen': Colors.lightGreen,
+    'lime': Colors.lime,
+    'yellow': Colors.yellow,
+    'white': Colors.white,
+    'orange': Colors.orange,
+    'deepOrange': Colors.deepOrange,
+    'brown': Colors.brown,
+    'grey': Colors.grey,
+    'blueGrey': Colors.blueGrey,
+    'black': Colors.black,
+  };
+
+  Color? pickedColor = Colors.white;
+
+  @override
+  void initState() {
+    pickedColor = colors.entries
+        .firstWhereOrNull((element) => element.key == widget.initialColor.toLowerCase())
+        ?.value;
+    pickedColor ??= colors.values.firstOrNull;
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +73,25 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
           crossAxisSpacing: AppDimensions.minorL,
           mainAxisSpacing: AppDimensions.minorL,
           children: [
-            for (Color color in colors)
+            for (Color color in colors.values)
               InkWell(
-                onTap: () {},
+                borderRadius: BorderRadius.circular(120.0),
+                onTap: () {
+                  setState(() {
+                    pickedColor = color;
+                  });
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: color,
                     border: Border.all(color: Colors.black87, width: 3.0),
+                  ),
+                  child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    opacity: pickedColor == color ? 1.0 : 0.0,
+                    child: const Icon(Icons.done, color: Colors.black),
                   ),
                 ),
               ),
@@ -79,7 +104,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
           button: true,
           child: TextButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pop(widget.initialColor);
             },
             child: Text(
               context.trRead(L10nKeys.cancelLabel),
@@ -92,7 +117,13 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
           button: true,
           child: ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              String? result = colors.entries
+                  .firstWhereOrNull((element) => element.value == pickedColor)
+                  ?.key
+                  .capitalizeFirst();
+              result ??= '';
+
+              Navigator.of(context).pop(result);
             },
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {

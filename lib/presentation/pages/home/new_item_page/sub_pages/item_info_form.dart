@@ -180,7 +180,12 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
               padding: 0.0,
               maxLength: state.colorFieldParams?.maxLength,
               onTap: () async {
-                await DialogHelper.showColorsPickerDialog(context);
+                final color = await DialogHelper.showColorsPickerDialog(
+                  context,
+                  colorTextController.text,
+                );
+                colorTextController.text = color ?? '';
+                widget.colorFocusNode.unfocus();
               },
             ),
           ],

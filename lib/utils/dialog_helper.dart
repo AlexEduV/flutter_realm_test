@@ -129,12 +129,14 @@ class DialogHelper {
     );
   }
 
-  static Future<void> showColorsPickerDialog(BuildContext context, String initialColor) async {
-    await showDialog(
+  static Future<String?> showColorsPickerDialog(BuildContext context, String initialColor) async {
+    final result = await showDialog<String>(
       context: context,
       builder: (context) {
         return ColorPickerDialog(initialColor: initialColor);
       },
     );
+
+    return result;
   }
 }
