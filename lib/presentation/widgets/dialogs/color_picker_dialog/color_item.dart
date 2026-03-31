@@ -16,7 +16,10 @@ class ColorItem extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: color,
-          border: Border.all(color: Colors.black87, width: 3.0),
+          border: Border.all(
+            color: Color.alphaBlend(Colors.black.withAlpha(50), color),
+            width: 2.0,
+          ),
         ),
         child: AnimatedOpacity(
           duration: const Duration(milliseconds: 300),
