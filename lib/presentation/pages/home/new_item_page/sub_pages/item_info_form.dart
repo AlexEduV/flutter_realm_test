@@ -184,8 +184,19 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                   context,
                   colorTextController.text,
                 );
+
                 colorTextController.text = color ?? '';
                 widget.colorFocusNode.unfocus();
+
+                if (!context.mounted) return;
+
+                //the same as onChanged - maybe refactor
+                context.read<NewItemPageCubit>().validateColor(
+                  colorTextController.text,
+                  widget.colorFocusNode.hasFocus,
+                );
+
+                context.read<NewItemPageCubit>().updateColorText(colorTextController.text);
               },
             ),
           ],

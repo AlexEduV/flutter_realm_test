@@ -72,6 +72,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       return false;
     }
 
+    emit(state.copyWith(manufacturerErrorText: null));
     return true;
   }
 
@@ -92,6 +93,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       return false;
     }
 
+    emit(state.copyWith(modelErrorText: null));
     return true;
   }
 
@@ -112,6 +114,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       return false;
     }
 
+    emit(state.copyWith(yearErrorText: null));
     return true;
   }
 
@@ -132,6 +135,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       return false;
     }
 
+    emit(state.copyWith(priceErrorText: null));
     return true;
   }
 
@@ -152,6 +156,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       return false;
     }
 
+    emit(state.copyWith(colorErrorText: null));
     return true;
   }
 
