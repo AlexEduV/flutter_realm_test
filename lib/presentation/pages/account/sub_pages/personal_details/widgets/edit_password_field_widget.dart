@@ -5,6 +5,7 @@ import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.
 import '../../../../../../common/app_colors.dart';
 import '../../../../../../common/app_dimensions.dart';
 import '../../../../../../common/app_semantics_labels.dart';
+import '../../../../../../common/app_text_styles.dart';
 import '../../../../../bloc/account/edit_dialog_cubit.dart';
 import '../../../../../widgets/app_semantics.dart';
 import '../../../../authentication/widgets/animated_password_visibility_icon.dart';
@@ -52,9 +53,11 @@ class EditPasswordFieldWidget extends StatelessWidget {
                 AppSemanticsLabels.obscurePasswordButton,
                 onSuffixIconTap,
               ),
+              hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),
             ),
             obscureText: isObscureText,
             keyboardType: TextInputType.visiblePassword,
+            style: AppTextStyles.zonaPro16,
           ),
         );
       },

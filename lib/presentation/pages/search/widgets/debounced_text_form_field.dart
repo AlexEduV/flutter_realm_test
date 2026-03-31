@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
+import '../../../../common/app_text_styles.dart';
 
 class DebouncedTextFormField extends StatefulWidget {
   final TextEditingController controller;
@@ -81,8 +82,10 @@ class _DebouncedTextFormFieldState extends State<DebouncedTextFormField> {
           borderSide: BorderSide(color: AppColors.placeholderColorDark),
           borderRadius: borderRadius,
         ),
+        hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),
       ),
       keyboardType: TextInputType.number,
+      style: AppTextStyles.zonaPro16,
     );
   }
 }
