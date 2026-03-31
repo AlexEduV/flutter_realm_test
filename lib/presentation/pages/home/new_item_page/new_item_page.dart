@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/item_setup_tab.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
@@ -54,7 +54,7 @@ class _NewItemPageState extends State<NewItemPage> {
   void initState() {
     super.initState();
 
-    final initIndex = AppConstants.itemSetupTabType;
+    final initIndex = ItemSetupTab.type.index;
 
     final cubit = context.read<NewItemPageCubit>();
     cubit.updateTabIndex(initIndex);
@@ -172,7 +172,7 @@ class _NewItemPageState extends State<NewItemPage> {
 
   void pageRightPressed(NewItemPageState state) {
     final currentIndex = state.currentPageIndex;
-    final isLastIndex = currentIndex == AppConstants.itemSetupTabPickers;
+    final isLastIndex = currentIndex == ItemSetupTab.pickers.index;
 
     if (isLastIndex) {
       insertItem(state);
@@ -181,7 +181,7 @@ class _NewItemPageState extends State<NewItemPage> {
 
     final cubit = context.read<NewItemPageCubit>();
 
-    if (currentIndex == AppConstants.itemSetupTabInfo) {
+    if (currentIndex == ItemSetupTab.infoForm.index) {
       final areAllFieldsValid = cubit.areAllFieldsValid();
 
       if (!areAllFieldsValid) return;
