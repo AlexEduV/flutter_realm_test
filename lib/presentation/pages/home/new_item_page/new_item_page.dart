@@ -54,8 +54,13 @@ class _NewItemPageState extends State<NewItemPage> {
   void initState() {
     super.initState();
 
+    final initIndex = AppConstants.itemSetupTabType;
+
     final cubit = context.read<NewItemPageCubit>();
-    cubit.updateTabIndex(AppConstants.itemSetupTabType);
+    cubit.updateTabIndex(initIndex);
+
+    pageViewController.jumpToPage(initIndex);
+
     cubit.clearInfoForm();
   }
 
@@ -147,6 +152,7 @@ class _NewItemPageState extends State<NewItemPage> {
     modelFocusNode.unfocus();
     yearFocusNode.unfocus();
     colorFocusNode.unfocus();
+    priceFocusNode.unfocus();
   }
 
   void pageLeftPressed(int currentIndex) {
