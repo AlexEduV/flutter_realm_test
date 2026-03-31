@@ -169,14 +169,7 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                   context.read<NewItemPageCubit>().validateColor(colorTextController.text, false);
                 }
               },
-              onChanged: (newText) {
-                context.read<NewItemPageCubit>().validateColor(
-                  colorTextController.text,
-                  widget.colorFocusNode.hasFocus,
-                );
-
-                context.read<NewItemPageCubit>().updateColorText(colorTextController.text);
-              },
+              onChanged: (newText) => onColorChanged(),
               padding: 0.0,
               maxLength: state.colorFieldParams?.maxLength,
               onTap: () async {
@@ -190,18 +183,21 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
 
                 if (!context.mounted) return;
 
-                //the same as onChanged - maybe refactor
-                context.read<NewItemPageCubit>().validateColor(
-                  colorTextController.text,
-                  widget.colorFocusNode.hasFocus,
-                );
-
-                context.read<NewItemPageCubit>().updateColorText(colorTextController.text);
+                onColorChanged();
               },
             ),
           ],
         );
       },
     );
+  }
+
+  void onColorChanged() {
+    context.read<NewItemPageCubit>().validateColor(
+      colorTextController.text,
+      widget.colorFocusNode.hasFocus,
+    );
+
+    context.read<NewItemPageCubit>().updateColorText(colorTextController.text);
   }
 }
