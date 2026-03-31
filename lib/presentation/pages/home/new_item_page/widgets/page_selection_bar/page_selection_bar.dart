@@ -38,6 +38,7 @@ class PageSelectionBar extends StatelessWidget {
       ),
       child: Row(
         spacing: AppDimensions.minorL,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           IconButton(
             onPressed: onBackPressed,
