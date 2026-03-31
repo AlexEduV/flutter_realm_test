@@ -25,8 +25,8 @@ class PageSelectionBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-        color: Colors.white,
+        borderRadius: BorderRadius.circular(AppDimensions.majorM),
+        color: AppColors.whiteGrey,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withAlpha(40),
@@ -40,9 +40,12 @@ class PageSelectionBar extends StatelessWidget {
         spacing: AppDimensions.minorL,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          IconButton(
-            onPressed: onBackPressed,
-            icon: Icon(Icons.chevron_left_outlined, color: iconColor, size: iconSize),
+          Padding(
+            padding: const EdgeInsets.all(AppDimensions.minorM),
+            child: IconButton(
+              icon: Icon(Icons.chevron_left_outlined, color: iconColor, size: iconSize),
+              onPressed: onBackPressed,
+            ),
           ),
 
           ...ItemSetupTab.values.map((element) {
@@ -51,9 +54,12 @@ class PageSelectionBar extends StatelessWidget {
             return PageDotWidget(isCurrentIndex: isCurrentIndex);
           }),
 
-          IconButton(
-            onPressed: onForwardPressed,
-            icon: Icon(Icons.chevron_right_outlined, color: iconColor, size: iconSize),
+          Padding(
+            padding: const EdgeInsets.all(AppDimensions.minorM),
+            child: IconButton(
+              icon: Icon(Icons.chevron_right_outlined, color: iconColor, size: iconSize),
+              onPressed: onForwardPressed,
+            ),
           ),
         ],
       ),
