@@ -14,7 +14,7 @@ import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_text_styles.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';
-import 'login_field.dart';
+import 'app_form_field.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -47,7 +47,7 @@ class _LoginFormState extends State<LoginForm> {
       builder: (context, state) {
         return Column(
           children: [
-            LoginField(
+            AppFormField(
               focusNode: emailFocusNode,
               textEditingController: emailTextController,
               labelText: state.emailFieldParams?.label ?? '',
@@ -80,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: 20),
 
             // password textField
-            LoginField(
+            AppFormField(
               focusNode: passwordFocusNode,
               textEditingController: passwordTextController,
               labelText: state.passwordFieldParams?.label ?? '',

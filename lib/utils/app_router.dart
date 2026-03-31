@@ -8,6 +8,7 @@ import 'package:test_futter_project/presentation/pages/account/sub_pages/recentl
 import 'package:test_futter_project/presentation/pages/article/article_page.dart';
 import 'package:test_futter_project/presentation/pages/details/details_page.dart';
 import 'package:test_futter_project/presentation/pages/home/home_page.dart';
+import 'package:test_futter_project/presentation/pages/home/new_item_page/new_item_page.dart';
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
 import 'package:test_futter_project/presentation/pages/messages/messages_page.dart';
 
@@ -20,7 +21,25 @@ class AppRouter {
     routes: <RouteBase>[
       GoRoute(
         path: AppRoutes.home,
-        pageBuilder: (context, state) => const CupertinoPage(child: HomePage()),
+        pageBuilder: (context, state) {
+          final fromSetup = (state.extra is Map && (state.extra as Map)['fromSetup'] == true);
+
+          if (fromSetup) {
+            return CustomTransitionPage(
+              child: const HomePage(),
+              //reversed animation when going from the setup page
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0);
+                const end = Offset.zero;
+                var tween = Tween(begin: begin, end: end);
+                var offsetAnimation = animation.drive(tween);
+                return SlideTransition(position: offsetAnimation, child: child);
+              },
+            );
+          } else {
+            return const CupertinoPage(child: HomePage());
+          }
+        },
         routes: <RouteBase>[
           GoRoute(
             path: AppRoutes.search,
@@ -28,6 +47,16 @@ class AppRouter {
             routes: <RouteBase>[_detailsRoute],
           ),
           _detailsRoute,
+          GoRoute(
+            path: AppRoutes.newItem,
+            pageBuilder: (context, state) {
+              final listKey = state.extra is GlobalKey<AnimatedListState>
+                  ? state.extra as GlobalKey<AnimatedListState>
+                  : null;
+
+              return CupertinoPage(child: NewItemPage(exploreListKey: listKey));
+            },
+          ),
           GoRoute(
             path: AppRoutes.personalDetails,
             pageBuilder: (context, state) {

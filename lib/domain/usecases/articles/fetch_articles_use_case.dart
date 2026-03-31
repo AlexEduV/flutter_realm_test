@@ -3,12 +3,12 @@ import 'package:test_futter_project/domain/repositories/article_repository.dart'
 import 'package:test_futter_project/domain/usecases/usecase.dart';
 
 class FetchArticlesUseCase extends UseCaseNoParams<Future<List<ArticleEntity>>> {
-  final ArticleRepository articleRepository;
+  final ArticleRepository _articleRepository;
 
-  FetchArticlesUseCase(this.articleRepository);
+  FetchArticlesUseCase(this._articleRepository);
 
   @override
   Future<List<ArticleEntity>> call() {
-    return articleRepository.fetchArticles();
+    return _articleRepository.fetchArticles();
   }
 }
