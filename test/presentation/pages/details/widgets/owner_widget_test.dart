@@ -45,6 +45,7 @@ void main() {
       'pages.vehicleDetails.ownerSection.personTypeOwner': 'Owner',
       'widgets.distance.text': 'km away',
       'pages.vehicleDetails.ownerSection.contactButtonTitle': 'Contact',
+      'pages.inbox.general.senderYou': 'You',
     };
 
     appLocalisationsCubit.load(localisations);
@@ -123,7 +124,7 @@ void main() {
     );
 
     // Owner name
-    expect(find.text('Elon Musk'), findsOneWidget);
+    expect(find.text('You'), findsOneWidget);
 
     // Owner type
     expect(find.text('Owner'), findsOneWidget);
