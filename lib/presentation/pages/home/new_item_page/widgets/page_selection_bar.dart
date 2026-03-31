@@ -18,6 +18,14 @@ class PageSelectionBar extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppDimensions.normalXL),
         color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(50),
+            offset: const Offset(0, AppDimensions.minorL),
+            blurRadius: 16,
+            spreadRadius: 0,
+          ),
+        ],
       ),
       child: Row(
         spacing: AppDimensions.minorL,
