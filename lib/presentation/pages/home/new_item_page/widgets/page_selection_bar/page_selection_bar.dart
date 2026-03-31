@@ -29,9 +29,9 @@ class PageSelectionBar extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(50),
+            color: Colors.black.withAlpha(40),
             offset: const Offset(0, AppDimensions.minorL),
-            blurRadius: 16,
+            blurRadius: 12,
             spreadRadius: 0,
           ),
         ],
