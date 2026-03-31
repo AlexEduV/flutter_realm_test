@@ -121,8 +121,6 @@ class _NewItemPageState extends State<NewItemPage> {
 
             BlocBuilder<NewItemPageCubit, NewItemPageState>(
               builder: (context, state) {
-                final isLastIndex = state.currentPageIndex == AppConstants.itemSetupTabPickers;
-
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   spacing: AppDimensions.minorL,
@@ -133,7 +131,7 @@ class _NewItemPageState extends State<NewItemPage> {
                     ),
 
                     IconButton(
-                      onPressed: () => pageRightPressed(isLastIndex, state),
+                      onPressed: () => pageRightPressed(state),
                       icon: const Icon(Icons.chevron_right_outlined, color: AppColors.headerColor),
                     ),
                   ],
@@ -166,7 +164,10 @@ class _NewItemPageState extends State<NewItemPage> {
     clearAllFocuses();
   }
 
-  void pageRightPressed(bool isLastIndex, NewItemPageState state) {
+  void pageRightPressed(NewItemPageState state) {
+    final currentIndex = state.currentPageIndex;
+    final isLastIndex = currentIndex == AppConstants.itemSetupTabPickers;
+
     if (isLastIndex) {
       insertItem(state);
       return;
@@ -174,7 +175,7 @@ class _NewItemPageState extends State<NewItemPage> {
 
     final cubit = context.read<NewItemPageCubit>();
 
-    if (state.currentPageIndex == AppConstants.itemSetupTabInfo) {
+    if (currentIndex == AppConstants.itemSetupTabInfo) {
       final areAllFieldsValid = cubit.areAllFieldsValid();
 
       if (!areAllFieldsValid) return;
@@ -185,7 +186,6 @@ class _NewItemPageState extends State<NewItemPage> {
       curve: Curves.easeInOut,
     );
 
-    final currentIndex = state.currentPageIndex;
     cubit.updateTabIndex(currentIndex + 1);
 
     clearAllFocuses();
