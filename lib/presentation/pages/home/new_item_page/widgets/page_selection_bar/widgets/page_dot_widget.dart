@@ -21,7 +21,7 @@ class PageDotWidget extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: isCurrentIndex ? Colors.white : AppColors.headerColor,
-        border: Border.all(color: Colors.black),
+        border: Border.all(color: AppColors.headerColor, width: 2.0),
       ),
     );
   }
