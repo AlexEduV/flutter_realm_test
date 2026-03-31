@@ -10,10 +10,12 @@ class PageDotWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double baseSize = 12;
+    const double baseSize = AppDimensions.normalS;
     final size = isCurrentIndex ? baseSize + AppDimensions.minorXS : baseSize;
 
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.fastOutSlowIn,
       height: size,
       width: size,
       decoration: BoxDecoration(
