@@ -87,6 +87,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
             fontFamily: 'Zona Pro',
+            radioTheme: const RadioThemeData(
+              fillColor: WidgetStatePropertyAll(AppColors.headerColor),
+            ),
           ),
           routerConfig: AppRouter.router,
           debugShowCheckedModeBanner: false,
