@@ -6,6 +6,7 @@ import '../../../../../common/app_dimensions.dart';
 import '../../../../bloc/home/new_item_page/new_item_page_cubit.dart';
 import '../../../../bloc/home/new_item_page/new_item_page_state.dart';
 import '../../../authentication/widgets/app_form_field.dart';
+import '../widgets/radio_group_title.dart';
 
 class ItemInfoForm extends StatefulWidget {
   final FocusNode manufacturerFocusNode;
@@ -53,6 +54,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
         return Column(
           spacing: AppDimensions.normalS,
           children: [
+            const RadioGroupTitle(text: 'Please, fill the form here.'),
+
             AppFormField(
               focusNode: widget.manufacturerFocusNode,
               textEditingController: manufacturerTextController,

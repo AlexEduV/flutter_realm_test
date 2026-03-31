@@ -59,7 +59,9 @@ class _NewItemPageState extends State<NewItemPage> {
     final cubit = context.read<NewItemPageCubit>();
     cubit.updateTabIndex(initIndex);
 
-    pageViewController.jumpToPage(initIndex);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      pageViewController.jumpToPage(initIndex);
+    });
 
     cubit.clearInfoForm();
   }

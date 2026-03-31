@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
+import 'package:test_futter_project/presentation/pages/home/new_item_page/widgets/radio_group_title.dart';
 
-import '../../../../../common/app_text_styles.dart';
 import '../../../../../common/enums/car_type.dart';
 
 class CarTypePicker extends StatefulWidget {
@@ -23,7 +23,7 @@ class _CarTypePickerState extends State<CarTypePicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppDimensions.minorS,
       children: [
-        const Text('What kind of an item would you like to add?', style: AppTextStyles.zonaPro14),
+        const RadioGroupTitle(text: 'What kind of an item would you like to add?'),
 
         BlocBuilder<NewItemPageCubit, NewItemPageState>(
           builder: (context, state) {

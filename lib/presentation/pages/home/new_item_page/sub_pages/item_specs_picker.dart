@@ -5,10 +5,10 @@ import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
-import '../../../../../common/app_text_styles.dart';
 import '../../../../../common/enums/body_type.dart';
 import '../../../../../common/enums/fuel_type.dart';
 import '../../../../../common/enums/transmission_type.dart';
+import '../widgets/radio_group_title.dart';
 
 class ItemSpecsPicker extends StatefulWidget {
   const ItemSpecsPicker({super.key});
@@ -42,7 +42,7 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Body type', style: AppTextStyles.zonaPro14),
+                  const RadioGroupTitle(text: 'Body type'),
 
                   RadioGroup<BodyType>(
                     groupValue: state.selectedBodyType,
@@ -70,7 +70,7 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Fuel type', style: AppTextStyles.zonaPro14),
+                  const RadioGroupTitle(text: 'Fuel type'),
 
                   RadioGroup<FuelType>(
                     groupValue: state.selectedFuelType,
@@ -120,7 +120,7 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Transmission type', style: AppTextStyles.zonaPro14),
+                  const RadioGroupTitle(text: 'Transmission type'),
 
                   RadioGroup<TransmissionType>(
                     groupValue: state.selectedTransmissionType,
