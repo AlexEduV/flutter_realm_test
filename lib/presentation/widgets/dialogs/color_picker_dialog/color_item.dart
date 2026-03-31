@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/extensions/color_extension.dart';
 
 class ColorItem extends StatelessWidget {
   final Color color;
@@ -25,14 +26,9 @@ class ColorItem extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           opacity: isPicked ? 1.0 : 0.0,
-          child: Icon(Icons.done, color: getContrastingIconColor(color)),
+          child: Icon(Icons.done, color: color.getContrastingIconColor()),
         ),
       ),
     );
-  }
-
-  Color getContrastingIconColor(Color background) {
-    final brightness = ThemeData.estimateBrightnessForColor(background);
-    return brightness == Brightness.dark ? Colors.white : Colors.black;
   }
 }
