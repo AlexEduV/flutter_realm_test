@@ -26,7 +26,7 @@ class PageSelectionBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppDimensions.majorM),
-        color: AppColors.whiteGrey,
+        color: Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withAlpha(40),
