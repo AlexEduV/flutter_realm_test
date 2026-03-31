@@ -50,6 +50,7 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.newItem,
             pageBuilder: (context, state) {
+              //todo: when opening flutter inspector, the extra is Null, which breaks the type cast
               final listKey = state.extra as GlobalKey<AnimatedListState>;
 
               return CupertinoPage(child: NewItemPage(exploreListKey: listKey));

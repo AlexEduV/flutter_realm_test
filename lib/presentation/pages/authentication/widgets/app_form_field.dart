@@ -22,6 +22,7 @@ class AppFormField extends StatelessWidget {
   final String? trailingActionSemanticsLabel;
   final int? maxLength;
   final double? padding;
+  final VoidCallback? onTap;
 
   const AppFormField({
     required this.focusNode,
@@ -40,6 +41,7 @@ class AppFormField extends StatelessWidget {
     this.padding = AppDimensions.normalM,
     this.onSuffixIconPressed,
     this.trailingActionSemanticsLabel,
+    this.onTap,
     super.key,
   });
 
@@ -97,6 +99,7 @@ class AppFormField extends StatelessWidget {
           obscureText: isObscureText,
           onChanged: onChanged,
           onEditingComplete: onEditingComplete,
+          onTap: onTap,
         ),
       ),
     );

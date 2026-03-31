@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/app_dimensions.dart';
 import '../../../../bloc/home/new_item_page/new_item_page_cubit.dart';
@@ -178,6 +179,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
               },
               padding: 0.0,
               maxLength: state.colorFieldParams?.maxLength,
+              onTap: () async {
+                await DialogHelper.showColorsPickerDialog(context);
+              },
             ),
           ],
         );
