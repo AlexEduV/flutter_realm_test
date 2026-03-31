@@ -120,7 +120,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
               String? result = colors.entries
                   .firstWhereOrNull((element) => element.value == pickedColor)
                   ?.key
-                  .capitalizeFirst();
+                  .camelCaseToTitle();
               result ??= '';
 
               Navigator.of(context).pop(result);
