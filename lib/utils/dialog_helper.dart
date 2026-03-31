@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/domain/models/region_ui_model.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/color_picker_dialog.dart';
+import 'package:test_futter_project/presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/edit_password_dialog.dart';

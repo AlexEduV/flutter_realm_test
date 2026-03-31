@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/app_dimensions.dart';
-import '../../../common/app_semantics_labels.dart';
-import '../../../common/app_text_styles.dart';
-import '../../../l10n/l10n_keys.dart';
-import '../app_semantics.dart';
+import '../../../../common/app_colors.dart';
+import '../../../../common/app_dimensions.dart';
+import '../../../../common/app_semantics_labels.dart';
+import '../../../../common/app_text_styles.dart';
+import '../../../../l10n/l10n_keys.dart';
+import '../../app_semantics.dart';
+import 'color_item.dart';
 
 class ColorPickerDialog extends StatefulWidget {
   final String initialColor;
@@ -74,26 +75,14 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
           mainAxisSpacing: AppDimensions.minorL,
           children: [
             for (Color color in colors.values)
-              InkWell(
-                borderRadius: BorderRadius.circular(120.0),
+              ColorItem(
+                color: color,
+                isPicked: pickedColor == color,
                 onTap: () {
                   setState(() {
                     pickedColor = color;
                   });
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: color,
-                    border: Border.all(color: Colors.black87, width: 3.0),
-                  ),
-                  child: AnimatedOpacity(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    opacity: pickedColor == color ? 1.0 : 0.0,
-                    child: const Icon(Icons.done, color: Colors.black),
-                  ),
-                ),
               ),
           ],
         ),
