@@ -128,47 +128,12 @@ class _NewItemPageState extends State<NewItemPage> {
                   spacing: AppDimensions.minorL,
                   children: [
                     IconButton(
-                      onPressed: () {
-                        final cubit = context.read<NewItemPageCubit>();
-
-                        final currentIndex = state.currentPageIndex;
-                        cubit.updateTabIndex(currentIndex - 1);
-
-                        pageViewController.previousPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-
-                        clearAllFocuses();
-                      },
+                      onPressed: () => pageLeftPressed(state.currentPageIndex),
                       icon: const Icon(Icons.chevron_left_outlined, color: AppColors.headerColor),
                     ),
 
                     IconButton(
-                      onPressed: () {
-                        if (isLastIndex) {
-                          insertItem(state);
-                          return;
-                        }
-
-                        final cubit = context.read<NewItemPageCubit>();
-
-                        if (state.currentPageIndex == AppConstants.itemSetupTabInfo) {
-                          final areAllFieldsValid = cubit.areAllFieldsValid();
-
-                          if (!areAllFieldsValid) return;
-                        }
-
-                        pageViewController.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-
-                        final currentIndex = state.currentPageIndex;
-                        cubit.updateTabIndex(currentIndex + 1);
-
-                        clearAllFocuses();
-                      },
+                      onPressed: () => pageRightPressed(isLastIndex, state),
                       icon: const Icon(Icons.chevron_right_outlined, color: AppColors.headerColor),
                     ),
                   ],
@@ -186,6 +151,44 @@ class _NewItemPageState extends State<NewItemPage> {
     modelFocusNode.unfocus();
     yearFocusNode.unfocus();
     colorFocusNode.unfocus();
+  }
+
+  void pageLeftPressed(int currentIndex) {
+    final cubit = context.read<NewItemPageCubit>();
+
+    cubit.updateTabIndex(currentIndex - 1);
+
+    pageViewController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+
+    clearAllFocuses();
+  }
+
+  void pageRightPressed(bool isLastIndex, NewItemPageState state) {
+    if (isLastIndex) {
+      insertItem(state);
+      return;
+    }
+
+    final cubit = context.read<NewItemPageCubit>();
+
+    if (state.currentPageIndex == AppConstants.itemSetupTabInfo) {
+      final areAllFieldsValid = cubit.areAllFieldsValid();
+
+      if (!areAllFieldsValid) return;
+    }
+
+    pageViewController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+
+    final currentIndex = state.currentPageIndex;
+    cubit.updateTabIndex(currentIndex + 1);
+
+    clearAllFocuses();
   }
 
   void insertItem(NewItemPageState state) {
