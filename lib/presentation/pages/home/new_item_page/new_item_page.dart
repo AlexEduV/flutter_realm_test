@@ -93,34 +93,42 @@ class _NewItemPageState extends State<NewItemPage> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsetsGeometry.symmetric(
-          vertical: AppDimensions.normalL,
-          horizontal: AppDimensions.normalM,
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView(
-                controller: pageViewController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  const CarTypePicker(),
-
-                  ItemInfoForm(
-                    manufacturerFocusNode: manufacturerFocusNode,
-                    modelFocusNode: modelFocusNode,
-                    colorFocusNode: colorFocusNode,
-                    yearFocusNode: yearFocusNode,
-                    priceFocusNode: priceFocusNode,
-                  ),
-
-                  const ItemSpecsPicker(),
-                ],
-              ),
+      body: Stack(
+        alignment: AlignmentGeometry.center,
+        children: [
+          Padding(
+            padding: const EdgeInsetsGeometry.symmetric(
+              vertical: AppDimensions.normalL,
+              horizontal: AppDimensions.normalM,
             ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: PageView(
+                    controller: pageViewController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      const CarTypePicker(),
 
-            BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                      ItemInfoForm(
+                        manufacturerFocusNode: manufacturerFocusNode,
+                        modelFocusNode: modelFocusNode,
+                        colorFocusNode: colorFocusNode,
+                        yearFocusNode: yearFocusNode,
+                        priceFocusNode: priceFocusNode,
+                      ),
+
+                      const ItemSpecsPicker(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Positioned(
+            bottom: AppDimensions.majorS,
+            child: BlocBuilder<NewItemPageCubit, NewItemPageState>(
               builder: (context, state) {
                 return PageSelectionBar(
                   onBackPressed: () => pageLeftPressed(state.currentPageIndex),
@@ -128,8 +136,8 @@ class _NewItemPageState extends State<NewItemPage> {
                 );
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
