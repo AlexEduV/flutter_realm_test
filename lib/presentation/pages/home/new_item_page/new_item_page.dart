@@ -160,6 +160,9 @@ class _NewItemPageState extends State<NewItemPage> {
 
   void pageLeftPressed(int currentIndex) {
     final cubit = context.read<NewItemPageCubit>();
+    clearAllFocuses();
+
+    if (currentIndex < 1) return;
 
     cubit.updateTabIndex(currentIndex - 1);
 
@@ -167,8 +170,6 @@ class _NewItemPageState extends State<NewItemPage> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
-
-    clearAllFocuses();
   }
 
   void pageRightPressed(NewItemPageState state) {
