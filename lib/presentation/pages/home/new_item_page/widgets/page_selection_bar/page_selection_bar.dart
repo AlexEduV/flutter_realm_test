@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/enums/item_setup_tab.dart';
+import 'package:test_futter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar/widgets/page_dot_widget.dart';
 
-import '../../../../../common/app_colors.dart';
-import '../../../../../common/app_dimensions.dart';
+import '../../../../../../common/app_colors.dart';
+import '../../../../../../common/app_dimensions.dart';
 
 class PageSelectionBar extends StatelessWidget {
   final Function() onForwardPressed;
@@ -45,18 +46,7 @@ class PageSelectionBar extends StatelessWidget {
           ...ItemSetupTab.values.map((element) {
             final isCurrentIndex = element.index == currentIndex;
 
-            const double baseSize = 12;
-            final size = isCurrentIndex ? baseSize + AppDimensions.minorXS : baseSize;
-
-            return Container(
-              height: size,
-              width: size,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: isCurrentIndex ? Colors.white : AppColors.headerColor,
-                border: Border.all(color: Colors.black),
-              ),
-            );
+            return PageDotWidget(isCurrentIndex: isCurrentIndex);
           }),
 
           IconButton(
