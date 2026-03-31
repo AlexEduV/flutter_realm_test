@@ -9,19 +9,20 @@ class PageSelectionBar extends StatelessWidget {
   final Function() onForwardPressed;
   final Function() onBackPressed;
   final int currentIndex;
+  final Color iconColor;
+  final double iconSize;
 
   const PageSelectionBar({
     required this.onBackPressed,
     required this.onForwardPressed,
     required this.currentIndex,
+    this.iconSize = AppDimensions.majorM,
+    this.iconColor = AppColors.headerColor,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final iconColor = AppColors.headerColor;
-    final iconSize = AppDimensions.majorM;
-
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppDimensions.normalXL),
