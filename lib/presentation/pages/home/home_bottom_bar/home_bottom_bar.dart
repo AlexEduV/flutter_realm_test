@@ -41,11 +41,13 @@ class HomeBottomBar extends StatelessWidget {
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
               index: AppConstants.homeTabExplore,
               icon: Icons.home_outlined,
+              label: 'Explore',
             ),
             const HomeBottomBarItem(
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemFavorites,
               index: AppConstants.homeTabFavorites,
               icon: Icons.favorite_border,
+              label: 'Favorites',
             ),
 
             AppSemantics(
@@ -62,11 +64,13 @@ class HomeBottomBar extends StatelessWidget {
               index: AppConstants.homeTabInbox,
               icon: Icons.mail_outlined,
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemInbox,
+              label: 'Inbox',
             ),
             const HomeBottomBarItem(
               index: AppConstants.homeTabAccount,
               icon: Icons.person_2_outlined,
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemAccount,
+              label: 'Account',
             ),
           ],
         ),
