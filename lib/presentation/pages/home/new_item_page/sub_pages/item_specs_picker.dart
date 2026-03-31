@@ -57,6 +57,8 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                               title: Text(element.name.capitalizeFirst()),
                               leading: Radio<BodyType>(toggleable: true, value: element),
                               contentPadding: listTileContentPadding,
+                              onTap: () =>
+                                  context.read<NewItemPageCubit>().updateSelectedBodyType(element),
                             ),
                           )
                           .toList(),
@@ -82,21 +84,32 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                           title: const Text('Diesel'),
                           leading: const Radio<FuelType>(toggleable: true, value: FuelType.diesel),
                           contentPadding: listTileContentPadding,
+                          onTap: () => context.read<NewItemPageCubit>().updateSelectedFuelType(
+                            FuelType.diesel,
+                          ),
                         ),
                         ListTile(
                           title: const Text('Gasoline'),
                           leading: const Radio<FuelType>(value: FuelType.gasoline),
                           contentPadding: listTileContentPadding,
+                          onTap: () => context.read<NewItemPageCubit>().updateSelectedFuelType(
+                            FuelType.gasoline,
+                          ),
                         ),
                         ListTile(
                           title: const Text('EV'),
                           leading: const Radio<FuelType>(value: FuelType.ev),
                           contentPadding: listTileContentPadding,
+                          onTap: () =>
+                              context.read<NewItemPageCubit>().updateSelectedFuelType(FuelType.ev),
                         ),
                         ListTile(
                           title: const Text('Hybrid'),
                           leading: const Radio<FuelType>(value: FuelType.hybrid),
                           contentPadding: listTileContentPadding,
+                          onTap: () => context.read<NewItemPageCubit>().updateSelectedFuelType(
+                            FuelType.hybrid,
+                          ),
                         ),
                       ],
                     ),
@@ -124,16 +137,25 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                             value: TransmissionType.manual,
                           ),
                           contentPadding: listTileContentPadding,
+                          onTap: () => context
+                              .read<NewItemPageCubit>()
+                              .updateSelectedTransmissionType(TransmissionType.manual),
                         ),
                         ListTile(
                           title: const Text('Automatic'),
                           leading: const Radio<TransmissionType>(value: TransmissionType.automatic),
                           contentPadding: listTileContentPadding,
+                          onTap: () => context
+                              .read<NewItemPageCubit>()
+                              .updateSelectedTransmissionType(TransmissionType.automatic),
                         ),
                         ListTile(
                           title: const Text('Hybrid'),
                           leading: const Radio<TransmissionType>(value: TransmissionType.hybrid),
                           contentPadding: listTileContentPadding,
+                          onTap: () => context
+                              .read<NewItemPageCubit>()
+                              .updateSelectedTransmissionType(TransmissionType.hybrid),
                         ),
                       ],
                     ),
