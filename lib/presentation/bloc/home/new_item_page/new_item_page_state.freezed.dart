@@ -96,7 +96,7 @@ as TransmissionType,
 
 
 class _NewItemPageState implements NewItemPageState {
-  const _NewItemPageState({this.manufacturerFieldParams, this.modelFieldParams, this.yearFieldParams, this.colorFieldParams, this.priceFieldParams, this.manufacturerErrorText, this.modelErrorText, this.yearErrorText, this.colorErrorText, this.priceErrorText, this.manufacturerText = '', this.modelText = '', this.yearText = '', this.colorText = '', this.priceText = '', this.currentPageIndex = AppConstants.itemSetupTabType, this.selectedCarType = CarType.car, this.selectedBodyType, this.selectedFuelType = FuelType.diesel, this.selectedTransmissionType = TransmissionType.manual});
+  const _NewItemPageState({this.manufacturerFieldParams, this.modelFieldParams, this.yearFieldParams, this.colorFieldParams, this.priceFieldParams, this.manufacturerErrorText, this.modelErrorText, this.yearErrorText, this.colorErrorText, this.priceErrorText, this.manufacturerText = '', this.modelText = '', this.yearText = '', this.colorText = '', this.priceText = '', this.currentPageIndex = 0, this.selectedCarType = CarType.car, this.selectedBodyType, this.selectedFuelType = FuelType.diesel, this.selectedTransmissionType = TransmissionType.manual});
   
 
 @override final  FieldParamsModel? manufacturerFieldParams;

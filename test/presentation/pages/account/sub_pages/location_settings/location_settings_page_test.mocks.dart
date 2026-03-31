@@ -4,16 +4,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/domain/entities/region_entity.dart' as _i5;
-import 'package:test_futter_project/domain/models/region_ui_model.dart' as _i7;
-import 'package:test_futter_project/domain/repositories/region_model_repository.dart'
-    as _i3;
-import 'package:test_futter_project/domain/repositories/region_repository.dart'
-    as _i2;
+import 'package:test_futter_project/domain/entities/region_entity.dart' as _i3;
+import 'package:test_futter_project/domain/models/region_ui_model.dart' as _i5;
 import 'package:test_futter_project/domain/usecases/regions/get_all_region_models_use_case.dart'
-    as _i6;
-import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart'
     as _i4;
+import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -29,69 +25,35 @@ import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_u
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeRegionRepository_0 extends _i1.SmartFake
-    implements _i2.RegionRepository {
-  _FakeRegionRepository_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
-}
-
-class _FakeRegionModelRepository_1 extends _i1.SmartFake
-    implements _i3.RegionModelRepository {
-  _FakeRegionModelRepository_1(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
-}
-
 /// A class which mocks [GetRegionByCodeUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetRegionByCodeUseCase extends _i1.Mock
-    implements _i4.GetRegionByCodeUseCase {
+    implements _i2.GetRegionByCodeUseCase {
   MockGetRegionByCodeUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.RegionRepository get regionRepository =>
-      (super.noSuchMethod(
-            Invocation.getter(#regionRepository),
-            returnValue: _FakeRegionRepository_0(
-              this,
-              Invocation.getter(#regionRepository),
-            ),
-          )
-          as _i2.RegionRepository);
-
-  @override
-  _i5.RegionEntity? call(String? code) =>
+  _i3.RegionEntity? call(String? code) =>
       (super.noSuchMethod(Invocation.method(#call, [code]))
-          as _i5.RegionEntity?);
+          as _i3.RegionEntity?);
 }
 
 /// A class which mocks [GetAllRegionModelsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAllRegionModelsUseCase extends _i1.Mock
-    implements _i6.GetAllRegionModelsUseCase {
+    implements _i4.GetAllRegionModelsUseCase {
   MockGetAllRegionModelsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.RegionModelRepository get regionModelRepository =>
-      (super.noSuchMethod(
-            Invocation.getter(#regionModelRepository),
-            returnValue: _FakeRegionModelRepository_1(
-              this,
-              Invocation.getter(#regionModelRepository),
-            ),
-          )
-          as _i3.RegionModelRepository);
-
-  @override
-  List<_i7.RegionUiModel> call() =>
+  List<_i5.RegionUiModel> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: <_i7.RegionUiModel>[],
+            returnValue: <_i5.RegionUiModel>[],
           )
-          as List<_i7.RegionUiModel>);
+          as List<_i5.RegionUiModel>);
 }

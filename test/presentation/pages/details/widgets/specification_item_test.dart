@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/presentation/pages/details/widgets/specification_item.dart';
+import 'package:test_futter_project/presentation/pages/details/widgets/specification_item/specification_item.dart';
 
 void main() {
   testWidgets('SpecificationItem displays title and subtitle', (WidgetTester tester) async {

@@ -10,12 +10,12 @@ import '../../../../../common/app_dimensions.dart';
 class HomeBottomBarItem extends StatelessWidget {
   final int index;
   final IconData icon;
-  final String label;
+  final String semanticsLabel;
 
   const HomeBottomBarItem({
     required this.index,
     required this.icon,
-    required this.label,
+    required this.semanticsLabel,
     super.key,
   });
 
@@ -26,7 +26,7 @@ class HomeBottomBarItem extends StatelessWidget {
         final isSelected = state.currentSelectedTabIndex == index;
 
         return AppSemantics(
-          label: label,
+          label: semanticsLabel,
           button: true,
           isSelected: isSelected,
           child: IconButton(

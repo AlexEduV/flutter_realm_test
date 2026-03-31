@@ -6,7 +6,8 @@ import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
-import 'package:test_futter_project/presentation/pages/details/widgets/specification_item.dart';
+import 'package:test_futter_project/presentation/pages/details/widgets/specification_item/specification_item.dart';
+import 'package:test_futter_project/presentation/pages/details/widgets/specification_item/widgets/spec_color_widget.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/app_dimensions.dart';
@@ -128,6 +129,7 @@ class VehicleSpecsWidget extends StatelessWidget {
                                       subtitle:
                                           car.color?.capitalizeFirst() ??
                                           context.tr(L10nKeys.unknownLabel),
+                                      leading: SpecColorWidget(color: car.color),
                                     ),
                                   ],
                                 ),

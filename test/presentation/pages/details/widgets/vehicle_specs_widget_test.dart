@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
+import 'vehicle_specs_widget_test.mocks.dart';
 
+@GenerateMocks([GetCarColorsUseCase])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
+  final mockGetCarColorsUseCase = MockGetCarColorsUseCase();
 
   setUp(() {
     serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+    serviceLocator.registerLazySingleton<GetCarColorsUseCase>(() => mockGetCarColorsUseCase);
+
+    when(mockGetCarColorsUseCase.call()).thenReturn({'red': Colors.red});
 
     final localisations = {
       'pages.vehicleDetails.sectionTitle': 'Vehicle Details',
@@ -32,6 +40,7 @@ void main() {
 
   tearDown(() {
     serviceLocator.unregister<AppLocalisationsCubit>();
+    serviceLocator.unregister<GetCarColorsUseCase>();
   });
 
   CarEntity testCar = CarEntity(

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
+import 'package:test_futter_project/common/enums/item_setup_tab.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
@@ -15,6 +15,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/item_info_form.dart';
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/item_specs_picker.dart';
+import 'package:test_futter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar/page_selection_bar.dart';
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_semantics_labels.dart';
@@ -53,8 +54,15 @@ class _NewItemPageState extends State<NewItemPage> {
   void initState() {
     super.initState();
 
+    final initIndex = ItemSetupTab.type.index;
+
     final cubit = context.read<NewItemPageCubit>();
-    cubit.updateTabIndex(AppConstants.itemSetupTabType);
+    cubit.updateTabIndex(initIndex);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      pageViewController.jumpToPage(initIndex);
+    });
+
     cubit.clearInfoForm();
   }
 
@@ -92,91 +100,52 @@ class _NewItemPageState extends State<NewItemPage> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsetsGeometry.symmetric(
-          vertical: AppDimensions.normalL,
-          horizontal: AppDimensions.normalM,
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView(
-                controller: pageViewController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  const CarTypePicker(),
-
-                  ItemInfoForm(
-                    manufacturerFocusNode: manufacturerFocusNode,
-                    modelFocusNode: modelFocusNode,
-                    colorFocusNode: colorFocusNode,
-                    yearFocusNode: yearFocusNode,
-                    priceFocusNode: priceFocusNode,
-                  ),
-
-                  const ItemSpecsPicker(),
-                ],
-              ),
+      body: Stack(
+        alignment: AlignmentGeometry.center,
+        children: [
+          Padding(
+            padding: const EdgeInsetsGeometry.symmetric(
+              vertical: AppDimensions.normalL,
+              horizontal: AppDimensions.normalM,
             ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: PageView(
+                    controller: pageViewController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      const CarTypePicker(),
 
-            BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                      ItemInfoForm(
+                        manufacturerFocusNode: manufacturerFocusNode,
+                        modelFocusNode: modelFocusNode,
+                        colorFocusNode: colorFocusNode,
+                        yearFocusNode: yearFocusNode,
+                        priceFocusNode: priceFocusNode,
+                      ),
+
+                      const ItemSpecsPicker(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Positioned(
+            bottom: AppDimensions.majorS,
+            child: BlocBuilder<NewItemPageCubit, NewItemPageState>(
               builder: (context, state) {
-                final isLastIndex = state.currentPageIndex == AppConstants.itemSetupTabPickers;
-
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: AppDimensions.minorL,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        final cubit = context.read<NewItemPageCubit>();
-
-                        final currentIndex = state.currentPageIndex;
-                        cubit.updateTabIndex(currentIndex - 1);
-
-                        pageViewController.previousPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-
-                        clearAllFocuses();
-                      },
-                      icon: const Icon(Icons.chevron_left_outlined, color: AppColors.headerColor),
-                    ),
-
-                    IconButton(
-                      onPressed: () {
-                        if (isLastIndex) {
-                          insertItem(state);
-                          return;
-                        }
-
-                        final cubit = context.read<NewItemPageCubit>();
-
-                        if (state.currentPageIndex == AppConstants.itemSetupTabInfo) {
-                          final areAllFieldsValid = cubit.areAllFieldsValid();
-
-                          if (!areAllFieldsValid) return;
-                        }
-
-                        pageViewController.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-
-                        final currentIndex = state.currentPageIndex;
-                        cubit.updateTabIndex(currentIndex + 1);
-
-                        clearAllFocuses();
-                      },
-                      icon: const Icon(Icons.chevron_right_outlined, color: AppColors.headerColor),
-                    ),
-                  ],
+                return PageSelectionBar(
+                  onBackPressed: () => pageLeftPressed(state.currentPageIndex),
+                  onForwardPressed: () => pageRightPressed(state),
+                  currentIndex: state.currentPageIndex,
                 );
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -186,6 +155,48 @@ class _NewItemPageState extends State<NewItemPage> {
     modelFocusNode.unfocus();
     yearFocusNode.unfocus();
     colorFocusNode.unfocus();
+    priceFocusNode.unfocus();
+  }
+
+  void pageLeftPressed(int currentIndex) {
+    final cubit = context.read<NewItemPageCubit>();
+    clearAllFocuses();
+
+    if (currentIndex < 1) return;
+
+    cubit.updateTabIndex(currentIndex - 1);
+
+    pageViewController.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void pageRightPressed(NewItemPageState state) {
+    final currentIndex = state.currentPageIndex;
+    final isLastIndex = currentIndex == ItemSetupTab.pickers.index;
+
+    if (isLastIndex) {
+      insertItem(state);
+      return;
+    }
+
+    final cubit = context.read<NewItemPageCubit>();
+
+    if (currentIndex == ItemSetupTab.infoForm.index) {
+      final areAllFieldsValid = cubit.areAllFieldsValid();
+
+      if (!areAllFieldsValid) return;
+    }
+
+    pageViewController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+
+    cubit.updateTabIndex(currentIndex + 1);
+
+    clearAllFocuses();
   }
 
   void insertItem(NewItemPageState state) {

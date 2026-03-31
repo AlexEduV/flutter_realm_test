@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
@@ -27,7 +26,7 @@ abstract class NewItemPageState with _$NewItemPageState {
     @Default('') String yearText,
     @Default('') String colorText,
     @Default('') String priceText,
-    @Default(AppConstants.itemSetupTabType) int currentPageIndex,
+    @Default(0) int currentPageIndex,
     @Default(CarType.car) CarType selectedCarType,
     BodyType? selectedBodyType,
     @Default(FuelType.diesel) FuelType selectedFuelType,

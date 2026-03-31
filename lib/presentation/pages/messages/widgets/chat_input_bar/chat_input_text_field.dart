@@ -71,6 +71,7 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
                   ),
                 ),
               ),
+              hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),
               hintText: context.tr(L10nKeys.messageBarHint),
               contentPadding: const EdgeInsets.symmetric(
                 vertical: AppDimensions.normalM,

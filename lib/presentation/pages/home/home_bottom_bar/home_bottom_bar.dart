@@ -38,12 +38,12 @@ class HomeBottomBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const HomeBottomBarItem(
-              label: AppSemanticsLabels.homeBottomBarItemHome,
+              semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
               index: AppConstants.homeTabExplore,
               icon: Icons.home_outlined,
             ),
             const HomeBottomBarItem(
-              label: AppSemanticsLabels.homeBottomBarItemFavorites,
+              semanticsLabel: AppSemanticsLabels.homeBottomBarItemFavorites,
               index: AppConstants.homeTabFavorites,
               icon: Icons.favorite_border,
             ),
@@ -61,12 +61,12 @@ class HomeBottomBar extends StatelessWidget {
             const HomeBottomBarItem(
               index: AppConstants.homeTabInbox,
               icon: Icons.mail_outlined,
-              label: AppSemanticsLabels.homeBottomBarItemInbox,
+              semanticsLabel: AppSemanticsLabels.homeBottomBarItemInbox,
             ),
             const HomeBottomBarItem(
               index: AppConstants.homeTabAccount,
               icon: Icons.person_2_outlined,
-              label: AppSemanticsLabels.homeBottomBarItemAccount,
+              semanticsLabel: AppSemanticsLabels.homeBottomBarItemAccount,
             ),
           ],
         ),

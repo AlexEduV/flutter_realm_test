@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/extensions/color_extension.dart';
 
 class ColorItem extends StatelessWidget {
   final Color color;
@@ -9,20 +10,28 @@ class ColorItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(120.0),
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: color,
-          border: Border.all(color: Colors.black87, width: 3.0),
-        ),
-        child: AnimatedOpacity(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-          opacity: isPicked ? 1.0 : 0.0,
-          child: const Icon(Icons.done, color: Colors.black),
+    final borderRadius = BorderRadius.circular(120.0);
+
+    return Material(
+      color: color,
+      borderRadius: borderRadius,
+      child: InkWell(
+        borderRadius: borderRadius,
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Color.alphaBlend(Colors.black.withAlpha(50), color),
+              width: 2.0,
+            ),
+          ),
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            opacity: isPicked ? 1.0 : 0.0,
+            child: Icon(Icons.done, color: color.getContrastingIconColor()),
+          ),
         ),
       ),
     );

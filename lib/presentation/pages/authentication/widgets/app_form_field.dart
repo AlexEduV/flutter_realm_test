@@ -61,6 +61,7 @@ class AppFormField extends StatelessWidget {
           focusNode: focusNode,
           controller: textEditingController,
           decoration: InputDecoration(
+            labelStyle: TextStyle(color: AppColors.hintColor),
             errorText: errorText,
             labelText: labelText,
             hintText: hintText,

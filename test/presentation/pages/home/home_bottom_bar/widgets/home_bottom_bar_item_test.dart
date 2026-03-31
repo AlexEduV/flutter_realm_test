@@ -25,7 +25,7 @@ void main() {
       return MaterialApp(
         home: BlocProvider<HomeBottomBarCubit>.value(
           value: mockCubit,
-          child: HomeBottomBarItem(index: index, icon: icon, label: 'test'),
+          child: HomeBottomBarItem(index: index, icon: icon, semanticsLabel: 'test'),
         ),
       );
     }
