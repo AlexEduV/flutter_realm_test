@@ -25,9 +25,14 @@ class ColorItem extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           opacity: isPicked ? 1.0 : 0.0,
-          child: const Icon(Icons.done, color: Colors.black),
+          child: Icon(Icons.done, color: getContrastingIconColor(color)),
         ),
       ),
     );
+  }
+
+  Color getContrastingIconColor(Color background) {
+    final brightness = ThemeData.estimateBrightnessForColor(background);
+    return brightness == Brightness.dark ? Colors.white : Colors.black;
   }
 }
