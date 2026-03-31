@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
@@ -18,6 +19,7 @@ class _CarTypePickerState extends State<CarTypePicker> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: AppDimensions.minorS,
       children: [
         const Text('What kind of an item would you like to add?', style: AppTextStyles.zonaPro14),
 
@@ -28,20 +30,29 @@ class _CarTypePickerState extends State<CarTypePicker> {
               onChanged: (CarType? value) {
                 context.read<NewItemPageCubit>().updateSelectedCarType(value);
               },
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   ListTile(
-                    title: Text('Car'),
-                    leading: Radio<CarType>(toggleable: true, value: CarType.car),
+                    title: const Text('Car'),
+                    leading: const Radio<CarType>(toggleable: true, value: CarType.car),
+                    onTap: () =>
+                        context.read<NewItemPageCubit>().updateSelectedCarType(CarType.car),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorS),
                   ),
                   ListTile(
-                    title: Text('Bike'),
-                    leading: Radio<CarType>(value: CarType.bike),
+                    title: const Text('Bike'),
+                    leading: const Radio<CarType>(value: CarType.bike),
+                    onTap: () =>
+                        context.read<NewItemPageCubit>().updateSelectedCarType(CarType.bike),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorS),
                   ),
                   ListTile(
-                    title: Text('Truck'),
-                    leading: Radio<CarType>(value: CarType.truck),
+                    title: const Text('Truck'),
+                    leading: const Radio<CarType>(value: CarType.truck),
+                    onTap: () =>
+                        context.read<NewItemPageCubit>().updateSelectedCarType(CarType.truck),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorS),
                   ),
                 ],
               ),
