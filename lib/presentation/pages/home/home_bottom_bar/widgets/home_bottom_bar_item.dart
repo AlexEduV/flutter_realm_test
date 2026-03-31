@@ -37,29 +37,33 @@ class HomeBottomBarItem extends StatelessWidget {
           child: Material(
             color: Colors.transparent,
             child: InkWell(
+              //todo: move to dimensions;
               borderRadius: BorderRadius.circular(32),
               onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
-              child: Padding(
-                padding: const EdgeInsets.all(AppDimensions.minorL),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: AppDimensions.minorS,
-                  children: [
-                    SizedBox(
-                      height: AppDimensions.bottomAppBarIconSize,
-                      width: AppDimensions.bottomAppBarIconSize,
-                      child: Icon(icon, color: color),
-                    ),
-
-                    Text(
-                      label,
-                      style: TextStyle(
-                        fontSize: isSelected ? 12 : 11,
-                        fontWeight: FontWeight.w600,
-                        color: color,
+              child: SizedBox(
+                height: 55,
+                width: 55,
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: AppDimensions.minorS,
+                    children: [
+                      SizedBox(
+                        height: AppDimensions.bottomAppBarIconSize,
+                        width: AppDimensions.bottomAppBarIconSize,
+                        child: Icon(icon, color: color),
                       ),
-                    ),
-                  ],
+
+                      Text(
+                        label,
+                        style: TextStyle(
+                          fontSize: isSelected ? 12 : 11,
+                          fontWeight: FontWeight.w600,
+                          color: color,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
