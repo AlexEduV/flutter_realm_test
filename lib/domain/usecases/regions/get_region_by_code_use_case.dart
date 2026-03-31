@@ -3,12 +3,12 @@ import 'package:test_futter_project/domain/repositories/region_repository.dart';
 import 'package:test_futter_project/domain/usecases/usecase.dart';
 
 class GetRegionByCodeUseCase extends UseCaseWithParams<String, RegionEntity?> {
-  final RegionRepository regionRepository;
+  final RegionRepository _regionRepository;
 
-  GetRegionByCodeUseCase(this.regionRepository);
+  GetRegionByCodeUseCase(this._regionRepository);
 
   @override
   RegionEntity? call(String code) {
-    return regionRepository.getRegionByCode(code);
+    return _regionRepository.getRegionByCode(code);
   }
 }

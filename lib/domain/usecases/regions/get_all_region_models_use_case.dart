@@ -3,12 +3,12 @@ import 'package:test_futter_project/domain/repositories/region_model_repository.
 import 'package:test_futter_project/domain/usecases/usecase.dart';
 
 class GetAllRegionModelsUseCase extends UseCaseNoParams<List<RegionUiModel>> {
-  final RegionModelRepository regionModelRepository;
+  final RegionModelRepository _regionModelRepository;
 
-  GetAllRegionModelsUseCase(this.regionModelRepository);
+  GetAllRegionModelsUseCase(this._regionModelRepository);
 
   @override
   List<RegionUiModel> call() {
-    return regionModelRepository.getAvailableCountries();
+    return _regionModelRepository.getAvailableCountries();
   }
 }

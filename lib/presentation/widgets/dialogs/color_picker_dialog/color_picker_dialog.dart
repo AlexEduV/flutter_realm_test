@@ -2,6 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
+import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 
 import '../../../../common/app_colors.dart';
 import '../../../../common/app_dimensions.dart';
@@ -21,28 +23,7 @@ class ColorPickerDialog extends StatefulWidget {
 }
 
 class _ColorPickerDialogState extends State<ColorPickerDialog> {
-  final Map<String, Color> colors = {
-    'red': Colors.red,
-    'pink': Colors.pink,
-    'purple': Colors.purple,
-    'deepPurple': Colors.deepPurple,
-    'indigo': Colors.indigo,
-    'blue': Colors.blue,
-    'lightBlue': Colors.lightBlue,
-    'cyan': Colors.cyan,
-    'teal': Colors.teal,
-    'green': Colors.green,
-    'lightGreen': Colors.lightGreen,
-    'lime': Colors.lime,
-    'yellow': Colors.yellow,
-    'white': Colors.white,
-    'orange': Colors.orange,
-    'deepOrange': Colors.deepOrange,
-    'brown': Colors.brown,
-    'grey': Colors.grey,
-    'blueGrey': Colors.blueGrey,
-    'black': Colors.black,
-  };
+  final Map<String, Color> colors = serviceLocator<GetCarColorsUseCase>().call();
 
   Color? pickedColor = Colors.white;
 

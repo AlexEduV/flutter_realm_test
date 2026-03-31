@@ -5,12 +5,12 @@ import '../../repositories/auth_repository.dart';
 import '../usecase.dart';
 
 class LoginUseCase extends UseCaseWithParams<LoginModel, Future<AuthResult>> {
-  final AuthRepository authRepository;
+  final AuthRepository _authRepository;
 
-  LoginUseCase(this.authRepository);
+  LoginUseCase(this._authRepository);
 
   @override
   Future<AuthResult> call(LoginModel model) {
-    return authRepository.login(email: model.email, password: model.password);
+    return _authRepository.login(email: model.email, password: model.password);
   }
 }

@@ -2,12 +2,12 @@ import 'package:test_futter_project/domain/repositories/region_model_repository.
 import 'package:test_futter_project/domain/usecases/usecase.dart';
 
 class InitRegionModelsUseCase extends UseCaseNoParams<Future<void>> {
-  final RegionModelRepository regionModelRepository;
+  final RegionModelRepository _regionModelRepository;
 
-  InitRegionModelsUseCase(this.regionModelRepository);
+  InitRegionModelsUseCase(this._regionModelRepository);
 
   @override
   Future<void> call() {
-    return regionModelRepository.init();
+    return _regionModelRepository.init();
   }
 }

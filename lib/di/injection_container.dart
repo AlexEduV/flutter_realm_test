@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/data/data_sources/local/car_color_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/env_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/file_picker_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/geolocator_local_data_source_impl.dart';
@@ -19,6 +20,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_
 import 'package:test_futter_project/data/data_sources/remote/mock_users_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/car_color_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/file_picker_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/gifs_repository_impl.dart';
@@ -32,6 +34,7 @@ import 'package:test_futter_project/data/repositories/share_repository_impl.dart
 import 'package:test_futter_project/data/repositories/url_launch_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/user_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_futter_project/domain/data_sources/local/car_colors_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/file_picker_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/local/geolocator_local_data_source.dart';
@@ -49,6 +52,7 @@ import 'package:test_futter_project/domain/data_sources/remote/region_remote_dat
 import 'package:test_futter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/repositories/car_color_repository.dart';
 import 'package:test_futter_project/domain/repositories/file_picker_repository.dart';
 import 'package:test_futter_project/domain/repositories/gifs_repository.dart';
 import 'package:test_futter_project/domain/repositories/image_picker_repository.dart';
@@ -65,6 +69,7 @@ import 'package:test_futter_project/domain/usecases/authentication/delete_accoun
 import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
+import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_all_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
@@ -209,6 +214,9 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<GeolocatorLocalDataSource>(
     () => GeolocatorLocalDataSourceImpl(),
   );
+  serviceLocator.registerLazySingleton<CarColorLocalDataSource>(
+    () => CarColorLocalDataSourceImpl(),
+  );
   serviceLocator.registerLazySingleton<ShareLocalDataSource>(() => ShareLocalDataSourceImpl());
   serviceLocator.registerLazySingleton<ShareRepository>(
     () => ShareRepositoryImpl(serviceLocator()),
@@ -231,6 +239,10 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<FilePickerRepository>(
     () => FilePickerRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<CarColorRepository>(
+    () => CarColorRepositoryImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
@@ -382,4 +394,6 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetAllRegionModelsUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetCarColorsUseCase(serviceLocator()));
 }
