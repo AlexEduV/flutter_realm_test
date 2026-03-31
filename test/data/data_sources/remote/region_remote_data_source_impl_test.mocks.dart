@@ -3,16 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/domain/entities/region_entity.dart' as _i6;
-import 'package:test_futter_project/domain/repositories/region_repository.dart'
-    as _i2;
+import 'package:test_futter_project/domain/entities/region_entity.dart' as _i5;
 import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart'
-    as _i3;
+    as _i2;
 import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_case.dart'
-    as _i5;
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -28,67 +26,39 @@ import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeRegionRepository_0 extends _i1.SmartFake
-    implements _i2.RegionRepository {
-  _FakeRegionRepository_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
-}
-
 /// A class which mocks [FetchRegionsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchRegionsUseCase extends _i1.Mock
-    implements _i3.FetchRegionsUseCase {
+    implements _i2.FetchRegionsUseCase {
   MockFetchRegionsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.RegionRepository get regionRepository =>
-      (super.noSuchMethod(
-            Invocation.getter(#regionRepository),
-            returnValue: _FakeRegionRepository_0(
-              this,
-              Invocation.getter(#regionRepository),
-            ),
-          )
-          as _i2.RegionRepository);
-
-  @override
-  _i4.Future<void> call() =>
+  _i3.Future<void> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
           )
-          as _i4.Future<void>);
+          as _i3.Future<void>);
 }
 
 /// A class which mocks [GetAllRegionsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAllRegionsUseCase extends _i1.Mock
-    implements _i5.GetAllRegionsUseCase {
+    implements _i4.GetAllRegionsUseCase {
   MockGetAllRegionsUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.RegionRepository get regionRepository =>
-      (super.noSuchMethod(
-            Invocation.getter(#regionRepository),
-            returnValue: _FakeRegionRepository_0(
-              this,
-              Invocation.getter(#regionRepository),
-            ),
-          )
-          as _i2.RegionRepository);
-
-  @override
-  List<_i6.RegionEntity> call() =>
+  List<_i5.RegionEntity> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: <_i6.RegionEntity>[],
+            returnValue: <_i5.RegionEntity>[],
           )
-          as List<_i6.RegionEntity>);
+          as List<_i5.RegionEntity>);
 }

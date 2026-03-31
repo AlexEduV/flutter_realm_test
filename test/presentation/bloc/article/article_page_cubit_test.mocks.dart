@@ -3,14 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/domain/entities/article_entity.dart' as _i3;
-import 'package:test_futter_project/domain/repositories/article_repository.dart'
-    as _i2;
+import 'package:test_futter_project/domain/entities/article_entity.dart' as _i2;
 import 'package:test_futter_project/domain/usecases/articles/get_article_by_id_use_case.dart'
-    as _i4;
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,14 +24,8 @@ import 'package:test_futter_project/domain/usecases/articles/get_article_by_id_u
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeArticleRepository_0 extends _i1.SmartFake
-    implements _i2.ArticleRepository {
-  _FakeArticleRepository_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
-}
-
-class _FakeArticleEntity_1 extends _i1.SmartFake implements _i3.ArticleEntity {
-  _FakeArticleEntity_1(Object parent, Invocation parentInvocation)
+class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
+  _FakeArticleEntity_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
@@ -41,29 +33,18 @@ class _FakeArticleEntity_1 extends _i1.SmartFake implements _i3.ArticleEntity {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetArticleByIdUseCase extends _i1.Mock
-    implements _i4.GetArticleByIdUseCase {
+    implements _i3.GetArticleByIdUseCase {
   MockGetArticleByIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.ArticleRepository get articleRepository =>
-      (super.noSuchMethod(
-            Invocation.getter(#articleRepository),
-            returnValue: _FakeArticleRepository_0(
-              this,
-              Invocation.getter(#articleRepository),
-            ),
-          )
-          as _i2.ArticleRepository);
-
-  @override
-  _i5.Future<_i3.ArticleEntity> call(String? id) =>
+  _i4.Future<_i2.ArticleEntity> call(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#call, [id]),
-            returnValue: _i5.Future<_i3.ArticleEntity>.value(
-              _FakeArticleEntity_1(this, Invocation.method(#call, [id])),
+            returnValue: _i4.Future<_i2.ArticleEntity>.value(
+              _FakeArticleEntity_0(this, Invocation.method(#call, [id])),
             ),
           )
-          as _i5.Future<_i3.ArticleEntity>);
+          as _i4.Future<_i2.ArticleEntity>);
 }

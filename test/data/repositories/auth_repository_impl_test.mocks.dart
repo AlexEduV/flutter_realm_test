@@ -3,19 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/domain/entities/owner_entity.dart' as _i5;
-import 'package:test_futter_project/domain/entities/user_entity.dart' as _i8;
-import 'package:test_futter_project/domain/repositories/owner_repository.dart'
-    as _i2;
+import 'package:test_futter_project/domain/entities/owner_entity.dart' as _i4;
+import 'package:test_futter_project/domain/entities/user_entity.dart' as _i7;
 import 'package:test_futter_project/domain/usecases/owners/fetch_owners_use_case.dart'
-    as _i3;
+    as _i2;
 import 'package:test_futter_project/domain/usecases/users/get_max_user_id_use_case.dart'
-    as _i6;
+    as _i5;
 import 'package:test_futter_project/domain/usecases/users/save_users_use_case.dart'
-    as _i7;
+    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -31,48 +29,31 @@ import 'package:test_futter_project/domain/usecases/users/save_users_use_case.da
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeOwnerRepository_0 extends _i1.SmartFake
-    implements _i2.OwnerRepository {
-  _FakeOwnerRepository_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
-}
-
 /// A class which mocks [FetchOwnersUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchOwnersUseCase extends _i1.Mock
-    implements _i3.FetchOwnersUseCase {
+    implements _i2.FetchOwnersUseCase {
   MockFetchOwnersUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.OwnerRepository get ownersRepository =>
-      (super.noSuchMethod(
-            Invocation.getter(#ownersRepository),
-            returnValue: _FakeOwnerRepository_0(
-              this,
-              Invocation.getter(#ownersRepository),
-            ),
-          )
-          as _i2.OwnerRepository);
-
-  @override
-  _i4.Future<List<_i5.OwnerEntity>> call() =>
+  _i3.Future<List<_i4.OwnerEntity>> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i4.Future<List<_i5.OwnerEntity>>.value(
-              <_i5.OwnerEntity>[],
+            returnValue: _i3.Future<List<_i4.OwnerEntity>>.value(
+              <_i4.OwnerEntity>[],
             ),
           )
-          as _i4.Future<List<_i5.OwnerEntity>>);
+          as _i3.Future<List<_i4.OwnerEntity>>);
 }
 
 /// A class which mocks [GetMaxUserIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetMaxUserIdUseCase extends _i1.Mock
-    implements _i6.GetMaxUserIdUseCase {
+    implements _i5.GetMaxUserIdUseCase {
   MockGetMaxUserIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -85,17 +66,17 @@ class MockGetMaxUserIdUseCase extends _i1.Mock
 /// A class which mocks [SaveUsersUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSaveUsersUseCase extends _i1.Mock implements _i7.SaveUsersUseCase {
+class MockSaveUsersUseCase extends _i1.Mock implements _i6.SaveUsersUseCase {
   MockSaveUsersUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<void> call(List<_i8.UserEntity>? params) =>
+  _i3.Future<void> call(List<_i7.UserEntity>? params) =>
       (super.noSuchMethod(
             Invocation.method(#call, [params]),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
           )
-          as _i4.Future<void>);
+          as _i3.Future<void>);
 }
