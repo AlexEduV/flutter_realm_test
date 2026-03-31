@@ -9,7 +9,9 @@ import '../../../l10n/l10n_keys.dart';
 import '../app_semantics.dart';
 
 class ColorPickerDialog extends StatefulWidget {
-  const ColorPickerDialog({super.key});
+  final String initialColor;
+
+  const ColorPickerDialog({required this.initialColor, super.key});
 
   @override
   State<ColorPickerDialog> createState() => _ColorPickerDialogState();
@@ -30,7 +32,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
     Colors.lightGreen,
     Colors.lime,
     Colors.yellow,
-    Colors.amber,
+    Colors.white,
     Colors.orange,
     Colors.deepOrange,
     Colors.brown,
@@ -44,6 +46,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
     final orientation = MediaQuery.orientationOf(context);
 
     return AlertDialog(
+      backgroundColor: Colors.white,
       title: Text(
         'Pick a color',
         style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
@@ -60,7 +63,11 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
               InkWell(
                 onTap: () {},
                 child: Container(
-                  decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: color,
+                    border: Border.all(color: Colors.black87, width: 3.0),
+                  ),
                 ),
               ),
           ],

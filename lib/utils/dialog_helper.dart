@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/models/region_ui_model.dart';
-import 'package:test_futter_project/l10n/l10n_keys.dart';
+import 'package:test_futter_project/presentation/widgets/dialogs/color_picker_dialog.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/edit_password_dialog.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/edit_personal_info_dialog.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 import 'package:test_futter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
-
-import '../common/app_semantics_labels.dart';
-import '../presentation/widgets/app_semantics.dart';
 
 class DialogHelper {
   static Future<void> showConfirmationDialog(
@@ -134,92 +129,11 @@ class DialogHelper {
     );
   }
 
-  static Future<void> showColorsPickerDialog(BuildContext context) async {
-    final orientation = MediaQuery.orientationOf(context);
-
-    final List<Color> colors = [
-      Colors.red,
-      Colors.pink,
-      Colors.purple,
-      Colors.deepPurple,
-      Colors.indigo,
-      Colors.blue,
-      Colors.lightBlue,
-      Colors.cyan,
-      Colors.teal,
-      Colors.green,
-      Colors.lightGreen,
-      Colors.lime,
-      Colors.yellow,
-      Colors.amber,
-      Colors.orange,
-      Colors.deepOrange,
-      Colors.brown,
-      Colors.grey,
-      Colors.blueGrey,
-      Colors.black,
-    ];
-
-    final color = await showDialog(
+  static Future<void> showColorsPickerDialog(BuildContext context, String initialColor) async {
+    await showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(
-          content: SizedBox(
-            width: 300,
-            height: orientation == Orientation.portrait ? 360 : 240,
-            child: GridView.count(
-              crossAxisCount: orientation == Orientation.portrait ? 4 : 5,
-              crossAxisSpacing: AppDimensions.minorL,
-              mainAxisSpacing: AppDimensions.minorL,
-              children: [
-                for (Color color in colors)
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(shape: BoxShape.circle, color: color),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          actions: [
-            AppSemantics(
-              label: AppSemanticsLabels.dialogCancelButton,
-              button: true,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  context.trRead(L10nKeys.cancelLabel),
-                  style: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-            AppSemantics(
-              label: AppSemanticsLabels.dialogConfirmButton,
-              button: true,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
-                    if (states.contains(WidgetState.disabled)) {
-                      return Colors.grey;
-                    }
-                    return AppColors.headerColor;
-                  }),
-                  foregroundColor: const WidgetStatePropertyAll(Colors.white),
-                ),
-                child: Text(
-                  context.trRead(L10nKeys.confirmLabel),
-                  style: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-          ],
-        );
+        return ColorPickerDialog(initialColor: initialColor);
       },
     );
   }
