@@ -31,6 +31,8 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
 
   @override
   Widget build(BuildContext context) {
+    final listTileContentPadding = const EdgeInsets.symmetric(horizontal: AppDimensions.minorS);
+
     return BlocBuilder<NewItemPageCubit, NewItemPageState>(
       builder: (context, state) {
         return SingleChildScrollView(
@@ -54,6 +56,7 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                             (element) => ListTile(
                               title: Text(element.name.capitalizeFirst()),
                               leading: Radio<BodyType>(toggleable: true, value: element),
+                              contentPadding: listTileContentPadding,
                             ),
                           )
                           .toList(),
@@ -72,24 +75,28 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                     onChanged: (FuelType? value) {
                       context.read<NewItemPageCubit>().updateSelectedFuelType(value);
                     },
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         ListTile(
-                          title: Text('Diesel'),
-                          leading: Radio<FuelType>(toggleable: true, value: FuelType.diesel),
+                          title: const Text('Diesel'),
+                          leading: const Radio<FuelType>(toggleable: true, value: FuelType.diesel),
+                          contentPadding: listTileContentPadding,
                         ),
                         ListTile(
-                          title: Text('Gasoline'),
-                          leading: Radio<FuelType>(value: FuelType.gasoline),
+                          title: const Text('Gasoline'),
+                          leading: const Radio<FuelType>(value: FuelType.gasoline),
+                          contentPadding: listTileContentPadding,
                         ),
                         ListTile(
-                          title: Text('EV'),
-                          leading: Radio<FuelType>(value: FuelType.ev),
+                          title: const Text('EV'),
+                          leading: const Radio<FuelType>(value: FuelType.ev),
+                          contentPadding: listTileContentPadding,
                         ),
                         ListTile(
-                          title: Text('Hybrid'),
-                          leading: Radio<FuelType>(value: FuelType.hybrid),
+                          title: const Text('Hybrid'),
+                          leading: const Radio<FuelType>(value: FuelType.hybrid),
+                          contentPadding: listTileContentPadding,
                         ),
                       ],
                     ),
@@ -107,23 +114,26 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                     onChanged: (TransmissionType? value) {
                       context.read<NewItemPageCubit>().updateSelectedTransmissionType(value);
                     },
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         ListTile(
-                          title: Text('Manual'),
-                          leading: Radio<TransmissionType>(
+                          title: const Text('Manual'),
+                          leading: const Radio<TransmissionType>(
                             toggleable: true,
                             value: TransmissionType.manual,
                           ),
+                          contentPadding: listTileContentPadding,
                         ),
                         ListTile(
-                          title: Text('Automatic'),
-                          leading: Radio<TransmissionType>(value: TransmissionType.automatic),
+                          title: const Text('Automatic'),
+                          leading: const Radio<TransmissionType>(value: TransmissionType.automatic),
+                          contentPadding: listTileContentPadding,
                         ),
                         ListTile(
-                          title: Text('Hybrid'),
-                          leading: Radio<TransmissionType>(value: TransmissionType.hybrid),
+                          title: const Text('Hybrid'),
+                          leading: const Radio<TransmissionType>(value: TransmissionType.hybrid),
+                          contentPadding: listTileContentPadding,
                         ),
                       ],
                     ),

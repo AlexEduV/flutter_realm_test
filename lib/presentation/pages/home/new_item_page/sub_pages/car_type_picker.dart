@@ -17,6 +17,8 @@ class CarTypePicker extends StatefulWidget {
 class _CarTypePickerState extends State<CarTypePicker> {
   @override
   Widget build(BuildContext context) {
+    const listTileContentPadding = EdgeInsets.symmetric(horizontal: AppDimensions.minorS);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppDimensions.minorS,
@@ -38,21 +40,21 @@ class _CarTypePickerState extends State<CarTypePicker> {
                     leading: const Radio<CarType>(toggleable: true, value: CarType.car),
                     onTap: () =>
                         context.read<NewItemPageCubit>().updateSelectedCarType(CarType.car),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorS),
+                    contentPadding: listTileContentPadding,
                   ),
                   ListTile(
                     title: const Text('Bike'),
                     leading: const Radio<CarType>(value: CarType.bike),
                     onTap: () =>
                         context.read<NewItemPageCubit>().updateSelectedCarType(CarType.bike),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorS),
+                    contentPadding: listTileContentPadding,
                   ),
                   ListTile(
                     title: const Text('Truck'),
                     leading: const Radio<CarType>(value: CarType.truck),
                     onTap: () =>
                         context.read<NewItemPageCubit>().updateSelectedCarType(CarType.truck),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorS),
+                    contentPadding: listTileContentPadding,
                   ),
                 ],
               ),
