@@ -15,6 +15,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/item_info_form.dart';
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/item_specs_picker.dart';
+import 'package:test_futter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar.dart';
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_semantics_labels.dart';
@@ -121,20 +122,9 @@ class _NewItemPageState extends State<NewItemPage> {
 
             BlocBuilder<NewItemPageCubit, NewItemPageState>(
               builder: (context, state) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: AppDimensions.minorL,
-                  children: [
-                    IconButton(
-                      onPressed: () => pageLeftPressed(state.currentPageIndex),
-                      icon: const Icon(Icons.chevron_left_outlined, color: AppColors.headerColor),
-                    ),
-
-                    IconButton(
-                      onPressed: () => pageRightPressed(state),
-                      icon: const Icon(Icons.chevron_right_outlined, color: AppColors.headerColor),
-                    ),
-                  ],
+                return PageSelectionBar(
+                  onBackPressed: () => pageLeftPressed(state.currentPageIndex),
+                  onForwardPressed: () => pageRightPressed(state),
                 );
               },
             ),
