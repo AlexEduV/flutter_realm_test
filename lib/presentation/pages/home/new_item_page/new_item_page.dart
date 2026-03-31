@@ -140,6 +140,7 @@ class _NewItemPageState extends State<NewItemPage> {
                 return PageSelectionBar(
                   onBackPressed: () => pageLeftPressed(state.currentPageIndex),
                   onForwardPressed: () => pageRightPressed(state),
+                  currentIndex: state.currentPageIndex,
                 );
               },
             ),
