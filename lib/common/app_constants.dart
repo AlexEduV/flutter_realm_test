@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class AppConstants {
   static const int homeTabExplore = 0;
   static const int homeTabFavorites = 1;
@@ -10,12 +12,5 @@ class AppConstants {
 
   static const bool showSemantics = false;
 
-  static final bool kIsTest = () {
-    var inTest = false;
-    assert(() {
-      inTest = true;
-      return true;
-    }());
-    return inTest;
-  }();
+  static final bool kIsTest = Platform.environment.containsKey('FLUTTER_TEST');
 }
