@@ -48,11 +48,42 @@ class PageSelectionBar extends StatelessWidget {
             ),
           ),
 
-          ...ItemSetupTab.values.map((element) {
-            final isCurrentIndex = element.index == currentIndex;
+          SizedBox(
+            width:
+                ItemSetupTab.values.length * AppDimensions.normalS +
+                (AppDimensions.minorL * (ItemSetupTab.values.length - 1)),
+            child: Stack(
+              alignment: AlignmentGeometry.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: AppDimensions.minorL,
+                  children: [
+                    ...ItemSetupTab.values.map((element) {
+                      return const PageDotWidget(isCurrentIndex: false);
+                    }),
+                  ],
+                ),
 
-            return PageDotWidget(isCurrentIndex: isCurrentIndex);
-          }),
+                //the first index is working, but on index change nothing happens
+                AnimatedAlign(
+                  alignment: Alignment(getXAlignment(), 0.0),
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.fastOutSlowIn,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.fastOutSlowIn,
+                    height: AppDimensions.normalS * 1.2,
+                    width: AppDimensions.normalS * 1.2,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.headerColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
 
           Padding(
             padding: const EdgeInsets.all(AppDimensions.minorM),
@@ -64,5 +95,10 @@ class PageSelectionBar extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  double getXAlignment() {
+    final alignment = -1.0 + (currentIndex * (2.0 / (ItemSetupTab.values.length - 1)));
+    return alignment;
   }
 }
