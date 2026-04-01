@@ -41,7 +41,7 @@ class HomeBottomBarItem extends StatelessWidget {
               onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
               child: SizedBox(
                 height: 62,
-                width: 67,
+                width: 73,
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -51,6 +51,7 @@ class HomeBottomBarItem extends StatelessWidget {
 
                       Text(
                         label,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: isSelected ? 12 : 11,
                           fontWeight: FontWeight.w600,
