@@ -13,6 +13,7 @@ import 'package:test_futter_project/data/data_sources/local/url_launch_local_dat
 import 'package:test_futter_project/data/data_sources/remote/gifs_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
+import 'package:test_futter_project/data/data_sources/remote/mock_auto_complete_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_messages_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
@@ -20,6 +21,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_
 import 'package:test_futter_project/data/data_sources/remote/mock_users_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/auto_complete_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/car_color_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/file_picker_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
@@ -44,6 +46,7 @@ import 'package:test_futter_project/domain/data_sources/local/share_local_data_s
 import 'package:test_futter_project/domain/data_sources/local/url_launch_local_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/article_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
+import 'package:test_futter_project/domain/data_sources/remote/auto_complete_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
@@ -52,6 +55,7 @@ import 'package:test_futter_project/domain/data_sources/remote/region_remote_dat
 import 'package:test_futter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_futter_project/domain/repositories/article_repository.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_futter_project/domain/repositories/auto_complete_repository.dart';
 import 'package:test_futter_project/domain/repositories/car_color_repository.dart';
 import 'package:test_futter_project/domain/repositories/file_picker_repository.dart';
 import 'package:test_futter_project/domain/repositories/gifs_repository.dart';
@@ -69,6 +73,7 @@ import 'package:test_futter_project/domain/usecases/authentication/delete_accoun
 import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
+import 'package:test_futter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type.dart';
 import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_all_cars_use_case.dart';
@@ -193,6 +198,9 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<ImagePickerLocalDataSource>(
     () => ImagePickerLocalDataSourceImpl(),
   );
+  serviceLocator.registerLazySingleton<AutoCompleteRemoteDataSource>(
+    () => MockAutoCompleteRemoteDataSource(),
+  );
 
   serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(() => MockOwnersRemoteDataSource());
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
@@ -248,6 +256,10 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
 
   serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
+
+  serviceLocator.registerLazySingleton<AutoCompleteRepository>(
+    () => AutoCompleteRepositoryImpl(serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
@@ -396,4 +408,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetCarColorsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetAutoCompleteManufacturersByType(serviceLocator()));
 }
