@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:test_futter_project/common/enums/item_setup_tab.dart';
 
 import '../../../../../../common/app_colors.dart';
 import '../../../../../../common/app_dimensions.dart';
@@ -51,7 +52,7 @@ class PageSelectionBar extends StatelessWidget {
 
           AnimatedSmoothIndicator(
             activeIndex: currentIndex,
-            count: 3,
+            count: ItemSetupTab.values.length,
             effect: WormEffect(
               activeDotColor: AppColors.headerColor,
               dotColor: AppColors.placeholderColor,
@@ -60,7 +61,6 @@ class PageSelectionBar extends StatelessWidget {
             ),
           ),
 
-          // end region --------------
           Padding(
             padding: const EdgeInsets.all(AppDimensions.minorM),
             child: IconButton(
