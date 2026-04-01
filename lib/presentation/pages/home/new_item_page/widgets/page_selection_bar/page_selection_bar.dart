@@ -23,6 +23,9 @@ class PageSelectionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final spacingBetweenDots = AppDimensions.minorL;
+    final dotSize = AppDimensions.normalS;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppDimensions.majorM),
@@ -50,14 +53,14 @@ class PageSelectionBar extends StatelessWidget {
 
           SizedBox(
             width:
-                ItemSetupTab.values.length * AppDimensions.normalS +
-                (AppDimensions.minorL * (ItemSetupTab.values.length - 1)),
+                ItemSetupTab.values.length * dotSize +
+                (spacingBetweenDots * (ItemSetupTab.values.length - 1)),
             child: Stack(
               alignment: AlignmentGeometry.center,
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.min,
-                  spacing: AppDimensions.minorL,
+                  spacing: spacingBetweenDots,
                   children: [
                     ...ItemSetupTab.values.map((element) {
                       return const PageDotWidget(isCurrentIndex: false);
@@ -70,16 +73,7 @@ class PageSelectionBar extends StatelessWidget {
                   alignment: Alignment(getXAlignment(), 0.0),
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.fastOutSlowIn,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.fastOutSlowIn,
-                    height: AppDimensions.normalS * 1.2,
-                    width: AppDimensions.normalS * 1.2,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.headerColor,
-                    ),
-                  ),
+                  child: const PageDotWidget(isCurrentIndex: true),
                 ),
               ],
             ),
