@@ -212,7 +212,7 @@ class L10nKeys {
   static const String attachmentMessagePlaceholder =
       'pages.inbox.attachments.attachmentMessagePlaceholder';
 
-  static const String addNewItemPageName = 'pages.addNewItem.title';
+  static const String addNewItemPageTitle = 'pages.addNewItem.title';
 
   static const String addNewItemTypePickerGroupTitle =
       'pages.addNewItem.carTypePicker.typeRadioGroup.title';
@@ -265,7 +265,7 @@ class L10nKeys {
   static const String fieldParamsPriceRegexErrorMessage =
       'forms.fieldParams.price.regexErrorMessage';
 
-  static const String fieldParamsPriceColorLabel = 'forms.fieldParams.color.label';
-  static const String fieldParamsPriceColorRegexErrorMessage =
+  static const String fieldParamsColorLabel = 'forms.fieldParams.color.label';
+  static const String fieldParamsColorRegexErrorMessage =
       'forms.fieldParams.color.regexErrorMessage';
 }
