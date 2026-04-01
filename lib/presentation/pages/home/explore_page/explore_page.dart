@@ -42,14 +42,8 @@ class ExplorePage extends StatelessWidget {
             BlocBuilder<ExplorePageCubit, ExplorePageState>(
               builder: (context, exploreState) {
                 return BlocBuilder<UserDataCubit, UserDataState>(
-                  builder: (context, state) {
-                    String? carId = state.lastSeenCar?.values.first;
-                    if (carId != null) {
-                      final car = serviceLocator<GetCarByIdUseCase>().call(carId);
-                      if (car.carId == 'testId') carId = null;
-                    }
-
-                    final shouldShowLastSeenWidget = state.lastSeenCar != null && carId != null;
+                  builder: (context, userState) {
+                    final showLastSeenWidget = getShouldShowLastSeenWidget(userState.lastSeenCar);
 
                     return SliverPersistentHeader(
                       pinned: true,
@@ -64,7 +58,7 @@ class ExplorePage extends StatelessWidget {
                             AppDimensions.exploreArticleItemBaseSize +
                             AppDimensions.exploreAppBarBaseSize +
                             21,
-                        showLastSeen: shouldShowLastSeenWidget,
+                        showLastSeen: showLastSeenWidget,
                         title: context.tr(L10nKeys.explorePageTitle),
                       ),
                     );
@@ -161,5 +155,16 @@ class ExplorePage extends StatelessWidget {
     serviceLocator<DeleteCarByIdUseCase>().call(id);
 
     context.read<ExplorePageCubit>().removeCarAt(index);
+  }
+
+  bool getShouldShowLastSeenWidget(Map<DateTime, String>? lastSeenCar) {
+    String? carId = lastSeenCar?.values.firstOrNull;
+    if (carId != null) {
+      final car = serviceLocator<GetCarByIdUseCase>().call(carId);
+      if (car.carId == 'testId') carId = null;
+    }
+
+    final shouldShowLastSeenWidget = lastSeenCar != null && carId != null;
+    return shouldShowLastSeenWidget;
   }
 }
