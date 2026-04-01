@@ -40,23 +40,19 @@ class HomeBottomBarItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimensions.majorM),
               onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
               child: SizedBox(
-                height: 62,
+                height: 60,
                 width: 73,
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    spacing: AppDimensions.minorS,
+                    spacing: AppDimensions.minorXS,
                     children: [
                       Icon(icon, color: color),
 
                       Text(
                         label,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: isSelected ? 12 : 11,
-                          fontWeight: FontWeight.w600,
-                          color: color,
-                        ),
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: color),
                       ),
                     ],
                   ),
