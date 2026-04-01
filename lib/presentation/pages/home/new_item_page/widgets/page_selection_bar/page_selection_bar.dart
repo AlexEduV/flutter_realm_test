@@ -23,7 +23,8 @@ class PageSelectionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dotSize = AppDimensions.normalS;
+    const dotSize = AppDimensions.normalS;
+    const jumpOffSet = AppDimensions.minorL;
 
     return Container(
       decoration: BoxDecoration(
@@ -50,14 +51,18 @@ class PageSelectionBar extends StatelessWidget {
             ),
           ),
 
-          AnimatedSmoothIndicator(
-            activeIndex: currentIndex,
-            count: ItemSetupTab.values.length,
-            effect: WormEffect(
-              activeDotColor: AppColors.headerColor,
-              dotColor: AppColors.placeholderColor,
-              dotHeight: dotSize,
-              dotWidth: dotSize,
+          Padding(
+            padding: const EdgeInsets.only(bottom: jumpOffSet),
+            child: AnimatedSmoothIndicator(
+              activeIndex: currentIndex,
+              count: ItemSetupTab.values.length,
+              effect: JumpingDotEffect(
+                verticalOffset: jumpOffSet,
+                activeDotColor: AppColors.headerColor,
+                dotColor: AppColors.placeholderColor,
+                dotHeight: dotSize,
+                dotWidth: dotSize,
+              ),
             ),
           ),
 
