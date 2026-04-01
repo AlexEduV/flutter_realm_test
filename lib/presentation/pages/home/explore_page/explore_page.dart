@@ -20,17 +20,12 @@ import '../../../../common/extensions/car_scheme_extension.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/home/explore_page/explore_page_state.dart';
 
-class ExplorePage extends StatefulWidget {
+class ExplorePage extends StatelessWidget {
   final GlobalKey<AnimatedListState> listKey;
   final ScrollController scrollController;
 
   const ExplorePage({required this.listKey, required this.scrollController, super.key});
 
-  @override
-  State<ExplorePage> createState() => _ExplorePageState();
-}
-
-class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -42,17 +37,13 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
       child: Scaffold(
         backgroundColor: AppColors.scaffoldColor,
         body: CustomScrollView(
-          controller: widget.scrollController,
+          controller: scrollController,
           slivers: [
             BlocBuilder<ExplorePageCubit, ExplorePageState>(
               builder: (context, exploreState) {
                 return BlocBuilder<UserDataCubit, UserDataState>(
-                  builder: (context, state) {
-                    String? carId = state.lastSeenCar?.values.first;
-                    if (carId != null) {
-                      final car = serviceLocator<GetCarByIdUseCase>().call(carId);
-                      if (car.carId == 'testId') carId = null;
-                    }
+                  builder: (context, userState) {
+                    final showLastSeenWidget = getShouldShowLastSeenWidget(userState.lastSeenCar);
 
                     return SliverPersistentHeader(
                       pinned: true,
@@ -60,14 +51,14 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                         minHeight:
                             AppDimensions.exploreAppBarBaseSize, // Height of collapsed app bar
                         maxHeightWithLastSeen:
+                            AppDimensions.exploreArticleItemBaseSize +
                             AppDimensions.exploreAppBarBaseSize +
-                            160 +
-                            AppDimensions.exploreArticleItemBaseSize,
+                            160,
                         maxHeightWithoutLastSeen:
+                            AppDimensions.exploreArticleItemBaseSize +
                             AppDimensions.exploreAppBarBaseSize +
-                            21 +
-                            AppDimensions.exploreArticleItemBaseSize,
-                        showLastSeen: state.lastSeenCar != null && carId != null,
+                            21,
+                        showLastSeen: showLastSeenWidget,
                         title: context.tr(L10nKeys.explorePageTitle),
                       ),
                     );
@@ -109,18 +100,18 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                     buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                     builder: (context, userState) {
                       return SliverList(
-                        key: cars.isEmpty ? const ValueKey('empty') : widget.listKey,
+                        key: cars.isEmpty ? const ValueKey('empty') : listKey,
                         delegate: SliverChildBuilderDelegate((context, index) {
                           final car = cars[index];
                           return TweenAnimationBuilder<double>(
                             tween: Tween(begin: 0, end: 1),
-                            duration: Duration(milliseconds: 300 + index * 200),
+                            duration: Duration(milliseconds: 300 + (index * 200)),
                             builder: (context, value, child) {
                               return Opacity(
                                 opacity: value,
                                 child: Transform.scale(
-                                  scale: 0.95 + 0.05 * value,
-                                  child: _buildItem(CarExtensions.fromEntity(car), index),
+                                  scale: 0.95 + (0.05 * value),
+                                  child: _buildItem(CarExtensions.fromEntity(car), index, context),
                                 ),
                               );
                             },
@@ -138,20 +129,20 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     );
   }
 
-  Widget _buildItem(Car car, int index) {
+  Widget _buildItem(Car car, int index, BuildContext context) {
     return AnnouncementListItem(
       user: context.read<UserDataCubit>().user,
       car: CarEntity.fromSchema(car),
-      onDismissed: () => _handleDelete(car, index),
+      onDismissed: () => _handleDelete(car, index, context),
     );
   }
 
-  void _handleDelete(Car carToDelete, int index) {
+  void _handleDelete(Car carToDelete, int index, BuildContext context) {
     // 1. Capture the data while the object is still valid
     final id = carToDelete.carId;
 
     // 2. Animate out using a "Snapshot" instance of the same widget
-    widget.listKey.currentState?.removeItem(
+    listKey.currentState?.removeItem(
       index,
       (context, animation) => SizeTransition(
         sizeFactor: animation,
@@ -164,5 +155,16 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
     serviceLocator<DeleteCarByIdUseCase>().call(id);
 
     context.read<ExplorePageCubit>().removeCarAt(index);
+  }
+
+  bool getShouldShowLastSeenWidget(Map<DateTime, String>? lastSeenCar) {
+    String? carId = lastSeenCar?.values.firstOrNull;
+    if (carId != null) {
+      final car = serviceLocator<GetCarByIdUseCase>().call(carId);
+      if (car.carId == 'testId') carId = null;
+    }
+
+    final shouldShowLastSeenWidget = lastSeenCar != null && carId != null;
+    return shouldShowLastSeenWidget;
   }
 }
