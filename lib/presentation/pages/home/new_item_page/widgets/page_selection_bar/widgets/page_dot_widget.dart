@@ -20,8 +20,7 @@ class PageDotWidget extends StatelessWidget {
       width: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isCurrentIndex ? Colors.white : AppColors.headerColor,
-        border: Border.all(color: AppColors.headerColor, width: 2.0),
+        color: isCurrentIndex ? AppColors.headerColor : AppColors.placeholderColor,
       ),
     );
   }
