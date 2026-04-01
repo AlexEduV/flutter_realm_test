@@ -65,34 +65,51 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                       .map((element) => element.manufacturer)
                       .toList();
 
-                  return AppFormField(
-                    focusNode: widget.manufacturerFocusNode,
-                    textEditingController: manufacturerTextController,
-                    labelText: state.manufacturerFieldParams?.label ?? '',
-                    hintText: state.manufacturerFieldParams?.hintText ?? '',
-                    textInputType: TextInputType.text,
-                    textInputAction: TextInputAction.next,
-                    errorText: state.manufacturerErrorText,
-                    onFocusChange: (hasFocus) {
-                      if (!hasFocus) {
-                        context.read<NewItemPageCubit>().validateManufacturer(
-                          manufacturerTextController.text,
-                          false,
-                        );
+                  return Autocomplete<String>(
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text == '') {
+                        return const Iterable<String>.empty();
                       }
+                      return manufacturers.where((String option) {
+                        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                      });
                     },
-                    onChanged: (newText) {
-                      context.read<NewItemPageCubit>().validateManufacturer(
-                        newText ?? '',
-                        widget.manufacturerFocusNode.hasFocus,
-                      );
+                    fieldViewBuilder:
+                        (context, textEditingController, focusNode, onFieldSubmitted) {
+                          return AppFormField(
+                            focusNode: focusNode,
+                            textEditingController: textEditingController,
+                            labelText: state.manufacturerFieldParams?.label ?? '',
+                            hintText: state.manufacturerFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            errorText: state.manufacturerErrorText,
+                            onFocusChange: (hasFocus) {
+                              if (!hasFocus) {
+                                context.read<NewItemPageCubit>().validateManufacturer(
+                                  textEditingController.text,
+                                  false,
+                                );
+                              }
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateManufacturer(
+                                newText ?? '',
+                                focusNode.hasFocus,
+                              );
 
-                      context.read<NewItemPageCubit>().updateManufacturerText(
-                        manufacturerTextController.text,
-                      );
+                              context.read<NewItemPageCubit>().updateManufacturerText(
+                                textEditingController.text,
+                              );
+                            },
+                            padding: 0.0,
+                            maxLength: state.manufacturerFieldParams?.maxLength,
+                          );
+                        },
+                    onSelected: (String selection) {
+                      manufacturerTextController.text = selection;
+                      context.read<NewItemPageCubit>().updateManufacturerText(selection);
                     },
-                    padding: 0.0,
-                    maxLength: state.manufacturerFieldParams?.maxLength,
                   );
                 },
               ),
