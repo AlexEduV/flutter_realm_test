@@ -45,7 +45,7 @@ class HomeBottomBar extends StatelessWidget {
                 HomeBottomBarItem(
                   semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
                   index: AppConstants.homeTabExplore,
-                  icon: Icons.home_outlined,
+                  icon: Icons.view_carousel_outlined,
                   label: context.tr(L10nKeys.explorePageTitle),
                 ),
                 HomeBottomBarItem(

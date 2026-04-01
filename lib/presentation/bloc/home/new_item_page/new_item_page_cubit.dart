@@ -250,4 +250,16 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     final result = await _autoCompleteManufacturersByTypeUseCase.call(type);
     emit(state.copyWith(autoCompleteEntities: result));
   }
+
+  void clearFieldErrors() {
+    emit(
+      state.copyWith(
+        manufacturerErrorText: null,
+        modelErrorText: null,
+        yearErrorText: null,
+        priceErrorText: null,
+        colorErrorText: null,
+      ),
+    );
+  }
 }
