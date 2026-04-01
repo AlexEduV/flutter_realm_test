@@ -45,6 +45,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
     yearTextController.text = cubit.state.yearText;
     colorTextController.text = cubit.state.colorText;
     priceTextController.text = cubit.state.priceText;
+
+    cubit.getAutoCompleteEntitiesByType(cubit.state.selectedCarType);
   }
 
   @override
@@ -57,34 +59,42 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
             children: [
               const RadioGroupTitle(text: 'Please, fill the form here.'),
 
-              AppFormField(
-                focusNode: widget.manufacturerFocusNode,
-                textEditingController: manufacturerTextController,
-                labelText: state.manufacturerFieldParams?.label ?? '',
-                hintText: state.manufacturerFieldParams?.hintText ?? '',
-                textInputType: TextInputType.text,
-                textInputAction: TextInputAction.next,
-                errorText: state.manufacturerErrorText,
-                onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validateManufacturer(
-                      manufacturerTextController.text,
-                      false,
-                    );
-                  }
-                },
-                onChanged: (newText) {
-                  context.read<NewItemPageCubit>().validateManufacturer(
-                    newText ?? '',
-                    widget.manufacturerFocusNode.hasFocus,
-                  );
+              BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                builder: (context, state) {
+                  final manufacturers = state.autoCompleteEntities
+                      .map((element) => element.manufacturer)
+                      .toList();
 
-                  context.read<NewItemPageCubit>().updateManufacturerText(
-                    manufacturerTextController.text,
+                  return AppFormField(
+                    focusNode: widget.manufacturerFocusNode,
+                    textEditingController: manufacturerTextController,
+                    labelText: state.manufacturerFieldParams?.label ?? '',
+                    hintText: state.manufacturerFieldParams?.hintText ?? '',
+                    textInputType: TextInputType.text,
+                    textInputAction: TextInputAction.next,
+                    errorText: state.manufacturerErrorText,
+                    onFocusChange: (hasFocus) {
+                      if (!hasFocus) {
+                        context.read<NewItemPageCubit>().validateManufacturer(
+                          manufacturerTextController.text,
+                          false,
+                        );
+                      }
+                    },
+                    onChanged: (newText) {
+                      context.read<NewItemPageCubit>().validateManufacturer(
+                        newText ?? '',
+                        widget.manufacturerFocusNode.hasFocus,
+                      );
+
+                      context.read<NewItemPageCubit>().updateManufacturerText(
+                        manufacturerTextController.text,
+                      );
+                    },
+                    padding: 0.0,
+                    maxLength: state.manufacturerFieldParams?.maxLength,
                   );
                 },
-                padding: 0.0,
-                maxLength: state.manufacturerFieldParams?.maxLength,
               ),
 
               AppFormField(

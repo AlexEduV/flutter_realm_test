@@ -73,7 +73,7 @@ import 'package:test_futter_project/domain/usecases/authentication/delete_accoun
 import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
-import 'package:test_futter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type.dart';
+import 'package:test_futter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
 import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_all_cars_use_case.dart';
@@ -295,7 +295,7 @@ Future<void> initDependenciesContainer() async {
     () => ExplorePageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
   );
 
-  serviceLocator.registerFactory(() => NewItemPageCubit());
+  serviceLocator.registerFactory(() => NewItemPageCubit(serviceLocator()));
 
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator(), serviceLocator()));
 
@@ -409,5 +409,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetCarColorsUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => GetAutoCompleteManufacturersByType(serviceLocator()));
+  serviceLocator.registerLazySingleton(
+    () => GetAutoCompleteManufacturersByTypeUseCase(serviceLocator()),
+  );
 }

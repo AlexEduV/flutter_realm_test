@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
+import 'package:test_futter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 
 import '../../../../common/enums/body_type.dart';
@@ -31,5 +32,6 @@ abstract class NewItemPageState with _$NewItemPageState {
     BodyType? selectedBodyType,
     @Default(FuelType.diesel) FuelType selectedFuelType,
     @Default(TransmissionType.manual) TransmissionType selectedTransmissionType,
+    @Default([]) List<CarAutoCompleteEntity> autoCompleteEntities,
   }) = _NewItemPageState;
 }

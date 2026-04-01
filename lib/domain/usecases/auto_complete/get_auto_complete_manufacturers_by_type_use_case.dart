@@ -4,9 +4,9 @@ import 'package:test_futter_project/domain/usecases/usecase.dart';
 
 import '../../../common/enums/car_type.dart';
 
-class GetAutoCompleteManufacturersByType
+class GetAutoCompleteManufacturersByTypeUseCase
     implements UseCaseWithParams<CarType, Future<List<CarAutoCompleteEntity>>> {
-  GetAutoCompleteManufacturersByType(this._autoCompleteRepository);
+  GetAutoCompleteManufacturersByTypeUseCase(this._autoCompleteRepository);
 
   final AutoCompleteRepository _autoCompleteRepository;
 

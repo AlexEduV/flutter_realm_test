@@ -4,6 +4,7 @@ import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
+import 'package:test_futter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
 import '../../../../di/injection_container.dart';
@@ -11,7 +12,9 @@ import '../../../../l10n/l10n_keys.dart';
 import '../../l10n/app_localisations_cubit.dart';
 
 class NewItemPageCubit extends Cubit<NewItemPageState> {
-  NewItemPageCubit() : super(const NewItemPageState());
+  final GetAutoCompleteManufacturersByTypeUseCase _autoCompleteManufacturersByTypeUseCase;
+
+  NewItemPageCubit(this._autoCompleteManufacturersByTypeUseCase) : super(const NewItemPageState());
 
   void init() {
     emit(
@@ -241,5 +244,10 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
         priceText: '',
       ),
     );
+  }
+
+  Future<void> getAutoCompleteEntitiesByType(CarType type) async {
+    final result = await _autoCompleteManufacturersByTypeUseCase.call(type);
+    emit(state.copyWith(autoCompleteEntities: result));
   }
 }
