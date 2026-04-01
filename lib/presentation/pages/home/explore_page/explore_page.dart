@@ -68,6 +68,7 @@ class _ExplorePageState extends State<ExplorePage> with WidgetsBindingObserver {
                             21 +
                             AppDimensions.exploreArticleItemBaseSize,
                         showLastSeen: state.lastSeenCar != null && carId != null,
+                        title: context.tr(L10nKeys.explorePageTitle),
                       ),
                     );
                   },
