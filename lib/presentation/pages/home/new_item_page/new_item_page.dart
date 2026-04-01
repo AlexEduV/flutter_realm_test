@@ -8,7 +8,9 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/item_setup_tab.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -82,7 +84,7 @@ class _NewItemPageState extends State<NewItemPage> {
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Add new item', style: AppTextStyles.zonaPro20),
+        title: Text(context.tr(L10nKeys.addNewItemPageTitle), style: AppTextStyles.zonaPro20),
         leading: AppSemantics(
           label: AppSemanticsLabels.backButton,
           button: true,

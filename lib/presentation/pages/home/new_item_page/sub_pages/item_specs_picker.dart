@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
@@ -8,6 +9,7 @@ import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_ite
 import '../../../../../common/enums/body_type.dart';
 import '../../../../../common/enums/fuel_type.dart';
 import '../../../../../common/enums/transmission_type.dart';
+import '../../../../../l10n/l10n_keys.dart';
 import '../widgets/radio_group_title.dart';
 
 class ItemSpecsPicker extends StatefulWidget {
@@ -42,13 +44,16 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const RadioGroupTitle(text: 'Body type'),
+                  RadioGroupTitle(
+                    text: context.tr(L10nKeys.addNewItemSpecsPickerBodyTypeGroupDescription),
+                  ),
 
                   RadioGroup<BodyType>(
                     groupValue: state.selectedBodyType,
                     onChanged: (BodyType? value) {
                       context.read<NewItemPageCubit>().updateSelectedBodyType(value);
                     },
+                    //todo: this is not localised because of mapping
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: bodyTypesList
@@ -70,7 +75,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const RadioGroupTitle(text: 'Fuel type'),
+                  RadioGroupTitle(
+                    text: context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupDescription),
+                  ),
 
                   RadioGroup<FuelType>(
                     groupValue: state.selectedFuelType,
@@ -81,7 +88,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         ListTile(
-                          title: const Text('Diesel'),
+                          title: Text(
+                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemDiesel),
+                          ),
                           leading: const Radio<FuelType>(toggleable: true, value: FuelType.diesel),
                           contentPadding: listTileContentPadding,
                           onTap: () => context.read<NewItemPageCubit>().updateSelectedFuelType(
@@ -89,7 +98,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                           ),
                         ),
                         ListTile(
-                          title: const Text('Gasoline'),
+                          title: Text(
+                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemGasoline),
+                          ),
                           leading: const Radio<FuelType>(value: FuelType.gasoline),
                           contentPadding: listTileContentPadding,
                           onTap: () => context.read<NewItemPageCubit>().updateSelectedFuelType(
@@ -97,14 +108,18 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                           ),
                         ),
                         ListTile(
-                          title: const Text('EV'),
+                          title: Text(
+                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemEV),
+                          ),
                           leading: const Radio<FuelType>(value: FuelType.ev),
                           contentPadding: listTileContentPadding,
                           onTap: () =>
                               context.read<NewItemPageCubit>().updateSelectedFuelType(FuelType.ev),
                         ),
                         ListTile(
-                          title: const Text('Hybrid'),
+                          title: Text(
+                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemHybrid),
+                          ),
                           leading: const Radio<FuelType>(value: FuelType.hybrid),
                           contentPadding: listTileContentPadding,
                           onTap: () => context.read<NewItemPageCubit>().updateSelectedFuelType(
@@ -120,7 +135,11 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const RadioGroupTitle(text: 'Transmission type'),
+                  RadioGroupTitle(
+                    text: context.tr(
+                      L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupDescription,
+                    ),
+                  ),
 
                   RadioGroup<TransmissionType>(
                     groupValue: state.selectedTransmissionType,
@@ -131,7 +150,11 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         ListTile(
-                          title: const Text('Manual'),
+                          title: Text(
+                            context.tr(
+                              L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupItemManual,
+                            ),
+                          ),
                           leading: const Radio<TransmissionType>(
                             toggleable: true,
                             value: TransmissionType.manual,
@@ -142,7 +165,11 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                               .updateSelectedTransmissionType(TransmissionType.manual),
                         ),
                         ListTile(
-                          title: const Text('Automatic'),
+                          title: Text(
+                            context.tr(
+                              L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupItemAutomatic,
+                            ),
+                          ),
                           leading: const Radio<TransmissionType>(value: TransmissionType.automatic),
                           contentPadding: listTileContentPadding,
                           onTap: () => context
@@ -150,7 +177,11 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                               .updateSelectedTransmissionType(TransmissionType.automatic),
                         ),
                         ListTile(
-                          title: const Text('Hybrid'),
+                          title: Text(
+                            context.tr(
+                              L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupItemHybrid,
+                            ),
+                          ),
                           leading: const Radio<TransmissionType>(value: TransmissionType.hybrid),
                           contentPadding: listTileContentPadding,
                           onTap: () => context

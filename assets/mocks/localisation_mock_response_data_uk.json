@@ -33,6 +33,40 @@
             "title": "Results"
           }
         },
+        "addNewItem": {
+          "title": "Add new item",
+          "carTypePicker": {
+            "typeRadioGroup": {
+              "description": "What kind of an item would you like to add?",
+              "itemCar": "Car",
+              "itemTruck": "Truck",
+              "itemBike": "Bike"
+            }
+          },
+          "infoForm": {
+            "infoGroup": {
+              "description": "Please, fill the form here."
+            }
+          },
+          "itemSpecsPicker": {
+            "bodyTypeGroup": {
+              "description": "Body type"
+            },
+            "fuelTypeGroup": {
+              "description": "Fuel type",
+              "itemDiesel": "Diesel",
+              "itemGasoline": "Gasoline",
+              "itemEV": "EV",
+              "itemHybrid": "Hybrid"
+            },
+            "transmissionTypeGroup": {
+              "description": "Transmission type",
+              "itemManual": "Manual",
+              "itemAutomatic": "Automatic",
+              "itemHybrid": "Hybrid"
+            }
+          }
+        },
         "comingSoon": {
           "title": "Coming Soon",
           "subtitle": "This feature is not available yet."
@@ -214,6 +248,26 @@
             "label": "Full name",
             "hintText": "Enter your full name:",
             "regexErrorMessage": "The full name is not valid."
+          },
+          "manufacturer": {
+            "label": "Manufacturer *",
+            "regexErrorMessage": "Please, enter a valid manufacturer."
+          },
+          "vehicleModel": {
+            "label": "Model *",
+            "regexErrorMessage": "Please, enter a valid model."
+          },
+          "yearOfProduction": {
+            "label": "Year *",
+            "regexErrorMessage": "Please, enter a valid year."
+          },
+          "price": {
+            "label": "Price *",
+            "regexErrorMessage": "Please, enter a valid price."
+          },
+          "color": {
+            "label": "Color *",
+            "regexErrorMessage": "Please, enter a valid color."
           }
         }
       },
@@ -256,6 +310,9 @@
           "description": "Are you sure you want to delete the account?",
           "confirmLabel": "Yes, delete it.",
           "cancelLabel": "No, keep it."
+        },
+        "pickColor": {
+          "title": "Pick a color"
         }
       },
       "countries": {

@@ -19,41 +19,76 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
   void init() {
     emit(
       state.copyWith(
-        manufacturerFieldParams: FieldParamsModel.withLabel('Manufacturer *').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.fieldParamsValidationMessage,
-          ),
-          regexErrorMessage: 'Please, enter a valid manufacturer.',
-          regex: r'^[A-Za-z\s\-]+$',
-        ),
-        modelFieldParams: FieldParamsModel.withLabel('Model *').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.fieldParamsValidationMessage,
-          ),
-          regexErrorMessage: 'Please, enter a valid model.',
-          regex: r'^[A-Za-z0-9\s\-\/\+]+$',
-        ),
-        yearFieldParams: FieldParamsModel.withLabel('Year *').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.fieldParamsValidationMessage,
-          ),
-          regexErrorMessage: 'Please, enter a valid year.',
-          regex: r'^(198[0-9]|199[0-9]|200[0-9]|201[0-9]|202[0-6])$',
-        ),
-        priceFieldParams: FieldParamsModel.withLabel('Price *').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.fieldParamsValidationMessage,
-          ),
-          regexErrorMessage: 'Please, enter a valid price.',
-          regex: r'^(0|[1-9]\d{0,7})$',
-        ),
-        colorFieldParams: FieldParamsModel.withLabel('Color *').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.fieldParamsValidationMessage,
-          ),
-          regexErrorMessage: 'Please, enter a valid color.',
-          regex: r'^[A-Za-z\s\-]+$',
-        ),
+        manufacturerFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsManufacturerLabel,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsManufacturerRegexErrorMessage,
+              ),
+              regex: r'^[A-Za-z\s\-]+$',
+            ),
+        modelFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsVehicleModelLabel,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsVehicleModelRegexErrorMessage,
+              ),
+              regex: r'^[A-Za-z0-9\s\-\/\+]+$',
+            ),
+        yearFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsYearOfProductionLabel,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsYearOfProductionRegexErrorMessage,
+              ),
+              regex: r'^(198[0-9]|199[0-9]|200[0-9]|201[0-9]|202[0-6])$',
+            ),
+        priceFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsPriceLabel,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsPriceRegexErrorMessage,
+              ),
+              regex: r'^(0|[1-9]\d{0,7})$',
+            ),
+        colorFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsColorLabel,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsColorRegexErrorMessage,
+              ),
+              regex: r'^[A-Za-z\s\-]+$',
+            ),
       ),
     );
   }
