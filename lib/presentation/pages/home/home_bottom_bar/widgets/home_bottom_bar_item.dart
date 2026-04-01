@@ -40,7 +40,7 @@ class HomeBottomBarItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimensions.majorM),
               onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
               child: SizedBox(
-                height: 55,
+                height: 62,
                 width: 59,
                 child: Center(
                   child: Column(
