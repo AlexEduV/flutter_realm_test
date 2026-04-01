@@ -53,6 +53,7 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                     onChanged: (BodyType? value) {
                       context.read<NewItemPageCubit>().updateSelectedBodyType(value);
                     },
+                    //todo: this is not localised because of mapping
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: bodyTypesList
