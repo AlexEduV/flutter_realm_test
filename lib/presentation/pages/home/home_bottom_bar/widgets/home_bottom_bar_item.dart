@@ -11,11 +11,13 @@ class HomeBottomBarItem extends StatelessWidget {
   final int index;
   final IconData icon;
   final String semanticsLabel;
+  final String label;
 
   const HomeBottomBarItem({
     required this.index,
     required this.icon,
     required this.semanticsLabel,
+    required this.label,
     super.key,
   });
 
@@ -24,22 +26,43 @@ class HomeBottomBarItem extends StatelessWidget {
     return BlocBuilder<HomeBottomBarCubit, HomeBottomBarState>(
       builder: (context, state) {
         final isSelected = state.currentSelectedTabIndex == index;
+        final color = isSelected
+            ? AppColors.headerColor
+            : AppColors.headerColor.withAlpha((0.38 * 255).toInt());
 
         return AppSemantics(
           label: semanticsLabel,
           button: true,
           isSelected: isSelected,
-          child: IconButton(
-            style: ButtonStyle(
-              foregroundColor: WidgetStatePropertyAll(
-                isSelected
-                    ? AppColors.headerColor
-                    : AppColors.headerColor.withAlpha((0.38 * 255).toInt()),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(AppDimensions.majorM),
+              onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
+              child: SizedBox(
+                height: 62,
+                width: 73,
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: AppDimensions.minorS,
+                    children: [
+                      Icon(icon, color: color),
+
+                      Text(
+                        label,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: isSelected ? 12 : 11,
+                          fontWeight: FontWeight.w600,
+                          color: color,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              padding: const WidgetStatePropertyAll(EdgeInsets.all(AppDimensions.normalS)),
             ),
-            icon: Icon(icon, size: AppDimensions.bottomAppBarIconSize),
-            onPressed: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
           ),
         );
       },

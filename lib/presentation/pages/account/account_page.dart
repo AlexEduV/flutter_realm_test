@@ -149,6 +149,8 @@ class AccountPage extends StatelessWidget {
                     },
                   ),
                 ),
+
+                const SizedBox(height: AppDimensions.normalS),
               ],
             ),
           ),

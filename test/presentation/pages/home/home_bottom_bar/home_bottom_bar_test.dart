@@ -37,8 +37,11 @@ void main() {
   group('HomeBottomBar', () {
     testWidgets('displays all HomeBottomBarItems and add button', (WidgetTester tester) async {
       await tester.pumpWidget(
-        BlocProvider<HomeBottomBarCubit>(
-          create: (context) => mockHomeBottomBarCubit,
+        MultiBlocProvider(
+          providers: [
+            BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          ],
           child: MaterialApp(
             home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
           ),
@@ -52,8 +55,11 @@ void main() {
     testWidgets('calls onAddPressed when add button is tapped', (WidgetTester tester) async {
       bool pressed = false;
       await tester.pumpWidget(
-        BlocProvider<HomeBottomBarCubit>(
-          create: (context) => mockHomeBottomBarCubit,
+        MultiBlocProvider(
+          providers: [
+            BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          ],
           child: MaterialApp(
             home: Scaffold(
               bottomNavigationBar: HomeBottomBar(
@@ -72,8 +78,11 @@ void main() {
 
     testWidgets('add button has correct style and tooltip', (WidgetTester tester) async {
       await tester.pumpWidget(
-        BlocProvider<HomeBottomBarCubit>(
-          create: (context) => mockHomeBottomBarCubit,
+        MultiBlocProvider(
+          providers: [
+            BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          ],
           child: MaterialApp(
             home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
           ),
@@ -88,8 +97,11 @@ void main() {
 
     testWidgets('container has correct decoration', (WidgetTester tester) async {
       await tester.pumpWidget(
-        BlocProvider<HomeBottomBarCubit>(
-          create: (context) => mockHomeBottomBarCubit,
+        MultiBlocProvider(
+          providers: [
+            BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          ],
           child: MaterialApp(
             home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
           ),
