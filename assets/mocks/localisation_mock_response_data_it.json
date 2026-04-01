@@ -33,6 +33,40 @@
             "title": "Risultati"
           }
         },
+        "addNewItem": {
+          "title": "Aggiungi nuovo elemento",
+          "carTypePicker": {
+            "typeRadioGroup": {
+              "description": "Che tipo di elemento desideri aggiungere?",
+              "itemCar": "Auto",
+              "itemTruck": "Camion",
+              "itemBike": "Moto"
+            }
+          },
+          "infoForm": {
+            "infoGroup": {
+              "description": "Per favore, compila il modulo qui."
+            }
+          },
+          "itemSpecsPicker": {
+            "bodyTypeGroup": {
+              "description": "Tipo di carrozzeria"
+            },
+            "fuelTypeGroup": {
+              "description": "Tipo di carburante",
+              "itemDiesel": "Diesel",
+              "itemGasoline": "Benzina",
+              "itemEV": "Elettrico",
+              "itemHybrid": "Ibrido"
+            },
+            "transmissionTypeGroup": {
+              "description": "Tipo di trasmissione",
+              "itemManual": "Manuale",
+              "itemAutomatic": "Automatica",
+              "itemHybrid": "Ibrida"
+            }
+          }
+        },
         "comingSoon": {
           "title": "Prossimamente",
           "subtitle": "Questa funzione non è ancora disponibile."
@@ -214,6 +248,26 @@
             "label": "Nome completo",
             "hintText": "Inserisci il tuo nome completo:",
             "regexErrorMessage": "Il nome completo non è valido."
+          },
+          "manufacturer": {
+            "label": "Produttore *",
+            "regexErrorMessage": "Per favore, inserisci un produttore valido."
+          },
+          "vehicleModel": {
+            "label": "Modello *",
+            "regexErrorMessage": "Per favore, inserisci un modello valido."
+          },
+          "yearOfProduction": {
+            "label": "Anno *",
+            "regexErrorMessage": "Per favore, inserisci un anno valido."
+          },
+          "price": {
+            "label": "Prezzo *",
+            "regexErrorMessage": "Per favore, inserisci un prezzo valido."
+          },
+          "color": {
+            "label": "Colore *",
+            "regexErrorMessage": "Per favore, inserisci un colore valido."
           }
         }
       },
