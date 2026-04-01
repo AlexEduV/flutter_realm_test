@@ -75,7 +75,7 @@ class _PageSelectionBarState extends State<PageSelectionBar> {
                   spacing: spacingBetweenDots,
                   children: [
                     ...ItemSetupTab.values.map((element) {
-                      return const PageDotWidget(isCurrentIndex: false);
+                      return const PageDotWidget();
                     }),
                   ],
                 ),
