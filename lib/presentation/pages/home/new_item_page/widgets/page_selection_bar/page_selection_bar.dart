@@ -5,7 +5,7 @@ import 'package:test_futter_project/presentation/pages/home/new_item_page/widget
 import '../../../../../../common/app_colors.dart';
 import '../../../../../../common/app_dimensions.dart';
 
-class PageSelectionBar extends StatelessWidget {
+class PageSelectionBar extends StatefulWidget {
   final Function() onForwardPressed;
   final Function() onBackPressed;
   final int currentIndex;
@@ -22,9 +22,17 @@ class PageSelectionBar extends StatelessWidget {
   });
 
   @override
+  State<PageSelectionBar> createState() => _PageSelectionBarState();
+}
+
+class _PageSelectionBarState extends State<PageSelectionBar> {
+  int? _prevIndex;
+
+  @override
   Widget build(BuildContext context) {
     final spacingBetweenDots = AppDimensions.minorL;
     final dotSize = AppDimensions.normalS;
+    final isMoving = _prevIndex != null && _prevIndex != widget.currentIndex;
 
     return Container(
       decoration: BoxDecoration(
@@ -46,8 +54,12 @@ class PageSelectionBar extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(AppDimensions.minorM),
             child: IconButton(
-              icon: Icon(Icons.chevron_left_outlined, color: iconColor, size: iconSize),
-              onPressed: onBackPressed,
+              icon: Icon(
+                Icons.chevron_left_outlined,
+                color: widget.iconColor,
+                size: widget.iconSize,
+              ),
+              onPressed: widget.onBackPressed,
             ),
           ),
 
@@ -73,7 +85,21 @@ class PageSelectionBar extends StatelessWidget {
                   alignment: Alignment(getXAlignment(), 0.0),
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.fastOutSlowIn,
-                  child: const PageDotWidget(isCurrentIndex: true),
+                  onEnd: () {
+                    setState(() {
+                      _prevIndex = null; // Reset after animation
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.fastOutSlowIn,
+                    height: dotSize * 1.2,
+                    width: isMoving ? dotSize * 2.2 : dotSize * 1.2,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                      color: AppColors.headerColor,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -82,8 +108,12 @@ class PageSelectionBar extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(AppDimensions.minorM),
             child: IconButton(
-              icon: Icon(Icons.chevron_right_outlined, color: iconColor, size: iconSize),
-              onPressed: onForwardPressed,
+              icon: Icon(
+                Icons.chevron_right_outlined,
+                color: widget.iconColor,
+                size: widget.iconSize,
+              ),
+              onPressed: widget.onForwardPressed,
             ),
           ),
         ],
@@ -91,8 +121,16 @@ class PageSelectionBar extends StatelessWidget {
     );
   }
 
+  @override
+  void didUpdateWidget(covariant PageSelectionBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.currentIndex != oldWidget.currentIndex) {
+      _prevIndex = oldWidget.currentIndex;
+    }
+  }
+
   double getXAlignment() {
-    final alignment = -1.0 + (currentIndex * (2.0 / (ItemSetupTab.values.length - 1)));
+    final alignment = -1.0 + (widget.currentIndex * (2.0 / (ItemSetupTab.values.length - 1)));
     return alignment;
   }
 }
