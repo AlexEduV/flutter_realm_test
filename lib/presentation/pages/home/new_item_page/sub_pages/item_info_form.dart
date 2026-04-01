@@ -41,6 +41,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
     super.initState();
 
     final cubit = context.read<NewItemPageCubit>();
+    cubit.clearFieldErrors();
+
     manufacturerTextController.text = cubit.state.manufacturerText;
     modelTextController.text = cubit.state.modelText;
     yearTextController.text = cubit.state.yearText;
