@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
@@ -114,29 +115,64 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 },
               ),
 
-              AppFormField(
-                focusNode: widget.modelFocusNode,
-                textEditingController: modelTextController,
-                labelText: state.modelFieldParams?.label ?? '',
-                hintText: state.modelFieldParams?.hintText ?? '',
-                textInputType: TextInputType.text,
-                textInputAction: TextInputAction.next,
-                errorText: state.modelErrorText,
-                onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validateModel(modelTextController.text, false);
-                  }
-                },
-                onChanged: (newText) {
-                  context.read<NewItemPageCubit>().validateModel(
-                    modelTextController.text,
-                    widget.modelFocusNode.hasFocus,
-                  );
+              BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                builder: (context, state) {
+                  final selectedManufacturer = state.manufacturerText;
+                  final models =
+                      state.autoCompleteEntities
+                          .firstWhereOrNull(
+                            (element) => element.manufacturer == selectedManufacturer,
+                          )
+                          ?.models ??
+                      [];
 
-                  context.read<NewItemPageCubit>().updateModelText(modelTextController.text);
+                  return Autocomplete<String>(
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text == '') {
+                        return const Iterable<String>.empty();
+                      }
+                      return models.where((String option) {
+                        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                      });
+                    },
+                    fieldViewBuilder:
+                        (context, textEditingController, focusNode, onFieldSubmitted) {
+                          return AppFormField(
+                            focusNode: focusNode,
+                            textEditingController: textEditingController,
+                            labelText: state.modelFieldParams?.label ?? '',
+                            hintText: state.modelFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            errorText: state.modelErrorText,
+                            onFocusChange: (hasFocus) {
+                              if (!hasFocus) {
+                                context.read<NewItemPageCubit>().validateModel(
+                                  textEditingController.text,
+                                  false,
+                                );
+                              }
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateModel(
+                                textEditingController.text,
+                                focusNode.hasFocus,
+                              );
+
+                              context.read<NewItemPageCubit>().updateModelText(
+                                textEditingController.text,
+                              );
+                            },
+                            padding: 0.0,
+                            maxLength: state.modelFieldParams?.maxLength,
+                          );
+                        },
+                    onSelected: (String selection) {
+                      modelTextController.text = selection;
+                      context.read<NewItemPageCubit>().updateModelText(selection);
+                    },
+                  );
                 },
-                padding: 0.0,
-                maxLength: state.modelFieldParams?.maxLength,
               ),
 
               AppFormField(
