@@ -38,7 +38,7 @@ class HomeBottomBar extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(AppDimensions.normalXS),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const HomeBottomBarItem(
                   semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
