@@ -25,7 +25,7 @@ class _CarTypePickerState extends State<CarTypePicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppDimensions.minorS,
       children: [
-        RadioGroupTitle(text: context.tr(L10nKeys.addNewItemTypePickerGroupTitle)),
+        RadioGroupTitle(text: context.tr(L10nKeys.addNewItemTypePickerGroupDescription)),
 
         BlocBuilder<NewItemPageCubit, NewItemPageState>(
           builder: (context, state) {

@@ -310,6 +310,9 @@
           "description": "Sei sicuro di voler eliminare l'account?",
           "confirmLabel": "Sì, elimina.",
           "cancelLabel": "No, mantieni."
+        },
+        "pickColor": {
+          "title": "Scegli un colore"
         }
       },
       "countries": {

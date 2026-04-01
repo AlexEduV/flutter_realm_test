@@ -310,6 +310,9 @@
           "description": "Are you sure you want to delete the account?",
           "confirmLabel": "Yes, delete it.",
           "cancelLabel": "No, keep it."
+        },
+        "pickColor": {
+          "title": "Pick a color"
         }
       },
       "countries": {

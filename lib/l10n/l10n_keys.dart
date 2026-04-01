@@ -214,8 +214,8 @@ class L10nKeys {
 
   static const String addNewItemPageTitle = 'pages.addNewItem.title';
 
-  static const String addNewItemTypePickerGroupTitle =
-      'pages.addNewItem.carTypePicker.typeRadioGroup.title';
+  static const String addNewItemTypePickerGroupDescription =
+      'pages.addNewItem.carTypePicker.typeRadioGroup.description';
   static const String addNewItemTypePickerGroupItemCar =
       'pages.addNewItem.carTypePicker.typeRadioGroup.itemCar';
   static const String addNewItemTypePickerGroupItemTruck =
@@ -268,4 +268,6 @@ class L10nKeys {
   static const String fieldParamsColorLabel = 'forms.fieldParams.color.label';
   static const String fieldParamsColorRegexErrorMessage =
       'forms.fieldParams.color.regexErrorMessage';
+
+  static const String pickColorDialogTitle = 'dialogs.pickColor.title';
 }

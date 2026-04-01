@@ -44,7 +44,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
     return AlertDialog(
       backgroundColor: Colors.white,
       title: Text(
-        'Pick a color',
+        context.tr(L10nKeys.pickColorDialogTitle),
         style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
       ),
       content: SizedBox(
