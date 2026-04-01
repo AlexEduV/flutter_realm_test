@@ -41,7 +41,7 @@ class HomeBottomBarItem extends StatelessWidget {
               onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
               child: SizedBox(
                 height: 62,
-                width: 59,
+                width: 67,
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

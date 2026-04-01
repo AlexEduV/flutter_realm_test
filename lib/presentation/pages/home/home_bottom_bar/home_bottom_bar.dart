@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
 import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
@@ -40,17 +42,17 @@ class HomeBottomBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const HomeBottomBarItem(
+                HomeBottomBarItem(
                   semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
                   index: AppConstants.homeTabExplore,
                   icon: Icons.home_outlined,
-                  label: 'Explore',
+                  label: context.tr(L10nKeys.explorePageTitle),
                 ),
-                const HomeBottomBarItem(
+                HomeBottomBarItem(
                   semanticsLabel: AppSemanticsLabels.homeBottomBarItemFavorites,
                   index: AppConstants.homeTabFavorites,
                   icon: Icons.favorite_border,
-                  label: 'Favorites',
+                  label: context.tr(L10nKeys.favoritesPageTitle),
                 ),
 
                 AppSemantics(
@@ -63,17 +65,17 @@ class HomeBottomBar extends StatelessWidget {
                   ),
                 ),
 
-                const HomeBottomBarItem(
+                HomeBottomBarItem(
                   index: AppConstants.homeTabInbox,
                   icon: Icons.mail_outlined,
                   semanticsLabel: AppSemanticsLabels.homeBottomBarItemInbox,
-                  label: 'Inbox',
+                  label: context.tr(L10nKeys.inboxPageTitle),
                 ),
-                const HomeBottomBarItem(
+                HomeBottomBarItem(
                   index: AppConstants.homeTabAccount,
                   icon: Icons.person_2_outlined,
                   semanticsLabel: AppSemanticsLabels.homeBottomBarItemAccount,
-                  label: 'Account',
+                  label: context.tr(L10nKeys.accountPageTitle),
                 ),
               ],
             ),
