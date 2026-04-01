@@ -49,20 +49,22 @@ class ExplorePage extends StatelessWidget {
                       if (car.carId == 'testId') carId = null;
                     }
 
+                    final shouldShowLastSeenWidget = state.lastSeenCar != null && carId != null;
+
                     return SliverPersistentHeader(
                       pinned: true,
                       delegate: ExploreHeaderDelegate(
                         minHeight:
                             AppDimensions.exploreAppBarBaseSize, // Height of collapsed app bar
                         maxHeightWithLastSeen:
+                            AppDimensions.exploreArticleItemBaseSize +
                             AppDimensions.exploreAppBarBaseSize +
-                            160 +
-                            AppDimensions.exploreArticleItemBaseSize,
+                            160,
                         maxHeightWithoutLastSeen:
+                            AppDimensions.exploreArticleItemBaseSize +
                             AppDimensions.exploreAppBarBaseSize +
-                            21 +
-                            AppDimensions.exploreArticleItemBaseSize,
-                        showLastSeen: state.lastSeenCar != null && carId != null,
+                            21,
+                        showLastSeen: shouldShowLastSeenWidget,
                         title: context.tr(L10nKeys.explorePageTitle),
                       ),
                     );
@@ -109,12 +111,12 @@ class ExplorePage extends StatelessWidget {
                           final car = cars[index];
                           return TweenAnimationBuilder<double>(
                             tween: Tween(begin: 0, end: 1),
-                            duration: Duration(milliseconds: 300 + index * 200),
+                            duration: Duration(milliseconds: 300 + (index * 200)),
                             builder: (context, value, child) {
                               return Opacity(
                                 opacity: value,
                                 child: Transform.scale(
-                                  scale: 0.95 + 0.05 * value,
+                                  scale: 0.95 + (0.05 * value),
                                   child: _buildItem(CarExtensions.fromEntity(car), index, context),
                                 ),
                               );
