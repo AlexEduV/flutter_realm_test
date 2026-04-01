@@ -47,9 +47,8 @@ void main() {
       );
 
       await tester.pumpWidget(buildTestWidget(index: 2, icon: Icons.search));
-      final iconButton = tester.widget<IconButton>(find.byType(IconButton));
-      final style = iconButton.style;
-      final foregroundColor = style?.foregroundColor?.resolve({});
+      final icon = tester.widget<Icon>(find.byType(Icon));
+      final foregroundColor = icon.color;
 
       expect(foregroundColor, AppColors.headerColor);
     });
@@ -61,9 +60,8 @@ void main() {
       );
 
       await tester.pumpWidget(buildTestWidget(index: 1, icon: Icons.search));
-      final iconButton = tester.widget<IconButton>(find.byType(IconButton));
-      final style = iconButton.style;
-      final foregroundColor = style?.foregroundColor?.resolve({});
+      final icon = tester.widget<Icon>(find.byType(Icon));
+      final foregroundColor = icon.color;
 
       expect(foregroundColor, AppColors.headerColor.withAlpha((0.38 * 255).toInt()));
     });
@@ -73,7 +71,7 @@ void main() {
       when(mockCubit.stream).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
 
       await tester.pumpWidget(buildTestWidget(index: 1, icon: Icons.home));
-      await tester.tap(find.byType(IconButton));
+      await tester.tap(find.byType(Icon));
       await tester.pump();
 
       verify(mockCubit.updateSelectedIndex(1)).called(1);
