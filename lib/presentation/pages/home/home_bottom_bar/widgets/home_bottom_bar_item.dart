@@ -39,30 +39,22 @@ class HomeBottomBarItem extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.majorM),
               onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
-              child: SizedBox(
-                height: AppDimensions.bottomAppBarItemSize,
-                width: AppDimensions.bottomAppBarItemSize,
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    spacing: AppDimensions.minorS,
-                    children: [
-                      SizedBox(
-                        height: AppDimensions.bottomAppBarIconSize,
-                        width: AppDimensions.bottomAppBarIconSize,
-                        child: Icon(icon, color: color),
-                      ),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: AppDimensions.minorS,
+                  children: [
+                    Icon(icon, color: color, size: AppDimensions.appBarIconSize),
 
-                      Text(
-                        label,
-                        style: TextStyle(
-                          fontSize: isSelected ? 12 : 11,
-                          fontWeight: FontWeight.w600,
-                          color: color,
-                        ),
+                    Text(
+                      label,
+                      style: TextStyle(
+                        fontSize: isSelected ? 12 : 11,
+                        fontWeight: FontWeight.w600,
+                        color: color,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

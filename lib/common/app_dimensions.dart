@@ -20,7 +20,6 @@ class AppDimensions {
 
   static const bottomAppBarIconEnlargedSize = 26.0;
   static const bottomAppBarIconSize = 24.0;
-  static const bottomAppBarItemSize = 55.0;
 
   static const placeholderPageIconSize = 64.0;
 
