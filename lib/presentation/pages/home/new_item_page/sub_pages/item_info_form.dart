@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
@@ -45,6 +46,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
     yearTextController.text = cubit.state.yearText;
     colorTextController.text = cubit.state.colorText;
     priceTextController.text = cubit.state.priceText;
+
+    cubit.getAutoCompleteEntitiesByType(cubit.state.selectedCarType);
   }
 
   @override
@@ -57,59 +60,119 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
             children: [
               const RadioGroupTitle(text: 'Please, fill the form here.'),
 
-              AppFormField(
-                focusNode: widget.manufacturerFocusNode,
-                textEditingController: manufacturerTextController,
-                labelText: state.manufacturerFieldParams?.label ?? '',
-                hintText: state.manufacturerFieldParams?.hintText ?? '',
-                textInputType: TextInputType.text,
-                textInputAction: TextInputAction.next,
-                errorText: state.manufacturerErrorText,
-                onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validateManufacturer(
-                      manufacturerTextController.text,
-                      false,
-                    );
-                  }
-                },
-                onChanged: (newText) {
-                  context.read<NewItemPageCubit>().validateManufacturer(
-                    newText ?? '',
-                    widget.manufacturerFocusNode.hasFocus,
-                  );
+              BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                builder: (context, state) {
+                  final manufacturers = state.autoCompleteEntities
+                      .map((element) => element.manufacturer)
+                      .toList();
 
-                  context.read<NewItemPageCubit>().updateManufacturerText(
-                    manufacturerTextController.text,
+                  return Autocomplete<String>(
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text == '') {
+                        return const Iterable<String>.empty();
+                      }
+                      return manufacturers.where((String option) {
+                        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                      });
+                    },
+                    fieldViewBuilder:
+                        (context, textEditingController, focusNode, onFieldSubmitted) {
+                          return AppFormField(
+                            focusNode: focusNode,
+                            textEditingController: textEditingController,
+                            labelText: state.manufacturerFieldParams?.label ?? '',
+                            hintText: state.manufacturerFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            errorText: state.manufacturerErrorText,
+                            onFocusChange: (hasFocus) {
+                              if (!hasFocus) {
+                                context.read<NewItemPageCubit>().validateManufacturer(
+                                  textEditingController.text,
+                                  false,
+                                );
+                              }
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateManufacturer(
+                                newText ?? '',
+                                focusNode.hasFocus,
+                              );
+
+                              context.read<NewItemPageCubit>().updateManufacturerText(
+                                textEditingController.text,
+                              );
+                            },
+                            padding: 0.0,
+                            maxLength: state.manufacturerFieldParams?.maxLength,
+                          );
+                        },
+                    onSelected: (String selection) {
+                      manufacturerTextController.text = selection;
+                      context.read<NewItemPageCubit>().updateManufacturerText(selection);
+                    },
                   );
                 },
-                padding: 0.0,
-                maxLength: state.manufacturerFieldParams?.maxLength,
               ),
 
-              AppFormField(
-                focusNode: widget.modelFocusNode,
-                textEditingController: modelTextController,
-                labelText: state.modelFieldParams?.label ?? '',
-                hintText: state.modelFieldParams?.hintText ?? '',
-                textInputType: TextInputType.text,
-                textInputAction: TextInputAction.next,
-                errorText: state.modelErrorText,
-                onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validateModel(modelTextController.text, false);
-                  }
-                },
-                onChanged: (newText) {
-                  context.read<NewItemPageCubit>().validateModel(
-                    modelTextController.text,
-                    widget.modelFocusNode.hasFocus,
-                  );
+              BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                builder: (context, state) {
+                  final selectedManufacturer = state.manufacturerText;
+                  final models =
+                      state.autoCompleteEntities
+                          .firstWhereOrNull(
+                            (element) => element.manufacturer == selectedManufacturer,
+                          )
+                          ?.models ??
+                      [];
 
-                  context.read<NewItemPageCubit>().updateModelText(modelTextController.text);
+                  return Autocomplete<String>(
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text == '') {
+                        return const Iterable<String>.empty();
+                      }
+                      return models.where((String option) {
+                        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                      });
+                    },
+                    fieldViewBuilder:
+                        (context, textEditingController, focusNode, onFieldSubmitted) {
+                          return AppFormField(
+                            focusNode: focusNode,
+                            textEditingController: textEditingController,
+                            labelText: state.modelFieldParams?.label ?? '',
+                            hintText: state.modelFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            errorText: state.modelErrorText,
+                            onFocusChange: (hasFocus) {
+                              if (!hasFocus) {
+                                context.read<NewItemPageCubit>().validateModel(
+                                  textEditingController.text,
+                                  false,
+                                );
+                              }
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateModel(
+                                textEditingController.text,
+                                focusNode.hasFocus,
+                              );
+
+                              context.read<NewItemPageCubit>().updateModelText(
+                                textEditingController.text,
+                              );
+                            },
+                            padding: 0.0,
+                            maxLength: state.modelFieldParams?.maxLength,
+                          );
+                        },
+                    onSelected: (String selection) {
+                      modelTextController.text = selection;
+                      context.read<NewItemPageCubit>().updateModelText(selection);
+                    },
+                  );
                 },
-                padding: 0.0,
-                maxLength: state.modelFieldParams?.maxLength,
               ),
 
               AppFormField(

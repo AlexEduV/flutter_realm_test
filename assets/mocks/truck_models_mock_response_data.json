@@ -1,0 +1,146 @@
+{
+  "status": "success",
+  "message": "data retrieved successfully",
+  "results": [
+    {
+      "id": 1,
+      "name": "Ford",
+      "models": [
+        "F-150", "F-250", "F-350", "F-450", "F-550", "Ranger", "Super Duty", "E-Series", "Transit", "L-Series", "F-650", "F-750", "Explorer Sport Trac", "Courier", "Maverick", "Excursion", "Bronco", "Econoline", "F-Series", "F-100"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Chevrolet",
+      "models": [
+        "Silverado 1500", "Silverado 2500", "Silverado 3500", "Colorado", "Avalanche", "C/K", "S-10", "Express", "Suburban", "Tahoe", "Blazer", "Cheyenne", "LUV", "Kodiak", "Trailblazer", "SSR", "G-Series", "Venture", "Astro", "Caprice"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Ram",
+      "models": [
+        "1500", "2500", "3500", "4500", "5500", "Dakota", "ProMaster", "ProMaster City", "Ram Chassis Cab", "Ram SRT-10", "Ram Rebel", "Ram TRX", "Ram Classic", "Ram Mega Cab", "Ram Power Wagon", "Ram Tradesman", "Ram Laramie", "Ram Limited", "Ram Big Horn", "Ram Lone Star"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Toyota",
+      "models": [
+        "Tundra", "Tacoma", "Hilux", "Land Cruiser Pickup", "Dyna", "ProAce", "4Runner", "Sequoia", "FJ Cruiser", "Mega Cruiser", "TownAce", "LiteAce", "Stout", "ToyoAce", "Quick Delivery", "Coaster", "HiAce", "Granvia", "Regius", "Succeed"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Nissan",
+      "models": [
+        "Titan", "Frontier", "Navara", "Hardbody", "Atlas", "Cabstar", "NT400", "Datsun Truck", "Armada", "Pathfinder", "Xterra", "Patrol Pickup", "King Cab", "Crew Cab", "Vanette", "Caravan", "Serena", "Urvan", "Terrano", "Pickup"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "GMC",
+      "models": [
+        "Sierra 1500", "Sierra 2500", "Sierra 3500", "Canyon", "Savanna", "TopKick", "Sonoma", "Jimmy", "Envoy", "Acadia", "Caballero", "Sprint", "Typhoon", "Syclone", "Vandura", "Safari", "C/K", "3500HD", "2500HD", "1500HD"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Isuzu",
+      "models": [
+        "D-Max", "N-Series", "F-Series", "Elf", "Forward", "Giga", "Trooper", "Rodeo", "Hombre", "Ascender", "MU-X", "VehiCROSS", "Amigo", "Pickup", "KB", "Panther", "Bighorn", "Wizard", "Fargo", "Gemini"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Mercedes-Benz",
+      "models": [
+        "Actros", "Atego", "Axor", "Unimog", "Sprinter", "Vario", "Econic", "Zetros", "SK", "NG", "L-Series", "T2", "T1", "MB100", "MB120", "MB140", "MB180", "Vito", "Viano", "Citan"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Volvo",
+      "models": [
+        "FH", "FM", "FMX", "FE", "FL", "VNL", "VNR", "VHD", "VNX", "F10", "F12", "F16", "N10", "N12", "N16", "NH", "L-Series", "S-Series", "V-Series", "XC90"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Freightliner",
+      "models": [
+        "Cascadia", "Columbia", "Coronado", "Century", "FLD", "M2", "Argosy", "Classic", "FL", "FLB", "FLD120", "FLD132", "FLD112", "FLD70", "FLD80", "FLD90", "FLD100", "FLD110", "FLD120SD", "FLD132SD"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Kenworth",
+      "models": [
+        "T680", "T880", "W900", "T800", "T700", "T600", "T370", "T440", "T470", "C500", "K100", "K200", "K300", "K370", "W990", "W900L", "W900B", "W900S", "W900A", "W900C"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Peterbilt",
+      "models": [
+        "579", "389", "379", "567", "367", "365", "384", "386", "387", "388", "397", "210", "220", "320", "325", "330", "335", "337", "340", "348"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Mack",
+      "models": [
+        "Anthem", "Pinnacle", "Granite", "LR", "MD", "Super-Liner", "Titan", "Vision", "CH", "CL", "CX", "DM", "RB", "RD", "RM", "RS", "RW", "U", "R", "F"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "International",
+      "models": [
+        "LT", "Lonestar", "ProStar", "Durastar", "Transtar", "WorkStar", "PayStar", "HX", "MXT", "9900i", "9400i", "9200i", "8100", "7600", "7400", "4300", "4700", "4900", "CXT", "RXT"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Scania",
+      "models": [
+        "R-Series", "S-Series", "G-Series", "P-Series", "L-Series", "4-Series", "3-Series", "2-Series", "T-Series", "Vabis", "Streamline", "Super", "XT", "Citywide", "Irizar", "OmniExpress", "Touring", "Interlink", "Metrolink", "K-Series", "F-Series"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "MAN",
+      "models": [
+        "TGX", "TGS", "TGM", "TGL", "F2000", "F90", "F8", "F7", "F6", "F5", "F4", "F3", "F2", "F1", "L2000", "M2000", "E2000", "G90", "G60", "G40"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "DAF",
+      "models": [
+        "XF", "CF", "LF", "XG", "XG+", "FT", "FA", "FAR", "FAS", "FAT", "FAN", "FAG", "FAP", "FARX", "FATX", "FANX", "FAGX", "FAPX", "FTX", "FTXF"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Hino",
+      "models": [
+        "500 Series", "300 Series", "700 Series", "155", "195", "268", "338", "358", "Dutro", "Ranger", "Profia", "Super Dolphin", "Cruiser", "Briska", "Contessa", "Liesse", "Poncho", "Rainbow", "Melpha", "Blue Ribbon"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Mitsubishi Fuso",
+      "models": [
+        "Canter", "Fighter", "Super Great", "Rosa", "FK", "FM", "FN", "FP", "FS", "FV", "FW", "FT", "FU", "FA", "FB", "FC", "FD", "FE", "FF", "FG"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Tata",
+      "models": [
+        "LPT", "Signa", "Ultra", "Prima", "Ace", "407", "709", "1512", "1613", "2518", "3118", "4018", "1109", "1518", "2516", "3116", "4016", "1515", "2515", "3115"
+      ]
+    }
+  ]
+}
