@@ -163,7 +163,7 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                 ],
               ),
 
-              const SizedBox(height: AppDimensions.majorXL),
+              const SizedBox(height: AppDimensions.majorXL * 2),
             ],
           ),
         );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_futter_project/common/enums/item_setup_tab.dart';
-import 'package:test_futter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar/widgets/page_dot_widget.dart';
 
-import '../../../../../../common/app_colors.dart';
-import '../../../../../../common/app_dimensions.dart';
+import '../../../../../common/app_colors.dart';
+import '../../../../../common/app_dimensions.dart';
 
 class PageSelectionBar extends StatelessWidget {
   final Function() onForwardPressed;
@@ -23,6 +23,9 @@ class PageSelectionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const dotSize = AppDimensions.normalS;
+    const jumpOffSet = AppDimensions.minorL;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppDimensions.majorM),
@@ -48,11 +51,20 @@ class PageSelectionBar extends StatelessWidget {
             ),
           ),
 
-          ...ItemSetupTab.values.map((element) {
-            final isCurrentIndex = element.index == currentIndex;
-
-            return PageDotWidget(isCurrentIndex: isCurrentIndex);
-          }),
+          Padding(
+            padding: const EdgeInsets.only(bottom: jumpOffSet),
+            child: AnimatedSmoothIndicator(
+              activeIndex: currentIndex,
+              count: ItemSetupTab.values.length,
+              effect: JumpingDotEffect(
+                verticalOffset: jumpOffSet,
+                activeDotColor: AppColors.headerColor,
+                dotColor: AppColors.placeholderColor,
+                dotHeight: dotSize,
+                dotWidth: dotSize,
+              ),
+            ),
+          ),
 
           Padding(
             padding: const EdgeInsets.all(AppDimensions.minorM),

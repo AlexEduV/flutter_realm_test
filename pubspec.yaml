@@ -38,6 +38,7 @@ dependencies:
   transparent_image: ^2.0.1
   file_picker: ^10.3.10
   flutter_colorpicker: ^1.1.0
+  smooth_page_indicator: ^2.0.1
 
 dev_dependencies:
   flutter_test:

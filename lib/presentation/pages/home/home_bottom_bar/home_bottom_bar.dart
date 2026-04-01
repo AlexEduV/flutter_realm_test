@@ -51,7 +51,7 @@ class HomeBottomBar extends StatelessWidget {
                 HomeBottomBarItem(
                   semanticsLabel: AppSemanticsLabels.homeBottomBarItemFavorites,
                   index: AppConstants.homeTabFavorites,
-                  icon: Icons.favorite_border,
+                  icon: Icons.favorite_border_outlined,
                   label: context.tr(L10nKeys.favoritesPageTitle),
                 ),
 
