@@ -61,5 +61,50 @@ void main() {
       expect(decoded['width'], '500.0');
       expect(decoded['height'], '350.0');
     });
+
+    group('hash code', () {
+      final gif1 = GifEntity(
+        id: '1',
+        title: 'Funny Cat',
+        previewImageUrl: 'http://example.com/preview1.gif',
+        imageUrl: 'http://example.com/image1.gif',
+        width: 320.0,
+        height: 240.0,
+      );
+
+      final gif2 = GifEntity(
+        id: '1',
+        title: 'Funny Cat',
+        previewImageUrl: 'http://example.com/preview1.gif',
+        imageUrl: 'http://example.com/image1.gif',
+        width: 320.0,
+        height: 240.0,
+      );
+
+      final gif3 = GifEntity(
+        id: '2',
+        title: 'Funny Dog',
+        previewImageUrl: 'http://example.com/preview2.gif',
+        imageUrl: 'http://example.com/image2.gif',
+        width: 640.0,
+        height: 480.0,
+      );
+
+      test('should be equal if all properties are equal', () {
+        expect(gif1, equals(gif2));
+      });
+
+      test('should not be equal if any property is different', () {
+        expect(gif1, isNot(equals(gif3)));
+      });
+
+      test('should have the same hashCode for equal objects', () {
+        expect(gif1.hashCode, equals(gif2.hashCode));
+      });
+
+      test('should have different hashCodes for different objects', () {
+        expect(gif1.hashCode, isNot(equals(gif3.hashCode)));
+      });
+    });
   });
 }
