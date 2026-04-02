@@ -1,9 +1,3 @@
-# Pull Request Title
-
-<!-- Please provide a concise title for your pull request -->
-
----
-
 ## Description
 
 <!-- Please describe your changes in detail -->
