@@ -155,50 +155,7 @@ class OwnerWidget extends StatelessWidget {
   brightness: Brightness.light,
   size: Size.fromWidth(390),
 )
-Widget preview() {
-  final appLocalisationsCubit = AppLocalisationsCubit();
-  appLocalisationsCubit.load({
-    L10nKeys.messageSenderYou: 'You',
-    L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
-    L10nKeys.distanceWidgetText: 'km',
-    L10nKeys.ownerSectionContactButtonTitle: 'Send a message',
-  });
-
-  return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
-    child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(AppDimensions.normalS),
-              child: OwnerWidget(
-                car: CarEntity.empty().copyWith(
-                  distanceTo: 5,
-                  owner: OwnerEntity(
-                    id: '2', // Different from user ID to show 'Contact' button
-                    firstName: 'John',
-                    lastName: 'Doe',
-                    linkedItemIds: [],
-                  ),
-                ),
-                user: UserEntity.initial(
-                  userId: '1',
-                  firstName: 'Alexander',
-                  lastName: 'Hamilton',
-                  email: 'mock@example.com',
-                  password: 'pass',
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
+Widget preview() => _basePreview(isOwner: false);
 
 @Preview(
   group: 'Owner Widget',
@@ -206,7 +163,9 @@ Widget preview() {
   brightness: Brightness.light,
   size: Size.fromWidth(390),
 )
-Widget previewUserIsOwner() {
+Widget previewUserIsOwner() => _basePreview(isOwner: true);
+
+Widget _basePreview({required bool isOwner}) {
   final appLocalisationsCubit = AppLocalisationsCubit();
   appLocalisationsCubit.load({
     L10nKeys.messageSenderYou: 'You',
@@ -229,14 +188,14 @@ Widget previewUserIsOwner() {
                 car: CarEntity.empty().copyWith(
                   distanceTo: 5,
                   owner: OwnerEntity(
-                    id: '1',
-                    firstName: 'Alexander',
-                    lastName: 'Hamilton',
+                    id: '1', // Fixed ID
+                    firstName: 'John',
+                    lastName: 'Doe',
                     linkedItemIds: [],
                   ),
                 ),
                 user: UserEntity.initial(
-                  userId: '1',
+                  userId: isOwner ? '1' : '2', // Toggle this to change the view
                   firstName: 'Alexander',
                   lastName: 'Hamilton',
                   email: 'mock@example.com',
