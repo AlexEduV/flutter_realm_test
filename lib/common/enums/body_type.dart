@@ -1,41 +1,28 @@
 import 'package:test_futter_project/common/enums/car_type.dart';
+import 'package:test_futter_project/l10n/l10n_keys.dart';
 
-/// Types of vehicle body configurations.
+import '../../di/injection_container.dart';
+import '../../presentation/bloc/l10n/app_localisations_cubit.dart';
+
 enum BodyType {
-  /// A standard sedan.
-  sedan,
+  sedan(CarType.car, L10nKeys.bodyTypeSedan),
+  hatchback(CarType.car, L10nKeys.bodyTypeHatchback),
+  universal(CarType.car, L10nKeys.bodyTypeUniversal),
+  minivan(CarType.car, L10nKeys.bodyTypeMinivan),
+  coupe(CarType.car, L10nKeys.bodyTypeCoupe),
+  crossover(CarType.car, L10nKeys.bodyTypeCrossover),
+  semi(CarType.truck, L10nKeys.bodyTypeSemi),
+  bike(CarType.bike, L10nKeys.bodyTypeBike);
 
-  /// A compact hatchback.
-  hatchback,
+  final CarType carType;
+  final String localisationKey;
 
-  /// A universal body style.
-  universal,
+  const BodyType(this.carType, this.localisationKey);
 
-  /// A minivan.
-  minivan,
-
-  /// A coupe.
-  coupe,
-
-  /// A crossover.
-  crossover,
-
-  /// A semi-trailer.
-  semi,
-
-  /// A bike.
-  bike,
+  String fromLocalisations() {
+    final localisation = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+      localisationKey,
+    );
+    return localisation;
+  }
 }
-
-const Map<CarType, List<BodyType>> carTypeToBodyTypes = {
-  CarType.car: [
-    BodyType.sedan,
-    BodyType.hatchback,
-    BodyType.universal,
-    BodyType.minivan,
-    BodyType.coupe,
-    BodyType.crossover,
-  ],
-  CarType.truck: [BodyType.semi],
-  CarType.bike: [BodyType.bike],
-};

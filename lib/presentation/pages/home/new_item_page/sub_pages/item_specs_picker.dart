@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
@@ -27,7 +26,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
     super.initState();
 
     final cubit = context.read<NewItemPageCubit>();
-    bodyTypesList = carTypeToBodyTypes[cubit.state.selectedCarType] ?? [];
+    bodyTypesList = BodyType.values
+        .where((element) => element.carType == cubit.state.selectedCarType)
+        .toList();
     cubit.updateSelectedBodyType(bodyTypesList.firstOrNull);
   }
 
@@ -53,13 +54,13 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                     onChanged: (BodyType? value) {
                       context.read<NewItemPageCubit>().updateSelectedBodyType(value);
                     },
-                    //todo: this is not localised because of mapping
+
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: bodyTypesList
                           .map(
                             (element) => ListTile(
-                              title: Text(element.name.capitalizeFirst()),
+                              title: Text(element.fromLocalisations()),
                               leading: Radio<BodyType>(toggleable: true, value: element),
                               contentPadding: listTileContentPadding,
                               onTap: () =>

@@ -9,9 +9,9 @@ enum PromoType {
   featured('featured', L10nKeys.promoTypeFeatured);
 
   final String code;
-  final String localized;
+  final String localisationKey;
 
-  const PromoType(this.code, this.localized);
+  const PromoType(this.code, this.localisationKey);
 
   static PromoType? fromCode(String? code) {
     if (code == null) return null;
@@ -23,6 +23,6 @@ enum PromoType {
   }
 
   String? fromLocalisations() {
-    return serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(localized);
+    return serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(localisationKey);
   }
 }
