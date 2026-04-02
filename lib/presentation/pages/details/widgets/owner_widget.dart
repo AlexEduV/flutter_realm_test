@@ -177,6 +177,14 @@ Widget _basePreview({required bool isOwner}) {
   return MultiBlocProvider(
     providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        fontFamily: 'Zona Pro',
+        textTheme: ThemeData.light().textTheme.apply(
+          bodyColor: Colors.black,
+          displayColor: Colors.black,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
