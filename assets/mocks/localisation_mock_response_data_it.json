@@ -72,7 +72,7 @@
           "subtitle": "Questa funzione non è ancora disponibile."
         },
         "inbox": {
-          "title": "Posta in arrivo",
+          "title": "Posta",
           "emptyPlaceholderText": "Nessun messaggio ancora.",
           "loggedOutPlaceholderText": "Per favore, accedi per vedere i messaggi.",
           "general": {
@@ -114,7 +114,7 @@
           }
         },
         "account": {
-          "title": "Il mio account",
+          "title": "Account",
           "items": {
             "personalDetails": {
               "title": "Dati personali",
