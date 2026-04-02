@@ -19,17 +19,15 @@ void main() {
     repository = ShareRepositoryImpl(mockLocalDataSource);
   });
 
-  // test('share calls local data source when not in progress', () async {
-  //   final params = ShareParamsModel(text: 'https://example.com', title: 'Hello!');
-  //   when(mockLocalDataSource.share(params)).thenAnswer((_) async {});
-  //
-  //   await repository.share(params);
-  //
-  //   verify(mockLocalDataSource.share(any)).called(1);
-  //   // _isShareInProgress should be reset to false after completion
-  //   await repository.share(params);
-  //   verify(mockLocalDataSource.share(any)).called(2);
-  // });
+  test('share calls local data source when not in progress', () async {
+    final params = ShareParamsModel(text: 'https://example.com', title: 'Hello!');
+    when(mockLocalDataSource.share(params)).thenAnswer((_) async {});
+
+    await repository.share(params);
+    // _isShareInProgress should be reset to false after completion
+    await repository.share(params);
+    verify(mockLocalDataSource.share(params)).called(2);
+  });
 
   test('share does not call local data source if already in progress', () async {
     final params = ShareParamsModel(text: 'https://example.com', title: 'Hello!');
