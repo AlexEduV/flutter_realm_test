@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widget_previews.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
@@ -6,8 +7,9 @@ import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
-import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
@@ -19,13 +21,13 @@ import '../../../../l10n/l10n_keys.dart';
 
 class OwnerWidget extends StatelessWidget {
   final CarEntity car;
+  final UserEntity user;
 
-  const OwnerWidget({required this.car, super.key});
+  const OwnerWidget({required this.car, required this.user, super.key});
 
   @override
   Widget build(BuildContext context) {
     final owner = car.owner;
-    final user = context.read<UserDataCubit>().user;
 
     final isUserNotTheOwner = owner?.id != null && owner?.id != user.userId;
 
@@ -145,4 +147,73 @@ class OwnerWidget extends StatelessWidget {
 
     context.go('${AppRoutes.home}${AppRoutes.details}/${AppRoutes.inbox}', extra: conversationId);
   }
+}
+
+@Preview(
+  group: 'Owner Widget',
+  name: 'Normal',
+  brightness: Brightness.light,
+  size: Size.fromWidth(390),
+)
+Widget preview() => _basePreview(isOwner: false);
+
+@Preview(
+  group: 'Owner Widget',
+  name: 'User is Owner',
+  brightness: Brightness.light,
+  size: Size.fromWidth(390),
+)
+Widget previewUserIsOwner() => _basePreview(isOwner: true);
+
+Widget _basePreview({required bool isOwner}) {
+  final appLocalisationsCubit = AppLocalisationsCubit();
+  appLocalisationsCubit.load({
+    L10nKeys.messageSenderYou: 'You',
+    L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
+    L10nKeys.distanceWidgetText: 'km',
+    L10nKeys.ownerSectionContactButtonTitle: 'Send a message',
+  });
+
+  return MultiBlocProvider(
+    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    child: MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        fontFamily: 'Zona Pro',
+        textTheme: ThemeData.light().textTheme.apply(
+          bodyColor: Colors.black,
+          displayColor: Colors.black,
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(AppDimensions.normalS),
+              child: OwnerWidget(
+                car: CarEntity.empty().copyWith(
+                  distanceTo: 5,
+                  owner: OwnerEntity(
+                    id: '1', // Fixed ID
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    linkedItemIds: [],
+                  ),
+                ),
+                user: UserEntity.initial(
+                  userId: isOwner ? '1' : '2', // Toggle this to change the view
+                  firstName: 'Alexander',
+                  lastName: 'Hamilton',
+                  email: 'mock@example.com',
+                  password: 'pass',
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }

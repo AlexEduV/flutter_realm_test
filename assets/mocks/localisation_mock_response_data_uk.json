@@ -114,7 +114,7 @@
           }
         },
         "account": {
-          "title": "My account",
+          "title": "Account",
           "items": {
             "personalDetails": {
               "title": "Personal details",

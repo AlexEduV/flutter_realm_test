@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/enums/details_page_source.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_state.dart';
@@ -72,6 +73,16 @@ void main() {
 
     when(mockDetailsPageCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockDetailsPageCubit.state).thenReturn(const DetailsPageState());
+
+    when(mockUserDataCubit.user).thenReturn(
+      UserEntity.initial(
+        userId: '1',
+        firstName: 'Alexander',
+        lastName: 'the Third',
+        email: 'alexander-iii@pella.mk',
+        password: 'daGreat',
+      ),
+    );
   });
 
   setUp(() {
