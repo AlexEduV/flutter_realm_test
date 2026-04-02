@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
@@ -8,6 +9,7 @@ import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
+import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
@@ -148,13 +150,33 @@ class OwnerWidget extends StatelessWidget {
 }
 
 @Preview(group: 'Owner Widget', name: 'Normal', brightness: Brightness.light)
-Widget preview() => OwnerWidget(
-  car: CarEntity.empty(),
-  user: UserEntity.initial(
-    userId: '1',
-    firstName: 'Alexander',
-    lastName: 'Hamilton',
-    email: 'mock@example.com',
-    password: 'pass',
-  ),
-);
+Widget preview() {
+  final appLocalisationsCubit = AppLocalisationsCubit();
+  appLocalisationsCubit.load({
+    L10nKeys.messageSenderYou: 'You',
+    L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
+    L10nKeys.distanceWidgetText: 'km',
+    L10nKeys.ownerSectionContactButtonTitle: 'Contact me',
+  });
+
+  return MultiBlocProvider(
+    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    child: Column(
+      children: [
+        OwnerWidget(
+          car: CarEntity.empty().copyWith(
+            distanceTo: 20,
+            owner: OwnerEntity(id: '2', firstName: 'Jack', lastName: 'Smith', linkedItemIds: []),
+          ),
+          user: UserEntity.initial(
+            userId: '1',
+            firstName: 'Alexander',
+            lastName: 'Hamilton',
+            email: 'mock@example.com',
+            password: 'pass',
+          ),
+        ),
+      ],
+    ),
+  );
+}
