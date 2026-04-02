@@ -199,3 +199,54 @@ Widget preview() {
     ),
   );
 }
+
+@Preview(
+  group: 'Owner Widget',
+  name: 'User is Owner',
+  brightness: Brightness.light,
+  size: Size.fromWidth(390),
+)
+Widget previewUserIsOwner() {
+  final appLocalisationsCubit = AppLocalisationsCubit();
+  appLocalisationsCubit.load({
+    L10nKeys.messageSenderYou: 'You',
+    L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
+    L10nKeys.distanceWidgetText: 'km',
+    L10nKeys.ownerSectionContactButtonTitle: 'Send a message',
+  });
+
+  return MultiBlocProvider(
+    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(AppDimensions.normalS),
+              child: OwnerWidget(
+                car: CarEntity.empty().copyWith(
+                  distanceTo: 5,
+                  owner: OwnerEntity(
+                    id: '1',
+                    firstName: 'Alexander',
+                    lastName: 'Hamilton',
+                    linkedItemIds: [],
+                  ),
+                ),
+                user: UserEntity.initial(
+                  userId: '1',
+                  firstName: 'Alexander',
+                  lastName: 'Hamilton',
+                  email: 'mock@example.com',
+                  password: 'pass',
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
