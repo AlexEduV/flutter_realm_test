@@ -77,5 +77,48 @@ void main() {
       expect(model1.hashCode, model2.hashCode);
       expect(model1 == model3, false);
     });
+
+    test('toJson returns correct map', () {
+      // Arrange
+      final conversation = ConversationModel(
+        conversationId: 'c1',
+        ownerId: 'u1',
+        messages: messages,
+      );
+
+      // Act
+      final json = conversation.toJson();
+
+      // Assert
+      expect(json, {
+        'conversationId': 'c1',
+        'ownerId': 'u1',
+        'messages': [
+          {
+            'senderId': '1',
+            'messageStatus': 'sent',
+            'text': 'Hello',
+            'date': date1.toIso8601String(),
+          },
+          {
+            'senderId': '1',
+            'messageStatus': 'sent',
+            'text': 'World',
+            'date': date2.toIso8601String(),
+          },
+        ],
+      });
+    });
+
+    test('toJson returns correct map for empty conversation', () {
+      // Arrange
+      final conversation = ConversationModel.empty();
+
+      // Act
+      final json = conversation.toJson();
+
+      // Assert
+      expect(json, {'conversationId': '', 'ownerId': '', 'messages': []});
+    });
   });
 }
