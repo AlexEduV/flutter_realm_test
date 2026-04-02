@@ -295,7 +295,7 @@ Future<void> initDependenciesContainer() async {
     () => ExplorePageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
   );
 
-  serviceLocator.registerFactory(() => NewItemPageCubit(serviceLocator()));
+  serviceLocator.registerFactory(() => NewItemPageCubit(serviceLocator())..init());
 
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator(), serviceLocator()));
 

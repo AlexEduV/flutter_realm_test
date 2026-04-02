@@ -22,7 +22,7 @@ enum PromoType {
     );
   }
 
-  String? fromLocalisations() {
+  String fromLocalisations() {
     return serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(localisationKey);
   }
 }
