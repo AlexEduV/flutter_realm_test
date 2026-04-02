@@ -375,8 +375,7 @@
         "Model X",
         "Model Y",
         "Roadster",
-        "Cybertruck",
-        "Semi"
+        "Cybertruck"
       ]
     },
     {
@@ -502,6 +501,58 @@
         "Marea",
         "Palio",
         "Idea"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "MINI",
+      "models": [
+        "Hatch (Cooper/One)",
+        "Cooper S",
+        "John Cooper Works",
+        "Clubman",
+        "Countryman",
+        "Convertible",
+        "Paceman",
+        "Coupe",
+        "Roadster",
+        "Electric (Cooper SE)",
+        "Mini E",
+        "Mini GP",
+        "Mini Seven",
+        "Mini Park Lane",
+        "Mini Bayswater",
+        "Mini Camden",
+        "Mini Mayfair",
+        "Mini Soho",
+        "Mini Sidewalk",
+        "Mini Checkmate"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Porsche",
+      "models": [
+        "911",
+        "Cayenne",
+        "Panamera",
+        "Macan",
+        "Boxster",
+        "Cayman",
+        "Taycan",
+        "718",
+        "911 Turbo",
+        "911 Carrera",
+        "911 GT3",
+        "911 Targa",
+        "911 GT2",
+        "911 Cabriolet",
+        "911 GTS",
+        "911 Speedster",
+        "Cayenne Coupe",
+        "Macan GTS",
+        "Panamera Sport Turismo",
+        "Carrera GT"
       ]
     }
   ]
