@@ -161,22 +161,36 @@ Widget preview() {
 
   return MultiBlocProvider(
     providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
-    child: Column(
-      children: [
-        OwnerWidget(
-          car: CarEntity.empty().copyWith(
-            distanceTo: 20,
-            owner: OwnerEntity(id: '2', firstName: 'Jack', lastName: 'Smith', linkedItemIds: []),
-          ),
-          user: UserEntity.initial(
-            userId: '1',
-            firstName: 'Alexander',
-            lastName: 'Hamilton',
-            email: 'mock@example.com',
-            password: 'pass',
-          ),
+    child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(AppDimensions.normalS),
+              child: OwnerWidget(
+                car: CarEntity.empty().copyWith(
+                  distanceTo: 5,
+                  owner: OwnerEntity(
+                    id: '2', // Different from user ID to show 'Contact' button
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    linkedItemIds: [],
+                  ),
+                ),
+                user: UserEntity.initial(
+                  userId: '1',
+                  firstName: 'Alexander',
+                  lastName: 'Hamilton',
+                  email: 'mock@example.com',
+                  password: 'pass',
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     ),
   );
 }
