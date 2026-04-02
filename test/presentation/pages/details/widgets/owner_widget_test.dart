@@ -23,18 +23,18 @@ void main() {
   final mockGetConversationByOwnerUseCase = MockGetConversationByOwnerIdUseCase();
   final mockUserDataCubit = MockUserDataCubit();
 
+  final mockUser = UserEntity.initial(
+    userId: '1',
+    firstName: 'Alexander',
+    lastName: 'Banes',
+    email: 'banes@mock.com',
+    password: 'passowrd',
+  );
+
   setUp(() {
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockUserDataCubit.state).thenReturn(const UserDataState());
-    when(mockUserDataCubit.user).thenReturn(
-      UserEntity.initial(
-        userId: '1',
-        firstName: 'Alexander',
-        lastName: 'Banes',
-        email: 'banes@mock.com',
-        password: 'passowrd',
-      ),
-    );
+    when(mockUserDataCubit.user).thenReturn(mockUser);
 
     serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
     serviceLocator.registerLazySingleton<GetConversationByOwnerIdUseCase>(
@@ -77,7 +77,9 @@ void main() {
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
         child: MaterialApp(
-          home: Scaffold(body: OwnerWidget(car: car)),
+          home: Scaffold(
+            body: OwnerWidget(car: car, user: mockUser),
+          ),
         ),
       ),
     );
@@ -118,7 +120,9 @@ void main() {
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
         child: MaterialApp(
-          home: Scaffold(body: OwnerWidget(car: car)),
+          home: Scaffold(
+            body: OwnerWidget(car: car, user: mockUser),
+          ),
         ),
       ),
     );
@@ -165,6 +169,7 @@ void main() {
             body: Builder(
               builder: (context) => OwnerWidget(
                 car: car,
+                user: mockUser,
                 // You'd need to add an optional onContactPressed to OwnerWidget for this test
                 // onContactPressed: () => tapped = true,
               ),
