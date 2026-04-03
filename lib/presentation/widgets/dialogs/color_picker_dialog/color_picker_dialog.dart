@@ -1,8 +1,8 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/common/extensions/string_extension.dart';
 import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
+import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
 import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 
 import '../../../../common/app_colors.dart';
@@ -29,11 +29,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
 
   @override
   void initState() {
-    //todo: move to the separate function
-    pickedColor = colors.entries
-        .firstWhereOrNull((element) => element.key == widget.initialColor.toLowerCase())
-        ?.value;
-    pickedColor ??= colors.values.firstOrNull;
+    pickedColor = serviceLocator<GetCarColorByNameUseCase>().call(widget.initialColor);
 
     super.initState();
   }
@@ -86,11 +82,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
           button: true,
           child: ElevatedButton(
             onPressed: () {
-              String? result = colors.entries
-                  .firstWhereOrNull((element) => element.value == pickedColor)
-                  ?.key
-                  .camelCaseToTitle();
-              result ??= '';
+              final result = serviceLocator<GetCarColorNameFromColorUseCase>().call(pickedColor);
 
               Navigator.of(context).pop(result);
             },
