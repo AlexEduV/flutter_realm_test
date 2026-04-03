@@ -19,7 +19,7 @@ class NetworkErrorWidget extends StatelessWidget {
               child: Image.asset(
                 AppAssetRoutes.errorImageRoute,
                 fit: .cover,
-                color: Colors.black.withAlpha(110), // Dark overlay
+                color: Colors.black.withAlpha(140), // Dark overlay
                 colorBlendMode: .darken,
               ),
             ),
