@@ -13,18 +13,23 @@ class AppHttpClientImpl implements AppHttpClient {
 
   @override
   Future<Either<ServerFailure, String>> get(Uri url) async {
-    final response = await client.get(url);
+    try {
+      final response = await client.get(url);
 
-    if (response.statusCode != HttpStatus.ok) {
-      debugPrint('Error during GET request at url ${url.path}, status: ${response.statusCode}');
-      return const Left(ServerFailure.internalError);
+      if (response.statusCode != HttpStatus.ok) {
+        debugPrint('Error during GET request at url ${url.path}, status: ${response.statusCode}');
+        return const Left(ServerFailure.internalError);
+      }
+
+      if (response.body.isEmpty) {
+        debugPrint('Empty body on GET request at url ${url.path}, status: ${response.statusCode}');
+        return const Left(ServerFailure.notAvailable);
+      }
+
+      return Right(response.body);
+    } catch (e) {
+      debugPrint('Error during GET request at url ${url.path}, exception: $e');
+      return const Left(ServerFailure.noNetwork);
     }
-
-    if (response.body.isEmpty) {
-      debugPrint('Empty body on GET request at url ${url.path}, status: ${response.statusCode}');
-      return const Left(ServerFailure.notAvailable);
-    }
-
-    return Right(response.body);
   }
 }
