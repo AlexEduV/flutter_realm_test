@@ -87,6 +87,9 @@ This document consolidates best‑practice guidelines for developing, testing, a
 # when using List in the realm and mapping it to entity, use List<>.from(schemeList), because when not,
 # it creates exceptions on update - list is empty or invalid.
 
+# when running tests, every time `pub get` is run, even though no dependencies were changed. This is
+# the default behavior, starting from flutter 3.13 and cannot be turned off.
+
 ---
 
 *Happy coding!*

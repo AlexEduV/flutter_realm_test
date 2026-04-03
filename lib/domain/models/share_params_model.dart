@@ -20,4 +20,16 @@ class ShareParamsModel {
   ShareParams toShareParams() {
     return ShareParams(title: title, text: text, sharePositionOrigin: sharePositionOrigin);
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ShareParamsModel &&
+          runtimeType == other.runtimeType &&
+          title == other.title &&
+          text == other.text &&
+          sharePositionOrigin == other.sharePositionOrigin;
+
+  @override
+  int get hashCode => title.hashCode ^ text.hashCode ^ (sharePositionOrigin?.hashCode ?? 0);
 }

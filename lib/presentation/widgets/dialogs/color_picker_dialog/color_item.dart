@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/extensions/color_extension.dart';
 
 class ColorItem extends StatelessWidget {
@@ -23,7 +24,7 @@ class ColorItem extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(
               color: Color.alphaBlend(Colors.black.withAlpha(50), color),
-              width: 2.0,
+              width: AppDimensions.minorXS,
             ),
           ),
           child: AnimatedOpacity(

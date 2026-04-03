@@ -13,11 +13,11 @@ class RegionRepositoryImpl implements RegionRepository {
   factory RegionRepositoryImpl() => _instance;
   RegionRepositoryImpl._internal();
 
-  List<RegionEntity>? _regions;
+  List<RegionEntity>? regions;
 
   @override
   Future<void> loadRegions() async {
-    if (_regions != null) return;
+    if (regions != null) return;
 
     final jsonString = await rootBundle.loadString(
       '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}regions_data.json',
@@ -38,16 +38,16 @@ class RegionRepositoryImpl implements RegionRepository {
       return;
     }
 
-    _regions = response.results;
+    regions = response.results;
   }
 
   // Get region by code
   @override
   RegionEntity? getRegionByCode(String code) {
-    return _regions?.cast<RegionEntity?>().firstWhere((r) => r?.locale == code, orElse: () => null);
+    return regions?.cast<RegionEntity?>().firstWhere((r) => r?.locale == code, orElse: () => null);
   }
 
   // Optionally, get all regions
   @override
-  List<RegionEntity> getAllRegions() => _regions ?? [];
+  List<RegionEntity> getAllRegions() => regions ?? [];
 }

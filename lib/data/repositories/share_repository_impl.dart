@@ -11,7 +11,9 @@ class ShareRepositoryImpl implements ShareRepository {
 
   @override
   Future<void> share(ShareParamsModel model) async {
-    if (_isShareInProgress) return;
+    if (_isShareInProgress) {
+      return;
+    }
 
     //iOS 26 fix is not needed when using the newest version of plugin;
 

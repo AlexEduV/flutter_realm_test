@@ -74,6 +74,8 @@ import 'package:test_futter_project/domain/usecases/authentication/login_use_cas
 import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_futter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
+import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
+import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
 import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_all_cars_use_case.dart';
@@ -408,6 +410,8 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetCarColorsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetCarColorByNameUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetCarColorNameFromColorUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(
     () => GetAutoCompleteManufacturersByTypeUseCase(serviceLocator()),
