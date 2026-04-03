@@ -10,37 +10,40 @@ class NetworkErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: AppDimensions.normalS),
-      child: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AppAssetRoutes.errorImageRoute),
-            fit: BoxFit.cover,
+      child: Stack(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: Image.asset(
+              AppAssetRoutes.errorImageRoute,
+              fit: BoxFit.cover,
+              color: Colors.black.withAlpha(90), // Dark overlay
+              colorBlendMode: BlendMode.darken,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(AppDimensions.normalS),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: AppDimensions.minorL,
-            children: [
-              Text(
-                'Whoops!',
-                style: AppTextStyles.zonaPro24.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: Colors.grey,
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorM),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: AppDimensions.normalS,
+              children: [
+                Text(
+                  'Whoops!',
+                  style: AppTextStyles.zonaPro24.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              Text(
-                'It seems the content is not available',
-                style: AppTextStyles.zonaPro20.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.orange,
+                Text(
+                  'It seems the content is not available',
+                  style: AppTextStyles.zonaPro18.copyWith(color: Colors.white),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
