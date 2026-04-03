@@ -72,7 +72,7 @@ lib/
    ```
 
 ### Prerequisites
-- Flutter SDK >= 3.19
+- Flutter SDK >= 3.41
 - Xcode / Android Studio for device emulation
 - RealmDB native libraries (handled by `flutter pub get`)
 
