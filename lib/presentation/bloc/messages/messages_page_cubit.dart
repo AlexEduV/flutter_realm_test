@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/core/network/server_failure.dart';
 import 'package:test_futter_project/domain/entities/attachment_entity.dart';
 import 'package:test_futter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart';
 import 'package:test_futter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
@@ -46,7 +47,9 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
         emit(state.copyWith(gifsInSearch: [], networkError: l));
       },
       (r) {
-        emit(state.copyWith(gifsInSearch: r, networkError: null));
+        //emit(state.copyWith(gifsInSearch: r, networkError: null));
+        //todo: mock error
+        emit(state.copyWith(gifsInSearch: [], networkError: ServerFailure.notAvailable));
       },
     );
 

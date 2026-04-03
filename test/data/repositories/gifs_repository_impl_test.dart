@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -37,13 +38,17 @@ void main() {
         height: 300.0,
       ),
     ];
-    when(mockRemoteDataSource.searchGifs('funny')).thenAnswer((_) async => gifDtos);
+    when(mockRemoteDataSource.searchGifs('funny')).thenAnswer((_) async => Right(gifDtos));
 
     final result = await repository.searchGifs('funny');
 
-    expect(result.length, 2);
-    expect(result[0], equals(GifEntity.fromDto(gifDtos[0])));
-    expect(result[1], equals(GifEntity.fromDto(gifDtos[1])));
+    // Extract the value from Either
+    result.fold((failure) => fail('Expected Right, got Left: $failure'), (entities) {
+      expect(entities.length, 2);
+      expect(entities[0], equals(GifEntity.fromDto(gifDtos[0])));
+      expect(entities[1], equals(GifEntity.fromDto(gifDtos[1])));
+    });
+
     verify(mockRemoteDataSource.searchGifs('funny')).called(1);
     verifyNoMoreInteractions(mockRemoteDataSource);
   });
@@ -59,12 +64,15 @@ void main() {
         height: 350.0,
       ),
     ];
-    when(mockRemoteDataSource.getTrending()).thenAnswer((_) async => gifDtos);
+    when(mockRemoteDataSource.getTrending()).thenAnswer((_) async => Right(gifDtos));
 
     final result = await repository.getTrending();
 
-    expect(result.length, 1);
-    expect(result[0], equals(GifEntity.fromDto(gifDtos[0])));
+    result.fold((failure) => fail('Expected Right, got Left: $failure'), (entities) {
+      expect(entities.length, 1);
+      expect(entities[0], equals(GifEntity.fromDto(gifDtos[0])));
+    });
+
     verify(mockRemoteDataSource.getTrending()).called(1);
     verifyNoMoreInteractions(mockRemoteDataSource);
   });
