@@ -71,7 +71,20 @@ void main() {
       //todo: fix after the mock response is turned off
       const MessagesPageState().copyWith(currentGifSearchText: ''),
       const MessagesPageState().copyWith(currentGifSearchText: '', areGifsLoading: true),
-      const MessagesPageState().copyWith(currentGifSearchText: '', areGifsLoading: true),
+      const MessagesPageState().copyWith(
+        currentGifSearchText: '',
+        areGifsLoading: true,
+        gifsInSearch: [
+          GifEntity(
+            id: '1',
+            title: 'Trending',
+            previewImageUrl: 'preview',
+            imageUrl: 'image',
+            width: 100,
+            height: 100,
+          ),
+        ],
+      ),
       const MessagesPageState().copyWith(
         currentGifSearchText: '',
         areGifsLoading: false,
@@ -111,7 +124,20 @@ void main() {
     expect: () => [
       const MessagesPageState().copyWith(currentGifSearchText: 'cat'),
       const MessagesPageState().copyWith(currentGifSearchText: 'cat', areGifsLoading: true),
-      const MessagesPageState().copyWith(currentGifSearchText: '', areGifsLoading: true),
+      const MessagesPageState().copyWith(
+        currentGifSearchText: 'cat',
+        areGifsLoading: true,
+        gifsInSearch: [
+          GifEntity(
+            id: '2',
+            title: 'Cat',
+            previewImageUrl: 'preview2',
+            imageUrl: 'image2',
+            width: 200,
+            height: 200,
+          ),
+        ],
+      ),
       const MessagesPageState().copyWith(
         currentGifSearchText: 'cat',
         areGifsLoading: false,
