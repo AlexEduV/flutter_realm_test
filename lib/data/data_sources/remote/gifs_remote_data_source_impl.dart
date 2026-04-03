@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart' as http;
+import 'package:test_futter_project/core/network/app_http_client.dart';
 import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
 import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
 
@@ -11,7 +9,7 @@ import '../../../di/injection_container.dart';
 import '../../../domain/data_sources/local/env_local_data_source.dart';
 
 class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
-  final http.Client client;
+  final AppHttpClient client;
 
   GifsRemoteDataSourceImpl(this.client);
 
@@ -38,20 +36,12 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   }
 }
 
-List<KlipyGifDto> processKlipyResponse(http.Response response, {String? query}) {
-  if (response.statusCode != HttpStatus.ok) {
-    debugPrint(
-      'Klipy: error while searching for gifs: ${response.reasonPhrase}. ${query ?? 'trending'}',
-    );
+List<KlipyGifDto> processKlipyResponse(String response, {String? query}) {
+  if (response.isEmpty) {
     return [];
   }
 
-  if (response.body.isEmpty) {
-    debugPrint('Klipy: response is empty for gifs, ${query ?? 'trending'}');
-    return [];
-  }
-
-  final Map<String, dynamic> data = jsonDecode(response.body);
+  final Map<String, dynamic> data = jsonDecode(response);
   final List<KlipyGifDto> results = (data['data']['data'] as List)
       .map((json) => KlipyGifDto.fromV1Json(json as Map<String, dynamic>))
       .toList();
