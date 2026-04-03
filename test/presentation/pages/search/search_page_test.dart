@@ -224,6 +224,7 @@ void main() {
 
     // The page should be popped; in a real app, you would check navigation stack
     // For test, just ensure no exceptions are thrown
+    //todo: this test is incorrect, since the pop is not called;
     expect(find.byType(SearchPage), findsOneWidget);
   });
 }
