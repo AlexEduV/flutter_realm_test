@@ -6,7 +6,7 @@ import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';

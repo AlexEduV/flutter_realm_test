@@ -6,7 +6,7 @@ import 'package:test_futter_project/common/app_dimensions.dart';
 import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
-import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';

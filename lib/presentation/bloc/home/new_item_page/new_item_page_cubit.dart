@@ -7,7 +7,7 @@ import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
-import '../../../../di/injection_container.dart';
+import '../../../../core/di/injection_container.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../l10n/app_localisations_cubit.dart';
 

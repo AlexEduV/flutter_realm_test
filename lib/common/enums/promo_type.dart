@@ -1,6 +1,7 @@
-import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+
+import '../../core/di/injection_container.dart';
 
 enum PromoType {
   bestPrice('best_price', L10nKeys.promoTypeBestPrice),

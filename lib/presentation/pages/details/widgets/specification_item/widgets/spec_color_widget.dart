@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../di/injection_container.dart';
+import '../../../../../../core/di/injection_container.dart';
 import '../../../../../../domain/usecases/car_colors/get_car_colors_use_case.dart';
 
 class SpecColorWidget extends StatelessWidget {

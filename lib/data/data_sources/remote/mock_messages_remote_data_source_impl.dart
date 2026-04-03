@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/common/extensions/list_extension.dart';
-import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../../../common/enums/message_status.dart';
+import '../../../core/di/injection_container.dart';
 
 class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   List<ConversationModel> _list = [

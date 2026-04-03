@@ -7,7 +7,7 @@ import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
 import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
 
 import '../../../common/api_constants.dart';
-import '../../../di/injection_container.dart';
+import '../../../core/di/injection_container.dart';
 import '../../../domain/data_sources/local/env_local_data_source.dart';
 
 class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {

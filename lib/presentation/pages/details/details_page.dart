@@ -14,7 +14,7 @@ import 'package:test_futter_project/presentation/pages/details/widgets/vehicle_s
 import 'package:test_futter_project/presentation/widgets/animated_favorite_icon.dart';
 
 import '../../../common/app_semantics_labels.dart';
-import '../../../di/injection_container.dart';
+import '../../../core/di/injection_container.dart';
 import '../../../domain/models/share_params_model.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';

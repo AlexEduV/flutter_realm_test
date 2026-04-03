@@ -9,7 +9,7 @@ import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/drawer_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/models/field_params_model.dart';
 import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';

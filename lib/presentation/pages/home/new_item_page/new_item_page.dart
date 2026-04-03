@@ -21,7 +21,7 @@ import 'package:test_futter_project/presentation/pages/home/new_item_page/widget
 
 import '../../../../common/app_dimensions.dart';
 import '../../../../common/app_semantics_labels.dart';
-import '../../../../di/injection_container.dart';
+import '../../../../core/di/injection_container.dart';
 import '../../../../domain/entities/car_entity.dart';
 import '../../../../domain/entities/owner_entity.dart';
 import '../../../../domain/usecases/database/add_car_use_case.dart';

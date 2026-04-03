@@ -4,7 +4,7 @@ import 'package:test_futter_project/common/app_routes.dart';
 import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/models/conversation_model.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';

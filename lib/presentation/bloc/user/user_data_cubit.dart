@@ -14,7 +14,7 @@ import 'package:test_futter_project/domain/usecases/users/get_user_by_email_use_
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_futter_project/utils/auth_session_util.dart';
 
-import '../../../di/injection_container.dart';
+import '../../../core/di/injection_container.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
 import '../../../utils/localisation_util.dart';

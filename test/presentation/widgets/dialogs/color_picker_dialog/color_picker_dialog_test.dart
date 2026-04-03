@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
 import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
 import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';

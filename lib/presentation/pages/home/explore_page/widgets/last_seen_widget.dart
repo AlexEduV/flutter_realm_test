@@ -9,7 +9,7 @@ import '../../../../../common/app_colors.dart';
 import '../../../../../common/app_dimensions.dart';
 import '../../../../../common/app_semantics_labels.dart';
 import '../../../../../common/app_text_styles.dart';
-import '../../../../../di/injection_container.dart';
+import '../../../../../core/di/injection_container.dart';
 import '../../../../../domain/usecases/database/get_car_by_id_use_case.dart';
 import '../../../../../l10n/l10n_keys.dart';
 import '../../../../../utils/app_router.dart';

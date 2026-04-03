@@ -13,7 +13,7 @@ import 'package:test_futter_project/presentation/pages/home/inbox_page/inbox_pag
 
 import '../../../common/app_colors.dart';
 import '../../../common/app_routes.dart';
-import '../../../di/injection_container.dart';
+import '../../../core/di/injection_container.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import 'home_bottom_bar/home_bottom_bar.dart';
 
