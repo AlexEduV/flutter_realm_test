@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_futter_project/presentation/widgets/network_error_widget.dart';
 import 'package:test_futter_project/presentation/widgets/skip_widget.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -162,8 +163,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                       ),
                     ],
                   )
-                //todo: error message here
-                : const Column(children: [Text('Error')]),
+                : const NetworkErrorWidget(),
           ],
         );
       },
