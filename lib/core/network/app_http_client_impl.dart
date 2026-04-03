@@ -52,6 +52,8 @@ class AppHttpClientImpl implements AppHttpClient {
       }
       return Right(response.body);
     } catch (e) {
+      //todo: no network should be only if there's no network;
+      //switch here to not available when ready with network info
       debugPrint('Error during GET request at url ${url.path}, exception: $e');
       return const Left(ServerFailure.noNetwork);
     }
