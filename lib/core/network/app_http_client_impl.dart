@@ -5,16 +5,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:test_futter_project/common/app_constants.dart';
 import 'package:test_futter_project/core/network/app_http_client.dart';
+import 'package:test_futter_project/core/network/network_info.dart';
 import 'package:test_futter_project/core/network/server_failure.dart';
 
 class AppHttpClientImpl implements AppHttpClient {
   final http.Client client;
+  final NetworkInfo networkInfo;
 
-  AppHttpClientImpl(this.client);
+  AppHttpClientImpl(this.client, this.networkInfo);
 
   @override
   Future<Either<ServerFailure, String>> get(Uri url) async {
     try {
+      final isNetworkAvailable = await networkInfo.isConnected;
+      if (!isNetworkAvailable) {
+        debugPrint('No Internet connection on GET request at url ${url.path}, 404');
+        return const Left(ServerFailure.noNetwork);
+      }
+
       final response = await client.get(url);
 
       if (response.statusCode == HttpStatus.notFound) {
@@ -52,10 +60,8 @@ class AppHttpClientImpl implements AppHttpClient {
       }
       return Right(response.body);
     } catch (e) {
-      //todo: no network should be only if there's no network;
-      //switch here to not available when ready with network info
       debugPrint('Error during GET request at url ${url.path}, exception: $e');
-      return const Left(ServerFailure.noNetwork);
+      return const Left(ServerFailure.notAvailable);
     }
   }
 }

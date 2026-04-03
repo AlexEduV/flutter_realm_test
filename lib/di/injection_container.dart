@@ -1,8 +1,10 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/core/network/app_http_client.dart';
 import 'package:test_futter_project/core/network/app_http_client_impl.dart';
+import 'package:test_futter_project/core/network/network_info_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/car_color_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/env_local_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/local/file_picker_local_data_source_impl.dart';
@@ -192,8 +194,11 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
+  final connectivity = Connectivity();
+  final networkInfo = NetworkInfoImpl(connectivity);
+
   final client = http.Client();
-  serviceLocator.registerLazySingleton<AppHttpClient>(() => AppHttpClientImpl(client));
+  serviceLocator.registerLazySingleton<AppHttpClient>(() => AppHttpClientImpl(client, networkInfo));
 
   serviceLocator.registerLazySingleton<GifsRemoteDataSource>(
     () => GifsRemoteDataSourceImpl(serviceLocator()),
