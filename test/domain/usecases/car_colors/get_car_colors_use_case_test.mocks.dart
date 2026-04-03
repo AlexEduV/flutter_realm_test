@@ -6,6 +6,7 @@
 import 'dart:ui' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i4;
 import 'package:test_futter_project/domain/repositories/car_color_repository.dart'
     as _i2;
 
@@ -39,4 +40,20 @@ class MockCarColorRepository extends _i1.Mock
             returnValue: <String, _i3.Color>{},
           )
           as Map<String, _i3.Color>);
+
+  @override
+  _i3.Color? getColorByName(String? colorName) =>
+      (super.noSuchMethod(Invocation.method(#getColorByName, [colorName]))
+          as _i3.Color?);
+
+  @override
+  String getColorNameFromColor(_i3.Color? color) =>
+      (super.noSuchMethod(
+            Invocation.method(#getColorNameFromColor, [color]),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.method(#getColorNameFromColor, [color]),
+            ),
+          )
+          as String);
 }
