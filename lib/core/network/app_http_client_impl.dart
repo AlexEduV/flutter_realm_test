@@ -16,6 +16,16 @@ class AppHttpClientImpl implements AppHttpClient {
     try {
       final response = await client.get(url);
 
+      if (response.statusCode == HttpStatus.notFound) {
+        debugPrint('Not Found on GET request at url ${url.path}, 404');
+        return const Left(ServerFailure.internalError);
+      }
+
+      if (response.statusCode == HttpStatus.unauthorized) {
+        debugPrint('Unauthorised on GET request at url ${url.path}, 401');
+        return const Left(ServerFailure.internalError);
+      }
+
       if (response.statusCode != HttpStatus.ok) {
         debugPrint('Error during GET request at url ${url.path}, status: ${response.statusCode}');
         return const Left(ServerFailure.internalError);
