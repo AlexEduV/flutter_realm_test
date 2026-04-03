@@ -23,6 +23,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_messages_remot
 import 'package:test_futter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_users_remote_data_source_impl.dart';
+import 'package:test_futter_project/data/database/realm_configuration.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auto_complete_repository_impl.dart';
@@ -128,7 +129,6 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
-import '../../data/models/scheme.dart';
 import '../../data/repositories/car_repository_impl.dart';
 import '../../domain/repositories/car_repository.dart';
 import '../../domain/repositories/geolocator_repository.dart';
@@ -139,57 +139,12 @@ import '../../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependenciesContainer() async {
-  //Register Realm
-  final config = Configuration.local(
-    [Car.schema, Person.schema, User.schema, LastSeenCar.schema],
-    schemaVersion: 27,
-    migrationCallback: (migration, oldVersion) {
-      //add object id
-      if (oldVersion < 2) {
-        final oldCars = migration.oldRealm.all('Car');
-
-        for (final oldCar in oldCars) {
-          final newCar = migration.findInNewRealm<Car>(oldCar);
-          if (newCar != null) {
-            newCar.id = ObjectId();
-          }
-        }
-      }
-
-      if (oldVersion < 10) {
-        final oldUsers = migration.oldRealm.all('User');
-        final newUsers = migration.newRealm.all<User>();
-
-        // Loop through old data to ensure uniqueness before applying the PK
-        for (var i = 0; i < oldUsers.length; i++) {
-          final oldUser = oldUsers[i];
-          final newUser = newUsers[i];
-
-          // Ensure userId is unique and not null
-          newUser.userId = oldUser.dynamic.get<String>('userId');
-        }
-      }
-
-      if (oldVersion < 27) {
-        final oldUsers = migration.oldRealm.all('User');
-        final newUsers = migration.newRealm.all<User>();
-
-        for (var i = 0; i < oldUsers.length; i++) {
-          final oldUser = oldUsers[i];
-          final newUser = newUsers[i];
-
-          // Move the old 'name' to 'firstName'
-          final oldName = oldUser.dynamic.get<String>('name');
-          final parts = oldName.split(' ');
-          newUser.firstName = parts.isNotEmpty ? parts.first : '';
-          newUser.lastName = parts.length > 1 ? parts.sublist(1).join(' ') : '';
-        }
-      }
-    },
-  );
-
+  //todo: create an extension: notRegistered
   if (!serviceLocator.isRegistered<Realm>()) {
-    serviceLocator.registerLazySingleton<Realm>(() => Realm(config));
+    final config = RealmConfiguration();
+    config.init();
+
+    serviceLocator.registerLazySingleton<Realm>(() => Realm(config.instance));
   }
 
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
