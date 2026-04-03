@@ -1,6 +1,6 @@
 # Flutter Realm Test
 
-[![Flutter](https://img.shields.io/badge/Flutter-3.19-blue.svg)](https://flutter.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-3.41-blue.svg)](https://flutter.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/AlexEduV/flutter_realm_test/flutter.yml?branch=main)](https://github.com/AlexEduV/flutter_realm_test/actions)
 
