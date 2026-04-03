@@ -73,7 +73,10 @@ class _NewItemPageState extends State<NewItemPage> {
     manufacturerFocusNode.dispose();
     modelFocusNode.dispose();
     yearFocusNode.dispose();
+    priceFocusNode.dispose();
     colorFocusNode.dispose();
+
+    pageViewController.dispose();
 
     super.dispose();
   }
