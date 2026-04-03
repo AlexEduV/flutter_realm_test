@@ -141,9 +141,7 @@ final serviceLocator = GetIt.instance;
 Future<void> initDependenciesContainer() async {
   //todo: create an extension: notRegistered
   if (!serviceLocator.isRegistered<Realm>()) {
-    final config = RealmConfiguration();
-    config.init();
-
+    final config = RealmConfiguration()..init();
     serviceLocator.registerLazySingleton<Realm>(() => Realm(config.instance));
   }
 
