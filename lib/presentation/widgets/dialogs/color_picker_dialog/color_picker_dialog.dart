@@ -29,6 +29,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
 
   @override
   void initState() {
+    //todo: move to the separate function
     pickedColor = colors.entries
         .firstWhereOrNull((element) => element.key == widget.initialColor.toLowerCase())
         ?.value;
@@ -73,9 +74,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
           label: AppSemanticsLabels.dialogCancelButton,
           button: true,
           child: TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(widget.initialColor);
-            },
+            onPressed: () => Navigator.of(context).pop(widget.initialColor),
             child: Text(
               context.trRead(L10nKeys.cancelLabel),
               style: const TextStyle(fontWeight: FontWeight.w600),

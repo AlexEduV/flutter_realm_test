@@ -22,8 +22,6 @@ void main() {
       ),
     );
 
-    debugDumpApp();
-
     // Assert: Material and InkWell are present
     expect(find.byType(InkWell), findsOneWidget);
 
