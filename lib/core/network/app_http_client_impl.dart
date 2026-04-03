@@ -18,12 +18,12 @@ class AppHttpClientImpl implements AppHttpClient {
 
       if (response.statusCode == HttpStatus.notFound) {
         debugPrint('Not Found on GET request at url ${url.path}, 404');
-        return const Left(ServerFailure.internalError);
+        return const Left(ServerFailure.notFound);
       }
 
       if (response.statusCode == HttpStatus.unauthorized) {
         debugPrint('Unauthorised on GET request at url ${url.path}, 401');
-        return const Left(ServerFailure.internalError);
+        return const Left(ServerFailure.unauthorized);
       }
 
       if (response.statusCode != HttpStatus.ok) {
