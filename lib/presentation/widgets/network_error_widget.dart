@@ -15,32 +15,32 @@ class NetworkErrorWidget extends StatelessWidget {
         child: Stack(
           children: [
             SizedBox(
-              width: double.infinity,
+              width: .infinity,
               child: Image.asset(
                 AppAssetRoutes.errorImageRoute,
-                fit: BoxFit.cover,
-                color: Colors.black.withAlpha(90), // Dark overlay
-                colorBlendMode: BlendMode.darken,
+                fit: .cover,
+                color: Colors.black.withAlpha(110), // Dark overlay
+                colorBlendMode: .darken,
               ),
             ),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorM),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: AppDimensions.normalS,
+                mainAxisAlignment: .center,
+                crossAxisAlignment: .start,
+                spacing: AppDimensions.normalL,
                 children: [
                   Text(
-                    'Whoops!',
+                    'The content is not available',
                     style: AppTextStyles.zonaPro24.copyWith(
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
                     ),
                   ),
                   Text(
-                    'It seems the content is not available',
-                    style: AppTextStyles.zonaPro18.copyWith(color: Colors.white),
-                    textAlign: TextAlign.center,
+                    'We could not display the data. Please, try again later.',
+                    style: AppTextStyles.zonaPro16.copyWith(color: Colors.white),
                   ),
                 ],
               ),
