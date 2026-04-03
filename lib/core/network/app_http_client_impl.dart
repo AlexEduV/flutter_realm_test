@@ -14,6 +14,9 @@ class AppHttpClientImpl implements AppHttpClient {
 
   AppHttpClientImpl(this.client, this.networkInfo);
 
+  //the code of error code handling and error handling is usually moved to the interceptor class,
+  //because it's the same for all request types.
+
   @override
   Future<Either<ServerFailure, String>> get(Uri url) async {
     try {
