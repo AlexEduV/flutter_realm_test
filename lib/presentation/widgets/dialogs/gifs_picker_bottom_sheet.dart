@@ -94,76 +94,77 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
               ),
             ),
 
-            state.networkError == null
-                ? Column(
+            if (state.networkError == null)
+              Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(AppDimensions.normalM),
-                              child: Text.rich(
-                                TextSpan(
-                                  style: AppTextStyles.zonaPro18,
-                                  children: [
-                                    if (isQueryEmpty)
-                                      TextSpan(
-                                        text: context.tr(L10nKeys.gifsResultsTrendingLabel),
-                                        style: const TextStyle(fontWeight: FontWeight.bold),
-                                      )
-                                    else ...[
-                                      TextSpan(
-                                        text: context.tr(L10nKeys.gifsResultsQueryLabel),
-                                        style: AppTextStyles.zonaPro18,
-                                      ),
-                                      TextSpan(
-                                        text: '"${state.latestQuery}"',
-                                        style: const TextStyle(fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ],
-                                ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-
                       Expanded(
-                        child: GridView.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                          ),
-                          itemCount: state.gifsInSearch.length,
-                          itemBuilder: (context, index) {
-                            final gif = state.gifsInSearch[index];
-
-                            return AppSemantics(
-                              label: '${AppSemanticsLabels.gifListItem} ${gif.title}',
-                              button: true,
-                              child: Padding(
-                                padding: const EdgeInsets.all(AppDimensions.minorXS),
-                                child: InkWell(
-                                  onTap: () => onGifItemTap(gif),
-                                  child: SkipWidget(
-                                    skip: AppConstants.kIsTest,
-                                    child: FadeInImage.memoryNetwork(
-                                      placeholder: kTransparentImage,
-                                      image: gif.imageUrl,
-                                      fit: BoxFit.cover,
-                                    ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(AppDimensions.normalM),
+                          child: Text.rich(
+                            TextSpan(
+                              style: AppTextStyles.zonaPro18,
+                              children: [
+                                if (isQueryEmpty)
+                                  TextSpan(
+                                    text: context.tr(L10nKeys.gifsResultsTrendingLabel),
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                  )
+                                else ...[
+                                  TextSpan(
+                                    text: context.tr(L10nKeys.gifsResultsQueryLabel),
+                                    style: AppTextStyles.zonaPro18,
                                   ),
-                                ),
-                              ),
-                            );
-                          },
+                                  TextSpan(
+                                    text: '"${state.latestQuery}"',
+                                    style: const TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ],
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ],
-                  )
-                : const NetworkErrorWidget(),
+                  ),
+
+                  Expanded(
+                    child: GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      itemCount: state.gifsInSearch.length,
+                      itemBuilder: (context, index) {
+                        final gif = state.gifsInSearch[index];
+
+                        return AppSemantics(
+                          label: '${AppSemanticsLabels.gifListItem} ${gif.title}',
+                          button: true,
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppDimensions.minorXS),
+                            child: InkWell(
+                              onTap: () => onGifItemTap(gif),
+                              child: SkipWidget(
+                                skip: AppConstants.kIsTest,
+                                child: FadeInImage.memoryNetwork(
+                                  placeholder: kTransparentImage,
+                                  image: gif.imageUrl,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              )
+            else
+              const Expanded(child: NetworkErrorWidget()),
           ],
         );
       },

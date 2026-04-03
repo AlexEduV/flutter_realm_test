@@ -15,13 +15,15 @@ class NetworkErrorWidget extends StatelessWidget {
       child: Column(
         spacing: AppDimensions.minorL,
         children: [
-          Container(
-            height: 150,
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.fitWidth,
-                image: AssetImage(AppAssetRoutes.errorImageRoute),
+          Expanded(
+            child: Container(
+              height: 150,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: AssetImage(AppAssetRoutes.errorImageRoute),
+                ),
               ),
             ),
           ),
