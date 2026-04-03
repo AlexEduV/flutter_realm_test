@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/extensions/num_extension.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../../common/app_colors.dart';
-import '../../../../../common/app_dimensions.dart';
+import '../../../../../common/constants/app_colors.dart';
+import '../../../../../common/constants/app_dimensions.dart';
 
 class ChatInputButton extends StatefulWidget {
   final VoidCallback? onTap;

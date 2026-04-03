@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/common/app_routes.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_dimensions.dart';
+import 'package:test_futter_project/common/constants/app_routes.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
@@ -17,7 +17,7 @@ import 'package:test_futter_project/presentation/pages/account/widgets/user_avat
 import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
-import '../../../common/app_text_styles.dart';
+import '../../../common/constants/app_text_styles.dart';
 import '../../../l10n/l10n_keys.dart';
 
 class AccountPage extends StatelessWidget {

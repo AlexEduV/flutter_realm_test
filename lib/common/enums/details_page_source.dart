@@ -1,4 +1,4 @@
-import '../app_routes.dart';
+import '../constants/app_routes.dart';
 
 enum DetailsPageSource { explore, myItems, recentlyViewed, search }
 

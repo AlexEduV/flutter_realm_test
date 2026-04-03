@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_dimensions.dart';
 import 'package:test_futter_project/common/enums/item_setup_tab.dart';
 import 'package:test_futter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar.dart';
 

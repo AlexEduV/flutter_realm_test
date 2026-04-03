@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
 
-import '../../../../common/app_dimensions.dart';
+import '../../../../common/constants/app_dimensions.dart';
 
 class PasswordStrengthBarWidget extends StatelessWidget {
   const PasswordStrengthBarWidget({super.key});

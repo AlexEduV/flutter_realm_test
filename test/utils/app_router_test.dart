@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test_futter_project/common/app_routes.dart';
+import 'package:test_futter_project/common/constants/app_routes.dart';
 import 'package:test_futter_project/common/enums/details_page_source.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';

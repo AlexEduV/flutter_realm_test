@@ -5,10 +5,10 @@ import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_by_
 import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
 import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 
-import '../../../../common/app_colors.dart';
-import '../../../../common/app_dimensions.dart';
-import '../../../../common/app_semantics_labels.dart';
-import '../../../../common/app_text_styles.dart';
+import '../../../../common/constants/app_colors.dart';
+import '../../../../common/constants/app_dimensions.dart';
+import '../../../../common/constants/app_semantics_labels.dart';
+import '../../../../common/constants/app_text_styles.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../app_semantics.dart';
 import 'color_item.dart';

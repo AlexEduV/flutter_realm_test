@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../common/api_constants.dart';
+import '../../../common/constants/api_constants.dart';
 import '../../../domain/data_sources/local/url_launch_local_data_source.dart';
 
 class UrlLaunchLocalDataSourceImpl implements UrlLaunchLocalDataSource {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' show FontWeight, TextStyle;
-import 'package:test_futter_project/common/app_colors.dart';
 import 'package:test_futter_project/common/extensions/text_style_extension.dart';
+
+import 'app_colors.dart';
 
 class AppTextStyles {
   static const zonaPro14 = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);

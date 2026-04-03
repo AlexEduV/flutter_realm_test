@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
     show ActionPane, DrawerMotion, Slidable, SlidableAction;
-import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
-import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_dimensions.dart';
+import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_futter_project/common/constants/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/details_page_source.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
-import '../../../../../common/app_dimensions.dart';
+import '../../../../../common/constants/app_dimensions.dart';
 import '../../../../../l10n/l10n_keys.dart';
 import '../../../../bloc/home/new_item_page/new_item_page_cubit.dart';
 import '../../../../bloc/home/new_item_page/new_item_page_state.dart';

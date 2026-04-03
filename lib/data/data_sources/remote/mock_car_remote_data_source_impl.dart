@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:realm/realm.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:test_futter_project/common/app_asset_routes.dart';
+import 'package:test_futter_project/common/constants/app_asset_routes.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';

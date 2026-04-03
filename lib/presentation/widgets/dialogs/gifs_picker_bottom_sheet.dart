@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_futter_project/common/app_constants.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
+import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
@@ -10,9 +10,9 @@ import 'package:test_futter_project/presentation/widgets/network_error_widget.da
 import 'package:test_futter_project/presentation/widgets/skip_widget.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/app_dimensions.dart';
-import '../../../common/app_text_styles.dart';
+import '../../../common/constants/app_colors.dart';
+import '../../../common/constants/app_dimensions.dart';
+import '../../../common/constants/app_text_styles.dart';
 import '../../../common/enums/message_status.dart';
 import '../../../domain/models/message_model.dart';
 import '../../../l10n/l10n_keys.dart';

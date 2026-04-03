@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/common/enums/server_failure.dart';
 import 'package:test_futter_project/core/network/app_http_client.dart';
 import 'package:test_futter_project/core/network/network_info.dart';

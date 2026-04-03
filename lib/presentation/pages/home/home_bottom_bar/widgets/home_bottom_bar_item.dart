@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../../common/app_dimensions.dart';
+import '../../../../../common/constants/app_dimensions.dart';
 
 class HomeBottomBarItem extends StatelessWidget {
   final int index;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../common/app_dimensions.dart';
-import '../../../../common/app_text_styles.dart';
+import '../../../../common/constants/app_dimensions.dart';
+import '../../../../common/constants/app_text_styles.dart';
 import '../../../widgets/app_badge.dart';
 
 class SearchFilterButton extends StatelessWidget {

@@ -9,10 +9,10 @@ import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_u
 import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
-import '../../../../../common/api_constants.dart';
-import '../../../../../common/app_colors.dart';
-import '../../../../../common/app_dimensions.dart';
-import '../../../../../common/app_text_styles.dart';
+import '../../../../../common/constants/api_constants.dart';
+import '../../../../../common/constants/app_colors.dart';
+import '../../../../../common/constants/app_dimensions.dart';
+import '../../../../../common/constants/app_text_styles.dart';
 import '../../../../../common/extensions/list_extension.dart';
 import '../../../../../l10n/l10n_keys.dart';
 import '../../../../bloc/user/user_data_cubit.dart';

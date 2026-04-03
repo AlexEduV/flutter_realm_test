@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../common/app_text_styles.dart';
+import '../../common/constants/app_text_styles.dart';
 
 class AppBadge extends StatelessWidget {
   final String text;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test_futter_project/common/app_constants.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
@@ -11,8 +11,8 @@ import 'package:test_futter_project/presentation/pages/home/explore_page/explore
 import 'package:test_futter_project/presentation/pages/home/favorites_page/favorites_page.dart';
 import 'package:test_futter_project/presentation/pages/home/inbox_page/inbox_page.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/app_routes.dart';
+import '../../../common/constants/app_colors.dart';
+import '../../../common/constants/app_routes.dart';
 import '../../../core/di/injection_container.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import 'home_bottom_bar/home_bottom_bar.dart';

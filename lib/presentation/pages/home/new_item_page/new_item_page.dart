@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_routes.dart';
-import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_routes.dart';
+import 'package:test_futter_project/common/constants/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
 import 'package:test_futter_project/common/enums/item_setup_tab.dart';
@@ -19,8 +19,8 @@ import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pa
 import 'package:test_futter_project/presentation/pages/home/new_item_page/sub_pages/item_specs_picker.dart';
 import 'package:test_futter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar.dart';
 
-import '../../../../common/app_dimensions.dart';
-import '../../../../common/app_semantics_labels.dart';
+import '../../../../common/constants/app_dimensions.dart';
+import '../../../../common/constants/app_semantics_labels.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../domain/entities/car_entity.dart';
 import '../../../../domain/entities/owner_entity.dart';

@@ -5,7 +5,7 @@ import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/domain/data_sources/remote/auto_complete_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/car_auto_complete_entity.dart';
 
-import '../../../common/api_constants.dart';
+import '../../../common/constants/api_constants.dart';
 import '../../../domain/models/api_response.dart';
 
 class MockAutoCompleteRemoteDataSource implements AutoCompleteRemoteDataSource {

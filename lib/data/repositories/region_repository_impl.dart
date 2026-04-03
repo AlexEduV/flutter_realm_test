@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:test_futter_project/common/app_asset_routes.dart';
+import 'package:test_futter_project/common/constants/app_asset_routes.dart';
 import 'package:test_futter_project/domain/repositories/region_repository.dart';
 
-import '../../common/api_constants.dart';
+import '../../common/constants/api_constants.dart';
 import '../../domain/entities/region_entity.dart';
 import '../../domain/models/api_response.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/domain/models/message_model.dart';
 import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
@@ -10,7 +10,7 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_button.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_text_field.dart';
 
-import '../../../../../common/app_dimensions.dart';
+import '../../../../../common/constants/app_dimensions.dart';
 
 class ChatInputBar extends StatefulWidget {
   final TextEditingController messageTextController;

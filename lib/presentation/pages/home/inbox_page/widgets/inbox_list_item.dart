@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_futter_project/common/app_routes.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/constants/app_routes.dart';
+import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_futter_project/common/enums/message_status.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
@@ -15,8 +15,8 @@ import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_futter_project/utils/date_formatter.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
-import '../../../../../common/app_dimensions.dart';
-import '../../../../../common/app_text_styles.dart';
+import '../../../../../common/constants/app_dimensions.dart';
+import '../../../../../common/constants/app_text_styles.dart';
 import '../../../../widgets/app_badge.dart';
 
 class InboxListItem extends StatelessWidget {
