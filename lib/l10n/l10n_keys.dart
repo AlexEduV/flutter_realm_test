@@ -270,4 +270,7 @@ class L10nKeys {
       'forms.fieldParams.color.regexErrorMessage';
 
   static const String pickColorDialogTitle = 'dialogs.pickColor.title';
+
+  static const String noContentWidgetTitle = 'dialogs.network.contentNotAvailable.title';
+  static const String noContentWidgetSubtitle = 'dialogs.network.contentNotAvailable.subtitle';
 }

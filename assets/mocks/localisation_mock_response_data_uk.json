@@ -86,7 +86,7 @@
             "inputHint": "Search Gifs",
             "resultsTrending": "Trending",
             "resultsQuery": "Showing results for ",
-            "gifMessagePlaceholder": "Gif"
+            "gifMessagePlaceholder": "Gif",
           },
           "attachments": {
             "attachmentMessagePlaceholder": "File"
@@ -313,6 +313,12 @@
         },
         "pickColor": {
           "title": "Pick a color"
+        },
+        "network": {
+          "contentNotAvailable": {
+            "title": "The content is not available",
+            "subtitle": "We could not display the data. Please, try again later."
+          }
         }
       },
       "countries": {
