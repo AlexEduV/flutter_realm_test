@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_futter_project/core/network/server_failure.dart';
 
 import '../../../domain/entities/gif_entity.dart';
 
@@ -13,6 +14,7 @@ abstract class MessagesPageState with _$MessagesPageState {
     @Default('') String currentGifSearchText,
     @Default(false) bool areGifsLoading,
     @Default('') String latestQuery,
+    ServerFailure? networkError,
     @Default([]) List<GifEntity> gifsInSearch,
     String? selectedGif,
   }) = _MessagesPageState;

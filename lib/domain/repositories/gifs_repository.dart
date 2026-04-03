@@ -1,7 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
 
-abstract class GifsRepository {
-  Future<List<GifEntity>> searchGifs(String query);
+import '../../core/network/server_failure.dart';
 
-  Future<List<GifEntity>> getTrending();
+abstract class GifsRepository {
+  Future<Either<ServerFailure, List<GifEntity>>> searchGifs(String query);
+
+  Future<Either<ServerFailure, List<GifEntity>>> getTrending();
 }

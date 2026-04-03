@@ -18,7 +18,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   final _apiKey = serviceLocator<EnvLocalDataSource>().get(key: ApiConstants.envKlipyKeyPath);
 
   @override
-  Future<List<KlipyGifDto>> searchGifs(String query) async {
+  Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(String query) async {
     final limit = '15';
 
     final path = ApiConstants.klipySearchPath.replaceFirst('{API_KEY}', _apiKey);
@@ -29,7 +29,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   }
 
   @override
-  Future<List<KlipyGifDto>> getTrending() async {
+  Future<Either<ServerFailure, List<KlipyGifDto>>> getTrending() async {
     final path = ApiConstants.klipyTrendingPath.replaceFirst('{API_KEY}', _apiKey);
     final url = Uri.https(ApiConstants.klipyApiHost, path);
 
@@ -38,18 +38,20 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   }
 }
 
-List<KlipyGifDto> processKlipyResponse(Either<ServerFailure, String> response) {
-  final List<KlipyGifDto> results = response.fold(
+Either<ServerFailure, List<KlipyGifDto>> processKlipyResponse(
+  Either<ServerFailure, String> response,
+) {
+  final Either<ServerFailure, List<KlipyGifDto>> results = response.fold(
     (l) {
-      return [];
+      return Left(l);
     },
     (r) {
       final Map<String, dynamic> data = jsonDecode(r);
-      final List<KlipyGifDto> results = (data['data']['data'] as List)
+      final List<KlipyGifDto> list = (data['data']['data'] as List)
           .map((json) => KlipyGifDto.fromV1Json(json as Map<String, dynamic>))
           .toList();
 
-      return results;
+      return Right(list);
     },
   );
 
