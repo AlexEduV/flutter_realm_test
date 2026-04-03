@@ -8,5 +8,7 @@ class AppConstants {
 
   static const bool showSemantics = false;
 
+  static const bool showNetworkLogs = true;
+
   static final bool kIsTest = Platform.environment.containsKey('FLUTTER_TEST');
 }

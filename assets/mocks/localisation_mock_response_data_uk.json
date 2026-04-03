@@ -313,6 +313,12 @@
         },
         "pickColor": {
           "title": "Pick a color"
+        },
+        "network": {
+          "contentNotAvailable": {
+            "title": "The content is not available",
+            "subtitle": "We could not display the data. Please, try again later."
+          }
         }
       },
       "countries": {

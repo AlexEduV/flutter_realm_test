@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
@@ -36,11 +37,14 @@ void main() {
           title: '1',
         ),
       ];
-      when(mockRepository.searchGifs(query)).thenAnswer((_) async => gifs);
+      when(mockRepository.searchGifs(query)).thenAnswer((_) async => Right(gifs));
 
       final result = await useCase.call(query);
 
-      expect(result, equals(gifs));
+      result.fold((failure) => fail('Expected Right, got Left: $failure'), (entities) {
+        expect(entities, equals(gifs));
+      });
+
       verify(mockRepository.searchGifs(query)).called(1);
       verifyNoMoreInteractions(mockRepository);
     },
@@ -48,11 +52,14 @@ void main() {
 
   test('should return empty list when repository returns empty list', () async {
     final query = 'no results';
-    when(mockRepository.searchGifs(query)).thenAnswer((_) async => []);
+    when(mockRepository.searchGifs(query)).thenAnswer((_) async => const Right([]));
 
     final result = await useCase.call(query);
 
-    expect(result, isEmpty);
+    result.fold((failure) => fail('Expected Right, got Left: $failure'), (entities) {
+      expect(entities, isEmpty);
+    });
+
     verify(mockRepository.searchGifs(query)).called(1);
     verifyNoMoreInteractions(mockRepository);
   });

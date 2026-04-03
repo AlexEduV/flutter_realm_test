@@ -6,6 +6,7 @@ import 'package:test_futter_project/common/app_semantics_labels.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_futter_project/presentation/widgets/network_error_widget.dart';
 import 'package:test_futter_project/presentation/widgets/skip_widget.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -93,68 +94,79 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
               ),
             ),
 
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppDimensions.normalM),
-                    child: Text.rich(
-                      TextSpan(
-                        style: AppTextStyles.zonaPro18,
-                        children: [
-                          if (isQueryEmpty)
-                            TextSpan(
-                              text: context.tr(L10nKeys.gifsResultsTrendingLabel),
-                              style: const TextStyle(fontWeight: FontWeight.bold),
-                            )
-                          else ...[
-                            TextSpan(
-                              text: context.tr(L10nKeys.gifsResultsQueryLabel),
-                              style: AppTextStyles.zonaPro18,
+            if (state.networkError == null)
+              Expanded(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppDimensions.normalM),
+                            child: Text.rich(
+                              TextSpan(
+                                style: AppTextStyles.zonaPro18,
+                                children: [
+                                  if (isQueryEmpty)
+                                    TextSpan(
+                                      text: context.tr(L10nKeys.gifsResultsTrendingLabel),
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    )
+                                  else ...[
+                                    TextSpan(
+                                      text: context.tr(L10nKeys.gifsResultsQueryLabel),
+                                      style: AppTextStyles.zonaPro18,
+                                    ),
+                                    TextSpan(
+                                      text: '"${state.latestQuery}"',
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            TextSpan(
-                              text: '"${state.latestQuery}"',
-                              style: const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ],
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-                itemCount: state.gifsInSearch.length,
-                itemBuilder: (context, index) {
-                  final gif = state.gifsInSearch[index];
-
-                  return AppSemantics(
-                    label: '${AppSemanticsLabels.gifListItem} ${gif.title}',
-                    button: true,
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppDimensions.minorXS),
-                      child: InkWell(
-                        onTap: () => onGifItemTap(gif),
-                        child: SkipWidget(
-                          skip: AppConstants.kIsTest,
-                          child: FadeInImage.memoryNetwork(
-                            placeholder: kTransparentImage,
-                            image: gif.imageUrl,
-                            fit: BoxFit.cover,
                           ),
                         ),
+                      ],
+                    ),
+
+                    Expanded(
+                      child: GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                        ),
+                        itemCount: state.gifsInSearch.length,
+                        itemBuilder: (context, index) {
+                          final gif = state.gifsInSearch[index];
+
+                          return AppSemantics(
+                            label: '${AppSemanticsLabels.gifListItem} ${gif.title}',
+                            button: true,
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppDimensions.minorXS),
+                              child: InkWell(
+                                onTap: () => onGifItemTap(gif),
+                                child: SkipWidget(
+                                  skip: AppConstants.kIsTest,
+                                  child: FadeInImage.memoryNetwork(
+                                    placeholder: kTransparentImage,
+                                    image: gif.imageUrl,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
+                  ],
+                ),
+              )
+            else
+              const Expanded(child: NetworkErrorWidget()),
           ],
         );
       },

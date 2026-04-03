@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -52,7 +53,27 @@ void main() {
     'updateGifsSearch emits loading and result states for trending gifs when query is empty',
     build: () {
       when(mockGetTrendingGifsUseCase.call()).thenAnswer(
-        (_) async => [
+        (_) async => Right([
+          GifEntity(
+            id: '1',
+            title: 'Trending',
+            previewImageUrl: 'preview',
+            imageUrl: 'image',
+            width: 100,
+            height: 100,
+          ),
+        ]),
+      );
+      return cubit;
+    },
+    act: (cubit) => cubit.updateGifsSearch(''),
+    expect: () => [
+      const MessagesPageState().copyWith(currentGifSearchText: ''),
+      const MessagesPageState().copyWith(currentGifSearchText: '', areGifsLoading: true),
+      const MessagesPageState().copyWith(
+        currentGifSearchText: '',
+        areGifsLoading: true,
+        gifsInSearch: [
           GifEntity(
             id: '1',
             title: 'Trending',
@@ -62,13 +83,7 @@ void main() {
             height: 100,
           ),
         ],
-      );
-      return cubit;
-    },
-    act: (cubit) => cubit.updateGifsSearch(''),
-    expect: () => [
-      const MessagesPageState().copyWith(currentGifSearchText: ''),
-      const MessagesPageState().copyWith(currentGifSearchText: '', areGifsLoading: true),
+      ),
       const MessagesPageState().copyWith(
         currentGifSearchText: '',
         areGifsLoading: false,
@@ -91,7 +106,27 @@ void main() {
     'updateGifsSearch emits loading and result states for search gifs when query is not empty',
     build: () {
       when(mockSearchGifsUseCase.call('cat')).thenAnswer(
-        (_) async => [
+        (_) async => Right([
+          GifEntity(
+            id: '2',
+            title: 'Cat',
+            previewImageUrl: 'preview2',
+            imageUrl: 'image2',
+            width: 200,
+            height: 200,
+          ),
+        ]),
+      );
+      return cubit;
+    },
+    act: (cubit) => cubit.updateGifsSearch('cat'),
+    expect: () => [
+      const MessagesPageState().copyWith(currentGifSearchText: 'cat'),
+      const MessagesPageState().copyWith(currentGifSearchText: 'cat', areGifsLoading: true),
+      const MessagesPageState().copyWith(
+        currentGifSearchText: 'cat',
+        areGifsLoading: true,
+        gifsInSearch: [
           GifEntity(
             id: '2',
             title: 'Cat',
@@ -101,13 +136,7 @@ void main() {
             height: 200,
           ),
         ],
-      );
-      return cubit;
-    },
-    act: (cubit) => cubit.updateGifsSearch('cat'),
-    expect: () => [
-      const MessagesPageState().copyWith(currentGifSearchText: 'cat'),
-      const MessagesPageState().copyWith(currentGifSearchText: 'cat', areGifsLoading: true),
+      ),
       const MessagesPageState().copyWith(
         currentGifSearchText: 'cat',
         areGifsLoading: false,

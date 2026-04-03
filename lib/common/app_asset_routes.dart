@@ -14,4 +14,6 @@ class AppAssetRoutes {
   static const porscheYellowImage = '$assetFolder${imagesFolder}porsche-yellow.jpeg';
 
   static const envRoute = '$assetFolder${envFolder}environment.env';
+
+  static const errorImageRoute = '$assetFolder${imagesFolder}404-background.jpg';
 }

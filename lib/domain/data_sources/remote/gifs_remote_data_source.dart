@@ -1,7 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
 
-abstract class GifsRemoteDataSource {
-  Future<List<KlipyGifDto>> searchGifs(String query);
+import '../../../core/network/server_failure.dart';
 
-  Future<List<KlipyGifDto>> getTrending();
+abstract class GifsRemoteDataSource {
+  Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(String query);
+
+  Future<Either<ServerFailure, List<KlipyGifDto>>> getTrending();
 }
