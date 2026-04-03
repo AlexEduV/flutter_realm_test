@@ -68,7 +68,6 @@ void main() {
     },
     act: (cubit) => cubit.updateGifsSearch(''),
     expect: () => [
-      //todo: fix after the mock response is turned off
       const MessagesPageState().copyWith(currentGifSearchText: ''),
       const MessagesPageState().copyWith(currentGifSearchText: '', areGifsLoading: true),
       const MessagesPageState().copyWith(
