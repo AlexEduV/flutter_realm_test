@@ -3,7 +3,7 @@ import 'package:test_futter_project/domain/entities/gif_entity.dart';
 import 'package:test_futter_project/domain/repositories/gifs_repository.dart';
 import 'package:test_futter_project/domain/usecases/usecase.dart';
 
-import '../../../core/network/server_failure.dart';
+import '../../../common/enums/server_failure.dart';
 
 class SearchGifsUseCase
     implements UseCaseWithParams<String, Future<Either<ServerFailure, List<GifEntity>>>> {

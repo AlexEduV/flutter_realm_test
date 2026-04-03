@@ -7,10 +7,9 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_futter_project/core/network/server_failure.dart' as _i5;
+import 'package:test_futter_project/common/enums/server_failure.dart' as _i5;
 import 'package:test_futter_project/data/dto/klipy_gif_dto.dart' as _i6;
-import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart'
-    as _i3;
+import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,51 +26,40 @@ import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
-  _FakeEither_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeEither_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 /// A class which mocks [GifsRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGifsRemoteDataSource extends _i1.Mock
-    implements _i3.GifsRemoteDataSource {
+class MockGifsRemoteDataSource extends _i1.Mock implements _i3.GifsRemoteDataSource {
   MockGifsRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>> searchGifs(
-    String? query,
-  ) =>
+  _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>> searchGifs(String? query) =>
       (super.noSuchMethod(
             Invocation.method(#searchGifs, [query]),
-            returnValue:
-                _i4.Future<
-                  _i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>
-                >.value(
-                  _FakeEither_0<_i5.ServerFailure, List<_i6.KlipyGifDto>>(
-                    this,
-                    Invocation.method(#searchGifs, [query]),
-                  ),
-                ),
+            returnValue: _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>.value(
+              _FakeEither_0<_i5.ServerFailure, List<_i6.KlipyGifDto>>(
+                this,
+                Invocation.method(#searchGifs, [query]),
+              ),
+            ),
           )
           as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>
-  getTrending() =>
+  _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>> getTrending() =>
       (super.noSuchMethod(
             Invocation.method(#getTrending, []),
-            returnValue:
-                _i4.Future<
-                  _i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>
-                >.value(
-                  _FakeEither_0<_i5.ServerFailure, List<_i6.KlipyGifDto>>(
-                    this,
-                    Invocation.method(#getTrending, []),
-                  ),
-                ),
+            returnValue: _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>.value(
+              _FakeEither_0<_i5.ServerFailure, List<_i6.KlipyGifDto>>(
+                this,
+                Invocation.method(#getTrending, []),
+              ),
+            ),
           )
           as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>);
 }

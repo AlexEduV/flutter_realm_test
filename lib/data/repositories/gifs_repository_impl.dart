@@ -3,7 +3,7 @@ import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
 import 'package:test_futter_project/domain/repositories/gifs_repository.dart';
 
-import '../../core/network/server_failure.dart';
+import '../../common/enums/server_failure.dart';
 
 class GifsRepositoryImpl implements GifsRepository {
   final GifsRemoteDataSource _gifsRemoteDataSource;

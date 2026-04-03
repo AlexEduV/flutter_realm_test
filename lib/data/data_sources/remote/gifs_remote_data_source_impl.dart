@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
+import 'package:test_futter_project/common/enums/server_failure.dart';
 import 'package:test_futter_project/core/network/app_http_client.dart';
-import 'package:test_futter_project/core/network/server_failure.dart';
 import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
 import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
 

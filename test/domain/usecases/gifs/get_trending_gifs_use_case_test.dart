@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/core/network/server_failure.dart';
+import 'package:test_futter_project/common/enums/server_failure.dart';
 import 'package:test_futter_project/domain/entities/gif_entity.dart';
 import 'package:test_futter_project/domain/repositories/gifs_repository.dart';
 import 'package:test_futter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
