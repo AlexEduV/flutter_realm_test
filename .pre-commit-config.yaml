@@ -4,7 +4,7 @@ repos:
       - id: dart-analyze
         name: Dart Analyze
         description: Run dart analyze to check for errors.
-        entry: dart analyze --fatal-infos --fatal-warnings
+        entry: dart analyze --fatal-infos --fatal-warnings --format=machine
         language: system
         files: \.dart$
         pass_filenames: false
