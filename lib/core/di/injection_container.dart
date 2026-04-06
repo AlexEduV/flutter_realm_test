@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/extensions/get_it_extension.dart';
+import 'package:test_futter_project/common/logger/app_network_logger_impl.dart';
+import 'package:test_futter_project/common/logger/base_logger.dart';
 import 'package:test_futter_project/core/network/app_http_client.dart';
 import 'package:test_futter_project/core/network/app_http_client_impl.dart';
 import 'package:test_futter_project/core/network/network_info_impl.dart';
@@ -149,9 +151,12 @@ Future<void> initDependenciesContainer() async {
 
   final connectivity = Connectivity();
   final networkInfo = NetworkInfoImpl(connectivity);
+  serviceLocator.registerLazySingleton<BaseLogger>(() => AppNetworkLoggerImpl());
 
   final client = http.Client();
-  serviceLocator.registerLazySingleton<AppHttpClient>(() => AppHttpClientImpl(client, networkInfo));
+  serviceLocator.registerLazySingleton<AppHttpClient>(
+    () => AppHttpClientImpl(client, networkInfo, serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton<GifsRemoteDataSource>(
     () => GifsRemoteDataSourceImpl(serviceLocator()),
