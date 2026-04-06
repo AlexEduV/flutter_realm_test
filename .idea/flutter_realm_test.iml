@@ -9,6 +9,9 @@
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/packages/flutter_tools/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/packages/flutter_tools/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/packages/flutter_tools/build" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/main_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/main_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/main_app/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

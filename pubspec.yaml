@@ -1,0 +1,17 @@
+name: flutter_realm_test_workspace
+publish_to: none
+
+environment:
+  sdk: '>=3.11.0 <4.0.0'
+
+workspace:
+  - apps/main_app/
+
+dev_dependencies:
+  melos: ^7.0.0
+
+melos:
+  scripts:
+    analyse: flutter analyze
+    test: flutter test
+
