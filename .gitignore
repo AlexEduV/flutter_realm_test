@@ -4,13 +4,13 @@
 
 /build/.cxx/Debug/*
 
-.dart_tool/flutter_build/*
-.dart_tool/pub/bin/*
+../../.dart_tool/flutter_build/dart_plugin_registrant.dart
+.dart_tool/pub/bin/realm
 .dart_tool/*
 
 .idea/*
 
-coverage/*
+apps/main_app/coverage/*
 /lib/mocks/mock_users.dart
 /.fvmrc
 /.fvm/versions/3.32.5/
@@ -19,7 +19,7 @@ coverage/*
 /.fvm/release
 /.fvm/version
 
-/assets/env/*
+/apps/main_app/assets/env/*
 
 # FVM Version Cache
 .fvm/
