@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:realm/realm.dart';
 import 'package:test_futter_project/common/extensions/get_it_extension.dart';
 import 'package:test_futter_project/common/logger/app_network_logger_impl.dart';
@@ -165,8 +166,10 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
   serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl());
+
+  final imagePicker = ImagePicker();
   serviceLocator.registerLazySingleton<ImagePickerLocalDataSource>(
-    () => ImagePickerLocalDataSourceImpl(),
+    () => ImagePickerLocalDataSourceImpl(imagePicker),
   );
   serviceLocator.registerLazySingleton<AutoCompleteRemoteDataSource>(
     () => MockAutoCompleteRemoteDataSource(serviceLocator()),
