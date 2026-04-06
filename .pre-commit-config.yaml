@@ -1,10 +1,18 @@
 repos:
+  # 1. Runs Dart Analysis (using your local Dart install)
   - repo: local
     hooks:
       - id: dart-analyze
         name: Dart Analyze
-        description: Run dart analyze to check for errors.
         entry: dart analyze --fatal-infos --fatal-warnings
         language: system
         files: \.dart$
         pass_filenames: false
+
+  # 2. Fixes file formatting (adds newline at end, trims spaces)
+#  - repo: https://github.com
+#    rev: v4.5.0
+#    hooks:
+#      - id: end-of-file-fixer
+#        files: \.dart$
+#      - id: trailing-whitespace
