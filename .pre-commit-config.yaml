@@ -10,9 +10,10 @@ repos:
         pass_filenames: false
 
   # 2. Fixes file formatting (adds newline at end, trims spaces)
-#  - repo: https://github.com
-#    rev: v4.5.0
-#    hooks:
-#      - id: end-of-file-fixer
-#        files: \.dart$
-#      - id: trailing-whitespace
+  # the problem is only with this one.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: end-of-file-fixer
+        files: \.dart$
+      - id: trailing-whitespace
