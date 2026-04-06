@@ -7,7 +7,7 @@ import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 import 'owner_repository_impl_test.mocks.dart';
 
-@GenerateMocks([MockOwnersRemoteDataSource])
+@GenerateMocks([MockOwnersRemoteDataSourceImpl])
 void main() {
   late MockMockOwnersRemoteDataSource mockRemoteDataSource;
   late OwnerRepositoryImpl repository;

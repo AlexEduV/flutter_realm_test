@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:test_futter_project/common/logger/base_logger.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 
 import '../../../common/constants/api_constants.dart';
@@ -9,6 +10,10 @@ import '../../../domain/models/api_response.dart';
 
 class MockArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   List<ArticleEntity> articles = [];
+
+  final BaseLogger _logger;
+
+  MockArticleRemoteDataSourceImpl(this._logger);
 
   @override
   Future<List<ArticleEntity>> fetchArticles() async {
@@ -24,7 +29,7 @@ class MockArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     );
 
     if (response.status != ApiConstants.apiSuccessStatus) {
-      //todo: add logs;
+      _logger.e('Could not fetch articles: ${response.message}');
       return [];
     }
 

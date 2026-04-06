@@ -168,10 +168,12 @@ Future<void> initDependenciesContainer() async {
     () => ImagePickerLocalDataSourceImpl(),
   );
   serviceLocator.registerLazySingleton<AutoCompleteRemoteDataSource>(
-    () => MockAutoCompleteRemoteDataSource(),
+    () => MockAutoCompleteRemoteDataSource(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(() => MockOwnersRemoteDataSource());
+  serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(
+    () => MockOwnersRemoteDataSourceImpl(serviceLocator()),
+  );
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
     () => MockUsersRemoteDataSourceImpl(),
   );
@@ -203,7 +205,7 @@ Future<void> initDependenciesContainer() async {
     () => ArticleRepositoryImpl(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
-    () => MockArticleRemoteDataSourceImpl(),
+    () => MockArticleRemoteDataSourceImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<PermissionLocalDataSource>(

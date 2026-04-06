@@ -6,9 +6,14 @@ import 'package:test_futter_project/domain/data_sources/remote/auto_complete_rem
 import 'package:test_futter_project/domain/entities/car_auto_complete_entity.dart';
 
 import '../../../common/constants/api_constants.dart';
+import '../../../common/logger/base_logger.dart';
 import '../../../domain/models/api_response.dart';
 
 class MockAutoCompleteRemoteDataSource implements AutoCompleteRemoteDataSource {
+  final BaseLogger _logger;
+
+  MockAutoCompleteRemoteDataSource(this._logger);
+
   @override
   Future<List<CarAutoCompleteEntity>> getAutoCompleteModelListByType(CarType type) async {
     final resourceSrc = getResourceByType(type);
@@ -24,7 +29,7 @@ class MockAutoCompleteRemoteDataSource implements AutoCompleteRemoteDataSource {
     );
 
     if (response.status != ApiConstants.apiSuccessStatus) {
-      //todo: add logs;
+      _logger.e('Could not fetch autocomplete results: ${response.message}');
       return [];
     }
 
