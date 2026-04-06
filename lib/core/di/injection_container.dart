@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:realm/realm.dart';
@@ -180,8 +181,10 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
     () => UrlLaunchLocalDataSourceImpl(serviceLocator()),
   );
+
+  final filePicker = FilePickerIO();
   serviceLocator.registerLazySingleton<FilePickerLocalDataSource>(
-    () => FilePickerLocalDataSourceImpl(),
+    () => FilePickerLocalDataSourceImpl(filePicker),
   );
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
     () => MockRegionRemoteDataSourceImpl(),
