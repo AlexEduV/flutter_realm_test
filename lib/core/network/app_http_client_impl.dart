@@ -22,36 +22,36 @@ class AppHttpClientImpl implements AppHttpClient {
     try {
       final isNetworkAvailable = await _networkInfo.isConnected;
       if (!isNetworkAvailable) {
-        _logger.log('No Internet connection on GET request at url ${url.path}, 404');
+        _logger.e('No Internet connection on GET request at url ${url.path}, 404');
         return const Left(ServerFailure.noNetwork);
       }
 
       final response = await _client.get(url);
 
       if (response.statusCode == HttpStatus.notFound) {
-        _logger.log('Not Found on GET request at url ${url.path}, 404');
+        _logger.e('Not Found on GET request at url ${url.path}, 404');
         return const Left(ServerFailure.notFound);
       }
 
       if (response.statusCode == HttpStatus.unauthorized) {
-        _logger.log('Unauthorised on GET request at url ${url.path}, 401');
+        _logger.e('Unauthorised on GET request at url ${url.path}, 401');
         return const Left(ServerFailure.unauthorized);
       }
 
       if (response.statusCode != HttpStatus.ok) {
-        _logger.log('Error during GET request at url ${url.path}, status: ${response.statusCode}');
+        _logger.e('Error during GET request at url ${url.path}, status: ${response.statusCode}');
         return const Left(ServerFailure.internalError);
       }
 
       if (response.body.isEmpty) {
-        _logger.log('Empty body on GET request at url ${url.path}, status: ${response.statusCode}');
+        _logger.e('Empty body on GET request at url ${url.path}, status: ${response.statusCode}');
         return const Left(ServerFailure.notAvailable);
       }
 
-      _logger.log('Successful GET request at url ${url.path}, status: ${response.statusCode}');
+      _logger.i('Successful GET request at url ${url.path}, status: ${response.statusCode}');
       return Right(response.body);
     } catch (e) {
-      _logger.log('Error during GET request at url ${url.path}, exception: $e');
+      _logger.e('Error during GET request at url ${url.path}, exception: $e');
       return const Left(ServerFailure.notAvailable);
     }
   }

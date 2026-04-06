@@ -1,17 +1,19 @@
-import 'package:flutter/cupertino.dart';
+import 'package:logger/logger.dart';
 import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/common/logger/base_logger.dart';
 
 class AppNetworkLoggerImpl implements BaseLogger {
-  final separationLine = '-' * 45;
+  final _logger = Logger();
 
   @override
-  void log(String message) {
+  void e(String message) {
     if (!AppConstants.showNetworkLogs) return;
 
-    debugPrint(
-      '[Network]: $message\n'
-      '$separationLine',
-    );
+    _logger.e('[Network]: $message');
+  }
+
+  @override
+  void i(String message) {
+    _logger.i('[Network]: $message');
   }
 }

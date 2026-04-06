@@ -1,3 +1,5 @@
 abstract class BaseLogger {
-  void log(String message);
+  void e(String message);
+
+  void i(String message);
 }
