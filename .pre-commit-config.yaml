@@ -1,3 +1,6 @@
+# to update config, use $ pre-commit install
+# to disable config, please use $ pre-commit uninstall
+
 repos:
   # 1. Runs Dart Analysis (using your local Dart install)
   - repo: local
@@ -10,7 +13,6 @@ repos:
         pass_filenames: false
 
   # 2. Fixes file formatting (adds newline at end, trims spaces)
-  # the problem is only with this one.
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
