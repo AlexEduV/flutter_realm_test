@@ -9,7 +9,7 @@ class AppNetworkLoggerImpl implements BaseLogger {
   void e(String message) {
     if (!AppConstants.showNetworkLogs) return;
 
-    _logger.e('[Network]: $message');
+    _logger.i('[Network] [Error]: $message');
   }
 
   @override
