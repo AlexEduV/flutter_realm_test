@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.tools.build:builder:8.11.1" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.android.tools.build" artifactId="builder" version="8.11.1" baseVersion="8.11.1" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/8.11.1/52ae05e99786bd491ad363825acbc2476c8b905/builder-8.11.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/builder/8.11.1/b634b676c43e5f501a7b88d96074bc519b079597/builder-8.11.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

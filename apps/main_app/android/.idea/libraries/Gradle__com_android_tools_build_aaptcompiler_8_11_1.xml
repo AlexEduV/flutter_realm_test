@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.android.tools.build:aaptcompiler:8.11.1" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.android.tools.build" artifactId="aaptcompiler" version="8.11.1" baseVersion="8.11.1" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/aaptcompiler/8.11.1/61a83340abaef29eed77a2b4120e6c8861d40563/aaptcompiler-8.11.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/aaptcompiler/8.11.1/57b2e267ebdd258acf69c65aa9c0a0076ac008ff/aaptcompiler-8.11.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
