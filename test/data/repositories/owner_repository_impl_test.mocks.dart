@@ -25,15 +25,16 @@ import 'package:test_futter_project/domain/entities/owner_entity.dart' as _i2;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
-  _FakeOwnerEntity_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeOwnerEntity_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
-/// A class which mocks [MockOwnersRemoteDataSource].
+/// A class which mocks [MockOwnersRemoteDataSourceImpl].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMockOwnersRemoteDataSource extends _i1.Mock
+class MockMockOwnersRemoteDataSourceImpl extends _i1.Mock
     implements _i3.MockOwnersRemoteDataSourceImpl {
-  MockMockOwnersRemoteDataSource() {
+  MockMockOwnersRemoteDataSourceImpl() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -41,7 +42,9 @@ class MockMockOwnersRemoteDataSource extends _i1.Mock
   _i4.Future<List<_i2.OwnerEntity>> fetchOwners() =>
       (super.noSuchMethod(
             Invocation.method(#fetchOwners, []),
-            returnValue: _i4.Future<List<_i2.OwnerEntity>>.value(<_i2.OwnerEntity>[]),
+            returnValue: _i4.Future<List<_i2.OwnerEntity>>.value(
+              <_i2.OwnerEntity>[],
+            ),
           )
           as _i4.Future<List<_i2.OwnerEntity>>);
 
@@ -49,7 +52,10 @@ class MockMockOwnersRemoteDataSource extends _i1.Mock
   _i2.OwnerEntity getOwnerById(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getOwnerById, [id]),
-            returnValue: _FakeOwnerEntity_0(this, Invocation.method(#getOwnerById, [id])),
+            returnValue: _FakeOwnerEntity_0(
+              this,
+              Invocation.method(#getOwnerById, [id]),
+            ),
           )
           as _i2.OwnerEntity);
 }

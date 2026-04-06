@@ -9,7 +9,8 @@ import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_futter_project/common/enums/server_failure.dart' as _i5;
 import 'package:test_futter_project/domain/entities/gif_entity.dart' as _i6;
-import 'package:test_futter_project/domain/repositories/gifs_repository.dart' as _i3;
+import 'package:test_futter_project/domain/repositories/gifs_repository.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,7 +27,8 @@ import 'package:test_futter_project/domain/repositories/gifs_repository.dart' as
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
-  _FakeEither_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeEither_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [GifsRepository].
@@ -38,28 +40,37 @@ class MockGifsRepository extends _i1.Mock implements _i3.GifsRepository {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>> searchGifs(String? query) =>
+  _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>> searchGifs(
+    String? query,
+  ) =>
       (super.noSuchMethod(
             Invocation.method(#searchGifs, [query]),
-            returnValue: _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
-              _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
-                this,
-                Invocation.method(#searchGifs, [query]),
-              ),
-            ),
+            returnValue:
+                _i4.Future<
+                  _i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>
+                >.value(
+                  _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
+                    this,
+                    Invocation.method(#searchGifs, [query]),
+                  ),
+                ),
           )
           as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>> getTrending() =>
+  _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>
+  getTrending() =>
       (super.noSuchMethod(
             Invocation.method(#getTrending, []),
-            returnValue: _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
-              _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
-                this,
-                Invocation.method(#getTrending, []),
-              ),
-            ),
+            returnValue:
+                _i4.Future<
+                  _i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>
+                >.value(
+                  _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
+                    this,
+                    Invocation.method(#getTrending, []),
+                  ),
+                ),
           )
           as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>);
 }
