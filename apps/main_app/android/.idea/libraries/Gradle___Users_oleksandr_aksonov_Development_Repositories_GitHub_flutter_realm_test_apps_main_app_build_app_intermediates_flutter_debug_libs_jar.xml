@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_test/apps/main_app/build/app/intermediates/flutter/debug/libs.jar" external-system-id="GRADLE">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../build/app/intermediates/flutter/debug/libs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
