@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: org.bouncycastle:bcprov-jdk18on:1.81" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.bouncycastle" artifactId="bcprov-jdk18on" version="1.81" baseVersion="1.81" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk18on/1.81/d17c094daef57dbd80af71687a475aa6df7cbe54/bcprov-jdk18on-1.81.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk18on/1.81/9b848ce17f73726dde7c46d201bdeb6950d8bcb8/bcprov-jdk18on-1.81-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk18on/1.81/8a902a90c034850bb7b34660ed1049ace8a3d141/bcprov-jdk18on-1.81-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
