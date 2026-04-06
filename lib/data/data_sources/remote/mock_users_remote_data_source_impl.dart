@@ -4,7 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
-import 'package:test_futter_project/mocks/mock_users.dart';
+
+import '../../../mocks/mock_users.dart';
 
 class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   final mockUsersLocalStorageKey = 'mock_users';
