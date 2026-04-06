@@ -20,17 +20,17 @@ class NetworkErrorWidget extends StatelessWidget {
               width: double.infinity,
               child: Image.asset(
                 AppAssetRoutes.errorImageRoute,
-                fit: .cover,
+                fit: BoxFit.cover,
                 color: Colors.black.withAlpha(140), // Dark overlay
-                colorBlendMode: .darken,
+                colorBlendMode: BlendMode.darken,
               ),
             ),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorM),
               child: Column(
-                mainAxisAlignment: .center,
-                crossAxisAlignment: .start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: AppDimensions.normalL,
                 children: [
                   Text(
