@@ -1,23 +1,26 @@
-/build/app/intermediates/*
-/build/app/outputs/*
-/build/*
+apps/main_app/build/app/intermediates/*
+apps/main_app/build/app/outputs/*
+apps/main_app//build/*
 
-/build/.cxx/Debug/*
+apps/main_app/build/.cxx/Debug/*
 
 ../../.dart_tool/flutter_build/dart_plugin_registrant.dart
 .dart_tool/pub/bin/realm
 .dart_tool/*
 
+apps/main_app/.dart_tool/*
+apps/main_app/build/*
+
 .idea/*
 
 apps/main_app/coverage/*
-/lib/mocks/mock_users.dart
-/.fvmrc
-/.fvm/versions/3.32.5/
-/.fvm/flutter_sdk/
-/.fvm/fvm_config.json
-/.fvm/release
-/.fvm/version
+apps/main_app/lib/mocks/mock_users.dart
+.fvmrc
+.fvm/versions/3.32.5/
+.fvm/flutter_sdk/
+.fvm/fvm_config.json
+.fvm/release
+.fvm/version
 
 /apps/main_app/assets/env/*
 
