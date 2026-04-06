@@ -2,6 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/extensions/get_it_extension.dart';
 import 'package:test_futter_project/core/network/app_http_client.dart';
 import 'package:test_futter_project/core/network/app_http_client_impl.dart';
 import 'package:test_futter_project/core/network/network_info_impl.dart';
@@ -139,8 +140,7 @@ import '../../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependenciesContainer() async {
-  //todo: create an extension: notRegistered
-  if (!serviceLocator.isRegistered<Realm>()) {
+  if (serviceLocator.isNotRegistered<Realm>()) {
     final config = RealmConfiguration()..init();
     serviceLocator.registerLazySingleton<Realm>(() => Realm(config.instance));
   }
