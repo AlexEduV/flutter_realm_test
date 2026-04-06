@@ -1,19 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/repositories/owner_repository_impl.dart';
+import 'package:test_futter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/owner_entity.dart';
 
 import 'owner_repository_impl_test.mocks.dart';
 
-@GenerateMocks([MockOwnersRemoteDataSourceImpl])
+@GenerateMocks([OwnersRemoteDataSource])
 void main() {
-  late MockMockOwnersRemoteDataSource mockRemoteDataSource;
+  late MockOwnersRemoteDataSource mockRemoteDataSource;
   late OwnerRepositoryImpl repository;
 
   setUp(() {
-    mockRemoteDataSource = MockMockOwnersRemoteDataSource();
+    mockRemoteDataSource = MockOwnersRemoteDataSource();
     repository = OwnerRepositoryImpl(mockRemoteDataSource);
   });
 
