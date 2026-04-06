@@ -48,13 +48,13 @@ void main() {
 
     await serviceLocator<RegionRemoteDataSource>().init();
 
-    expect(MockRegionRemoteDataSourceImpl.regions, regionEntities);
+    expect(MockRegionRemoteDataSourceImpl().getAllRegions(), regionEntities);
     verify(mockFetchRegionsUseCase.call()).called(1);
     verify(mockGetAllRegionsUseCase.call()).called(1);
   });
 
   test('getAvailableCountries maps regions to RegionUiModel with localized names', () {
-    MockRegionRemoteDataSourceImpl.regions = [
+    MockRegionRemoteDataSourceImpl().regions = [
       const RegionEntity(locale: 'US'),
       const RegionEntity(locale: 'DE'),
     ];

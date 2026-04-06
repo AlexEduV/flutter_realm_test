@@ -230,7 +230,9 @@ Future<void> initDependenciesContainer() async {
     () => CarColorRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
+  serviceLocator.registerLazySingleton<RegionRepository>(
+    () => RegionRepositoryImpl(serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
 

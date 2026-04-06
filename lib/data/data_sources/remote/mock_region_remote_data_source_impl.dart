@@ -1,27 +1,28 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/region_entity.dart';
-import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
-import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_case.dart';
 
+import '../../../common/constants/api_constants.dart';
+import '../../../common/constants/app_asset_routes.dart';
 import '../../../core/di/injection_container.dart';
+import '../../../domain/models/api_response.dart';
 import '../../../domain/models/region_ui_model.dart';
 import '../../../l10n/l10n_keys.dart';
 import '../../../presentation/bloc/l10n/app_localisations_cubit.dart';
 
 class MockRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
-  static late List<RegionEntity> regions;
+  List<RegionEntity>? regions = [];
 
   @override
   Future<void> init() async {
-    //todo: rework, since data sources should not call use cases;
-    await serviceLocator<FetchRegionsUseCase>().call();
-
-    regions = serviceLocator<GetAllRegionsUseCase>().call();
+    await loadRegions();
   }
 
   @override
   List<RegionUiModel> getAvailableCountries() {
-    final availableCountries = regions
+    final availableCountries = (regions ?? [])
         .map(
           (element) => RegionUiModel(
             code: element.locale,
@@ -33,5 +34,34 @@ class MockRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
         .toList();
 
     return availableCountries;
+  }
+
+  @override
+  List<RegionEntity> getAllRegions() {
+    return regions ?? [];
+  }
+
+  @override
+  Future<void> loadRegions() async {
+    final jsonString = await rootBundle.loadString(
+      '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}regions_data.json',
+    );
+
+    final jsonDecoded = json.decode(jsonString);
+    final response = ApiResponse.fromJson(jsonDecoded, (data) {
+      final results = data as List;
+
+      return results.expand((item) {
+        final regionsList = item['regions'] as List;
+
+        return regionsList.map((element) => RegionEntity.fromJson(element));
+      }).toList();
+    });
+
+    if (response.status != ApiConstants.apiSuccessStatus) {
+      return;
+    }
+
+    regions = response.results;
   }
 }
