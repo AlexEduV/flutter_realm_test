@@ -24,5 +24,6 @@
     <orderEntry type="library" name="Flutter Plugins" level="project" />
     <orderEntry type="library" name="Dart Packages" level="project" />
     <orderEntry type="library" name="kotlin-stdlib dependencies" level="project" />
+    <orderEntry type="module" module-name="melos_flutter_realm_test_workspace" />
   </component>
 </module>
