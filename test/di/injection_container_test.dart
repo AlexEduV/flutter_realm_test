@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';

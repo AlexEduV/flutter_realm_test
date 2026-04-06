@@ -12,7 +12,7 @@ import 'package:test_futter_project/presentation/pages/home/new_item_page/new_it
 import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
 import 'package:test_futter_project/presentation/pages/messages/messages_page.dart';
 
-import '../common/app_routes.dart';
+import '../common/constants/app_routes.dart';
 import '../common/enums/details_page_source.dart';
 import '../presentation/pages/search/search_page.dart';
 

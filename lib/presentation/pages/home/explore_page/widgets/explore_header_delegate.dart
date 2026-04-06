@@ -3,15 +3,15 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
+import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../../common/app_colors.dart';
-import '../../../../../common/app_dimensions.dart';
-import '../../../../../common/app_routes.dart';
-import '../../../../../common/app_text_styles.dart';
+import '../../../../../common/constants/app_colors.dart';
+import '../../../../../common/constants/app_dimensions.dart';
+import '../../../../../common/constants/app_routes.dart';
+import '../../../../../common/constants/app_text_styles.dart';
 import 'explore_article_item.dart';
 import 'last_seen_widget.dart';
 

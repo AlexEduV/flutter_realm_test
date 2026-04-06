@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/constants/app_text_styles.dart';
 
 void main() {
   group('AppTextStyles', () {

@@ -1,7 +1,12 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:realm/realm.dart';
+import 'package:test_futter_project/common/extensions/get_it_extension.dart';
+import 'package:test_futter_project/common/logger/app_network_logger_impl.dart';
+import 'package:test_futter_project/common/logger/base_logger.dart';
 import 'package:test_futter_project/core/network/app_http_client.dart';
 import 'package:test_futter_project/core/network/app_http_client_impl.dart';
 import 'package:test_futter_project/core/network/network_info_impl.dart';
@@ -23,6 +28,7 @@ import 'package:test_futter_project/data/data_sources/remote/mock_messages_remot
 import 'package:test_futter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
 import 'package:test_futter_project/data/data_sources/remote/mock_users_remote_data_source_impl.dart';
+import 'package:test_futter_project/data/database/realm_configuration.dart';
 import 'package:test_futter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auto_complete_repository_impl.dart';
@@ -128,77 +134,31 @@ import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.d
 import 'package:test_futter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
 
-import '../data/models/scheme.dart';
-import '../data/repositories/car_repository_impl.dart';
-import '../domain/repositories/car_repository.dart';
-import '../domain/repositories/geolocator_repository.dart';
-import '../domain/repositories/url_launch_repository.dart';
-import '../domain/usecases/inbox/save_conversations_use_case.dart';
-import '../presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import '../../data/repositories/car_repository_impl.dart';
+import '../../domain/repositories/car_repository.dart';
+import '../../domain/repositories/geolocator_repository.dart';
+import '../../domain/repositories/url_launch_repository.dart';
+import '../../domain/usecases/inbox/save_conversations_use_case.dart';
+import '../../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependenciesContainer() async {
-  //Register Realm
-  final config = Configuration.local(
-    [Car.schema, Person.schema, User.schema, LastSeenCar.schema],
-    schemaVersion: 27,
-    migrationCallback: (migration, oldVersion) {
-      //add object id
-      if (oldVersion < 2) {
-        final oldCars = migration.oldRealm.all('Car');
-
-        for (final oldCar in oldCars) {
-          final newCar = migration.findInNewRealm<Car>(oldCar);
-          if (newCar != null) {
-            newCar.id = ObjectId();
-          }
-        }
-      }
-
-      if (oldVersion < 10) {
-        final oldUsers = migration.oldRealm.all('User');
-        final newUsers = migration.newRealm.all<User>();
-
-        // Loop through old data to ensure uniqueness before applying the PK
-        for (var i = 0; i < oldUsers.length; i++) {
-          final oldUser = oldUsers[i];
-          final newUser = newUsers[i];
-
-          // Ensure userId is unique and not null
-          newUser.userId = oldUser.dynamic.get<String>('userId');
-        }
-      }
-
-      if (oldVersion < 27) {
-        final oldUsers = migration.oldRealm.all('User');
-        final newUsers = migration.newRealm.all<User>();
-
-        for (var i = 0; i < oldUsers.length; i++) {
-          final oldUser = oldUsers[i];
-          final newUser = newUsers[i];
-
-          // Move the old 'name' to 'firstName'
-          final oldName = oldUser.dynamic.get<String>('name');
-          final parts = oldName.split(' ');
-          newUser.firstName = parts.isNotEmpty ? parts.first : '';
-          newUser.lastName = parts.length > 1 ? parts.sublist(1).join(' ') : '';
-        }
-      }
-    },
-  );
-
-  if (!serviceLocator.isRegistered<Realm>()) {
-    serviceLocator.registerLazySingleton<Realm>(() => Realm(config));
+  if (serviceLocator.isNotRegistered<Realm>()) {
+    final config = RealmConfiguration()..init();
+    serviceLocator.registerLazySingleton<Realm>(() => Realm(config.instance));
   }
 
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
 
   final connectivity = Connectivity();
   final networkInfo = NetworkInfoImpl(connectivity);
+  serviceLocator.registerLazySingleton<BaseLogger>(() => AppNetworkLoggerImpl());
 
   final client = http.Client();
-  serviceLocator.registerLazySingleton<AppHttpClient>(() => AppHttpClientImpl(client, networkInfo));
+  serviceLocator.registerLazySingleton<AppHttpClient>(
+    () => AppHttpClientImpl(client, networkInfo, serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton<GifsRemoteDataSource>(
     () => GifsRemoteDataSourceImpl(serviceLocator()),
@@ -206,22 +166,28 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
   serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl());
+
+  final imagePicker = ImagePicker();
   serviceLocator.registerLazySingleton<ImagePickerLocalDataSource>(
-    () => ImagePickerLocalDataSourceImpl(),
+    () => ImagePickerLocalDataSourceImpl(imagePicker),
   );
   serviceLocator.registerLazySingleton<AutoCompleteRemoteDataSource>(
-    () => MockAutoCompleteRemoteDataSource(),
+    () => MockAutoCompleteRemoteDataSource(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(() => MockOwnersRemoteDataSource());
+  serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(
+    () => MockOwnersRemoteDataSourceImpl(serviceLocator()),
+  );
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
     () => MockUsersRemoteDataSourceImpl(),
   );
   serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
-    () => UrlLaunchLocalDataSourceImpl(),
+    () => UrlLaunchLocalDataSourceImpl(serviceLocator()),
   );
+
+  final filePicker = FilePickerIO();
   serviceLocator.registerLazySingleton<FilePickerLocalDataSource>(
-    () => FilePickerLocalDataSourceImpl(),
+    () => FilePickerLocalDataSourceImpl(filePicker),
   );
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
     () => MockRegionRemoteDataSourceImpl(),
@@ -245,7 +211,7 @@ Future<void> initDependenciesContainer() async {
     () => ArticleRepositoryImpl(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
-    () => MockArticleRemoteDataSourceImpl(),
+    () => MockArticleRemoteDataSourceImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<PermissionLocalDataSource>(
@@ -264,7 +230,9 @@ Future<void> initDependenciesContainer() async {
     () => CarColorRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<RegionRepository>(() => RegionRepositoryImpl());
+  serviceLocator.registerLazySingleton<RegionRepository>(
+    () => RegionRepositoryImpl(serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
 

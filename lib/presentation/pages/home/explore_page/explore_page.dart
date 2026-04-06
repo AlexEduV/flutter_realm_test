@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
-import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_dimensions.dart';
+import 'package:test_futter_project/common/constants/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
-import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_case.dart';

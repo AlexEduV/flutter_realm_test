@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/app_colors.dart';
-import '../../../../common/app_dimensions.dart';
-import '../../../../common/app_text_styles.dart';
+import '../../../../common/constants/app_colors.dart';
+import '../../../../common/constants/app_dimensions.dart';
+import '../../../../common/constants/app_text_styles.dart';
 
 class AuthErrorWidget extends StatelessWidget {
   final String? text;

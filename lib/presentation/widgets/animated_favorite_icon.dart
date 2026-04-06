@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
+import 'package:test_futter_project/common/constants/app_dimensions.dart';
 
-import '../../common/app_colors.dart';
+import '../../common/constants/app_colors.dart';
 
 class AnimatedFavoriteIcon extends StatefulWidget {
   final bool isFavorite;

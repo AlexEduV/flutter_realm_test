@@ -1,7 +1,7 @@
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 
-import '../../di/injection_container.dart';
+import '../../core/di/injection_container.dart';
 import '../../presentation/bloc/l10n/app_localisations_cubit.dart';
 
 enum BodyType {

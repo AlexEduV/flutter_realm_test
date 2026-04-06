@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/utils/dialog_helper.dart';
 
-import '../../../../../common/app_dimensions.dart';
-import '../../../../../common/app_text_styles.dart';
+import '../../../../../common/constants/app_dimensions.dart';
+import '../../../../../common/constants/app_text_styles.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
 import '../../widgets/account_item_separated.dart';

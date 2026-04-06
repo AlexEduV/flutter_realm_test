@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_futter_project/domain/models/api_response.dart';
 import 'package:test_futter_project/utils/json_util.dart';
 
-import '../common/api_constants.dart';
+import '../common/constants/api_constants.dart';
 
 class LocalisationUtil {
   //todo: use abstraction of shared preferences storage, so that the vendor might be changed easily

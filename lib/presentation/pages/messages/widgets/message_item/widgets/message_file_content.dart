@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_futter_project/common/extensions/text_style_extension.dart';
 import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
 
-import '../../../../../../common/app_dimensions.dart';
+import '../../../../../../common/constants/app_dimensions.dart';
 
 class MessageFileContent extends StatelessWidget {
   final SentAttachmentMetaDataModel? attachmentMetaData;

@@ -1,16 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/constants/app_dimensions.dart';
+import 'package:test_futter_project/common/constants/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/article/article_page_state.dart';
 import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/app_semantics_labels.dart';
+import '../../../common/constants/app_colors.dart';
+import '../../../common/constants/app_semantics_labels.dart';
 import '../../../domain/models/share_params_model.dart';
 import '../../../l10n/l10n_keys.dart';
 import '../../bloc/share/share_cubit.dart';

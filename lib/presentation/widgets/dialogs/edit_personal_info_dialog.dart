@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/app_colors.dart';
-import '../../../common/app_dimensions.dart';
-import '../../../common/app_semantics_labels.dart';
-import '../../../common/app_text_styles.dart';
+import '../../../common/constants/app_colors.dart';
+import '../../../common/constants/app_dimensions.dart';
+import '../../../common/constants/app_semantics_labels.dart';
+import '../../../common/constants/app_text_styles.dart';
 import '../../bloc/account/edit_dialog_cubit.dart';
 import '../../bloc/account/edit_dialog_state.dart';
 import '../app_semantics.dart';

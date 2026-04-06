@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_constants.dart';
-import 'package:test_futter_project/di/injection_container.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
+import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
 import 'package:test_futter_project/domain/usecases/regions/init_region_models_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';

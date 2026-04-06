@@ -1,4 +1,3 @@
-import 'package:test_futter_project/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/models/auth_result.dart';
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
@@ -11,6 +10,7 @@ import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cub
 import 'package:test_futter_project/utils/auth_session_util.dart';
 
 import '../../common/extensions/user_scheme_extension.dart';
+import '../../core/di/injection_container.dart';
 import '../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../domain/entities/user_entity.dart';
 

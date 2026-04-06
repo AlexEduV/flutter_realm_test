@@ -5,9 +5,9 @@ import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dar
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/widgets/message_file_content.dart';
 import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/widgets/message_gif_content.dart';
 
-import '../../../../../../common/app_colors.dart';
-import '../../../../../../common/app_dimensions.dart';
-import '../../../../../../common/app_semantics_labels.dart';
+import '../../../../../../common/constants/app_colors.dart';
+import '../../../../../../common/constants/app_dimensions.dart';
+import '../../../../../../common/constants/app_semantics_labels.dart';
 import '../../../../../controllers/inline_style_text_controller.dart';
 import '../../../../../widgets/app_semantics.dart';
 

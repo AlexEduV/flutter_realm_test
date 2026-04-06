@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/app_semantics_labels.dart';
-import '../../../common/app_text_styles.dart';
+import '../../../common/constants/app_semantics_labels.dart';
+import '../../../common/constants/app_text_styles.dart';
 import '../app_semantics.dart';
 
 class ConfirmationDialog extends StatelessWidget {

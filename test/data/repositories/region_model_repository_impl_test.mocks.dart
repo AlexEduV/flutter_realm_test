@@ -8,7 +8,8 @@ import 'dart:async' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart'
     as _i2;
-import 'package:test_futter_project/domain/models/region_ui_model.dart' as _i4;
+import 'package:test_futter_project/domain/entities/region_entity.dart' as _i4;
+import 'package:test_futter_project/domain/models/region_ui_model.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -43,10 +44,27 @@ class MockRegionRemoteDataSource extends _i1.Mock
           as _i3.Future<void>);
 
   @override
-  List<_i4.RegionUiModel> getAvailableCountries() =>
+  _i3.Future<void> loadRegions() =>
+      (super.noSuchMethod(
+            Invocation.method(#loadRegions, []),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  List<_i4.RegionEntity> getAllRegions() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAllRegions, []),
+            returnValue: <_i4.RegionEntity>[],
+          )
+          as List<_i4.RegionEntity>);
+
+  @override
+  List<_i5.RegionUiModel> getAvailableCountries() =>
       (super.noSuchMethod(
             Invocation.method(#getAvailableCountries, []),
-            returnValue: <_i4.RegionUiModel>[],
+            returnValue: <_i5.RegionUiModel>[],
           )
-          as List<_i4.RegionUiModel>);
+          as List<_i5.RegionUiModel>);
 }

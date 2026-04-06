@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/app_colors.dart';
-import 'package:test_futter_project/common/app_dimensions.dart';
-import 'package:test_futter_project/common/app_semantics_labels.dart';
-import 'package:test_futter_project/common/app_text_styles.dart';
+import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_dimensions.dart';
+import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_futter_project/common/constants/app_text_styles.dart';
 import 'package:test_futter_project/common/enums/body_type.dart';
 import 'package:test_futter_project/common/enums/car_type.dart';
 import 'package:test_futter_project/common/enums/fuel_type.dart';
