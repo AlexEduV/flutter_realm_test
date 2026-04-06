@@ -178,7 +178,7 @@ Future<void> initDependenciesContainer() async {
     () => MockUsersRemoteDataSourceImpl(),
   );
   serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
-    () => UrlLaunchLocalDataSourceImpl(),
+    () => UrlLaunchLocalDataSourceImpl(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<FilePickerLocalDataSource>(
     () => FilePickerLocalDataSourceImpl(),
