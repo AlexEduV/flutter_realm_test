@@ -7,11 +7,11 @@ class AppNetworkLoggerImpl implements BaseLogger {
 
   @override
   void log(String message) {
-    if (AppConstants.showNetworkLogs) {
-      debugPrint(
-        '[Network]: $message\n'
-        '$separationLine',
-      );
-    }
+    if (!AppConstants.showNetworkLogs) return;
+
+    debugPrint(
+      '[Network]: $message\n'
+      '$separationLine',
+    );
   }
 }
