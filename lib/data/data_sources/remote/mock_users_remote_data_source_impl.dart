@@ -10,6 +10,8 @@ import '../../../mocks/mock_users.dart';
 class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   final mockUsersLocalStorageKey = 'mock_users';
 
+  final String inQuotes = "";
+
   @override
   int getMaxUserId() {
     final maxId = users.isNotEmpty
