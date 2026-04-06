@@ -1,41 +1,71 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
 import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_futter_project/domain/entities/region_entity.dart';
 
-import 'region_repository_impl_test.mocks.dart';
+import 'region_model_repository_impl_test.mocks.dart';
 
 @GenerateMocks([RegionRemoteDataSource])
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-  final mockRegionRemoteDataSource = MockRegionRemoteDataSource();
+  late MockRegionRemoteDataSource mockRemoteDataSource;
+  late RegionRepositoryImpl repository;
+
+  final regionList = [const RegionEntity(locale: 'US'), const RegionEntity(locale: 'CA')];
 
   setUp(() {
-    // Reset singleton state before each test
-    RegionRepositoryImpl(mockRegionRemoteDataSource).regions = null;
+    mockRemoteDataSource = MockRegionRemoteDataSource();
+    repository = RegionRepositoryImpl(mockRemoteDataSource);
   });
 
-  test('getRegionByCode returns correct region', () {
-    // Setup regions manually
-    final repo = RegionRepositoryImpl(mockRegionRemoteDataSource);
-    repo.regions = [const RegionEntity(locale: 'en'), const RegionEntity(locale: 'it')];
+  group('RegionRepositoryImpl', () {
+    test('loadRegions caches regions after loading', () async {
+      when(mockRemoteDataSource.loadRegions()).thenAnswer((_) async {});
+      when(mockRemoteDataSource.getAllRegions()).thenReturn(regionList);
 
-    final region = repo.getRegionByCode('it');
-    expect(region, isNotNull);
-  });
+      await repository.loadRegions();
 
-  test('getRegionByCode returns null if not found', () {
-    final repo = RegionRepositoryImpl(mockRegionRemoteDataSource);
-    repo.regions = [const RegionEntity(locale: 'en')];
+      expect(repository.regions, regionList);
+      verify(mockRemoteDataSource.loadRegions()).called(1);
+      verify(mockRemoteDataSource.getAllRegions()).called(1);
+    });
 
-    final region = repo.getRegionByCode('fr');
-    expect(region, isNull);
-  });
+    test('loadRegions does not reload if already loaded', () async {
+      repository.regions = regionList;
 
-  test('getAllRegions returns empty list if not loaded', () {
-    final repo = RegionRepositoryImpl(mockRegionRemoteDataSource);
-    repo.regions = null;
-    expect(repo.getAllRegions(), isEmpty);
+      await repository.loadRegions();
+
+      verifyNever(mockRemoteDataSource.loadRegions());
+      verifyNever(mockRemoteDataSource.getAllRegions());
+    });
+
+    test('getRegionByCode returns correct region', () {
+      repository.regions = regionList;
+
+      final region = repository.getRegionByCode('CA');
+      expect(region?.locale, 'CA');
+    });
+
+    test('getRegionByCode returns null if not found', () {
+      repository.regions = regionList;
+
+      final region = repository.getRegionByCode('FR');
+      expect(region, isNull);
+    });
+
+    test('getAllRegions returns all regions', () {
+      repository.regions = regionList;
+
+      final all = repository.getAllRegions();
+      expect(all, regionList);
+    });
+
+    test('getAllRegions returns empty list if regions is null', () {
+      repository.regions = null;
+
+      final all = repository.getAllRegions();
+      expect(all, isEmpty);
+    });
   });
 }
