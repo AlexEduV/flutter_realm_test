@@ -33,6 +33,7 @@ import 'package:test_futter_project/data/repositories/article_repository_impl.da
 import 'package:test_futter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/auto_complete_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/car_color_repository_impl.dart';
+import 'package:test_futter_project/data/repositories/env_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/file_picker_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/geolocator_repository_impl.dart';
 import 'package:test_futter_project/data/repositories/gifs_repository_impl.dart';
@@ -67,6 +68,7 @@ import 'package:test_futter_project/domain/repositories/article_repository.dart'
 import 'package:test_futter_project/domain/repositories/auth_repository.dart';
 import 'package:test_futter_project/domain/repositories/auto_complete_repository.dart';
 import 'package:test_futter_project/domain/repositories/car_color_repository.dart';
+import 'package:test_futter_project/domain/repositories/env_repository.dart';
 import 'package:test_futter_project/domain/repositories/file_picker_repository.dart';
 import 'package:test_futter_project/domain/repositories/gifs_repository.dart';
 import 'package:test_futter_project/domain/repositories/image_picker_repository.dart';
@@ -95,6 +97,8 @@ import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_c
 import 'package:test_futter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_futter_project/domain/usecases/env/get_env_data_by_key_use_case.dart';
+import 'package:test_futter_project/domain/usecases/env/init_env_use_case.dart';
 import 'package:test_futter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
@@ -349,6 +353,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<GeolocatorRepository>(
     () => GeolocatorRepositoryImpl(serviceLocator()),
   );
+  serviceLocator.registerLazySingleton<EnvRepository>(() => EnvRepositoryImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<UrlLaunchRepository>(
     () => UrlLaunchRepositoryImpl(serviceLocator()),
   );
@@ -393,4 +398,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(
     () => GetAutoCompleteManufacturersByTypeUseCase(serviceLocator()),
   );
+
+  serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
 }
