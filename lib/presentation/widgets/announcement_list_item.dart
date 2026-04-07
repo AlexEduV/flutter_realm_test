@@ -47,168 +47,179 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
   }
 
   @override
+  void dispose() {
+    slideableController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Slidable(
-      key: widget.car != null ? ValueKey(widget.car?.carId) : null,
-      controller: slideableController,
-      endActionPane: ActionPane(
-        motion: const DrawerMotion(),
-        extentRatio: 0.25,
-        children: [
-          //NOTE: slidable action is not allowed semantics - 'hasSize' exception
-          SlidableAction(
-            onPressed: (context) => widget.onDismissed?.call(),
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: context.tr(L10nKeys.deleteButtonTitle),
-          ),
-        ],
-      ),
+    return Padding(
+      padding: const EdgeInsets.all(AppDimensions.normalS),
       child: Container(
-        margin: const EdgeInsets.all(AppDimensions.normalL),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.red,
           borderRadius: BorderRadius.circular(AppDimensions.normalL),
         ),
-        child: Material(
-          borderRadius: BorderRadius.circular(AppDimensions.normalL),
-          child: AppSemantics(
-            button: true,
-            label: AppSemanticsLabels.announcementListItem,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(AppDimensions.normalL),
-              onTap: () => widget.isExploreItem
-                  ? AppRouter.goToDetails(
-                      from: DetailsPageSource.explore,
-                      carId: widget.car?.carId ?? '',
-                    )
-                  : AppRouter.goToDetails(
-                      from: DetailsPageSource.search,
-                      carId: widget.car?.carId ?? '',
-                    ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: AppDimensions.contentPadding,
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: 180,
-                        decoration: BoxDecoration(
-                          color: (widget.car?.images.isEmpty ?? true)
-                              ? AppColors.placeholderColor
-                              : null,
-                          borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                          image: (widget.car?.images.isNotEmpty ?? false)
-                              ? DecorationImage(
-                                  image: AssetImage(widget.car?.images.first ?? ''),
-                                  fit: BoxFit.cover,
-                                )
-                              : null,
-                        ),
+        child: Slidable(
+          key: widget.car != null ? ValueKey(widget.car?.carId) : null,
+          controller: slideableController,
+          endActionPane: ActionPane(
+            motion: const DrawerMotion(),
+            extentRatio: 0.25,
+            children: [
+              //NOTE: slidable action is not allowed semantics - 'hasSize' exception
+              SlidableAction(
+                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                onPressed: (context) => widget.onDismissed?.call(),
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+                icon: Icons.delete,
+                label: context.tr(L10nKeys.deleteButtonTitle),
+              ),
+            ],
+          ),
+          child: Material(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+            child: AppSemantics(
+              button: true,
+              label: AppSemanticsLabels.announcementListItem,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                onTap: () => widget.isExploreItem
+                    ? AppRouter.goToDetails(
+                        from: DetailsPageSource.explore,
+                        carId: widget.car?.carId ?? '',
+                      )
+                    : AppRouter.goToDetails(
+                        from: DetailsPageSource.search,
+                        carId: widget.car?.carId ?? '',
                       ),
-
-                      Positioned(
-                        top: AppDimensions.normalXS,
-                        right: AppDimensions.normalXS,
-                        child: Material(
-                          borderRadius: BorderRadius.circular(AppDimensions.minorL),
-                          color: Colors.white,
-                          child: AppSemantics(
-                            button: true,
-                            label: AppSemanticsLabels.favoriteButton,
-                            child: InkWell(
-                              onTap: () {
-                                if (widget.car == null) return;
-
-                                if (widget.user?.favoriteIds.contains(widget.car?.carId) ?? false) {
-                                  context.read<UserDataCubit>().removeCarIdFromFavorites(
-                                    widget.car!.carId,
-                                  );
-                                } else {
-                                  context.read<UserDataCubit>().addCarIdToFavorites(
-                                    widget.car!.carId,
-                                  );
-                                }
-                              },
-                              child: AnimatedFavoriteIcon(
-                                size: AppDimensions.favoriteButtonSize,
-                                isFavorite:
-                                    widget.user?.favoriteIds.contains(widget.car?.carId) ?? false,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
-                    child: Row(
-                      spacing: AppDimensions.normalXS,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: AppDimensions.contentPadding,
+                  children: [
+                    Stack(
                       children: [
-                        Flexible(
-                          child: AppSemantics(
-                            label: AppSemanticsLabels.announcementTitle,
-                            child: Text(
-                              '${widget.car?.manufacturer} ${widget.car?.model ?? ''} ${widget.car?.year ?? ''}'
-                                  .toUpperCase(),
-                              style: AppTextStyles.zonaPro24,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                        Container(
+                          height: 180,
+                          decoration: BoxDecoration(
+                            color: (widget.car?.images.isEmpty ?? true)
+                                ? AppColors.placeholderColor
+                                : null,
+                            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                            image: (widget.car?.images.isNotEmpty ?? false)
+                                ? DecorationImage(
+                                    image: AssetImage(widget.car?.images.first ?? ''),
+                                    fit: BoxFit.cover,
+                                  )
+                                : null,
                           ),
                         ),
 
-                        if (widget.car?.isVerified ?? false) ...[const VerifiedBadge()],
-                      ],
-                    ),
-                  ),
+                        Positioned(
+                          top: AppDimensions.normalXS,
+                          right: AppDimensions.normalXS,
+                          child: Material(
+                            borderRadius: BorderRadius.circular(AppDimensions.minorL),
+                            color: Colors.white,
+                            child: AppSemantics(
+                              button: true,
+                              label: AppSemanticsLabels.favoriteButton,
+                              child: InkWell(
+                                onTap: () {
+                                  if (widget.car == null) return;
 
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: '\$ ${widget.car?.price ?? 0} ',
-                                style: AppTextStyles.zonaPro20.copyWith(
-                                  fontWeight: FontWeight.w400,
+                                  if (widget.user?.favoriteIds.contains(widget.car?.carId) ??
+                                      false) {
+                                    context.read<UserDataCubit>().removeCarIdFromFavorites(
+                                      widget.car!.carId,
+                                    );
+                                  } else {
+                                    context.read<UserDataCubit>().addCarIdToFavorites(
+                                      widget.car!.carId,
+                                    );
+                                  }
+                                },
+                                child: AnimatedFavoriteIcon(
+                                  size: AppDimensions.favoriteButtonSize,
+                                  isFavorite:
+                                      widget.user?.favoriteIds.contains(widget.car?.carId) ?? false,
                                 ),
                               ),
-                              if (widget.car?.promoType != null)
-                                getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
-                            ],
+                            ),
                           ),
                         ),
+                      ],
+                    ),
 
-                        if (widget.user?.isLocationPermissionGranted ?? false) ...[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
+                      child: Row(
+                        spacing: AppDimensions.normalXS,
+                        children: [
+                          Flexible(
+                            child: AppSemantics(
+                              label: AppSemanticsLabels.announcementTitle,
+                              child: Text(
+                                '${widget.car?.manufacturer} ${widget.car?.model ?? ''} ${widget.car?.year ?? ''}'
+                                    .toUpperCase(),
+                                style: AppTextStyles.zonaPro24,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+
+                          if (widget.car?.isVerified ?? false) ...[const VerifiedBadge()],
+                        ],
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           Text.rich(
                             TextSpan(
                               children: [
-                                getSpanIcon(icon: Icons.location_pin),
                                 TextSpan(
-                                  text:
-                                      '${widget.car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceWidgetText)}',
+                                  text: '\$ ${widget.car?.price ?? 0} ',
                                   style: AppTextStyles.zonaPro20.copyWith(
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
+                                if (widget.car?.promoType != null)
+                                  getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                               ],
                             ),
                           ),
-                        ],
-                      ],
-                    ),
-                  ),
 
-                  const SizedBox(height: AppDimensions.normalS),
-                ],
+                          if (widget.user?.isLocationPermissionGranted ?? false) ...[
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  getSpanIcon(icon: Icons.location_pin),
+                                  TextSpan(
+                                    text:
+                                        '${widget.car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceWidgetText)}',
+                                    style: AppTextStyles.zonaPro20.copyWith(
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: AppDimensions.normalS),
+                  ],
+                ),
               ),
             ),
           ),
