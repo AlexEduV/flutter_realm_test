@@ -94,8 +94,8 @@ class AnnouncementListItem extends StatelessWidget {
                         ),
 
                         Positioned(
-                          top: AppDimensions.normalXS,
-                          right: AppDimensions.normalXS,
+                          top: AppDimensions.normalS,
+                          right: AppDimensions.normalS,
                           child: Material(
                             borderRadius: BorderRadius.circular(AppDimensions.minorL),
                             color: Colors.white,
