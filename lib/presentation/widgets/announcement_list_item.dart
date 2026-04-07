@@ -72,7 +72,7 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
               SlidableAction(
                 borderRadius: BorderRadius.circular(AppDimensions.normalL),
                 onPressed: (context) => widget.onDismissed?.call(),
-                backgroundColor: Colors.red,
+                backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
                 label: context.tr(L10nKeys.deleteButtonTitle),
