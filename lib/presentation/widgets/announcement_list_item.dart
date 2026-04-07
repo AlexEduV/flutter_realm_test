@@ -108,7 +108,7 @@ class AnnouncementListItem extends StatelessWidget {
                                   if (user?.favoriteIds.contains(carId) ?? false) {
                                     context.read<UserDataCubit>().removeCarIdFromFavorites(carId);
                                   } else {
-                                    context.read<UserDataCubit>().addCarIdToFavorites(car!.carId);
+                                    context.read<UserDataCubit>().addCarIdToFavorites(carId);
                                   }
                                 },
                                 child: AnimatedFavoriteIcon(
