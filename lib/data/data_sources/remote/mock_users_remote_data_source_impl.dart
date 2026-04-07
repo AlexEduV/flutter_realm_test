@@ -21,7 +21,7 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
 
   @override
   UserEntity? getUserByEmail(String email) {
-    return users.where((element) => element.email == email).firstOrNull;
+    return users.firstWhereOrNull((element) => element.email == email);
   }
 
   @override
@@ -58,7 +58,7 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   @override
   Future<void> saveMockUsers(List<UserEntity> users) async {
     final prefs = await SharedPreferences.getInstance();
-    final usersJsonList = users.map((u) => u.toJson()).toList();
+    final usersJsonList = users.map((user) => user.toJson()).toList();
     await prefs.setString(_mockUsersLocalStorageKey, jsonEncode(usersJsonList));
   }
 
