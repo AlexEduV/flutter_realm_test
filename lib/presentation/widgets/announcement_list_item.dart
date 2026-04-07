@@ -74,7 +74,7 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
                 onPressed: (context) => widget.onDismissed?.call(),
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
-                icon: Icons.delete,
+                icon: Icons.close,
                 label: context.tr(L10nKeys.deleteButtonTitle),
               ),
             ],
