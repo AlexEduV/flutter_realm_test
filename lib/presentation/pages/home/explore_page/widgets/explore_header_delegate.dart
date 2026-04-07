@@ -69,7 +69,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                       onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
                       icon: const Icon(
                         Icons.search,
-                        size: AppDimensions.appBarIconSize * 1.2,
+                        size: AppDimensions.appBarIconSize,
                         color: Colors.white,
                       ),
                     ),

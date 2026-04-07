@@ -36,7 +36,7 @@ class AppDimensions {
 
   static const smallProgressBarSize = 24.0;
 
-  static const exploreAppBarBaseSize = 115.0;
+  static const exploreAppBarBaseSize = 120.0;
   static const exploreArticleItemBaseSize = 120.0;
 
   static const avatarImageAddIconSize = 17.0;
