@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
-    show ActionPane, DrawerMotion, Slidable, SlidableAction, SlidableController;
+    show ActionPane, DrawerMotion, Slidable, SlidableAction;
 import 'package:test_futter_project/common/constants/app_colors.dart';
 import 'package:test_futter_project/common/constants/app_dimensions.dart';
 import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
@@ -18,7 +18,7 @@ import '../../l10n/l10n_keys.dart';
 import '../../utils/app_router.dart';
 import 'app_semantics.dart';
 
-class AnnouncementListItem extends StatefulWidget {
+class AnnouncementListItem extends StatelessWidget {
   final CarEntity? car;
   final UserEntity? user;
   final void Function()? onDismissed;
@@ -33,28 +33,8 @@ class AnnouncementListItem extends StatefulWidget {
   });
 
   @override
-  State<AnnouncementListItem> createState() => _AnnouncementListItemState();
-}
-
-class _AnnouncementListItemState extends State<AnnouncementListItem> with TickerProviderStateMixin {
-  late final SlidableController slideableController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    slideableController = SlidableController(this);
-  }
-
-  @override
-  void dispose() {
-    slideableController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final carId = widget.car?.carId ?? '';
+    final carId = car?.carId ?? '';
 
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalS),
@@ -64,15 +44,14 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
           borderRadius: BorderRadius.circular(AppDimensions.normalL),
         ),
         child: Slidable(
-          key: widget.car != null ? ValueKey(carId) : null,
-          controller: slideableController,
+          key: car != null ? ValueKey(carId) : null,
           endActionPane: ActionPane(
             motion: const DrawerMotion(),
             extentRatio: 0.25,
             children: [
               //NOTE: slidable action is not allowed semantics - 'hasSize' exception
               SlidableAction(
-                onPressed: (context) => widget.onDismissed?.call(),
+                onPressed: (context) => onDismissed?.call(),
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
                 icon: Icons.close,
@@ -88,7 +67,7 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
               label: AppSemanticsLabels.announcementListItem,
               child: InkWell(
                 borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                onTap: () => widget.isExploreItem
+                onTap: () => isExploreItem
                     ? AppRouter.goToDetails(from: DetailsPageSource.explore, carId: carId)
                     : AppRouter.goToDetails(from: DetailsPageSource.search, carId: carId),
                 child: Column(
@@ -100,13 +79,13 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
                         Container(
                           height: 180,
                           decoration: BoxDecoration(
-                            color: (widget.car?.images.isEmpty ?? true)
+                            color: (car?.images.isEmpty ?? true)
                                 ? AppColors.placeholderColor
                                 : null,
                             borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                            image: (widget.car?.images.isNotEmpty ?? false)
+                            image: (car?.images.isNotEmpty ?? false)
                                 ? DecorationImage(
-                                    image: AssetImage(widget.car?.images.first ?? ''),
+                                    image: AssetImage(car?.images.first ?? ''),
                                     fit: BoxFit.cover,
                                   )
                                 : null,
@@ -124,19 +103,17 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
                               label: AppSemanticsLabels.favoriteButton,
                               child: InkWell(
                                 onTap: () {
-                                  if (widget.car == null) return;
+                                  if (car == null) return;
 
-                                  if (widget.user?.favoriteIds.contains(carId) ?? false) {
+                                  if (user?.favoriteIds.contains(carId) ?? false) {
                                     context.read<UserDataCubit>().removeCarIdFromFavorites(carId);
                                   } else {
-                                    context.read<UserDataCubit>().addCarIdToFavorites(
-                                      widget.car!.carId,
-                                    );
+                                    context.read<UserDataCubit>().addCarIdToFavorites(car!.carId);
                                   }
                                 },
                                 child: AnimatedFavoriteIcon(
                                   size: AppDimensions.favoriteButtonSize,
-                                  isFavorite: widget.user?.favoriteIds.contains(carId) ?? false,
+                                  isFavorite: user?.favoriteIds.contains(carId) ?? false,
                                 ),
                               ),
                             ),
@@ -154,7 +131,7 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
                             child: AppSemantics(
                               label: AppSemanticsLabels.announcementTitle,
                               child: Text(
-                                '${widget.car?.manufacturer} ${widget.car?.model ?? ''} ${widget.car?.year ?? ''}'
+                                '${car?.manufacturer} ${car?.model ?? ''} ${car?.year ?? ''}'
                                     .toUpperCase(),
                                 style: AppTextStyles.zonaPro24,
                                 maxLines: 2,
@@ -163,7 +140,7 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
                             ),
                           ),
 
-                          if (widget.car?.isVerified ?? false) ...[const VerifiedBadge()],
+                          if (car?.isVerified ?? false) ...[const VerifiedBadge()],
                         ],
                       ),
                     ),
@@ -177,25 +154,25 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text: '\$ ${widget.car?.price ?? 0} ',
+                                  text: '\$ ${car?.price ?? 0} ',
                                   style: AppTextStyles.zonaPro20.copyWith(
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                                if (widget.car?.promoType != null)
+                                if (car?.promoType != null)
                                   getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                               ],
                             ),
                           ),
 
-                          if (widget.user?.isLocationPermissionGranted ?? false) ...[
+                          if (user?.isLocationPermissionGranted ?? false) ...[
                             Text.rich(
                               TextSpan(
                                 children: [
                                   getSpanIcon(icon: Icons.location_pin),
                                   TextSpan(
                                     text:
-                                        '${widget.car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceWidgetText)}',
+                                        '${car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceWidgetText)}',
                                     style: AppTextStyles.zonaPro20.copyWith(
                                       fontWeight: FontWeight.w400,
                                     ),
