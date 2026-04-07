@@ -54,6 +54,8 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
 
   @override
   Widget build(BuildContext context) {
+    final carId = widget.car?.carId ?? '';
+
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalS),
       child: Container(
@@ -62,7 +64,7 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
           borderRadius: BorderRadius.circular(AppDimensions.normalL),
         ),
         child: Slidable(
-          key: widget.car != null ? ValueKey(widget.car?.carId) : null,
+          key: widget.car != null ? ValueKey(carId) : null,
           controller: slideableController,
           endActionPane: ActionPane(
             motion: const DrawerMotion(),
@@ -87,14 +89,8 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
               child: InkWell(
                 borderRadius: BorderRadius.circular(AppDimensions.normalL),
                 onTap: () => widget.isExploreItem
-                    ? AppRouter.goToDetails(
-                        from: DetailsPageSource.explore,
-                        carId: widget.car?.carId ?? '',
-                      )
-                    : AppRouter.goToDetails(
-                        from: DetailsPageSource.search,
-                        carId: widget.car?.carId ?? '',
-                      ),
+                    ? AppRouter.goToDetails(from: DetailsPageSource.explore, carId: carId)
+                    : AppRouter.goToDetails(from: DetailsPageSource.search, carId: carId),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: AppDimensions.contentPadding,
@@ -130,11 +126,8 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
                                 onTap: () {
                                   if (widget.car == null) return;
 
-                                  if (widget.user?.favoriteIds.contains(widget.car?.carId) ??
-                                      false) {
-                                    context.read<UserDataCubit>().removeCarIdFromFavorites(
-                                      widget.car!.carId,
-                                    );
+                                  if (widget.user?.favoriteIds.contains(carId) ?? false) {
+                                    context.read<UserDataCubit>().removeCarIdFromFavorites(carId);
                                   } else {
                                     context.read<UserDataCubit>().addCarIdToFavorites(
                                       widget.car!.carId,
@@ -143,8 +136,7 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
                                 },
                                 child: AnimatedFavoriteIcon(
                                   size: AppDimensions.favoriteButtonSize,
-                                  isFavorite:
-                                      widget.user?.favoriteIds.contains(widget.car?.carId) ?? false,
+                                  isFavorite: widget.user?.favoriteIds.contains(carId) ?? false,
                                 ),
                               ),
                             ),
@@ -233,7 +225,7 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
       baseline: TextBaseline.alphabetic,
       child: Padding(
         padding: const EdgeInsets.only(bottom: AppDimensions.minorM),
-        child: Icon(icon, size: 18, color: color),
+        child: Icon(icon, size: AppDimensions.normalL, color: color),
       ),
     );
   }
