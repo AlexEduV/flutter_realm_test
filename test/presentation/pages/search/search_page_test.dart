@@ -18,7 +18,7 @@ import 'package:test_futter_project/presentation/pages/search/widgets/empty_sear
 import 'package:test_futter_project/presentation/pages/search/widgets/filters_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
-import 'package:test_futter_project/presentation/widgets/announcement_list_item.dart';
+import 'package:test_futter_project/presentation/widgets/announcement_item/announcement_list_item.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 
 import '../../../common/extensions/context_extension_test.mocks.dart';

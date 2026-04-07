@@ -8,7 +8,7 @@ import 'package:test_futter_project/domain/entities/user_entity.dart';
 import '../../../mocks/mock_users.dart';
 
 class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
-  final mockUsersLocalStorageKey = 'mock_users';
+  static const _mockUsersLocalStorageKey = 'mock_users';
 
   @override
   int getMaxUserId() {
@@ -21,7 +21,7 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
 
   @override
   UserEntity? getUserByEmail(String email) {
-    return users.where((element) => element.email == email).firstOrNull;
+    return users.firstWhereOrNull((element) => element.email == email);
   }
 
   @override
@@ -34,7 +34,7 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   @override
   Future<List<UserEntity>> loadMockUsers() async {
     final prefs = await SharedPreferences.getInstance();
-    final usersJson = prefs.getString(mockUsersLocalStorageKey);
+    final usersJson = prefs.getString(_mockUsersLocalStorageKey);
     if (usersJson != null) {
       final decoded = jsonDecode(usersJson);
 
@@ -58,8 +58,8 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   @override
   Future<void> saveMockUsers(List<UserEntity> users) async {
     final prefs = await SharedPreferences.getInstance();
-    final usersJsonList = users.map((u) => u.toJson()).toList();
-    await prefs.setString(mockUsersLocalStorageKey, jsonEncode(usersJsonList));
+    final usersJsonList = users.map((user) => user.toJson()).toList();
+    await prefs.setString(_mockUsersLocalStorageKey, jsonEncode(usersJsonList));
   }
 
   @override
