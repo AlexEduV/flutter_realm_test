@@ -120,5 +120,30 @@ void main() {
       // Assert
       expect(json, {'conversationId': '', 'ownerId': '', 'messages': []});
     });
+
+    test('should correctly parse from JSON', () {
+      // Arrange
+      final json = {
+        'conversationId': 'conv1',
+        'ownerId': 'owner1',
+        'messages': [
+          {'senderId': 'user1', 'text': 'Hello', 'date': '1234567890', 'messageStatus': 'read'},
+          {'senderId': 'user2', 'text': 'Hi!', 'date': '1234567891', 'messageStatus': 'read'},
+        ],
+      };
+
+      // Act
+      final model = ConversationModel.fromJson(json);
+
+      // Assert
+      expect(model.conversationId, 'conv1');
+      expect(model.ownerId, 'owner1');
+      expect(model.messages.length, 2);
+      expect(model.messages[0], isA<MessageModel>());
+      expect(model.messages[0].senderId, 'user1');
+      expect(model.messages[0].payload, 'Hello');
+      expect(model.messages[1].senderId, 'user2');
+      expect(model.messages[1].payload, 'Hi!');
+    });
   });
 }
