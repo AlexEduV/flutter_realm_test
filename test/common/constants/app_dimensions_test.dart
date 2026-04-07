@@ -45,7 +45,7 @@ void main() {
 
     test('smallProgressBarSize', () => expect(AppDimensions.smallProgressBarSize, 24.0));
 
-    test('exploreAppBarBaseSize', () => expect(AppDimensions.exploreAppBarBaseSize, 115.0));
+    test('exploreAppBarBaseSize', () => expect(AppDimensions.exploreAppBarBaseSize, 120.0));
     test(
       'exploreArticleItemBaseSize',
       () => expect(AppDimensions.exploreArticleItemBaseSize, 120.0),
