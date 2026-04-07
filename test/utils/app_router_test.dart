@@ -37,6 +37,8 @@ import 'app_router_test.mocks.dart';
   DetailsPageCubit,
 ])
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   final MockHomeBottomBarCubit homeBottomBarCubit = MockHomeBottomBarCubit();
   final MockExplorePageCubit explorePageCubit = MockExplorePageCubit();
   final MockUserDataCubit mockUserDataCubit = MockUserDataCubit();
@@ -105,7 +107,7 @@ void main() {
 
   testWidgets('Navigates to HomePage on root route', (WidgetTester tester) async {
     await tester.pumpWidget(widget);
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(const Duration(seconds: 1));
 
     expect(find.byType(HomePage), findsOneWidget);
     expect(find.byType(SearchPage), findsNothing);
