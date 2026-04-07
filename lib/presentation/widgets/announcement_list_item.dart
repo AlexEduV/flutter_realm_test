@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
-    show ActionPane, DrawerMotion, Slidable, SlidableAction;
+    show ActionPane, DrawerMotion, Slidable, SlidableAction, SlidableController;
 import 'package:test_futter_project/common/constants/app_colors.dart';
 import 'package:test_futter_project/common/constants/app_dimensions.dart';
 import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
@@ -18,7 +18,7 @@ import '../../l10n/l10n_keys.dart';
 import '../../utils/app_router.dart';
 import 'app_semantics.dart';
 
-class AnnouncementListItem extends StatelessWidget {
+class AnnouncementListItem extends StatefulWidget {
   final CarEntity? car;
   final UserEntity? user;
   final void Function()? onDismissed;
@@ -33,16 +33,31 @@ class AnnouncementListItem extends StatelessWidget {
   });
 
   @override
+  State<AnnouncementListItem> createState() => _AnnouncementListItemState();
+}
+
+class _AnnouncementListItemState extends State<AnnouncementListItem> with TickerProviderStateMixin {
+  late final SlidableController slideableController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    slideableController = SlidableController(this);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Slidable(
-      key: car != null ? ValueKey(car?.carId) : null,
+      key: widget.car != null ? ValueKey(widget.car?.carId) : null,
+      controller: slideableController,
       endActionPane: ActionPane(
         motion: const DrawerMotion(),
         extentRatio: 0.25,
         children: [
           //NOTE: slidable action is not allowed semantics - 'hasSize' exception
           SlidableAction(
-            onPressed: (context) => onDismissed?.call(),
+            onPressed: (context) => widget.onDismissed?.call(),
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
             icon: Icons.delete,
@@ -63,9 +78,15 @@ class AnnouncementListItem extends StatelessWidget {
             label: AppSemanticsLabels.announcementListItem,
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
-              onTap: () => isExploreItem
-                  ? AppRouter.goToDetails(from: DetailsPageSource.explore, carId: car?.carId ?? '')
-                  : AppRouter.goToDetails(from: DetailsPageSource.search, carId: car?.carId ?? ''),
+              onTap: () => widget.isExploreItem
+                  ? AppRouter.goToDetails(
+                      from: DetailsPageSource.explore,
+                      carId: widget.car?.carId ?? '',
+                    )
+                  : AppRouter.goToDetails(
+                      from: DetailsPageSource.search,
+                      carId: widget.car?.carId ?? '',
+                    ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: AppDimensions.contentPadding,
@@ -75,11 +96,13 @@ class AnnouncementListItem extends StatelessWidget {
                       Container(
                         height: 180,
                         decoration: BoxDecoration(
-                          color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
+                          color: (widget.car?.images.isEmpty ?? true)
+                              ? AppColors.placeholderColor
+                              : null,
                           borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                          image: (car?.images.isNotEmpty ?? false)
+                          image: (widget.car?.images.isNotEmpty ?? false)
                               ? DecorationImage(
-                                  image: AssetImage(car?.images.first ?? ''),
+                                  image: AssetImage(widget.car?.images.first ?? ''),
                                   fit: BoxFit.cover,
                                 )
                               : null,
@@ -97,19 +120,22 @@ class AnnouncementListItem extends StatelessWidget {
                             label: AppSemanticsLabels.favoriteButton,
                             child: InkWell(
                               onTap: () {
-                                if (car == null) return;
+                                if (widget.car == null) return;
 
-                                if (user?.favoriteIds.contains(car?.carId) ?? false) {
+                                if (widget.user?.favoriteIds.contains(widget.car?.carId) ?? false) {
                                   context.read<UserDataCubit>().removeCarIdFromFavorites(
-                                    car!.carId,
+                                    widget.car!.carId,
                                   );
                                 } else {
-                                  context.read<UserDataCubit>().addCarIdToFavorites(car!.carId);
+                                  context.read<UserDataCubit>().addCarIdToFavorites(
+                                    widget.car!.carId,
+                                  );
                                 }
                               },
                               child: AnimatedFavoriteIcon(
                                 size: AppDimensions.favoriteButtonSize,
-                                isFavorite: user?.favoriteIds.contains(car?.carId) ?? false,
+                                isFavorite:
+                                    widget.user?.favoriteIds.contains(widget.car?.carId) ?? false,
                               ),
                             ),
                           ),
@@ -127,7 +153,7 @@ class AnnouncementListItem extends StatelessWidget {
                           child: AppSemantics(
                             label: AppSemanticsLabels.announcementTitle,
                             child: Text(
-                              '${car?.manufacturer} ${car?.model ?? ''} ${car?.year ?? ''}'
+                              '${widget.car?.manufacturer} ${widget.car?.model ?? ''} ${widget.car?.year ?? ''}'
                                   .toUpperCase(),
                               style: AppTextStyles.zonaPro24,
                               maxLines: 2,
@@ -136,7 +162,7 @@ class AnnouncementListItem extends StatelessWidget {
                           ),
                         ),
 
-                        if (car?.isVerified ?? false) ...[const VerifiedBadge()],
+                        if (widget.car?.isVerified ?? false) ...[const VerifiedBadge()],
                       ],
                     ),
                   ),
@@ -150,25 +176,25 @@ class AnnouncementListItem extends StatelessWidget {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: '\$ ${car?.price ?? 0} ',
+                                text: '\$ ${widget.car?.price ?? 0} ',
                                 style: AppTextStyles.zonaPro20.copyWith(
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              if (car?.promoType != null)
+                              if (widget.car?.promoType != null)
                                 getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                             ],
                           ),
                         ),
 
-                        if (user?.isLocationPermissionGranted ?? false) ...[
+                        if (widget.user?.isLocationPermissionGranted ?? false) ...[
                           Text.rich(
                             TextSpan(
                               children: [
                                 getSpanIcon(icon: Icons.location_pin),
                                 TextSpan(
                                   text:
-                                      '${car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceWidgetText)}',
+                                      '${widget.car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceWidgetText)}',
                                   style: AppTextStyles.zonaPro20.copyWith(
                                     fontWeight: FontWeight.w400,
                                   ),
