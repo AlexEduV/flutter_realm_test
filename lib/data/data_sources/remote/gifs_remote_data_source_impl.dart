@@ -5,17 +5,20 @@ import 'package:test_futter_project/common/enums/server_failure.dart';
 import 'package:test_futter_project/core/network/app_http_client.dart';
 import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
 import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
+import 'package:test_futter_project/domain/models/env_params_model.dart';
+import 'package:test_futter_project/domain/usecases/env/get_env_data_by_key_use_case.dart';
 
 import '../../../common/constants/api_constants.dart';
 import '../../../core/di/injection_container.dart';
-import '../../../domain/data_sources/local/env_local_data_source.dart';
 
 class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   final AppHttpClient client;
 
   GifsRemoteDataSourceImpl(this.client);
 
-  final _apiKey = serviceLocator<EnvLocalDataSource>().get(key: ApiConstants.envKlipyKeyPath);
+  final _apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
+    EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
+  );
 
   @override
   Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(String query) async {

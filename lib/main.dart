@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_futter_project/common/constants/app_colors.dart';
 import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
+import 'package:test_futter_project/domain/usecases/env/init_env_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/init_region_models_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
@@ -37,7 +37,7 @@ void main() async {
   //tried gradle clean, invalidating caches, flutter clean -> melos bs, upgrading kotlin version.
 
   await serviceLocator<InitRegionModelsUseCase>().call();
-  await serviceLocator<EnvLocalDataSource>().init();
+  await serviceLocator<InitEnvUseCase>().call();
 
   ImageCacheUtil.initExtendedCacheSize();
 
