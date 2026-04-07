@@ -1,0 +1,39 @@
+name: PR Test & Auto-Merge
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          cache: true
+
+      - name: 🚀 Setup Very Good CLI
+        run: dart pub global activate very_good_cli
+
+      - name: 📦 Install deps
+        run: flutter pub get
+
+      - name: 🧪 Run Tests
+        run: |
+          export PATH="$PATH":"$HOME/.pub-cache/bin"
+          very_good test
+
+#  automerge:
+#    needs: test
+#    runs-on: ubuntu-latest
+#    if: github.event.pull_request.user.login == 'your-github-username' # Optional: only auto-merge your own PRs
+#    steps:
+#      - name: 🤖 Enable Automerge
+#        run: gh pr merge --auto --merge "$PR_URL"
+#        env:
+#          PR_URL: ${{github.event.pull_request.html_url}}
+#          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
