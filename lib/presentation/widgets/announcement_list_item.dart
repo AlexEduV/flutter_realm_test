@@ -70,7 +70,6 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
             children: [
               //NOTE: slidable action is not allowed semantics - 'hasSize' exception
               SlidableAction(
-                borderRadius: BorderRadius.circular(AppDimensions.normalL),
                 onPressed: (context) => widget.onDismissed?.call(),
                 backgroundColor: Colors.transparent,
                 foregroundColor: Colors.white,
