@@ -53,38 +53,36 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
       user: widget.user,
     );
 
-    return Flexible(
-      child: Padding(
-        padding: const EdgeInsets.all(AppDimensions.normalS),
-        child: widget.isExploreItem
-            ? Container(
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(AppDimensions.normalL),
+    return Padding(
+      padding: const EdgeInsets.all(AppDimensions.normalS),
+      child: widget.isExploreItem
+          ? Container(
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+              ),
+              child: Slidable(
+                controller: slidableController,
+                key: widget.car != null ? ValueKey(carId) : null,
+                endActionPane: ActionPane(
+                  motion: const DrawerMotion(),
+                  extentRatio: 0.25,
+                  children: [
+                    //NOTE: slidable action is not allowed semantics - 'hasSize' exception
+                    SlidableAction(
+                      autoClose: false,
+                      onPressed: (context) => widget.onDismissed?.call(),
+                      backgroundColor: Colors.transparent,
+                      foregroundColor: Colors.white,
+                      icon: Icons.close,
+                      label: context.tr(L10nKeys.deleteButtonTitle),
+                    ),
+                  ],
                 ),
-                child: Slidable(
-                  controller: slidableController,
-                  key: widget.car != null ? ValueKey(carId) : null,
-                  endActionPane: ActionPane(
-                    motion: const DrawerMotion(),
-                    extentRatio: 0.25,
-                    children: [
-                      //NOTE: slidable action is not allowed semantics - 'hasSize' exception
-                      SlidableAction(
-                        autoClose: false,
-                        onPressed: (context) => widget.onDismissed?.call(),
-                        backgroundColor: Colors.transparent,
-                        foregroundColor: Colors.white,
-                        icon: Icons.close,
-                        label: context.tr(L10nKeys.deleteButtonTitle),
-                      ),
-                    ],
-                  ),
-                  child: content,
-                ),
-              )
-            : content,
-      ),
+                child: content,
+              ),
+            )
+          : content,
     );
   }
 }

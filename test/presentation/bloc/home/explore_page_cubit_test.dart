@@ -97,8 +97,8 @@ void main() {
     act: (cubit) => cubit.removeCarById('1'),
     expect: () => [
       isA<ExplorePageState>()
-          .having((s) => s.cars.length, 'cars.length', 1)
-          .having((s) => s.cars.first.carId, 'remaining carId', '2'),
+          .having((s) => s.cars.length, 'cars.length', 2)
+          .having((s) => s.cars.first.isShown, 'deleted car', false),
     ],
   );
 }
