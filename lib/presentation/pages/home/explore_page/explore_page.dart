@@ -139,21 +139,30 @@ class ExplorePage extends StatelessWidget {
   void _handleDelete(Car carToDelete, int index, BuildContext context) {
     // 1. Capture the data while the object is still valid
     final id = carToDelete.carId;
+    const animationDuration = Duration(milliseconds: 300);
 
     // 2. Animate out using a "Snapshot" instance of the same widget
-    // listKey.currentState?.removeItem(
-    //   index,
-    //   (context, animation) => SizeTransition(
-    //     sizeFactor: animation,
-    //     child: const AnnouncementListItem(car: null, user: null, onDismissed: null),
-    //   ),
-    //   duration: const Duration(milliseconds: 300),
-    // );
+    //todo: animation does not work
+    listKey.currentState?.removeItem(
+      index,
+      (context, animation) => SizeTransition(
+        sizeFactor: animation,
+        child: AnnouncementListItem(
+          car: CarEntity.fromSchema(carToDelete),
+          user: context.read<UserDataCubit>().user,
+          onDismissed: null,
+        ),
+      ),
+      duration: animationDuration,
+    );
 
     // 3. Delete once
     //serviceLocator<DeleteCarByIdUseCase>().call(id);
 
-    context.read<ExplorePageCubit>().removeCarById(id);
+    Future.delayed(animationDuration, () {
+      if (!context.mounted) return;
+      context.read<ExplorePageCubit>().removeCarById(id);
+    });
   }
 
   bool getShouldShowLastSeenWidget(Map<DateTime, String>? lastSeenCar) {
