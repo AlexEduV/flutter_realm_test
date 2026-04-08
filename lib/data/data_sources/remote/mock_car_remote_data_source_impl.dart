@@ -109,23 +109,19 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
   List<CarDto> _generateRandomUpdates() {
     return initialData.map((car) {
       final random = Random();
-      int priceDelta = 0;
       int? distanceTo;
       switch (car.carId) {
         case '1':
-          priceDelta = -random.nextInt(1000);
           distanceTo = random.nextInt(60);
           break;
         case '2':
-          priceDelta = random.nextInt(500);
           distanceTo = random.nextInt(50);
           break;
         case '3':
-          priceDelta = random.nextInt(1000);
           distanceTo = random.nextInt(50);
           break;
       }
-      return car.copyWith(price: (car.price ?? 0) + priceDelta, distanceTo: distanceTo);
+      return car.copyWith(distanceTo: distanceTo);
     }).toList();
   }
 
