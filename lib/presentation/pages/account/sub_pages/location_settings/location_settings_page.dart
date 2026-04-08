@@ -66,7 +66,6 @@ class LocationSettingsPage extends StatelessWidget {
 
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.locationSettingsItemRegion),
-                        //todo:
                         description: context.tr('${L10nKeys.countryPrefix}${region?.locale}'),
                         icon: Icons.explore,
                         onTap: () => onRegionItemTap(state, context),
