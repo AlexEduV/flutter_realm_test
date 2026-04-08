@@ -106,26 +106,33 @@ class ExplorePage extends StatelessWidget {
                             tween: Tween(begin: 1, end: !car.isShown ? 0 : 1),
                             duration: const Duration(milliseconds: 300),
                             builder: (context, removalValue, child) {
-                              return TweenAnimationBuilder<double>(
-                                tween: Tween(begin: 0, end: 1),
-                                duration: Duration(milliseconds: 300 + (index * 200)),
-                                builder: (context, value, child) {
-                                  return Transform.scale(
-                                    alignment: Alignment.topCenter,
-                                    scaleY: removalValue,
-                                    child: Opacity(
-                                      opacity: value,
+                              final hasRemovalAnimationEnded = removalValue == 0;
+
+                              return SizedBox(
+                                child: TweenAnimationBuilder<double>(
+                                  tween: Tween(begin: 0, end: 1),
+                                  duration: Duration(milliseconds: 300 + (index * 200)),
+                                  builder: (context, value, child) {
+                                    return SizedBox(
+                                      height: !hasRemovalAnimationEnded ? null : 0,
                                       child: Transform.scale(
-                                        scale: 0.95 + (0.05 * value),
-                                        child: _buildItem(
-                                          CarExtensions.fromEntity(car),
-                                          index,
-                                          context,
+                                        alignment: Alignment.topCenter,
+                                        scaleY: removalValue,
+                                        child: Opacity(
+                                          opacity: value,
+                                          child: Transform.scale(
+                                            scale: 0.95 + (0.05 * value),
+                                            child: _buildItem(
+                                              CarExtensions.fromEntity(car),
+                                              index,
+                                              context,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
+                                    );
+                                  },
+                                ),
                               );
                             },
                           );
