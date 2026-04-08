@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
-    show ActionPane, DrawerMotion, Slidable, SlidableAction, SlidableController;
+    show ActionPane, DrawerMotion, Slidable, SlidableAction;
 import 'package:test_futter_project/common/constants/app_dimensions.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
@@ -9,7 +9,7 @@ import 'package:test_futter_project/presentation/widgets/announcement_item/annou
 
 import '../../../l10n/l10n_keys.dart';
 
-class AnnouncementListItem extends StatefulWidget {
+class AnnouncementListItem extends StatelessWidget {
   final CarEntity? car;
   final UserEntity? user;
   final void Function()? onDismissed;
@@ -24,46 +24,21 @@ class AnnouncementListItem extends StatefulWidget {
   });
 
   @override
-  State<AnnouncementListItem> createState() => _AnnouncementListItemState();
-}
-
-class _AnnouncementListItemState extends State<AnnouncementListItem> with TickerProviderStateMixin {
-  late SlidableController slidableController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    slidableController = SlidableController(this);
-  }
-
-  @override
-  void dispose() {
-    slidableController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final carId = widget.car?.carId ?? '';
+    final carId = car?.carId ?? '';
 
-    final content = AnnouncementItemBody(
-      car: widget.car,
-      isExploreItem: widget.isExploreItem,
-      user: widget.user,
-    );
+    final content = AnnouncementItemBody(car: car, isExploreItem: isExploreItem, user: user);
 
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalS),
-      child: widget.isExploreItem
+      child: isExploreItem
           ? Container(
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(AppDimensions.normalL),
               ),
               child: Slidable(
-                controller: slidableController,
-                key: widget.car != null ? ValueKey(carId) : null,
+                key: car != null ? ValueKey(carId) : null,
                 endActionPane: ActionPane(
                   motion: const DrawerMotion(),
                   extentRatio: 0.25,
@@ -71,7 +46,7 @@ class _AnnouncementListItemState extends State<AnnouncementListItem> with Ticker
                     //NOTE: slidable action is not allowed semantics - 'hasSize' exception
                     SlidableAction(
                       autoClose: false,
-                      onPressed: (context) => widget.onDismissed?.call(),
+                      onPressed: (context) => onDismissed?.call(),
                       backgroundColor: Colors.transparent,
                       foregroundColor: Colors.white,
                       icon: Icons.close,
