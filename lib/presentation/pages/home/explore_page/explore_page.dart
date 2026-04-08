@@ -107,6 +107,7 @@ class ExplorePage extends StatelessWidget {
                             duration: const Duration(milliseconds: 300),
                             builder: (context, removalValue, child) {
                               final hasRemovalAnimationEnded = removalValue == 0;
+                              final curvedRemovalValue = Curves.easeInOut.transform(removalValue);
 
                               return SizedBox(
                                 child: TweenAnimationBuilder<double>(
@@ -117,7 +118,7 @@ class ExplorePage extends StatelessWidget {
                                       height: !hasRemovalAnimationEnded ? null : 0,
                                       child: Transform.scale(
                                         alignment: Alignment.topCenter,
-                                        scaleY: removalValue,
+                                        scaleY: curvedRemovalValue,
                                         child: Opacity(
                                           opacity: value,
                                           child: Transform.scale(
