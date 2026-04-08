@@ -20,10 +20,9 @@ import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePage extends StatelessWidget {
-  final GlobalKey<AnimatedListState> listKey;
   final ScrollController scrollController;
 
-  const ExplorePage({required this.listKey, required this.scrollController, super.key});
+  const ExplorePage({required this.scrollController, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +98,6 @@ class ExplorePage extends StatelessWidget {
                     buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                     builder: (context, userState) {
                       return SliverList(
-                        key: cars.isEmpty ? const ValueKey('empty') : listKey,
                         delegate: SliverChildBuilderDelegate((context, index) {
                           final car = cars[index];
                           return TweenAnimationBuilder<double>(

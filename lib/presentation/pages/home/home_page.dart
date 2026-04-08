@@ -25,7 +25,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  final GlobalKey<AnimatedListState> exploreListKey = GlobalKey<AnimatedListState>();
   final PageController _pageController = PageController();
   int _bottomBarIndexDiff = 0;
 
@@ -80,7 +79,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            ExplorePage(listKey: exploreListKey, scrollController: scrollController),
+            ExplorePage(scrollController: scrollController),
             const FavoritesPage(),
             const InboxPage(),
             const AccountPage(),
@@ -100,7 +99,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       return;
     }
 
-    context.go(AppRoutes.home + AppRoutes.newItem, extra: exploreListKey);
+    context.go(AppRoutes.home + AppRoutes.newItem);
     return;
   }
 }

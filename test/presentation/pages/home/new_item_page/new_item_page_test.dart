@@ -75,7 +75,7 @@ void main() {
           BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
-        child: MaterialApp(home: NewItemPage(exploreListKey: GlobalKey<AnimatedListState>())),
+        child: const MaterialApp(home: NewItemPage()),
       ),
     );
 
@@ -115,7 +115,7 @@ void main() {
           BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
-        child: MaterialApp(home: NewItemPage(exploreListKey: GlobalKey<AnimatedListState>())),
+        child: const MaterialApp(home: NewItemPage()),
       ),
     );
 
@@ -149,7 +149,7 @@ void main() {
               BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
               BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
             ],
-            child: NewItemPage(exploreListKey: GlobalKey<AnimatedListState>()),
+            child: const MaterialApp(home: NewItemPage()),
           ),
         ),
       ],
@@ -215,7 +215,7 @@ void main() {
           BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
-        child: MaterialApp(home: NewItemPage(exploreListKey: GlobalKey<AnimatedListState>())),
+        child: const MaterialApp(home: MaterialApp(home: NewItemPage())),
       ),
     );
 

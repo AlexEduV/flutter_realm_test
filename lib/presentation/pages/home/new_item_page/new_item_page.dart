@@ -31,9 +31,7 @@ import '../../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../../widgets/app_semantics.dart';
 
 class NewItemPage extends StatefulWidget {
-  final GlobalKey<AnimatedListState>? exploreListKey;
-
-  const NewItemPage({required this.exploreListKey, super.key});
+  const NewItemPage({super.key});
 
   @override
   State<NewItemPage> createState() => _NewItemPageState();
@@ -213,7 +211,6 @@ class _NewItemPageState extends State<NewItemPage> {
     userDataCubit.addCarIdToCreated(newCarId);
 
     final currentCars = serviceLocator<GetAllCarsUseCase>().call();
-    final insertionIndex = currentCars.length;
 
     final car = CarEntity(
       carId: newCarId,
@@ -232,7 +229,6 @@ class _NewItemPageState extends State<NewItemPage> {
 
     serviceLocator<AddCarUseCase>().call(car);
 
-    widget.exploreListKey?.currentState?.insertItem(insertionIndex);
     context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
 
     context.go(AppRoutes.home, extra: {'fromSetup': true});
