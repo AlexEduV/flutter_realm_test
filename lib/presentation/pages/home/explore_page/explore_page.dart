@@ -111,6 +111,7 @@ class ExplorePage extends StatelessWidget {
                                 duration: Duration(milliseconds: 300 + (index * 200)),
                                 builder: (context, value, child) {
                                   return Transform.scale(
+                                    alignment: Alignment.topCenter,
                                     scaleY: removalValue,
                                     child: Opacity(
                                       opacity: value,
