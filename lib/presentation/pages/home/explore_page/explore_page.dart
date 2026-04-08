@@ -107,7 +107,9 @@ class ExplorePage extends StatelessWidget {
                             duration: const Duration(milliseconds: 300),
                             builder: (context, removalValue, child) {
                               final hasRemovalAnimationEnded = removalValue == 0;
-                              final curvedRemovalValue = Curves.easeInOut.transform(removalValue);
+                              final curvedRemovalValue = Curves.linearToEaseOut.transform(
+                                removalValue,
+                              );
 
                               return SizedBox(
                                 child: TweenAnimationBuilder<double>(
