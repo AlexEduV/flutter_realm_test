@@ -94,7 +94,7 @@ void main() {
     'removeCarAt removes the car at the given index',
     build: () => cubit,
     seed: () => ExplorePageState(cars: carList),
-    act: (cubit) => cubit.removeCarAt(0),
+    act: (cubit) => cubit.removeCarById(0),
     expect: () => [
       isA<ExplorePageState>()
           .having((s) => s.cars.length, 'cars.length', 1)

@@ -8,7 +8,6 @@ import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -93,7 +92,7 @@ class ExplorePage extends StatelessWidget {
                   );
                 }
 
-                final cars = state.cars;
+                final cars = state.cars.where((element) => element.isShown == true).toList();
                 return SliverPadding(
                   padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
                   sliver: BlocBuilder<UserDataCubit, UserDataState>(
@@ -142,19 +141,19 @@ class ExplorePage extends StatelessWidget {
     final id = carToDelete.carId;
 
     // 2. Animate out using a "Snapshot" instance of the same widget
-    listKey.currentState?.removeItem(
-      index,
-      (context, animation) => SizeTransition(
-        sizeFactor: animation,
-        child: const AnnouncementListItem(car: null, user: null, onDismissed: null),
-      ),
-      duration: const Duration(milliseconds: 300),
-    );
+    // listKey.currentState?.removeItem(
+    //   index,
+    //   (context, animation) => SizeTransition(
+    //     sizeFactor: animation,
+    //     child: const AnnouncementListItem(car: null, user: null, onDismissed: null),
+    //   ),
+    //   duration: const Duration(milliseconds: 300),
+    // );
 
     // 3. Delete once
-    serviceLocator<DeleteCarByIdUseCase>().call(id);
+    //serviceLocator<DeleteCarByIdUseCase>().call(id);
 
-    context.read<ExplorePageCubit>().removeCarAt(index);
+    context.read<ExplorePageCubit>().removeCarById(id);
   }
 
   bool getShouldShowLastSeenWidget(Map<DateTime, String>? lastSeenCar) {

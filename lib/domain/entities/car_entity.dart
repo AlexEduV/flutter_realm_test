@@ -24,6 +24,7 @@ class CarEntity {
   int? distanceTo;
   int? price = 0;
   final List<String> images;
+  bool isShown;
 
   CarEntity({
     required this.carId,
@@ -42,6 +43,7 @@ class CarEntity {
     this.distanceTo,
     this.price,
     this.images = const [],
+    this.isShown = true,
   });
 
   factory CarEntity.empty() {
@@ -75,6 +77,7 @@ class CarEntity {
     int? distanceTo,
     int? price,
     List<String>? images,
+    bool? isShown,
   }) {
     return CarEntity(
       carId: carId ?? this.carId,
@@ -93,6 +96,7 @@ class CarEntity {
       distanceTo: distanceTo ?? this.distanceTo,
       price: price ?? this.price,
       images: images ?? this.images,
+      isShown: isShown ?? this.isShown,
     );
   }
 
@@ -164,7 +168,8 @@ class CarEntity {
           kilometers == other.kilometers &&
           distanceTo == other.distanceTo &&
           price == other.price &&
-          images == other.images;
+          images == other.images &&
+          isShown == other.isShown;
 
   @override
   int get hashCode =>
@@ -183,5 +188,6 @@ class CarEntity {
       (kilometers ?? 0).hashCode ^
       (distanceTo ?? 0).hashCode ^
       (price ?? 0).hashCode ^
-      (images).hashCode;
+      (images).hashCode ^
+      isShown.hashCode;
 }
