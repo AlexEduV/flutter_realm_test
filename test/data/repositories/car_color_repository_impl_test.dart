@@ -10,38 +10,74 @@ import 'car_color_repository_impl_test.mocks.dart';
 
 @GenerateMocks([CarColorLocalDataSource])
 void main() {
-  late MockCarColorLocalDataSource mockLocalDataSource;
+  late MockCarColorLocalDataSource mockDataSource;
   late CarColorRepositoryImpl repository;
 
   setUp(() {
-    mockLocalDataSource = MockCarColorLocalDataSource();
-    repository = CarColorRepositoryImpl(mockLocalDataSource);
+    mockDataSource = MockCarColorLocalDataSource();
+    repository = CarColorRepositoryImpl(mockDataSource);
   });
 
-  test('getColors delegates to local data source and returns result', () {
-    // Arrange
-    final expectedColors = {'red': const Color(0xFFFF0000), 'blue': const Color(0xFF0000FF)};
-    when(mockLocalDataSource.getColors()).thenReturn(expectedColors);
+  group('getColors', () {
+    test('delegates to CarColorLocalDataSource.getColors', () {
+      final colors = {'red': const Color(0xFFFF0000)};
+      when(mockDataSource.getColors()).thenReturn(colors);
 
-    // Act
-    final result = repository.getColors();
-
-    // Assert
-    expect(result, expectedColors);
-    verify(mockLocalDataSource.getColors()).called(1);
-    verifyNoMoreInteractions(mockLocalDataSource);
+      expect(repository.getColors(), colors);
+      verify(mockDataSource.getColors()).called(1);
+    });
   });
 
-  test('getColors returns empty map if local data source returns empty', () {
-    // Arrange
-    when(mockLocalDataSource.getColors()).thenReturn({});
+  group('getColorByName', () {
+    final colors = {'red': const Color(0xFFFF0000), 'blue': const Color(0xFF0000FF)};
 
-    // Act
-    final result = repository.getColors();
+    setUp(() {
+      when(mockDataSource.getColors()).thenReturn(colors);
+    });
 
-    // Assert
-    expect(result, isEmpty);
-    verify(mockLocalDataSource.getColors()).called(1);
-    verifyNoMoreInteractions(mockLocalDataSource);
+    test('returns correct color for exact match', () {
+      expect(repository.getColorByName('red'), const Color(0xFFFF0000));
+    });
+
+    test('returns correct color for case-insensitive match', () {
+      expect(repository.getColorByName('RED'), const Color(0xFFFF0000));
+      expect(repository.getColorByName('Blue'), const Color(0xFF0000FF));
+    });
+
+    test('returns first color as fallback if no match', () {
+      expect(repository.getColorByName('green'), const Color(0xFFFF0000));
+    });
+
+    test('returns null if colors map is empty', () {
+      when(mockDataSource.getColors()).thenReturn({});
+      expect(repository.getColorByName('red'), isNull);
+    });
+  });
+
+  group('getColorNameFromColor', () {
+    final colors = {'redColor': const Color(0xFFFF0000), 'blueColor': const Color(0xFF0000FF)};
+
+    setUp(() {
+      when(mockDataSource.getColors()).thenReturn(colors);
+    });
+
+    test('returns correct name for exact color match', () {
+      // Assuming camelCaseToTitle() turns 'redColor' into 'Red Color'
+      expect(repository.getColorNameFromColor(const Color(0xFFFF0000)), 'Red Color');
+      expect(repository.getColorNameFromColor(const Color(0xFF0000FF)), 'Blue Color');
+    });
+
+    test('returns empty string if no match', () {
+      expect(repository.getColorNameFromColor(const Color(0xFF00FF00)), '');
+    });
+
+    test('returns empty string if color is null', () {
+      expect(repository.getColorNameFromColor(null), '');
+    });
+
+    test('returns empty string if colors map is empty', () {
+      when(mockDataSource.getColors()).thenReturn({});
+      expect(repository.getColorNameFromColor(const Color(0xFFFF0000)), '');
+    });
   });
 }
