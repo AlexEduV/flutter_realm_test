@@ -211,8 +211,8 @@ class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
   );
 
   @override
-  void removeCarAt(int? index) => super.noSuchMethod(
-    Invocation.method(#removeCarAt, [index]),
+  void removeCarById(String? id) => super.noSuchMethod(
+    Invocation.method(#removeCarById, [id]),
     returnValueForMissingStub: null,
   );
 

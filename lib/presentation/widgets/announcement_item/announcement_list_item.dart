@@ -27,32 +27,37 @@ class AnnouncementListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final carId = car?.carId ?? '';
 
+    final content = AnnouncementItemBody(car: car, isExploreItem: isExploreItem, user: user);
+
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalS),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(AppDimensions.normalL),
-        ),
-        child: Slidable(
-          key: car != null ? ValueKey(carId) : null,
-          endActionPane: ActionPane(
-            motion: const DrawerMotion(),
-            extentRatio: 0.25,
-            children: [
-              //NOTE: slidable action is not allowed semantics - 'hasSize' exception
-              SlidableAction(
-                onPressed: (context) => onDismissed?.call(),
-                backgroundColor: Colors.transparent,
-                foregroundColor: Colors.white,
-                icon: Icons.close,
-                label: context.tr(L10nKeys.deleteButtonTitle),
+      child: isExploreItem
+          ? Container(
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(AppDimensions.normalL),
               ),
-            ],
-          ),
-          child: AnnouncementItemBody(car: car, isExploreItem: isExploreItem, user: user),
-        ),
-      ),
+              child: Slidable(
+                key: car != null ? ValueKey(carId) : null,
+                endActionPane: ActionPane(
+                  motion: const DrawerMotion(),
+                  extentRatio: 0.25,
+                  children: [
+                    //NOTE: slidable action is not allowed semantics - 'hasSize' exception
+                    SlidableAction(
+                      autoClose: false,
+                      onPressed: (context) => onDismissed?.call(),
+                      backgroundColor: Colors.transparent,
+                      foregroundColor: Colors.white,
+                      icon: Icons.close,
+                      label: context.tr(L10nKeys.deleteButtonTitle),
+                    ),
+                  ],
+                ),
+                child: content,
+              ),
+            )
+          : content,
     );
   }
 }

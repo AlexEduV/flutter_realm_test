@@ -446,6 +446,11 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
           as List<String>);
 
   @override
+  bool get isShown =>
+      (super.noSuchMethod(Invocation.getter(#isShown), returnValue: false)
+          as bool);
+
+  @override
   set kilometers(int? _kilometers) => super.noSuchMethod(
     Invocation.setter(#kilometers, _kilometers),
     returnValueForMissingStub: null,
@@ -460,6 +465,12 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
   @override
   set price(int? _price) => super.noSuchMethod(
     Invocation.setter(#price, _price),
+    returnValueForMissingStub: null,
+  );
+
+  @override
+  set isShown(bool? _isShown) => super.noSuchMethod(
+    Invocation.setter(#isShown, _isShown),
     returnValueForMissingStub: null,
   );
 
@@ -481,6 +492,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
     int? distanceTo,
     int? price,
     List<String>? images,
+    bool? isShown,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#copyWith, [], {
@@ -500,6 +512,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
               #distanceTo: distanceTo,
               #price: price,
               #images: images,
+              #isShown: isShown,
             }),
             returnValue: _FakeCarEntity_7(
               this,
@@ -520,6 +533,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
                 #distanceTo: distanceTo,
                 #price: price,
                 #images: images,
+                #isShown: isShown,
               }),
             ),
           )

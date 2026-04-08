@@ -11,19 +11,19 @@ import '../../common/extensions/car_scheme_extension.dart';
 import '../../domain/entities/car_entity.dart';
 
 class CarRepositoryImpl implements CarRepository {
-  final BaseLocalStorage localStorage;
-  final CarRemoteDataSource apiService;
+  final BaseLocalStorage _localStorage;
+  final CarRemoteDataSource _carRemoteDataSource;
 
-  CarRepositoryImpl(this.localStorage, this.apiService);
+  CarRepositoryImpl(this._localStorage, this._carRemoteDataSource);
 
   @override
   void addCar(CarEntity carEntity) {
-    localStorage.add(carEntity);
+    _localStorage.add(carEntity);
   }
 
   @override
   Stream<List<CarEntity>> watchCars() {
-    return localStorage.watch<Car>().map((changes) {
+    return _localStorage.watch<Car>().map((changes) {
       final realmChanges = changes as RealmResultsChanges<Car>;
 
       final results = realmChanges.results;
@@ -40,16 +40,16 @@ class CarRepositoryImpl implements CarRepository {
   Future<void> syncCars() async {
     deleteAll();
 
-    final dtos = await apiService.fetchCars();
+    final dtos = await _carRemoteDataSource.fetchCars();
     for (final dto in dtos) {
-      localStorage.update(CarExtensions.fromDto(dto));
+      _localStorage.update(CarExtensions.fromDto(dto));
     }
 
     // 3. Listen to the stream for the 5-second updates
-    apiService.carStream.listen(
+    _carRemoteDataSource.carStream.listen(
       (updatedDtos) {
         for (final dto in updatedDtos) {
-          localStorage.update(CarExtensions.fromDto(dto));
+          _localStorage.update(CarExtensions.fromDto(dto));
         }
       },
       onError: (error, _) {
@@ -63,26 +63,26 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   void deleteCarById(String id) {
-    localStorage.deleteById(id);
+    _localStorage.deleteById(id);
   }
 
   @override
   List<CarEntity> getAllCars() {
-    return localStorage.getAll().toList();
+    return _localStorage.getAll().toList();
   }
 
   @override
   void deleteAll() {
-    localStorage.deleteAllCars();
+    _localStorage.deleteAllCars();
   }
 
   @override
   CarEntity getCarById(String id) {
-    return localStorage.getCarById(id);
+    return _localStorage.getCarById(id);
   }
 
   @override
   int getMaxCarId() {
-    return localStorage.getMaxCarId();
+    return _localStorage.getMaxCarId();
   }
 }

@@ -50,11 +50,7 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.newItem,
             pageBuilder: (context, state) {
-              final listKey = state.extra is GlobalKey<AnimatedListState>
-                  ? state.extra as GlobalKey<AnimatedListState>
-                  : null;
-
-              return CupertinoPage(child: NewItemPage(exploreListKey: listKey));
+              return const CupertinoPage(child: NewItemPage());
             },
           ),
           GoRoute(

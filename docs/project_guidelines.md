@@ -39,9 +39,9 @@ This document consolidates best‑practice guidelines for developing, testing, a
 - Follow **Conventional Commits** for commit messages:
   ```text
   type(scope?): subject
-  
+
   body (optional)
-  
+
   footer (e.g., "Closes #123")
   ```
   - `type` = `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`.
@@ -80,15 +80,18 @@ This document consolidates best‑practice guidelines for developing, testing, a
 
 ## 10. Common Issues
 
-# when writing tests for Shared Preferences, the error might popup: `MissingPluginException(No implementation found for method getAll on channel plugins.flutter.io/shared_preferences)`
-# it just requires setting up mock data:
-# `SharedPreferences.setMockInitialValues({}); // Mock empty storage`
+- when writing tests for Shared Preferences, the error might popup: `MissingPluginException(No implementation found for method getAll on channel plugins.flutter.io/shared_preferences)`
+  it just requires setting up mock data:
+  `SharedPreferences.setMockInitialValues({}); // Mock empty storage`
 
-# when using List in the realm and mapping it to entity, use List<>.from(schemeList), because when not,
-# it creates exceptions on update - list is empty or invalid.
+- when using List in the realm and mapping it to entity, use List<>.from(schemeList), because when not,
+  it creates exceptions on update - list is empty or invalid.
 
-# when running tests, every time `pub get` is run, even though no dependencies were changed. This is
-# the default behavior, starting from flutter 3.13 and cannot be turned off.
+- when running tests, every time `pub get` is run, even though no dependencies were changed. This is
+  the default behavior, starting from flutter 3.13 and cannot be turned off.
+
+- When using Sliver List with AnimatedListState key, the value of the animation is ignored, since
+  it's not the same type of key. Instead, the animation is done through the setState or a cubit.
 
 ---
 

@@ -8,7 +8,6 @@ import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/data/models/scheme.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_futter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -21,10 +20,9 @@ import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePage extends StatelessWidget {
-  final GlobalKey<AnimatedListState> listKey;
   final ScrollController scrollController;
 
-  const ExplorePage({required this.listKey, required this.scrollController, super.key});
+  const ExplorePage({required this.scrollController, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -100,18 +98,41 @@ class ExplorePage extends StatelessWidget {
                     buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                     builder: (context, userState) {
                       return SliverList(
-                        key: cars.isEmpty ? const ValueKey('empty') : listKey,
                         delegate: SliverChildBuilderDelegate((context, index) {
                           final car = cars[index];
                           return TweenAnimationBuilder<double>(
-                            tween: Tween(begin: 0, end: 1),
-                            duration: Duration(milliseconds: 300 + (index * 200)),
-                            builder: (context, value, child) {
-                              return Opacity(
-                                opacity: value,
-                                child: Transform.scale(
-                                  scale: 0.95 + (0.05 * value),
-                                  child: _buildItem(CarExtensions.fromEntity(car), index, context),
+                            tween: Tween(begin: 1, end: !car.isShown ? 0 : 1),
+                            duration: const Duration(milliseconds: 300),
+                            builder: (context, removalValue, child) {
+                              final hasRemovalAnimationEnded = removalValue == 0;
+                              final curvedRemovalValue = Curves.linearToEaseOut.transform(
+                                removalValue,
+                              );
+
+                              return SizedBox(
+                                child: TweenAnimationBuilder<double>(
+                                  tween: Tween(begin: 0, end: 1),
+                                  duration: Duration(milliseconds: 300 + (index * 200)),
+                                  builder: (context, value, child) {
+                                    return SizedBox(
+                                      height: !hasRemovalAnimationEnded ? null : 0,
+                                      child: Transform.scale(
+                                        alignment: Alignment.topCenter,
+                                        scaleY: curvedRemovalValue,
+                                        child: Opacity(
+                                          opacity: value,
+                                          child: Transform.scale(
+                                            scale: 0.95 + (0.05 * value),
+                                            child: _buildItem(
+                                              CarExtensions.fromEntity(car),
+                                              index,
+                                              context,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               );
                             },
@@ -141,20 +162,10 @@ class ExplorePage extends StatelessWidget {
     // 1. Capture the data while the object is still valid
     final id = carToDelete.carId;
 
-    // 2. Animate out using a "Snapshot" instance of the same widget
-    listKey.currentState?.removeItem(
-      index,
-      (context, animation) => SizeTransition(
-        sizeFactor: animation,
-        child: const AnnouncementListItem(car: null, user: null, onDismissed: null),
-      ),
-      duration: const Duration(milliseconds: 300),
-    );
-
     // 3. Delete once
-    serviceLocator<DeleteCarByIdUseCase>().call(id);
+    //serviceLocator<DeleteCarByIdUseCase>().call(id);
 
-    context.read<ExplorePageCubit>().removeCarAt(index);
+    context.read<ExplorePageCubit>().removeCarById(id);
   }
 
   bool getShouldShowLastSeenWidget(Map<DateTime, String>? lastSeenCar) {

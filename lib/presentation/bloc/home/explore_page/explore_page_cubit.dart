@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/extensions/list_extension.dart';
 import 'package:test_futter_project/domain/entities/article_entity.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
 import 'package:test_futter_project/domain/usecases/articles/fetch_articles_use_case.dart';
@@ -29,7 +30,17 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(isLoading: false));
 
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
-      emit(state.copyWith(cars: entities));
+      final currentList = state.cars;
+
+      for (final car in currentList) {
+        final index = entities.indexWhereOrNull((element) => element.carId == car.carId);
+
+        if (index == null) continue;
+
+        entities[index].isShown = car.isShown;
+      }
+
+      updateCars(entities);
     });
   }
 
@@ -37,10 +48,13 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(cars: newValue));
   }
 
-  void removeCarAt(int index) {
+  void removeCarById(String id) {
     final cars = List<CarEntity>.from(state.cars);
-    cars.removeAt(index);
+    final index = cars.indexWhereOrNull((element) => element.carId == id);
 
+    if (index == null) return;
+
+    cars[index] = cars[index].copyWith(isShown: false);
     emit(state.copyWith(cars: cars));
   }
 
