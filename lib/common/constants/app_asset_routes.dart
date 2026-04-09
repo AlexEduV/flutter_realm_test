@@ -15,5 +15,5 @@ class AppAssetRoutes {
 
   static const envRoute = '$assetFolder${envFolder}environment.env';
 
-  static const errorImageRoute = '$assetFolder${imagesFolder}404-background.jpg';
+  static const errorImageRoute = '$assetFolder${imagesFolder}404-background-2.jpg';
 }

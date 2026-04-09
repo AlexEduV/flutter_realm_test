@@ -18,6 +18,7 @@ class NetworkErrorWidget extends StatelessWidget {
           children: [
             SizedBox(
               width: double.infinity,
+              height: double.infinity,
               child: Image.asset(
                 AppAssetRoutes.errorImageRoute,
                 fit: BoxFit.cover,
