@@ -34,6 +34,9 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600; // You can adjust this threshold
+
     return BlocBuilder<SearchPageCubit, SearchPageState>(
       buildWhen: (previous, current) =>
           previous.drawerOpened != current.drawerOpened ||
@@ -170,15 +173,16 @@ class _SearchPageState extends State<SearchPage> {
                     sliver: BlocBuilder<UserDataCubit, UserDataState>(
                       buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                       builder: (context, userState) {
-                        return SliverList(
-                          delegate: SliverChildBuilderDelegate((context, index) {
+                        return SliverGrid.count(
+                          crossAxisCount: isTablet ? 2 : 1,
+                          children: List.generate(state.results.length, (index) {
                             return AnnouncementListItem(
                               isExploreItem: false,
                               car: state.results[index],
                               user: context.read<UserDataCubit>().user,
                               onDismissed: () {},
                             );
-                          }, childCount: state.results.length),
+                          }),
                         );
                       },
                     ),
