@@ -94,7 +94,7 @@ class ExplorePage extends StatelessWidget {
                   );
                 }
 
-                final cars = state.cars;
+                final cars = state.cars.where((element) => element.isShown == true).toList();
                 return SliverPadding(
                   padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
                   sliver: BlocBuilder<UserDataCubit, UserDataState>(
