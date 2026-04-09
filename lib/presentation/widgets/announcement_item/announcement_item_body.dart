@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
 
 import '../../../common/constants/app_colors.dart';
@@ -51,7 +52,7 @@ class AnnouncementItemBody extends StatelessWidget {
               Stack(
                 children: [
                   AspectRatio(
-                    aspectRatio: 16 / 9,
+                    aspectRatio: AppConstants.aspectRatio,
                     child: Container(
                       decoration: BoxDecoration(
                         color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,

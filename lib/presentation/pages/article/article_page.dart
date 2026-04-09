@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/common/constants/app_dimensions.dart';
 import 'package:test_futter_project/common/constants/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
@@ -74,7 +75,7 @@ class _ArticlePageState extends State<ArticlePage> {
                       spacing: AppDimensions.normalL,
                       children: [
                         AspectRatio(
-                          aspectRatio: 16 / 9,
+                          aspectRatio: AppConstants.aspectRatio,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(AppDimensions.normalL),
                             child: CachedNetworkImage(

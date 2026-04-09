@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/constants/api_constants.dart';
 import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/common/constants/app_dimensions.dart';
 import 'package:test_futter_project/common/constants/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -137,7 +138,7 @@ class _DetailsPageState extends State<DetailsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AspectRatio(
-                  aspectRatio: 16 / 9,
+                  aspectRatio: AppConstants.aspectRatio,
                   child: Container(
                     decoration: BoxDecoration(
                       color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
