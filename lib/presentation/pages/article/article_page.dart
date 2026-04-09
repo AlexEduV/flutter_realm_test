@@ -73,18 +73,20 @@ class _ArticlePageState extends State<ArticlePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       spacing: AppDimensions.normalL,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                          child: CachedNetworkImage(
-                            imageUrl: state.article?.imageUrl ?? '',
-                            fit: BoxFit.cover,
-                            height: 200,
-                            width: double.infinity,
-                            placeholder: (context, url) =>
-                                Container(color: AppColors.placeholderColor),
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
-                            color: Colors.black.withAlpha(70),
-                            colorBlendMode: BlendMode.darken,
+                        AspectRatio(
+                          aspectRatio: 16 / 9,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                            child: CachedNetworkImage(
+                              imageUrl: state.article?.imageUrl ?? '',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              placeholder: (context, url) =>
+                                  Container(color: AppColors.placeholderColor),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                              color: Colors.black.withAlpha(70),
+                              colorBlendMode: BlendMode.darken,
+                            ),
                           ),
                         ),
 

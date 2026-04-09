@@ -136,20 +136,22 @@ class _DetailsPageState extends State<DetailsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 280,
-                  decoration: BoxDecoration(
-                    color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(AppDimensions.majorM),
-                      bottomRight: Radius.circular(AppDimensions.majorM),
+                AspectRatio(
+                  aspectRatio: 16 / 9,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(AppDimensions.majorM),
+                        bottomRight: Radius.circular(AppDimensions.majorM),
+                      ),
+                      image: (car?.images.isNotEmpty ?? false)
+                          ? DecorationImage(
+                              image: AssetImage(car?.images.first ?? ''),
+                              fit: BoxFit.cover,
+                            )
+                          : null,
                     ),
-                    image: (car?.images.isNotEmpty ?? false)
-                        ? DecorationImage(
-                            image: AssetImage(car?.images.first ?? ''),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
                   ),
                 ),
 
