@@ -42,7 +42,7 @@ void main() {
               BlocProvider<UserDataCubit>.value(value: userCubit),
               BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
             ],
-            child: const SearchPage(),
+            child: const Scaffold(body: SearchPage()),
           ),
         ),
       ],
@@ -135,6 +135,10 @@ void main() {
     // Replace with your actual car/result model
     final car = CarEntity.empty();
 
+    const size = Size(874, 402); // this size is working; // 16 pro
+    tester.view.physicalSize = size;
+    tester.view.devicePixelRatio = 1.0;
+
     await tester.pumpWidget(
       buildTestableWidget(
         searchCubit: searchCubit,
@@ -144,6 +148,7 @@ void main() {
       ),
     );
 
+    await tester.pumpAndSettle();
     expect(find.byType(AnnouncementListItem), findsOneWidget);
   });
 
