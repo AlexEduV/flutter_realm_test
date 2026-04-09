@@ -60,7 +60,7 @@ class CarListItem extends StatelessWidget {
                           : null,
                     ),
                     height: AppDimensions.favoriteItemPictureSize,
-                    width: AppDimensions.favoriteItemPictureSize,
+                    width: AppDimensions.favoriteItemPictureSize * 1.4,
                   ),
                   const SizedBox(width: AppDimensions.normalM),
                   // Car Details
