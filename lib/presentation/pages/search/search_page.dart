@@ -173,16 +173,19 @@ class _SearchPageState extends State<SearchPage> {
                     sliver: BlocBuilder<UserDataCubit, UserDataState>(
                       buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                       builder: (context, userState) {
-                        return SliverGrid.count(
-                          crossAxisCount: isTablet ? 2 : 1,
-                          children: List.generate(state.results.length, (index) {
+                        return SliverGrid(
+                          delegate: SliverChildBuilderDelegate((context, index) {
                             return AnnouncementListItem(
                               isExploreItem: false,
                               car: state.results[index],
                               user: context.read<UserDataCubit>().user,
                               onDismissed: () {},
                             );
-                          }),
+                          }, childCount: state.results.length),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: isTablet ? 2 : 1,
+                            childAspectRatio: 16 / 14,
+                          ),
                         );
                       },
                     ),
