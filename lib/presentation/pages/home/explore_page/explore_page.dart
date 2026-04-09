@@ -26,6 +26,9 @@ class ExplorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600; // You can adjust this threshold
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -97,8 +100,9 @@ class ExplorePage extends StatelessWidget {
                   sliver: BlocBuilder<UserDataCubit, UserDataState>(
                     buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                     builder: (context, userState) {
-                      return SliverList(
-                        delegate: SliverChildBuilderDelegate((context, index) {
+                      return SliverGrid.count(
+                        crossAxisCount: isTablet ? 2 : 1,
+                        children: List.generate(cars.length, (index) {
                           final car = cars[index];
                           return TweenAnimationBuilder<double>(
                             tween: Tween(begin: 1, end: !car.isShown ? 0 : 1),
@@ -135,7 +139,7 @@ class ExplorePage extends StatelessWidget {
                               );
                             },
                           );
-                        }, childCount: cars.length),
+                        }),
                       );
                     },
                   ),
