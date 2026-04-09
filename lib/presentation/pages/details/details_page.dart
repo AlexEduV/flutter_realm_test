@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_futter_project/common/constants/api_constants.dart';
 import 'package:test_futter_project/common/constants/app_colors.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/common/constants/app_dimensions.dart';
 import 'package:test_futter_project/common/constants/app_text_styles.dart';
 import 'package:test_futter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -136,20 +137,22 @@ class _DetailsPageState extends State<DetailsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 280,
-                  decoration: BoxDecoration(
-                    color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(AppDimensions.majorM),
-                      bottomRight: Radius.circular(AppDimensions.majorM),
+                AspectRatio(
+                  aspectRatio: AppConstants.aspectRatio,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(AppDimensions.majorM),
+                        bottomRight: Radius.circular(AppDimensions.majorM),
+                      ),
+                      image: (car?.images.isNotEmpty ?? false)
+                          ? DecorationImage(
+                              image: AssetImage(car?.images.first ?? ''),
+                              fit: BoxFit.cover,
+                            )
+                          : null,
                     ),
-                    image: (car?.images.isNotEmpty ?? false)
-                        ? DecorationImage(
-                            image: AssetImage(car?.images.first ?? ''),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
                   ),
                 ),
 

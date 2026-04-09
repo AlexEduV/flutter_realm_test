@@ -26,6 +26,9 @@ class ExplorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth >= 600; // You can adjust this threshold
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -97,47 +100,54 @@ class ExplorePage extends StatelessWidget {
                   sliver: BlocBuilder<UserDataCubit, UserDataState>(
                     buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                     builder: (context, userState) {
-                      return SliverList(
+                      return SliverGrid(
                         delegate: SliverChildBuilderDelegate((context, index) {
                           final car = cars[index];
-                          return TweenAnimationBuilder<double>(
-                            tween: Tween(begin: 1, end: !car.isShown ? 0 : 1),
-                            duration: const Duration(milliseconds: 300),
-                            builder: (context, removalValue, child) {
-                              final hasRemovalAnimationEnded = removalValue == 0;
-                              final curvedRemovalValue = Curves.linearToEaseOut.transform(
-                                removalValue,
-                              );
 
-                              return SizedBox(
-                                child: TweenAnimationBuilder<double>(
-                                  tween: Tween(begin: 0, end: 1),
-                                  duration: Duration(milliseconds: 300 + (index * 200)),
-                                  builder: (context, value, child) {
-                                    return SizedBox(
-                                      height: !hasRemovalAnimationEnded ? null : 0,
-                                      child: Transform.scale(
-                                        alignment: Alignment.topCenter,
-                                        scaleY: curvedRemovalValue,
-                                        child: Opacity(
-                                          opacity: value,
-                                          child: Transform.scale(
-                                            scale: 0.95 + (0.05 * value),
-                                            child: _buildItem(
-                                              CarExtensions.fromEntity(car),
-                                              index,
-                                              context,
+                          return Column(
+                            children: [
+                              TweenAnimationBuilder<double>(
+                                tween: Tween(begin: 1, end: !car.isShown ? 0 : 1),
+                                duration: const Duration(milliseconds: 300),
+                                builder: (context, removalValue, child) {
+                                  final hasRemovalAnimationEnded = removalValue == 0;
+                                  final curvedRemovalValue = Curves.linearToEaseOut.transform(
+                                    removalValue,
+                                  );
+
+                                  return TweenAnimationBuilder<double>(
+                                    tween: Tween(begin: 0, end: 1),
+                                    duration: Duration(milliseconds: 300 + (index * 200)),
+                                    builder: (context, value, child) {
+                                      return SizedBox(
+                                        height: !hasRemovalAnimationEnded ? null : 0,
+                                        child: Transform.scale(
+                                          alignment: Alignment.topCenter,
+                                          scaleY: curvedRemovalValue,
+                                          child: Opacity(
+                                            opacity: value,
+                                            child: Transform.scale(
+                                              scale: 0.95 + (0.05 * value),
+                                              child: _buildItem(
+                                                CarExtensions.fromEntity(car),
+                                                index,
+                                                context,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              );
-                            },
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
                           );
                         }, childCount: cars.length),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: isTablet ? 2 : 1,
+                          childAspectRatio: 16 / 14,
+                        ),
                       );
                     },
                   ),

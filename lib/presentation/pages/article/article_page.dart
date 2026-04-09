@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/common/constants/app_dimensions.dart';
 import 'package:test_futter_project/common/constants/app_text_styles.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
@@ -73,18 +74,20 @@ class _ArticlePageState extends State<ArticlePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       spacing: AppDimensions.normalL,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                          child: CachedNetworkImage(
-                            imageUrl: state.article?.imageUrl ?? '',
-                            fit: BoxFit.cover,
-                            height: 200,
-                            width: double.infinity,
-                            placeholder: (context, url) =>
-                                Container(color: AppColors.placeholderColor),
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
-                            color: Colors.black.withAlpha(70),
-                            colorBlendMode: BlendMode.darken,
+                        AspectRatio(
+                          aspectRatio: AppConstants.aspectRatio,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                            child: CachedNetworkImage(
+                              imageUrl: state.article?.imageUrl ?? '',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              placeholder: (context, url) =>
+                                  Container(color: AppColors.placeholderColor),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                              color: Colors.black.withAlpha(70),
+                              colorBlendMode: BlendMode.darken,
+                            ),
                           ),
                         ),
 

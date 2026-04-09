@@ -45,7 +45,14 @@ class RealmConfiguration {
             final newUser = newUsers[i];
 
             // Move the old 'name' to 'firstName'
-            final oldName = oldUser.dynamic.get<String>('name');
+            String? oldName;
+            try {
+              oldName = oldUser.dynamic.get<String>('name');
+            } catch (e) {
+              oldName = null;
+            }
+            if (oldName == null) continue;
+
             final parts = oldName.split(' ');
             newUser.firstName = parts.isNotEmpty ? parts.first : '';
             newUser.lastName = parts.length > 1 ? parts.sublist(1).join(' ') : '';

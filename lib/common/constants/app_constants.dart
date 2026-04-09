@@ -6,8 +6,9 @@ class AppConstants {
   static const int homeTabInbox = 2;
   static const int homeTabAccount = 3;
 
-  static const bool showSemantics = false;
+  static const double aspectRatio = 16 / 9;
 
+  static const bool showSemantics = false;
   static const bool showNetworkLogs = true;
 
   static final bool kIsTest = Platform.environment.containsKey('FLUTTER_TEST');

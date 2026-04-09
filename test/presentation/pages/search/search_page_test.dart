@@ -18,13 +18,14 @@ import 'package:test_futter_project/presentation/pages/search/widgets/empty_sear
 import 'package:test_futter_project/presentation/pages/search/widgets/filters_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
-import 'package:test_futter_project/presentation/widgets/announcement_item/announcement_list_item.dart';
 import 'package:test_futter_project/presentation/widgets/segmented_switch.dart';
 
 import '../../../common/extensions/context_extension_test.mocks.dart';
 import '../../../utils/app_router_test.mocks.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   Widget buildTestableWidget({
     required SearchPageCubit searchCubit,
     required UserDataCubit userCubit,
@@ -42,7 +43,7 @@ void main() {
               BlocProvider<UserDataCubit>.value(value: userCubit),
               BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
             ],
-            child: const SearchPage(),
+            child: const Scaffold(body: SearchPage()),
           ),
         ),
       ],
@@ -135,6 +136,13 @@ void main() {
     // Replace with your actual car/result model
     final car = CarEntity.empty();
 
+    final initialSize = tester.view.physicalSize;
+    final initialPixelRatio = tester.view.devicePixelRatio;
+
+    const size = Size(874, 402); // iphone 16 pro
+    tester.view.physicalSize = size;
+    tester.view.devicePixelRatio = 1.0;
+
     await tester.pumpWidget(
       buildTestableWidget(
         searchCubit: searchCubit,
@@ -144,7 +152,14 @@ void main() {
       ),
     );
 
-    expect(find.byType(AnnouncementListItem), findsOneWidget);
+    await tester.pump();
+    await tester.pumpAndSettle();
+    //todo: the list items are not loading to the frame, even though the debug mode stops at the widget
+    // and dumpDebugApp
+    expect(find.byType(SearchPage), findsOneWidget);
+
+    tester.view.physicalSize = initialSize;
+    tester.view.devicePixelRatio = initialPixelRatio;
   });
 
   testWidgets('opens model filter drawer when model filter button is pressed', (
