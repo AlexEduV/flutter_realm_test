@@ -130,7 +130,6 @@ class ExplorePage extends StatelessWidget {
                                               scale: 0.95 + (0.05 * value),
                                               child: _buildItem(
                                                 CarExtensions.fromEntity(car),
-                                                index,
                                                 context,
                                               ),
                                             ),
@@ -160,15 +159,15 @@ class ExplorePage extends StatelessWidget {
     );
   }
 
-  Widget _buildItem(Car car, int index, BuildContext context) {
+  Widget _buildItem(Car car, BuildContext context) {
     return AnnouncementListItem(
       user: context.read<UserDataCubit>().user,
       car: CarEntity.fromSchema(car),
-      onDismissed: () => _handleDelete(car, index, context),
+      onDismissed: () => _handleDelete(car, context),
     );
   }
 
-  void _handleDelete(Car carToDelete, int index, BuildContext context) {
+  void _handleDelete(Car carToDelete, BuildContext context) {
     // 1. Capture the data while the object is still valid
     final id = carToDelete.carId;
 
