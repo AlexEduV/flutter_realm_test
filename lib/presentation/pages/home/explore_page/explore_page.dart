@@ -95,6 +95,7 @@ class ExplorePage extends StatelessWidget {
                 }
 
                 final cars = state.cars.where((element) => element.isShown == true).toList();
+                //todo: animation is not working properly after adding a gridView
                 return SliverPadding(
                   padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
                   sliver: BlocBuilder<UserDataCubit, UserDataState>(
