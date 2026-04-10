@@ -25,6 +25,7 @@ jobs:
       - name: 🧪 Run Tests
         run: |
           export PATH="$PATH":"$HOME/.pub-cache/bin"
+          cd apps/flutter_realm_test/
           very_good test
 
 #  automerge:
