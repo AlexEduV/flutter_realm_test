@@ -27,11 +27,27 @@ class _AnimatedFavoriteIconState extends State<AnimatedFavoriteIcon>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
+    _controller = AnimationController(duration: const Duration(milliseconds: 450), vsync: this);
     _scaleAnimation = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.5), weight: 50),
-      TweenSequenceItem(tween: Tween(begin: 1.5, end: 1.0), weight: 50),
-    ]).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+      // First Pulse (The "Lub")
+      TweenSequenceItem(
+        tween: Tween(begin: 1.0, end: 1.25).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 25,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: 1.25, end: 1.0).chain(CurveTween(curve: Curves.easeIn)),
+        weight: 25,
+      ),
+      // Second Pulse (The "Dub" - identical in scale)
+      TweenSequenceItem(
+        tween: Tween(begin: 1.0, end: 1.25).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 25,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: 1.25, end: 1.0).chain(CurveTween(curve: Curves.easeIn)),
+        weight: 25,
+      ),
+    ]).animate(_controller);
   }
 
   @override

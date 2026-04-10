@@ -77,6 +77,7 @@ class AnnouncementItemBody extends StatelessWidget {
                         button: true,
                         label: AppSemanticsLabels.favoriteButton,
                         child: InkWell(
+                          borderRadius: BorderRadius.circular(AppDimensions.minorL),
                           onTap: () => onFavoriteButtonTap(context, carId),
                           child: AnimatedFavoriteIcon(
                             size: AppDimensions.favoriteButtonSize,
