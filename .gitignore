@@ -2,3 +2,4 @@
 # FVM Version Cache
 .fvm/
 .DS_Store
+.dart_tool/
