@@ -3,6 +3,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/constants/app_asset_routes.dart';
 import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
+import 'package:test_futter_project/common/logger/base_logger.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
 import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
@@ -29,6 +30,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._checkLocationPermissionStatusUseCase,
     this._getUserByEmailUseCase,
     this._pickImageFromGalleryUseCase,
+    this._logger,
   ) : super(const UserDataState());
 
   final BaseLocalStorage _localStorage;
@@ -43,6 +45,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   final GetUserByEmailUseCase _getUserByEmailUseCase;
 
   late UserEntity user;
+  final BaseLogger _logger;
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
@@ -155,7 +158,10 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> openLocationSettings() async {
-    await _openAppSettingsUseCase.call();
+    final canLocationSettingsBeOpened = await _openAppSettingsUseCase.call();
+    if (!canLocationSettingsBeOpened) {
+      _logger.e('Could not open system location settings');
+    }
   }
 
   void updateLocationPermissionStatus(bool newStatus) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/extensions/context_extension.dart';
 import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
@@ -61,7 +60,7 @@ class LocationSettingsPage extends StatelessWidget {
                             : context.tr(L10nKeys.offLabel),
                         icon: Icons.location_on_outlined,
                         showEnabled: state.isLocationPermissionGranted,
-                        onTap: () => openAppSettings(),
+                        onTap: () => context.read<UserDataCubit>().openLocationSettings(),
                       ),
 
                       PersonalDetailsListItem(

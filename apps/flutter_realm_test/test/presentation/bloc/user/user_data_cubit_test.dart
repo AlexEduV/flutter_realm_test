@@ -29,6 +29,7 @@ import 'user_data_cubit_test.mocks.dart';
   CheckLocationPermissionStatusUseCase,
   GetUserByEmailUseCase,
   PickImageFromGalleryUseCase,
+  BaseLogger,
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +43,7 @@ void main() {
   late MockPickImageFromGalleryUseCase mockPickImageFromGalleryUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
+  late MockBaseLogger mockBaseLogger;
 
   final mockAuthRepository = MockAuthRepository();
   final appLocalisationsCubit = AppLocalisationsCubit();
@@ -52,6 +54,7 @@ void main() {
   mockOpenAppSettingsUseCase = MockOpenAppSettingsUseCase();
   mockGetUserByEmailUseCase = MockGetUserByEmailUseCase();
   mockPickImageFromGalleryUseCase = MockPickImageFromGalleryUseCase();
+  mockBaseLogger = MockBaseLogger();
 
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});
@@ -66,6 +69,7 @@ void main() {
       mockCheckLocationPermissionStatusUseCase,
       mockGetUserByEmailUseCase,
       mockPickImageFromGalleryUseCase,
+      mockBaseLogger,
     );
     testUser = const UserEntity(
       userId: 'u1',
