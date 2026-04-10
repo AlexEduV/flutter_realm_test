@@ -381,6 +381,13 @@
             </list>
           </value>
         </entry>
+        <entry key="device_frame">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/device_frame-1.4.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="devtools_shared">
           <value>
             <list>
@@ -1165,6 +1172,13 @@
             </list>
           </value>
         </entry>
+        <entry key="pointer_interceptor">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/pointer_interceptor-0.9.3+7/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="pool">
           <value>
             <list>
@@ -1253,6 +1267,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/realm_generator-20.2.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="recase">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/recase-4.1.0/lib" />
             </list>
           </value>
         </entry>
@@ -1471,6 +1492,20 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/standard_message_codec-0.0.1+4/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="storybook_flutter">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/storybook_flutter-0.14.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="storybook_flutter_test">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/storybook_flutter_test-0.1.0+2/lib" />
             </list>
           </value>
         </entry>
@@ -1838,6 +1873,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dds-5.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dds_service_extensions-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/decimal-3.2.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_frame-1.4.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/devtools_shared-12.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/diff_match_patch-0.4.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dtd-4.0.0/lib" />
@@ -1953,6 +1989,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/petitparser-7.0.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/platform-3.1.6/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pointer_interceptor-0.9.3+7/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pool-1.5.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/posix-6.5.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/process-5.0.5/lib" />
@@ -1966,6 +2003,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/realm_common-20.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/realm_dart-20.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/realm_generator-20.2.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/recase-4.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/rxdart-0.28.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sane_uuid-1.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/share_plus-12.0.2/lib" />
@@ -1997,6 +2035,8 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sse-4.1.8/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stack_trace-1.12.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/standard_message_codec-0.0.1+4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/storybook_flutter-0.14.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/storybook_flutter_test-0.1.0+2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stream_channel-2.1.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stream_transform-2.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/string_scanner-1.4.1/lib" />
