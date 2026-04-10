@@ -1,0 +1,53 @@
+{
+  "status": "success",
+  "message": "data retrieved successfully",
+  "results": [
+    {
+      "id": "1",
+      "title": "The Future of Electric Cars",
+      "summary": "Electric cars are revolutionizing the automotive industry by offering sustainable alternatives to traditional gasoline vehicles. With advancements in battery technology, increased driving ranges, and growing environmental awareness, electric vehicles are poised to become the mainstream choice for consumers worldwide.",
+      "paragraphs": [
+        "Over the past decade, electric vehicles (EVs) have experienced a surge in popularity, driven by concerns over climate change and the desire for cleaner transportation options. Consumers are increasingly attracted to the lower operating costs, quiet performance, and innovative features that EVs provide.",
+        "Major automotive manufacturers are making significant investments in electric vehicle technology, launching new models across various price ranges and vehicle types. Companies like Tesla, Ford, and Volkswagen are not only improving battery efficiency but also focusing on design, safety, and user experience to appeal to a broader market.",
+        "The expansion of charging infrastructure is playing a crucial role in the widespread adoption of electric cars. Governments and private companies are working together to install fast-charging stations in urban centers, highways, and remote areas, making it more convenient than ever for drivers to recharge their vehicles and embark on longer journeys."
+      ],
+      "imageUrl": "https://images.pexels.com/photos/2526127/pexels-photo-2526127.jpeg",
+      "author": {
+        "id" : "2",
+        "full_name": "Joel Miller",
+        "image_src": "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
+      },
+      "date_published": "June 14, 2013",
+      "mins_to_read": 5
+    },
+    {
+      "id": "2",
+      "title": "Top 5 Sports Cars of 2026",
+      "summary": "A look at the most exciting sports cars released this year.",
+      "paragraphs": [
+        "The automotive world has been buzzing in 2026, thanks to the arrival of several high-performance sports cars that are turning heads everywhere. Manufacturers have pulled out all the stops, blending speed, style, and innovation to create machines that are as fun to drive as they are to admire. Car shows and online forums are filled with discussions about which model stands out the most, and the competition is fiercer than ever.",
+        "Legendary brands like Ferrari, Porsche, and Lamborghini continue to dominate the scene, each unveiling new models that push the boundaries of engineering and design. Ferrari’s latest release boasts a sleek silhouette and a roaring engine, while Porsche’s offering combines classic curves with modern technology. Lamborghini, never one to shy away from bold statements, has introduced a car that’s both aggressive and elegant, capturing the imagination of fans worldwide. Meanwhile, a few up-and-coming brands are making waves, challenging the old guard with fresh ideas and impressive performance.",
+        "One of the most notable trends among this year’s sports cars is the focus on advanced aerodynamics and hybrid engines. Designers are using wind tunnel testing and innovative materials to make cars faster and more stable at high speeds. Hybrid powertrains are becoming standard, offering a blend of electric efficiency and traditional muscle that appeals to both eco-conscious drivers and speed lovers. Inside, these cars feature state-of-the-art infotainment systems, customizable driving modes, and luxurious interiors, making every journey as comfortable as it is exhilarating."
+      ],
+      "imageUrl": "https://images.pexels.com/photos/1545743/pexels-photo-1545743.jpeg",
+      "author": {
+        "id" : "3",
+        "full_name": "Ellie Williams",
+        "image_src": "https://images.pexels.com/photos/5704720/pexels-photo-5704720.jpeg"
+      },
+      "date_published": "April 1, 2019"
+    },
+    {
+      "id": "3",
+      "title": "On Self-Driving Cars",
+      "summary": "Understanding the technology behind self-driving vehicles.",
+      "paragraphs": [
+        "At the heart of every autonomous car is a sophisticated system that combines a variety of sensors with powerful AI software. These vehicles are designed to detect everything happening around them, from other cars and pedestrians to road signs and unexpected hazards. By constantly gathering and analyzing information, self-driving cars can react to changing conditions much faster than a human driver.",
+        "The main technologies that allow autonomous vehicles to \"see\" the world include lidar, radar, and high-resolution cameras. Lidar uses laser beams to create a detailed 3D map of the car’s surroundings, while radar helps detect objects and measure their speed, even in poor weather or low visibility. Cameras provide visual data, allowing the car to recognize lane markings, traffic lights, and more. Together, these sensors give the vehicle a comprehensive understanding of its environment.",
+        "All the data collected by these sensors is processed by advanced machine learning algorithms. These algorithms are trained to interpret complex scenarios—like merging onto a busy highway or responding to a sudden stop by the car ahead. By learning from millions of miles of real-world and simulated driving, the AI can make safe and efficient driving decisions. As technology continues to improve, self-driving cars are expected to become even more reliable and widespread, potentially transforming the way we travel."
+      ],
+      "imageUrl": "https://images.pexels.com/photos/4077271/pexels-photo-4077271.jpeg",
+      "date_published": "March 6, 2022"
+    }
+  ]
+}

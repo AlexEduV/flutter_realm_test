@@ -1,0 +1,82 @@
+name: test_futter_project
+description: "Test Flutter Project for realm, go-router, rxDart and mockito"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.11.0 <4.0.0'
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  realm: ^20.2.0
+  flutter_slidable: ^4.0.3
+  flutter_bloc: ^9.1.1
+  freezed_annotation: ^3.1.0
+  get_it: ^9.2.0
+  rxdart: ^0.28.0
+  mockito: ^5.4.6
+  bloc_test: ^10.0.0
+  go_router: ^17.0.1
+  permission_handler: ^12.0.1
+  geolocator: ^14.0.2
+  shared_preferences: ^2.5.4
+  intl: ^0.20.2
+  flutter_native_splash: ^2.4.7
+  cached_network_image: ^3.4.1
+  path_provider: ^2.0.15
+  share_plus: ^12.0.1
+  image_picker: ^1.2.1
+  collection: ^1.19.1
+  url_launcher: ^6.3.2
+  visibility_detector: ^0.4.0+2
+  flutter_dotenv: ^6.0.0
+  http: ^1.6.0
+  transparent_image: ^2.0.1
+  file_picker: ^10.3.10
+  flutter_colorpicker: ^1.1.0
+  smooth_page_indicator: ^2.0.1
+  dartz: 0.10.1
+  connectivity_plus: ^6.1.1
+  internet_connection_checker: ^3.0.1
+  logger: ^2.7.0
+
+dependency_overrides:
+  test_api: 0.7.10
+  analyzer: ^7.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.2
+  freezed: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/mocks/
+    - assets/images/
+    - assets/images/country_flags/
+    - assets/env/
+
+  fonts:
+    - family: Zona Pro
+      fonts:
+        - asset: assets/fonts/ZonaPro-ExtraLight.otf
+          weight: 200
+        - asset: assets/fonts/ZonaPro-Light.otf
+          weight: 300
+        - asset: assets/fonts/ZonaPro-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/ZonaPro-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/ZonaPro-Bold.otf
+          weight: 700

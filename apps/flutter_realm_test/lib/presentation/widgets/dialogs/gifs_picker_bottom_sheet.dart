@@ -1,0 +1,205 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:test_futter_project/common/constants/app_constants.dart';
+import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_futter_project/domain/entities/gif_entity.dart';
+import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_futter_project/presentation/widgets/network_error_widget.dart';
+import 'package:test_futter_project/presentation/widgets/skip_widget.dart';
+import 'package:transparent_image/transparent_image.dart';
+
+import '../../../common/constants/app_colors.dart';
+import '../../../common/constants/app_dimensions.dart';
+import '../../../common/constants/app_text_styles.dart';
+import '../../../common/enums/message_status.dart';
+import '../../../domain/models/message_model.dart';
+import '../../../l10n/l10n_keys.dart';
+import '../../bloc/home/inbox_page/inbox_page_cubit.dart';
+import '../../bloc/messages/messages_page_cubit.dart';
+import '../../bloc/messages/messages_page_state.dart';
+import '../../bloc/user/user_data_cubit.dart';
+
+class GifsPickerBottomSheet extends StatefulWidget {
+  final GlobalKey<AnimatedListState> listKey;
+
+  const GifsPickerBottomSheet({required this.listKey, super.key});
+
+  @override
+  State<GifsPickerBottomSheet> createState() => _GifsPickerBottomSheetState();
+}
+
+class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
+  double textFieldScale = 1.0;
+  final textController = TextEditingController();
+
+  @override
+  void initState() {
+    context.read<MessagesPageCubit>().updateGifsSearch('');
+    context.read<MessagesPageCubit>().updateSelectedGif(null);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final textFieldBorderRadius = BorderRadius.circular(AppDimensions.normalL);
+
+    return BlocBuilder<MessagesPageCubit, MessagesPageState>(
+      builder: (context, state) {
+        final isQueryEmpty = state.latestQuery.isEmpty;
+
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(AppDimensions.normalS).copyWith(bottom: 0.0),
+              child: AnimatedScale(
+                duration: const Duration(milliseconds: 300),
+                scale: textFieldScale,
+                curve: Curves.easeInOut,
+                child: TextFormField(
+                  onTap: onTextFieldTap,
+                  controller: textController,
+                  onChanged: (newValue) =>
+                      context.read<MessagesPageCubit>().updateGifsSearch(newValue),
+                  decoration: InputDecoration(
+                    hintText: context.tr(L10nKeys.gifsTextFieldHint),
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: textFieldBorderRadius,
+                      borderSide: const BorderSide(color: AppColors.accentColor),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: textFieldBorderRadius,
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: textFieldBorderRadius,
+                      borderSide: const BorderSide(
+                        color: AppColors.accentColor,
+                        width: AppDimensions.minorXS,
+                      ),
+                    ),
+                    hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),
+                  ),
+                  style: AppTextStyles.zonaPro16,
+                ),
+              ),
+            ),
+
+            if (state.networkError == null)
+              Expanded(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(AppDimensions.normalM),
+                            child: Text.rich(
+                              TextSpan(
+                                style: AppTextStyles.zonaPro18,
+                                children: [
+                                  if (isQueryEmpty)
+                                    TextSpan(
+                                      text: context.tr(L10nKeys.gifsResultsTrendingLabel),
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    )
+                                  else ...[
+                                    TextSpan(
+                                      text: context.tr(L10nKeys.gifsResultsQueryLabel),
+                                      style: AppTextStyles.zonaPro18,
+                                    ),
+                                    TextSpan(
+                                      text: '"${state.latestQuery}"',
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    Expanded(
+                      child: GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                        ),
+                        itemCount: state.gifsInSearch.length,
+                        itemBuilder: (context, index) {
+                          final gif = state.gifsInSearch[index];
+
+                          return AppSemantics(
+                            label: '${AppSemanticsLabels.gifListItem} ${gif.title}',
+                            button: true,
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppDimensions.minorXS),
+                              child: InkWell(
+                                onTap: () => onGifItemTap(gif),
+                                child: SkipWidget(
+                                  skip: AppConstants.kIsTest,
+                                  child: FadeInImage.memoryNetwork(
+                                    placeholder: kTransparentImage,
+                                    image: gif.imageUrl,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            else
+              const Expanded(child: NetworkErrorWidget()),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> onTextFieldTap() async {
+    setState(() => textFieldScale = 1.2);
+    await Future.delayed(const Duration(milliseconds: 100));
+    setState(() => textFieldScale = 1.0);
+  }
+
+  void onGifItemTap(GifEntity gif) {
+    final payload = gif.toPayload();
+
+    final userId = context.read<UserDataCubit>().user.userId;
+
+    final conversationId = context.read<MessagesPageCubit>().state.currentConversationId;
+    context.read<InboxPageCubit>().sendMessage(
+      conversationId,
+      MessageModel(
+        senderId: userId,
+        messageStatus: MessageStatus.sent,
+        payload: payload,
+        date: DateTime.now(),
+      ),
+      widget.listKey,
+    );
+
+    context.read<MessagesPageCubit>().updateSelectedGif(payload);
+
+    if (context.canPop()) {
+      context.pop();
+    }
+  }
+}

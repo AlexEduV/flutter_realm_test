@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/flutter_realm_test.iml" filepath="$PROJECT_DIR$/.idea/flutter_realm_test.iml" />
+<module fileurl="file://$PROJECT_DIR$/apps/flutter_realm_test/melos_test_futter_project.iml" filepath="$PROJECT_DIR$/apps/flutter_realm_test/melos_test_futter_project.iml"/>
+<module fileurl="file://$PROJECT_DIR$/melos_flutter_realm_test_workspace_root.iml" filepath="$PROJECT_DIR$/melos_flutter_realm_test_workspace_root.iml"/>
+<module fileurl="file://$PROJECT_DIR$/.idea/flutter_realm_workspace.iml" filepath="$PROJECT_DIR$/.idea/flutter_realm_workspace.iml"/>
     </modules>
   </component>
 </project>
