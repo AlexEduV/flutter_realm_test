@@ -17,10 +17,13 @@
       <excludeFolder url="file://$MODULE_DIR$/macos/Flutter" />
       <excludeFolder url="file://$MODULE_DIR$/macos/Pods" />
       <excludeFolder url="file://$MODULE_DIR$/macos/.symlinks" />
+      <excludeFolder url="file://$MODULE_DIR$/android" />
     </content>
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />
     <orderEntry type="library" name="Flutter Plugins" level="project" />
     <orderEntry type="library" name="Dart Packages" level="project" />
+    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
   </component>
 </module>
