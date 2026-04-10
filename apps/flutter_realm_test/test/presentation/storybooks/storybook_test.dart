@@ -1,4 +1,8 @@
+@Tags(['storybook'])
+library;
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 import 'package:storybook_flutter_test/storybook_flutter_test.dart';
 import 'package:test_futter_project/domain/entities/car_entity.dart';
@@ -9,7 +13,7 @@ void main() {
   final storyBook = Storybook(
     stories: [
       Story(
-        name: 'Screens/Counter',
+        name: 'Screens/OwnerWidget',
         description: 'Demo Counter app with about dialog.',
         builder: (context) => OwnerWidget(
           car: CarEntity.empty(),
