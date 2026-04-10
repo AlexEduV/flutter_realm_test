@@ -9,6 +9,7 @@ import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widg
 import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/constants/app_dimensions.dart';
+import '../../../../common/extensions/num_extension.dart';
 
 class HomeBottomBar extends StatelessWidget {
   final void Function() onAddPressed;
@@ -45,8 +46,9 @@ class HomeBottomBar extends StatelessWidget {
                 HomeBottomBarItem(
                   semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
                   index: AppConstants.homeTabExplore,
-                  icon: Icons.view_carousel_outlined,
+                  icon: Icons.web_stories_outlined,
                   label: context.tr(L10nKeys.explorePageTitle),
+                  rotationAngle: 90.0.toRadians,
                 ),
                 HomeBottomBarItem(
                   semanticsLabel: AppSemanticsLabels.homeBottomBarItemFavorites,

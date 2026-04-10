@@ -12,12 +12,14 @@ class HomeBottomBarItem extends StatelessWidget {
   final IconData icon;
   final String semanticsLabel;
   final String label;
+  final double rotationAngle;
 
   const HomeBottomBarItem({
     required this.index,
     required this.icon,
     required this.semanticsLabel,
     required this.label,
+    this.rotationAngle = 0.0,
     super.key,
   });
 
@@ -47,7 +49,10 @@ class HomeBottomBarItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     spacing: AppDimensions.minorXS,
                     children: [
-                      Icon(icon, color: color),
+                      Transform.rotate(
+                        angle: rotationAngle,
+                        child: Icon(icon, color: color),
+                      ),
 
                       Text(
                         label,

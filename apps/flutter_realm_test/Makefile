@@ -35,3 +35,10 @@ generate-native-splash:
 
 delete-native-splash:
 	dart run flutter_native_splash:remove
+
+# Melos
+melos-init:
+	melos bs
+
+melos-clean:
+	melos clean
