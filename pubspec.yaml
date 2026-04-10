@@ -9,3 +9,14 @@ workspace:
 
 dev_dependencies:
   melos: ^7.0.0
+
+melos:
+  name: flutter_realm_test_workspace
+
+  packages:
+    - apps/**
+
+  scripts:
+    hello: echo "Hello from Melos"
+    test: flutter test .
+    analyse: dart analyze .
