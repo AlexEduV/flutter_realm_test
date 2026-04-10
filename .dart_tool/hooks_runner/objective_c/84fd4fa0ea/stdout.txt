@@ -1,0 +1,58 @@
+Running `(cd /Users/oleksandr_aksonov/.pub-cache/hosted/pub.dev/objective_c-9.3.0/; ANDROID_HOME=/Users/oleksandr_aksonov/Library/Android/sdk TMPDIR=/var/folders/q2/08n4b5z11cx9hsstrq6lbvcm0000gn/T/ PATH=/Applications/Xcode.app/Contents/SharedFrameworks/SwiftBuild.framework/Versions/A/PlugIns/SWBBuildService.bundle/Contents/PlugIns/SWBUniversalPlatformPlugin.bundle/Contents/Frameworks/SWBUniversalPlatform.framework/Resources:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/libexec:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin HOME=/Users/oleksandr_aksonov /Users/oleksandr_aksonov/fvm/versions/3.41.6/bin/cache/dart-sdk/bin/dart --packages=/Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/package_config.json /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/objective_c/84fd4fa0ea/hook.dill --config=/Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/objective_c/84fd4fa0ea/input.json )`.
+INFO: 2026-04-10 12:05:55.399920: Running `/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang --version`.
+
+INFO: 2026-04-10 12:05:55.414632: Running `/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang --version`.
+
+INFO: 2026-04-10 12:05:55.429313: Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios-simulator -mios-version-min=13 -c /Users/oleksandr_aksonov/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/include/dart_api_dl.c -fpic -I src -o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/include/dart_api_dl.c.o
+
+INFO: 2026-04-10 12:05:55.429685: Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios-simulator -mios-version-min=13 -c /Users/oleksandr_aksonov/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c.c -fpic -I src -o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/objective_c.c.o
+
+INFO: 2026-04-10 12:05:55.429848: Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios-simulator -mios-version-min=13 -x objective-c -fobjc-arc -c /Users/oleksandr_aksonov/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/input_stream_adapter.m -fpic -I src -o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/input_stream_adapter.m.o
+
+INFO: 2026-04-10 12:05:55.429954: Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios-simulator -mios-version-min=13 -x objective-c -fobjc-arc -c /Users/oleksandr_aksonov/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c.m -fpic -I src -o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/objective_c.m.o
+
+INFO: 2026-04-10 12:05:55.430044: Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios-simulator -mios-version-min=13 -x objective-c -fobjc-arc -c /Users/oleksandr_aksonov/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/observer.m -fpic -I src -o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/observer.m.o
+
+INFO: 2026-04-10 12:05:55.430334: Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios-simulator -mios-version-min=13 -x objective-c -fobjc-arc -c /Users/oleksandr_aksonov/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/protocol.m -fpic -I src -o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/protocol.m.o
+
+
+
+INFO: 2026-04-10 12:05:55.430425: Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios-simulator -mios-version-min=13 -x objective-c -fobjc-arc -c /Users/oleksandr_aksonov/.pub-cache/hosted/pub.dev/objective_c-9.3.0/src/objective_c_bindings_generated.m -fpic -I src -o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-04-10 12:05:55.528648:
+INFO: 2026-04-10 12:05:55.528737:
+INFO: 2026-04-10 12:05:55.528763: Generated /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/objective_c.c.o
+INFO: 2026-04-10 12:05:55.528824:
+INFO: 2026-04-10 12:05:55.528835:
+INFO: 2026-04-10 12:05:55.528844: Generated /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/include/dart_api_dl.c.o
+INFO: 2026-04-10 12:05:55.528912:
+INFO: 2026-04-10 12:05:55.528923:
+INFO: 2026-04-10 12:05:55.528930: Generated /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/observer.m.o
+
+INFO: 2026-04-10 12:05:55.531093:
+INFO: 2026-04-10 12:05:55.531113:
+INFO: 2026-04-10 12:05:55.531123: Generated /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/protocol.m.o
+
+INFO: 2026-04-10 12:05:55.636450:
+INFO: 2026-04-10 12:05:55.636487:
+INFO: 2026-04-10 12:05:55.636498: Generated /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/ns_number.m.o
+
+INFO: 2026-04-10 12:05:55.642562:
+INFO: 2026-04-10 12:05:55.642596:
+INFO: 2026-04-10 12:05:55.642606: Generated /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/objective_c.m.o
+
+INFO: 2026-04-10 12:05:55.643751:
+INFO: 2026-04-10 12:05:55.643774:
+INFO: 2026-04-10 12:05:55.643783: Generated /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/input_stream_adapter.m.o
+
+INFO: 2026-04-10 12:05:55.652225:
+INFO: 2026-04-10 12:05:55.652250:
+INFO: 2026-04-10 12:05:55.652259: Generated /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-04-10 12:05:55.652525: Running: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -shared -Wl,-encryptable -undefined dynamic_lookup -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.2.sdk -target arm64-apple-ios-simulator -mios-version-min=13 /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/include/dart_api_dl.c.o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/objective_c.c.o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/input_stream_adapter.m.o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/objective_c.m.o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/observer.m.o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/ns_number.m.o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/protocol.m.o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/obj/src/objective_c_bindings_generated.m.o -o /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/objective_c.dylib
+
+INFO: 2026-04-10 12:05:55.683985:
+INFO: 2026-04-10 12:05:55.684049: ld: warning: -undefined dynamic_lookup is deprecated on iOS-simulator
+
+INFO: 2026-04-10 12:05:55.684060: Generated /Users/oleksandr_aksonov/Development/Repositories/GitHub/flutter_realm_workspace/.dart_tool/hooks_runner/shared/objective_c/build/84fd4fa0ea/objective_c.dylib
+

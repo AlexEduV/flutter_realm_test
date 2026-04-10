@@ -21,3 +21,8 @@ melos:
     hello: echo "Hello from Melos"
     test: flutter test .
     analyse: dart analyze .
+    pods:clean:
+      run: |
+        melos exec --dir-exists="ios" -- \
+          "cd ios && rm -rf Pods Podfile.lock && pod install"
+      description: "Deep clean and reinstall iOS pods for all apps"
