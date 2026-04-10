@@ -1,4 +1,4 @@
 
 .fvm/
 .DS_Store
-.dart_tool/hooks_runner/*
+.dart_tool/*
