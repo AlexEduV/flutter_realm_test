@@ -46,6 +46,9 @@ dependencies:
   internet_connection_checker: ^3.0.1
   logger: ^2.7.0
 
+  realm_ui_core:
+    path: ../../packages/realm_ui_core/
+
 dependency_overrides:
   test_api: 0.7.10
   analyzer: ^7.3.0

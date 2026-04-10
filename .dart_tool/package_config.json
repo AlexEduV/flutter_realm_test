@@ -962,6 +962,12 @@
       "languageVersion": "3.6"
     },
     {
+      "name": "realm_ui_core",
+      "rootUri": "../packages/realm_ui_core",
+      "packageUri": "lib/",
+      "languageVersion": "3.11"
+    },
+    {
       "name": "rxdart",
       "rootUri": "file:///Users/oleksandr_aksonov/.pub-cache/hosted/pub.dev/rxdart-0.28.0",
       "packageUri": "lib/",

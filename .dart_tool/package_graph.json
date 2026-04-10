@@ -42,6 +42,7 @@
         "path_provider",
         "permission_handler",
         "realm",
+        "realm_ui_core",
         "rxdart",
         "share_plus",
         "shared_preferences",
@@ -200,6 +201,11 @@
         "test_api",
         "vector_math"
       ]
+    },
+    {
+      "name": "realm_ui_core",
+      "version": "1.0.0",
+      "dependencies": []
     },
     {
       "name": "logger",

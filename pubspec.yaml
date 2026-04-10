@@ -15,6 +15,7 @@ melos:
 
   packages:
     - apps/**
+    - packages/**
 
   scripts:
     hello: echo "Hello from Melos"

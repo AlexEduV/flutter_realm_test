@@ -1272,6 +1272,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "20.2.0"
+  realm_ui_core:
+    dependency: transitive
+    description:
+      path: "packages/realm_ui_core"
+      relative: true
+    source: path
+    version: "1.0.0"
   rxdart:
     dependency: transitive
     description:
@@ -1774,5 +1781,5 @@ packages:
     source: hosted
     version: "2.2.4"
 sdks:
-  dart: ">=3.11.0 <4.0.0"
+  dart: ">=3.11.4 <4.0.0"
   flutter: ">=3.38.4"
