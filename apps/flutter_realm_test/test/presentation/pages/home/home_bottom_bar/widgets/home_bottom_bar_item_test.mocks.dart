@@ -28,8 +28,13 @@ import 'package:test_futter_project/presentation/bloc/home/home_bottom_bar/home_
 
 class _FakeHomeBottomBarState_0 extends _i1.SmartFake
     implements _i2.HomeBottomBarState {
-  _FakeHomeBottomBarState_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeHomeBottomBarState_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [HomeBottomBarCubit].
@@ -42,66 +47,93 @@ class MockHomeBottomBarCubit extends _i1.Mock
   }
 
   @override
-  _i2.HomeBottomBarState get state =>
-      (super.noSuchMethod(
-            Invocation.getter(#state),
-            returnValue: _FakeHomeBottomBarState_0(
-              this,
-              Invocation.getter(#state),
-            ),
-          )
-          as _i2.HomeBottomBarState);
+  _i2.HomeBottomBarState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeHomeBottomBarState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i2.HomeBottomBarState);
 
   @override
-  _i4.Stream<_i2.HomeBottomBarState> get stream =>
-      (super.noSuchMethod(
-            Invocation.getter(#stream),
-            returnValue: _i4.Stream<_i2.HomeBottomBarState>.empty(),
-          )
-          as _i4.Stream<_i2.HomeBottomBarState>);
+  _i4.Stream<_i2.HomeBottomBarState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i4.Stream<_i2.HomeBottomBarState>.empty(),
+      ) as _i4.Stream<_i2.HomeBottomBarState>);
 
   @override
-  bool get isClosed =>
-      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
-          as bool);
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
 
   @override
   void updateSelectedIndex(int? newIndex) => super.noSuchMethod(
-    Invocation.method(#updateSelectedIndex, [newIndex]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void emit(_i2.HomeBottomBarState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void onChange(_i5.Change<_i2.HomeBottomBarState>? change) =>
-      super.noSuchMethod(
-        Invocation.method(#onChange, [change]),
+        Invocation.method(
+          #updateSelectedIndex,
+          [newIndex],
+        ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
-    Invocation.method(#addError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void emit(_i2.HomeBottomBarState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void onError(Object? error, StackTrace? stackTrace) => super.noSuchMethod(
-    Invocation.method(#onError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void onChange(_i5.Change<_i2.HomeBottomBarState>? change) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i4.Future<void> close() =>
-      (super.noSuchMethod(
-            Invocation.method(#close, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

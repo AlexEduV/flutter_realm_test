@@ -39,14 +39,14 @@ class MockFetchOwnersUseCase extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i4.OwnerEntity>> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i3.Future<List<_i4.OwnerEntity>>.value(
-              <_i4.OwnerEntity>[],
-            ),
-          )
-          as _i3.Future<List<_i4.OwnerEntity>>);
+  _i3.Future<List<_i4.OwnerEntity>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue:
+            _i3.Future<List<_i4.OwnerEntity>>.value(<_i4.OwnerEntity>[]),
+      ) as _i3.Future<List<_i4.OwnerEntity>>);
 }
 
 /// A class which mocks [GetMaxUserIdUseCase].
@@ -59,8 +59,13 @@ class MockGetMaxUserIdUseCase extends _i1.Mock
   }
 
   @override
-  int call() =>
-      (super.noSuchMethod(Invocation.method(#call, []), returnValue: 0) as int);
+  int call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
 }
 
 /// A class which mocks [SaveUsersUseCase].
@@ -72,11 +77,12 @@ class MockSaveUsersUseCase extends _i1.Mock implements _i6.SaveUsersUseCase {
   }
 
   @override
-  _i3.Future<void> call(List<_i7.UserEntity>? params) =>
-      (super.noSuchMethod(
-            Invocation.method(#call, [params]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> call(List<_i7.UserEntity>? params) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

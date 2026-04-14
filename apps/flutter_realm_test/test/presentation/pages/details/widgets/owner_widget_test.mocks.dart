@@ -25,8 +25,13 @@ import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_ow
 
 class _FakeConversationModel_0 extends _i1.SmartFake
     implements _i2.ConversationModel {
-  _FakeConversationModel_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeConversationModel_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [GetConversationByOwnerIdUseCase].
@@ -39,13 +44,17 @@ class MockGetConversationByOwnerIdUseCase extends _i1.Mock
   }
 
   @override
-  _i2.ConversationModel call(String? params) =>
-      (super.noSuchMethod(
-            Invocation.method(#call, [params]),
-            returnValue: _FakeConversationModel_0(
-              this,
-              Invocation.method(#call, [params]),
-            ),
-          )
-          as _i2.ConversationModel);
+  _i2.ConversationModel call(String? params) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        ),
+      ) as _i2.ConversationModel);
 }

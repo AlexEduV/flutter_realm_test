@@ -34,22 +34,22 @@ class MockPermissionLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.PermissionStatus> requestLocation() =>
-      (super.noSuchMethod(
-            Invocation.method(#requestLocation, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(
-              _i4.PermissionStatus.denied,
-            ),
-          )
-          as _i3.Future<_i4.PermissionStatus>);
+  _i3.Future<_i4.PermissionStatus> requestLocation() => (super.noSuchMethod(
+        Invocation.method(
+          #requestLocation,
+          [],
+        ),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+      ) as _i3.Future<_i4.PermissionStatus>);
 
   @override
-  _i3.Future<_i4.PermissionStatus> checkLocationStatus() =>
-      (super.noSuchMethod(
-            Invocation.method(#checkLocationStatus, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(
-              _i4.PermissionStatus.denied,
-            ),
-          )
-          as _i3.Future<_i4.PermissionStatus>);
+  _i3.Future<_i4.PermissionStatus> checkLocationStatus() => (super.noSuchMethod(
+        Invocation.method(
+          #checkLocationStatus,
+          [],
+        ),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+      ) as _i3.Future<_i4.PermissionStatus>);
 }

@@ -27,8 +27,13 @@ import 'package:test_futter_project/domain/models/conversation_model.dart'
 
 class _FakeConversationModel_0 extends _i1.SmartFake
     implements _i2.ConversationModel {
-  _FakeConversationModel_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeConversationModel_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [MessagesRemoteDataSource].
@@ -42,50 +47,65 @@ class MockMessagesRemoteDataSource extends _i1.Mock
 
   @override
   _i4.Future<void> saveConversations(
-    List<_i2.ConversationModel>? conversations,
-  ) =>
+          List<_i2.ConversationModel>? conversations) =>
       (super.noSuchMethod(
-            Invocation.method(#saveConversations, [conversations]),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+        Invocation.method(
+          #saveConversations,
+          [conversations],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
   _i4.Future<List<_i2.ConversationModel>> loadConversations() =>
       (super.noSuchMethod(
-            Invocation.method(#loadConversations, []),
-            returnValue: _i4.Future<List<_i2.ConversationModel>>.value(
-              <_i2.ConversationModel>[],
-            ),
-          )
-          as _i4.Future<List<_i2.ConversationModel>>);
+        Invocation.method(
+          #loadConversations,
+          [],
+        ),
+        returnValue: _i4.Future<List<_i2.ConversationModel>>.value(
+            <_i2.ConversationModel>[]),
+      ) as _i4.Future<List<_i2.ConversationModel>>);
 
   @override
   _i2.ConversationModel getConversationById(String? conversationId) =>
       (super.noSuchMethod(
-            Invocation.method(#getConversationById, [conversationId]),
-            returnValue: _FakeConversationModel_0(
-              this,
-              Invocation.method(#getConversationById, [conversationId]),
-            ),
-          )
-          as _i2.ConversationModel);
+        Invocation.method(
+          #getConversationById,
+          [conversationId],
+        ),
+        returnValue: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #getConversationById,
+            [conversationId],
+          ),
+        ),
+      ) as _i2.ConversationModel);
 
   @override
   _i2.ConversationModel getConversationByOwnerId(String? ownerId) =>
       (super.noSuchMethod(
-            Invocation.method(#getConversationByOwnerId, [ownerId]),
-            returnValue: _FakeConversationModel_0(
-              this,
-              Invocation.method(#getConversationByOwnerId, [ownerId]),
-            ),
-          )
-          as _i2.ConversationModel);
+        Invocation.method(
+          #getConversationByOwnerId,
+          [ownerId],
+        ),
+        returnValue: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #getConversationByOwnerId,
+            [ownerId],
+          ),
+        ),
+      ) as _i2.ConversationModel);
 
   @override
   void dispose() => super.noSuchMethod(
-    Invocation.method(#dispose, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

@@ -37,14 +37,14 @@ class MockFetchConversationsUseCase extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i4.ConversationModel>> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i3.Future<List<_i4.ConversationModel>>.value(
-              <_i4.ConversationModel>[],
-            ),
-          )
-          as _i3.Future<List<_i4.ConversationModel>>);
+  _i3.Future<List<_i4.ConversationModel>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i3.Future<List<_i4.ConversationModel>>.value(
+            <_i4.ConversationModel>[]),
+      ) as _i3.Future<List<_i4.ConversationModel>>);
 }
 
 /// A class which mocks [SaveConversationsUseCase].
@@ -59,9 +59,11 @@ class MockSaveConversationsUseCase extends _i1.Mock
   @override
   _i3.Future<void> call(List<_i4.ConversationModel>? params) =>
       (super.noSuchMethod(
-            Invocation.method(#call, [params]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

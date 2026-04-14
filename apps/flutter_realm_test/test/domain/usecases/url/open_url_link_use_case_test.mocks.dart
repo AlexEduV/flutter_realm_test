@@ -33,11 +33,12 @@ class MockUrlLaunchRepository extends _i1.Mock
   }
 
   @override
-  _i3.Future<void> openUrl(String? link) =>
-      (super.noSuchMethod(
-            Invocation.method(#openUrl, [link]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> openUrl(String? link) => (super.noSuchMethod(
+        Invocation.method(
+          #openUrl,
+          [link],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

@@ -34,20 +34,22 @@ class MockPermissionRepository extends _i1.Mock
   }
 
   @override
-  _i3.Future<bool> requestLocationPermission() =>
-      (super.noSuchMethod(
-            Invocation.method(#requestLocationPermission, []),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+  _i3.Future<bool> requestLocationPermission() => (super.noSuchMethod(
+        Invocation.method(
+          #requestLocationPermission,
+          [],
+        ),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
   _i3.Future<_i4.PermissionStatus> checkLocationPermissionState() =>
       (super.noSuchMethod(
-            Invocation.method(#checkLocationPermissionState, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(
-              _i4.PermissionStatus.denied,
-            ),
-          )
-          as _i3.Future<_i4.PermissionStatus>);
+        Invocation.method(
+          #checkLocationPermissionState,
+          [],
+        ),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+      ) as _i3.Future<_i4.PermissionStatus>);
 }

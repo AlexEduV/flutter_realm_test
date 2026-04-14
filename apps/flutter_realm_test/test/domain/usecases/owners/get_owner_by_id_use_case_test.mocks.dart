@@ -25,8 +25,13 @@ import 'package:test_futter_project/domain/repositories/owner_repository.dart'
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
-  _FakeOwnerEntity_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeOwnerEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [OwnerRepository].
@@ -38,23 +43,27 @@ class MockOwnerRepository extends _i1.Mock implements _i3.OwnerRepository {
   }
 
   @override
-  _i4.Future<List<_i2.OwnerEntity>> fetchOwners() =>
-      (super.noSuchMethod(
-            Invocation.method(#fetchOwners, []),
-            returnValue: _i4.Future<List<_i2.OwnerEntity>>.value(
-              <_i2.OwnerEntity>[],
-            ),
-          )
-          as _i4.Future<List<_i2.OwnerEntity>>);
+  _i4.Future<List<_i2.OwnerEntity>> fetchOwners() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchOwners,
+          [],
+        ),
+        returnValue:
+            _i4.Future<List<_i2.OwnerEntity>>.value(<_i2.OwnerEntity>[]),
+      ) as _i4.Future<List<_i2.OwnerEntity>>);
 
   @override
-  _i2.OwnerEntity getOwnerById(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#getOwnerById, [id]),
-            returnValue: _FakeOwnerEntity_0(
-              this,
-              Invocation.method(#getOwnerById, [id]),
-            ),
-          )
-          as _i2.OwnerEntity);
+  _i2.OwnerEntity getOwnerById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getOwnerById,
+          [id],
+        ),
+        returnValue: _FakeOwnerEntity_0(
+          this,
+          Invocation.method(
+            #getOwnerById,
+            [id],
+          ),
+        ),
+      ) as _i2.OwnerEntity);
 }

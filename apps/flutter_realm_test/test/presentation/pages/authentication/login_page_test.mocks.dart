@@ -28,8 +28,13 @@ import 'package:test_futter_project/presentation/bloc/authentication/authenticat
 
 class _FakeAuthenticationState_0 extends _i1.SmartFake
     implements _i2.AuthenticationState {
-  _FakeAuthenticationState_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeAuthenticationState_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [AuthenticationCubit].
@@ -42,158 +47,233 @@ class MockAuthenticationCubit extends _i1.Mock
   }
 
   @override
-  _i2.AuthenticationState get state =>
-      (super.noSuchMethod(
-            Invocation.getter(#state),
-            returnValue: _FakeAuthenticationState_0(
-              this,
-              Invocation.getter(#state),
-            ),
-          )
-          as _i2.AuthenticationState);
+  _i2.AuthenticationState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeAuthenticationState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i2.AuthenticationState);
 
   @override
-  _i4.Stream<_i2.AuthenticationState> get stream =>
-      (super.noSuchMethod(
-            Invocation.getter(#stream),
-            returnValue: _i4.Stream<_i2.AuthenticationState>.empty(),
-          )
-          as _i4.Stream<_i2.AuthenticationState>);
+  _i4.Stream<_i2.AuthenticationState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i4.Stream<_i2.AuthenticationState>.empty(),
+      ) as _i4.Stream<_i2.AuthenticationState>);
 
   @override
-  bool get isClosed =>
-      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
-          as bool);
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
 
   @override
   void init() => super.noSuchMethod(
-    Invocation.method(#init, []),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void setObscurePassword(bool? newState) => super.noSuchMethod(
-    Invocation.method(#setObscurePassword, [newState]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void updateEmail(String? newValue) => super.noSuchMethod(
-    Invocation.method(#updateEmail, [newValue]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void updatePassword(String? newValue) => super.noSuchMethod(
-    Invocation.method(#updatePassword, [newValue]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void updateFullName(String? newValue) => super.noSuchMethod(
-    Invocation.method(#updateFullName, [newValue]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  bool validateFullName(String? fullName, bool? isEditing) =>
-      (super.noSuchMethod(
-            Invocation.method(#validateFullName, [fullName, isEditing]),
-            returnValue: false,
-          )
-          as bool);
-
-  @override
-  bool validateEmail(String? email, bool? isEditing) =>
-      (super.noSuchMethod(
-            Invocation.method(#validateEmail, [email, isEditing]),
-            returnValue: false,
-          )
-          as bool);
-
-  @override
-  bool validatePassword(String? password, bool? isEditing) =>
-      (super.noSuchMethod(
-            Invocation.method(#validatePassword, [password, isEditing]),
-            returnValue: false,
-          )
-          as bool);
-
-  @override
-  bool validatePasswordWithStrengthBar(String? password) =>
-      (super.noSuchMethod(
-            Invocation.method(#validatePasswordWithStrengthBar, [password]),
-            returnValue: false,
-          )
-          as bool);
-
-  @override
-  void onLoginButtonPressed() => super.noSuchMethod(
-    Invocation.method(#onLoginButtonPressed, []),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void onRegisterButtonPressed() => super.noSuchMethod(
-    Invocation.method(#onRegisterButtonPressed, []),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void setNewFormModeToLogin(bool? newValue) => super.noSuchMethod(
-    Invocation.method(#setNewFormModeToLogin, [newValue]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  _i4.Future<void> logOut() =>
-      (super.noSuchMethod(
-            Invocation.method(#logOut, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
-
-  @override
-  _i4.Future<void> deleteAccount(String? email) =>
-      (super.noSuchMethod(
-            Invocation.method(#deleteAccount, [email]),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
-
-  @override
-  void emit(_i2.AuthenticationState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void onChange(_i5.Change<_i2.AuthenticationState>? change) =>
-      super.noSuchMethod(
-        Invocation.method(#onChange, [change]),
+        Invocation.method(
+          #init,
+          [],
+        ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
-    Invocation.method(#addError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void setObscurePassword(bool? newState) => super.noSuchMethod(
+        Invocation.method(
+          #setObscurePassword,
+          [newState],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void onError(Object? error, StackTrace? stackTrace) => super.noSuchMethod(
-    Invocation.method(#onError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void updateEmail(String? newValue) => super.noSuchMethod(
+        Invocation.method(
+          #updateEmail,
+          [newValue],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i4.Future<void> close() =>
+  void updatePassword(String? newValue) => super.noSuchMethod(
+        Invocation.method(
+          #updatePassword,
+          [newValue],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateFullName(String? newValue) => super.noSuchMethod(
+        Invocation.method(
+          #updateFullName,
+          [newValue],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  bool validateFullName(
+    String? fullName,
+    bool? isEditing,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#close, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+        Invocation.method(
+          #validateFullName,
+          [
+            fullName,
+            isEditing,
+          ],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool validateEmail(
+    String? email,
+    bool? isEditing,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #validateEmail,
+          [
+            email,
+            isEditing,
+          ],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool validatePassword(
+    String? password,
+    bool? isEditing,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #validatePassword,
+          [
+            password,
+            isEditing,
+          ],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool validatePasswordWithStrengthBar(String? password) => (super.noSuchMethod(
+        Invocation.method(
+          #validatePasswordWithStrengthBar,
+          [password],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  void onLoginButtonPressed() => super.noSuchMethod(
+        Invocation.method(
+          #onLoginButtonPressed,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onRegisterButtonPressed() => super.noSuchMethod(
+        Invocation.method(
+          #onRegisterButtonPressed,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setNewFormModeToLogin(bool? newValue) => super.noSuchMethod(
+        Invocation.method(
+          #setNewFormModeToLogin,
+          [newValue],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Future<void> logOut() => (super.noSuchMethod(
+        Invocation.method(
+          #logOut,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> deleteAccount(String? email) => (super.noSuchMethod(
+        Invocation.method(
+          #deleteAccount,
+          [email],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  void emit(_i2.AuthenticationState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onChange(_i5.Change<_i2.AuthenticationState>? change) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

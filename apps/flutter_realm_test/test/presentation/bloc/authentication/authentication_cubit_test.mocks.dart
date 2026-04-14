@@ -31,8 +31,13 @@ import 'package:test_futter_project/domain/usecases/authentication/register_use_
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeAuthResult_0 extends _i1.SmartFake implements _i2.AuthResult {
-  _FakeAuthResult_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeAuthResult_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [LogoutUseCase].
@@ -44,13 +49,14 @@ class MockLogoutUseCase extends _i1.Mock implements _i3.LogoutUseCase {
   }
 
   @override
-  _i4.Future<void> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
 
 /// A class which mocks [LoginUseCase].
@@ -62,14 +68,19 @@ class MockLoginUseCase extends _i1.Mock implements _i5.LoginUseCase {
   }
 
   @override
-  _i4.Future<_i2.AuthResult> call(_i6.LoginModel? model) =>
-      (super.noSuchMethod(
-            Invocation.method(#call, [model]),
-            returnValue: _i4.Future<_i2.AuthResult>.value(
-              _FakeAuthResult_0(this, Invocation.method(#call, [model])),
-            ),
-          )
-          as _i4.Future<_i2.AuthResult>);
+  _i4.Future<_i2.AuthResult> call(_i6.LoginModel? model) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [model],
+        ),
+        returnValue: _i4.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
+          this,
+          Invocation.method(
+            #call,
+            [model],
+          ),
+        )),
+      ) as _i4.Future<_i2.AuthResult>);
 }
 
 /// A class which mocks [RegisterUseCase].
@@ -83,10 +94,16 @@ class MockRegisterUseCase extends _i1.Mock implements _i7.RegisterUseCase {
   @override
   _i4.Future<_i2.AuthResult> call(_i8.RegisterModel? model) =>
       (super.noSuchMethod(
-            Invocation.method(#call, [model]),
-            returnValue: _i4.Future<_i2.AuthResult>.value(
-              _FakeAuthResult_0(this, Invocation.method(#call, [model])),
-            ),
-          )
-          as _i4.Future<_i2.AuthResult>);
+        Invocation.method(
+          #call,
+          [model],
+        ),
+        returnValue: _i4.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
+          this,
+          Invocation.method(
+            #call,
+            [model],
+          ),
+        )),
+      ) as _i4.Future<_i2.AuthResult>);
 }

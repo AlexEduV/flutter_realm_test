@@ -33,24 +33,28 @@ class MockRegionRepository extends _i1.Mock implements _i2.RegionRepository {
   }
 
   @override
-  _i3.Future<void> loadRegions() =>
-      (super.noSuchMethod(
-            Invocation.method(#loadRegions, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> loadRegions() => (super.noSuchMethod(
+        Invocation.method(
+          #loadRegions,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
   _i4.RegionEntity? getRegionByCode(String? code) =>
-      (super.noSuchMethod(Invocation.method(#getRegionByCode, [code]))
-          as _i4.RegionEntity?);
+      (super.noSuchMethod(Invocation.method(
+        #getRegionByCode,
+        [code],
+      )) as _i4.RegionEntity?);
 
   @override
-  List<_i4.RegionEntity> getAllRegions() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAllRegions, []),
-            returnValue: <_i4.RegionEntity>[],
-          )
-          as List<_i4.RegionEntity>);
+  List<_i4.RegionEntity> getAllRegions() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllRegions,
+          [],
+        ),
+        returnValue: <_i4.RegionEntity>[],
+      ) as List<_i4.RegionEntity>);
 }

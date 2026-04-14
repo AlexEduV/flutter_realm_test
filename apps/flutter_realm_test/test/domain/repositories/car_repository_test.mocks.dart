@@ -25,8 +25,13 @@ import 'package:test_futter_project/domain/repositories/car_repository.dart'
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeCarEntity_0 extends _i1.SmartFake implements _i2.CarEntity {
-  _FakeCarEntity_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeCarEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [CarRepository].
@@ -38,53 +43,72 @@ class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
   }
 
   @override
-  List<_i2.CarEntity> getAllCars() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAllCars, []),
-            returnValue: <_i2.CarEntity>[],
-          )
-          as List<_i2.CarEntity>);
+  List<_i2.CarEntity> getAllCars() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllCars,
+          [],
+        ),
+        returnValue: <_i2.CarEntity>[],
+      ) as List<_i2.CarEntity>);
 
   @override
   void addCar(_i2.CarEntity? car) => super.noSuchMethod(
-    Invocation.method(#addCar, [car]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #addCar,
+          [car],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i4.Future<void> syncCars() =>
-      (super.noSuchMethod(
-            Invocation.method(#syncCars, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> syncCars() => (super.noSuchMethod(
+        Invocation.method(
+          #syncCars,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
   void deleteAll() => super.noSuchMethod(
-    Invocation.method(#deleteAll, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #deleteAll,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void deleteCarById(String? id) => super.noSuchMethod(
-    Invocation.method(#deleteCarById, [id]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #deleteCarById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i2.CarEntity getCarById(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#getCarById, [id]),
-            returnValue: _FakeCarEntity_0(
-              this,
-              Invocation.method(#getCarById, [id]),
-            ),
-          )
-          as _i2.CarEntity);
+  _i2.CarEntity getCarById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getCarById,
+          [id],
+        ),
+        returnValue: _FakeCarEntity_0(
+          this,
+          Invocation.method(
+            #getCarById,
+            [id],
+          ),
+        ),
+      ) as _i2.CarEntity);
 
   @override
-  int getMaxCarId() =>
-      (super.noSuchMethod(Invocation.method(#getMaxCarId, []), returnValue: 0)
-          as int);
+  int getMaxCarId() => (super.noSuchMethod(
+        Invocation.method(
+          #getMaxCarId,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
 }

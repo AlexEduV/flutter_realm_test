@@ -37,13 +37,14 @@ class MockSyncCarsUseCase extends _i1.Mock implements _i2.SyncCarsUseCase {
   }
 
   @override
-  _i3.Future<void> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }
 
 /// A class which mocks [WatchCarsUseCase].
@@ -65,12 +66,12 @@ class MockFetchArticlesUseCase extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i6.ArticleEntity>> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i3.Future<List<_i6.ArticleEntity>>.value(
-              <_i6.ArticleEntity>[],
-            ),
-          )
-          as _i3.Future<List<_i6.ArticleEntity>>);
+  _i3.Future<List<_i6.ArticleEntity>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue:
+            _i3.Future<List<_i6.ArticleEntity>>.value(<_i6.ArticleEntity>[]),
+      ) as _i3.Future<List<_i6.ArticleEntity>>);
 }

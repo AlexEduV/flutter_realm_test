@@ -36,9 +36,12 @@ class MockAddCarUseCase extends _i1.Mock implements _i2.AddCarUseCase {
 
   @override
   void call(_i3.CarEntity? params) => super.noSuchMethod(
-    Invocation.method(#call, [params]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [GetAllCarsUseCase].
@@ -50,12 +53,13 @@ class MockGetAllCarsUseCase extends _i1.Mock implements _i4.GetAllCarsUseCase {
   }
 
   @override
-  List<_i3.CarEntity> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: <_i3.CarEntity>[],
-          )
-          as List<_i3.CarEntity>);
+  List<_i3.CarEntity> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: <_i3.CarEntity>[],
+      ) as List<_i3.CarEntity>);
 }
 
 /// A class which mocks [GetCurrentMaxCarIdUseCase].
@@ -68,6 +72,11 @@ class MockGetCurrentMaxCarIdUseCase extends _i1.Mock
   }
 
   @override
-  int call() =>
-      (super.noSuchMethod(Invocation.method(#call, []), returnValue: 0) as int);
+  int call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
 }

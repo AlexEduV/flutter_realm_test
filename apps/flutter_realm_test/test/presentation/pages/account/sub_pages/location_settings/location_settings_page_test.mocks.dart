@@ -35,9 +35,10 @@ class MockGetRegionByCodeUseCase extends _i1.Mock
   }
 
   @override
-  _i3.RegionEntity? call(String? code) =>
-      (super.noSuchMethod(Invocation.method(#call, [code]))
-          as _i3.RegionEntity?);
+  _i3.RegionEntity? call(String? code) => (super.noSuchMethod(Invocation.method(
+        #call,
+        [code],
+      )) as _i3.RegionEntity?);
 }
 
 /// A class which mocks [GetAllRegionModelsUseCase].
@@ -50,10 +51,11 @@ class MockGetAllRegionModelsUseCase extends _i1.Mock
   }
 
   @override
-  List<_i5.RegionUiModel> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: <_i5.RegionUiModel>[],
-          )
-          as List<_i5.RegionUiModel>);
+  List<_i5.RegionUiModel> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: <_i5.RegionUiModel>[],
+      ) as List<_i5.RegionUiModel>);
 }

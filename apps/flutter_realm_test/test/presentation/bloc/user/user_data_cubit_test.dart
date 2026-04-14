@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_futter_project/common/logger/base_logger.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_futter_project/domain/entities/user_entity.dart';
@@ -19,7 +20,8 @@ import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart'
 import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
 
 import '../../../data/data_sources/remote/auth_remote_data_source_impl_test.mocks.dart';
-import 'user_data_cubit_test.mocks.dart';
+import '../../../domain/repositories/base_local_storage_test.mocks.dart';
+import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
 
 @GenerateMocks([
   BaseLocalStorage,

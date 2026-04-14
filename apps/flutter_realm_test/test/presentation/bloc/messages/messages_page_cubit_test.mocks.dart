@@ -33,8 +33,13 @@ import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.da
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
-  _FakeEither_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeEither_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [SearchGifsUseCase].
@@ -47,21 +52,22 @@ class MockSearchGifsUseCase extends _i1.Mock implements _i3.SearchGifsUseCase {
 
   @override
   _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>> call(
-    String? params,
-  ) =>
+          String? params) =>
       (super.noSuchMethod(
-            Invocation.method(#call, [params]),
-            returnValue:
-                _i4.Future<
-                  _i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>
-                >.value(
-                  _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
-                    this,
-                    Invocation.method(#call, [params]),
-                  ),
-                ),
-          )
-          as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>);
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue: _i4
+            .Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
+            _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>);
 }
 
 /// A class which mocks [GetTrendingGifsUseCase].
@@ -76,18 +82,20 @@ class MockGetTrendingGifsUseCase extends _i1.Mock
   @override
   _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>> call() =>
       (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue:
-                _i4.Future<
-                  _i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>
-                >.value(
-                  _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
-                    this,
-                    Invocation.method(#call, []),
-                  ),
-                ),
-          )
-          as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>);
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i4
+            .Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
+            _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>);
 }
 
 /// A class which mocks [PickAttachmentFileUseCase].
@@ -100,10 +108,11 @@ class MockPickAttachmentFileUseCase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i9.AttachmentEntity?> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i4.Future<_i9.AttachmentEntity?>.value(),
-          )
-          as _i4.Future<_i9.AttachmentEntity?>);
+  _i4.Future<_i9.AttachmentEntity?> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i4.Future<_i9.AttachmentEntity?>.value(),
+      ) as _i4.Future<_i9.AttachmentEntity?>);
 }

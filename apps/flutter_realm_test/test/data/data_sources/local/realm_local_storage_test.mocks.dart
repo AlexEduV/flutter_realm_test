@@ -28,39 +28,74 @@ import 'package:realm_dart/src/results.dart' as _i5;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeDynamicRealm_0 extends _i1.SmartFake implements _i2.DynamicRealm {
-  _FakeDynamicRealm_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeDynamicRealm_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 class _FakeConfiguration_1 extends _i1.SmartFake implements _i3.Configuration {
-  _FakeConfiguration_1(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeConfiguration_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 class _FakeRealmSchema_2 extends _i1.SmartFake implements _i3.RealmSchema {
-  _FakeRealmSchema_2(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeRealmSchema_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 class _FakeTransaction_3 extends _i1.SmartFake implements _i2.Transaction {
-  _FakeTransaction_3(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeTransaction_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 class _FakeFuture_4<T1> extends _i1.SmartFake implements _i4.Future<T1> {
-  _FakeFuture_4(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeFuture_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 class _FakeRealmResults_5<T1 extends Object?> extends _i1.SmartFake
     implements _i5.RealmResults<T1> {
-  _FakeRealmResults_5(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeRealmResults_5(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 class _FakeRealm_6 extends _i1.SmartFake implements _i2.Realm {
-  _FakeRealm_6(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeRealm_6(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [Realm].
@@ -72,122 +107,159 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
   }
 
   @override
-  _i2.DynamicRealm get dynamic =>
-      (super.noSuchMethod(
-            Invocation.getter(#dynamic),
-            returnValue: _FakeDynamicRealm_0(this, Invocation.getter(#dynamic)),
-          )
-          as _i2.DynamicRealm);
+  _i2.DynamicRealm get dynamic => (super.noSuchMethod(
+        Invocation.getter(#dynamic),
+        returnValue: _FakeDynamicRealm_0(
+          this,
+          Invocation.getter(#dynamic),
+        ),
+      ) as _i2.DynamicRealm);
 
   @override
-  _i3.Configuration get config =>
-      (super.noSuchMethod(
-            Invocation.getter(#config),
-            returnValue: _FakeConfiguration_1(this, Invocation.getter(#config)),
-          )
-          as _i3.Configuration);
+  _i3.Configuration get config => (super.noSuchMethod(
+        Invocation.getter(#config),
+        returnValue: _FakeConfiguration_1(
+          this,
+          Invocation.getter(#config),
+        ),
+      ) as _i3.Configuration);
 
   @override
-  _i3.RealmSchema get schema =>
-      (super.noSuchMethod(
-            Invocation.getter(#schema),
-            returnValue: _FakeRealmSchema_2(this, Invocation.getter(#schema)),
-          )
-          as _i3.RealmSchema);
-
-  @override
-  bool get isFrozen =>
-      (super.noSuchMethod(Invocation.getter(#isFrozen), returnValue: false)
-          as bool);
-
-  @override
-  bool get isInTransaction =>
-      (super.noSuchMethod(
-            Invocation.getter(#isInTransaction),
-            returnValue: false,
-          )
-          as bool);
-
-  @override
-  bool get isClosed =>
-      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
-          as bool);
+  _i3.RealmSchema get schema => (super.noSuchMethod(
+        Invocation.getter(#schema),
+        returnValue: _FakeRealmSchema_2(
+          this,
+          Invocation.getter(#schema),
+        ),
+      ) as _i3.RealmSchema);
 
   @override
   set schema(_i3.RealmSchema? _schema) => super.noSuchMethod(
-    Invocation.setter(#schema, _schema),
-    returnValueForMissingStub: null,
-  );
+        Invocation.setter(
+          #schema,
+          _schema,
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  T add<T extends _i6.RealmObject>(T? object, {bool? update = false}) =>
+  bool get isFrozen => (super.noSuchMethod(
+        Invocation.getter(#isFrozen),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isInTransaction => (super.noSuchMethod(
+        Invocation.getter(#isInTransaction),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  T add<T extends _i6.RealmObject>(
+    T? object, {
+    bool? update = false,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#add, [object], {#update: update}),
-            returnValue: _i7.dummyValue<T>(
-              this,
-              Invocation.method(#add, [object], {#update: update}),
-            ),
-          )
-          as T);
+        Invocation.method(
+          #add,
+          [object],
+          {#update: update},
+        ),
+        returnValue: _i7.dummyValue<T>(
+          this,
+          Invocation.method(
+            #add,
+            [object],
+            {#update: update},
+          ),
+        ),
+      ) as T);
 
   @override
   void addAll<T extends _i6.RealmObject>(
     Iterable<T>? items, {
     bool? update = false,
-  }) => super.noSuchMethod(
-    Invocation.method(#addAll, [items], {#update: update}),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void delete<T extends _i6.RealmObjectBase>(T? object) => super.noSuchMethod(
-    Invocation.method(#delete, [object]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void deleteMany<T extends _i6.RealmObject>(Iterable<T>? items) =>
+  }) =>
       super.noSuchMethod(
-        Invocation.method(#deleteMany, [items]),
+        Invocation.method(
+          #addAll,
+          [items],
+          {#update: update},
+        ),
         returnValueForMissingStub: null,
       );
 
   @override
-  T write<T>(T Function()? writeCallback) =>
-      (super.noSuchMethod(
-            Invocation.method(#write, [writeCallback]),
-            returnValue: _i7.dummyValue<T>(
-              this,
-              Invocation.method(#write, [writeCallback]),
-            ),
-          )
-          as T);
+  void delete<T extends _i6.RealmObjectBase>(T? object) => super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [object],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i2.Transaction beginWrite() =>
-      (super.noSuchMethod(
-            Invocation.method(#beginWrite, []),
-            returnValue: _FakeTransaction_3(
-              this,
-              Invocation.method(#beginWrite, []),
-            ),
-          )
-          as _i2.Transaction);
+  void deleteMany<T extends _i6.RealmObject>(Iterable<T>? items) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #deleteMany,
+          [items],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i4.Future<_i2.Transaction> beginWriteAsync([
-    _i8.CancellationToken? cancellationToken,
-  ]) =>
+  T write<T>(T Function()? writeCallback) => (super.noSuchMethod(
+        Invocation.method(
+          #write,
+          [writeCallback],
+        ),
+        returnValue: _i7.dummyValue<T>(
+          this,
+          Invocation.method(
+            #write,
+            [writeCallback],
+          ),
+        ),
+      ) as T);
+
+  @override
+  _i2.Transaction beginWrite() => (super.noSuchMethod(
+        Invocation.method(
+          #beginWrite,
+          [],
+        ),
+        returnValue: _FakeTransaction_3(
+          this,
+          Invocation.method(
+            #beginWrite,
+            [],
+          ),
+        ),
+      ) as _i2.Transaction);
+
+  @override
+  _i4.Future<_i2.Transaction> beginWriteAsync(
+          [_i8.CancellationToken? cancellationToken]) =>
       (super.noSuchMethod(
-            Invocation.method(#beginWriteAsync, [cancellationToken]),
-            returnValue: _i4.Future<_i2.Transaction>.value(
-              _FakeTransaction_3(
-                this,
-                Invocation.method(#beginWriteAsync, [cancellationToken]),
-              ),
-            ),
-          )
-          as _i4.Future<_i2.Transaction>);
+        Invocation.method(
+          #beginWriteAsync,
+          [cancellationToken],
+        ),
+        returnValue: _i4.Future<_i2.Transaction>.value(_FakeTransaction_3(
+          this,
+          Invocation.method(
+            #beginWriteAsync,
+            [cancellationToken],
+          ),
+        )),
+      ) as _i4.Future<_i2.Transaction>);
 
   @override
   _i4.Future<T> writeAsync<T>(
@@ -195,44 +267,61 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
     _i8.CancellationToken? cancellationToken,
   ]) =>
       (super.noSuchMethod(
-            Invocation.method(#writeAsync, [writeCallback, cancellationToken]),
-            returnValue:
-                _i7.ifNotNull(
-                  _i7.dummyValueOrNull<T>(
-                    this,
-                    Invocation.method(#writeAsync, [
-                      writeCallback,
-                      cancellationToken,
-                    ]),
-                  ),
-                  (T v) => _i4.Future<T>.value(v),
-                ) ??
-                _FakeFuture_4<T>(
-                  this,
-                  Invocation.method(#writeAsync, [
+        Invocation.method(
+          #writeAsync,
+          [
+            writeCallback,
+            cancellationToken,
+          ],
+        ),
+        returnValue: _i7.ifNotNull(
+              _i7.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #writeAsync,
+                  [
                     writeCallback,
                     cancellationToken,
-                  ]),
+                  ],
                 ),
-          )
-          as _i4.Future<T>);
+              ),
+              (T v) => _i4.Future<T>.value(v),
+            ) ??
+            _FakeFuture_4<T>(
+              this,
+              Invocation.method(
+                #writeAsync,
+                [
+                  writeCallback,
+                  cancellationToken,
+                ],
+              ),
+            ),
+      ) as _i4.Future<T>);
 
   @override
   void close() => super.noSuchMethod(
-    Invocation.method(#close, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i5.RealmResults<T> all<T extends _i6.RealmObject>() =>
-      (super.noSuchMethod(
-            Invocation.method(#all, []),
-            returnValue: _FakeRealmResults_5<T>(
-              this,
-              Invocation.method(#all, []),
-            ),
-          )
-          as _i5.RealmResults<T>);
+  _i5.RealmResults<T> all<T extends _i6.RealmObject>() => (super.noSuchMethod(
+        Invocation.method(
+          #all,
+          [],
+        ),
+        returnValue: _FakeRealmResults_5<T>(
+          this,
+          Invocation.method(
+            #all,
+            [],
+          ),
+        ),
+      ) as _i5.RealmResults<T>);
 
   @override
   _i5.RealmResults<T> query<T extends _i6.RealmObject>(
@@ -240,50 +329,82 @@ class MockRealm extends _i1.Mock implements _i2.Realm {
     List<Object?>? args = const [],
   ]) =>
       (super.noSuchMethod(
-            Invocation.method(#query, [query, args]),
-            returnValue: _FakeRealmResults_5<T>(
-              this,
-              Invocation.method(#query, [query, args]),
-            ),
-          )
-          as _i5.RealmResults<T>);
+        Invocation.method(
+          #query,
+          [
+            query,
+            args,
+          ],
+        ),
+        returnValue: _FakeRealmResults_5<T>(
+          this,
+          Invocation.method(
+            #query,
+            [
+              query,
+              args,
+            ],
+          ),
+        ),
+      ) as _i5.RealmResults<T>);
 
   @override
   void deleteAll<T extends _i6.RealmObject>() => super.noSuchMethod(
-    Invocation.method(#deleteAll, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #deleteAll,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i2.Realm freeze() =>
-      (super.noSuchMethod(
-            Invocation.method(#freeze, []),
-            returnValue: _FakeRealm_6(this, Invocation.method(#freeze, [])),
-          )
-          as _i2.Realm);
+  _i2.Realm freeze() => (super.noSuchMethod(
+        Invocation.method(
+          #freeze,
+          [],
+        ),
+        returnValue: _FakeRealm_6(
+          this,
+          Invocation.method(
+            #freeze,
+            [],
+          ),
+        ),
+      ) as _i2.Realm);
 
   @override
   void writeCopy(_i3.Configuration? config) => super.noSuchMethod(
-    Invocation.method(#writeCopy, [config]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #writeCopy,
+          [config],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  bool refresh() =>
-      (super.noSuchMethod(Invocation.method(#refresh, []), returnValue: false)
-          as bool);
+  bool refresh() => (super.noSuchMethod(
+        Invocation.method(
+          #refresh,
+          [],
+        ),
+        returnValue: false,
+      ) as bool);
 
   @override
-  _i4.Future<bool> refreshAsync() =>
-      (super.noSuchMethod(
-            Invocation.method(#refreshAsync, []),
-            returnValue: _i4.Future<bool>.value(false),
-          )
-          as _i4.Future<bool>);
+  _i4.Future<bool> refreshAsync() => (super.noSuchMethod(
+        Invocation.method(
+          #refreshAsync,
+          [],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
   void disableAutoRefreshForTesting() => super.noSuchMethod(
-    Invocation.method(#disableAutoRefreshForTesting, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #disableAutoRefreshForTesting,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

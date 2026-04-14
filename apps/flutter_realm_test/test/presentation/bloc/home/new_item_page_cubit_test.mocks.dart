@@ -38,10 +38,11 @@ class MockGetAutoCompleteManufacturersByTypeUseCase extends _i1.Mock
   @override
   _i3.Future<List<_i4.CarAutoCompleteEntity>> call(_i5.CarType? params) =>
       (super.noSuchMethod(
-            Invocation.method(#call, [params]),
-            returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
-              <_i4.CarAutoCompleteEntity>[],
-            ),
-          )
-          as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
+            <_i4.CarAutoCompleteEntity>[]),
+      ) as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
 }
