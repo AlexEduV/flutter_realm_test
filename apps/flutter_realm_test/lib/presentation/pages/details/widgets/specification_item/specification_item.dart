@@ -19,7 +19,7 @@ class SpecificationItem extends StatelessWidget {
         Row(
           spacing: AppDimensions.minorL,
           children: [
-            ?leading,
+            ...[if (leading != null) leading!],
 
             Text(subtitle, style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600)),
           ],
