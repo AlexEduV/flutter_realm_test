@@ -40,4 +40,12 @@ pod install
 And it helped. Maybe I will use it again with the `melos bs` command.
 
 
+### Issues
 
+When upgraded to Flutter 3.41, a lot of dependencies stopped working together, which
+has forced overrides. But Melos does not like them, so when using the build_runner from root,
+there were a lot of issues with dart_analyzer, dart_style and meta package versions not correlating with
+each other.
+
+I have switched from using workspace alias to manual build from each package, so every app has its own
+pubspec. The latest analyser version would be the best, but it's not available because of the realm dependencies.
