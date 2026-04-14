@@ -33,10 +33,6 @@ void main() async {
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
 
-  //todo: added melos with the main repo, but had to revert, because Android app crashed on entering.
-  //moving the folders around broke Android Studio config, but even fixing it did not change anything
-  //tried gradle clean, invalidating caches, flutter clean -> melos bs, upgrading kotlin version.
-
   await serviceLocator<InitRegionModelsUseCase>().call();
   await serviceLocator<FetchRegionsUseCase>().call();
   await serviceLocator<InitEnvUseCase>().call();
