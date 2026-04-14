@@ -114,7 +114,7 @@ packages:
     source: hosted
     version: "1.1.2"
   build_daemon:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: build_daemon
       sha256: "0343061a33da9c5810b2d6cee51945127d8f4c060b7fbdd9d54917f0a3feaaa1"
