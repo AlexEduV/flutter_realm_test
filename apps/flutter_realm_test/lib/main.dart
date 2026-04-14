@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/constants/app_colors.dart';
 import 'package:test_futter_project/common/constants/app_constants.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/env/init_env_use_case.dart';
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/init_region_models_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
@@ -50,18 +52,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late final AppLifecycleListener _listener;
+  late AppLifecycleListener _listener;
 
   @override
   void initState() {
     super.initState();
 
-    _listener = AppLifecycleListener(
-      onResume: () {
-        //todo: works if went to settings to enable the permission, but not if went to disable
-        serviceLocator<UserDataCubit>().requestLocationPermission();
-      },
-    );
+    checkPermissionStatusAndResume();
+
+    _listener = AppLifecycleListener(onResume: () => checkPermissionStatusAndResume());
   }
 
   @override
@@ -124,5 +123,20 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  Future<void> checkPermissionStatusAndResume() async {
+    final locationPermissionStatus = await serviceLocator<CheckLocationPermissionStatusUseCase>()
+        .call();
+
+    final isGranted = locationPermissionStatus == PermissionStatus.granted;
+
+    if (!isGranted) {
+      if (AppRouter.router.canPop()) {
+        AppRouter.router.pop();
+      }
+    }
+
+    serviceLocator<UserDataCubit>().updateLocationPermissionStatus(isGranted);
   }
 }
