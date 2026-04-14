@@ -51,7 +51,8 @@ dependencies:
 
 dependency_overrides:
   test_api: 0.7.10
-  analyzer: ^7.3.0
+  analyzer: 7.3.0
+  dart_style: 2.3.4
 
 dev_dependencies:
   flutter_test:
