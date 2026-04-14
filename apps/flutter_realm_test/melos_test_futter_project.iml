@@ -17,6 +17,12 @@
       <excludeFolder url="file://$MODULE_DIR$/macos/Flutter" />
       <excludeFolder url="file://$MODULE_DIR$/macos/Pods" />
       <excludeFolder url="file://$MODULE_DIR$/macos/.symlinks" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/packages/flutter_tools/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/packages/flutter_tools/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/packages/flutter_tools/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/versions/3.41.6/packages/flutter_tools/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/versions/3.41.6/packages/flutter_tools/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/versions/3.41.6/packages/flutter_tools/build" />
       <excludeFolder url="file://$MODULE_DIR$/android" />
     </content>
     <orderEntry type="inheritedJdk" />
