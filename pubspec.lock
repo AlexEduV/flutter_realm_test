@@ -130,7 +130,7 @@ packages:
     source: hosted
     version: "2.4.4"
   build_runner:
-    dependency: "direct overridden"
+    dependency: "direct dev"
     description:
       name: build_runner
       sha256: "3ac61a79bfb6f6cc11f693591063a7f19a7af628dc52f141743edac5c16e8c22"
@@ -519,7 +519,7 @@ packages:
     source: hosted
     version: "6.0.0"
   flutter_lints:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: flutter_lints
       sha256: "5398f14efa795ffb7a33e9b6a08798b26a180edac4ad7db3f231e40f82ce11e1"
@@ -551,7 +551,7 @@ packages:
     source: hosted
     version: "4.0.3"
   flutter_test:
-    dependency: transitive
+    dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -561,7 +561,7 @@ packages:
     source: sdk
     version: "0.0.0"
   freezed:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: freezed
       sha256: "6022db4c7bfa626841b2a10f34dd1e1b68e8f8f9650db6112dcdeeca45ca793c"
@@ -945,7 +945,7 @@ packages:
     source: hosted
     version: "1.0.6"
   mockito:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: mockito
       sha256: "4546eac99e8967ea91bae633d2ca7698181d008e95fa4627330cf903d573277a"
@@ -1249,7 +1249,7 @@ packages:
     source: hosted
     version: "2.2.3"
   realm:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: realm
       sha256: "475b9635c781fe10b898447e86cf979e36966caefd1dd16efd53a3f03bbe30a6"
@@ -1280,13 +1280,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "20.2.0"
-  realm_ui_core:
-    dependency: transitive
-    description:
-      path: "packages/realm_ui_core"
-      relative: true
-    source: path
-    version: "1.0.0"
   rxdart:
     dependency: transitive
     description:

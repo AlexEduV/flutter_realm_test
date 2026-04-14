@@ -6,9 +6,18 @@ environment:
 
 workspace:
   - apps/flutter_realm_test/
+  - packages/realm_ui_core/
 
 dev_dependencies:
   melos: ^7.0.0
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.2
+  freezed: ^3.0.0
+  mockito: ^5.4.6
+  realm: ^20.2.0
 
 dependency_overrides:
   analyzer: 7.3.0

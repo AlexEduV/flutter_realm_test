@@ -49,14 +49,6 @@ dependencies:
   realm_ui_core:
     path: ../../packages/realm_ui_core/
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-  flutter_lints: ^5.0.0
-  build_runner: ^2.4.2
-  freezed: ^3.0.0
-
 flutter:
   uses-material-design: true
 
