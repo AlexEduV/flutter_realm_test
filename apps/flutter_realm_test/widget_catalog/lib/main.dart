@@ -12,6 +12,8 @@ class WidgetBookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const defaultUseCaseName = 'Default';
+
     return Widgetbook.material(
       directories: [
         WidgetbookFolder(
@@ -24,7 +26,7 @@ class WidgetBookApp extends StatelessWidget {
                   name: 'ResultsWidget',
                   useCases: [
                     WidgetbookUseCase(
-                      name: 'Default',
+                      name: defaultUseCaseName,
                       builder: (context) => buildResultsWidgetUseCase(context),
                     ),
                   ],
@@ -39,7 +41,7 @@ class WidgetBookApp extends StatelessWidget {
                   name: 'OwnerWidget',
                   useCases: [
                     WidgetbookUseCase(
-                      name: 'Default',
+                      name: defaultUseCaseName,
                       builder: (context) => buildOwnerWidgetUseCase(context),
                     ),
                   ],
