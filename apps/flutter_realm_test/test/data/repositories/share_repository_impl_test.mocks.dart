@@ -6,8 +6,10 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/data_sources/local/share_local_data_source.dart' as _i2;
-import 'package:test_flutter_project/domain/models/share_params_model.dart' as _i4;
+import 'package:test_flutter_project/domain/data_sources/local/share_local_data_source.dart'
+    as _i2;
+import 'package:test_flutter_project/domain/models/share_params_model.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,17 +28,19 @@ import 'package:test_flutter_project/domain/models/share_params_model.dart' as _
 /// A class which mocks [ShareLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockShareLocalDataSource extends _i1.Mock implements _i2.ShareLocalDataSource {
+class MockShareLocalDataSource extends _i1.Mock
+    implements _i2.ShareLocalDataSource {
   MockShareLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> share(_i4.ShareParamsModel? model) =>
-      (super.noSuchMethod(
-            Invocation.method(#share, [model]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> share(_i4.ShareParamsModel? model) => (super.noSuchMethod(
+        Invocation.method(
+          #share,
+          [model],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

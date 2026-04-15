@@ -11,8 +11,10 @@ import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i6;
 import 'package:test_flutter_project/common/enums/drawer_type.dart' as _i8;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i5;
-import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart' as _i3;
-import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart' as _i2;
+import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart'
+    as _i3;
+import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -28,9 +30,15 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_state.
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeSearchPageState_0 extends _i1.SmartFake implements _i2.SearchPageState {
-  _FakeSearchPageState_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+class _FakeSearchPageState_0 extends _i1.SmartFake
+    implements _i2.SearchPageState {
+  _FakeSearchPageState_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [SearchPageCubit].
@@ -42,256 +50,473 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   }
 
   @override
-  _i2.SearchPageState get state =>
-      (super.noSuchMethod(
-            Invocation.getter(#state),
-            returnValue: _FakeSearchPageState_0(this, Invocation.getter(#state)),
-          )
-          as _i2.SearchPageState);
+  _i2.SearchPageState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeSearchPageState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i2.SearchPageState);
 
   @override
-  _i4.Stream<_i2.SearchPageState> get stream =>
-      (super.noSuchMethod(
-            Invocation.getter(#stream),
-            returnValue: _i4.Stream<_i2.SearchPageState>.empty(),
-          )
-          as _i4.Stream<_i2.SearchPageState>);
+  _i4.Stream<_i2.SearchPageState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i4.Stream<_i2.SearchPageState>.empty(),
+      ) as _i4.Stream<_i2.SearchPageState>);
 
   @override
-  bool get isClosed =>
-      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false) as bool);
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
 
   @override
-  void init() => super.noSuchMethod(Invocation.method(#init, []), returnValueForMissingStub: null);
+  void init() => super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void loadData() =>
-      super.noSuchMethod(Invocation.method(#loadData, []), returnValueForMissingStub: null);
+  void loadData() => super.noSuchMethod(
+        Invocation.method(
+          #loadData,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   List<_i5.CarEntity> applyAllFilters(List<_i5.CarEntity>? cars) =>
       (super.noSuchMethod(
-            Invocation.method(#applyAllFilters, [cars]),
-            returnValue: <_i5.CarEntity>[],
-          )
-          as List<_i5.CarEntity>);
+        Invocation.method(
+          #applyAllFilters,
+          [cars],
+        ),
+        returnValue: <_i5.CarEntity>[],
+      ) as List<_i5.CarEntity>);
 
   @override
   void updateTypeSelection(_i6.CarType? newType) => super.noSuchMethod(
-    Invocation.method(#updateTypeSelection, [newType]),
-    returnValueForMissingStub: null,
-  );
-
-  @override
-  void updateModelListFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
-      super.noSuchMethod(
-        Invocation.method(#updateModelListFromEntities, [cars, type]),
+        Invocation.method(
+          #updateTypeSelection,
+          [newType],
+        ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void updateColorListFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
+  void updateModelListFromEntities(
+    List<_i5.CarEntity>? cars,
+    _i6.CarType? type,
+  ) =>
       super.noSuchMethod(
-        Invocation.method(#updateColorListFromEntities, [cars, type]),
+        Invocation.method(
+          #updateModelListFromEntities,
+          [
+            cars,
+            type,
+          ],
+        ),
         returnValueForMissingStub: null,
       );
 
   @override
-  String getMinYearFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
-      (super.noSuchMethod(
-            Invocation.method(#getMinYearFromEntities, [cars, type]),
-            returnValue: _i7.dummyValue<String>(
-              this,
-              Invocation.method(#getMinYearFromEntities, [cars, type]),
-            ),
-          )
-          as String);
+  void updateColorListFromEntities(
+    List<_i5.CarEntity>? cars,
+    _i6.CarType? type,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #updateColorListFromEntities,
+          [
+            cars,
+            type,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  String getMaxYearFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
+  String getMinYearFromEntities(
+    List<_i5.CarEntity>? cars,
+    _i6.CarType? type,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#getMaxYearFromEntities, [cars, type]),
-            returnValue: _i7.dummyValue<String>(
-              this,
-              Invocation.method(#getMaxYearFromEntities, [cars, type]),
-            ),
-          )
-          as String);
+        Invocation.method(
+          #getMinYearFromEntities,
+          [
+            cars,
+            type,
+          ],
+        ),
+        returnValue: _i7.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMinYearFromEntities,
+            [
+              cars,
+              type,
+            ],
+          ),
+        ),
+      ) as String);
 
   @override
-  String getMinPriceFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
+  String getMaxYearFromEntities(
+    List<_i5.CarEntity>? cars,
+    _i6.CarType? type,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#getMinPriceFromEntities, [cars, type]),
-            returnValue: _i7.dummyValue<String>(
-              this,
-              Invocation.method(#getMinPriceFromEntities, [cars, type]),
-            ),
-          )
-          as String);
+        Invocation.method(
+          #getMaxYearFromEntities,
+          [
+            cars,
+            type,
+          ],
+        ),
+        returnValue: _i7.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMaxYearFromEntities,
+            [
+              cars,
+              type,
+            ],
+          ),
+        ),
+      ) as String);
 
   @override
-  String getMaxPriceFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
+  String getMinPriceFromEntities(
+    List<_i5.CarEntity>? cars,
+    _i6.CarType? type,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#getMaxPriceFromEntities, [cars, type]),
-            returnValue: _i7.dummyValue<String>(
-              this,
-              Invocation.method(#getMaxPriceFromEntities, [cars, type]),
-            ),
-          )
-          as String);
+        Invocation.method(
+          #getMinPriceFromEntities,
+          [
+            cars,
+            type,
+          ],
+        ),
+        returnValue: _i7.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMinPriceFromEntities,
+            [
+              cars,
+              type,
+            ],
+          ),
+        ),
+      ) as String);
 
   @override
-  void updateModelSelection(Map<String, List<String>>? newList) => super.noSuchMethod(
-    Invocation.method(#updateModelSelection, [newList]),
-    returnValueForMissingStub: null,
-  );
+  String getMaxPriceFromEntities(
+    List<_i5.CarEntity>? cars,
+    _i6.CarType? type,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getMaxPriceFromEntities,
+          [
+            cars,
+            type,
+          ],
+        ),
+        returnValue: _i7.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMaxPriceFromEntities,
+            [
+              cars,
+              type,
+            ],
+          ),
+        ),
+      ) as String);
+
+  @override
+  void updateModelSelection(Map<String, List<String>>? newList) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #updateModelSelection,
+          [newList],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void addManufacturerToSelection(String? manufacturer) => super.noSuchMethod(
-    Invocation.method(#addManufacturerToSelection, [manufacturer]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #addManufacturerToSelection,
+          [manufacturer],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void removeManufacturerFromSelection(String? manufacturer) => super.noSuchMethod(
-    Invocation.method(#removeManufacturerFromSelection, [manufacturer]),
-    returnValueForMissingStub: null,
-  );
+  void removeManufacturerFromSelection(String? manufacturer) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #removeManufacturerFromSelection,
+          [manufacturer],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void addCarModelToSelection(String? manufacturer, String? model) => super.noSuchMethod(
-    Invocation.method(#addCarModelToSelection, [manufacturer, model]),
-    returnValueForMissingStub: null,
-  );
+  void addCarModelToSelection(
+    String? manufacturer,
+    String? model,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addCarModelToSelection,
+          [
+            manufacturer,
+            model,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void removeCarModelFromSelection(String? manufacturer, String? model) => super.noSuchMethod(
-    Invocation.method(#removeCarModelFromSelection, [manufacturer, model]),
-    returnValueForMissingStub: null,
-  );
+  void removeCarModelFromSelection(
+    String? manufacturer,
+    String? model,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #removeCarModelFromSelection,
+          [
+            manufacturer,
+            model,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void addCarColorToSelection(String? color) => super.noSuchMethod(
-    Invocation.method(#addCarColorToSelection, [color]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #addCarColorToSelection,
+          [color],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void removeCarColorFromSelection(String? color) => super.noSuchMethod(
-    Invocation.method(#removeCarColorFromSelection, [color]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #removeCarColorFromSelection,
+          [color],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void addBodyTypeToSelection(String? bodyType) => super.noSuchMethod(
-    Invocation.method(#addBodyTypeToSelection, [bodyType]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #addBodyTypeToSelection,
+          [bodyType],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void removeBodyTypeFromSelection(String? bodyType) => super.noSuchMethod(
-    Invocation.method(#removeBodyTypeFromSelection, [bodyType]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #removeBodyTypeFromSelection,
+          [bodyType],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void addFuelTypeToSelection(String? fuelType) => super.noSuchMethod(
-    Invocation.method(#addFuelTypeToSelection, [fuelType]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #addFuelTypeToSelection,
+          [fuelType],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void removeFuelTypeFromSelection(String? fuelType) => super.noSuchMethod(
-    Invocation.method(#removeFuelTypeFromSelection, [fuelType]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #removeFuelTypeFromSelection,
+          [fuelType],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void addTransmissionTypeToSelection(String? transmissionType) => super.noSuchMethod(
-    Invocation.method(#addTransmissionTypeToSelection, [transmissionType]),
-    returnValueForMissingStub: null,
-  );
+  void addTransmissionTypeToSelection(String? transmissionType) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addTransmissionTypeToSelection,
+          [transmissionType],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void removeTransmissionTypeFromSelection(String? transmissionType) => super.noSuchMethod(
-    Invocation.method(#removeTransmissionTypeFromSelection, [transmissionType]),
-    returnValueForMissingStub: null,
-  );
+  void removeTransmissionTypeFromSelection(String? transmissionType) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #removeTransmissionTypeFromSelection,
+          [transmissionType],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void updateSelectedMinYear(String? newValue) => super.noSuchMethod(
-    Invocation.method(#updateSelectedMinYear, [newValue]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #updateSelectedMinYear,
+          [newValue],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void updateSelectedMaxYear(String? newValue) => super.noSuchMethod(
-    Invocation.method(#updateSelectedMaxYear, [newValue]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #updateSelectedMaxYear,
+          [newValue],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void updateSelectedMinPrice(String? newValue) => super.noSuchMethod(
-    Invocation.method(#updateSelectedMinPrice, [newValue]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #updateSelectedMinPrice,
+          [newValue],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void updateSelectedMaxPrice(String? newValue) => super.noSuchMethod(
-    Invocation.method(#updateSelectedMaxPrice, [newValue]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #updateSelectedMaxPrice,
+          [newValue],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void openDrawer(_i8.SearchDrawerType? type) =>
-      super.noSuchMethod(Invocation.method(#openDrawer, [type]), returnValueForMissingStub: null);
+  void openDrawer(_i8.SearchDrawerType? type) => super.noSuchMethod(
+        Invocation.method(
+          #openDrawer,
+          [type],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  bool validateYears(String? minYearString, String? maxYearString) =>
+  bool validateYears(
+    String? minYearString,
+    String? maxYearString,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#validateYears, [minYearString, maxYearString]),
-            returnValue: false,
-          )
-          as bool);
+        Invocation.method(
+          #validateYears,
+          [
+            minYearString,
+            maxYearString,
+          ],
+        ),
+        returnValue: false,
+      ) as bool);
 
   @override
-  bool validatePrices(String? minPriceString, String? maxPriceString) =>
+  bool validatePrices(
+    String? minPriceString,
+    String? maxPriceString,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#validatePrices, [minPriceString, maxPriceString]),
-            returnValue: false,
-          )
-          as bool);
+        Invocation.method(
+          #validatePrices,
+          [
+            minPriceString,
+            maxPriceString,
+          ],
+        ),
+        returnValue: false,
+      ) as bool);
 
   @override
-  int getSelectedFilterCount() =>
-      (super.noSuchMethod(Invocation.method(#getSelectedFilterCount, []), returnValue: 0) as int);
+  int getSelectedFilterCount() => (super.noSuchMethod(
+        Invocation.method(
+          #getSelectedFilterCount,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
 
   @override
-  _i4.Future<void> close() =>
-      (super.noSuchMethod(
-            Invocation.method(#close, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  void emit(_i2.SearchPageState? state) =>
-      super.noSuchMethod(Invocation.method(#emit, [state]), returnValueForMissingStub: null);
+  void emit(_i2.SearchPageState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void onChange(_i9.Change<_i2.SearchPageState>? change) =>
-      super.noSuchMethod(Invocation.method(#onChange, [change]), returnValueForMissingStub: null);
+  void onChange(_i9.Change<_i2.SearchPageState>? change) => super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
-    Invocation.method(#addError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void onError(Object? error, StackTrace? stackTrace) => super.noSuchMethod(
-    Invocation.method(#onError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

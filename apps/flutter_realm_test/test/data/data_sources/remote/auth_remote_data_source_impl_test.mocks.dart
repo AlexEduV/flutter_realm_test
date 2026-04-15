@@ -8,7 +8,8 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i5;
 import 'package:test_flutter_project/domain/models/auth_result.dart' as _i2;
-import 'package:test_flutter_project/domain/repositories/auth_repository.dart' as _i3;
+import 'package:test_flutter_project/domain/repositories/auth_repository.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,7 +26,13 @@ import 'package:test_flutter_project/domain/repositories/auth_repository.dart' a
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeAuthResult_0 extends _i1.SmartFake implements _i2.AuthResult {
-  _FakeAuthResult_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeAuthResult_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [AuthRepository].
@@ -37,26 +44,41 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
   }
 
   @override
-  _i4.Future<void> init() =>
-      (super.noSuchMethod(
-            Invocation.method(#init, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i4.Future<_i2.AuthResult> login({required String? email, required String? password}) =>
+  _i4.Future<_i2.AuthResult> login({
+    required String? email,
+    required String? password,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#login, [], {#email: email, #password: password}),
-            returnValue: _i4.Future<_i2.AuthResult>.value(
-              _FakeAuthResult_0(
-                this,
-                Invocation.method(#login, [], {#email: email, #password: password}),
-              ),
-            ),
-          )
-          as _i4.Future<_i2.AuthResult>);
+        Invocation.method(
+          #login,
+          [],
+          {
+            #email: email,
+            #password: password,
+          },
+        ),
+        returnValue: _i4.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
+          this,
+          Invocation.method(
+            #login,
+            [],
+            {
+              #email: email,
+              #password: password,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.AuthResult>);
 
   @override
   _i4.Future<_i2.AuthResult> register({
@@ -66,50 +88,65 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
     required String? lastName,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#register, [], {
+        Invocation.method(
+          #register,
+          [],
+          {
+            #email: email,
+            #password: password,
+            #firstName: firstName,
+            #lastName: lastName,
+          },
+        ),
+        returnValue: _i4.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
+          this,
+          Invocation.method(
+            #register,
+            [],
+            {
               #email: email,
               #password: password,
               #firstName: firstName,
               #lastName: lastName,
-            }),
-            returnValue: _i4.Future<_i2.AuthResult>.value(
-              _FakeAuthResult_0(
-                this,
-                Invocation.method(#register, [], {
-                  #email: email,
-                  #password: password,
-                  #firstName: firstName,
-                  #lastName: lastName,
-                }),
-              ),
-            ),
-          )
-          as _i4.Future<_i2.AuthResult>);
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.AuthResult>);
 
   @override
-  _i4.Future<void> logOut() =>
-      (super.noSuchMethod(
-            Invocation.method(#logOut, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> logOut() => (super.noSuchMethod(
+        Invocation.method(
+          #logOut,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> deleteAccount(String? email) =>
-      (super.noSuchMethod(
-            Invocation.method(#deleteAccount, [email]),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> deleteAccount(String? email) => (super.noSuchMethod(
+        Invocation.method(
+          #deleteAccount,
+          [email],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> updateUser(String? email, _i5.UserEntity? data) =>
+  _i4.Future<void> updateUser(
+    String? email,
+    _i5.UserEntity? data,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#updateUser, [email, data]),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+        Invocation.method(
+          #updateUser,
+          [
+            email,
+            data,
+          ],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

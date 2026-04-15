@@ -27,24 +27,29 @@ import 'package:test_flutter_project/domain/data_sources/local/permission_local_
 /// A class which mocks [PermissionLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPermissionLocalDataSource extends _i1.Mock implements _i2.PermissionLocalDataSource {
+class MockPermissionLocalDataSource extends _i1.Mock
+    implements _i2.PermissionLocalDataSource {
   MockPermissionLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i4.PermissionStatus> requestLocation() =>
-      (super.noSuchMethod(
-            Invocation.method(#requestLocation, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
-          )
-          as _i3.Future<_i4.PermissionStatus>);
+  _i3.Future<_i4.PermissionStatus> requestLocation() => (super.noSuchMethod(
+        Invocation.method(
+          #requestLocation,
+          [],
+        ),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+      ) as _i3.Future<_i4.PermissionStatus>);
 
   @override
-  _i3.Future<_i4.PermissionStatus> checkLocationStatus() =>
-      (super.noSuchMethod(
-            Invocation.method(#checkLocationStatus, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
-          )
-          as _i3.Future<_i4.PermissionStatus>);
+  _i3.Future<_i4.PermissionStatus> checkLocationStatus() => (super.noSuchMethod(
+        Invocation.method(
+          #checkLocationStatus,
+          [],
+        ),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+      ) as _i3.Future<_i4.PermissionStatus>);
 }

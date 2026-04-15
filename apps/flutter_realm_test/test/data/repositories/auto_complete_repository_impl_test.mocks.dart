@@ -10,7 +10,8 @@ import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i5;
 import 'package:test_flutter_project/data/data_sources/remote/mock_auto_complete_remote_data_source_impl.dart'
     as _i2;
-import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart' as _i4;
+import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -36,23 +37,29 @@ class MockMockAutoCompleteRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i4.CarAutoCompleteEntity>> getAutoCompleteModelListByType(_i5.CarType? type) =>
+  _i3.Future<List<_i4.CarAutoCompleteEntity>> getAutoCompleteModelListByType(
+          _i5.CarType? type) =>
       (super.noSuchMethod(
-            Invocation.method(#getAutoCompleteModelListByType, [type]),
-            returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
-              <_i4.CarAutoCompleteEntity>[],
-            ),
-          )
-          as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
+        Invocation.method(
+          #getAutoCompleteModelListByType,
+          [type],
+        ),
+        returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
+            <_i4.CarAutoCompleteEntity>[]),
+      ) as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
 
   @override
-  String getResourceByType(_i5.CarType? type) =>
-      (super.noSuchMethod(
-            Invocation.method(#getResourceByType, [type]),
-            returnValue: _i6.dummyValue<String>(
-              this,
-              Invocation.method(#getResourceByType, [type]),
-            ),
-          )
-          as String);
+  String getResourceByType(_i5.CarType? type) => (super.noSuchMethod(
+        Invocation.method(
+          #getResourceByType,
+          [type],
+        ),
+        returnValue: _i6.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getResourceByType,
+            [type],
+          ),
+        ),
+      ) as String);
 }

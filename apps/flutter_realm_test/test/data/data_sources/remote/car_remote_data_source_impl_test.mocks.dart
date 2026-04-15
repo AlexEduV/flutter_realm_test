@@ -5,7 +5,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i2;
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart' as _i3;
+import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -22,22 +23,36 @@ import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
-  _FakeOwnerEntity_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+  _FakeOwnerEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [GetOwnerByIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetOwnerByIdUseCase extends _i1.Mock implements _i3.GetOwnerByIdUseCase {
+class MockGetOwnerByIdUseCase extends _i1.Mock
+    implements _i3.GetOwnerByIdUseCase {
   MockGetOwnerByIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.OwnerEntity call(String? params) =>
-      (super.noSuchMethod(
-            Invocation.method(#call, [params]),
-            returnValue: _FakeOwnerEntity_0(this, Invocation.method(#call, [params])),
-          )
-          as _i2.OwnerEntity);
+  _i2.OwnerEntity call(String? params) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue: _FakeOwnerEntity_0(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        ),
+      ) as _i2.OwnerEntity);
 }

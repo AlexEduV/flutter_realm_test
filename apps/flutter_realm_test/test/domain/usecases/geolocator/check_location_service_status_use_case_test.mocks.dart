@@ -6,7 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/repositories/geolocator_repository.dart' as _i2;
+import 'package:test_flutter_project/domain/repositories/geolocator_repository.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,24 +26,27 @@ import 'package:test_flutter_project/domain/repositories/geolocator_repository.d
 /// A class which mocks [GeolocatorRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGeolocatorRepository extends _i1.Mock implements _i2.GeolocatorRepository {
+class MockGeolocatorRepository extends _i1.Mock
+    implements _i2.GeolocatorRepository {
   MockGeolocatorRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<bool> checkLocationServiceStatus() =>
-      (super.noSuchMethod(
-            Invocation.method(#checkLocationServiceStatus, []),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+  _i3.Future<bool> checkLocationServiceStatus() => (super.noSuchMethod(
+        Invocation.method(
+          #checkLocationServiceStatus,
+          [],
+        ),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i3.Future<bool> openAppSettings() =>
-      (super.noSuchMethod(
-            Invocation.method(#openAppSettings, []),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+  _i3.Future<bool> openAppSettings() => (super.noSuchMethod(
+        Invocation.method(
+          #openAppSettings,
+          [],
+        ),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 }

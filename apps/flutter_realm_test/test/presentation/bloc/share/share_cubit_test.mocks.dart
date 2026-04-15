@@ -6,8 +6,10 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/models/share_params_model.dart' as _i4;
-import 'package:test_flutter_project/domain/usecases/share/share_use_case.dart' as _i2;
+import 'package:test_flutter_project/domain/models/share_params_model.dart'
+    as _i4;
+import 'package:test_flutter_project/domain/usecases/share/share_use_case.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -32,11 +34,12 @@ class MockShareUseCase extends _i1.Mock implements _i2.ShareUseCase {
   }
 
   @override
-  _i3.Future<void> call(_i4.ShareParamsModel? model) =>
-      (super.noSuchMethod(
-            Invocation.method(#call, [model]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> call(_i4.ShareParamsModel? model) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [model],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

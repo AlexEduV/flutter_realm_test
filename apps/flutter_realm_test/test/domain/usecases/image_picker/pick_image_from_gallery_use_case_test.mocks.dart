@@ -6,7 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart' as _i2;
+import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,16 +26,18 @@ import 'package:test_flutter_project/domain/repositories/image_picker_repository
 /// A class which mocks [ImagePickerRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockImagePickerRepository extends _i1.Mock implements _i2.ImagePickerRepository {
+class MockImagePickerRepository extends _i1.Mock
+    implements _i2.ImagePickerRepository {
   MockImagePickerRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<String?> pickImage() =>
-      (super.noSuchMethod(
-            Invocation.method(#pickImage, []),
-            returnValue: _i3.Future<String?>.value(),
-          )
-          as _i3.Future<String?>);
+  _i3.Future<String?> pickImage() => (super.noSuchMethod(
+        Invocation.method(
+          #pickImage,
+          [],
+        ),
+        returnValue: _i3.Future<String?>.value(),
+      ) as _i3.Future<String?>);
 }

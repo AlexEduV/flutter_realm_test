@@ -28,39 +28,47 @@ import 'package:test_flutter_project/domain/models/region_ui_model.dart' as _i5;
 /// A class which mocks [RegionRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRegionRemoteDataSource extends _i1.Mock implements _i2.RegionRemoteDataSource {
+class MockRegionRemoteDataSource extends _i1.Mock
+    implements _i2.RegionRemoteDataSource {
   MockRegionRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> init() =>
-      (super.noSuchMethod(
-            Invocation.method(#init, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  _i3.Future<void> loadRegions() =>
-      (super.noSuchMethod(
-            Invocation.method(#loadRegions, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> loadRegions() => (super.noSuchMethod(
+        Invocation.method(
+          #loadRegions,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  List<_i4.RegionEntity> getAllRegions() =>
-      (super.noSuchMethod(Invocation.method(#getAllRegions, []), returnValue: <_i4.RegionEntity>[])
-          as List<_i4.RegionEntity>);
+  List<_i4.RegionEntity> getAllRegions() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllRegions,
+          [],
+        ),
+        returnValue: <_i4.RegionEntity>[],
+      ) as List<_i4.RegionEntity>);
 
   @override
-  List<_i5.RegionUiModel> getAvailableCountries() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAvailableCountries, []),
-            returnValue: <_i5.RegionUiModel>[],
-          )
-          as List<_i5.RegionUiModel>);
+  List<_i5.RegionUiModel> getAvailableCountries() => (super.noSuchMethod(
+        Invocation.method(
+          #getAvailableCountries,
+          [],
+        ),
+        returnValue: <_i5.RegionUiModel>[],
+      ) as List<_i5.RegionUiModel>);
 }

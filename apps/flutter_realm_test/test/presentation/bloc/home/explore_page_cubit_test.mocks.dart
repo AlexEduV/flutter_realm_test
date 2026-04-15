@@ -6,10 +6,14 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/entities/article_entity.dart' as _i6;
-import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart' as _i5;
-import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart' as _i2;
-import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart' as _i4;
+import 'package:test_flutter_project/domain/entities/article_entity.dart'
+    as _i6;
+import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart'
+    as _i5;
+import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart'
+    as _i2;
+import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -34,13 +38,14 @@ class MockSyncCarsUseCase extends _i1.Mock implements _i2.SyncCarsUseCase {
   }
 
   @override
-  _i3.Future<void> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }
 
 /// A class which mocks [WatchCarsUseCase].
@@ -55,16 +60,19 @@ class MockWatchCarsUseCase extends _i1.Mock implements _i4.WatchCarsUseCase {
 /// A class which mocks [FetchArticlesUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFetchArticlesUseCase extends _i1.Mock implements _i5.FetchArticlesUseCase {
+class MockFetchArticlesUseCase extends _i1.Mock
+    implements _i5.FetchArticlesUseCase {
   MockFetchArticlesUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i6.ArticleEntity>> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: _i3.Future<List<_i6.ArticleEntity>>.value(<_i6.ArticleEntity>[]),
-          )
-          as _i3.Future<List<_i6.ArticleEntity>>);
+  _i3.Future<List<_i6.ArticleEntity>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue:
+            _i3.Future<List<_i6.ArticleEntity>>.value(<_i6.ArticleEntity>[]),
+      ) as _i3.Future<List<_i6.ArticleEntity>>);
 }

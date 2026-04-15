@@ -7,7 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:permission_handler/permission_handler.dart' as _i4;
-import 'package:test_flutter_project/domain/repositories/permission_repository.dart' as _i2;
+import 'package:test_flutter_project/domain/repositories/permission_repository.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,24 +27,29 @@ import 'package:test_flutter_project/domain/repositories/permission_repository.d
 /// A class which mocks [PermissionRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPermissionRepository extends _i1.Mock implements _i2.PermissionRepository {
+class MockPermissionRepository extends _i1.Mock
+    implements _i2.PermissionRepository {
   MockPermissionRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<bool> requestLocationPermission() =>
-      (super.noSuchMethod(
-            Invocation.method(#requestLocationPermission, []),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+  _i3.Future<bool> requestLocationPermission() => (super.noSuchMethod(
+        Invocation.method(
+          #requestLocationPermission,
+          [],
+        ),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
   _i3.Future<_i4.PermissionStatus> checkLocationPermissionState() =>
       (super.noSuchMethod(
-            Invocation.method(#checkLocationPermissionState, []),
-            returnValue: _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
-          )
-          as _i3.Future<_i4.PermissionStatus>);
+        Invocation.method(
+          #checkLocationPermissionState,
+          [],
+        ),
+        returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+      ) as _i3.Future<_i4.PermissionStatus>);
 }

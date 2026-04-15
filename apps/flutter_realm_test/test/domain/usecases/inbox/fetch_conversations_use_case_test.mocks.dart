@@ -6,8 +6,10 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/models/conversation_model.dart' as _i2;
-import 'package:test_flutter_project/domain/repositories/inbox_repository.dart' as _i3;
+import 'package:test_flutter_project/domain/models/conversation_model.dart'
+    as _i2;
+import 'package:test_flutter_project/domain/repositories/inbox_repository.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -23,9 +25,15 @@ import 'package:test_flutter_project/domain/repositories/inbox_repository.dart' 
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeConversationModel_0 extends _i1.SmartFake implements _i2.ConversationModel {
-  _FakeConversationModel_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+class _FakeConversationModel_0 extends _i1.SmartFake
+    implements _i2.ConversationModel {
+  _FakeConversationModel_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [InboxRepository].
@@ -39,39 +47,55 @@ class MockInboxRepository extends _i1.Mock implements _i3.InboxRepository {
   @override
   _i4.Future<List<_i2.ConversationModel>> fetchConversations() =>
       (super.noSuchMethod(
-            Invocation.method(#fetchConversations, []),
-            returnValue: _i4.Future<List<_i2.ConversationModel>>.value(<_i2.ConversationModel>[]),
-          )
-          as _i4.Future<List<_i2.ConversationModel>>);
+        Invocation.method(
+          #fetchConversations,
+          [],
+        ),
+        returnValue: _i4.Future<List<_i2.ConversationModel>>.value(
+            <_i2.ConversationModel>[]),
+      ) as _i4.Future<List<_i2.ConversationModel>>);
 
   @override
   _i2.ConversationModel getConversationById(String? conversationId) =>
       (super.noSuchMethod(
-            Invocation.method(#getConversationById, [conversationId]),
-            returnValue: _FakeConversationModel_0(
-              this,
-              Invocation.method(#getConversationById, [conversationId]),
-            ),
-          )
-          as _i2.ConversationModel);
+        Invocation.method(
+          #getConversationById,
+          [conversationId],
+        ),
+        returnValue: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #getConversationById,
+            [conversationId],
+          ),
+        ),
+      ) as _i2.ConversationModel);
 
   @override
   _i2.ConversationModel getConversationByOwnerId(String? ownerId) =>
       (super.noSuchMethod(
-            Invocation.method(#getConversationByOwnerId, [ownerId]),
-            returnValue: _FakeConversationModel_0(
-              this,
-              Invocation.method(#getConversationByOwnerId, [ownerId]),
-            ),
-          )
-          as _i2.ConversationModel);
+        Invocation.method(
+          #getConversationByOwnerId,
+          [ownerId],
+        ),
+        returnValue: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #getConversationByOwnerId,
+            [ownerId],
+          ),
+        ),
+      ) as _i2.ConversationModel);
 
   @override
-  _i4.Future<void> saveConversations(List<_i2.ConversationModel>? conversations) =>
+  _i4.Future<void> saveConversations(
+          List<_i2.ConversationModel>? conversations) =>
       (super.noSuchMethod(
-            Invocation.method(#saveConversations, [conversations]),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+        Invocation.method(
+          #saveConversations,
+          [conversations],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

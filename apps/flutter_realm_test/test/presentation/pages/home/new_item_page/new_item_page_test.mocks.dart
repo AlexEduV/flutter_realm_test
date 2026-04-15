@@ -5,8 +5,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
-import 'package:test_flutter_project/domain/usecases/database/add_car_use_case.dart' as _i2;
-import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart' as _i4;
+import 'package:test_flutter_project/domain/usecases/database/add_car_use_case.dart'
+    as _i2;
+import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart'
+    as _i4;
 import 'package:test_flutter_project/domain/usecases/database/get_current_max_car_id_use_case.dart'
     as _i5;
 
@@ -33,8 +35,13 @@ class MockAddCarUseCase extends _i1.Mock implements _i2.AddCarUseCase {
   }
 
   @override
-  void call(_i3.CarEntity? params) =>
-      super.noSuchMethod(Invocation.method(#call, [params]), returnValueForMissingStub: null);
+  void call(_i3.CarEntity? params) => super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [GetAllCarsUseCase].
@@ -46,19 +53,30 @@ class MockGetAllCarsUseCase extends _i1.Mock implements _i4.GetAllCarsUseCase {
   }
 
   @override
-  List<_i3.CarEntity> call() =>
-      (super.noSuchMethod(Invocation.method(#call, []), returnValue: <_i3.CarEntity>[])
-          as List<_i3.CarEntity>);
+  List<_i3.CarEntity> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: <_i3.CarEntity>[],
+      ) as List<_i3.CarEntity>);
 }
 
 /// A class which mocks [GetCurrentMaxCarIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCurrentMaxCarIdUseCase extends _i1.Mock implements _i5.GetCurrentMaxCarIdUseCase {
+class MockGetCurrentMaxCarIdUseCase extends _i1.Mock
+    implements _i5.GetCurrentMaxCarIdUseCase {
   MockGetCurrentMaxCarIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  int call() => (super.noSuchMethod(Invocation.method(#call, []), returnValue: 0) as int);
+  int call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
 }

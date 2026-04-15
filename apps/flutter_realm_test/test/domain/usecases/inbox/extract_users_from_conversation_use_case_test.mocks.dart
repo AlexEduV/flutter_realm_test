@@ -5,7 +5,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i3;
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart' as _i2;
+import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -24,12 +25,15 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_ca
 /// A class which mocks [GetUserByIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetUserByIdUseCase extends _i1.Mock implements _i2.GetUserByIdUseCase {
+class MockGetUserByIdUseCase extends _i1.Mock
+    implements _i2.GetUserByIdUseCase {
   MockGetUserByIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.UserEntity? call(String? params) =>
-      (super.noSuchMethod(Invocation.method(#call, [params])) as _i3.UserEntity?);
+  _i3.UserEntity? call(String? params) => (super.noSuchMethod(Invocation.method(
+        #call,
+        [params],
+      )) as _i3.UserEntity?);
 }

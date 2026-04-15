@@ -7,7 +7,8 @@ import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i3;
-import 'package:test_flutter_project/domain/repositories/user_repository.dart' as _i2;
+import 'package:test_flutter_project/domain/repositories/user_repository.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -32,31 +33,45 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
   }
 
   @override
-  int getMaxUserId() =>
-      (super.noSuchMethod(Invocation.method(#getMaxUserId, []), returnValue: 0) as int);
+  int getMaxUserId() => (super.noSuchMethod(
+        Invocation.method(
+          #getMaxUserId,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
 
   @override
   _i3.UserEntity? getUserByEmail(String? email) =>
-      (super.noSuchMethod(Invocation.method(#getUserByEmail, [email])) as _i3.UserEntity?);
+      (super.noSuchMethod(Invocation.method(
+        #getUserByEmail,
+        [email],
+      )) as _i3.UserEntity?);
 
   @override
   _i3.UserEntity? getUserById(String? id) =>
-      (super.noSuchMethod(Invocation.method(#getUserById, [id])) as _i3.UserEntity?);
+      (super.noSuchMethod(Invocation.method(
+        #getUserById,
+        [id],
+      )) as _i3.UserEntity?);
 
   @override
-  _i4.Future<List<_i3.UserEntity>> loadMockUsers() =>
-      (super.noSuchMethod(
-            Invocation.method(#loadMockUsers, []),
-            returnValue: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
-          )
-          as _i4.Future<List<_i3.UserEntity>>);
+  _i4.Future<List<_i3.UserEntity>> loadMockUsers() => (super.noSuchMethod(
+        Invocation.method(
+          #loadMockUsers,
+          [],
+        ),
+        returnValue: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
+      ) as _i4.Future<List<_i3.UserEntity>>);
 
   @override
   _i4.Future<void> saveMockUsers(List<_i3.UserEntity>? users) =>
       (super.noSuchMethod(
-            Invocation.method(#saveMockUsers, [users]),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+        Invocation.method(
+          #saveMockUsers,
+          [users],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

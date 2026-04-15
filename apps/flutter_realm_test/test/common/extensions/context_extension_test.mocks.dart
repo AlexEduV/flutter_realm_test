@@ -8,8 +8,10 @@ import 'dart:async' as _i4;
 import 'package:flutter_bloc/flutter_bloc.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i5;
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart' as _i3;
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart' as _i2;
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart'
+    as _i3;
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,108 +27,169 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_st
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeAppLocalisationsState_0 extends _i1.SmartFake implements _i2.AppLocalisationsState {
-  _FakeAppLocalisationsState_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+class _FakeAppLocalisationsState_0 extends _i1.SmartFake
+    implements _i2.AppLocalisationsState {
+  _FakeAppLocalisationsState_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [AppLocalisationsCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAppLocalisationsCubit extends _i1.Mock implements _i3.AppLocalisationsCubit {
+class MockAppLocalisationsCubit extends _i1.Mock
+    implements _i3.AppLocalisationsCubit {
   MockAppLocalisationsCubit() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.AppLocalisationsState get state =>
-      (super.noSuchMethod(
-            Invocation.getter(#state),
-            returnValue: _FakeAppLocalisationsState_0(this, Invocation.getter(#state)),
-          )
-          as _i2.AppLocalisationsState);
+  _i2.AppLocalisationsState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeAppLocalisationsState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i2.AppLocalisationsState);
 
   @override
-  _i4.Stream<_i2.AppLocalisationsState> get stream =>
-      (super.noSuchMethod(
-            Invocation.getter(#stream),
-            returnValue: _i4.Stream<_i2.AppLocalisationsState>.empty(),
-          )
-          as _i4.Stream<_i2.AppLocalisationsState>);
+  _i4.Stream<_i2.AppLocalisationsState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i4.Stream<_i2.AppLocalisationsState>.empty(),
+      ) as _i4.Stream<_i2.AppLocalisationsState>);
 
   @override
-  bool get isClosed =>
-      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false) as bool);
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
 
   @override
   void load(Map<String, String>? newLocalisations) => super.noSuchMethod(
-    Invocation.method(#load, [newLocalisations]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #load,
+          [newLocalisations],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  String getLocalisationByKey(String? key) =>
-      (super.noSuchMethod(
-            Invocation.method(#getLocalisationByKey, [key]),
-            returnValue: _i5.dummyValue<String>(
-              this,
-              Invocation.method(#getLocalisationByKey, [key]),
-            ),
-          )
-          as String);
+  String getLocalisationByKey(String? key) => (super.noSuchMethod(
+        Invocation.method(
+          #getLocalisationByKey,
+          [key],
+        ),
+        returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getLocalisationByKey,
+            [key],
+          ),
+        ),
+      ) as String);
 
   @override
-  void clear() =>
-      super.noSuchMethod(Invocation.method(#clear, []), returnValueForMissingStub: null);
+  void clear() => super.noSuchMethod(
+        Invocation.method(
+          #clear,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void emit(_i2.AppLocalisationsState? state) =>
-      super.noSuchMethod(Invocation.method(#emit, [state]), returnValueForMissingStub: null);
+  void emit(_i2.AppLocalisationsState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void onChange(_i6.Change<_i2.AppLocalisationsState>? change) =>
-      super.noSuchMethod(Invocation.method(#onChange, [change]), returnValueForMissingStub: null);
+      super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
-    Invocation.method(#addError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void onError(Object? error, StackTrace? stackTrace) => super.noSuchMethod(
-    Invocation.method(#onError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i4.Future<void> close() =>
-      (super.noSuchMethod(
-            Invocation.method(#close, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
 
 /// A class which mocks [AppLocalisationsState].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAppLocalisationsState extends _i1.Mock implements _i2.AppLocalisationsState {
+class MockAppLocalisationsState extends _i1.Mock
+    implements _i2.AppLocalisationsState {
   MockAppLocalisationsState() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  Map<String, String> get localisations =>
-      (super.noSuchMethod(Invocation.getter(#localisations), returnValue: <String, String>{})
-          as Map<String, String>);
+  Map<String, String> get localisations => (super.noSuchMethod(
+        Invocation.getter(#localisations),
+        returnValue: <String, String>{},
+      ) as Map<String, String>);
 
   @override
-  String get(String? key) =>
-      (super.noSuchMethod(
-            Invocation.method(#get, [key]),
-            returnValue: _i5.dummyValue<String>(this, Invocation.method(#get, [key])),
-          )
-          as String);
+  String get(String? key) => (super.noSuchMethod(
+        Invocation.method(
+          #get,
+          [key],
+        ),
+        returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.method(
+            #get,
+            [key],
+          ),
+        ),
+      ) as String);
 }

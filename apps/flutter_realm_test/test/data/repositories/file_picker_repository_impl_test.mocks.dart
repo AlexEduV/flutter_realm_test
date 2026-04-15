@@ -8,7 +8,8 @@ import 'dart:async' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/data_sources/local/file_picker_local_data_source.dart'
     as _i2;
-import 'package:test_flutter_project/domain/entities/attachment_entity.dart' as _i4;
+import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,16 +28,18 @@ import 'package:test_flutter_project/domain/entities/attachment_entity.dart' as 
 /// A class which mocks [FilePickerLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFilePickerLocalDataSource extends _i1.Mock implements _i2.FilePickerLocalDataSource {
+class MockFilePickerLocalDataSource extends _i1.Mock
+    implements _i2.FilePickerLocalDataSource {
   MockFilePickerLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i4.AttachmentEntity?> pickFile() =>
-      (super.noSuchMethod(
-            Invocation.method(#pickFile, []),
-            returnValue: _i3.Future<_i4.AttachmentEntity?>.value(),
-          )
-          as _i3.Future<_i4.AttachmentEntity?>);
+  _i3.Future<_i4.AttachmentEntity?> pickFile() => (super.noSuchMethod(
+        Invocation.method(
+          #pickFile,
+          [],
+        ),
+        returnValue: _i3.Future<_i4.AttachmentEntity?>.value(),
+      ) as _i3.Future<_i4.AttachmentEntity?>);
 }

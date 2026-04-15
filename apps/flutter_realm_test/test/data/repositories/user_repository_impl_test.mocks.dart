@@ -27,46 +27,67 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i3;
 /// A class which mocks [UsersRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUsersRemoteDataSource extends _i1.Mock implements _i2.UsersRemoteDataSource {
+class MockUsersRemoteDataSource extends _i1.Mock
+    implements _i2.UsersRemoteDataSource {
   MockUsersRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  List<_i3.UserEntity> get users =>
-      (super.noSuchMethod(Invocation.getter(#users), returnValue: <_i3.UserEntity>[])
-          as List<_i3.UserEntity>);
+  List<_i3.UserEntity> get users => (super.noSuchMethod(
+        Invocation.getter(#users),
+        returnValue: <_i3.UserEntity>[],
+      ) as List<_i3.UserEntity>);
 
   @override
-  set users(List<_i3.UserEntity>? _users) =>
-      super.noSuchMethod(Invocation.setter(#users, _users), returnValueForMissingStub: null);
+  set users(List<_i3.UserEntity>? _users) => super.noSuchMethod(
+        Invocation.setter(
+          #users,
+          _users,
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   _i4.Future<void> saveMockUsers(List<_i3.UserEntity>? users) =>
       (super.noSuchMethod(
-            Invocation.method(#saveMockUsers, [users]),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+        Invocation.method(
+          #saveMockUsers,
+          [users],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i4.Future<List<_i3.UserEntity>> loadMockUsers() =>
-      (super.noSuchMethod(
-            Invocation.method(#loadMockUsers, []),
-            returnValue: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
-          )
-          as _i4.Future<List<_i3.UserEntity>>);
+  _i4.Future<List<_i3.UserEntity>> loadMockUsers() => (super.noSuchMethod(
+        Invocation.method(
+          #loadMockUsers,
+          [],
+        ),
+        returnValue: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
+      ) as _i4.Future<List<_i3.UserEntity>>);
 
   @override
   _i3.UserEntity? getUserByEmail(String? email) =>
-      (super.noSuchMethod(Invocation.method(#getUserByEmail, [email])) as _i3.UserEntity?);
+      (super.noSuchMethod(Invocation.method(
+        #getUserByEmail,
+        [email],
+      )) as _i3.UserEntity?);
 
   @override
-  int getMaxUserId() =>
-      (super.noSuchMethod(Invocation.method(#getMaxUserId, []), returnValue: 0) as int);
+  int getMaxUserId() => (super.noSuchMethod(
+        Invocation.method(
+          #getMaxUserId,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
 
   @override
   _i3.UserEntity? getUserById(String? id) =>
-      (super.noSuchMethod(Invocation.method(#getUserById, [id])) as _i3.UserEntity?);
+      (super.noSuchMethod(Invocation.method(
+        #getUserById,
+        [id],
+      )) as _i3.UserEntity?);
 }

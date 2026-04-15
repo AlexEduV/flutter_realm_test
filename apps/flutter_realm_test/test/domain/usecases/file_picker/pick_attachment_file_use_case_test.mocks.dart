@@ -6,8 +6,10 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/entities/attachment_entity.dart' as _i4;
-import 'package:test_flutter_project/domain/repositories/file_picker_repository.dart' as _i2;
+import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
+    as _i4;
+import 'package:test_flutter_project/domain/repositories/file_picker_repository.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,16 +28,18 @@ import 'package:test_flutter_project/domain/repositories/file_picker_repository.
 /// A class which mocks [FilePickerRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFilePickerRepository extends _i1.Mock implements _i2.FilePickerRepository {
+class MockFilePickerRepository extends _i1.Mock
+    implements _i2.FilePickerRepository {
   MockFilePickerRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<_i4.AttachmentEntity?> pickFile() =>
-      (super.noSuchMethod(
-            Invocation.method(#pickFile, []),
-            returnValue: _i3.Future<_i4.AttachmentEntity?>.value(),
-          )
-          as _i3.Future<_i4.AttachmentEntity?>);
+  _i3.Future<_i4.AttachmentEntity?> pickFile() => (super.noSuchMethod(
+        Invocation.method(
+          #pickFile,
+          [],
+        ),
+        returnValue: _i3.Future<_i4.AttachmentEntity?>.value(),
+      ) as _i3.Future<_i4.AttachmentEntity?>);
 }

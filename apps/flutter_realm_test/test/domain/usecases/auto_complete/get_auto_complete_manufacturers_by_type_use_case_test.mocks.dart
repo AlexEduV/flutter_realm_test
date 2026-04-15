@@ -7,8 +7,10 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i5;
-import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart' as _i4;
-import 'package:test_flutter_project/domain/repositories/auto_complete_repository.dart' as _i2;
+import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart'
+    as _i4;
+import 'package:test_flutter_project/domain/repositories/auto_complete_repository.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,18 +29,21 @@ import 'package:test_flutter_project/domain/repositories/auto_complete_repositor
 /// A class which mocks [AutoCompleteRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAutoCompleteRepository extends _i1.Mock implements _i2.AutoCompleteRepository {
+class MockAutoCompleteRepository extends _i1.Mock
+    implements _i2.AutoCompleteRepository {
   MockAutoCompleteRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.CarAutoCompleteEntity>> getAutoCompleteModelListByType(_i5.CarType? type) =>
+  _i3.Future<List<_i4.CarAutoCompleteEntity>> getAutoCompleteModelListByType(
+          _i5.CarType? type) =>
       (super.noSuchMethod(
-            Invocation.method(#getAutoCompleteModelListByType, [type]),
-            returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
-              <_i4.CarAutoCompleteEntity>[],
-            ),
-          )
-          as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
+        Invocation.method(
+          #getAutoCompleteModelListByType,
+          [type],
+        ),
+        returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
+            <_i4.CarAutoCompleteEntity>[]),
+      ) as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
 }

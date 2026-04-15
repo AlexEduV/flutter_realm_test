@@ -5,8 +5,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
-import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart' as _i2;
-import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart' as _i4;
+import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart'
+    as _i2;
+import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -31,9 +33,13 @@ class MockGetAllCarsUseCase extends _i1.Mock implements _i2.GetAllCarsUseCase {
   }
 
   @override
-  List<_i3.CarEntity> call() =>
-      (super.noSuchMethod(Invocation.method(#call, []), returnValue: <_i3.CarEntity>[])
-          as List<_i3.CarEntity>);
+  List<_i3.CarEntity> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: <_i3.CarEntity>[],
+      ) as List<_i3.CarEntity>);
 }
 
 /// A class which mocks [WatchCarsUseCase].
