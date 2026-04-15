@@ -22,7 +22,7 @@ class AccountItemSeparated extends StatelessWidget {
       borderRadius: BorderRadius.circular(AppDimensions.normalM),
       clipBehavior: Clip.antiAlias,
       child: AccountItem(
-        text: title,
+        label: title,
         textStyle: AppTextStyles.zonaPro14
             .copyWith(fontWeight: FontWeight.w600)
             .copyWith(color: isEnabled ? Colors.redAccent : Colors.grey),
