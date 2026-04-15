@@ -5,11 +5,11 @@ import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../../common/constants/app_colors.dart';
-import '../../../../../common/constants/app_dimensions.dart';
-import '../../../../../common/constants/app_text_styles.dart';
-import '../../../../../common/enums/car_type.dart';
-import '../../../../../utils/app_router.dart';
+import '../../../../common/constants/app_colors.dart';
+import '../../../../common/constants/app_dimensions.dart';
+import '../../../../common/constants/app_text_styles.dart';
+import '../../../../common/enums/car_type.dart';
+import '../../../../utils/app_router.dart';
 
 class CarListItem extends StatelessWidget {
   final CarEntity car;

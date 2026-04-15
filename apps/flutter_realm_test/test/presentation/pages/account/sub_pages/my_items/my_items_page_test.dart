@@ -12,7 +12,7 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_st
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/my_items/my_items_page.dart';
-import 'package:test_flutter_project/presentation/pages/home/favorites_page/widgets/car_list_item.dart';
+import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.dart';
 
 import '../../../../../common/extensions/context_extension_test.mocks.dart';
 import '../../../../../utils/app_router_test.mocks.dart';
