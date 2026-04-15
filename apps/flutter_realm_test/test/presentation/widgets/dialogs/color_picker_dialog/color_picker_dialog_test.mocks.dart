@@ -36,8 +36,10 @@ class MockGetCarColorByNameUseCase extends _i1.Mock
   }
 
   @override
-  _i3.Color? call(String? colorName) =>
-      (super.noSuchMethod(Invocation.method(#call, [colorName])) as _i3.Color?);
+  _i3.Color? call(String? colorName) => (super.noSuchMethod(Invocation.method(
+        #call,
+        [colorName],
+      )) as _i3.Color?);
 }
 
 /// A class which mocks [GetCarColorNameFromColorUseCase].
@@ -50,13 +52,17 @@ class MockGetCarColorNameFromColorUseCase extends _i1.Mock
   }
 
   @override
-  String call(_i3.Color? color) =>
-      (super.noSuchMethod(
-            Invocation.method(#call, [color]),
-            returnValue: _i5.dummyValue<String>(
-              this,
-              Invocation.method(#call, [color]),
-            ),
-          )
-          as String);
+  String call(_i3.Color? color) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [color],
+        ),
+        returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.method(
+            #call,
+            [color],
+          ),
+        ),
+      ) as String);
 }

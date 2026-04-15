@@ -33,10 +33,11 @@ class MockImagePickerLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<String?> pickImage() =>
-      (super.noSuchMethod(
-            Invocation.method(#pickImage, []),
-            returnValue: _i3.Future<String?>.value(),
-          )
-          as _i3.Future<String?>);
+  _i3.Future<String?> pickImage() => (super.noSuchMethod(
+        Invocation.method(
+          #pickImage,
+          [],
+        ),
+        returnValue: _i3.Future<String?>.value(),
+      ) as _i3.Future<String?>);
 }

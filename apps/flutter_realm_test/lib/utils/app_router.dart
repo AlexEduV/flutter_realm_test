@@ -18,6 +18,7 @@ import '../presentation/pages/search/search_page.dart';
 
 class AppRouter {
   static final GoRouter _router = GoRouter(
+    initialLocation: AppRoutes.home,
     routes: <RouteBase>[
       GoRoute(
         path: AppRoutes.home,

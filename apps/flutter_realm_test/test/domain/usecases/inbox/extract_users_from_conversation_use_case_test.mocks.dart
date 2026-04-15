@@ -32,7 +32,8 @@ class MockGetUserByIdUseCase extends _i1.Mock
   }
 
   @override
-  _i3.UserEntity? call(String? params) =>
-      (super.noSuchMethod(Invocation.method(#call, [params]))
-          as _i3.UserEntity?);
+  _i3.UserEntity? call(String? params) => (super.noSuchMethod(Invocation.method(
+        #call,
+        [params],
+      )) as _i3.UserEntity?);
 }

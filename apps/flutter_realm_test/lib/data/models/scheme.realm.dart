@@ -50,19 +50,13 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'transmissionType', transmissionType);
     RealmObjectBase.set(this, 'isChecked', isChecked);
     RealmObjectBase.set(
-      this,
-      'hotPromotionDescription',
-      hotPromotionDescription,
-    );
+        this, 'hotPromotionDescription', hotPromotionDescription);
     RealmObjectBase.set(this, 'kilometers', kilometers);
     RealmObjectBase.set(this, 'distanceTo', distanceTo);
     RealmObjectBase.set(this, 'price', price);
     RealmObjectBase.set(this, 'owner', owner);
     RealmObjectBase.set<RealmList<String>>(
-      this,
-      'images',
-      RealmList<String>(images),
-    );
+        this, 'images', RealmList<String>(images));
   }
 
   Car._();
@@ -242,31 +236,18 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('year', RealmPropertyType.string, optional: true),
       SchemaProperty('bodyType', RealmPropertyType.string, optional: true),
       SchemaProperty('fuelType', RealmPropertyType.string, optional: true),
-      SchemaProperty(
-        'transmissionType',
-        RealmPropertyType.string,
-        optional: true,
-      ),
+      SchemaProperty('transmissionType', RealmPropertyType.string,
+          optional: true),
       SchemaProperty('isChecked', RealmPropertyType.bool, optional: true),
-      SchemaProperty(
-        'hotPromotionDescription',
-        RealmPropertyType.string,
-        optional: true,
-      ),
+      SchemaProperty('hotPromotionDescription', RealmPropertyType.string,
+          optional: true),
       SchemaProperty('kilometers', RealmPropertyType.int, optional: true),
       SchemaProperty('distanceTo', RealmPropertyType.int, optional: true),
       SchemaProperty('price', RealmPropertyType.int),
-      SchemaProperty(
-        'owner',
-        RealmPropertyType.object,
-        optional: true,
-        linkTarget: 'Person',
-      ),
-      SchemaProperty(
-        'images',
-        RealmPropertyType.string,
-        collectionType: RealmCollectionType.list,
-      ),
+      SchemaProperty('owner', RealmPropertyType.object,
+          optional: true, linkTarget: 'Person'),
+      SchemaProperty('images', RealmPropertyType.string,
+          collectionType: RealmCollectionType.list),
     ]);
   }();
 
@@ -286,16 +267,15 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
     int age = 1,
   }) {
     if (!_defaultsSet) {
-      _defaultsSet = RealmObjectBase.setDefaults<Person>({'age': 1});
+      _defaultsSet = RealmObjectBase.setDefaults<Person>({
+        'age': 1,
+      });
     }
     RealmObjectBase.set(this, 'firstName', firstName);
     RealmObjectBase.set(this, 'lastName', lastName);
     RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set<RealmList<String>>(
-      this,
-      'linkedIds',
-      RealmList<String>(linkedIds),
-    );
+        this, 'linkedIds', RealmList<String>(linkedIds));
     RealmObjectBase.set(this, 'imageSrc', imageSrc);
     RealmObjectBase.set(this, 'age', age);
   }
@@ -387,11 +367,8 @@ class Person extends _Person with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('firstName', RealmPropertyType.string),
       SchemaProperty('lastName', RealmPropertyType.string),
       SchemaProperty('id', RealmPropertyType.string),
-      SchemaProperty(
-        'linkedIds',
-        RealmPropertyType.string,
-        collectionType: RealmCollectionType.list,
-      ),
+      SchemaProperty('linkedIds', RealmPropertyType.string,
+          collectionType: RealmCollectionType.list),
       SchemaProperty('imageSrc', RealmPropertyType.string, optional: true),
       SchemaProperty('age', RealmPropertyType.int),
     ]);
@@ -422,26 +399,14 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'email', email);
     RealmObjectBase.set(this, 'password', password);
     RealmObjectBase.set(
-      this,
-      'isLocationPermissionGranted',
-      isLocationPermissionGranted,
-    );
+        this, 'isLocationPermissionGranted', isLocationPermissionGranted);
     RealmObjectBase.set(this, 'region', region);
     RealmObjectBase.set<RealmList<String>>(
-      this,
-      'favoriteIds',
-      RealmList<String>(favoriteIds),
-    );
+        this, 'favoriteIds', RealmList<String>(favoriteIds));
     RealmObjectBase.set<RealmList<String>>(
-      this,
-      'createdIds',
-      RealmList<String>(createdIds),
-    );
+        this, 'createdIds', RealmList<String>(createdIds));
     RealmObjectBase.set<RealmList<String>>(
-      this,
-      'viewedIds',
-      RealmList<String>(viewedIds),
-    );
+        this, 'viewedIds', RealmList<String>(viewedIds));
     RealmObjectBase.set(this, 'lastSeenCar', lastSeenCar);
     RealmObjectBase.set(this, 'avatarImage', avatarImage);
   }
@@ -593,27 +558,14 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('password', RealmPropertyType.string),
       SchemaProperty('isLocationPermissionGranted', RealmPropertyType.bool),
       SchemaProperty('region', RealmPropertyType.string),
-      SchemaProperty(
-        'favoriteIds',
-        RealmPropertyType.string,
-        collectionType: RealmCollectionType.list,
-      ),
-      SchemaProperty(
-        'createdIds',
-        RealmPropertyType.string,
-        collectionType: RealmCollectionType.list,
-      ),
-      SchemaProperty(
-        'viewedIds',
-        RealmPropertyType.string,
-        collectionType: RealmCollectionType.list,
-      ),
-      SchemaProperty(
-        'lastSeenCar',
-        RealmPropertyType.object,
-        optional: true,
-        linkTarget: 'LastSeenCar',
-      ),
+      SchemaProperty('favoriteIds', RealmPropertyType.string,
+          collectionType: RealmCollectionType.list),
+      SchemaProperty('createdIds', RealmPropertyType.string,
+          collectionType: RealmCollectionType.list),
+      SchemaProperty('viewedIds', RealmPropertyType.string,
+          collectionType: RealmCollectionType.list),
+      SchemaProperty('lastSeenCar', RealmPropertyType.object,
+          optional: true, linkTarget: 'LastSeenCar'),
       SchemaProperty('avatarImage', RealmPropertyType.string, optional: true),
     ]);
   }();
@@ -624,7 +576,10 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
 
 class LastSeenCar extends _LastSeenCar
     with RealmEntity, RealmObjectBase, RealmObject {
-  LastSeenCar(DateTime date, {String? carId}) {
+  LastSeenCar(
+    DateTime date, {
+    String? carId,
+  }) {
     RealmObjectBase.set(this, 'date', date);
     RealmObjectBase.set(this, 'carId', carId);
   }
@@ -646,25 +601,31 @@ class LastSeenCar extends _LastSeenCar
       RealmObjectBase.getChanges<LastSeenCar>(this);
 
   @override
-  Stream<RealmObjectChanges<LastSeenCar>> changesFor([
-    List<String>? keyPaths,
-  ]) => RealmObjectBase.getChangesFor<LastSeenCar>(this, keyPaths);
+  Stream<RealmObjectChanges<LastSeenCar>> changesFor(
+          [List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<LastSeenCar>(this, keyPaths);
 
   @override
   LastSeenCar freeze() => RealmObjectBase.freezeObject<LastSeenCar>(this);
 
   EJsonValue toEJson() {
-    return <String, dynamic>{'date': date.toEJson(), 'carId': carId.toEJson()};
+    return <String, dynamic>{
+      'date': date.toEJson(),
+      'carId': carId.toEJson(),
+    };
   }
 
   static EJsonValue _toEJson(LastSeenCar value) => value.toEJson();
   static LastSeenCar _fromEJson(EJsonValue ejson) {
     if (ejson is! Map<String, dynamic>) return raiseInvalidEJson(ejson);
     return switch (ejson) {
-      {'date': EJsonValue date} => LastSeenCar(
-        fromEJson(date),
-        carId: fromEJson(ejson['carId']),
-      ),
+      {
+        'date': EJsonValue date,
+      } =>
+        LastSeenCar(
+          fromEJson(date),
+          carId: fromEJson(ejson['carId']),
+        ),
       _ => raiseInvalidEJson(ejson),
     };
   }
@@ -673,14 +634,10 @@ class LastSeenCar extends _LastSeenCar
     RealmObjectBase.registerFactory(LastSeenCar._);
     register(_toEJson, _fromEJson);
     return const SchemaObject(
-      ObjectType.realmObject,
-      LastSeenCar,
-      'LastSeenCar',
-      [
-        SchemaProperty('date', RealmPropertyType.timestamp),
-        SchemaProperty('carId', RealmPropertyType.string, optional: true),
-      ],
-    );
+        ObjectType.realmObject, LastSeenCar, 'LastSeenCar', [
+      SchemaProperty('date', RealmPropertyType.timestamp),
+      SchemaProperty('carId', RealmPropertyType.string, optional: true),
+    ]);
   }();
 
   @override

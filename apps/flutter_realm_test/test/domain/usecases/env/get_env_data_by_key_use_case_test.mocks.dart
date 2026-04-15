@@ -33,22 +33,39 @@ class MockEnvRepository extends _i1.Mock implements _i2.EnvRepository {
   }
 
   @override
-  _i3.Future<void> init() =>
-      (super.noSuchMethod(
-            Invocation.method(#init, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  String get({required String? key, String? fallback}) =>
+  String get({
+    required String? key,
+    String? fallback,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#get, [], {#key: key, #fallback: fallback}),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.method(#get, [], {#key: key, #fallback: fallback}),
-            ),
-          )
-          as String);
+        Invocation.method(
+          #get,
+          [],
+          {
+            #key: key,
+            #fallback: fallback,
+          },
+        ),
+        returnValue: _i4.dummyValue<String>(
+          this,
+          Invocation.method(
+            #get,
+            [],
+            {
+              #key: key,
+              #fallback: fallback,
+            },
+          ),
+        ),
+      ) as String);
 }

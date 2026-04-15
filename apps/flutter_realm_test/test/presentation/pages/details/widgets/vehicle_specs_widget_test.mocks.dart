@@ -33,10 +33,11 @@ class MockGetCarColorsUseCase extends _i1.Mock
   }
 
   @override
-  Map<String, _i3.Color> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: <String, _i3.Color>{},
-          )
-          as Map<String, _i3.Color>);
+  Map<String, _i3.Color> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: <String, _i3.Color>{},
+      ) as Map<String, _i3.Color>);
 }

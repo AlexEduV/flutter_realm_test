@@ -23,8 +23,13 @@ import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_c
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
-  _FakeOwnerEntity_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeOwnerEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [GetOwnerByIdUseCase].
@@ -37,13 +42,17 @@ class MockGetOwnerByIdUseCase extends _i1.Mock
   }
 
   @override
-  _i2.OwnerEntity call(String? params) =>
-      (super.noSuchMethod(
-            Invocation.method(#call, [params]),
-            returnValue: _FakeOwnerEntity_0(
-              this,
-              Invocation.method(#call, [params]),
-            ),
-          )
-          as _i2.OwnerEntity);
+  _i2.OwnerEntity call(String? params) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue: _FakeOwnerEntity_0(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        ),
+      ) as _i2.OwnerEntity);
 }

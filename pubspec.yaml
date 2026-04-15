@@ -6,16 +6,29 @@ environment:
 
 workspace:
   - apps/flutter_realm_test/
+  - packages/realm_ui_core/
 
 dev_dependencies:
   melos: ^7.0.0
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.2
+  freezed: ^3.0.0
+  mockito: ^5.4.6
+  realm: ^20.2.0
+
+dependency_overrides:
+  analyzer: 7.3.0
+  test_api: 0.7.10
+  dart_style: 2.3.7
+  analyzer_plugin: 0.12.0
+  build_runner: 2.4.9
+  build_daemon: 4.0.1
 
 melos:
   name: flutter_realm_test_workspace
-
-  packages:
-    - apps/**
-    - packages/**
 
   scripts:
     hello: echo "Hello from Melos"

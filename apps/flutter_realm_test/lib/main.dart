@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/constants/app_colors.dart';
 import 'package:test_futter_project/common/constants/app_constants.dart';
+import 'package:test_futter_project/common/constants/app_routes.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/env/init_env_use_case.dart';
+import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_futter_project/domain/usecases/regions/init_region_models_use_case.dart';
 import 'package:test_futter_project/l10n/l10n_keys.dart';
@@ -33,10 +36,6 @@ void main() async {
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
 
-  //todo: added melos with the main repo, but had to revert, because Android app crashed on entering.
-  //moving the folders around broke Android Studio config, but even fixing it did not change anything
-  //tried gradle clean, invalidating caches, flutter clean -> melos bs, upgrading kotlin version.
-
   await serviceLocator<InitRegionModelsUseCase>().call();
   await serviceLocator<FetchRegionsUseCase>().call();
   await serviceLocator<InitEnvUseCase>().call();
@@ -46,8 +45,28 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late AppLifecycleListener _listener;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _listener = AppLifecycleListener(onResume: () => checkPermissionStatusAndResume());
+  }
+
+  @override
+  void dispose() {
+    _listener.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,5 +122,20 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> checkPermissionStatusAndResume() async {
+    final locationPermissionStatus = await serviceLocator<CheckLocationPermissionStatusUseCase>()
+        .call();
+
+    final isGranted = locationPermissionStatus == PermissionStatus.granted;
+
+    if (!isGranted) {
+      if (AppRouter.router.canPop()) {
+        AppRouter.router.go(AppRoutes.home);
+      }
+    }
+
+    serviceLocator<UserDataCubit>().updateLocationPermissionStatus(isGranted);
   }
 }

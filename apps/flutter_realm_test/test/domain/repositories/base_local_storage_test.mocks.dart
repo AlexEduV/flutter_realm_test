@@ -26,13 +26,23 @@ import 'package:test_futter_project/domain/entities/user_entity.dart' as _i2;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
-  _FakeUserEntity_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeUserEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
-  _FakeCarEntity_1(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeCarEntity_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [BaseLocalStorage].
@@ -44,75 +54,104 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
   }
 
   @override
-  List<_i3.CarEntity> getAll() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAll, []),
-            returnValue: <_i3.CarEntity>[],
-          )
-          as List<_i3.CarEntity>);
+  List<_i3.CarEntity> getAll() => (super.noSuchMethod(
+        Invocation.method(
+          #getAll,
+          [],
+        ),
+        returnValue: <_i3.CarEntity>[],
+      ) as List<_i3.CarEntity>);
 
   @override
   void add(dynamic T) => super.noSuchMethod(
-    Invocation.method(#add, [T]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #add,
+          [T],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void update(dynamic T) => super.noSuchMethod(
-    Invocation.method(#update, [T]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #update,
+          [T],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i5.Stream<dynamic> watch<T>() =>
-      (super.noSuchMethod(
-            Invocation.method(#watch, []),
-            returnValue: _i5.Stream<dynamic>.empty(),
-          )
-          as _i5.Stream<dynamic>);
+  _i5.Stream<dynamic> watch<T>() => (super.noSuchMethod(
+        Invocation.method(
+          #watch,
+          [],
+        ),
+        returnValue: _i5.Stream<dynamic>.empty(),
+      ) as _i5.Stream<dynamic>);
 
   @override
   void deleteAllCars() => super.noSuchMethod(
-    Invocation.method(#deleteAllCars, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #deleteAllCars,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void deleteById(String? id) => super.noSuchMethod(
-    Invocation.method(#deleteById, [id]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #deleteById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i2.UserEntity initUser() =>
-      (super.noSuchMethod(
-            Invocation.method(#initUser, []),
-            returnValue: _FakeUserEntity_0(
-              this,
-              Invocation.method(#initUser, []),
-            ),
-          )
-          as _i2.UserEntity);
+  _i2.UserEntity initUser() => (super.noSuchMethod(
+        Invocation.method(
+          #initUser,
+          [],
+        ),
+        returnValue: _FakeUserEntity_0(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
+      ) as _i2.UserEntity);
 
   @override
-  _i3.CarEntity getCarById(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#getCarById, [id]),
-            returnValue: _FakeCarEntity_1(
-              this,
-              Invocation.method(#getCarById, [id]),
-            ),
-          )
-          as _i3.CarEntity);
+  _i3.CarEntity getCarById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getCarById,
+          [id],
+        ),
+        returnValue: _FakeCarEntity_1(
+          this,
+          Invocation.method(
+            #getCarById,
+            [id],
+          ),
+        ),
+      ) as _i3.CarEntity);
 
   @override
-  int getMaxCarId() =>
-      (super.noSuchMethod(Invocation.method(#getMaxCarId, []), returnValue: 0)
-          as int);
+  int getMaxCarId() => (super.noSuchMethod(
+        Invocation.method(
+          #getMaxCarId,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
 
   @override
   void clearUser() => super.noSuchMethod(
-    Invocation.method(#clearUser, []),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #clearUser,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

@@ -33,10 +33,11 @@ class MockCarColorLocalDataSource extends _i1.Mock
   }
 
   @override
-  Map<String, _i3.Color> getColors() =>
-      (super.noSuchMethod(
-            Invocation.method(#getColors, []),
-            returnValue: <String, _i3.Color>{},
-          )
-          as Map<String, _i3.Color>);
+  Map<String, _i3.Color> getColors() => (super.noSuchMethod(
+        Invocation.method(
+          #getColors,
+          [],
+        ),
+        returnValue: <String, _i3.Color>{},
+      ) as Map<String, _i3.Color>);
 }

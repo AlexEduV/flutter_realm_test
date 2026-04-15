@@ -35,10 +35,11 @@ class MockFilePickerLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.AttachmentEntity?> pickFile() =>
-      (super.noSuchMethod(
-            Invocation.method(#pickFile, []),
-            returnValue: _i3.Future<_i4.AttachmentEntity?>.value(),
-          )
-          as _i3.Future<_i4.AttachmentEntity?>);
+  _i3.Future<_i4.AttachmentEntity?> pickFile() => (super.noSuchMethod(
+        Invocation.method(
+          #pickFile,
+          [],
+        ),
+        returnValue: _i3.Future<_i4.AttachmentEntity?>.value(),
+      ) as _i3.Future<_i4.AttachmentEntity?>);
 }

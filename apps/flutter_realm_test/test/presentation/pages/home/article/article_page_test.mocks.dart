@@ -28,8 +28,13 @@ import 'package:test_futter_project/presentation/bloc/article/article_page_state
 
 class _FakeArticlePageState_0 extends _i1.SmartFake
     implements _i2.ArticlePageState {
-  _FakeArticlePageState_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeArticlePageState_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [ArticlePageCubit].
@@ -41,68 +46,93 @@ class MockArticlePageCubit extends _i1.Mock implements _i3.ArticlePageCubit {
   }
 
   @override
-  _i2.ArticlePageState get state =>
-      (super.noSuchMethod(
-            Invocation.getter(#state),
-            returnValue: _FakeArticlePageState_0(
-              this,
-              Invocation.getter(#state),
-            ),
-          )
-          as _i2.ArticlePageState);
+  _i2.ArticlePageState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeArticlePageState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i2.ArticlePageState);
 
   @override
-  _i4.Stream<_i2.ArticlePageState> get stream =>
-      (super.noSuchMethod(
-            Invocation.getter(#stream),
-            returnValue: _i4.Stream<_i2.ArticlePageState>.empty(),
-          )
-          as _i4.Stream<_i2.ArticlePageState>);
+  _i4.Stream<_i2.ArticlePageState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i4.Stream<_i2.ArticlePageState>.empty(),
+      ) as _i4.Stream<_i2.ArticlePageState>);
 
   @override
-  bool get isClosed =>
-      (super.noSuchMethod(Invocation.getter(#isClosed), returnValue: false)
-          as bool);
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
 
   @override
-  _i4.Future<void> init(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#init, [id]),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> init(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [id],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
   void emit(_i2.ArticlePageState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void onChange(_i5.Change<_i2.ArticlePageState>? change) => super.noSuchMethod(
-    Invocation.method(#onChange, [change]),
-    returnValueForMissingStub: null,
-  );
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
-    Invocation.method(#addError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void onError(Object? error, StackTrace? stackTrace) => super.noSuchMethod(
-    Invocation.method(#onError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i4.Future<void> close() =>
-      (super.noSuchMethod(
-            Invocation.method(#close, []),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+  _i4.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

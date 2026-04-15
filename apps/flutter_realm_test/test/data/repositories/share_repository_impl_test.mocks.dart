@@ -35,11 +35,12 @@ class MockShareLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<void> share(_i4.ShareParamsModel? model) =>
-      (super.noSuchMethod(
-            Invocation.method(#share, [model]),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> share(_i4.ShareParamsModel? model) => (super.noSuchMethod(
+        Invocation.method(
+          #share,
+          [model],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

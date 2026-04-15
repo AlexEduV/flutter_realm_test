@@ -25,8 +25,13 @@ import 'package:test_futter_project/domain/repositories/article_repository.dart'
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
-  _FakeArticleEntity_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeArticleEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [ArticleRepository].
@@ -38,25 +43,28 @@ class MockArticleRepository extends _i1.Mock implements _i3.ArticleRepository {
   }
 
   @override
-  _i4.Future<List<_i2.ArticleEntity>> fetchArticles() =>
-      (super.noSuchMethod(
-            Invocation.method(#fetchArticles, []),
-            returnValue: _i4.Future<List<_i2.ArticleEntity>>.value(
-              <_i2.ArticleEntity>[],
-            ),
-          )
-          as _i4.Future<List<_i2.ArticleEntity>>);
+  _i4.Future<List<_i2.ArticleEntity>> fetchArticles() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchArticles,
+          [],
+        ),
+        returnValue:
+            _i4.Future<List<_i2.ArticleEntity>>.value(<_i2.ArticleEntity>[]),
+      ) as _i4.Future<List<_i2.ArticleEntity>>);
 
   @override
   _i4.Future<_i2.ArticleEntity> getArticleById(String? id) =>
       (super.noSuchMethod(
-            Invocation.method(#getArticleById, [id]),
-            returnValue: _i4.Future<_i2.ArticleEntity>.value(
-              _FakeArticleEntity_0(
-                this,
-                Invocation.method(#getArticleById, [id]),
-              ),
-            ),
-          )
-          as _i4.Future<_i2.ArticleEntity>);
+        Invocation.method(
+          #getArticleById,
+          [id],
+        ),
+        returnValue: _i4.Future<_i2.ArticleEntity>.value(_FakeArticleEntity_0(
+          this,
+          Invocation.method(
+            #getArticleById,
+            [id],
+          ),
+        )),
+      ) as _i4.Future<_i2.ArticleEntity>);
 }

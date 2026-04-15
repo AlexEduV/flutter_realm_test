@@ -35,36 +35,40 @@ class MockRegionRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<void> init() =>
-      (super.noSuchMethod(
-            Invocation.method(#init, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  _i3.Future<void> loadRegions() =>
-      (super.noSuchMethod(
-            Invocation.method(#loadRegions, []),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+  _i3.Future<void> loadRegions() => (super.noSuchMethod(
+        Invocation.method(
+          #loadRegions,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  List<_i4.RegionEntity> getAllRegions() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAllRegions, []),
-            returnValue: <_i4.RegionEntity>[],
-          )
-          as List<_i4.RegionEntity>);
+  List<_i4.RegionEntity> getAllRegions() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllRegions,
+          [],
+        ),
+        returnValue: <_i4.RegionEntity>[],
+      ) as List<_i4.RegionEntity>);
 
   @override
-  List<_i5.RegionUiModel> getAvailableCountries() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAvailableCountries, []),
-            returnValue: <_i5.RegionUiModel>[],
-          )
-          as List<_i5.RegionUiModel>);
+  List<_i5.RegionUiModel> getAvailableCountries() => (super.noSuchMethod(
+        Invocation.method(
+          #getAvailableCountries,
+          [],
+        ),
+        returnValue: <_i5.RegionUiModel>[],
+      ) as List<_i5.RegionUiModel>);
 }

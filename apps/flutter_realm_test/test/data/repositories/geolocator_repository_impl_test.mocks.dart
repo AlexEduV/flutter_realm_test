@@ -33,18 +33,20 @@ class MockGeolocatorLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<bool> checkLocationServiceStatus() =>
-      (super.noSuchMethod(
-            Invocation.method(#checkLocationServiceStatus, []),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+  _i3.Future<bool> checkLocationServiceStatus() => (super.noSuchMethod(
+        Invocation.method(
+          #checkLocationServiceStatus,
+          [],
+        ),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 
   @override
-  _i3.Future<bool> openLocationSettings() =>
-      (super.noSuchMethod(
-            Invocation.method(#openLocationSettings, []),
-            returnValue: _i3.Future<bool>.value(false),
-          )
-          as _i3.Future<bool>);
+  _i3.Future<bool> openLocationSettings() => (super.noSuchMethod(
+        Invocation.method(
+          #openLocationSettings,
+          [],
+        ),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
 }
