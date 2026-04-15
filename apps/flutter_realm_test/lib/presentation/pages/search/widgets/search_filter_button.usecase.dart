@@ -30,6 +30,7 @@ Widget buildSearchFilterButtonUseCase(BuildContext context) {
               min: 12,
               max: 60,
             ),
+            isPlaceHolder: context.knobs.boolean(label: 'Is a placeholder title'),
           ),
         ],
       ),
