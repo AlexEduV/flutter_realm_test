@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
@@ -150,8 +151,12 @@ final serviceLocator = GetIt.instance;
 
 Future<void> initDependenciesContainer() async {
   if (serviceLocator.isNotRegistered<Realm>()) {
-    final config = RealmConfiguration()..init();
-    serviceLocator.registerLazySingleton<Realm>(() => Realm(config.instance));
+    try {
+      final config = RealmConfiguration()..init();
+      serviceLocator.registerLazySingleton<Realm>(() => Realm(config.instance));
+    } catch (e) {
+      debugPrint('Could not open realm');
+    }
   }
 
   serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));

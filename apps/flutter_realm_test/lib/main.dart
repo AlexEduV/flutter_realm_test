@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_futter_project/common/constants/app_colors.dart';
 import 'package:test_futter_project/common/constants/app_constants.dart';
+import 'package:test_futter_project/common/constants/app_routes.dart';
 import 'package:test_futter_project/core/di/injection_container.dart';
 import 'package:test_futter_project/domain/usecases/env/init_env_use_case.dart';
 import 'package:test_futter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
@@ -57,8 +58,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
-    checkPermissionStatusAndResume();
 
     _listener = AppLifecycleListener(onResume: () => checkPermissionStatusAndResume());
   }
@@ -133,7 +132,7 @@ class _MyAppState extends State<MyApp> {
 
     if (!isGranted) {
       if (AppRouter.router.canPop()) {
-        AppRouter.router.pop();
+        AppRouter.router.go(AppRoutes.home);
       }
     }
 
