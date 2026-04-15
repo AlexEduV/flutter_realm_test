@@ -5,13 +5,13 @@ import 'package:test_flutter_project/presentation/widgets/skip_widget.dart';
 
 class AccountItem extends StatelessWidget {
   final IconData? icon;
-  final String text;
+  final String label;
   final TextStyle? textStyle;
   final void Function()? onTap;
   final bool isCentered;
 
   const AccountItem({
-    required this.text,
+    required this.label,
     this.icon,
     this.onTap,
     this.textStyle,
@@ -22,11 +22,11 @@ class AccountItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSemantics(
-      label: '${AppSemanticsLabels.accountItem} $text',
+      label: '${AppSemanticsLabels.accountItem} $label',
       child: ListTile(
         title: SkipWidget(
           skip: !isCentered,
-          child: Center(child: Text(text, style: textStyle)),
+          child: Center(child: Text(label, style: textStyle)),
         ),
         leading: (icon != null && !isCentered) ? Icon(icon) : null,
         onTap: onTap,

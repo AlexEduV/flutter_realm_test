@@ -13,7 +13,7 @@ import '../../../../bloc/home/explore_page/explore_page_state.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
 import '../../../../widgets/empty_results_placeholder_widget.dart';
-import '../../../home/favorites_page/widgets/car_list_item.dart';
+import '../../../home/widgets/car_list_item.dart';
 
 class MyItemsPage extends StatelessWidget {
   const MyItemsPage({super.key});

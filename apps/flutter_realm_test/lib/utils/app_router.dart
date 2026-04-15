@@ -9,8 +9,8 @@ import 'package:test_flutter_project/presentation/pages/article/article_page.dar
 import 'package:test_flutter_project/presentation/pages/details/details_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/new_item_page.dart';
-import 'package:test_flutter_project/presentation/pages/home/widgets/placeholder_page.dart';
 import 'package:test_flutter_project/presentation/pages/messages/messages_page.dart';
+import 'package:test_flutter_project/presentation/widgets/placeholder_page.dart';
 
 import '../common/constants/app_routes.dart';
 import '../common/enums/details_page_source.dart';

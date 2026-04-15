@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
-import 'package:test_flutter_project/presentation/pages/home/favorites_page/widgets/car_list_item.dart';
+import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.dart';
 
 void main() {
   final testCar = CarEntity(

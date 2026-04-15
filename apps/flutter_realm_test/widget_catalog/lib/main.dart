@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.usecase.dart';
+import 'package:test_flutter_project/presentation/widgets/animated_favorite_icon.usecase.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 void main() {
@@ -18,6 +24,30 @@ class WidgetBookApp extends StatelessWidget {
     return Widgetbook.material(
       directories: [
         WidgetbookFolder(
+          name: 'General',
+          children: [
+            WidgetbookComponent(
+              name: 'Animated favorite icon',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildAnimatedFavoriteIconUseCase(context),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'Car list item',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildCarListItemUseCase(context),
+                ),
+              ],
+            ),
+          ],
+        ),
+
+        WidgetbookFolder(
           name: 'Pages',
           children: [
             WidgetbookFolder(
@@ -29,6 +59,16 @@ class WidgetBookApp extends StatelessWidget {
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
                       builder: (context) => buildResultsWidgetUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Search filter button',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildSearchFilterButtonUseCase(context),
                     ),
                   ],
                 ),
@@ -59,6 +99,41 @@ class WidgetBookApp extends StatelessWidget {
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
                       builder: (context) => buildAccountItemUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Account item separated',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildAccountItemSeparatedUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Footer text',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildFooterTextUseCase(context),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+
+            WidgetbookFolder(
+              name: 'Authentication',
+              children: [
+                WidgetbookComponent(
+                  name: 'Splash button',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildSplashButtonUseCase(context),
                     ),
                   ],
                 ),
