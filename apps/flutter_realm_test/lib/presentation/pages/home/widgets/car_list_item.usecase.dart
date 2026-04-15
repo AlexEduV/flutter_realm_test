@@ -15,20 +15,23 @@ Widget buildCarListItemUseCase(BuildContext context) {
 
   return Scaffold(
     backgroundColor: AppColors.scaffoldColor,
-    body: MultiBlocProvider(
-      providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
-      child: Column(
-        spacing: AppDimensions.normalL,
-        children: [
-          CarListItem(
-            car: CarEntity.empty().copyWith(
-              model: context.knobs.string(label: 'Model', initialValue: 'Model S'),
-              manufacturer: context.knobs.string(label: 'Manufacturer', initialValue: 'Tesla'),
-              year: context.knobs.int.input(label: 'Year', initialValue: 2010).toString(),
-              price: context.knobs.int.input(label: 'Price', initialValue: 20000),
+    body: Padding(
+      padding: const EdgeInsets.only(top: AppDimensions.normalM),
+      child: MultiBlocProvider(
+        providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+        child: Column(
+          spacing: AppDimensions.normalL,
+          children: [
+            CarListItem(
+              car: CarEntity.empty().copyWith(
+                model: context.knobs.string(label: 'Model', initialValue: 'Model S'),
+                manufacturer: context.knobs.string(label: 'Manufacturer', initialValue: 'Tesla'),
+                year: context.knobs.int.input(label: 'Year', initialValue: 2010).toString(),
+                price: context.knobs.int.input(label: 'Price', initialValue: 20000),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );
