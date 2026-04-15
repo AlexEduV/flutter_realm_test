@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:test_futter_project/domain/entities/gif_entity.dart';
+import 'package:test_flutter_project/domain/entities/gif_entity.dart';
 
 import '../../common/enums/server_failure.dart';
 

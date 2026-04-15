@@ -1,6 +1,6 @@
-import 'package:test_futter_project/domain/entities/user_entity.dart';
-import 'package:test_futter_project/domain/repositories/user_repository.dart';
-import 'package:test_futter_project/domain/usecases/usecase.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/domain/repositories/user_repository.dart';
+import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class GetUserByIdUseCase implements UseCaseWithParams<String, UserEntity?> {
   final UserRepository _userRepository;

@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
-import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
+import 'package:test_flutter_project/domain/entities/owner_entity.dart';
+import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 
 import 'car_remote_data_source_impl_test.mocks.dart';
 

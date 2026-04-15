@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
-import 'package:test_futter_project/data/repositories/gifs_repository_impl.dart';
-import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
-import 'package:test_futter_project/domain/entities/gif_entity.dart';
+import 'package:test_flutter_project/data/dto/klipy_gif_dto.dart';
+import 'package:test_flutter_project/data/repositories/gifs_repository_impl.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
+import 'package:test_flutter_project/domain/entities/gif_entity.dart';
 
 import 'gifs_repository_impl_test.mocks.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/constants/app_routes.dart';
+import 'package:test_flutter_project/common/constants/app_routes.dart';
 
 void main() {
   group('AppRoutes', () {

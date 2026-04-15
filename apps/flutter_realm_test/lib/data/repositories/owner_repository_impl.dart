@@ -1,6 +1,6 @@
-import 'package:test_futter_project/domain/data_sources/remote/owners_remote_data_source.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
-import 'package:test_futter_project/domain/repositories/owner_repository.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart';
+import 'package:test_flutter_project/domain/entities/owner_entity.dart';
+import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 
 class OwnerRepositoryImpl implements OwnerRepository {
   final OwnersRemoteDataSource _ownersRemoteDataSource;

@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/common/enums/body_type.dart';
-import 'package:test_futter_project/common/enums/fuel_type.dart';
-import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
+import 'package:test_flutter_project/common/enums/body_type.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
+import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
 
 import '../../repositories/car_repository_test.mocks.dart';
 

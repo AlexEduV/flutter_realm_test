@@ -1,4 +1,4 @@
-import 'package:test_futter_project/domain/repositories/env_repository.dart';
+import 'package:test_flutter_project/domain/repositories/env_repository.dart';
 
 import '../usecase.dart';
 

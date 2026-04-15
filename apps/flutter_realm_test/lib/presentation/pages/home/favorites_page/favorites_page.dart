@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/constants/app_colors.dart';
-import 'package:test_futter_project/common/constants/app_dimensions.dart';
-import 'package:test_futter_project/common/constants/app_text_styles.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
-import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_futter_project/presentation/pages/home/favorites_page/widgets/car_list_item.dart';
-import 'package:test_futter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
+import 'package:test_flutter_project/common/constants/app_colors.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:test_flutter_project/common/constants/app_text_styles.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_flutter_project/presentation/pages/home/favorites_page/widgets/car_list_item.dart';
+import 'package:test_flutter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
 
 import '../../../../l10n/l10n_keys.dart';
 

@@ -1,4 +1,4 @@
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
+import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import '../../repositories/owner_repository.dart';
 import '../usecase.dart';

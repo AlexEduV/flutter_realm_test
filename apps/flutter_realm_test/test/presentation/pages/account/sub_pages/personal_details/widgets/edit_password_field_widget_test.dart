@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.dart';
-import 'package:test_futter_project/presentation/pages/account/sub_pages/personal_details/widgets/edit_password_field_widget.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/animated_password_visibility_icon.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_state.dart';
+import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/widgets/edit_password_field_widget.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/animated_password_visibility_icon.dart';
+import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 void main() {
   setUpAll(() {

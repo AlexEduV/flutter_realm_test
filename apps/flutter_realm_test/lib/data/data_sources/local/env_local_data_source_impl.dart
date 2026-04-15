@@ -1,5 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
+import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart';
 
 import '../../../common/constants/app_asset_routes.dart';
 

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
 
 part 'details_page_state.freezed.dart';
 

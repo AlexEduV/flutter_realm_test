@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/constants/app_colors.dart';
-import 'package:test_futter_project/common/constants/app_dimensions.dart';
-import 'package:test_futter_project/common/constants/app_text_styles.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/l10n/l10n_keys.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_futter_project/presentation/pages/home/widgets/placeholder_page.dart';
+import 'package:test_flutter_project/common/constants/app_colors.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:test_flutter_project/common/constants/app_text_styles.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/pages/home/widgets/placeholder_page.dart';
 
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();

@@ -1,6 +1,6 @@
 import 'package:logger/logger.dart';
-import 'package:test_futter_project/common/constants/app_constants.dart';
-import 'package:test_futter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/common/constants/app_constants.dart';
+import 'package:test_flutter_project/common/logger/base_logger.dart';
 
 class AppNetworkLoggerImpl implements BaseLogger {
   final _logger = Logger();

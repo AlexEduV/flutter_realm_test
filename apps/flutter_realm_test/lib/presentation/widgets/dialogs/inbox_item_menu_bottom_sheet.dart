@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
 import '../../../common/constants/app_dimensions.dart';
 import '../../../l10n/l10n_keys.dart';

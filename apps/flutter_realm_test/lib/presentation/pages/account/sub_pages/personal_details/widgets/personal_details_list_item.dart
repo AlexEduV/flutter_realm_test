@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/constants/app_colors.dart';
-import 'package:test_futter_project/common/constants/app_dimensions.dart';
-import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_futter_project/common/constants/app_text_styles.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/common/constants/app_colors.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/common/constants/app_text_styles.dart';
+import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 class PersonalDetailsListItem extends StatelessWidget {
   final IconData icon;

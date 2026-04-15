@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_futter_project/domain/entities/session_entity.dart';
+import 'package:test_flutter_project/domain/entities/session_entity.dart';
 
 class AuthSessionUtil {
   static const userSessionKey = 'userId';

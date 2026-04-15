@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
+import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 
 void main() {
   group('SentAttachmentMetaDataModel', () {

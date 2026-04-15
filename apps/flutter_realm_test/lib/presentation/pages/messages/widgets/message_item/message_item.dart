@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/constants/app_constants.dart';
-import 'package:test_futter_project/common/enums/message_status.dart';
-import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
-import 'package:test_futter_project/domain/models/sent_image_meta_data_model.dart';
-import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
-import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/widgets/message_content.dart';
-import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/widgets/message_info_row.dart';
-import 'package:test_futter_project/presentation/widgets/skip_widget.dart';
+import 'package:test_flutter_project/common/constants/app_constants.dart';
+import 'package:test_flutter_project/common/enums/message_status.dart';
+import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
+import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
+import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_content.dart';
+import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_info_row.dart';
+import 'package:test_flutter_project/presentation/widgets/skip_widget.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../../common/constants/app_dimensions.dart';

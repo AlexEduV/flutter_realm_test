@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/password_strength_bar_widget.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/splash_button.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/password_strength_bar_widget.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.dart';
+import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/constants/app_colors.dart';
 import '../../../../l10n/l10n_keys.dart';

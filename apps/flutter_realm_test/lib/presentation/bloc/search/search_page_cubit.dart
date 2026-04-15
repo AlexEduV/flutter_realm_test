@@ -1,14 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
-import 'package:test_futter_project/common/enums/car_type.dart';
-import 'package:test_futter_project/common/enums/drawer_type.dart';
-import 'package:test_futter_project/common/extensions/string_extension.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/models/field_params_model.dart';
-import 'package:test_futter_project/domain/usecases/database/get_all_cars_use_case.dart';
-import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
-import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_flutter_project/common/enums/car_type.dart';
+import 'package:test_flutter_project/common/enums/drawer_type.dart';
+import 'package:test_flutter_project/common/extensions/string_extension.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/models/field_params_model.dart';
+import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
 
 import '../../../core/di/injection_container.dart';
 import '../../../l10n/l10n_keys.dart';

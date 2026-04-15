@@ -1,4 +1,4 @@
-import 'package:test_futter_project/domain/repositories/region_repository.dart';
+import 'package:test_flutter_project/domain/repositories/region_repository.dart';
 
 import '../../domain/data_sources/remote/region_remote_data_source.dart';
 import '../../domain/entities/region_entity.dart';

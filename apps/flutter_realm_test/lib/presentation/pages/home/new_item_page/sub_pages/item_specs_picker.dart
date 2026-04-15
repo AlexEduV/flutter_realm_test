@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/constants/app_dimensions.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
 import '../../../../../common/enums/body_type.dart';
 import '../../../../../common/enums/fuel_type.dart';

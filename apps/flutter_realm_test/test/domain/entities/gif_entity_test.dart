@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
-import 'package:test_futter_project/domain/entities/gif_entity.dart';
+import 'package:test_flutter_project/data/dto/klipy_gif_dto.dart';
+import 'package:test_flutter_project/domain/entities/gif_entity.dart';
 
 void main() {
   group('GifEntity', () {

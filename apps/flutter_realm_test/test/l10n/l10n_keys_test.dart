@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/l10n/l10n_keys.dart';
 
 void main() {
   group('L10nKeys', () {

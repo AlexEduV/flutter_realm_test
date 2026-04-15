@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/constants/app_colors.dart';
-import 'package:test_futter_project/domain/models/region_ui_model.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/edit_password_dialog.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/edit_personal_info_dialog.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
+import 'package:test_flutter_project/common/constants/app_colors.dart';
+import 'package:test_flutter_project/domain/models/region_ui_model.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/edit_password_dialog.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/edit_personal_info_dialog.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
 
 class DialogHelper {
   static Future<void> showConfirmationDialog(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/color_picker_dialog/color_item.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_item.dart';
 
 void main() {
   testWidgets('ColorItem renders and triggers onTap', (WidgetTester tester) async {

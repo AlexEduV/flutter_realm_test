@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
+import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
 
 void main() {
   group('WidgetListDividers', () {

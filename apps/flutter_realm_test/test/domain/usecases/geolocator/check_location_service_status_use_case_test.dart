@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/repositories/geolocator_repository.dart';
-import 'package:test_futter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/geolocator_repository.dart';
+import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 
 import 'check_location_service_status_use_case_test.mocks.dart';
 

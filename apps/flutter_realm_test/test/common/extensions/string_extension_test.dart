@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/extensions/string_extension.dart';
+import 'package:test_flutter_project/common/extensions/string_extension.dart';
 
 void main() {
   group('StringCasingExtension.capitalizeFirst', () {

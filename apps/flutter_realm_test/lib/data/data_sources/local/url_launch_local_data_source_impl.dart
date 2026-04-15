@@ -1,4 +1,4 @@
-import 'package:test_futter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/common/logger/base_logger.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/constants/api_constants.dart';

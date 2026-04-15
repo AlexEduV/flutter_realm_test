@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/entities/article_entity.dart';
-import 'package:test_futter_project/domain/entities/author_entity.dart';
-import 'package:test_futter_project/presentation/bloc/article/article_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/article/article_page_state.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_futter_project/presentation/pages/article/article_page.dart';
+import 'package:test_flutter_project/domain/entities/article_entity.dart';
+import 'package:test_flutter_project/domain/entities/author_entity.dart';
+import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/article/article_page_state.dart';
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/pages/article/article_page.dart';
 
 import 'article_page_test.mocks.dart';
 

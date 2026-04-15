@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/enums/promo_type.dart';
+import 'package:test_flutter_project/common/enums/promo_type.dart';
 
 void main() {
   group('PromoType', () {

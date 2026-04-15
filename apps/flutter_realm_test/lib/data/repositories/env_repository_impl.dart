@@ -1,5 +1,5 @@
-import 'package:test_futter_project/domain/data_sources/local/env_local_data_source.dart';
-import 'package:test_futter_project/domain/repositories/env_repository.dart';
+import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart';
+import 'package:test_flutter_project/domain/repositories/env_repository.dart';
 
 class EnvRepositoryImpl implements EnvRepository {
   final EnvLocalDataSource envLocalDataSource;

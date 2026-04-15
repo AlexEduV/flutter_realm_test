@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/domain/models/region_ui_model.dart';
-import 'package:test_futter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
+import 'package:test_flutter_project/domain/models/region_ui_model.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
 
 void main() {
   testWidgets('CountryPickerBottomSheet renders items and handles selection', (

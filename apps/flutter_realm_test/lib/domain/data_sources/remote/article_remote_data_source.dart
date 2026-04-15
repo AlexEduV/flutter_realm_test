@@ -1,4 +1,4 @@
-import 'package:test_futter_project/domain/entities/article_entity.dart';
+import 'package:test_flutter_project/domain/entities/article_entity.dart';
 
 abstract class ArticleRemoteDataSource {
   Future<List<ArticleEntity>> fetchArticles();

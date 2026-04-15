@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/constants/app_dimensions.dart';
-import 'package:test_futter_project/common/extensions/color_extension.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:test_flutter_project/common/extensions/color_extension.dart';
 
 class ColorItem extends StatelessWidget {
   final Color color;

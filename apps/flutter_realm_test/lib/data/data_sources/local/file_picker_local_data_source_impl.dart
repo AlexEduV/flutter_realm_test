@@ -1,5 +1,5 @@
 import 'package:file_picker/file_picker.dart';
-import 'package:test_futter_project/domain/entities/attachment_entity.dart';
+import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
 
 import '../../../domain/data_sources/local/file_picker_local_data_source.dart';
 

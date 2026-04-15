@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/enums/message_status.dart';
-import 'package:test_futter_project/domain/models/message_model.dart';
+import 'package:test_flutter_project/common/enums/message_status.dart';
+import 'package:test_flutter_project/domain/models/message_model.dart';
 
 void main() {
   group('MessageModel', () {

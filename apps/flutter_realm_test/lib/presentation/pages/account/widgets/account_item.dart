@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 class AccountItem extends StatelessWidget {
   final IconData? icon;

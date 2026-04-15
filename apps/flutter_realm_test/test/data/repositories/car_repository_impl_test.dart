@@ -4,17 +4,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/common/enums/body_type.dart';
-import 'package:test_futter_project/common/enums/car_type.dart';
-import 'package:test_futter_project/common/enums/fuel_type.dart';
-import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart';
-import 'package:test_futter_project/data/dto/car_dto.dart';
-import 'package:test_futter_project/data/models/scheme.dart';
-import 'package:test_futter_project/data/repositories/car_repository_impl.dart';
-import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
+import 'package:test_flutter_project/common/enums/body_type.dart';
+import 'package:test_flutter_project/common/enums/car_type.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
+import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart';
+import 'package:test_flutter_project/data/dto/car_dto.dart';
+import 'package:test_flutter_project/data/models/scheme.dart';
+import 'package:test_flutter_project/data/repositories/car_repository_impl.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 

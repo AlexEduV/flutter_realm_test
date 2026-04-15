@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:test_futter_project/common/logger/base_logger.dart';
-import 'package:test_futter_project/domain/entities/article_entity.dart';
+import 'package:test_flutter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/domain/entities/article_entity.dart';
 
 import '../../../common/constants/api_constants.dart';
 import '../../../domain/data_sources/remote/article_remote_data_source.dart';

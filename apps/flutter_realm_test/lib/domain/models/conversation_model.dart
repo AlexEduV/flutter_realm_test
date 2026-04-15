@@ -1,4 +1,4 @@
-import 'package:test_futter_project/domain/models/message_model.dart';
+import 'package:test_flutter_project/domain/models/message_model.dart';
 
 class ConversationModel {
   final String conversationId;

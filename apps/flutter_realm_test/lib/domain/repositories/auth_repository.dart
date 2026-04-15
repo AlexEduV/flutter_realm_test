@@ -1,4 +1,4 @@
-import 'package:test_futter_project/domain/models/auth_result.dart';
+import 'package:test_flutter_project/domain/models/auth_result.dart';
 
 import '../entities/user_entity.dart';
 

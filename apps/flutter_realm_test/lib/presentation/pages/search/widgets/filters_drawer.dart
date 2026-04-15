@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/constants/app_colors.dart';
-import 'package:test_futter_project/common/constants/app_dimensions.dart';
-import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_futter_project/common/constants/app_text_styles.dart';
-import 'package:test_futter_project/common/enums/body_type.dart';
-import 'package:test_futter_project/common/enums/car_type.dart';
-import 'package:test_futter_project/common/enums/fuel_type.dart';
-import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/common/extensions/string_extension.dart';
-import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
-import 'package:test_futter_project/presentation/pages/search/widgets/debounced_text_form_field.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/common/constants/app_colors.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/common/constants/app_text_styles.dart';
+import 'package:test_flutter_project/common/enums/body_type.dart';
+import 'package:test_flutter_project/common/enums/car_type.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
+import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/common/extensions/string_extension.dart';
+import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_flutter_project/presentation/pages/search/widgets/debounced_text_form_field.dart';
+import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../l10n/l10n_keys.dart';
 

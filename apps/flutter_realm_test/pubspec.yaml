@@ -1,4 +1,4 @@
-name: test_futter_project
+name: test_flutter_project
 description: "Test Flutter Project for realm, go-router, rxDart and mockito"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 

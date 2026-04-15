@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
-import 'package:test_futter_project/domain/entities/region_entity.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/region_remote_data_source.dart';
+import 'package:test_flutter_project/domain/entities/region_entity.dart';
 
 import '../../../common/constants/api_constants.dart';
 import '../../../common/constants/app_asset_routes.dart';

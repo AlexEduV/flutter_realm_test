@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/extensions/text_style_extension.dart';
-import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
+import 'package:test_flutter_project/common/extensions/text_style_extension.dart';
+import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 
 import '../../../../../../common/constants/app_dimensions.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/repositories/url_launch_repository.dart';
-import 'package:test_futter_project/domain/usecases/url/open_url_link_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/url_launch_repository.dart';
+import 'package:test_flutter_project/domain/usecases/url/open_url_link_use_case.dart';
 
 import 'open_url_link_use_case_test.mocks.dart';
 

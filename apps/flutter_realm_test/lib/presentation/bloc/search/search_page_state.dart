@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_futter_project/common/enums/car_type.dart';
-import 'package:test_futter_project/common/enums/drawer_type.dart';
-import 'package:test_futter_project/domain/models/field_params_model.dart';
+import 'package:test_flutter_project/common/enums/car_type.dart';
+import 'package:test_flutter_project/common/enums/drawer_type.dart';
+import 'package:test_flutter_project/domain/models/field_params_model.dart';
 
 import '../../../domain/entities/car_entity.dart';
 

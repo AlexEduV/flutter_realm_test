@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/enums/details_page_source.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_flutter_project/common/enums/details_page_source.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
 import '../../../../../common/constants/app_colors.dart';
 import '../../../../../common/constants/app_dimensions.dart';

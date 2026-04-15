@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/common/enums/body_type.dart';
-import 'package:test_futter_project/common/enums/car_type.dart';
-import 'package:test_futter_project/common/enums/fuel_type.dart';
-import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/domain/models/field_params_model.dart';
-import 'package:test_futter_project/l10n/l10n_keys.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
-import 'package:test_futter_project/presentation/pages/search/widgets/filters_drawer.dart';
+import 'package:test_flutter_project/common/enums/body_type.dart';
+import 'package:test_flutter_project/common/enums/car_type.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
+import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/domain/models/field_params_model.dart';
+import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_flutter_project/presentation/pages/search/widgets/filters_drawer.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 

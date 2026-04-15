@@ -1,4 +1,4 @@
-import 'package:test_futter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/models/conversation_model.dart';
 
 abstract class InboxRepository {
   Future<List<ConversationModel>> fetchConversations();
