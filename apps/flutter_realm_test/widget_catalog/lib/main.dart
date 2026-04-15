@@ -26,6 +26,10 @@ class WidgetBookApp extends StatelessWidget {
                       name: 'Default',
                       builder: (context) => buildOwnerWidgetUseCase(context),
                     ),
+                    WidgetbookUseCase(
+                      name: 'User',
+                      builder: (context) => buildOwnerWidgetUserUseCase(context),
+                    ),
                   ],
                 ),
               ],
