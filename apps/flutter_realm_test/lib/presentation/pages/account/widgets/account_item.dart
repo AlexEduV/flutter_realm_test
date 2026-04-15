@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/presentation/widgets/skip_widget.dart';
 
 class AccountItem extends StatelessWidget {
   final IconData? icon;
@@ -20,14 +21,14 @@ class AccountItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final titleWidget = Text(text, style: textStyle);
-    final textWidget = isCentered ? Center(child: titleWidget) : titleWidget;
-
     return AppSemantics(
       label: '${AppSemanticsLabels.accountItem} $text',
       child: ListTile(
-        title: textWidget,
-        leading: icon != null ? Icon(icon) : null,
+        title: SkipWidget(
+          skip: !isCentered,
+          child: Center(child: Text(text, style: textStyle)),
+        ),
+        leading: (icon != null && !isCentered) ? Icon(icon) : null,
         onTap: onTap,
         tileColor: Colors.white,
         trailing: (onTap != null && !isCentered)
