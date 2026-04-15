@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.usecase.dart';
@@ -96,6 +97,16 @@ class WidgetBookApp extends StatelessWidget {
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
                       builder: (context) => buildAccountItemUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Footer text',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildFooterTextUseCase(context),
                     ),
                   ],
                 ),
