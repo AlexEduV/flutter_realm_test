@@ -36,8 +36,6 @@ void main() async {
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
 
-  //todo: test changes;
-
   await serviceLocator<InitRegionModelsUseCase>().call();
   await serviceLocator<FetchRegionsUseCase>().call();
   await serviceLocator<InitEnvUseCase>().call();
