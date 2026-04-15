@@ -36,9 +36,6 @@ void main() async {
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
 
-  // in the LogCat it's easier to see, that when I rewoke the location permission, Android system kills
-  // the app.
-
   await serviceLocator<InitRegionModelsUseCase>().call();
   await serviceLocator<FetchRegionsUseCase>().call();
   await serviceLocator<InitEnvUseCase>().call();
