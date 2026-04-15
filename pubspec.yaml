@@ -30,10 +30,6 @@ dependency_overrides:
 melos:
   name: flutter_realm_test_workspace
 
-  packages:
-    - apps/**
-    - packages/**
-
   scripts:
     hello: echo "Hello from Melos"
     test: flutter test .

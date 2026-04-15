@@ -20,12 +20,13 @@ jobs:
         run: dart pub global activate very_good_cli
 
       - name: 📦 Install deps
-        run: flutter pub get
+        run: |
+          cd apps/flutter_realm_test/
+          flutter pub get
 
       - name: 🧪 Run Tests
         run: |
           export PATH="$PATH":"$HOME/.pub-cache/bin"
-          cd apps/flutter_realm_test/
           very_good test
 
 #  automerge:
