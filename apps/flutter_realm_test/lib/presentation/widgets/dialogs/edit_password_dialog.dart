@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
 import '../../../common/constants/app_colors.dart';
 import '../../../common/constants/app_dimensions.dart';

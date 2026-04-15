@@ -3,15 +3,15 @@ import 'dart:math';
 
 import 'package:realm/realm.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:test_futter_project/common/constants/app_asset_routes.dart';
-import 'package:test_futter_project/common/enums/body_type.dart';
-import 'package:test_futter_project/common/enums/car_type.dart';
-import 'package:test_futter_project/common/enums/fuel_type.dart';
-import 'package:test_futter_project/common/enums/promo_type.dart';
-import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/data/dto/car_dto.dart';
-import 'package:test_futter_project/domain/data_sources/remote/car_remote_data_source.dart';
-import 'package:test_futter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
+import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
+import 'package:test_flutter_project/common/enums/body_type.dart';
+import 'package:test_flutter_project/common/enums/car_type.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
+import 'package:test_flutter_project/common/enums/promo_type.dart';
+import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/data/dto/car_dto.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
+import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 
 import '../../../core/di/injection_container.dart';
 

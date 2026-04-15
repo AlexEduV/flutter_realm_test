@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
+import 'package:test_flutter_project/data/dto/klipy_gif_dto.dart';
 
 class GifEntity {
   final String id;

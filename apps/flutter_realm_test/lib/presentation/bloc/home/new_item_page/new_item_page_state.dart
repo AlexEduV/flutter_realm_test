@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_futter_project/common/enums/car_type.dart';
-import 'package:test_futter_project/common/enums/fuel_type.dart';
-import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/domain/entities/car_auto_complete_entity.dart';
-import 'package:test_futter_project/domain/models/field_params_model.dart';
+import 'package:test_flutter_project/common/enums/car_type.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
+import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
+import 'package:test_flutter_project/domain/models/field_params_model.dart';
 
 import '../../../../common/enums/body_type.dart';
 

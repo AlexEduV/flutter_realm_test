@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart'
     show ActionPane, DrawerMotion, Slidable, SlidableAction;
-import 'package:test_futter_project/common/constants/app_dimensions.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/entities/user_entity.dart';
-import 'package:test_futter_project/presentation/widgets/announcement_item/announcement_item_body.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_item_body.dart';
 
 import '../../../l10n/l10n_keys.dart';
 

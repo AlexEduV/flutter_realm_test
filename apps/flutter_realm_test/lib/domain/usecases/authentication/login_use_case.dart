@@ -1,5 +1,5 @@
-import 'package:test_futter_project/domain/models/auth_result.dart';
-import 'package:test_futter_project/domain/models/login_model.dart';
+import 'package:test_flutter_project/domain/models/auth_result.dart';
+import 'package:test_flutter_project/domain/models/login_model.dart';
 
 import '../../repositories/auth_repository.dart';
 import '../usecase.dart';

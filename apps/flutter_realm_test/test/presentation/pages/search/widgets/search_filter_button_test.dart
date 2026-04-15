@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/presentation/pages/search/widgets/search_filter_button.dart';
-import 'package:test_futter_project/presentation/widgets/app_badge.dart';
+import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
+import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
 
 void main() {
   group('SearchFilterButton', () {

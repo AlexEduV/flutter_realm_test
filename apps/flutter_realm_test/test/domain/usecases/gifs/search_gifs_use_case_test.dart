@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/entities/gif_entity.dart';
-import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
+import 'package:test_flutter_project/domain/entities/gif_entity.dart';
+import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 
 import 'get_trending_gifs_use_case_test.mocks.dart';
 

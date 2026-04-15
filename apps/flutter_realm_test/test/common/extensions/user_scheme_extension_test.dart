@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 void main() {
   group('UserExtensions', () {

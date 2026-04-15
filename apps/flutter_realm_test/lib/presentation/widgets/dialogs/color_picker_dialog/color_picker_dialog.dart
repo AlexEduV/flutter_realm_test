@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
-import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
-import 'package:test_futter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 
 import '../../../../common/constants/app_colors.dart';
 import '../../../../common/constants/app_dimensions.dart';

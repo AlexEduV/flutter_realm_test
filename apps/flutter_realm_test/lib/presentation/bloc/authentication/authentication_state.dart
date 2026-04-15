@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_futter_project/domain/models/field_params_model.dart';
+import 'package:test_flutter_project/domain/models/field_params_model.dart';
 
 part 'authentication_state.freezed.dart';
 

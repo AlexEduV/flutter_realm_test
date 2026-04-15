@@ -1,4 +1,4 @@
-import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 class OwnerEntity {
   final String id;

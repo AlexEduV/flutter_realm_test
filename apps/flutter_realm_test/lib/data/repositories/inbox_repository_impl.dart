@@ -1,6 +1,6 @@
-import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
-import 'package:test_futter_project/domain/models/conversation_model.dart';
-import 'package:test_futter_project/domain/repositories/inbox_repository.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
+import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/repositories/inbox_repository.dart';
 
 class InboxRepositoryImpl implements InboxRepository {
   final MessagesRemoteDataSource _messagesRemoteDataSource;

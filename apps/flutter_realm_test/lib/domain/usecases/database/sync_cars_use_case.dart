@@ -1,5 +1,5 @@
-import 'package:test_futter_project/domain/repositories/car_repository.dart';
-import 'package:test_futter_project/domain/usecases/usecase.dart';
+import 'package:test_flutter_project/domain/repositories/car_repository.dart';
+import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class SyncCarsUseCase implements UseCaseNoParams<Future<void>> {
   SyncCarsUseCase(this._carRepository);

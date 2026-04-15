@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/constants/app_constants.dart';
-import 'package:test_futter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/common/constants/app_constants.dart';
+import 'package:test_flutter_project/l10n/l10n_keys.dart';
 
 import '../../../common/constants/app_colors.dart';
 import '../../../common/constants/app_dimensions.dart';

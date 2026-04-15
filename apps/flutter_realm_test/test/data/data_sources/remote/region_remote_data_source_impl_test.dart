@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
-import 'package:test_futter_project/domain/entities/region_entity.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
+import 'package:test_flutter_project/domain/entities/region_entity.dart';
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
 import '../../../common/extensions/context_extension_test.mocks.dart';
 

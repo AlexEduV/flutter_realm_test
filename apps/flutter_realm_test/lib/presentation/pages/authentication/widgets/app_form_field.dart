@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/animated_password_visibility_icon.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/animated_password_visibility_icon.dart';
+import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/constants/app_colors.dart';
 import '../../../../common/constants/app_dimensions.dart';

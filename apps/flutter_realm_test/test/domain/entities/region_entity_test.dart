@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/domain/entities/region_entity.dart';
+import 'package:test_flutter_project/domain/entities/region_entity.dart';
 
 void main() {
   group('RegionEntity', () {

@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/extensions/list_extension.dart';
-import 'package:test_futter_project/domain/entities/article_entity.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/usecases/articles/fetch_articles_use_case.dart';
-import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
-import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_flutter_project/common/extensions/list_extension.dart';
+import 'package:test_flutter_project/domain/entities/article_entity.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePageCubit extends Cubit<ExplorePageState> {
   ExplorePageCubit(this._watchCarsUseCase, this._syncCarsUseCase, this._fetchArticlesUseCase)

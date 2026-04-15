@@ -1,6 +1,6 @@
 import 'package:realm/realm.dart' show ObjectId;
-import 'package:test_futter_project/common/enums/promo_type.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
+import 'package:test_flutter_project/common/enums/promo_type.dart';
+import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import '../../data/dto/car_dto.dart';
 import '../../data/models/scheme.dart';

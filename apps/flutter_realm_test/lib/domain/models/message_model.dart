@@ -1,4 +1,4 @@
-import 'package:test_futter_project/common/enums/message_status.dart';
+import 'package:test_flutter_project/common/enums/message_status.dart';
 
 class MessageModel {
   final String senderId;

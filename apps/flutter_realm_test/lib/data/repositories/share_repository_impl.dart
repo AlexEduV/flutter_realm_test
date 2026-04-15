@@ -1,5 +1,5 @@
-import 'package:test_futter_project/domain/data_sources/local/share_local_data_source.dart';
-import 'package:test_futter_project/domain/repositories/share_repository.dart';
+import 'package:test_flutter_project/domain/data_sources/local/share_local_data_source.dart';
+import 'package:test_flutter_project/domain/repositories/share_repository.dart';
 
 import '../../domain/models/share_params_model.dart';
 

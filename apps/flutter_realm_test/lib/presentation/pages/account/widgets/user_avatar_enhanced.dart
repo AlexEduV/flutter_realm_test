@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_futter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
+import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../common/constants/app_colors.dart';
 import '../../../../common/constants/app_dimensions.dart';

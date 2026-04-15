@@ -1,11 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/constants/app_dimensions.dart';
-import 'package:test_futter_project/common/constants/app_text_styles.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/presentation/bloc/search/search_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:test_flutter_project/common/constants/app_text_styles.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
 
 import '../../../../l10n/l10n_keys.dart';
 

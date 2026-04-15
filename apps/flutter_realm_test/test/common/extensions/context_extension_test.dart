@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_state.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
 
 import 'context_extension_test.mocks.dart';
 

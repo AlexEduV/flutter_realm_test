@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test_futter_project/domain/repositories/permission_repository.dart';
+import 'package:test_flutter_project/domain/repositories/permission_repository.dart';
 
 import 'permission_repository_test.mocks.dart';
 

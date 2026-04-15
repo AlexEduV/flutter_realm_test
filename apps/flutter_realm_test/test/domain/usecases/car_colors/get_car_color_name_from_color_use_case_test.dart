@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
 
 import 'get_car_colors_use_case_test.mocks.dart';
 

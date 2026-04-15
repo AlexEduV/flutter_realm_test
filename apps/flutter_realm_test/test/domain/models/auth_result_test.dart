@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/domain/models/auth_result.dart';
+import 'package:test_flutter_project/domain/models/auth_result.dart';
 
 void main() {
   group('AuthResult', () {

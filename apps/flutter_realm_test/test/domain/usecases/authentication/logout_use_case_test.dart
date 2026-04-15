@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart';
 
 import '../../../data/data_sources/remote/auth_remote_data_source_impl_test.mocks.dart';
 

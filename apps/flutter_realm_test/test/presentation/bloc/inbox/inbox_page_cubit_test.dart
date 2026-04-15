@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/common/enums/message_status.dart';
-import 'package:test_futter_project/domain/models/conversation_model.dart';
-import 'package:test_futter_project/domain/models/message_model.dart';
-import 'package:test_futter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
-import 'package:test_futter_project/domain/usecases/inbox/save_conversations_use_case.dart';
-import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
+import 'package:test_flutter_project/common/enums/message_status.dart';
+import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/models/message_model.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
+import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 
 import 'inbox_page_cubit_test.mocks.dart';
 

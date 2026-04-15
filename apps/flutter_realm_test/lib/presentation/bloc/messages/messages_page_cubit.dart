@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/domain/entities/attachment_entity.dart';
-import 'package:test_futter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart';
-import 'package:test_futter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
-import 'package:test_futter_project/domain/usecases/gifs/search_gifs_use_case.dart';
-import 'package:test_futter_project/presentation/bloc/messages/messages_page_state.dart';
+import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
+import 'package:test_flutter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.dart';
+import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
 
 class MessagesPageCubit extends Cubit<MessagesPageState> {
   final SearchGifsUseCase _searchGifsUseCase;

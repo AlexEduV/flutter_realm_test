@@ -1,4 +1,4 @@
-import 'package:test_futter_project/domain/entities/author_entity.dart';
+import 'package:test_flutter_project/domain/entities/author_entity.dart';
 
 class ArticleEntity {
   final String id;

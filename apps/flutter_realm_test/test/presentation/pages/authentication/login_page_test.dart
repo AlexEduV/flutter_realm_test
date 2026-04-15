@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/l10n/l10n_keys.dart';
-import 'package:test_futter_project/presentation/bloc/authentication/authentication_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_futter_project/presentation/pages/authentication/login_page.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_error_widget.dart';
-import 'package:test_futter_project/presentation/pages/authentication/widgets/auth_form_switcher.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/login_page.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/auth_error_widget.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/auth_form_switcher.dart';
 
 import 'login_page_test.mocks.dart';
 

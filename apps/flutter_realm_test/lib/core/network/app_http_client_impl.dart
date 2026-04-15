@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
-import 'package:test_futter_project/common/enums/server_failure.dart';
-import 'package:test_futter_project/common/logger/base_logger.dart';
-import 'package:test_futter_project/core/network/app_http_client.dart';
-import 'package:test_futter_project/core/network/network_info.dart';
+import 'package:test_flutter_project/common/enums/server_failure.dart';
+import 'package:test_flutter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/core/network/app_http_client.dart';
+import 'package:test_flutter_project/core/network/network_info.dart';
 
 class AppHttpClientImpl implements AppHttpClient {
   final http.Client _client;

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/utils/json_util.dart';
+import 'package:test_flutter_project/utils/json_util.dart';
 
 void main() {
   group('JsonUtil.flattenJson', () {

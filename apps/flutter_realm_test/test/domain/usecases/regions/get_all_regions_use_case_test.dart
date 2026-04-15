@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/entities/region_entity.dart';
-import 'package:test_futter_project/domain/usecases/regions/get_all_regions_use_case.dart';
+import 'package:test_flutter_project/domain/entities/region_entity.dart';
+import 'package:test_flutter_project/domain/usecases/regions/get_all_regions_use_case.dart';
 
 import 'fetch_regions_use_case_test.mocks.dart';
 

@@ -4,7 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/entities/attachment_entity.dart';
+import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
 
 import 'attachment_entity_test.mocks.dart';
 

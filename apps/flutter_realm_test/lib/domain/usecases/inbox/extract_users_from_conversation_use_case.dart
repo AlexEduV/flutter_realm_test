@@ -1,6 +1,6 @@
-import 'package:test_futter_project/domain/entities/user_entity.dart';
-import 'package:test_futter_project/domain/models/conversation_model.dart';
-import 'package:test_futter_project/domain/usecases/users/get_user_by_id_use_case.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 
 import '../usecase.dart';
 

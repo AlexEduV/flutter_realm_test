@@ -1,15 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/domain/models/field_params_model.dart';
-import 'package:test_futter_project/domain/models/login_model.dart';
-import 'package:test_futter_project/domain/models/register_model.dart';
-import 'package:test_futter_project/domain/usecases/authentication/delete_account_use_case.dart';
-import 'package:test_futter_project/domain/usecases/authentication/login_use_case.dart';
-import 'package:test_futter_project/domain/usecases/authentication/logout_use_case.dart';
-import 'package:test_futter_project/domain/usecases/authentication/register_use_case.dart';
-import 'package:test_futter_project/l10n/l10n_keys.dart';
-import 'package:test_futter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_futter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/domain/models/field_params_model.dart';
+import 'package:test_flutter_project/domain/models/login_model.dart';
+import 'package:test_flutter_project/domain/models/register_model.dart';
+import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/authentication/register_use_case.dart';
+import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../l10n/app_localisations_cubit.dart';
 

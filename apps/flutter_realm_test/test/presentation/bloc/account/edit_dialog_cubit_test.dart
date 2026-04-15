@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/presentation/bloc/account/edit_dialog_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/account/edit_dialog_state.dart';
+import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_state.dart';
 
 void main() {
   group('EditDialogCubit', () {

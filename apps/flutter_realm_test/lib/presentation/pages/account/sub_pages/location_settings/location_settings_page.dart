@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/common/extensions/widget_list_extension.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/domain/usecases/regions/get_all_region_models_use_case.dart';
-import 'package:test_futter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
-import 'package:test_futter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
-import 'package:test_futter_project/utils/dialog_helper.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/domain/usecases/regions/get_all_region_models_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
+import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
+import 'package:test_flutter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/constants/api_constants.dart';
 import '../../../../../common/constants/app_colors.dart';

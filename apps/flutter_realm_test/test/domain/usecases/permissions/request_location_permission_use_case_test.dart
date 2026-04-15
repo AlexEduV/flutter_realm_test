@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 
 import '../../repositories/permission_repository_test.mocks.dart';
 

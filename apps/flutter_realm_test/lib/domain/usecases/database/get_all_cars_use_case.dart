@@ -1,6 +1,6 @@
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/repositories/car_repository.dart';
-import 'package:test_futter_project/domain/usecases/usecase.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/repositories/car_repository.dart';
+import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class GetAllCarsUseCase implements UseCaseNoParams<List<CarEntity>> {
   GetAllCarsUseCase(this._carRepository);

@@ -1,6 +1,6 @@
-import 'package:test_futter_project/domain/data_sources/remote/auth_remote_data_source.dart';
-import 'package:test_futter_project/domain/models/auth_result.dart';
-import 'package:test_futter_project/domain/repositories/auth_repository.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/auth_remote_data_source.dart';
+import 'package:test_flutter_project/domain/models/auth_result.dart';
+import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 
 class MockAuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final AuthRepository _authRepository;

@@ -1,5 +1,5 @@
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
+import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import '../../common/enums/promo_type.dart';
 

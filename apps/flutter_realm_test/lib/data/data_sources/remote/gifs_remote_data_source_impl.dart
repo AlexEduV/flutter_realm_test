@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:test_futter_project/common/enums/server_failure.dart';
-import 'package:test_futter_project/core/network/app_http_client.dart';
-import 'package:test_futter_project/data/dto/klipy_gif_dto.dart';
-import 'package:test_futter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
-import 'package:test_futter_project/domain/models/env_params_model.dart';
-import 'package:test_futter_project/domain/usecases/env/get_env_data_by_key_use_case.dart';
+import 'package:test_flutter_project/common/enums/server_failure.dart';
+import 'package:test_flutter_project/core/network/app_http_client.dart';
+import 'package:test_flutter_project/data/dto/klipy_gif_dto.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
+import 'package:test_flutter_project/domain/models/env_params_model.dart';
+import 'package:test_flutter_project/domain/usecases/env/get_env_data_by_key_use_case.dart';
 
 import '../../../common/constants/api_constants.dart';
 import '../../../core/di/injection_container.dart';

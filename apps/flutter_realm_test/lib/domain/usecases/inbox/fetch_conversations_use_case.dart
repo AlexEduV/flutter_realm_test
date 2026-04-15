@@ -1,5 +1,5 @@
-import 'package:test_futter_project/domain/models/conversation_model.dart';
-import 'package:test_futter_project/domain/repositories/inbox_repository.dart';
+import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/repositories/inbox_repository.dart';
 
 import '../usecase.dart';
 

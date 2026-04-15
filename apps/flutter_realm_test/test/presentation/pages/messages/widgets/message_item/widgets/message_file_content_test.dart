@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_futter_project/domain/models/sent_attachment_meta_data_model.dart';
-import 'package:test_futter_project/presentation/pages/messages/widgets/message_item/widgets/message_file_content.dart';
+import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
+import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_file_content.dart';
 
 void main() {
   testWidgets('renders file name and icon for my message', (WidgetTester tester) async {

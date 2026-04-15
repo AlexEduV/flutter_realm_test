@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/repositories/inbox_repository_impl.dart';
-import 'package:test_futter_project/domain/data_sources/remote/messages_remote_data_source.dart';
-import 'package:test_futter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/data/repositories/inbox_repository_impl.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
+import 'package:test_flutter_project/domain/models/conversation_model.dart';
 
 import 'inbox_repository_impl_test.mocks.dart';
 

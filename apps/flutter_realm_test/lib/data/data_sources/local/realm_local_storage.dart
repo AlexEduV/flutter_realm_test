@@ -1,7 +1,7 @@
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/common/extensions/user_scheme_extension.dart';
-import 'package:test_futter_project/domain/data_sources/local/base_local_storage.dart';
-import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
+import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 import '../../../common/extensions/car_scheme_extension.dart';
 import '../../../domain/entities/car_entity.dart';

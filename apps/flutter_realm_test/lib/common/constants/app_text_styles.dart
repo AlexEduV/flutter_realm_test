@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart' show FontWeight, TextStyle;
-import 'package:test_futter_project/common/extensions/text_style_extension.dart';
+import 'package:test_flutter_project/common/extensions/text_style_extension.dart';
 
 import 'app_colors.dart';
 

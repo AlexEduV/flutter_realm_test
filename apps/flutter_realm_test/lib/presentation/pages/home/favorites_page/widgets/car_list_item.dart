@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_futter_project/common/enums/details_page_source.dart';
-import 'package:test_futter_project/common/extensions/string_extension.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/common/enums/details_page_source.dart';
+import 'package:test_flutter_project/common/extensions/string_extension.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/constants/app_colors.dart';
 import '../../../../../common/constants/app_dimensions.dart';

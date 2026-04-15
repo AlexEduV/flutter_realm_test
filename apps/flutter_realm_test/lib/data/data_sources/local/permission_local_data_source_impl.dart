@@ -1,5 +1,5 @@
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test_futter_project/domain/data_sources/local/permission_local_data_source.dart';
+import 'package:test_flutter_project/domain/data_sources/local/permission_local_data_source.dart';
 
 class PermissionLocalDataSourceImpl implements PermissionLocalDataSource {
   @override

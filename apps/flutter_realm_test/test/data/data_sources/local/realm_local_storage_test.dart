@@ -2,8 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/data/data_sources/local/realm_local_storage.dart';
-import 'package:test_futter_project/data/models/scheme.dart';
+import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart';
+import 'package:test_flutter_project/data/models/scheme.dart';
 
 import '../../repositories/car_repository_impl_test.mocks.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/domain/models/conversation_model.dart';
-import 'package:test_futter_project/domain/usecases/inbox/save_conversations_use_case.dart';
+import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
 
 import 'fetch_conversations_use_case_test.mocks.dart';
 

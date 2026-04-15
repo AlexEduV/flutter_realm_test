@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/data/database/realm_configuration.dart';
-import 'package:test_futter_project/data/models/scheme.dart';
+import 'package:test_flutter_project/data/database/realm_configuration.dart';
+import 'package:test_flutter_project/data/models/scheme.dart';
 
 import 'realm_configuration_test.mocks.dart';
 

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_futter_project/domain/models/api_response.dart';
-import 'package:test_futter_project/utils/json_util.dart';
+import 'package:test_flutter_project/domain/models/api_response.dart';
+import 'package:test_flutter_project/utils/json_util.dart';
 
 import '../common/constants/api_constants.dart';
 

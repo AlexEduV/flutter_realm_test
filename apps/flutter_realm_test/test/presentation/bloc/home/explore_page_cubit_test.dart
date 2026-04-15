@@ -4,16 +4,16 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/common/enums/body_type.dart';
-import 'package:test_futter_project/common/enums/fuel_type.dart';
-import 'package:test_futter_project/common/enums/promo_type.dart';
-import 'package:test_futter_project/common/enums/transmission_type.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/usecases/articles/fetch_articles_use_case.dart';
-import 'package:test_futter_project/domain/usecases/database/sync_cars_use_case.dart';
-import 'package:test_futter_project/domain/usecases/database/watch_cars_use_case.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import 'package:test_futter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_flutter_project/common/enums/body_type.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
+import 'package:test_flutter_project/common/enums/promo_type.dart';
+import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
 import 'explore_page_cubit_test.mocks.dart';
 

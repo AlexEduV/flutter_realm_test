@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_futter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_futter_project/common/extensions/context_extension.dart';
-import 'package:test_futter_project/core/di/injection_container.dart';
-import 'package:test_futter_project/domain/entities/car_entity.dart';
-import 'package:test_futter_project/domain/entities/owner_entity.dart';
-import 'package:test_futter_project/domain/entities/user_entity.dart';
-import 'package:test_futter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
-import 'package:test_futter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_futter_project/presentation/widgets/app_semantics.dart';
-import 'package:test_futter_project/presentation/widgets/avatar_widget.dart';
+import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/owner_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../../common/constants/app_colors.dart';
 import '../../../../common/constants/app_dimensions.dart';
@@ -43,6 +43,7 @@ class OwnerWidget extends StatelessWidget {
         ),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),

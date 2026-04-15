@@ -2,8 +2,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/common/constants/app_asset_routes.dart';
-import 'package:test_futter_project/data/data_sources/local/env_local_data_source_impl.dart';
+import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
+import 'package:test_flutter_project/data/data_sources/local/env_local_data_source_impl.dart';
 
 import 'env_local_data_source_impl_test.mocks.dart';
 

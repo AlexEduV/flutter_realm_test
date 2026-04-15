@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:realm/realm.dart';
-import 'package:test_futter_project/data/models/scheme.dart';
-import 'package:test_futter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/data/models/scheme.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 void main() {
   group('UserEntity', () {

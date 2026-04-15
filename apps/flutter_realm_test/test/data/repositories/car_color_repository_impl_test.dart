@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/repositories/car_color_repository_impl.dart';
-import 'package:test_futter_project/domain/data_sources/local/car_colors_local_data_source.dart';
+import 'package:test_flutter_project/data/repositories/car_color_repository_impl.dart';
+import 'package:test_flutter_project/domain/data_sources/local/car_colors_local_data_source.dart';
 
 import 'car_color_repository_impl_test.mocks.dart';
 

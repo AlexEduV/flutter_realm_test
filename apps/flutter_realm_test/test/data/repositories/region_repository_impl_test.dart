@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_futter_project/data/repositories/region_repository_impl.dart';
-import 'package:test_futter_project/domain/data_sources/remote/region_remote_data_source.dart';
-import 'package:test_futter_project/domain/entities/region_entity.dart';
+import 'package:test_flutter_project/data/repositories/region_repository_impl.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/region_remote_data_source.dart';
+import 'package:test_flutter_project/domain/entities/region_entity.dart';
 
 import 'region_model_repository_impl_test.mocks.dart';
 
