@@ -7,9 +7,9 @@ import 'package:widgetbook/widgetbook.dart';
 
 import '../../../../l10n/l10n_keys.dart';
 
-final appLocalisationsCubit = AppLocalisationsCubit()..load({L10nKeys.results: 'Results'});
-
 Widget buildResultsWidgetUseCase(BuildContext context) {
+  final appLocalisationsCubit = AppLocalisationsCubit()..load({L10nKeys.results: 'Results'});
+
   return MultiBlocProvider(
     providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: Padding(

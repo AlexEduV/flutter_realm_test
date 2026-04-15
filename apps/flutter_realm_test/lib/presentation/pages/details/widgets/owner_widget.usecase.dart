@@ -10,15 +10,15 @@ import '../../../../domain/entities/car_entity.dart';
 import '../../../../l10n/l10n_keys.dart';
 import 'owner_widget.dart';
 
-final appLocalisationsCubit = AppLocalisationsCubit()
-  ..load({
-    L10nKeys.messageSenderYou: 'You',
-    L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
-    L10nKeys.distanceWidgetText: 'km',
-    L10nKeys.ownerSectionContactButtonTitle: 'Send a message',
-  });
-
 Widget buildOwnerWidgetUseCase(BuildContext context) {
+  final appLocalisationsCubit = AppLocalisationsCubit()
+    ..load({
+      L10nKeys.messageSenderYou: 'You',
+      L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
+      L10nKeys.distanceWidgetText: 'km',
+      L10nKeys.ownerSectionContactButtonTitle: 'Send a message',
+    });
+
   return MultiBlocProvider(
     providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: Padding(
