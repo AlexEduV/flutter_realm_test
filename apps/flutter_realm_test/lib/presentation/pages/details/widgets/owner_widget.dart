@@ -43,6 +43,7 @@ class OwnerWidget extends StatelessWidget {
         ),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),

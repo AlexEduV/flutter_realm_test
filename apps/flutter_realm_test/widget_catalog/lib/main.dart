@@ -11,7 +11,7 @@ class WidgetBookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Widgetbook(
+    return Widgetbook.material(
       directories: [
         WidgetbookFolder(
           name: 'Pages',
