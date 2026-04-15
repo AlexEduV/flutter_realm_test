@@ -10,6 +10,8 @@ import '../../../../domain/entities/car_entity.dart';
 import '../../../../l10n/l10n_keys.dart';
 import 'owner_widget.dart';
 
+export '';
+
 Widget buildOwnerWidgetUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()
     ..load({
