@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+
+import 'main.directories.g.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const WidgetBookApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+@App()
+class WidgetBookApp extends StatelessWidget {
+  const WidgetBookApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return Widgetbook.material(
+      directories: directories, // 'directories' comes from the generated file
     );
   }
 }

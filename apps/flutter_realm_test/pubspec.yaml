@@ -43,6 +43,7 @@ dependencies:
   connectivity_plus: ^6.1.1
   internet_connection_checker: ^3.0.1
   logger: ^2.7.0
+  widgetbook_annotation: ^3.11.0
 
   realm_ui_core:
     path: ../../packages/realm_ui_core/

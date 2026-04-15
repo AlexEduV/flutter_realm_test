@@ -9,21 +9,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  widgetbook: ^3.22.0
+  widgetbook: ^3.14.0
   widgetbook_annotation: ^3.11.0
   test_flutter_project:
     path: ../
 
 dependency_overrides:
-  source_gen: ^4.0.0
-  build: ^4.0.0
-  analyzer: 8.2.0
+  analyzer: 7.3.0
+  dart_style: ^2.3.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  widgetbook_generator: ^3.22.0
+  widgetbook_generator: ^3.14.0
   build_runner: ^2.4.9
 
 flutter:
