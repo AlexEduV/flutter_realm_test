@@ -20,7 +20,7 @@ Widget buildAccountItemUseCase(BuildContext context) {
           spacing: AppDimensions.normalL,
           children: [
             AccountItem(
-              text: 'Account item',
+              text: context.knobs.string(label: 'Item name', initialValue: 'Account item'),
               icon: Icons.settings_input_composite_sharp,
               onTap: context.knobs.boolean(label: 'With onTap', initialValue: false) ? () {} : null,
               isCentered: context.knobs.boolean(label: 'Centered', initialValue: false),
