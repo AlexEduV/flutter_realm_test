@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 import '../../../../domain/entities/car_entity.dart';
 import 'owner_widget.dart';
 
-@UseCase(name: 'Default', type: OwnerWidget)
 Widget buildOwnerWidgetUseCase(BuildContext context) {
   return OwnerWidget(
     car: CarEntity.empty(),
