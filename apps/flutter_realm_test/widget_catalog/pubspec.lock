@@ -1177,7 +1177,7 @@ packages:
     source: hosted
     version: "2.2.3"
   realm:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: realm
       sha256: "475b9635c781fe10b898447e86cf979e36966caefd1dd16efd53a3f03bbe30a6"
