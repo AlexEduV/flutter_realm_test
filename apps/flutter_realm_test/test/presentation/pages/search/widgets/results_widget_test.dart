@@ -30,7 +30,7 @@ void main() {
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
           child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(results: '5')),
+            home: Scaffold(body: ResultsWidget(resultsCount: '5')),
           ),
         ),
       );
@@ -46,7 +46,7 @@ void main() {
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
           child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(results: '10')),
+            home: Scaffold(body: ResultsWidget(resultsCount: '10')),
           ),
         ),
       );
@@ -60,7 +60,7 @@ void main() {
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
           child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(results: '3')),
+            home: Scaffold(body: ResultsWidget(resultsCount: '3')),
           ),
         ),
       );
@@ -77,7 +77,7 @@ void main() {
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
           child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(results: '7')),
+            home: Scaffold(body: ResultsWidget(resultsCount: '7')),
           ),
         ),
       );

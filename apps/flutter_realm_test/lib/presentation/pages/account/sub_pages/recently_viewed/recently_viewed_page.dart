@@ -12,8 +12,8 @@ import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../../../bloc/home/explore_page/explore_page_state.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
+import '../../../../widgets/empty_results_placeholder_widget.dart';
 import '../../../home/favorites_page/widgets/car_list_item.dart';
-import '../../../search/widgets/empty_search_placeholder_widget.dart';
 
 class RecentlyViewedPage extends StatelessWidget {
   const RecentlyViewedPage({super.key});

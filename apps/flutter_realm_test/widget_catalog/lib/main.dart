@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.usecase.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 void main() {
@@ -16,6 +17,21 @@ class WidgetBookApp extends StatelessWidget {
         WidgetbookFolder(
           name: 'Pages',
           children: [
+            WidgetbookFolder(
+              name: 'Search',
+              children: [
+                WidgetbookComponent(
+                  name: 'ResultsWidget',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: 'Default',
+                      builder: (context) => buildResultsWidgetUseCase(context),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+
             WidgetbookFolder(
               name: 'Details',
               children: [

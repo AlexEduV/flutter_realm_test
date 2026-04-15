@@ -14,10 +14,10 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_state.
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/search/search_page.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/filters_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
+import 'package:test_flutter_project/presentation/widgets/empty_results_placeholder_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/segmented_switch.dart';
 
 import '../../../common/extensions/context_extension_test.mocks.dart';

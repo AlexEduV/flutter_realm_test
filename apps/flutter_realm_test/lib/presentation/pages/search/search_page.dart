@@ -13,11 +13,11 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.
 import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/filters_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/presentation/widgets/empty_results_placeholder_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/segmented_switch.dart';
 
 import '../../../l10n/l10n_keys.dart';
@@ -152,7 +152,7 @@ class _SearchPageState extends State<SearchPage> {
                   builder: (context, state) {
                     return Padding(
                       padding: const EdgeInsets.all(AppDimensions.normalL),
-                      child: ResultsWidget(results: state.results.length.toString()),
+                      child: ResultsWidget(resultsCount: state.results.length.toString()),
                     );
                   },
                 ),

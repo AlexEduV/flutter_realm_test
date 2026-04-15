@@ -1801,13 +1801,6 @@
             </list>
           </value>
         </entry>
-        <entry key="widgetbook_generator">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/widgetbook_generator-3.14.0/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="win32">
           <value>
             <list>
@@ -2123,7 +2116,6 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/widgetbook-3.22.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/widgetbook_annotation-3.11.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/widgetbook_generator-3.14.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/win32-5.15.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xml-6.6.1/lib" />

@@ -5,7 +5,7 @@ import 'package:test_flutter_project/common/constants/app_text_styles.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
+import 'package:test_flutter_project/presentation/widgets/empty_results_placeholder_widget.dart';
 
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();

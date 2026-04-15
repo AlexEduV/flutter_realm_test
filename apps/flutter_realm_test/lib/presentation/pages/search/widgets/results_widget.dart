@@ -9,14 +9,14 @@ import '../../../../common/constants/app_text_styles.dart';
 import '../../../../l10n/l10n_keys.dart';
 
 class ResultsWidget extends StatelessWidget {
-  final String results;
+  final String resultsCount;
 
-  const ResultsWidget({required this.results, super.key});
+  const ResultsWidget({required this.resultsCount, super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppSemantics(
-      label: '${AppSemanticsLabels.resultsLabel} $results',
+      label: '${AppSemanticsLabels.resultsLabel} $resultsCount',
       child: Row(
         spacing: AppDimensions.minorL,
         children: [
@@ -25,7 +25,7 @@ class ResultsWidget extends StatelessWidget {
             style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
           ),
 
-          AppBadge(text: results),
+          AppBadge(text: resultsCount),
         ],
       ),
     );

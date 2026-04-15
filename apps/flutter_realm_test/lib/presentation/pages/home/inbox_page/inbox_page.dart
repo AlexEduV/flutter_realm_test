@@ -8,7 +8,7 @@ import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_pag
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/home/inbox_page/widgets/inbox_list_item.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/empty_search_placeholder_widget.dart';
+import 'package:test_flutter_project/presentation/widgets/empty_results_placeholder_widget.dart';
 
 import '../../../../common/constants/app_text_styles.dart';
 import '../../../../l10n/l10n_keys.dart';
