@@ -55,7 +55,11 @@ class VehicleSpecsWidget extends StatelessWidget {
                       icon: AnimatedRotation(
                         turns: state.isVehicleSpecsExpanded ? 0.0 : 0.5, // 0.5 turns = 180 degrees
                         duration: const Duration(milliseconds: 300),
-                        child: const Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 28),
+                        child: const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.black,
+                          size: AppDimensions.majorS,
+                        ),
                       ),
                       style: IconButton.styleFrom(
                         padding: const EdgeInsets.all(AppDimensions.minorXS),
