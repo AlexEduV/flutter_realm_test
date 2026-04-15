@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.usecase.dart';
 import 'package:test_flutter_project/presentation/widgets/animated_favorite_icon.usecase.dart';
 import 'package:widgetbook/widgetbook.dart';
 
@@ -45,6 +46,16 @@ class WidgetBookApp extends StatelessWidget {
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
                       builder: (context) => buildResultsWidgetUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Search filter button',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildSearchFilterButtonUseCase(context),
                     ),
                   ],
                 ),
