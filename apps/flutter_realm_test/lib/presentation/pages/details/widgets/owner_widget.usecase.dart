@@ -4,6 +4,7 @@ import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:widgetbook/widgetbook.dart';
 
 import '../../../../domain/entities/car_entity.dart';
 import '../../../../l10n/l10n_keys.dart';
@@ -25,54 +26,16 @@ Widget buildOwnerWidgetUseCase(BuildContext context) {
       child: Column(
         spacing: AppDimensions.normalL,
         children: [
-          //Normal owner
+          //Interactive
           OwnerWidget(
             car: CarEntity.empty().copyWith(
-              distanceTo: 5,
+              distanceTo: context.knobs.int.input(label: 'Distance to', initialValue: 5),
               owner: OwnerEntity(
-                id: '2',
-                firstName: 'Henry',
-                lastName: 'Morgan',
-                linkedItemIds: [],
-              ),
-            ),
-            user: UserEntity.initial(
-              userId: '1',
-              firstName: 'John',
-              lastName: 'Smith',
-              email: 'mock@email.com',
-              password: 'pass',
-            ),
-          ),
-
-          //User with a long name
-          OwnerWidget(
-            car: CarEntity.empty().copyWith(
-              distanceTo: 5,
-              owner: OwnerEntity(
-                id: '2',
-                firstName: 'Some really long',
-                lastName: 'owner name',
-                linkedItemIds: [],
-              ),
-            ),
-            user: UserEntity.initial(
-              userId: '1',
-              firstName: 'John',
-              lastName: 'Smith',
-              email: 'mock@email.com',
-              password: 'pass',
-            ),
-          ),
-
-          //user is the owner
-          OwnerWidget(
-            car: CarEntity.empty().copyWith(
-              distanceTo: 120000,
-              owner: OwnerEntity(
-                id: '1',
-                firstName: 'Henry',
-                lastName: 'Morgan',
+                id: context.knobs.boolean(label: 'Is User the owner', initialValue: false)
+                    ? '1'
+                    : '2',
+                firstName: context.knobs.string(label: 'First name', initialValue: 'Henry'),
+                lastName: context.knobs.string(label: 'Last name', initialValue: 'Morgan'),
                 linkedItemIds: [],
               ),
             ),
