@@ -23,8 +23,9 @@ Widget buildOwnerWidgetUseCase(BuildContext context) {
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
       child: Column(
-        spacing: AppDimensions.normalM,
+        spacing: AppDimensions.normalL,
         children: [
+          //Normal owner
           OwnerWidget(
             car: CarEntity.empty().copyWith(
               distanceTo: 5,
@@ -44,9 +45,30 @@ Widget buildOwnerWidgetUseCase(BuildContext context) {
             ),
           ),
 
+          //User with a long name
           OwnerWidget(
             car: CarEntity.empty().copyWith(
               distanceTo: 5,
+              owner: OwnerEntity(
+                id: '2',
+                firstName: 'Some really long',
+                lastName: 'owner name',
+                linkedItemIds: [],
+              ),
+            ),
+            user: UserEntity.initial(
+              userId: '1',
+              firstName: 'John',
+              lastName: 'Smith',
+              email: 'mock@email.com',
+              password: 'pass',
+            ),
+          ),
+
+          //user is the owner
+          OwnerWidget(
+            car: CarEntity.empty().copyWith(
+              distanceTo: 120000,
               owner: OwnerEntity(
                 id: '1',
                 firstName: 'Henry',
