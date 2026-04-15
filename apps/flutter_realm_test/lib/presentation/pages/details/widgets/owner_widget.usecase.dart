@@ -21,41 +21,48 @@ Widget buildOwnerWidgetUseCase(BuildContext context) {
   return MultiBlocProvider(
     providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: Padding(
-      padding: const EdgeInsets.all(AppDimensions.minorL),
-      child: OwnerWidget(
-        car: CarEntity.empty().copyWith(
-          distanceTo: 5,
-          owner: OwnerEntity(id: '2', firstName: 'Henry', lastName: 'Morgan', linkedItemIds: []),
-        ),
-        user: UserEntity.initial(
-          userId: '1',
-          firstName: 'John',
-          lastName: 'Smith',
-          email: 'mock@email.com',
-          password: 'pass',
-        ),
-      ),
-    ),
-  );
-}
+      padding: const EdgeInsets.all(AppDimensions.normalM),
+      child: Column(
+        spacing: AppDimensions.normalM,
+        children: [
+          OwnerWidget(
+            car: CarEntity.empty().copyWith(
+              distanceTo: 5,
+              owner: OwnerEntity(
+                id: '2',
+                firstName: 'Henry',
+                lastName: 'Morgan',
+                linkedItemIds: [],
+              ),
+            ),
+            user: UserEntity.initial(
+              userId: '1',
+              firstName: 'John',
+              lastName: 'Smith',
+              email: 'mock@email.com',
+              password: 'pass',
+            ),
+          ),
 
-Widget buildOwnerWidgetUserUseCase(BuildContext context) {
-  return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
-    child: Padding(
-      padding: const EdgeInsets.all(AppDimensions.minorL),
-      child: OwnerWidget(
-        car: CarEntity.empty().copyWith(
-          distanceTo: 5,
-          owner: OwnerEntity(id: '1', firstName: 'Henry', lastName: 'Morgan', linkedItemIds: []),
-        ),
-        user: UserEntity.initial(
-          userId: '1',
-          firstName: 'John',
-          lastName: 'Smith',
-          email: 'mock@email.com',
-          password: 'pass',
-        ),
+          OwnerWidget(
+            car: CarEntity.empty().copyWith(
+              distanceTo: 5,
+              owner: OwnerEntity(
+                id: '1',
+                firstName: 'Henry',
+                lastName: 'Morgan',
+                linkedItemIds: [],
+              ),
+            ),
+            user: UserEntity.initial(
+              userId: '1',
+              firstName: 'John',
+              lastName: 'Smith',
+              email: 'mock@email.com',
+              password: 'pass',
+            ),
+          ),
+        ],
       ),
     ),
   );
