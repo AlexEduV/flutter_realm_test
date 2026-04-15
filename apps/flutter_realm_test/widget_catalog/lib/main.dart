@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.usecase.dart';
+import 'package:test_flutter_project/presentation/widgets/animated_favorite_icon.usecase.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 void main() {
@@ -17,6 +18,21 @@ class WidgetBookApp extends StatelessWidget {
 
     return Widgetbook.material(
       directories: [
+        WidgetbookFolder(
+          name: 'General',
+          children: [
+            WidgetbookComponent(
+              name: 'Animated favorite icon',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildAnimatedFavoriteIconUseCase(context),
+                ),
+              ],
+            ),
+          ],
+        ),
+
         WidgetbookFolder(
           name: 'Pages',
           children: [
