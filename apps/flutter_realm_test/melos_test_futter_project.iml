@@ -23,7 +23,6 @@
       <excludeFolder url="file://$MODULE_DIR$/.fvm/versions/3.41.6/packages/flutter_tools/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/versions/3.41.6/packages/flutter_tools/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/versions/3.41.6/packages/flutter_tools/build" />
-      <excludeFolder url="file://$MODULE_DIR$/android" />
       <excludeFolder url="file://$MODULE_DIR$/widget_catalog/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/widget_catalog/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/widget_catalog/build" />

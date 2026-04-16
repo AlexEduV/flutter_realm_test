@@ -18,7 +18,7 @@ class AppHttpClientImpl implements AppHttpClient {
   //because it's the same for all request types.
 
   @override
-  Future<Either<ServerFailure, String>> get(Uri url) async {
+  Future<Either<ServerFailure, String>> get(Uri url, {Map<String, String>? headers}) async {
     try {
       final isNetworkAvailable = await _networkInfo.isConnected;
       if (!isNetworkAvailable) {
@@ -26,7 +26,7 @@ class AppHttpClientImpl implements AppHttpClient {
         return const Left(ServerFailure.noNetwork);
       }
 
-      final response = await _client.get(url);
+      final response = await _client.get(url, headers: headers);
 
       if (response.statusCode == HttpStatus.notFound) {
         _logger.e('Not Found on GET request at url ${url.path}, 404');
@@ -54,5 +54,11 @@ class AppHttpClientImpl implements AppHttpClient {
       _logger.e('Error during GET request at url ${url.path}, exception: $e');
       return const Left(ServerFailure.notAvailable);
     }
+  }
+
+  @override
+  Future<Either<ServerFailure, String>> post(Uri url) {
+    // TODO: implement post
+    throw UnimplementedError();
   }
 }
