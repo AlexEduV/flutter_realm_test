@@ -596,13 +596,6 @@
             </list>
           </value>
         </entry>
-        <entry key="flutter_svg">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_svg-2.2.4/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="flutter_template_images">
           <value>
             <list>
@@ -1095,13 +1088,6 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.9.1/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="path_parsing">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/path_parsing-1.1.0/lib" />
             </list>
           </value>
         </entry>
@@ -1721,27 +1707,6 @@
             </list>
           </value>
         </entry>
-        <entry key="vector_graphics">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics-1.1.21/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="vector_graphics_codec">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="vector_graphics_compiler">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.2.0/lib" />
-            </list>
-          </value>
-        </entry>
         <entry key="vector_math">
           <value>
             <list>
@@ -1970,7 +1935,6 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_native_splash-2.4.7/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.34/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_slidable-4.0.3/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_svg-2.2.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_template_images-5.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/freezed-3.0.6/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/freezed_annotation-3.1.0/lib" />
@@ -2044,7 +2008,6 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_info_plus-9.0.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_info_plus_platform_interface-3.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.9.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_parsing-1.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.3.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_foundation-2.6.0/lib" />
@@ -2137,9 +2100,6 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/usage-4.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/uuid-4.5.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/uuid-4.5.3/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics-1.1.21/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_math-2.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/visibility_detector-0.4.0+2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vm_service-15.0.2/lib" />
