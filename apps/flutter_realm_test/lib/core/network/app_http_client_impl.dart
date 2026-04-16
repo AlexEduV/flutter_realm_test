@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -57,8 +58,46 @@ class AppHttpClientImpl implements AppHttpClient {
   }
 
   @override
-  Future<Either<ServerFailure, String>> post(Uri url) {
-    // TODO: implement post
-    throw UnimplementedError();
+  Future<Either<ServerFailure, String>> post(
+    Uri url, {
+    Map<String, String>? headers,
+    Object? body,
+    Encoding? encoding,
+  }) async {
+    try {
+      final isNetworkAvailable = await _networkInfo.isConnected;
+      if (!isNetworkAvailable) {
+        _logger.e('No Internet connection on POST request at url ${url.path}, 404');
+        return const Left(ServerFailure.noNetwork);
+      }
+
+      final response = await _client.post(url, headers: headers, body: body, encoding: encoding);
+
+      if (response.statusCode == HttpStatus.notFound) {
+        _logger.e('Not Found on POST request at url ${url.path}, 404');
+        return const Left(ServerFailure.notFound);
+      }
+
+      if (response.statusCode == HttpStatus.unauthorized) {
+        _logger.e('Unauthorised on POST request at url ${url.path}, 401');
+        return const Left(ServerFailure.unauthorized);
+      }
+
+      if (response.statusCode != HttpStatus.ok) {
+        _logger.e('Error during POST request at url ${url.path}, status: ${response.statusCode}');
+        return const Left(ServerFailure.internalError);
+      }
+
+      if (response.body.isEmpty) {
+        _logger.e('Empty body on POST request at url ${url.path}, status: ${response.statusCode}');
+        return const Left(ServerFailure.notAvailable);
+      }
+
+      _logger.i('Successful POST request at url ${url.path}, status: ${response.statusCode}');
+      return Right(response.body);
+    } catch (e) {
+      _logger.e('Error during POST request at url ${url.path}, exception: $e');
+      return const Left(ServerFailure.notAvailable);
+    }
   }
 }
