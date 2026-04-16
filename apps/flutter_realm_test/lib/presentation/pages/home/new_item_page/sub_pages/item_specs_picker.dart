@@ -26,9 +26,7 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
     super.initState();
 
     final cubit = context.read<NewItemPageCubit>();
-    bodyTypesList = BodyType.values
-        .where((element) => element.carType == cubit.state.selectedCarType)
-        .toList();
+    bodyTypesList = BodyType.filterByCarType(cubit.state.selectedCarType);
     cubit.updateSelectedBodyType(bodyTypesList.firstOrNull);
   }
 

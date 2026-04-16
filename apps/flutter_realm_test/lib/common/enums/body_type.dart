@@ -25,4 +25,10 @@ enum BodyType {
     );
     return localisation;
   }
+
+  static List<BodyType> filterByCarType(CarType type) {
+    final bodyTypesList = BodyType.values.where((element) => element.carType == type).toList();
+
+    return bodyTypesList;
+  }
 }
