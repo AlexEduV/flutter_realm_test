@@ -4,6 +4,7 @@ import 'package:test_flutter_project/presentation/bloc/details/details_page_cubi
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/auth_error_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs_widget.usecase.dart';
@@ -172,6 +173,16 @@ class WidgetBookApp extends StatelessWidget {
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
                       builder: (context) => buildSplashButtonUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Auth error widget',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildAuthErrorWidgetUseCase(context),
                     ),
                   ],
                 ),
