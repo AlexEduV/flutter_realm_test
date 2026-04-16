@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/auth_error_widget.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs_widget.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/date_divider.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/message_item.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.usecase.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.usecase.dart';
-import 'package:test_flutter_project/presentation/widgets/animated_favorite_icon.usecase.dart';
-import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_list_item.usecase.dart';
+import 'package:widget_catalog/search/widgets/results_widget.usecase.dart';
+import 'package:widget_catalog/search/widgets/search_filter_button.usecase.dart';
+import 'package:widget_catalog/widgets/animated_favorite_icon.usecase.dart';
+import 'package:widget_catalog/widgets/announcement_item/announcement_list_item.usecase.dart';
 import 'package:widgetbook/widgetbook.dart';
+
+import 'account/sub_pages/location_settings/widgets/footer_text.usecase.dart';
+import 'account/widgets/account_item.usecase.dart';
+import 'account/widgets/account_item_separated.usecase.dart';
+import 'authentication/widgets/auth_error_widget.usecase.dart';
+import 'authentication/widgets/splash_button.usecase.dart';
+import 'details/widgets/owner_widget.usecase.dart';
+import 'details/widgets/vehicle_specs_widget.usecase.dart';
+import 'home/widgets/car_list_item.usecase.dart';
+import 'messages/widgets/chat_input_bar/chat_input_bar.usecase.dart';
+import 'messages/widgets/date_divider.usecase.dart';
+import 'messages/widgets/message_item/message_item.usecase.dart';
 
 void main() {
   runApp(const WidgetBookApp());

@@ -12,6 +12,7 @@ dependencies:
   realm: ^20.2.0
   widgetbook: ^3.14.0
   flutter_bloc: ^9.1.1
+  mockito: ^5.4.6
   test_flutter_project:
     path: ../
 

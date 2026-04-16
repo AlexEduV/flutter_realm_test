@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/auth_error_widget.dart';
+import 'package:test_flutter_project/common/constants/app_colors.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/pages/messages/widgets/date_divider.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-import '../../../../common/constants/app_colors.dart';
-import '../../../../common/constants/app_dimensions.dart';
-import '../../../bloc/l10n/app_localisations_cubit.dart';
-
-Widget buildAuthErrorWidgetUseCase(BuildContext context) {
+Widget buildMessageDateDividerUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 
   return MultiBlocProvider(
@@ -19,10 +18,8 @@ Widget buildAuthErrorWidgetUseCase(BuildContext context) {
         child: Column(
           spacing: AppDimensions.normalL,
           children: [
-            AuthErrorWidget(
-              text: context.knobs.boolean(label: 'Is error visible', initialValue: true)
-                  ? context.knobs.string(label: 'Error text', initialValue: 'Some Auth error')
-                  : null,
+            DateDivider(
+              text: context.knobs.string(label: 'Divider label', initialValue: 'Some Text'),
             ),
           ],
         ),

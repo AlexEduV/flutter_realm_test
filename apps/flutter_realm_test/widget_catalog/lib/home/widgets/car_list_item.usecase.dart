@@ -8,8 +8,6 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-export '';
-
 Widget buildCarListItemUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({L10nKeys.emptyStateLabel: 'Empty'});
 
