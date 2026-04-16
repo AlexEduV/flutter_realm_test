@@ -1,32 +1,34 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import '../../../../common/constants/app_dimensions.dart';
-
-class AnimatedDividerWithText extends StatefulWidget {
+class AnimatedTiledDivider extends StatefulWidget {
   final String text;
-  final Duration duration;
-
-  const AnimatedDividerWithText({
-    required this.text,
-    this.duration = const Duration(seconds: 1),
-    super.key,
-  });
+  final String ornamentAsset;
+  const AnimatedTiledDivider({required this.text, required this.ornamentAsset, super.key});
 
   @override
-  State<AnimatedDividerWithText> createState() => _AnimatedDividerWithTextState();
+  State<AnimatedTiledDivider> createState() => _AnimatedTiledDividerState();
 }
 
-class _AnimatedDividerWithTextState extends State<AnimatedDividerWithText>
+class _AnimatedTiledDividerState extends State<AnimatedTiledDivider>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  ui.Image? _ornamentImage;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(duration: widget.duration, vsync: this);
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2))..forward();
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
-    _controller.forward();
+
+    loadImage(widget.ornamentAsset).then((img) {
+      setState(() {
+        _ornamentImage = img;
+      });
+    });
   }
 
   @override
@@ -35,42 +37,68 @@ class _AnimatedDividerWithTextState extends State<AnimatedDividerWithText>
     super.dispose();
   }
 
+  Widget _buildSide() {
+    return Expanded(
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, child) {
+          return SizedBox(
+            height: 32, // Adjust as needed
+            child: CustomPaint(painter: TiledDividerPainter(_ornamentImage, _animation.value)),
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppDimensions.normalM),
+      padding: const EdgeInsets.all(16),
       child: Row(
-        children: <Widget>[
-          Expanded(
-            child: AnimatedBuilder(
-              animation: _animation,
-              builder: (context, child) {
-                return FractionallySizedBox(
-                  alignment: Alignment.centerRight,
-                  widthFactor: _animation.value,
-                  child: const Divider(thickness: 1),
-                );
-              },
-            ),
-          ),
+        children: [
+          _buildSide(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
-            child: Text(widget.text),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(widget.text, style: Theme.of(context).textTheme.titleMedium),
           ),
-          Expanded(
-            child: AnimatedBuilder(
-              animation: _animation,
-              builder: (context, child) {
-                return FractionallySizedBox(
-                  alignment: Alignment.centerLeft,
-                  widthFactor: _animation.value,
-                  child: const Divider(thickness: 1),
-                );
-              },
-            ),
-          ),
+          _buildSide(),
         ],
       ),
     );
   }
+
+  Future<ui.Image> loadImage(String asset) async {
+    final data = await rootBundle.load(asset);
+    final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
+    final frame = await codec.getNextFrame();
+    return frame.image;
+  }
+}
+
+class TiledDividerPainter extends CustomPainter {
+  final ui.Image? ornamentImage;
+  final double widthFactor; // 0.0 to 1.0
+
+  TiledDividerPainter(this.ornamentImage, this.widthFactor);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (ornamentImage == null) return;
+
+    final paint = Paint();
+    final ornamentWidth = ornamentImage!.width.toDouble();
+    final ornamentHeight = ornamentImage!.height.toDouble();
+
+    final totalWidth = size.width * widthFactor;
+    double x = 0;
+    while (x < totalWidth) {
+      canvas.drawImage(ornamentImage!, Offset(x, (size.height - ornamentHeight) / 2), paint);
+      x += ornamentWidth;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant TiledDividerPainter oldDelegate) =>
+      oldDelegate.ornamentImage != ornamentImage || oldDelegate.widthFactor != widthFactor;
 }

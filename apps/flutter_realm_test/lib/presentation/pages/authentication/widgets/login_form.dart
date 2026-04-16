@@ -5,7 +5,7 @@ import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/animated_divider_with_text.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/animated_florentine_divider_with_text.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
@@ -167,7 +167,10 @@ class _LoginFormState extends State<LoginForm> {
             //Or Divider
             AppSemantics(
               label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: context.tr(L10nKeys.orDividerTitle)),
+              child: AnimatedTiledDivider(
+                text: context.tr(L10nKeys.orDividerTitle),
+                ornamentAsset: 'assets/images/divider_samples/florence-2.jpg',
+              ),
             ),
 
             // join us button if not registered

@@ -44,6 +44,7 @@ dependencies:
   internet_connection_checker: ^3.0.1
   logger: ^2.7.0
   widgetbook: ^3.14.0
+  flutter_svg: ^2.2.4
 
   realm_ui_core:
     path: ../../packages/realm_ui_core/
@@ -70,6 +71,7 @@ flutter:
     - assets/mocks/
     - assets/images/
     - assets/images/country_flags/
+    - assets/images/divider_samples/
     - assets/env/
 
   fonts:
