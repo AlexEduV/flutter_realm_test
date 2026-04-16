@@ -118,9 +118,8 @@ class VehicleSpecsWidget extends StatelessWidget {
                                   children: [
                                     SpecificationItem(
                                       title: context.tr(L10nKeys.vehicleSpecificationMileage),
-                                      subtitle:
-                                          (car.kilometers ?? context.tr(L10nKeys.unknownLabel))
-                                              .toString(),
+                                      subtitle: (car.mileage ?? context.tr(L10nKeys.unknownLabel))
+                                          .toString(),
                                     ),
 
                                     SpecificationItem(

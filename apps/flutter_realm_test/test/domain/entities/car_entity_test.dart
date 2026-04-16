@@ -22,7 +22,7 @@ void main() {
     distanceTo: 50,
     year: '2020',
     owner: Person('John', 'Doe', 'test', linkedIds: []),
-    kilometers: 10000,
+    mileage: 10000,
     bodyType: 'sedan',
     fuelType: 'ev',
     transmissionType: 'automatic',
@@ -40,7 +40,7 @@ void main() {
         type: 'car',
         year: '2020',
         owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
-        kilometers: 10000,
+        mileage: 10000,
         distanceTo: 50,
         price: 80000,
         fuelType: FuelType.ev.name,
@@ -56,7 +56,7 @@ void main() {
       expect(entity.year, '2020');
       expect(entity.owner?.firstName, 'John');
       expect(entity.owner?.lastName, 'Doe');
-      expect(entity.kilometers, 10000);
+      expect(entity.mileage, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
       expect(entity.fuelType, 'ev');
@@ -75,7 +75,7 @@ void main() {
         promoType: PromoType.oneOwner,
         year: '2018',
         owner: OwnerEntity(id: 'test', firstName: 'Jane', lastName: 'Doe', linkedItemIds: []),
-        kilometers: 50000,
+        mileage: 50000,
         distanceTo: 100,
         price: 20000,
         fuelType: FuelType.gasoline.name,
@@ -93,7 +93,7 @@ void main() {
       expect(entity.year, '2018');
       expect(entity.owner?.firstName, 'Jane');
       expect(entity.owner?.lastName, 'Doe');
-      expect(entity.kilometers, 50000);
+      expect(entity.mileage, 50000);
       expect(entity.distanceTo, 100);
       expect(entity.price, 20000);
       expect(entity.fuelType, 'gasoline');
@@ -112,7 +112,7 @@ void main() {
       expect(entity.year, '2020');
       expect(entity.owner?.firstName, 'John');
       expect(entity.owner?.lastName, 'Doe');
-      expect(entity.kilometers, 10000);
+      expect(entity.mileage, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
       expect(entity.fuelType, 'ev');
@@ -143,7 +143,7 @@ void main() {
         type: 'car',
         year: '2020',
         owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
-        kilometers: 10000,
+        mileage: 10000,
         distanceTo: 50,
         price: 80000,
         fuelType: FuelType.ev.name,
@@ -159,7 +159,7 @@ void main() {
         type: 'car',
         year: '2020',
         owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
-        kilometers: 10000,
+        mileage: 10000,
         distanceTo: 50,
         price: 80000,
         fuelType: FuelType.ev.name,
@@ -180,7 +180,7 @@ void main() {
         type: 'car',
         year: '2020',
         owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
-        kilometers: 10000,
+        mileage: 10000,
         distanceTo: 50,
         price: 80000,
         fuelType: FuelType.ev.name,
@@ -196,7 +196,7 @@ void main() {
         type: 'car',
         year: '2021',
         owner: OwnerEntity(id: 'test2', firstName: 'Jane', lastName: 'Doe', linkedItemIds: []),
-        kilometers: 5000,
+        mileage: 5000,
         distanceTo: 100,
         price: 40000,
         fuelType: FuelType.gasoline.name,

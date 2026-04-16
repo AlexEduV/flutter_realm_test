@@ -29,7 +29,7 @@ void main() {
           type: 'car',
           isVerified: true,
           year: '2022',
-          kilometers: 1000,
+          mileage: 1000,
           distanceTo: 5,
           price: 90000,
           fuelType: FuelType.ev.name,

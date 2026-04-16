@@ -21,7 +21,7 @@ void main() {
         model: 'Corolla',
         year: '2020',
         isChecked: true,
-        kilometers: 15000,
+        mileage: 15000,
         distanceTo: 10,
         price: 20000,
       );
@@ -35,7 +35,7 @@ void main() {
       expect(entity.isVerified, true);
       expect(entity.promoType, isNull);
       expect(entity.year, '2020');
-      expect(entity.kilometers, 15000);
+      expect(entity.mileage, 15000);
       expect(entity.distanceTo, 10);
       expect(entity.price, 20000);
     });
@@ -50,7 +50,7 @@ void main() {
         year: '2018',
         isVerified: false,
         promoType: PromoType.fromCode('best_price'),
-        kilometers: 8000,
+        mileage: 8000,
         distanceTo: 5,
         price: 7500,
         bodyType: BodyType.bike.name,
@@ -67,7 +67,7 @@ void main() {
       expect(car.isChecked, false);
       expect(car.hotPromotionDescription, 'best_price');
       expect(car.year, '2018');
-      expect(car.kilometers, 8000);
+      expect(car.mileage, 8000);
       expect(car.distanceTo, 5);
       expect(car.price, 7500);
       expect(car.fuelType, 'gasoline');
@@ -84,7 +84,7 @@ void main() {
         isVerified: true,
         promoType: PromoType.fromCode('one_owner'),
         year: '2022',
-        kilometers: 5000,
+        mileage: 5000,
         distanceTo: 2,
         price: 90000,
         bodyType: BodyType.sedan.name,
@@ -101,7 +101,7 @@ void main() {
       expect(car.isChecked, true);
       expect(car.hotPromotionDescription, 'one_owner');
       expect(car.year, '2022');
-      expect(car.kilometers, 5000);
+      expect(car.mileage, 5000);
       expect(car.distanceTo, 2);
       expect(car.price, 90000);
       expect(car.fuelType, 'ev');

@@ -17,7 +17,7 @@ class CarDto {
   final OwnerEntity? owner;
   final bool isVerified;
   final PromoType? promoType;
-  int? kilometers;
+  int? mileage;
   int? distanceTo;
   int? price;
   List<String> images;
@@ -36,7 +36,7 @@ class CarDto {
     this.color,
     this.year,
     this.owner,
-    this.kilometers = 0,
+    this.mileage = 0,
     this.distanceTo,
     this.price = 0,
     this.images = const [],
@@ -56,7 +56,7 @@ class CarDto {
     OwnerEntity? owner,
     bool? isVerified,
     PromoType? promoType,
-    int? kilometers,
+    int? mileage,
     int? distanceTo,
     int? price,
     List<String>? images,
@@ -75,7 +75,7 @@ class CarDto {
       owner: owner ?? this.owner,
       isVerified: isVerified ?? this.isVerified,
       promoType: promoType ?? this.promoType,
-      kilometers: kilometers ?? this.kilometers,
+      mileage: mileage ?? this.mileage,
       distanceTo: distanceTo ?? this.distanceTo,
       price: price ?? this.price,
       images: images ?? this.images,
@@ -99,6 +99,7 @@ class CarDto {
       color: json['color'] as String,
       owner: OwnerEntity.fromJson(json['owner'] as Map<String, dynamic>),
       images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+      mileage: json['mileage'] as int?,
     );
   }
 }

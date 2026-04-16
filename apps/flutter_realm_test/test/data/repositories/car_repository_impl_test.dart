@@ -37,7 +37,7 @@ void main() {
     distanceTo: 50,
     year: '2020',
     owner: Person('John', 'Doe', 'test', linkedIds: []),
-    kilometers: 10000,
+    mileage: 10000,
     bodyType: 'sedan',
     fuelType: 'ev',
     transmissionType: 'automatic',
@@ -68,7 +68,7 @@ void main() {
     ).thenReturn(OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []));
     when(carEntity.isVerified).thenReturn(true);
     when(carEntity.promoType).thenReturn(null);
-    when(carEntity.kilometers).thenReturn(12345);
+    when(carEntity.mileage).thenReturn(12345);
     when(carEntity.distanceTo).thenReturn(50);
     when(carEntity.price).thenReturn(60000);
     when(carEntity.type).thenReturn('car');
@@ -162,7 +162,7 @@ void main() {
     when(carDto.year).thenReturn('2010');
     when(carDto.isVerified).thenReturn(false);
     when(carDto.promoType).thenReturn(null);
-    when(carDto.kilometers).thenReturn(100);
+    when(carDto.mileage).thenReturn(100);
     when(carDto.distanceTo).thenReturn(0);
     when(carDto.price).thenReturn(2000);
     when(carDto.type).thenReturn('car');
