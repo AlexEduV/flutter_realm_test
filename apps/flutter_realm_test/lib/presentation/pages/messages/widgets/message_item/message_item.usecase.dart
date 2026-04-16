@@ -41,7 +41,13 @@ Widget buildMessageItemUseCase(BuildContext context) {
                   ? SentImageMetaDataModel(url: 'https://example.com/image', width: 50, height: 50)
                   : null,
               attachmentMetaData: context.knobs.boolean(label: 'Is Attachment', initialValue: false)
-                  ? SentAttachmentMetaDataModel(name: 'some_file.pdf', size: 68000)
+                  ? SentAttachmentMetaDataModel(
+                      name: context.knobs.string(
+                        label: 'Attachment file name',
+                        initialValue: 'some_file.pdf',
+                      ),
+                      size: 68000,
+                    )
                   : null,
             ),
           ],
