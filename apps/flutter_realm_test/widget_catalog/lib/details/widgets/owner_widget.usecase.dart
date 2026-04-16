@@ -9,8 +9,6 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-export '';
-
 Widget buildOwnerWidgetUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()
     ..load({

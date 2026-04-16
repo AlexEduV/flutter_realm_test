@@ -6,8 +6,6 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-export '';
-
 Widget buildFooterTextUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 

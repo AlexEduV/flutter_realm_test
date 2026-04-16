@@ -6,8 +6,6 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-export '';
-
 Widget buildSearchFilterButtonUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 

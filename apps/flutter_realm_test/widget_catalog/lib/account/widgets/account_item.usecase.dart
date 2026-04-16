@@ -6,8 +6,6 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-export '';
-
 Widget buildAccountItemUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 

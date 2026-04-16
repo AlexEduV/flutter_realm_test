@@ -6,8 +6,6 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/widgets/animated_favorite_icon.dart';
 import 'package:widgetbook/widgetbook.dart';
 
-export '';
-
 Widget buildAnimatedFavoriteIconUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 
