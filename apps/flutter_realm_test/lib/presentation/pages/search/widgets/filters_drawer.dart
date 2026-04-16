@@ -162,7 +162,8 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: minPriceTextController,
-                        //todo: why the label is empty here?
+                        //the label is empty here, because now the fields are auto-filled, and it's not
+                        //necessary.
                         label: '',
                         onDebouncedChanged: (newValue) => cubit.updateSelectedMinPrice(newValue),
                         errorText: state.minPriceError,
