@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.usecase.dart';
@@ -94,7 +96,19 @@ class WidgetBookApp extends StatelessWidget {
                   useCases: [
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
-                      builder: (context) => buildVehicleSpecsWidgetUseCase(context),
+                      builder: (context) {
+                        final isExpanded = context.knobs.boolean(
+                          label: 'Is expanded',
+                          initialValue: true,
+                        );
+
+                        final mockCubit = MockDetailsPageCubit(isExpanded);
+
+                        return BlocProvider<DetailsPageCubit>.value(
+                          value: mockCubit,
+                          child: buildVehicleSpecsWidgetUseCase(context),
+                        );
+                      },
                     ),
                   ],
                 ),

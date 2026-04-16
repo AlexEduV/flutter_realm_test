@@ -5,22 +5,20 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
-import 'package:widgetbook/widgetbook.dart';
 
 import '../../../../common/constants/app_dimensions.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/l10n/app_localisations_cubit.dart';
 
 class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
-  final BuildContext context;
+  final bool isExpanded;
 
-  MockDetailsPageCubit(this.context);
+  MockDetailsPageCubit(this.isExpanded);
 
   @override
   DetailsPageState get state => DetailsPageState(
     isLoading: false,
-    //todo: knobs are not available from inside the mock
-    isVehicleSpecsExpanded: context.knobs.boolean(label: 'Is expanded', initialValue: true),
+    isVehicleSpecsExpanded: isExpanded,
     carColor: Colors.white,
   );
 
@@ -41,13 +39,8 @@ Widget buildVehicleSpecsWidgetUseCase(BuildContext context) {
       L10nKeys.vehicleSpecificationYear: 'Year',
     });
 
-  final detailsPageCubit = MockDetailsPageCubit(context);
-
   return MultiBlocProvider(
-    providers: [
-      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
-      BlocProvider<DetailsPageCubit>(create: (_) => detailsPageCubit),
-    ],
+    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
       child: Column(
