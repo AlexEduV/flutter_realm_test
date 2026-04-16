@@ -52,7 +52,7 @@ void main() {
     bodyType: 'sedan',
     fuelType: 'electric',
     transmissionType: 'automatic',
-    kilometers: 12345,
+    mileage: 12345,
     year: '2022',
     color: 'red',
   );

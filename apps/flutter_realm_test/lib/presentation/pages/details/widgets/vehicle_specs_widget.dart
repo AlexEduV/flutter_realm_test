@@ -118,9 +118,8 @@ class VehicleSpecsWidget extends StatelessWidget {
                                   children: [
                                     SpecificationItem(
                                       title: context.tr(L10nKeys.vehicleSpecificationMileage),
-                                      subtitle:
-                                          (car.kilometers ?? context.tr(L10nKeys.unknownLabel))
-                                              .toString(),
+                                      subtitle: (car.mileage ?? context.tr(L10nKeys.unknownLabel))
+                                          .toString(),
                                     ),
 
                                     SpecificationItem(
@@ -133,7 +132,7 @@ class VehicleSpecsWidget extends StatelessWidget {
                                       subtitle:
                                           car.color?.capitalizeFirst() ??
                                           context.tr(L10nKeys.unknownLabel),
-                                      leading: SpecColorWidget(color: car.color),
+                                      leading: SpecColorWidget(color: state.carColor),
                                     ),
                                   ],
                                 ),

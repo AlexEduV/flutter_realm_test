@@ -20,7 +20,7 @@ void main() {
         isVerified: true,
         year: '2020',
         owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
-        kilometers: 10000,
+        mileage: 10000,
         distanceTo: 50,
         price: 80000,
         fuelType: FuelType.ev.name,
@@ -38,7 +38,7 @@ void main() {
       expect(car.year, '2020');
       expect(car.owner?.firstName ?? '', 'John');
       expect(car.owner?.lastName ?? '', 'Doe');
-      expect(car.kilometers, 10000);
+      expect(car.mileage, 10000);
       expect(car.distanceTo, 50);
       expect(car.price, 80000);
       expect(car.fuelType, 'ev');
@@ -62,7 +62,7 @@ void main() {
 
       expect(car.year, isNull);
       expect(car.owner, isNull);
-      expect(car.kilometers, 0);
+      expect(car.mileage, 0);
       expect(car.distanceTo, isNull);
       expect(car.price, 0);
     });

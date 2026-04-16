@@ -25,7 +25,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     String? transmissionType,
     bool? isChecked = false,
     String? hotPromotionDescription,
-    int? kilometers = 500,
+    int? mileage = 500,
     int? distanceTo,
     int price = 0,
     Person? owner,
@@ -34,7 +34,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     if (!_defaultsSet) {
       _defaultsSet = RealmObjectBase.setDefaults<Car>({
         'isChecked': false,
-        'kilometers': 500,
+        'mileage': 500,
         'price': 0,
       });
     }
@@ -51,7 +51,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'isChecked', isChecked);
     RealmObjectBase.set(
         this, 'hotPromotionDescription', hotPromotionDescription);
-    RealmObjectBase.set(this, 'kilometers', kilometers);
+    RealmObjectBase.set(this, 'mileage', mileage);
     RealmObjectBase.set(this, 'distanceTo', distanceTo);
     RealmObjectBase.set(this, 'price', price);
     RealmObjectBase.set(this, 'owner', owner);
@@ -130,9 +130,9 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.set(this, 'hotPromotionDescription', value);
 
   @override
-  int? get kilometers => RealmObjectBase.get<int>(this, 'kilometers') as int?;
+  int? get mileage => RealmObjectBase.get<int>(this, 'mileage') as int?;
   @override
-  set kilometers(int? value) => RealmObjectBase.set(this, 'kilometers', value);
+  set mileage(int? value) => RealmObjectBase.set(this, 'mileage', value);
 
   @override
   int? get distanceTo => RealmObjectBase.get<int>(this, 'distanceTo') as int?;
@@ -182,7 +182,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       'transmissionType': transmissionType.toEJson(),
       'isChecked': isChecked.toEJson(),
       'hotPromotionDescription': hotPromotionDescription.toEJson(),
-      'kilometers': kilometers.toEJson(),
+      'mileage': mileage.toEJson(),
       'distanceTo': distanceTo.toEJson(),
       'price': price.toEJson(),
       'owner': owner.toEJson(),
@@ -213,7 +213,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
           transmissionType: fromEJson(ejson['transmissionType']),
           isChecked: fromEJson(ejson['isChecked'], defaultValue: false),
           hotPromotionDescription: fromEJson(ejson['hotPromotionDescription']),
-          kilometers: fromEJson(ejson['kilometers'], defaultValue: 500),
+          mileage: fromEJson(ejson['mileage'], defaultValue: 500),
           distanceTo: fromEJson(ejson['distanceTo']),
           price: fromEJson(ejson['price'], defaultValue: 0),
           owner: fromEJson(ejson['owner']),
@@ -241,7 +241,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('isChecked', RealmPropertyType.bool, optional: true),
       SchemaProperty('hotPromotionDescription', RealmPropertyType.string,
           optional: true),
-      SchemaProperty('kilometers', RealmPropertyType.int, optional: true),
+      SchemaProperty('mileage', RealmPropertyType.int, optional: true),
       SchemaProperty('distanceTo', RealmPropertyType.int, optional: true),
       SchemaProperty('price', RealmPropertyType.int),
       SchemaProperty('owner', RealmPropertyType.object,

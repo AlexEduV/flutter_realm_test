@@ -17,7 +17,7 @@ class _Car {
   String? transmissionType;
   bool? isChecked = false;
   String? hotPromotionDescription;
-  int? kilometers = 500;
+  int? mileage = 500;
   int? distanceTo;
   int price = 0;
   _Person? owner;

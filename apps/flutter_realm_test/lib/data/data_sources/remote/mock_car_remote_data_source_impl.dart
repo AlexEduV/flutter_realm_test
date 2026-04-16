@@ -41,6 +41,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       color: 'Yellow',
       owner: serviceLocator<GetOwnerByIdUseCase>().call('1'),
       images: [AppAssetRoutes.porscheYellowImage],
+      mileage: 2000,
     ),
     CarDto(
       id: initIds[1],
@@ -58,6 +59,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       color: 'Red',
       owner: serviceLocator<GetOwnerByIdUseCase>().call('2'),
       images: [AppAssetRoutes.hondaCivicRedImage],
+      mileage: 55607,
     ),
     CarDto(
       id: initIds[2],
@@ -74,6 +76,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       color: 'Black',
       owner: serviceLocator<GetOwnerByIdUseCase>().call('3'),
       images: [],
+      mileage: 18640,
     ),
   ];
 

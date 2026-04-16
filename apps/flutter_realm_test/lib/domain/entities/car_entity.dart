@@ -20,7 +20,7 @@ class CarEntity {
   final String transmissionType;
   final bool isVerified;
   final PromoType? promoType;
-  int? kilometers = 0;
+  int? mileage = 0;
   int? distanceTo;
   int? price = 0;
   final List<String> images;
@@ -39,7 +39,7 @@ class CarEntity {
     this.year,
     this.color,
     this.owner,
-    this.kilometers,
+    this.mileage,
     this.distanceTo,
     this.price,
     this.images = const [],
@@ -73,7 +73,7 @@ class CarEntity {
     String? transmissionType,
     bool? isVerified,
     PromoType? promoType,
-    int? kilometers,
+    int? mileage,
     int? distanceTo,
     int? price,
     List<String>? images,
@@ -92,7 +92,7 @@ class CarEntity {
       year: year ?? this.year,
       color: color ?? this.color,
       owner: owner ?? this.owner,
-      kilometers: kilometers ?? this.kilometers,
+      mileage: mileage ?? this.mileage,
       distanceTo: distanceTo ?? this.distanceTo,
       price: price ?? this.price,
       images: images ?? this.images,
@@ -113,7 +113,7 @@ class CarEntity {
       distanceTo: dto.distanceTo,
       year: dto.year,
       owner: dto.owner,
-      kilometers: dto.kilometers,
+      mileage: dto.mileage,
       bodyType: dto.bodyType,
       fuelType: dto.fuelType,
       transmissionType: dto.transmissionType,
@@ -140,7 +140,7 @@ class CarEntity {
         linkedItemIds: car.owner?.linkedIds ?? [],
         imageSrc: car.owner?.imageSrc,
       ),
-      kilometers: car.kilometers,
+      mileage: car.mileage,
       fuelType: car.fuelType ?? '',
       bodyType: car.bodyType ?? '',
       transmissionType: car.transmissionType ?? '',
@@ -165,7 +165,7 @@ class CarEntity {
           transmissionType == other.transmissionType &&
           isVerified == other.isVerified &&
           promoType == other.promoType &&
-          kilometers == other.kilometers &&
+          mileage == other.mileage &&
           distanceTo == other.distanceTo &&
           price == other.price &&
           images == other.images &&
@@ -185,7 +185,7 @@ class CarEntity {
       transmissionType.hashCode ^
       isVerified.hashCode ^
       (promoType?.hashCode ?? 0) ^
-      (kilometers ?? 0).hashCode ^
+      (mileage ?? 0).hashCode ^
       (distanceTo ?? 0).hashCode ^
       (price ?? 0).hashCode ^
       (images).hashCode ^

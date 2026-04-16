@@ -14,7 +14,6 @@ class DateDivider extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: AppDimensions.normalS, top: AppDimensions.normalL),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(

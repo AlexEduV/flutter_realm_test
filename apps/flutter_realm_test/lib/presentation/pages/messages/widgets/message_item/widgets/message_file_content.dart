@@ -18,9 +18,10 @@ class MessageFileContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: AppDimensions.minorS,
+      mainAxisSize: MainAxisSize.min,
+      spacing: AppDimensions.minorL,
       children: [
-        Expanded(
+        Flexible(
           child: Text(
             attachmentMetaData?.name ?? '',
             style: isMyMessage ? const TextStyle().whiten() : null,

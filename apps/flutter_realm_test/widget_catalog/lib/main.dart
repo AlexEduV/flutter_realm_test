@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/authentication/widgets/auth_error_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/messages/widgets/date_divider.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/message_item.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.usecase.dart';
 import 'package:test_flutter_project/presentation/widgets/animated_favorite_icon.usecase.dart';
+import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_list_item.usecase.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 void main() {
@@ -41,6 +49,15 @@ class WidgetBookApp extends StatelessWidget {
                 WidgetbookUseCase(
                   name: defaultUseCaseName,
                   builder: (context) => buildCarListItemUseCase(context),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'Announcement item',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildAnnouncementListItemUseCase(context),
                 ),
               ],
             ),
@@ -84,6 +101,28 @@ class WidgetBookApp extends StatelessWidget {
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
                       builder: (context) => buildOwnerWidgetUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Vehicle specs widget',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) {
+                        final isExpanded = context.knobs.boolean(
+                          label: 'Is expanded',
+                          initialValue: true,
+                        );
+
+                        final mockCubit = MockDetailsPageCubit(isExpanded);
+
+                        return BlocProvider<DetailsPageCubit>.value(
+                          value: mockCubit,
+                          child: buildVehicleSpecsWidgetUseCase(context),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -134,6 +173,51 @@ class WidgetBookApp extends StatelessWidget {
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
                       builder: (context) => buildSplashButtonUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Auth error widget',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildAuthErrorWidgetUseCase(context),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+
+            WidgetbookFolder(
+              name: 'Messages',
+              children: [
+                WidgetbookComponent(
+                  name: 'Chat input bar',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildChatInputBarUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Message item',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildMessageItemUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Date divider',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildMessageDateDividerUseCase(context),
                     ),
                   ],
                 ),

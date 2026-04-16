@@ -571,10 +571,10 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
       ) as bool);
 
   @override
-  set kilometers(int? _kilometers) => super.noSuchMethod(
+  set mileage(int? _mileage) => super.noSuchMethod(
         Invocation.setter(
-          #kilometers,
-          _kilometers,
+          #mileage,
+          _mileage,
         ),
         returnValueForMissingStub: null,
       );
@@ -632,7 +632,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
     String? transmissionType,
     bool? isVerified,
     _i15.PromoType? promoType,
-    int? kilometers,
+    int? mileage,
     int? distanceTo,
     int? price,
     List<String>? images,
@@ -655,7 +655,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
             #transmissionType: transmissionType,
             #isVerified: isVerified,
             #promoType: promoType,
-            #kilometers: kilometers,
+            #mileage: mileage,
             #distanceTo: distanceTo,
             #price: price,
             #images: images,
@@ -680,7 +680,7 @@ class MockCarEntity extends _i1.Mock implements _i6.CarEntity {
               #transmissionType: transmissionType,
               #isVerified: isVerified,
               #promoType: promoType,
-              #kilometers: kilometers,
+              #mileage: mileage,
               #distanceTo: distanceTo,
               #price: price,
               #images: images,
@@ -778,10 +778,10 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
       ) as bool);
 
   @override
-  set kilometers(int? _kilometers) => super.noSuchMethod(
+  set mileage(int? _mileage) => super.noSuchMethod(
         Invocation.setter(
-          #kilometers,
-          _kilometers,
+          #mileage,
+          _mileage,
         ),
         returnValueForMissingStub: null,
       );
@@ -834,7 +834,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
     _i14.OwnerEntity? owner,
     bool? isVerified,
     _i15.PromoType? promoType,
-    int? kilometers,
+    int? mileage,
     int? distanceTo,
     int? price,
     List<String>? images,
@@ -857,7 +857,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
             #owner: owner,
             #isVerified: isVerified,
             #promoType: promoType,
-            #kilometers: kilometers,
+            #mileage: mileage,
             #distanceTo: distanceTo,
             #price: price,
             #images: images,
@@ -882,7 +882,7 @@ class MockCarDto extends _i1.Mock implements _i8.CarDto {
               #owner: owner,
               #isVerified: isVerified,
               #promoType: promoType,
-              #kilometers: kilometers,
+              #mileage: mileage,
               #distanceTo: distanceTo,
               #price: price,
               #images: images,

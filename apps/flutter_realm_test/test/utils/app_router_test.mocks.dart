@@ -3,35 +3,33 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i10;
+import 'dart:async' as _i9;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i11;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i17;
-import 'package:test_flutter_project/common/enums/car_type.dart' as _i16;
-import 'package:test_flutter_project/common/enums/drawer_type.dart' as _i18;
-import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i13;
+import 'package:mockito/src/dummies.dart' as _i16;
+import 'package:test_flutter_project/common/enums/car_type.dart' as _i15;
+import 'package:test_flutter_project/common/enums/drawer_type.dart' as _i17;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i12;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i4;
-import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart'
-    as _i7;
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart'
-    as _i19;
+    as _i18;
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart'
-    as _i8;
+    as _i7;
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart'
-    as _i12;
+    as _i11;
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart'
     as _i3;
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart'
-    as _i9;
+    as _i8;
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart'
     as _i2;
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart'
-    as _i15;
+    as _i14;
 import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart'
     as _i6;
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart'
-    as _i14;
+    as _i13;
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart'
     as _i5;
 
@@ -102,20 +100,9 @@ class _FakeSearchPageState_4 extends _i1.SmartFake
         );
 }
 
-class _FakeGetCarByIdUseCase_5 extends _i1.SmartFake
-    implements _i7.GetCarByIdUseCase {
-  _FakeGetCarByIdUseCase_5(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeDetailsPageState_6 extends _i1.SmartFake
-    implements _i8.DetailsPageState {
-  _FakeDetailsPageState_6(
+class _FakeDetailsPageState_5 extends _i1.SmartFake
+    implements _i7.DetailsPageState {
+  _FakeDetailsPageState_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -128,7 +115,7 @@ class _FakeDetailsPageState_6 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockHomeBottomBarCubit extends _i1.Mock
-    implements _i9.HomeBottomBarCubit {
+    implements _i8.HomeBottomBarCubit {
   MockHomeBottomBarCubit() {
     _i1.throwOnMissingStub(this);
   }
@@ -143,10 +130,10 @@ class MockHomeBottomBarCubit extends _i1.Mock
       ) as _i2.HomeBottomBarState);
 
   @override
-  _i10.Stream<_i2.HomeBottomBarState> get stream => (super.noSuchMethod(
+  _i9.Stream<_i2.HomeBottomBarState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i10.Stream<_i2.HomeBottomBarState>.empty(),
-      ) as _i10.Stream<_i2.HomeBottomBarState>);
+        returnValue: _i9.Stream<_i2.HomeBottomBarState>.empty(),
+      ) as _i9.Stream<_i2.HomeBottomBarState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -173,7 +160,7 @@ class MockHomeBottomBarCubit extends _i1.Mock
       );
 
   @override
-  void onChange(_i11.Change<_i2.HomeBottomBarState>? change) =>
+  void onChange(_i10.Change<_i2.HomeBottomBarState>? change) =>
       super.noSuchMethod(
         Invocation.method(
           #onChange,
@@ -215,20 +202,20 @@ class MockHomeBottomBarCubit extends _i1.Mock
       );
 
   @override
-  _i10.Future<void> close() => (super.noSuchMethod(
+  _i9.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 }
 
 /// A class which mocks [ExplorePageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
+class MockExplorePageCubit extends _i1.Mock implements _i11.ExplorePageCubit {
   MockExplorePageCubit() {
     _i1.throwOnMissingStub(this);
   }
@@ -243,10 +230,10 @@ class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
       ) as _i3.ExplorePageState);
 
   @override
-  _i10.Stream<_i3.ExplorePageState> get stream => (super.noSuchMethod(
+  _i9.Stream<_i3.ExplorePageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i10.Stream<_i3.ExplorePageState>.empty(),
-      ) as _i10.Stream<_i3.ExplorePageState>);
+        returnValue: _i9.Stream<_i3.ExplorePageState>.empty(),
+      ) as _i9.Stream<_i3.ExplorePageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -255,17 +242,17 @@ class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
       ) as bool);
 
   @override
-  _i10.Future<void> init() => (super.noSuchMethod(
+  _i9.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
           #init,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  void updateCars(List<_i13.CarEntity>? newValue) => super.noSuchMethod(
+  void updateCars(List<_i12.CarEntity>? newValue) => super.noSuchMethod(
         Invocation.method(
           #updateCars,
           [newValue],
@@ -299,14 +286,14 @@ class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
       );
 
   @override
-  _i10.Future<void> close() => (super.noSuchMethod(
+  _i9.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
   void emit(_i3.ExplorePageState? state) => super.noSuchMethod(
@@ -318,7 +305,7 @@ class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
       );
 
   @override
-  void onChange(_i11.Change<_i3.ExplorePageState>? change) =>
+  void onChange(_i10.Change<_i3.ExplorePageState>? change) =>
       super.noSuchMethod(
         Invocation.method(
           #onChange,
@@ -363,7 +350,7 @@ class MockExplorePageCubit extends _i1.Mock implements _i12.ExplorePageCubit {
 /// A class which mocks [UserDataCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
+class MockUserDataCubit extends _i1.Mock implements _i13.UserDataCubit {
   MockUserDataCubit() {
     _i1.throwOnMissingStub(this);
   }
@@ -396,10 +383,10 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
       ) as _i5.UserDataState);
 
   @override
-  _i10.Stream<_i5.UserDataState> get stream => (super.noSuchMethod(
+  _i9.Stream<_i5.UserDataState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i10.Stream<_i5.UserDataState>.empty(),
-      ) as _i10.Stream<_i5.UserDataState>);
+        returnValue: _i9.Stream<_i5.UserDataState>.empty(),
+      ) as _i9.Stream<_i5.UserDataState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -408,14 +395,14 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
       ) as bool);
 
   @override
-  _i10.Future<void> init() => (super.noSuchMethod(
+  _i9.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
           #init,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
   void updateCloudUser(_i4.UserEntity? user) => super.noSuchMethod(
@@ -427,14 +414,14 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
       );
 
   @override
-  _i10.Future<void> initLocalisation(String? locale) => (super.noSuchMethod(
+  _i9.Future<void> initLocalisation(String? locale) => (super.noSuchMethod(
         Invocation.method(
           #initLocalisation,
           [locale],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
   void setFirstName(String? firstName) => super.noSuchMethod(
@@ -492,24 +479,24 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
       );
 
   @override
-  _i10.Future<void> requestLocationPermission() => (super.noSuchMethod(
+  _i9.Future<void> requestLocationPermission() => (super.noSuchMethod(
         Invocation.method(
           #requestLocationPermission,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
-  _i10.Future<void> openLocationSettings() => (super.noSuchMethod(
+  _i9.Future<void> openLocationSettings() => (super.noSuchMethod(
         Invocation.method(
           #openLocationSettings,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
   void updateLocationPermissionStatus(bool? newStatus) => super.noSuchMethod(
@@ -521,14 +508,14 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
       );
 
   @override
-  _i10.Future<void> updateAvatarImage() => (super.noSuchMethod(
+  _i9.Future<void> updateAvatarImage() => (super.noSuchMethod(
         Invocation.method(
           #updateAvatarImage,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
   void addCarIdToFavorites(String? carId) => super.noSuchMethod(
@@ -621,14 +608,14 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
       );
 
   @override
-  _i10.Future<void> authUser(String? email) => (super.noSuchMethod(
+  _i9.Future<void> authUser(String? email) => (super.noSuchMethod(
         Invocation.method(
           #authUser,
           [email],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
   void logOutUser() => super.noSuchMethod(
@@ -666,7 +653,7 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
       );
 
   @override
-  void onChange(_i11.Change<_i5.UserDataState>? change) => super.noSuchMethod(
+  void onChange(_i10.Change<_i5.UserDataState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -707,20 +694,20 @@ class MockUserDataCubit extends _i1.Mock implements _i14.UserDataCubit {
       );
 
   @override
-  _i10.Future<void> close() => (super.noSuchMethod(
+  _i9.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 }
 
 /// A class which mocks [SearchPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
+class MockSearchPageCubit extends _i1.Mock implements _i14.SearchPageCubit {
   MockSearchPageCubit() {
     _i1.throwOnMissingStub(this);
   }
@@ -735,10 +722,10 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
       ) as _i6.SearchPageState);
 
   @override
-  _i10.Stream<_i6.SearchPageState> get stream => (super.noSuchMethod(
+  _i9.Stream<_i6.SearchPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i10.Stream<_i6.SearchPageState>.empty(),
-      ) as _i10.Stream<_i6.SearchPageState>);
+        returnValue: _i9.Stream<_i6.SearchPageState>.empty(),
+      ) as _i9.Stream<_i6.SearchPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -765,17 +752,17 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
       );
 
   @override
-  List<_i13.CarEntity> applyAllFilters(List<_i13.CarEntity>? cars) =>
+  List<_i12.CarEntity> applyAllFilters(List<_i12.CarEntity>? cars) =>
       (super.noSuchMethod(
         Invocation.method(
           #applyAllFilters,
           [cars],
         ),
-        returnValue: <_i13.CarEntity>[],
-      ) as List<_i13.CarEntity>);
+        returnValue: <_i12.CarEntity>[],
+      ) as List<_i12.CarEntity>);
 
   @override
-  void updateTypeSelection(_i16.CarType? newType) => super.noSuchMethod(
+  void updateTypeSelection(_i15.CarType? newType) => super.noSuchMethod(
         Invocation.method(
           #updateTypeSelection,
           [newType],
@@ -785,8 +772,8 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
 
   @override
   void updateModelListFromEntities(
-    List<_i13.CarEntity>? cars,
-    _i16.CarType? type,
+    List<_i12.CarEntity>? cars,
+    _i15.CarType? type,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -801,8 +788,8 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
 
   @override
   void updateColorListFromEntities(
-    List<_i13.CarEntity>? cars,
-    _i16.CarType? type,
+    List<_i12.CarEntity>? cars,
+    _i15.CarType? type,
   ) =>
       super.noSuchMethod(
         Invocation.method(
@@ -817,8 +804,8 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
 
   @override
   String getMinYearFromEntities(
-    List<_i13.CarEntity>? cars,
-    _i16.CarType? type,
+    List<_i12.CarEntity>? cars,
+    _i15.CarType? type,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -828,7 +815,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
             type,
           ],
         ),
-        returnValue: _i17.dummyValue<String>(
+        returnValue: _i16.dummyValue<String>(
           this,
           Invocation.method(
             #getMinYearFromEntities,
@@ -842,8 +829,8 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
 
   @override
   String getMaxYearFromEntities(
-    List<_i13.CarEntity>? cars,
-    _i16.CarType? type,
+    List<_i12.CarEntity>? cars,
+    _i15.CarType? type,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -853,7 +840,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
             type,
           ],
         ),
-        returnValue: _i17.dummyValue<String>(
+        returnValue: _i16.dummyValue<String>(
           this,
           Invocation.method(
             #getMaxYearFromEntities,
@@ -867,8 +854,8 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
 
   @override
   String getMinPriceFromEntities(
-    List<_i13.CarEntity>? cars,
-    _i16.CarType? type,
+    List<_i12.CarEntity>? cars,
+    _i15.CarType? type,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -878,7 +865,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
             type,
           ],
         ),
-        returnValue: _i17.dummyValue<String>(
+        returnValue: _i16.dummyValue<String>(
           this,
           Invocation.method(
             #getMinPriceFromEntities,
@@ -892,8 +879,8 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
 
   @override
   String getMaxPriceFromEntities(
-    List<_i13.CarEntity>? cars,
-    _i16.CarType? type,
+    List<_i12.CarEntity>? cars,
+    _i15.CarType? type,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -903,7 +890,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
             type,
           ],
         ),
-        returnValue: _i17.dummyValue<String>(
+        returnValue: _i16.dummyValue<String>(
           this,
           Invocation.method(
             #getMaxPriceFromEntities,
@@ -1087,7 +1074,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
       );
 
   @override
-  void openDrawer(_i18.SearchDrawerType? type) => super.noSuchMethod(
+  void openDrawer(_i17.SearchDrawerType? type) => super.noSuchMethod(
         Invocation.method(
           #openDrawer,
           [type],
@@ -1137,14 +1124,14 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
       ) as int);
 
   @override
-  _i10.Future<void> close() => (super.noSuchMethod(
+  _i9.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 
   @override
   void emit(_i6.SearchPageState? state) => super.noSuchMethod(
@@ -1156,7 +1143,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
       );
 
   @override
-  void onChange(_i11.Change<_i6.SearchPageState>? change) => super.noSuchMethod(
+  void onChange(_i10.Change<_i6.SearchPageState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -1200,34 +1187,25 @@ class MockSearchPageCubit extends _i1.Mock implements _i15.SearchPageCubit {
 /// A class which mocks [DetailsPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDetailsPageCubit extends _i1.Mock implements _i19.DetailsPageCubit {
+class MockDetailsPageCubit extends _i1.Mock implements _i18.DetailsPageCubit {
   MockDetailsPageCubit() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.GetCarByIdUseCase get getCarByIdUseCase => (super.noSuchMethod(
-        Invocation.getter(#getCarByIdUseCase),
-        returnValue: _FakeGetCarByIdUseCase_5(
-          this,
-          Invocation.getter(#getCarByIdUseCase),
-        ),
-      ) as _i7.GetCarByIdUseCase);
-
-  @override
-  _i8.DetailsPageState get state => (super.noSuchMethod(
+  _i7.DetailsPageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeDetailsPageState_6(
+        returnValue: _FakeDetailsPageState_5(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i8.DetailsPageState);
+      ) as _i7.DetailsPageState);
 
   @override
-  _i10.Stream<_i8.DetailsPageState> get stream => (super.noSuchMethod(
+  _i9.Stream<_i7.DetailsPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i10.Stream<_i8.DetailsPageState>.empty(),
-      ) as _i10.Stream<_i8.DetailsPageState>);
+        returnValue: _i9.Stream<_i7.DetailsPageState>.empty(),
+      ) as _i9.Stream<_i7.DetailsPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -1254,7 +1232,7 @@ class MockDetailsPageCubit extends _i1.Mock implements _i19.DetailsPageCubit {
       );
 
   @override
-  void emit(_i8.DetailsPageState? state) => super.noSuchMethod(
+  void emit(_i7.DetailsPageState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -1263,7 +1241,7 @@ class MockDetailsPageCubit extends _i1.Mock implements _i19.DetailsPageCubit {
       );
 
   @override
-  void onChange(_i11.Change<_i8.DetailsPageState>? change) =>
+  void onChange(_i10.Change<_i7.DetailsPageState>? change) =>
       super.noSuchMethod(
         Invocation.method(
           #onChange,
@@ -1305,12 +1283,12 @@ class MockDetailsPageCubit extends _i1.Mock implements _i19.DetailsPageCubit {
       );
 
   @override
-  _i10.Future<void> close() => (super.noSuchMethod(
+  _i9.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i10.Future<void>.value(),
-        returnValueForMissingStub: _i10.Future<void>.value(),
-      ) as _i10.Future<void>);
+        returnValue: _i9.Future<void>.value(),
+        returnValueForMissingStub: _i9.Future<void>.value(),
+      ) as _i9.Future<void>);
 }

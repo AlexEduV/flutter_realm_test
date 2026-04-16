@@ -7,16 +7,19 @@ import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 
+import '../../pages/details/widgets/vehicle_specs_widget_test.mocks.dart';
 import 'details_page_cubit_test.mocks.dart';
 
 @GenerateMocks([GetCarByIdUseCase])
 void main() {
   late MockGetCarByIdUseCase mockGetCarByIdUseCase;
+  late MockGetCarColorsUseCase mockGetCarColorsUseCase;
   late DetailsPageCubit cubit;
 
   setUp(() {
     mockGetCarByIdUseCase = MockGetCarByIdUseCase();
-    cubit = DetailsPageCubit(mockGetCarByIdUseCase);
+    mockGetCarColorsUseCase = MockGetCarColorsUseCase();
+    cubit = DetailsPageCubit(mockGetCarByIdUseCase, mockGetCarColorsUseCase);
   });
 
   group('DetailsPageCubit', () {
@@ -29,6 +32,7 @@ void main() {
       build: () {
         final car = CarEntity.empty().copyWith(carId: '123', model: 'Test Car');
         when(mockGetCarByIdUseCase.call('123')).thenReturn(car);
+        when(mockGetCarColorsUseCase.call()).thenReturn({});
         return cubit;
       },
       act: (cubit) => cubit.loadData('123'),

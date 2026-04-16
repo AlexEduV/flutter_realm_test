@@ -5,7 +5,6 @@ import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/constants/app_text_styles.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
-import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
@@ -65,6 +64,8 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
         final selectedFuelTypeSet = Set<String>.from(state.selectedFuelTypes);
         final selectedTransmissionTypeSet = Set<String>.from(state.selectedTransmissionTypes);
         final selectedColorSet = Set<String>.from(state.selectedColors);
+
+        final bodyTypeList = BodyType.filterByCarType(state.currentSelectedType);
 
         return Drawer(
           backgroundColor: AppColors.scaffoldColor,
@@ -137,71 +138,15 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 ),
               ),
 
-              if (state.currentSelectedType == CarType.car) ...[
-                _buildCheckboxTile(
+              ...bodyTypeList.map(
+                (element) => _buildCheckboxTile(
                   semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: context.tr(L10nKeys.bodyTypeSedan),
-                  isChecked: selectedBodyTypeSet.contains(BodyType.sedan.name),
-                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.sedan.name),
-                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.sedan.name),
+                  label: element.fromLocalisations(),
+                  isChecked: selectedBodyTypeSet.contains(element.name),
+                  onChecked: () => cubit.addBodyTypeToSelection(element.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(element.name),
                 ),
-
-                _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: context.tr(L10nKeys.bodyTypeHatchback),
-                  isChecked: selectedBodyTypeSet.contains(BodyType.hatchback.name),
-                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.hatchback.name),
-                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.hatchback.name),
-                ),
-
-                _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: context.tr(L10nKeys.bodyTypeUniversal),
-                  isChecked: selectedBodyTypeSet.contains(BodyType.universal.name),
-                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.universal.name),
-                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.universal.name),
-                ),
-
-                _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: context.tr(L10nKeys.bodyTypeMinivan),
-                  isChecked: selectedBodyTypeSet.contains(BodyType.minivan.name),
-                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.minivan.name),
-                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.minivan.name),
-                ),
-
-                _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: context.tr(L10nKeys.bodyTypeCoupe),
-                  isChecked: selectedBodyTypeSet.contains(BodyType.coupe.name),
-                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.coupe.name),
-                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.coupe.name),
-                ),
-
-                _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: context.tr(L10nKeys.bodyTypeCrossover),
-                  isChecked: selectedBodyTypeSet.contains(BodyType.crossover.name),
-                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.crossover.name),
-                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.crossover.name),
-                ),
-              ] else if (state.currentSelectedType == CarType.truck) ...[
-                _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: context.tr(L10nKeys.bodyTypeSemi),
-                  isChecked: selectedBodyTypeSet.contains(BodyType.semi.name),
-                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.semi.name),
-                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.semi.name),
-                ),
-              ] else ...[
-                _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
-                  label: context.tr(L10nKeys.bodyTypeBike),
-                  isChecked: selectedBodyTypeSet.contains(BodyType.bike.name),
-                  onChecked: () => cubit.addBodyTypeToSelection(BodyType.bike.name),
-                  onUnChecked: () => cubit.removeBodyTypeFromSelection(BodyType.bike.name),
-                ),
-              ],
+              ),
 
               ListTile(
                 title: Text(
@@ -217,6 +162,8 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
                         controller: minPriceTextController,
+                        //the label is empty here, because now the fields are auto-filled, and it's not
+                        //necessary.
                         label: '',
                         onDebouncedChanged: (newValue) => cubit.updateSelectedMinPrice(newValue),
                         errorText: state.minPriceError,
@@ -244,36 +191,14 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 ),
               ),
 
-              _buildCheckboxTile(
-                semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
-                label: context.tr(L10nKeys.fuelTypeDiesel),
-                isChecked: selectedFuelTypeSet.contains(FuelType.diesel.name),
-                onChecked: () => cubit.addFuelTypeToSelection(FuelType.diesel.name),
-                onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.diesel.name),
-              ),
-
-              _buildCheckboxTile(
-                semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
-                label: context.tr(L10nKeys.fuelTypeGasoline),
-                isChecked: selectedFuelTypeSet.contains(FuelType.gasoline.name),
-                onChecked: () => cubit.addFuelTypeToSelection(FuelType.gasoline.name),
-                onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.gasoline.name),
-              ),
-
-              _buildCheckboxTile(
-                semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
-                label: context.tr(L10nKeys.fuelTypeEv),
-                isChecked: selectedFuelTypeSet.contains(FuelType.ev.name),
-                onChecked: () => cubit.addFuelTypeToSelection(FuelType.ev.name),
-                onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.ev.name),
-              ),
-
-              _buildCheckboxTile(
-                semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
-                label: context.tr(L10nKeys.fuelTypeHybrid),
-                isChecked: selectedFuelTypeSet.contains(FuelType.hybrid.name),
-                onChecked: () => cubit.addFuelTypeToSelection(FuelType.hybrid.name),
-                onUnChecked: () => cubit.removeFuelTypeFromSelection(FuelType.hybrid.name),
+              ...FuelType.values.map(
+                (element) => _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
+                  label: element.fromLocalisations(),
+                  isChecked: selectedFuelTypeSet.contains(element.name),
+                  onChecked: () => cubit.addFuelTypeToSelection(element.name),
+                  onUnChecked: () => cubit.removeFuelTypeFromSelection(element.name),
+                ),
               ),
 
               ListTile(
@@ -283,32 +208,14 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 ),
               ),
 
-              _buildCheckboxTile(
-                semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
-                label: context.tr(L10nKeys.transmissionTypeManual),
-                isChecked: selectedTransmissionTypeSet.contains(TransmissionType.manual.name),
-                onChecked: () => cubit.addTransmissionTypeToSelection(TransmissionType.manual.name),
-                onUnChecked: () =>
-                    cubit.removeTransmissionTypeFromSelection(TransmissionType.manual.name),
-              ),
-
-              _buildCheckboxTile(
-                semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
-                label: context.tr(L10nKeys.transmissionTypeAutomatic),
-                isChecked: selectedTransmissionTypeSet.contains(TransmissionType.automatic.name),
-                onChecked: () =>
-                    cubit.addTransmissionTypeToSelection(TransmissionType.automatic.name),
-                onUnChecked: () =>
-                    cubit.removeTransmissionTypeFromSelection(TransmissionType.automatic.name),
-              ),
-
-              _buildCheckboxTile(
-                semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
-                label: context.tr(L10nKeys.transmissionTypeHybrid),
-                isChecked: selectedTransmissionTypeSet.contains(TransmissionType.hybrid.name),
-                onChecked: () => cubit.addTransmissionTypeToSelection(TransmissionType.hybrid.name),
-                onUnChecked: () =>
-                    cubit.removeTransmissionTypeFromSelection(TransmissionType.hybrid.name),
+              ...TransmissionType.values.map(
+                (element) => _buildCheckboxTile(
+                  semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
+                  label: element.fromLocalisations(),
+                  isChecked: selectedTransmissionTypeSet.contains(element.name),
+                  onChecked: () => cubit.addTransmissionTypeToSelection(element.name),
+                  onUnChecked: () => cubit.removeTransmissionTypeFromSelection(element.name),
+                ),
               ),
             ],
           ),
