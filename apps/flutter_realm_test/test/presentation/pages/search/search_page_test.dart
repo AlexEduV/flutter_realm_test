@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
@@ -25,6 +26,16 @@ import '../../../utils/app_router_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  final appLocalisationsCubit = AppLocalisationsCubit();
+
+  setUpAll(() {
+    serviceLocator.registerSingleton<AppLocalisationsCubit>(appLocalisationsCubit);
+  });
+
+  tearDownAll(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
+  });
 
   Widget buildTestableWidget({
     required SearchPageCubit searchCubit,
