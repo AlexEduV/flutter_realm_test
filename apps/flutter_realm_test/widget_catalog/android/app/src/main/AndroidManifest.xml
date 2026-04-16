@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="widget_catalog"
+        android:label="Cars.io Widget Catalog"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
