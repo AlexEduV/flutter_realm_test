@@ -8,6 +8,7 @@ import 'package:test_flutter_project/presentation/pages/authentication/widgets/s
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.usecase.dart';
 import 'package:test_flutter_project/presentation/widgets/animated_favorite_icon.usecase.dart';
@@ -169,6 +170,21 @@ class WidgetBookApp extends StatelessWidget {
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
                       builder: (context) => buildSplashButtonUseCase(context),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+
+            WidgetbookFolder(
+              name: 'Messages',
+              children: [
+                WidgetbookComponent(
+                  name: 'Chat input bar',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildChatInputBarUseCase(context),
                     ),
                   ],
                 ),
