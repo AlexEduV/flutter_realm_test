@@ -89,12 +89,18 @@ class TiledDividerPainter extends CustomPainter {
     final paint = Paint();
     final ornamentWidth = ornamentImage!.width.toDouble();
     final ornamentHeight = ornamentImage!.height.toDouble();
-
+    final scale = size.height / ornamentHeight;
+    final scaledOrnamentWidth = ornamentWidth * scale;
     final totalWidth = size.width * widthFactor;
+
     double x = 0;
     while (x < totalWidth) {
-      canvas.drawImage(ornamentImage!, Offset(x, (size.height - ornamentHeight) / 2), paint);
-      x += ornamentWidth;
+      canvas.save();
+      canvas.translate(x, 0);
+      canvas.scale(scale, scale);
+      canvas.drawImage(ornamentImage!, const Offset(0, 0), paint);
+      canvas.restore();
+      x += scaledOrnamentWidth;
     }
   }
 
