@@ -1,6 +1,4 @@
-/*
-todo: there's not much of a point for maintaining these tests, because they have too many dependencies;
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
@@ -10,6 +8,7 @@ import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_
 import 'package:widgetbook/widgetbook.dart';
 
 import '../../../../common/constants/app_dimensions.dart';
+import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/l10n/app_localisations_cubit.dart';
 
 class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
@@ -20,7 +19,9 @@ class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
   @override
   DetailsPageState get state => DetailsPageState(
     isLoading: false,
+    //todo: knobs are not available from inside the mock
     isVehicleSpecsExpanded: context.knobs.boolean(label: 'Is expanded', initialValue: true),
+    carColor: Colors.white,
   );
 
   @override
@@ -28,7 +29,17 @@ class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
 }
 
 Widget buildVehicleSpecsWidgetUseCase(BuildContext context) {
-  final appLocalisationsCubit = AppLocalisationsCubit()..load({});
+  final appLocalisationsCubit = AppLocalisationsCubit()
+    ..load({
+      L10nKeys.vehicleSpecificationsSectionTitle: 'Vehicle specs',
+      L10nKeys.vehicleSpecificationBody: 'Body',
+      L10nKeys.vehicleSpecificationEngine: 'Engine',
+      L10nKeys.vehicleSpecificationTransmission: 'Transmission',
+      L10nKeys.vehicleSpecificationMileage: 'Mileage',
+      L10nKeys.unknownLabel: 'Unknown',
+      L10nKeys.vehicleSpecificationColor: 'Color',
+      L10nKeys.vehicleSpecificationYear: 'Year',
+    });
 
   final detailsPageCubit = MockDetailsPageCubit(context);
 
@@ -49,5 +60,3 @@ Widget buildVehicleSpecsWidgetUseCase(BuildContext context) {
     ),
   );
 }
-
- */

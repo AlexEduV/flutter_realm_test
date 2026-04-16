@@ -4,6 +4,7 @@ import 'package:test_flutter_project/presentation/pages/account/widgets/account_
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.usecase.dart';
+import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.usecase.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.usecase.dart';
@@ -84,6 +85,16 @@ class WidgetBookApp extends StatelessWidget {
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
                       builder: (context) => buildOwnerWidgetUseCase(context),
+                    ),
+                  ],
+                ),
+
+                WidgetbookComponent(
+                  name: 'Vehicle specs widget',
+                  useCases: [
+                    WidgetbookUseCase(
+                      name: defaultUseCaseName,
+                      builder: (context) => buildVehicleSpecsWidgetUseCase(context),
                     ),
                   ],
                 ),
