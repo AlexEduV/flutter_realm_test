@@ -2,7 +2,7 @@ enum HttpRequestType {
   get('GET'),
   post('POST');
 
-  final String label;
+  final String name;
 
-  const HttpRequestType(this.label);
+  const HttpRequestType(this.name);
 }

@@ -23,7 +23,7 @@ class AppHttpClientImpl implements AppHttpClient {
     return appInterceptor.onRequest(
       request: () => _client.get(url, headers: headers),
       url: url.path,
-      requestType: HttpRequestType.get.label,
+      requestType: HttpRequestType.get.name,
     );
   }
 
@@ -37,7 +37,7 @@ class AppHttpClientImpl implements AppHttpClient {
     return appInterceptor.onRequest(
       request: () => _client.post(url, headers: headers, body: body, encoding: encoding),
       url: url.path,
-      requestType: HttpRequestType.get.label,
+      requestType: HttpRequestType.get.name,
     );
   }
 }
