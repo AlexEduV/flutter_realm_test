@@ -80,12 +80,10 @@ class VehicleSpecsWidget extends StatelessWidget {
 
           BlocBuilder<DetailsPageCubit, DetailsPageState>(
             builder: (context, state) {
-              final double expandedHeight = 193.0;
-
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                height: state.isVehicleSpecsExpanded ? expandedHeight : 0,
+                height: state.isVehicleSpecsExpanded ? AppDimensions.vehicleSpecsExpandedSize : 0,
                 child: SingleChildScrollView(
                   physics: const NeverScrollableScrollPhysics(),
                   child: VehicleSpecsContent(car: car, carColor: state.carColor),

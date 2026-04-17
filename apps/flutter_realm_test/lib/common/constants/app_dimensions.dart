@@ -51,4 +51,6 @@ class AppDimensions {
   static const expandedMessageHeight = 320.0;
 
   static const imageMessageSize = 200.0;
+
+  static const vehicleSpecsExpandedSize = 193.0;
 }
