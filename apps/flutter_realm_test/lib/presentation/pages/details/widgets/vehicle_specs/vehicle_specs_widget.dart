@@ -82,16 +82,13 @@ class VehicleSpecsWidget extends StatelessWidget {
             builder: (context, state) {
               final double expandedHeight = 193.0;
 
-              return SizedBox(
-                width: double.infinity,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  height: state.isVehicleSpecsExpanded ? expandedHeight : 0,
-                  child: SingleChildScrollView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    child: VehicleSpecsContent(car: car, carColor: state.carColor),
-                  ),
+              return AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                height: state.isVehicleSpecsExpanded ? expandedHeight : 0,
+                child: SingleChildScrollView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  child: VehicleSpecsContent(car: car, carColor: state.carColor),
                 ),
               );
             },
