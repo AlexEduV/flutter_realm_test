@@ -50,7 +50,9 @@ class VehicleSpecsContent extends StatelessWidget {
               children: [
                 SpecificationItem(
                   title: context.tr(L10nKeys.vehicleSpecificationMileage),
-                  subtitle: (car.mileage ?? context.tr(L10nKeys.unknownLabel)).toString(),
+                  subtitle: car.mileage != null
+                      ? ('${car.mileage} ${context.tr(L10nKeys.distanceKm)}')
+                      : context.tr(L10nKeys.unknownLabel),
                 ),
 
                 SpecificationItem(
