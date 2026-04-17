@@ -9,14 +9,16 @@ import '../../../../../common/constants/app_dimensions.dart';
 
 class HomeBottomBarItem extends StatelessWidget {
   final int index;
-  final IconData icon;
+  final IconData selectedIcon;
+  final IconData unselectedIcon;
   final String semanticsLabel;
   final String label;
   final double rotationAngle;
 
   const HomeBottomBarItem({
     required this.index,
-    required this.icon,
+    required this.selectedIcon,
+    required this.unselectedIcon,
     required this.semanticsLabel,
     required this.label,
     this.rotationAngle = 0.0,
@@ -30,7 +32,9 @@ class HomeBottomBarItem extends StatelessWidget {
         final isSelected = state.currentSelectedTabIndex == index;
         final color = isSelected
             ? AppColors.headerColor
-            : AppColors.headerColor.withAlpha((0.38 * 255).toInt());
+            : AppColors.headerColor.withAlpha((0.48 * 255).toInt());
+
+        final icon = isSelected ? selectedIcon : unselectedIcon;
 
         return AppSemantics(
           label: semanticsLabel,

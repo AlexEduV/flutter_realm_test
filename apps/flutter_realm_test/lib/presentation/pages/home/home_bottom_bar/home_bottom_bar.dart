@@ -44,14 +44,16 @@ class HomeBottomBar extends StatelessWidget {
             HomeBottomBarItem(
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
               index: AppConstants.homeTabExplore,
-              icon: Icons.web_stories_outlined,
+              unselectedIcon: Icons.web_stories_outlined,
+              selectedIcon: Icons.web_stories,
               label: context.tr(L10nKeys.explorePageTitle),
               rotationAngle: 90.0.toRadians,
             ),
             HomeBottomBarItem(
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemFavorites,
               index: AppConstants.homeTabFavorites,
-              icon: Icons.favorite_border_outlined,
+              unselectedIcon: Icons.favorite_border_outlined,
+              selectedIcon: Icons.favorite_outlined,
               label: context.tr(L10nKeys.favoritesPageTitle),
             ),
 
@@ -67,13 +69,15 @@ class HomeBottomBar extends StatelessWidget {
 
             HomeBottomBarItem(
               index: AppConstants.homeTabInbox,
-              icon: Icons.mail_outlined,
+              unselectedIcon: Icons.mail_outlined,
+              selectedIcon: Icons.mail,
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemInbox,
               label: context.tr(L10nKeys.inboxPageTitle),
             ),
             HomeBottomBarItem(
               index: AppConstants.homeTabAccount,
-              icon: Icons.person_2_outlined,
+              unselectedIcon: Icons.person_2_outlined,
+              selectedIcon: Icons.person_2,
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemAccount,
               label: context.tr(L10nKeys.accountPageTitle),
             ),

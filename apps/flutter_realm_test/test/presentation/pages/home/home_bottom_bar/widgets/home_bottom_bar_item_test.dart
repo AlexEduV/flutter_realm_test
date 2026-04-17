@@ -21,11 +21,21 @@ void main() {
       state = const HomeBottomBarState(currentSelectedTabIndex: 1);
     });
 
-    Widget buildTestWidget({required int index, required IconData icon}) {
+    Widget buildTestWidget({
+      required int index,
+      required IconData selectedIcon,
+      required IconData unselectedIcon,
+    }) {
       return MaterialApp(
         home: BlocProvider<HomeBottomBarCubit>.value(
           value: mockCubit,
-          child: HomeBottomBarItem(index: index, icon: icon, semanticsLabel: 'test', label: 'test'),
+          child: HomeBottomBarItem(
+            index: index,
+            selectedIcon: selectedIcon,
+            unselectedIcon: unselectedIcon,
+            semanticsLabel: 'test',
+            label: 'test',
+          ),
         ),
       );
     }
@@ -34,7 +44,9 @@ void main() {
       when(mockCubit.state).thenReturn(state);
       when(mockCubit.stream).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
 
-      await tester.pumpWidget(buildTestWidget(index: 1, icon: Icons.home));
+      await tester.pumpWidget(
+        buildTestWidget(index: 1, selectedIcon: Icons.home, unselectedIcon: Icons.home_outlined),
+      );
       expect(find.byIcon(Icons.home), findsOneWidget);
     });
 
@@ -46,7 +58,13 @@ void main() {
         ]),
       );
 
-      await tester.pumpWidget(buildTestWidget(index: 2, icon: Icons.search));
+      await tester.pumpWidget(
+        buildTestWidget(
+          index: 2,
+          selectedIcon: Icons.search,
+          unselectedIcon: Icons.search_outlined,
+        ),
+      );
       final icon = tester.widget<Icon>(find.byType(Icon));
       final foregroundColor = icon.color;
 
@@ -59,7 +77,13 @@ void main() {
         (_) => Stream.fromIterable([const HomeBottomBarState(currentSelectedTabIndex: 0)]),
       );
 
-      await tester.pumpWidget(buildTestWidget(index: 1, icon: Icons.search));
+      await tester.pumpWidget(
+        buildTestWidget(
+          index: 1,
+          selectedIcon: Icons.search,
+          unselectedIcon: Icons.search_outlined,
+        ),
+      );
       final icon = tester.widget<Icon>(find.byType(Icon));
       final foregroundColor = icon.color;
 
@@ -70,7 +94,9 @@ void main() {
       when(mockCubit.state).thenReturn(state);
       when(mockCubit.stream).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
 
-      await tester.pumpWidget(buildTestWidget(index: 1, icon: Icons.home));
+      await tester.pumpWidget(
+        buildTestWidget(index: 1, selectedIcon: Icons.home, unselectedIcon: Icons.home_outlined),
+      );
       await tester.tap(find.byType(Icon));
       await tester.pump();
 
