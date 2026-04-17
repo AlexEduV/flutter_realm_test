@@ -77,22 +77,24 @@ class OwnerWidget extends StatelessWidget {
                             ),
                           ),
 
-                          const Icon(
-                            Icons.location_pin,
-                            size: AppDimensions.detailsPageItemIconSize,
-                            color: Colors.grey,
-                          ),
+                          if (car.distanceTo != null) ...[
+                            const Icon(
+                              Icons.location_pin,
+                              size: AppDimensions.detailsPageItemIconSize,
+                              color: Colors.grey,
+                            ),
 
-                          Flexible(
-                            child: Text(
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              '${car.distanceTo ?? ''} ${context.tr(L10nKeys.distanceWidgetText)}',
-                              style: AppTextStyles.zonaPro16Grey.copyWith(
-                                fontWeight: FontWeight.w400,
+                            Flexible(
+                              child: Text(
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                '${car.distanceTo ?? ''} ${context.tr(L10nKeys.distanceAway)}',
+                                style: AppTextStyles.zonaPro16Grey.copyWith(
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ],
                       ),
                     ],
@@ -171,7 +173,7 @@ Widget _basePreview({required bool isOwner}) {
   appLocalisationsCubit.load({
     L10nKeys.messageSenderYou: 'You',
     L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
-    L10nKeys.distanceWidgetText: 'km',
+    L10nKeys.distanceAway: 'km',
     L10nKeys.ownerSectionContactButtonTitle: 'Send a message',
   });
 
