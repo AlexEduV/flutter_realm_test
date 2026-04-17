@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
@@ -18,70 +20,82 @@ class HomeBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(AppDimensions.normalL),
-          topRight: Radius.circular(AppDimensions.normalL),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withAlpha(60),
-            spreadRadius: 2,
-            blurRadius: 8,
-            offset: const Offset(0, -2),
-          ),
-        ],
-        color: Colors.white,
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(AppDimensions.normalL),
+        topRight: Radius.circular(AppDimensions.normalL),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(
-          AppDimensions.normalXS,
-        ).copyWith(bottom: AppDimensions.majorS),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            HomeBottomBarItem(
-              semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
-              index: AppConstants.homeTabExplore,
-              unselectedIcon: Icons.web_stories_outlined,
-              selectedIcon: Icons.web_stories,
-              label: context.tr(L10nKeys.explorePageTitle),
-              rotationAngle: 90.0.toRadians,
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: AppDimensions.normalM,
+          sigmaY: AppDimensions.normalM,
+        ), // Adjust blur as needed
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(AppDimensions.normalL),
+              topRight: Radius.circular(AppDimensions.normalL),
             ),
-            HomeBottomBarItem(
-              semanticsLabel: AppSemanticsLabels.homeBottomBarItemFavorites,
-              index: AppConstants.homeTabFavorites,
-              unselectedIcon: Icons.favorite_border_outlined,
-              selectedIcon: Icons.favorite_outlined,
-              label: context.tr(L10nKeys.favoritesPageTitle),
-            ),
-
-            AppSemantics(
-              button: true,
-              label: AppSemanticsLabels.homeBottomBarItemAdd,
-              child: AnimatedAddButton(
-                onPressed: onAddPressed,
-                backgroundColor: AppColors.headerColor,
-                size: AppDimensions.bottomAppBarIconEnlargedSize,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withAlpha(60),
+                spreadRadius: 2,
+                blurRadius: 8,
+                offset: const Offset(0, -2),
               ),
-            ),
+            ],
+            color: Colors.white.withAlpha((0.8 * 255).toInt()),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(
+              AppDimensions.normalXS,
+            ).copyWith(bottom: AppDimensions.majorS),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                HomeBottomBarItem(
+                  semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
+                  index: AppConstants.homeTabExplore,
+                  unselectedIcon: Icons.web_stories_outlined,
+                  selectedIcon: Icons.web_stories,
+                  label: context.tr(L10nKeys.explorePageTitle),
+                  rotationAngle: 90.0.toRadians,
+                ),
+                HomeBottomBarItem(
+                  semanticsLabel: AppSemanticsLabels.homeBottomBarItemFavorites,
+                  index: AppConstants.homeTabFavorites,
+                  unselectedIcon: Icons.favorite_border_outlined,
+                  selectedIcon: Icons.favorite_outlined,
+                  label: context.tr(L10nKeys.favoritesPageTitle),
+                ),
 
-            HomeBottomBarItem(
-              index: AppConstants.homeTabInbox,
-              unselectedIcon: Icons.mail_outlined,
-              selectedIcon: Icons.mail,
-              semanticsLabel: AppSemanticsLabels.homeBottomBarItemInbox,
-              label: context.tr(L10nKeys.inboxPageTitle),
+                AppSemantics(
+                  button: true,
+                  label: AppSemanticsLabels.homeBottomBarItemAdd,
+                  child: AnimatedAddButton(
+                    onPressed: onAddPressed,
+                    backgroundColor: AppColors.headerColor,
+                    size: AppDimensions.bottomAppBarIconEnlargedSize,
+                  ),
+                ),
+
+                HomeBottomBarItem(
+                  index: AppConstants.homeTabInbox,
+                  unselectedIcon: Icons.mail_outlined,
+                  selectedIcon: Icons.mail,
+                  semanticsLabel: AppSemanticsLabels.homeBottomBarItemInbox,
+                  label: context.tr(L10nKeys.inboxPageTitle),
+                ),
+                HomeBottomBarItem(
+                  index: AppConstants.homeTabAccount,
+                  unselectedIcon: Icons.person_2_outlined,
+                  selectedIcon: Icons.person_2,
+                  semanticsLabel: AppSemanticsLabels.homeBottomBarItemAccount,
+                  label: context.tr(L10nKeys.accountPageTitle),
+                ),
+              ],
             ),
-            HomeBottomBarItem(
-              index: AppConstants.homeTabAccount,
-              unselectedIcon: Icons.person_2_outlined,
-              selectedIcon: Icons.person_2,
-              semanticsLabel: AppSemanticsLabels.homeBottomBarItemAccount,
-              label: context.tr(L10nKeys.accountPageTitle),
-            ),
-          ],
+          ),
         ),
       ),
     );
