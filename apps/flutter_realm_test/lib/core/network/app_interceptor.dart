@@ -15,11 +15,11 @@ class AppInterceptor implements BaseInterceptor {
   AppInterceptor(this._networkInfo, this._logger);
 
   @override
-  Future<Either<ServerFailure, String>> onRequest(
-    Future<Response> Function() request,
-    String url,
-    String requestType,
-  ) async {
+  Future<Either<ServerFailure, String>> onRequest({
+    required Future<Response> Function() request,
+    required String url,
+    required String requestType,
+  }) async {
     try {
       final isNetworkAvailable = await _networkInfo.isConnected;
       if (!isNetworkAvailable) {

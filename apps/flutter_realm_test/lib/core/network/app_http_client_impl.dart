@@ -21,9 +21,9 @@ class AppHttpClientImpl implements AppHttpClient {
   @override
   Future<Either<ServerFailure, String>> get(Uri url, {Map<String, String>? headers}) {
     return appInterceptor.onRequest(
-      () => _client.get(url, headers: headers),
-      url.path,
-      HttpRequestType.get.label,
+      request: () => _client.get(url, headers: headers),
+      url: url.path,
+      requestType: HttpRequestType.get.label,
     );
   }
 
@@ -35,9 +35,9 @@ class AppHttpClientImpl implements AppHttpClient {
     Encoding? encoding,
   }) {
     return appInterceptor.onRequest(
-      () => _client.post(url, headers: headers, body: body, encoding: encoding),
-      url.path,
-      HttpRequestType.get.label,
+      request: () => _client.post(url, headers: headers, body: body, encoding: encoding),
+      url: url.path,
+      requestType: HttpRequestType.get.label,
     );
   }
 }
