@@ -68,6 +68,7 @@ class VehicleSpecsWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(AppDimensions.minorXS),
                         backgroundColor: Colors.white,
                         minimumSize: Size.zero,
+                        highlightColor: AppColors.headerColor.withAlpha(50),
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       padding: const EdgeInsets.all(AppDimensions.minorXS),
