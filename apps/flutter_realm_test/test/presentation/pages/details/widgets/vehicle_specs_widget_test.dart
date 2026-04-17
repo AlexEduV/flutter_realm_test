@@ -111,12 +111,12 @@ void main() {
     expect(find.text('Color'), findsNothing);
 
     // Check that car data is not displayed
-    expect(find.text('Sedan'), findsNothing); // capitalizeFirst
+    expect(find.text('Sedan'), findsNothing);
     expect(find.text('Electric'), findsNothing);
     expect(find.text('Automatic'), findsNothing);
     expect(find.text('12345'), findsNothing);
     expect(find.text('2022'), findsNothing);
-    expect(find.text('red'), findsNothing); // capitalizeFirst
+    expect(find.text('Red'), findsNothing);
   });
 
   testWidgets('collapses and hides specifications when button is pressed again', (tester) async {
