@@ -9,7 +9,7 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_u
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
+import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 import 'vehicle_specs_widget_test.mocks.dart';

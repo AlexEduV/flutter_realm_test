@@ -4,17 +4,15 @@ import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/num_extension.dart';
-import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
-import 'package:test_flutter_project/presentation/pages/details/widgets/specification_item/specification_item.dart';
-import 'package:test_flutter_project/presentation/pages/details/widgets/specification_item/widgets/spec_color_widget.dart';
+import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs/widgets/vehicle_specs_content.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../common/constants/app_dimensions.dart';
-import '../../../../common/constants/app_text_styles.dart';
-import '../../../../l10n/l10n_keys.dart';
-import '../../../bloc/details/details_page_cubit.dart';
+import '../../../../../common/constants/app_dimensions.dart';
+import '../../../../../common/constants/app_text_styles.dart';
+import '../../../../../l10n/l10n_keys.dart';
+import '../../../../bloc/details/details_page_cubit.dart';
 
 class VehicleSpecsWidget extends StatelessWidget {
   final CarEntity car;
@@ -86,62 +84,7 @@ class VehicleSpecsWidget extends StatelessWidget {
                   alignment: AlignmentGeometry.topCenter,
                   curve: Curves.easeInOut,
                   child: state.isVehicleSpecsExpanded
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: AppDimensions.normalM),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  spacing: AppDimensions.normalS,
-                                  children: [
-                                    SpecificationItem(
-                                      title: context.tr(L10nKeys.vehicleSpecificationBody),
-                                      subtitle: car.bodyType.capitalizeFirst(),
-                                    ),
-
-                                    SpecificationItem(
-                                      title: context.tr(L10nKeys.vehicleSpecificationEngine),
-                                      subtitle: car.fuelType.capitalizeFirst(),
-                                    ),
-
-                                    SpecificationItem(
-                                      title: context.tr(L10nKeys.vehicleSpecificationTransmission),
-                                      subtitle: car.transmissionType.capitalizeFirst(),
-                                    ),
-                                  ],
-                                ),
-                              ),
-
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  spacing: AppDimensions.normalS,
-                                  children: [
-                                    SpecificationItem(
-                                      title: context.tr(L10nKeys.vehicleSpecificationMileage),
-                                      subtitle: (car.mileage ?? context.tr(L10nKeys.unknownLabel))
-                                          .toString(),
-                                    ),
-
-                                    SpecificationItem(
-                                      title: context.tr(L10nKeys.vehicleSpecificationYear),
-                                      subtitle: car.year ?? context.tr(L10nKeys.unknownLabel),
-                                    ),
-
-                                    SpecificationItem(
-                                      title: context.tr(L10nKeys.vehicleSpecificationColor),
-                                      subtitle:
-                                          car.color?.capitalizeFirst() ??
-                                          context.tr(L10nKeys.unknownLabel),
-                                      leading: SpecColorWidget(color: state.carColor),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                      ? VehicleSpecsContent(car: car, carColor: state.carColor)
                       : const SizedBox.shrink(),
                 ),
               );
