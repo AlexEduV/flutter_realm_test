@@ -137,8 +137,7 @@ class AnnouncementItemBody extends StatelessWidget {
                           children: [
                             getSpanIcon(icon: Icons.location_pin),
                             TextSpan(
-                              text:
-                                  '${car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceWidgetText)}',
+                              text: '${car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceAway)}',
                               style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
                             ),
                           ],

@@ -14,7 +14,7 @@ Widget buildOwnerWidgetUseCase(BuildContext context) {
     ..load({
       L10nKeys.messageSenderYou: 'You',
       L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
-      L10nKeys.distanceWidgetText: 'km',
+      L10nKeys.distanceAway: 'km',
       L10nKeys.ownerSectionContactButtonTitle: 'Send a message',
     });
 

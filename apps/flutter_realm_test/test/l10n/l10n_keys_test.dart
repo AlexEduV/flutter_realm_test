@@ -17,7 +17,7 @@ void main() {
       () => expect(L10nKeys.addCarButtonTooltip, 'actions.addCar.tooltip'),
     );
     test('deleteButtonTitle', () => expect(L10nKeys.deleteButtonTitle, 'actions.delete.title'));
-    test('distanceWidgetText', () => expect(L10nKeys.distanceWidgetText, 'widgets.distance.text'));
+    test('distanceWidgetText', () => expect(L10nKeys.distanceAway, 'widgets.distance.text'));
     test(
       'recommendedSectionTitle',
       () => expect(L10nKeys.recommendedSectionTitle, 'pages.explore.recommendedSection.title'),

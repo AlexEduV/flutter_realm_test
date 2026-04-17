@@ -12,7 +12,7 @@ class L10nKeys {
   static const String addCarButtonTooltip = 'actions.addCar.tooltip';
   static const String deleteButtonTitle = 'actions.delete.title';
 
-  static const String distanceWidgetText = 'widgets.distance.text';
+  static const String distanceAway = 'widgets.distance.text';
 
   static const String recommendedSectionTitle = 'pages.explore.recommendedSection.title';
   static const String lastSeenSectionTitle = 'pages.explore.lastSeenSection.title';
