@@ -87,7 +87,7 @@ void main() {
       final icon = tester.widget<Icon>(find.byType(Icon));
       final foregroundColor = icon.color;
 
-      expect(foregroundColor, AppColors.headerColor.withAlpha((0.38 * 255).toInt()));
+      expect(foregroundColor, AppColors.headerColor.withAlpha((0.48 * 255).toInt()));
     });
 
     testWidgets('calls updateSelectedIndex when pressed', (WidgetTester tester) async {

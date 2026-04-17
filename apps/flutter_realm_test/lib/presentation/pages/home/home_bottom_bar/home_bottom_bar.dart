@@ -32,7 +32,7 @@ class HomeBottomBar extends StatelessWidget {
             offset: const Offset(0, -2),
           ),
         ],
-        color: Colors.white.withAlpha((0.8 * 255).toInt()),
+        color: Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(
