@@ -84,12 +84,12 @@ class VehicleSpecsWidget extends StatelessWidget {
 
               return SizedBox(
                 width: double.infinity,
-                child: ClipRect(
-                  clipBehavior: Clip.antiAlias,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    height: state.isVehicleSpecsExpanded ? expandedHeight : 0,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                  height: state.isVehicleSpecsExpanded ? expandedHeight : 0,
+                  child: SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
                     child: VehicleSpecsContent(car: car, carColor: state.carColor),
                   ),
                 ),
