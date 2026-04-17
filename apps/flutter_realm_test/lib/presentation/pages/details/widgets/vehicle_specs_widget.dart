@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/common/extensions/num_extension.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
@@ -53,8 +54,9 @@ class VehicleSpecsWidget extends StatelessWidget {
                           .read<DetailsPageCubit>()
                           .setVehicleSpecsExpansionState(!state.isVehicleSpecsExpanded),
                       icon: AnimatedRotation(
-                        turns: state.isVehicleSpecsExpanded ? 0.0 : 0.5, // 0.5 turns = 180 degrees
+                        turns: state.isVehicleSpecsExpanded ? 0.toTurns : 180.toTurns,
                         duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
                         child: const Icon(
                           Icons.keyboard_arrow_down,
                           color: Colors.black,
