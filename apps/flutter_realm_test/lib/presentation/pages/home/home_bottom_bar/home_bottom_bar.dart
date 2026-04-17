@@ -18,8 +18,7 @@ class HomeBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: AppDimensions.normalL),
+    return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(AppDimensions.normalL),
@@ -36,7 +35,9 @@ class HomeBottomBar extends StatelessWidget {
         color: Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(AppDimensions.normalXS),
+        padding: const EdgeInsets.all(
+          AppDimensions.normalXS,
+        ).copyWith(bottom: AppDimensions.majorS),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
