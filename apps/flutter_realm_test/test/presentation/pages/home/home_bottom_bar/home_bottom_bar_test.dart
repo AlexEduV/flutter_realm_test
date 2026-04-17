@@ -108,11 +108,11 @@ void main() {
         ),
       );
 
-      final container = tester.widget<Container>(
-        find.descendant(of: find.byType(HomeBottomBar), matching: find.byType(Container).first),
+      final decoratedBox = tester.widget<DecoratedBox>(
+        find.descendant(of: find.byType(HomeBottomBar), matching: find.byType(DecoratedBox).first),
       );
 
-      final decoration = container.decoration as BoxDecoration;
+      final decoration = decoratedBox.decoration as BoxDecoration;
       expect(decoration.color, Colors.white);
       expect(
         decoration.borderRadius,
