@@ -80,15 +80,18 @@ class VehicleSpecsWidget extends StatelessWidget {
 
           BlocBuilder<DetailsPageCubit, DetailsPageState>(
             builder: (context, state) {
+              final double expandedHeight = 193.0;
+
               return SizedBox(
                 width: double.infinity,
-                child: AnimatedSize(
-                  duration: const Duration(milliseconds: 300),
-                  alignment: AlignmentGeometry.topCenter,
-                  curve: Curves.easeInOut,
-                  child: state.isVehicleSpecsExpanded
-                      ? VehicleSpecsContent(car: car, carColor: state.carColor)
-                      : const SizedBox.shrink(),
+                child: ClipRect(
+                  clipBehavior: Clip.antiAlias,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                    height: state.isVehicleSpecsExpanded ? expandedHeight : 0,
+                    child: VehicleSpecsContent(car: car, carColor: state.carColor),
+                  ),
                 ),
               );
             },

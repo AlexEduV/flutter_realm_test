@@ -21,49 +21,53 @@ class VehicleSpecsContent extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: AppDimensions.normalS,
-              children: [
-                SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationBody),
-                  subtitle: car.bodyType.capitalizeFirst(),
-                ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: AppDimensions.normalS,
+                children: [
+                  SpecificationItem(
+                    title: context.tr(L10nKeys.vehicleSpecificationBody),
+                    subtitle: car.bodyType.capitalizeFirst(),
+                  ),
 
-                SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationEngine),
-                  subtitle: car.fuelType.capitalizeFirst(),
-                ),
+                  SpecificationItem(
+                    title: context.tr(L10nKeys.vehicleSpecificationEngine),
+                    subtitle: car.fuelType.capitalizeFirst(),
+                  ),
 
-                SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationTransmission),
-                  subtitle: car.transmissionType.capitalizeFirst(),
-                ),
-              ],
+                  SpecificationItem(
+                    title: context.tr(L10nKeys.vehicleSpecificationTransmission),
+                    subtitle: car.transmissionType.capitalizeFirst(),
+                  ),
+                ],
+              ),
             ),
           ),
 
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: AppDimensions.normalS,
-              children: [
-                SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationMileage),
-                  subtitle: (car.mileage ?? context.tr(L10nKeys.unknownLabel)).toString(),
-                ),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: AppDimensions.normalS,
+                children: [
+                  SpecificationItem(
+                    title: context.tr(L10nKeys.vehicleSpecificationMileage),
+                    subtitle: (car.mileage ?? context.tr(L10nKeys.unknownLabel)).toString(),
+                  ),
 
-                SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationYear),
-                  subtitle: car.year ?? context.tr(L10nKeys.unknownLabel),
-                ),
+                  SpecificationItem(
+                    title: context.tr(L10nKeys.vehicleSpecificationYear),
+                    subtitle: car.year ?? context.tr(L10nKeys.unknownLabel),
+                  ),
 
-                SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationColor),
-                  subtitle: car.color?.capitalizeFirst() ?? context.tr(L10nKeys.unknownLabel),
-                  leading: SpecColorWidget(color: carColor),
-                ),
-              ],
+                  SpecificationItem(
+                    title: context.tr(L10nKeys.vehicleSpecificationColor),
+                    subtitle: car.color?.capitalizeFirst() ?? context.tr(L10nKeys.unknownLabel),
+                    leading: SpecColorWidget(color: carColor),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
