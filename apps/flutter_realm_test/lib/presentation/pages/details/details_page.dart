@@ -163,7 +163,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     spacing: AppDimensions.minorM,
                     children: [
                       Row(
-                        spacing: AppDimensions.normalXS,
+                        spacing: AppDimensions.minorM,
                         children: [
                           Flexible(
                             child: Text(
