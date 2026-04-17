@@ -42,6 +42,9 @@ class VehicleSpecsWidget extends StatelessWidget {
               ),
 
               BlocBuilder<DetailsPageCubit, DetailsPageState>(
+                buildWhen: (previous, current) =>
+                    previous.isLoading != current.isLoading ||
+                    previous.isVehicleSpecsExpanded != current.isVehicleSpecsExpanded,
                 builder: (context, state) {
                   return AppSemantics(
                     button: true,
