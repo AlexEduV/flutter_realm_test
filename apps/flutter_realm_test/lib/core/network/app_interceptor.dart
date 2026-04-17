@@ -10,51 +10,49 @@ import '../../common/enums/server_failure.dart';
 
 class AppInterceptor implements BaseInterceptor {
   final NetworkInfo _networkInfo;
-  final String _path;
   final BaseLogger _logger;
-  final String _requestType;
 
-  AppInterceptor(this._networkInfo, this._path, this._logger, this._requestType);
+  AppInterceptor(this._networkInfo, this._logger);
 
   @override
-  Future<Either<ServerFailure, String>> onRequest(Future<Response> Function() request) async {
+  Future<Either<ServerFailure, String>> onRequest(
+    Future<Response> Function() request,
+    String url,
+    String requestType,
+  ) async {
     try {
       final isNetworkAvailable = await _networkInfo.isConnected;
       if (!isNetworkAvailable) {
-        _logger.e('No Internet connection on $_requestType request at url $_path, 404');
+        _logger.e('No Internet connection on $requestType request at url $url, 404');
         return const Left(ServerFailure.noNetwork);
       }
 
       final response = await request();
 
       if (response.statusCode == HttpStatus.notFound) {
-        _logger.e('Not Found on $_requestType request at url $_path, 404');
+        _logger.e('Not Found on $request request at url $url, 404');
         return const Left(ServerFailure.notFound);
       }
 
       if (response.statusCode == HttpStatus.unauthorized) {
-        _logger.e('Unauthorised on $_requestType request at url $_path, 401');
+        _logger.e('Unauthorised on $requestType request at url $url, 401');
         return const Left(ServerFailure.unauthorized);
       }
 
       if (response.statusCode != HttpStatus.ok) {
-        _logger.e(
-          'Error during $_requestType request at url $_path, status: ${response.statusCode}',
-        );
+        _logger.e('Error during $requestType request at url $url, status: ${response.statusCode}');
         return const Left(ServerFailure.internalError);
       }
 
       if (response.body.isEmpty) {
-        _logger.e(
-          'Empty body on $_requestType request at url $_path, status: ${response.statusCode}',
-        );
+        _logger.e('Empty body on $requestType request at url $url, status: ${response.statusCode}');
         return const Left(ServerFailure.notAvailable);
       }
 
-      _logger.i('Successful $_requestType request at url $_path, status: ${response.statusCode}');
+      _logger.i('Successful $requestType request at url $url, status: ${response.statusCode}');
       return Right(response.body);
     } catch (e) {
-      _logger.e('Error during $_requestType request at url $_path, exception: $e');
+      _logger.e('Error during $requestType request at url $url, exception: $e');
       return const Left(ServerFailure.notAvailable);
     }
   }
