@@ -9,8 +9,7 @@ class VerifiedBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(AppDimensions.minorS),
-      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.green[700]),
-      child: const Icon(Icons.check, color: Colors.white, size: AppDimensions.normalXS),
+      child: Icon(Icons.beenhere_outlined, color: Colors.green[700], size: AppDimensions.normalL),
     );
   }
 }

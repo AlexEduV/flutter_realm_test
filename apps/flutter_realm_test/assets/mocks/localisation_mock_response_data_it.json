@@ -283,7 +283,8 @@
         "cancel": "Annulla",
         "activeState": "Attivo",
         "emptyState": "Vuoto",
-        "unknownState": "Sconosciuto"
+        "unknownState": "Sconosciuto",
+        "distanceMeasurementKm": "km"
       },
       "dialogs": {
         "clearViewHistory": {

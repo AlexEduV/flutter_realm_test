@@ -127,7 +127,7 @@ void main() {
         ),
       );
 
-      expect(find.byIcon(Icons.check), findsOneWidget);
+      expect(find.byIcon(Icons.beenhere_outlined), findsOneWidget);
     });
 
     testWidgets('calls onDismissed when delete action is pressed', (WidgetTester tester) async {

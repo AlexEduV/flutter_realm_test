@@ -7,7 +7,7 @@ import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
+import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
 
 class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
   final bool isExpanded;

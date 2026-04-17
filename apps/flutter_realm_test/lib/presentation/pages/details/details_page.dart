@@ -11,7 +11,7 @@ import 'package:test_flutter_project/presentation/bloc/details/details_page_stat
 import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.dart';
-import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs_widget.dart';
+import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/animated_favorite_icon.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
@@ -163,7 +163,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     spacing: AppDimensions.minorM,
                     children: [
                       Row(
-                        spacing: AppDimensions.normalXS,
+                        spacing: AppDimensions.minorM,
                         children: [
                           Flexible(
                             child: Text(

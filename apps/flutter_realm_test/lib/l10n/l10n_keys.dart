@@ -167,6 +167,7 @@ class L10nKeys {
   static const String confirmLabel = 'general.confirm';
   static const String cancelLabel = 'general.cancel';
   static const String unknownLabel = 'general.unknownState';
+  static const String distanceKm = 'general.distanceMeasurementKm';
 
   static const String clearViewHistoryDialogDescription = 'dialogs.clearViewHistory.description';
   static const String clearViewHistoryDialogConfirmLabel = 'dialogs.clearViewHistory.confirmLabel';

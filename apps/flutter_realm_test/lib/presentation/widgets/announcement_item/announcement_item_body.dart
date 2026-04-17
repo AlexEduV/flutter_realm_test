@@ -93,7 +93,7 @@ class AnnouncementItemBody extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
                 child: Row(
-                  spacing: AppDimensions.normalXS,
+                  spacing: AppDimensions.minorM,
                   children: [
                     Flexible(
                       child: AppSemantics(

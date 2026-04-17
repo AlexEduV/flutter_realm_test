@@ -90,6 +90,8 @@ class RealmLocalStorage implements BaseLocalStorage {
     final car = realm.all<Car>().query('carId == \$0', [id]).firstOrNull;
     if (car == null) return CarEntity.empty();
 
+    //todo: too many calls when just opening home page -> details;
+
     return car.toEntity();
   }
 
