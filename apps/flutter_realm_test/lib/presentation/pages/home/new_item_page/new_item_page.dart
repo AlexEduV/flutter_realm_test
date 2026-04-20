@@ -20,7 +20,6 @@ import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_p
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar.dart';
 
 import '../../../../common/constants/app_dimensions.dart';
-import '../../../../common/constants/app_semantics_labels.dart';
 import '../../../../core/di/injection_container.dart';
 import '../../../../domain/entities/car_entity.dart';
 import '../../../../domain/entities/owner_entity.dart';
@@ -28,7 +27,6 @@ import '../../../../domain/usecases/database/add_car_use_case.dart';
 import '../../../../domain/usecases/database/get_all_cars_use_case.dart';
 import '../../../../domain/usecases/database/get_current_max_car_id_use_case.dart';
 import '../../../bloc/home/explore_page/explore_page_cubit.dart';
-import '../../../widgets/app_semantics.dart';
 
 class NewItemPage extends StatefulWidget {
   const NewItemPage({super.key});
@@ -86,22 +84,6 @@ class _NewItemPageState extends State<NewItemPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(context.tr(L10nKeys.addNewItemPageTitle), style: AppTextStyles.zonaPro20),
-        leading: AppSemantics(
-          label: AppSemanticsLabels.backButton,
-          button: true,
-          child: IconButton(
-            onPressed: () {
-              if (context.canPop()) {
-                context.pop();
-              }
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              size: AppDimensions.appBarIconSize,
-              color: AppColors.headerColor,
-            ),
-          ),
-        ),
       ),
       body: Stack(
         alignment: AlignmentGeometry.center,
