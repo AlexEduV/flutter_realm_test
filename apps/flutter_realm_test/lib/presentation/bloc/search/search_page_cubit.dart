@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
+import 'package:test_flutter_project/common/extensions/list_extension.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
@@ -23,6 +24,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   final WatchCarsUseCase _watchCarsUseCase;
 
   void init() {
+    //todo: not localised
     emit(
       state.copyWith(
         minYearFieldParamsModel: FieldParamsModel.withLabel('Min:').copyWith(
@@ -78,27 +80,30 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   List<CarEntity> applyAllFilters(List<CarEntity> cars) {
+    final minYear = int.tryParse(state.selectedMinYear ?? '');
+    final maxYear = int.tryParse(state.selectedMaxYear ?? '');
+
+    final minPrice = int.tryParse(state.selectedMinPrice ?? '');
+    final maxPrice = int.tryParse(state.selectedMaxPrice ?? '');
+
     return cars.where((car) {
       // Year filter
-      final minYear = int.tryParse(state.selectedMinYear ?? '');
-      final carYear = int.tryParse(car.year ?? '');
-      if (minYear != null && (carYear ?? 0) < minYear) {
+      final carYear = int.tryParse(car.year ?? '') ?? 0;
+      if (minYear != null && carYear < minYear) {
         return false;
       }
 
-      final maxYear = int.tryParse(state.selectedMaxYear ?? '');
-      if (maxYear != null && (carYear ?? 0) > maxYear) {
+      if (maxYear != null && carYear > maxYear) {
         return false;
       }
 
       // Price filter
-      final minPrice = int.tryParse(state.selectedMinPrice ?? '');
-      if (minPrice != null && (car.price ?? 0) < minPrice) {
+      final carPrice = car.price ?? 0;
+      if (minPrice != null && carPrice < minPrice) {
         return false;
       }
 
-      final maxPrice = int.tryParse(state.selectedMaxPrice ?? '');
-      if (maxPrice != null && (car.price ?? 0) > maxPrice) {
+      if (maxPrice != null && carPrice > maxPrice) {
         return false;
       }
 
@@ -106,6 +111,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       if (car.type != state.currentSelectedType.name) {
         return false;
       }
+
       // Model filter
       if (state.selectedModels.isNotEmpty &&
           !(state.selectedModels[car.manufacturer]?.contains(car.model) ?? false)) {
@@ -113,21 +119,22 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       }
 
       //Color filter
-      if (state.selectedColors.isNotEmpty && !state.selectedColors.contains(car.color)) {
+      if (state.selectedColors.isNotEmptyAndNotContains(car.color)) {
         return false;
       }
 
       // Body type filter
-      if (state.selectedBodyTypes.isNotEmpty && !state.selectedBodyTypes.contains(car.bodyType)) {
+      if (state.selectedBodyTypes.isNotEmptyAndNotContains(car.bodyType)) {
         return false;
       }
+
       // Fuel type filter
-      if (state.selectedFuelTypes.isNotEmpty && !state.selectedFuelTypes.contains(car.fuelType)) {
+      if (state.selectedFuelTypes.isNotEmptyAndNotContains(car.fuelType)) {
         return false;
       }
+
       // Transmission type filter
-      if (state.selectedTransmissionTypes.isNotEmpty &&
-          !state.selectedTransmissionTypes.contains(car.transmissionType)) {
+      if (state.selectedTransmissionTypes.isNotEmptyAndNotContains(car.transmissionType)) {
         return false;
       }
 
@@ -151,17 +158,19 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
-    final Map<String, List<String>> modelsByManufacturer = {};
+    final Map<String, Set<String>> modelsByManufacturer = {};
 
     for (final car in cars) {
       if (car.type == state.currentSelectedType.name) {
-        modelsByManufacturer.putIfAbsent(car.manufacturer, () => []);
-        if (!modelsByManufacturer[car.manufacturer]!.contains(car.model)) {
-          modelsByManufacturer[car.manufacturer]!.add(car.model);
-        }
+        modelsByManufacturer.putIfAbsent(car.manufacturer, () => <String>{}).add(car.model);
       }
     }
-    emit(state.copyWith(allModels: modelsByManufacturer));
+
+    final Map<String, List<String>> modelsByManufacturerList = {
+      for (var entry in modelsByManufacturer.entries) entry.key: entry.value.toList(),
+    };
+
+    emit(state.copyWith(allModels: modelsByManufacturerList));
   }
 
   void updateColorListFromEntities(List<CarEntity> cars, CarType type) {

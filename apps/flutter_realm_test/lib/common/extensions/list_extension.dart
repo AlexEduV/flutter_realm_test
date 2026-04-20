@@ -4,3 +4,9 @@ extension IndexOrNullExtension<T> on List<T> {
     return index == -1 ? null : index;
   }
 }
+
+extension NotEmptyAndContains<T> on List<T> {
+  bool isNotEmptyAndNotContains(Object? element) {
+    return isNotEmpty && !contains(element);
+  }
+}
