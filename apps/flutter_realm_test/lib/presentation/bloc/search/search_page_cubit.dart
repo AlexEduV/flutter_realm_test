@@ -87,21 +87,22 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
     return cars.where((car) {
       // Year filter
-      final carYear = int.tryParse(car.year ?? '');
-      if (minYear != null && (carYear ?? 0) < minYear) {
+      final carYear = int.tryParse(car.year ?? '') ?? 0;
+      if (minYear != null && carYear < minYear) {
         return false;
       }
 
-      if (maxYear != null && (carYear ?? 0) > maxYear) {
+      if (maxYear != null && carYear > maxYear) {
         return false;
       }
 
       // Price filter
-      if (minPrice != null && (car.price ?? 0) < minPrice) {
+      final carPrice = car.price ?? 0;
+      if (minPrice != null && carPrice < minPrice) {
         return false;
       }
 
-      if (maxPrice != null && (car.price ?? 0) > maxPrice) {
+      if (maxPrice != null && carPrice > maxPrice) {
         return false;
       }
 
