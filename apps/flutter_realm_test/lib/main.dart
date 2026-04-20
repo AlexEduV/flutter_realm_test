@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
@@ -28,7 +29,11 @@ import 'package:test_flutter_project/utils/app_router.dart';
 import 'package:test_flutter_project/utils/image_cache_util.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  if (!kIsWeb) {
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  }
 
   await initDependenciesContainer();
 
@@ -41,6 +46,8 @@ void main() async {
   await serviceLocator<InitEnvUseCase>().call();
 
   ImageCacheUtil.initExtendedCacheSize();
+
+  FlutterNativeSplash.remove();
 
   runApp(const MyApp());
 }
@@ -70,56 +77,44 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) async {
-        if (didPop) return;
-
-        await SystemNavigator.pop();
-      },
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<ExplorePageCubit>(
-            create: (context) => serviceLocator<ExplorePageCubit>()..init(),
-          ),
-          BlocProvider<SearchPageCubit>(
-            create: (context) => serviceLocator<SearchPageCubit>()..init(),
-          ),
-          BlocProvider<UserDataCubit>(create: (context) => serviceLocator<UserDataCubit>()..init()),
-          BlocProvider<HomeBottomBarCubit>(
-            create: (context) => serviceLocator<HomeBottomBarCubit>(),
-          ),
-          BlocProvider<DetailsPageCubit>(create: (context) => serviceLocator<DetailsPageCubit>()),
-          BlocProvider<AuthenticationCubit>(
-            create: (context) => serviceLocator<AuthenticationCubit>()..init(),
-          ),
-          BlocProvider<InboxPageCubit>(
-            create: (context) => serviceLocator<InboxPageCubit>()..init(),
-          ),
-          BlocProvider<ArticlePageCubit>(create: (context) => serviceLocator<ArticlePageCubit>()),
-          BlocProvider<AppLocalisationsCubit>(
-            create: (context) => serviceLocator<AppLocalisationsCubit>(),
-          ),
-          BlocProvider<ShareCubit>(create: (context) => serviceLocator<ShareCubit>()),
-          BlocProvider<EditDialogCubit>(create: (context) => serviceLocator<EditDialogCubit>()),
-          BlocProvider<MessagesPageCubit>(create: (context) => serviceLocator<MessagesPageCubit>()),
-          BlocProvider<NewItemPageCubit>(
-            create: (context) => serviceLocator<NewItemPageCubit>()..init(),
-          ),
-        ],
-        child: MaterialApp.router(
-          title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
-            fontFamily: 'Zona Pro',
-            radioTheme: const RadioThemeData(
-              fillColor: WidgetStatePropertyAll(AppColors.headerColor),
-            ),
-          ),
-          routerConfig: AppRouter.router,
-          debugShowCheckedModeBanner: false,
-          showSemanticsDebugger: AppConstants.showSemantics,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ExplorePageCubit>(
+          create: (context) => serviceLocator<ExplorePageCubit>()..init(),
         ),
+        BlocProvider<SearchPageCubit>(
+          create: (context) => serviceLocator<SearchPageCubit>()..init(),
+        ),
+        BlocProvider<UserDataCubit>(create: (context) => serviceLocator<UserDataCubit>()..init()),
+        BlocProvider<HomeBottomBarCubit>(create: (context) => serviceLocator<HomeBottomBarCubit>()),
+        BlocProvider<DetailsPageCubit>(create: (context) => serviceLocator<DetailsPageCubit>()),
+        BlocProvider<AuthenticationCubit>(
+          create: (context) => serviceLocator<AuthenticationCubit>()..init(),
+        ),
+        BlocProvider<InboxPageCubit>(create: (context) => serviceLocator<InboxPageCubit>()..init()),
+        BlocProvider<ArticlePageCubit>(create: (context) => serviceLocator<ArticlePageCubit>()),
+        BlocProvider<AppLocalisationsCubit>(
+          create: (context) => serviceLocator<AppLocalisationsCubit>(),
+        ),
+        BlocProvider<ShareCubit>(create: (context) => serviceLocator<ShareCubit>()),
+        BlocProvider<EditDialogCubit>(create: (context) => serviceLocator<EditDialogCubit>()),
+        BlocProvider<MessagesPageCubit>(create: (context) => serviceLocator<MessagesPageCubit>()),
+        BlocProvider<NewItemPageCubit>(
+          create: (context) => serviceLocator<NewItemPageCubit>()..init(),
+        ),
+      ],
+      child: MaterialApp.router(
+        title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
+          fontFamily: 'Zona Pro',
+          radioTheme: const RadioThemeData(
+            fillColor: WidgetStatePropertyAll(AppColors.headerColor),
+          ),
+        ),
+        routerConfig: AppRouter.router,
+        debugShowCheckedModeBanner: false,
+        showSemanticsDebugger: AppConstants.showSemantics,
       ),
     );
   }
