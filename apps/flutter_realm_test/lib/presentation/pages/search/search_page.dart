@@ -1,10 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_dimensions.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/constants/app_text_styles.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
@@ -16,7 +14,6 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart
 import 'package:test_flutter_project/presentation/pages/search/widgets/filters_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
-import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/empty_results_placeholder_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/segmented_switch.dart';
 
@@ -60,22 +57,6 @@ class _SearchPageState extends State<SearchPage> {
             scrolledUnderElevation: isDrawerOpened ? 0.0 : null,
             centerTitle: true,
             title: Text(context.tr(L10nKeys.searchPageTitle), style: AppTextStyles.zonaPro20),
-            leading: AppSemantics(
-              label: AppSemanticsLabels.backButton,
-              button: true,
-              child: IconButton(
-                onPressed: () {
-                  if (context.canPop()) {
-                    context.pop();
-                  }
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  size: AppDimensions.appBarIconSize,
-                  color: AppColors.headerColor,
-                ),
-              ),
-            ),
             backgroundColor: AppColors.scaffoldColor,
             //hidden hamburger icon this way;
             actions: [const SizedBox.shrink()],

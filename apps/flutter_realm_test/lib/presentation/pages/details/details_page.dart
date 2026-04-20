@@ -57,10 +57,10 @@ class _DetailsPageState extends State<DetailsPage> {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: () => context.pop(),
-          icon: const AppSemantics(
+          icon: AppSemantics(
             button: true,
-            label: AppSemanticsLabels.backButton,
-            child: Icon(
+            label: MaterialLocalizations.of(context).backButtonTooltip,
+            child: const Icon(
               Icons.arrow_back,
               size: AppDimensions.appBarIconSize,
               color: AppColors.headerColor,
