@@ -94,6 +94,9 @@ class L10nKeys {
   static const String fieldParamsFullNameRegexErrorMessage =
       'forms.fieldParams.fullName.regexErrorMessage';
 
+  static const String fieldParamsHintMax = 'forms.fieldParams.hintTextMax';
+  static const String fieldParamsHintMin = 'forms.fieldParams.hintTextMin';
+
   static const String authErrorUserNotFoundMessage = 'forms.warnings.userNotFound';
   static const String authErrorIncorrectPassword = 'forms.warnings.incorrectPassword';
   static const String authErrorUserAlreadyExists = 'forms.warnings.userAlreadyExists';

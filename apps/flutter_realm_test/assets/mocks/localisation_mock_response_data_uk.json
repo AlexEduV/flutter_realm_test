@@ -268,7 +268,9 @@
           "color": {
             "label": "Color *",
             "regexErrorMessage": "Please, enter a valid color."
-          }
+          },
+          "hintTextMin": "Min:",
+          "hintTextMax": "Max:"
         }
       },
       "dateFormatting": {

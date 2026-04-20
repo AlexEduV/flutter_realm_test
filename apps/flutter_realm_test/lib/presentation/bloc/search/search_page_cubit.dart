@@ -24,29 +24,48 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   final WatchCarsUseCase _watchCarsUseCase;
 
   void init() {
-    //todo: not localised
     emit(
       state.copyWith(
-        minYearFieldParamsModel: FieldParamsModel.withLabel('Min:').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.filterValidationMessage,
-          ),
-        ),
-        maxYearFieldParamsModel: FieldParamsModel.withLabel('Max:').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.filterValidationMessage,
-          ),
-        ),
-        minPriceFieldParamsModel: FieldParamsModel.withLabel('Min:').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.filterValidationMessage,
-          ),
-        ),
-        maxPriceFieldParamsModel: FieldParamsModel.withLabel('Max:').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.filterValidationMessage,
-          ),
-        ),
+        minYearFieldParamsModel:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsHintMin,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.filterValidationMessage,
+              ),
+            ),
+        maxYearFieldParamsModel:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsHintMax,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.filterValidationMessage,
+              ),
+            ),
+        minPriceFieldParamsModel:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsHintMin,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.filterValidationMessage,
+              ),
+            ),
+        maxPriceFieldParamsModel:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsHintMax,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.filterValidationMessage,
+              ),
+            ),
       ),
     );
 
