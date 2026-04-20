@@ -98,7 +98,12 @@ void main() {
     when(searchCubit.getSelectedFilterCount()).thenReturn(0);
 
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(userCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(userCubit.stream).thenAnswer(
+      (_) => Stream.fromIterable([
+        const UserDataState(favoriteIds: []),
+        const UserDataState(favoriteIds: ['1']),
+      ]),
+    );
     when(userCubit.user).thenReturn(
       UserEntity.initial(
         userId: '5',
@@ -198,15 +203,18 @@ void main() {
         searchCubit: searchCubit,
         userCubit: userCubit,
         appLocalisationsCubit: appLocalisationsCubit,
-        searchState: SearchPageState(results: [car]),
+        searchState: SearchPageState(results: [car], isLoading: false),
       ),
     );
 
     await tester.pump();
     await tester.pumpAndSettle();
-    //todo: the list items are not loading to the frame, even though the debug mode stops at the widget
-    // and dumpDebugApp
+
     expect(find.byType(SearchPage), findsOneWidget);
+    expect(find.byType(Scaffold), findsOneWidget);
+    expect(find.byType(EmptyResultsPlaceholderWidget), findsNothing);
+    //todo: the app does not see the Grid or the ListItem;
+    //expect(find.byType(AnnouncementListItem), findsOneWidget);
 
     tester.view.physicalSize = initialSize;
     tester.view.devicePixelRatio = initialPixelRatio;
