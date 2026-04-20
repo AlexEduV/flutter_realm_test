@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -14,11 +17,18 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/usecases/database/add_car_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
+import 'package:test_flutter_project/presentation/pages/home/home_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/new_item_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/item_info_form.dart';
@@ -26,12 +36,14 @@ import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_p
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
+import '../../../bloc/user/user_data_cubit_test.mocks.dart';
 import 'new_item_page_test.mocks.dart';
 import 'sub_pages/car_type_picker_test.mocks.dart';
 
 @GenerateMocks([AddCarUseCase, GetAllCarsUseCase, GetCurrentMaxCarIdUseCase])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
+  final mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
 
   setUpAll(() {
     provideDummy(const NewItemPageState());
@@ -41,12 +53,16 @@ void main() {
     serviceLocator.registerSingleton<AddCarUseCase>(MockAddCarUseCase());
     serviceLocator.registerSingleton<GetAllCarsUseCase>(MockGetAllCarsUseCase());
     serviceLocator.registerSingleton<GetCurrentMaxCarIdUseCase>(MockGetCurrentMaxCarIdUseCase());
+    serviceLocator.registerSingleton<CheckLocationPermissionStatusUseCase>(
+      mockCheckLocationPermissionStatusUseCase,
+    );
   });
 
   tearDown(() {
     serviceLocator.unregister<AddCarUseCase>();
     serviceLocator.unregister<GetAllCarsUseCase>();
     serviceLocator.unregister<GetCurrentMaxCarIdUseCase>();
+    serviceLocator.unregister<CheckLocationPermissionStatusUseCase>();
   });
 
   testWidgets('NewItemPage renders all main widgets', (WidgetTester tester) async {
@@ -134,28 +150,57 @@ void main() {
     final mockCubit = MockNewItemPageCubit();
     final mockUserDataCubit = MockUserDataCubit();
     final mockExplorePageCubit = MockExplorePageCubit();
+    final mockHomeBottomBarCubit = MockHomeBottomBarCubit();
 
     when(mockCubit.state).thenReturn(const NewItemPageState());
     when(mockCubit.stream).thenAnswer((_) => const Stream.empty());
 
+    when(mockExplorePageCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(mockExplorePageCubit.state).thenReturn(const ExplorePageState());
+
+    when(mockHomeBottomBarCubit.state).thenReturn(const HomeBottomBarState());
+    when(mockHomeBottomBarCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(mockUserDataCubit.state).thenReturn(const UserDataState());
+
+    when(
+      mockCheckLocationPermissionStatusUseCase.call(),
+    ).thenAnswer((_) async => PermissionStatus.granted);
+
     final router = GoRouter(
       routes: [
         GoRoute(
-          path: '/',
-          builder: (context, state) => MultiBlocProvider(
-            providers: [
-              BlocProvider<NewItemPageCubit>.value(value: mockCubit),
-              BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
-              BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
-              BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
-            ],
-            child: const MaterialApp(home: NewItemPage()),
-          ),
+          path: AppRoutes.home,
+          builder: (context, state) => const HomePage(),
+          routes: [
+            GoRoute(
+              path: AppRoutes.newItem,
+              pageBuilder: (context, state) {
+                return const CupertinoPage(child: NewItemPage());
+              },
+            ),
+          ],
         ),
       ],
     );
 
-    await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+    await tester.pumpWidget(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<NewItemPageCubit>.value(value: mockCubit),
+          BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
+          BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
+        ],
+        child: MaterialApp.router(routerConfig: router),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byType(AnimatedAddButton));
+    await tester.pump();
 
     // Tap the back button
     await tester.tap(find.byIcon(Icons.arrow_back));
