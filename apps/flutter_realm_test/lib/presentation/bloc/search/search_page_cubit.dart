@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart' show Cubit;
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
+import 'package:test_flutter_project/common/extensions/list_extension.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
@@ -78,8 +79,6 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   List<CarEntity> applyAllFilters(List<CarEntity> cars) {
-    //todo: inefficient algorithm;
-
     final minYear = int.tryParse(state.selectedMinYear ?? '');
     final maxYear = int.tryParse(state.selectedMaxYear ?? '');
 
@@ -118,23 +117,22 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       }
 
       //Color filter
-      if (state.selectedColors.isNotEmpty && !state.selectedColors.contains(car.color)) {
+      if (state.selectedColors.isNotEmptyAndNotContains(car.color)) {
         return false;
       }
 
       // Body type filter
-      if (state.selectedBodyTypes.isNotEmpty && !state.selectedBodyTypes.contains(car.bodyType)) {
+      if (state.selectedBodyTypes.isNotEmptyAndNotContains(car.bodyType)) {
         return false;
       }
 
       // Fuel type filter
-      if (state.selectedFuelTypes.isNotEmpty && !state.selectedFuelTypes.contains(car.fuelType)) {
+      if (state.selectedFuelTypes.isNotEmptyAndNotContains(car.fuelType)) {
         return false;
       }
 
       // Transmission type filter
-      if (state.selectedTransmissionTypes.isNotEmpty &&
-          !state.selectedTransmissionTypes.contains(car.transmissionType)) {
+      if (state.selectedTransmissionTypes.isNotEmptyAndNotContains(car.transmissionType)) {
         return false;
       }
 
