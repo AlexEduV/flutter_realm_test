@@ -41,6 +41,10 @@ void main() async {
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
 
+  //todo: on android, when going to Details page, or any other then root, then press 'square'
+  // and go to the app again, the system navigates 'back'; tried moving popScope, disabling pop action
+  // did not work.
+
   await serviceLocator<InitRegionModelsUseCase>().call();
   await serviceLocator<FetchRegionsUseCase>().call();
   await serviceLocator<InitEnvUseCase>().call();
