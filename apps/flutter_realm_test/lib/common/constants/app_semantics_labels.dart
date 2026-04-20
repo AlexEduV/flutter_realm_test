@@ -1,5 +1,5 @@
 class AppSemanticsLabels {
-  static const backButton = 'backButton';
+  static const backButton = 'Back';
 
   static const segmentedSwitchButton = 'segmentedSwitchButton';
   static const segmentedSwitch = 'segmentedSwitch';
