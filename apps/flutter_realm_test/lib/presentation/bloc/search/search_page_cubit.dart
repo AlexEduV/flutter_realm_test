@@ -78,26 +78,30 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   List<CarEntity> applyAllFilters(List<CarEntity> cars) {
+    //todo: inefficient algorithm;
+
+    final minYear = int.tryParse(state.selectedMinYear ?? '');
+    final maxYear = int.tryParse(state.selectedMaxYear ?? '');
+
+    final minPrice = int.tryParse(state.selectedMinPrice ?? '');
+    final maxPrice = int.tryParse(state.selectedMaxPrice ?? '');
+
     return cars.where((car) {
       // Year filter
-      final minYear = int.tryParse(state.selectedMinYear ?? '');
       final carYear = int.tryParse(car.year ?? '');
       if (minYear != null && (carYear ?? 0) < minYear) {
         return false;
       }
 
-      final maxYear = int.tryParse(state.selectedMaxYear ?? '');
       if (maxYear != null && (carYear ?? 0) > maxYear) {
         return false;
       }
 
       // Price filter
-      final minPrice = int.tryParse(state.selectedMinPrice ?? '');
       if (minPrice != null && (car.price ?? 0) < minPrice) {
         return false;
       }
 
-      final maxPrice = int.tryParse(state.selectedMaxPrice ?? '');
       if (maxPrice != null && (car.price ?? 0) > maxPrice) {
         return false;
       }
