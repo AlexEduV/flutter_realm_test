@@ -110,6 +110,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       if (car.type != state.currentSelectedType.name) {
         return false;
       }
+
       // Model filter
       if (state.selectedModels.isNotEmpty &&
           !(state.selectedModels[car.manufacturer]?.contains(car.model) ?? false)) {
@@ -125,10 +126,12 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       if (state.selectedBodyTypes.isNotEmpty && !state.selectedBodyTypes.contains(car.bodyType)) {
         return false;
       }
+
       // Fuel type filter
       if (state.selectedFuelTypes.isNotEmpty && !state.selectedFuelTypes.contains(car.fuelType)) {
         return false;
       }
+
       // Transmission type filter
       if (state.selectedTransmissionTypes.isNotEmpty &&
           !state.selectedTransmissionTypes.contains(car.transmissionType)) {
