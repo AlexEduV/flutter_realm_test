@@ -24,6 +24,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   final WatchCarsUseCase _watchCarsUseCase;
 
   void init() {
+    //todo: not localised
     emit(
       state.copyWith(
         minYearFieldParamsModel: FieldParamsModel.withLabel('Min:').copyWith(
@@ -157,17 +158,19 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
-    final Map<String, List<String>> modelsByManufacturer = {};
+    final Map<String, Set<String>> modelsByManufacturer = {};
 
     for (final car in cars) {
       if (car.type == state.currentSelectedType.name) {
-        modelsByManufacturer.putIfAbsent(car.manufacturer, () => []);
-        if (!modelsByManufacturer[car.manufacturer]!.contains(car.model)) {
-          modelsByManufacturer[car.manufacturer]!.add(car.model);
-        }
+        modelsByManufacturer.putIfAbsent(car.manufacturer, () => <String>{}).add(car.model);
       }
     }
-    emit(state.copyWith(allModels: modelsByManufacturer));
+
+    final Map<String, List<String>> modelsByManufacturerList = {
+      for (var entry in modelsByManufacturer.entries) entry.key: entry.value.toList(),
+    };
+
+    emit(state.copyWith(allModels: modelsByManufacturerList));
   }
 
   void updateColorListFromEntities(List<CarEntity> cars, CarType type) {
