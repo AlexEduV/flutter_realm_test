@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_flutter_project/common/constants/api_constants.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import 'package:test_flutter_project/common/constants/app_text_styles.dart';
@@ -52,7 +53,7 @@ class _ArticlePageState extends State<ArticlePage> {
                     await serviceLocator<ShareCubit>().share(
                       ShareParamsModel(
                         title: '${state.article?.title}',
-                        text: 'https://example.com/articles/?id=${widget.articleId}',
+                        text: '${ApiConstants.webHost}articles/?id=${widget.articleId}',
                       ),
                     );
                   },
