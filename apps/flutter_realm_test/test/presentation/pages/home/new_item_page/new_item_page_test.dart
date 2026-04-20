@@ -27,7 +27,6 @@ import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_it
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/new_item_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
@@ -169,6 +168,7 @@ void main() {
     ).thenAnswer((_) async => PermissionStatus.granted);
 
     final router = GoRouter(
+      initialLocation: AppRoutes.home + AppRoutes.newItem,
       routes: [
         GoRoute(
           path: AppRoutes.home,
@@ -199,16 +199,13 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byType(AnimatedAddButton));
-    await tester.pump();
-
     // Tap the back button
     await tester.tap(find.byIcon(Icons.arrow_back));
     await tester.pumpAndSettle();
 
     // The page should be popped (not present)
-    //todo: this test is not working, because canPop returns false
-    expect(find.byType(NewItemPage), findsOneWidget);
+    expect(find.byType(NewItemPage), findsNothing);
+    expect(find.byType(HomePage), findsOneWidget);
   });
 
   testWidgets('insertItem calls AddCarUseCase and updates ExplorePageCubit', (
