@@ -59,42 +59,34 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: true,
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop) {
-          return;
-        }
-      },
-      child: Scaffold(
-        backgroundColor: AppColors.scaffoldColor,
-        body: BlocListener<HomeBottomBarCubit, HomeBottomBarState>(
-          listenWhen: (previous, current) {
-            _bottomBarIndexDiff =
-                (current.currentSelectedTabIndex - previous.currentSelectedTabIndex).abs();
+    return Scaffold(
+      backgroundColor: AppColors.scaffoldColor,
+      body: BlocListener<HomeBottomBarCubit, HomeBottomBarState>(
+        listenWhen: (previous, current) {
+          _bottomBarIndexDiff = (current.currentSelectedTabIndex - previous.currentSelectedTabIndex)
+              .abs();
 
-            return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
-          },
-          listener: (context, state) {
-            _pageController.animateToPage(
-              state.currentSelectedTabIndex,
-              duration: Duration(milliseconds: 300 * _bottomBarIndexDiff),
-              curve: Curves.easeInOut,
-            );
-          },
-          child: PageView(
-            controller: _pageController,
-            physics: const NeverScrollableScrollPhysics(),
-            children: [
-              ExplorePage(scrollController: scrollController),
-              const FavoritesPage(),
-              const InboxPage(),
-              const AccountPage(),
-            ],
-          ),
+          return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
+        },
+        listener: (context, state) {
+          _pageController.animateToPage(
+            state.currentSelectedTabIndex,
+            duration: Duration(milliseconds: 300 * _bottomBarIndexDiff),
+            curve: Curves.easeInOut,
+          );
+        },
+        child: PageView(
+          controller: _pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            ExplorePage(scrollController: scrollController),
+            const FavoritesPage(),
+            const InboxPage(),
+            const AccountPage(),
+          ],
         ),
-        bottomNavigationBar: HomeBottomBar(onAddPressed: _addCarToBase),
       ),
+      bottomNavigationBar: HomeBottomBar(onAddPressed: _addCarToBase),
     );
   }
 
