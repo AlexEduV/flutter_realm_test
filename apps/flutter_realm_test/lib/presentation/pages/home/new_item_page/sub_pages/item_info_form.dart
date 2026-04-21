@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/constants/app_dimensions.dart';
@@ -66,18 +67,43 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
 
               BlocBuilder<NewItemPageCubit, NewItemPageState>(
                 builder: (context, state) {
-                  final manufacturers = state.autoCompleteEntities
-                      .map((element) => element.manufacturer)
-                      .toList();
+                  final manufacturers = state.autoCompleteEntities;
 
-                  return Autocomplete<String>(
+                  return Autocomplete<CarAutoCompleteEntity>(
                     optionsBuilder: (TextEditingValue textEditingValue) {
                       if (textEditingValue.text == '') {
-                        return const Iterable<String>.empty();
+                        return const Iterable<CarAutoCompleteEntity>.empty();
                       }
-                      return manufacturers.where((String option) {
-                        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                      return manufacturers.where((option) {
+                        return option.manufacturer.toLowerCase().contains(
+                          textEditingValue.text.toLowerCase(),
+                        );
                       });
+                    },
+                    displayStringForOption: (option) => option.manufacturer,
+                    optionsViewBuilder: (context, onSelected, options) {
+                      return Align(
+                        alignment: Alignment.topLeft,
+                        child: Material(
+                          child: SizedBox(
+                            width: 300,
+                            child: ListView.builder(
+                              padding: const EdgeInsets.all(AppDimensions.minorL),
+                              itemCount: options.length,
+                              itemBuilder: (context, index) {
+                                final option = options.elementAt(index);
+                                return ListTile(
+                                  // leading: option.imageSrc != null
+                                  //     ? SvgPicture.asset(option.imageSrc!)
+                                  //     : null,
+                                  title: Text(option.manufacturer),
+                                  onTap: () => onSelected(option),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      );
                     },
                     fieldViewBuilder:
                         (context, textEditingController, focusNode, onFieldSubmitted) {
@@ -111,9 +137,11 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                             maxLength: state.manufacturerFieldParams?.maxLength,
                           );
                         },
-                    onSelected: (String selection) {
-                      manufacturerTextController.text = selection;
-                      context.read<NewItemPageCubit>().updateManufacturerText(selection);
+                    onSelected: (CarAutoCompleteEntity selection) {
+                      final manufacturer = selection.manufacturer;
+
+                      manufacturerTextController.text = manufacturer;
+                      context.read<NewItemPageCubit>().updateManufacturerText(manufacturer);
                     },
                   );
                 },
