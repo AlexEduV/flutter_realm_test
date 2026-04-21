@@ -41,6 +41,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
   final colorTextController = TextEditingController();
   final priceTextController = TextEditingController();
 
+  String? selectedManufacturerImageSrc;
+
   @override
   void initState() {
     super.initState();
@@ -119,7 +121,7 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                                         ? SvgPicture.asset(
                                             width: AppDimensions.majorS,
                                             height: AppDimensions.majorS,
-                                            '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc!}',
+                                            '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc ?? ''}',
                                           )
                                         : const SizedBox(
                                             width: AppDimensions.majorS,
@@ -128,6 +130,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                                     title: Text(option.manufacturer),
                                     onTap: () {
                                       onSelected(option);
+                                      selectedManufacturerImageSrc =
+                                          '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc ?? ''}';
                                       widget.manufacturerFocusNode.unfocus();
                                     },
                                   );
@@ -168,6 +172,7 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                             },
                             padding: 0.0,
                             maxLength: state.manufacturerFieldParams?.maxLength,
+                            leadingSvg: selectedManufacturerImageSrc,
                           );
                         },
                     onSelected: (CarAutoCompleteEntity selection) {
