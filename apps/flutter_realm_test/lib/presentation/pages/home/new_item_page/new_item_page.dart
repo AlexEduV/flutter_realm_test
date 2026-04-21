@@ -55,7 +55,7 @@ class _NewItemPageState extends State<NewItemPage> {
 
     final initIndex = ItemSetupTab.type.index;
 
-    final cubit = context.read<NewItemPageCubit>();
+    final cubit = context.read<NewItemPageCubit>()..init();
     cubit.updateTabIndex(initIndex);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
