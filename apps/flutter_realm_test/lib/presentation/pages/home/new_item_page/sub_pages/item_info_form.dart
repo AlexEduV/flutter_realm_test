@@ -199,6 +199,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                       [];
 
                   return Autocomplete<String>(
+                    focusNode: widget.modelFocusNode,
+                    textEditingController: modelTextController,
                     optionsBuilder: (TextEditingValue textEditingValue) {
                       if (textEditingValue.text == '') {
                         return const Iterable<String>.empty();
@@ -206,6 +208,49 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                       return models.where((String option) {
                         return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
                       });
+                    },
+                    optionsViewBuilder: (context, onSelected, options) {
+                      final borderRadius = BorderRadius.circular(AppDimensions.normalS);
+
+                      return Align(
+                        alignment: Alignment.topLeft,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: borderRadius,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withAlpha(38),
+                                offset: const Offset(0, 4),
+                                blurRadius: 8,
+                                spreadRadius: 0,
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: borderRadius,
+                            child: Material(
+                              borderRadius: borderRadius,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.zero,
+                                itemCount: options.length,
+                                itemBuilder: (context, index) {
+                                  final option = options.elementAt(index);
+                                  return ListTile(
+                                    tileColor: Colors.white,
+                                    title: Text(option),
+                                    onTap: () {
+                                      onSelected(option);
+                                      widget.modelFocusNode.unfocus();
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
                     },
                     fieldViewBuilder:
                         (context, textEditingController, focusNode, onFieldSubmitted) {
