@@ -5,6 +5,7 @@
     {
       "id": 1,
       "name": "Honda",
+      "icon": "honda.svg",
       "models": [
         "CBR600RR", "CBR1000RR", "CB500F", "CB650R", "Africa Twin", "Gold Wing", "Rebel 500", "Rebel 300", "CRF250L", "CRF1100L", "NC750X", "CB300R", "CB1100", "VFR800", "Shadow", "CBR250R", "CBR300R", "CBR650R", "CB500X", "CTX700"
       ]
@@ -12,6 +13,7 @@
     {
       "id": 2,
       "name": "Yamaha",
+      "icon": "yamaha.svg",
       "models": [
         "YZF-R1", "YZF-R6", "MT-07", "MT-09", "MT-10", "FZ-07", "FZ-09", "FZ-1", "XSR900", "XSR700", "FJR1300", "Tracer 900", "Tenere 700", "Super Tenere", "Bolt", "V Star", "WR250R", "XT250", "SR400", "FZ6"
       ]
@@ -26,6 +28,7 @@
     {
       "id": 4,
       "name": "Suzuki",
+      "icon": "suzuki.svg",
       "models": [
         "GSX-R600", "GSX-R750", "GSX-R1000", "SV650", "V-Strom 650", "V-Strom 1000", "Hayabusa", "Boulevard M109R", "Boulevard C50", "DR-Z400SM", "DR650SE", "GSX-S750", "GSX-S1000", "Burgman 650", "Burgman 400", "Intruder", "Katana", "GS500", "GSX250R", "Gixxer SF"
       ]
@@ -40,6 +43,7 @@
     {
       "id": 6,
       "name": "Ducati",
+      "icon": "ducati.svg",
       "models": [
         "Panigale V4", "Panigale V2", "Monster 821", "Monster 1200", "Scrambler", "Multistrada 950", "Multistrada V4", "Diavel", "XDiavel", "Hypermotard", "SuperSport", "Streetfighter V4", "DesertX", "848", "1098", "1199", "999", "ST4", "ST2", "GT1000"
       ]
@@ -47,6 +51,7 @@
     {
       "id": 7,
       "name": "BMW",
+      "icon": "bmw.svg",
       "models": [
         "R1250GS", "S1000RR", "F850GS", "F900R", "R nineT", "G310R", "G310GS", "K1600GT", "K1600GTL", "R1200GS", "F800GS", "F750GS", "S1000XR", "S1000R", "R1200RT", "C650GT", "C400X", "C400GT", "R18", "R1250RT"
       ]
@@ -54,6 +59,7 @@
     {
       "id": 8,
       "name": "KTM",
+      "icon": "ktm.svg",
       "models": [
         "Duke 390", "Duke 200", "Duke 250", "Duke 790", "Duke 890", "Duke 1290", "RC 390", "RC 200", "RC 125", "RC 8C", "Adventure 390", "Adventure 790", "Adventure 890", "Adventure 1290", "Super Duke R", "Super Adventure", "690 SMC R", "690 Enduro R", "450 Rally", "Freeride"
       ]
@@ -89,6 +95,7 @@
     {
       "id": 13,
       "name": "Suzuki (India)",
+      "icon": "suzuki.svg",
       "models": [
         "Access 125", "Gixxer", "Gixxer SF", "Burgman Street", "Intruder", "Hayate",
         "Slingshot", "Lets", "Swish", "Zeus", "Heat", "GS150R", "Shogun", "Shaolin", "Fiero", "Max 100", "Samurai", "AX100", "Sprinter", "Step"
@@ -132,6 +139,7 @@
     {
       "id": 19,
       "name": "Husqvarna",
+      "icon": "husqvarna.svg",
       "models": [
         "Vitpilen 401", "Svartpilen 401", "Vitpilen 701", "Svartpilen 701", "701 Supermoto", "701 Enduro", "FE 501", "TE 300i", "TC 250", "FC 450", "TE 150i", "FE 350", "FE 250", "TC 125", "TX 300", "FS 450", "SM 610", "SM 510", "TE 610", "WR 250"
       ]
