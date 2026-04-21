@@ -1,7 +1,7 @@
 import 'package:test_flutter_project/common/enums/body_type.dart';
-import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import '../../data/dto/car_dto.dart';
@@ -16,7 +16,7 @@ class CarEntity {
   final String? color;
   final OwnerEntity? owner;
   final String bodyType;
-  final String fuelType;
+  final EngineEntity engine;
   final String transmissionType;
   final bool isVerified;
   final PromoType? promoType;
@@ -33,7 +33,7 @@ class CarEntity {
     required this.isVerified,
     required this.type,
     required this.bodyType,
-    required this.fuelType,
+    required this.engine,
     required this.transmissionType,
     this.promoType,
     this.year,
@@ -54,7 +54,7 @@ class CarEntity {
       manufacturer: 'Test Motors',
       isVerified: true,
       bodyType: BodyType.sedan.name,
-      fuelType: FuelType.gasoline.name,
+      engine: EngineEntity.empty(),
       transmissionType: TransmissionType.manual.name,
       color: 'White',
     );
@@ -69,7 +69,7 @@ class CarEntity {
     String? color,
     OwnerEntity? owner,
     String? bodyType,
-    String? fuelType,
+    EngineEntity? engine,
     String? transmissionType,
     bool? isVerified,
     PromoType? promoType,
@@ -86,7 +86,7 @@ class CarEntity {
       isVerified: isVerified ?? this.isVerified,
       type: type ?? this.type,
       bodyType: bodyType ?? this.bodyType,
-      fuelType: fuelType ?? this.fuelType,
+      engine: engine ?? this.engine,
       transmissionType: transmissionType ?? this.transmissionType,
       promoType: promoType ?? this.promoType,
       year: year ?? this.year,
@@ -115,7 +115,7 @@ class CarEntity {
       owner: dto.owner,
       mileage: dto.mileage,
       bodyType: dto.bodyType,
-      fuelType: dto.fuelType,
+      engine: dto.engine,
       transmissionType: dto.transmissionType,
       images: dto.images,
     );
@@ -141,7 +141,7 @@ class CarEntity {
         imageSrc: car.owner?.imageSrc,
       ),
       mileage: car.mileage,
-      fuelType: car.fuelType ?? '',
+      engine: EngineEntity(type: car.engine?.fuelType, volume: car.engine?.volume),
       bodyType: car.bodyType ?? '',
       transmissionType: car.transmissionType ?? '',
       images: car.images.toList(),
@@ -161,7 +161,7 @@ class CarEntity {
           color == other.color &&
           owner == other.owner &&
           bodyType == other.bodyType &&
-          fuelType == other.fuelType &&
+          engine == other.engine &&
           transmissionType == other.transmissionType &&
           isVerified == other.isVerified &&
           promoType == other.promoType &&
@@ -181,7 +181,7 @@ class CarEntity {
       (color?.hashCode ?? 0) ^
       (owner?.hashCode ?? 0) ^
       bodyType.hashCode ^
-      fuelType.hashCode ^
+      engine.hashCode ^
       transmissionType.hashCode ^
       isVerified.hashCode ^
       (promoType?.hashCode ?? 0) ^

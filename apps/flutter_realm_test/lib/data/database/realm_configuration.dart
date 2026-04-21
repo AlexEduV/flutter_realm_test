@@ -7,8 +7,8 @@ class RealmConfiguration {
 
   void init() {
     _config = Configuration.local(
-      [Car.schema, Person.schema, User.schema, LastSeenCar.schema],
-      schemaVersion: 28,
+      [Car.schema, Person.schema, User.schema, LastSeenCar.schema, Engine.schema],
+      schemaVersion: 29,
       migrationCallback: (migration, oldVersion) {
         //add object id
         if (oldVersion < 2) {
@@ -79,6 +79,8 @@ class RealmConfiguration {
             newCar.mileage = oldCarMileage;
           }
         }
+
+        //todo: add migration before merge;
       },
     );
   }

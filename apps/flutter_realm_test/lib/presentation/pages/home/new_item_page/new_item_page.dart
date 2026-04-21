@@ -10,6 +10,7 @@ import 'package:test_flutter_project/common/enums/item_setup_tab.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
@@ -201,7 +202,7 @@ class _NewItemPageState extends State<NewItemPage> {
       isVerified: false,
       type: state.selectedCarType.name,
       bodyType: state.selectedBodyType?.name ?? '',
-      fuelType: state.selectedFuelType.name,
+      engine: EngineEntity(type: state.selectedFuelType.name),
       transmissionType: state.selectedTransmissionType.name,
       color: state.colorText.capitalizeFirst(),
       owner: OwnerEntity.fromUser(userDataCubit.user),

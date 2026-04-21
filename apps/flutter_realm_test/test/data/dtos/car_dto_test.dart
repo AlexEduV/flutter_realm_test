@@ -5,6 +5,7 @@ import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/data/dto/car_dto.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 void main() {
@@ -23,7 +24,7 @@ void main() {
         mileage: 10000,
         distanceTo: 50,
         price: 80000,
-        fuelType: FuelType.ev.name,
+        engine: EngineEntity(type: FuelType.ev.name),
         transmissionType: TransmissionType.automatic.name,
         bodyType: BodyType.sedan.name,
       );
@@ -41,7 +42,7 @@ void main() {
       expect(car.mileage, 10000);
       expect(car.distanceTo, 50);
       expect(car.price, 80000);
-      expect(car.fuelType, 'ev');
+      expect(car.engine.type, 'ev');
       expect(car.transmissionType, 'automatic');
       expect(car.bodyType, 'sedan');
     });
@@ -56,7 +57,7 @@ void main() {
         isVerified: true,
         type: 'car',
         bodyType: 'sedan',
-        fuelType: 'ev',
+        engine: EngineEntity(type: FuelType.ev.name),
         transmissionType: 'manual',
       );
 
@@ -79,7 +80,7 @@ void main() {
         'type': 'car',
         'body_type': 'sedan',
         'transmission_type': 'automatic',
-        'fuel_type': 'ev',
+        'engine': {'type': 'ev', 'volume': '1.5mW'},
         'owner': {
           'first_name': 'James',
           'last_name': 'Morrison',

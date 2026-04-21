@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
@@ -31,7 +33,7 @@ void main() {
     isVerified: false,
     type: 'car',
     bodyType: 'sedan',
-    fuelType: 'diesel',
+    engine: EngineEntity(type: FuelType.diesel.name),
     transmissionType: 'hybrid',
   );
 

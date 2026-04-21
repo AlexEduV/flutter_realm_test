@@ -9,6 +9,7 @@ import 'package:test_flutter_project/common/extensions/car_scheme_extension.dart
 import 'package:test_flutter_project/data/dto/car_dto.dart';
 import 'package:test_flutter_project/data/models/scheme.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 
 void main() {
   group('CarExtensions', () {
@@ -54,7 +55,7 @@ void main() {
         distanceTo: 5,
         price: 7500,
         bodyType: BodyType.bike.name,
-        fuelType: FuelType.gasoline.name,
+        engine: EngineEntity(type: FuelType.gasoline.name),
         transmissionType: TransmissionType.automatic.name,
       );
 
@@ -70,7 +71,7 @@ void main() {
       expect(car.mileage, 8000);
       expect(car.distanceTo, 5);
       expect(car.price, 7500);
-      expect(car.fuelType, 'gasoline');
+      expect(car.engine?.fuelType, 'gasoline');
       expect(car.bodyType, 'bike');
       expect(car.transmissionType, 'automatic');
     });
@@ -88,7 +89,7 @@ void main() {
         distanceTo: 2,
         price: 90000,
         bodyType: BodyType.sedan.name,
-        fuelType: FuelType.ev.name,
+        engine: EngineEntity(type: FuelType.ev.name),
         transmissionType: TransmissionType.automatic.name,
       );
 
@@ -104,7 +105,7 @@ void main() {
       expect(car.mileage, 5000);
       expect(car.distanceTo, 2);
       expect(car.price, 90000);
-      expect(car.fuelType, 'ev');
+      expect(car.engine?.fuelType, 'ev');
       expect(car.bodyType, 'sedan');
       expect(car.transmissionType, 'automatic');
     });

@@ -14,6 +14,7 @@ import 'package:test_flutter_project/data/models/scheme.dart';
 import 'package:test_flutter_project/data/repositories/car_repository_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import 'car_repository_impl_test.mocks.dart';
@@ -39,7 +40,7 @@ void main() {
     owner: Person('John', 'Doe', 'test', linkedIds: []),
     mileage: 10000,
     bodyType: 'sedan',
-    fuelType: 'ev',
+    engine: Engine(fuelType: 'ev'),
     transmissionType: 'automatic',
     color: 'White',
     images: [],
@@ -167,7 +168,7 @@ void main() {
     when(carDto.price).thenReturn(2000);
     when(carDto.type).thenReturn('car');
     when(carDto.bodyType).thenReturn('sedan');
-    when(carDto.fuelType).thenReturn('gasoline');
+    when(carDto.engine).thenReturn(const EngineEntity(type: 'gasoline'));
     when(carDto.transmissionType).thenReturn('hybrid');
     when(carDto.color).thenReturn('White');
     when(carDto.images).thenReturn([]);
@@ -188,7 +189,7 @@ void main() {
             isVerified: false,
             type: CarType.car.name,
             bodyType: BodyType.sedan.name,
-            fuelType: FuelType.hybrid.name,
+            engine: EngineEntity(type: FuelType.hybrid.name),
             transmissionType: TransmissionType.manual.name,
           ),
         ],

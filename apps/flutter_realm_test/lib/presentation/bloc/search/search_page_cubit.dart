@@ -148,7 +148,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       }
 
       // Fuel type filter
-      if (state.selectedFuelTypes.isNotEmptyAndNotContains(car.fuelType)) {
+      if (state.selectedFuelTypes.isNotEmptyAndNotContains(car.engine.type)) {
         return false;
       }
 

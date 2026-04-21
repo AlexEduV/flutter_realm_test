@@ -1,4 +1,5 @@
 import 'package:realm/realm.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import '../../common/enums/promo_type.dart';
@@ -12,7 +13,7 @@ class CarDto {
   final String? year;
   final String? color;
   final String bodyType;
-  final String fuelType;
+  final EngineEntity engine;
   final String transmissionType;
   final OwnerEntity? owner;
   final bool isVerified;
@@ -30,7 +31,7 @@ class CarDto {
     required this.isVerified,
     required this.type,
     required this.bodyType,
-    required this.fuelType,
+    required this.engine,
     required this.transmissionType,
     this.promoType,
     this.color,
@@ -51,7 +52,7 @@ class CarDto {
     String? year,
     String? color,
     String? bodyType,
-    String? fuelType,
+    EngineEntity? engine,
     String? transmissionType,
     OwnerEntity? owner,
     bool? isVerified,
@@ -70,7 +71,7 @@ class CarDto {
       year: year ?? this.year,
       color: color ?? this.color,
       bodyType: bodyType ?? this.bodyType,
-      fuelType: fuelType ?? this.fuelType,
+      engine: engine ?? this.engine,
       transmissionType: transmissionType ?? this.transmissionType,
       owner: owner ?? this.owner,
       isVerified: isVerified ?? this.isVerified,
@@ -94,7 +95,7 @@ class CarDto {
       price: json['price'] as int?,
       promoType: PromoType.fromCode(json['promo_type'] as String?),
       transmissionType: json['transmission_type'] as String,
-      fuelType: json['fuel_type'] as String,
+      engine: EngineEntity.fromJson(json['fuel_type'] as Map<String, dynamic>),
       bodyType: json['body_type'] as String,
       color: json['color'] as String,
       owner: OwnerEntity.fromJson(json['owner'] as Map<String, dynamic>),

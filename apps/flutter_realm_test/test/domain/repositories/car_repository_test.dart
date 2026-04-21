@@ -6,6 +6,7 @@ import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 
 import 'car_repository_test.mocks.dart';
@@ -26,7 +27,7 @@ void main() {
         manufacturer: 'Tesla',
         type: 'car',
         isVerified: true,
-        fuelType: FuelType.ev.name,
+        engine: EngineEntity(type: FuelType.ev.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.automatic.name,
       ),
@@ -48,7 +49,7 @@ void main() {
       isVerified: false,
       promoType: PromoType.oneOwner,
       type: 'car',
-      fuelType: FuelType.hybrid.name,
+      engine: EngineEntity(type: FuelType.hybrid.name),
       bodyType: BodyType.sedan.name,
       transmissionType: TransmissionType.automatic.name,
     );
@@ -74,7 +75,7 @@ void main() {
         manufacturer: 'Toyota',
         isVerified: true,
         type: 'car',
-        fuelType: FuelType.gasoline.name,
+        engine: EngineEntity(type: FuelType.gasoline.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.manual.name,
       ),

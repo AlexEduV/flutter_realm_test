@@ -13,7 +13,7 @@ class _Car {
   String? color;
   String? year;
   String? bodyType;
-  String? fuelType;
+  _Engine? engine;
   String? transmissionType;
   bool? isChecked = false;
   String? hotPromotionDescription;
@@ -55,4 +55,10 @@ class _User {
 class _LastSeenCar {
   late DateTime date;
   late String? carId;
+}
+
+@RealmModel()
+class _Engine {
+  late String? fuelType;
+  late String? volume;
 }

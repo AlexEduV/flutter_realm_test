@@ -21,7 +21,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     String? color,
     String? year,
     String? bodyType,
-    String? fuelType,
+    Engine? engine,
     String? transmissionType,
     bool? isChecked = false,
     String? hotPromotionDescription,
@@ -46,7 +46,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'color', color);
     RealmObjectBase.set(this, 'year', year);
     RealmObjectBase.set(this, 'bodyType', bodyType);
-    RealmObjectBase.set(this, 'fuelType', fuelType);
+    RealmObjectBase.set(this, 'engine', engine);
     RealmObjectBase.set(this, 'transmissionType', transmissionType);
     RealmObjectBase.set(this, 'isChecked', isChecked);
     RealmObjectBase.set(
@@ -105,10 +105,10 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   set bodyType(String? value) => RealmObjectBase.set(this, 'bodyType', value);
 
   @override
-  String? get fuelType =>
-      RealmObjectBase.get<String>(this, 'fuelType') as String?;
+  Engine? get engine => RealmObjectBase.get<Engine>(this, 'engine') as Engine?;
   @override
-  set fuelType(String? value) => RealmObjectBase.set(this, 'fuelType', value);
+  set engine(covariant Engine? value) =>
+      RealmObjectBase.set(this, 'engine', value);
 
   @override
   String? get transmissionType =>
@@ -178,7 +178,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       'color': color.toEJson(),
       'year': year.toEJson(),
       'bodyType': bodyType.toEJson(),
-      'fuelType': fuelType.toEJson(),
+      'engine': engine.toEJson(),
       'transmissionType': transmissionType.toEJson(),
       'isChecked': isChecked.toEJson(),
       'hotPromotionDescription': hotPromotionDescription.toEJson(),
@@ -209,7 +209,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
           color: fromEJson(ejson['color']),
           year: fromEJson(ejson['year']),
           bodyType: fromEJson(ejson['bodyType']),
-          fuelType: fromEJson(ejson['fuelType']),
+          engine: fromEJson(ejson['engine']),
           transmissionType: fromEJson(ejson['transmissionType']),
           isChecked: fromEJson(ejson['isChecked'], defaultValue: false),
           hotPromotionDescription: fromEJson(ejson['hotPromotionDescription']),
@@ -235,7 +235,8 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('color', RealmPropertyType.string, optional: true),
       SchemaProperty('year', RealmPropertyType.string, optional: true),
       SchemaProperty('bodyType', RealmPropertyType.string, optional: true),
-      SchemaProperty('fuelType', RealmPropertyType.string, optional: true),
+      SchemaProperty('engine', RealmPropertyType.object,
+          optional: true, linkTarget: 'Engine'),
       SchemaProperty('transmissionType', RealmPropertyType.string,
           optional: true),
       SchemaProperty('isChecked', RealmPropertyType.bool, optional: true),
@@ -637,6 +638,68 @@ class LastSeenCar extends _LastSeenCar
         ObjectType.realmObject, LastSeenCar, 'LastSeenCar', [
       SchemaProperty('date', RealmPropertyType.timestamp),
       SchemaProperty('carId', RealmPropertyType.string, optional: true),
+    ]);
+  }();
+
+  @override
+  SchemaObject get objectSchema => RealmObjectBase.getSchema(this) ?? schema;
+}
+
+class Engine extends _Engine with RealmEntity, RealmObjectBase, RealmObject {
+  Engine({
+    String? fuelType,
+    String? volume,
+  }) {
+    RealmObjectBase.set(this, 'fuelType', fuelType);
+    RealmObjectBase.set(this, 'volume', volume);
+  }
+
+  Engine._();
+
+  @override
+  String? get fuelType =>
+      RealmObjectBase.get<String>(this, 'fuelType') as String?;
+  @override
+  set fuelType(String? value) => RealmObjectBase.set(this, 'fuelType', value);
+
+  @override
+  String? get volume => RealmObjectBase.get<String>(this, 'volume') as String?;
+  @override
+  set volume(String? value) => RealmObjectBase.set(this, 'volume', value);
+
+  @override
+  Stream<RealmObjectChanges<Engine>> get changes =>
+      RealmObjectBase.getChanges<Engine>(this);
+
+  @override
+  Stream<RealmObjectChanges<Engine>> changesFor([List<String>? keyPaths]) =>
+      RealmObjectBase.getChangesFor<Engine>(this, keyPaths);
+
+  @override
+  Engine freeze() => RealmObjectBase.freezeObject<Engine>(this);
+
+  EJsonValue toEJson() {
+    return <String, dynamic>{
+      'fuelType': fuelType.toEJson(),
+      'volume': volume.toEJson(),
+    };
+  }
+
+  static EJsonValue _toEJson(Engine value) => value.toEJson();
+  static Engine _fromEJson(EJsonValue ejson) {
+    if (ejson is! Map<String, dynamic>) return raiseInvalidEJson(ejson);
+    return Engine(
+      fuelType: fromEJson(ejson['fuelType']),
+      volume: fromEJson(ejson['volume']),
+    );
+  }
+
+  static final schema = () {
+    RealmObjectBase.registerFactory(Engine._);
+    register(_toEJson, _fromEJson);
+    return const SchemaObject(ObjectType.realmObject, Engine, 'Engine', [
+      SchemaProperty('fuelType', RealmPropertyType.string, optional: true),
+      SchemaProperty('volume', RealmPropertyType.string, optional: true),
     ]);
   }();
 
