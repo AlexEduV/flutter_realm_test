@@ -72,6 +72,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                   final manufacturers = state.autoCompleteEntities;
 
                   return Autocomplete<CarAutoCompleteEntity>(
+                    textEditingController: manufacturerTextController,
+                    focusNode: widget.manufacturerFocusNode,
                     optionsBuilder: (TextEditingValue textEditingValue) {
                       if (textEditingValue.text == '') {
                         return const Iterable<CarAutoCompleteEntity>.empty();
@@ -99,6 +101,7 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                               itemBuilder: (context, index) {
                                 final option = options.elementAt(index);
                                 return ListTile(
+                                  tileColor: Colors.white,
                                   leading: option.imageSrc != null
                                       ? SvgPicture.asset(
                                           width: AppDimensions.majorS,
@@ -110,7 +113,10 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                                           height: AppDimensions.majorS,
                                         ),
                                   title: Text(option.manufacturer),
-                                  onTap: () => onSelected(option),
+                                  onTap: () {
+                                    onSelected(option);
+                                    widget.manufacturerFocusNode.unfocus();
+                                  },
                                 );
                               },
                             ),
