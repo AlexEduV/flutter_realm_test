@@ -70,6 +70,7 @@ flutter:
     - assets/mocks/
     - assets/images/
     - assets/images/country_flags/
+    - assets/images/manufacturer_icons/
     - assets/env/
 
   fonts:
