@@ -290,6 +290,15 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
       );
 
   @override
+  void clearFields() => super.noSuchMethod(
+        Invocation.method(
+          #clearFields,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   void emit(_i2.NewItemPageState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
