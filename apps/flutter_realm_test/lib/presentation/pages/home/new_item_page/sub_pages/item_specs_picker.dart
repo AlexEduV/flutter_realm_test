@@ -133,7 +133,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                     ),
                   ),
 
-                  const RadioGroupTitle(text: 'Engine Volume'),
+                  RadioGroupTitle(
+                    text: context.tr(L10nKeys.addNewItemSpecsPickerEngineVolumeDescription),
+                  ),
 
                   Row(
                     spacing: AppDimensions.minorL,

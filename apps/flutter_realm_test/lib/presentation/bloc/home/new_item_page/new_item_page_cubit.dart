@@ -89,16 +89,20 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
               ),
               regex: r'^[A-Za-z\s\-]+$',
             ),
-        //todo: localise
-        engineVolumeFieldParams: FieldParamsModel.withLabel('Volume').copyWith(
-          validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            L10nKeys.fieldParamsValidationMessage,
-          ),
-          regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-            'Please, enter a valid engine volume',
-          ),
-          regex: r'^\d{1,2}(\.\d{1,2})?$|^\d{2,4}$',
-        ),
+        engineVolumeFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsEngineVolumeLabel,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsEngineVolumeRegexErrorMessage,
+              ),
+              regex: r'^\d{1,2}(\.\d{1,2})?$|^\d{2,4}$',
+            ),
       ),
     );
   }
