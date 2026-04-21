@@ -59,7 +59,7 @@ void main() {
     );
 
     // Assert: RadioGroupTitles are present
-    expect(find.byType(RadioGroupTitle), findsNWidgets(3));
+    expect(find.byType(RadioGroupTitle), findsNWidgets(4));
 
     // Assert: ListTiles for body types, fuel types, transmission types are present
     // (You may want to check for specific text if you use localization)

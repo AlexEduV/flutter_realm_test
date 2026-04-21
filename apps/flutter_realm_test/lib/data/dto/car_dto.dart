@@ -95,7 +95,7 @@ class CarDto {
       price: json['price'] as int?,
       promoType: PromoType.fromCode(json['promo_type'] as String?),
       transmissionType: json['transmission_type'] as String,
-      engine: EngineEntity.fromJson(json['fuel_type'] as Map<String, dynamic>),
+      engine: EngineEntity.fromJson(json['engine'] as Map<String, dynamic>),
       bodyType: json['body_type'] as String,
       color: json['color'] as String,
       owner: OwnerEntity.fromJson(json['owner'] as Map<String, dynamic>),
