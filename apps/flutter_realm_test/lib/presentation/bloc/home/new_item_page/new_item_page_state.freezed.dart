@@ -20,21 +20,23 @@ mixin _$NewItemPageState {
   FieldParamsModel? get yearFieldParams;
   FieldParamsModel? get colorFieldParams;
   FieldParamsModel? get priceFieldParams;
+  FieldParamsModel? get engineVolumeFieldParams;
   String? get manufacturerErrorText;
   String? get modelErrorText;
   String? get yearErrorText;
   String? get colorErrorText;
   String? get priceErrorText;
+  String? get engineVolumeErrorText;
   String get manufacturerText;
   String get modelText;
   String get yearText;
   String get colorText;
   String get priceText;
+  String get engineVolumeText;
   int get currentPageIndex;
   CarType get selectedCarType;
   BodyType? get selectedBodyType;
   FuelType get selectedFuelType;
-  String get selectedEngineVolume;
   TransmissionType get selectedTransmissionType;
   List<CarAutoCompleteEntity> get autoCompleteEntities;
 
@@ -62,6 +64,9 @@ mixin _$NewItemPageState {
                 other.colorFieldParams == colorFieldParams) &&
             (identical(other.priceFieldParams, priceFieldParams) ||
                 other.priceFieldParams == priceFieldParams) &&
+            (identical(
+                    other.engineVolumeFieldParams, engineVolumeFieldParams) ||
+                other.engineVolumeFieldParams == engineVolumeFieldParams) &&
             (identical(other.manufacturerErrorText, manufacturerErrorText) ||
                 other.manufacturerErrorText == manufacturerErrorText) &&
             (identical(other.modelErrorText, modelErrorText) ||
@@ -72,6 +77,8 @@ mixin _$NewItemPageState {
                 other.colorErrorText == colorErrorText) &&
             (identical(other.priceErrorText, priceErrorText) ||
                 other.priceErrorText == priceErrorText) &&
+            (identical(other.engineVolumeErrorText, engineVolumeErrorText) ||
+                other.engineVolumeErrorText == engineVolumeErrorText) &&
             (identical(other.manufacturerText, manufacturerText) ||
                 other.manufacturerText == manufacturerText) &&
             (identical(other.modelText, modelText) ||
@@ -82,6 +89,8 @@ mixin _$NewItemPageState {
                 other.colorText == colorText) &&
             (identical(other.priceText, priceText) ||
                 other.priceText == priceText) &&
+            (identical(other.engineVolumeText, engineVolumeText) ||
+                other.engineVolumeText == engineVolumeText) &&
             (identical(other.currentPageIndex, currentPageIndex) ||
                 other.currentPageIndex == currentPageIndex) &&
             (identical(other.selectedCarType, selectedCarType) ||
@@ -90,8 +99,6 @@ mixin _$NewItemPageState {
                 other.selectedBodyType == selectedBodyType) &&
             (identical(other.selectedFuelType, selectedFuelType) ||
                 other.selectedFuelType == selectedFuelType) &&
-            (identical(other.selectedEngineVolume, selectedEngineVolume) ||
-                other.selectedEngineVolume == selectedEngineVolume) &&
             (identical(
                     other.selectedTransmissionType, selectedTransmissionType) ||
                 other.selectedTransmissionType == selectedTransmissionType) &&
@@ -107,28 +114,30 @@ mixin _$NewItemPageState {
         yearFieldParams,
         colorFieldParams,
         priceFieldParams,
+        engineVolumeFieldParams,
         manufacturerErrorText,
         modelErrorText,
         yearErrorText,
         colorErrorText,
         priceErrorText,
+        engineVolumeErrorText,
         manufacturerText,
         modelText,
         yearText,
         colorText,
         priceText,
+        engineVolumeText,
         currentPageIndex,
         selectedCarType,
         selectedBodyType,
         selectedFuelType,
-        selectedEngineVolume,
         selectedTransmissionType,
         const DeepCollectionEquality().hash(autoCompleteEntities)
       ]);
 
   @override
   String toString() {
-    return 'NewItemPageState(manufacturerFieldParams: $manufacturerFieldParams, modelFieldParams: $modelFieldParams, yearFieldParams: $yearFieldParams, colorFieldParams: $colorFieldParams, priceFieldParams: $priceFieldParams, manufacturerErrorText: $manufacturerErrorText, modelErrorText: $modelErrorText, yearErrorText: $yearErrorText, colorErrorText: $colorErrorText, priceErrorText: $priceErrorText, manufacturerText: $manufacturerText, modelText: $modelText, yearText: $yearText, colorText: $colorText, priceText: $priceText, currentPageIndex: $currentPageIndex, selectedCarType: $selectedCarType, selectedBodyType: $selectedBodyType, selectedFuelType: $selectedFuelType, selectedEngineVolume: $selectedEngineVolume, selectedTransmissionType: $selectedTransmissionType, autoCompleteEntities: $autoCompleteEntities)';
+    return 'NewItemPageState(manufacturerFieldParams: $manufacturerFieldParams, modelFieldParams: $modelFieldParams, yearFieldParams: $yearFieldParams, colorFieldParams: $colorFieldParams, priceFieldParams: $priceFieldParams, engineVolumeFieldParams: $engineVolumeFieldParams, manufacturerErrorText: $manufacturerErrorText, modelErrorText: $modelErrorText, yearErrorText: $yearErrorText, colorErrorText: $colorErrorText, priceErrorText: $priceErrorText, engineVolumeErrorText: $engineVolumeErrorText, manufacturerText: $manufacturerText, modelText: $modelText, yearText: $yearText, colorText: $colorText, priceText: $priceText, engineVolumeText: $engineVolumeText, currentPageIndex: $currentPageIndex, selectedCarType: $selectedCarType, selectedBodyType: $selectedBodyType, selectedFuelType: $selectedFuelType, selectedTransmissionType: $selectedTransmissionType, autoCompleteEntities: $autoCompleteEntities)';
   }
 }
 
@@ -144,21 +153,23 @@ abstract mixin class $NewItemPageStateCopyWith<$Res> {
       FieldParamsModel? yearFieldParams,
       FieldParamsModel? colorFieldParams,
       FieldParamsModel? priceFieldParams,
+      FieldParamsModel? engineVolumeFieldParams,
       String? manufacturerErrorText,
       String? modelErrorText,
       String? yearErrorText,
       String? colorErrorText,
       String? priceErrorText,
+      String? engineVolumeErrorText,
       String manufacturerText,
       String modelText,
       String yearText,
       String colorText,
       String priceText,
+      String engineVolumeText,
       int currentPageIndex,
       CarType selectedCarType,
       BodyType? selectedBodyType,
       FuelType selectedFuelType,
-      String selectedEngineVolume,
       TransmissionType selectedTransmissionType,
       List<CarAutoCompleteEntity> autoCompleteEntities});
 }
@@ -181,21 +192,23 @@ class _$NewItemPageStateCopyWithImpl<$Res>
     Object? yearFieldParams = freezed,
     Object? colorFieldParams = freezed,
     Object? priceFieldParams = freezed,
+    Object? engineVolumeFieldParams = freezed,
     Object? manufacturerErrorText = freezed,
     Object? modelErrorText = freezed,
     Object? yearErrorText = freezed,
     Object? colorErrorText = freezed,
     Object? priceErrorText = freezed,
+    Object? engineVolumeErrorText = freezed,
     Object? manufacturerText = null,
     Object? modelText = null,
     Object? yearText = null,
     Object? colorText = null,
     Object? priceText = null,
+    Object? engineVolumeText = null,
     Object? currentPageIndex = null,
     Object? selectedCarType = null,
     Object? selectedBodyType = freezed,
     Object? selectedFuelType = null,
-    Object? selectedEngineVolume = null,
     Object? selectedTransmissionType = null,
     Object? autoCompleteEntities = null,
   }) {
@@ -220,6 +233,10 @@ class _$NewItemPageStateCopyWithImpl<$Res>
           ? _self.priceFieldParams
           : priceFieldParams // ignore: cast_nullable_to_non_nullable
               as FieldParamsModel?,
+      engineVolumeFieldParams: freezed == engineVolumeFieldParams
+          ? _self.engineVolumeFieldParams
+          : engineVolumeFieldParams // ignore: cast_nullable_to_non_nullable
+              as FieldParamsModel?,
       manufacturerErrorText: freezed == manufacturerErrorText
           ? _self.manufacturerErrorText
           : manufacturerErrorText // ignore: cast_nullable_to_non_nullable
@@ -239,6 +256,10 @@ class _$NewItemPageStateCopyWithImpl<$Res>
       priceErrorText: freezed == priceErrorText
           ? _self.priceErrorText
           : priceErrorText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      engineVolumeErrorText: freezed == engineVolumeErrorText
+          ? _self.engineVolumeErrorText
+          : engineVolumeErrorText // ignore: cast_nullable_to_non_nullable
               as String?,
       manufacturerText: null == manufacturerText
           ? _self.manufacturerText
@@ -260,6 +281,10 @@ class _$NewItemPageStateCopyWithImpl<$Res>
           ? _self.priceText
           : priceText // ignore: cast_nullable_to_non_nullable
               as String,
+      engineVolumeText: null == engineVolumeText
+          ? _self.engineVolumeText
+          : engineVolumeText // ignore: cast_nullable_to_non_nullable
+              as String,
       currentPageIndex: null == currentPageIndex
           ? _self.currentPageIndex
           : currentPageIndex // ignore: cast_nullable_to_non_nullable
@@ -276,10 +301,6 @@ class _$NewItemPageStateCopyWithImpl<$Res>
           ? _self.selectedFuelType
           : selectedFuelType // ignore: cast_nullable_to_non_nullable
               as FuelType,
-      selectedEngineVolume: null == selectedEngineVolume
-          ? _self.selectedEngineVolume
-          : selectedEngineVolume // ignore: cast_nullable_to_non_nullable
-              as String,
       selectedTransmissionType: null == selectedTransmissionType
           ? _self.selectedTransmissionType
           : selectedTransmissionType // ignore: cast_nullable_to_non_nullable
@@ -301,21 +322,23 @@ class _NewItemPageState implements NewItemPageState {
       this.yearFieldParams,
       this.colorFieldParams,
       this.priceFieldParams,
+      this.engineVolumeFieldParams,
       this.manufacturerErrorText,
       this.modelErrorText,
       this.yearErrorText,
       this.colorErrorText,
       this.priceErrorText,
+      this.engineVolumeErrorText,
       this.manufacturerText = '',
       this.modelText = '',
       this.yearText = '',
       this.colorText = '',
       this.priceText = '',
+      this.engineVolumeText = '',
       this.currentPageIndex = 0,
       this.selectedCarType = CarType.car,
       this.selectedBodyType,
       this.selectedFuelType = FuelType.diesel,
-      this.selectedEngineVolume = '',
       this.selectedTransmissionType = TransmissionType.manual,
       final List<CarAutoCompleteEntity> autoCompleteEntities = const []})
       : _autoCompleteEntities = autoCompleteEntities;
@@ -331,6 +354,8 @@ class _NewItemPageState implements NewItemPageState {
   @override
   final FieldParamsModel? priceFieldParams;
   @override
+  final FieldParamsModel? engineVolumeFieldParams;
+  @override
   final String? manufacturerErrorText;
   @override
   final String? modelErrorText;
@@ -340,6 +365,8 @@ class _NewItemPageState implements NewItemPageState {
   final String? colorErrorText;
   @override
   final String? priceErrorText;
+  @override
+  final String? engineVolumeErrorText;
   @override
   @JsonKey()
   final String manufacturerText;
@@ -357,6 +384,9 @@ class _NewItemPageState implements NewItemPageState {
   final String priceText;
   @override
   @JsonKey()
+  final String engineVolumeText;
+  @override
+  @JsonKey()
   final int currentPageIndex;
   @override
   @JsonKey()
@@ -366,9 +396,6 @@ class _NewItemPageState implements NewItemPageState {
   @override
   @JsonKey()
   final FuelType selectedFuelType;
-  @override
-  @JsonKey()
-  final String selectedEngineVolume;
   @override
   @JsonKey()
   final TransmissionType selectedTransmissionType;
@@ -406,6 +433,9 @@ class _NewItemPageState implements NewItemPageState {
                 other.colorFieldParams == colorFieldParams) &&
             (identical(other.priceFieldParams, priceFieldParams) ||
                 other.priceFieldParams == priceFieldParams) &&
+            (identical(
+                    other.engineVolumeFieldParams, engineVolumeFieldParams) ||
+                other.engineVolumeFieldParams == engineVolumeFieldParams) &&
             (identical(other.manufacturerErrorText, manufacturerErrorText) ||
                 other.manufacturerErrorText == manufacturerErrorText) &&
             (identical(other.modelErrorText, modelErrorText) ||
@@ -416,6 +446,8 @@ class _NewItemPageState implements NewItemPageState {
                 other.colorErrorText == colorErrorText) &&
             (identical(other.priceErrorText, priceErrorText) ||
                 other.priceErrorText == priceErrorText) &&
+            (identical(other.engineVolumeErrorText, engineVolumeErrorText) ||
+                other.engineVolumeErrorText == engineVolumeErrorText) &&
             (identical(other.manufacturerText, manufacturerText) ||
                 other.manufacturerText == manufacturerText) &&
             (identical(other.modelText, modelText) ||
@@ -426,6 +458,8 @@ class _NewItemPageState implements NewItemPageState {
                 other.colorText == colorText) &&
             (identical(other.priceText, priceText) ||
                 other.priceText == priceText) &&
+            (identical(other.engineVolumeText, engineVolumeText) ||
+                other.engineVolumeText == engineVolumeText) &&
             (identical(other.currentPageIndex, currentPageIndex) ||
                 other.currentPageIndex == currentPageIndex) &&
             (identical(other.selectedCarType, selectedCarType) ||
@@ -434,8 +468,6 @@ class _NewItemPageState implements NewItemPageState {
                 other.selectedBodyType == selectedBodyType) &&
             (identical(other.selectedFuelType, selectedFuelType) ||
                 other.selectedFuelType == selectedFuelType) &&
-            (identical(other.selectedEngineVolume, selectedEngineVolume) ||
-                other.selectedEngineVolume == selectedEngineVolume) &&
             (identical(
                     other.selectedTransmissionType, selectedTransmissionType) ||
                 other.selectedTransmissionType == selectedTransmissionType) &&
@@ -451,28 +483,30 @@ class _NewItemPageState implements NewItemPageState {
         yearFieldParams,
         colorFieldParams,
         priceFieldParams,
+        engineVolumeFieldParams,
         manufacturerErrorText,
         modelErrorText,
         yearErrorText,
         colorErrorText,
         priceErrorText,
+        engineVolumeErrorText,
         manufacturerText,
         modelText,
         yearText,
         colorText,
         priceText,
+        engineVolumeText,
         currentPageIndex,
         selectedCarType,
         selectedBodyType,
         selectedFuelType,
-        selectedEngineVolume,
         selectedTransmissionType,
         const DeepCollectionEquality().hash(_autoCompleteEntities)
       ]);
 
   @override
   String toString() {
-    return 'NewItemPageState(manufacturerFieldParams: $manufacturerFieldParams, modelFieldParams: $modelFieldParams, yearFieldParams: $yearFieldParams, colorFieldParams: $colorFieldParams, priceFieldParams: $priceFieldParams, manufacturerErrorText: $manufacturerErrorText, modelErrorText: $modelErrorText, yearErrorText: $yearErrorText, colorErrorText: $colorErrorText, priceErrorText: $priceErrorText, manufacturerText: $manufacturerText, modelText: $modelText, yearText: $yearText, colorText: $colorText, priceText: $priceText, currentPageIndex: $currentPageIndex, selectedCarType: $selectedCarType, selectedBodyType: $selectedBodyType, selectedFuelType: $selectedFuelType, selectedEngineVolume: $selectedEngineVolume, selectedTransmissionType: $selectedTransmissionType, autoCompleteEntities: $autoCompleteEntities)';
+    return 'NewItemPageState(manufacturerFieldParams: $manufacturerFieldParams, modelFieldParams: $modelFieldParams, yearFieldParams: $yearFieldParams, colorFieldParams: $colorFieldParams, priceFieldParams: $priceFieldParams, engineVolumeFieldParams: $engineVolumeFieldParams, manufacturerErrorText: $manufacturerErrorText, modelErrorText: $modelErrorText, yearErrorText: $yearErrorText, colorErrorText: $colorErrorText, priceErrorText: $priceErrorText, engineVolumeErrorText: $engineVolumeErrorText, manufacturerText: $manufacturerText, modelText: $modelText, yearText: $yearText, colorText: $colorText, priceText: $priceText, engineVolumeText: $engineVolumeText, currentPageIndex: $currentPageIndex, selectedCarType: $selectedCarType, selectedBodyType: $selectedBodyType, selectedFuelType: $selectedFuelType, selectedTransmissionType: $selectedTransmissionType, autoCompleteEntities: $autoCompleteEntities)';
   }
 }
 
@@ -490,21 +524,23 @@ abstract mixin class _$NewItemPageStateCopyWith<$Res>
       FieldParamsModel? yearFieldParams,
       FieldParamsModel? colorFieldParams,
       FieldParamsModel? priceFieldParams,
+      FieldParamsModel? engineVolumeFieldParams,
       String? manufacturerErrorText,
       String? modelErrorText,
       String? yearErrorText,
       String? colorErrorText,
       String? priceErrorText,
+      String? engineVolumeErrorText,
       String manufacturerText,
       String modelText,
       String yearText,
       String colorText,
       String priceText,
+      String engineVolumeText,
       int currentPageIndex,
       CarType selectedCarType,
       BodyType? selectedBodyType,
       FuelType selectedFuelType,
-      String selectedEngineVolume,
       TransmissionType selectedTransmissionType,
       List<CarAutoCompleteEntity> autoCompleteEntities});
 }
@@ -527,21 +563,23 @@ class __$NewItemPageStateCopyWithImpl<$Res>
     Object? yearFieldParams = freezed,
     Object? colorFieldParams = freezed,
     Object? priceFieldParams = freezed,
+    Object? engineVolumeFieldParams = freezed,
     Object? manufacturerErrorText = freezed,
     Object? modelErrorText = freezed,
     Object? yearErrorText = freezed,
     Object? colorErrorText = freezed,
     Object? priceErrorText = freezed,
+    Object? engineVolumeErrorText = freezed,
     Object? manufacturerText = null,
     Object? modelText = null,
     Object? yearText = null,
     Object? colorText = null,
     Object? priceText = null,
+    Object? engineVolumeText = null,
     Object? currentPageIndex = null,
     Object? selectedCarType = null,
     Object? selectedBodyType = freezed,
     Object? selectedFuelType = null,
-    Object? selectedEngineVolume = null,
     Object? selectedTransmissionType = null,
     Object? autoCompleteEntities = null,
   }) {
@@ -566,6 +604,10 @@ class __$NewItemPageStateCopyWithImpl<$Res>
           ? _self.priceFieldParams
           : priceFieldParams // ignore: cast_nullable_to_non_nullable
               as FieldParamsModel?,
+      engineVolumeFieldParams: freezed == engineVolumeFieldParams
+          ? _self.engineVolumeFieldParams
+          : engineVolumeFieldParams // ignore: cast_nullable_to_non_nullable
+              as FieldParamsModel?,
       manufacturerErrorText: freezed == manufacturerErrorText
           ? _self.manufacturerErrorText
           : manufacturerErrorText // ignore: cast_nullable_to_non_nullable
@@ -585,6 +627,10 @@ class __$NewItemPageStateCopyWithImpl<$Res>
       priceErrorText: freezed == priceErrorText
           ? _self.priceErrorText
           : priceErrorText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      engineVolumeErrorText: freezed == engineVolumeErrorText
+          ? _self.engineVolumeErrorText
+          : engineVolumeErrorText // ignore: cast_nullable_to_non_nullable
               as String?,
       manufacturerText: null == manufacturerText
           ? _self.manufacturerText
@@ -606,6 +652,10 @@ class __$NewItemPageStateCopyWithImpl<$Res>
           ? _self.priceText
           : priceText // ignore: cast_nullable_to_non_nullable
               as String,
+      engineVolumeText: null == engineVolumeText
+          ? _self.engineVolumeText
+          : engineVolumeText // ignore: cast_nullable_to_non_nullable
+              as String,
       currentPageIndex: null == currentPageIndex
           ? _self.currentPageIndex
           : currentPageIndex // ignore: cast_nullable_to_non_nullable
@@ -622,10 +672,6 @@ class __$NewItemPageStateCopyWithImpl<$Res>
           ? _self.selectedFuelType
           : selectedFuelType // ignore: cast_nullable_to_non_nullable
               as FuelType,
-      selectedEngineVolume: null == selectedEngineVolume
-          ? _self.selectedEngineVolume
-          : selectedEngineVolume // ignore: cast_nullable_to_non_nullable
-              as String,
       selectedTransmissionType: null == selectedTransmissionType
           ? _self.selectedTransmissionType
           : selectedTransmissionType // ignore: cast_nullable_to_non_nullable

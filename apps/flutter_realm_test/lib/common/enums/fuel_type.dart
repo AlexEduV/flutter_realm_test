@@ -18,4 +18,8 @@ enum FuelType {
     );
     return localisation;
   }
+
+  String getUnitOfMeasurement() {
+    return this == FuelType.ev ? 'kW' : 'L';
+  }
 }

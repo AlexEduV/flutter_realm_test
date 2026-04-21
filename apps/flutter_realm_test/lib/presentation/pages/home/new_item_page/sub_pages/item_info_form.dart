@@ -155,12 +155,12 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                             textInputAction: TextInputAction.next,
                             errorText: state.manufacturerErrorText,
                             onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                context.read<NewItemPageCubit>().validateManufacturer(
-                                  textEditingController.text,
-                                  false,
-                                );
-                              }
+                              if (hasFocus) return;
+
+                              context.read<NewItemPageCubit>().validateManufacturer(
+                                textEditingController.text,
+                                false,
+                              );
                             },
                             onChanged: (newText) {
                               context.read<NewItemPageCubit>().validateManufacturer(
@@ -263,12 +263,12 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                             textInputAction: TextInputAction.next,
                             errorText: state.modelErrorText,
                             onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                context.read<NewItemPageCubit>().validateModel(
-                                  textEditingController.text,
-                                  false,
-                                );
-                              }
+                              if (hasFocus) return;
+
+                              context.read<NewItemPageCubit>().validateModel(
+                                textEditingController.text,
+                                false,
+                              );
                             },
                             onChanged: (newText) {
                               context.read<NewItemPageCubit>().validateModel(
@@ -301,9 +301,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 textInputAction: TextInputAction.next,
                 errorText: state.yearErrorText,
                 onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validateYear(yearTextController.text, false);
-                  }
+                  if (hasFocus) return;
+
+                  context.read<NewItemPageCubit>().validateYear(yearTextController.text, false);
                 },
                 onChanged: (newText) {
                   context.read<NewItemPageCubit>().validateYear(
@@ -325,9 +325,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 textInputAction: TextInputAction.next,
                 errorText: state.priceErrorText,
                 onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validatePrice(priceTextController.text, false);
-                  }
+                  if (hasFocus) return;
+
+                  context.read<NewItemPageCubit>().validatePrice(priceTextController.text, false);
                 },
                 onChanged: (newText) {
                   context.read<NewItemPageCubit>().validatePrice(
@@ -349,9 +349,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 textInputAction: TextInputAction.done,
                 errorText: state.colorErrorText,
                 onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validateColor(colorTextController.text, false);
-                  }
+                  if (hasFocus) return;
+
+                  context.read<NewItemPageCubit>().validateColor(colorTextController.text, false);
                 },
                 onChanged: (newText) => onColorChanged(),
                 padding: 0.0,

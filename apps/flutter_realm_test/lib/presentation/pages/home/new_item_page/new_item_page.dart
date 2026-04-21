@@ -202,7 +202,10 @@ class _NewItemPageState extends State<NewItemPage> {
       isVerified: false,
       type: state.selectedCarType.name,
       bodyType: state.selectedBodyType?.name ?? '',
-      engine: EngineEntity(type: state.selectedFuelType.name),
+      engine: EngineEntity(
+        type: state.selectedFuelType.name,
+        volume: '${state.engineVolumeText}${state.selectedFuelType.getUnitOfMeasurement()}',
+      ),
       transmissionType: state.selectedTransmissionType.name,
       color: state.colorText.capitalizeFirst(),
       owner: OwnerEntity.fromUser(userDataCubit.user),
