@@ -3,6 +3,7 @@ class AppAssetRoutes {
   static const imagesFolder = 'images/';
   static const mocksFolder = 'mocks/';
   static const flagsFolder = 'country_flags/';
+  static const manufacturerIconsFolder = 'manufacturer_icons/';
   static const envFolder = 'env/';
 
   static const flagRoute = '$assetFolder$imagesFolder$flagsFolder';
@@ -16,4 +17,6 @@ class AppAssetRoutes {
   static const envRoute = '$assetFolder${envFolder}environment.env';
 
   static const errorImageRoute = '$assetFolder${imagesFolder}404-background.jpg';
+
+  static const manufacturerIconRoute = '$assetFolder$imagesFolder$manufacturerIconsFolder';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/widgets/animated_password_visibility_icon.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
@@ -13,6 +14,7 @@ class AppFormField extends StatelessWidget {
   final String? errorText;
   final TextInputType textInputType;
   final IconData? leadingIcon;
+  final String? leadingSvg;
   final TextInputAction textInputAction;
   final bool isObscureText;
   final Function()? onEditingComplete;
@@ -38,6 +40,7 @@ class AppFormField extends StatelessWidget {
     this.isObscureText = false,
     this.maxLength,
     this.leadingIcon,
+    this.leadingSvg,
     this.padding = AppDimensions.normalM,
     this.onSuffixIconPressed,
     this.trailingActionSemanticsLabel,
@@ -90,9 +93,7 @@ class AppFormField extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimensions.normalS),
               borderSide: const BorderSide(color: Colors.red),
             ),
-            prefixIcon: leadingIcon != null
-                ? Icon(leadingIcon, color: AppColors.accentColor)
-                : null,
+            prefixIcon: getPrefixIcon(),
             suffixIcon: onSuffixIconPressed != null ? getFieldSuffixWidget() : null,
           ),
           keyboardType: textInputType,
@@ -104,6 +105,25 @@ class AppFormField extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget? getPrefixIcon() {
+    if (leadingIcon != null) {
+      return Icon(leadingIcon, color: AppColors.accentColor);
+    }
+
+    if (leadingSvg != null) {
+      return Padding(
+        padding: const EdgeInsets.all(AppDimensions.minorL),
+        child: SvgPicture.asset(
+          leadingSvg ?? '',
+          width: AppDimensions.normalS,
+          height: AppDimensions.normalS,
+        ),
+      );
+    }
+
+    return null;
   }
 
   Widget getFieldSuffixWidget() {

@@ -5,6 +5,7 @@
     {
       "id": 1,
       "name": "Toyota",
+      "icon": "toyota.svg",
       "models": [
         "Corolla",
         "Camry",
@@ -31,6 +32,7 @@
     {
       "id": 2,
       "name": "Honda",
+      "icon": "honda.svg",
       "models": [
         "Civic",
         "Accord",
@@ -57,6 +59,7 @@
     {
       "id": 3,
       "name": "Ford",
+      "icon": "ford.svg",
       "models": [
         "F-150",
         "Focus",
@@ -83,6 +86,7 @@
     {
       "id": 4,
       "name": "Chevrolet",
+      "icon": "chevrolet.svg",
       "models": [
         "Silverado",
         "Malibu",
@@ -109,6 +113,7 @@
     {
       "id": 5,
       "name": "Volkswagen",
+      "icon": "volkswagen.svg",
       "models": [
         "Golf",
         "Passat",
@@ -135,6 +140,7 @@
     {
       "id": 6,
       "name": "BMW",
+      "icon": "bmw.svg",
       "models": [
         "3 Series",
         "5 Series",
@@ -187,6 +193,7 @@
     {
       "id": 8,
       "name": "Hyundai",
+      "icon": "hyundai.svg",
       "models": [
         "Elantra",
         "Sonata",
@@ -213,6 +220,7 @@
     {
       "id": 9,
       "name": "Nissan",
+      "icon": "nissan.svg",
       "models": [
         "Altima",
         "Sentra",
@@ -239,6 +247,7 @@
     {
       "id": 10,
       "name": "Kia",
+      "icon": "kia.svg",
       "models": [
         "Optima",
         "Sorento",
@@ -265,6 +274,7 @@
     {
       "id": 11,
       "name": "Audi",
+      "icon": "audi.svg",
       "models": [
         "A3",
         "A4",
@@ -291,6 +301,7 @@
     {
       "id": 12,
       "name": "Mazda",
+      "icon": "mazda.svg",
       "models": [
         "Mazda3",
         "Mazda6",
@@ -317,6 +328,7 @@
     {
       "id": 13,
       "name": "Subaru",
+      "icon": "subaru.svg",
       "models": [
         "Outback",
         "Forester",
@@ -343,6 +355,7 @@
     {
       "id": 14,
       "name": "Jeep",
+      "icon": "jeep.svg",
       "models": [
         "Wrangler",
         "Grand Cherokee",
@@ -369,6 +382,7 @@
     {
       "id": 15,
       "name": "Tesla",
+      "icon": "tesla.svg",
       "models": [
         "Model S",
         "Model 3",
@@ -402,6 +416,7 @@
     {
       "id": 17,
       "name": "Volvo",
+      "icon": "volvo.svg",
       "models": [
         "XC90",
         "XC60",
@@ -428,6 +443,7 @@
     {
       "id": 18,
       "name": "Peugeot",
+      "icon": "peugeot.svg",
       "models": [
         "208",
         "308",
@@ -454,6 +470,7 @@
     {
       "id": 19,
       "name": "Renault",
+      "icon": "renault.svg",
       "models": [
         "Clio",
         "Megane",
@@ -480,6 +497,7 @@
     {
       "id": 20,
       "name": "Fiat",
+      "icon": "fiat.svg",
       "models": [
         "500",
         "Panda",
@@ -506,6 +524,7 @@
     {
       "id": 21,
       "name": "MINI",
+      "icon": "mini.svg",
       "models": [
         "Hatch (Cooper/One)",
         "Cooper S",
@@ -532,6 +551,7 @@
     {
       "id": 22,
       "name": "Porsche",
+      "icon": "porsche.svg",
       "models": [
         "911",
         "Cayenne",

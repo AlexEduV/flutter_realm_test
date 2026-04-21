@@ -1,7 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
 import '../../../../../common/constants/app_dimensions.dart';
@@ -38,12 +41,15 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
   final colorTextController = TextEditingController();
   final priceTextController = TextEditingController();
 
+  String? selectedManufacturerImageSrc;
+
   @override
   void initState() {
     super.initState();
 
     final cubit = context.read<NewItemPageCubit>();
     cubit.clearFieldErrors();
+    cubit.clearFields();
 
     manufacturerTextController.text = cubit.state.manufacturerText;
     modelTextController.text = cubit.state.modelText;
@@ -66,18 +72,77 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
 
               BlocBuilder<NewItemPageCubit, NewItemPageState>(
                 builder: (context, state) {
-                  final manufacturers = state.autoCompleteEntities
-                      .map((element) => element.manufacturer)
-                      .toList();
+                  final manufacturers = state.autoCompleteEntities;
 
-                  return Autocomplete<String>(
+                  return Autocomplete<CarAutoCompleteEntity>(
+                    textEditingController: manufacturerTextController,
+                    focusNode: widget.manufacturerFocusNode,
                     optionsBuilder: (TextEditingValue textEditingValue) {
                       if (textEditingValue.text == '') {
-                        return const Iterable<String>.empty();
+                        return const Iterable<CarAutoCompleteEntity>.empty();
                       }
-                      return manufacturers.where((String option) {
-                        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                      return manufacturers.where((option) {
+                        return option.manufacturer.toLowerCase().contains(
+                          textEditingValue.text.toLowerCase(),
+                        );
                       });
+                    },
+                    displayStringForOption: (option) => option.manufacturer,
+                    optionsViewBuilder: (context, onSelected, options) {
+                      final borderRadius = BorderRadius.circular(AppDimensions.normalS);
+
+                      return Align(
+                        alignment: Alignment.topLeft,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: borderRadius,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withAlpha(38),
+                                offset: const Offset(0, 4),
+                                blurRadius: 8,
+                                spreadRadius: 0,
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: borderRadius,
+                            child: Material(
+                              borderRadius: borderRadius,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.zero,
+                                itemCount: options.length,
+                                itemBuilder: (context, index) {
+                                  final option = options.elementAt(index);
+                                  return ListTile(
+                                    tileColor: Colors.white,
+                                    leading: option.imageSrc != null
+                                        ? SvgPicture.asset(
+                                            width: AppDimensions.majorS,
+                                            height: AppDimensions.majorS,
+                                            '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc ?? ''}',
+                                          )
+                                        : const SizedBox(
+                                            width: AppDimensions.majorS,
+                                            height: AppDimensions.majorS,
+                                          ),
+                                    title: Text(option.manufacturer),
+                                    onTap: () {
+                                      onSelected(option);
+                                      selectedManufacturerImageSrc = option.imageSrc != null
+                                          ? '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc}'
+                                          : null;
+                                      widget.manufacturerFocusNode.unfocus();
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
                     },
                     fieldViewBuilder:
                         (context, textEditingController, focusNode, onFieldSubmitted) {
@@ -109,11 +174,14 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                             },
                             padding: 0.0,
                             maxLength: state.manufacturerFieldParams?.maxLength,
+                            leadingSvg: selectedManufacturerImageSrc,
                           );
                         },
-                    onSelected: (String selection) {
-                      manufacturerTextController.text = selection;
-                      context.read<NewItemPageCubit>().updateManufacturerText(selection);
+                    onSelected: (CarAutoCompleteEntity selection) {
+                      final manufacturer = selection.manufacturer;
+
+                      manufacturerTextController.text = manufacturer;
+                      context.read<NewItemPageCubit>().updateManufacturerText(manufacturer);
                     },
                   );
                 },

@@ -297,4 +297,16 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       ),
     );
   }
+
+  void clearFields() {
+    emit(
+      state.copyWith(
+        manufacturerText: '',
+        modelText: '',
+        yearText: '',
+        priceText: '',
+        colorText: '',
+      ),
+    );
+  }
 }
