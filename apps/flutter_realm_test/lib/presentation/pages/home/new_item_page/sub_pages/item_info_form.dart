@@ -90,35 +90,49 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
 
                       return Align(
                         alignment: Alignment.topLeft,
-                        child: ClipRRect(
-                          borderRadius: borderRadius,
-                          child: Material(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
                             borderRadius: borderRadius,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              padding: EdgeInsets.zero,
-                              itemCount: options.length,
-                              itemBuilder: (context, index) {
-                                final option = options.elementAt(index);
-                                return ListTile(
-                                  tileColor: Colors.white,
-                                  leading: option.imageSrc != null
-                                      ? SvgPicture.asset(
-                                          width: AppDimensions.majorS,
-                                          height: AppDimensions.majorS,
-                                          '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc!}',
-                                        )
-                                      : const SizedBox(
-                                          width: AppDimensions.majorS,
-                                          height: AppDimensions.majorS,
-                                        ),
-                                  title: Text(option.manufacturer),
-                                  onTap: () {
-                                    onSelected(option);
-                                    widget.manufacturerFocusNode.unfocus();
-                                  },
-                                );
-                              },
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withAlpha(38),
+                                offset: const Offset(0, 4),
+                                blurRadius: 8,
+                                spreadRadius: 0,
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: borderRadius,
+                            child: Material(
+                              borderRadius: borderRadius,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.zero,
+                                itemCount: options.length,
+                                itemBuilder: (context, index) {
+                                  final option = options.elementAt(index);
+                                  return ListTile(
+                                    tileColor: Colors.white,
+                                    leading: option.imageSrc != null
+                                        ? SvgPicture.asset(
+                                            width: AppDimensions.majorS,
+                                            height: AppDimensions.majorS,
+                                            '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc!}',
+                                          )
+                                        : const SizedBox(
+                                            width: AppDimensions.majorS,
+                                            height: AppDimensions.majorS,
+                                          ),
+                                    title: Text(option.manufacturer),
+                                    onTap: () {
+                                      onSelected(option);
+                                      widget.manufacturerFocusNode.unfocus();
+                                    },
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
