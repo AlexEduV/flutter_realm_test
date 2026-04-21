@@ -84,31 +84,36 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                     },
                     displayStringForOption: (option) => option.manufacturer,
                     optionsViewBuilder: (context, onSelected, options) {
+                      final borderRadius = BorderRadius.circular(AppDimensions.normalS);
+
                       return Align(
                         alignment: Alignment.topLeft,
-                        child: Material(
-                          borderRadius: BorderRadius.circular(AppDimensions.normalS),
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            padding: EdgeInsets.zero,
-                            itemCount: options.length,
-                            itemBuilder: (context, index) {
-                              final option = options.elementAt(index);
-                              return ListTile(
-                                leading: option.imageSrc != null
-                                    ? SvgPicture.asset(
-                                        width: AppDimensions.majorS,
-                                        height: AppDimensions.majorS,
-                                        '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc!}',
-                                      )
-                                    : const SizedBox(
-                                        width: AppDimensions.majorS,
-                                        height: AppDimensions.majorS,
-                                      ),
-                                title: Text(option.manufacturer),
-                                onTap: () => onSelected(option),
-                              );
-                            },
+                        child: ClipRRect(
+                          borderRadius: borderRadius,
+                          child: Material(
+                            borderRadius: borderRadius,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              padding: EdgeInsets.zero,
+                              itemCount: options.length,
+                              itemBuilder: (context, index) {
+                                final option = options.elementAt(index);
+                                return ListTile(
+                                  leading: option.imageSrc != null
+                                      ? SvgPicture.asset(
+                                          width: AppDimensions.majorS,
+                                          height: AppDimensions.majorS,
+                                          '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc!}',
+                                        )
+                                      : const SizedBox(
+                                          width: AppDimensions.majorS,
+                                          height: AppDimensions.majorS,
+                                        ),
+                                  title: Text(option.manufacturer),
+                                  onTap: () => onSelected(option),
+                                );
+                              },
+                            ),
                           ),
                         ),
                       );
