@@ -7,6 +7,7 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/data/dto/car_dto.dart';
 import 'package:test_flutter_project/data/models/scheme.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 void main() {
@@ -24,7 +25,7 @@ void main() {
     owner: Person('John', 'Doe', 'test', linkedIds: []),
     mileage: 10000,
     bodyType: 'sedan',
-    fuelType: 'ev',
+    engine: Engine(fuelType: 'ev'),
     transmissionType: 'automatic',
     color: 'White',
     images: [],
@@ -43,7 +44,7 @@ void main() {
         mileage: 10000,
         distanceTo: 50,
         price: 80000,
-        fuelType: FuelType.ev.name,
+        engine: EngineEntity(type: FuelType.ev.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.automatic.name,
       );
@@ -59,7 +60,7 @@ void main() {
       expect(entity.mileage, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
-      expect(entity.fuelType, 'ev');
+      expect(entity.engine.type, 'ev');
       expect(entity.bodyType, 'sedan');
       expect(entity.transmissionType, 'automatic');
     });
@@ -78,7 +79,7 @@ void main() {
         mileage: 50000,
         distanceTo: 100,
         price: 20000,
-        fuelType: FuelType.gasoline.name,
+        engine: EngineEntity(type: FuelType.gasoline.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.automatic.name,
       );
@@ -96,7 +97,7 @@ void main() {
       expect(entity.mileage, 50000);
       expect(entity.distanceTo, 100);
       expect(entity.price, 20000);
-      expect(entity.fuelType, 'gasoline');
+      expect(entity.engine.type, 'gasoline');
       expect(entity.bodyType, 'sedan');
       expect(entity.transmissionType, 'automatic');
     });
@@ -115,7 +116,7 @@ void main() {
       expect(entity.mileage, 10000);
       expect(entity.distanceTo, 50);
       expect(entity.price, 80000);
-      expect(entity.fuelType, 'ev');
+      expect(entity.engine.type, 'ev');
       expect(entity.bodyType, 'sedan');
       expect(entity.transmissionType, 'automatic');
     });
@@ -146,7 +147,7 @@ void main() {
         mileage: 10000,
         distanceTo: 50,
         price: 80000,
-        fuelType: FuelType.ev.name,
+        engine: EngineEntity(type: FuelType.ev.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.automatic.name,
       );
@@ -162,7 +163,7 @@ void main() {
         mileage: 10000,
         distanceTo: 50,
         price: 80000,
-        fuelType: FuelType.ev.name,
+        engine: EngineEntity(type: FuelType.ev.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.automatic.name,
       );
@@ -183,7 +184,7 @@ void main() {
         mileage: 10000,
         distanceTo: 50,
         price: 80000,
-        fuelType: FuelType.ev.name,
+        engine: EngineEntity(type: FuelType.ev.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.automatic.name,
       );
@@ -199,7 +200,7 @@ void main() {
         mileage: 5000,
         distanceTo: 100,
         price: 40000,
-        fuelType: FuelType.gasoline.name,
+        engine: EngineEntity(type: FuelType.gasoline.name),
         bodyType: BodyType.crossover.name,
         transmissionType: TransmissionType.manual.name,
       );

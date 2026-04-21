@@ -1,5 +1,6 @@
 import 'package:realm/realm.dart' show ObjectId;
 import 'package:test_flutter_project/common/enums/promo_type.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import '../../data/dto/car_dto.dart';
@@ -19,7 +20,7 @@ extension CarExtensions on Car {
       mileage: mileage,
       distanceTo: distanceTo,
       price: price,
-      fuelType: fuelType ?? '',
+      engine: EngineEntity(volume: engine?.volume, type: engine?.fuelType),
       bodyType: bodyType ?? '',
       transmissionType: transmissionType ?? '',
       owner: OwnerEntity(
@@ -48,7 +49,7 @@ extension CarExtensions on Car {
       distanceTo: dto.distanceTo,
       price: dto.price ?? 0,
       bodyType: dto.bodyType,
-      fuelType: dto.fuelType,
+      engine: Engine(fuelType: dto.engine.type, volume: dto.engine.volume),
       transmissionType: dto.transmissionType,
       owner: Person(
         dto.owner?.firstName ?? '',
@@ -76,7 +77,7 @@ extension CarExtensions on Car {
       distanceTo: entity.distanceTo,
       price: entity.price ?? 0,
       bodyType: entity.bodyType,
-      fuelType: entity.fuelType,
+      engine: Engine(volume: entity.engine.volume, fuelType: entity.engine.type),
       transmissionType: entity.transmissionType,
       owner: Person(
         entity.owner?.firstName ?? '',

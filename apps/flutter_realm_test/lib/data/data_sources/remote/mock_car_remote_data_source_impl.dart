@@ -11,6 +11,7 @@ import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/data/dto/car_dto.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 
 import '../../../core/di/injection_container.dart';
@@ -36,7 +37,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       promoType: PromoType.featured,
       year: '2010',
       bodyType: BodyType.coupe.name,
-      fuelType: FuelType.diesel.name,
+      engine: EngineEntity(type: FuelType.diesel.name),
       transmissionType: TransmissionType.hybrid.name,
       color: 'Yellow',
       owner: serviceLocator<GetOwnerByIdUseCase>().call('1'),
@@ -55,7 +56,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       promoType: PromoType.bestPrice,
       year: '2007',
       bodyType: BodyType.sedan.name,
-      fuelType: FuelType.hybrid.name,
+      engine: EngineEntity(type: FuelType.hybrid.name),
       transmissionType: TransmissionType.manual.name,
       color: 'Red',
       owner: serviceLocator<GetOwnerByIdUseCase>().call('2'),
@@ -73,7 +74,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
       isVerified: true,
       year: '2002',
       bodyType: BodyType.semi.name,
-      fuelType: FuelType.diesel.name,
+      engine: EngineEntity(type: FuelType.diesel.name),
       transmissionType: TransmissionType.hybrid.name,
       color: 'Black',
       owner: serviceLocator<GetOwnerByIdUseCase>().call('3'),

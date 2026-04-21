@@ -32,7 +32,9 @@ class VehicleSpecsContent extends StatelessWidget {
 
                 SpecificationItem(
                   title: context.tr(L10nKeys.vehicleSpecificationEngine),
-                  subtitle: car.fuelType.capitalizeFirst(),
+                  subtitle:
+                      '${car.engine.type?.capitalizeFirst() ?? context.tr(L10nKeys.unknownLabel)} ${car.engine.volume?.capitalizeFirst() ?? ''}'
+                          .trim(),
                 ),
 
                 SpecificationItem(

@@ -9,6 +9,7 @@ import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_list_item.dart';
@@ -39,7 +40,7 @@ void main() {
       mileage: 1000,
       distanceTo: 5,
       price: 90000,
-      fuelType: FuelType.ev.name,
+      engine: EngineEntity(type: FuelType.ev.name),
       bodyType: BodyType.sedan.name,
       transmissionType: TransmissionType.automatic.name,
     );
@@ -210,7 +211,7 @@ void main() {
         mileage: 500,
         distanceTo: 10,
         price: 50000,
-        fuelType: FuelType.ev.name,
+        engine: EngineEntity(type: FuelType.ev.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.automatic.name,
       );

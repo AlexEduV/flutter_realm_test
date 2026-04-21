@@ -7,8 +7,8 @@ class RealmConfiguration {
 
   void init() {
     _config = Configuration.local(
-      [Car.schema, Person.schema, User.schema, LastSeenCar.schema],
-      schemaVersion: 28,
+      [Car.schema, Person.schema, User.schema, LastSeenCar.schema, Engine.schema],
+      schemaVersion: 29,
       migrationCallback: (migration, oldVersion) {
         //add object id
         if (oldVersion < 2) {
@@ -77,6 +77,27 @@ class RealmConfiguration {
             if (oldCarMileage == null) continue;
 
             newCar.mileage = oldCarMileage;
+          }
+        }
+
+        if (oldVersion < 29) {
+          final oldCars = migration.oldRealm.all('Car');
+          final newCars = migration.newRealm.all<Car>();
+
+          for (var i = 0; i < oldCars.length; i++) {
+            final oldCar = oldCars[i];
+            final newCar = newCars[i];
+
+            // Move the old 'kilometers' to 'mileage'
+            String? oldCarFuelType;
+            try {
+              oldCarFuelType = oldCar.dynamic.get<String?>('fuelType');
+            } catch (e) {
+              oldCarFuelType = null;
+            }
+            if (oldCarFuelType == null) continue;
+
+            newCar.engine = Engine(fuelType: oldCarFuelType);
           }
         }
       },

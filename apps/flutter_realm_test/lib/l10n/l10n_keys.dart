@@ -94,6 +94,10 @@ class L10nKeys {
   static const String fieldParamsFullNameRegexErrorMessage =
       'forms.fieldParams.fullName.regexErrorMessage';
 
+  static const String fieldParamsEngineVolumeLabel = 'forms.fieldParams.engineVolume.label';
+  static const String fieldParamsEngineVolumeRegexErrorMessage =
+      'forms.fieldParams.engineVolume.regexErrorMessage';
+
   static const String fieldParamsHintMax = 'forms.fieldParams.hintTextMax';
   static const String fieldParamsHintMin = 'forms.fieldParams.hintTextMin';
 
@@ -243,6 +247,9 @@ class L10nKeys {
       'pages.addNewItem.itemSpecsPicker.fuelTypeGroup.itemEV';
   static const String addNewItemSpecsPickerFuelTypeGroupItemHybrid =
       'pages.addNewItem.itemSpecsPicker.fuelTypeGroup.itemHybrid';
+
+  static const String addNewItemSpecsPickerEngineVolumeDescription =
+      'pages.addNewItem.itemSpecsPicker.engineVolumeGroup.description';
 
   static const String addNewItemSpecsPickerTransmissionTypeGroupDescription =
       'pages.addNewItem.itemSpecsPicker.transmissionTypeGroup.description';

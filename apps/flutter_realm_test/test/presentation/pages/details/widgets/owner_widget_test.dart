@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
@@ -64,7 +66,7 @@ void main() {
       isVerified: true,
       type: 'Car',
       bodyType: 'sedan',
-      fuelType: 'electric',
+      engine: EngineEntity(type: FuelType.ev.name),
       transmissionType: 'automatic',
       owner: OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []),
       distanceTo: 42,
@@ -107,7 +109,7 @@ void main() {
       isVerified: true,
       type: 'Car',
       bodyType: 'sedan',
-      fuelType: 'electric',
+      engine: EngineEntity(type: FuelType.ev.name),
       transmissionType: 'automatic',
       owner: OwnerEntity(id: '1', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []),
       distanceTo: 42,
@@ -149,7 +151,7 @@ void main() {
       isVerified: true,
       type: 'Car',
       bodyType: 'sedan',
-      fuelType: 'electric',
+      engine: EngineEntity(type: FuelType.ev.name),
       transmissionType: 'automatic',
       owner: OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []),
       distanceTo: 42,

@@ -89,6 +89,20 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
               ),
               regex: r'^[A-Za-z\s\-]+$',
             ),
+        engineVolumeFieldParams:
+            FieldParamsModel.withLabel(
+              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsEngineVolumeLabel,
+              ),
+            ).copyWith(
+              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsValidationMessage,
+              ),
+              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+                L10nKeys.fieldParamsEngineVolumeRegexErrorMessage,
+              ),
+              regex: r'^\d{1,2}(\.\d{1,2})?$|^\d{2,4}$',
+            ),
       ),
     );
   }
@@ -198,6 +212,27 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     return true;
   }
 
+  bool validateEngineVolume(String volume, bool isEditing) {
+    if (isEditing) {
+      emit(state.copyWith(engineVolumeErrorText: null));
+      return true;
+    }
+
+    if (volume.isEmpty) {
+      emit(state.copyWith(engineVolumeErrorText: state.engineVolumeFieldParams?.validationMessage));
+      return false;
+    }
+
+    final engineVolumeRegex = RegExp(state.engineVolumeFieldParams?.regex ?? '');
+    if (!engineVolumeRegex.hasMatch(volume)) {
+      emit(state.copyWith(engineVolumeErrorText: state.engineVolumeFieldParams?.regexErrorMessage));
+      return false;
+    }
+
+    emit(state.copyWith(engineVolumeErrorText: null));
+    return true;
+  }
+
   void updateTabIndex(int newIndex) {
     emit(state.copyWith(currentPageIndex: newIndex));
   }
@@ -267,6 +302,10 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
   void updateSelectedFuelType(FuelType? newType) {
     emit(state.copyWith(selectedFuelType: newType ?? FuelType.diesel));
+  }
+
+  void updateEngineVolumeText(String newVolume) {
+    emit(state.copyWith(engineVolumeText: newVolume));
   }
 
   void clearInfoForm() {

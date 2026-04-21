@@ -9,6 +9,7 @@ import '../../../../../common/enums/body_type.dart';
 import '../../../../../common/enums/fuel_type.dart';
 import '../../../../../common/enums/transmission_type.dart';
 import '../../../../../l10n/l10n_keys.dart';
+import '../../../authentication/widgets/app_form_field.dart';
 import '../widgets/radio_group_title.dart';
 
 class ItemSpecsPicker extends StatefulWidget {
@@ -20,6 +21,9 @@ class ItemSpecsPicker extends StatefulWidget {
 
 class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
   List<BodyType> bodyTypesList = [];
+
+  final engineVolumeFocusNode = FocusNode();
+  final engineVolumeTextController = TextEditingController();
 
   @override
   void initState() {
@@ -127,6 +131,48 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                         ),
                       ],
                     ),
+                  ),
+
+                  RadioGroupTitle(
+                    text: context.tr(L10nKeys.addNewItemSpecsPickerEngineVolumeDescription),
+                  ),
+
+                  Row(
+                    spacing: AppDimensions.minorL,
+                    children: [
+                      Expanded(
+                        child: AppFormField(
+                          focusNode: engineVolumeFocusNode,
+                          textEditingController: engineVolumeTextController,
+                          labelText: state.engineVolumeFieldParams?.label ?? '',
+                          hintText: state.engineVolumeFieldParams?.hintText ?? '',
+                          textInputType: TextInputType.number,
+                          textInputAction: TextInputAction.done,
+                          errorText: state.engineVolumeErrorText,
+                          onFocusChange: (hasFocus) {
+                            if (hasFocus) return;
+
+                            context.read<NewItemPageCubit>().validateEngineVolume(
+                              engineVolumeTextController.text,
+                              false,
+                            );
+                          },
+                          onChanged: (newText) {
+                            context.read<NewItemPageCubit>().validateEngineVolume(
+                              engineVolumeTextController.text,
+                              engineVolumeFocusNode.hasFocus,
+                            );
+
+                            context.read<NewItemPageCubit>().updateEngineVolumeText(
+                              engineVolumeTextController.text,
+                            );
+                          },
+                          padding: 0.0,
+                        ),
+                      ),
+
+                      Expanded(child: Text(state.selectedFuelType.getUnitOfMeasurement())),
+                    ],
                   ),
                 ],
               ),

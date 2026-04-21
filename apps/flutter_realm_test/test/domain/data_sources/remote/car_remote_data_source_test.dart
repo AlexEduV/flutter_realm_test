@@ -6,6 +6,7 @@ import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/data/dto/car_dto.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 
 import '../../../data/repositories/car_repository_impl_test.mocks.dart';
 
@@ -26,7 +27,7 @@ void main() {
           type: CarType.car.name,
           isVerified: true,
           model: 'Camry',
-          fuelType: FuelType.gasoline.name,
+          engine: EngineEntity(type: FuelType.gasoline.name),
           transmissionType: TransmissionType.automatic.name,
           bodyType: BodyType.sedan.name,
         ),
@@ -37,7 +38,7 @@ void main() {
           type: CarType.bike.name,
           isVerified: false,
           model: 'Type R',
-          fuelType: FuelType.gasoline.name,
+          engine: EngineEntity(type: FuelType.gasoline.name),
           transmissionType: TransmissionType.automatic.name,
           bodyType: BodyType.bike.name,
         ),
@@ -61,7 +62,7 @@ void main() {
           type: CarType.car.name,
           isVerified: true,
           model: 'Camry',
-          fuelType: FuelType.gasoline.name,
+          engine: EngineEntity(type: FuelType.gasoline.name),
           transmissionType: TransmissionType.automatic.name,
           bodyType: BodyType.sedan.name,
         ),
@@ -72,7 +73,7 @@ void main() {
           type: CarType.bike.name,
           isVerified: false,
           model: 'Type R',
-          fuelType: FuelType.gasoline.name,
+          engine: EngineEntity(type: FuelType.gasoline.name),
           transmissionType: TransmissionType.automatic.name,
           bodyType: BodyType.bike.name,
         ),

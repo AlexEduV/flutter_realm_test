@@ -8,6 +8,7 @@ import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 import 'base_local_storage_test.mocks.dart';
@@ -33,7 +34,7 @@ void main() {
           mileage: 1000,
           distanceTo: 5,
           price: 90000,
-          fuelType: FuelType.ev.name,
+          engine: EngineEntity(type: FuelType.ev.name),
           bodyType: BodyType.sedan.name,
           transmissionType: TransmissionType.automatic.name,
         ),
@@ -59,7 +60,7 @@ void main() {
         mileage: 5000,
         distanceTo: 10,
         price: 20000,
-        fuelType: FuelType.diesel.name,
+        engine: EngineEntity(type: FuelType.gasoline.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.manual.name,
       );
@@ -80,7 +81,7 @@ void main() {
         mileage: 8000,
         distanceTo: 15,
         price: 15000,
-        fuelType: FuelType.gasoline.name,
+        engine: EngineEntity(type: FuelType.gasoline.name),
         bodyType: BodyType.sedan.name,
         transmissionType: TransmissionType.automatic.name,
       );
@@ -103,7 +104,7 @@ void main() {
           mileage: 3000,
           distanceTo: 2,
           price: 50000,
-          fuelType: FuelType.hybrid.name,
+          engine: EngineEntity(type: FuelType.hybrid.name),
           bodyType: BodyType.coupe.name,
           transmissionType: TransmissionType.manual.name,
         ),

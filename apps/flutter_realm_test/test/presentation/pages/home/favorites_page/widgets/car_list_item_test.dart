@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.dart';
 
 void main() {
@@ -11,7 +13,7 @@ void main() {
     isVerified: true,
     type: 'car',
     bodyType: 'sedan',
-    fuelType: 'electric',
+    engine: EngineEntity(type: FuelType.ev.name),
     transmissionType: 'automatic',
     year: '2022',
     price: 50000,

@@ -4,6 +4,7 @@ import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
 
 import '../../repositories/car_repository_test.mocks.dart';
@@ -30,7 +31,7 @@ void main() {
           mileage: 1000,
           distanceTo: 5,
           price: 90000,
-          fuelType: FuelType.ev.name,
+          engine: EngineEntity(type: FuelType.ev.name),
           bodyType: BodyType.sedan.name,
           transmissionType: TransmissionType.automatic.name,
         ),

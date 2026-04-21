@@ -155,12 +155,12 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                             textInputAction: TextInputAction.next,
                             errorText: state.manufacturerErrorText,
                             onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                context.read<NewItemPageCubit>().validateManufacturer(
-                                  textEditingController.text,
-                                  false,
-                                );
-                              }
+                              if (hasFocus) return;
+
+                              context.read<NewItemPageCubit>().validateManufacturer(
+                                textEditingController.text,
+                                false,
+                              );
                             },
                             onChanged: (newText) {
                               context.read<NewItemPageCubit>().validateManufacturer(
@@ -199,6 +199,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                       [];
 
                   return Autocomplete<String>(
+                    focusNode: widget.modelFocusNode,
+                    textEditingController: modelTextController,
                     optionsBuilder: (TextEditingValue textEditingValue) {
                       if (textEditingValue.text == '') {
                         return const Iterable<String>.empty();
@@ -206,6 +208,49 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                       return models.where((String option) {
                         return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
                       });
+                    },
+                    optionsViewBuilder: (context, onSelected, options) {
+                      final borderRadius = BorderRadius.circular(AppDimensions.normalS);
+
+                      return Align(
+                        alignment: Alignment.topLeft,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: borderRadius,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withAlpha(38),
+                                offset: const Offset(0, 4),
+                                blurRadius: 8,
+                                spreadRadius: 0,
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: borderRadius,
+                            child: Material(
+                              borderRadius: borderRadius,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.zero,
+                                itemCount: options.length,
+                                itemBuilder: (context, index) {
+                                  final option = options.elementAt(index);
+                                  return ListTile(
+                                    tileColor: Colors.white,
+                                    title: Text(option),
+                                    onTap: () {
+                                      onSelected(option);
+                                      widget.modelFocusNode.unfocus();
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
                     },
                     fieldViewBuilder:
                         (context, textEditingController, focusNode, onFieldSubmitted) {
@@ -218,12 +263,12 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                             textInputAction: TextInputAction.next,
                             errorText: state.modelErrorText,
                             onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                context.read<NewItemPageCubit>().validateModel(
-                                  textEditingController.text,
-                                  false,
-                                );
-                              }
+                              if (hasFocus) return;
+
+                              context.read<NewItemPageCubit>().validateModel(
+                                textEditingController.text,
+                                false,
+                              );
                             },
                             onChanged: (newText) {
                               context.read<NewItemPageCubit>().validateModel(
@@ -256,9 +301,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 textInputAction: TextInputAction.next,
                 errorText: state.yearErrorText,
                 onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validateYear(yearTextController.text, false);
-                  }
+                  if (hasFocus) return;
+
+                  context.read<NewItemPageCubit>().validateYear(yearTextController.text, false);
                 },
                 onChanged: (newText) {
                   context.read<NewItemPageCubit>().validateYear(
@@ -280,9 +325,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 textInputAction: TextInputAction.next,
                 errorText: state.priceErrorText,
                 onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validatePrice(priceTextController.text, false);
-                  }
+                  if (hasFocus) return;
+
+                  context.read<NewItemPageCubit>().validatePrice(priceTextController.text, false);
                 },
                 onChanged: (newText) {
                   context.read<NewItemPageCubit>().validatePrice(
@@ -304,9 +349,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 textInputAction: TextInputAction.done,
                 errorText: state.colorErrorText,
                 onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<NewItemPageCubit>().validateColor(colorTextController.text, false);
-                  }
+                  if (hasFocus) return;
+
+                  context.read<NewItemPageCubit>().validateColor(colorTextController.text, false);
                 },
                 onChanged: (newText) => onColorChanged(),
                 padding: 0.0,
