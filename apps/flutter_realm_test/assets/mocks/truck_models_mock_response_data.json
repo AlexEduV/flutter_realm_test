@@ -4,6 +4,7 @@
   "results": [
     {
       "id": 1,
+      "icon": "ford.svg",
       "name": "Ford",
       "models": [
         "F-150", "F-250", "F-350", "F-450", "F-550", "Ranger", "Super Duty", "E-Series", "Transit", "L-Series", "F-650", "F-750", "Explorer Sport Trac", "Courier", "Maverick", "Excursion", "Bronco", "Econoline", "F-Series", "F-100"
@@ -11,6 +12,7 @@
     },
     {
       "id": 2,
+      "icon": "chevrolet.svg",
       "name": "Chevrolet",
       "models": [
         "Silverado 1500", "Silverado 2500", "Silverado 3500", "Colorado", "Avalanche", "C/K", "S-10", "Express", "Suburban", "Tahoe", "Blazer", "Cheyenne", "LUV", "Kodiak", "Trailblazer", "SSR", "G-Series", "Venture", "Astro", "Caprice"
@@ -19,6 +21,7 @@
     {
       "id": 3,
       "name": "Ram",
+      "icon": "ram.svg",
       "models": [
         "1500", "2500", "3500", "4500", "5500", "Dakota", "ProMaster", "ProMaster City", "Ram Chassis Cab", "Ram SRT-10", "Ram Rebel", "Ram TRX", "Ram Classic", "Ram Mega Cab", "Ram Power Wagon", "Ram Tradesman", "Ram Laramie", "Ram Limited", "Ram Big Horn", "Ram Lone Star"
       ]
@@ -26,6 +29,7 @@
     {
       "id": 4,
       "name": "Toyota",
+      "icon": "toyota.svg",
       "models": [
         "Tundra", "Tacoma", "Hilux", "Land Cruiser Pickup", "Dyna", "ProAce", "4Runner", "Sequoia", "FJ Cruiser", "Mega Cruiser", "TownAce", "LiteAce", "Stout", "ToyoAce", "Quick Delivery", "Coaster", "HiAce", "Granvia", "Regius", "Succeed"
       ]
@@ -33,6 +37,7 @@
     {
       "id": 5,
       "name": "Nissan",
+      "icon": "nissan.svg",
       "models": [
         "Titan", "Frontier", "Navara", "Hardbody", "Atlas", "Cabstar", "NT400", "Datsun Truck", "Armada", "Pathfinder", "Xterra", "Patrol Pickup", "King Cab", "Crew Cab", "Vanette", "Caravan", "Serena", "Urvan", "Terrano", "Pickup"
       ]
@@ -61,6 +66,7 @@
     {
       "id": 9,
       "name": "Volvo",
+      "icon": "volvo.svg",
       "models": [
         "FH", "FM", "FMX", "FE", "FL", "VNL", "VNR", "VHD", "VNX", "F10", "F12", "F16", "N10", "N12", "N16", "NH", "L-Series", "S-Series", "V-Series", "XC90"
       ]
@@ -103,6 +109,7 @@
     {
       "id": 15,
       "name": "Scania",
+      "icon": "scania.svg",
       "models": [
         "R-Series", "S-Series", "G-Series", "P-Series", "L-Series", "4-Series", "3-Series", "2-Series", "T-Series", "Vabis", "Streamline", "Super", "XT", "Citywide", "Irizar", "OmniExpress", "Touring", "Interlink", "Metrolink", "K-Series", "F-Series"
       ]
@@ -110,6 +117,7 @@
     {
       "id": 16,
       "name": "MAN",
+      "icon": "man.svg",
       "models": [
         "TGX", "TGS", "TGM", "TGL", "F2000", "F90", "F8", "F7", "F6", "F5", "F4", "F3", "F2", "F1", "L2000", "M2000", "E2000", "G90", "G60", "G40"
       ]
@@ -117,6 +125,7 @@
     {
       "id": 17,
       "name": "DAF",
+      "icon": "daf.svg",
       "models": [
         "XF", "CF", "LF", "XG", "XG+", "FT", "FA", "FAR", "FAS", "FAT", "FAN", "FAG", "FAP", "FARX", "FATX", "FANX", "FAGX", "FAPX", "FTX", "FTXF"
       ]
@@ -131,6 +140,7 @@
     {
       "id": 19,
       "name": "Mitsubishi Fuso",
+      "icon": "mitsubishi.svg",
       "models": [
         "Canter", "Fighter", "Super Great", "Rosa", "FK", "FM", "FN", "FP", "FS", "FV", "FW", "FT", "FU", "FA", "FB", "FC", "FD", "FE", "FF", "FG"
       ]
@@ -138,6 +148,7 @@
     {
       "id": 20,
       "name": "Tata",
+      "icon": "tata.svg",
       "models": [
         "LPT", "Signa", "Ultra", "Prima", "Ace", "407", "709", "1512", "1613", "2518", "3118", "4018", "1109", "1518", "2516", "3116", "4016", "1515", "2515", "3115"
       ]
