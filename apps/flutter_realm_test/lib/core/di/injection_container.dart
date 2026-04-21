@@ -174,7 +174,9 @@ Future<void> initDependenciesContainer() async {
     () => GifsRemoteDataSourceImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
+  serviceLocator.registerLazySingleton<CarRemoteDataSource>(
+    () => MockCarRemoteDataSourceImpl()..init(),
+  );
 
   final dotEnv = dotenv;
   serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl(dotEnv));
