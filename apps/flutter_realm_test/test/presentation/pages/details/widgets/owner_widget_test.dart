@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
@@ -60,6 +61,7 @@ void main() {
 
   testWidgets('displays owner name, type, and distance', (WidgetTester tester) async {
     final car = CarEntity(
+      id: ObjectId(),
       carId: '1',
       model: 'Model S',
       manufacturer: 'Tesla',
@@ -103,6 +105,7 @@ void main() {
     WidgetTester tester,
   ) async {
     final car = CarEntity(
+      id: ObjectId(),
       carId: '1',
       model: 'Model S',
       manufacturer: 'Tesla',
@@ -145,6 +148,7 @@ void main() {
   testWidgets('contact button can be tapped', (WidgetTester tester) async {
     //bool tapped = false;
     final car = CarEntity(
+      id: ObjectId(),
       carId: '1',
       model: 'Model S',
       manufacturer: 'Tesla',

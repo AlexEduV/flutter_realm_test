@@ -34,6 +34,7 @@ void main() {
   group('CarEntity', () {
     test('constructor sets all fields correctly', () {
       final entity = CarEntity(
+        id: ObjectId(),
         carId: 'car123',
         model: 'Model S',
         manufacturer: 'Tesla',
@@ -137,6 +138,7 @@ void main() {
 
     test('hashCode returns the same value for equal objects', () {
       final entity1 = CarEntity(
+        id: ObjectId(),
         carId: 'car123',
         model: 'Model S',
         manufacturer: 'Tesla',
@@ -153,6 +155,7 @@ void main() {
       );
 
       final entity2 = CarEntity(
+        id: ObjectId(),
         carId: 'car123',
         model: 'Model S',
         manufacturer: 'Tesla',
@@ -174,6 +177,7 @@ void main() {
 
     test('hashCode returns different values for different objects', () {
       final entity1 = CarEntity(
+        id: ObjectId(),
         carId: 'car123',
         model: 'Model S',
         manufacturer: 'Tesla',
@@ -190,6 +194,7 @@ void main() {
       );
 
       final entity2 = CarEntity(
+        id: ObjectId(),
         carId: 'car456', // different carId
         model: 'Model 3',
         manufacturer: 'Tesla',

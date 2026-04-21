@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_text_styles.dart';
@@ -196,6 +197,7 @@ class _NewItemPageState extends State<NewItemPage> {
     final currentCars = serviceLocator<GetAllCarsUseCase>().call();
 
     final car = CarEntity(
+      id: ObjectId(),
       carId: newCarId,
       model: state.modelText.capitalizeFirst(),
       manufacturer: state.manufacturerText.capitalizeFirst(),

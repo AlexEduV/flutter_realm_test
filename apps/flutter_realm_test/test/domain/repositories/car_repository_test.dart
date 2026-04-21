@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
@@ -22,6 +23,7 @@ void main() {
   test('getAllCars returns a list of CarEntity', () {
     final cars = [
       CarEntity(
+        id: ObjectId(),
         carId: '1',
         model: 'Model S',
         manufacturer: 'Tesla',
@@ -43,6 +45,7 @@ void main() {
 
   test('addCar calls addCar with correct argument', () {
     final car = CarEntity(
+      id: ObjectId(),
       carId: '2',
       model: 'Civic',
       manufacturer: 'Honda',
@@ -70,6 +73,7 @@ void main() {
   test('watchCars emits a list of CarEntity', () async {
     final cars = [
       CarEntity(
+        id: ObjectId(),
         carId: '3',
         model: 'Corolla',
         manufacturer: 'Toyota',

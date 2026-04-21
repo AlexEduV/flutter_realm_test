@@ -78,6 +78,7 @@ void main() {
 
     test('fromEntity should convert CarEntity to Car correctly', () {
       final entity = CarEntity(
+        id: ObjectId(),
         carId: 'car789',
         model: 'Model S',
         manufacturer: 'Tesla',

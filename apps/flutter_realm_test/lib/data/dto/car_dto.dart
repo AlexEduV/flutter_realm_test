@@ -1,4 +1,5 @@
 import 'package:realm/realm.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
@@ -101,6 +102,20 @@ class CarDto {
       owner: OwnerEntity.fromJson(json['owner'] as Map<String, dynamic>),
       images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
       mileage: json['mileage'] as int?,
+    );
+  }
+
+  factory CarDto.fromEntity(CarEntity entity) {
+    return CarDto(
+      id: entity.id,
+      carId: entity.carId,
+      model: entity.model,
+      manufacturer: entity.manufacturer,
+      isVerified: entity.isVerified,
+      type: entity.type,
+      bodyType: entity.bodyType,
+      engine: entity.engine,
+      transmissionType: entity.transmissionType,
     );
   }
 }

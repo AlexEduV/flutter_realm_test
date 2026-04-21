@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
@@ -46,6 +47,7 @@ void main() {
   });
 
   CarEntity testCar = CarEntity(
+    id: ObjectId(),
     carId: '1',
     model: 'Model S',
     manufacturer: 'Tesla',

@@ -4,6 +4,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
@@ -28,6 +29,7 @@ void main() {
 
   final carList = [
     CarEntity(
+      id: ObjectId(),
       carId: '1',
       model: 'Model S',
       manufacturer: 'Tesla',
@@ -38,6 +40,7 @@ void main() {
       transmissionType: TransmissionType.automatic.name,
     ),
     CarEntity(
+      id: ObjectId(),
       carId: '2',
       model: 'Civic',
       manufacturer: 'Honda',
