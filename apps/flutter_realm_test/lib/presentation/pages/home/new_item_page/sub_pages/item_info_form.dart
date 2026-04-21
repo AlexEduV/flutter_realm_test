@@ -130,8 +130,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                                     title: Text(option.manufacturer),
                                     onTap: () {
                                       onSelected(option);
-                                      selectedManufacturerImageSrc =
-                                          '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc ?? ''}';
+                                      selectedManufacturerImageSrc = option.imageSrc != null
+                                          ? '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc}'
+                                          : null;
                                       widget.manufacturerFocusNode.unfocus();
                                     },
                                   );
