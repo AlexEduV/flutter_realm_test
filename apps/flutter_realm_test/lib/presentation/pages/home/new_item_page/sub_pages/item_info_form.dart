@@ -1,6 +1,8 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
@@ -86,16 +88,24 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                         alignment: Alignment.topLeft,
                         child: Material(
                           child: SizedBox(
-                            width: 300,
                             child: ListView.builder(
+                              shrinkWrap: true,
+
                               padding: const EdgeInsets.all(AppDimensions.minorL),
                               itemCount: options.length,
                               itemBuilder: (context, index) {
                                 final option = options.elementAt(index);
                                 return ListTile(
-                                  // leading: option.imageSrc != null
-                                  //     ? SvgPicture.asset(option.imageSrc!)
-                                  //     : null,
+                                  leading: option.imageSrc != null
+                                      ? SvgPicture.asset(
+                                          width: AppDimensions.majorS,
+                                          height: AppDimensions.majorS,
+                                          '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc!}',
+                                        )
+                                      : const SizedBox(
+                                          width: AppDimensions.majorS,
+                                          height: AppDimensions.majorS,
+                                        ),
                                   title: Text(option.manufacturer),
                                   onTap: () => onSelected(option),
                                 );
