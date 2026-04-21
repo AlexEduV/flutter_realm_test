@@ -128,6 +128,8 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                       ],
                     ),
                   ),
+
+                  //todo: add a text field here based on the selected fuel type
                 ],
               ),
 

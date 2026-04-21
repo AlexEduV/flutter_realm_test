@@ -31,6 +31,7 @@ abstract class NewItemPageState with _$NewItemPageState {
     @Default(CarType.car) CarType selectedCarType,
     BodyType? selectedBodyType,
     @Default(FuelType.diesel) FuelType selectedFuelType,
+    @Default('') String selectedEngineVolume,
     @Default(TransmissionType.manual) TransmissionType selectedTransmissionType,
     @Default([]) List<CarAutoCompleteEntity> autoCompleteEntities,
   }) = _NewItemPageState;
