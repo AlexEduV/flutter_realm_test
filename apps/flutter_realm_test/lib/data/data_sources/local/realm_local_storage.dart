@@ -92,7 +92,6 @@ class RealmLocalStorage implements BaseLocalStorage {
 
     //todo: too many calls when just opening home page -> details;
 
-    //todo:
     return car.toEntity();
   }
 
