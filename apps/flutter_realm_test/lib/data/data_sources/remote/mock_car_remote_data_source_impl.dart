@@ -39,7 +39,9 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
 
     //if empty, add three mock elements with ids;
     if (cars.isNotEmpty) {
+      //todo: all works well, but not this if branch;
       initialData = cars.map((element) => CarDto.fromEntity(element)).toList();
+      return;
     }
 
     final List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
