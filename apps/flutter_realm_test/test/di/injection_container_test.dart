@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
@@ -36,7 +37,11 @@ void main() {
 
     await serviceLocator.reset();
     serviceLocator.registerSingleton<Realm>(MockRealm());
-    serviceLocator.registerSingleton<BaseLocalStorage>(MockBaseLocalStorage());
+
+    final mockLocalStorage = MockBaseLocalStorage();
+    when(mockLocalStorage.getAll()).thenReturn([]);
+
+    serviceLocator.registerSingleton<BaseLocalStorage>(mockLocalStorage);
     // Register other mocks as needed
     await initDependenciesContainer();
   });
