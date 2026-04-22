@@ -1,3 +1,4 @@
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
@@ -8,6 +9,7 @@ import '../../data/dto/car_dto.dart';
 import '../../data/models/scheme.dart';
 
 class CarEntity {
+  final ObjectId id;
   final String carId;
   final String model;
   final String manufacturer;
@@ -27,6 +29,7 @@ class CarEntity {
   bool isShown;
 
   CarEntity({
+    required this.id,
     required this.carId,
     required this.model,
     required this.manufacturer,
@@ -48,6 +51,7 @@ class CarEntity {
 
   factory CarEntity.empty() {
     return CarEntity(
+      id: ObjectId(),
       carId: 'testId',
       model: 'Test Model',
       type: 'Car',
@@ -61,6 +65,7 @@ class CarEntity {
   }
 
   CarEntity copyWith({
+    ObjectId? id,
     String? carId,
     String? model,
     String? manufacturer,
@@ -80,6 +85,7 @@ class CarEntity {
     bool? isShown,
   }) {
     return CarEntity(
+      id: id ?? this.id,
       carId: carId ?? this.carId,
       model: model ?? this.model,
       manufacturer: manufacturer ?? this.manufacturer,
@@ -102,6 +108,7 @@ class CarEntity {
 
   factory CarEntity.fromDto(CarDto dto) {
     return CarEntity(
+      id: dto.id,
       carId: dto.carId,
       model: dto.model,
       manufacturer: dto.manufacturer,
@@ -123,6 +130,7 @@ class CarEntity {
 
   factory CarEntity.fromSchema(Car car) {
     return CarEntity(
+      id: car.id,
       carId: car.carId,
       model: car.model ?? '',
       manufacturer: car.manufacturer,

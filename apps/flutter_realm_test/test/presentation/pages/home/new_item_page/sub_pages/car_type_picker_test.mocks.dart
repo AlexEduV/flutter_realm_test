@@ -161,6 +161,22 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
       ) as bool);
 
   @override
+  bool validateEngineVolume(
+    String? volume,
+    bool? isEditing,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #validateEngineVolume,
+          [
+            volume,
+            isEditing,
+          ],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
   void updateTabIndex(int? newIndex) => super.noSuchMethod(
         Invocation.method(
           #updateTabIndex,
@@ -256,6 +272,15 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
         Invocation.method(
           #updateSelectedFuelType,
           [newType],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateEngineVolumeText(String? newVolume) => super.noSuchMethod(
+        Invocation.method(
+          #updateEngineVolumeText,
+          [newVolume],
         ),
         returnValueForMissingStub: null,
       );

@@ -4,6 +4,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
@@ -31,6 +32,7 @@ void main() {
 
   late SearchPageCubit cubit;
   final car1 = CarEntity(
+    id: ObjectId(),
     carId: '1',
     model: 'Model S',
     manufacturer: 'Tesla',
@@ -46,6 +48,7 @@ void main() {
   );
 
   final car2 = CarEntity(
+    id: ObjectId(),
     carId: '2',
     model: 'CBR',
     manufacturer: 'Honda',
@@ -61,6 +64,7 @@ void main() {
   );
 
   final car3 = CarEntity(
+    id: ObjectId(),
     carId: '3',
     model: 'Civic',
     manufacturer: 'Honda',

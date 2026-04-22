@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
@@ -24,6 +25,7 @@ void main() {
     test('calls watchCars on repository and returns the stream', () {
       final cars = [
         CarEntity(
+          id: ObjectId(),
           carId: '1',
           model: 'Model S',
           manufacturer: 'Tesla',

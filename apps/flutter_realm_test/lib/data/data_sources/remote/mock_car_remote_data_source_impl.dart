@@ -10,82 +10,105 @@ import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/data/dto/car_dto.dart';
+import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 
 import '../../../core/di/injection_container.dart';
 
 class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
+  final BaseLocalStorage _localStorage;
+
+  MockCarRemoteDataSourceImpl(this._localStorage);
+
   // 1. Single source of truth
   final _carStreamController = BehaviorSubject<List<CarDto>>();
 
   @override
   Stream<List<CarDto>> get carStream => _carStreamController.stream;
 
-  final List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
-
-  late final initialData = [
-    CarDto(
-      id: initIds[0],
-      carId: '1',
-      manufacturer: 'Porsche',
-      type: CarType.car.name,
-      model: '911',
-      price: 120000,
-      isVerified: true,
-      promoType: PromoType.featured,
-      year: '2010',
-      bodyType: BodyType.coupe.name,
-      engine: EngineEntity(type: FuelType.diesel.name),
-      transmissionType: TransmissionType.hybrid.name,
-      color: 'Yellow',
-      owner: serviceLocator<GetOwnerByIdUseCase>().call('1'),
-      images: [AppAssetRoutes.porscheYellowImage],
-      mileage: 2000,
-      distanceTo: 56,
-    ),
-    CarDto(
-      id: initIds[1],
-      carId: '2',
-      manufacturer: 'Honda',
-      model: 'Civic',
-      type: CarType.car.name,
-      price: 25000,
-      isVerified: false,
-      promoType: PromoType.bestPrice,
-      year: '2007',
-      bodyType: BodyType.sedan.name,
-      engine: EngineEntity(type: FuelType.hybrid.name),
-      transmissionType: TransmissionType.manual.name,
-      color: 'Red',
-      owner: serviceLocator<GetOwnerByIdUseCase>().call('2'),
-      images: [AppAssetRoutes.hondaCivicRedImage],
-      mileage: 55607,
-      distanceTo: 48,
-    ),
-    CarDto(
-      id: initIds[2],
-      carId: '3',
-      manufacturer: 'Scania',
-      model: 'Nova',
-      type: CarType.truck.name,
-      price: 50000,
-      isVerified: true,
-      year: '2002',
-      bodyType: BodyType.semi.name,
-      engine: EngineEntity(type: FuelType.diesel.name),
-      transmissionType: TransmissionType.hybrid.name,
-      color: 'Black',
-      owner: serviceLocator<GetOwnerByIdUseCase>().call('3'),
-      images: [],
-      mileage: 18640,
-      distanceTo: null,
-    ),
-  ];
+  late List<CarDto> initialData = [];
 
   // Track the subscription so we can stop the timer if needed
   StreamSubscription? _liveUpdateSubscription;
+
+  void init() {
+    //get all cars from the base
+    final cars = _localStorage.getAll();
+
+    //if empty, add three mock elements with ids;
+    if (cars.isNotEmpty) {
+      initialData = cars.map((element) => CarDto.fromEntity(element)).toList();
+      return;
+    }
+
+    final List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
+
+    initialData = [
+      CarDto(
+        id: initIds[0],
+        carId: '1',
+        manufacturer: 'Porsche',
+        type: CarType.car.name,
+        model: '911',
+        price: 120000,
+        isVerified: true,
+        promoType: PromoType.featured,
+        year: '2010',
+        bodyType: BodyType.coupe.name,
+        engine: EngineEntity(type: FuelType.diesel.name),
+        transmissionType: TransmissionType.hybrid.name,
+        color: 'Yellow',
+        owner: serviceLocator<GetOwnerByIdUseCase>().call('1'),
+        images: [AppAssetRoutes.porscheYellowImage],
+        mileage: 2000,
+        distanceTo: 56,
+      ),
+      CarDto(
+        id: initIds[1],
+        carId: '2',
+        manufacturer: 'Honda',
+        model: 'Civic',
+        type: CarType.car.name,
+        price: 25000,
+        isVerified: false,
+        promoType: PromoType.bestPrice,
+        year: '2007',
+        bodyType: BodyType.sedan.name,
+        engine: EngineEntity(type: FuelType.hybrid.name),
+        transmissionType: TransmissionType.manual.name,
+        color: 'Red',
+        owner: serviceLocator<GetOwnerByIdUseCase>().call('2'),
+        images: [AppAssetRoutes.hondaCivicRedImage],
+        mileage: 55607,
+        distanceTo: 48,
+      ),
+      CarDto(
+        id: initIds[2],
+        carId: '3',
+        manufacturer: 'Scania',
+        model: 'Nova',
+        type: CarType.truck.name,
+        price: 50000,
+        isVerified: true,
+        year: '2002',
+        bodyType: BodyType.semi.name,
+        engine: EngineEntity(type: FuelType.diesel.name),
+        transmissionType: TransmissionType.hybrid.name,
+        color: 'Black',
+        owner: serviceLocator<GetOwnerByIdUseCase>().call('3'),
+        images: [],
+        mileage: 18640,
+        distanceTo: null,
+      ),
+    ];
+
+    for (final element in initialData) {
+      _localStorage.add(CarEntity.fromDto(element));
+    }
+  }
 
   @override
   Future<List<CarDto>> fetchCars() async {
@@ -116,18 +139,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
   List<CarDto> _generateRandomUpdates() {
     return initialData.map((car) {
       final random = Random();
-      int? distanceTo;
-      switch (car.carId) {
-        case '1':
-          distanceTo = random.nextInt(60);
-          break;
-        case '2':
-          distanceTo = random.nextInt(50);
-          break;
-        case '3':
-          distanceTo = random.nextInt(50);
-          break;
-      }
+      int? distanceTo = random.nextInt(60);
       return car.copyWith(distanceTo: distanceTo);
     }).toList();
   }

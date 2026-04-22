@@ -55,6 +55,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     if (index == null) return;
 
     cars[index] = cars[index].copyWith(isShown: false);
+    //todo: updating local storage here creates unstable duplicates;
     emit(state.copyWith(cars: cars));
   }
 

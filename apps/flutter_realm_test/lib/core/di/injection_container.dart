@@ -159,7 +159,15 @@ Future<void> initDependenciesContainer() async {
     }
   }
 
-  serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
+  if (serviceLocator.isNotRegistered<BaseLocalStorage>()) {
+    try {
+      serviceLocator.registerLazySingleton<BaseLocalStorage>(
+        () => RealmLocalStorage(serviceLocator()),
+      );
+    } catch (e) {
+      debugPrint('Could not register local storage');
+    }
+  }
 
   final connectivity = Connectivity();
   final networkInfo = NetworkInfoImpl(connectivity);
@@ -174,7 +182,26 @@ Future<void> initDependenciesContainer() async {
     () => GifsRemoteDataSourceImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => MockCarRemoteDataSourceImpl());
+  serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(
+    () => MockOwnersRemoteDataSourceImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<OwnerRepository>(
+    () => OwnerRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
+
+  final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(serviceLocator());
+  mockCarRemoteDataSource.init();
+
+  serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
+
+  serviceLocator.registerLazySingleton<CarRepository>(
+    () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));
 
   final dotEnv = dotenv;
   serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl(dotEnv));
@@ -187,9 +214,6 @@ Future<void> initDependenciesContainer() async {
     () => MockAutoCompleteRemoteDataSource(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(
-    () => MockOwnersRemoteDataSourceImpl(serviceLocator()),
-  );
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
     () => MockUsersRemoteDataSourceImpl(),
   );
@@ -258,15 +282,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton<OwnerRepository>(
-    () => OwnerRepositoryImpl(serviceLocator()),
-  );
-
   //Register Repository (passing Realm from GetIt)
-  serviceLocator.registerLazySingleton<CarRepository>(
-    () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
-  );
-
   serviceLocator.registerLazySingleton<PermissionRepository>(
     () => PermissionRepositoryImpl(serviceLocator()),
   );
@@ -319,8 +335,6 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => AddCarUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));
-
   serviceLocator.registerLazySingleton(() => DeleteCarByIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => DeleteAllCarsUseCase(serviceLocator()));
@@ -353,9 +367,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
-
-  //here
-  serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 

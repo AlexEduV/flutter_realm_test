@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
@@ -22,6 +23,7 @@ void main() {
     test('calls getAllCars on repository and returns the result', () {
       final cars = [
         CarEntity(
+          id: ObjectId(),
           carId: '1',
           model: 'Model S',
           manufacturer: 'Tesla',

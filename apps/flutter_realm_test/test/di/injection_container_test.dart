@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
@@ -26,6 +27,7 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../data/data_sources/local/realm_local_storage_test.mocks.dart';
+import '../domain/repositories/base_local_storage_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +36,12 @@ void main() {
     SharedPreferences.setMockInitialValues({});
 
     await serviceLocator.reset();
-    serviceLocator.registerLazySingleton<Realm>(() => MockRealm());
+    serviceLocator.registerSingleton<Realm>(MockRealm());
+
+    final mockLocalStorage = MockBaseLocalStorage();
+    when(mockLocalStorage.getAll()).thenReturn([]);
+
+    serviceLocator.registerSingleton<BaseLocalStorage>(mockLocalStorage);
     // Register other mocks as needed
     await initDependenciesContainer();
   });

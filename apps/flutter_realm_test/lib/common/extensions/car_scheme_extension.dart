@@ -10,6 +10,7 @@ import '../../domain/entities/car_entity.dart';
 extension CarExtensions on Car {
   CarEntity toEntity() {
     return CarEntity(
+      id: id,
       carId: carId,
       model: model ?? '',
       manufacturer: manufacturer,
