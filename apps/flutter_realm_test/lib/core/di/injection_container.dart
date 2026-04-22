@@ -192,6 +192,20 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
 
+  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
+    () => MockUsersRemoteDataSourceImpl(),
+  );
+
+  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
+
+  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator(), serviceLocator());
+  await authRepositoryImpl.init();
+
   final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(serviceLocator());
   mockCarRemoteDataSource.init();
 
@@ -214,9 +228,6 @@ Future<void> initDependenciesContainer() async {
     () => MockAutoCompleteRemoteDataSource(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
-    () => MockUsersRemoteDataSourceImpl(),
-  );
   serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
     () => UrlLaunchLocalDataSourceImpl(serviceLocator()),
   );
@@ -270,8 +281,6 @@ Future<void> initDependenciesContainer() async {
     () => RegionRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
-
   serviceLocator.registerLazySingleton<AutoCompleteRepository>(
     () => AutoCompleteRepositoryImpl(serviceLocator()),
   );
@@ -279,8 +288,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
 
   //Register Repository (passing Realm from GetIt)
   serviceLocator.registerLazySingleton<PermissionRepository>(
@@ -290,11 +297,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<RegionModelRepository>(
     () => RegionModelRepositoryImpl(serviceLocator()),
   );
-
-  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
-
-  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator(), serviceLocator());
-  await authRepositoryImpl.init();
 
   serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
 

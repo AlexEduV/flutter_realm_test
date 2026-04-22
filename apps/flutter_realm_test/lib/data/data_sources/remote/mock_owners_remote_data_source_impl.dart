@@ -53,6 +53,10 @@ class MockOwnersRemoteDataSourceImpl implements OwnersRemoteDataSource {
   @override
   OwnerEntity getOwnerById(String id) {
     final owner = _owners.where((element) => element.id == id).firstOrNull;
-    return owner ?? OwnerEntity.empty();
+    if (owner == null) {
+      return OwnerEntity.empty();
+    }
+
+    return owner;
   }
 }

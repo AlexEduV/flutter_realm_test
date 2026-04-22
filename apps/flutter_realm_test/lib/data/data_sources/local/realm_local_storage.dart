@@ -64,7 +64,7 @@ class RealmLocalStorage implements BaseLocalStorage {
     }
 
     final user = const UserEntity(
-      userId: '1',
+      userId: '0',
       firstName: 'Guest',
       lastName: 'Account',
       isLocationPermissionGranted: false,

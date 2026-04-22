@@ -46,6 +46,10 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
 
     final List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
 
+    final owner1 = serviceLocator<GetOwnerByIdUseCase>().call('1');
+    final owner2 = serviceLocator<GetOwnerByIdUseCase>().call('2');
+    final owner3 = serviceLocator<GetOwnerByIdUseCase>().call('3');
+
     initialData = [
       CarDto(
         id: initIds[0],
@@ -61,7 +65,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
         engine: EngineEntity(type: FuelType.diesel.name),
         transmissionType: TransmissionType.hybrid.name,
         color: 'Yellow',
-        owner: serviceLocator<GetOwnerByIdUseCase>().call('1'),
+        owner: owner1,
         images: [AppAssetRoutes.porscheYellowImage],
         mileage: 2000,
         distanceTo: 56,
@@ -80,7 +84,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
         engine: EngineEntity(type: FuelType.hybrid.name),
         transmissionType: TransmissionType.manual.name,
         color: 'Red',
-        owner: serviceLocator<GetOwnerByIdUseCase>().call('2'),
+        owner: owner2,
         images: [AppAssetRoutes.hondaCivicRedImage],
         mileage: 55607,
         distanceTo: 48,
@@ -98,7 +102,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
         engine: EngineEntity(type: FuelType.diesel.name),
         transmissionType: TransmissionType.hybrid.name,
         color: 'Black',
-        owner: serviceLocator<GetOwnerByIdUseCase>().call('3'),
+        owner: owner3,
         images: [],
         mileage: 18640,
         distanceTo: null,
