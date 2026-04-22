@@ -6,7 +6,6 @@ import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import 'package:test_flutter_project/common/constants/app_text_styles.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/data/models/scheme.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
@@ -15,7 +14,6 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart
 import 'package:test_flutter_project/presentation/pages/home/explore_page/widgets/explore_header_delegate.dart';
 import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_list_item.dart';
 
-import '../../../../common/extensions/car_scheme_extension.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/home/explore_page/explore_page_state.dart';
 
@@ -129,10 +127,7 @@ class ExplorePage extends StatelessWidget {
                                             opacity: value,
                                             child: Transform.scale(
                                               scale: 0.95 + (0.05 * value),
-                                              child: _buildItem(
-                                                CarExtensions.fromEntity(car),
-                                                context,
-                                              ),
+                                              child: _buildItem(car, context),
                                             ),
                                           ),
                                         ),
@@ -160,15 +155,15 @@ class ExplorePage extends StatelessWidget {
     );
   }
 
-  Widget _buildItem(Car car, BuildContext context) {
+  Widget _buildItem(CarEntity car, BuildContext context) {
     return AnnouncementListItem(
       user: context.read<UserDataCubit>().user,
-      car: CarEntity.fromSchema(car),
+      car: car,
       onDismissed: () => _handleDelete(car, context),
     );
   }
 
-  void _handleDelete(Car carToDelete, BuildContext context) {
+  void _handleDelete(CarEntity carToDelete, BuildContext context) {
     // 1. Capture the data while the object is still valid
     final id = carToDelete.carId;
 
