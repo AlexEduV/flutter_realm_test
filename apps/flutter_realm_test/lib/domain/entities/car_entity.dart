@@ -161,7 +161,6 @@ class CarEntity {
       identical(this, other) ||
       other is CarEntity &&
           runtimeType == other.runtimeType &&
-          id == other.id &&
           carId == other.carId &&
           model == other.model &&
           manufacturer == other.manufacturer &&
@@ -182,7 +181,6 @@ class CarEntity {
 
   @override
   int get hashCode =>
-      id.hashCode ^
       carId.hashCode ^
       model.hashCode ^
       manufacturer.hashCode ^

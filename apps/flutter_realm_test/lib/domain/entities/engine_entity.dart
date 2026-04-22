@@ -23,5 +23,5 @@ class EngineEntity {
           volume == other.volume;
 
   @override
-  int get hashCode => type.hashCode ^ volume.hashCode;
+  int get hashCode => (type ?? '').hashCode ^ (volume ?? '').hashCode;
 }
