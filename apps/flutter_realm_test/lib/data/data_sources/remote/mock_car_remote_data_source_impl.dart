@@ -12,6 +12,7 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/data/dto/car_dto.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 
@@ -104,6 +105,10 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
         distanceTo: null,
       ),
     ];
+
+    for (final element in initialData) {
+      _localStorage.add(CarEntity.fromDto(element));
+    }
   }
 
   @override
@@ -135,18 +140,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
   List<CarDto> _generateRandomUpdates() {
     return initialData.map((car) {
       final random = Random();
-      int? distanceTo;
-      switch (car.carId) {
-        case '1':
-          distanceTo = random.nextInt(60);
-          break;
-        case '2':
-          distanceTo = random.nextInt(50);
-          break;
-        case '3':
-          distanceTo = random.nextInt(50);
-          break;
-      }
+      int? distanceTo = random.nextInt(60);
       return car.copyWith(distanceTo: distanceTo);
     }).toList();
   }
