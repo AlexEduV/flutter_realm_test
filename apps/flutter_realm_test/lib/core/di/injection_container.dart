@@ -159,7 +159,15 @@ Future<void> initDependenciesContainer() async {
     }
   }
 
-  serviceLocator.registerLazySingleton<BaseLocalStorage>(() => RealmLocalStorage(serviceLocator()));
+  if (serviceLocator.isNotRegistered<BaseLocalStorage>()) {
+    try {
+      serviceLocator.registerLazySingleton<BaseLocalStorage>(
+        () => RealmLocalStorage(serviceLocator()),
+      );
+    } catch (e) {
+      debugPrint('Could not register local storage');
+    }
+  }
 
   final connectivity = Connectivity();
   final networkInfo = NetworkInfoImpl(connectivity);
