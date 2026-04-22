@@ -10,14 +10,18 @@ import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/data/dto/car_dto.dart';
+import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
-import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 
 import '../../../core/di/injection_container.dart';
 
 class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
+  final BaseLocalStorage _localStorage;
+
+  MockCarRemoteDataSourceImpl(this._localStorage);
+
   // 1. Single source of truth
   final _carStreamController = BehaviorSubject<List<CarDto>>();
 
@@ -31,7 +35,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
 
   void init() {
     //get all cars from the base
-    final cars = serviceLocator<GetAllCarsUseCase>().call();
+    final cars = _localStorage.getAll();
 
     //if empty, add three mock elements with ids;
     if (cars.isNotEmpty) {
