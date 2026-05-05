@@ -33,6 +33,7 @@ class AppSemantics extends StatelessWidget {
         selected: isSelected,
         checked: isChecked,
         expanded: expanded,
+        enabled: enabled,
         child: child,
       ),
     );
