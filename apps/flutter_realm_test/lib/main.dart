@@ -5,7 +5,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
-import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/usecases/env/init_env_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
@@ -40,10 +39,6 @@ void main() async {
   //todo: added flavors, but had to revert, because they broke the Android project.
   // The working version did not create a separate app, but used one. And launched only from
   // the android folder, not from `flutter run`. Updating gradle files did not help
-
-  //todo: on android, when going to Details page, or any other then root, then press 'square'
-  // and go to the app again, the system navigates 'back'; tried moving popScope, disabling pop action
-  // did not work.
 
   await serviceLocator<InitRegionModelsUseCase>().call();
   await serviceLocator<FetchRegionsUseCase>().call();
@@ -128,12 +123,6 @@ class _MyAppState extends State<MyApp> {
         .call();
 
     final isGranted = locationPermissionStatus == PermissionStatus.granted;
-
-    if (!isGranted) {
-      if (AppRouter.router.canPop()) {
-        AppRouter.router.go(AppRoutes.home);
-      }
-    }
 
     serviceLocator<UserDataCubit>().updateLocationPermissionStatus(isGranted);
   }
