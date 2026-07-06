@@ -329,6 +329,12 @@
             "title": "The content is not available",
             "subtitle": "We could not display the data. Please, try again later."
           }
+        },
+        "locationPermission": {
+          "title": "Location permission required",
+          "description": "This app uses your location to show nearby listings and set your region. Please enable location access in Settings.",
+          "openSettings": "Open Settings",
+          "later": "Later"
         }
       },
       "countries": {
