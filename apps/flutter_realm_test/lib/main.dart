@@ -36,19 +36,23 @@ void main() async {
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   }
 
-  await initDependenciesContainer();
+  try {
+    await initDependenciesContainer();
 
-  //todo: added flavors, but had to revert, because they broke the Android project.
-  // The working version did not create a separate app, but used one. And launched only from
-  // the android folder, not from `flutter run`. Updating gradle files did not help
+    //todo: added flavors, but had to revert, because they broke the Android project.
+    // The working version did not create a separate app, but used one. And launched only from
+    // the android folder, not from `flutter run`. Updating gradle files did not help
 
-  await serviceLocator<InitRegionModelsUseCase>().call();
-  await serviceLocator<FetchRegionsUseCase>().call();
-  await serviceLocator<InitEnvUseCase>().call();
+    await Future.wait([
+      serviceLocator<InitRegionModelsUseCase>().call(),
+      serviceLocator<FetchRegionsUseCase>().call(),
+      serviceLocator<InitEnvUseCase>().call(),
+    ]);
 
-  ImageCacheUtil.initExtendedCacheSize();
-
-  FlutterNativeSplash.remove();
+    ImageCacheUtil.initExtendedCacheSize();
+  } finally {
+    FlutterNativeSplash.remove();
+  }
 
   runApp(const MyApp());
 }
