@@ -59,6 +59,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(cars: cars));
   }
 
+
   void hoverArticle(int index, bool newValue) {
     final articles = List<ArticleEntity>.from(state.articles);
     articles[index] = state.articles[index].copyWith(isHovering: newValue);

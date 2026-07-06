@@ -92,55 +92,65 @@ class ExplorePage extends StatelessWidget {
                   );
                 }
 
-                final cars = state.cars.where((element) => element.isShown == true).toList();
-                //todo: animation is not working properly after adding a gridView
+                final cars = state.cars;
                 return SliverPadding(
                   padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
                   sliver: BlocBuilder<UserDataCubit, UserDataState>(
                     buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                     builder: (context, userState) {
-                      return SliverGrid(
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          final car = cars[index];
+                      Widget buildAnimatedItem(int index) {
+                        final car = cars[index];
 
-                          return Column(
-                            children: [
-                              TweenAnimationBuilder<double>(
-                                tween: Tween(begin: 1, end: !car.isShown ? 0 : 1),
-                                duration: const Duration(milliseconds: 300),
-                                builder: (context, removalValue, child) {
-                                  final hasRemovalAnimationEnded = removalValue == 0;
-                                  final curvedRemovalValue = Curves.linearToEaseOut.transform(
-                                    removalValue,
-                                  );
+                        return TweenAnimationBuilder<double>(
+                          key: ValueKey(car.carId),
+                          tween: Tween(begin: 1, end: car.isShown ? 1 : 0),
+                          duration: const Duration(milliseconds: 250),
+                          builder: (context, removalValue, child) {
+                            final curvedRemoval = Curves.easeInOut.transform(removalValue);
 
-                                  return TweenAnimationBuilder<double>(
-                                    tween: Tween(begin: 0, end: 1),
+                            return ClipRect(
+                              child: Align(
+                                alignment: Alignment.topCenter,
+                                heightFactor: curvedRemoval,
+                                child: Opacity(
+                                  opacity: curvedRemoval,
+                                  child: TweenAnimationBuilder<double>(
+                                    key: ValueKey('entry_${car.carId}'),
+                                    tween: Tween(begin: 0.0, end: 1.0),
                                     duration: Duration(milliseconds: 300 + (index * 200)),
                                     builder: (context, value, child) {
-                                      return SizedBox(
-                                        height: !hasRemovalAnimationEnded ? null : 0,
+                                      return Opacity(
+                                        opacity: value,
                                         child: Transform.scale(
-                                          alignment: Alignment.topCenter,
-                                          scaleY: curvedRemovalValue,
-                                          child: Opacity(
-                                            opacity: value,
-                                            child: Transform.scale(
-                                              scale: 0.95 + (0.05 * value),
-                                              child: _buildItem(car, context),
-                                            ),
-                                          ),
+                                          scale: 0.95 + (0.05 * value),
+                                          child: _buildItem(car, context),
                                         ),
                                       );
                                     },
-                                  );
-                                },
+                                  ),
+                                ),
                               ),
-                            ],
-                          );
-                        }, childCount: cars.length),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: isTablet ? 2 : 1,
+                            );
+                          },
+                        );
+                      }
+
+                      if (!isTablet) {
+                        return SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) => buildAnimatedItem(index),
+                            childCount: cars.length,
+                          ),
+                        );
+                      }
+
+                      return SliverGrid(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => buildAnimatedItem(index),
+                          childCount: cars.length,
+                        ),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
                           childAspectRatio: 16 / 14,
                         ),
                       );
