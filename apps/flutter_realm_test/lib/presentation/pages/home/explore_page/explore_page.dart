@@ -104,11 +104,9 @@ class ExplorePage extends StatelessWidget {
                         return TweenAnimationBuilder<double>(
                           key: ValueKey(car.carId),
                           tween: Tween(begin: 1, end: car.isShown ? 1 : 0),
-                          duration: const Duration(milliseconds: 300),
+                          duration: const Duration(milliseconds: 200),
                           builder: (context, removalValue, child) {
-                            final curvedRemovalValue = Curves.linearToEaseOut.transform(
-                              removalValue,
-                            );
+                            final curvedRemovalValue = Curves.easeIn.transform(removalValue);
 
                             return TweenAnimationBuilder<double>(
                               key: ValueKey('entry_${car.carId}'),
