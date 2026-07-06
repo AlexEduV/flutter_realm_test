@@ -79,10 +79,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            ExplorePage(scrollController: scrollController),
-            const FavoritesPage(),
-            const InboxPage(),
-            const AccountPage(),
+            _KeepAlive(child: ExplorePage(scrollController: scrollController)),
+            const _KeepAlive(child: FavoritesPage()),
+            const _KeepAlive(child: InboxPage()),
+            const _KeepAlive(child: AccountPage()),
           ],
         ),
       ),
@@ -101,5 +101,25 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
     context.go(AppRoutes.home + AppRoutes.newItem);
     return;
+  }
+}
+
+class _KeepAlive extends StatefulWidget {
+  final Widget child;
+
+  const _KeepAlive({required this.child});
+
+  @override
+  State<_KeepAlive> createState() => _KeepAliveState();
+}
+
+class _KeepAliveState extends State<_KeepAlive> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return widget.child;
   }
 }
