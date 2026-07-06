@@ -329,6 +329,12 @@
             "title": "Il contenuto non è disponibile",
             "subtitle": "Non siamo riusciti a visualizzare i dati. Per favore, riprova più tardi."
           }
+        },
+        "locationPermission": {
+          "title": "Autorizzazione posizione richiesta",
+          "description": "L'app utilizza la tua posizione per mostrare annunci nelle vicinanze e impostare la tua regione. Abilita l'accesso alla posizione nelle Impostazioni.",
+          "openSettings": "Apri Impostazioni",
+          "later": "Più tardi"
         }
       },
       "countries": {

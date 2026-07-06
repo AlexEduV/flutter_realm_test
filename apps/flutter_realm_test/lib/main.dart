@@ -7,6 +7,7 @@ import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/usecases/env/init_env_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/init_region_models_use_case.dart';
@@ -24,6 +25,7 @@ import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cu
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
 import 'package:test_flutter_project/utils/app_router.dart';
 import 'package:test_flutter_project/utils/image_cache_util.dart';
 
@@ -125,5 +127,28 @@ class _MyAppState extends State<MyApp> {
     final isGranted = locationPermissionStatus == PermissionStatus.granted;
 
     serviceLocator<UserDataCubit>().updateLocationPermissionStatus(isGranted);
+
+    if (!isGranted) {
+      _showLocationPermissionDialog();
+    }
+  }
+
+  void _showLocationPermissionDialog() {
+    final navigatorContext = AppRouter.router.routerDelegate.navigatorKey.currentContext;
+    if (navigatorContext == null) return;
+
+    final l10n = serviceLocator<AppLocalisationsCubit>();
+
+    showDialog(
+      context: navigatorContext,
+      builder: (_) => ConfirmationDialog(
+        title: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogTitle),
+        description: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogDescription),
+        confirmButtonTitle: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogOpenSettings),
+        cancelButtonTitle: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogLater),
+        isDeletion: false,
+        onConfirm: () => serviceLocator<OpenAppSettingsUseCase>().call(),
+      ),
+    );
   }
 }

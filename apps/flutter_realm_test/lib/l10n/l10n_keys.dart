@@ -284,4 +284,9 @@ class L10nKeys {
 
   static const String noContentWidgetTitle = 'dialogs.network.contentNotAvailable.title';
   static const String noContentWidgetSubtitle = 'dialogs.network.contentNotAvailable.subtitle';
+
+  static const String locationPermissionDialogTitle = 'dialogs.locationPermission.title';
+  static const String locationPermissionDialogDescription = 'dialogs.locationPermission.description';
+  static const String locationPermissionDialogOpenSettings = 'dialogs.locationPermission.openSettings';
+  static const String locationPermissionDialogLater = 'dialogs.locationPermission.later';
 }
