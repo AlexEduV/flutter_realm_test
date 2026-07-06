@@ -104,30 +104,32 @@ class ExplorePage extends StatelessWidget {
                         return TweenAnimationBuilder<double>(
                           key: ValueKey(car.carId),
                           tween: Tween(begin: 1, end: car.isShown ? 1 : 0),
-                          duration: const Duration(milliseconds: 200),
+                          duration: const Duration(milliseconds: 250),
                           builder: (context, removalValue, child) {
-                            final curvedRemovalValue = Curves.easeIn.transform(removalValue);
+                            final curvedRemoval = Curves.easeInOut.transform(removalValue);
 
-                            return TweenAnimationBuilder<double>(
-                              key: ValueKey('entry_${car.carId}'),
-                              tween: Tween(begin: 0, end: 1),
-                              duration: Duration(milliseconds: 300 + (index * 200)),
-                              builder: (context, value, child) {
-                                return SizedBox(
-                                  height: removalValue == 0 ? 0 : null,
-                                  child: Transform.scale(
-                                    alignment: Alignment.topCenter,
-                                    scaleY: curvedRemovalValue,
-                                    child: Opacity(
-                                      opacity: value,
-                                      child: Transform.scale(
-                                        scale: 0.95 + (0.05 * value),
-                                        child: _buildItem(car, context),
-                                      ),
-                                    ),
+                            return ClipRect(
+                              child: Align(
+                                alignment: Alignment.topCenter,
+                                heightFactor: curvedRemoval,
+                                child: Opacity(
+                                  opacity: curvedRemoval,
+                                  child: TweenAnimationBuilder<double>(
+                                    key: ValueKey('entry_${car.carId}'),
+                                    tween: Tween(begin: 0.0, end: 1.0),
+                                    duration: Duration(milliseconds: 300 + (index * 200)),
+                                    builder: (context, value, child) {
+                                      return Opacity(
+                                        opacity: value,
+                                        child: Transform.scale(
+                                          scale: 0.95 + (0.05 * value),
+                                          child: _buildItem(car, context),
+                                        ),
+                                      );
+                                    },
                                   ),
-                                );
-                              },
+                                ),
+                              ),
                             );
                           },
                         );
