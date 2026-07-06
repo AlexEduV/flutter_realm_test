@@ -59,6 +59,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
               height: minHeight,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(title, style: AppTextStyles.zonaPro30White),
                   AppSemantics(
@@ -66,6 +67,8 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                     label: AppSemanticsLabels.homePageSearchButton,
                     child: IconButton(
                       highlightColor: Colors.white10,
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
                       onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
                       icon: const Icon(
                         Icons.search,
