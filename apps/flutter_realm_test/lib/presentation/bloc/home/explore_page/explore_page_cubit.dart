@@ -59,10 +59,6 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(cars: cars));
   }
 
-  void finallyRemoveCar(String id) {
-    final cars = List<CarEntity>.from(state.cars)..removeWhere((car) => car.carId == id);
-    emit(state.copyWith(cars: cars));
-  }
 
   void hoverArticle(int index, bool newValue) {
     final articles = List<ArticleEntity>.from(state.articles);

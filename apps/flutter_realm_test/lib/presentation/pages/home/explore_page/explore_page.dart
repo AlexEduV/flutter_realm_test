@@ -100,15 +100,11 @@ class ExplorePage extends StatelessWidget {
                     builder: (context, userState) {
                       Widget buildAnimatedItem(int index) {
                         final car = cars[index];
-                        final cubit = context.read<ExplorePageCubit>();
 
                         return TweenAnimationBuilder<double>(
                           key: ValueKey(car.carId),
                           tween: Tween(begin: 1, end: car.isShown ? 1 : 0),
                           duration: const Duration(milliseconds: 300),
-                          onEnd: () {
-                            if (!car.isShown) cubit.finallyRemoveCar(car.carId);
-                          },
                           builder: (context, removalValue, child) {
                             final curvedRemovalValue = Curves.linearToEaseOut.transform(
                               removalValue,
