@@ -5,9 +5,9 @@ import '../../repositories/auth_repository.dart';
 import '../usecase.dart';
 
 class RegisterUseCase extends UseCaseWithParams<RegisterModel, Future<AuthResult>> {
-  final AuthRepository _authRepository;
-
   RegisterUseCase(this._authRepository);
+
+  final AuthRepository _authRepository;
 
   @override
   Future<AuthResult> call(RegisterModel model) {

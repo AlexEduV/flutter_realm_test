@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/repositories/inbox_repository.dart';
 
 class InboxRepositoryImpl implements InboxRepository {
-  final MessagesRemoteDataSource _messagesRemoteDataSource;
-
   InboxRepositoryImpl(this._messagesRemoteDataSource);
+
+  final MessagesRemoteDataSource _messagesRemoteDataSource;
 
   @override
   Future<List<ConversationModel>> fetchConversations() {

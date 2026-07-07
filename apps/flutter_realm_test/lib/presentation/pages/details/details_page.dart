@@ -22,9 +22,9 @@ import '../../widgets/app_semantics.dart';
 import '../../widgets/verified_badge.dart';
 
 class DetailsPage extends StatefulWidget {
-  final String carId;
-
   const DetailsPage({required this.carId, super.key});
+
+  final String carId;
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();

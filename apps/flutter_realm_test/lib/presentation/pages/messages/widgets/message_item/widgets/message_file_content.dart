@@ -5,14 +5,14 @@ import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_mod
 import '../../../../../../common/constants/app_dimensions.dart';
 
 class MessageFileContent extends StatelessWidget {
-  final SentAttachmentMetaDataModel? attachmentMetaData;
-  final bool isMyMessage;
-
   const MessageFileContent({
     required this.attachmentMetaData,
     required this.isMyMessage,
     super.key,
   });
+
+  final SentAttachmentMetaDataModel? attachmentMetaData;
+  final bool isMyMessage;
 
   @override
   Widget build(BuildContext context) {

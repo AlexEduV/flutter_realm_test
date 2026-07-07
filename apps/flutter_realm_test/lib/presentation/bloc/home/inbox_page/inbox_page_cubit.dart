@@ -9,11 +9,11 @@ import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_us
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 
 class InboxPageCubit extends Cubit<InboxPageState> {
-  final FetchConversationsUseCase _fetchMessagesUseCase;
-  final SaveConversationsUseCase _saveConversationsUseCase;
-
   InboxPageCubit(this._fetchMessagesUseCase, this._saveConversationsUseCase)
     : super(const InboxPageState());
+
+  final FetchConversationsUseCase _fetchMessagesUseCase;
+  final SaveConversationsUseCase _saveConversationsUseCase;
 
   Future<void> init() async {
     final conversationsList = await _fetchMessagesUseCase.call();

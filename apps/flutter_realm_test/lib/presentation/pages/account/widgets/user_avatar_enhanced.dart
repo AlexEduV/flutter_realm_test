@@ -9,11 +9,6 @@ import '../../../../common/constants/app_colors.dart';
 import '../../../../common/constants/app_dimensions.dart';
 
 class UserAvatarEnhanced extends StatelessWidget {
-  final String? imageSrc;
-  final Function()? onTap;
-  final double size;
-  final bool isDecorated;
-
   const UserAvatarEnhanced({
     required this.imageSrc,
     required this.onTap,
@@ -21,6 +16,11 @@ class UserAvatarEnhanced extends StatelessWidget {
     this.isDecorated = true,
     super.key,
   });
+
+  final String? imageSrc;
+  final Function()? onTap;
+  final double size;
+  final bool isDecorated;
 
   @override
   Widget build(BuildContext context) {

@@ -12,12 +12,6 @@ import '../../../../../controllers/inline_style_text_controller.dart';
 import '../../../../../widgets/app_semantics.dart';
 
 class MessageContent extends StatelessWidget {
-  final bool isMyMessage;
-  final bool withExtendedData;
-  final String message;
-  final SentAttachmentMetaDataModel? attachmentMetaData;
-  final SentImageMetaDataModel? imageMetaData;
-
   const MessageContent({
     required this.isMyMessage,
     required this.withExtendedData,
@@ -26,6 +20,12 @@ class MessageContent extends StatelessWidget {
     this.attachmentMetaData,
     this.imageMetaData,
   });
+
+  final bool isMyMessage;
+  final bool withExtendedData;
+  final String message;
+  final SentAttachmentMetaDataModel? attachmentMetaData;
+  final SentImageMetaDataModel? imageMetaData;
 
   @override
   Widget build(BuildContext context) {

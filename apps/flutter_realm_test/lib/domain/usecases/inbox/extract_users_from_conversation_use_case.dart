@@ -6,9 +6,9 @@ import '../usecase.dart';
 
 class ExtractUsersFromConversationUseCase
     extends UseCaseWithParams<ConversationModel, Map<String, UserEntity?>> {
-  final GetUserByIdUseCase _getUserByIdUseCase;
-
   ExtractUsersFromConversationUseCase(this._getUserByIdUseCase);
+
+  final GetUserByIdUseCase _getUserByIdUseCase;
 
   @override
   Map<String, UserEntity?> call(ConversationModel conversation) {

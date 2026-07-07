@@ -1,9 +1,9 @@
 class AuthorEntity {
+  const AuthorEntity({required this.id, required this.fullName, this.imageSrc});
+
   final String id;
   final String fullName;
   final String? imageSrc;
-
-  const AuthorEntity({required this.id, required this.fullName, this.imageSrc});
 
   static AuthorEntity fromJson(Map<String, dynamic> json) {
     return AuthorEntity(

@@ -2,9 +2,9 @@ import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class DeleteAccountUseCase extends UseCaseWithParams<String, Future<void>> {
-  final AuthRepository _authRepository;
-
   DeleteAccountUseCase(this._authRepository);
+
+  final AuthRepository _authRepository;
 
   @override
   Future<void> call(String email) {

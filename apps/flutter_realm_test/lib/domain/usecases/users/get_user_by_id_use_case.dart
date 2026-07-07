@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/repositories/user_repository.dart';
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class GetUserByIdUseCase implements UseCaseWithParams<String, UserEntity?> {
-  final UserRepository _userRepository;
-
   GetUserByIdUseCase(this._userRepository);
+
+  final UserRepository _userRepository;
 
   @override
   UserEntity? call(String params) {

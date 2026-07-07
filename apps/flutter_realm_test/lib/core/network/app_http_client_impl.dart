@@ -10,11 +10,11 @@ import 'package:test_flutter_project/core/network/app_interceptor.dart';
 import 'package:test_flutter_project/core/network/network_info.dart';
 
 class AppHttpClientImpl implements AppHttpClient {
+  AppHttpClientImpl(this._client, this._networkInfo, this._logger);
+
   final http.Client _client;
   final NetworkInfo _networkInfo;
   final BaseLogger _logger;
-
-  AppHttpClientImpl(this._client, this._networkInfo, this._logger);
 
   late final appInterceptor = AppInterceptor(_networkInfo, _logger);
 

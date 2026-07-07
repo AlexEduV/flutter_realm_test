@@ -19,9 +19,9 @@ import '../../bloc/share/share_cubit.dart';
 import '../../widgets/app_semantics.dart';
 
 class ArticlePage extends StatefulWidget {
-  final String articleId;
-
   const ArticlePage({required this.articleId, super.key});
+
+  final String articleId;
 
   @override
   State<ArticlePage> createState() => _ArticlePageState();

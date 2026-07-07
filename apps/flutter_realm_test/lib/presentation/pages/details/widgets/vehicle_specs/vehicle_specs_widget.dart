@@ -15,9 +15,9 @@ import '../../../../../l10n/l10n_keys.dart';
 import '../../../../bloc/details/details_page_cubit.dart';
 
 class VehicleSpecsWidget extends StatelessWidget {
-  final CarEntity car;
-
   const VehicleSpecsWidget({required this.car, super.key});
+
+  final CarEntity car;
 
   @override
   Widget build(BuildContext context) {

@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/repositories/region_repository.dart'
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class GetAllRegionsUseCase extends UseCaseNoParams<List<RegionEntity>> {
-  final RegionRepository _regionRepository;
-
   GetAllRegionsUseCase(this._regionRepository);
+
+  final RegionRepository _regionRepository;
 
   @override
   List<RegionEntity> call() {

@@ -10,9 +10,9 @@ import '../../../common/logger/base_logger.dart';
 import '../../../domain/models/api_response.dart';
 
 class MockAutoCompleteRemoteDataSource implements AutoCompleteRemoteDataSource {
-  final BaseLogger _logger;
-
   MockAutoCompleteRemoteDataSource(this._logger);
+
+  final BaseLogger _logger;
 
   @override
   Future<List<CarAutoCompleteEntity>> getAutoCompleteModelListByType(CarType type) async {

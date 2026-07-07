@@ -2,9 +2,9 @@ import 'package:test_flutter_project/domain/repositories/url_launch_repository.d
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class OpenUrlLinkUseCase extends UseCaseWithParams<String, Future<void>> {
-  final UrlLaunchRepository _urlLaunchRepository;
-
   OpenUrlLinkUseCase(this._urlLaunchRepository);
+
+  final UrlLaunchRepository _urlLaunchRepository;
 
   @override
   Future<void> call(String link) {

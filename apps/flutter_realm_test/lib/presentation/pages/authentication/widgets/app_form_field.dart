@@ -7,25 +7,6 @@ import '../../../../common/constants/app_colors.dart';
 import '../../../../common/constants/app_dimensions.dart';
 
 class AppFormField extends StatelessWidget {
-  final FocusNode focusNode;
-  final TextEditingController textEditingController;
-  final String labelText;
-  final String hintText;
-  final String? errorText;
-  final TextInputType textInputType;
-  final IconData? leadingIcon;
-  final String? leadingSvg;
-  final TextInputAction textInputAction;
-  final bool isObscureText;
-  final Function()? onEditingComplete;
-  final Function()? onSuffixIconPressed;
-  final Function(bool)? onFocusChange;
-  final Function(String? value) onChanged;
-  final String? trailingActionSemanticsLabel;
-  final int? maxLength;
-  final double? padding;
-  final VoidCallback? onTap;
-
   const AppFormField({
     required this.focusNode,
     required this.textEditingController,
@@ -47,6 +28,25 @@ class AppFormField extends StatelessWidget {
     this.onTap,
     super.key,
   });
+
+  final FocusNode focusNode;
+  final TextEditingController textEditingController;
+  final String labelText;
+  final String hintText;
+  final String? errorText;
+  final TextInputType textInputType;
+  final IconData? leadingIcon;
+  final String? leadingSvg;
+  final TextInputAction textInputAction;
+  final bool isObscureText;
+  final Function()? onEditingComplete;
+  final Function()? onSuffixIconPressed;
+  final Function(bool)? onFocusChange;
+  final Function(String? value) onChanged;
+  final String? trailingActionSemanticsLabel;
+  final int? maxLength;
+  final double? padding;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

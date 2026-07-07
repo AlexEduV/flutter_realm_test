@@ -4,9 +4,9 @@ import 'package:test_flutter_project/domain/data_sources/local/env_local_data_so
 import '../../../common/constants/app_asset_routes.dart';
 
 class EnvLocalDataSourceImpl implements EnvLocalDataSource {
-  final DotEnv _dotEnv;
-
   EnvLocalDataSourceImpl(this._dotEnv);
+
+  final DotEnv _dotEnv;
 
   @override
   Future<void> init() async {

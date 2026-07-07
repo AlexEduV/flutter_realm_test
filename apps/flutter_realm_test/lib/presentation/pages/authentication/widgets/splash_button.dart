@@ -4,12 +4,6 @@ import '../../../../common/constants/app_dimensions.dart';
 import '../../../../common/constants/app_text_styles.dart';
 
 class SplashButton extends StatelessWidget {
-  final String title;
-  final void Function() onPressed;
-  final Color backgroundColor;
-  final Color foregroundColor;
-  final bool isLoading;
-
   const SplashButton({
     required this.title,
     required this.onPressed,
@@ -18,6 +12,12 @@ class SplashButton extends StatelessWidget {
     this.isLoading = false,
     super.key,
   });
+
+  final String title;
+  final void Function() onPressed;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {

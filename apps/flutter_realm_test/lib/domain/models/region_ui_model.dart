@@ -1,8 +1,8 @@
 class RegionUiModel {
+  const RegionUiModel({required this.countryName, required this.code});
+
   final String countryName;
   final String code;
-
-  const RegionUiModel({required this.countryName, required this.code});
 
   @override
   bool operator ==(Object other) =>

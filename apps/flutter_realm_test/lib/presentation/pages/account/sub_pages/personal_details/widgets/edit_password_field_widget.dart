@@ -11,13 +11,6 @@ import '../../../../../widgets/app_semantics.dart';
 import '../../../../authentication/widgets/animated_password_visibility_icon.dart';
 
 class EditPasswordFieldWidget extends StatelessWidget {
-  final TextEditingController textEditingController;
-  final FocusNode focusNode;
-  final bool Function(String)? validationCallback;
-  final void Function(BuildContext, String, bool Function(String)?) validateEditField;
-  final void Function() onSuffixIconTap;
-  final bool isObscureText;
-
   const EditPasswordFieldWidget({
     required this.textEditingController,
     required this.focusNode,
@@ -27,6 +20,13 @@ class EditPasswordFieldWidget extends StatelessWidget {
     super.key,
     this.validationCallback,
   });
+
+  final TextEditingController textEditingController;
+  final FocusNode focusNode;
+  final bool Function(String)? validationCallback;
+  final void Function(BuildContext, String, bool Function(String)?) validateEditField;
+  final void Function() onSuffixIconTap;
+  final bool isObscureText;
 
   @override
   Widget build(BuildContext context) {

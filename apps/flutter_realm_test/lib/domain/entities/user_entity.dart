@@ -3,19 +3,6 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import '../../data/models/scheme.dart';
 
 class UserEntity {
-  final String userId;
-  final String firstName;
-  final String lastName;
-  final String email;
-  final bool isLocationPermissionGranted;
-  final String region;
-  final List<String> favoriteIds;
-  final List<String> createdIds;
-  final List<String> viewedIds;
-  final Map<DateTime, String>? lastSeenCar;
-  final String password;
-  final String? avatarImageSrc;
-
   const UserEntity({
     required this.userId,
     required this.firstName,
@@ -73,6 +60,48 @@ class UserEntity {
     );
   }
 
+  factory UserEntity.fromJson(Map<String, dynamic> json) {
+    return UserEntity(
+      userId: json['userId'] as String,
+      email: json['email'] as String,
+      password: json['password'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      region: (json['region'] ?? '') as String,
+      avatarImageSrc: json['avatarImageSrc'] as String?,
+      lastSeenCar: (json['lastSeenCar'] as Map<String, dynamic>?)?.map(
+        (key, value) => MapEntry(DateTime.parse(key), value as String),
+      ),
+      viewedIds: (json['viewedIds'] as List<dynamic>).map((e) => e as String).toList(),
+      createdIds: (json['createdIds'] as List<dynamic>).map((e) => e as String).toList(),
+      favoriteIds: (json['favoriteIds'] as List<dynamic>).map((e) => e as String).toList(),
+      isLocationPermissionGranted: json['isLocationPermissionGranted'] as bool,
+    );
+  }
+
+  factory UserEntity.fromOwner(OwnerEntity owner) {
+    return UserEntity.initial(
+      userId: owner.id,
+      firstName: owner.firstName,
+      lastName: owner.lastName,
+      email: '',
+      password: '',
+    ).copyWith(avatarImageSrc: owner.imageSrc);
+  }
+
+  final String userId;
+  final String firstName;
+  final String lastName;
+  final String email;
+  final bool isLocationPermissionGranted;
+  final String region;
+  final List<String> favoriteIds;
+  final List<String> createdIds;
+  final List<String> viewedIds;
+  final Map<DateTime, String>? lastSeenCar;
+  final String password;
+  final String? avatarImageSrc;
+
   UserEntity copyWith({
     String? userId,
     String? firstName,
@@ -117,33 +146,4 @@ class UserEntity {
     'lastSeenCar': lastSeenCar?.map((key, value) => MapEntry(key.toIso8601String(), value)),
     'isLocationPermissionGranted': isLocationPermissionGranted,
   };
-
-  factory UserEntity.fromJson(Map<String, dynamic> json) {
-    return UserEntity(
-      userId: json['userId'] as String,
-      email: json['email'] as String,
-      password: json['password'] as String,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
-      region: (json['region'] ?? '') as String,
-      avatarImageSrc: json['avatarImageSrc'] as String?,
-      lastSeenCar: (json['lastSeenCar'] as Map<String, dynamic>?)?.map(
-        (key, value) => MapEntry(DateTime.parse(key), value as String),
-      ),
-      viewedIds: (json['viewedIds'] as List<dynamic>).map((e) => e as String).toList(),
-      createdIds: (json['createdIds'] as List<dynamic>).map((e) => e as String).toList(),
-      favoriteIds: (json['favoriteIds'] as List<dynamic>).map((e) => e as String).toList(),
-      isLocationPermissionGranted: json['isLocationPermissionGranted'] as bool,
-    );
-  }
-
-  factory UserEntity.fromOwner(OwnerEntity owner) {
-    return UserEntity.initial(
-      userId: owner.id,
-      firstName: owner.firstName,
-      lastName: owner.lastName,
-      email: '',
-      password: '',
-    ).copyWith(avatarImageSrc: owner.imageSrc);
-  }
 }

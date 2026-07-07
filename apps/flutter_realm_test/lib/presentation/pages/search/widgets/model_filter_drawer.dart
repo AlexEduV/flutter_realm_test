@@ -10,9 +10,9 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_state.
 import '../../../../l10n/l10n_keys.dart';
 
 class ModelFilterDrawer extends StatelessWidget {
-  final Map<String, List<String>> models;
-
   const ModelFilterDrawer({required this.models, super.key});
+
+  final Map<String, List<String>> models;
 
   @override
   Widget build(BuildContext context) {

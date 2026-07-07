@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../common/constants/app_dimensions.dart';
 
 class AnimatedDividerWithText extends StatefulWidget {
-  final String text;
-  final Duration duration;
-
   const AnimatedDividerWithText({
     required this.text,
     this.duration = const Duration(seconds: 1),
     super.key,
   });
+
+  final String text;
+  final Duration duration;
 
   @override
   State<AnimatedDividerWithText> createState() => _AnimatedDividerWithTextState();

@@ -30,6 +30,11 @@ linter:
     use_colored_box: true
     use_decorated_box: true
     sort_pub_dependencies: true
+    use_enums: true
+    prefer_const_literals_to_create_immutables: true
+    require_trailing_commas: true
+    sized_box_shrink_expand: true
+    sort_constructors_first: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

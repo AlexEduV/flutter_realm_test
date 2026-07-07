@@ -59,7 +59,7 @@ class _SearchPageState extends State<SearchPage> {
             title: Text(context.tr(L10nKeys.searchPageTitle), style: AppTextStyles.zonaPro20),
             backgroundColor: AppColors.scaffoldColor,
             //hidden hamburger icon this way;
-            actions: [const SizedBox.shrink()],
+            actions: const [SizedBox.shrink()],
           ),
           body: CustomScrollView(
             slivers: [

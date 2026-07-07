@@ -8,9 +8,9 @@ import '../../../domain/entities/car_entity.dart';
 import '../../models/scheme.dart';
 
 class RealmLocalStorage implements BaseLocalStorage {
-  final Realm realm;
-
   RealmLocalStorage(this.realm);
+
+  final Realm realm;
 
   @override
   void add(T) {

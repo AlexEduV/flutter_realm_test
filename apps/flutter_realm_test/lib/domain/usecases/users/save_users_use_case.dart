@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/repositories/user_repository.dart';
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class SaveUsersUseCase implements UseCaseWithParams<List<UserEntity>, Future<void>> {
-  final UserRepository _userRepository;
-
   SaveUsersUseCase(this._userRepository);
+
+  final UserRepository _userRepository;
 
   @override
   Future<void> call(List<UserEntity> params) {

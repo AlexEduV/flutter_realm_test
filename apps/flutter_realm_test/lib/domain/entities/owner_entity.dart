@@ -1,12 +1,6 @@
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 class OwnerEntity {
-  final String id;
-  final String firstName;
-  final String lastName;
-  final List<String> linkedItemIds;
-  final String? imageSrc;
-
   OwnerEntity({
     required this.id,
     required this.firstName,
@@ -38,6 +32,12 @@ class OwnerEntity {
       imageSrc: user.avatarImageSrc,
     );
   }
+
+  final String id;
+  final String firstName;
+  final String lastName;
+  final List<String> linkedItemIds;
+  final String? imageSrc;
 
   @override
   bool operator ==(Object other) =>

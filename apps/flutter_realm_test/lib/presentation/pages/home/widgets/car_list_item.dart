@@ -14,11 +14,6 @@ import '../../../../common/enums/car_type.dart';
 import '../../../../utils/app_router.dart';
 
 class CarListItem extends StatelessWidget {
-  final CarEntity car;
-  final Function()? onDeleteCallback;
-  final DetailsPageSource source;
-  final bool isFavoriteItem;
-
   const CarListItem({
     required this.car,
     this.onDeleteCallback,
@@ -26,6 +21,11 @@ class CarListItem extends StatelessWidget {
     this.isFavoriteItem = true,
     super.key,
   });
+
+  final CarEntity car;
+  final Function()? onDeleteCallback;
+  final DetailsPageSource source;
+  final bool isFavoriteItem;
 
   @override
   Widget build(BuildContext context) {

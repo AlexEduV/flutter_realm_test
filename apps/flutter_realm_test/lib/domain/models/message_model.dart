@@ -1,17 +1,26 @@
 import 'package:test_flutter_project/common/enums/message_status.dart';
 
 class MessageModel {
-  final String senderId;
-  final MessageStatus messageStatus;
-  final String payload;
-  final DateTime date;
-
   MessageModel({
     required this.senderId,
     required this.messageStatus,
     required this.payload,
     required this.date,
   });
+
+  factory MessageModel.fromJson(Map<String, dynamic> json) {
+    return MessageModel(
+      senderId: json['senderId'] as String,
+      messageStatus: MessageStatus.values.byName(json['messageStatus'] as String),
+      payload: json['text'] as String,
+      date: DateTime.parse(json['date'] as String),
+    );
+  }
+
+  final String senderId;
+  final MessageStatus messageStatus;
+  final String payload;
+  final DateTime date;
 
   MessageModel copyWith({
     String? senderId,
@@ -34,15 +43,6 @@ class MessageModel {
       'text': payload,
       'date': date.toIso8601String(),
     };
-  }
-
-  factory MessageModel.fromJson(Map<String, dynamic> json) {
-    return MessageModel(
-      senderId: json['senderId'] as String,
-      messageStatus: MessageStatus.values.byName(json['messageStatus'] as String),
-      payload: json['text'] as String,
-      date: DateTime.parse(json['date'] as String),
-    );
   }
 
   @override

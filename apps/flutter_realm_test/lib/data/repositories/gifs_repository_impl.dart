@@ -6,9 +6,9 @@ import 'package:test_flutter_project/domain/repositories/gifs_repository.dart';
 import '../../common/enums/server_failure.dart';
 
 class GifsRepositoryImpl implements GifsRepository {
-  final GifsRemoteDataSource _gifsRemoteDataSource;
-
   GifsRepositoryImpl(this._gifsRemoteDataSource);
+
+  final GifsRemoteDataSource _gifsRemoteDataSource;
 
   @override
   Future<Either<ServerFailure, List<GifEntity>>> searchGifs(String query) async {

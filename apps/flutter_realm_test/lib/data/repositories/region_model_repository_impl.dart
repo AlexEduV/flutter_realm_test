@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 import 'package:test_flutter_project/domain/repositories/region_model_repository.dart';
 
 class RegionModelRepositoryImpl implements RegionModelRepository {
-  final RegionRemoteDataSource _regionRemoteDataSource;
-
   RegionModelRepositoryImpl(this._regionRemoteDataSource);
+
+  final RegionRemoteDataSource _regionRemoteDataSource;
 
   @override
   List<RegionUiModel> getAvailableCountries() {

@@ -9,11 +9,11 @@ import '../../../domain/data_sources/remote/article_remote_data_source.dart';
 import '../../../domain/models/api_response.dart';
 
 class MockArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
-  List<ArticleEntity> articles = [];
+  MockArticleRemoteDataSourceImpl(this._logger);
 
   final BaseLogger _logger;
 
-  MockArticleRemoteDataSourceImpl(this._logger);
+  List<ArticleEntity> articles = [];
 
   @override
   Future<List<ArticleEntity>> fetchArticles() async {

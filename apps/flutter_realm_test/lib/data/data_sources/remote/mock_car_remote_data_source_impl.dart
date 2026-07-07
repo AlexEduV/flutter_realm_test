@@ -19,9 +19,9 @@ import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_
 import '../../../core/di/injection_container.dart';
 
 class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
-  final BaseLocalStorage _localStorage;
-
   MockCarRemoteDataSourceImpl(this._localStorage);
+
+  final BaseLocalStorage _localStorage;
 
   // 1. Single source of truth
   final _carStreamController = BehaviorSubject<List<CarDto>>();

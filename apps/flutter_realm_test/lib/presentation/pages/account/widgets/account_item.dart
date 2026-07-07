@@ -4,12 +4,6 @@ import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/skip_widget.dart';
 
 class AccountItem extends StatelessWidget {
-  final IconData? icon;
-  final String label;
-  final TextStyle? textStyle;
-  final void Function()? onTap;
-  final bool isCentered;
-
   const AccountItem({
     required this.label,
     this.icon,
@@ -18,6 +12,12 @@ class AccountItem extends StatelessWidget {
     this.isCentered = false,
     super.key,
   });
+
+  final IconData? icon;
+  final String label;
+  final TextStyle? textStyle;
+  final void Function()? onTap;
+  final bool isCentered;
 
   @override
   Widget build(BuildContext context) {

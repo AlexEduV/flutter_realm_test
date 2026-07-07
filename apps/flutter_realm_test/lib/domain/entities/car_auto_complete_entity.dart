@@ -1,9 +1,4 @@
 class CarAutoCompleteEntity {
-  final int manufacturerId;
-  final String manufacturer;
-  final List<String> models;
-  final String? imageSrc;
-
   CarAutoCompleteEntity({
     required this.manufacturerId,
     required this.manufacturer,
@@ -19,4 +14,9 @@ class CarAutoCompleteEntity {
       imageSrc: json['icon'] as String?,
     );
   }
+
+  final int manufacturerId;
+  final String manufacturer;
+  final List<String> models;
+  final String? imageSrc;
 }

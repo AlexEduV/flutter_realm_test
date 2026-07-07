@@ -10,15 +10,6 @@ import '../../bloc/account/edit_dialog_state.dart';
 import '../app_semantics.dart';
 
 class EditPersonalInfoDialog extends StatefulWidget {
-  final String initialValue;
-  final String title;
-  final String confirmButtonTitle;
-  final String cancelButtonTitle;
-  final void Function(String)? onConfirm;
-  final VoidCallback? onCancel;
-  final bool Function(String)? validationCallback;
-  final TextInputType textInputType;
-
   const EditPersonalInfoDialog({
     required this.initialValue,
     required this.title,
@@ -30,6 +21,15 @@ class EditPersonalInfoDialog extends StatefulWidget {
     this.validationCallback,
     this.textInputType = TextInputType.text,
   });
+
+  final String initialValue;
+  final String title;
+  final String confirmButtonTitle;
+  final String cancelButtonTitle;
+  final void Function(String)? onConfirm;
+  final VoidCallback? onCancel;
+  final bool Function(String)? validationCallback;
+  final TextInputType textInputType;
 
   @override
   State<EditPersonalInfoDialog> createState() => _EditPersonalInfoDialogState();

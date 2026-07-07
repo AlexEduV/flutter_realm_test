@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 class SkipWidget extends StatelessWidget {
+  const SkipWidget({required this.skip, required this.child, super.key});
+
   final bool skip;
   final Widget child;
-
-  const SkipWidget({required this.skip, required this.child, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -22,9 +22,9 @@ import '../../bloc/messages/messages_page_state.dart';
 import '../../bloc/user/user_data_cubit.dart';
 
 class GifsPickerBottomSheet extends StatefulWidget {
-  final GlobalKey<AnimatedListState> listKey;
-
   const GifsPickerBottomSheet({required this.listKey, super.key});
+
+  final GlobalKey<AnimatedListState> listKey;
 
   @override
   State<GifsPickerBottomSheet> createState() => _GifsPickerBottomSheetState();

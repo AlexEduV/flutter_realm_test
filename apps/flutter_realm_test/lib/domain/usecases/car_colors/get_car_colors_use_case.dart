@@ -4,9 +4,9 @@ import 'package:test_flutter_project/domain/repositories/car_color_repository.da
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class GetCarColorsUseCase extends UseCaseNoParams<Map<String, Color>> {
-  final CarColorRepository _carColorRepository;
-
   GetCarColorsUseCase(this._carColorRepository);
+
+  final CarColorRepository _carColorRepository;
 
   @override
   Map<String, Color> call() {

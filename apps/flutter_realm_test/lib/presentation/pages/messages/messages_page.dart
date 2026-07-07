@@ -30,9 +30,9 @@ import '../../../common/constants/app_text_styles.dart';
 import '../../../utils/date_formatter.dart';
 
 class MessagesPage extends StatefulWidget {
-  final String conversationId;
-
   const MessagesPage({required this.conversationId, super.key});
+
+  final String conversationId;
 
   @override
   State<MessagesPage> createState() => _MessagesPageState();

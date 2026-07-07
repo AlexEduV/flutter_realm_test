@@ -4,9 +4,9 @@ import 'package:test_flutter_project/domain/repositories/car_color_repository.da
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class GetCarColorNameFromColorUseCase extends UseCaseWithParams<Color?, String> {
-  final CarColorRepository _carColorRepository;
-
   GetCarColorNameFromColorUseCase(this._carColorRepository);
+
+  final CarColorRepository _carColorRepository;
 
   @override
   String call(Color? color) {

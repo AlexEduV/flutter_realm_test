@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 
 class SpecColorWidget extends StatelessWidget {
-  final Color? color;
-
   const SpecColorWidget({this.color, super.key});
+
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {

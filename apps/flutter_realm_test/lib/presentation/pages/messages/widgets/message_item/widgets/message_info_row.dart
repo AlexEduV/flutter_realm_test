@@ -6,16 +6,16 @@ import '../../../../../../common/constants/app_text_styles.dart';
 import '../../../../../../l10n/l10n_keys.dart';
 
 class MessageInfoRow extends StatelessWidget {
-  final String time;
-  final bool isMyMessage;
-  final String senderName;
-
   const MessageInfoRow({
     required this.time,
     required this.isMyMessage,
     required this.senderName,
     super.key,
   });
+
+  final String time;
+  final bool isMyMessage;
+  final String senderName;
 
   @override
   Widget build(BuildContext context) {

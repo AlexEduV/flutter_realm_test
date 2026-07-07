@@ -4,9 +4,9 @@ import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
 import '../../../domain/data_sources/local/file_picker_local_data_source.dart';
 
 class FilePickerLocalDataSourceImpl implements FilePickerLocalDataSource {
-  final FilePickerIO filePicker;
-
   FilePickerLocalDataSourceImpl(this.filePicker);
+
+  final FilePickerIO filePicker;
 
   @override
   Future<AttachmentEntity?> pickFile() async {

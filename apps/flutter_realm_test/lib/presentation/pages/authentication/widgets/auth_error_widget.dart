@@ -5,9 +5,9 @@ import '../../../../common/constants/app_dimensions.dart';
 import '../../../../common/constants/app_text_styles.dart';
 
 class AuthErrorWidget extends StatelessWidget {
-  final String? text;
-
   const AuthErrorWidget({this.text, super.key});
+
+  final String? text;
 
   @override
   Widget build(BuildContext context) {

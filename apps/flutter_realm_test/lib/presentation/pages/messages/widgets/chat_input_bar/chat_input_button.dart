@@ -6,11 +6,6 @@ import '../../../../../common/constants/app_colors.dart';
 import '../../../../../common/constants/app_dimensions.dart';
 
 class ChatInputButton extends StatefulWidget {
-  final VoidCallback? onTap;
-  final IconData icon;
-  final double iconRotationAngleDegrees;
-  final String semanticsLabel;
-
   const ChatInputButton({
     required this.icon,
     this.onTap,
@@ -18,6 +13,11 @@ class ChatInputButton extends StatefulWidget {
     this.semanticsLabel = '',
     super.key,
   });
+
+  final VoidCallback? onTap;
+  final IconData icon;
+  final double iconRotationAngleDegrees;
+  final String semanticsLabel;
 
   @override
   State<ChatInputButton> createState() => _ChatInputButtonState();

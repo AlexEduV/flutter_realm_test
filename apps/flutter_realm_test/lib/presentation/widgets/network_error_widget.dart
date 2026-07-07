@@ -16,9 +16,7 @@ class NetworkErrorWidget extends StatelessWidget {
         borderRadius: BorderRadiusGeometry.circular(AppDimensions.normalM),
         child: Stack(
           children: [
-            SizedBox(
-              width: double.infinity,
-              height: double.infinity,
+            SizedBox.expand(
               child: Image.asset(
                 AppAssetRoutes.errorImageRoute,
                 fit: BoxFit.cover,

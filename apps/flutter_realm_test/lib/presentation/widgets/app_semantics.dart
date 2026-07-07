@@ -1,16 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
 class AppSemantics extends StatelessWidget {
-  final String label;
-  final bool? isSelected;
-  final bool? button;
-  final bool? enabled;
-  final bool? isChecked;
-  final bool? textField;
-  final bool? expanded;
-
-  final Widget child;
-
   const AppSemantics({
     required this.label,
     required this.child,
@@ -22,6 +12,16 @@ class AppSemantics extends StatelessWidget {
     this.expanded,
     super.key,
   });
+
+  final String label;
+  final bool? isSelected;
+  final bool? button;
+  final bool? enabled;
+  final bool? isChecked;
+  final bool? textField;
+  final bool? expanded;
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

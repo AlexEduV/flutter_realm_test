@@ -9,14 +9,14 @@ import '../../../common/constants/app_dimensions.dart';
 import '../../../common/constants/app_text_styles.dart';
 
 class CountryPickerBottomSheet extends StatelessWidget {
-  final List<RegionUiModel> items;
-  final int currentSelectedIndex;
-
   const CountryPickerBottomSheet({
     required this.items,
     required this.currentSelectedIndex,
     super.key,
   });
+
+  final List<RegionUiModel> items;
+  final int currentSelectedIndex;
 
   @override
   Widget build(BuildContext context) {

@@ -8,13 +8,6 @@ import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import '../../../../../common/constants/app_dimensions.dart';
 
 class HomeBottomBarItem extends StatelessWidget {
-  final int index;
-  final IconData selectedIcon;
-  final IconData unselectedIcon;
-  final String semanticsLabel;
-  final String label;
-  final double rotationAngle;
-
   const HomeBottomBarItem({
     required this.index,
     required this.selectedIcon,
@@ -24,6 +17,13 @@ class HomeBottomBarItem extends StatelessWidget {
     this.rotationAngle = 0.0,
     super.key,
   });
+
+  final int index;
+  final IconData selectedIcon;
+  final IconData unselectedIcon;
+  final String semanticsLabel;
+  final String label;
+  final double rotationAngle;
 
   @override
   Widget build(BuildContext context) {

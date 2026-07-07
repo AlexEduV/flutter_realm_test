@@ -2,9 +2,9 @@ import 'package:test_flutter_project/domain/data_sources/local/env_local_data_so
 import 'package:test_flutter_project/domain/repositories/env_repository.dart';
 
 class EnvRepositoryImpl implements EnvRepository {
-  final EnvLocalDataSource envLocalDataSource;
-
   EnvRepositoryImpl(this.envLocalDataSource);
+
+  final EnvLocalDataSource envLocalDataSource;
 
   @override
   Future<void> init() {

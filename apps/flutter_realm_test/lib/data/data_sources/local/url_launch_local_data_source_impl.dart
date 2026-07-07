@@ -5,9 +5,9 @@ import '../../../common/constants/api_constants.dart';
 import '../../../domain/data_sources/local/url_launch_local_data_source.dart';
 
 class UrlLaunchLocalDataSourceImpl implements UrlLaunchLocalDataSource {
-  final BaseLogger _logger;
-
   UrlLaunchLocalDataSourceImpl(this._logger);
+
+  final BaseLogger _logger;
 
   @override
   Future<void> openUrl(String? url) async {

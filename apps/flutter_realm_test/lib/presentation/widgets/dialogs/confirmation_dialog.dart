@@ -5,14 +5,6 @@ import '../../../common/constants/app_text_styles.dart';
 import '../app_semantics.dart';
 
 class ConfirmationDialog extends StatelessWidget {
-  final String title;
-  final String description;
-  final VoidCallback? onConfirm;
-  final String confirmButtonTitle;
-  final String cancelButtonTitle;
-  final bool isDeletion;
-  final VoidCallback? onCancel;
-
   const ConfirmationDialog({
     required this.title,
     required this.description,
@@ -23,6 +15,14 @@ class ConfirmationDialog extends StatelessWidget {
     this.onCancel,
     super.key,
   });
+
+  final String title;
+  final String description;
+  final VoidCallback? onConfirm;
+  final String confirmButtonTitle;
+  final String cancelButtonTitle;
+  final bool isDeletion;
+  final VoidCallback? onCancel;
 
   @override
   Widget build(BuildContext context) {

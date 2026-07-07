@@ -4,9 +4,9 @@ import '../../repositories/owner_repository.dart';
 import '../usecase.dart';
 
 class FetchOwnersUseCase extends UseCaseNoParams<Future<List<OwnerEntity>>> {
-  final OwnerRepository _ownersRepository;
-
   FetchOwnersUseCase(this._ownersRepository);
+
+  final OwnerRepository _ownersRepository;
 
   @override
   Future<List<OwnerEntity>> call() {

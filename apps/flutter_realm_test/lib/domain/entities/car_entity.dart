@@ -9,25 +9,6 @@ import '../../data/dto/car_dto.dart';
 import '../../data/models/scheme.dart';
 
 class CarEntity {
-  final ObjectId id;
-  final String carId;
-  final String model;
-  final String manufacturer;
-  final String type;
-  final String? year;
-  final String? color;
-  final OwnerEntity? owner;
-  final String bodyType;
-  final EngineEntity engine;
-  final String transmissionType;
-  final bool isVerified;
-  final PromoType? promoType;
-  int? mileage = 0;
-  int? distanceTo;
-  int? price = 0;
-  final List<String> images;
-  bool isShown;
-
   CarEntity({
     required this.id,
     required this.carId,
@@ -61,48 +42,6 @@ class CarEntity {
       engine: EngineEntity.empty(),
       transmissionType: TransmissionType.manual.name,
       color: 'White',
-    );
-  }
-
-  CarEntity copyWith({
-    ObjectId? id,
-    String? carId,
-    String? model,
-    String? manufacturer,
-    String? type,
-    String? year,
-    String? color,
-    OwnerEntity? owner,
-    String? bodyType,
-    EngineEntity? engine,
-    String? transmissionType,
-    bool? isVerified,
-    PromoType? promoType,
-    int? mileage,
-    int? distanceTo,
-    int? price,
-    List<String>? images,
-    bool? isShown,
-  }) {
-    return CarEntity(
-      id: id ?? this.id,
-      carId: carId ?? this.carId,
-      model: model ?? this.model,
-      manufacturer: manufacturer ?? this.manufacturer,
-      isVerified: isVerified ?? this.isVerified,
-      type: type ?? this.type,
-      bodyType: bodyType ?? this.bodyType,
-      engine: engine ?? this.engine,
-      transmissionType: transmissionType ?? this.transmissionType,
-      promoType: promoType ?? this.promoType,
-      year: year ?? this.year,
-      color: color ?? this.color,
-      owner: owner ?? this.owner,
-      mileage: mileage ?? this.mileage,
-      distanceTo: distanceTo ?? this.distanceTo,
-      price: price ?? this.price,
-      images: images ?? this.images,
-      isShown: isShown ?? this.isShown,
     );
   }
 
@@ -153,6 +92,67 @@ class CarEntity {
       bodyType: car.bodyType ?? '',
       transmissionType: car.transmissionType ?? '',
       images: car.images.toList(),
+    );
+  }
+
+  final ObjectId id;
+  final String carId;
+  final String model;
+  final String manufacturer;
+  final String type;
+  final String? year;
+  final String? color;
+  final OwnerEntity? owner;
+  final String bodyType;
+  final EngineEntity engine;
+  final String transmissionType;
+  final bool isVerified;
+  final PromoType? promoType;
+  int? mileage = 0;
+  int? distanceTo;
+  int? price = 0;
+  final List<String> images;
+  bool isShown;
+
+  CarEntity copyWith({
+    ObjectId? id,
+    String? carId,
+    String? model,
+    String? manufacturer,
+    String? type,
+    String? year,
+    String? color,
+    OwnerEntity? owner,
+    String? bodyType,
+    EngineEntity? engine,
+    String? transmissionType,
+    bool? isVerified,
+    PromoType? promoType,
+    int? mileage,
+    int? distanceTo,
+    int? price,
+    List<String>? images,
+    bool? isShown,
+  }) {
+    return CarEntity(
+      id: id ?? this.id,
+      carId: carId ?? this.carId,
+      model: model ?? this.model,
+      manufacturer: manufacturer ?? this.manufacturer,
+      isVerified: isVerified ?? this.isVerified,
+      type: type ?? this.type,
+      bodyType: bodyType ?? this.bodyType,
+      engine: engine ?? this.engine,
+      transmissionType: transmissionType ?? this.transmissionType,
+      promoType: promoType ?? this.promoType,
+      year: year ?? this.year,
+      color: color ?? this.color,
+      owner: owner ?? this.owner,
+      mileage: mileage ?? this.mileage,
+      distanceTo: distanceTo ?? this.distanceTo,
+      price: price ?? this.price,
+      images: images ?? this.images,
+      isShown: isShown ?? this.isShown,
     );
   }
 

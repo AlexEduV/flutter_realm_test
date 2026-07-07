@@ -9,10 +9,10 @@ import 'package:test_flutter_project/core/network/network_info.dart';
 import '../../common/enums/server_failure.dart';
 
 class AppInterceptor implements BaseInterceptor {
+  AppInterceptor(this._networkInfo, this._logger);
+
   final NetworkInfo _networkInfo;
   final BaseLogger _logger;
-
-  AppInterceptor(this._networkInfo, this._logger);
 
   @override
   Future<Either<ServerFailure, String>> onRequest({

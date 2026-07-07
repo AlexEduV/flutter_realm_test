@@ -12,9 +12,9 @@ import '../../../../l10n/l10n_keys.dart';
 import '../../l10n/app_localisations_cubit.dart';
 
 class NewItemPageCubit extends Cubit<NewItemPageState> {
-  final GetAutoCompleteManufacturersByTypeUseCase _autoCompleteManufacturersByTypeUseCase;
-
   NewItemPageCubit(this._autoCompleteManufacturersByTypeUseCase) : super(const NewItemPageState());
+
+  final GetAutoCompleteManufacturersByTypeUseCase _autoCompleteManufacturersByTypeUseCase;
 
   void init() {
     emit(

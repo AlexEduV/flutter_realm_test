@@ -5,9 +5,9 @@ import 'package:test_flutter_project/common/constants/app_text_styles.dart';
 import '../../../../common/constants/app_colors.dart';
 
 class DateDivider extends StatelessWidget {
-  final String text;
-
   const DateDivider({required this.text, super.key});
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {

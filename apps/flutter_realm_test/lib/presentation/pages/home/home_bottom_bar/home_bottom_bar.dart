@@ -12,9 +12,9 @@ import '../../../../common/constants/app_dimensions.dart';
 import '../../../../common/extensions/num_extension.dart';
 
 class HomeBottomBar extends StatelessWidget {
-  final void Function() onAddPressed;
-
   const HomeBottomBar({required this.onAddPressed, super.key});
+
+  final void Function() onAddPressed;
 
   @override
   Widget build(BuildContext context) {

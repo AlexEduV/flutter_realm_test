@@ -9,11 +9,6 @@ import '../../common/constants/app_colors.dart';
 import '../../common/constants/app_dimensions.dart';
 
 class AvatarWidget extends StatelessWidget {
-  final String? imageSrc;
-  final double size;
-  final bool isLocal;
-  final bool showPlaceholder;
-
   const AvatarWidget({
     required this.imageSrc,
     this.size = AppDimensions.majorXL,
@@ -21,6 +16,11 @@ class AvatarWidget extends StatelessWidget {
     this.showPlaceholder = false,
     super.key,
   });
+
+  final String? imageSrc;
+  final double size;
+  final bool isLocal;
+  final bool showPlaceholder;
 
   @override
   Widget build(BuildContext context) {

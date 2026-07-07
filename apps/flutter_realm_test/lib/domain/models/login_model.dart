@@ -1,8 +1,8 @@
 class LoginModel {
+  LoginModel(this.email, this.password);
+
   final String email;
   final String password;
-
-  LoginModel(this.email, this.password);
 
   @override
   bool operator ==(Object other) =>

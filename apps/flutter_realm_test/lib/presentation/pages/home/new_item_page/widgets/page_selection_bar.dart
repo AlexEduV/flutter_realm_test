@@ -6,12 +6,6 @@ import '../../../../../common/constants/app_colors.dart';
 import '../../../../../common/constants/app_dimensions.dart';
 
 class PageSelectionBar extends StatelessWidget {
-  final Function() onForwardPressed;
-  final Function() onBackPressed;
-  final int currentIndex;
-  final Color iconColor;
-  final double iconSize;
-
   const PageSelectionBar({
     required this.onBackPressed,
     required this.onForwardPressed,
@@ -20,6 +14,12 @@ class PageSelectionBar extends StatelessWidget {
     this.iconColor = AppColors.headerColor,
     super.key,
   });
+
+  final Function() onForwardPressed;
+  final Function() onBackPressed;
+  final int currentIndex;
+  final Color iconColor;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {

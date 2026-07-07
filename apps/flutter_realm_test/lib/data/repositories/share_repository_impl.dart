@@ -4,10 +4,10 @@ import 'package:test_flutter_project/domain/repositories/share_repository.dart';
 import '../../domain/models/share_params_model.dart';
 
 class ShareRepositoryImpl implements ShareRepository {
+  ShareRepositoryImpl(this._shareLocalDataSource);
+
   final ShareLocalDataSource _shareLocalDataSource;
   bool _isShareInProgress = false;
-
-  ShareRepositoryImpl(this._shareLocalDataSource);
 
   @override
   Future<void> share(ShareParamsModel model) async {

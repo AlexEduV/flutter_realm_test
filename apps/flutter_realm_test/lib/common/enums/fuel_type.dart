@@ -8,9 +8,9 @@ enum FuelType {
   ev(L10nKeys.fuelTypeEv),
   hybrid(L10nKeys.fuelTypeHybrid);
 
-  final String localisationKey;
-
   const FuelType(this.localisationKey);
+
+  final String localisationKey;
 
   String fromLocalisations() {
     final localisation = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(

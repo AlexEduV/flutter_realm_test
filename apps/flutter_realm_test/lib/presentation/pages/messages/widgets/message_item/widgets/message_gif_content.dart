@@ -5,9 +5,9 @@ import '../../../../../../domain/models/sent_image_meta_data_model.dart';
 import 'gif_label.dart';
 
 class MessageGifContent extends StatelessWidget {
-  final SentImageMetaDataModel? imageMetaData;
-
   const MessageGifContent({required this.imageMetaData, super.key});
+
+  final SentImageMetaDataModel? imageMetaData;
 
   @override
   Widget build(BuildContext context) {

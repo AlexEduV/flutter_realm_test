@@ -8,14 +8,6 @@ import '../../../../common/constants/app_text_styles.dart';
 import '../../../widgets/app_badge.dart';
 
 class SearchFilterButton extends StatelessWidget {
-  final String title;
-  final String? text;
-  final String selectionCount;
-  final double iconSize;
-  final IconData icon;
-  final void Function()? onPressed;
-  final bool isPlaceHolder;
-
   const SearchFilterButton({
     required this.title,
     required this.icon,
@@ -26,6 +18,14 @@ class SearchFilterButton extends StatelessWidget {
     this.isPlaceHolder = false,
     super.key,
   });
+
+  final String title;
+  final String? text;
+  final String selectionCount;
+  final double iconSize;
+  final IconData icon;
+  final void Function()? onPressed;
+  final bool isPlaceHolder;
 
   @override
   Widget build(BuildContext context) {

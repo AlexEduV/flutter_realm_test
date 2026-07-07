@@ -4,9 +4,9 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'network_info.dart';
 
 class NetworkInfoImpl implements NetworkInfo {
-  final Connectivity connectivity;
-
   NetworkInfoImpl(this.connectivity);
+
+  final Connectivity connectivity;
 
   @override
   Future<bool> get isConnected async {
