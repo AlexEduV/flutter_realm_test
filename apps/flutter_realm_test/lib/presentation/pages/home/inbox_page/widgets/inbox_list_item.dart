@@ -20,9 +20,9 @@ import '../../../../../common/constants/app_text_styles.dart';
 import '../../../../widgets/app_badge.dart';
 
 class InboxListItem extends StatelessWidget {
-  final ConversationModel conversation;
-
   const InboxListItem({required this.conversation, super.key});
+
+  final ConversationModel conversation;
 
   @override
   Widget build(BuildContext context) {

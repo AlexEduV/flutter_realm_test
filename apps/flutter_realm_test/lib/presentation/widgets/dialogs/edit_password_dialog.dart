@@ -13,14 +13,6 @@ import '../../pages/account/sub_pages/personal_details/widgets/edit_password_fie
 import '../app_semantics.dart';
 
 class EditPasswordDialog extends StatefulWidget {
-  final String title;
-  final String cancelButtonTitle;
-  final String confirmButtonTitle;
-  final void Function(String)? onConfirm;
-  final VoidCallback? onCancel;
-  final bool Function(String)? validationCallback;
-  final bool isPasswordField;
-
   const EditPasswordDialog({
     required this.title,
     required this.cancelButtonTitle,
@@ -31,6 +23,14 @@ class EditPasswordDialog extends StatefulWidget {
     this.validationCallback,
     this.isPasswordField = false,
   });
+
+  final String title;
+  final String cancelButtonTitle;
+  final String confirmButtonTitle;
+  final void Function(String)? onConfirm;
+  final VoidCallback? onCancel;
+  final bool Function(String)? validationCallback;
+  final bool isPasswordField;
 
   @override
   State<EditPasswordDialog> createState() => _EditPasswordDialogState();

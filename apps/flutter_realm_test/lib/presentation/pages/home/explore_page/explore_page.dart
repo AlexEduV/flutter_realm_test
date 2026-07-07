@@ -18,9 +18,9 @@ import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePage extends StatelessWidget {
-  final ScrollController scrollController;
-
   const ExplorePage({required this.scrollController, super.key});
+
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {

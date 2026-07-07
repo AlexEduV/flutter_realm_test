@@ -3,13 +3,6 @@ import 'dart:convert';
 import 'package:test_flutter_project/data/dto/klipy_gif_dto.dart';
 
 class GifEntity {
-  final String id;
-  final String title;
-  final String previewImageUrl;
-  final String imageUrl;
-  final double width;
-  final double height;
-
   GifEntity({
     required this.id,
     required this.title,
@@ -29,6 +22,13 @@ class GifEntity {
       width: dto.width,
     );
   }
+
+  final String id;
+  final String title;
+  final String previewImageUrl;
+  final String imageUrl;
+  final double width;
+  final double height;
 
   String toPayload() {
     return jsonEncode({'url': imageUrl, 'width': width.toString(), 'height': height.toString()});

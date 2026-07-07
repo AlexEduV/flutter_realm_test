@@ -3,11 +3,11 @@ import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import 'package:test_flutter_project/common/extensions/color_extension.dart';
 
 class ColorItem extends StatelessWidget {
+  const ColorItem({required this.color, required this.isPicked, required this.onTap, super.key});
+
   final Color color;
   final bool isPicked;
   final VoidCallback onTap;
-
-  const ColorItem({required this.color, required this.isPicked, required this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ColorItem extends StatelessWidget {
       child: InkWell(
         borderRadius: borderRadius,
         onTap: onTap,
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(

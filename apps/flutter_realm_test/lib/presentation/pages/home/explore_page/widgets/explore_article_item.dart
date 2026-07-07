@@ -14,16 +14,16 @@ import '../../../../../common/constants/app_colors.dart';
 import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
 
 class ExploreArticleItem extends StatefulWidget {
-  final double height;
-  final ArticleEntity article;
-  final int index;
-
   const ExploreArticleItem({
     required this.index,
     required this.article,
     this.height = AppDimensions.exploreArticleItemBaseSize,
     super.key,
   });
+
+  final double height;
+  final ArticleEntity article;
+  final int index;
 
   @override
   State<ExploreArticleItem> createState() => _ExploreArticleItemState();

@@ -37,10 +37,10 @@ class PasswordStrengthBarWidget extends StatelessWidget {
 }
 
 class AnimatedStageBar extends StatefulWidget {
+  const AnimatedStageBar({required this.stagesAvailable, required this.currentStage, super.key});
+
   final int stagesAvailable;
   final int currentStage;
-
-  const AnimatedStageBar({required this.stagesAvailable, required this.currentStage, super.key});
 
   @override
   State<AnimatedStageBar> createState() => _AnimatedStageBarState();

@@ -4,9 +4,9 @@ import '../../models/conversation_model.dart';
 import '../../repositories/inbox_repository.dart';
 
 class SaveConversationsUseCase extends UseCaseWithParams<List<ConversationModel>, Future<void>> {
-  final InboxRepository _inboxRepository;
-
   SaveConversationsUseCase(this._inboxRepository);
+
+  final InboxRepository _inboxRepository;
 
   @override
   Future<void> call(List<ConversationModel> params) {

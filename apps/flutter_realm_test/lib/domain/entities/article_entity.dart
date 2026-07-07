@@ -1,16 +1,6 @@
 import 'package:test_flutter_project/domain/entities/author_entity.dart';
 
 class ArticleEntity {
-  final String id;
-  final String title;
-  final AuthorEntity author;
-  final String datePublished;
-  final int? minsToRead;
-  final String summary;
-  final List<String> paragraphs;
-  final String? imageUrl;
-  final bool isHovering;
-
   const ArticleEntity({
     required this.id,
     required this.title,
@@ -33,6 +23,16 @@ class ArticleEntity {
       datePublished: '20/11/2022',
     );
   }
+
+  final String id;
+  final String title;
+  final AuthorEntity author;
+  final String datePublished;
+  final int? minsToRead;
+  final String summary;
+  final List<String> paragraphs;
+  final String? imageUrl;
+  final bool isHovering;
 
   static ArticleEntity fromJson(Map<String, dynamic> json) {
     return ArticleEntity(

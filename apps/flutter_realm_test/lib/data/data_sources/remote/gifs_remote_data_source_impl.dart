@@ -12,9 +12,9 @@ import '../../../common/constants/api_constants.dart';
 import '../../../core/di/injection_container.dart';
 
 class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
-  final AppHttpClient client;
-
   GifsRemoteDataSourceImpl(this.client);
+
+  final AppHttpClient client;
 
   final _apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
     EnvParamsModel(key: ApiConstants.envKlipyKeyPath),

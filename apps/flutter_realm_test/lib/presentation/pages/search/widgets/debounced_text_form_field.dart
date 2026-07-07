@@ -7,11 +7,6 @@ import '../../../../common/constants/app_dimensions.dart';
 import '../../../../common/constants/app_text_styles.dart';
 
 class DebouncedTextFormField extends StatefulWidget {
-  final TextEditingController controller;
-  final String label;
-  final void Function(String value) onDebouncedChanged;
-  final String? errorText;
-
   const DebouncedTextFormField({
     required this.controller,
     required this.label,
@@ -19,6 +14,11 @@ class DebouncedTextFormField extends StatefulWidget {
     this.errorText,
     super.key,
   });
+
+  final TextEditingController controller;
+  final String label;
+  final void Function(String value) onDebouncedChanged;
+  final String? errorText;
 
   @override
   State<DebouncedTextFormField> createState() => _DebouncedTextFormFieldState();

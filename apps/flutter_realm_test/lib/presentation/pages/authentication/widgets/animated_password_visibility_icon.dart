@@ -3,14 +3,14 @@ import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 
 class AnimatedVisibilityIcon extends StatefulWidget {
-  final bool isObscure;
-  final Duration duration;
-
   const AnimatedVisibilityIcon({
     required this.isObscure,
     this.duration = const Duration(milliseconds: 200),
     super.key,
   });
+
+  final bool isObscure;
+  final Duration duration;
 
   @override
   State<AnimatedVisibilityIcon> createState() => _AnimatedVisibilityIconState();
@@ -69,9 +69,10 @@ class _AnimatedVisibilityIconState extends State<AnimatedVisibilityIcon>
 }
 
 class _LinePainter extends CustomPainter {
-  final double progress; // 0.0 = not drawn, 1.0 = fully drawn
+  // 0.0 = not drawn, 1.0 = fully drawn
 
   _LinePainter({required this.progress});
+  final double progress;
 
   @override
   void paint(Canvas canvas, Size size) {

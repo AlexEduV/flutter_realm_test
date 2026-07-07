@@ -9,10 +9,10 @@ enum PromoType {
   oneOwner('one_owner', L10nKeys.promoTypeOneOwner),
   featured('featured', L10nKeys.promoTypeFeatured);
 
+  const PromoType(this.code, this.localisationKey);
+
   final String code;
   final String localisationKey;
-
-  const PromoType(this.code, this.localisationKey);
 
   static PromoType? fromCode(String? code) {
     if (code == null) return null;

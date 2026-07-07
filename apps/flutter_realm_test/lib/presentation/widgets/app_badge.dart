@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../common/constants/app_text_styles.dart';
 
 class AppBadge extends StatelessWidget {
-  final String text;
-
   const AppBadge({required this.text, super.key});
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {

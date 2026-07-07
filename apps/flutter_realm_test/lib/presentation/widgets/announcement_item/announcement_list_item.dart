@@ -10,11 +10,6 @@ import 'package:test_flutter_project/presentation/widgets/announcement_item/anno
 import '../../../l10n/l10n_keys.dart';
 
 class AnnouncementListItem extends StatelessWidget {
-  final CarEntity? car;
-  final UserEntity? user;
-  final void Function()? onDismissed;
-  final bool isExploreItem;
-
   const AnnouncementListItem({
     required this.car,
     required this.user,
@@ -22,6 +17,11 @@ class AnnouncementListItem extends StatelessWidget {
     this.isExploreItem = true,
     super.key,
   });
+
+  final CarEntity? car;
+  final UserEntity? user;
+  final void Function()? onDismissed;
+  final bool isExploreItem;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class AnnouncementListItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalS),
       child: isExploreItem
-          ? Container(
+          ? DecoratedBox(
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(AppDimensions.normalL),

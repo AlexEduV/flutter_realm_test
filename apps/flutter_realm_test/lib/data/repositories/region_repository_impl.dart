@@ -4,8 +4,8 @@ import '../../domain/data_sources/remote/region_remote_data_source.dart';
 import '../../domain/entities/region_entity.dart';
 
 class RegionRepositoryImpl implements RegionRepository {
-  final RegionRemoteDataSource _regionRemoteDataSource;
   RegionRepositoryImpl(this._regionRemoteDataSource);
+  final RegionRemoteDataSource _regionRemoteDataSource;
 
   List<RegionEntity>? regions;
 

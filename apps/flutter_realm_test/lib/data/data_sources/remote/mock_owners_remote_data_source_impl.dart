@@ -13,9 +13,9 @@ import '../../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../../domain/models/api_response.dart';
 
 class MockOwnersRemoteDataSourceImpl implements OwnersRemoteDataSource {
-  final BaseLogger _logger;
-
   MockOwnersRemoteDataSourceImpl(this._logger);
+
+  final BaseLogger _logger;
 
   List<OwnerEntity> _owners = [];
 

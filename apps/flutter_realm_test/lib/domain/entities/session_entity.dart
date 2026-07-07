@@ -1,8 +1,8 @@
 class SessionEntity {
+  const SessionEntity({required this.sessionId, required this.userId});
+
   final String userId;
   final String sessionId;
-
-  const SessionEntity({required this.sessionId, required this.userId});
 
   @override
   bool operator ==(Object other) =>

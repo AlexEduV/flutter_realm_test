@@ -8,9 +8,9 @@ enum TransmissionType {
   automatic(L10nKeys.transmissionTypeAutomatic),
   hybrid(L10nKeys.transmissionTypeHybrid);
 
-  final String localisationKey;
-
   const TransmissionType(this.localisationKey);
+
+  final String localisationKey;
 
   String fromLocalisations() {
     final localisation = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(

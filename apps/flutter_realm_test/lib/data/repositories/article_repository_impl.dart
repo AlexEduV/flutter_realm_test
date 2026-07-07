@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/domain/repositories/article_repository.dart';
 
 class ArticleRepositoryImpl implements ArticleRepository {
-  final ArticleRemoteDataSource _articleRemoteDataSource;
-
   ArticleRepositoryImpl(this._articleRemoteDataSource);
+
+  final ArticleRemoteDataSource _articleRemoteDataSource;
 
   List<ArticleEntity> articles = [];
 

@@ -1,11 +1,4 @@
 class KlipyGifDto {
-  final String id;
-  final String title;
-  final String previewImageUrl;
-  final String imageUrl;
-  final double width;
-  final double height;
-
   KlipyGifDto({
     required this.id,
     required this.title,
@@ -42,4 +35,11 @@ class KlipyGifDto {
       height: (media['height'] as num).toDouble(),
     );
   }
+
+  final String id;
+  final String title;
+  final String previewImageUrl;
+  final String imageUrl;
+  final double width;
+  final double height;
 }

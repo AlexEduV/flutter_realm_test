@@ -9,9 +9,9 @@ import '../../bloc/home/inbox_page/inbox_page_cubit.dart';
 import '../../pages/account/widgets/account_item_separated.dart';
 
 class InboxItemMenuBottomSheet extends StatelessWidget {
-  final String conversationId;
-
   const InboxItemMenuBottomSheet({required this.conversationId, super.key});
+
+  final String conversationId;
 
   @override
   Widget build(BuildContext context) {

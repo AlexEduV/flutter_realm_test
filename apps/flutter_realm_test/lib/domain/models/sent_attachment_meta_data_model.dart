@@ -1,8 +1,4 @@
 class SentAttachmentMetaDataModel {
-  final String name;
-  final String? path;
-  final int size;
-
   SentAttachmentMetaDataModel({required this.name, required this.size, this.path});
 
   factory SentAttachmentMetaDataModel.fromJson(Map<String, dynamic> json) {
@@ -12,4 +8,8 @@ class SentAttachmentMetaDataModel {
       size: json['size'] ?? 0,
     );
   }
+
+  final String name;
+  final String? path;
+  final int size;
 }

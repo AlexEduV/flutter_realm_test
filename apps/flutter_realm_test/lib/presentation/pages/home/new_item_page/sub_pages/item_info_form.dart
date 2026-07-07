@@ -15,12 +15,6 @@ import '../../../authentication/widgets/app_form_field.dart';
 import '../widgets/radio_group_title.dart';
 
 class ItemInfoForm extends StatefulWidget {
-  final FocusNode manufacturerFocusNode;
-  final FocusNode modelFocusNode;
-  final FocusNode yearFocusNode;
-  final FocusNode colorFocusNode;
-  final FocusNode priceFocusNode;
-
   const ItemInfoForm({
     required this.manufacturerFocusNode,
     required this.modelFocusNode,
@@ -29,6 +23,12 @@ class ItemInfoForm extends StatefulWidget {
     required this.priceFocusNode,
     super.key,
   });
+
+  final FocusNode manufacturerFocusNode;
+  final FocusNode modelFocusNode;
+  final FocusNode yearFocusNode;
+  final FocusNode colorFocusNode;
+  final FocusNode priceFocusNode;
 
   @override
   State<ItemInfoForm> createState() => _ItemInfoFormState();

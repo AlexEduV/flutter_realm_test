@@ -13,12 +13,6 @@ import '../../../../bloc/messages/messages_page_state.dart';
 import '../../../../widgets/app_semantics.dart';
 
 class ChatInputTextField extends StatefulWidget {
-  final FocusNode focusNode;
-  final TextEditingController textEditingController;
-  final Function()? onMessageSent;
-  final Function(BuildContext context, MessagesPageState state)? sendMessage;
-  final GlobalKey<AnimatedListState> listKey;
-
   const ChatInputTextField({
     required this.focusNode,
     required this.textEditingController,
@@ -27,6 +21,12 @@ class ChatInputTextField extends StatefulWidget {
     this.onMessageSent,
     this.sendMessage,
   });
+
+  final FocusNode focusNode;
+  final TextEditingController textEditingController;
+  final Function()? onMessageSent;
+  final Function(BuildContext context, MessagesPageState state)? sendMessage;
+  final GlobalKey<AnimatedListState> listKey;
 
   @override
   State<ChatInputTextField> createState() => _ChatInputTextFieldState();

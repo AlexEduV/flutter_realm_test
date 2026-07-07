@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  final UsersRemoteDataSource _usersRemoteDataSource;
-
   UserRepositoryImpl(this._usersRemoteDataSource);
+
+  final UsersRemoteDataSource _usersRemoteDataSource;
 
   @override
   int getMaxUserId() {

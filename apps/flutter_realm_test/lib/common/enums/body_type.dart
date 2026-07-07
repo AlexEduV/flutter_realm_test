@@ -14,10 +14,10 @@ enum BodyType {
   semi(CarType.truck, L10nKeys.bodyTypeSemi),
   bike(CarType.bike, L10nKeys.bodyTypeBike);
 
+  const BodyType(this.carType, this.localisationKey);
+
   final CarType carType;
   final String localisationKey;
-
-  const BodyType(this.carType, this.localisationKey);
 
   String fromLocalisations() {
     final localisation = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(

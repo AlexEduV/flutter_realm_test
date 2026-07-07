@@ -6,15 +6,15 @@ import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.d
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
 
 class MessagesPageCubit extends Cubit<MessagesPageState> {
-  final SearchGifsUseCase _searchGifsUseCase;
-  final GetTrendingGifsUseCase _getTrendingGifsUseCase;
-  final PickAttachmentFileUseCase _pickAttachmentFileUseCase;
-
   MessagesPageCubit(
     this._searchGifsUseCase,
     this._getTrendingGifsUseCase,
     this._pickAttachmentFileUseCase,
   ) : super(const MessagesPageState());
+
+  final SearchGifsUseCase _searchGifsUseCase;
+  final GetTrendingGifsUseCase _getTrendingGifsUseCase;
+  final PickAttachmentFileUseCase _pickAttachmentFileUseCase;
 
   int activeRequestId = 0;
 

@@ -1,8 +1,8 @@
 class AuthResult {
+  AuthResult({required this.success, this.message});
+
   final bool success;
   final String? message;
-
-  AuthResult({required this.success, this.message});
 
   @override
   bool operator ==(Object other) =>

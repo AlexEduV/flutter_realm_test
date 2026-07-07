@@ -11,10 +11,10 @@ import '../../common/extensions/car_scheme_extension.dart';
 import '../../domain/entities/car_entity.dart';
 
 class CarRepositoryImpl implements CarRepository {
+  CarRepositoryImpl(this._localStorage, this._carRemoteDataSource);
+
   final BaseLocalStorage _localStorage;
   final CarRemoteDataSource _carRemoteDataSource;
-
-  CarRepositoryImpl(this._localStorage, this._carRemoteDataSource);
 
   @override
   void addCar(CarEntity carEntity) {

@@ -6,12 +6,6 @@ import '../../../../../common/constants/app_colors.dart';
 import '../../../../../common/constants/app_dimensions.dart';
 
 class PageSelectionBar extends StatelessWidget {
-  final Function() onForwardPressed;
-  final Function() onBackPressed;
-  final int currentIndex;
-  final Color iconColor;
-  final double iconSize;
-
   const PageSelectionBar({
     required this.onBackPressed,
     required this.onForwardPressed,
@@ -21,12 +15,18 @@ class PageSelectionBar extends StatelessWidget {
     super.key,
   });
 
+  final Function() onForwardPressed;
+  final Function() onBackPressed;
+  final int currentIndex;
+  final Color iconColor;
+  final double iconSize;
+
   @override
   Widget build(BuildContext context) {
     const dotSize = AppDimensions.normalS;
     const jumpOffSet = AppDimensions.minorL;
 
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppDimensions.majorM),
         color: Colors.white,

@@ -14,18 +14,6 @@ import '../../../../../common/constants/app_dimensions.dart';
 import '../../../../widgets/avatar_widget.dart';
 
 class MessageItem extends StatelessWidget {
-  final String senderName;
-  final String? imageSrc;
-  final String message;
-  final SentImageMetaDataModel? imageMetaData;
-  final SentAttachmentMetaDataModel? attachmentMetaData;
-  final String time;
-  final bool isMyMessage;
-  final bool withExtendedData;
-  final MessageStatus messageStatus;
-  final String conversationId;
-  final int messageIndex;
-
   const MessageItem({
     required this.senderName,
     required this.imageSrc,
@@ -40,6 +28,18 @@ class MessageItem extends StatelessWidget {
     this.attachmentMetaData,
     super.key,
   });
+
+  final String senderName;
+  final String? imageSrc;
+  final String message;
+  final SentImageMetaDataModel? imageMetaData;
+  final SentAttachmentMetaDataModel? attachmentMetaData;
+  final String time;
+  final bool isMyMessage;
+  final bool withExtendedData;
+  final MessageStatus messageStatus;
+  final String conversationId;
+  final int messageIndex;
 
   @override
   Widget build(BuildContext context) {

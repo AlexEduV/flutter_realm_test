@@ -5,16 +5,16 @@ import '../../../../common/constants/app_text_styles.dart';
 import 'account_item.dart';
 
 class AccountItemSeparated extends StatelessWidget {
-  final String title;
-  final Function()? onTap;
-  final bool isEnabled;
-
   const AccountItemSeparated({
     required this.title,
     required this.onTap,
     this.isEnabled = true,
     super.key,
   });
+
+  final String title;
+  final Function()? onTap;
+  final bool isEnabled;
 
   @override
   Widget build(BuildContext context) {

@@ -13,11 +13,6 @@ import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_in
 import '../../../../../common/constants/app_dimensions.dart';
 
 class ChatInputBar extends StatefulWidget {
-  final TextEditingController messageTextController;
-  final FocusNode messageFocusNode;
-  final VoidCallback? onMessageSent;
-  final GlobalKey<AnimatedListState> listKey;
-
   const ChatInputBar({
     required this.messageTextController,
     required this.messageFocusNode,
@@ -25,6 +20,11 @@ class ChatInputBar extends StatefulWidget {
     this.onMessageSent,
     super.key,
   });
+
+  final TextEditingController messageTextController;
+  final FocusNode messageFocusNode;
+  final VoidCallback? onMessageSent;
+  final GlobalKey<AnimatedListState> listKey;
 
   @override
   State<ChatInputBar> createState() => _ChatInputBarState();

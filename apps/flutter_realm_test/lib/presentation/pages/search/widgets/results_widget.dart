@@ -9,9 +9,9 @@ import '../../../../common/constants/app_text_styles.dart';
 import '../../../../l10n/l10n_keys.dart';
 
 class ResultsWidget extends StatelessWidget {
-  final String resultsCount;
-
   const ResultsWidget({required this.resultsCount, super.key});
+
+  final String resultsCount;
 
   @override
   Widget build(BuildContext context) {

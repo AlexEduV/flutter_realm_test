@@ -105,9 +105,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 }
 
 class _KeepAlive extends StatefulWidget {
-  final Widget child;
-
   const _KeepAlive({required this.child});
+
+  final Widget child;
 
   @override
   State<_KeepAlive> createState() => _KeepAliveState();

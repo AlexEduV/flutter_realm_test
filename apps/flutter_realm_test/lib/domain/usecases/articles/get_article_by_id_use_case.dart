@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/repositories/article_repository.dart
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
 class GetArticleByIdUseCase extends UseCaseWithParams<String, Future<ArticleEntity>> {
-  final ArticleRepository _articleRepository;
-
   GetArticleByIdUseCase(this._articleRepository);
+
+  final ArticleRepository _articleRepository;
 
   @override
   Future<ArticleEntity> call(String id) {

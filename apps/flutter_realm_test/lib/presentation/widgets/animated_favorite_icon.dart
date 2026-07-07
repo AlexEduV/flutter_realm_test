@@ -4,16 +4,16 @@ import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import '../../common/constants/app_colors.dart';
 
 class AnimatedFavoriteIcon extends StatefulWidget {
-  final bool isFavorite;
-  final double size;
-  final bool decorated;
-
   const AnimatedFavoriteIcon({
     required this.isFavorite,
     required this.size,
     this.decorated = true,
     super.key,
   });
+
+  final bool isFavorite;
+  final double size;
+  final bool decorated;
 
   @override
   State<AnimatedFavoriteIcon> createState() => _AnimatedFavoriteIconState();

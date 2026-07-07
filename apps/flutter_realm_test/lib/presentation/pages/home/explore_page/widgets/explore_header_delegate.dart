@@ -16,12 +16,6 @@ import 'explore_article_item.dart';
 import 'last_seen_widget.dart';
 
 class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final double minHeight;
-  final double maxHeightWithLastSeen;
-  final double maxHeightWithoutLastSeen;
-  final bool showLastSeen;
-  final String title;
-
   ExploreHeaderDelegate({
     required this.minHeight,
     required this.maxHeightWithLastSeen,
@@ -29,6 +23,12 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
     required this.showLastSeen,
     required this.title,
   });
+
+  final double minHeight;
+  final double maxHeightWithLastSeen;
+  final double maxHeightWithoutLastSeen;
+  final bool showLastSeen;
+  final String title;
 
   @override
   double get minExtent => minHeight;

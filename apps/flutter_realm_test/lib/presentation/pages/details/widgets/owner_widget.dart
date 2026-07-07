@@ -20,10 +20,10 @@ import '../../../../common/constants/app_text_styles.dart';
 import '../../../../l10n/l10n_keys.dart';
 
 class OwnerWidget extends StatelessWidget {
+  const OwnerWidget({required this.car, required this.user, super.key});
+
   final CarEntity car;
   final UserEntity user;
-
-  const OwnerWidget({required this.car, required this.user, super.key});
 
   @override
   Widget build(BuildContext context) {

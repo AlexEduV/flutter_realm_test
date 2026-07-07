@@ -7,10 +7,10 @@ import '../../../../../../common/constants/app_text_styles.dart';
 import '../../../../../widgets/app_semantics.dart';
 
 class FooterText extends StatelessWidget {
+  const FooterText({required this.text, this.url, super.key});
+
   final String text;
   final String? url;
-
-  const FooterText({required this.text, this.url, super.key});
 
   @override
   Widget build(BuildContext context) {

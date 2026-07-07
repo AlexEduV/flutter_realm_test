@@ -15,10 +15,10 @@ import '../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../domain/entities/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
+  AuthRepositoryImpl(this._localStorage, this._fetchOwnersUseCase);
+
   final BaseLocalStorage _localStorage;
   final FetchOwnersUseCase _fetchOwnersUseCase;
-
-  AuthRepositoryImpl(this._localStorage, this._fetchOwnersUseCase);
 
   late final List<UserEntity> users;
   late bool isAuthenticated = false;

@@ -4,9 +4,9 @@ import 'login_form.dart';
 import 'registration_form.dart';
 
 class AuthFormsSwitcher extends StatelessWidget {
-  final bool isLoginMode;
-
   const AuthFormsSwitcher({required this.isLoginMode, super.key});
+
+  final bool isLoginMode;
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,6 @@
 import '../../common/enums/fuel_type.dart';
 
 class EngineEntity {
-  final String? type;
-  final String? volume;
-
   const EngineEntity({this.type, this.volume});
 
   factory EngineEntity.empty() {
@@ -13,6 +10,9 @@ class EngineEntity {
   factory EngineEntity.fromJson(Map<String, dynamic> json) {
     return EngineEntity(type: json['type'] as String?, volume: json['volume'] as String?);
   }
+
+  final String? type;
+  final String? volume;
 
   @override
   bool operator ==(Object other) =>

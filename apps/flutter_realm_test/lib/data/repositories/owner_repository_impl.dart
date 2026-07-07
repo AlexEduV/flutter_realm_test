@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 
 class OwnerRepositoryImpl implements OwnerRepository {
-  final OwnersRemoteDataSource _ownersRemoteDataSource;
-
   OwnerRepositoryImpl(this._ownersRemoteDataSource);
+
+  final OwnersRemoteDataSource _ownersRemoteDataSource;
 
   @override
   Future<List<OwnerEntity>> fetchOwners() {

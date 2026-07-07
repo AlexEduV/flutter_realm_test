@@ -3,9 +3,9 @@ import 'package:test_flutter_project/domain/data_sources/local/permission_local_
 import 'package:test_flutter_project/domain/repositories/permission_repository.dart';
 
 class PermissionRepositoryImpl implements PermissionRepository {
-  final PermissionLocalDataSource permissionService;
-
   PermissionRepositoryImpl(this.permissionService);
+
+  final PermissionLocalDataSource permissionService;
 
   @override
   Future<bool> requestLocationPermission() async {

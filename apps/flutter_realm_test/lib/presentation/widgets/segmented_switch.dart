@@ -4,16 +4,16 @@ import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 
 class SegmentedSwitch extends StatelessWidget {
-  final int selectedIndex;
-  final List<String> options;
-  final ValueChanged<int> onChanged;
-
   const SegmentedSwitch({
     required this.selectedIndex,
     required this.options,
     required this.onChanged,
     super.key,
   });
+
+  final int selectedIndex;
+  final List<String> options;
+  final ValueChanged<int> onChanged;
 
   @override
   Widget build(BuildContext context) {

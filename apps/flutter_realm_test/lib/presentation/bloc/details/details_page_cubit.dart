@@ -4,11 +4,11 @@ import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 
 class DetailsPageCubit extends Cubit<DetailsPageState> {
-  final GetCarByIdUseCase _getCarByIdUseCase;
-  final GetCarColorsUseCase _getCarColorsUseCase;
-
   DetailsPageCubit(this._getCarByIdUseCase, this._getCarColorsUseCase)
     : super(const DetailsPageState());
+
+  final GetCarByIdUseCase _getCarByIdUseCase;
+  final GetCarColorsUseCase _getCarColorsUseCase;
 
   void loadData(String id) {
     final entity = _getCarByIdUseCase.call(id);

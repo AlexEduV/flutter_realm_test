@@ -7,9 +7,9 @@ import '../../common/extensions/string_extension.dart';
 import '../../domain/repositories/car_color_repository.dart';
 
 class CarColorRepositoryImpl implements CarColorRepository {
-  final CarColorLocalDataSource _carColorLocalDataSource;
-
   const CarColorRepositoryImpl(this._carColorLocalDataSource);
+
+  final CarColorLocalDataSource _carColorLocalDataSource;
 
   @override
   Map<String, Color> getColors() {

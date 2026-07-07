@@ -14,9 +14,9 @@ import '../../app_semantics.dart';
 import 'color_item.dart';
 
 class ColorPickerDialog extends StatefulWidget {
-  final String initialColor;
-
   const ColorPickerDialog({required this.initialColor, super.key});
+
+  final String initialColor;
 
   @override
   State<ColorPickerDialog> createState() => _ColorPickerDialogState();

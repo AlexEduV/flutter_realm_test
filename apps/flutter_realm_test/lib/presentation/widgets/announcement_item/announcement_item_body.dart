@@ -18,16 +18,16 @@ import '../app_semantics.dart';
 import '../verified_badge.dart';
 
 class AnnouncementItemBody extends StatelessWidget {
-  final CarEntity? car;
-  final bool isExploreItem;
-  final UserEntity? user;
-
   const AnnouncementItemBody({
     required this.car,
     required this.isExploreItem,
     required this.user,
     super.key,
   });
+
+  final CarEntity? car;
+  final bool isExploreItem;
+  final UserEntity? user;
 
   @override
   Widget build(BuildContext context) {

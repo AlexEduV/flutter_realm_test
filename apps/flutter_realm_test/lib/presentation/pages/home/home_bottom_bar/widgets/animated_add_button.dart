@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../../../../../common/constants/app_colors.dart';
 
 class AnimatedAddButton extends StatefulWidget {
-  final VoidCallback? onPressed;
-  final Color backgroundColor;
-  final double size;
-
   const AnimatedAddButton({
     required this.onPressed,
     required this.backgroundColor,
     required this.size,
     super.key,
   });
+
+  final VoidCallback? onPressed;
+  final Color backgroundColor;
+  final double size;
 
   @override
   State<AnimatedAddButton> createState() => _AnimatedAddButtonState();

@@ -6,12 +6,6 @@ import 'package:test_flutter_project/common/constants/app_text_styles.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 class PersonalDetailsListItem extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String description;
-  final Function()? onTap;
-  final bool? showEnabled;
-
   const PersonalDetailsListItem({
     required this.icon,
     required this.title,
@@ -20,6 +14,12 @@ class PersonalDetailsListItem extends StatelessWidget {
     this.showEnabled,
     super.key,
   });
+
+  final IconData icon;
+  final String title;
+  final String description;
+  final Function()? onTap;
+  final bool? showEnabled;
 
   @override
   Widget build(BuildContext context) {

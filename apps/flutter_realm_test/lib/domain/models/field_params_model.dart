@@ -1,14 +1,4 @@
 class FieldParamsModel {
-  final String label;
-  final String? hintText;
-  final int? maxLength;
-  final int? minLength;
-  final String? minLengthErrorMessage;
-  final String? maxLengthErrorMessage;
-  final String validationMessage;
-  final String regexErrorMessage;
-  final String regex;
-
   const FieldParamsModel({
     required this.label,
     required this.validationMessage,
@@ -24,6 +14,16 @@ class FieldParamsModel {
   factory FieldParamsModel.withLabel(String label) {
     return FieldParamsModel(label: label, validationMessage: '', regex: '', regexErrorMessage: '');
   }
+
+  final String label;
+  final String? hintText;
+  final int? maxLength;
+  final int? minLength;
+  final String? minLengthErrorMessage;
+  final String? maxLengthErrorMessage;
+  final String validationMessage;
+  final String regexErrorMessage;
+  final String regex;
 
   FieldParamsModel copyWith({
     String? label,
