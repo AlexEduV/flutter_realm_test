@@ -157,5 +157,45 @@ void main() {
       expect(result, isA<UserEntity>());
       expect(result.userId, 'u1');
     });
+
+    test('getCarById returns a CarEntity', () {
+      final car = CarEntity(
+        id: ObjectId(),
+        carId: 'car5',
+        model: 'Model 3',
+        manufacturer: 'Tesla',
+        type: CarType.car.name,
+        isVerified: true,
+        year: '2023',
+        mileage: 500,
+        distanceTo: 1,
+        price: 40000,
+        engine: EngineEntity(type: FuelType.ev.name),
+        bodyType: BodyType.sedan.name,
+        transmissionType: TransmissionType.automatic.name,
+      );
+
+      when(mockStorage.getCarById('car5')).thenReturn(car);
+
+      final result = mockStorage.getCarById('car5');
+
+      expect(result, isA<CarEntity>());
+      expect(result.carId, 'car5');
+    });
+
+    test('getMaxCarId returns an int', () {
+      when(mockStorage.getMaxCarId()).thenReturn(42);
+
+      final result = mockStorage.getMaxCarId();
+
+      expect(result, isA<int>());
+      expect(result, 42);
+    });
+
+    test('clearUser can be called', () {
+      mockStorage.clearUser();
+
+      verify(mockStorage.clearUser()).called(1);
+    });
   });
 }

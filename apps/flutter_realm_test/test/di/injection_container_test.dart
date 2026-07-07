@@ -26,7 +26,7 @@ import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 
-import '../data/data_sources/local/realm_local_storage_test.mocks.dart';
+import '../common/fakes/fake_realm.dart';
 import '../domain/repositories/base_local_storage_test.mocks.dart';
 
 void main() {
@@ -36,7 +36,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
 
     await serviceLocator.reset();
-    serviceLocator.registerSingleton<Realm>(MockRealm());
+    serviceLocator.registerSingleton<Realm>(FakeRealm());
 
     final mockLocalStorage = MockBaseLocalStorage();
     when(mockLocalStorage.getAll()).thenReturn([]);
