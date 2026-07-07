@@ -67,9 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: double.infinity,
                           alignment: Alignment.bottomCenter,
                         ),
-                        Container(
-                          color: Colors.black.withAlpha(70), // Adjust opacity as needed
-                        ),
+                        ColoredBox(color: Colors.black.withAlpha(70)),
                       ],
                     ),
                   ),
