@@ -19,7 +19,7 @@ class ColorItem extends StatelessWidget {
       child: InkWell(
         borderRadius: borderRadius,
         onTap: onTap,
-        child: Container(
+        child: DecoratedBox(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(

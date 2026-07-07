@@ -32,7 +32,7 @@ class AnnouncementListItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalS),
       child: isExploreItem
-          ? Container(
+          ? DecoratedBox(
               decoration: BoxDecoration(
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(AppDimensions.normalL),

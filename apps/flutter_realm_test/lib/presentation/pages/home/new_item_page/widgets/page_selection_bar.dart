@@ -26,7 +26,7 @@ class PageSelectionBar extends StatelessWidget {
     const dotSize = AppDimensions.normalS;
     const jumpOffSet = AppDimensions.minorL;
 
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppDimensions.majorM),
         color: Colors.white,
