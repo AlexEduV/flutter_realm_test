@@ -39,8 +39,8 @@ dependencies:
   realm_ui_core:
     path: ../../packages/realm_ui_core/
   rxdart: ^0.28.0
-  shared_preferences: ^2.5.4
   share_plus: ^12.0.1
+  shared_preferences: ^2.5.4
   smooth_page_indicator: ^2.0.1
   transparent_image: ^2.0.1
   url_launcher: ^6.3.2
