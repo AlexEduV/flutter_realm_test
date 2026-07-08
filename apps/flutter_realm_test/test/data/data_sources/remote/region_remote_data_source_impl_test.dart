@@ -1,7 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
 import 'package:test_flutter_project/domain/entities/region_entity.dart';
+import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
 import '../../../common/extensions/context_extension_test.mocks.dart';
@@ -36,56 +38,29 @@ void main() {
       expect(dataSource.getAllRegions(), regions);
     });
 
-    //todo: these tests are not working;
-    //   test('getAvailableCountries returns correct UI models', () {
-    //     final regions = [const RegionEntity(locale: 'US'), const RegionEntity(locale: 'CA')];
-    //     dataSource.regions = regions;
-    //
-    //     when(mockLocalisationsCubit.getLocalisationByKey('country_US')).thenReturn('United States');
-    //     when(mockLocalisationsCubit.getLocalisationByKey('country_CA')).thenReturn('Canada');
-    //
-    //     final countries = dataSource.getAvailableCountries();
-    //
-    //     expect(countries, [
-    //       const RegionUiModel(code: 'US', countryName: 'United States'),
-    //       const RegionUiModel(code: 'CA', countryName: 'Canada'),
-    //     ]);
-    //   });
-    //
-    //   test('loadRegions loads and parses regions from JSON', () async {
-    //     // Prepare a fake JSON asset
-    //     const fakeJson = '''
-    //     {
-    //       "status": "success",
-    //       "results": [
-    //         {
-    //           "regions": [
-    //             {"locale": "US", "name": "United States"},
-    //             {"locale": "CA", "name": "Canada"}
-    //           ]
-    //         }
-    //       ]
-    //     }
-    //     ''';
-    //
-    //     // Mock rootBundle.loadString
-    //     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
-    //       'flutter/assets',
-    //       (message) async {
-    //         final String key = utf8.decode(message!.buffer.asUint8List());
-    //         if (key.contains('regions_data.json')) {
-    //           return const StandardMethodCodec().encodeSuccessEnvelope(fakeJson);
-    //         }
-    //         return null;
-    //       },
-    //     );
-    //
-    //     await dataSource.loadRegions();
-    //
-    //     expect(dataSource.regions, isNotNull);
-    //     expect(dataSource.regions!.length, 2);
-    //     expect(dataSource.regions!.first.locale, 'US');
-    //     expect(dataSource.regions!.last.locale, 'CA');
-    //   });
+    test('getAvailableCountries returns correct UI models', () {
+      final regions = [const RegionEntity(locale: 'US'), const RegionEntity(locale: 'CA')];
+      dataSource.regions = regions;
+
+      // Key prefix is L10nKeys.countryPrefix = 'countries.'
+      when(mockLocalisationsCubit.getLocalisationByKey('countries.US')).thenReturn('United States');
+      when(mockLocalisationsCubit.getLocalisationByKey('countries.CA')).thenReturn('Canada');
+
+      final countries = dataSource.getAvailableCountries();
+
+      expect(countries, [
+        const RegionUiModel(code: 'US', countryName: 'United States'),
+        const RegionUiModel(code: 'CA', countryName: 'Canada'),
+      ]);
+    });
+
+    test('loadRegions loads and parses regions from the asset JSON', () async {
+      await dataSource.loadRegions();
+
+      // Locales come from the "code" field in regions_data.json
+      expect(dataSource.regions, isNotNull);
+      expect(dataSource.regions!.isNotEmpty, isTrue);
+      expect(dataSource.regions!.first.locale, isNotEmpty);
+    });
   });
 }
