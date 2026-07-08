@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import 'package:test_flutter_project/common/constants/app_text_styles.dart';
@@ -81,17 +82,6 @@ class ExplorePage extends StatelessWidget {
 
             BlocBuilder<ExplorePageCubit, ExplorePageState>(
               builder: (context, state) {
-                if (state.isLoading) {
-                  return SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: AnimatedOpacity(
-                      opacity: state.isLoading ? 1.0 : 0.0,
-                      duration: const Duration(milliseconds: 400),
-                      child: const Center(child: CircularProgressIndicator()),
-                    ),
-                  );
-                }
-
                 final cars = state.cars;
                 return SliverPadding(
                   padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
@@ -136,22 +126,40 @@ class ExplorePage extends StatelessWidget {
                       }
 
                       if (!isTablet) {
-                        return SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) => buildAnimatedItem(index),
-                            childCount: cars.length,
+                        return Skeletonizer.sliver(
+                          enabled: state.isLoading,
+                          child: SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (context, index) => state.isLoading
+                                  ? const AnnouncementListItem(
+                                      car: null,
+                                      user: null,
+                                      onDismissed: null,
+                                    )
+                                  : buildAnimatedItem(index),
+                              childCount: state.isLoading ? 12 : cars.length,
+                            ),
                           ),
                         );
                       }
 
-                      return SliverGrid(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) => buildAnimatedItem(index),
-                          childCount: cars.length,
-                        ),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 16 / 14,
+                      return Skeletonizer.sliver(
+                        enabled: state.isLoading,
+                        child: SliverGrid(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) => state.isLoading
+                                ? const AnnouncementListItem(
+                                    car: null,
+                                    user: null,
+                                    onDismissed: null,
+                                  )
+                                : buildAnimatedItem(index),
+                            childCount: state.isLoading ? 12 : cars.length,
+                          ),
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 16 / 14,
+                          ),
                         ),
                       );
                     },
