@@ -8,20 +8,19 @@
 .dart_tool/pub/bin/*
 .dart_tool/*
 
-.idea/*
+# IntelliJ/Android Studio — machine-specific and auto-generated
+.idea/caches/
+.idea/dictionaries/
+.idea/libraries/
+.idea/deviceManager.xml
+.idea/markdown.xml
 
 coverage/*
 /lib/mocks/mock_users.dart
-/.fvmrc
-/.fvm/versions/3.32.5/
-/.fvm/flutter_sdk/
-/.fvm/fvm_config.json
-/.fvm/release
-/.fvm/version
 
 /assets/env/*
 
-# FVM Version Cache
+# FVM
 .fvm/
 .DS_Store
 /lib/mocks/init_users.dart
