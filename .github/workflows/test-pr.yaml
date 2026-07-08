@@ -29,12 +29,15 @@ jobs:
           export PATH="$PATH":"$HOME/.pub-cache/bin"
           very_good test
 
-#  automerge:
+# NOTE: auto-merge has been disabled, because it's better for reviewing the code. Plus, it should not strictly be
+# a part of GitHub action, but I would like to have a button 'set autoMerge' in the GitHub itself.
+
+#  auto-merge:
 #    needs: test
 #    runs-on: ubuntu-latest
 #    if: github.event.pull_request.user.login == 'your-github-username' # Optional: only auto-merge your own PRs
 #    steps:
-#      - name: 🤖 Enable Automerge
+#      - name: 🤖 Enable Auto-merge
 #        run: gh pr merge --auto --merge "$PR_URL"
 #        env:
 #          PR_URL: ${{github.event.pull_request.html_url}}
