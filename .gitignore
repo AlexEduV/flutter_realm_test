@@ -1,5 +1,19 @@
 
-.fvm/
+# macOS
 .DS_Store
+
+# Dart/Flutter
 .dart_tool/*
 build/*
+.flutter-plugins-dependencies
+
+# FVM — .fvmrc at root is the version pin; ignore the rest
+.fvm/
+
+# IntelliJ/Android Studio — machine-specific and auto-generated
+.idea/caches/
+.idea/dictionaries/
+.idea/libraries/
+.idea/deviceManager.xml
+.idea/markdown.xml
+*.iml
