@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
@@ -94,42 +95,46 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                       duration: const Duration(milliseconds: 400),
                       switchInCurve: Curves.easeIn,
                       switchOutCurve: Curves.easeOut,
-                      child: state.isArticleListLoading
-                          ? const Center(
-                              key: ValueKey('loading'),
-                              child: SizedBox(
-                                height: AppDimensions.smallProgressBarSize,
-                                width: AppDimensions.smallProgressBarSize,
-                                child: CircularProgressIndicator(color: Colors.white),
+                      child: Skeletonizer(
+                        enabled: state.isArticleListLoading,
+                        child: ListView.separated(
+                          key: const ValueKey('list'),
+                          itemCount: state.isArticleListLoading ? 10 : state.articles.length,
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.only(right: AppDimensions.normalL),
+                          itemBuilder: (context, index) {
+                            if (state.isArticleListLoading) {
+                              return Container(
+                                height: articleHeight,
+                                width: AppDimensions.exploreArticleItemBaseSize,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                                  color: AppColors.placeholderColor,
+                                ),
+                              );
+                            }
+                            return AnimatedPadding(
+                              curve: Curves.easeOut,
+                              duration: const Duration(milliseconds: 120),
+                              padding: EdgeInsets.symmetric(
+                                vertical: !state.articles[index].isHovering
+                                    ? (AppDimensions.exploreArticleItemBaseSize * 1.07 -
+                                              AppDimensions.exploreArticleItemBaseSize) /
+                                          2
+                                    : 0,
                               ),
-                            )
-                          : ListView.separated(
-                              key: const ValueKey('list'),
-                              itemCount: state.articles.length,
-                              scrollDirection: Axis.horizontal,
-                              padding: const EdgeInsets.only(right: AppDimensions.normalL),
-                              itemBuilder: (context, index) {
-                                return AnimatedPadding(
-                                  curve: Curves.easeOut,
-                                  duration: const Duration(milliseconds: 120),
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: !state.articles[index].isHovering
-                                        ? (AppDimensions.exploreArticleItemBaseSize * 1.07 -
-                                                  AppDimensions.exploreArticleItemBaseSize) /
-                                              2
-                                        : 0,
-                                  ),
-                                  child: ExploreArticleItem(
-                                    height: articleHeight,
-                                    article: state.articles[index],
-                                    index: index,
-                                  ),
-                                );
-                              },
-                              separatorBuilder: (context, index) {
-                                return const SizedBox(width: AppDimensions.normalS);
-                              },
-                            ),
+                              child: ExploreArticleItem(
+                                height: articleHeight,
+                                article: state.articles[index],
+                                index: index,
+                              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(width: AppDimensions.normalS);
+                          },
+                        ),
+                      ),
                     );
                   },
                 ),
