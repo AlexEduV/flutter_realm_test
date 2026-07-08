@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:realm/realm.dart';
+import 'package:realm/realm.dart' show ObjectId;
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -19,9 +19,8 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 
-@GenerateMocks([Realm, CarRemoteDataSource, CarEntity, CarDto, RealmLocalStorage])
+@GenerateMocks([CarRemoteDataSource, CarEntity, CarDto, RealmLocalStorage])
 void main() {
-  late MockRealm realm;
   late MockCarRemoteDataSource apiService;
   late CarRepositoryImpl repository;
   late MockRealmLocalStorage localStorage;
@@ -51,7 +50,6 @@ void main() {
   });
 
   setUp(() {
-    realm = MockRealm();
     apiService = MockCarRemoteDataSource();
     localStorage = MockRealmLocalStorage();
     repository = CarRepositoryImpl(localStorage, apiService);
@@ -74,12 +72,6 @@ void main() {
     when(carEntity.price).thenReturn(60000);
     when(carEntity.type).thenReturn('car');
 
-    when(realm.write(any)).thenAnswer((invocation) {
-      final callback = invocation.positionalArguments.first as void Function();
-      return callback();
-    });
-    when(realm.add(any as Car?, update: false)).thenReturn(mockCar);
-
     repository.addCar(carEntity);
 
     verify(localStorage.add(carEntity)).called(1);
@@ -90,42 +82,26 @@ void main() {
     final car = mockCar;
     car.isChecked = true;
 
-    when(realm.find<Car>(carId)).thenReturn(car);
-    when(realm.write(any)).thenAnswer((invocation) {
-      invocation.positionalArguments.first();
-    });
-
     repository.deleteCarById(carId);
 
     verify(localStorage.deleteById(any)).called(1);
   });
 
-  test('deleteCarById does nothing if car not found', () {
+  test('deleteCarById delegates to localStorage.deleteById', () {
     final carId = '1';
-    when(realm.find<Car>(carId)).thenReturn(null);
-    when(realm.write(any)).thenAnswer((invocation) {
-      invocation.positionalArguments.first();
-    });
 
     repository.deleteCarById(carId);
 
-    verifyNever(realm.delete(any));
+    verify(localStorage.deleteById(carId)).called(1);
   });
 
   test('deleteAll calls realm.deleteAll<Car>()', () {
-    when(realm.write(any)).thenAnswer((invocation) {
-      invocation.positionalArguments.first();
-    });
-
     repository.deleteAll();
 
     verify(localStorage.deleteAllCars()).called(1);
   });
 
   test('getCarById calls realm.getCarById()', () {
-    when(realm.write(any)).thenAnswer((invocation) {
-      invocation.positionalArguments.first();
-    });
     when(localStorage.getCarById('id')).thenReturn(CarEntity.empty());
 
     repository.getCarById('id');
@@ -134,9 +110,6 @@ void main() {
   });
 
   test('getMaxCarId calls realm.getMaxCarId()', () {
-    when(realm.write(any)).thenAnswer((invocation) {
-      invocation.positionalArguments.first();
-    });
     when(localStorage.getMaxCarId()).thenReturn(1);
 
     repository.getMaxCarId();

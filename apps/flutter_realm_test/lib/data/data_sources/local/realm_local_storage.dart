@@ -39,7 +39,7 @@ class RealmLocalStorage implements BaseLocalStorage {
   @override
   void deleteById(String id) {
     realm.write(() {
-      final liveCars = realm.all<Car>().query('carId == \$0', [id]);
+      final liveCars = realm.query<Car>('carId == \$0', [id]);
       for (final liveCar in liveCars) {
         if (liveCar.isValid) {
           realm.delete(liveCar);
@@ -87,7 +87,7 @@ class RealmLocalStorage implements BaseLocalStorage {
 
   @override
   CarEntity getCarById(String id) {
-    final car = realm.all<Car>().query('carId == \$0', [id]).firstOrNull;
+    final car = realm.query<Car>('carId == \$0', [id]).firstOrNull;
     if (car == null) return CarEntity.empty();
 
     //todo: too many calls when just opening home page -> details;

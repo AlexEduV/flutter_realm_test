@@ -27,6 +27,7 @@ import 'package:test_flutter_project/presentation/pages/search/search_page.dart'
 import 'package:test_flutter_project/presentation/pages/search/widgets/filters_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
+import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_list_item.dart';
 import 'package:test_flutter_project/presentation/widgets/empty_results_placeholder_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/segmented_switch.dart';
 
@@ -194,8 +195,10 @@ void main() {
     final initialSize = tester.view.physicalSize;
     final initialPixelRatio = tester.view.devicePixelRatio;
 
-    const size = Size(874, 402); // iphone 16 pro
-    tester.view.physicalSize = size;
+    // Portrait size with logical width 500 px: stays in the single-column phone
+    // layout (< 600 px) while giving each grid cell enough height for its
+    // content (16:14 aspect ratio → ~437 px height for 500 px width).
+    tester.view.physicalSize = const Size(500, 900);
     tester.view.devicePixelRatio = 1.0;
 
     await tester.pumpWidget(
@@ -213,8 +216,7 @@ void main() {
     expect(find.byType(SearchPage), findsOneWidget);
     expect(find.byType(Scaffold), findsOneWidget);
     expect(find.byType(EmptyResultsPlaceholderWidget), findsNothing);
-    //todo: the app does not see the Grid or the ListItem;
-    //expect(find.byType(AnnouncementListItem), findsOneWidget);
+    expect(find.byType(AnnouncementListItem), findsOneWidget);
 
     tester.view.physicalSize = initialSize;
     tester.view.devicePixelRatio = initialPixelRatio;

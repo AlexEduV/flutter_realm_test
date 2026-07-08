@@ -20,6 +20,7 @@ void main() {
 
   setUp(() {
     when(mockGetAllCarsUseCase.call()).thenReturn([]);
+    when(mockLocalStorage.getAll()).thenReturn([]);
 
     service = MockCarRemoteDataSourceImpl(mockLocalStorage);
     serviceLocator.registerLazySingleton<GetOwnerByIdUseCase>(() => mockGetOwnerByIdUseCase);
@@ -42,26 +43,20 @@ void main() {
     expect(stopwatch.elapsed.inSeconds, greaterThanOrEqualTo(2));
   });
 
-  //todo: outdated tests;
-  // test('carStream emits initial data after fetchCars', () async {
-  //   await service.fetchCars();
-  //   final emitted = await service.carStream.first;
-  //   expect(emitted.length, 3);
-  //   expect(emitted[0].manufacturer, 'Porsche');
-  //   expect(emitted[1].manufacturer, 'Honda');
-  // });
-  //
-  // test('carStream emits updated data after heartbeat', () async {
-  //   await service.fetchCars();
-  //   // Wait for the next heartbeat update (5s + 0.5s)
-  //   final updated = await service.carStream.skip(1).first;
-  //   expect(updated.length, 3);
-  //   // Prices and distances should be randomized
-  //   expect(updated[0].price, isNotNull);
-  //   expect(updated[0].distanceTo, isNotNull);
-  //   expect(updated[1].price, isNotNull);
-  //   expect(updated[1].distanceTo, isNotNull);
-  // }, timeout: const Timeout(Duration(seconds: 8)));
+  test('carStream emits initial data after fetchCars', () async {
+    service.init();
+    await service.fetchCars();
+
+    final emitted = await service.carStream.first;
+
+    expect(emitted.length, 3);
+    expect(emitted[0].manufacturer, 'Porsche');
+    expect(emitted[1].manufacturer, 'Honda');
+    expect(emitted[2].manufacturer, 'Scania');
+  });
+
+  // Heartbeat test omitted: it requires a real 5.5 s timer and belongs in
+  // integration tests, not unit tests.
 
   test('dispose cancels subscription and closes stream', () async {
     await service.fetchCars();

@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
+import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
@@ -14,6 +15,7 @@ import 'package:test_flutter_project/presentation/bloc/details/details_page_stat
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
 
+import '../../../bloc/details/details_page_cubit_test.mocks.dart';
 import '../../../../utils/app_router_test.mocks.dart';
 import 'vehicle_specs_widget_test.mocks.dart';
 
@@ -83,9 +85,9 @@ void main() {
   });
 
   testWidgets('expands and shows specifications when button is pressed', (tester) async {
-    final cubit = MockDetailsPageCubit();
-    when(cubit.stream).thenAnswer((_) => const Stream.empty());
-    when(cubit.state).thenReturn(const DetailsPageState(isVehicleSpecsExpanded: false));
+    final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
+    final cubit = DetailsPageCubit(mockGetCarByIdUseCase, mockGetCarColorsUseCase);
+    cubit.setVehicleSpecsExpansionState(false);
 
     await tester.pumpWidget(
       MaterialApp(
@@ -100,25 +102,22 @@ void main() {
     );
 
     // Initially collapsed
-    final containerFinder = find.byType(AnimatedContainer);
-    final size = tester.getSize(containerFinder);
-    expect(size.height, 0);
+    expect(tester.getSize(find.byType(AnimatedContainer)).height, 0);
 
-    // Tap collapsed button
+    // Tap expand button
     await tester.tap(find.byIcon(Icons.keyboard_arrow_down));
     await tester.pumpAndSettle(const Duration(milliseconds: 350));
 
     // Now expanded
-    //todo: cubit dependency update is needed
-    //final newContainerFinder = find.byType(AnimatedContainer);
-    //final newSize = tester.getSize(newContainerFinder);
-    //expect(newSize.height, AppDimensions.vehicleSpecsExpandedSize);
+    expect(
+      tester.getSize(find.byType(AnimatedContainer)).height,
+      AppDimensions.vehicleSpecsExpandedSize,
+    );
   });
 
   testWidgets('collapses and hides specifications when button is pressed again', (tester) async {
-    final cubit = MockDetailsPageCubit();
-    when(cubit.stream).thenAnswer((_) => const Stream.empty());
-    when(cubit.state).thenReturn(const DetailsPageState(isVehicleSpecsExpanded: true));
+    final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
+    final cubit = DetailsPageCubit(mockGetCarByIdUseCase, mockGetCarColorsUseCase);
 
     await tester.pumpWidget(
       MaterialApp(
@@ -132,14 +131,17 @@ void main() {
       ),
     );
 
-    // Initially expanded
-    expect(find.text('Body'), findsOneWidget);
+    // Initially expanded (default state)
+    expect(
+      tester.getSize(find.byType(AnimatedContainer)).height,
+      AppDimensions.vehicleSpecsExpandedSize,
+    );
 
     // Tap collapse button
     await tester.tap(find.byIcon(Icons.keyboard_arrow_down));
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(const Duration(milliseconds: 350));
 
     // Now collapsed
-    expect(find.text('Body'), findsOneWidget);
+    expect(tester.getSize(find.byType(AnimatedContainer)).height, 0);
   });
 }

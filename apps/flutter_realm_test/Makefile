@@ -1,3 +1,6 @@
+# MakeFile green play buttons are not working after updating to Android Studio 2026.1.1
+# The commands work from Edit Configurations menu and the command line $ make, but the green
+# play button cannot find a runner for Make. Will use make command until the problem can be resolved.
 get:
 	flutter pub get
 
