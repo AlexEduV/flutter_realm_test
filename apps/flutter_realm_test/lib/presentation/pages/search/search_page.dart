@@ -12,7 +12,6 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart
 import 'package:test_flutter_project/presentation/pages/search/widgets/filters_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
-import 'package:test_flutter_project/presentation/widgets/segmented_switch.dart';
 
 import '../../../l10n/l10n_keys.dart';
 import '../../widgets/announcement_item/announcement_list_item.dart';

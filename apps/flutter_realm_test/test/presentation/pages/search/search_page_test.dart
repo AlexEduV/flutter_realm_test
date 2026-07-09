@@ -29,7 +29,6 @@ import 'package:test_flutter_project/presentation/pages/search/widgets/filters_d
 import 'package:test_flutter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_list_item.dart';
-import 'package:test_flutter_project/presentation/widgets/segmented_switch.dart';
 
 import '../../../common/extensions/context_extension_test.mocks.dart';
 import '../../../utils/app_router_test.mocks.dart';

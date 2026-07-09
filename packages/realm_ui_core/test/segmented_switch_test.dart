@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:realm_ui_core/realm_ui_core.dart';
-import 'package:test_flutter_project/presentation/widgets/segmented_switch.dart';
 
 void main() {
   group('SegmentedSwitch', () {
