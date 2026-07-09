@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:realm_ui_core/realm_ui_core.dart';
+import 'package:core_ui/core_ui.dart';
 
 class AuthErrorWidget extends StatelessWidget {
   const AuthErrorWidget({this.text, super.key});

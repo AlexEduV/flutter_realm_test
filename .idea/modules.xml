@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<module fileurl="file://$PROJECT_DIR$/packages/realm_ui_core/melos_realm_ui_core.iml" filepath="$PROJECT_DIR$/packages/realm_ui_core/melos_realm_ui_core.iml"/>
+<module fileurl="file://$PROJECT_DIR$/packages/core_ui/melos_core_ui.iml" filepath="$PROJECT_DIR$/packages/core_ui/melos_core_ui.iml"/>
 <module fileurl="file://$PROJECT_DIR$/apps/flutter_realm_test/melos_test_flutter_project.iml" filepath="$PROJECT_DIR$/apps/flutter_realm_test/melos_test_flutter_project.iml"/>
 <module fileurl="file://$PROJECT_DIR$/melos_flutter_realm_test_workspace_root.iml" filepath="$PROJECT_DIR$/melos_flutter_realm_test_workspace_root.iml"/>
+<module fileurl="file://$PROJECT_DIR$/packages/realm_ui_core/melos_realm_ui_core.iml" filepath="$PROJECT_DIR$/packages/realm_ui_core/melos_realm_ui_core.iml"/>
 <module fileurl="file://$PROJECT_DIR$/apps/flutter_realm_test/melos_test_futter_project.iml" filepath="$PROJECT_DIR$/apps/flutter_realm_test/melos_test_futter_project.iml"/>
 <module fileurl="file://$PROJECT_DIR$/.idea/flutter_realm_workspace.iml" filepath="$PROJECT_DIR$/.idea/flutter_realm_workspace.iml"/>
     </modules>

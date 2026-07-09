@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:realm_ui_core/realm_ui_core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:realm_ui_core/realm_ui_core.dart';
+import 'package:core_ui/core_ui.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
 import '../app_semantics.dart';

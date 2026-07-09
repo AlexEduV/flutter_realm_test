@@ -6,7 +6,7 @@ environment:
 
 workspace:
   - apps/flutter_realm_test/
-  - packages/realm_ui_core/
+  - packages/core_ui/
 
 dev_dependencies:
   melos: ^7.0.0

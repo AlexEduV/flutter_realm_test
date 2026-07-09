@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:realm_ui_core/realm_ui_core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 
 import '../../../../../../common/extensions/context_extension.dart';

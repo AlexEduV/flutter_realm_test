@@ -14,6 +14,8 @@ dependencies:
   cached_network_image: ^3.4.1
   collection: ^1.19.1
   connectivity_plus: ^6.1.1
+  core_ui:
+    path: ../../packages/core_ui/
   cupertino_icons: ^1.0.8
   dartz: 0.10.1
   file_picker: ^10.3.10
@@ -38,8 +40,6 @@ dependencies:
   path_provider: ^2.0.15
   permission_handler: ^12.0.1
   realm: ^20.2.0
-  realm_ui_core:
-    path: ../../packages/realm_ui_core/
   rxdart: ^0.28.0
   share_plus: ^12.0.1
   shared_preferences: ^2.5.4

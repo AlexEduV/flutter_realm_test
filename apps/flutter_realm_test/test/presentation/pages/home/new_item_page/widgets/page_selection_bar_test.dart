@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:realm_ui_core/realm_ui_core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_flutter_project/common/enums/item_setup_tab.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar.dart';

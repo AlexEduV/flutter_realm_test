@@ -265,6 +265,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  core_ui:
+    dependency: "direct main"
+    description:
+      path: "../../../packages/core_ui"
+      relative: true
+    source: path
+    version: "1.0.0"
   coverage:
     dependency: transitive
     description:
@@ -1224,13 +1231,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "20.2.0"
-  realm_ui_core:
-    dependency: "direct main"
-    description:
-      path: "../../../packages/realm_ui_core"
-      relative: true
-    source: path
-    version: "1.0.0"
   resizable_widget:
     dependency: transitive
     description:

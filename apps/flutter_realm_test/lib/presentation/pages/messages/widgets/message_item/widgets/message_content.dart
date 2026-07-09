@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:realm_ui_core/realm_ui_core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/text_style_extension.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
