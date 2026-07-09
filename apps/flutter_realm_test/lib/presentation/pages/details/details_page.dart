@@ -17,7 +17,6 @@ import '../../../core/di/injection_container.dart';
 import '../../../domain/models/share_params_model.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';
-import '../../widgets/verified_badge.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({required this.carId, super.key});

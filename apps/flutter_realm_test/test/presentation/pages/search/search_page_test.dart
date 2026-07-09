@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
@@ -28,7 +29,6 @@ import 'package:test_flutter_project/presentation/pages/search/widgets/filters_d
 import 'package:test_flutter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_list_item.dart';
-import 'package:test_flutter_project/presentation/widgets/empty_results_placeholder_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/segmented_switch.dart';
 
 import '../../../common/extensions/context_extension_test.mocks.dart';

@@ -13,7 +13,6 @@ import '../../../utils/app_router.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../animated_favorite_icon.dart';
 import '../app_semantics.dart';
-import '../verified_badge.dart';
 
 class AnnouncementItemBody extends StatelessWidget {
   const AnnouncementItemBody({

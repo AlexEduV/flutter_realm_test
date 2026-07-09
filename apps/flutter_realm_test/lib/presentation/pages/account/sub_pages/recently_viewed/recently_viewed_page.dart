@@ -10,7 +10,6 @@ import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../../../bloc/home/explore_page/explore_page_state.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
-import '../../../../widgets/empty_results_placeholder_widget.dart';
 import '../../../home/widgets/car_list_item.dart';
 
 class RecentlyViewedPage extends StatelessWidget {

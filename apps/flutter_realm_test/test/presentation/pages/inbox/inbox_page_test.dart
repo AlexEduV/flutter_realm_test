@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
@@ -13,7 +14,6 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/home/inbox_page/inbox_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/inbox_page/widgets/inbox_list_item.dart';
-import 'package:test_flutter_project/presentation/widgets/empty_results_placeholder_widget.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
 import '../messages/messages_page_test.mocks.dart';

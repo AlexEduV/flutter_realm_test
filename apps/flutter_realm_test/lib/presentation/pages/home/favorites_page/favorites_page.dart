@@ -8,7 +8,6 @@ import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.dart';
-import 'package:test_flutter_project/presentation/widgets/empty_results_placeholder_widget.dart';
 
 import '../../../../l10n/l10n_keys.dart';
 
