@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:widgetbook/widgetbook.dart';
 
@@ -19,9 +19,14 @@ Widget buildSplashButtonUseCase(BuildContext context) {
             SplashButton(
               title: context.knobs.string(label: 'Button title', initialValue: 'Splash button'),
               onPressed: () {},
-              buttonType: context.knobs.boolean(label: 'Is Primary', initialValue: true)
-                  ? ButtonType.primary
-                  : ButtonType.secondary,
+              buttonType: ButtonType.primary,
+              isLoading: context.knobs.boolean(label: 'Is loading', initialValue: false),
+            ),
+
+            SplashButton(
+              title: context.knobs.string(label: 'Button title', initialValue: 'Splash button'),
+              onPressed: () {},
+              buttonType: ButtonType.secondary,
               isLoading: context.knobs.boolean(label: 'Is loading', initialValue: false),
             ),
           ],
