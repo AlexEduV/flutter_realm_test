@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  core_ui:
+    path: ../../../packages/core_ui
   realm: ^20.2.0
   widgetbook: ^3.14.0
   flutter_bloc: ^9.1.1

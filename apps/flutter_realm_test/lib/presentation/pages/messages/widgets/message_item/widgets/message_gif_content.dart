@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:core_ui/core_ui.dart';
 
-import '../../../../../../common/constants/app_dimensions.dart';
 import '../../../../../../domain/models/sent_image_meta_data_model.dart';
 import 'gif_label.dart';
 

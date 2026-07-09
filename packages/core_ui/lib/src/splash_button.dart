@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/constants/app_dimensions.dart';
-import '../../../../common/constants/app_text_styles.dart';
+import 'project_constraints/app_colors.dart';
+import 'project_constraints/app_dimensions.dart';
+import 'project_constraints/app_text_styles.dart';
+
+enum ButtonType { primary, secondary }
 
 class SplashButton extends StatelessWidget {
   const SplashButton({
     required this.title,
     required this.onPressed,
-    required this.foregroundColor,
-    required this.backgroundColor,
+    this.buttonType = ButtonType.primary,
     this.isLoading = false,
     super.key,
   });
 
   final String title;
   final void Function() onPressed;
-  final Color backgroundColor;
-  final Color foregroundColor;
+  final ButtonType buttonType;
   final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
+    final foregroundColor = buttonType == ButtonType.primary ? Colors.white : Colors.grey;
+    final backgroundColor = buttonType == ButtonType.primary ? AppColors.headerColor : Colors.white;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
       child: SizedBox(

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
@@ -15,8 +15,8 @@ import 'package:test_flutter_project/presentation/bloc/details/details_page_stat
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
 
-import '../../../bloc/details/details_page_cubit_test.mocks.dart';
 import '../../../../utils/app_router_test.mocks.dart';
+import '../../../bloc/details/details_page_cubit_test.mocks.dart';
 import 'vehicle_specs_widget_test.mocks.dart';
 
 @GenerateMocks([GetCarColorsUseCase])

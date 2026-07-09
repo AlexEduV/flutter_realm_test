@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../common/constants/app_dimensions.dart';
+import 'package:core_ui/core_ui.dart';
 
 class AnimatedDividerWithText extends StatefulWidget {
   const AnimatedDividerWithText({

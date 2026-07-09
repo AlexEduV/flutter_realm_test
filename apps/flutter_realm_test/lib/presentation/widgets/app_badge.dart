@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../common/constants/app_text_styles.dart';
+import 'package:core_ui/core_ui.dart';
 
 class AppBadge extends StatelessWidget {
   const AppBadge({required this.text, super.key});

@@ -1,9 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 Widget buildSplashButtonUseCase(BuildContext context) {
@@ -21,8 +19,14 @@ Widget buildSplashButtonUseCase(BuildContext context) {
             SplashButton(
               title: context.knobs.string(label: 'Button title', initialValue: 'Splash button'),
               onPressed: () {},
-              foregroundColor: Colors.white,
-              backgroundColor: AppColors.headerColor,
+              buttonType: ButtonType.primary,
+              isLoading: context.knobs.boolean(label: 'Is loading', initialValue: false),
+            ),
+
+            SplashButton(
+              title: context.knobs.string(label: 'Button title', initialValue: 'Splash button'),
+              onPressed: () {},
+              buttonType: ButtonType.secondary,
               isLoading: context.knobs.boolean(label: 'Is loading', initialValue: false),
             ),
           ],

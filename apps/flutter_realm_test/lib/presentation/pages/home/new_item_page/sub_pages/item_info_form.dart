@@ -2,12 +2,12 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../../../../../common/constants/app_dimensions.dart';
 import '../../../../../l10n/l10n_keys.dart';
 import '../../../../bloc/home/new_item_page/new_item_page_cubit.dart';
 import '../../../../bloc/home/new_item_page/new_item_page_state.dart';

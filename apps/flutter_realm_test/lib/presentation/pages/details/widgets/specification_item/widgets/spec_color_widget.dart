@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:core_ui/core_ui.dart';
 
 class SpecColorWidget extends StatelessWidget {
   const SpecColorWidget({this.color, super.key});

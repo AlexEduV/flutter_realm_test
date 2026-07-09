@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/num_extension.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
-
-import '../../../../../common/constants/app_colors.dart';
-import '../../../../../common/constants/app_dimensions.dart';
 
 class ChatInputButton extends StatefulWidget {
   const ChatInputButton({

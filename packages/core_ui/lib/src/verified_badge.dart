@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../common/constants/app_dimensions.dart';
+import 'project_constraints/app_dimensions.dart';
 
 class VerifiedBadge extends StatelessWidget {
   const VerifiedBadge({super.key});

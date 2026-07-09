@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
@@ -8,7 +8,6 @@ import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/wid
 import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../common/constants/app_dimensions.dart';
 import '../../../../common/extensions/num_extension.dart';
 
 class HomeBottomBar extends StatelessWidget {

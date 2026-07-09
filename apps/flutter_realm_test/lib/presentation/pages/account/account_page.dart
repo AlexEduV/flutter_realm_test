@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
@@ -10,14 +9,12 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/pages/account/widgets/account_item.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/custom_divider.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/user_avatar_enhanced.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../../../common/constants/app_text_styles.dart';
 import '../../../l10n/l10n_keys.dart';
 
 class AccountPage extends StatelessWidget {

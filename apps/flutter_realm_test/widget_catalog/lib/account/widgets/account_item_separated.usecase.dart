@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.dart';
 import 'package:widgetbook/widgetbook.dart';

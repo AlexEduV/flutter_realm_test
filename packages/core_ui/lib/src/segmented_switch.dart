@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 
 class SegmentedSwitch extends StatelessWidget {

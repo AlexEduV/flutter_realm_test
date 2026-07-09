@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/usecases/url/open_url_link_use_case.dart';
 
-import '../../../../../../common/constants/app_text_styles.dart';
 import '../../../../../widgets/app_semantics.dart';
 
 class FooterText extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';

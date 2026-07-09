@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/api_constants.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
-import 'package:test_flutter_project/common/constants/app_text_styles.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/owner_widget.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
-import 'package:test_flutter_project/presentation/widgets/animated_favorite_icon.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
 import '../../../core/di/injection_container.dart';
 import '../../../domain/models/share_params_model.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';
-import '../../widgets/verified_badge.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({required this.carId, super.key});

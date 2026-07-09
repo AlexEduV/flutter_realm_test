@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_flutter_project/common/constants/app_text_styles.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';

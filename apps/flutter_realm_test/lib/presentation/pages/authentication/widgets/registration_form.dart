@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/widgets/password_strength_bar_widget.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../common/constants/app_colors.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';
 import 'animated_divider_with_text.dart';
@@ -168,8 +167,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
                   context.read<AuthenticationCubit>().onRegisterButtonPressed();
                 },
-                foregroundColor: Colors.white,
-                backgroundColor: AppColors.headerColor,
+                buttonType: ButtonType.primary,
                 isLoading: state.isLoading,
               ),
             ),
@@ -187,8 +185,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               child: SplashButton(
                 title: context.tr(L10nKeys.loginButtonTitle),
                 onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
-                foregroundColor: Colors.grey,
-                backgroundColor: Colors.white,
+                buttonType: ButtonType.secondary,
               ),
             ),
 
