@@ -18,7 +18,8 @@ void main() {
   final mockLocalStorage = MockBaseLocalStorage();
   final mockGetAllCarsUseCase = MockGetAllCarsUseCase();
 
-  setUp(() {
+  setUp(() async {
+    await serviceLocator.reset();
     when(mockGetAllCarsUseCase.call()).thenReturn([]);
     when(mockLocalStorage.getAll()).thenReturn([]);
 
@@ -30,8 +31,7 @@ void main() {
 
   tearDown(() async {
     await service.dispose();
-    serviceLocator.unregister<GetOwnerByIdUseCase>();
-    serviceLocator.unregister<GetAllCarsUseCase>();
+    await serviceLocator.reset();
   });
 
   test('fetchCars returns initial data after delay', () async {
