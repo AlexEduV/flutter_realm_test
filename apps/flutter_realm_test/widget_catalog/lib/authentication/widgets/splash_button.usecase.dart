@@ -19,7 +19,9 @@ Widget buildSplashButtonUseCase(BuildContext context) {
             SplashButton(
               title: context.knobs.string(label: 'Button title', initialValue: 'Splash button'),
               onPressed: () {},
-              buttonType: ButtonType.primary,
+              buttonType: context.knobs.boolean(label: 'Is Primary', initialValue: true)
+                  ? ButtonType.primary
+                  : ButtonType.secondary,
               isLoading: context.knobs.boolean(label: 'Is loading', initialValue: false),
             ),
           ],
