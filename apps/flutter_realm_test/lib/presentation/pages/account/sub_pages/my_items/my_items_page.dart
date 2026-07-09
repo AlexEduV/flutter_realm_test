@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
-import '../../../../../common/constants/app_dimensions.dart';
-import '../../../../../common/constants/app_text_styles.dart';
 import '../../../../../core/di/injection_container.dart';
 import '../../../../../l10n/l10n_keys.dart';
 import '../../../../bloc/home/explore_page/explore_page_cubit.dart';

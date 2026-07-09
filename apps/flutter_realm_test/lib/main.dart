@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/usecases/env/init_env_use_case.dart';
@@ -148,7 +148,9 @@ class _MyAppState extends State<MyApp> {
       builder: (_) => ConfirmationDialog(
         title: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogTitle),
         description: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogDescription),
-        confirmButtonTitle: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogOpenSettings),
+        confirmButtonTitle: l10n.getLocalisationByKey(
+          L10nKeys.locationPermissionDialogOpenSettings,
+        ),
         cancelButtonTitle: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogLater),
         isDeletion: false,
         onConfirm: () => serviceLocator<OpenAppSettingsUseCase>().call(),

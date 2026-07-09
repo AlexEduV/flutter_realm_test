@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
@@ -9,9 +10,6 @@ import 'package:test_flutter_project/presentation/pages/authentication/widgets/a
 import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../common/constants/app_colors.dart';
-import '../../../../common/constants/app_dimensions.dart';
-import '../../../../common/constants/app_text_styles.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../../bloc/authentication/authentication_cubit.dart';
 import 'app_form_field.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 
 class CustomDivider extends StatelessWidget {
   const CustomDivider({super.key});

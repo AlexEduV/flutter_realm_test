@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
-import 'package:test_flutter_project/common/constants/app_text_styles.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/radio_group_title.dart';
 
 void main() {

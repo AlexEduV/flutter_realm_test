@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
-
-import '../../../../../common/constants/app_text_styles.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 
 class RadioGroupTitle extends StatelessWidget {
   const RadioGroupTitle({required this.text, super.key});

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../common/constants/app_dimensions.dart';
-import '../../../../common/constants/app_text_styles.dart';
-import 'account_item.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 
 class AccountItemSeparated extends StatelessWidget {
   const AccountItemSeparated({

@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
@@ -26,7 +25,6 @@ import 'package:test_flutter_project/presentation/pages/messages/widgets/message
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 
-import '../../../common/constants/app_text_styles.dart';
 import '../../../utils/date_formatter.dart';
 
 class MessagesPage extends StatefulWidget {

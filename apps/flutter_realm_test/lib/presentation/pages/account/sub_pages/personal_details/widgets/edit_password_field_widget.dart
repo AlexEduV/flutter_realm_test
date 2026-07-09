@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_state.dart';
 
-import '../../../../../../common/constants/app_colors.dart';
-import '../../../../../../common/constants/app_dimensions.dart';
 import '../../../../../../common/constants/app_semantics_labels.dart';
-import '../../../../../../common/constants/app_text_styles.dart';
 import '../../../../../bloc/account/edit_dialog_cubit.dart';
 import '../../../../../widgets/app_semantics.dart';
 import '../../../../authentication/widgets/animated_password_visibility_icon.dart';

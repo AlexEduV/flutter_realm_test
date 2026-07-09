@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
-import 'package:test_flutter_project/common/constants/app_text_styles.dart';
-
-import '../../../../common/constants/app_colors.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 
 class DateDivider extends StatelessWidget {
   const DateDivider({required this.text, super.key});

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 import 'package:test_flutter_project/presentation/widgets/skip_widget.dart';
 
 import '../../../common/constants/app_asset_routes.dart';
-import '../../../common/constants/app_colors.dart';
-import '../../../common/constants/app_dimensions.dart';
-import '../../../common/constants/app_text_styles.dart';
 
 class CountryPickerBottomSheet extends StatelessWidget {
   const CountryPickerBottomSheet({

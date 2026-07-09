@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
-import '../../../../../common/constants/app_colors.dart';
-import '../../../../../common/constants/app_dimensions.dart';
 import '../../../../../common/constants/app_semantics_labels.dart';
-import '../../../../../common/constants/app_text_styles.dart';
 import '../../../../../core/di/injection_container.dart';
 import '../../../../../domain/usecases/database/get_car_by_id_use_case.dart';
 import '../../../../../l10n/l10n_keys.dart';

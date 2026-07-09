@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../common/constants/app_dimensions.dart';
-import '../../../../common/constants/app_text_styles.dart';
 import '../../../../l10n/l10n_keys.dart';
 
 class ResultsWidget extends StatelessWidget {

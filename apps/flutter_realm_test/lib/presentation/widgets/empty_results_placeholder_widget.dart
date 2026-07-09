@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../common/constants/app_dimensions.dart';
-import '../../common/constants/app_text_styles.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 
 class EmptyResultsPlaceholderWidget extends StatelessWidget {
   const EmptyResultsPlaceholderWidget({required this.text, super.key});

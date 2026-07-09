@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_flutter_project/common/enums/item_setup_tab.dart';
-
-import '../../../../../common/constants/app_colors.dart';
-import '../../../../../common/constants/app_dimensions.dart';
 
 class PageSelectionBar extends StatelessWidget {
   const PageSelectionBar({

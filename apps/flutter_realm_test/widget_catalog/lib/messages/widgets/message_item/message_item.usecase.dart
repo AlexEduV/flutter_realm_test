@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';

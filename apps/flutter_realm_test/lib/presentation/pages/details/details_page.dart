@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:realm_ui_core/realm_ui_core.dart';
 import 'package:test_flutter_project/common/constants/api_constants.dart';
-import 'package:test_flutter_project/common/constants/app_colors.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
-import 'package:test_flutter_project/common/constants/app_dimensions.dart';
-import 'package:test_flutter_project/common/constants/app_text_styles.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
