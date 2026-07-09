@@ -75,7 +75,7 @@ void main() {
       expect(paddingWidget.padding, const EdgeInsets.all(AppDimensions.normalL));
     });
 
-    testWidgets('uses Flexible inside Row', (WidgetTester tester) async {
+    testWidgets('text is a direct child of padding with ellipsis overflow', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -86,11 +86,13 @@ void main() {
         ),
       );
 
-      final rowFinder = find.byType(Row);
-      expect(rowFinder, findsOneWidget);
+      expect(find.byType(Row), findsNothing);
+      expect(find.byType(Flexible), findsNothing);
 
-      final flexibleFinder = find.descendant(of: rowFinder, matching: find.byType(Flexible));
-      expect(flexibleFinder, findsOneWidget);
+      final textWidget = tester.widget<Text>(
+        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText)),
+      );
+      expect(textWidget.overflow, TextOverflow.ellipsis);
     });
   });
 }
