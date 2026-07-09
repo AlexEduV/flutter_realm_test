@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:realm_ui_core/realm_ui_core.dart';
+
+import 'project_constraints/app_colors.dart';
+import 'project_constraints/app_dimensions.dart';
+import 'project_constraints/app_text_styles.dart';
 
 enum ButtonType { primary, secondary }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:realm_ui_core/realm_ui_core.dart';
+
+import 'project_constraints/app_dimensions.dart';
 
 class VerifiedBadge extends StatelessWidget {
   const VerifiedBadge({super.key});
