@@ -31,7 +31,6 @@ import 'package:test_flutter_project/utils/image_cache_util.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  //this is the test change;
 
   if (!kIsWeb) {
     FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
