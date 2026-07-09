@@ -7,7 +7,6 @@ import 'package:test_flutter_project/common/constants/app_semantics_labels.dart'
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/widgets/animated_divider_with_text.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/splash_button.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../l10n/l10n_keys.dart';
@@ -156,8 +155,7 @@ class _LoginFormState extends State<LoginForm> {
 
                   context.read<AuthenticationCubit>().onLoginButtonPressed();
                 },
-                foregroundColor: Colors.white,
-                backgroundColor: AppColors.headerColor,
+                buttonType: ButtonType.primary,
                 isLoading: state.isLoading,
               ),
             ),
@@ -175,8 +173,7 @@ class _LoginFormState extends State<LoginForm> {
               child: SplashButton(
                 title: context.tr(L10nKeys.signUpButtonTitle),
                 onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
-                foregroundColor: Colors.grey,
-                backgroundColor: Colors.white,
+                buttonType: ButtonType.secondary,
               ),
             ),
 

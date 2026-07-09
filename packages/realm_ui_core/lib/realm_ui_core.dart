@@ -8,4 +8,5 @@ export 'src/empty_results_placeholder_widget.dart';
 export 'src/project_constraints/app_colors.dart';
 export 'src/project_constraints/app_dimensions.dart';
 export 'src/project_constraints/app_text_styles.dart';
+export 'src/splash_button.dart';
 export 'src/verified_badge.dart';
