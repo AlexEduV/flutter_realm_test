@@ -10,8 +10,11 @@ class EmptyResultsPlaceholderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalL),
-      child: Row(
-        children: [Flexible(child: Text(text, maxLines: 3, style: AppTextStyles.zonaPro18))],
+      child: Text(
+        text,
+        maxLines: 3,
+        style: AppTextStyles.zonaPro18,
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }
