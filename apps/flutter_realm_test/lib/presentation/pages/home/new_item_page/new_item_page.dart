@@ -1,8 +1,8 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:realm/realm.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -15,6 +15,7 @@ import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/pages/home/home_page_params.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/item_info_form.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/item_specs_picker.dart';
@@ -217,6 +218,6 @@ class _NewItemPageState extends State<NewItemPage> {
 
     context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
 
-    context.go(AppRoutes.home, extra: {'fromSetup': true});
+    context.go(AppRoutes.home, extra: HomePageParams(isFromSetup: true));
   }
 }

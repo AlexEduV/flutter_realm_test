@@ -8,6 +8,7 @@ import 'package:test_flutter_project/presentation/pages/account/sub_pages/recent
 import 'package:test_flutter_project/presentation/pages/article/article_page.dart';
 import 'package:test_flutter_project/presentation/pages/details/details_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_page.dart';
+import 'package:test_flutter_project/presentation/pages/home/home_page_params.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/new_item_page.dart';
 import 'package:test_flutter_project/presentation/pages/messages/messages_page.dart';
 import 'package:test_flutter_project/presentation/widgets/placeholder_page.dart';
@@ -23,9 +24,9 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.home,
         pageBuilder: (context, state) {
-          final fromSetup = (state.extra is Map && (state.extra as Map)['fromSetup'] == true);
+          final isFromSetup = (state.extra as HomePageParams).isFromSetup;
 
-          if (fromSetup) {
+          if (isFromSetup) {
             return CustomTransitionPage(
               child: const HomePage(),
               //reversed animation when going from the setup page
