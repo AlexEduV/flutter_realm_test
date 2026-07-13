@@ -24,7 +24,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.home,
         pageBuilder: (context, state) {
-          final isFromSetup = (state.extra as HomePageParams).isFromSetup;
+          final isFromSetup = (state.extra as HomePageParams?)?.isFromSetup ?? false;
 
           if (isFromSetup) {
             return CustomTransitionPage(
