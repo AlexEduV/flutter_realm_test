@@ -8,6 +8,7 @@ import 'package:test_flutter_project/common/logger/base_logger.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/domain/entities/session_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
@@ -63,8 +64,11 @@ void main() {
 
     mockLocalStorage = MockBaseLocalStorage();
 
+    when(mockAuthRepository.getUserSession()).thenAnswer((_) async => null);
+
     cubit = UserDataCubit(
       mockLocalStorage,
+      mockAuthRepository,
       mockCheckLocationServiceStatusUseCase,
       mockOpenAppSettingsUseCase,
       mockRequestLocationPermissionUseCase,
@@ -256,6 +260,9 @@ void main() {
 
       when(mockGetUserByEmailUseCase.call('auth@example.com')).thenReturn(user);
       when(mockLocalStorage.initUser()).thenReturn(user);
+      when(mockAuthRepository.getUserSession()).thenAnswer(
+        (_) async => const SessionEntity(userId: '1', sessionId: 'session-123'),
+      );
 
       await cubit.authUser('auth@example.com');
       expect(cubit.state.isUserAuthenticated, true);

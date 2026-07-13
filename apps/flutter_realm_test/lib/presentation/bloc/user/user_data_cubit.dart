@@ -13,7 +13,6 @@ import 'package:test_flutter_project/domain/usecases/permissions/check_location_
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_flutter_project/utils/auth_session_util.dart';
 
 import '../../../core/di/injection_container.dart';
 import '../../../domain/repositories/auth_repository.dart';
@@ -24,6 +23,7 @@ import '../l10n/app_localisations_cubit.dart';
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(
     this._localStorage,
+    this._authRepository,
     this._checkLocationServiceStatusUseCase,
     this._openAppSettingsUseCase,
     this._requestLocationPermissionUseCase,
@@ -34,6 +34,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   ) : super(const UserDataState());
 
   final BaseLocalStorage _localStorage;
+  final AuthRepository _authRepository;
 
   final OpenAppSettingsUseCase _openAppSettingsUseCase;
   final CheckLocationServiceStatusUseCase _checkLocationServiceStatusUseCase;
@@ -51,7 +52,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(isLoading: true));
 
     user = _localStorage.initUser();
-    final userSession = await AuthSessionUtil.getUserSession();
+    final userSession = await _authRepository.getUserSession();
 
     await initLocalisation(user.region);
 

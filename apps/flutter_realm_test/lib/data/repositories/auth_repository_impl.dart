@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
@@ -7,21 +11,23 @@ import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.d
 import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/utils/auth_session_util.dart';
 
 import '../../common/extensions/user_scheme_extension.dart';
 import '../../core/di/injection_container.dart';
 import '../../domain/data_sources/remote/users_remote_data_source.dart';
+import '../../domain/entities/session_entity.dart';
 import '../../domain/entities/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl(this._localStorage, this._fetchOwnersUseCase);
+  AuthRepositoryImpl(this._localStorage, this._cloudStorage, this._fetchOwnersUseCase);
 
   final BaseLocalStorage _localStorage;
+  final SharedPreferences _cloudStorage;
   final FetchOwnersUseCase _fetchOwnersUseCase;
 
   late final List<UserEntity> users;
   late bool isAuthenticated = false;
+  final _userSessionKey = 'userId';
 
   @override
   Future<void> init() async {
@@ -33,7 +39,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> logOut() async {
-    await AuthSessionUtil.clearUserSession();
+    await clearUserSession();
     _localStorage.clearUser();
     await Future.delayed(const Duration(milliseconds: 200));
 
@@ -66,7 +72,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
     final user = users.firstWhere((element) => element.email == email);
 
-    await AuthSessionUtil.saveUserSession(user.userId);
+    await saveUserSession(user.userId);
 
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
@@ -104,7 +110,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
     users.add(user);
     await serviceLocator<SaveUsersUseCase>().call(users);
-    await AuthSessionUtil.saveUserSession(newUserId.toString());
+    await saveUserSession(newUserId.toString());
 
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
@@ -129,5 +135,33 @@ class AuthRepositoryImpl implements AuthRepository {
     users.add(data);
 
     await serviceLocator<SaveUsersUseCase>().call(users);
+  }
+
+  @override
+  Future<SessionEntity?> getUserSession() async {
+    final userId = _cloudStorage.getString(_userSessionKey);
+
+    if (userId != null) {
+      final sessionId = _generateSessionId();
+
+      return SessionEntity(userId: userId, sessionId: sessionId);
+    }
+    return null;
+  }
+
+  @override
+  Future<void> saveUserSession(String userId) async {
+    await _cloudStorage.setString(_userSessionKey, userId);
+  }
+
+  @override
+  Future<void> clearUserSession() async {
+    await _cloudStorage.remove(_userSessionKey);
+  }
+
+  String _generateSessionId([int length = 32]) {
+    final random = Random.secure();
+    final values = List<int>.generate(length, (i) => random.nextInt(256));
+    return base64Url.encode(values);
   }
 }

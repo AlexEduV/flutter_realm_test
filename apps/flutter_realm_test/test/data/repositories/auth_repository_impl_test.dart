@@ -26,7 +26,7 @@ void main() {
 
   final appLocalisationsCubit = AppLocalisationsCubit();
 
-  setUp(() {
+  setUp(() async {
     final initUsers = [
       UserEntity.initial(
         userId: '1',
@@ -45,6 +45,7 @@ void main() {
     ];
 
     SharedPreferences.setMockInitialValues({'mock_users': initUsers});
+    final prefs = await SharedPreferences.getInstance();
 
     // Set up localisations for error messages
     final localisations = {
@@ -55,7 +56,7 @@ void main() {
 
     appLocalisationsCubit.load(localisations);
 
-    repo = AuthRepositoryImpl(mockLocalStorage, mockFetchOwnersUseCase);
+    repo = AuthRepositoryImpl(mockLocalStorage, prefs, mockFetchOwnersUseCase);
     repo.users = initUsers;
 
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);

@@ -1,5 +1,6 @@
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 
+import '../entities/session_entity.dart';
 import '../entities/user_entity.dart';
 
 abstract class AuthRepository {
@@ -19,4 +20,10 @@ abstract class AuthRepository {
   Future<void> deleteAccount(String email);
 
   Future<void> updateUser(String email, UserEntity data);
+
+  Future<SessionEntity?> getUserSession();
+
+  Future<void> saveUserSession(String userId);
+
+  Future<void> clearUserSession();
 }

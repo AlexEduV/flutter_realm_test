@@ -6,6 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:test_flutter_project/domain/entities/session_entity.dart' as _i6;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i5;
 import 'package:test_flutter_project/domain/models/auth_result.dart' as _i2;
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart'
@@ -145,6 +146,36 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
             email,
             data,
           ],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<_i6.SessionEntity?> getUserSession() => (super.noSuchMethod(
+        Invocation.method(
+          #getUserSession,
+          [],
+        ),
+        returnValue: _i4.Future<_i6.SessionEntity?>.value(),
+        returnValueForMissingStub: _i4.Future<_i6.SessionEntity?>.value(),
+      ) as _i4.Future<_i6.SessionEntity?>);
+
+  @override
+  _i4.Future<void> saveUserSession(String? userId) => (super.noSuchMethod(
+        Invocation.method(
+          #saveUserSession,
+          [userId],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> clearUserSession() => (super.noSuchMethod(
+        Invocation.method(
+          #clearUserSession,
+          [],
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),

@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:realm/realm.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/extensions/get_it_extension.dart';
 import 'package:test_flutter_project/common/logger/app_network_logger_impl.dart';
 import 'package:test_flutter_project/common/logger/base_logger.dart';
@@ -203,7 +204,8 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
 
-  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator(), serviceLocator());
+  final cloudStorage = await SharedPreferences.getInstance();
+  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator(), cloudStorage, serviceLocator());
   await authRepositoryImpl.init();
 
   final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(serviceLocator());
@@ -310,6 +312,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(
     () => UserDataCubit(
+      serviceLocator(),
       serviceLocator(),
       serviceLocator(),
       serviceLocator(),
