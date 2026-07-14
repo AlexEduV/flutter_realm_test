@@ -1,3 +1,4 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
@@ -7,7 +8,6 @@ import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.d
 import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/utils/auth_session_util.dart';
 
 import '../../common/extensions/user_scheme_extension.dart';
 import '../../core/di/injection_container.dart';
@@ -15,25 +15,38 @@ import '../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../domain/entities/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl(this._localStorage, this._fetchOwnersUseCase);
+  AuthRepositoryImpl(
+    this._localStorage,
+    this._cloudStorage,
+    this._fetchOwnersUseCase,
+    this._loadUsersUseCase,
+    this._usersRemoteDataSource,
+    this._saveUsersUseCase,
+    this._getMaxUserIdUseCase,
+  );
 
   final BaseLocalStorage _localStorage;
+  final SharedPreferences _cloudStorage;
   final FetchOwnersUseCase _fetchOwnersUseCase;
+  final LoadUsersUseCase _loadUsersUseCase;
+  final UsersRemoteDataSource _usersRemoteDataSource;
+  final SaveUsersUseCase _saveUsersUseCase;
+  final GetMaxUserIdUseCase _getMaxUserIdUseCase;
 
   late final List<UserEntity> users;
   late bool isAuthenticated = false;
+  final _userSessionKey = 'userId';
 
-  @override
   Future<void> init() async {
-    await serviceLocator<LoadUsersUseCase>().call();
+    await _loadUsersUseCase.call();
     await _fetchOwnersUseCase.call();
 
-    users = serviceLocator<UsersRemoteDataSource>().users;
+    users = List.from(_usersRemoteDataSource.users);
   }
 
   @override
   Future<void> logOut() async {
-    await AuthSessionUtil.clearUserSession();
+    await _clearUserSession();
     _localStorage.clearUser();
     await Future.delayed(const Duration(milliseconds: 200));
 
@@ -66,7 +79,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
     final user = users.firstWhere((element) => element.email == email);
 
-    await AuthSessionUtil.saveUserSession(user.userId);
+    await _saveUserSession(user.userId);
 
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
@@ -93,7 +106,7 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     }
 
-    final newUserId = serviceLocator<GetMaxUserIdUseCase>().call() + 1;
+    final newUserId = _getMaxUserIdUseCase.call() + 1;
     final user = UserEntity.initial(
       userId: '$newUserId',
       email: email,
@@ -103,8 +116,10 @@ class AuthRepositoryImpl implements AuthRepository {
     );
 
     users.add(user);
-    await serviceLocator<SaveUsersUseCase>().call(users);
-    await AuthSessionUtil.saveUserSession(newUserId.toString());
+    _usersRemoteDataSource.users = List.from(users);
+
+    await _saveUsersUseCase.call(users);
+    await _saveUserSession(newUserId.toString());
 
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
@@ -118,16 +133,30 @@ class AuthRepositoryImpl implements AuthRepository {
     await logOut();
 
     users.removeWhere((element) => element.email == email);
-    await serviceLocator<SaveUsersUseCase>().call(users);
+    _usersRemoteDataSource.users = List.from(users);
+    await _saveUsersUseCase.call(users);
   }
 
   @override
-  Future<void> updateUser(String email, UserEntity data) async {
+  Future<void> updateUser(String userId, UserEntity data) async {
     if (!isAuthenticated) return;
 
-    users.removeWhere((element) => element.email == email);
+    users.removeWhere((element) => element.userId == userId);
     users.add(data);
 
-    await serviceLocator<SaveUsersUseCase>().call(users);
+    await _saveUsersUseCase.call(users);
+  }
+
+  @override
+  Future<bool> isUserLoggedIn() async {
+    return _cloudStorage.getString(_userSessionKey) != null;
+  }
+
+  Future<void> _saveUserSession(String userId) async {
+    await _cloudStorage.setString(_userSessionKey, userId);
+  }
+
+  Future<void> _clearUserSession() async {
+    await _cloudStorage.remove(_userSessionKey);
   }
 }

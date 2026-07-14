@@ -3,8 +3,6 @@ import 'package:test_flutter_project/domain/models/auth_result.dart';
 import '../entities/user_entity.dart';
 
 abstract class AuthRepository {
-  Future<void> init();
-
   Future<AuthResult> login({required String email, required String password});
 
   Future<AuthResult> register({
@@ -19,4 +17,6 @@ abstract class AuthRepository {
   Future<void> deleteAccount(String email);
 
   Future<void> updateUser(String email, UserEntity data);
+
+  Future<bool> isUserLoggedIn();
 }

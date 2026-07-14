@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:realm/realm.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/extensions/get_it_extension.dart';
 import 'package:test_flutter_project/common/logger/app_network_logger_impl.dart';
 import 'package:test_flutter_project/common/logger/base_logger.dart';
@@ -23,7 +24,6 @@ import 'package:test_flutter_project/data/data_sources/local/share_local_data_so
 import 'package:test_flutter_project/data/data_sources/local/url_launch_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/gifs_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_auto_complete_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_messages_remote_data_source_impl.dart';
@@ -58,7 +58,6 @@ import 'package:test_flutter_project/domain/data_sources/local/permission_local_
 import 'package:test_flutter_project/domain/data_sources/local/share_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/local/url_launch_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/article_remote_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/auto_complete_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
@@ -202,8 +201,18 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
 
-  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator(), serviceLocator());
+  final cloudStorage = await SharedPreferences.getInstance();
+  final authRepositoryImpl = AuthRepositoryImpl(
+    serviceLocator(),
+    cloudStorage,
+    serviceLocator(),
+    serviceLocator(),
+    serviceLocator(),
+    serviceLocator(),
+    serviceLocator(),
+  );
   await authRepositoryImpl.init();
 
   final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(serviceLocator());
@@ -238,10 +247,6 @@ Future<void> initDependenciesContainer() async {
   );
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
     () => MockRegionRemoteDataSourceImpl(),
-  );
-
-  serviceLocator.registerLazySingleton<AuthRemoteDataSource>(
-    () => MockAuthRemoteDataSourceImpl(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<GeolocatorLocalDataSource>(
     () => GeolocatorLocalDataSourceImpl(),
@@ -287,7 +292,6 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
 
   //Register Repository (passing Realm from GetIt)
   serviceLocator.registerLazySingleton<PermissionRepository>(
@@ -307,19 +311,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => NewItemPageCubit(serviceLocator()));
 
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator(), serviceLocator()));
-
-  serviceLocator.registerLazySingleton(
-    () => UserDataCubit(
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-    ),
-  );
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
 
@@ -407,6 +398,21 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => PickAttachmentFileUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(
+    () => UserDataCubit(
+      serviceLocator<BaseLocalStorage>(),
+      serviceLocator<AuthRepository>(),
+      serviceLocator<CheckLocationServiceStatusUseCase>(),
+      serviceLocator<OpenAppSettingsUseCase>(),
+      serviceLocator<RequestLocationPermissionUseCase>(),
+      serviceLocator<CheckLocationPermissionStatusUseCase>(),
+      serviceLocator<GetUserByEmailUseCase>(),
+      serviceLocator<PickImageFromGalleryUseCase>(),
+      serviceLocator<DeleteCarByIdUseCase>(),
+      serviceLocator<BaseLogger>(),
+    ),
+  );
 
   serviceLocator.registerLazySingleton(() => ExtractUsersFromConversationUseCase(serviceLocator()));
 

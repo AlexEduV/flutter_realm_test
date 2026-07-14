@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_flutter_project/domain/models/home_page_params.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/clear_data/clear_user_data_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/location_settings_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/my_items/my_items_page.dart';
@@ -23,9 +24,10 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.home,
         pageBuilder: (context, state) {
-          final fromSetup = (state.extra is Map && (state.extra as Map)['fromSetup'] == true);
+          final extra = state.extra;
+          final isFromSetup = extra is HomePageParams ? extra.isFromSetup : false;
 
-          if (fromSetup) {
+          if (isFromSetup) {
             return CustomTransitionPage(
               child: const HomePage(),
               //reversed animation when going from the setup page
