@@ -5,6 +5,7 @@ import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_flutter_project/common/logger/base_logger.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
@@ -126,10 +127,11 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void setLastSeenCar(String? carId) {
-    final newLastSeenCarData = carId == null ? null : {DateTime.now(): carId};
+    final newLastSeenCar =
+        carId == null ? null : LastSeenCarEntity(carId: carId, seenAt: DateTime.now());
 
-    user = user.copyWith(lastSeenCar: newLastSeenCarData);
-    emit(state.copyWith(lastSeenCar: newLastSeenCarData));
+    user = user.copyWith(lastSeenCar: newLastSeenCar);
+    emit(state.copyWith(lastSeenCar: newLastSeenCar));
 
     updateUser(user: user);
   }
@@ -140,7 +142,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     if (lastSeenCar == null) return;
 
     final daysAgo = DateTime.now().subtract(Duration(days: days));
-    if (lastSeenCar.entries.first.key.isBefore(daysAgo)) {
+    if (lastSeenCar.seenAt.isBefore(daysAgo)) {
       setLastSeenCar(null);
     }
   }

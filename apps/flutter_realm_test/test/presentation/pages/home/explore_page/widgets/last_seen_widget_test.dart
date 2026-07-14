@@ -7,6 +7,7 @@ import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
+import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
@@ -97,7 +98,7 @@ void main() {
   testWidgets('shows car info when userState is loaded', (tester) async {
     final carId = 'car124';
 
-    final userState = UserDataState(isLoading: false, lastSeenCar: {DateTime.now(): carId});
+    final userState = UserDataState(isLoading: false, lastSeenCar: LastSeenCarEntity(carId: carId, seenAt: DateTime.now()));
     final exploreState = const ExplorePageState();
 
     when(mockUserDataCubit.state).thenReturn(userState);

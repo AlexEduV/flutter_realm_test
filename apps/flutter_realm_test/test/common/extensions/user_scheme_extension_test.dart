@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 void main() {
@@ -14,7 +15,7 @@ void main() {
         favoriteIds: const ['1'],
         email: 'mock@gmail.com',
         password: '',
-        lastSeenCar: {DateTime.now(): CarEntity.empty().carId},
+        lastSeenCar: LastSeenCarEntity(carId: CarEntity.empty().carId, seenAt: DateTime.now()),
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,

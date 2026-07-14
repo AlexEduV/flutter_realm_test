@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
@@ -185,14 +186,8 @@ class ExplorePage extends StatelessWidget {
     context.read<ExplorePageCubit>().removeCarById(id);
   }
 
-  bool _shouldShowLastSeenWidget(BuildContext context, Map<DateTime, String>? lastSeenCar) {
+  bool _shouldShowLastSeenWidget(BuildContext context, LastSeenCarEntity? lastSeenCar) {
     if (lastSeenCar == null) return false;
-
-    final cubit = context.read<ExplorePageCubit>();
-
-    String? carId = lastSeenCar.values.firstOrNull;
-    if (carId == null) return false;
-
-    return cubit.isCarExistsById(carId);
+    return context.read<ExplorePageCubit>().isCarExistsById(lastSeenCar.carId);
   }
 }

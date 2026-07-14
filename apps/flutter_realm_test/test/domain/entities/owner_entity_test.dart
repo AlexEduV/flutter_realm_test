@@ -58,7 +58,7 @@ void main() {
         favoriteIds: [],
         viewedIds: [],
         email: '',
-        lastSeenCar: {},
+        lastSeenCar: null,
         password: '',
         region: '',
       );

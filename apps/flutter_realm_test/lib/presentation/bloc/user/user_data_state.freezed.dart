@@ -26,7 +26,7 @@ mixin _$UserDataState {
   String get email;
   String get password;
   String get region;
-  Map<DateTime, String>? get lastSeenCar;
+  LastSeenCarEntity? get lastSeenCar;
   String? get avatarImageSrc;
 
   /// Create a copy of UserDataState
@@ -63,8 +63,8 @@ mixin _$UserDataState {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.region, region) || other.region == region) &&
-            const DeepCollectionEquality()
-                .equals(other.lastSeenCar, lastSeenCar) &&
+            (identical(other.lastSeenCar, lastSeenCar) ||
+                other.lastSeenCar == lastSeenCar) &&
             (identical(other.avatarImageSrc, avatarImageSrc) ||
                 other.avatarImageSrc == avatarImageSrc));
   }
@@ -83,7 +83,7 @@ mixin _$UserDataState {
       email,
       password,
       region,
-      const DeepCollectionEquality().hash(lastSeenCar),
+      lastSeenCar,
       avatarImageSrc);
 
   @override
@@ -110,8 +110,10 @@ abstract mixin class $UserDataStateCopyWith<$Res> {
       String email,
       String password,
       String region,
-      Map<DateTime, String>? lastSeenCar,
+      LastSeenCarEntity? lastSeenCar,
       String? avatarImageSrc});
+
+  $LastSeenCarEntityCopyWith<$Res>? get lastSeenCar;
 }
 
 /// @nodoc
@@ -189,12 +191,26 @@ class _$UserDataStateCopyWithImpl<$Res>
       lastSeenCar: freezed == lastSeenCar
           ? _self.lastSeenCar
           : lastSeenCar // ignore: cast_nullable_to_non_nullable
-              as Map<DateTime, String>?,
+              as LastSeenCarEntity?,
       avatarImageSrc: freezed == avatarImageSrc
           ? _self.avatarImageSrc
           : avatarImageSrc // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
+  }
+
+  /// Create a copy of UserDataState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LastSeenCarEntityCopyWith<$Res>? get lastSeenCar {
+    if (_self.lastSeenCar == null) {
+      return null;
+    }
+
+    return $LastSeenCarEntityCopyWith<$Res>(_self.lastSeenCar!, (value) {
+      return _then(_self.copyWith(lastSeenCar: value));
+    });
   }
 }
 
@@ -213,12 +229,11 @@ class _UserDataState extends UserDataState {
       this.email = '',
       this.password = '',
       this.region = '',
-      final Map<DateTime, String>? lastSeenCar,
+      this.lastSeenCar,
       this.avatarImageSrc})
       : _favoriteIds = favoriteIds,
         _createdIds = createdIds,
         _viewedIds = viewedIds,
-        _lastSeenCar = lastSeenCar,
         super._();
 
   @override
@@ -272,16 +287,8 @@ class _UserDataState extends UserDataState {
   @override
   @JsonKey()
   final String region;
-  final Map<DateTime, String>? _lastSeenCar;
   @override
-  Map<DateTime, String>? get lastSeenCar {
-    final value = _lastSeenCar;
-    if (value == null) return null;
-    if (_lastSeenCar is EqualUnmodifiableMapView) return _lastSeenCar;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
+  final LastSeenCarEntity? lastSeenCar;
   @override
   final String? avatarImageSrc;
 
@@ -320,8 +327,8 @@ class _UserDataState extends UserDataState {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.region, region) || other.region == region) &&
-            const DeepCollectionEquality()
-                .equals(other._lastSeenCar, _lastSeenCar) &&
+            (identical(other.lastSeenCar, lastSeenCar) ||
+                other.lastSeenCar == lastSeenCar) &&
             (identical(other.avatarImageSrc, avatarImageSrc) ||
                 other.avatarImageSrc == avatarImageSrc));
   }
@@ -340,7 +347,7 @@ class _UserDataState extends UserDataState {
       email,
       password,
       region,
-      const DeepCollectionEquality().hash(_lastSeenCar),
+      lastSeenCar,
       avatarImageSrc);
 
   @override
@@ -369,8 +376,11 @@ abstract mixin class _$UserDataStateCopyWith<$Res>
       String email,
       String password,
       String region,
-      Map<DateTime, String>? lastSeenCar,
+      LastSeenCarEntity? lastSeenCar,
       String? avatarImageSrc});
+
+  @override
+  $LastSeenCarEntityCopyWith<$Res>? get lastSeenCar;
 }
 
 /// @nodoc
@@ -446,14 +456,28 @@ class __$UserDataStateCopyWithImpl<$Res>
           : region // ignore: cast_nullable_to_non_nullable
               as String,
       lastSeenCar: freezed == lastSeenCar
-          ? _self._lastSeenCar
+          ? _self.lastSeenCar
           : lastSeenCar // ignore: cast_nullable_to_non_nullable
-              as Map<DateTime, String>?,
+              as LastSeenCarEntity?,
       avatarImageSrc: freezed == avatarImageSrc
           ? _self.avatarImageSrc
           : avatarImageSrc // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
+  }
+
+  /// Create a copy of UserDataState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LastSeenCarEntityCopyWith<$Res>? get lastSeenCar {
+    if (_self.lastSeenCar == null) {
+      return null;
+    }
+
+    return $LastSeenCarEntityCopyWith<$Res>(_self.lastSeenCar!, (value) {
+      return _then(_self.copyWith(lastSeenCar: value));
+    });
   }
 }
 

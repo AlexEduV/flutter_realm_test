@@ -261,6 +261,15 @@ class MockExplorePageCubit extends _i1.Mock implements _i11.ExplorePageCubit {
       );
 
   @override
+  bool isCarExistsById(String? carId) => (super.noSuchMethod(
+        Invocation.method(
+          #isCarExistsById,
+          [carId],
+        ),
+        returnValue: false,
+      ) as bool);
+
+  @override
   void removeCarById(String? id) => super.noSuchMethod(
         Invocation.method(
           #removeCarById,
