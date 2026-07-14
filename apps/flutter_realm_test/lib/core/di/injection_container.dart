@@ -201,6 +201,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
 
   final cloudStorage = await SharedPreferences.getInstance();
   final authRepositoryImpl = AuthRepositoryImpl(
@@ -291,7 +292,6 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
 
   //Register Repository (passing Realm from GetIt)
   serviceLocator.registerLazySingleton<PermissionRepository>(
@@ -311,21 +311,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerFactory(() => NewItemPageCubit(serviceLocator()));
 
   serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator(), serviceLocator()));
-
-  serviceLocator.registerLazySingleton(
-    () => UserDataCubit(
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-    ),
-  );
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
 
@@ -413,6 +398,21 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => PickAttachmentFileUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(
+    () => UserDataCubit(
+      serviceLocator<BaseLocalStorage>(),
+      serviceLocator<AuthRepository>(),
+      serviceLocator<CheckLocationServiceStatusUseCase>(),
+      serviceLocator<OpenAppSettingsUseCase>(),
+      serviceLocator<RequestLocationPermissionUseCase>(),
+      serviceLocator<CheckLocationPermissionStatusUseCase>(),
+      serviceLocator<GetUserByEmailUseCase>(),
+      serviceLocator<PickImageFromGalleryUseCase>(),
+      serviceLocator<DeleteCarByIdUseCase>(),
+      serviceLocator<BaseLogger>(),
+    ),
+  );
 
   serviceLocator.registerLazySingleton(() => ExtractUsersFromConversationUseCase(serviceLocator()));
 
