@@ -41,7 +41,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await _loadUsersUseCase.call();
     await _fetchOwnersUseCase.call();
 
-    users = _usersRemoteDataSource.users;
+    users = List.from(_usersRemoteDataSource.users);
   }
 
   @override
@@ -116,6 +116,8 @@ class AuthRepositoryImpl implements AuthRepository {
     );
 
     users.add(user);
+    _usersRemoteDataSource.users = List.from(users);
+
     await _saveUsersUseCase.call(users);
     await _saveUserSession(newUserId.toString());
 
@@ -131,6 +133,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await logOut();
 
     users.removeWhere((element) => element.email == email);
+    _usersRemoteDataSource.users = List.from(users);
     await _saveUsersUseCase.call(users);
   }
 
