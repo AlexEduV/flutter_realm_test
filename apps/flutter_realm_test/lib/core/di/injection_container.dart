@@ -203,7 +203,15 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
 
   final cloudStorage = await SharedPreferences.getInstance();
-  final authRepositoryImpl = AuthRepositoryImpl(serviceLocator(), cloudStorage, serviceLocator());
+  final authRepositoryImpl = AuthRepositoryImpl(
+    serviceLocator(),
+    cloudStorage,
+    serviceLocator(),
+    serviceLocator(),
+    serviceLocator(),
+    serviceLocator(),
+    serviceLocator(),
+  );
   await authRepositoryImpl.init();
 
   final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(serviceLocator());

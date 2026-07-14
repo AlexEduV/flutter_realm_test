@@ -19,21 +19,33 @@ import '../../domain/entities/session_entity.dart';
 import '../../domain/entities/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl(this._localStorage, this._cloudStorage, this._fetchOwnersUseCase);
+  AuthRepositoryImpl(
+    this._localStorage,
+    this._cloudStorage,
+    this._fetchOwnersUseCase,
+    this._loadUsersUseCase,
+    this._usersRemoteDataSource,
+    this._saveUsersUseCase,
+    this._getMaxUserIdUseCase,
+  );
 
   final BaseLocalStorage _localStorage;
   final SharedPreferences _cloudStorage;
   final FetchOwnersUseCase _fetchOwnersUseCase;
+  final LoadUsersUseCase _loadUsersUseCase;
+  final UsersRemoteDataSource _usersRemoteDataSource;
+  final SaveUsersUseCase _saveUsersUseCase;
+  final GetMaxUserIdUseCase _getMaxUserIdUseCase;
 
   late final List<UserEntity> users;
   late bool isAuthenticated = false;
   final _userSessionKey = 'userId';
 
   Future<void> init() async {
-    await serviceLocator<LoadUsersUseCase>().call();
+    await _loadUsersUseCase.call();
     await _fetchOwnersUseCase.call();
 
-    users = serviceLocator<UsersRemoteDataSource>().users;
+    users = _usersRemoteDataSource.users;
   }
 
   @override
@@ -98,7 +110,7 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     }
 
-    final newUserId = serviceLocator<GetMaxUserIdUseCase>().call() + 1;
+    final newUserId = _getMaxUserIdUseCase.call() + 1;
     final user = UserEntity.initial(
       userId: '$newUserId',
       email: email,
@@ -108,7 +120,7 @@ class AuthRepositoryImpl implements AuthRepository {
     );
 
     users.add(user);
-    await serviceLocator<SaveUsersUseCase>().call(users);
+    await _saveUsersUseCase.call(users);
     await _saveUserSession(newUserId.toString());
 
     _localStorage.clearUser();
@@ -123,7 +135,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await logOut();
 
     users.removeWhere((element) => element.email == email);
-    await serviceLocator<SaveUsersUseCase>().call(users);
+    await _saveUsersUseCase.call(users);
   }
 
   @override
@@ -133,7 +145,7 @@ class AuthRepositoryImpl implements AuthRepository {
     users.removeWhere((element) => element.userId == userId);
     users.add(data);
 
-    await serviceLocator<SaveUsersUseCase>().call(users);
+    await _saveUsersUseCase.call(users);
   }
 
   @override

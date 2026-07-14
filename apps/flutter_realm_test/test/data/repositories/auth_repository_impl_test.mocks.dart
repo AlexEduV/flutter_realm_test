@@ -6,12 +6,16 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart'
+    as _i9;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i4;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i7;
 import 'package:test_flutter_project/domain/usecases/owners/fetch_owners_use_case.dart'
     as _i2;
 import 'package:test_flutter_project/domain/usecases/users/get_max_user_id_use_case.dart'
     as _i5;
+import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.dart'
+    as _i8;
 import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart'
     as _i6;
 
@@ -85,4 +89,90 @@ class MockSaveUsersUseCase extends _i1.Mock implements _i6.SaveUsersUseCase {
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+}
+
+/// A class which mocks [LoadUsersUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoadUsersUseCase extends _i1.Mock implements _i8.LoadUsersUseCase {
+  MockLoadUsersUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<List<_i7.UserEntity>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i3.Future<List<_i7.UserEntity>>.value(<_i7.UserEntity>[]),
+      ) as _i3.Future<List<_i7.UserEntity>>);
+}
+
+/// A class which mocks [UsersRemoteDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUsersRemoteDataSource extends _i1.Mock
+    implements _i9.UsersRemoteDataSource {
+  MockUsersRemoteDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  List<_i7.UserEntity> get users => (super.noSuchMethod(
+        Invocation.getter(#users),
+        returnValue: <_i7.UserEntity>[],
+      ) as List<_i7.UserEntity>);
+
+  @override
+  set users(List<_i7.UserEntity>? _users) => super.noSuchMethod(
+        Invocation.setter(
+          #users,
+          _users,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.Future<void> saveMockUsers(List<_i7.UserEntity>? users) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #saveMockUsers,
+          [users],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
+  @override
+  _i3.Future<List<_i7.UserEntity>> loadMockUsers() => (super.noSuchMethod(
+        Invocation.method(
+          #loadMockUsers,
+          [],
+        ),
+        returnValue: _i3.Future<List<_i7.UserEntity>>.value(<_i7.UserEntity>[]),
+      ) as _i3.Future<List<_i7.UserEntity>>);
+
+  @override
+  _i7.UserEntity? getUserByEmail(String? email) =>
+      (super.noSuchMethod(Invocation.method(
+        #getUserByEmail,
+        [email],
+      )) as _i7.UserEntity?);
+
+  @override
+  int getMaxUserId() => (super.noSuchMethod(
+        Invocation.method(
+          #getMaxUserId,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
+
+  @override
+  _i7.UserEntity? getUserById(String? id) =>
+      (super.noSuchMethod(Invocation.method(
+        #getUserById,
+        [id],
+      )) as _i7.UserEntity?);
 }
