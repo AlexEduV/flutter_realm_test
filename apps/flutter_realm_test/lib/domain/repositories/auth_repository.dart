@@ -4,8 +4,6 @@ import '../entities/session_entity.dart';
 import '../entities/user_entity.dart';
 
 abstract class AuthRepository {
-  Future<void> init();
-
   Future<AuthResult> login({required String email, required String password});
 
   Future<AuthResult> register({

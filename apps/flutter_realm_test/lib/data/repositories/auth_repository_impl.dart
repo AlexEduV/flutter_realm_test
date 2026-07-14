@@ -29,7 +29,6 @@ class AuthRepositoryImpl implements AuthRepository {
   late bool isAuthenticated = false;
   final _userSessionKey = 'userId';
 
-  @override
   Future<void> init() async {
     await serviceLocator<LoadUsersUseCase>().call();
     await _fetchOwnersUseCase.call();
