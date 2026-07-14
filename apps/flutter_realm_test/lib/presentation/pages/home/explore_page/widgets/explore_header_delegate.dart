@@ -103,7 +103,6 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                           itemBuilder: (context, index) {
                             if (state.isArticleListLoading) {
                               return Container(
-                                height: articleHeight,
                                 width: AppDimensions.exploreArticleItemBaseSize,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(AppDimensions.normalL),
@@ -111,16 +110,10 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                                 ),
                               );
                             }
-                            return AnimatedPadding(
-                              curve: Curves.easeOut,
+                            return AnimatedScale(
+                              scale: state.articles[index].isHovering ? 1.07 : 1.0,
                               duration: const Duration(milliseconds: 120),
-                              padding: EdgeInsets.symmetric(
-                                vertical: !state.articles[index].isHovering
-                                    ? (AppDimensions.exploreArticleItemBaseSize * 1.07 -
-                                              AppDimensions.exploreArticleItemBaseSize) /
-                                          2
-                                    : 0,
-                              ),
+                              curve: Curves.easeOut,
                               child: ExploreArticleItem(
                                 height: articleHeight,
                                 article: state.articles[index],
