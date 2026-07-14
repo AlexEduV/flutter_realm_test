@@ -305,7 +305,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
 
   serviceLocator.registerFactory(
-    () => ExplorePageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+    () => ExplorePageCubit(serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator()),
   );
 
   serviceLocator.registerFactory(() => NewItemPageCubit(serviceLocator()));

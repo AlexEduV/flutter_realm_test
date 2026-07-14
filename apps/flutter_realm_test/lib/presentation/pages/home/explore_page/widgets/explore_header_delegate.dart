@@ -66,8 +66,6 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                     label: AppSemanticsLabels.homePageSearchButton,
                     child: IconButton(
                       highlightColor: Colors.white10,
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
                       onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
                       icon: const Icon(
                         Icons.search,
@@ -103,7 +101,6 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                           itemBuilder: (context, index) {
                             if (state.isArticleListLoading) {
                               return Container(
-                                height: articleHeight,
                                 width: AppDimensions.exploreArticleItemBaseSize,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(AppDimensions.normalL),
@@ -111,21 +108,10 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                                 ),
                               );
                             }
-                            return AnimatedPadding(
-                              curve: Curves.easeOut,
-                              duration: const Duration(milliseconds: 120),
-                              padding: EdgeInsets.symmetric(
-                                vertical: !state.articles[index].isHovering
-                                    ? (AppDimensions.exploreArticleItemBaseSize * 1.07 -
-                                              AppDimensions.exploreArticleItemBaseSize) /
-                                          2
-                                    : 0,
-                              ),
-                              child: ExploreArticleItem(
-                                height: articleHeight,
-                                article: state.articles[index],
-                                index: index,
-                              ),
+                            return ExploreArticleItem(
+                              height: articleHeight,
+                              article: state.articles[index],
+                              index: index,
                             );
                           },
                           separatorBuilder: (context, index) {

@@ -1,12 +1,10 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
-import 'package:core_ui/core_ui.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
-import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
@@ -37,33 +35,7 @@ class ExplorePage extends StatelessWidget {
         body: CustomScrollView(
           controller: scrollController,
           slivers: [
-            BlocBuilder<ExplorePageCubit, ExplorePageState>(
-              builder: (context, exploreState) {
-                return BlocBuilder<UserDataCubit, UserDataState>(
-                  builder: (context, userState) {
-                    final showLastSeenWidget = getShouldShowLastSeenWidget(userState.lastSeenCar);
-
-                    return SliverPersistentHeader(
-                      pinned: true,
-                      delegate: ExploreHeaderDelegate(
-                        minHeight:
-                            AppDimensions.exploreAppBarBaseSize, // Height of collapsed app bar
-                        maxHeightWithLastSeen:
-                            AppDimensions.exploreArticleItemBaseSize +
-                            AppDimensions.exploreAppBarBaseSize +
-                            160,
-                        maxHeightWithoutLastSeen:
-                            AppDimensions.exploreArticleItemBaseSize +
-                            AppDimensions.exploreAppBarBaseSize +
-                            21,
-                        showLastSeen: showLastSeenWidget,
-                        title: context.tr(L10nKeys.explorePageTitle),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+            _ExploreHeader(title: context.tr(L10nKeys.explorePageTitle)),
 
             SliverToBoxAdapter(
               child: Padding(
@@ -180,23 +152,49 @@ class ExplorePage extends StatelessWidget {
   }
 
   void _handleDelete(CarEntity carToDelete, BuildContext context) {
-    // 1. Capture the data while the object is still valid
     final id = carToDelete.carId;
-
-    // 3. Delete once
-    //serviceLocator<DeleteCarByIdUseCase>().call(id);
-
     context.read<ExplorePageCubit>().removeCarById(id);
   }
+}
 
-  bool getShouldShowLastSeenWidget(Map<DateTime, String>? lastSeenCar) {
-    String? carId = lastSeenCar?.values.firstOrNull;
-    if (carId != null) {
-      final car = serviceLocator<GetCarByIdUseCase>().call(carId);
-      if (car.carId == 'testId') carId = null;
-    }
+class _ExploreHeader extends StatelessWidget {
+  const _ExploreHeader({required this.title});
 
-    final shouldShowLastSeenWidget = lastSeenCar != null && carId != null;
-    return shouldShowLastSeenWidget;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ExplorePageCubit, ExplorePageState>(
+      buildWhen: (prev, curr) => prev.isLoading != curr.isLoading,
+      builder: (context, _) {
+        return BlocBuilder<UserDataCubit, UserDataState>(
+          buildWhen: (prev, curr) => prev.lastSeenCar != curr.lastSeenCar,
+          builder: (context, userState) {
+            final showLastSeen =
+                userState.lastSeenCar != null &&
+                context.read<ExplorePageCubit>().isCarExistsById(
+                  userState.lastSeenCar?.carId ?? '',
+                );
+
+            return SliverPersistentHeader(
+              pinned: true,
+              delegate: ExploreHeaderDelegate(
+                minHeight: AppDimensions.exploreAppBarBaseSize,
+                maxHeightWithLastSeen:
+                    AppDimensions.exploreArticleItemBaseSize +
+                    AppDimensions.exploreAppBarBaseSize +
+                    160,
+                maxHeightWithoutLastSeen:
+                    AppDimensions.exploreArticleItemBaseSize +
+                    AppDimensions.exploreAppBarBaseSize +
+                    21,
+                showLastSeen: showLastSeen,
+                title: title,
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }

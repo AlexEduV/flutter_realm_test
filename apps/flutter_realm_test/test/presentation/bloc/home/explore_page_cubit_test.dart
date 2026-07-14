@@ -12,6 +12,7 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
@@ -19,11 +20,12 @@ import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore
 
 import 'explore_page_cubit_test.mocks.dart';
 
-@GenerateMocks([SyncCarsUseCase, WatchCarsUseCase, FetchArticlesUseCase])
+@GenerateMocks([SyncCarsUseCase, WatchCarsUseCase, FetchArticlesUseCase, GetCarByIdUseCase])
 void main() {
   late MockSyncCarsUseCase mockSyncCarsUseCase;
   late MockWatchCarsUseCase mockWatchCarsUseCase;
   late MockFetchArticlesUseCase mockFetchArticlesUseCase;
+  late MockGetCarByIdUseCase mockGetCarByIdUseCase;
 
   late ExplorePageCubit cubit;
 
@@ -57,7 +59,8 @@ void main() {
     mockWatchCarsUseCase = MockWatchCarsUseCase();
     mockSyncCarsUseCase = MockSyncCarsUseCase();
     mockFetchArticlesUseCase = MockFetchArticlesUseCase();
-    cubit = ExplorePageCubit(mockWatchCarsUseCase, mockSyncCarsUseCase, mockFetchArticlesUseCase);
+    mockGetCarByIdUseCase = MockGetCarByIdUseCase();
+    cubit = ExplorePageCubit(mockWatchCarsUseCase, mockSyncCarsUseCase, mockFetchArticlesUseCase, mockGetCarByIdUseCase);
   });
 
   tearDown(() async {
@@ -76,9 +79,15 @@ void main() {
     },
     act: (cubit) => cubit.init(),
     expect: () => [
-      isA<ExplorePageState>().having((s) => s.isLoading, 'isLoading', true),
-      isA<ExplorePageState>().having((s) => s.isLoading, 'isLoading', true),
-      isA<ExplorePageState>().having((s) => s.isLoading, 'isLoading', false),
+      isA<ExplorePageState>()
+          .having((s) => s.isLoading, 'isLoading', true)
+          .having((s) => s.isArticleListLoading, 'isArticleListLoading', true),
+      isA<ExplorePageState>()
+          .having((s) => s.isLoading, 'isLoading', false)
+          .having((s) => s.isArticleListLoading, 'isArticleListLoading', true),
+      isA<ExplorePageState>()
+          .having((s) => s.isLoading, 'isLoading', false)
+          .having((s) => s.isArticleListLoading, 'isArticleListLoading', false),
       isA<ExplorePageState>().having((s) => s.cars, 'cars', carList),
     ],
     verify: (_) {

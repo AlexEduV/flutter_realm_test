@@ -1,46 +1,50 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/extensions/list_extension.dart';
-import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
 class ExplorePageCubit extends Cubit<ExplorePageState> {
-  ExplorePageCubit(this._watchCarsUseCase, this._syncCarsUseCase, this._fetchArticlesUseCase)
-    : super(const ExplorePageState());
+  ExplorePageCubit(
+    this._watchCarsUseCase,
+    this._syncCarsUseCase,
+    this._fetchArticlesUseCase,
+    this._getCarByIdUseCase,
+  ) : super(const ExplorePageState());
 
   StreamSubscription? _carSubscription;
 
   final SyncCarsUseCase _syncCarsUseCase;
   final WatchCarsUseCase _watchCarsUseCase;
   final FetchArticlesUseCase _fetchArticlesUseCase;
+  final GetCarByIdUseCase _getCarByIdUseCase;
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true, isArticleListLoading: true));
 
-    await _syncCarsUseCase.call();
+    try {
+      await _syncCarsUseCase.call();
+    } finally {
+      emit(state.copyWith(isLoading: false));
+    }
 
-    final articles = await _fetchArticlesUseCase.call();
-    emit(state.copyWith(articles: articles, isArticleListLoading: false));
+    try {
+      final articles = await _fetchArticlesUseCase.call();
+      emit(state.copyWith(articles: articles));
+    } finally {
+      emit(state.copyWith(isArticleListLoading: false));
+    }
 
-    emit(state.copyWith(isLoading: false));
-
+    await _carSubscription?.cancel();
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
-      final currentList = state.cars;
-
-      for (final car in currentList) {
-        final index = entities.indexWhereOrNull((element) => element.carId == car.carId);
-
-        if (index == null) continue;
-
-        entities[index].isShown = car.isShown;
-      }
-
-      updateCars(entities);
+      final visibleCars = entities
+          .map((e) => e.copyWith(isShown: !state.hiddenCarIds.contains(e.carId)))
+          .toList();
+      updateCars(visibleCars);
     });
   }
 
@@ -48,22 +52,22 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(cars: newValue));
   }
 
-  void removeCarById(String id) {
-    final cars = List<CarEntity>.from(state.cars);
-    final index = cars.indexWhereOrNull((element) => element.carId == id);
-
-    if (index == null) return;
-
-    cars[index] = cars[index].copyWith(isShown: false);
-    //todo: updating local storage here creates unstable duplicates;
-    emit(state.copyWith(cars: cars));
+  bool isCarExistsById(String carId) {
+    final car = _getCarByIdUseCase.call(carId);
+    return car.carId != 'testId';
   }
 
+  void removeCarById(String id) {
+    final updatedCars = state.cars
+        .map((c) => c.carId == id ? c.copyWith(isShown: false) : c)
+        .toList();
+    emit(state.copyWith(hiddenCarIds: {...state.hiddenCarIds, id}, cars: updatedCars));
+  }
 
-  void hoverArticle(int index, bool newValue) {
-    final articles = List<ArticleEntity>.from(state.articles);
-    articles[index] = state.articles[index].copyWith(isHovering: newValue);
-
+  void hoverArticle(String articleId, bool newValue) {
+    final articles = state.articles.map((article) {
+      return article.id == articleId ? article.copyWith(isHovering: newValue) : article;
+    }).toList();
     emit(state.copyWith(articles: articles));
   }
 

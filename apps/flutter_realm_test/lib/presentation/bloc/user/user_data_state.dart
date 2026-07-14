@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 
 part 'user_data_state.freezed.dart';
 
@@ -18,7 +19,7 @@ abstract class UserDataState with _$UserDataState {
     @Default('') String email,
     @Default('') String password,
     @Default('') String region,
-    Map<DateTime, String>? lastSeenCar,
+    LastSeenCarEntity? lastSeenCar,
     String? avatarImageSrc,
   }) = _UserDataState;
 

@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
@@ -28,8 +28,11 @@ class ExploreArticleItem extends StatefulWidget {
 }
 
 class _ExploreArticleItemState extends State<ExploreArticleItem> {
-  void _setPressed(bool value) {
-    context.read<ExplorePageCubit>().hoverArticle(widget.index, value);
+  void _setPressed(bool isPressed) {
+    final cubit = context.read<ExplorePageCubit>();
+    final state = cubit.state;
+
+    cubit.hoverArticle(state.articles[widget.index].id, isPressed);
   }
 
   @override
@@ -46,7 +49,7 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
           builder: (context, scaleX, child) {
             return Transform(
               alignment: Alignment.center,
-              transform: Matrix4.diagonal3Values(scaleX, 1.0, 1.0),
+              transform: Matrix4.diagonal3Values(scaleX, scaleX, 1.0),
               child: child,
             );
           },

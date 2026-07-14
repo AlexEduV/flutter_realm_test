@@ -23,9 +23,9 @@ class CarEntity {
     this.year,
     this.color,
     this.owner,
-    this.mileage,
+    this.mileage = 0,
     this.distanceTo,
-    this.price,
+    this.price = 0,
     this.images = const [],
     this.isShown = true,
   });
@@ -108,11 +108,11 @@ class CarEntity {
   final String transmissionType;
   final bool isVerified;
   final PromoType? promoType;
-  int? mileage = 0;
-  int? distanceTo;
-  int? price = 0;
+  final int? mileage;
+  final int? distanceTo;
+  final int? price;
   final List<String> images;
-  bool isShown;
+  final bool isShown;
 
   CarEntity copyWith({
     ObjectId? id,

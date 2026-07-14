@@ -1,3 +1,4 @@
+import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 import '../../data/models/scheme.dart';
@@ -20,11 +21,8 @@ extension UserExtensions on User {
     );
   }
 
-  static LastSeenCar? getLastSeenCar(Map<DateTime, String>? data) {
-    if (data == null) {
-      return null;
-    }
-
-    return LastSeenCar(data.entries.first.key, carId: data.entries.first.value);
+  static LastSeenCar? getLastSeenCar(LastSeenCarEntity? entity) {
+    if (entity == null) return null;
+    return LastSeenCar(entity.seenAt, carId: entity.carId);
   }
 }

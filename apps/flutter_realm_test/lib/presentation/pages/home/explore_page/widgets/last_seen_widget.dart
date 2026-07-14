@@ -30,7 +30,7 @@ class LastSeenWidget extends StatelessWidget {
 
         return BlocBuilder<ExplorePageCubit, ExplorePageState>(
           builder: (context, state) {
-            final carId = userState.lastSeenCar?.entries.first.value;
+            final carId = userState.lastSeenCar?.carId;
             final carEntityFull = serviceLocator<GetCarByIdUseCase>().call(carId ?? '');
             final isTestCar = carEntityFull.carId == 'testId';
 

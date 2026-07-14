@@ -1,3 +1,4 @@
+import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import '../../data/models/scheme.dart';
@@ -29,7 +30,7 @@ class UserEntity {
       viewedIds: user.viewedIds.toList(),
       email: user.email,
       lastSeenCar: user.lastSeenCar != null && user.lastSeenCar!.carId != null
-          ? {user.lastSeenCar!.date: user.lastSeenCar!.carId!}
+          ? LastSeenCarEntity(carId: user.lastSeenCar!.carId!, seenAt: user.lastSeenCar!.date)
           : null,
       password: user.password,
       region: user.region,
@@ -69,9 +70,12 @@ class UserEntity {
       lastName: json['lastName'] as String,
       region: (json['region'] ?? '') as String,
       avatarImageSrc: json['avatarImageSrc'] as String?,
-      lastSeenCar: (json['lastSeenCar'] as Map<String, dynamic>?)?.map(
-        (key, value) => MapEntry(DateTime.parse(key), value as String),
-      ),
+      lastSeenCar: json['lastSeenCar'] != null
+          ? LastSeenCarEntity(
+              seenAt: DateTime.parse((json['lastSeenCar'] as Map<String, dynamic>).keys.first),
+              carId: (json['lastSeenCar'] as Map<String, dynamic>).values.first as String,
+            )
+          : null,
       viewedIds: (json['viewedIds'] as List<dynamic>).map((e) => e as String).toList(),
       createdIds: (json['createdIds'] as List<dynamic>).map((e) => e as String).toList(),
       favoriteIds: (json['favoriteIds'] as List<dynamic>).map((e) => e as String).toList(),
@@ -98,7 +102,7 @@ class UserEntity {
   final List<String> favoriteIds;
   final List<String> createdIds;
   final List<String> viewedIds;
-  final Map<DateTime, String>? lastSeenCar;
+  final LastSeenCarEntity? lastSeenCar;
   final String password;
   final String? avatarImageSrc;
 
@@ -112,7 +116,7 @@ class UserEntity {
     List<String>? viewedIds,
     String? email,
     String? password,
-    Map<DateTime, String>? lastSeenCar,
+    LastSeenCarEntity? lastSeenCar,
     String? region,
     String? avatarImageSrc,
   }) {
@@ -143,7 +147,9 @@ class UserEntity {
     'favoriteIds': favoriteIds,
     'viewedIds': viewedIds,
     'createdIds': createdIds,
-    'lastSeenCar': lastSeenCar?.map((key, value) => MapEntry(key.toIso8601String(), value)),
+    'lastSeenCar': lastSeenCar != null
+        ? {lastSeenCar?.seenAt.toIso8601String(): lastSeenCar?.carId}
+        : null,
     'isLocationPermissionGranted': isLocationPermissionGranted,
   };
 }
