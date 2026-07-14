@@ -4,9 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
-import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
@@ -41,7 +39,10 @@ class ExplorePage extends StatelessWidget {
               builder: (context, exploreState) {
                 return BlocBuilder<UserDataCubit, UserDataState>(
                   builder: (context, userState) {
-                    final showLastSeenWidget = getShouldShowLastSeenWidget(userState.lastSeenCar);
+                    final showLastSeenWidget = _shouldShowLastSeenWidget(
+                      context,
+                      userState.lastSeenCar,
+                    );
 
                     return SliverPersistentHeader(
                       pinned: true,
@@ -184,14 +185,14 @@ class ExplorePage extends StatelessWidget {
     context.read<ExplorePageCubit>().removeCarById(id);
   }
 
-  bool getShouldShowLastSeenWidget(Map<DateTime, String>? lastSeenCar) {
-    String? carId = lastSeenCar?.values.firstOrNull;
-    if (carId != null) {
-      final car = serviceLocator<GetCarByIdUseCase>().call(carId);
-      if (car.carId == 'testId') carId = null;
-    }
+  bool _shouldShowLastSeenWidget(BuildContext context, Map<DateTime, String>? lastSeenCar) {
+    if (lastSeenCar == null) return false;
 
-    final shouldShowLastSeenWidget = lastSeenCar != null && carId != null;
-    return shouldShowLastSeenWidget;
+    final cubit = context.read<ExplorePageCubit>();
+
+    String? carId = lastSeenCar.values.firstOrNull;
+    if (carId == null) return false;
+
+    return cubit.isCarExistsById(carId);
   }
 }
