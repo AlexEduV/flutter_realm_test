@@ -110,15 +110,10 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                                 ),
                               );
                             }
-                            return AnimatedScale(
-                              scale: state.articles[index].isHovering ? 1.07 : 1.0,
-                              duration: const Duration(milliseconds: 120),
-                              curve: Curves.easeOut,
-                              child: ExploreArticleItem(
-                                height: articleHeight,
-                                article: state.articles[index],
-                                index: index,
-                              ),
+                            return ExploreArticleItem(
+                              height: articleHeight,
+                              article: state.articles[index],
+                              index: index,
                             );
                           },
                           separatorBuilder: (context, index) {
