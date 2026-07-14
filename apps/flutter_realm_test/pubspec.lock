@@ -1621,13 +1621,13 @@ packages:
     source: hosted
     version: "0.7.10"
   test_core:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: test_core
-      sha256: a39c204a4fc7a7ccb04a2b985e359fda3cc37e45e0b8ac61c3fb1a05aa832132
+      sha256: "1991d4cfe85d5043241acac92962c3977c8d2f2add1ee73130c7b286417d1d34"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.19"
+    version: "0.6.17"
   timing:
     dependency: transitive
     description:

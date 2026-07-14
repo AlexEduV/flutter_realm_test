@@ -30,6 +30,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._checkLocationPermissionStatusUseCase,
     this._getUserByEmailUseCase,
     this._pickImageFromGalleryUseCase,
+    this._deleteCarByIdUseCase,
     this._logger,
   ) : super(const UserDataState());
 
@@ -44,6 +45,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   final CheckLocationPermissionStatusUseCase _checkLocationPermissionStatusUseCase;
 
   final GetUserByEmailUseCase _getUserByEmailUseCase;
+  final DeleteCarByIdUseCase _deleteCarByIdUseCase;
 
   late UserEntity user;
   final BaseLogger _logger;
@@ -81,7 +83,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void updateCloudUser(UserEntity user) {
-    serviceLocator<AuthRepository>().updateUser(state.email, user);
+    _authRepository.updateUser(state.email, user);
   }
 
   Future<void> initLocalisation(String locale) async {
@@ -217,7 +219,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     updateUser(user: user);
 
-    serviceLocator<DeleteCarByIdUseCase>().call(carId);
+    _deleteCarByIdUseCase.call(carId);
   }
 
   void addCarToRecentlyViewed(String carId) {
@@ -262,7 +264,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     if (state.createdIds.isEmpty) return;
 
     for (final id in state.createdIds) {
-      serviceLocator<DeleteCarByIdUseCase>().call(id);
+      _deleteCarByIdUseCase.call(id);
     }
 
     final List<String> newList = [];

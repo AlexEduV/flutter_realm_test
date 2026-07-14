@@ -7,9 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/logger/base_logger.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
-import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/entities/session_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
+import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
@@ -20,11 +21,11 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 
-import '../../../data/data_sources/remote/auth_remote_data_source_impl_test.mocks.dart';
 import '../../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
 
 @GenerateMocks([
+  AuthRepository,
   BaseLocalStorage,
   OpenAppSettingsUseCase,
   CheckLocationServiceStatusUseCase,
@@ -32,6 +33,7 @@ import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
   CheckLocationPermissionStatusUseCase,
   GetUserByEmailUseCase,
   PickImageFromGalleryUseCase,
+  DeleteCarByIdUseCase,
   BaseLogger,
 ])
 void main() {
@@ -44,6 +46,7 @@ void main() {
   late MockGetUserByEmailUseCase mockGetUserByEmailUseCase;
   late MockOpenAppSettingsUseCase mockOpenAppSettingsUseCase;
   late MockPickImageFromGalleryUseCase mockPickImageFromGalleryUseCase;
+  late MockDeleteCarByIdUseCase mockDeleteCarByIdUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
   late MockBaseLogger mockBaseLogger;
@@ -57,6 +60,7 @@ void main() {
   mockOpenAppSettingsUseCase = MockOpenAppSettingsUseCase();
   mockGetUserByEmailUseCase = MockGetUserByEmailUseCase();
   mockPickImageFromGalleryUseCase = MockPickImageFromGalleryUseCase();
+  mockDeleteCarByIdUseCase = MockDeleteCarByIdUseCase();
   mockBaseLogger = MockBaseLogger();
 
   setUp(() {
@@ -65,6 +69,7 @@ void main() {
     mockLocalStorage = MockBaseLocalStorage();
 
     when(mockAuthRepository.getUserSession()).thenAnswer((_) async => null);
+    when(mockAuthRepository.updateUser(any, any)).thenAnswer((_) async {});
 
     cubit = UserDataCubit(
       mockLocalStorage,
@@ -75,6 +80,7 @@ void main() {
       mockCheckLocationPermissionStatusUseCase,
       mockGetUserByEmailUseCase,
       mockPickImageFromGalleryUseCase,
+      mockDeleteCarByIdUseCase,
       mockBaseLogger,
     );
     testUser = const UserEntity(
@@ -153,9 +159,9 @@ void main() {
         const UserDataState(isLoading: true, isLocationPermissionGranted: true),
         isA<UserDataState>()
             .having(
-              (state) => state.isLoading, // The property to check
-              'loading', // Description for failure messages
-              false, // The expected value
+              (state) => state.isLoading,
+              'loading',
+              false,
             )
             .having(
               (state) => state.isLocationPermissionGranted,
@@ -199,6 +205,7 @@ void main() {
         avatarImageSrc: null,
         viewedIds: [],
       );
+      when(mockLocalStorage.update(any)).thenReturn(null);
       cubit.addCarIdToFavorites('3');
       expect(cubit.user.favoriteIds, contains('3'));
       expect(cubit.user.favoriteIds.length, 3);
@@ -219,9 +226,8 @@ void main() {
         avatarImageSrc: null,
         viewedIds: [],
       );
-
+      when(mockLocalStorage.update(any)).thenReturn(null);
       cubit.addCarIdToFavorites('1');
-      // Should still only have 2 unique IDs
       expect(cubit.user.favoriteIds.length, 2);
     });
   });
@@ -242,7 +248,7 @@ void main() {
         avatarImageSrc: null,
         viewedIds: [],
       );
-
+      when(mockLocalStorage.update(any)).thenReturn(null);
       cubit.removeCarIdFromFavorites('1');
       expect(cubit.user.favoriteIds, isNot(contains('1')));
     });
@@ -260,9 +266,9 @@ void main() {
 
       when(mockGetUserByEmailUseCase.call('auth@example.com')).thenReturn(user);
       when(mockLocalStorage.initUser()).thenReturn(user);
-      when(mockAuthRepository.getUserSession()).thenAnswer(
-        (_) async => const SessionEntity(userId: '1', sessionId: 'session-123'),
-      );
+      when(
+        mockAuthRepository.getUserSession(),
+      ).thenAnswer((_) async => const SessionEntity(userId: '1', sessionId: 'session-123'));
 
       await cubit.authUser('auth@example.com');
       expect(cubit.state.isUserAuthenticated, true);

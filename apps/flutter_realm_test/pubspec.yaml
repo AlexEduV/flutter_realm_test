@@ -65,6 +65,7 @@ dependency_overrides:
   build_runner: 2.4.9
   dart_style: 2.3.7
   test_api: 0.7.10
+  test_core: 0.6.17
 
 flutter:
   uses-material-design: true
