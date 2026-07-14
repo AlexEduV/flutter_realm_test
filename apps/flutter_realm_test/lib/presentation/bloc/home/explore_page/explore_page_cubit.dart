@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/list_extension.dart';
-import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
@@ -62,10 +61,10 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(cars: cars));
   }
 
-  void hoverArticle(int index, bool newValue) {
-    final articles = List<ArticleEntity>.from(state.articles);
-    articles[index] = state.articles[index].copyWith(isHovering: newValue);
-
+  void hoverArticle(String articleId, bool newValue) {
+    final articles = state.articles.map((article) {
+      return article.id == articleId ? article.copyWith(isHovering: newValue) : article;
+    }).toList();
     emit(state.copyWith(articles: articles));
   }
 

@@ -271,14 +271,14 @@ class MockExplorePageCubit extends _i1.Mock implements _i11.ExplorePageCubit {
 
   @override
   void hoverArticle(
-    int? index,
+    String? articleId,
     bool? newValue,
   ) =>
       super.noSuchMethod(
         Invocation.method(
           #hoverArticle,
           [
-            index,
+            articleId,
             newValue,
           ],
         ),
