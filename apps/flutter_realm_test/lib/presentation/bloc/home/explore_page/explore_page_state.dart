@@ -8,6 +8,7 @@ part 'explore_page_state.freezed.dart';
 abstract class ExplorePageState with _$ExplorePageState {
   const factory ExplorePageState({
     @Default([]) List<CarEntity> cars,
+    @Default({}) Set<String> hiddenCarIds,
     @Default(false) bool isLoading,
     @Default([]) List<ArticleEntity> articles,
     @Default(false) bool isArticleListLoading,

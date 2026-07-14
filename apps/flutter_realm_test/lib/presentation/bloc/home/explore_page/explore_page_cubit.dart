@@ -1,8 +1,6 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/extensions/list_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
@@ -37,12 +35,10 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
 
     await _carSubscription?.cancel();
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
-      final currentList = state.cars;
-      final mergedList = entities.map((e) {
-        final existing = currentList.firstWhereOrNull((c) => c.carId == e.carId);
-        return existing != null ? e.copyWith(isShown: existing.isShown) : e;
-      }).toList();
-      updateCars(mergedList);
+      final visibleCars = entities
+          .map((e) => e.copyWith(isShown: !state.hiddenCarIds.contains(e.carId)))
+          .toList();
+      updateCars(visibleCars);
     });
   }
 
@@ -51,14 +47,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
   }
 
   void removeCarById(String id) {
-    final cars = List<CarEntity>.from(state.cars);
-    final index = cars.indexWhereOrNull((element) => element.carId == id);
-
-    if (index == null) return;
-
-    cars[index] = cars[index].copyWith(isShown: false);
-    //todo: updating local storage here creates unstable duplicates;
-    emit(state.copyWith(cars: cars));
+    emit(state.copyWith(hiddenCarIds: {...state.hiddenCarIds, id}));
   }
 
   void hoverArticle(String articleId, bool newValue) {
