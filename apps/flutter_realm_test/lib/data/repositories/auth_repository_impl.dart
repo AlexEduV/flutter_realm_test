@@ -39,7 +39,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> logOut() async {
-    await clearUserSession();
+    await _clearUserSession();
     _localStorage.clearUser();
     await Future.delayed(const Duration(milliseconds: 200));
 
@@ -72,7 +72,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
     final user = users.firstWhere((element) => element.email == email);
 
-    await saveUserSession(user.userId);
+    await _saveUserSession(user.userId);
 
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
@@ -110,7 +110,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
     users.add(user);
     await serviceLocator<SaveUsersUseCase>().call(users);
-    await saveUserSession(newUserId.toString());
+    await _saveUserSession(newUserId.toString());
 
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
@@ -149,13 +149,11 @@ class AuthRepositoryImpl implements AuthRepository {
     return null;
   }
 
-  @override
-  Future<void> saveUserSession(String userId) async {
+  Future<void> _saveUserSession(String userId) async {
     await _cloudStorage.setString(_userSessionKey, userId);
   }
 
-  @override
-  Future<void> clearUserSession() async {
+  Future<void> _clearUserSession() async {
     await _cloudStorage.remove(_userSessionKey);
   }
 

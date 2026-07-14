@@ -160,24 +160,4 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
         ),
         returnValue: _i4.Future<_i6.SessionEntity?>.value(),
       ) as _i4.Future<_i6.SessionEntity?>);
-
-  @override
-  _i4.Future<void> saveUserSession(String? userId) => (super.noSuchMethod(
-        Invocation.method(
-          #saveUserSession,
-          [userId],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<void> clearUserSession() => (super.noSuchMethod(
-        Invocation.method(
-          #clearUserSession,
-          [],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
 }

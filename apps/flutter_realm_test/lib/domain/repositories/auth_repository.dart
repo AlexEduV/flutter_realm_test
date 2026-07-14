@@ -22,8 +22,4 @@ abstract class AuthRepository {
   Future<void> updateUser(String email, UserEntity data);
 
   Future<SessionEntity?> getUserSession();
-
-  Future<void> saveUserSession(String userId);
-
-  Future<void> clearUserSession();
 }

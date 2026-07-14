@@ -199,26 +199,6 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
         ),
         returnValue: _i6.Future<_i7.SessionEntity?>.value(),
       ) as _i6.Future<_i7.SessionEntity?>);
-
-  @override
-  _i6.Future<void> saveUserSession(String? userId) => (super.noSuchMethod(
-        Invocation.method(
-          #saveUserSession,
-          [userId],
-        ),
-        returnValue: _i6.Future<void>.value(),
-        returnValueForMissingStub: _i6.Future<void>.value(),
-      ) as _i6.Future<void>);
-
-  @override
-  _i6.Future<void> clearUserSession() => (super.noSuchMethod(
-        Invocation.method(
-          #clearUserSession,
-          [],
-        ),
-        returnValue: _i6.Future<void>.value(),
-        returnValueForMissingStub: _i6.Future<void>.value(),
-      ) as _i6.Future<void>);
 }
 
 /// A class which mocks [BaseLocalStorage].
