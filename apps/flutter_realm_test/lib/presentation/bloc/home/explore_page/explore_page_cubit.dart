@@ -36,6 +36,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
       emit(state.copyWith(isArticleListLoading: false));
     }
 
+    await _carSubscription?.cancel();
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final currentList = state.cars;
       final mergedList = entities.map((e) {
