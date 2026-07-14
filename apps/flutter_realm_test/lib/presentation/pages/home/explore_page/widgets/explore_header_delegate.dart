@@ -66,8 +66,6 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                     label: AppSemanticsLabels.homePageSearchButton,
                     child: IconButton(
                       highlightColor: Colors.white10,
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
                       onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
                       icon: const Icon(
                         Icons.search,
