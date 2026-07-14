@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/logger/base_logger.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
-import 'package:test_flutter_project/domain/entities/session_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
@@ -68,7 +67,7 @@ void main() {
 
     mockLocalStorage = MockBaseLocalStorage();
 
-    when(mockAuthRepository.getUserSession()).thenAnswer((_) async => null);
+    when(mockAuthRepository.isUserLoggedIn()).thenAnswer((_) async => false);
     when(mockAuthRepository.updateUser(any, any)).thenAnswer((_) async {});
 
     cubit = UserDataCubit(
@@ -158,11 +157,7 @@ void main() {
       expect: () => [
         const UserDataState(isLoading: true, isLocationPermissionGranted: true),
         isA<UserDataState>()
-            .having(
-              (state) => state.isLoading,
-              'loading',
-              false,
-            )
+            .having((state) => state.isLoading, 'loading', false)
             .having(
               (state) => state.isLocationPermissionGranted,
               'locationPermissionGranted',
@@ -266,9 +261,7 @@ void main() {
 
       when(mockGetUserByEmailUseCase.call('auth@example.com')).thenReturn(user);
       when(mockLocalStorage.initUser()).thenReturn(user);
-      when(
-        mockAuthRepository.getUserSession(),
-      ).thenAnswer((_) async => const SessionEntity(userId: '1', sessionId: 'session-123'));
+      when(mockAuthRepository.isUserLoggedIn()).thenAnswer((_) async => true);
 
       await cubit.authUser('auth@example.com');
       expect(cubit.state.isUserAuthenticated, true);

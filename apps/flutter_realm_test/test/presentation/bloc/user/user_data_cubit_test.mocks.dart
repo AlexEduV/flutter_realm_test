@@ -6,31 +6,29 @@
 import 'dart:async' as _i6;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:permission_handler/permission_handler.dart' as _i13;
-import 'package:test_flutter_project/common/logger/base_logger.dart' as _i17;
+import 'package:permission_handler/permission_handler.dart' as _i12;
+import 'package:test_flutter_project/common/logger/base_logger.dart' as _i16;
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart'
-    as _i8;
-import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i4;
-import 'package:test_flutter_project/domain/entities/session_entity.dart'
     as _i7;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i4;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i3;
 import 'package:test_flutter_project/domain/models/auth_result.dart' as _i2;
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart'
     as _i5;
 import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart'
-    as _i16;
-import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
-    as _i10;
-import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
-    as _i9;
-import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart'
     as _i15;
-import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
-    as _i12;
-import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
-    as _i11;
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart'
+import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
+    as _i9;
+import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
+    as _i8;
+import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart'
     as _i14;
+import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
+    as _i11;
+import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
+    as _i10;
+import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart'
+    as _i13;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -182,19 +180,19 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
       ) as _i6.Future<void>);
 
   @override
-  _i6.Future<_i7.SessionEntity?> getUserSession() => (super.noSuchMethod(
+  _i6.Future<bool> isUserLoggedIn() => (super.noSuchMethod(
         Invocation.method(
-          #getUserSession,
+          #isUserLoggedIn,
           [],
         ),
-        returnValue: _i6.Future<_i7.SessionEntity?>.value(),
-      ) as _i6.Future<_i7.SessionEntity?>);
+        returnValue: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
 }
 
 /// A class which mocks [BaseLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBaseLocalStorage extends _i1.Mock implements _i8.BaseLocalStorage {
+class MockBaseLocalStorage extends _i1.Mock implements _i7.BaseLocalStorage {
   MockBaseLocalStorage() {
     _i1.throwOnMissingStub(this);
   }
@@ -306,7 +304,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i8.BaseLocalStorage {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockOpenAppSettingsUseCase extends _i1.Mock
-    implements _i9.OpenAppSettingsUseCase {
+    implements _i8.OpenAppSettingsUseCase {
   MockOpenAppSettingsUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -325,7 +323,7 @@ class MockOpenAppSettingsUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationServiceStatusUseCase extends _i1.Mock
-    implements _i10.CheckLocationServiceStatusUseCase {
+    implements _i9.CheckLocationServiceStatusUseCase {
   MockCheckLocationServiceStatusUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -344,7 +342,7 @@ class MockCheckLocationServiceStatusUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRequestLocationPermissionUseCase extends _i1.Mock
-    implements _i11.RequestLocationPermissionUseCase {
+    implements _i10.RequestLocationPermissionUseCase {
   MockRequestLocationPermissionUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -363,27 +361,27 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
-    implements _i12.CheckLocationPermissionStatusUseCase {
+    implements _i11.CheckLocationPermissionStatusUseCase {
   MockCheckLocationPermissionStatusUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.Future<_i13.PermissionStatus> call() => (super.noSuchMethod(
+  _i6.Future<_i12.PermissionStatus> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i6.Future<_i13.PermissionStatus>.value(
-            _i13.PermissionStatus.denied),
-      ) as _i6.Future<_i13.PermissionStatus>);
+        returnValue: _i6.Future<_i12.PermissionStatus>.value(
+            _i12.PermissionStatus.denied),
+      ) as _i6.Future<_i12.PermissionStatus>);
 }
 
 /// A class which mocks [GetUserByEmailUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetUserByEmailUseCase extends _i1.Mock
-    implements _i14.GetUserByEmailUseCase {
+    implements _i13.GetUserByEmailUseCase {
   MockGetUserByEmailUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -399,7 +397,7 @@ class MockGetUserByEmailUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPickImageFromGalleryUseCase extends _i1.Mock
-    implements _i15.PickImageFromGalleryUseCase {
+    implements _i14.PickImageFromGalleryUseCase {
   MockPickImageFromGalleryUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -418,7 +416,7 @@ class MockPickImageFromGalleryUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockDeleteCarByIdUseCase extends _i1.Mock
-    implements _i16.DeleteCarByIdUseCase {
+    implements _i15.DeleteCarByIdUseCase {
   MockDeleteCarByIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -436,7 +434,7 @@ class MockDeleteCarByIdUseCase extends _i1.Mock
 /// A class which mocks [BaseLogger].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBaseLogger extends _i1.Mock implements _i17.BaseLogger {
+class MockBaseLogger extends _i1.Mock implements _i16.BaseLogger {
   MockBaseLogger() {
     _i1.throwOnMissingStub(this);
   }

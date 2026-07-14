@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:math';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
@@ -15,7 +12,6 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import '../../common/extensions/user_scheme_extension.dart';
 import '../../core/di/injection_container.dart';
 import '../../domain/data_sources/remote/users_remote_data_source.dart';
-import '../../domain/entities/session_entity.dart';
 import '../../domain/entities/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -149,15 +145,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<SessionEntity?> getUserSession() async {
-    final userId = _cloudStorage.getString(_userSessionKey);
-
-    if (userId != null) {
-      final sessionId = _generateSessionId();
-
-      return SessionEntity(userId: userId, sessionId: sessionId);
-    }
-    return null;
+  Future<bool> isUserLoggedIn() async {
+    return _cloudStorage.getString(_userSessionKey) != null;
   }
 
   Future<void> _saveUserSession(String userId) async {
@@ -166,11 +155,5 @@ class AuthRepositoryImpl implements AuthRepository {
 
   Future<void> _clearUserSession() async {
     await _cloudStorage.remove(_userSessionKey);
-  }
-
-  String _generateSessionId([int length = 32]) {
-    final random = Random.secure();
-    final values = List<int>.generate(length, (i) => random.nextInt(256));
-    return base64Url.encode(values);
   }
 }
