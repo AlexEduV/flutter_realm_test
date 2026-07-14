@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
-import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
@@ -36,36 +35,7 @@ class ExplorePage extends StatelessWidget {
         body: CustomScrollView(
           controller: scrollController,
           slivers: [
-            BlocBuilder<ExplorePageCubit, ExplorePageState>(
-              builder: (context, exploreState) {
-                return BlocBuilder<UserDataCubit, UserDataState>(
-                  builder: (context, userState) {
-                    final showLastSeenWidget = _shouldShowLastSeenWidget(
-                      context,
-                      userState.lastSeenCar,
-                    );
-
-                    return SliverPersistentHeader(
-                      pinned: true,
-                      delegate: ExploreHeaderDelegate(
-                        minHeight:
-                            AppDimensions.exploreAppBarBaseSize, // Height of collapsed app bar
-                        maxHeightWithLastSeen:
-                            AppDimensions.exploreArticleItemBaseSize +
-                            AppDimensions.exploreAppBarBaseSize +
-                            160,
-                        maxHeightWithoutLastSeen:
-                            AppDimensions.exploreArticleItemBaseSize +
-                            AppDimensions.exploreAppBarBaseSize +
-                            21,
-                        showLastSeen: showLastSeenWidget,
-                        title: context.tr(L10nKeys.explorePageTitle),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+            _ExploreHeader(title: context.tr(L10nKeys.explorePageTitle)),
 
             SliverToBoxAdapter(
               child: Padding(
@@ -185,9 +155,46 @@ class ExplorePage extends StatelessWidget {
     final id = carToDelete.carId;
     context.read<ExplorePageCubit>().removeCarById(id);
   }
+}
 
-  bool _shouldShowLastSeenWidget(BuildContext context, LastSeenCarEntity? lastSeenCar) {
-    if (lastSeenCar == null) return false;
-    return context.read<ExplorePageCubit>().isCarExistsById(lastSeenCar.carId);
+class _ExploreHeader extends StatelessWidget {
+  const _ExploreHeader({required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ExplorePageCubit, ExplorePageState>(
+      buildWhen: (prev, curr) => prev.isLoading != curr.isLoading,
+      builder: (context, _) {
+        return BlocBuilder<UserDataCubit, UserDataState>(
+          buildWhen: (prev, curr) => prev.lastSeenCar != curr.lastSeenCar,
+          builder: (context, userState) {
+            final showLastSeen =
+                userState.lastSeenCar != null &&
+                context.read<ExplorePageCubit>().isCarExistsById(
+                  userState.lastSeenCar?.carId ?? '',
+                );
+
+            return SliverPersistentHeader(
+              pinned: true,
+              delegate: ExploreHeaderDelegate(
+                minHeight: AppDimensions.exploreAppBarBaseSize,
+                maxHeightWithLastSeen:
+                    AppDimensions.exploreArticleItemBaseSize +
+                    AppDimensions.exploreAppBarBaseSize +
+                    160,
+                maxHeightWithoutLastSeen:
+                    AppDimensions.exploreArticleItemBaseSize +
+                    AppDimensions.exploreAppBarBaseSize +
+                    21,
+                showLastSeen: showLastSeen,
+                title: title,
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }
