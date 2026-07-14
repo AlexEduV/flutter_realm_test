@@ -127,26 +127,23 @@ void main() {
   });
 
   test('syncCars deletes all, fetches, and adds cars', () async {
-    final carDto = MockCarDto();
-
-    when(carDto.id).thenReturn(ObjectId());
-    when(carDto.carId).thenReturn('testId');
-    when(carDto.manufacturer).thenReturn('Test Motors');
-    when(carDto.model).thenReturn('Model X');
-    when(carDto.year).thenReturn('2010');
-    when(carDto.isVerified).thenReturn(false);
-    when(carDto.promoType).thenReturn(null);
-    when(carDto.mileage).thenReturn(100);
-    when(carDto.distanceTo).thenReturn(0);
-    when(carDto.price).thenReturn(2000);
-    when(carDto.type).thenReturn('car');
-    when(carDto.bodyType).thenReturn('sedan');
-    when(carDto.engine).thenReturn(const EngineEntity(type: 'gasoline'));
-    when(carDto.transmissionType).thenReturn('hybrid');
-    when(carDto.color).thenReturn('White');
-    when(carDto.images).thenReturn([]);
-    when(carDto.owner).thenReturn(
-      OwnerEntity(id: 'test', firstName: 'James', lastName: 'Morrison', linkedItemIds: []),
+    final carDto = CarDto(
+      id: ObjectId(),
+      carId: 'testId',
+      manufacturer: 'Test Motors',
+      model: 'Model X',
+      year: '2010',
+      isVerified: false,
+      mileage: 100,
+      distanceTo: 0,
+      price: 2000,
+      type: 'car',
+      bodyType: 'sedan',
+      engine: const EngineEntity(type: 'gasoline'),
+      transmissionType: 'hybrid',
+      color: 'White',
+      images: [],
+      owner: OwnerEntity(id: 'test', firstName: 'James', lastName: 'Morrison', linkedItemIds: []),
     );
 
     final carDtos = [carDto];
