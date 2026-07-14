@@ -277,7 +277,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   void clearAllData() {
     clearFavorites();
     clearMyItems();
-    clearMyItems();
+    clearRecentItems();
   }
 
   void updateRegion(String? region) {
