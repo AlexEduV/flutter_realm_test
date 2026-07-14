@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/list_extension.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
@@ -37,16 +38,11 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
 
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final currentList = state.cars;
-
-      for (final car in currentList) {
-        final index = entities.indexWhereOrNull((element) => element.carId == car.carId);
-
-        if (index == null) continue;
-
-        entities[index].isShown = car.isShown;
-      }
-
-      updateCars(entities);
+      final mergedList = entities.map((e) {
+        final existing = currentList.firstWhereOrNull((c) => c.carId == e.carId);
+        return existing != null ? e.copyWith(isShown: existing.isShown) : e;
+      }).toList();
+      updateCars(mergedList);
     });
   }
 

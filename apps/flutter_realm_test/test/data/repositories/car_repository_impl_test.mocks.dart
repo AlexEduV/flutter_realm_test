@@ -214,33 +214,6 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
       ) as bool);
 
   @override
-  set mileage(int? _mileage) => super.noSuchMethod(
-        Invocation.setter(
-          #mileage,
-          _mileage,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  set distanceTo(int? _distanceTo) => super.noSuchMethod(
-        Invocation.setter(
-          #distanceTo,
-          _distanceTo,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  set price(int? _price) => super.noSuchMethod(
-        Invocation.setter(
-          #price,
-          _price,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   List<String> get images => (super.noSuchMethod(
         Invocation.getter(#images),
         returnValue: <String>[],
@@ -251,15 +224,6 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
         Invocation.getter(#isShown),
         returnValue: false,
       ) as bool);
-
-  @override
-  set isShown(bool? _isShown) => super.noSuchMethod(
-        Invocation.setter(
-          #isShown,
-          _isShown,
-        ),
-        returnValueForMissingStub: null,
-      );
 
   @override
   _i4.CarEntity copyWith({
