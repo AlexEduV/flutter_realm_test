@@ -4,7 +4,6 @@ import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/car_repository.dart';
@@ -51,7 +50,6 @@ void main() {
   });
 
   test('All dependencies are registered and resolvable', () {
-    expect(serviceLocator.isRegistered<AuthRemoteDataSource>(), isTrue);
     expect(serviceLocator.isRegistered<BaseLocalStorage>(), isTrue);
     expect(serviceLocator.isRegistered<CarRemoteDataSource>(), isTrue);
     expect(serviceLocator.isRegistered<CarRepository>(), isTrue);
@@ -78,7 +76,6 @@ void main() {
   });
 
   test('All dependencies can be resolved', () {
-    expect(serviceLocator<AuthRemoteDataSource>(), isA<AuthRemoteDataSource>());
     expect(serviceLocator<BaseLocalStorage>(), isA<BaseLocalStorage>());
     expect(serviceLocator<CarRemoteDataSource>(), isA<CarRemoteDataSource>());
     expect(serviceLocator<CarRepository>(), isA<CarRepository>());

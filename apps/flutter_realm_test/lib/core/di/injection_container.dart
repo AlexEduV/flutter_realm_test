@@ -24,7 +24,6 @@ import 'package:test_flutter_project/data/data_sources/local/share_local_data_so
 import 'package:test_flutter_project/data/data_sources/local/url_launch_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/gifs_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_auth_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_auto_complete_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_messages_remote_data_source_impl.dart';
@@ -59,7 +58,6 @@ import 'package:test_flutter_project/domain/data_sources/local/permission_local_
 import 'package:test_flutter_project/domain/data_sources/local/share_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/local/url_launch_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/article_remote_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/auth_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/auto_complete_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
@@ -240,10 +238,6 @@ Future<void> initDependenciesContainer() async {
   );
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
     () => MockRegionRemoteDataSourceImpl(),
-  );
-
-  serviceLocator.registerLazySingleton<AuthRemoteDataSource>(
-    () => MockAuthRemoteDataSourceImpl(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<GeolocatorLocalDataSource>(
     () => GeolocatorLocalDataSourceImpl(),
