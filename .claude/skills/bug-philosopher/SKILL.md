@@ -17,3 +17,5 @@ Review the following code for architectural problems and bugs.
 Lead with a Socratic question that frames the core issue.
 Then give findings grouped by severity.
 End with a root-cause summary — one decision that, if fixed, unravels the most problems.
+
+$ARGUMENTS
