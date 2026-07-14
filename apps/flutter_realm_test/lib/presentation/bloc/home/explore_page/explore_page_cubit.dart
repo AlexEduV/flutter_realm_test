@@ -22,12 +22,18 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
   Future<void> init() async {
     emit(state.copyWith(isLoading: true, isArticleListLoading: true));
 
-    await _syncCarsUseCase.call();
+    try {
+      await _syncCarsUseCase.call();
+    } finally {
+      emit(state.copyWith(isLoading: false));
+    }
 
-    final articles = await _fetchArticlesUseCase.call();
-    emit(state.copyWith(articles: articles, isArticleListLoading: false));
-
-    emit(state.copyWith(isLoading: false));
+    try {
+      final articles = await _fetchArticlesUseCase.call();
+      emit(state.copyWith(articles: articles));
+    } finally {
+      emit(state.copyWith(isArticleListLoading: false));
+    }
 
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final currentList = state.cars;
@@ -58,7 +64,6 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     //todo: updating local storage here creates unstable duplicates;
     emit(state.copyWith(cars: cars));
   }
-
 
   void hoverArticle(int index, bool newValue) {
     final articles = List<ArticleEntity>.from(state.articles);
