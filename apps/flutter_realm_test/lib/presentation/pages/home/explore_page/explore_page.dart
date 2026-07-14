@@ -1,7 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
-import 'package:core_ui/core_ui.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
@@ -180,12 +180,7 @@ class ExplorePage extends StatelessWidget {
   }
 
   void _handleDelete(CarEntity carToDelete, BuildContext context) {
-    // 1. Capture the data while the object is still valid
     final id = carToDelete.carId;
-
-    // 3. Delete once
-    //serviceLocator<DeleteCarByIdUseCase>().call(id);
-
     context.read<ExplorePageCubit>().removeCarById(id);
   }
 
