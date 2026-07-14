@@ -20,7 +20,6 @@ mixin _$ExplorePageState {
   bool get isLoading;
   List<ArticleEntity> get articles;
   bool get isArticleListLoading;
-  CarEntity? get lastSeenCar;
 
   /// Create a copy of ExplorePageState
   /// with the given fields replaced by the non-null parameter values.
@@ -42,9 +41,7 @@ mixin _$ExplorePageState {
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other.articles, articles) &&
             (identical(other.isArticleListLoading, isArticleListLoading) ||
-                other.isArticleListLoading == isArticleListLoading) &&
-            (identical(other.lastSeenCar, lastSeenCar) ||
-                other.lastSeenCar == lastSeenCar));
+                other.isArticleListLoading == isArticleListLoading));
   }
 
   @override
@@ -54,12 +51,11 @@ mixin _$ExplorePageState {
       const DeepCollectionEquality().hash(hiddenCarIds),
       isLoading,
       const DeepCollectionEquality().hash(articles),
-      isArticleListLoading,
-      lastSeenCar);
+      isArticleListLoading);
 
   @override
   String toString() {
-    return 'ExplorePageState(cars: $cars, hiddenCarIds: $hiddenCarIds, isLoading: $isLoading, articles: $articles, isArticleListLoading: $isArticleListLoading, lastSeenCar: $lastSeenCar)';
+    return 'ExplorePageState(cars: $cars, hiddenCarIds: $hiddenCarIds, isLoading: $isLoading, articles: $articles, isArticleListLoading: $isArticleListLoading)';
   }
 }
 
@@ -74,8 +70,7 @@ abstract mixin class $ExplorePageStateCopyWith<$Res> {
       Set<String> hiddenCarIds,
       bool isLoading,
       List<ArticleEntity> articles,
-      bool isArticleListLoading,
-      CarEntity? lastSeenCar});
+      bool isArticleListLoading});
 }
 
 /// @nodoc
@@ -96,7 +91,6 @@ class _$ExplorePageStateCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? articles = null,
     Object? isArticleListLoading = null,
-    Object? lastSeenCar = freezed,
   }) {
     return _then(_self.copyWith(
       cars: null == cars
@@ -119,10 +113,6 @@ class _$ExplorePageStateCopyWithImpl<$Res>
           ? _self.isArticleListLoading
           : isArticleListLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      lastSeenCar: freezed == lastSeenCar
-          ? _self.lastSeenCar
-          : lastSeenCar // ignore: cast_nullable_to_non_nullable
-              as CarEntity?,
     ));
   }
 }
@@ -135,8 +125,7 @@ class _ExplorePageState implements ExplorePageState {
       final Set<String> hiddenCarIds = const {},
       this.isLoading = false,
       final List<ArticleEntity> articles = const [],
-      this.isArticleListLoading = false,
-      this.lastSeenCar})
+      this.isArticleListLoading = false})
       : _cars = cars,
         _hiddenCarIds = hiddenCarIds,
         _articles = articles;
@@ -174,8 +163,6 @@ class _ExplorePageState implements ExplorePageState {
   @override
   @JsonKey()
   final bool isArticleListLoading;
-  @override
-  final CarEntity? lastSeenCar;
 
   /// Create a copy of ExplorePageState
   /// with the given fields replaced by the non-null parameter values.
@@ -197,9 +184,7 @@ class _ExplorePageState implements ExplorePageState {
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other._articles, _articles) &&
             (identical(other.isArticleListLoading, isArticleListLoading) ||
-                other.isArticleListLoading == isArticleListLoading) &&
-            (identical(other.lastSeenCar, lastSeenCar) ||
-                other.lastSeenCar == lastSeenCar));
+                other.isArticleListLoading == isArticleListLoading));
   }
 
   @override
@@ -209,12 +194,11 @@ class _ExplorePageState implements ExplorePageState {
       const DeepCollectionEquality().hash(_hiddenCarIds),
       isLoading,
       const DeepCollectionEquality().hash(_articles),
-      isArticleListLoading,
-      lastSeenCar);
+      isArticleListLoading);
 
   @override
   String toString() {
-    return 'ExplorePageState(cars: $cars, hiddenCarIds: $hiddenCarIds, isLoading: $isLoading, articles: $articles, isArticleListLoading: $isArticleListLoading, lastSeenCar: $lastSeenCar)';
+    return 'ExplorePageState(cars: $cars, hiddenCarIds: $hiddenCarIds, isLoading: $isLoading, articles: $articles, isArticleListLoading: $isArticleListLoading)';
   }
 }
 
@@ -231,8 +215,7 @@ abstract mixin class _$ExplorePageStateCopyWith<$Res>
       Set<String> hiddenCarIds,
       bool isLoading,
       List<ArticleEntity> articles,
-      bool isArticleListLoading,
-      CarEntity? lastSeenCar});
+      bool isArticleListLoading});
 }
 
 /// @nodoc
@@ -253,7 +236,6 @@ class __$ExplorePageStateCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? articles = null,
     Object? isArticleListLoading = null,
-    Object? lastSeenCar = freezed,
   }) {
     return _then(_ExplorePageState(
       cars: null == cars
@@ -276,10 +258,6 @@ class __$ExplorePageStateCopyWithImpl<$Res>
           ? _self.isArticleListLoading
           : isArticleListLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      lastSeenCar: freezed == lastSeenCar
-          ? _self.lastSeenCar
-          : lastSeenCar // ignore: cast_nullable_to_non_nullable
-              as CarEntity?,
     ));
   }
 }

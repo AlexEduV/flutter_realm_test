@@ -7,15 +7,15 @@ import 'dart:async' as _i8;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i9;
-import 'package:realm/realm.dart' as _i2;
+import 'package:realm/realm.dart' as _i5;
 import 'package:test_flutter_project/common/enums/promo_type.dart' as _i11;
 import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart'
     as _i12;
-import 'package:test_flutter_project/data/dto/car_dto.dart' as _i5;
+import 'package:test_flutter_project/data/dto/car_dto.dart' as _i4;
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart'
     as _i7;
-import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i4;
-import 'package:test_flutter_project/domain/entities/engine_entity.dart' as _i3;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
+import 'package:test_flutter_project/domain/entities/engine_entity.dart' as _i2;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i10;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i6;
 
@@ -33,8 +33,8 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i6;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeObjectId_0 extends _i1.SmartFake implements _i2.ObjectId {
-  _FakeObjectId_0(
+class _FakeEngineEntity_0 extends _i1.SmartFake implements _i2.EngineEntity {
+  _FakeEngineEntity_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -43,8 +43,8 @@ class _FakeObjectId_0 extends _i1.SmartFake implements _i2.ObjectId {
         );
 }
 
-class _FakeEngineEntity_1 extends _i1.SmartFake implements _i3.EngineEntity {
-  _FakeEngineEntity_1(
+class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
+  _FakeCarEntity_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -53,8 +53,8 @@ class _FakeEngineEntity_1 extends _i1.SmartFake implements _i3.EngineEntity {
         );
 }
 
-class _FakeCarEntity_2 extends _i1.SmartFake implements _i4.CarEntity {
-  _FakeCarEntity_2(
+class _FakeCarDto_2 extends _i1.SmartFake implements _i4.CarDto {
+  _FakeCarDto_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -63,8 +63,8 @@ class _FakeCarEntity_2 extends _i1.SmartFake implements _i4.CarEntity {
         );
 }
 
-class _FakeCarDto_3 extends _i1.SmartFake implements _i5.CarDto {
-  _FakeCarDto_3(
+class _FakeRealm_3 extends _i1.SmartFake implements _i5.Realm {
+  _FakeRealm_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -73,18 +73,8 @@ class _FakeCarDto_3 extends _i1.SmartFake implements _i5.CarDto {
         );
 }
 
-class _FakeRealm_4 extends _i1.SmartFake implements _i2.Realm {
-  _FakeRealm_4(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeUserEntity_5 extends _i1.SmartFake implements _i6.UserEntity {
-  _FakeUserEntity_5(
+class _FakeUserEntity_4 extends _i1.SmartFake implements _i6.UserEntity {
+  _FakeUserEntity_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -103,19 +93,19 @@ class MockCarRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i8.Stream<List<_i5.CarDto>> get carStream => (super.noSuchMethod(
+  _i8.Stream<List<_i4.CarDto>> get carStream => (super.noSuchMethod(
         Invocation.getter(#carStream),
-        returnValue: _i8.Stream<List<_i5.CarDto>>.empty(),
-      ) as _i8.Stream<List<_i5.CarDto>>);
+        returnValue: _i8.Stream<List<_i4.CarDto>>.empty(),
+      ) as _i8.Stream<List<_i4.CarDto>>);
 
   @override
-  _i8.Future<List<_i5.CarDto>> fetchCars() => (super.noSuchMethod(
+  _i8.Future<List<_i4.CarDto>> fetchCars() => (super.noSuchMethod(
         Invocation.method(
           #fetchCars,
           [],
         ),
-        returnValue: _i8.Future<List<_i5.CarDto>>.value(<_i5.CarDto>[]),
-      ) as _i8.Future<List<_i5.CarDto>>);
+        returnValue: _i8.Future<List<_i4.CarDto>>.value(<_i4.CarDto>[]),
+      ) as _i8.Future<List<_i4.CarDto>>);
 
   @override
   void dispose() => super.noSuchMethod(
@@ -130,19 +120,10 @@ class MockCarRemoteDataSource extends _i1.Mock
 /// A class which mocks [CarEntity].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
+class MockCarEntity extends _i1.Mock implements _i3.CarEntity {
   MockCarEntity() {
     _i1.throwOnMissingStub(this);
   }
-
-  @override
-  _i2.ObjectId get id => (super.noSuchMethod(
-        Invocation.getter(#id),
-        returnValue: _FakeObjectId_0(
-          this,
-          Invocation.getter(#id),
-        ),
-      ) as _i2.ObjectId);
 
   @override
   String get carId => (super.noSuchMethod(
@@ -190,13 +171,13 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
       ) as String);
 
   @override
-  _i3.EngineEntity get engine => (super.noSuchMethod(
+  _i2.EngineEntity get engine => (super.noSuchMethod(
         Invocation.getter(#engine),
-        returnValue: _FakeEngineEntity_1(
+        returnValue: _FakeEngineEntity_0(
           this,
           Invocation.getter(#engine),
         ),
-      ) as _i3.EngineEntity);
+      ) as _i2.EngineEntity);
 
   @override
   String get transmissionType => (super.noSuchMethod(
@@ -226,8 +207,8 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
       ) as bool);
 
   @override
-  _i4.CarEntity copyWith({
-    _i2.ObjectId? id,
+  _i3.CarEntity copyWith({
+    dynamic id,
     String? carId,
     String? model,
     String? manufacturer,
@@ -236,7 +217,7 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
     String? color,
     _i10.OwnerEntity? owner,
     String? bodyType,
-    _i3.EngineEntity? engine,
+    _i2.EngineEntity? engine,
     String? transmissionType,
     bool? isVerified,
     _i11.PromoType? promoType,
@@ -271,7 +252,7 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
             #isShown: isShown,
           },
         ),
-        returnValue: _FakeCarEntity_2(
+        returnValue: _FakeCarEntity_1(
           this,
           Invocation.method(
             #copyWith,
@@ -298,25 +279,16 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
             },
           ),
         ),
-      ) as _i4.CarEntity);
+      ) as _i3.CarEntity);
 }
 
 /// A class which mocks [CarDto].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarDto extends _i1.Mock implements _i5.CarDto {
+class MockCarDto extends _i1.Mock implements _i4.CarDto {
   MockCarDto() {
     _i1.throwOnMissingStub(this);
   }
-
-  @override
-  _i2.ObjectId get id => (super.noSuchMethod(
-        Invocation.getter(#id),
-        returnValue: _FakeObjectId_0(
-          this,
-          Invocation.getter(#id),
-        ),
-      ) as _i2.ObjectId);
 
   @override
   String get carId => (super.noSuchMethod(
@@ -364,13 +336,13 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
       ) as String);
 
   @override
-  _i3.EngineEntity get engine => (super.noSuchMethod(
+  _i2.EngineEntity get engine => (super.noSuchMethod(
         Invocation.getter(#engine),
-        returnValue: _FakeEngineEntity_1(
+        returnValue: _FakeEngineEntity_0(
           this,
           Invocation.getter(#engine),
         ),
-      ) as _i3.EngineEntity);
+      ) as _i2.EngineEntity);
 
   @override
   String get transmissionType => (super.noSuchMethod(
@@ -430,8 +402,8 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
       );
 
   @override
-  _i5.CarDto copyWith({
-    _i2.ObjectId? id,
+  _i4.CarDto copyWith({
+    dynamic id,
     String? carId,
     String? model,
     String? manufacturer,
@@ -439,7 +411,7 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
     String? year,
     String? color,
     String? bodyType,
-    _i3.EngineEntity? engine,
+    _i2.EngineEntity? engine,
     String? transmissionType,
     _i10.OwnerEntity? owner,
     bool? isVerified,
@@ -473,7 +445,7 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
             #images: images,
           },
         ),
-        returnValue: _FakeCarDto_3(
+        returnValue: _FakeCarDto_2(
           this,
           Invocation.method(
             #copyWith,
@@ -499,7 +471,7 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
             },
           ),
         ),
-      ) as _i5.CarDto);
+      ) as _i4.CarDto);
 }
 
 /// A class which mocks [RealmLocalStorage].
@@ -511,13 +483,13 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
   }
 
   @override
-  _i2.Realm get realm => (super.noSuchMethod(
+  _i5.Realm get realm => (super.noSuchMethod(
         Invocation.getter(#realm),
-        returnValue: _FakeRealm_4(
+        returnValue: _FakeRealm_3(
           this,
           Invocation.getter(#realm),
         ),
-      ) as _i2.Realm);
+      ) as _i5.Realm);
 
   @override
   void add(dynamic T) => super.noSuchMethod(
@@ -547,13 +519,13 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
       ) as _i8.Stream<dynamic>);
 
   @override
-  List<_i4.CarEntity> getAll() => (super.noSuchMethod(
+  List<_i3.CarEntity> getAll() => (super.noSuchMethod(
         Invocation.method(
           #getAll,
           [],
         ),
-        returnValue: <_i4.CarEntity>[],
-      ) as List<_i4.CarEntity>);
+        returnValue: <_i3.CarEntity>[],
+      ) as List<_i3.CarEntity>);
 
   @override
   void deleteById(String? id) => super.noSuchMethod(
@@ -579,7 +551,7 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
           #initUser,
           [],
         ),
-        returnValue: _FakeUserEntity_5(
+        returnValue: _FakeUserEntity_4(
           this,
           Invocation.method(
             #initUser,
@@ -589,19 +561,19 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
       ) as _i6.UserEntity);
 
   @override
-  _i4.CarEntity getCarById(String? id) => (super.noSuchMethod(
+  _i3.CarEntity getCarById(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getCarById,
           [id],
         ),
-        returnValue: _FakeCarEntity_2(
+        returnValue: _FakeCarEntity_1(
           this,
           Invocation.method(
             #getCarById,
             [id],
           ),
         ),
-      ) as _i4.CarEntity);
+      ) as _i3.CarEntity);
 
   @override
   int getMaxCarId() => (super.noSuchMethod(
