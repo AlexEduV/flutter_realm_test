@@ -83,7 +83,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void updateCloudUser(UserEntity user) {
-    _authRepository.updateUser(state.email, user);
+    _authRepository.updateUser(user.userId, user);
   }
 
   Future<void> initLocalisation(String locale) async {

@@ -128,10 +128,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> updateUser(String email, UserEntity data) async {
+  Future<void> updateUser(String userId, UserEntity data) async {
     if (!isAuthenticated) return;
 
-    users.removeWhere((element) => element.email == email);
+    users.removeWhere((element) => element.userId == userId);
     users.add(data);
 
     await serviceLocator<SaveUsersUseCase>().call(users);
