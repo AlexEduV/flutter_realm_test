@@ -1,10 +1,9 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
-import '../../../../../core/di/injection_container.dart';
 import '../../../../../l10n/l10n_keys.dart';
 import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../../../bloc/home/explore_page/explore_page_state.dart';
@@ -25,12 +24,12 @@ class MyItemsPage extends StatelessWidget {
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         buildWhen: (previous, current) => previous.createdIds != current.createdIds,
-        builder: (context, state) {
+        builder: (context, userState) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
-            builder: (context, state) {
-              final allCars = state.cars;
+            builder: (context, exploreState) {
+              final allCars = exploreState.cars;
 
-              final createdIds = serviceLocator<UserDataCubit>().state.createdIds;
+              final createdIds = userState.createdIds;
               final createdEntities = allCars
                   .where((entity) => createdIds.contains(entity.carId))
                   .toList();
