@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -12,7 +11,7 @@ import 'package:test_flutter_project/common/logger/app_network_logger_impl.dart'
 import 'package:test_flutter_project/common/logger/base_logger.dart';
 import 'package:test_flutter_project/core/network/app_http_client.dart';
 import 'package:test_flutter_project/core/network/app_http_client_impl.dart';
-import 'package:test_flutter_project/core/network/network_info_impl.dart';
+import 'package:test_flutter_project/core/network/app_interceptor.dart';
 import 'package:test_flutter_project/data/data_sources/local/car_color_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/local/env_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/local/file_picker_local_data_source_impl.dart';
@@ -168,13 +167,12 @@ Future<void> initDependenciesContainer() async {
     }
   }
 
-  final connectivity = Connectivity();
-  final networkInfo = NetworkInfoImpl(connectivity);
   serviceLocator.registerLazySingleton<BaseLogger>(() => AppNetworkLoggerImpl());
 
   final client = http.Client();
+  final appInterceptor = AppInterceptor(serviceLocator());
   serviceLocator.registerLazySingleton<AppHttpClient>(
-    () => AppHttpClientImpl(client, networkInfo, serviceLocator()),
+    () => AppHttpClientImpl(client, appInterceptor),
   );
 
   serviceLocator.registerLazySingleton<GifsRemoteDataSource>(
