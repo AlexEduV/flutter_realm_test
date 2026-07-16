@@ -1,10 +1,11 @@
+import 'package:collection/collection.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
 
-import '../../../../../core/di/injection_container.dart';
 import '../../../../../l10n/l10n_keys.dart';
 import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
 import '../../../../bloc/home/explore_page/explore_page_state.dart';
@@ -25,15 +26,16 @@ class RecentlyViewedPage extends StatelessWidget {
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         buildWhen: (previous, current) => previous.viewedIds != current.viewedIds,
-        builder: (context, state) {
+        builder: (context, userState) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
               final allCars = state.cars;
 
-              final viewedIds = serviceLocator<UserDataCubit>().state.viewedIds.reversed;
+              final viewedIds = userState.viewedIds.reversed;
 
               final viewedEntities = viewedIds
-                  .map((id) => allCars.firstWhere((entity) => entity.carId == id))
+                  .map((id) => allCars.firstWhereOrNull((entity) => entity.carId == id))
+                  .whereType<CarEntity>()
                   .toList();
 
               if (viewedEntities.isEmpty) {

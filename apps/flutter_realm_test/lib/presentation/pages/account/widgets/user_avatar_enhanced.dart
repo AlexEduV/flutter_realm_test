@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
@@ -34,10 +34,7 @@ class UserAvatarEnhanced extends StatelessWidget {
               decoration: isDecorated
                   ? BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white, // Set your desired border color
-                        width: 3.0, // Set your desired border width
-                      ),
+                      border: Border.all(color: Colors.white, width: 3.0),
                     )
                   : null,
               child: CircleAvatar(

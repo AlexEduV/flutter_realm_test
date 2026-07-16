@@ -89,4 +89,18 @@ void main() {
     expect(find.textContaining('Model 1'), findsOneWidget);
     expect(find.textContaining('Model 2'), findsOneWidget);
   });
+
+  testWidgets('does not crash when a viewedId references a deleted car', (tester) async {
+    final car1 = CarEntity.empty().copyWith(carId: 'car1', model: 'Model 1');
+    // 'orphan_id' was once viewed but the car has since been removed.
+    final userState = const UserDataState(viewedIds: ['car1', 'orphan_id']);
+    final exploreState = ExplorePageState(cars: [car1]);
+
+    await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));
+    await tester.pumpAndSettle();
+
+    // Should show the one car that still exists, skipping the orphan.
+    expect(find.byType(CarListItem), findsOneWidget);
+    expect(find.textContaining('Model 1'), findsOneWidget);
+  });
 }

@@ -22,8 +22,8 @@ void main() {
     serviceLocator.registerSingleton<AppLocalisationsCubit>(mockLocalisationsCubit);
   });
 
-  tearDown(() {
-    serviceLocator.reset();
+  tearDown(() async {
+    await serviceLocator.reset();
   });
 
   group('MockRegionRemoteDataSourceImpl', () {

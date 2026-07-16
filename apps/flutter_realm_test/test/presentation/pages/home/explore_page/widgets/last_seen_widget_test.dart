@@ -50,8 +50,8 @@ void main() {
     when(mockGetCarByIdUseCase.call(any)).thenReturn(carEntity);
   });
 
-  tearDown(() {
-    serviceLocator.reset();
+  tearDown(() async {
+    await serviceLocator.reset();
   });
 
   Widget buildTestWidget({
@@ -98,7 +98,10 @@ void main() {
   testWidgets('shows car info when userState is loaded', (tester) async {
     final carId = 'car124';
 
-    final userState = UserDataState(isLoading: false, lastSeenCar: LastSeenCarEntity(carId: carId, seenAt: DateTime.now()));
+    final userState = UserDataState(
+      isLoading: false,
+      lastSeenCar: LastSeenCarEntity(carId: carId, seenAt: DateTime.now()),
+    );
     final exploreState = const ExplorePageState();
 
     when(mockUserDataCubit.state).thenReturn(userState);
