@@ -30,7 +30,7 @@ class AppInterceptor implements BaseInterceptor {
       final response = await request();
 
       if (response.statusCode == HttpStatus.notFound) {
-        _logger.e('Not Found on $request request at url $url, 404');
+        _logger.e('Not Found on $requestType request at url $url, 404');
         return const Left(ServerFailure.notFound);
       }
 
