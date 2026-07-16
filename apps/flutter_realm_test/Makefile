@@ -22,6 +22,8 @@ build-verbose-delete-conflicting-outputs:
 
 
 # Tests
+#NOTE: very good cli produces flaky tests in CI-CD, regarding get it registration. It was one file after the
+# other, so I migrated to flutter test.
 show-coverage:
 	PATH=$$PATH:$$HOME/.pub-cache/bin \
 	very_good test --coverage
