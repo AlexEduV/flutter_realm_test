@@ -15,6 +15,6 @@ class NetworkInfoImpl implements NetworkInfo {
       return false;
     }
     // Optionally, check for actual internet access
-    return InternetConnectionChecker.createInstance().hasConnection;
+    return InternetConnectionChecker.instance.hasConnection;
   }
 }
