@@ -39,8 +39,8 @@ final getIt = GetIt.instance;
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
-  setUp(() {
-    getIt.reset();
+  setUp(() async {
+    await getIt.reset();
     getIt.registerSingleton<GetConversationByIdUseCase>(MockGetConversationByIdUseCase());
     getIt.registerSingleton<AppLocalisationsCubit>(appLocalisationsCubit);
     getIt.registerSingleton<GetOwnerByIdUseCase>(MockGetOwnerByIdUseCase());
