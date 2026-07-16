@@ -4,14 +4,12 @@ import 'package:dartz/dartz.dart';
 import 'package:http/http.dart';
 import 'package:test_flutter_project/common/logger/base_logger.dart';
 import 'package:test_flutter_project/core/network/base_interceptor.dart';
-import 'package:test_flutter_project/core/network/network_info.dart';
 
 import '../../common/enums/server_failure.dart';
 
 class AppInterceptor implements BaseInterceptor {
-  AppInterceptor(this._networkInfo, this._logger);
+  AppInterceptor(this._logger);
 
-  final NetworkInfo _networkInfo;
   final BaseLogger _logger;
 
   @override
@@ -21,12 +19,6 @@ class AppInterceptor implements BaseInterceptor {
     required String requestType,
   }) async {
     try {
-      final isNetworkAvailable = await _networkInfo.isConnected;
-      if (!isNetworkAvailable) {
-        _logger.e('No Internet connection on $requestType request at url $url, 404');
-        return const Left(ServerFailure.noNetwork);
-      }
-
       final response = await request();
 
       if (response.statusCode == HttpStatus.notFound) {
@@ -51,6 +43,9 @@ class AppInterceptor implements BaseInterceptor {
 
       _logger.i('Successful $requestType request at url $url, status: ${response.statusCode}');
       return Right(response.body);
+    } on SocketException catch (e) {
+      _logger.e('No network on $requestType request at url $url, exception: $e');
+      return const Left(ServerFailure.noNetwork);
     } catch (e) {
       _logger.e('Error during $requestType request at url $url, exception: $e');
       return const Left(ServerFailure.notAvailable);
