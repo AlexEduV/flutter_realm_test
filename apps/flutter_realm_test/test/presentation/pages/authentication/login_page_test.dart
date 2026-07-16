@@ -19,20 +19,20 @@ void main() {
   late MockAuthenticationCubit authenticationCubit;
   final appLocalisationsCubit = AppLocalisationsCubit();
 
-  setUp(() {
-    authenticationCubit = MockAuthenticationCubit();
-
+  setUpAll(() {
     serviceLocator.registerLazySingleton(() => appLocalisationsCubit);
-    final localisations = {
+    appLocalisationsCubit.load({
       'forms.ui.welcomeLoginTitle': 'Welcome Back',
       'forms.ui.welcomeRegisterTitle': 'Join us',
-    };
-
-    appLocalisationsCubit.load(localisations);
+    });
   });
 
-  tearDown(() {
+  tearDownAll(() {
     serviceLocator.unregister<AppLocalisationsCubit>();
+  });
+
+  setUp(() {
+    authenticationCubit = MockAuthenticationCubit();
   });
 
   Widget makeTestableWidget(Widget child) {
