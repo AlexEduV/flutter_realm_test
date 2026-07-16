@@ -14,11 +14,13 @@ class FooterText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final resolvedUrl = url;
+
     return AppSemantics(
       label: AppSemanticsLabels.privacyLinkItem,
       child: InkWell(
-        onTap: url != null
-            ? () async => await serviceLocator<OpenUrlLinkUseCase>().call(url ?? '')
+        onTap: resolvedUrl != null
+            ? () async => await serviceLocator<OpenUrlLinkUseCase>().call(resolvedUrl)
             : null,
         child: Text(text, style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w600)),
       ),
