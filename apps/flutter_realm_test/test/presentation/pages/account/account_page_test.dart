@@ -35,8 +35,8 @@ void main() {
     appLocalisationCubit.load(localisations);
   });
 
-  tearDownAll(() {
-    serviceLocator.reset();
+  tearDownAll(() async {
+    await serviceLocator.reset();
   });
 
   setUp(() {
