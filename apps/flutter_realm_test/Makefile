@@ -26,12 +26,12 @@ build-verbose-delete-conflicting-outputs:
 # other, so I migrated to flutter test.
 show-coverage:
 	PATH=$$PATH:$$HOME/.pub-cache/bin \
-	flutter test --coverage
+	flutter test --coverage --concurrency=4
 	genhtml coverage/lcov.info -o coverage/html
 	open coverage/html/index.html
 
 run-all-tests:
-	flutter test
+	flutter test --concurrency=4
 
 
 # Native Splash Commands
