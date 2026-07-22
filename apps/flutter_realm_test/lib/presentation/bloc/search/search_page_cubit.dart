@@ -171,19 +171,13 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
-    final Map<String, Set<String>> modelsByManufacturer = {};
-
-    cars
+    final modelsByManufacturerMap = cars
         .where((car) => car.type == type.name)
-        .forEach(
-          (element) => modelsByManufacturer
-              .putIfAbsent(element.manufacturer, () => <String>{})
-              .add(element.model),
-        );
-
-    final modelsByManufacturerMap = modelsByManufacturer.map(
-      (key, models) => MapEntry(key, models.toList()),
-    );
+        .fold(<String, Set<String>>{}, (map, car) {
+          map.putIfAbsent(car.manufacturer, () => {}).add(car.model);
+          return map;
+        })
+        .map((key, models) => MapEntry(key, models.toList()));
 
     emit(state.copyWith(allModels: modelsByManufacturerMap));
   }
