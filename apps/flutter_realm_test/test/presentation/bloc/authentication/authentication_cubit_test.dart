@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart';
@@ -42,7 +41,6 @@ void main() {
       'forms.fieldParams.fullName.hintText': 'Enter name',
     };
 
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
     appLocalisationsCubit.load(localisations);
 
     mockUserDataCubit = MockUserDataCubit();
@@ -60,10 +58,6 @@ void main() {
       mockDeleteAccountUseCase,
     );
     cubit.init();
-  });
-
-  tearDown(() async {
-    await serviceLocator.reset();
   });
 
   group('AuthenticationCubit', () {
