@@ -13,7 +13,7 @@ import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_pag
 
 import 'inbox_page_cubit_test.mocks.dart';
 
-@GenerateMocks([FetchConversationsUseCase, SaveConversationsUseCase])
+@GenerateNiceMocks([MockSpec<FetchConversationsUseCase>(), MockSpec<SaveConversationsUseCase>()])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 

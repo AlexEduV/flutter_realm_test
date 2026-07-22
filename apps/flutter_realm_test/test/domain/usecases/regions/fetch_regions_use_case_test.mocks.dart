@@ -28,10 +28,6 @@ import 'package:test_flutter_project/domain/repositories/region_repository.dart'
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRegionRepository extends _i1.Mock implements _i2.RegionRepository {
-  MockRegionRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<void> loadRegions() => (super.noSuchMethod(
         Invocation.method(
@@ -43,11 +39,13 @@ class MockRegionRepository extends _i1.Mock implements _i2.RegionRepository {
       ) as _i3.Future<void>);
 
   @override
-  _i4.RegionEntity? getRegionByCode(String? code) =>
-      (super.noSuchMethod(Invocation.method(
-        #getRegionByCode,
-        [code],
-      )) as _i4.RegionEntity?);
+  _i4.RegionEntity? getRegionByCode(String? code) => (super.noSuchMethod(
+        Invocation.method(
+          #getRegionByCode,
+          [code],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i4.RegionEntity?);
 
   @override
   List<_i4.RegionEntity> getAllRegions() => (super.noSuchMethod(
@@ -56,5 +54,6 @@ class MockRegionRepository extends _i1.Mock implements _i2.RegionRepository {
           [],
         ),
         returnValue: <_i4.RegionEntity>[],
+        returnValueForMissingStub: <_i4.RegionEntity>[],
       ) as List<_i4.RegionEntity>);
 }

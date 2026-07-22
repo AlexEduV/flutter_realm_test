@@ -19,7 +19,7 @@ import '../../../../utils/app_router_test.mocks.dart';
 import '../../../bloc/details/details_page_cubit_test.mocks.dart';
 import 'vehicle_specs_widget_test.mocks.dart';
 
-@GenerateMocks([GetCarColorsUseCase])
+@GenerateNiceMocks([MockSpec<GetCarColorsUseCase>()])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
   final mockGetCarColorsUseCase = MockGetCarColorsUseCase();

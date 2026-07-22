@@ -64,10 +64,6 @@ class _FakeUserDataState_1 extends _i1.SmartFake implements _i3.UserDataState {
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAutoCompleteManufacturersByTypeUseCase extends _i1.Mock
     implements _i4.GetAutoCompleteManufacturersByTypeUseCase {
-  MockGetAutoCompleteManufacturersByTypeUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i5.Future<List<_i6.CarAutoCompleteEntity>> call(_i7.CarType? params) =>
       (super.noSuchMethod(
@@ -77,6 +73,9 @@ class MockGetAutoCompleteManufacturersByTypeUseCase extends _i1.Mock
         ),
         returnValue: _i5.Future<List<_i6.CarAutoCompleteEntity>>.value(
             <_i6.CarAutoCompleteEntity>[]),
+        returnValueForMissingStub:
+            _i5.Future<List<_i6.CarAutoCompleteEntity>>.value(
+                <_i6.CarAutoCompleteEntity>[]),
       ) as _i5.Future<List<_i6.CarAutoCompleteEntity>>);
 }
 
@@ -84,10 +83,6 @@ class MockGetAutoCompleteManufacturersByTypeUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAddCarUseCase extends _i1.Mock implements _i8.AddCarUseCase {
-  MockAddCarUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   void call(_i9.CarEntity? params) => super.noSuchMethod(
         Invocation.method(
@@ -102,10 +97,6 @@ class MockAddCarUseCase extends _i1.Mock implements _i8.AddCarUseCase {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAllCarsUseCase extends _i1.Mock implements _i10.GetAllCarsUseCase {
-  MockGetAllCarsUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   List<_i9.CarEntity> call() => (super.noSuchMethod(
         Invocation.method(
@@ -113,6 +104,7 @@ class MockGetAllCarsUseCase extends _i1.Mock implements _i10.GetAllCarsUseCase {
           [],
         ),
         returnValue: <_i9.CarEntity>[],
+        returnValueForMissingStub: <_i9.CarEntity>[],
       ) as List<_i9.CarEntity>);
 }
 
@@ -121,10 +113,6 @@ class MockGetAllCarsUseCase extends _i1.Mock implements _i10.GetAllCarsUseCase {
 /// See the documentation for Mockito's code generation for more information.
 class MockGetCurrentMaxCarIdUseCase extends _i1.Mock
     implements _i11.GetCurrentMaxCarIdUseCase {
-  MockGetCurrentMaxCarIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   int call() => (super.noSuchMethod(
         Invocation.method(
@@ -132,6 +120,7 @@ class MockGetCurrentMaxCarIdUseCase extends _i1.Mock
           [],
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 }
 
@@ -139,14 +128,14 @@ class MockGetCurrentMaxCarIdUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockUserDataCubit extends _i1.Mock implements _i12.UserDataCubit {
-  MockUserDataCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.UserEntity get user => (super.noSuchMethod(
         Invocation.getter(#user),
         returnValue: _FakeUserEntity_0(
+          this,
+          Invocation.getter(#user),
+        ),
+        returnValueForMissingStub: _FakeUserEntity_0(
           this,
           Invocation.getter(#user),
         ),
@@ -168,18 +157,24 @@ class MockUserDataCubit extends _i1.Mock implements _i12.UserDataCubit {
           this,
           Invocation.getter(#state),
         ),
+        returnValueForMissingStub: _FakeUserDataState_1(
+          this,
+          Invocation.getter(#state),
+        ),
       ) as _i3.UserDataState);
 
   @override
   _i5.Stream<_i3.UserDataState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i5.Stream<_i3.UserDataState>.empty(),
+        returnValueForMissingStub: _i5.Stream<_i3.UserDataState>.empty(),
       ) as _i5.Stream<_i3.UserDataState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override

@@ -28,10 +28,6 @@ import 'package:test_flutter_project/domain/repositories/url_launch_repository.d
 /// See the documentation for Mockito's code generation for more information.
 class MockUrlLaunchRepository extends _i1.Mock
     implements _i2.UrlLaunchRepository {
-  MockUrlLaunchRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<void> openUrl(String? link) => (super.noSuchMethod(
         Invocation.method(

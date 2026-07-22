@@ -36,14 +36,14 @@ class _FakeXFile_0 extends _i1.SmartFake implements _i2.XFile {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPlatformFile extends _i1.Mock implements _i3.PlatformFile {
-  MockPlatformFile() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   String get name => (super.noSuchMethod(
         Invocation.getter(#name),
         returnValue: _i4.dummyValue<String>(
+          this,
+          Invocation.getter(#name),
+        ),
+        returnValueForMissingStub: _i4.dummyValue<String>(
           this,
           Invocation.getter(#name),
         ),
@@ -53,12 +53,17 @@ class MockPlatformFile extends _i1.Mock implements _i3.PlatformFile {
   int get size => (super.noSuchMethod(
         Invocation.getter(#size),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override
   _i2.XFile get xFile => (super.noSuchMethod(
         Invocation.getter(#xFile),
         returnValue: _FakeXFile_0(
+          this,
+          Invocation.getter(#xFile),
+        ),
+        returnValueForMissingStub: _FakeXFile_0(
           this,
           Invocation.getter(#xFile),
         ),

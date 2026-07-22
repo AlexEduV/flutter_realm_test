@@ -22,7 +22,7 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_state.
 
 import 'search_page_cubit_test.mocks.dart';
 
-@GenerateMocks([GetAllCarsUseCase, WatchCarsUseCase])
+@GenerateNiceMocks([MockSpec<GetAllCarsUseCase>(), MockSpec<WatchCarsUseCase>()])
 void main() {
   late MockGetAllCarsUseCase mockGetAllCarsUseCase;
   late MockWatchCarsUseCase mockWatchCarsUseCase;

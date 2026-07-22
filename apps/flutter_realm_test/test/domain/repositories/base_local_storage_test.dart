@@ -14,7 +14,7 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 import 'base_local_storage_test.mocks.dart';
 
-@GenerateMocks([BaseLocalStorage])
+@GenerateNiceMocks([MockSpec<BaseLocalStorage>()])
 void main() {
   late MockBaseLocalStorage mockStorage;
 

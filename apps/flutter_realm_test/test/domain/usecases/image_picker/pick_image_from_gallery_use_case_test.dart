@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_fro
 
 import 'pick_image_from_gallery_use_case_test.mocks.dart';
 
-@GenerateMocks([ImagePickerRepository])
+@GenerateNiceMocks([MockSpec<ImagePickerRepository>()])
 void main() {
   late MockImagePickerRepository mockRepository;
   late PickImageFromGalleryUseCase useCase;

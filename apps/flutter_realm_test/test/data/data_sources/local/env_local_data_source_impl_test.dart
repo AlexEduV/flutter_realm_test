@@ -7,7 +7,7 @@ import 'package:test_flutter_project/data/data_sources/local/env_local_data_sour
 
 import 'env_local_data_source_impl_test.mocks.dart';
 
-@GenerateMocks([DotEnv])
+@GenerateNiceMocks([MockSpec<DotEnv>()])
 void main() {
   late MockDotEnv mockDotEnv;
   late EnvLocalDataSourceImpl dataSource;

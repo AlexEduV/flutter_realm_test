@@ -19,12 +19,12 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart
 import '../../../common/extensions/context_extension_test.mocks.dart';
 import 'new_item_page_cubit_test.mocks.dart';
 
-@GenerateMocks([
-  GetAutoCompleteManufacturersByTypeUseCase,
-  AddCarUseCase,
-  GetAllCarsUseCase,
-  GetCurrentMaxCarIdUseCase,
-  UserDataCubit,
+@GenerateNiceMocks([
+  MockSpec<GetAutoCompleteManufacturersByTypeUseCase>(),
+  MockSpec<AddCarUseCase>(),
+  MockSpec<GetAllCarsUseCase>(),
+  MockSpec<GetCurrentMaxCarIdUseCase>(),
+  MockSpec<UserDataCubit>(),
 ])
 void main() {
   late MockGetAutoCompleteManufacturersByTypeUseCase mockAutoCompleteUseCase;

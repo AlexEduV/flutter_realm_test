@@ -30,10 +30,6 @@ import 'package:test_flutter_project/domain/models/region_ui_model.dart' as _i5;
 /// See the documentation for Mockito's code generation for more information.
 class MockRegionRemoteDataSource extends _i1.Mock
     implements _i2.RegionRemoteDataSource {
-  MockRegionRemoteDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
@@ -61,6 +57,7 @@ class MockRegionRemoteDataSource extends _i1.Mock
           [],
         ),
         returnValue: <_i4.RegionEntity>[],
+        returnValueForMissingStub: <_i4.RegionEntity>[],
       ) as List<_i4.RegionEntity>);
 
   @override
@@ -70,5 +67,6 @@ class MockRegionRemoteDataSource extends _i1.Mock
           [],
         ),
         returnValue: <_i5.RegionUiModel>[],
+        returnValueForMissingStub: <_i5.RegionUiModel>[],
       ) as List<_i5.RegionUiModel>);
 }

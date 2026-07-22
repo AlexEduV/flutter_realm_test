@@ -29,10 +29,6 @@ import 'package:test_flutter_project/domain/repositories/share_repository.dart'
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockShareRepository extends _i1.Mock implements _i2.ShareRepository {
-  MockShareRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<void> share(_i4.ShareParamsModel? model) => (super.noSuchMethod(
         Invocation.method(

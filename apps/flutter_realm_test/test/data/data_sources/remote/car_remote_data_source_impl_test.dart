@@ -11,7 +11,7 @@ import '../../../domain/repositories/base_local_storage_test.mocks.dart';
 import '../../../presentation/bloc/home/new_item_page_cubit_test.mocks.dart';
 import 'car_remote_data_source_impl_test.mocks.dart';
 
-@GenerateMocks([GetOwnerByIdUseCase])
+@GenerateNiceMocks([MockSpec<GetOwnerByIdUseCase>()])
 void main() {
   late MockCarRemoteDataSourceImpl service;
   final mockGetOwnerByIdUseCase = MockGetOwnerByIdUseCase();

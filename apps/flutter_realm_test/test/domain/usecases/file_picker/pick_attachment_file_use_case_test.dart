@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/usecases/file_picker/pick_attachment
 
 import 'pick_attachment_file_use_case_test.mocks.dart';
 
-@GenerateMocks([FilePickerRepository])
+@GenerateNiceMocks([MockSpec<FilePickerRepository>()])
 void main() {
   late MockFilePickerRepository mockRepository;
   late PickAttachmentFileUseCase useCase;

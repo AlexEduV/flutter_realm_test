@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/usecases/regions/init_region_models_
 
 import 'init_region_model_use_case_test.mocks.dart';
 
-@GenerateMocks([RegionModelRepository])
+@GenerateNiceMocks([MockSpec<RegionModelRepository>()])
 void main() {
   late MockRegionModelRepository mockRepository;
   late InitRegionModelsUseCase useCase;

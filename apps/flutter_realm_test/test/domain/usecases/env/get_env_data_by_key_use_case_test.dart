@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/usecases/env/get_env_data_by_key_use
 
 import 'get_env_data_by_key_use_case_test.mocks.dart';
 
-@GenerateMocks([EnvRepository])
+@GenerateNiceMocks([MockSpec<EnvRepository>()])
 void main() {
   late MockEnvRepository mockEnvRepository;
   late GetEnvDataByKeyUseCase useCase;

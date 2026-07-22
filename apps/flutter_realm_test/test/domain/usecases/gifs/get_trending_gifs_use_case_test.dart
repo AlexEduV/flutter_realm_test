@@ -9,7 +9,7 @@ import 'package:test_flutter_project/domain/usecases/gifs/get_trending_gifs_use_
 
 import 'get_trending_gifs_use_case_test.mocks.dart';
 
-@GenerateMocks([GifsRepository])
+@GenerateNiceMocks([MockSpec<GifsRepository>()])
 void main() {
   late MockGifsRepository mockRepository;
   late GetTrendingGifsUseCase useCase;

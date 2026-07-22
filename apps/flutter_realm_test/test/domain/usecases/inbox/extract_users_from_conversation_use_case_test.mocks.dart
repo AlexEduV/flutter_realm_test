@@ -27,13 +27,12 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_ca
 /// See the documentation for Mockito's code generation for more information.
 class MockGetUserByIdUseCase extends _i1.Mock
     implements _i2.GetUserByIdUseCase {
-  MockGetUserByIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
-  _i3.UserEntity? call(String? params) => (super.noSuchMethod(Invocation.method(
-        #call,
-        [params],
-      )) as _i3.UserEntity?);
+  _i3.UserEntity? call(String? params) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.UserEntity?);
 }

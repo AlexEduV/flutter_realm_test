@@ -41,10 +41,6 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
 /// See the documentation for Mockito's code generation for more information.
 class MockGifsRemoteDataSource extends _i1.Mock
     implements _i3.GifsRemoteDataSource {
-  MockGifsRemoteDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>> searchGifs(
           String? query) =>
@@ -62,24 +58,42 @@ class MockGifsRemoteDataSource extends _i1.Mock
             [query],
           ),
         )),
+        returnValueForMissingStub: _i4
+            .Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>.value(
+            _FakeEither_0<_i5.ServerFailure, List<_i6.KlipyGifDto>>(
+          this,
+          Invocation.method(
+            #searchGifs,
+            [query],
+          ),
+        )),
       ) as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>
-      getTrending() => (super.noSuchMethod(
-            Invocation.method(
-              #getTrending,
-              [],
-            ),
-            returnValue: _i4.Future<
-                    _i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>.value(
-                _FakeEither_0<_i5.ServerFailure, List<_i6.KlipyGifDto>>(
-              this,
-              Invocation.method(
-                #getTrending,
-                [],
-              ),
-            )),
-          ) as _i4
-              .Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>);
+  _i4.Future<
+      _i2.Either<_i5.ServerFailure,
+          List<_i6.KlipyGifDto>>> getTrending() => (super.noSuchMethod(
+        Invocation.method(
+          #getTrending,
+          [],
+        ),
+        returnValue: _i4
+            .Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>.value(
+            _FakeEither_0<_i5.ServerFailure, List<_i6.KlipyGifDto>>(
+          this,
+          Invocation.method(
+            #getTrending,
+            [],
+          ),
+        )),
+        returnValueForMissingStub: _i4
+            .Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>.value(
+            _FakeEither_0<_i5.ServerFailure, List<_i6.KlipyGifDto>>(
+          this,
+          Invocation.method(
+            #getTrending,
+            [],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.KlipyGifDto>>>);
 }

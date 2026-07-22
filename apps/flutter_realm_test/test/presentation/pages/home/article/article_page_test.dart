@@ -13,7 +13,7 @@ import 'package:test_flutter_project/presentation/pages/article/article_page.dar
 
 import 'article_page_test.mocks.dart';
 
-@GenerateMocks([ArticlePageCubit])
+@GenerateNiceMocks([MockSpec<ArticlePageCubit>()])
 void main() {
   late MockArticlePageCubit mockArticlePageCubit;
   final appLocalisationsCubit = AppLocalisationsCubit();

@@ -6,7 +6,7 @@ import 'package:test_flutter_project/data/data_sources/local/file_picker_local_d
 
 import 'file_picker_local_data_source_impl_test.mocks.dart';
 
-@GenerateMocks([FilePickerIO, FilePickerResult])
+@GenerateNiceMocks([MockSpec<FilePickerIO>(), MockSpec<FilePickerResult>()])
 void main() {
   late MockFilePickerIO mockFilePicker;
   late FilePickerLocalDataSourceImpl dataSource;

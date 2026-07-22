@@ -42,14 +42,14 @@ class _FakeHomeBottomBarState_0 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockHomeBottomBarCubit extends _i1.Mock
     implements _i3.HomeBottomBarCubit {
-  MockHomeBottomBarCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.HomeBottomBarState get state => (super.noSuchMethod(
         Invocation.getter(#state),
         returnValue: _FakeHomeBottomBarState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeHomeBottomBarState_0(
           this,
           Invocation.getter(#state),
         ),
@@ -59,12 +59,14 @@ class MockHomeBottomBarCubit extends _i1.Mock
   _i4.Stream<_i2.HomeBottomBarState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i4.Stream<_i2.HomeBottomBarState>.empty(),
+        returnValueForMissingStub: _i4.Stream<_i2.HomeBottomBarState>.empty(),
       ) as _i4.Stream<_i2.HomeBottomBarState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override

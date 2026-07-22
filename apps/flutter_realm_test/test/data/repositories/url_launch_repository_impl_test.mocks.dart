@@ -28,10 +28,6 @@ import 'package:test_flutter_project/domain/data_sources/local/url_launch_local_
 /// See the documentation for Mockito's code generation for more information.
 class MockUrlLaunchLocalDataSource extends _i1.Mock
     implements _i2.UrlLaunchLocalDataSource {
-  MockUrlLaunchLocalDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<void> openUrl(String? url) => (super.noSuchMethod(
         Invocation.method(

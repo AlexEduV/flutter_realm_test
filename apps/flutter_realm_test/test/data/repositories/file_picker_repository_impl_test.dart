@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
 
 import 'file_picker_repository_impl_test.mocks.dart';
 
-@GenerateMocks([FilePickerLocalDataSource])
+@GenerateNiceMocks([MockSpec<FilePickerLocalDataSource>()])
 void main() {
   late MockFilePickerLocalDataSource mockLocalDataSource;
   late FilePickerRepositoryImpl repository;

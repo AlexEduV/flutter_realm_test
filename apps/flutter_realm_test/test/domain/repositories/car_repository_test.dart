@@ -12,7 +12,7 @@ import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 
 import 'car_repository_test.mocks.dart';
 
-@GenerateMocks([CarRepository])
+@GenerateNiceMocks([MockSpec<CarRepository>()])
 void main() {
   late MockCarRepository mockRepo;
 

@@ -30,10 +30,6 @@ import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
 /// See the documentation for Mockito's code generation for more information.
 class MockFilePickerLocalDataSource extends _i1.Mock
     implements _i2.FilePickerLocalDataSource {
-  MockFilePickerLocalDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<_i4.AttachmentEntity?> pickFile() => (super.noSuchMethod(
         Invocation.method(
@@ -41,5 +37,6 @@ class MockFilePickerLocalDataSource extends _i1.Mock
           [],
         ),
         returnValue: _i3.Future<_i4.AttachmentEntity?>.value(),
+        returnValueForMissingStub: _i3.Future<_i4.AttachmentEntity?>.value(),
       ) as _i3.Future<_i4.AttachmentEntity?>);
 }

@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/data_sources/local/car_colors_local_
 
 import 'car_color_repository_impl_test.mocks.dart';
 
-@GenerateMocks([CarColorLocalDataSource])
+@GenerateNiceMocks([MockSpec<CarColorLocalDataSource>()])
 void main() {
   late MockCarColorLocalDataSource mockDataSource;
   late CarColorRepositoryImpl repository;

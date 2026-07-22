@@ -10,7 +10,7 @@ import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/wid
 
 import 'home_bottom_bar_item_test.mocks.dart';
 
-@GenerateMocks([HomeBottomBarCubit])
+@GenerateNiceMocks([MockSpec<HomeBottomBarCubit>()])
 void main() {
   group('HomeBottomBarItem', () {
     late MockHomeBottomBarCubit mockCubit;

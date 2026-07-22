@@ -47,14 +47,14 @@ class _FakeNewItemPageState_0 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
-  MockNewItemPageCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.NewItemPageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
         returnValue: _FakeNewItemPageState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeNewItemPageState_0(
           this,
           Invocation.getter(#state),
         ),
@@ -64,12 +64,14 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
   _i4.Stream<_i2.NewItemPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i4.Stream<_i2.NewItemPageState>.empty(),
+        returnValueForMissingStub: _i4.Stream<_i2.NewItemPageState>.empty(),
       ) as _i4.Stream<_i2.NewItemPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -95,6 +97,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -111,6 +114,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -127,6 +131,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -143,6 +148,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -159,6 +165,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -175,6 +182,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -193,6 +201,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           [],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -322,6 +331,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           [],
         ),
         returnValue: <_i9.CarEntity>[],
+        returnValueForMissingStub: <_i9.CarEntity>[],
       ) as List<_i9.CarEntity>);
 
   @override

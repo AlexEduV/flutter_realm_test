@@ -9,7 +9,7 @@ import 'package:test_flutter_project/domain/models/share_params_model.dart';
 
 import 'share_repository_impl_test.mocks.dart';
 
-@GenerateMocks([ShareLocalDataSource])
+@GenerateNiceMocks([MockSpec<ShareLocalDataSource>()])
 void main() {
   late MockShareLocalDataSource mockLocalDataSource;
   late ShareRepositoryImpl repository;

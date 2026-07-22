@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/entities/author_entity.dart';
 
 import 'article_repository_impl_test.mocks.dart';
 
-@GenerateMocks([ArticleRemoteDataSource])
+@GenerateNiceMocks([MockSpec<ArticleRemoteDataSource>()])
 void main() {
   late MockArticleRemoteDataSource mockRemoteDataSource;
   late ArticleRepositoryImpl repository;

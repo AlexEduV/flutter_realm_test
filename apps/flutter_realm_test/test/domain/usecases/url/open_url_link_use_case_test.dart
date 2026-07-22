@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/usecases/url/open_url_link_use_case.
 
 import 'open_url_link_use_case_test.mocks.dart';
 
-@GenerateMocks([UrlLaunchRepository])
+@GenerateNiceMocks([MockSpec<UrlLaunchRepository>()])
 void main() {
   late MockUrlLaunchRepository mockRepository;
   late OpenUrlLinkUseCase useCase;

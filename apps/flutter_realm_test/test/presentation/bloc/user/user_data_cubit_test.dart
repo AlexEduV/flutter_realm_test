@@ -23,17 +23,17 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart
 import '../../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
 
-@GenerateMocks([
-  AuthRepository,
-  BaseLocalStorage,
-  OpenAppSettingsUseCase,
-  CheckLocationServiceStatusUseCase,
-  RequestLocationPermissionUseCase,
-  CheckLocationPermissionStatusUseCase,
-  GetUserByEmailUseCase,
-  PickImageFromGalleryUseCase,
-  DeleteCarByIdUseCase,
-  BaseLogger,
+@GenerateNiceMocks([
+  MockSpec<AuthRepository>(),
+  MockSpec<BaseLocalStorage>(),
+  MockSpec<OpenAppSettingsUseCase>(),
+  MockSpec<CheckLocationServiceStatusUseCase>(),
+  MockSpec<RequestLocationPermissionUseCase>(),
+  MockSpec<CheckLocationPermissionStatusUseCase>(),
+  MockSpec<GetUserByEmailUseCase>(),
+  MockSpec<PickImageFromGalleryUseCase>(),
+  MockSpec<DeleteCarByIdUseCase>(),
+  MockSpec<BaseLogger>(),
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

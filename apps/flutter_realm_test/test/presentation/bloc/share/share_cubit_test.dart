@@ -8,7 +8,7 @@ import 'package:test_flutter_project/presentation/bloc/share/share_state.dart';
 
 import 'share_cubit_test.mocks.dart';
 
-@GenerateMocks([ShareUseCase])
+@GenerateNiceMocks([MockSpec<ShareUseCase>()])
 void main() {
   group('ShareCubit', () {
     late MockShareUseCase mockShareUseCase;

@@ -20,7 +20,12 @@ import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore
 
 import 'explore_page_cubit_test.mocks.dart';
 
-@GenerateMocks([SyncCarsUseCase, WatchCarsUseCase, FetchArticlesUseCase, GetCarByIdUseCase])
+@GenerateNiceMocks([
+  MockSpec<SyncCarsUseCase>(),
+  MockSpec<WatchCarsUseCase>(),
+  MockSpec<FetchArticlesUseCase>(),
+  MockSpec<GetCarByIdUseCase>(),
+])
 void main() {
   late MockSyncCarsUseCase mockSyncCarsUseCase;
   late MockWatchCarsUseCase mockWatchCarsUseCase;
@@ -60,7 +65,12 @@ void main() {
     mockSyncCarsUseCase = MockSyncCarsUseCase();
     mockFetchArticlesUseCase = MockFetchArticlesUseCase();
     mockGetCarByIdUseCase = MockGetCarByIdUseCase();
-    cubit = ExplorePageCubit(mockWatchCarsUseCase, mockSyncCarsUseCase, mockFetchArticlesUseCase, mockGetCarByIdUseCase);
+    cubit = ExplorePageCubit(
+      mockWatchCarsUseCase,
+      mockSyncCarsUseCase,
+      mockFetchArticlesUseCase,
+      mockGetCarByIdUseCase,
+    );
   });
 
   tearDown(() async {

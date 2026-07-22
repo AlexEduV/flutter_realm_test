@@ -14,7 +14,7 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import '../../../utils/app_router_test.mocks.dart';
 import 'authentication_cubit_test.mocks.dart';
 
-@GenerateMocks([LogoutUseCase, LoginUseCase, RegisterUseCase, DeleteAccountUseCase])
+@GenerateNiceMocks([MockSpec<LogoutUseCase>(), MockSpec<LoginUseCase>(), MockSpec<RegisterUseCase>(), MockSpec<DeleteAccountUseCase>()])
 void main() {
   late AuthenticationCubit cubit;
   late MockUserDataCubit mockUserDataCubit;

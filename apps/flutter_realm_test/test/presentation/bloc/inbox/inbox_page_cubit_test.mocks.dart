@@ -32,10 +32,6 @@ import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_us
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchConversationsUseCase extends _i1.Mock
     implements _i2.FetchConversationsUseCase {
-  MockFetchConversationsUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<List<_i4.ConversationModel>> call() => (super.noSuchMethod(
         Invocation.method(
@@ -44,6 +40,9 @@ class MockFetchConversationsUseCase extends _i1.Mock
         ),
         returnValue: _i3.Future<List<_i4.ConversationModel>>.value(
             <_i4.ConversationModel>[]),
+        returnValueForMissingStub:
+            _i3.Future<List<_i4.ConversationModel>>.value(
+                <_i4.ConversationModel>[]),
       ) as _i3.Future<List<_i4.ConversationModel>>);
 }
 
@@ -52,10 +51,6 @@ class MockFetchConversationsUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockSaveConversationsUseCase extends _i1.Mock
     implements _i5.SaveConversationsUseCase {
-  MockSaveConversationsUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<void> call(List<_i4.ConversationModel>? params) =>
       (super.noSuchMethod(

@@ -28,10 +28,6 @@ import 'package:test_flutter_project/domain/data_sources/local/image_picker_loca
 /// See the documentation for Mockito's code generation for more information.
 class MockImagePickerLocalDataSource extends _i1.Mock
     implements _i2.ImagePickerLocalDataSource {
-  MockImagePickerLocalDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<String?> pickImage() => (super.noSuchMethod(
         Invocation.method(
@@ -39,5 +35,6 @@ class MockImagePickerLocalDataSource extends _i1.Mock
           [],
         ),
         returnValue: _i3.Future<String?>.value(),
+        returnValueForMissingStub: _i3.Future<String?>.value(),
       ) as _i3.Future<String?>);
 }

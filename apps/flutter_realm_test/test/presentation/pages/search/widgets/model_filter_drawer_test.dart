@@ -12,7 +12,7 @@ import 'package:test_flutter_project/presentation/pages/search/widgets/model_fil
 
 import 'model_filter_drawer_test.mocks.dart';
 
-@GenerateMocks([SearchPageCubit])
+@GenerateNiceMocks([MockSpec<SearchPageCubit>()])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 

@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/usecases/users/get_max_user_id_use_c
 
 import 'get_max_user_id_use_case_test.mocks.dart';
 
-@GenerateMocks([UserRepository])
+@GenerateNiceMocks([MockSpec<UserRepository>()])
 void main() {
   late MockUserRepository mockUserRepository;
   late GetMaxUserIdUseCase useCase;

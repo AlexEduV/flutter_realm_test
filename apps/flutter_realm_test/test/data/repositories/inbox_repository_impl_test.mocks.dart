@@ -41,10 +41,6 @@ class _FakeConversationModel_0 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockMessagesRemoteDataSource extends _i1.Mock
     implements _i3.MessagesRemoteDataSource {
-  MockMessagesRemoteDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<void> saveConversations(
           List<_i2.ConversationModel>? conversations) =>
@@ -66,6 +62,9 @@ class MockMessagesRemoteDataSource extends _i1.Mock
         ),
         returnValue: _i4.Future<List<_i2.ConversationModel>>.value(
             <_i2.ConversationModel>[]),
+        returnValueForMissingStub:
+            _i4.Future<List<_i2.ConversationModel>>.value(
+                <_i2.ConversationModel>[]),
       ) as _i4.Future<List<_i2.ConversationModel>>);
 
   @override
@@ -82,6 +81,13 @@ class MockMessagesRemoteDataSource extends _i1.Mock
             [conversationId],
           ),
         ),
+        returnValueForMissingStub: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #getConversationById,
+            [conversationId],
+          ),
+        ),
       ) as _i2.ConversationModel);
 
   @override
@@ -92,6 +98,13 @@ class MockMessagesRemoteDataSource extends _i1.Mock
           [ownerId],
         ),
         returnValue: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #getConversationByOwnerId,
+            [ownerId],
+          ),
+        ),
+        returnValueForMissingStub: _FakeConversationModel_0(
           this,
           Invocation.method(
             #getConversationByOwnerId,

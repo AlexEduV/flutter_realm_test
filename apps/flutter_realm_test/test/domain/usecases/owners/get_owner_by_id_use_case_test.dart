@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_
 
 import 'get_owner_by_id_use_case_test.mocks.dart';
 
-@GenerateMocks([OwnerRepository])
+@GenerateNiceMocks([MockSpec<OwnerRepository>()])
 void main() {
   late MockOwnerRepository mockRepository;
   late GetOwnerByIdUseCase useCase;

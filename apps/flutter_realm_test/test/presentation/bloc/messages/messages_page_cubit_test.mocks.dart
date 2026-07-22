@@ -46,10 +46,6 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSearchGifsUseCase extends _i1.Mock implements _i3.SearchGifsUseCase {
-  MockSearchGifsUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>> call(
           String? params) =>
@@ -67,6 +63,15 @@ class MockSearchGifsUseCase extends _i1.Mock implements _i3.SearchGifsUseCase {
             [params],
           ),
         )),
+        returnValueForMissingStub: _i4
+            .Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
+            _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        )),
       ) as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>);
 }
 
@@ -75,10 +80,6 @@ class MockSearchGifsUseCase extends _i1.Mock implements _i3.SearchGifsUseCase {
 /// See the documentation for Mockito's code generation for more information.
 class MockGetTrendingGifsUseCase extends _i1.Mock
     implements _i7.GetTrendingGifsUseCase {
-  MockGetTrendingGifsUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>> call() =>
       (super.noSuchMethod(
@@ -95,6 +96,15 @@ class MockGetTrendingGifsUseCase extends _i1.Mock
             [],
           ),
         )),
+        returnValueForMissingStub: _i4
+            .Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
+            _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
       ) as _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>);
 }
 
@@ -103,10 +113,6 @@ class MockGetTrendingGifsUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockPickAttachmentFileUseCase extends _i1.Mock
     implements _i8.PickAttachmentFileUseCase {
-  MockPickAttachmentFileUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<_i9.AttachmentEntity?> call() => (super.noSuchMethod(
         Invocation.method(
@@ -114,5 +120,6 @@ class MockPickAttachmentFileUseCase extends _i1.Mock
           [],
         ),
         returnValue: _i4.Future<_i9.AttachmentEntity?>.value(),
+        returnValueForMissingStub: _i4.Future<_i9.AttachmentEntity?>.value(),
       ) as _i4.Future<_i9.AttachmentEntity?>);
 }

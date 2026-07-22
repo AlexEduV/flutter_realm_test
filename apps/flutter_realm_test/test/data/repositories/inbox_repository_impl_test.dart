@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/models/conversation_model.dart';
 
 import 'inbox_repository_impl_test.mocks.dart';
 
-@GenerateMocks([MessagesRemoteDataSource])
+@GenerateNiceMocks([MockSpec<MessagesRemoteDataSource>()])
 void main() {
   late MockMessagesRemoteDataSource mockRemoteDataSource;
   late InboxRepositoryImpl repository;

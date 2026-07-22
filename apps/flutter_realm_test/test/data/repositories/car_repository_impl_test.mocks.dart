@@ -98,14 +98,11 @@ class _FakeUserEntity_5 extends _i1.SmartFake implements _i6.UserEntity {
 /// See the documentation for Mockito's code generation for more information.
 class MockCarRemoteDataSource extends _i1.Mock
     implements _i7.CarRemoteDataSource {
-  MockCarRemoteDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i8.Stream<List<_i5.CarDto>> get carStream => (super.noSuchMethod(
         Invocation.getter(#carStream),
         returnValue: _i8.Stream<List<_i5.CarDto>>.empty(),
+        returnValueForMissingStub: _i8.Stream<List<_i5.CarDto>>.empty(),
       ) as _i8.Stream<List<_i5.CarDto>>);
 
   @override
@@ -115,6 +112,8 @@ class MockCarRemoteDataSource extends _i1.Mock
           [],
         ),
         returnValue: _i8.Future<List<_i5.CarDto>>.value(<_i5.CarDto>[]),
+        returnValueForMissingStub:
+            _i8.Future<List<_i5.CarDto>>.value(<_i5.CarDto>[]),
       ) as _i8.Future<List<_i5.CarDto>>);
 
   @override
@@ -131,14 +130,14 @@ class MockCarRemoteDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
-  MockCarEntity() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.ObjectId get id => (super.noSuchMethod(
         Invocation.getter(#id),
         returnValue: _FakeObjectId_0(
+          this,
+          Invocation.getter(#id),
+        ),
+        returnValueForMissingStub: _FakeObjectId_0(
           this,
           Invocation.getter(#id),
         ),
@@ -151,12 +150,20 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
           this,
           Invocation.getter(#carId),
         ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#carId),
+        ),
       ) as String);
 
   @override
   String get model => (super.noSuchMethod(
         Invocation.getter(#model),
         returnValue: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#model),
+        ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
           this,
           Invocation.getter(#model),
         ),
@@ -169,12 +176,20 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
           this,
           Invocation.getter(#manufacturer),
         ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#manufacturer),
+        ),
       ) as String);
 
   @override
   String get type => (super.noSuchMethod(
         Invocation.getter(#type),
         returnValue: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#type),
+        ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
           this,
           Invocation.getter(#type),
         ),
@@ -187,12 +202,20 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
           this,
           Invocation.getter(#bodyType),
         ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#bodyType),
+        ),
       ) as String);
 
   @override
   _i3.EngineEntity get engine => (super.noSuchMethod(
         Invocation.getter(#engine),
         returnValue: _FakeEngineEntity_1(
+          this,
+          Invocation.getter(#engine),
+        ),
+        returnValueForMissingStub: _FakeEngineEntity_1(
           this,
           Invocation.getter(#engine),
         ),
@@ -205,24 +228,31 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
           this,
           Invocation.getter(#transmissionType),
         ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#transmissionType),
+        ),
       ) as String);
 
   @override
   bool get isVerified => (super.noSuchMethod(
         Invocation.getter(#isVerified),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
   List<String> get images => (super.noSuchMethod(
         Invocation.getter(#images),
         returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
       ) as List<String>);
 
   @override
   bool get isShown => (super.noSuchMethod(
         Invocation.getter(#isShown),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -298,6 +328,33 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
             },
           ),
         ),
+        returnValueForMissingStub: _FakeCarEntity_2(
+          this,
+          Invocation.method(
+            #copyWith,
+            [],
+            {
+              #id: id,
+              #carId: carId,
+              #model: model,
+              #manufacturer: manufacturer,
+              #type: type,
+              #year: year,
+              #color: color,
+              #owner: owner,
+              #bodyType: bodyType,
+              #engine: engine,
+              #transmissionType: transmissionType,
+              #isVerified: isVerified,
+              #promoType: promoType,
+              #mileage: mileage,
+              #distanceTo: distanceTo,
+              #price: price,
+              #images: images,
+              #isShown: isShown,
+            },
+          ),
+        ),
       ) as _i4.CarEntity);
 }
 
@@ -305,14 +362,14 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCarDto extends _i1.Mock implements _i5.CarDto {
-  MockCarDto() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.ObjectId get id => (super.noSuchMethod(
         Invocation.getter(#id),
         returnValue: _FakeObjectId_0(
+          this,
+          Invocation.getter(#id),
+        ),
+        returnValueForMissingStub: _FakeObjectId_0(
           this,
           Invocation.getter(#id),
         ),
@@ -325,12 +382,20 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
           this,
           Invocation.getter(#carId),
         ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#carId),
+        ),
       ) as String);
 
   @override
   String get model => (super.noSuchMethod(
         Invocation.getter(#model),
         returnValue: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#model),
+        ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
           this,
           Invocation.getter(#model),
         ),
@@ -343,12 +408,20 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
           this,
           Invocation.getter(#manufacturer),
         ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#manufacturer),
+        ),
       ) as String);
 
   @override
   String get type => (super.noSuchMethod(
         Invocation.getter(#type),
         returnValue: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#type),
+        ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
           this,
           Invocation.getter(#type),
         ),
@@ -361,12 +434,20 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
           this,
           Invocation.getter(#bodyType),
         ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#bodyType),
+        ),
       ) as String);
 
   @override
   _i3.EngineEntity get engine => (super.noSuchMethod(
         Invocation.getter(#engine),
         returnValue: _FakeEngineEntity_1(
+          this,
+          Invocation.getter(#engine),
+        ),
+        returnValueForMissingStub: _FakeEngineEntity_1(
           this,
           Invocation.getter(#engine),
         ),
@@ -379,12 +460,17 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
           this,
           Invocation.getter(#transmissionType),
         ),
+        returnValueForMissingStub: _i9.dummyValue<String>(
+          this,
+          Invocation.getter(#transmissionType),
+        ),
       ) as String);
 
   @override
   bool get isVerified => (super.noSuchMethod(
         Invocation.getter(#isVerified),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -418,6 +504,7 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
   List<String> get images => (super.noSuchMethod(
         Invocation.getter(#images),
         returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
       ) as List<String>);
 
   @override
@@ -499,6 +586,32 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
             },
           ),
         ),
+        returnValueForMissingStub: _FakeCarDto_3(
+          this,
+          Invocation.method(
+            #copyWith,
+            [],
+            {
+              #id: id,
+              #carId: carId,
+              #model: model,
+              #manufacturer: manufacturer,
+              #type: type,
+              #year: year,
+              #color: color,
+              #bodyType: bodyType,
+              #engine: engine,
+              #transmissionType: transmissionType,
+              #owner: owner,
+              #isVerified: isVerified,
+              #promoType: promoType,
+              #mileage: mileage,
+              #distanceTo: distanceTo,
+              #price: price,
+              #images: images,
+            },
+          ),
+        ),
       ) as _i5.CarDto);
 }
 
@@ -506,14 +619,14 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
-  MockRealmLocalStorage() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.Realm get realm => (super.noSuchMethod(
         Invocation.getter(#realm),
         returnValue: _FakeRealm_4(
+          this,
+          Invocation.getter(#realm),
+        ),
+        returnValueForMissingStub: _FakeRealm_4(
           this,
           Invocation.getter(#realm),
         ),
@@ -544,6 +657,7 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
           [],
         ),
         returnValue: _i8.Stream<dynamic>.empty(),
+        returnValueForMissingStub: _i8.Stream<dynamic>.empty(),
       ) as _i8.Stream<dynamic>);
 
   @override
@@ -553,6 +667,7 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
           [],
         ),
         returnValue: <_i4.CarEntity>[],
+        returnValueForMissingStub: <_i4.CarEntity>[],
       ) as List<_i4.CarEntity>);
 
   @override
@@ -586,6 +701,13 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
             [],
           ),
         ),
+        returnValueForMissingStub: _FakeUserEntity_5(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
       ) as _i6.UserEntity);
 
   @override
@@ -601,6 +723,13 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
             [id],
           ),
         ),
+        returnValueForMissingStub: _FakeCarEntity_2(
+          this,
+          Invocation.method(
+            #getCarById,
+            [id],
+          ),
+        ),
       ) as _i4.CarEntity);
 
   @override
@@ -610,6 +739,7 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
           [],
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override

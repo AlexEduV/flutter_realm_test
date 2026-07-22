@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_u
 
 import 'fetch_conversations_use_case_test.mocks.dart';
 
-@GenerateMocks([InboxRepository])
+@GenerateNiceMocks([MockSpec<InboxRepository>()])
 void main() {
   late MockInboxRepository mockRepository;
   late FetchConversationsUseCase useCase;

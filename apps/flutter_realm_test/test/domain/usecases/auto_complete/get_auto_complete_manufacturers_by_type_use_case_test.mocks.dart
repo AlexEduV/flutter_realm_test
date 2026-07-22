@@ -31,10 +31,6 @@ import 'package:test_flutter_project/domain/repositories/auto_complete_repositor
 /// See the documentation for Mockito's code generation for more information.
 class MockAutoCompleteRepository extends _i1.Mock
     implements _i2.AutoCompleteRepository {
-  MockAutoCompleteRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<List<_i4.CarAutoCompleteEntity>> getAutoCompleteModelListByType(
           _i5.CarType? type) =>
@@ -45,5 +41,8 @@ class MockAutoCompleteRepository extends _i1.Mock
         ),
         returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
             <_i4.CarAutoCompleteEntity>[]),
+        returnValueForMissingStub:
+            _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
+                <_i4.CarAutoCompleteEntity>[]),
       ) as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
 }

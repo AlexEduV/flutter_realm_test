@@ -29,14 +29,11 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i3;
 /// See the documentation for Mockito's code generation for more information.
 class MockUsersRemoteDataSource extends _i1.Mock
     implements _i2.UsersRemoteDataSource {
-  MockUsersRemoteDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   List<_i3.UserEntity> get users => (super.noSuchMethod(
         Invocation.getter(#users),
         returnValue: <_i3.UserEntity>[],
+        returnValueForMissingStub: <_i3.UserEntity>[],
       ) as List<_i3.UserEntity>);
 
   @override
@@ -66,14 +63,18 @@ class MockUsersRemoteDataSource extends _i1.Mock
           [],
         ),
         returnValue: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
+        returnValueForMissingStub:
+            _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
       ) as _i4.Future<List<_i3.UserEntity>>);
 
   @override
-  _i3.UserEntity? getUserByEmail(String? email) =>
-      (super.noSuchMethod(Invocation.method(
-        #getUserByEmail,
-        [email],
-      )) as _i3.UserEntity?);
+  _i3.UserEntity? getUserByEmail(String? email) => (super.noSuchMethod(
+        Invocation.method(
+          #getUserByEmail,
+          [email],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.UserEntity?);
 
   @override
   int getMaxUserId() => (super.noSuchMethod(
@@ -82,12 +83,15 @@ class MockUsersRemoteDataSource extends _i1.Mock
           [],
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override
-  _i3.UserEntity? getUserById(String? id) =>
-      (super.noSuchMethod(Invocation.method(
-        #getUserById,
-        [id],
-      )) as _i3.UserEntity?);
+  _i3.UserEntity? getUserById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getUserById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.UserEntity?);
 }

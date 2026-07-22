@@ -28,10 +28,6 @@ import 'package:test_flutter_project/domain/repositories/user_repository.dart'
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
-  MockUserRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   int getMaxUserId() => (super.noSuchMethod(
         Invocation.method(
@@ -39,21 +35,26 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
           [],
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override
-  _i3.UserEntity? getUserByEmail(String? email) =>
-      (super.noSuchMethod(Invocation.method(
-        #getUserByEmail,
-        [email],
-      )) as _i3.UserEntity?);
+  _i3.UserEntity? getUserByEmail(String? email) => (super.noSuchMethod(
+        Invocation.method(
+          #getUserByEmail,
+          [email],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.UserEntity?);
 
   @override
-  _i3.UserEntity? getUserById(String? id) =>
-      (super.noSuchMethod(Invocation.method(
-        #getUserById,
-        [id],
-      )) as _i3.UserEntity?);
+  _i3.UserEntity? getUserById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getUserById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.UserEntity?);
 
   @override
   _i4.Future<List<_i3.UserEntity>> loadMockUsers() => (super.noSuchMethod(
@@ -62,6 +63,8 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
           [],
         ),
         returnValue: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
+        returnValueForMissingStub:
+            _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
       ) as _i4.Future<List<_i3.UserEntity>>);
 
   @override

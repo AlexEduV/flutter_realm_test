@@ -45,14 +45,14 @@ class _FakeSearchPageState_0 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
-  MockSearchPageCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.SearchPageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
         returnValue: _FakeSearchPageState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeSearchPageState_0(
           this,
           Invocation.getter(#state),
         ),
@@ -62,12 +62,14 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   _i4.Stream<_i2.SearchPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i4.Stream<_i2.SearchPageState>.empty(),
+        returnValueForMissingStub: _i4.Stream<_i2.SearchPageState>.empty(),
       ) as _i4.Stream<_i2.SearchPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -96,6 +98,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           [cars],
         ),
         returnValue: <_i5.CarEntity>[],
+        returnValueForMissingStub: <_i5.CarEntity>[],
       ) as List<_i5.CarEntity>);
 
   @override
@@ -162,6 +165,16 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
             ],
           ),
         ),
+        returnValueForMissingStub: _i7.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMinYearFromEntities,
+            [
+              cars,
+              type,
+            ],
+          ),
+        ),
       ) as String);
 
   @override
@@ -178,6 +191,16 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           ],
         ),
         returnValue: _i7.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMaxYearFromEntities,
+            [
+              cars,
+              type,
+            ],
+          ),
+        ),
+        returnValueForMissingStub: _i7.dummyValue<String>(
           this,
           Invocation.method(
             #getMaxYearFromEntities,
@@ -212,6 +235,16 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
             ],
           ),
         ),
+        returnValueForMissingStub: _i7.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMinPriceFromEntities,
+            [
+              cars,
+              type,
+            ],
+          ),
+        ),
       ) as String);
 
   @override
@@ -228,6 +261,16 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           ],
         ),
         returnValue: _i7.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMaxPriceFromEntities,
+            [
+              cars,
+              type,
+            ],
+          ),
+        ),
+        returnValueForMissingStub: _i7.dummyValue<String>(
           this,
           Invocation.method(
             #getMaxPriceFromEntities,
@@ -433,6 +476,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -449,6 +493,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -458,6 +503,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           [],
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override
