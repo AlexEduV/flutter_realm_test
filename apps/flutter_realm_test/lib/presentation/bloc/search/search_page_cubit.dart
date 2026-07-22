@@ -82,6 +82,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
     emit(state.copyWith(allResults: results, isLoading: false));
 
+    _carSubscription?.cancel();
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final results = getFilteredResults(entities);
       emit(state.copyWith(results: results, allResults: entities));
