@@ -199,7 +199,7 @@ void main() {
 
     test('applyAllFilters returns only cars of selected type', () {
       cubit.emit(cubit.state.copyWith(currentSelectedType: CarType.car));
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1, car3]);
     });
 
@@ -210,21 +210,21 @@ void main() {
         },
       );
       cubit.emit(state);
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1]);
     });
 
     test('applyAllFilters returns only cars with selected body types', () {
       final state = cubit.state.copyWith(selectedBodyTypes: [BodyType.sedan.name]);
       cubit.emit(state);
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1, car3]);
     });
 
     test('applyAllFilters returns only cars with selected fuel types', () {
       final state = cubit.state.copyWith(selectedFuelTypes: [FuelType.ev.name]);
       cubit.emit(state);
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1]);
     });
 
@@ -234,7 +234,7 @@ void main() {
         selectedTransmissionTypes: [TransmissionType.automatic.name],
       );
       cubit.emit(state);
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1, car3]);
     });
 
