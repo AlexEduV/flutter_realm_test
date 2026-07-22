@@ -43,14 +43,14 @@ class _FakeAppLocalisationsState_0 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockAppLocalisationsCubit extends _i1.Mock
     implements _i3.AppLocalisationsCubit {
-  MockAppLocalisationsCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.AppLocalisationsState get state => (super.noSuchMethod(
         Invocation.getter(#state),
         returnValue: _FakeAppLocalisationsState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeAppLocalisationsState_0(
           this,
           Invocation.getter(#state),
         ),
@@ -60,12 +60,15 @@ class MockAppLocalisationsCubit extends _i1.Mock
   _i4.Stream<_i2.AppLocalisationsState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i4.Stream<_i2.AppLocalisationsState>.empty(),
+        returnValueForMissingStub:
+            _i4.Stream<_i2.AppLocalisationsState>.empty(),
       ) as _i4.Stream<_i2.AppLocalisationsState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -84,6 +87,13 @@ class MockAppLocalisationsCubit extends _i1.Mock
           [key],
         ),
         returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getLocalisationByKey,
+            [key],
+          ),
+        ),
+        returnValueForMissingStub: _i5.dummyValue<String>(
           this,
           Invocation.method(
             #getLocalisationByKey,
@@ -168,14 +178,11 @@ class MockAppLocalisationsCubit extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockAppLocalisationsState extends _i1.Mock
     implements _i2.AppLocalisationsState {
-  MockAppLocalisationsState() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   Map<String, String> get localisations => (super.noSuchMethod(
         Invocation.getter(#localisations),
         returnValue: <String, String>{},
+        returnValueForMissingStub: <String, String>{},
       ) as Map<String, String>);
 
   @override
@@ -185,6 +192,13 @@ class MockAppLocalisationsState extends _i1.Mock
           [key],
         ),
         returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.method(
+            #get,
+            [key],
+          ),
+        ),
+        returnValueForMissingStub: _i5.dummyValue<String>(
           this,
           Invocation.method(
             #get,

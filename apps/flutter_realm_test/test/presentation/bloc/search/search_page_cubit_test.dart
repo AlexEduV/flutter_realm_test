@@ -10,7 +10,6 @@ import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
@@ -23,7 +22,7 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_state.
 
 import 'search_page_cubit_test.mocks.dart';
 
-@GenerateMocks([GetAllCarsUseCase, WatchCarsUseCase])
+@GenerateNiceMocks([MockSpec<GetAllCarsUseCase>(), MockSpec<WatchCarsUseCase>()])
 void main() {
   late MockGetAllCarsUseCase mockGetAllCarsUseCase;
   late MockWatchCarsUseCase mockWatchCarsUseCase;
@@ -84,12 +83,7 @@ void main() {
   setUp(() {
     mockWatchCarsUseCase = MockWatchCarsUseCase();
     mockGetAllCarsUseCase = MockGetAllCarsUseCase();
-    cubit = SearchPageCubit(mockGetAllCarsUseCase, mockWatchCarsUseCase);
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
-  });
-
-  tearDown(() {
-    serviceLocator.unregister<AppLocalisationsCubit>();
+    cubit = SearchPageCubit(mockGetAllCarsUseCase, mockWatchCarsUseCase, appLocalisationsCubit);
   });
 
   group('SearchPageCubit', () {
@@ -199,7 +193,7 @@ void main() {
 
     test('applyAllFilters returns only cars of selected type', () {
       cubit.emit(cubit.state.copyWith(currentSelectedType: CarType.car));
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1, car3]);
     });
 
@@ -210,21 +204,21 @@ void main() {
         },
       );
       cubit.emit(state);
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1]);
     });
 
     test('applyAllFilters returns only cars with selected body types', () {
       final state = cubit.state.copyWith(selectedBodyTypes: [BodyType.sedan.name]);
       cubit.emit(state);
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1, car3]);
     });
 
     test('applyAllFilters returns only cars with selected fuel types', () {
       final state = cubit.state.copyWith(selectedFuelTypes: [FuelType.ev.name]);
       cubit.emit(state);
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1]);
     });
 
@@ -234,7 +228,7 @@ void main() {
         selectedTransmissionTypes: [TransmissionType.automatic.name],
       );
       cubit.emit(state);
-      final filtered = cubit.applyAllFilters(carList);
+      final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1, car3]);
     });
 

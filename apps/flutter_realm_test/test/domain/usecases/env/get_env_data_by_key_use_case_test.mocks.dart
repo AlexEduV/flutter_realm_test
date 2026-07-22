@@ -28,10 +28,6 @@ import 'package:test_flutter_project/domain/repositories/env_repository.dart'
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockEnvRepository extends _i1.Mock implements _i2.EnvRepository {
-  MockEnvRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
@@ -57,6 +53,17 @@ class MockEnvRepository extends _i1.Mock implements _i2.EnvRepository {
           },
         ),
         returnValue: _i4.dummyValue<String>(
+          this,
+          Invocation.method(
+            #get,
+            [],
+            {
+              #key: key,
+              #fallback: fallback,
+            },
+          ),
+        ),
+        returnValueForMissingStub: _i4.dummyValue<String>(
           this,
           Invocation.method(
             #get,

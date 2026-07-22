@@ -19,7 +19,12 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import 'car_repository_impl_test.mocks.dart';
 
-@GenerateMocks([CarRemoteDataSource, CarEntity, CarDto, RealmLocalStorage])
+@GenerateNiceMocks([
+  MockSpec<CarRemoteDataSource>(),
+  MockSpec<CarEntity>(),
+  MockSpec<CarDto>(),
+  MockSpec<RealmLocalStorage>(),
+])
 void main() {
   late MockCarRemoteDataSource apiService;
   late CarRepositoryImpl repository;

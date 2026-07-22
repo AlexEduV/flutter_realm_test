@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/repositories/permission_repository.d
 
 import 'permission_repository_test.mocks.dart';
 
-@GenerateMocks([PermissionRepository])
+@GenerateNiceMocks([MockSpec<PermissionRepository>()])
 void main() {
   late MockPermissionRepository mockRepository;
 

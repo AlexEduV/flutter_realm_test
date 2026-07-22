@@ -39,10 +39,6 @@ class _FakeConversationModel_0 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockGetConversationByOwnerIdUseCase extends _i1.Mock
     implements _i3.GetConversationByOwnerIdUseCase {
-  MockGetConversationByOwnerIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.ConversationModel call(String? params) => (super.noSuchMethod(
         Invocation.method(
@@ -50,6 +46,13 @@ class MockGetConversationByOwnerIdUseCase extends _i1.Mock
           [params],
         ),
         returnValue: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        ),
+        returnValueForMissingStub: _FakeConversationModel_0(
           this,
           Invocation.method(
             #call,

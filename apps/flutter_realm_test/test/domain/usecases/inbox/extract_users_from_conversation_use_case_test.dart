@@ -10,7 +10,7 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_ca
 
 import 'extract_users_from_conversation_use_case_test.mocks.dart';
 
-@GenerateMocks([GetUserByIdUseCase])
+@GenerateNiceMocks([MockSpec<GetUserByIdUseCase>()])
 void main() {
   late MockGetUserByIdUseCase mockGetUserByIdUseCase;
   late ExtractUsersFromConversationUseCase useCase;

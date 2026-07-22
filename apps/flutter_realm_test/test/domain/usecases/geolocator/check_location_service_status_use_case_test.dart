@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/usecases/geolocator/check_location_s
 
 import 'check_location_service_status_use_case_test.mocks.dart';
 
-@GenerateMocks([GeolocatorRepository])
+@GenerateNiceMocks([MockSpec<GeolocatorRepository>()])
 void main() {
   late MockGeolocatorRepository mockRepository;
   late CheckLocationServiceStatusUseCase useCase;

@@ -14,7 +14,7 @@ import 'package:test_flutter_project/presentation/pages/authentication/widgets/a
 
 import 'login_page_test.mocks.dart';
 
-@GenerateMocks([AuthenticationCubit])
+@GenerateNiceMocks([MockSpec<AuthenticationCubit>()])
 void main() {
   late MockAuthenticationCubit authenticationCubit;
   final appLocalisationsCubit = AppLocalisationsCubit();

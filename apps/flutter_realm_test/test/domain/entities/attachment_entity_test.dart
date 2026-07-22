@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
 
 import 'attachment_entity_test.mocks.dart';
 
-@GenerateMocks([PlatformFile])
+@GenerateNiceMocks([MockSpec<PlatformFile>()])
 void main() {
   group('AttachmentEntity', () {
     test('constructor and properties', () {

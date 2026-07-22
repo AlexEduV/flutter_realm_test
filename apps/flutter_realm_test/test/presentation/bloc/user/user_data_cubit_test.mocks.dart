@@ -78,10 +78,6 @@ class _FakeCarEntity_2 extends _i1.SmartFake implements _i4.CarEntity {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
-  MockAuthRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i6.Future<_i2.AuthResult> login({
     required String? email,
@@ -97,6 +93,18 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
           },
         ),
         returnValue: _i6.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
+          this,
+          Invocation.method(
+            #login,
+            [],
+            {
+              #email: email,
+              #password: password,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
           this,
           Invocation.method(
             #login,
@@ -128,6 +136,20 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
           },
         ),
         returnValue: _i6.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
+          this,
+          Invocation.method(
+            #register,
+            [],
+            {
+              #email: email,
+              #password: password,
+              #firstName: firstName,
+              #lastName: lastName,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
           this,
           Invocation.method(
             #register,
@@ -186,6 +208,7 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
           [],
         ),
         returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
       ) as _i6.Future<bool>);
 }
 
@@ -193,10 +216,6 @@ class MockAuthRepository extends _i1.Mock implements _i5.AuthRepository {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockBaseLocalStorage extends _i1.Mock implements _i7.BaseLocalStorage {
-  MockBaseLocalStorage() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   List<_i4.CarEntity> getAll() => (super.noSuchMethod(
         Invocation.method(
@@ -204,6 +223,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i7.BaseLocalStorage {
           [],
         ),
         returnValue: <_i4.CarEntity>[],
+        returnValueForMissingStub: <_i4.CarEntity>[],
       ) as List<_i4.CarEntity>);
 
   @override
@@ -231,6 +251,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i7.BaseLocalStorage {
           [],
         ),
         returnValue: _i6.Stream<dynamic>.empty(),
+        returnValueForMissingStub: _i6.Stream<dynamic>.empty(),
       ) as _i6.Stream<dynamic>);
 
   @override
@@ -264,6 +285,13 @@ class MockBaseLocalStorage extends _i1.Mock implements _i7.BaseLocalStorage {
             [],
           ),
         ),
+        returnValueForMissingStub: _FakeUserEntity_1(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
       ) as _i3.UserEntity);
 
   @override
@@ -279,6 +307,13 @@ class MockBaseLocalStorage extends _i1.Mock implements _i7.BaseLocalStorage {
             [id],
           ),
         ),
+        returnValueForMissingStub: _FakeCarEntity_2(
+          this,
+          Invocation.method(
+            #getCarById,
+            [id],
+          ),
+        ),
       ) as _i4.CarEntity);
 
   @override
@@ -288,6 +323,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i7.BaseLocalStorage {
           [],
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override
@@ -305,10 +341,6 @@ class MockBaseLocalStorage extends _i1.Mock implements _i7.BaseLocalStorage {
 /// See the documentation for Mockito's code generation for more information.
 class MockOpenAppSettingsUseCase extends _i1.Mock
     implements _i8.OpenAppSettingsUseCase {
-  MockOpenAppSettingsUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i6.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
@@ -316,6 +348,7 @@ class MockOpenAppSettingsUseCase extends _i1.Mock
           [],
         ),
         returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
       ) as _i6.Future<bool>);
 }
 
@@ -324,10 +357,6 @@ class MockOpenAppSettingsUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationServiceStatusUseCase extends _i1.Mock
     implements _i9.CheckLocationServiceStatusUseCase {
-  MockCheckLocationServiceStatusUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i6.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
@@ -335,6 +364,7 @@ class MockCheckLocationServiceStatusUseCase extends _i1.Mock
           [],
         ),
         returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
       ) as _i6.Future<bool>);
 }
 
@@ -343,10 +373,6 @@ class MockCheckLocationServiceStatusUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockRequestLocationPermissionUseCase extends _i1.Mock
     implements _i10.RequestLocationPermissionUseCase {
-  MockRequestLocationPermissionUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i6.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
@@ -354,6 +380,7 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
           [],
         ),
         returnValue: _i6.Future<bool>.value(false),
+        returnValueForMissingStub: _i6.Future<bool>.value(false),
       ) as _i6.Future<bool>);
 }
 
@@ -362,10 +389,6 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
     implements _i11.CheckLocationPermissionStatusUseCase {
-  MockCheckLocationPermissionStatusUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i6.Future<_i12.PermissionStatus> call() => (super.noSuchMethod(
         Invocation.method(
@@ -373,6 +396,8 @@ class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
           [],
         ),
         returnValue: _i6.Future<_i12.PermissionStatus>.value(
+            _i12.PermissionStatus.denied),
+        returnValueForMissingStub: _i6.Future<_i12.PermissionStatus>.value(
             _i12.PermissionStatus.denied),
       ) as _i6.Future<_i12.PermissionStatus>);
 }
@@ -382,15 +407,14 @@ class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockGetUserByEmailUseCase extends _i1.Mock
     implements _i13.GetUserByEmailUseCase {
-  MockGetUserByEmailUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
-  _i3.UserEntity? call(String? params) => (super.noSuchMethod(Invocation.method(
-        #call,
-        [params],
-      )) as _i3.UserEntity?);
+  _i3.UserEntity? call(String? params) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.UserEntity?);
 }
 
 /// A class which mocks [PickImageFromGalleryUseCase].
@@ -398,10 +422,6 @@ class MockGetUserByEmailUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockPickImageFromGalleryUseCase extends _i1.Mock
     implements _i14.PickImageFromGalleryUseCase {
-  MockPickImageFromGalleryUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i6.Future<String?> call() => (super.noSuchMethod(
         Invocation.method(
@@ -409,6 +429,7 @@ class MockPickImageFromGalleryUseCase extends _i1.Mock
           [],
         ),
         returnValue: _i6.Future<String?>.value(),
+        returnValueForMissingStub: _i6.Future<String?>.value(),
       ) as _i6.Future<String?>);
 }
 
@@ -417,10 +438,6 @@ class MockPickImageFromGalleryUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockDeleteCarByIdUseCase extends _i1.Mock
     implements _i15.DeleteCarByIdUseCase {
-  MockDeleteCarByIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   void call(String? params) => super.noSuchMethod(
         Invocation.method(
@@ -435,10 +452,6 @@ class MockDeleteCarByIdUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockBaseLogger extends _i1.Mock implements _i16.BaseLogger {
-  MockBaseLogger() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   void e(String? message) => super.noSuchMethod(
         Invocation.method(

@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_comp
 
 import 'get_auto_complete_manufacturers_by_type_use_case_test.mocks.dart';
 
-@GenerateMocks([AutoCompleteRepository])
+@GenerateNiceMocks([MockSpec<AutoCompleteRepository>()])
 void main() {
   late MockAutoCompleteRepository mockRepository;
   late GetAutoCompleteManufacturersByTypeUseCase useCase;

@@ -9,6 +9,8 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/models/auth_result.dart' as _i2;
 import 'package:test_flutter_project/domain/models/login_model.dart' as _i6;
 import 'package:test_flutter_project/domain/models/register_model.dart' as _i8;
+import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart'
+    as _i9;
 import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart'
     as _i5;
 import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart'
@@ -44,10 +46,6 @@ class _FakeAuthResult_0 extends _i1.SmartFake implements _i2.AuthResult {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLogoutUseCase extends _i1.Mock implements _i3.LogoutUseCase {
-  MockLogoutUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<void> call() => (super.noSuchMethod(
         Invocation.method(
@@ -63,10 +61,6 @@ class MockLogoutUseCase extends _i1.Mock implements _i3.LogoutUseCase {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginUseCase extends _i1.Mock implements _i5.LoginUseCase {
-  MockLoginUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<_i2.AuthResult> call(_i6.LoginModel? model) => (super.noSuchMethod(
         Invocation.method(
@@ -80,6 +74,14 @@ class MockLoginUseCase extends _i1.Mock implements _i5.LoginUseCase {
             [model],
           ),
         )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
+          this,
+          Invocation.method(
+            #call,
+            [model],
+          ),
+        )),
       ) as _i4.Future<_i2.AuthResult>);
 }
 
@@ -87,10 +89,6 @@ class MockLoginUseCase extends _i1.Mock implements _i5.LoginUseCase {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRegisterUseCase extends _i1.Mock implements _i7.RegisterUseCase {
-  MockRegisterUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<_i2.AuthResult> call(_i8.RegisterModel? model) =>
       (super.noSuchMethod(
@@ -105,5 +103,29 @@ class MockRegisterUseCase extends _i1.Mock implements _i7.RegisterUseCase {
             [model],
           ),
         )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.AuthResult>.value(_FakeAuthResult_0(
+          this,
+          Invocation.method(
+            #call,
+            [model],
+          ),
+        )),
       ) as _i4.Future<_i2.AuthResult>);
+}
+
+/// A class which mocks [DeleteAccountUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDeleteAccountUseCase extends _i1.Mock
+    implements _i9.DeleteAccountUseCase {
+  @override
+  _i4.Future<void> call(String? email) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [email],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

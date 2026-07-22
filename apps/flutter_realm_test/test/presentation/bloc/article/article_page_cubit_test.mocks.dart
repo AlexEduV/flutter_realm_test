@@ -40,10 +40,6 @@ class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
 /// See the documentation for Mockito's code generation for more information.
 class MockGetArticleByIdUseCase extends _i1.Mock
     implements _i3.GetArticleByIdUseCase {
-  MockGetArticleByIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<_i2.ArticleEntity> call(String? id) => (super.noSuchMethod(
         Invocation.method(
@@ -51,6 +47,14 @@ class MockGetArticleByIdUseCase extends _i1.Mock
           [id],
         ),
         returnValue: _i4.Future<_i2.ArticleEntity>.value(_FakeArticleEntity_0(
+          this,
+          Invocation.method(
+            #call,
+            [id],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.ArticleEntity>.value(_FakeArticleEntity_0(
           this,
           Invocation.method(
             #call,

@@ -49,10 +49,6 @@ class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
-  MockBaseLocalStorage() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   List<_i3.CarEntity> getAll() => (super.noSuchMethod(
         Invocation.method(
@@ -60,6 +56,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
           [],
         ),
         returnValue: <_i3.CarEntity>[],
+        returnValueForMissingStub: <_i3.CarEntity>[],
       ) as List<_i3.CarEntity>);
 
   @override
@@ -87,6 +84,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
           [],
         ),
         returnValue: _i5.Stream<dynamic>.empty(),
+        returnValueForMissingStub: _i5.Stream<dynamic>.empty(),
       ) as _i5.Stream<dynamic>);
 
   @override
@@ -120,6 +118,13 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
             [],
           ),
         ),
+        returnValueForMissingStub: _FakeUserEntity_0(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
       ) as _i2.UserEntity);
 
   @override
@@ -135,6 +140,13 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
             [id],
           ),
         ),
+        returnValueForMissingStub: _FakeCarEntity_1(
+          this,
+          Invocation.method(
+            #getCarById,
+            [id],
+          ),
+        ),
       ) as _i3.CarEntity);
 
   @override
@@ -144,6 +156,7 @@ class MockBaseLocalStorage extends _i1.Mock implements _i4.BaseLocalStorage {
           [],
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override

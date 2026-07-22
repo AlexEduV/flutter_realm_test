@@ -38,10 +38,6 @@ class _FakeCarEntity_0 extends _i1.SmartFake implements _i2.CarEntity {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
-  MockCarRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   List<_i2.CarEntity> getAllCars() => (super.noSuchMethod(
         Invocation.method(
@@ -49,6 +45,7 @@ class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
           [],
         ),
         returnValue: <_i2.CarEntity>[],
+        returnValueForMissingStub: <_i2.CarEntity>[],
       ) as List<_i2.CarEntity>);
 
   @override
@@ -101,6 +98,13 @@ class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
             [id],
           ),
         ),
+        returnValueForMissingStub: _FakeCarEntity_0(
+          this,
+          Invocation.method(
+            #getCarById,
+            [id],
+          ),
+        ),
       ) as _i2.CarEntity);
 
   @override
@@ -110,5 +114,6 @@ class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
           [],
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 }

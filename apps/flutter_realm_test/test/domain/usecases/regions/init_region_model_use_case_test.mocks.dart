@@ -29,10 +29,6 @@ import 'package:test_flutter_project/domain/repositories/region_model_repository
 /// See the documentation for Mockito's code generation for more information.
 class MockRegionModelRepository extends _i1.Mock
     implements _i2.RegionModelRepository {
-  MockRegionModelRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
@@ -50,5 +46,6 @@ class MockRegionModelRepository extends _i1.Mock
           [],
         ),
         returnValue: <_i4.RegionUiModel>[],
+        returnValueForMissingStub: <_i4.RegionUiModel>[],
       ) as List<_i4.RegionUiModel>);
 }

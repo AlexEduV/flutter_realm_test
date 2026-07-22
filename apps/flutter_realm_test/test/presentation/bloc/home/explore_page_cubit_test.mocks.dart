@@ -46,10 +46,6 @@ class _FakeCarEntity_0 extends _i1.SmartFake implements _i2.CarEntity {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSyncCarsUseCase extends _i1.Mock implements _i3.SyncCarsUseCase {
-  MockSyncCarsUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<void> call() => (super.noSuchMethod(
         Invocation.method(
@@ -64,21 +60,13 @@ class MockSyncCarsUseCase extends _i1.Mock implements _i3.SyncCarsUseCase {
 /// A class which mocks [WatchCarsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockWatchCarsUseCase extends _i1.Mock implements _i5.WatchCarsUseCase {
-  MockWatchCarsUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-}
+class MockWatchCarsUseCase extends _i1.Mock implements _i5.WatchCarsUseCase {}
 
 /// A class which mocks [FetchArticlesUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchArticlesUseCase extends _i1.Mock
     implements _i6.FetchArticlesUseCase {
-  MockFetchArticlesUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<List<_i7.ArticleEntity>> call() => (super.noSuchMethod(
         Invocation.method(
@@ -87,6 +75,8 @@ class MockFetchArticlesUseCase extends _i1.Mock
         ),
         returnValue:
             _i4.Future<List<_i7.ArticleEntity>>.value(<_i7.ArticleEntity>[]),
+        returnValueForMissingStub:
+            _i4.Future<List<_i7.ArticleEntity>>.value(<_i7.ArticleEntity>[]),
       ) as _i4.Future<List<_i7.ArticleEntity>>);
 }
 
@@ -94,10 +84,6 @@ class MockFetchArticlesUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetCarByIdUseCase extends _i1.Mock implements _i8.GetCarByIdUseCase {
-  MockGetCarByIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.CarEntity call(String? params) => (super.noSuchMethod(
         Invocation.method(
@@ -105,6 +91,13 @@ class MockGetCarByIdUseCase extends _i1.Mock implements _i8.GetCarByIdUseCase {
           [params],
         ),
         returnValue: _FakeCarEntity_0(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        ),
+        returnValueForMissingStub: _FakeCarEntity_0(
           this,
           Invocation.method(
             #call,

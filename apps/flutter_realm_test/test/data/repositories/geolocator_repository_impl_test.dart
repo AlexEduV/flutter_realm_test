@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/data_sources/local/geolocator_local_
 
 import 'geolocator_repository_impl_test.mocks.dart';
 
-@GenerateMocks([GeolocatorLocalDataSource])
+@GenerateNiceMocks([MockSpec<GeolocatorLocalDataSource>()])
 void main() {
   late MockGeolocatorLocalDataSource mockGeolocatorService;
   late GeolocatorRepositoryImpl repository;

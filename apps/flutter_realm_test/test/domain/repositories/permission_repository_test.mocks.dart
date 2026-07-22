@@ -29,10 +29,6 @@ import 'package:test_flutter_project/domain/repositories/permission_repository.d
 /// See the documentation for Mockito's code generation for more information.
 class MockPermissionRepository extends _i1.Mock
     implements _i2.PermissionRepository {
-  MockPermissionRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<bool> requestLocationPermission() => (super.noSuchMethod(
         Invocation.method(
@@ -40,6 +36,7 @@ class MockPermissionRepository extends _i1.Mock
           [],
         ),
         returnValue: _i3.Future<bool>.value(false),
+        returnValueForMissingStub: _i3.Future<bool>.value(false),
       ) as _i3.Future<bool>);
 
   @override
@@ -50,6 +47,8 @@ class MockPermissionRepository extends _i1.Mock
           [],
         ),
         returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+        returnValueForMissingStub:
             _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
       ) as _i3.Future<_i4.PermissionStatus>);
 }

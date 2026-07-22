@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/usecases/regions/fetch_regions_use_c
 
 import 'fetch_regions_use_case_test.mocks.dart';
 
-@GenerateMocks([RegionRepository])
+@GenerateNiceMocks([MockSpec<RegionRepository>()])
 void main() {
   late MockRegionRepository mockRepository;
   late FetchRegionsUseCase useCase;

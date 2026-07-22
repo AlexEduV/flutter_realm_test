@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/usecases/share/share_use_case.dart';
 
 import 'share_use_case_test.mocks.dart';
 
-@GenerateMocks([ShareRepository])
+@GenerateNiceMocks([MockSpec<ShareRepository>()])
 void main() {
   late MockShareRepository mockRepository;
   late ShareUseCase useCase;

@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 import 'owner_repository_impl_test.mocks.dart';
 
-@GenerateMocks([OwnersRemoteDataSource])
+@GenerateNiceMocks([MockSpec<OwnersRemoteDataSource>()])
 void main() {
   late MockOwnersRemoteDataSource mockRemoteDataSource;
   late OwnerRepositoryImpl repository;

@@ -20,7 +20,7 @@ import 'package:test_flutter_project/presentation/pages/details/widgets/owner_wi
 import '../../../../utils/app_router_test.mocks.dart';
 import 'owner_widget_test.mocks.dart';
 
-@GenerateMocks([GetConversationByOwnerIdUseCase])
+@GenerateNiceMocks([MockSpec<GetConversationByOwnerIdUseCase>()])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
   final mockGetConversationByOwnerUseCase = MockGetConversationByOwnerIdUseCase();

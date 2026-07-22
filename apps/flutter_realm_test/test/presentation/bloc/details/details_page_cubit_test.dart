@@ -10,7 +10,7 @@ import 'package:test_flutter_project/presentation/bloc/details/details_page_stat
 import '../../pages/details/widgets/vehicle_specs_widget_test.mocks.dart';
 import 'details_page_cubit_test.mocks.dart';
 
-@GenerateMocks([GetCarByIdUseCase])
+@GenerateNiceMocks([MockSpec<GetCarByIdUseCase>()])
 void main() {
   late MockGetCarByIdUseCase mockGetCarByIdUseCase;
   late MockGetCarColorsUseCase mockGetCarColorsUseCase;

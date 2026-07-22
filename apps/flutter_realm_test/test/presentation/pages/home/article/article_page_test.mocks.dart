@@ -41,14 +41,14 @@ class _FakeArticlePageState_0 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockArticlePageCubit extends _i1.Mock implements _i3.ArticlePageCubit {
-  MockArticlePageCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.ArticlePageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
         returnValue: _FakeArticlePageState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeArticlePageState_0(
           this,
           Invocation.getter(#state),
         ),
@@ -58,12 +58,14 @@ class MockArticlePageCubit extends _i1.Mock implements _i3.ArticlePageCubit {
   _i4.Stream<_i2.ArticlePageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i4.Stream<_i2.ArticlePageState>.empty(),
+        returnValueForMissingStub: _i4.Stream<_i2.ArticlePageState>.empty(),
       ) as _i4.Stream<_i2.ArticlePageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override

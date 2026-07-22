@@ -8,10 +8,10 @@ import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_c
 import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 
 import '../../../domain/repositories/base_local_storage_test.mocks.dart';
-import '../../../presentation/pages/home/new_item_page/new_item_page_test.mocks.dart';
+import '../../../presentation/bloc/home/new_item_page_cubit_test.mocks.dart';
 import 'car_remote_data_source_impl_test.mocks.dart';
 
-@GenerateMocks([GetOwnerByIdUseCase])
+@GenerateNiceMocks([MockSpec<GetOwnerByIdUseCase>()])
 void main() {
   late MockCarRemoteDataSourceImpl service;
   final mockGetOwnerByIdUseCase = MockGetOwnerByIdUseCase();

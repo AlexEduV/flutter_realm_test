@@ -29,12 +29,12 @@ import 'package:test_flutter_project/utils/app_router.dart';
 import '../presentation/bloc/user/user_data_cubit_test.mocks.dart';
 import 'app_router_test.mocks.dart';
 
-@GenerateMocks([
-  HomeBottomBarCubit,
-  ExplorePageCubit,
-  UserDataCubit,
-  SearchPageCubit,
-  DetailsPageCubit,
+@GenerateNiceMocks([
+  MockSpec<HomeBottomBarCubit>(),
+  MockSpec<ExplorePageCubit>(),
+  MockSpec<UserDataCubit>(),
+  MockSpec<SearchPageCubit>(),
+  MockSpec<DetailsPageCubit>(),
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

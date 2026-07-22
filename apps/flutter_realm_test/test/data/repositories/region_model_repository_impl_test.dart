@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 
 import 'region_model_repository_impl_test.mocks.dart';
 
-@GenerateMocks([RegionRemoteDataSource])
+@GenerateNiceMocks([MockSpec<RegionRemoteDataSource>()])
 void main() {
   late MockRegionRemoteDataSource mockRemoteDataSource;
   late RegionModelRepositoryImpl repository;

@@ -36,10 +36,6 @@ class _FakeCarEntity_0 extends _i1.SmartFake implements _i2.CarEntity {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetCarByIdUseCase extends _i1.Mock implements _i3.GetCarByIdUseCase {
-  MockGetCarByIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.CarEntity call(String? params) => (super.noSuchMethod(
         Invocation.method(
@@ -47,6 +43,13 @@ class MockGetCarByIdUseCase extends _i1.Mock implements _i3.GetCarByIdUseCase {
           [params],
         ),
         returnValue: _FakeCarEntity_0(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        ),
+        returnValueForMissingStub: _FakeCarEntity_0(
           this,
           Invocation.method(
             #call,

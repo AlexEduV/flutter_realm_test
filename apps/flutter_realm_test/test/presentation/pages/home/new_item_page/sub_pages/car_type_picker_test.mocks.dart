@@ -5,13 +5,14 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i9;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/common/enums/body_type.dart' as _i6;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i5;
 import 'package:test_flutter_project/common/enums/fuel_type.dart' as _i8;
 import 'package:test_flutter_project/common/enums/transmission_type.dart'
     as _i7;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i9;
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart'
     as _i3;
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart'
@@ -46,14 +47,14 @@ class _FakeNewItemPageState_0 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
-  MockNewItemPageCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.NewItemPageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
         returnValue: _FakeNewItemPageState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeNewItemPageState_0(
           this,
           Invocation.getter(#state),
         ),
@@ -63,12 +64,14 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
   _i4.Stream<_i2.NewItemPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i4.Stream<_i2.NewItemPageState>.empty(),
+        returnValueForMissingStub: _i4.Stream<_i2.NewItemPageState>.empty(),
       ) as _i4.Stream<_i2.NewItemPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -94,6 +97,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -110,6 +114,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -126,6 +131,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -142,6 +148,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -158,6 +165,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -174,6 +182,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -192,6 +201,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           [],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -315,6 +325,16 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
       );
 
   @override
+  List<_i9.CarEntity> insertItem() => (super.noSuchMethod(
+        Invocation.method(
+          #insertItem,
+          [],
+        ),
+        returnValue: <_i9.CarEntity>[],
+        returnValueForMissingStub: <_i9.CarEntity>[],
+      ) as List<_i9.CarEntity>);
+
+  @override
   void clearFields() => super.noSuchMethod(
         Invocation.method(
           #clearFields,
@@ -333,7 +353,8 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
       );
 
   @override
-  void onChange(_i9.Change<_i2.NewItemPageState>? change) => super.noSuchMethod(
+  void onChange(_i10.Change<_i2.NewItemPageState>? change) =>
+      super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],

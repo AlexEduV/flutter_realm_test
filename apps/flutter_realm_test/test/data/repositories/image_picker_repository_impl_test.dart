@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/data_sources/local/image_picker_loca
 
 import 'image_picker_repository_impl_test.mocks.dart';
 
-@GenerateMocks([ImagePickerLocalDataSource])
+@GenerateNiceMocks([MockSpec<ImagePickerLocalDataSource>()])
 void main() {
   late MockImagePickerLocalDataSource mockLocalDataSource;
   late ImagePickerRepositoryImpl repository;

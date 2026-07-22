@@ -39,10 +39,6 @@ class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockArticleRepository extends _i1.Mock implements _i3.ArticleRepository {
-  MockArticleRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<List<_i2.ArticleEntity>> fetchArticles() => (super.noSuchMethod(
         Invocation.method(
@@ -50,6 +46,8 @@ class MockArticleRepository extends _i1.Mock implements _i3.ArticleRepository {
           [],
         ),
         returnValue:
+            _i4.Future<List<_i2.ArticleEntity>>.value(<_i2.ArticleEntity>[]),
+        returnValueForMissingStub:
             _i4.Future<List<_i2.ArticleEntity>>.value(<_i2.ArticleEntity>[]),
       ) as _i4.Future<List<_i2.ArticleEntity>>);
 
@@ -61,6 +59,14 @@ class MockArticleRepository extends _i1.Mock implements _i3.ArticleRepository {
           [id],
         ),
         returnValue: _i4.Future<_i2.ArticleEntity>.value(_FakeArticleEntity_0(
+          this,
+          Invocation.method(
+            #getArticleById,
+            [id],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.ArticleEntity>.value(_FakeArticleEntity_0(
           this,
           Invocation.method(
             #getArticleById,

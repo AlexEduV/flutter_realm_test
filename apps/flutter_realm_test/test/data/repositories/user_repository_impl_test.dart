@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 import 'user_repository_impl_test.mocks.dart';
 
-@GenerateMocks([UsersRemoteDataSource])
+@GenerateNiceMocks([MockSpec<UsersRemoteDataSource>()])
 void main() {
   late MockUsersRemoteDataSource mockRemoteDataSource;
   late UserRepositoryImpl repository;

@@ -20,7 +20,7 @@ import '../../../../../common/extensions/context_extension_test.mocks.dart';
 import '../../../../../utils/app_router_test.mocks.dart';
 import 'location_settings_page_test.mocks.dart';
 
-@GenerateMocks([GetRegionByCodeUseCase, GetAllRegionModelsUseCase])
+@GenerateNiceMocks([MockSpec<GetRegionByCodeUseCase>(), MockSpec<GetAllRegionModelsUseCase>()])
 void main() {
   final appLocalisationsCubit = MockAppLocalisationsCubit();
   final getRegionByCodeUseCase = MockGetRegionByCodeUseCase();

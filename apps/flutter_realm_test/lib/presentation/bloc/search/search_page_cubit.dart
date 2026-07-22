@@ -11,58 +11,51 @@ import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_c
 import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
 
-import '../../../core/di/injection_container.dart';
 import '../../../l10n/l10n_keys.dart';
 import '../l10n/app_localisations_cubit.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
-  SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase) : super(const SearchPageState());
+  SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase, this._appLocalisationsCubit)
+    : super(const SearchPageState());
 
   StreamSubscription? _carSubscription;
 
   final GetAllCarsUseCase _getAllCarsUseCase;
   final WatchCarsUseCase _watchCarsUseCase;
+  final AppLocalisationsCubit _appLocalisationsCubit;
 
   void init() {
     emit(
       state.copyWith(
         minYearFieldParamsModel:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsHintMin,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMin),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.filterValidationMessage,
               ),
             ),
         maxYearFieldParamsModel:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsHintMax,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMax),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.filterValidationMessage,
               ),
             ),
         minPriceFieldParamsModel:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsHintMin,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMin),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.filterValidationMessage,
               ),
             ),
         maxPriceFieldParamsModel:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsHintMax,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMax),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.filterValidationMessage,
               ),
             ),
@@ -75,7 +68,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void loadData() {
     emit(state.copyWith(isLoading: true));
 
-    final results = applyAllFilters(_getAllCarsUseCase.call());
+    final results = getFilteredResults(_getAllCarsUseCase.call());
     final currentType = state.currentSelectedType;
 
     updateModelListFromEntities(results, currentType);
@@ -90,7 +83,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(allResults: results, isLoading: false));
 
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
-      final results = applyAllFilters(entities);
+      final results = getFilteredResults(entities);
       emit(state.copyWith(results: results, allResults: entities));
 
       //todo: maybe I should not use two identical lists for all and selected items;
@@ -98,7 +91,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     });
   }
 
-  List<CarEntity> applyAllFilters(List<CarEntity> cars) {
+  List<CarEntity> getFilteredResults(List<CarEntity> cars) {
     final minYear = int.tryParse(state.selectedMinYear ?? '');
     final maxYear = int.tryParse(state.selectedMaxYear ?? '');
 
@@ -258,7 +251,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void updateModelSelection(Map<String, List<String>> newList) {
     emit(state.copyWith(selectedModels: newList));
 
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void addManufacturerToSelection(String manufacturer) {
@@ -266,7 +259,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     map[manufacturer] = state.allModels[manufacturer] ?? [];
 
     emit(state.copyWith(selectedModels: map));
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void removeManufacturerFromSelection(String manufacturer) {
@@ -274,7 +267,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     map.remove(manufacturer);
 
     emit(state.copyWith(selectedModels: map));
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void addCarModelToSelection(String manufacturer, String model) {
@@ -286,7 +279,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     }
 
     emit(state.copyWith(selectedModels: map));
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void removeCarModelFromSelection(String manufacturer, String model) {
@@ -304,56 +297,56 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     }
 
     emit(state.copyWith(selectedModels: map));
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void addCarColorToSelection(String color) {
     final newSelection = List<String>.from(state.selectedColors)..add(color);
     emit(state.copyWith(selectedColors: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void removeCarColorFromSelection(String color) {
     final newSelection = List<String>.from(state.selectedColors)..remove(color);
     emit(state.copyWith(selectedColors: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void addBodyTypeToSelection(String bodyType) {
     final newSelection = List<String>.from(state.selectedBodyTypes)..add(bodyType);
     emit(state.copyWith(selectedBodyTypes: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void removeBodyTypeFromSelection(String bodyType) {
     final newSelection = List<String>.from(state.selectedBodyTypes)..remove(bodyType);
     emit(state.copyWith(selectedBodyTypes: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void addFuelTypeToSelection(String fuelType) {
     final newSelection = List<String>.from(state.selectedFuelTypes)..add(fuelType);
     emit(state.copyWith(selectedFuelTypes: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void removeFuelTypeFromSelection(String fuelType) {
     final newSelection = List<String>.from(state.selectedFuelTypes)..remove(fuelType);
     emit(state.copyWith(selectedFuelTypes: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void addTransmissionTypeToSelection(String transmissionType) {
     final newSelection = List<String>.from(state.selectedTransmissionTypes)..add(transmissionType);
     emit(state.copyWith(selectedTransmissionTypes: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void removeTransmissionTypeFromSelection(String transmissionType) {
@@ -361,35 +354,35 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       ..remove(transmissionType);
     emit(state.copyWith(selectedTransmissionTypes: newSelection));
 
-    emit(state.copyWith(results: applyAllFilters(state.allResults)));
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void updateSelectedMinYear(String newValue) {
     emit(state.copyWith(selectedMinYear: newValue));
     validateYears(state.selectedMinYear, state.selectedMaxYear);
 
-    applyAllFilters(state.allResults);
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void updateSelectedMaxYear(String newValue) {
     emit(state.copyWith(selectedMaxYear: newValue));
     validateYears(state.selectedMinYear, state.selectedMaxYear);
 
-    applyAllFilters(state.allResults);
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void updateSelectedMinPrice(String newValue) {
     emit(state.copyWith(selectedMinPrice: newValue));
     validatePrices(state.selectedMinPrice, state.selectedMaxPrice);
 
-    applyAllFilters(state.allResults);
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void updateSelectedMaxPrice(String newValue) {
     emit(state.copyWith(selectedMaxPrice: newValue));
     validatePrices(state.selectedMinPrice, state.selectedMaxPrice);
 
-    applyAllFilters(state.allResults);
+    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void openDrawer(SearchDrawerType type) {

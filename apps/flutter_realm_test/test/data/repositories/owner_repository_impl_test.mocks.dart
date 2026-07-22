@@ -39,10 +39,6 @@ class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
 /// See the documentation for Mockito's code generation for more information.
 class MockOwnersRemoteDataSource extends _i1.Mock
     implements _i3.OwnersRemoteDataSource {
-  MockOwnersRemoteDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<List<_i2.OwnerEntity>> fetchOwners() => (super.noSuchMethod(
         Invocation.method(
@@ -50,6 +46,8 @@ class MockOwnersRemoteDataSource extends _i1.Mock
           [],
         ),
         returnValue:
+            _i4.Future<List<_i2.OwnerEntity>>.value(<_i2.OwnerEntity>[]),
+        returnValueForMissingStub:
             _i4.Future<List<_i2.OwnerEntity>>.value(<_i2.OwnerEntity>[]),
       ) as _i4.Future<List<_i2.OwnerEntity>>);
 
@@ -60,6 +58,13 @@ class MockOwnersRemoteDataSource extends _i1.Mock
           [id],
         ),
         returnValue: _FakeOwnerEntity_0(
+          this,
+          Invocation.method(
+            #getOwnerById,
+            [id],
+          ),
+        ),
+        returnValueForMissingStub: _FakeOwnerEntity_0(
           this,
           Invocation.method(
             #getOwnerById,

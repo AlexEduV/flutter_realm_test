@@ -29,10 +29,6 @@ import 'package:test_flutter_project/domain/repositories/car_color_repository.da
 /// See the documentation for Mockito's code generation for more information.
 class MockCarColorRepository extends _i1.Mock
     implements _i2.CarColorRepository {
-  MockCarColorRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   Map<String, _i3.Color> getColors() => (super.noSuchMethod(
         Invocation.method(
@@ -40,14 +36,17 @@ class MockCarColorRepository extends _i1.Mock
           [],
         ),
         returnValue: <String, _i3.Color>{},
+        returnValueForMissingStub: <String, _i3.Color>{},
       ) as Map<String, _i3.Color>);
 
   @override
-  _i3.Color? getColorByName(String? colorName) =>
-      (super.noSuchMethod(Invocation.method(
-        #getColorByName,
-        [colorName],
-      )) as _i3.Color?);
+  _i3.Color? getColorByName(String? colorName) => (super.noSuchMethod(
+        Invocation.method(
+          #getColorByName,
+          [colorName],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.Color?);
 
   @override
   String getColorNameFromColor(_i3.Color? color) => (super.noSuchMethod(
@@ -56,6 +55,13 @@ class MockCarColorRepository extends _i1.Mock
           [color],
         ),
         returnValue: _i4.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getColorNameFromColor,
+            [color],
+          ),
+        ),
+        returnValueForMissingStub: _i4.dummyValue<String>(
           this,
           Invocation.method(
             #getColorNameFromColor,

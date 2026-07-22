@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use
 
 import 'fetch_articles_use_case_test.mocks.dart';
 
-@GenerateMocks([ArticleRepository])
+@GenerateNiceMocks([MockSpec<ArticleRepository>()])
 void main() {
   late MockArticleRepository mockRepository;
   late FetchArticlesUseCase useCase;

@@ -16,12 +16,12 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'auth_repository_impl_test.mocks.dart';
 
-@GenerateMocks([
-  FetchOwnersUseCase,
-  GetMaxUserIdUseCase,
-  SaveUsersUseCase,
-  LoadUsersUseCase,
-  UsersRemoteDataSource,
+@GenerateNiceMocks([
+  MockSpec<FetchOwnersUseCase>(),
+  MockSpec<GetMaxUserIdUseCase>(),
+  MockSpec<SaveUsersUseCase>(),
+  MockSpec<LoadUsersUseCase>(),
+  MockSpec<UsersRemoteDataSource>(),
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

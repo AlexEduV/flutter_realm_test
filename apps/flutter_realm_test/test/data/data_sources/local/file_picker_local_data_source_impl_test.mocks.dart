@@ -28,10 +28,6 @@ import 'package:mockito/mockito.dart' as _i1;
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
-  MockFilePickerIO() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<_i2.FilePickerResult?> pickFiles({
     _i2.FileType? type = _i2.FileType.any,
@@ -67,6 +63,7 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
           },
         ),
         returnValue: _i3.Future<_i2.FilePickerResult?>.value(),
+        returnValueForMissingStub: _i3.Future<_i2.FilePickerResult?>.value(),
       ) as _i3.Future<_i2.FilePickerResult?>);
 
   @override
@@ -76,6 +73,7 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
           [],
         ),
         returnValue: _i3.Future<bool?>.value(),
+        returnValueForMissingStub: _i3.Future<bool?>.value(),
       ) as _i3.Future<bool?>);
 
   @override
@@ -95,6 +93,7 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
           },
         ),
         returnValue: _i3.Future<String?>.value(),
+        returnValueForMissingStub: _i3.Future<String?>.value(),
       ) as _i3.Future<String?>);
 
   @override
@@ -122,6 +121,7 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
           },
         ),
         returnValue: _i3.Future<String?>.value(),
+        returnValueForMissingStub: _i3.Future<String?>.value(),
       ) as _i3.Future<String?>);
 
   @override
@@ -141,6 +141,7 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
           },
         ),
         returnValue: _i3.Future<List<String>?>.value(),
+        returnValueForMissingStub: _i3.Future<List<String>?>.value(),
       ) as _i3.Future<List<String>?>);
 }
 
@@ -148,43 +149,45 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFilePickerResult extends _i1.Mock implements _i2.FilePickerResult {
-  MockFilePickerResult() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   List<_i2.PlatformFile> get files => (super.noSuchMethod(
         Invocation.getter(#files),
         returnValue: <_i2.PlatformFile>[],
+        returnValueForMissingStub: <_i2.PlatformFile>[],
       ) as List<_i2.PlatformFile>);
 
   @override
   bool get isSinglePick => (super.noSuchMethod(
         Invocation.getter(#isSinglePick),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
   int get count => (super.noSuchMethod(
         Invocation.getter(#count),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override
   List<String?> get paths => (super.noSuchMethod(
         Invocation.getter(#paths),
         returnValue: <String?>[],
+        returnValueForMissingStub: <String?>[],
       ) as List<String?>);
 
   @override
   List<String?> get names => (super.noSuchMethod(
         Invocation.getter(#names),
         returnValue: <String?>[],
+        returnValueForMissingStub: <String?>[],
       ) as List<String?>);
 
   @override
   List<_i5.XFile> get xFiles => (super.noSuchMethod(
         Invocation.getter(#xFiles),
         returnValue: <_i5.XFile>[],
+        returnValueForMissingStub: <_i5.XFile>[],
       ) as List<_i5.XFile>);
 }

@@ -94,10 +94,6 @@ class _FakeMessagesPageState_3 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockGetConversationByIdUseCase extends _i1.Mock
     implements _i6.GetConversationByIdUseCase {
-  MockGetConversationByIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.ConversationModel call(String? params) => (super.noSuchMethod(
         Invocation.method(
@@ -105,6 +101,13 @@ class MockGetConversationByIdUseCase extends _i1.Mock
           [params],
         ),
         returnValue: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        ),
+        returnValueForMissingStub: _FakeConversationModel_0(
           this,
           Invocation.method(
             #call,
@@ -119,10 +122,6 @@ class MockGetConversationByIdUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockGetOwnerByIdUseCase extends _i1.Mock
     implements _i7.GetOwnerByIdUseCase {
-  MockGetOwnerByIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.OwnerEntity call(String? params) => (super.noSuchMethod(
         Invocation.method(
@@ -130,6 +129,13 @@ class MockGetOwnerByIdUseCase extends _i1.Mock
           [params],
         ),
         returnValue: _FakeOwnerEntity_1(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        ),
+        returnValueForMissingStub: _FakeOwnerEntity_1(
           this,
           Invocation.method(
             #call,
@@ -144,10 +150,6 @@ class MockGetOwnerByIdUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockExtractUsersFromConversationUseCase extends _i1.Mock
     implements _i8.ExtractUsersFromConversationUseCase {
-  MockExtractUsersFromConversationUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   Map<String, _i9.UserEntity?> call(_i2.ConversationModel? conversation) =>
       (super.noSuchMethod(
@@ -156,6 +158,7 @@ class MockExtractUsersFromConversationUseCase extends _i1.Mock
           [conversation],
         ),
         returnValue: <String, _i9.UserEntity?>{},
+        returnValueForMissingStub: <String, _i9.UserEntity?>{},
       ) as Map<String, _i9.UserEntity?>);
 }
 
@@ -164,29 +167,28 @@ class MockExtractUsersFromConversationUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockGetUserByIdUseCase extends _i1.Mock
     implements _i10.GetUserByIdUseCase {
-  MockGetUserByIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
-  _i9.UserEntity? call(String? params) => (super.noSuchMethod(Invocation.method(
-        #call,
-        [params],
-      )) as _i9.UserEntity?);
+  _i9.UserEntity? call(String? params) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i9.UserEntity?);
 }
 
 /// A class which mocks [InboxPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
-  MockInboxPageCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.InboxPageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
         returnValue: _FakeInboxPageState_2(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeInboxPageState_2(
           this,
           Invocation.getter(#state),
         ),
@@ -196,12 +198,14 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
   _i12.Stream<_i4.InboxPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i12.Stream<_i4.InboxPageState>.empty(),
+        returnValueForMissingStub: _i12.Stream<_i4.InboxPageState>.empty(),
       ) as _i12.Stream<_i4.InboxPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -326,14 +330,11 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
-  MockMessagesPageCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   int get activeRequestId => (super.noSuchMethod(
         Invocation.getter(#activeRequestId),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override
@@ -352,18 +353,24 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
           this,
           Invocation.getter(#state),
         ),
+        returnValueForMissingStub: _FakeMessagesPageState_3(
+          this,
+          Invocation.getter(#state),
+        ),
       ) as _i5.MessagesPageState);
 
   @override
   _i12.Stream<_i5.MessagesPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i12.Stream<_i5.MessagesPageState>.empty(),
+        returnValueForMissingStub: _i12.Stream<_i5.MessagesPageState>.empty(),
       ) as _i12.Stream<_i5.MessagesPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -412,6 +419,7 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
           [],
         ),
         returnValue: _i12.Future<_i17.AttachmentEntity?>.value(),
+        returnValueForMissingStub: _i12.Future<_i17.AttachmentEntity?>.value(),
       ) as _i12.Future<_i17.AttachmentEntity?>);
 
   @override

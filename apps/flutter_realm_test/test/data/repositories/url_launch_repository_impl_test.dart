@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/data_sources/local/url_launch_local_
 
 import 'url_launch_repository_impl_test.mocks.dart';
 
-@GenerateMocks([UrlLaunchLocalDataSource])
+@GenerateNiceMocks([MockSpec<UrlLaunchLocalDataSource>()])
 void main() {
   late MockUrlLaunchLocalDataSource mockLocalDataSource;
   late UrlLaunchRepositoryImpl repository;

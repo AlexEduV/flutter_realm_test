@@ -9,7 +9,7 @@ import 'package:test_flutter_project/domain/entities/gif_entity.dart';
 
 import 'gifs_repository_impl_test.mocks.dart';
 
-@GenerateMocks([GifsRemoteDataSource])
+@GenerateNiceMocks([MockSpec<GifsRemoteDataSource>()])
 void main() {
   late MockGifsRemoteDataSource mockRemoteDataSource;
   late GifsRepositoryImpl repository;

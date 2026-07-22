@@ -28,13 +28,13 @@ import 'messages_page_test.mocks.dart';
 
 final getIt = GetIt.instance;
 
-@GenerateMocks([
-  GetConversationByIdUseCase,
-  GetOwnerByIdUseCase,
-  ExtractUsersFromConversationUseCase,
-  GetUserByIdUseCase,
-  InboxPageCubit,
-  MessagesPageCubit,
+@GenerateNiceMocks([
+  MockSpec<GetConversationByIdUseCase>(),
+  MockSpec<GetOwnerByIdUseCase>(),
+  MockSpec<ExtractUsersFromConversationUseCase>(),
+  MockSpec<GetUserByIdUseCase>(),
+  MockSpec<InboxPageCubit>(),
+  MockSpec<MessagesPageCubit>(),
 ])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();

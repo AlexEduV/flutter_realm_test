@@ -2,31 +2,18 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
-import 'package:test_flutter_project/common/enums/body_type.dart';
-import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/item_setup_tab.dart';
-import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/common/extensions/string_extension.dart';
-import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/models/home_page_params.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
-import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/item_info_form.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/item_specs_picker.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar.dart';
 
-import '../../../../core/di/injection_container.dart';
-import '../../../../domain/entities/car_entity.dart';
-import '../../../../domain/entities/owner_entity.dart';
-import '../../../../domain/usecases/database/add_car_use_case.dart';
-import '../../../../domain/usecases/database/get_all_cars_use_case.dart';
-import '../../../../domain/usecases/database/get_current_max_car_id_use_case.dart';
 import '../../../bloc/home/explore_page/explore_page_cubit.dart';
 
 class NewItemPage extends StatefulWidget {
@@ -44,10 +31,6 @@ class _NewItemPageState extends State<NewItemPage> {
   final yearFocusNode = FocusNode();
   final colorFocusNode = FocusNode();
   final priceFocusNode = FocusNode();
-
-  BodyType? selectedBodyType = BodyType.sedan;
-  TransmissionType? selectedTransmissionType = TransmissionType.manual;
-  FuelType? selectedFuelType = FuelType.diesel;
 
   @override
   void initState() {
@@ -81,60 +64,61 @@ class _NewItemPageState extends State<NewItemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(context.tr(L10nKeys.addNewItemPageTitle), style: AppTextStyles.zonaPro20),
-      ),
-      body: Stack(
-        alignment: AlignmentGeometry.center,
-        children: [
-          Padding(
-            padding: const EdgeInsetsGeometry.symmetric(
-              vertical: AppDimensions.normalL,
-              horizontal: AppDimensions.normalM,
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: PageView(
-                    controller: pageViewController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      const CarTypePicker(),
+        backgroundColor: AppColors.scaffoldColor,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(context.tr(L10nKeys.addNewItemPageTitle), style: AppTextStyles.zonaPro20),
+        ),
+        body: Stack(
+          alignment: AlignmentGeometry.center,
+          children: [
+            Padding(
+              padding: const EdgeInsetsGeometry.symmetric(
+                vertical: AppDimensions.normalL,
+                horizontal: AppDimensions.normalM,
+              ),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: PageView(
+                      controller: pageViewController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        const CarTypePicker(),
 
-                      ItemInfoForm(
-                        manufacturerFocusNode: manufacturerFocusNode,
-                        modelFocusNode: modelFocusNode,
-                        colorFocusNode: colorFocusNode,
-                        yearFocusNode: yearFocusNode,
-                        priceFocusNode: priceFocusNode,
-                      ),
+                        ItemInfoForm(
+                          manufacturerFocusNode: manufacturerFocusNode,
+                          modelFocusNode: modelFocusNode,
+                          colorFocusNode: colorFocusNode,
+                          yearFocusNode: yearFocusNode,
+                          priceFocusNode: priceFocusNode,
+                        ),
 
-                      const ItemSpecsPicker(),
-                    ],
+                        const ItemSpecsPicker(),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
 
-          Positioned(
-            bottom: AppDimensions.majorS,
-            child: BlocBuilder<NewItemPageCubit, NewItemPageState>(
-              builder: (context, state) {
-                return PageSelectionBar(
-                  onBackPressed: () => pageLeftPressed(state.currentPageIndex),
-                  onForwardPressed: () => pageRightPressed(state),
-                  currentIndex: state.currentPageIndex,
-                );
-              },
+            Positioned(
+              bottom: AppDimensions.majorS,
+              child: BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                builder: (context, state) {
+                  return PageSelectionBar(
+                    onBackPressed: () => pageLeftPressed(state.currentPageIndex),
+                    onForwardPressed: () => pageRightPressed(state),
+                    currentIndex: state.currentPageIndex,
+                  );
+                },
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
     );
   }
+
 
   void clearAllFocuses() {
     manufacturerFocusNode.unfocus();
@@ -163,7 +147,9 @@ class _NewItemPageState extends State<NewItemPage> {
     final isLastIndex = currentIndex == ItemSetupTab.pickers.index;
 
     if (isLastIndex) {
-      insertItem(state);
+      final updatedCars = context.read<NewItemPageCubit>().insertItem();
+      context.read<ExplorePageCubit>().updateCars(updatedCars);
+      context.go(AppRoutes.home, extra: HomePageParams(isFromSetup: true));
       return;
     }
 
@@ -183,41 +169,5 @@ class _NewItemPageState extends State<NewItemPage> {
     cubit.updateTabIndex(currentIndex + 1);
 
     clearAllFocuses();
-  }
-
-  void insertItem(NewItemPageState state) {
-    final userDataCubit = context.read<UserDataCubit>();
-
-    final currentMaxCarId = serviceLocator<GetCurrentMaxCarIdUseCase>().call();
-    final newCarId = (currentMaxCarId + 1).toString();
-
-    userDataCubit.addCarIdToCreated(newCarId);
-
-    final currentCars = serviceLocator<GetAllCarsUseCase>().call();
-
-    final car = CarEntity(
-      id: ObjectId(),
-      carId: newCarId,
-      model: state.modelText.capitalizeFirst(),
-      manufacturer: state.manufacturerText.capitalizeFirst(),
-      isVerified: false,
-      type: state.selectedCarType.name,
-      bodyType: state.selectedBodyType?.name ?? '',
-      engine: EngineEntity(
-        type: state.selectedFuelType.name,
-        volume: '${state.engineVolumeText}${state.selectedFuelType.getUnitOfMeasurement()}',
-      ),
-      transmissionType: state.selectedTransmissionType.name,
-      color: state.colorText.capitalizeFirst(),
-      owner: OwnerEntity.fromUser(userDataCubit.user),
-      price: int.tryParse(state.priceText) ?? 0,
-      year: state.yearText,
-    );
-
-    serviceLocator<AddCarUseCase>().call(car);
-
-    context.read<ExplorePageCubit>().updateCars(currentCars..add(car));
-
-    context.go(AppRoutes.home, extra: HomePageParams(isFromSetup: true));
   }
 }

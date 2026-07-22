@@ -40,10 +40,6 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGifsRepository extends _i1.Mock implements _i3.GifsRepository {
-  MockGifsRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i4.Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>> searchGifs(
           String? query) =>
@@ -53,6 +49,15 @@ class MockGifsRepository extends _i1.Mock implements _i3.GifsRepository {
           [query],
         ),
         returnValue: _i4
+            .Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
+            _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
+          this,
+          Invocation.method(
+            #searchGifs,
+            [query],
+          ),
+        )),
+        returnValueForMissingStub: _i4
             .Future<_i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
             _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
           this,
@@ -71,6 +76,15 @@ class MockGifsRepository extends _i1.Mock implements _i3.GifsRepository {
               [],
             ),
             returnValue: _i4.Future<
+                    _i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
+                _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
+              this,
+              Invocation.method(
+                #getTrending,
+                [],
+              ),
+            )),
+            returnValueForMissingStub: _i4.Future<
                     _i2.Either<_i5.ServerFailure, List<_i6.GifEntity>>>.value(
                 _FakeEither_0<_i5.ServerFailure, List<_i6.GifEntity>>(
               this,

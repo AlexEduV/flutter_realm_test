@@ -37,10 +37,6 @@ class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
 /// See the documentation for Mockito's code generation for more information.
 class MockGetOwnerByIdUseCase extends _i1.Mock
     implements _i3.GetOwnerByIdUseCase {
-  MockGetOwnerByIdUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.OwnerEntity call(String? params) => (super.noSuchMethod(
         Invocation.method(
@@ -48,6 +44,13 @@ class MockGetOwnerByIdUseCase extends _i1.Mock
           [params],
         ),
         returnValue: _FakeOwnerEntity_0(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        ),
+        returnValueForMissingStub: _FakeOwnerEntity_0(
           this,
           Invocation.method(
             #call,

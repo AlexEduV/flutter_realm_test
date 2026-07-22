@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_u
 
 import 'get_car_colors_use_case_test.mocks.dart';
 
-@GenerateMocks([CarColorRepository])
+@GenerateNiceMocks([MockSpec<CarColorRepository>()])
 void main() {
   late MockCarColorRepository mockCarColorRepository;
   late GetCarColorsUseCase useCase;

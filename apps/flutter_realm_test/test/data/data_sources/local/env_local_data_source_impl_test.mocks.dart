@@ -28,20 +28,18 @@ import 'package:mockito/src/dummies.dart' as _i3;
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
-  MockDotEnv() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   Map<String, String> get env => (super.noSuchMethod(
         Invocation.getter(#env),
         returnValue: <String, String>{},
+        returnValueForMissingStub: <String, String>{},
       ) as Map<String, String>);
 
   @override
   bool get isInitialized => (super.noSuchMethod(
         Invocation.getter(#isInitialized),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -72,6 +70,14 @@ class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
             {#fallback: fallback},
           ),
         ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #get,
+            [name],
+            {#fallback: fallback},
+          ),
+        ),
       ) as String);
 
   @override
@@ -86,6 +92,7 @@ class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
           {#fallback: fallback},
         ),
         returnValue: 0,
+        returnValueForMissingStub: 0,
       ) as int);
 
   @override
@@ -100,6 +107,7 @@ class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
           {#fallback: fallback},
         ),
         returnValue: 0.0,
+        returnValueForMissingStub: 0.0,
       ) as double);
 
   @override
@@ -114,6 +122,7 @@ class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
           {#fallback: fallback},
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -121,11 +130,14 @@ class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
     String? name, {
     String? fallback,
   }) =>
-      (super.noSuchMethod(Invocation.method(
-        #maybeGet,
-        [name],
-        {#fallback: fallback},
-      )) as String?);
+      (super.noSuchMethod(
+        Invocation.method(
+          #maybeGet,
+          [name],
+          {#fallback: fallback},
+        ),
+        returnValueForMissingStub: null,
+      ) as String?);
 
   @override
   _i4.Future<void> load({
@@ -181,5 +193,6 @@ class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
           [vars],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 }

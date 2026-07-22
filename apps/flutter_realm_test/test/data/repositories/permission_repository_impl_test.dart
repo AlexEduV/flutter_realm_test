@@ -7,7 +7,7 @@ import 'package:test_flutter_project/domain/data_sources/local/permission_local_
 
 import 'permission_repository_impl_test.mocks.dart'; // Import the generated mock
 
-@GenerateMocks([PermissionLocalDataSource])
+@GenerateNiceMocks([MockSpec<PermissionLocalDataSource>()])
 void main() {
   late MockPermissionLocalDataSource mockPermissionService;
   late PermissionRepositoryImpl permissionRepository;

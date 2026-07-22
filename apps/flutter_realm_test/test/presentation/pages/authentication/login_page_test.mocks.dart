@@ -42,14 +42,14 @@ class _FakeAuthenticationState_0 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthenticationCubit extends _i1.Mock
     implements _i3.AuthenticationCubit {
-  MockAuthenticationCubit() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i2.AuthenticationState get state => (super.noSuchMethod(
         Invocation.getter(#state),
         returnValue: _FakeAuthenticationState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeAuthenticationState_0(
           this,
           Invocation.getter(#state),
         ),
@@ -59,12 +59,14 @@ class MockAuthenticationCubit extends _i1.Mock
   _i4.Stream<_i2.AuthenticationState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
         returnValue: _i4.Stream<_i2.AuthenticationState>.empty(),
+        returnValueForMissingStub: _i4.Stream<_i2.AuthenticationState>.empty(),
       ) as _i4.Stream<_i2.AuthenticationState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
         Invocation.getter(#isClosed),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -126,6 +128,7 @@ class MockAuthenticationCubit extends _i1.Mock
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -142,6 +145,7 @@ class MockAuthenticationCubit extends _i1.Mock
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -158,6 +162,7 @@ class MockAuthenticationCubit extends _i1.Mock
           ],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override
@@ -167,6 +172,7 @@ class MockAuthenticationCubit extends _i1.Mock
           [password],
         ),
         returnValue: false,
+        returnValueForMissingStub: false,
       ) as bool);
 
   @override

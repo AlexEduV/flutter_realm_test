@@ -10,7 +10,7 @@ import 'article_remote_data_source_impl_test.mocks.dart';
 //Note: the tested class should be rticleRemoteDataSourceImpl, but since it will call real
 // HTTP requests, it's not testable.
 
-@GenerateMocks([BaseLogger])
+@GenerateNiceMocks([MockSpec<BaseLogger>()])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 

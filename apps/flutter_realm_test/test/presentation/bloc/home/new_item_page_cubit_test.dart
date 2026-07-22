@@ -6,37 +6,53 @@ import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/add_car_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../../../common/extensions/context_extension_test.mocks.dart';
 import 'new_item_page_cubit_test.mocks.dart';
 
-@GenerateMocks([GetAutoCompleteManufacturersByTypeUseCase])
+@GenerateNiceMocks([
+  MockSpec<GetAutoCompleteManufacturersByTypeUseCase>(),
+  MockSpec<AddCarUseCase>(),
+  MockSpec<GetAllCarsUseCase>(),
+  MockSpec<GetCurrentMaxCarIdUseCase>(),
+  MockSpec<UserDataCubit>(),
+])
 void main() {
   late MockGetAutoCompleteManufacturersByTypeUseCase mockAutoCompleteUseCase;
   late MockAppLocalisationsCubit mockLocalisationsCubit;
+  late MockAddCarUseCase mockAddCarUseCase;
+  late MockGetAllCarsUseCase mockGetAllCarsUseCase;
+  late MockGetCurrentMaxCarIdUseCase mockGetCurrentMaxCarIdUseCase;
+  late MockUserDataCubit mockUserDataCubit;
   late NewItemPageCubit cubit;
 
   setUp(() {
     mockAutoCompleteUseCase = MockGetAutoCompleteManufacturersByTypeUseCase();
     mockLocalisationsCubit = MockAppLocalisationsCubit();
+    mockAddCarUseCase = MockAddCarUseCase();
+    mockGetAllCarsUseCase = MockGetAllCarsUseCase();
+    mockGetCurrentMaxCarIdUseCase = MockGetCurrentMaxCarIdUseCase();
+    mockUserDataCubit = MockUserDataCubit();
 
-    serviceLocator.registerSingleton<AppLocalisationsCubit>(mockLocalisationsCubit);
-
-    // Mock localisations
     when(mockLocalisationsCubit.getLocalisationByKey(any)).thenReturn('label');
 
-    cubit = NewItemPageCubit(mockAutoCompleteUseCase);
-  });
-
-  tearDown(() {
-    serviceLocator.unregister<AppLocalisationsCubit>();
+    cubit = NewItemPageCubit(
+      mockAutoCompleteUseCase,
+      mockLocalisationsCubit,
+      mockAddCarUseCase,
+      mockGetAllCarsUseCase,
+      mockGetCurrentMaxCarIdUseCase,
+      mockUserDataCubit,
+    );
   });
 
   group('init', () {

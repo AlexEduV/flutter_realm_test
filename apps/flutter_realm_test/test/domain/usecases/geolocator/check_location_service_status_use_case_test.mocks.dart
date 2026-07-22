@@ -28,10 +28,6 @@ import 'package:test_flutter_project/domain/repositories/geolocator_repository.d
 /// See the documentation for Mockito's code generation for more information.
 class MockGeolocatorRepository extends _i1.Mock
     implements _i2.GeolocatorRepository {
-  MockGeolocatorRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<bool> checkLocationServiceStatus() => (super.noSuchMethod(
         Invocation.method(
@@ -39,6 +35,7 @@ class MockGeolocatorRepository extends _i1.Mock
           [],
         ),
         returnValue: _i3.Future<bool>.value(false),
+        returnValueForMissingStub: _i3.Future<bool>.value(false),
       ) as _i3.Future<bool>);
 
   @override
@@ -48,5 +45,6 @@ class MockGeolocatorRepository extends _i1.Mock
           [],
         ),
         returnValue: _i3.Future<bool>.value(false),
+        returnValueForMissingStub: _i3.Future<bool>.value(false),
       ) as _i3.Future<bool>);
 }

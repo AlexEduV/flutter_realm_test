@@ -29,10 +29,6 @@ import 'package:test_flutter_project/domain/data_sources/local/permission_local_
 /// See the documentation for Mockito's code generation for more information.
 class MockPermissionLocalDataSource extends _i1.Mock
     implements _i2.PermissionLocalDataSource {
-  MockPermissionLocalDataSource() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   _i3.Future<_i4.PermissionStatus> requestLocation() => (super.noSuchMethod(
         Invocation.method(
@@ -40,6 +36,8 @@ class MockPermissionLocalDataSource extends _i1.Mock
           [],
         ),
         returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+        returnValueForMissingStub:
             _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
       ) as _i3.Future<_i4.PermissionStatus>);
 
@@ -50,6 +48,8 @@ class MockPermissionLocalDataSource extends _i1.Mock
           [],
         ),
         returnValue:
+            _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
+        returnValueForMissingStub:
             _i3.Future<_i4.PermissionStatus>.value(_i4.PermissionStatus.denied),
       ) as _i3.Future<_i4.PermissionStatus>);
 }

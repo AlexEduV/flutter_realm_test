@@ -31,15 +31,14 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_na
 /// See the documentation for Mockito's code generation for more information.
 class MockGetCarColorByNameUseCase extends _i1.Mock
     implements _i2.GetCarColorByNameUseCase {
-  MockGetCarColorByNameUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
-  _i3.Color? call(String? colorName) => (super.noSuchMethod(Invocation.method(
-        #call,
-        [colorName],
-      )) as _i3.Color?);
+  _i3.Color? call(String? colorName) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [colorName],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.Color?);
 }
 
 /// A class which mocks [GetCarColorNameFromColorUseCase].
@@ -47,10 +46,6 @@ class MockGetCarColorByNameUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockGetCarColorNameFromColorUseCase extends _i1.Mock
     implements _i4.GetCarColorNameFromColorUseCase {
-  MockGetCarColorNameFromColorUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   String call(_i3.Color? color) => (super.noSuchMethod(
         Invocation.method(
@@ -58,6 +53,13 @@ class MockGetCarColorNameFromColorUseCase extends _i1.Mock
           [color],
         ),
         returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.method(
+            #call,
+            [color],
+          ),
+        ),
+        returnValueForMissingStub: _i5.dummyValue<String>(
           this,
           Invocation.method(
             #call,

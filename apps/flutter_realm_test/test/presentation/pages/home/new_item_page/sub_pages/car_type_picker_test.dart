@@ -15,7 +15,7 @@ import 'package:test_flutter_project/presentation/pages/home/new_item_page/widge
 import '../../../../../common/extensions/context_extension_test.mocks.dart';
 import 'car_type_picker_test.mocks.dart';
 
-@GenerateMocks([NewItemPageCubit])
+@GenerateNiceMocks([MockSpec<NewItemPageCubit>()])
 void main() {
   setUpAll(() {
     // Register fallback value for NewItemPageState if needed

@@ -10,7 +10,7 @@ import 'package:test_flutter_project/presentation/bloc/article/article_page_stat
 
 import 'article_page_cubit_test.mocks.dart';
 
-@GenerateMocks([GetArticleByIdUseCase])
+@GenerateNiceMocks([MockSpec<GetArticleByIdUseCase>()])
 void main() {
   late MockGetArticleByIdUseCase mockGetArticleByIdUseCase;
   late ArticlePageCubit cubit;

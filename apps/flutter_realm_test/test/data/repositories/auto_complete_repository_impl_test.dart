@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.da
 
 import 'auto_complete_repository_impl_test.mocks.dart';
 
-@GenerateMocks([MockAutoCompleteRemoteDataSource])
+@GenerateNiceMocks([MockSpec<MockAutoCompleteRemoteDataSource>()])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
