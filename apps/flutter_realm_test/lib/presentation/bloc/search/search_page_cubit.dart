@@ -173,17 +173,19 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
     final Map<String, Set<String>> modelsByManufacturer = {};
 
-    for (final car in cars) {
-      if (car.type == type.name) {
-        modelsByManufacturer.putIfAbsent(car.manufacturer, () => <String>{}).add(car.model);
-      }
-    }
+    cars
+        .where((car) => car.type == type.name)
+        .forEach(
+          (element) => modelsByManufacturer
+              .putIfAbsent(element.manufacturer, () => <String>{})
+              .add(element.model),
+        );
 
-    final Map<String, List<String>> modelsByManufacturerList = {
-      for (var entry in modelsByManufacturer.entries) entry.key: entry.value.toList(),
-    };
+    final modelsByManufacturerMap = modelsByManufacturer.map(
+      (key, models) => MapEntry(key, models.toList()),
+    );
 
-    emit(state.copyWith(allModels: modelsByManufacturerList));
+    emit(state.copyWith(allModels: modelsByManufacturerMap));
   }
 
   void updateColorListFromEntities(List<CarEntity> cars, CarType type) {
