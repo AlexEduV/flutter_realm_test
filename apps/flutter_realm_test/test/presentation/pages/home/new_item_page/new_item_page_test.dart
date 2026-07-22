@@ -204,11 +204,6 @@ void main() {
     when(mockCubit.state).thenReturn(
       const NewItemPageState(
         currentPageIndex: 2,
-        modelText: 'Model',
-        manufacturerText: 'Manufacturer',
-        colorText: 'Red',
-        priceText: '10000',
-        yearText: '2020',
         selectedBodyType: BodyType.sedan,
         selectedTransmissionType: TransmissionType.manual,
         selectedFuelType: FuelType.diesel,
@@ -216,6 +211,23 @@ void main() {
       ),
     );
     when(mockCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(mockCubit.insertItem()).thenReturn([]);
+    when(mockExplorePageCubit.updateCars(any)).thenReturn(null);
+    when(mockExplorePageCubit.state).thenReturn(const ExplorePageState());
+    when(mockExplorePageCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    final router = GoRouter(
+      initialLocation: AppRoutes.home + AppRoutes.newItem,
+      routes: [
+        GoRoute(
+          path: AppRoutes.home,
+          builder: (_, __) => const SizedBox(),
+          routes: [
+            GoRoute(path: AppRoutes.newItem, builder: (_, __) => const NewItemPage()),
+          ],
+        ),
+      ],
+    );
 
     await tester.pumpWidget(
       MultiBlocProvider(
@@ -225,13 +237,15 @@ void main() {
           BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
-        child: const MaterialApp(home: NewItemPage()),
+        child: MaterialApp.router(routerConfig: router),
       ),
     );
+    await tester.pumpAndSettle();
 
     await tester.tap(find.byIcon(Icons.chevron_right_outlined));
     await tester.pumpAndSettle();
 
     verify(mockCubit.insertItem()).called(1);
+    verify(mockExplorePageCubit.updateCars([])).called(1);
   });
 }
