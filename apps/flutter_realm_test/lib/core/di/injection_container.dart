@@ -306,7 +306,16 @@ Future<void> initDependenciesContainer() async {
     () => ExplorePageCubit(serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator()),
   );
 
-  serviceLocator.registerFactory(() => NewItemPageCubit(serviceLocator(), serviceLocator()));
+  serviceLocator.registerFactory(
+    () => NewItemPageCubit(
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+    ),
+  );
 
   serviceLocator.registerFactory(
     () => SearchPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),

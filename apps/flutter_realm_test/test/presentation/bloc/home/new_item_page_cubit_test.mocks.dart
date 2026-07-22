@@ -3,14 +3,27 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i5;
 
+import 'package:flutter_bloc/flutter_bloc.dart' as _i13;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/common/enums/car_type.dart' as _i5;
+import 'package:test_flutter_project/common/enums/car_type.dart' as _i7;
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart'
-    as _i4;
+    as _i6;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i9;
+import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart'
-    as _i2;
+    as _i4;
+import 'package:test_flutter_project/domain/usecases/database/add_car_use_case.dart'
+    as _i8;
+import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart'
+    as _i10;
+import 'package:test_flutter_project/domain/usecases/database/get_current_max_car_id_use_case.dart'
+    as _i11;
+import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart'
+    as _i12;
+import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,23 +39,455 @@ import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_comp
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
+  _FakeUserEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeUserDataState_1 extends _i1.SmartFake implements _i3.UserDataState {
+  _FakeUserDataState_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [GetAutoCompleteManufacturersByTypeUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAutoCompleteManufacturersByTypeUseCase extends _i1.Mock
-    implements _i2.GetAutoCompleteManufacturersByTypeUseCase {
+    implements _i4.GetAutoCompleteManufacturersByTypeUseCase {
   MockGetAutoCompleteManufacturersByTypeUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.CarAutoCompleteEntity>> call(_i5.CarType? params) =>
+  _i5.Future<List<_i6.CarAutoCompleteEntity>> call(_i7.CarType? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],
         ),
-        returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
-            <_i4.CarAutoCompleteEntity>[]),
-      ) as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
+        returnValue: _i5.Future<List<_i6.CarAutoCompleteEntity>>.value(
+            <_i6.CarAutoCompleteEntity>[]),
+      ) as _i5.Future<List<_i6.CarAutoCompleteEntity>>);
+}
+
+/// A class which mocks [AddCarUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAddCarUseCase extends _i1.Mock implements _i8.AddCarUseCase {
+  MockAddCarUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  void call(_i9.CarEntity? params) => super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [GetAllCarsUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetAllCarsUseCase extends _i1.Mock implements _i10.GetAllCarsUseCase {
+  MockGetAllCarsUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  List<_i9.CarEntity> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: <_i9.CarEntity>[],
+      ) as List<_i9.CarEntity>);
+}
+
+/// A class which mocks [GetCurrentMaxCarIdUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetCurrentMaxCarIdUseCase extends _i1.Mock
+    implements _i11.GetCurrentMaxCarIdUseCase {
+  MockGetCurrentMaxCarIdUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  int call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: 0,
+      ) as int);
+}
+
+/// A class which mocks [UserDataCubit].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserDataCubit extends _i1.Mock implements _i12.UserDataCubit {
+  MockUserDataCubit() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.UserEntity get user => (super.noSuchMethod(
+        Invocation.getter(#user),
+        returnValue: _FakeUserEntity_0(
+          this,
+          Invocation.getter(#user),
+        ),
+      ) as _i2.UserEntity);
+
+  @override
+  set user(_i2.UserEntity? _user) => super.noSuchMethod(
+        Invocation.setter(
+          #user,
+          _user,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i3.UserDataState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeUserDataState_1(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i3.UserDataState);
+
+  @override
+  _i5.Stream<_i3.UserDataState> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i5.Stream<_i3.UserDataState>.empty(),
+      ) as _i5.Stream<_i3.UserDataState>);
+
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+      ) as bool);
+
+  @override
+  _i5.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  void updateCloudUser(_i2.UserEntity? user) => super.noSuchMethod(
+        Invocation.method(
+          #updateCloudUser,
+          [user],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> initLocalisation(String? locale) => (super.noSuchMethod(
+        Invocation.method(
+          #initLocalisation,
+          [locale],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  void setFirstName(String? firstName) => super.noSuchMethod(
+        Invocation.method(
+          #setFirstName,
+          [firstName],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setLastName(String? lastName) => super.noSuchMethod(
+        Invocation.method(
+          #setLastName,
+          [lastName],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setEmail(String? email) => super.noSuchMethod(
+        Invocation.method(
+          #setEmail,
+          [email],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setPassword(String? password) => super.noSuchMethod(
+        Invocation.method(
+          #setPassword,
+          [password],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setLastSeenCar(String? carId) => super.noSuchMethod(
+        Invocation.method(
+          #setLastSeenCar,
+          [carId],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void checkLastSeenCarExpiration({required int? days}) => super.noSuchMethod(
+        Invocation.method(
+          #checkLastSeenCarExpiration,
+          [],
+          {#days: days},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> requestLocationPermission() => (super.noSuchMethod(
+        Invocation.method(
+          #requestLocationPermission,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> openLocationSettings() => (super.noSuchMethod(
+        Invocation.method(
+          #openLocationSettings,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  void updateLocationPermissionStatus(bool? newStatus) => super.noSuchMethod(
+        Invocation.method(
+          #updateLocationPermissionStatus,
+          [newStatus],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> updateAvatarImage() => (super.noSuchMethod(
+        Invocation.method(
+          #updateAvatarImage,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  void addCarIdToFavorites(String? carId) => super.noSuchMethod(
+        Invocation.method(
+          #addCarIdToFavorites,
+          [carId],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeCarIdFromFavorites(String? carId) => super.noSuchMethod(
+        Invocation.method(
+          #removeCarIdFromFavorites,
+          [carId],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addCarIdToCreated(String? carId) => super.noSuchMethod(
+        Invocation.method(
+          #addCarIdToCreated,
+          [carId],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeCarIdFromCreated(String? carId) => super.noSuchMethod(
+        Invocation.method(
+          #removeCarIdFromCreated,
+          [carId],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addCarToRecentlyViewed(String? carId) => super.noSuchMethod(
+        Invocation.method(
+          #addCarToRecentlyViewed,
+          [carId],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void clearFavorites() => super.noSuchMethod(
+        Invocation.method(
+          #clearFavorites,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void clearRecentItems() => super.noSuchMethod(
+        Invocation.method(
+          #clearRecentItems,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void clearMyItems() => super.noSuchMethod(
+        Invocation.method(
+          #clearMyItems,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void clearAllData() => super.noSuchMethod(
+        Invocation.method(
+          #clearAllData,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateRegion(String? region) => super.noSuchMethod(
+        Invocation.method(
+          #updateRegion,
+          [region],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> authUser(String? email) => (super.noSuchMethod(
+        Invocation.method(
+          #authUser,
+          [email],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  void logOutUser() => super.noSuchMethod(
+        Invocation.method(
+          #logOutUser,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void updateUser({
+    required _i2.UserEntity? user,
+    bool? updateCloud = true,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #updateUser,
+          [],
+          {
+            #user: user,
+            #updateCloud: updateCloud,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void emit(_i3.UserDataState? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onChange(_i13.Change<_i3.UserDataState>? change) => super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
