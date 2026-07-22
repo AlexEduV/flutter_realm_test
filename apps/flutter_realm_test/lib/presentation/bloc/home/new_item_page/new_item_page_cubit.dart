@@ -350,8 +350,6 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
   List<CarEntity> insertItem() {
     final newCarId = (_getCurrentMaxCarIdUseCase.call() + 1).toString();
 
-    _userDataCubit.addCarIdToCreated(newCarId);
-
     final car = CarEntity(
       id: ObjectId(),
       carId: newCarId,
@@ -373,7 +371,9 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
     _addCarUseCase.call(car);
 
-    return _getAllCarsUseCase.call()..add(car);
+    _userDataCubit.addCarIdToCreated(newCarId);
+
+    return _getAllCarsUseCase.call();
   }
 
   void clearFields() {

@@ -147,7 +147,11 @@ class _NewItemPageState extends State<NewItemPage> {
     final isLastIndex = currentIndex == ItemSetupTab.pickers.index;
 
     if (isLastIndex) {
-      final updatedCars = context.read<NewItemPageCubit>().insertItem();
+      final cubit = context.read<NewItemPageCubit>();
+      final isEngineVolumeValid = cubit.validateEngineVolume(cubit.state.engineVolumeText, false);
+      if (!isEngineVolumeValid) return;
+
+      final updatedCars = cubit.insertItem();
       context.read<ExplorePageCubit>().updateCars(updatedCars);
       context.go(AppRoutes.home, extra: HomePageParams(isFromSetup: true));
       return;
