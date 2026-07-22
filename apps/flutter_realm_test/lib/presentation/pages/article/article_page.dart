@@ -1,11 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/api_constants.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/article/article_page_state.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
@@ -48,7 +47,7 @@ class _ArticlePageState extends State<ArticlePage> {
                 padding: const EdgeInsets.only(right: AppDimensions.normalS),
                 child: IconButton(
                   onPressed: () async {
-                    await serviceLocator<ShareCubit>().share(
+                    await context.read<ShareCubit>().share(
                       ShareParamsModel(
                         title: '${state.article?.title}',
                         text: '${ApiConstants.webHost}articles/?id=${widget.articleId}',
