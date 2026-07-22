@@ -4,28 +4,26 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
-import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
+import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
-import '../user/user_data_cubit_test.mocks.dart';
 import 'authentication_cubit_test.mocks.dart';
 
-@GenerateMocks([LogoutUseCase, LoginUseCase, RegisterUseCase])
+@GenerateMocks([LogoutUseCase, LoginUseCase, RegisterUseCase, DeleteAccountUseCase])
 void main() {
   late AuthenticationCubit cubit;
-  late MockAuthRepository mockAuthRepository;
   late MockUserDataCubit mockUserDataCubit;
 
   late MockLoginUseCase mockLoginUseCase;
   late MockRegisterUseCase mockRegisterUseCase;
   late MockLogoutUseCase mockLogoutUseCase;
+  late MockDeleteAccountUseCase mockDeleteAccountUseCase;
 
   final appLocalisationsCubit = AppLocalisationsCubit();
 
@@ -47,20 +45,20 @@ void main() {
     serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
     appLocalisationsCubit.load(localisations);
 
-    mockAuthRepository = MockAuthRepository();
     mockUserDataCubit = MockUserDataCubit();
     mockLoginUseCase = MockLoginUseCase();
     mockLogoutUseCase = MockLogoutUseCase();
     mockRegisterUseCase = MockRegisterUseCase();
+    mockDeleteAccountUseCase = MockDeleteAccountUseCase();
 
-    // Register mocks in service locator
-    serviceLocator.registerSingleton<AuthRepository>(mockAuthRepository);
-    serviceLocator.registerSingleton<UserDataCubit>(mockUserDataCubit);
-    serviceLocator.registerSingleton<LoginUseCase>(mockLoginUseCase);
-    serviceLocator.registerSingleton<LogoutUseCase>(mockLogoutUseCase);
-    serviceLocator.registerSingleton<RegisterUseCase>(mockRegisterUseCase);
-
-    cubit = AuthenticationCubit(appLocalisationsCubit);
+    cubit = AuthenticationCubit(
+      appLocalisationsCubit,
+      mockUserDataCubit,
+      mockLoginUseCase,
+      mockLogoutUseCase,
+      mockRegisterUseCase,
+      mockDeleteAccountUseCase,
+    );
     cubit.init();
   });
 

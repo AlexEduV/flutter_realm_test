@@ -9,6 +9,8 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/models/auth_result.dart' as _i2;
 import 'package:test_flutter_project/domain/models/login_model.dart' as _i6;
 import 'package:test_flutter_project/domain/models/register_model.dart' as _i8;
+import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart'
+    as _i9;
 import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart'
     as _i5;
 import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart'
@@ -106,4 +108,24 @@ class MockRegisterUseCase extends _i1.Mock implements _i7.RegisterUseCase {
           ),
         )),
       ) as _i4.Future<_i2.AuthResult>);
+}
+
+/// A class which mocks [DeleteAccountUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDeleteAccountUseCase extends _i1.Mock
+    implements _i9.DeleteAccountUseCase {
+  MockDeleteAccountUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<void> call(String? email) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [email],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

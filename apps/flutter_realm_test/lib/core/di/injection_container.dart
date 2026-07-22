@@ -336,7 +336,16 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => AuthenticationCubit(serviceLocator()));
+  serviceLocator.registerLazySingleton(
+    () => AuthenticationCubit(
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+      serviceLocator(),
+    ),
+  );
 
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
     () => MockMessagesRemoteDataSourceImpl(),
