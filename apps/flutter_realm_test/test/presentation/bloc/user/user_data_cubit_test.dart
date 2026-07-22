@@ -81,6 +81,7 @@ void main() {
       mockPickImageFromGalleryUseCase,
       mockDeleteCarByIdUseCase,
       mockBaseLogger,
+      appLocalisationsCubit,
     );
     testUser = const UserEntity(
       userId: 'u1',

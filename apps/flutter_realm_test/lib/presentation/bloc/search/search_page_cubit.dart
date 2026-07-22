@@ -11,58 +11,51 @@ import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_c
 import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
 
-import '../../../core/di/injection_container.dart';
 import '../../../l10n/l10n_keys.dart';
 import '../l10n/app_localisations_cubit.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
-  SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase) : super(const SearchPageState());
+  SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase, this._appLocalisationsCubit)
+    : super(const SearchPageState());
 
   StreamSubscription? _carSubscription;
 
   final GetAllCarsUseCase _getAllCarsUseCase;
   final WatchCarsUseCase _watchCarsUseCase;
+  final AppLocalisationsCubit _appLocalisationsCubit;
 
   void init() {
     emit(
       state.copyWith(
         minYearFieldParamsModel:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsHintMin,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMin),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.filterValidationMessage,
               ),
             ),
         maxYearFieldParamsModel:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsHintMax,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMax),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.filterValidationMessage,
               ),
             ),
         minPriceFieldParamsModel:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsHintMin,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMin),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.filterValidationMessage,
               ),
             ),
         maxPriceFieldParamsModel:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsHintMax,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMax),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.filterValidationMessage,
               ),
             ),

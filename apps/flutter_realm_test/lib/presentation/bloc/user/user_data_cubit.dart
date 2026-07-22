@@ -15,7 +15,6 @@ import 'package:test_flutter_project/domain/usecases/permissions/request_locatio
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 
-import '../../../core/di/injection_container.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
 import '../../../utils/localisation_util.dart';
@@ -33,6 +32,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._pickImageFromGalleryUseCase,
     this._deleteCarByIdUseCase,
     this._logger,
+    this._appLocalisationsCubit,
   ) : super(const UserDataState());
 
   final BaseLocalStorage _localStorage;
@@ -50,6 +50,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   late UserEntity user;
   final BaseLogger _logger;
+  final AppLocalisationsCubit _appLocalisationsCubit;
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
@@ -92,7 +93,7 @@ class UserDataCubit extends Cubit<UserDataState> {
       '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}localisation_mock_response_data_$locale.json',
     );
 
-    serviceLocator<AppLocalisationsCubit>().load(localisations);
+    _appLocalisationsCubit.load(localisations);
 
     await initializeDateFormatting(locale, null);
     await LocalisationUtil.saveLocalisations(localisations);

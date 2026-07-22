@@ -60,7 +60,7 @@ void main() {
     serviceLocator.registerSingleton<LogoutUseCase>(mockLogoutUseCase);
     serviceLocator.registerSingleton<RegisterUseCase>(mockRegisterUseCase);
 
-    cubit = AuthenticationCubit();
+    cubit = AuthenticationCubit(appLocalisationsCubit);
     cubit.init();
   });
 

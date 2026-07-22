@@ -7,98 +7,89 @@ import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
-import '../../../../core/di/injection_container.dart';
 import '../../../../l10n/l10n_keys.dart';
 import '../../l10n/app_localisations_cubit.dart';
 
 class NewItemPageCubit extends Cubit<NewItemPageState> {
-  NewItemPageCubit(this._autoCompleteManufacturersByTypeUseCase) : super(const NewItemPageState());
+  NewItemPageCubit(this._autoCompleteManufacturersByTypeUseCase, this._appLocalisationsCubit)
+    : super(const NewItemPageState());
 
   final GetAutoCompleteManufacturersByTypeUseCase _autoCompleteManufacturersByTypeUseCase;
+  final AppLocalisationsCubit _appLocalisationsCubit;
 
   void init() {
     emit(
       state.copyWith(
         manufacturerFieldParams:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsManufacturerLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsManufacturerLabel),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
-              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsManufacturerRegexErrorMessage,
               ),
               regex: r'^[A-Za-z\s\-]+$',
             ),
         modelFieldParams:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsVehicleModelLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsVehicleModelLabel),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
-              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsVehicleModelRegexErrorMessage,
               ),
               regex: r'^[A-Za-z0-9\s\-\/\+]+$',
             ),
         yearFieldParams:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsYearOfProductionLabel,
               ),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
-              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsYearOfProductionRegexErrorMessage,
               ),
               regex: r'^(198[0-9]|199[0-9]|200[0-9]|201[0-9]|202[0-6])$',
             ),
         priceFieldParams:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsPriceLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsPriceLabel),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
-              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsPriceRegexErrorMessage,
               ),
               regex: r'^(0|[1-9]\d{0,7})$',
             ),
         colorFieldParams:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsColorLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsColorLabel),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
-              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsColorRegexErrorMessage,
               ),
               regex: r'^[A-Za-z\s\-]+$',
             ),
         engineVolumeFieldParams:
             FieldParamsModel.withLabel(
-              serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-                L10nKeys.fieldParamsEngineVolumeLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsEngineVolumeLabel),
             ).copyWith(
-              validationMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
-              regexErrorMessage: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+              regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsEngineVolumeRegexErrorMessage,
               ),
               regex: r'^\d{1,2}(\.\d{1,2})?$|^\d{2,4}$',

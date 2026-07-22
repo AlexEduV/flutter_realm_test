@@ -306,9 +306,11 @@ Future<void> initDependenciesContainer() async {
     () => ExplorePageCubit(serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator()),
   );
 
-  serviceLocator.registerFactory(() => NewItemPageCubit(serviceLocator()));
+  serviceLocator.registerFactory(() => NewItemPageCubit(serviceLocator(), serviceLocator()));
 
-  serviceLocator.registerFactory(() => SearchPageCubit(serviceLocator(), serviceLocator()));
+  serviceLocator.registerFactory(
+    () => SearchPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+  );
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
 
@@ -334,7 +336,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => AuthenticationCubit());
+  serviceLocator.registerLazySingleton(() => AuthenticationCubit(serviceLocator()));
 
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
     () => MockMessagesRemoteDataSourceImpl(),
@@ -409,6 +411,7 @@ Future<void> initDependenciesContainer() async {
       serviceLocator<PickImageFromGalleryUseCase>(),
       serviceLocator<DeleteCarByIdUseCase>(),
       serviceLocator<BaseLogger>(),
+      serviceLocator<AppLocalisationsCubit>(),
     ),
   );
 
