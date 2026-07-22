@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
@@ -98,12 +100,8 @@ class RealmLocalStorage implements BaseLocalStorage {
   @override
   int getMaxCarId() {
     final cars = realm.all<Car>();
-
-    final maxCar = cars.toList().reduce((curr, next) {
-      return int.parse(curr.carId) > int.parse(next.carId) ? curr : next;
-    });
-
-    return int.parse(maxCar.carId);
+    if (cars.isEmpty) return 0;
+    return cars.map((c) => int.parse(c.carId)).reduce(max);
   }
 
   @override

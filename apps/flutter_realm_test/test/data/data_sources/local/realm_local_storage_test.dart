@@ -74,5 +74,19 @@ void main() {
 
       expect(fakeRealm.all<Car>().length, 0);
     });
+
+    test('getMaxCarId returns 0 when database is empty', () {
+      expect(storage.getMaxCarId(), 0);
+    });
+
+    test('getMaxCarId returns the highest numeric carId', () {
+      fakeRealm.write(() {
+        fakeRealm.add(Car(ObjectId(), '3', 'Tesla', CarType.car.name));
+        fakeRealm.add(Car(ObjectId(), '1', 'BMW', CarType.car.name));
+        fakeRealm.add(Car(ObjectId(), '7', 'Audi', CarType.car.name));
+      });
+
+      expect(storage.getMaxCarId(), 7);
+    });
   });
 }

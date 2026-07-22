@@ -63,6 +63,12 @@ class _FakeRealmResults<T extends RealmObject> implements RealmResults<T> {
   int get length => _items.length;
 
   @override
+  bool get isEmpty => _items.isEmpty;
+
+  @override
+  Iterable<E> map<E>(E Function(T) toElement) => _items.map(toElement);
+
+  @override
   T get first => _items.first;
 
   @override
