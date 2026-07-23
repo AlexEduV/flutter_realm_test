@@ -1,10 +1,10 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
@@ -17,12 +17,14 @@ import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_
 
 import '../../../../utils/app_router_test.mocks.dart';
 import '../../../bloc/details/details_page_cubit_test.mocks.dart';
+import 'owner_widget_test.mocks.dart';
 import 'vehicle_specs_widget_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<GetCarColorsUseCase>()])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
   final mockGetCarColorsUseCase = MockGetCarColorsUseCase();
+  final mockGetConversationByOwnerIdUseCase = MockGetConversationByOwnerIdUseCase();
 
   setUp(() {
     serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
@@ -86,7 +88,11 @@ void main() {
 
   testWidgets('expands and shows specifications when button is pressed', (tester) async {
     final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
-    final cubit = DetailsPageCubit(mockGetCarByIdUseCase, mockGetCarColorsUseCase);
+    final cubit = DetailsPageCubit(
+      mockGetCarByIdUseCase,
+      mockGetCarColorsUseCase,
+      mockGetConversationByOwnerIdUseCase,
+    );
     cubit.setVehicleSpecsExpansionState(false);
 
     await tester.pumpWidget(
@@ -117,7 +123,11 @@ void main() {
 
   testWidgets('collapses and hides specifications when button is pressed again', (tester) async {
     final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
-    final cubit = DetailsPageCubit(mockGetCarByIdUseCase, mockGetCarColorsUseCase);
+    final cubit = DetailsPageCubit(
+      mockGetCarByIdUseCase,
+      mockGetCarColorsUseCase,
+      mockGetConversationByOwnerIdUseCase,
+    );
 
     await tester.pumpWidget(
       MaterialApp(

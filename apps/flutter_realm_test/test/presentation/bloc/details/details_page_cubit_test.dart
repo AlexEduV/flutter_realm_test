@@ -9,6 +9,7 @@ import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 
+import '../../pages/details/widgets/owner_widget_test.mocks.dart';
 import '../../pages/details/widgets/vehicle_specs_widget_test.mocks.dart';
 import 'details_page_cubit_test.mocks.dart';
 
@@ -16,12 +17,18 @@ import 'details_page_cubit_test.mocks.dart';
 void main() {
   late MockGetCarByIdUseCase mockGetCarByIdUseCase;
   late MockGetCarColorsUseCase mockGetCarColorsUseCase;
+  late MockGetConversationByOwnerIdUseCase mockGetConversationByOwnerIdUseCase;
   late DetailsPageCubit cubit;
 
   setUp(() {
     mockGetCarByIdUseCase = MockGetCarByIdUseCase();
     mockGetCarColorsUseCase = MockGetCarColorsUseCase();
-    cubit = DetailsPageCubit(mockGetCarByIdUseCase, mockGetCarColorsUseCase);
+    mockGetConversationByOwnerIdUseCase = MockGetConversationByOwnerIdUseCase();
+    cubit = DetailsPageCubit(
+      mockGetCarByIdUseCase,
+      mockGetCarColorsUseCase,
+      mockGetConversationByOwnerIdUseCase,
+    );
   });
 
   group('DetailsPageCubit', () {

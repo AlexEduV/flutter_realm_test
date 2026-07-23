@@ -1,15 +1,14 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
+import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
@@ -142,14 +141,13 @@ class OwnerWidget extends StatelessWidget {
     final ownerId = owner?.id;
     if (ownerId == null) return;
 
-    final conversationId = serviceLocator<GetConversationByOwnerIdUseCase>()
-        .call(ownerId)
-        .conversationId;
+    final conversationId = context.read<DetailsPageCubit>().getConversationId(ownerId);
 
     context.go('${AppRoutes.home}${AppRoutes.details}/${AppRoutes.inbox}', extra: conversationId);
   }
 }
 
+//todo: move out of widget file
 @Preview(
   group: 'Owner Widget',
   name: 'Normal',
