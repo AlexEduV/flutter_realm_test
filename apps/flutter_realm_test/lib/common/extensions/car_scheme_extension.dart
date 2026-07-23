@@ -77,7 +77,10 @@ extension CarExtensions on Car {
       distanceTo: entity.distanceTo,
       price: entity.price ?? 0,
       bodyType: entity.bodyType,
-      engine: Engine(volume: entity.engine.volume, fuelType: entity.engine.type),
+      engine: Engine(
+        volume: entity.engine.volume,
+        fuelType: entity.engine.type,
+      ),
       transmissionType: entity.transmissionType,
       owner: Person(
         entity.owner?.firstName ?? '',

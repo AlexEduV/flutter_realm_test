@@ -19,11 +19,15 @@ class MyItemsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(context.tr(L10nKeys.accountItemMyItems), style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(L10nKeys.accountItemMyItems),
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
-        buildWhen: (previous, current) => previous.createdIds != current.createdIds,
+        buildWhen: (previous, current) =>
+            previous.createdIds != current.createdIds,
         builder: (context, userState) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, exploreState) {
@@ -50,7 +54,9 @@ class MyItemsPage extends StatelessWidget {
                     isFavoriteItem: false,
                     source: DetailsPageSource.myItems,
                     onDeleteCallback: () {
-                      context.read<UserDataCubit>().removeCarIdFromCreated(car.carId);
+                      context.read<UserDataCubit>().removeCarIdFromCreated(
+                        car.carId,
+                      );
                     },
                   );
                 },

@@ -57,7 +57,9 @@ class _LoginFormState extends State<LoginForm> {
               },
               errorText: state.emailError,
               onChanged: (newValue) {
-                context.read<AuthenticationCubit>().updateEmail(emailTextController.text);
+                context.read<AuthenticationCubit>().updateEmail(
+                  emailTextController.text,
+                );
 
                 context.read<AuthenticationCubit>().validateEmail(
                   emailTextController.text,
@@ -93,7 +95,9 @@ class _LoginFormState extends State<LoginForm> {
               },
               errorText: state.passwordError,
               onChanged: (newValue) {
-                context.read<AuthenticationCubit>().updatePassword(passwordTextController.text);
+                context.read<AuthenticationCubit>().updatePassword(
+                  passwordTextController.text,
+                );
 
                 context.read<AuthenticationCubit>().validatePassword(
                   passwordTextController.text,
@@ -109,7 +113,8 @@ class _LoginFormState extends State<LoginForm> {
                 }
               },
               maxLength: state.passwordFieldParams?.maxLength,
-              trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
+              trailingActionSemanticsLabel:
+                  AppSemanticsLabels.obscurePasswordButton,
             ),
 
             //forgot password button
@@ -131,7 +136,8 @@ class _LoginFormState extends State<LoginForm> {
                         color: AppColors.headerColor,
                       ),
                     ),
-                    onTap: () => context.go(AppRoutes.home + AppRoutes.forgotPassword),
+                    onTap: () =>
+                        context.go(AppRoutes.home + AppRoutes.forgotPassword),
                   ),
                 ),
               ),
@@ -163,7 +169,9 @@ class _LoginFormState extends State<LoginForm> {
             //Or Divider
             AppSemantics(
               label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: context.tr(L10nKeys.orDividerTitle)),
+              child: AnimatedDividerWithText(
+                text: context.tr(L10nKeys.orDividerTitle),
+              ),
             ),
 
             // join us button if not registered
@@ -172,7 +180,9 @@ class _LoginFormState extends State<LoginForm> {
               button: true,
               child: SplashButton(
                 title: context.tr(L10nKeys.signUpButtonTitle),
-                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
+                onPressed: () => context
+                    .read<AuthenticationCubit>()
+                    .setNewFormModeToLogin(false),
                 buttonType: ButtonType.secondary,
               ),
             ),

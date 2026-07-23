@@ -53,10 +53,17 @@ class CarListItem extends StatelessWidget {
                   // Car Image
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppDimensions.normalM),
-                      color: car.images.isEmpty ? AppColors.placeholderColor : null,
+                      borderRadius: BorderRadius.circular(
+                        AppDimensions.normalM,
+                      ),
+                      color: car.images.isEmpty
+                          ? AppColors.placeholderColor
+                          : null,
                       image: car.images.isNotEmpty
-                          ? DecorationImage(image: AssetImage(car.images.first), fit: BoxFit.cover)
+                          ? DecorationImage(
+                              image: AssetImage(car.images.first),
+                              fit: BoxFit.cover,
+                            )
                           : null,
                     ),
                     height: AppDimensions.favoriteItemPictureSize,
@@ -107,20 +114,32 @@ class CarListItem extends StatelessWidget {
                       button: true,
                       label: AppSemanticsLabels.favoriteButton,
                       child: Material(
-                        borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.normalS,
+                        ),
                         child: InkWell(
-                          borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                          borderRadius: BorderRadius.circular(
+                            AppDimensions.normalS,
+                          ),
                           onTap: () => onDeleteCallback?.call(),
                           child: Container(
                             decoration: BoxDecoration(
                               color: AppColors.gold.withAlpha(30),
-                              borderRadius: BorderRadius.circular(AppDimensions.normalS),
+                              borderRadius: BorderRadius.circular(
+                                AppDimensions.normalS,
+                              ),
                             ),
                             width: AppDimensions.favoriteButtonSize,
                             height: AppDimensions.favoriteButtonSize,
                             child: isFavoriteItem
-                                ? const Icon(Icons.favorite, color: AppColors.gold)
-                                : const Icon(Icons.remove_circle, color: Colors.red),
+                                ? const Icon(
+                                    Icons.favorite,
+                                    color: AppColors.gold,
+                                  )
+                                : const Icon(
+                                    Icons.remove_circle,
+                                    color: Colors.red,
+                                  ),
                           ),
                         ),
                       ),

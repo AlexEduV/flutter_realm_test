@@ -14,13 +14,18 @@ void main() {
       useCase = RequestLocationPermissionUseCase(mockPermissionRepository);
     });
 
-    test('calls requestLocationPermission on repository and returns the result', () async {
-      when(mockPermissionRepository.requestLocationPermission()).thenAnswer((_) async => true);
+    test(
+      'calls requestLocationPermission on repository and returns the result',
+      () async {
+        when(
+          mockPermissionRepository.requestLocationPermission(),
+        ).thenAnswer((_) async => true);
 
-      final result = await useCase.call();
+        final result = await useCase.call();
 
-      expect(result, isTrue);
-      verify(mockPermissionRepository.requestLocationPermission()).called(1);
-    });
+        expect(result, isTrue);
+        verify(mockPermissionRepository.requestLocationPermission()).called(1);
+      },
+    );
   });
 }

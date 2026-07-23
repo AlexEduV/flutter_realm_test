@@ -79,14 +79,17 @@ class _ChatInputBarState extends State<ChatInputBar> {
   }
 
   Future<void> addAttachment() async {
-    final attachment = await context.read<MessagesPageCubit>().getAttachmentFile();
+    final attachment = await context
+        .read<MessagesPageCubit>()
+        .getAttachmentFile();
     if (attachment == null) return;
 
     sendMessage(attachment.toPayload());
   }
 
   void sendMessage(String message) {
-    final conversationId = context.read<MessagesPageCubit>().state.currentConversationId ?? '';
+    final conversationId =
+        context.read<MessagesPageCubit>().state.currentConversationId ?? '';
     final user = context.read<UserDataCubit>().user;
 
     context.read<InboxPageCubit>().sendMessage(

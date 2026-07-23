@@ -10,8 +10,10 @@ import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_in
 //todo: interactions, like button presses are not mocked;
 class MockMessagesPageCubit extends Mock implements MessagesPageCubit {
   @override
-  MessagesPageState get state =>
-      const MessagesPageState(isLoading: false, currentMessageText: 'Some text');
+  MessagesPageState get state => const MessagesPageState(
+    isLoading: false,
+    currentMessageText: 'Some text',
+  );
 
   @override
   Stream<MessagesPageState> get stream => const Stream.empty();

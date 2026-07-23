@@ -42,7 +42,9 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     await _carSubscription?.cancel();
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final visibleCars = entities
-          .map((e) => e.copyWith(isShown: !state.hiddenCarIds.contains(e.carId)))
+          .map(
+            (e) => e.copyWith(isShown: !state.hiddenCarIds.contains(e.carId)),
+          )
           .toList();
       updateCars(visibleCars);
     });
@@ -61,12 +63,19 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     final updatedCars = state.cars
         .map((c) => c.carId == id ? c.copyWith(isShown: false) : c)
         .toList();
-    emit(state.copyWith(hiddenCarIds: {...state.hiddenCarIds, id}, cars: updatedCars));
+    emit(
+      state.copyWith(
+        hiddenCarIds: {...state.hiddenCarIds, id},
+        cars: updatedCars,
+      ),
+    );
   }
 
   void hoverArticle(String articleId, bool newValue) {
     final articles = state.articles.map((article) {
-      return article.id == articleId ? article.copyWith(isHovering: newValue) : article;
+      return article.id == articleId
+          ? article.copyWith(isHovering: newValue)
+          : article;
     }).toList();
     emit(state.copyWith(articles: articles));
   }

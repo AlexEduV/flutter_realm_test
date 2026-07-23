@@ -20,7 +20,12 @@ void main() {
         type: 'car',
         isVerified: true,
         year: '2020',
-        owner: OwnerEntity(id: 'test', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
+        owner: OwnerEntity(
+          id: 'test',
+          firstName: 'John',
+          lastName: 'Doe',
+          linkedItemIds: [],
+        ),
         mileage: 10000,
         distanceTo: 50,
         price: 80000,

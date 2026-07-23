@@ -17,13 +17,16 @@ void main() {
     useCase = ShareUseCase(mockRepository);
   });
 
-  test('should call share on repository with correct ShareParamsModel', () async {
-    final params = ShareParamsModel(title: 'Test', text: 'Test Content');
-    when(mockRepository.share(params)).thenAnswer((_) async {});
+  test(
+    'should call share on repository with correct ShareParamsModel',
+    () async {
+      final params = ShareParamsModel(title: 'Test', text: 'Test Content');
+      when(mockRepository.share(params)).thenAnswer((_) async {});
 
-    await useCase.call(params);
+      await useCase.call(params);
 
-    verify(mockRepository.share(params)).called(1);
-    verifyNoMoreInteractions(mockRepository);
-  });
+      verify(mockRepository.share(params)).called(1);
+      verifyNoMoreInteractions(mockRepository);
+    },
+  );
 }

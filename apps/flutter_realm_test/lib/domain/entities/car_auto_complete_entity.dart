@@ -10,7 +10,9 @@ class CarAutoCompleteEntity {
     return CarAutoCompleteEntity(
       manufacturerId: json['id'] as int,
       manufacturer: json['name'] as String,
-      models: (json['models'] as List<dynamic>).map((e) => e as String).toList(),
+      models: (json['models'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       imageSrc: json['icon'] as String?,
     );
   }

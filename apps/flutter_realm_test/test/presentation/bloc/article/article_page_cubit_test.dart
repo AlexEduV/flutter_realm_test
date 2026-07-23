@@ -34,7 +34,9 @@ void main() {
     blocTest<ArticlePageCubit, ArticlePageState>(
       'emits [isLoading: true], then [isLoading: false, article] when init is called',
       build: () {
-        when(mockGetArticleByIdUseCase.call(articleId)).thenAnswer((_) async => article);
+        when(
+          mockGetArticleByIdUseCase.call(articleId),
+        ).thenAnswer((_) async => article);
         return cubit;
       },
       act: (cubit) => cubit.init(articleId),

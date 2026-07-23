@@ -25,9 +25,11 @@ class AppSemanticsLabels {
   static const filterDrawerBodyTypeCheckbox = 'filterDrawerBodyTypeCheckbox';
   static const filterDrawerColorCheckbox = 'filterDrawerColorCheckbox';
   static const filterDrawerFuelTypeCheckbox = 'filterDrawerFuelTypeCheckbox';
-  static const filterDrawerTransmissionTypeCheckbox = 'filterDrawerTransmissionTypeCheckbox';
+  static const filterDrawerTransmissionTypeCheckbox =
+      'filterDrawerTransmissionTypeCheckbox';
 
-  static const detailsPageVehicleSpecsExpandButton = 'detailsPageVehicleSpecsExpandButton';
+  static const detailsPageVehicleSpecsExpandButton =
+      'detailsPageVehicleSpecsExpandButton';
   static const detailsPageContactButton = 'detailsPageContactButton';
 
   static const fullNameTextField = 'fullNameTextField';

@@ -29,14 +29,13 @@ import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_cas
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAllCarsUseCase extends _i1.Mock implements _i2.GetAllCarsUseCase {
   @override
-  List<_i3.CarEntity> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: <_i3.CarEntity>[],
-        returnValueForMissingStub: <_i3.CarEntity>[],
-      ) as List<_i3.CarEntity>);
+  List<_i3.CarEntity> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: <_i3.CarEntity>[],
+            returnValueForMissingStub: <_i3.CarEntity>[],
+          )
+          as List<_i3.CarEntity>);
 }
 
 /// A class which mocks [WatchCarsUseCase].

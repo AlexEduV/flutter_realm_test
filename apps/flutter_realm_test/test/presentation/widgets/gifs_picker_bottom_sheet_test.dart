@@ -37,7 +37,9 @@ void main() {
               BlocProvider<MessagesPageCubit>.value(value: messagesCubit),
               BlocProvider<InboxPageCubit>.value(value: inboxCubit),
               BlocProvider<UserDataCubit>.value(value: userCubit),
-              BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+              BlocProvider<AppLocalisationsCubit>.value(
+                value: appLocalisationsCubit,
+              ),
             ],
             child: Material(child: GifsPickerBottomSheet(listKey: listKey)),
           ),
@@ -48,7 +50,9 @@ void main() {
     return MaterialApp.router(routerConfig: router);
   }
 
-  testWidgets('renders text field and trending label', (WidgetTester tester) async {
+  testWidgets('renders text field and trending label', (
+    WidgetTester tester,
+  ) async {
     final messagesCubit = MockMessagesPageCubit();
     final inboxCubit = MockInboxPageCubit();
     final userCubit = MockUserDataCubit();
@@ -60,7 +64,9 @@ void main() {
     when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.state).thenReturn(
-      const AppLocalisationsState(localisations: {L10nKeys.gifsResultsTrendingLabel: 'Trending'}),
+      const AppLocalisationsState(
+        localisations: {L10nKeys.gifsResultsTrendingLabel: 'Trending'},
+      ),
     );
 
     await tester.pumpWidget(
@@ -74,10 +80,15 @@ void main() {
     );
 
     expect(find.byType(TextFormField), findsOneWidget);
-    expect(find.textContaining('Trending'), findsOneWidget); // Adjust for your localization
+    expect(
+      find.textContaining('Trending'),
+      findsOneWidget,
+    ); // Adjust for your localization
   });
 
-  testWidgets('renders query label when search is not empty', (WidgetTester tester) async {
+  testWidgets('renders query label when search is not empty', (
+    WidgetTester tester,
+  ) async {
     final messagesCubit = MockMessagesPageCubit();
     final inboxCubit = MockInboxPageCubit();
     final userCubit = MockUserDataCubit();
@@ -126,10 +137,14 @@ void main() {
       height: 240.0,
     );
 
-    when(messagesCubit.state).thenReturn(MessagesPageState(latestQuery: '', gifsInSearch: [gif]));
+    when(
+      messagesCubit.state,
+    ).thenReturn(MessagesPageState(latestQuery: '', gifsInSearch: [gif]));
     when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(appLocalisationsCubit.state).thenReturn(const AppLocalisationsState(localisations: {}));
+    when(
+      appLocalisationsCubit.state,
+    ).thenReturn(const AppLocalisationsState(localisations: {}));
 
     await tester.pumpWidget(
       buildTestableWidget(
@@ -145,7 +160,9 @@ void main() {
     expect(find.byType(InkWell), findsOneWidget);
   });
 
-  testWidgets('tapping a GIF calls sendMessage and updateSelectedGif', (WidgetTester tester) async {
+  testWidgets('tapping a GIF calls sendMessage and updateSelectedGif', (
+    WidgetTester tester,
+  ) async {
     final messagesCubit = MockMessagesPageCubit();
     final inboxCubit = MockInboxPageCubit();
     final userCubit = MockUserDataCubit();
@@ -169,11 +186,17 @@ void main() {
     );
 
     when(messagesCubit.state).thenReturn(
-      MessagesPageState(latestQuery: '', gifsInSearch: [gif], currentConversationId: 'c1'),
+      MessagesPageState(
+        latestQuery: '',
+        gifsInSearch: [gif],
+        currentConversationId: 'c1',
+      ),
     );
     when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(appLocalisationsCubit.state).thenReturn(const AppLocalisationsState(localisations: {}));
+    when(
+      appLocalisationsCubit.state,
+    ).thenReturn(const AppLocalisationsState(localisations: {}));
     when(userCubit.user).thenReturn(user);
     when(userCubit.stream).thenAnswer((_) => const Stream.empty());
     when(inboxCubit.stream).thenAnswer((_) => const Stream.empty());
@@ -184,7 +207,11 @@ void main() {
         inboxCubit: inboxCubit,
         userCubit: userCubit,
         appLocalisationsCubit: appLocalisationsCubit,
-        state: MessagesPageState(latestQuery: '', gifsInSearch: [gif], currentConversationId: 'c1'),
+        state: MessagesPageState(
+          latestQuery: '',
+          gifsInSearch: [gif],
+          currentConversationId: 'c1',
+        ),
       ),
     );
 
@@ -206,7 +233,9 @@ void main() {
     ).thenReturn(const MessagesPageState(latestQuery: '', gifsInSearch: []));
     when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(appLocalisationsCubit.state).thenReturn(const AppLocalisationsState(localisations: {}));
+    when(
+      appLocalisationsCubit.state,
+    ).thenReturn(const AppLocalisationsState(localisations: {}));
 
     await tester.pumpWidget(
       buildTestableWidget(

@@ -32,7 +32,10 @@ void main() {
       realmConfig.init();
 
       final schemaNames = realmConfig.instance.schemaObjects.map((s) => s.name);
-      expect(schemaNames, containsAll(['Car', 'Person', 'User', 'LastSeenCar', 'Engine']));
+      expect(
+        schemaNames,
+        containsAll(['Car', 'Person', 'User', 'LastSeenCar', 'Engine']),
+      );
     });
 
     test('instance throws before init is called', () {

@@ -28,11 +28,10 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_ca
 class MockGetUserByIdUseCase extends _i1.Mock
     implements _i2.GetUserByIdUseCase {
   @override
-  _i3.UserEntity? call(String? params) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i3.UserEntity?);
+  _i3.UserEntity? call(String? params) =>
+      (super.noSuchMethod(
+            Invocation.method(#call, [params]),
+            returnValueForMissingStub: null,
+          )
+          as _i3.UserEntity?);
 }

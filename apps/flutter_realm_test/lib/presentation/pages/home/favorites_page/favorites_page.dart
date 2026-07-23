@@ -19,17 +19,22 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(context.tr(L10nKeys.favoritesPageTitle), style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(L10nKeys.favoritesPageTitle),
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
-        buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
+        buildWhen: (previous, current) =>
+            previous.favoriteIds != current.favoriteIds,
         builder: (context, state) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
               final allCars = state.cars;
 
-              final favoriteIds = serviceLocator<UserDataCubit>().state.favoriteIds;
+              final favoriteIds =
+                  serviceLocator<UserDataCubit>().state.favoriteIds;
               final favoriteEntities = allCars
                   .where((entity) => favoriteIds.contains(entity.carId))
                   .toList();
@@ -47,8 +52,9 @@ class FavoritesPage extends StatelessWidget {
 
                   return CarListItem(
                     car: car,
-                    onDeleteCallback: () =>
-                        context.read<UserDataCubit>().removeCarIdFromFavorites(car.carId),
+                    onDeleteCallback: () => context
+                        .read<UserDataCubit>()
+                        .removeCarIdFromFavorites(car.carId),
                   );
                 },
                 itemCount: favoriteEntities.length,

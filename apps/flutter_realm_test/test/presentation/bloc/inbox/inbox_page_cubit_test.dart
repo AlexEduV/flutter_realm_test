@@ -13,7 +13,10 @@ import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_pag
 
 import 'inbox_page_cubit_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<FetchConversationsUseCase>(), MockSpec<SaveConversationsUseCase>()])
+@GenerateNiceMocks([
+  MockSpec<FetchConversationsUseCase>(),
+  MockSpec<SaveConversationsUseCase>(),
+])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -24,7 +27,10 @@ void main() {
   setUp(() {
     mockFetchConversationsUseCase = MockFetchConversationsUseCase();
     mockSaveConversationsUseCase = MockSaveConversationsUseCase();
-    cubit = InboxPageCubit(mockFetchConversationsUseCase, mockSaveConversationsUseCase);
+    cubit = InboxPageCubit(
+      mockFetchConversationsUseCase,
+      mockSaveConversationsUseCase,
+    );
   });
 
   test('initial state is InboxPageState()', () {
@@ -182,9 +188,19 @@ void main() {
   blocTest<InboxPageCubit, InboxPageState>(
     'deleteConversation removes conversation and calls save use case',
     build: () {
-      final conversation1 = ConversationModel(conversationId: 'c1', ownerId: 'u1', messages: []);
-      final conversation2 = ConversationModel(conversationId: 'c2', ownerId: 'u2', messages: []);
-      cubit.emit(cubit.state.copyWith(conversations: [conversation1, conversation2]));
+      final conversation1 = ConversationModel(
+        conversationId: 'c1',
+        ownerId: 'u1',
+        messages: [],
+      );
+      final conversation2 = ConversationModel(
+        conversationId: 'c2',
+        ownerId: 'u2',
+        messages: [],
+      );
+      cubit.emit(
+        cubit.state.copyWith(conversations: [conversation1, conversation2]),
+      );
       when(mockSaveConversationsUseCase.call(any)).thenAnswer((_) async {});
       return cubit;
     },
@@ -193,7 +209,9 @@ void main() {
     },
     expect: () => [
       const InboxPageState().copyWith(
-        conversations: [ConversationModel(conversationId: 'c2', ownerId: 'u2', messages: [])],
+        conversations: [
+          ConversationModel(conversationId: 'c2', ownerId: 'u2', messages: []),
+        ],
       ),
     ],
     verify: (_) {

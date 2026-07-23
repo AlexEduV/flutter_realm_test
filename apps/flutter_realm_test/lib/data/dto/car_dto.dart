@@ -22,7 +22,9 @@ class CarDto {
       bodyType: json['body_type'] as String,
       color: json['color'] as String,
       owner: OwnerEntity.fromJson(json['owner'] as Map<String, dynamic>),
-      images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+      images: (json['images'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       mileage: json['mileage'] as int?,
     );
   }

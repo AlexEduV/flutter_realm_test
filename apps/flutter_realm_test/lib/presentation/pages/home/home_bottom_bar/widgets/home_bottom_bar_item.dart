@@ -42,7 +42,8 @@ class HomeBottomBarItem extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.majorM),
-              onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
+              onTap: () =>
+                  context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
               child: SizedBox(
                 height: 60,
                 width: 73,
@@ -59,7 +60,11 @@ class HomeBottomBarItem extends StatelessWidget {
                       Text(
                         label,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: color),
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: color,
+                        ),
                       ),
                     ],
                   ),

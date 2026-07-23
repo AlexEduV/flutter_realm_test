@@ -1,1 +1,7 @@
-enum ServerFailure { noNetwork, internalError, notFound, unauthorized, notAvailable }
+enum ServerFailure {
+  noNetwork,
+  internalError,
+  notFound,
+  unauthorized,
+  notAvailable,
+}

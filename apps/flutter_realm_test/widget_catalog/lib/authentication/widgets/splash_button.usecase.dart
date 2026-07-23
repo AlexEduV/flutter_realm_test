@@ -8,7 +8,9 @@ Widget buildSplashButtonUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       body: Padding(
@@ -17,17 +19,29 @@ Widget buildSplashButtonUseCase(BuildContext context) {
           spacing: AppDimensions.normalL,
           children: [
             SplashButton(
-              title: context.knobs.string(label: 'Button title', initialValue: 'Splash button'),
+              title: context.knobs.string(
+                label: 'Button title',
+                initialValue: 'Splash button',
+              ),
               onPressed: () {},
               buttonType: ButtonType.primary,
-              isLoading: context.knobs.boolean(label: 'Is loading', initialValue: false),
+              isLoading: context.knobs.boolean(
+                label: 'Is loading',
+                initialValue: false,
+              ),
             ),
 
             SplashButton(
-              title: context.knobs.string(label: 'Button title', initialValue: 'Splash button'),
+              title: context.knobs.string(
+                label: 'Button title',
+                initialValue: 'Splash button',
+              ),
               onPressed: () {},
               buttonType: ButtonType.secondary,
-              isLoading: context.knobs.boolean(label: 'Is loading', initialValue: false),
+              isLoading: context.knobs.boolean(
+                label: 'Is loading',
+                initialValue: false,
+              ),
             ),
           ],
         ),

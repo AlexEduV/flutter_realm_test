@@ -25,19 +25,25 @@ class AppRouter {
         path: AppRoutes.home,
         pageBuilder: (context, state) {
           final extra = state.extra;
-          final isFromSetup = extra is HomePageParams ? extra.isFromSetup : false;
+          final isFromSetup = extra is HomePageParams
+              ? extra.isFromSetup
+              : false;
 
           if (isFromSetup) {
             return CustomTransitionPage(
               child: const HomePage(),
               //reversed animation when going from the setup page
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                const begin = Offset(1.0, 0.0);
-                const end = Offset.zero;
-                var tween = Tween(begin: begin, end: end);
-                var offsetAnimation = animation.drive(tween);
-                return SlideTransition(position: offsetAnimation, child: child);
-              },
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                    const begin = Offset(1.0, 0.0);
+                    const end = Offset.zero;
+                    var tween = Tween(begin: begin, end: end);
+                    var offsetAnimation = animation.drive(tween);
+                    return SlideTransition(
+                      position: offsetAnimation,
+                      child: child,
+                    );
+                  },
             );
           } else {
             return const CupertinoPage(child: HomePage());
@@ -46,7 +52,8 @@ class AppRouter {
         routes: <RouteBase>[
           GoRoute(
             path: AppRoutes.search,
-            pageBuilder: (context, state) => const CupertinoPage(child: SearchPage()),
+            pageBuilder: (context, state) =>
+                const CupertinoPage(child: SearchPage()),
             routes: <RouteBase>[_detailsRoute],
           ),
           _detailsRoute,
@@ -128,7 +135,10 @@ class AppRouter {
     routes: [_inboxRoute],
   );
 
-  static void goToDetails({required DetailsPageSource from, required String carId}) {
+  static void goToDetails({
+    required DetailsPageSource from,
+    required String carId,
+  }) {
     _router.go(from.detailsPath, extra: carId);
   }
 }

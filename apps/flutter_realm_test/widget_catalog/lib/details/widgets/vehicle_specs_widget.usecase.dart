@@ -39,7 +39,9 @@ Widget buildVehicleSpecsWidgetUseCase(BuildContext context) {
     });
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
       child: Column(

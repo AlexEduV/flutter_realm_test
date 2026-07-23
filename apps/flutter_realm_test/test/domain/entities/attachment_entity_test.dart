@@ -12,7 +12,11 @@ import 'attachment_entity_test.mocks.dart';
 void main() {
   group('AttachmentEntity', () {
     test('constructor and properties', () {
-      final entity = AttachmentEntity(name: 'file.txt', size: 123, path: '/some/path/file.txt');
+      final entity = AttachmentEntity(
+        name: 'file.txt',
+        size: 123,
+        path: '/some/path/file.txt',
+      );
       expect(entity.name, 'file.txt');
       expect(entity.size, 123);
       expect(entity.path, '/some/path/file.txt');
@@ -32,7 +36,11 @@ void main() {
     });
 
     test('toPayload includes path when present', () {
-      final entity = AttachmentEntity(name: 'file.txt', size: 123, path: '/some/path/file.txt');
+      final entity = AttachmentEntity(
+        name: 'file.txt',
+        size: 123,
+        path: '/some/path/file.txt',
+      );
       final payload = entity.toPayload();
       final decoded = jsonDecode(payload);
       expect(decoded['file'], true);

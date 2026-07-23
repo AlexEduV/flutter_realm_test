@@ -60,8 +60,10 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
               color: AppColors.accentColor.withAlpha(60),
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
               child: InkWell(
-                onTap: () =>
-                    context.go(AppRoutes.home + AppRoutes.articleDetails, extra: widget.article.id),
+                onTap: () => context.go(
+                  AppRoutes.home + AppRoutes.articleDetails,
+                  extra: widget.article.id,
+                ),
                 onTapDown: (_) => _setPressed(true),
                 onTapUp: (_) => _setPressed(false),
                 onTapCancel: () => _setPressed(false),
@@ -77,7 +79,9 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
                     children: [
                       // Cached network image as background
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.normalL,
+                        ),
                         child: CachedNetworkImage(
                           imageUrl: widget.article.imageUrl ?? '',
                           fit: BoxFit.cover,
@@ -85,7 +89,8 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
                           height: widget.height,
                           placeholder: (context, url) =>
                               Container(color: AppColors.placeholderColor),
-                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
                           color: Colors.black.withAlpha(70),
                           colorBlendMode: BlendMode.darken,
                         ),

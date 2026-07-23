@@ -18,7 +18,9 @@ void main() {
 
   group('GeolocatorRepositoryImpl', () {
     test('checkLocationServiceStatus delegates to GeolocatorService', () async {
-      when(mockGeolocatorService.checkLocationServiceStatus()).thenAnswer((_) async => true);
+      when(
+        mockGeolocatorService.checkLocationServiceStatus(),
+      ).thenAnswer((_) async => true);
 
       final result = await repository.checkLocationServiceStatus();
 
@@ -27,7 +29,9 @@ void main() {
     });
 
     test('openAppSettings delegates to GeolocatorService', () async {
-      when(mockGeolocatorService.openLocationSettings()).thenAnswer((_) async => false);
+      when(
+        mockGeolocatorService.openLocationSettings(),
+      ).thenAnswer((_) async => false);
 
       final result = await repository.openAppSettings();
 

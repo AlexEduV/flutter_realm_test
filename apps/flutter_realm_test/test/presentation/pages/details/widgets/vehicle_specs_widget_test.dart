@@ -25,8 +25,12 @@ void main() {
   final mockGetCarColorsUseCase = MockGetCarColorsUseCase();
 
   setUp(() {
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
-    serviceLocator.registerLazySingleton<GetCarColorsUseCase>(() => mockGetCarColorsUseCase);
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
+      () => appLocalisationsCubit,
+    );
+    serviceLocator.registerLazySingleton<GetCarColorsUseCase>(
+      () => mockGetCarColorsUseCase,
+    );
 
     when(mockGetCarColorsUseCase.call()).thenReturn({'red': Colors.red});
 
@@ -73,7 +77,9 @@ void main() {
         home: MultiBlocProvider(
           providers: [
             BlocProvider<DetailsPageCubit>.value(value: cubit),
-            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+            BlocProvider<AppLocalisationsCubit>.value(
+              value: appLocalisationsCubit,
+            ),
           ],
           child: VehicleSpecsWidget(car: testCar),
         ),
@@ -84,9 +90,14 @@ void main() {
     expect(find.byIcon(Icons.keyboard_arrow_down), findsOneWidget);
   });
 
-  testWidgets('expands and shows specifications when button is pressed', (tester) async {
+  testWidgets('expands and shows specifications when button is pressed', (
+    tester,
+  ) async {
     final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
-    final cubit = DetailsPageCubit(mockGetCarByIdUseCase, mockGetCarColorsUseCase);
+    final cubit = DetailsPageCubit(
+      mockGetCarByIdUseCase,
+      mockGetCarColorsUseCase,
+    );
     cubit.setVehicleSpecsExpansionState(false);
 
     await tester.pumpWidget(
@@ -94,7 +105,9 @@ void main() {
         home: MultiBlocProvider(
           providers: [
             BlocProvider<DetailsPageCubit>.value(value: cubit),
-            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+            BlocProvider<AppLocalisationsCubit>.value(
+              value: appLocalisationsCubit,
+            ),
           ],
           child: VehicleSpecsWidget(car: testCar),
         ),
@@ -115,33 +128,41 @@ void main() {
     );
   });
 
-  testWidgets('collapses and hides specifications when button is pressed again', (tester) async {
-    final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
-    final cubit = DetailsPageCubit(mockGetCarByIdUseCase, mockGetCarColorsUseCase);
+  testWidgets(
+    'collapses and hides specifications when button is pressed again',
+    (tester) async {
+      final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
+      final cubit = DetailsPageCubit(
+        mockGetCarByIdUseCase,
+        mockGetCarColorsUseCase,
+      );
 
-    await tester.pumpWidget(
-      MaterialApp(
-        home: MultiBlocProvider(
-          providers: [
-            BlocProvider<DetailsPageCubit>.value(value: cubit),
-            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
-          ],
-          child: VehicleSpecsWidget(car: testCar),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: MultiBlocProvider(
+            providers: [
+              BlocProvider<DetailsPageCubit>.value(value: cubit),
+              BlocProvider<AppLocalisationsCubit>.value(
+                value: appLocalisationsCubit,
+              ),
+            ],
+            child: VehicleSpecsWidget(car: testCar),
+          ),
         ),
-      ),
-    );
+      );
 
-    // Initially expanded (default state)
-    expect(
-      tester.getSize(find.byType(AnimatedContainer)).height,
-      AppDimensions.vehicleSpecsExpandedSize,
-    );
+      // Initially expanded (default state)
+      expect(
+        tester.getSize(find.byType(AnimatedContainer)).height,
+        AppDimensions.vehicleSpecsExpandedSize,
+      );
 
-    // Tap collapse button
-    await tester.tap(find.byIcon(Icons.keyboard_arrow_down));
-    await tester.pumpAndSettle(const Duration(milliseconds: 350));
+      // Tap collapse button
+      await tester.tap(find.byIcon(Icons.keyboard_arrow_down));
+      await tester.pumpAndSettle(const Duration(milliseconds: 350));
 
-    // Now collapsed
-    expect(tester.getSize(find.byType(AnimatedContainer)).height, 0);
-  });
+      // Now collapsed
+      expect(tester.getSize(find.byType(AnimatedContainer)).height, 0);
+    },
+  );
 }

@@ -36,10 +36,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final status = await serviceLocator<CheckLocationPermissionStatusUseCase>().call();
+      final status =
+          await serviceLocator<CheckLocationPermissionStatusUseCase>().call();
 
       if (!mounted) return;
-      context.read<UserDataCubit>().updateLocationPermissionStatus(status.isGranted);
+      context.read<UserDataCubit>().updateLocationPermissionStatus(
+        status.isGranted,
+      );
 
       final hasToAskPermission =
           status != PermissionStatus.granted &&
@@ -63,10 +66,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       backgroundColor: AppColors.scaffoldColor,
       body: BlocListener<HomeBottomBarCubit, HomeBottomBarState>(
         listenWhen: (previous, current) {
-          _bottomBarIndexDiff = (current.currentSelectedTabIndex - previous.currentSelectedTabIndex)
-              .abs();
+          _bottomBarIndexDiff =
+              (current.currentSelectedTabIndex -
+                      previous.currentSelectedTabIndex)
+                  .abs();
 
-          return previous.currentSelectedTabIndex != current.currentSelectedTabIndex;
+          return previous.currentSelectedTabIndex !=
+              current.currentSelectedTabIndex;
         },
         listener: (context, state) {
           _pageController.animateToPage(
@@ -95,7 +101,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     final isUserAuthenticated = userDataCubit.state.isUserAuthenticated;
 
     if (!isUserAuthenticated) {
-      context.read<HomeBottomBarCubit>().updateSelectedIndex(AppConstants.homeTabAccount);
+      context.read<HomeBottomBarCubit>().updateSelectedIndex(
+        AppConstants.homeTabAccount,
+      );
       return;
     }
 
@@ -113,7 +121,8 @@ class _KeepAlive extends StatefulWidget {
   State<_KeepAlive> createState() => _KeepAliveState();
 }
 
-class _KeepAliveState extends State<_KeepAlive> with AutomaticKeepAliveClientMixin {
+class _KeepAliveState extends State<_KeepAlive>
+    with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 

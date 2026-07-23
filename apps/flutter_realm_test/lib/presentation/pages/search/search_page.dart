@@ -37,14 +37,19 @@ class _SearchPageState extends State<SearchPage> {
           previous.currentSelectedType != current.currentSelectedType ||
           previous.allModels != current.allModels ||
           !listEquals(previous.selectedBodyTypes, current.selectedBodyTypes) ||
-          !listEquals(previous.selectedTransmissionTypes, current.selectedTransmissionTypes) ||
+          !listEquals(
+            previous.selectedTransmissionTypes,
+            current.selectedTransmissionTypes,
+          ) ||
           previous.selectedMinYear != current.selectedMinYear ||
           previous.selectedMaxYear != current.selectedMaxYear ||
           previous.selectedMinPrice != current.selectedMinPrice ||
           previous.selectedMaxPrice != current.selectedMaxPrice ||
           previous.results != current.results,
       builder: (context, state) {
-        final selectedFilterCount = context.read<SearchPageCubit>().getSelectedFilterCount();
+        final selectedFilterCount = context
+            .read<SearchPageCubit>()
+            .getSelectedFilterCount();
         final isDrawerOpened = state.drawerOpened != SearchDrawerType.empty;
 
         return Scaffold(
@@ -52,7 +57,10 @@ class _SearchPageState extends State<SearchPage> {
           appBar: AppBar(
             scrolledUnderElevation: isDrawerOpened ? 0.0 : null,
             centerTitle: true,
-            title: Text(context.tr(L10nKeys.searchPageTitle), style: AppTextStyles.zonaPro20),
+            title: Text(
+              context.tr(L10nKeys.searchPageTitle),
+              style: AppTextStyles.zonaPro20,
+            ),
             backgroundColor: AppColors.scaffoldColor,
             //hidden hamburger icon this way;
             actions: const [SizedBox.shrink()],
@@ -90,7 +98,10 @@ class _SearchPageState extends State<SearchPage> {
                     final modelFilters = isFilterEmpty
                         ? context.tr(L10nKeys.searchFilterModelPlaceholder)
                         : state.selectedModels.entries
-                              .map((entry) => '${entry.key}: ${entry.value.join(', ')}')
+                              .map(
+                                (entry) =>
+                                    '${entry.key}: ${entry.value.join(', ')}',
+                              )
                               .join('; ');
 
                     return SearchFilterButton(
@@ -99,7 +110,9 @@ class _SearchPageState extends State<SearchPage> {
                       text: modelFilters,
                       selectionCount: state.selectedModels.length.toString(),
                       onPressed: () {
-                        context.read<SearchPageCubit>().openDrawer(SearchDrawerType.model);
+                        context.read<SearchPageCubit>().openDrawer(
+                          SearchDrawerType.model,
+                        );
                         Scaffold.of(context).openEndDrawer();
                       },
                       isPlaceHolder: isFilterEmpty,
@@ -116,7 +129,9 @@ class _SearchPageState extends State<SearchPage> {
                       title: context.tr(L10nKeys.searchFilterParametersTitle),
                       selectionCount: selectedFilterCount.toString(),
                       onPressed: () {
-                        context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);
+                        context.read<SearchPageCubit>().openDrawer(
+                          SearchDrawerType.parameters,
+                        );
                         Scaffold.of(context).openEndDrawer();
                       },
                     );
@@ -129,7 +144,9 @@ class _SearchPageState extends State<SearchPage> {
                   builder: (context, state) {
                     return Padding(
                       padding: const EdgeInsets.all(AppDimensions.normalL),
-                      child: ResultsWidget(resultsCount: state.results.length.toString()),
+                      child: ResultsWidget(
+                        resultsCount: state.results.length.toString(),
+                      ),
                     );
                   },
                 ),
@@ -146,12 +163,18 @@ class _SearchPageState extends State<SearchPage> {
                   }
 
                   return SliverPadding(
-                    padding: const EdgeInsetsGeometry.only(bottom: AppDimensions.normalXL),
+                    padding: const EdgeInsetsGeometry.only(
+                      bottom: AppDimensions.normalXL,
+                    ),
                     sliver: BlocBuilder<UserDataCubit, UserDataState>(
-                      buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
+                      buildWhen: (previous, current) =>
+                          previous.favoriteIds != current.favoriteIds,
                       builder: (context, userState) {
                         return SliverGrid(
-                          delegate: SliverChildBuilderDelegate((context, index) {
+                          delegate: SliverChildBuilderDelegate((
+                            context,
+                            index,
+                          ) {
                             return AnnouncementListItem(
                               isExploreItem: false,
                               car: state.results[index],
@@ -159,10 +182,11 @@ class _SearchPageState extends State<SearchPage> {
                               onDismissed: () {},
                             );
                           }, childCount: state.results.length),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: isTablet ? 2 : 1,
-                            childAspectRatio: 16 / 14,
-                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: isTablet ? 2 : 1,
+                                childAspectRatio: 16 / 14,
+                              ),
                         );
                       },
                     ),

@@ -19,7 +19,9 @@ void main() {
 
   group('EnvLocalDataSourceImpl', () {
     test('init calls dotenv.load with correct file name', () async {
-      when(mockDotEnv.load(fileName: anyNamed('fileName'))).thenAnswer((_) async {});
+      when(
+        mockDotEnv.load(fileName: anyNamed('fileName')),
+      ).thenAnswer((_) async {});
 
       await dataSource.init();
 
@@ -36,7 +38,9 @@ void main() {
     });
 
     test('get returns fallback if key is missing', () {
-      when(mockDotEnv.get('MISSING_KEY', fallback: 'fallback')).thenReturn('fallback');
+      when(
+        mockDotEnv.get('MISSING_KEY', fallback: 'fallback'),
+      ).thenReturn('fallback');
 
       final result = dataSource.get(key: 'MISSING_KEY', fallback: 'fallback');
 

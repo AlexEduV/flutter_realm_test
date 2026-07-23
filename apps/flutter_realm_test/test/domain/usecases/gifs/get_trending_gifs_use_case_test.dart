@@ -19,36 +19,41 @@ void main() {
     useCase = GetTrendingGifsUseCase(mockRepository);
   });
 
-  test('should call getTrending on repository and return list of GifEntity', () async {
-    final gifs = [
-      GifEntity(
-        id: '1',
-        previewImageUrl: 'https://example.com/1.gif',
-        imageUrl: 'https://example.com/1.gif',
-        height: 750,
-        width: 750,
-        title: '1',
-      ),
-      GifEntity(
-        id: '2',
-        previewImageUrl: 'https://example.com/2.gif',
-        imageUrl: 'https://example.com/2.gif',
-        height: 750,
-        width: 750,
-        title: '1',
-      ),
-    ];
-    when(mockRepository.getTrending()).thenAnswer((_) async => Right(gifs));
+  test(
+    'should call getTrending on repository and return list of GifEntity',
+    () async {
+      final gifs = [
+        GifEntity(
+          id: '1',
+          previewImageUrl: 'https://example.com/1.gif',
+          imageUrl: 'https://example.com/1.gif',
+          height: 750,
+          width: 750,
+          title: '1',
+        ),
+        GifEntity(
+          id: '2',
+          previewImageUrl: 'https://example.com/2.gif',
+          imageUrl: 'https://example.com/2.gif',
+          height: 750,
+          width: 750,
+          title: '1',
+        ),
+      ];
+      when(mockRepository.getTrending()).thenAnswer((_) async => Right(gifs));
 
-    final result = await useCase.call();
+      final result = await useCase.call();
 
-    result.fold((failure) => fail('Expected Right, got Left: $failure'), (entities) {
-      expect(entities, equals(entities));
-    });
+      result.fold((failure) => fail('Expected Right, got Left: $failure'), (
+        entities,
+      ) {
+        expect(entities, equals(entities));
+      });
 
-    verify(mockRepository.getTrending()).called(1);
-    verifyNoMoreInteractions(mockRepository);
-  });
+      verify(mockRepository.getTrending()).called(1);
+      verifyNoMoreInteractions(mockRepository);
+    },
+  );
 
   test('should return empty list when repository returns empty list', () async {
     when(

@@ -9,7 +9,9 @@ Widget buildAuthErrorWidgetUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       body: Padding(
@@ -18,8 +20,15 @@ Widget buildAuthErrorWidgetUseCase(BuildContext context) {
           spacing: AppDimensions.normalL,
           children: [
             AuthErrorWidget(
-              text: context.knobs.boolean(label: 'Is error visible', initialValue: true)
-                  ? context.knobs.string(label: 'Error text', initialValue: 'Some Auth error')
+              text:
+                  context.knobs.boolean(
+                    label: 'Is error visible',
+                    initialValue: true,
+                  )
+                  ? context.knobs.string(
+                      label: 'Error text',
+                      initialValue: 'Some Auth error',
+                    )
                   : null,
             ),
           ],

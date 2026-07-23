@@ -23,7 +23,9 @@ void main() {
         ownerId: ownerId,
         messages: [],
       );
-      when(mockRepository.getConversationByOwnerId(ownerId)).thenReturn(conversation);
+      when(
+        mockRepository.getConversationByOwnerId(ownerId),
+      ).thenReturn(conversation);
 
       final result = useCase.call(ownerId);
 
@@ -35,7 +37,9 @@ void main() {
 
   test('should return null when repository returns null', () {
     final ownerId = 'not_found';
-    when(mockRepository.getConversationByOwnerId(ownerId)).thenReturn(ConversationModel.empty());
+    when(
+      mockRepository.getConversationByOwnerId(ownerId),
+    ).thenReturn(ConversationModel.empty());
 
     final result = useCase.call(ownerId);
 

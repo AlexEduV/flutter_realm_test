@@ -15,7 +15,10 @@ void main() {
         favoriteIds: const ['1'],
         email: 'mock@gmail.com',
         password: '',
-        lastSeenCar: LastSeenCarEntity(carId: CarEntity.empty().carId, seenAt: DateTime.now()),
+        lastSeenCar: LastSeenCarEntity(
+          carId: CarEntity.empty().carId,
+          seenAt: DateTime.now(),
+        ),
         region: 'uk',
         createdIds: [],
         avatarImageSrc: null,

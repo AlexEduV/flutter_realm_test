@@ -21,11 +21,15 @@ class RecentlyViewedPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(context.tr(L10nKeys.accountItemViewedItems), style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(L10nKeys.accountItemViewedItems),
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
-        buildWhen: (previous, current) => previous.viewedIds != current.viewedIds,
+        buildWhen: (previous, current) =>
+            previous.viewedIds != current.viewedIds,
         builder: (context, userState) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
@@ -34,7 +38,11 @@ class RecentlyViewedPage extends StatelessWidget {
               final viewedIds = userState.viewedIds.reversed;
 
               final viewedEntities = viewedIds
-                  .map((id) => allCars.firstWhereOrNull((entity) => entity.carId == id))
+                  .map(
+                    (id) => allCars.firstWhereOrNull(
+                      (entity) => entity.carId == id,
+                    ),
+                  )
                   .whereType<CarEntity>()
                   .toList();
 

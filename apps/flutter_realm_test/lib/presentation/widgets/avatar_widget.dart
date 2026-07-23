@@ -1,6 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart'
-    show BuildContext, BoxFit, StatelessWidget, Widget, ColoredBox, ClipOval, SizedBox;
+    show
+        BuildContext,
+        BoxFit,
+        StatelessWidget,
+        Widget,
+        ColoredBox,
+        ClipOval,
+        SizedBox;
 import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/user_avatar_enhanced.dart';
@@ -27,7 +34,12 @@ class AvatarWidget extends StatelessWidget {
     }
 
     if (isLocal) {
-      return UserAvatarEnhanced(imageSrc: imageSrc, onTap: null, size: size, isDecorated: false);
+      return UserAvatarEnhanced(
+        imageSrc: imageSrc,
+        onTap: null,
+        size: size,
+        isDecorated: false,
+      );
     }
 
     return AppSemantics(
@@ -38,8 +50,10 @@ class AvatarWidget extends StatelessWidget {
           fit: BoxFit.cover,
           height: size,
           width: size,
-          placeholder: (context, url) => ColoredBox(color: AppColors.placeholderColor),
-          errorWidget: (context, url, error) => ColoredBox(color: AppColors.placeholderColor),
+          placeholder: (context, url) =>
+              ColoredBox(color: AppColors.placeholderColor),
+          errorWidget: (context, url, error) =>
+              ColoredBox(color: AppColors.placeholderColor),
         ),
       ),
     );

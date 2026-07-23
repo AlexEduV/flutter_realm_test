@@ -23,12 +23,15 @@ void main() {
   });
 
   group('MockArticleRemoteDataSourceImpl', () {
-    test('fetchArticles returns a non-empty list from the asset JSON', () async {
-      final articles = await dataSource.fetchArticles();
+    test(
+      'fetchArticles returns a non-empty list from the asset JSON',
+      () async {
+        final articles = await dataSource.fetchArticles();
 
-      expect(articles, isNotEmpty);
-      verifyNever(mockLogger.e(any));
-    });
+        expect(articles, isNotEmpty);
+        verifyNever(mockLogger.e(any));
+      },
+    );
 
     test('fetchArticles populates the internal articles list', () async {
       await dataSource.fetchArticles();
@@ -36,27 +39,36 @@ void main() {
       expect(dataSource.articles, isNotEmpty);
     });
 
-    test('getArticleById returns the matching article after fetchArticles', () async {
-      await dataSource.fetchArticles();
+    test(
+      'getArticleById returns the matching article after fetchArticles',
+      () async {
+        await dataSource.fetchArticles();
 
-      final result = await dataSource.getArticleById('1');
+        final result = await dataSource.getArticleById('1');
 
-      expect(result.id, '1');
-      expect(result.title, 'The Future of Electric Cars');
-    });
+        expect(result.id, '1');
+        expect(result.title, 'The Future of Electric Cars');
+      },
+    );
 
-    test('getArticleById returns ArticleEntity.empty() for an unknown id', () async {
-      await dataSource.fetchArticles();
+    test(
+      'getArticleById returns ArticleEntity.empty() for an unknown id',
+      () async {
+        await dataSource.fetchArticles();
 
-      final result = await dataSource.getArticleById('non-existent-id');
+        final result = await dataSource.getArticleById('non-existent-id');
 
-      expect(result, ArticleEntity.empty());
-    });
+        expect(result, ArticleEntity.empty());
+      },
+    );
 
-    test('getArticleById returns ArticleEntity.empty() when called before fetchArticles', () async {
-      final result = await dataSource.getArticleById('1');
+    test(
+      'getArticleById returns ArticleEntity.empty() when called before fetchArticles',
+      () async {
+        final result = await dataSource.getArticleById('1');
 
-      expect(result, ArticleEntity.empty());
-    });
+        expect(result, ArticleEntity.empty());
+      },
+    );
   });
 }

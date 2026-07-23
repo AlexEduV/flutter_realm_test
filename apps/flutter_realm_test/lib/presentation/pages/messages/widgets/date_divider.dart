@@ -9,7 +9,10 @@ class DateDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppDimensions.normalS, top: AppDimensions.normalL),
+      padding: const EdgeInsets.only(
+        bottom: AppDimensions.normalS,
+        top: AppDimensions.normalL,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -22,7 +25,12 @@ class DateDivider extends StatelessWidget {
               color: AppColors.whiteGrey,
               borderRadius: BorderRadius.circular(AppDimensions.normalM),
             ),
-            child: Text(text, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
+            child: Text(
+              text,
+              style: AppTextStyles.zonaPro16.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ),
         ],
       ),

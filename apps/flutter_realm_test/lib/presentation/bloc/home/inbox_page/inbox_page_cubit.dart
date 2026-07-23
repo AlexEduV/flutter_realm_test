@@ -37,33 +37,46 @@ class InboxPageCubit extends Cubit<InboxPageState> {
     );
 
     final updatedConversations = state.conversations
-        .map((c) => c.conversationId == conversationId ? updatedConversation : c)
+        .map(
+          (c) => c.conversationId == conversationId ? updatedConversation : c,
+        )
         .toList();
 
     emit(state.copyWith(conversations: updatedConversations));
-    listKey.currentState?.insertItem(0, duration: const Duration(milliseconds: 200));
+    listKey.currentState?.insertItem(
+      0,
+      duration: const Duration(milliseconds: 200),
+    );
 
     //todo: save to local storage cache as well
     await _saveConversationsUseCase.call(updatedConversations);
   }
 
-  Future<void> markMessageAsRead(String conversationId, int messageIndex) async {
+  Future<void> markMessageAsRead(
+    String conversationId,
+    int messageIndex,
+  ) async {
     final conversation = state.conversations.firstWhereOrNull(
       (c) => c.conversationId == conversationId,
     );
 
     if (conversation == null) return;
-    if (messageIndex < 0 || messageIndex >= conversation.messages.length) return;
+    if (messageIndex < 0 || messageIndex >= conversation.messages.length)
+      return;
 
     final updatedMessages = List<MessageModel>.from(conversation.messages);
     updatedMessages[messageIndex] = updatedMessages[messageIndex].copyWith(
       messageStatus: MessageStatus.read,
     );
 
-    final updatedConversation = conversation.copyWith(messages: updatedMessages);
+    final updatedConversation = conversation.copyWith(
+      messages: updatedMessages,
+    );
 
     final updatedConversations = state.conversations
-        .map((c) => c.conversationId == conversationId ? updatedConversation : c)
+        .map(
+          (c) => c.conversationId == conversationId ? updatedConversation : c,
+        )
         .toList();
 
     emit(state.copyWith(conversations: updatedConversations));
@@ -73,8 +86,12 @@ class InboxPageCubit extends Cubit<InboxPageState> {
   }
 
   Future<void> deleteConversation(String conversationId) async {
-    final updatedConversations = List<ConversationModel>.from(state.conversations);
-    updatedConversations.removeWhere((element) => element.conversationId == conversationId);
+    final updatedConversations = List<ConversationModel>.from(
+      state.conversations,
+    );
+    updatedConversations.removeWhere(
+      (element) => element.conversationId == conversationId,
+    );
 
     emit(state.copyWith(conversations: updatedConversations));
     await _saveConversationsUseCase.call(updatedConversations);

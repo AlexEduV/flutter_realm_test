@@ -44,7 +44,11 @@ class PageSelectionBar extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(AppDimensions.minorM),
             child: IconButton(
-              icon: Icon(Icons.chevron_left_outlined, color: iconColor, size: iconSize),
+              icon: Icon(
+                Icons.chevron_left_outlined,
+                color: iconColor,
+                size: iconSize,
+              ),
               onPressed: onBackPressed,
             ),
           ),
@@ -67,7 +71,11 @@ class PageSelectionBar extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(AppDimensions.minorM),
             child: IconButton(
-              icon: Icon(Icons.chevron_right_outlined, color: iconColor, size: iconSize),
+              icon: Icon(
+                Icons.chevron_right_outlined,
+                color: iconColor,
+                size: iconSize,
+              ),
               onPressed: onForwardPressed,
             ),
           ),

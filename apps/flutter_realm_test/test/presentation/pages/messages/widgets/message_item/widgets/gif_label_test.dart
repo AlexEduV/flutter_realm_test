@@ -12,10 +12,16 @@ import '../../../../../../common/extensions/context_extension_test.mocks.dart';
 void main() {
   final mockAppLocalisationsCubit = MockAppLocalisationsCubit();
 
-  testWidgets('GifLabel renders with correct text and style', (WidgetTester tester) async {
-    when(mockAppLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
+  testWidgets('GifLabel renders with correct text and style', (
+    WidgetTester tester,
+  ) async {
+    when(
+      mockAppLocalisationsCubit.stream,
+    ).thenAnswer((_) => const Stream.empty());
     when(mockAppLocalisationsCubit.state).thenReturn(
-      const AppLocalisationsState(localisations: {L10nKeys.gifMessagePlaceholder: 'gif'}),
+      const AppLocalisationsState(
+        localisations: {L10nKeys.gifMessagePlaceholder: 'gif'},
+      ),
     );
 
     // Provide a MaterialApp to supply context and localization

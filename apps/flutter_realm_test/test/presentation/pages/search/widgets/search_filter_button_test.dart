@@ -8,7 +8,11 @@ void main() {
     testWidgets('displays icon, title, and badge', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: SearchFilterButton(title: 'Filter', icon: Icons.filter_alt, selectionCount: '2'),
+          home: SearchFilterButton(
+            title: 'Filter',
+            icon: Icons.filter_alt,
+            selectionCount: '2',
+          ),
         ),
       );
 
@@ -18,7 +22,9 @@ void main() {
       expect(find.text('2'), findsOneWidget);
     });
 
-    testWidgets('displays optional text when provided', (WidgetTester tester) async {
+    testWidgets('displays optional text when provided', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: SearchFilterButton(
@@ -33,10 +39,16 @@ void main() {
       expect(find.text('Selected'), findsOneWidget);
     });
 
-    testWidgets('does not display optional text when not provided', (WidgetTester tester) async {
+    testWidgets('does not display optional text when not provided', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: SearchFilterButton(title: 'Filter', icon: Icons.filter_alt, selectionCount: '0'),
+          home: SearchFilterButton(
+            title: 'Filter',
+            icon: Icons.filter_alt,
+            selectionCount: '0',
+          ),
         ),
       );
 
@@ -83,7 +95,9 @@ void main() {
       expect(textWidget.style?.color, Colors.grey);
     });
 
-    testWidgets('icon container has correct size and color', (WidgetTester tester) async {
+    testWidgets('icon container has correct size and color', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: SearchFilterButton(
@@ -96,7 +110,10 @@ void main() {
       );
 
       final containerFinder = find
-          .descendant(of: find.byType(SearchFilterButton), matching: find.byType(Container))
+          .descendant(
+            of: find.byType(SearchFilterButton),
+            matching: find.byType(Container),
+          )
           .first;
 
       final size = tester.getSize(containerFinder);

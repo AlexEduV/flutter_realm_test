@@ -36,7 +36,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
 
   @override
   Widget build(BuildContext context) {
-    final listTileContentPadding = const EdgeInsets.symmetric(horizontal: AppDimensions.minorS);
+    final listTileContentPadding = const EdgeInsets.symmetric(
+      horizontal: AppDimensions.minorS,
+    );
 
     return BlocBuilder<NewItemPageCubit, NewItemPageState>(
       builder: (context, state) {
@@ -48,13 +50,17 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RadioGroupTitle(
-                    text: context.tr(L10nKeys.addNewItemSpecsPickerBodyTypeGroupDescription),
+                    text: context.tr(
+                      L10nKeys.addNewItemSpecsPickerBodyTypeGroupDescription,
+                    ),
                   ),
 
                   RadioGroup<BodyType>(
                     groupValue: state.selectedBodyType,
                     onChanged: (BodyType? value) {
-                      context.read<NewItemPageCubit>().updateSelectedBodyType(value);
+                      context.read<NewItemPageCubit>().updateSelectedBodyType(
+                        value,
+                      );
                     },
 
                     child: Column(
@@ -63,10 +69,14 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                           .map(
                             (element) => ListTile(
                               title: Text(element.fromLocalisations()),
-                              leading: Radio<BodyType>(toggleable: true, value: element),
+                              leading: Radio<BodyType>(
+                                toggleable: true,
+                                value: element,
+                              ),
                               contentPadding: listTileContentPadding,
-                              onTap: () =>
-                                  context.read<NewItemPageCubit>().updateSelectedBodyType(element),
+                              onTap: () => context
+                                  .read<NewItemPageCubit>()
+                                  .updateSelectedBodyType(element),
                             ),
                           )
                           .toList(),
@@ -79,62 +89,87 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RadioGroupTitle(
-                    text: context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupDescription),
+                    text: context.tr(
+                      L10nKeys.addNewItemSpecsPickerFuelTypeGroupDescription,
+                    ),
                   ),
 
                   RadioGroup<FuelType>(
                     groupValue: state.selectedFuelType,
                     onChanged: (FuelType? value) {
-                      context.read<NewItemPageCubit>().updateSelectedFuelType(value);
+                      context.read<NewItemPageCubit>().updateSelectedFuelType(
+                        value,
+                      );
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         ListTile(
                           title: Text(
-                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemDiesel),
+                            context.tr(
+                              L10nKeys
+                                  .addNewItemSpecsPickerFuelTypeGroupItemDiesel,
+                            ),
                           ),
-                          leading: const Radio<FuelType>(toggleable: true, value: FuelType.diesel),
+                          leading: const Radio<FuelType>(
+                            toggleable: true,
+                            value: FuelType.diesel,
+                          ),
                           contentPadding: listTileContentPadding,
-                          onTap: () => context.read<NewItemPageCubit>().updateSelectedFuelType(
-                            FuelType.diesel,
-                          ),
+                          onTap: () => context
+                              .read<NewItemPageCubit>()
+                              .updateSelectedFuelType(FuelType.diesel),
                         ),
                         ListTile(
                           title: Text(
-                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemGasoline),
+                            context.tr(
+                              L10nKeys
+                                  .addNewItemSpecsPickerFuelTypeGroupItemGasoline,
+                            ),
                           ),
-                          leading: const Radio<FuelType>(value: FuelType.gasoline),
+                          leading: const Radio<FuelType>(
+                            value: FuelType.gasoline,
+                          ),
                           contentPadding: listTileContentPadding,
-                          onTap: () => context.read<NewItemPageCubit>().updateSelectedFuelType(
-                            FuelType.gasoline,
-                          ),
+                          onTap: () => context
+                              .read<NewItemPageCubit>()
+                              .updateSelectedFuelType(FuelType.gasoline),
                         ),
                         ListTile(
                           title: Text(
-                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemEV),
+                            context.tr(
+                              L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemEV,
+                            ),
                           ),
                           leading: const Radio<FuelType>(value: FuelType.ev),
                           contentPadding: listTileContentPadding,
-                          onTap: () =>
-                              context.read<NewItemPageCubit>().updateSelectedFuelType(FuelType.ev),
+                          onTap: () => context
+                              .read<NewItemPageCubit>()
+                              .updateSelectedFuelType(FuelType.ev),
                         ),
                         ListTile(
                           title: Text(
-                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemHybrid),
+                            context.tr(
+                              L10nKeys
+                                  .addNewItemSpecsPickerFuelTypeGroupItemHybrid,
+                            ),
                           ),
-                          leading: const Radio<FuelType>(value: FuelType.hybrid),
+                          leading: const Radio<FuelType>(
+                            value: FuelType.hybrid,
+                          ),
                           contentPadding: listTileContentPadding,
-                          onTap: () => context.read<NewItemPageCubit>().updateSelectedFuelType(
-                            FuelType.hybrid,
-                          ),
+                          onTap: () => context
+                              .read<NewItemPageCubit>()
+                              .updateSelectedFuelType(FuelType.hybrid),
                         ),
                       ],
                     ),
                   ),
 
                   RadioGroupTitle(
-                    text: context.tr(L10nKeys.addNewItemSpecsPickerEngineVolumeDescription),
+                    text: context.tr(
+                      L10nKeys.addNewItemSpecsPickerEngineVolumeDescription,
+                    ),
                   ),
 
                   Row(
@@ -145,33 +180,44 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                           focusNode: engineVolumeFocusNode,
                           textEditingController: engineVolumeTextController,
                           labelText: state.engineVolumeFieldParams?.label ?? '',
-                          hintText: state.engineVolumeFieldParams?.hintText ?? '',
+                          hintText:
+                              state.engineVolumeFieldParams?.hintText ?? '',
                           textInputType: TextInputType.number,
                           textInputAction: TextInputAction.done,
                           errorText: state.engineVolumeErrorText,
                           onFocusChange: (hasFocus) {
                             if (hasFocus) return;
 
-                            context.read<NewItemPageCubit>().validateEngineVolume(
-                              engineVolumeTextController.text,
-                              false,
-                            );
+                            context
+                                .read<NewItemPageCubit>()
+                                .validateEngineVolume(
+                                  engineVolumeTextController.text,
+                                  false,
+                                );
                           },
                           onChanged: (_) {
-                            context.read<NewItemPageCubit>().validateEngineVolume(
-                              engineVolumeTextController.text,
-                              engineVolumeFocusNode.hasFocus,
-                            );
+                            context
+                                .read<NewItemPageCubit>()
+                                .validateEngineVolume(
+                                  engineVolumeTextController.text,
+                                  engineVolumeFocusNode.hasFocus,
+                                );
 
-                            context.read<NewItemPageCubit>().updateEngineVolumeText(
-                              engineVolumeTextController.text,
-                            );
+                            context
+                                .read<NewItemPageCubit>()
+                                .updateEngineVolumeText(
+                                  engineVolumeTextController.text,
+                                );
                           },
                           padding: 0.0,
                         ),
                       ),
 
-                      Expanded(child: Text(state.selectedFuelType.getUnitOfMeasurement())),
+                      Expanded(
+                        child: Text(
+                          state.selectedFuelType.getUnitOfMeasurement(),
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -182,14 +228,17 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                 children: [
                   RadioGroupTitle(
                     text: context.tr(
-                      L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupDescription,
+                      L10nKeys
+                          .addNewItemSpecsPickerTransmissionTypeGroupDescription,
                     ),
                   ),
 
                   RadioGroup<TransmissionType>(
                     groupValue: state.selectedTransmissionType,
                     onChanged: (TransmissionType? value) {
-                      context.read<NewItemPageCubit>().updateSelectedTransmissionType(value);
+                      context
+                          .read<NewItemPageCubit>()
+                          .updateSelectedTransmissionType(value);
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,7 +246,8 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                         ListTile(
                           title: Text(
                             context.tr(
-                              L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupItemManual,
+                              L10nKeys
+                                  .addNewItemSpecsPickerTransmissionTypeGroupItemManual,
                             ),
                           ),
                           leading: const Radio<TransmissionType>(
@@ -207,31 +257,43 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                           contentPadding: listTileContentPadding,
                           onTap: () => context
                               .read<NewItemPageCubit>()
-                              .updateSelectedTransmissionType(TransmissionType.manual),
+                              .updateSelectedTransmissionType(
+                                TransmissionType.manual,
+                              ),
                         ),
                         ListTile(
                           title: Text(
                             context.tr(
-                              L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupItemAutomatic,
+                              L10nKeys
+                                  .addNewItemSpecsPickerTransmissionTypeGroupItemAutomatic,
                             ),
                           ),
-                          leading: const Radio<TransmissionType>(value: TransmissionType.automatic),
+                          leading: const Radio<TransmissionType>(
+                            value: TransmissionType.automatic,
+                          ),
                           contentPadding: listTileContentPadding,
                           onTap: () => context
                               .read<NewItemPageCubit>()
-                              .updateSelectedTransmissionType(TransmissionType.automatic),
+                              .updateSelectedTransmissionType(
+                                TransmissionType.automatic,
+                              ),
                         ),
                         ListTile(
                           title: Text(
                             context.tr(
-                              L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupItemHybrid,
+                              L10nKeys
+                                  .addNewItemSpecsPickerTransmissionTypeGroupItemHybrid,
                             ),
                           ),
-                          leading: const Radio<TransmissionType>(value: TransmissionType.hybrid),
+                          leading: const Radio<TransmissionType>(
+                            value: TransmissionType.hybrid,
+                          ),
                           contentPadding: listTileContentPadding,
                           onTap: () => context
                               .read<NewItemPageCubit>()
-                              .updateSelectedTransmissionType(TransmissionType.hybrid),
+                              .updateSelectedTransmissionType(
+                                TransmissionType.hybrid,
+                              ),
                         ),
                       ],
                     ),

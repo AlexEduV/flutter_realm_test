@@ -48,7 +48,10 @@ class MessageContent extends StatelessWidget {
             bottomRight: const Radius.circular(AppDimensions.normalS),
           ),
           image: imageMetaData != null
-              ? DecorationImage(fit: BoxFit.cover, image: NetworkImage(imageMetaData?.url ?? ''))
+              ? DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(imageMetaData?.url ?? ''),
+                )
               : null,
         ),
         child: getContent(),
@@ -62,7 +65,10 @@ class MessageContent extends StatelessWidget {
     }
 
     if (attachmentMetaData != null) {
-      return MessageFileContent(attachmentMetaData: attachmentMetaData, isMyMessage: isMyMessage);
+      return MessageFileContent(
+        attachmentMetaData: attachmentMetaData,
+        isMyMessage: isMyMessage,
+      );
     }
 
     return Text.rich(

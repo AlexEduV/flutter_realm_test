@@ -33,16 +33,17 @@ class MockAutoCompleteRepository extends _i1.Mock
     implements _i2.AutoCompleteRepository {
   @override
   _i3.Future<List<_i4.CarAutoCompleteEntity>> getAutoCompleteModelListByType(
-          _i5.CarType? type) =>
+    _i5.CarType? type,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #getAutoCompleteModelListByType,
-          [type],
-        ),
-        returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
-            <_i4.CarAutoCompleteEntity>[]),
-        returnValueForMissingStub:
-            _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
-                <_i4.CarAutoCompleteEntity>[]),
-      ) as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
+            Invocation.method(#getAutoCompleteModelListByType, [type]),
+            returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
+              <_i4.CarAutoCompleteEntity>[],
+            ),
+            returnValueForMissingStub:
+                _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
+                  <_i4.CarAutoCompleteEntity>[],
+                ),
+          )
+          as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
 }

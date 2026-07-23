@@ -17,7 +17,9 @@ void main() {
   });
 
   test('returns null if no file is picked', () async {
-    when(mockFilePicker.pickFiles(type: FileType.media)).thenAnswer((_) async => null);
+    when(
+      mockFilePicker.pickFiles(type: FileType.media),
+    ).thenAnswer((_) async => null);
 
     final result = await dataSource.pickFile();
 
@@ -28,7 +30,9 @@ void main() {
   test('returns null if files list is empty', () async {
     final mockResult = MockFilePickerResult();
     when(mockResult.files).thenReturn([]);
-    when(mockFilePicker.pickFiles(type: FileType.media)).thenAnswer((_) async => mockResult);
+    when(
+      mockFilePicker.pickFiles(type: FileType.media),
+    ).thenAnswer((_) async => mockResult);
 
     final result = await dataSource.pickFile();
 

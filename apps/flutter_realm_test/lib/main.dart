@@ -71,7 +71,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    _listener = AppLifecycleListener(onResume: () => checkPermissionStatusAndResume());
+    _listener = AppLifecycleListener(
+      onResume: () => checkPermissionStatusAndResume(),
+    );
   }
 
   @override
@@ -90,28 +92,48 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<SearchPageCubit>(
           create: (context) => serviceLocator<SearchPageCubit>()..init(),
         ),
-        BlocProvider<UserDataCubit>(create: (context) => serviceLocator<UserDataCubit>()..init()),
-        BlocProvider<HomeBottomBarCubit>(create: (context) => serviceLocator<HomeBottomBarCubit>()),
-        BlocProvider<DetailsPageCubit>(create: (context) => serviceLocator<DetailsPageCubit>()),
+        BlocProvider<UserDataCubit>(
+          create: (context) => serviceLocator<UserDataCubit>()..init(),
+        ),
+        BlocProvider<HomeBottomBarCubit>(
+          create: (context) => serviceLocator<HomeBottomBarCubit>(),
+        ),
+        BlocProvider<DetailsPageCubit>(
+          create: (context) => serviceLocator<DetailsPageCubit>(),
+        ),
         BlocProvider<AuthenticationCubit>(
           create: (context) => serviceLocator<AuthenticationCubit>()..init(),
         ),
-        BlocProvider<InboxPageCubit>(create: (context) => serviceLocator<InboxPageCubit>()..init()),
-        BlocProvider<ArticlePageCubit>(create: (context) => serviceLocator<ArticlePageCubit>()),
+        BlocProvider<InboxPageCubit>(
+          create: (context) => serviceLocator<InboxPageCubit>()..init(),
+        ),
+        BlocProvider<ArticlePageCubit>(
+          create: (context) => serviceLocator<ArticlePageCubit>(),
+        ),
         BlocProvider<AppLocalisationsCubit>(
           create: (context) => serviceLocator<AppLocalisationsCubit>(),
         ),
-        BlocProvider<ShareCubit>(create: (context) => serviceLocator<ShareCubit>()),
-        BlocProvider<EditDialogCubit>(create: (context) => serviceLocator<EditDialogCubit>()),
-        BlocProvider<MessagesPageCubit>(create: (context) => serviceLocator<MessagesPageCubit>()),
+        BlocProvider<ShareCubit>(
+          create: (context) => serviceLocator<ShareCubit>(),
+        ),
+        BlocProvider<EditDialogCubit>(
+          create: (context) => serviceLocator<EditDialogCubit>(),
+        ),
+        BlocProvider<MessagesPageCubit>(
+          create: (context) => serviceLocator<MessagesPageCubit>(),
+        ),
         BlocProvider<NewItemPageCubit>(
           create: (context) => serviceLocator<NewItemPageCubit>()..init(),
         ),
       ],
       child: MaterialApp.router(
-        title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
+        title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+          L10nKeys.appName,
+        ),
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: AppColors.mainThemeColor,
+          ),
           fontFamily: 'Zona Pro',
           radioTheme: const RadioThemeData(
             fillColor: WidgetStatePropertyAll(AppColors.headerColor),
@@ -125,8 +147,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> checkPermissionStatusAndResume() async {
-    final locationPermissionStatus = await serviceLocator<CheckLocationPermissionStatusUseCase>()
-        .call();
+    final locationPermissionStatus =
+        await serviceLocator<CheckLocationPermissionStatusUseCase>().call();
 
     final isGranted = locationPermissionStatus == PermissionStatus.granted;
 
@@ -138,7 +160,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _showLocationPermissionDialog() {
-    final navigatorContext = AppRouter.router.routerDelegate.navigatorKey.currentContext;
+    final navigatorContext =
+        AppRouter.router.routerDelegate.navigatorKey.currentContext;
     if (navigatorContext == null) return;
 
     final l10n = serviceLocator<AppLocalisationsCubit>();
@@ -146,12 +169,18 @@ class _MyAppState extends State<MyApp> {
     showDialog(
       context: navigatorContext,
       builder: (_) => ConfirmationDialog(
-        title: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogTitle),
-        description: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogDescription),
+        title: l10n.getLocalisationByKey(
+          L10nKeys.locationPermissionDialogTitle,
+        ),
+        description: l10n.getLocalisationByKey(
+          L10nKeys.locationPermissionDialogDescription,
+        ),
         confirmButtonTitle: l10n.getLocalisationByKey(
           L10nKeys.locationPermissionDialogOpenSettings,
         ),
-        cancelButtonTitle: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogLater),
+        cancelButtonTitle: l10n.getLocalisationByKey(
+          L10nKeys.locationPermissionDialogLater,
+        ),
         isDeletion: false,
         onConfirm: () => serviceLocator<OpenAppSettingsUseCase>().call(),
       ),

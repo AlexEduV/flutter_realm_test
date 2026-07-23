@@ -1,5 +1,9 @@
 class SentAttachmentMetaDataModel {
-  SentAttachmentMetaDataModel({required this.name, required this.size, this.path});
+  SentAttachmentMetaDataModel({
+    required this.name,
+    required this.size,
+    this.path,
+  });
 
   factory SentAttachmentMetaDataModel.fromJson(Map<String, dynamic> json) {
     return SentAttachmentMetaDataModel(

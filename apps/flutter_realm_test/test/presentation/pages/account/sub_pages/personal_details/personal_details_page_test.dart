@@ -19,63 +19,70 @@ void main() {
     provideDummy(const UserDataState());
   });
 
-  testWidgets('PersonalDetailsPage renders all PersonalDetailsListItems with correct data', (
-    WidgetTester tester,
-  ) async {
-    // Arrange
-    final mockUserDataCubit = MockUserDataCubit();
-    final mockAuthenticationCubit = MockAuthenticationCubit();
-    final mockAppLocalisationsCubit = MockAppLocalisationsCubit();
+  testWidgets(
+    'PersonalDetailsPage renders all PersonalDetailsListItems with correct data',
+    (WidgetTester tester) async {
+      // Arrange
+      final mockUserDataCubit = MockUserDataCubit();
+      final mockAuthenticationCubit = MockAuthenticationCubit();
+      final mockAppLocalisationsCubit = MockAppLocalisationsCubit();
 
-    // Provide a fake state
-    when(mockUserDataCubit.state).thenReturn(
-      const UserDataState(
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        password: 'secret',
-      ),
-    );
-    when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
+      // Provide a fake state
+      when(mockUserDataCubit.state).thenReturn(
+        const UserDataState(
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john.doe@example.com',
+          password: 'secret',
+        ),
+      );
+      when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(mockAppLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(
-      mockAppLocalisationsCubit.state,
-    ).thenReturn(const AppLocalisationsState(localisations: {}));
+      when(
+        mockAppLocalisationsCubit.stream,
+      ).thenAnswer((_) => const Stream.empty());
+      when(
+        mockAppLocalisationsCubit.state,
+      ).thenReturn(const AppLocalisationsState(localisations: {}));
 
-    // Mock context.read<T>() for cubits
-    //late BuildContext capturedContext;
-    Widget testWidget = MultiBlocProvider(
-      providers: [
-        BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
-        BlocProvider<AppLocalisationsCubit>.value(value: mockAppLocalisationsCubit),
-        BlocProvider<AuthenticationCubit>.value(value: mockAuthenticationCubit),
-      ],
-      child: Builder(
-        builder: (context) {
-          //capturedContext = context;
-          return const MaterialApp(home: PersonalDetailsPage());
-        },
-      ),
-    );
+      // Mock context.read<T>() for cubits
+      //late BuildContext capturedContext;
+      Widget testWidget = MultiBlocProvider(
+        providers: [
+          BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
+          BlocProvider<AppLocalisationsCubit>.value(
+            value: mockAppLocalisationsCubit,
+          ),
+          BlocProvider<AuthenticationCubit>.value(
+            value: mockAuthenticationCubit,
+          ),
+        ],
+        child: Builder(
+          builder: (context) {
+            //capturedContext = context;
+            return const MaterialApp(home: PersonalDetailsPage());
+          },
+        ),
+      );
 
-    // Act
-    await tester.pumpWidget(testWidget);
+      // Act
+      await tester.pumpWidget(testWidget);
 
-    // Assert: AppBar and ListItems
-    expect(find.byType(AppBar), findsOneWidget);
-    expect(find.byType(PersonalDetailsListItem), findsNWidgets(4));
-    expect(find.text('John'), findsOneWidget);
-    expect(find.text('Doe'), findsOneWidget);
-    expect(find.text('john.doe@example.com'), findsOneWidget);
-    // Password is obscured, so check for the correct obscured string
-    expect(find.text('******'), findsOneWidget);
+      // Assert: AppBar and ListItems
+      expect(find.byType(AppBar), findsOneWidget);
+      expect(find.byType(PersonalDetailsListItem), findsNWidgets(4));
+      expect(find.text('John'), findsOneWidget);
+      expect(find.text('Doe'), findsOneWidget);
+      expect(find.text('john.doe@example.com'), findsOneWidget);
+      // Password is obscured, so check for the correct obscured string
+      expect(find.text('******'), findsOneWidget);
 
-    // Optionally, test tapping a list item triggers the dialog
-    // You may need to use mockito/mocktail to verify DialogHelper.showEditDialog is called
-    // For example, if you use mocktail:
-    // when(() => DialogHelper.showEditDialog(any(), ...)).thenAnswer((_) async {});
-    // await tester.tap(find.byType(PersonalDetailsListItem).first);
-    // verify(() => DialogHelper.showEditDialog(any(), ...)).called(1);
-  });
+      // Optionally, test tapping a list item triggers the dialog
+      // You may need to use mockito/mocktail to verify DialogHelper.showEditDialog is called
+      // For example, if you use mocktail:
+      // when(() => DialogHelper.showEditDialog(any(), ...)).thenAnswer((_) async {});
+      // await tester.tap(find.byType(PersonalDetailsListItem).first);
+      // verify(() => DialogHelper.showEditDialog(any(), ...)).called(1);
+    },
+  );
 }

@@ -20,9 +20,15 @@ class FooterText extends StatelessWidget {
       label: AppSemanticsLabels.privacyLinkItem,
       child: InkWell(
         onTap: resolvedUrl != null
-            ? () async => await serviceLocator<OpenUrlLinkUseCase>().call(resolvedUrl)
+            ? () async =>
+                  await serviceLocator<OpenUrlLinkUseCase>().call(resolvedUrl)
             : null,
-        child: Text(text, style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w600)),
+        child: Text(
+          text,
+          style: AppTextStyles.zonaPro16Grey.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
     );
   }

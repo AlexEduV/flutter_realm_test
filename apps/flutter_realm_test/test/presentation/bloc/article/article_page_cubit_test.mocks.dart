@@ -26,13 +26,8 @@ import 'package:test_flutter_project/domain/usecases/articles/get_article_by_id_
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
-  _FakeArticleEntity_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeArticleEntity_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [GetArticleByIdUseCase].
@@ -41,25 +36,15 @@ class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
 class MockGetArticleByIdUseCase extends _i1.Mock
     implements _i3.GetArticleByIdUseCase {
   @override
-  _i4.Future<_i2.ArticleEntity> call(String? id) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [id],
-        ),
-        returnValue: _i4.Future<_i2.ArticleEntity>.value(_FakeArticleEntity_0(
-          this,
-          Invocation.method(
-            #call,
-            [id],
-          ),
-        )),
-        returnValueForMissingStub:
-            _i4.Future<_i2.ArticleEntity>.value(_FakeArticleEntity_0(
-          this,
-          Invocation.method(
-            #call,
-            [id],
-          ),
-        )),
-      ) as _i4.Future<_i2.ArticleEntity>);
+  _i4.Future<_i2.ArticleEntity> call(String? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#call, [id]),
+            returnValue: _i4.Future<_i2.ArticleEntity>.value(
+              _FakeArticleEntity_0(this, Invocation.method(#call, [id])),
+            ),
+            returnValueForMissingStub: _i4.Future<_i2.ArticleEntity>.value(
+              _FakeArticleEntity_0(this, Invocation.method(#call, [id])),
+            ),
+          )
+          as _i4.Future<_i2.ArticleEntity>);
 }

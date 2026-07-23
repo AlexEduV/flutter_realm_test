@@ -32,19 +32,27 @@ class AppInterceptor implements BaseInterceptor {
       }
 
       if (response.statusCode != HttpStatus.ok) {
-        _logger.e('Error during $requestType request at url $url, status: ${response.statusCode}');
+        _logger.e(
+          'Error during $requestType request at url $url, status: ${response.statusCode}',
+        );
         return const Left(ServerFailure.internalError);
       }
 
       if (response.body.isEmpty) {
-        _logger.e('Empty body on $requestType request at url $url, status: ${response.statusCode}');
+        _logger.e(
+          'Empty body on $requestType request at url $url, status: ${response.statusCode}',
+        );
         return const Left(ServerFailure.notAvailable);
       }
 
-      _logger.i('Successful $requestType request at url $url, status: ${response.statusCode}');
+      _logger.i(
+        'Successful $requestType request at url $url, status: ${response.statusCode}',
+      );
       return Right(response.body);
     } on SocketException catch (e) {
-      _logger.e('No network on $requestType request at url $url, exception: $e');
+      _logger.e(
+        'No network on $requestType request at url $url, exception: $e',
+      );
       return const Left(ServerFailure.noNetwork);
     } catch (e) {
       _logger.e('Error during $requestType request at url $url, exception: $e');

@@ -30,22 +30,20 @@ import 'package:test_flutter_project/domain/repositories/region_model_repository
 class MockRegionModelRepository extends _i1.Mock
     implements _i2.RegionModelRepository {
   @override
-  _i3.Future<void> init() => (super.noSuchMethod(
-        Invocation.method(
-          #init,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+  _i3.Future<void> init() =>
+      (super.noSuchMethod(
+            Invocation.method(#init, []),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 
   @override
-  List<_i4.RegionUiModel> getAvailableCountries() => (super.noSuchMethod(
-        Invocation.method(
-          #getAvailableCountries,
-          [],
-        ),
-        returnValue: <_i4.RegionUiModel>[],
-        returnValueForMissingStub: <_i4.RegionUiModel>[],
-      ) as List<_i4.RegionUiModel>);
+  List<_i4.RegionUiModel> getAvailableCountries() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAvailableCountries, []),
+            returnValue: <_i4.RegionUiModel>[],
+            returnValueForMissingStub: <_i4.RegionUiModel>[],
+          )
+          as List<_i4.RegionUiModel>);
 }

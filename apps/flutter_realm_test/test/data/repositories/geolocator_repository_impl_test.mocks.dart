@@ -29,22 +29,20 @@ import 'package:test_flutter_project/domain/data_sources/local/geolocator_local_
 class MockGeolocatorLocalDataSource extends _i1.Mock
     implements _i2.GeolocatorLocalDataSource {
   @override
-  _i3.Future<bool> checkLocationServiceStatus() => (super.noSuchMethod(
-        Invocation.method(
-          #checkLocationServiceStatus,
-          [],
-        ),
-        returnValue: _i3.Future<bool>.value(false),
-        returnValueForMissingStub: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+  _i3.Future<bool> checkLocationServiceStatus() =>
+      (super.noSuchMethod(
+            Invocation.method(#checkLocationServiceStatus, []),
+            returnValue: _i3.Future<bool>.value(false),
+            returnValueForMissingStub: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
 
   @override
-  _i3.Future<bool> openLocationSettings() => (super.noSuchMethod(
-        Invocation.method(
-          #openLocationSettings,
-          [],
-        ),
-        returnValue: _i3.Future<bool>.value(false),
-        returnValueForMissingStub: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+  _i3.Future<bool> openLocationSettings() =>
+      (super.noSuchMethod(
+            Invocation.method(#openLocationSettings, []),
+            returnValue: _i3.Future<bool>.value(false),
+            returnValueForMissingStub: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
 }

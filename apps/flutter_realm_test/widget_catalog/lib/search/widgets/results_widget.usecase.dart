@@ -7,10 +7,13 @@ import 'package:test_flutter_project/presentation/pages/search/widgets/results_w
 import 'package:widgetbook/widgetbook.dart';
 
 Widget buildResultsWidgetUseCase(BuildContext context) {
-  final appLocalisationsCubit = AppLocalisationsCubit()..load({L10nKeys.results: 'Results'});
+  final appLocalisationsCubit = AppLocalisationsCubit()
+    ..load({L10nKeys.results: 'Results'});
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
       child: Column(

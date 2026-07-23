@@ -15,7 +15,11 @@ void main() {
     });
 
     test('fromJson with all fields', () {
-      final json = {'url': 'https://example.com/image.png', 'width': '300.5', 'height': '150.25'};
+      final json = {
+        'url': 'https://example.com/image.png',
+        'width': '300.5',
+        'height': '150.25',
+      };
       final model = SentImageMetaDataModel.fromJson(json);
       expect(model.url, 'https://example.com/image.png');
       expect(model.width, 300.5);
@@ -43,12 +47,20 @@ void main() {
     });
 
     test('getImageFactor returns correct ratio', () {
-      final model = SentImageMetaDataModel(url: 'url', width: 100.0, height: 50.0);
+      final model = SentImageMetaDataModel(
+        url: 'url',
+        width: 100.0,
+        height: 50.0,
+      );
       expect(model.getImageFactor(), 0.5);
     });
 
     test('getImageFactor returns 1.0 when width is 0', () {
-      final model = SentImageMetaDataModel(url: 'url', width: 0.0, height: 50.0);
+      final model = SentImageMetaDataModel(
+        url: 'url',
+        width: 0.0,
+        height: 50.0,
+      );
       expect(model.getImageFactor(), 1.0);
     });
   });

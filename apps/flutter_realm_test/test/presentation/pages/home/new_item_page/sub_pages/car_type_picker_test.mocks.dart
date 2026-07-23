@@ -34,13 +34,8 @@ import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_it
 
 class _FakeNewItemPageState_0 extends _i1.SmartFake
     implements _i2.NewItemPageState {
-  _FakeNewItemPageState_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeNewItemPageState_0(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [NewItemPageCubit].
@@ -48,350 +43,235 @@ class _FakeNewItemPageState_0 extends _i1.SmartFake
 /// See the documentation for Mockito's code generation for more information.
 class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
   @override
-  _i2.NewItemPageState get state => (super.noSuchMethod(
-        Invocation.getter(#state),
-        returnValue: _FakeNewItemPageState_0(
-          this,
-          Invocation.getter(#state),
-        ),
-        returnValueForMissingStub: _FakeNewItemPageState_0(
-          this,
-          Invocation.getter(#state),
-        ),
-      ) as _i2.NewItemPageState);
+  _i2.NewItemPageState get state =>
+      (super.noSuchMethod(
+            Invocation.getter(#state),
+            returnValue: _FakeNewItemPageState_0(
+              this,
+              Invocation.getter(#state),
+            ),
+            returnValueForMissingStub: _FakeNewItemPageState_0(
+              this,
+              Invocation.getter(#state),
+            ),
+          )
+          as _i2.NewItemPageState);
 
   @override
-  _i4.Stream<_i2.NewItemPageState> get stream => (super.noSuchMethod(
-        Invocation.getter(#stream),
-        returnValue: _i4.Stream<_i2.NewItemPageState>.empty(),
-        returnValueForMissingStub: _i4.Stream<_i2.NewItemPageState>.empty(),
-      ) as _i4.Stream<_i2.NewItemPageState>);
+  _i4.Stream<_i2.NewItemPageState> get stream =>
+      (super.noSuchMethod(
+            Invocation.getter(#stream),
+            returnValue: _i4.Stream<_i2.NewItemPageState>.empty(),
+            returnValueForMissingStub: _i4.Stream<_i2.NewItemPageState>.empty(),
+          )
+          as _i4.Stream<_i2.NewItemPageState>);
 
   @override
-  bool get isClosed => (super.noSuchMethod(
-        Invocation.getter(#isClosed),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  bool get isClosed =>
+      (super.noSuchMethod(
+            Invocation.getter(#isClosed),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
   void init() => super.noSuchMethod(
-        Invocation.method(
-          #init,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#init, []),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  bool validateManufacturer(
-    String? manufacturer,
-    bool? isEditing,
-  ) =>
+  bool validateManufacturer(String? manufacturer, bool? isEditing) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #validateManufacturer,
-          [
-            manufacturer,
-            isEditing,
-          ],
-        ),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+            Invocation.method(#validateManufacturer, [manufacturer, isEditing]),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
-  bool validateModel(
-    String? model,
-    bool? isEditing,
-  ) =>
+  bool validateModel(String? model, bool? isEditing) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #validateModel,
-          [
-            model,
-            isEditing,
-          ],
-        ),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+            Invocation.method(#validateModel, [model, isEditing]),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
-  bool validateYear(
-    String? year,
-    bool? isEditing,
-  ) =>
+  bool validateYear(String? year, bool? isEditing) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #validateYear,
-          [
-            year,
-            isEditing,
-          ],
-        ),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+            Invocation.method(#validateYear, [year, isEditing]),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
-  bool validatePrice(
-    String? price,
-    bool? isEditing,
-  ) =>
+  bool validatePrice(String? price, bool? isEditing) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #validatePrice,
-          [
-            price,
-            isEditing,
-          ],
-        ),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+            Invocation.method(#validatePrice, [price, isEditing]),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
-  bool validateColor(
-    String? color,
-    bool? isEditing,
-  ) =>
+  bool validateColor(String? color, bool? isEditing) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #validateColor,
-          [
-            color,
-            isEditing,
-          ],
-        ),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+            Invocation.method(#validateColor, [color, isEditing]),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
-  bool validateEngineVolume(
-    String? volume,
-    bool? isEditing,
-  ) =>
+  bool validateEngineVolume(String? volume, bool? isEditing) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #validateEngineVolume,
-          [
-            volume,
-            isEditing,
-          ],
-        ),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+            Invocation.method(#validateEngineVolume, [volume, isEditing]),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
   void updateTabIndex(int? newIndex) => super.noSuchMethod(
-        Invocation.method(
-          #updateTabIndex,
-          [newIndex],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updateTabIndex, [newIndex]),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  bool areAllFieldsValid() => (super.noSuchMethod(
-        Invocation.method(
-          #areAllFieldsValid,
-          [],
-        ),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  bool areAllFieldsValid() =>
+      (super.noSuchMethod(
+            Invocation.method(#areAllFieldsValid, []),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
   void updateSelectedCarType(_i5.CarType? newType) => super.noSuchMethod(
-        Invocation.method(
-          #updateSelectedCarType,
-          [newType],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updateSelectedCarType, [newType]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updateManufacturerText(String? newText) => super.noSuchMethod(
-        Invocation.method(
-          #updateManufacturerText,
-          [newText],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updateManufacturerText, [newText]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updateModelText(String? newText) => super.noSuchMethod(
-        Invocation.method(
-          #updateModelText,
-          [newText],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updateModelText, [newText]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updateYearText(String? newText) => super.noSuchMethod(
-        Invocation.method(
-          #updateYearText,
-          [newText],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updateYearText, [newText]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updatePriceText(String? newPrice) => super.noSuchMethod(
-        Invocation.method(
-          #updatePriceText,
-          [newPrice],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updatePriceText, [newPrice]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updateColorText(String? newText) => super.noSuchMethod(
-        Invocation.method(
-          #updateColorText,
-          [newText],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updateColorText, [newText]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updateSelectedBodyType(_i6.BodyType? newType) => super.noSuchMethod(
-        Invocation.method(
-          #updateSelectedBodyType,
-          [newType],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updateSelectedBodyType, [newType]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updateSelectedTransmissionType(_i7.TransmissionType? newType) =>
       super.noSuchMethod(
-        Invocation.method(
-          #updateSelectedTransmissionType,
-          [newType],
-        ),
+        Invocation.method(#updateSelectedTransmissionType, [newType]),
         returnValueForMissingStub: null,
       );
 
   @override
   void updateSelectedFuelType(_i8.FuelType? newType) => super.noSuchMethod(
-        Invocation.method(
-          #updateSelectedFuelType,
-          [newType],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updateSelectedFuelType, [newType]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updateEngineVolumeText(String? newVolume) => super.noSuchMethod(
-        Invocation.method(
-          #updateEngineVolumeText,
-          [newVolume],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#updateEngineVolumeText, [newVolume]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   _i4.Future<void> getAutoCompleteEntitiesByType(_i5.CarType? type) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #getAutoCompleteEntitiesByType,
-          [type],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+            Invocation.method(#getAutoCompleteEntitiesByType, [type]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 
   @override
   void clearFieldErrors() => super.noSuchMethod(
-        Invocation.method(
-          #clearFieldErrors,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#clearFieldErrors, []),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  List<_i9.CarEntity> insertItem() => (super.noSuchMethod(
-        Invocation.method(
-          #insertItem,
-          [],
-        ),
-        returnValue: <_i9.CarEntity>[],
-        returnValueForMissingStub: <_i9.CarEntity>[],
-      ) as List<_i9.CarEntity>);
+  List<_i9.CarEntity> insertItem() =>
+      (super.noSuchMethod(
+            Invocation.method(#insertItem, []),
+            returnValue: <_i9.CarEntity>[],
+            returnValueForMissingStub: <_i9.CarEntity>[],
+          )
+          as List<_i9.CarEntity>);
 
   @override
   void clearFields() => super.noSuchMethod(
-        Invocation.method(
-          #clearFields,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#clearFields, []),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void emit(_i2.NewItemPageState? state) => super.noSuchMethod(
-        Invocation.method(
-          #emit,
-          [state],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#emit, [state]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void onChange(_i10.Change<_i2.NewItemPageState>? change) =>
       super.noSuchMethod(
-        Invocation.method(
-          #onChange,
-          [change],
-        ),
+        Invocation.method(#onChange, [change]),
         returnValueForMissingStub: null,
       );
 
   @override
-  void addError(
-    Object? error, [
-    StackTrace? stackTrace,
-  ]) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #addError,
-          [
-            error,
-            stackTrace,
-          ],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
+    Invocation.method(#addError, [error, stackTrace]),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  void onError(
-    Object? error,
-    StackTrace? stackTrace,
-  ) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #onError,
-          [
-            error,
-            stackTrace,
-          ],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void onError(Object? error, StackTrace? stackTrace) => super.noSuchMethod(
+    Invocation.method(#onError, [error, stackTrace]),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  _i4.Future<void> close() => (super.noSuchMethod(
-        Invocation.method(
-          #close,
-          [],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+  _i4.Future<void> close() =>
+      (super.noSuchMethod(
+            Invocation.method(#close, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
 }

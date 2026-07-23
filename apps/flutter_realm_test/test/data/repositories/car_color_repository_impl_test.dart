@@ -29,7 +29,10 @@ void main() {
   });
 
   group('getColorByName', () {
-    final colors = {'red': const Color(0xFFFF0000), 'blue': const Color(0xFF0000FF)};
+    final colors = {
+      'red': const Color(0xFFFF0000),
+      'blue': const Color(0xFF0000FF),
+    };
 
     setUp(() {
       when(mockDataSource.getColors()).thenReturn(colors);
@@ -55,7 +58,10 @@ void main() {
   });
 
   group('getColorNameFromColor', () {
-    final colors = {'redColor': const Color(0xFFFF0000), 'blueColor': const Color(0xFF0000FF)};
+    final colors = {
+      'redColor': const Color(0xFFFF0000),
+      'blueColor': const Color(0xFF0000FF),
+    };
 
     setUp(() {
       when(mockDataSource.getColors()).thenReturn(colors);
@@ -63,8 +69,14 @@ void main() {
 
     test('returns correct name for exact color match', () {
       // Assuming camelCaseToTitle() turns 'redColor' into 'Red Color'
-      expect(repository.getColorNameFromColor(const Color(0xFFFF0000)), 'Red Color');
-      expect(repository.getColorNameFromColor(const Color(0xFF0000FF)), 'Blue Color');
+      expect(
+        repository.getColorNameFromColor(const Color(0xFFFF0000)),
+        'Red Color',
+      );
+      expect(
+        repository.getColorNameFromColor(const Color(0xFF0000FF)),
+        'Blue Color',
+      );
     });
 
     test('returns empty string if no match', () {
@@ -85,14 +97,19 @@ void main() {
     // Guards the contract between getColorNameFromColor and getColorByName:
     // whatever name is produced by one must be resolvable by the other.
     // If the storage format or the lookup normalization diverges, this fails.
-    test('getColorNameFromColor result can be resolved back by getColorByName', () {
-      const lightBlue = Color(0xFF03A9F4);
-      when(mockDataSource.getColors()).thenReturn({'lightBlue': lightBlue});
+    test(
+      'getColorNameFromColor result can be resolved back by getColorByName',
+      () {
+        const lightBlue = Color(0xFF03A9F4);
+        when(mockDataSource.getColors()).thenReturn({'lightBlue': lightBlue});
 
-      final name = repository.getColorNameFromColor(lightBlue); // 'Light Blue'
-      final resolved = repository.getColorByName(name);
+        final name = repository.getColorNameFromColor(
+          lightBlue,
+        ); // 'Light Blue'
+        final resolved = repository.getColorByName(name);
 
-      expect(resolved, lightBlue);
-    });
+        expect(resolved, lightBlue);
+      },
+    );
   });
 }

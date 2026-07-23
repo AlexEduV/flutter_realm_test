@@ -20,14 +20,15 @@ enum BodyType {
   final String localisationKey;
 
   String fromLocalisations() {
-    final localisation = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-      localisationKey,
-    );
+    final localisation = serviceLocator<AppLocalisationsCubit>()
+        .getLocalisationByKey(localisationKey);
     return localisation;
   }
 
   static List<BodyType> filterByCarType(CarType type) {
-    final bodyTypesList = BodyType.values.where((element) => element.carType == type).toList();
+    final bodyTypesList = BodyType.values
+        .where((element) => element.carType == type)
+        .toList();
 
     return bodyTypesList;
   }

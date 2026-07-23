@@ -3,7 +3,12 @@ import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/color_extension.dart';
 
 class ColorItem extends StatelessWidget {
-  const ColorItem({required this.color, required this.isPicked, required this.onTap, super.key});
+  const ColorItem({
+    required this.color,
+    required this.isPicked,
+    required this.onTap,
+    super.key,
+  });
 
   final Color color;
   final bool isPicked;

@@ -8,15 +8,18 @@ void main() {
   });
 
   group('LocalisationUtil', () {
-    test('saveLocalisations saves all key-value pairs to SharedPreferences', () async {
-      final localisations = {'key1': 'value1', 'key2': 'value2'};
+    test(
+      'saveLocalisations saves all key-value pairs to SharedPreferences',
+      () async {
+        final localisations = {'key1': 'value1', 'key2': 'value2'};
 
-      await LocalisationUtil.saveLocalisations(localisations);
+        await LocalisationUtil.saveLocalisations(localisations);
 
-      final prefs = await SharedPreferences.getInstance();
-      expect(prefs.getString('key1'), 'value1');
-      expect(prefs.getString('key2'), 'value2');
-    });
+        final prefs = await SharedPreferences.getInstance();
+        expect(prefs.getString('key1'), 'value1');
+        expect(prefs.getString('key2'), 'value2');
+      },
+    );
 
     test('getLocalisation returns value from SharedPreferences', () async {
       final prefs = await SharedPreferences.getInstance();

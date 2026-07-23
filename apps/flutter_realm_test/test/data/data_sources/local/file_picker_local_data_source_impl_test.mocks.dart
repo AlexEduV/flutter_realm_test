@@ -44,37 +44,34 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
     bool? readSequential = false,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #pickFiles,
-          [],
-          {
-            #type: type,
-            #allowedExtensions: allowedExtensions,
-            #dialogTitle: dialogTitle,
-            #initialDirectory: initialDirectory,
-            #onFileLoading: onFileLoading,
-            #allowCompression: allowCompression,
-            #allowMultiple: allowMultiple,
-            #withData: withData,
-            #compressionQuality: compressionQuality,
-            #withReadStream: withReadStream,
-            #lockParentWindow: lockParentWindow,
-            #readSequential: readSequential,
-          },
-        ),
-        returnValue: _i3.Future<_i2.FilePickerResult?>.value(),
-        returnValueForMissingStub: _i3.Future<_i2.FilePickerResult?>.value(),
-      ) as _i3.Future<_i2.FilePickerResult?>);
+            Invocation.method(#pickFiles, [], {
+              #type: type,
+              #allowedExtensions: allowedExtensions,
+              #dialogTitle: dialogTitle,
+              #initialDirectory: initialDirectory,
+              #onFileLoading: onFileLoading,
+              #allowCompression: allowCompression,
+              #allowMultiple: allowMultiple,
+              #withData: withData,
+              #compressionQuality: compressionQuality,
+              #withReadStream: withReadStream,
+              #lockParentWindow: lockParentWindow,
+              #readSequential: readSequential,
+            }),
+            returnValue: _i3.Future<_i2.FilePickerResult?>.value(),
+            returnValueForMissingStub:
+                _i3.Future<_i2.FilePickerResult?>.value(),
+          )
+          as _i3.Future<_i2.FilePickerResult?>);
 
   @override
-  _i3.Future<bool?> clearTemporaryFiles() => (super.noSuchMethod(
-        Invocation.method(
-          #clearTemporaryFiles,
-          [],
-        ),
-        returnValue: _i3.Future<bool?>.value(),
-        returnValueForMissingStub: _i3.Future<bool?>.value(),
-      ) as _i3.Future<bool?>);
+  _i3.Future<bool?> clearTemporaryFiles() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearTemporaryFiles, []),
+            returnValue: _i3.Future<bool?>.value(),
+            returnValueForMissingStub: _i3.Future<bool?>.value(),
+          )
+          as _i3.Future<bool?>);
 
   @override
   _i3.Future<String?> getDirectoryPath({
@@ -83,18 +80,15 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
     String? initialDirectory,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #getDirectoryPath,
-          [],
-          {
-            #dialogTitle: dialogTitle,
-            #lockParentWindow: lockParentWindow,
-            #initialDirectory: initialDirectory,
-          },
-        ),
-        returnValue: _i3.Future<String?>.value(),
-        returnValueForMissingStub: _i3.Future<String?>.value(),
-      ) as _i3.Future<String?>);
+            Invocation.method(#getDirectoryPath, [], {
+              #dialogTitle: dialogTitle,
+              #lockParentWindow: lockParentWindow,
+              #initialDirectory: initialDirectory,
+            }),
+            returnValue: _i3.Future<String?>.value(),
+            returnValueForMissingStub: _i3.Future<String?>.value(),
+          )
+          as _i3.Future<String?>);
 
   @override
   _i3.Future<String?> saveFile({
@@ -107,22 +101,19 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
     bool? lockParentWindow = false,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #saveFile,
-          [],
-          {
-            #dialogTitle: dialogTitle,
-            #fileName: fileName,
-            #initialDirectory: initialDirectory,
-            #type: type,
-            #allowedExtensions: allowedExtensions,
-            #bytes: bytes,
-            #lockParentWindow: lockParentWindow,
-          },
-        ),
-        returnValue: _i3.Future<String?>.value(),
-        returnValueForMissingStub: _i3.Future<String?>.value(),
-      ) as _i3.Future<String?>);
+            Invocation.method(#saveFile, [], {
+              #dialogTitle: dialogTitle,
+              #fileName: fileName,
+              #initialDirectory: initialDirectory,
+              #type: type,
+              #allowedExtensions: allowedExtensions,
+              #bytes: bytes,
+              #lockParentWindow: lockParentWindow,
+            }),
+            returnValue: _i3.Future<String?>.value(),
+            returnValueForMissingStub: _i3.Future<String?>.value(),
+          )
+          as _i3.Future<String?>);
 
   @override
   _i3.Future<List<String>?> pickFileAndDirectoryPaths({
@@ -131,18 +122,15 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
     List<String>? allowedExtensions,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #pickFileAndDirectoryPaths,
-          [],
-          {
-            #initialDirectory: initialDirectory,
-            #type: type,
-            #allowedExtensions: allowedExtensions,
-          },
-        ),
-        returnValue: _i3.Future<List<String>?>.value(),
-        returnValueForMissingStub: _i3.Future<List<String>?>.value(),
-      ) as _i3.Future<List<String>?>);
+            Invocation.method(#pickFileAndDirectoryPaths, [], {
+              #initialDirectory: initialDirectory,
+              #type: type,
+              #allowedExtensions: allowedExtensions,
+            }),
+            returnValue: _i3.Future<List<String>?>.value(),
+            returnValueForMissingStub: _i3.Future<List<String>?>.value(),
+          )
+          as _i3.Future<List<String>?>);
 }
 
 /// A class which mocks [FilePickerResult].
@@ -150,44 +138,56 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
 /// See the documentation for Mockito's code generation for more information.
 class MockFilePickerResult extends _i1.Mock implements _i2.FilePickerResult {
   @override
-  List<_i2.PlatformFile> get files => (super.noSuchMethod(
-        Invocation.getter(#files),
-        returnValue: <_i2.PlatformFile>[],
-        returnValueForMissingStub: <_i2.PlatformFile>[],
-      ) as List<_i2.PlatformFile>);
+  List<_i2.PlatformFile> get files =>
+      (super.noSuchMethod(
+            Invocation.getter(#files),
+            returnValue: <_i2.PlatformFile>[],
+            returnValueForMissingStub: <_i2.PlatformFile>[],
+          )
+          as List<_i2.PlatformFile>);
 
   @override
-  bool get isSinglePick => (super.noSuchMethod(
-        Invocation.getter(#isSinglePick),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  bool get isSinglePick =>
+      (super.noSuchMethod(
+            Invocation.getter(#isSinglePick),
+            returnValue: false,
+            returnValueForMissingStub: false,
+          )
+          as bool);
 
   @override
-  int get count => (super.noSuchMethod(
-        Invocation.getter(#count),
-        returnValue: 0,
-        returnValueForMissingStub: 0,
-      ) as int);
+  int get count =>
+      (super.noSuchMethod(
+            Invocation.getter(#count),
+            returnValue: 0,
+            returnValueForMissingStub: 0,
+          )
+          as int);
 
   @override
-  List<String?> get paths => (super.noSuchMethod(
-        Invocation.getter(#paths),
-        returnValue: <String?>[],
-        returnValueForMissingStub: <String?>[],
-      ) as List<String?>);
+  List<String?> get paths =>
+      (super.noSuchMethod(
+            Invocation.getter(#paths),
+            returnValue: <String?>[],
+            returnValueForMissingStub: <String?>[],
+          )
+          as List<String?>);
 
   @override
-  List<String?> get names => (super.noSuchMethod(
-        Invocation.getter(#names),
-        returnValue: <String?>[],
-        returnValueForMissingStub: <String?>[],
-      ) as List<String?>);
+  List<String?> get names =>
+      (super.noSuchMethod(
+            Invocation.getter(#names),
+            returnValue: <String?>[],
+            returnValueForMissingStub: <String?>[],
+          )
+          as List<String?>);
 
   @override
-  List<_i5.XFile> get xFiles => (super.noSuchMethod(
-        Invocation.getter(#xFiles),
-        returnValue: <_i5.XFile>[],
-        returnValueForMissingStub: <_i5.XFile>[],
-      ) as List<_i5.XFile>);
+  List<_i5.XFile> get xFiles =>
+      (super.noSuchMethod(
+            Invocation.getter(#xFiles),
+            returnValue: <_i5.XFile>[],
+            returnValueForMissingStub: <_i5.XFile>[],
+          )
+          as List<_i5.XFile>);
 }

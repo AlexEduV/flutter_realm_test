@@ -29,12 +29,11 @@ import 'package:test_flutter_project/domain/repositories/image_picker_repository
 class MockImagePickerRepository extends _i1.Mock
     implements _i2.ImagePickerRepository {
   @override
-  _i3.Future<String?> pickImage() => (super.noSuchMethod(
-        Invocation.method(
-          #pickImage,
-          [],
-        ),
-        returnValue: _i3.Future<String?>.value(),
-        returnValueForMissingStub: _i3.Future<String?>.value(),
-      ) as _i3.Future<String?>);
+  _i3.Future<String?> pickImage() =>
+      (super.noSuchMethod(
+            Invocation.method(#pickImage, []),
+            returnValue: _i3.Future<String?>.value(),
+            returnValueForMissingStub: _i3.Future<String?>.value(),
+          )
+          as _i3.Future<String?>);
 }

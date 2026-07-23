@@ -15,7 +15,10 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_d
 import '../../../pages/details/widgets/vehicle_specs_widget_test.mocks.dart';
 import 'color_picker_dialog_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<GetCarColorByNameUseCase>(), MockSpec<GetCarColorNameFromColorUseCase>()])
+@GenerateNiceMocks([
+  MockSpec<GetCarColorByNameUseCase>(),
+  MockSpec<GetCarColorNameFromColorUseCase>(),
+])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
   appLocalisationsCubit.load({
@@ -28,21 +31,28 @@ void main() {
     // Register a mock for the service locator
     final mockGetCarColorsUseCase = MockGetCarColorsUseCase();
     final mockGetCarColorByNameUseCase = MockGetCarColorByNameUseCase();
-    final mockGetCarColorNameFromColorUseCase = MockGetCarColorNameFromColorUseCase();
+    final mockGetCarColorNameFromColorUseCase =
+        MockGetCarColorNameFromColorUseCase();
 
-    when(
-      mockGetCarColorsUseCase.call(),
-    ).thenReturn({'red': Colors.red, 'blue': Colors.blue, 'green': Colors.green});
+    when(mockGetCarColorsUseCase.call()).thenReturn({
+      'red': Colors.red,
+      'blue': Colors.blue,
+      'green': Colors.green,
+    });
 
     when(mockGetCarColorByNameUseCase.call('blue')).thenReturn(Colors.blue);
     when(mockGetCarColorByNameUseCase.call('green')).thenReturn(Colors.green);
     when(mockGetCarColorNameFromColorUseCase.call(any)).thenReturn('Red');
 
-    serviceLocator.registerSingleton<GetCarColorsUseCase>(mockGetCarColorsUseCase);
+    serviceLocator.registerSingleton<GetCarColorsUseCase>(
+      mockGetCarColorsUseCase,
+    );
     serviceLocator.registerSingleton<GetCarColorNameFromColorUseCase>(
       mockGetCarColorNameFromColorUseCase,
     );
-    serviceLocator.registerSingleton<GetCarColorByNameUseCase>(mockGetCarColorByNameUseCase);
+    serviceLocator.registerSingleton<GetCarColorByNameUseCase>(
+      mockGetCarColorByNameUseCase,
+    );
   });
 
   tearDown(() {
@@ -58,7 +68,11 @@ void main() {
     String? result;
     await tester.pumpWidget(
       MultiBlocProvider(
-        providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+        providers: [
+          BlocProvider<AppLocalisationsCubit>.value(
+            value: appLocalisationsCubit,
+          ),
+        ],
         child: MaterialApp(
           home: Builder(
             builder: (context) => Scaffold(
@@ -66,7 +80,8 @@ void main() {
                 onPressed: () async {
                   result = await showDialog<String>(
                     context: context,
-                    builder: (_) => const ColorPickerDialog(initialColor: 'blue'),
+                    builder: (_) =>
+                        const ColorPickerDialog(initialColor: 'blue'),
                   );
                 },
                 child: const Text('Open'),
@@ -86,17 +101,29 @@ void main() {
 
     // Assert: The correct color is initially picked (blue)
     final colorItems = tester.widgetList<ColorItem>(find.byType(ColorItem));
-    expect(colorItems.any((item) => item.color == Colors.blue && item.isPicked), isTrue);
+    expect(
+      colorItems.any((item) => item.color == Colors.blue && item.isPicked),
+      isTrue,
+    );
 
     // Act: Tap the red ColorItem
     await tester.tap(
-      find.byWidgetPredicate((widget) => widget is ColorItem && widget.color == Colors.red),
+      find.byWidgetPredicate(
+        (widget) => widget is ColorItem && widget.color == Colors.red,
+      ),
     );
     await tester.pump();
 
     // Assert: The picked color is now red
-    final updatedColorItems = tester.widgetList<ColorItem>(find.byType(ColorItem));
-    expect(updatedColorItems.any((item) => item.color == Colors.red && item.isPicked), isTrue);
+    final updatedColorItems = tester.widgetList<ColorItem>(
+      find.byType(ColorItem),
+    );
+    expect(
+      updatedColorItems.any(
+        (item) => item.color == Colors.red && item.isPicked,
+      ),
+      isTrue,
+    );
 
     // Act: Tap Confirm
     await tester.tap(find.widgetWithText(ElevatedButton, 'Confirm'));
@@ -106,11 +133,17 @@ void main() {
     expect(result, 'Red');
   });
 
-  testWidgets('ColorPickerDialog pops with initial color on cancel', (WidgetTester tester) async {
+  testWidgets('ColorPickerDialog pops with initial color on cancel', (
+    WidgetTester tester,
+  ) async {
     String? result;
     await tester.pumpWidget(
       MultiBlocProvider(
-        providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+        providers: [
+          BlocProvider<AppLocalisationsCubit>.value(
+            value: appLocalisationsCubit,
+          ),
+        ],
         child: MaterialApp(
           home: Builder(
             builder: (context) => Scaffold(
@@ -118,7 +151,8 @@ void main() {
                 onPressed: () async {
                   result = await showDialog<String>(
                     context: context,
-                    builder: (_) => const ColorPickerDialog(initialColor: 'green'),
+                    builder: (_) =>
+                        const ColorPickerDialog(initialColor: 'green'),
                   );
                 },
                 child: const Text('Open'),

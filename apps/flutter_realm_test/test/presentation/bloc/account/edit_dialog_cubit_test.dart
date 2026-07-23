@@ -19,21 +19,29 @@ void main() {
       'setConfirmButtonEnabled emits updated state',
       build: () => EditDialogCubit(),
       act: (cubit) => cubit.setConfirmButtonEnabled(true),
-      expect: () => [const EditDialogState().copyWith(isConfirmButtonEnabled: true)],
+      expect: () => [
+        const EditDialogState().copyWith(isConfirmButtonEnabled: true),
+      ],
     );
 
     blocTest<EditDialogCubit, EditDialogState>(
       'setPasswordFieldObscurity emits updated state',
       build: () => EditDialogCubit(),
       act: (cubit) => cubit.setPasswordFieldObscurity(false),
-      expect: () => [const EditDialogState().copyWith(isPasswordFieldObscure: false)],
+      expect: () => [
+        const EditDialogState().copyWith(isPasswordFieldObscure: false),
+      ],
     );
 
     blocTest<EditDialogCubit, EditDialogState>(
       'setPasswordConfirmationFieldObscurity emits updated state',
       build: () => EditDialogCubit(),
       act: (cubit) => cubit.setPasswordConfirmationFieldObscurity(false),
-      expect: () => [const EditDialogState().copyWith(isConfirmationPasswordFieldObscure: false)],
+      expect: () => [
+        const EditDialogState().copyWith(
+          isConfirmationPasswordFieldObscure: false,
+        ),
+      ],
     );
   });
 }

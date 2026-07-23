@@ -24,8 +24,12 @@ void main() {
     when(mockLocalStorage.getAll()).thenReturn([]);
 
     service = MockCarRemoteDataSourceImpl(mockLocalStorage);
-    serviceLocator.registerLazySingleton<GetOwnerByIdUseCase>(() => mockGetOwnerByIdUseCase);
-    serviceLocator.registerLazySingleton<GetAllCarsUseCase>(() => mockGetAllCarsUseCase);
+    serviceLocator.registerLazySingleton<GetOwnerByIdUseCase>(
+      () => mockGetOwnerByIdUseCase,
+    );
+    serviceLocator.registerLazySingleton<GetAllCarsUseCase>(
+      () => mockGetAllCarsUseCase,
+    );
     when(mockGetOwnerByIdUseCase.call(any)).thenReturn(OwnerEntity.empty());
   });
 

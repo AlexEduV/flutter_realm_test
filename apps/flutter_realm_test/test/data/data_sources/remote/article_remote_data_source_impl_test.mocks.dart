@@ -26,19 +26,13 @@ import 'package:test_flutter_project/common/logger/base_logger.dart' as _i2;
 class MockBaseLogger extends _i1.Mock implements _i2.BaseLogger {
   @override
   void e(String? message) => super.noSuchMethod(
-        Invocation.method(
-          #e,
-          [message],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#e, [message]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void i(String? message) => super.noSuchMethod(
-        Invocation.method(
-          #i,
-          [message],
-        ),
-        returnValueForMissingStub: null,
-      );
+    Invocation.method(#i, [message]),
+    returnValueForMissingStub: null,
+  );
 }

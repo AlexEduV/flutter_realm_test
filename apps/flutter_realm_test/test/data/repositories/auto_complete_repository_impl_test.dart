@@ -46,7 +46,9 @@ void main() {
 
       // Assert
       expect(result, expectedList);
-      verify(mockRemoteDataSource.getAutoCompleteModelListByType(carType)).called(1);
+      verify(
+        mockRemoteDataSource.getAutoCompleteModelListByType(carType),
+      ).called(1);
       verifyNoMoreInteractions(mockRemoteDataSource);
     },
   );

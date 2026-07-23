@@ -67,10 +67,26 @@ void main() {
               'manufacturerFieldParams',
               isA<FieldParamsModel>(),
             )
-            .having((s) => s.modelFieldParams, 'modelFieldParams', isA<FieldParamsModel>())
-            .having((s) => s.yearFieldParams, 'yearFieldParams', isA<FieldParamsModel>())
-            .having((s) => s.priceFieldParams, 'priceFieldParams', isA<FieldParamsModel>())
-            .having((s) => s.colorFieldParams, 'colorFieldParams', isA<FieldParamsModel>()),
+            .having(
+              (s) => s.modelFieldParams,
+              'modelFieldParams',
+              isA<FieldParamsModel>(),
+            )
+            .having(
+              (s) => s.yearFieldParams,
+              'yearFieldParams',
+              isA<FieldParamsModel>(),
+            )
+            .having(
+              (s) => s.priceFieldParams,
+              'priceFieldParams',
+              isA<FieldParamsModel>(),
+            )
+            .having(
+              (s) => s.colorFieldParams,
+              'colorFieldParams',
+              isA<FieldParamsModel>(),
+            ),
       ],
     );
   });
@@ -230,8 +246,13 @@ void main() {
     blocTest<NewItemPageCubit, NewItemPageState>(
       'updateSelectedTransmissionType emits updated state',
       build: () => cubit,
-      act: (cubit) => cubit.updateSelectedTransmissionType(TransmissionType.automatic),
-      expect: () => [cubit.state.copyWith(selectedTransmissionType: TransmissionType.automatic)],
+      act: (cubit) =>
+          cubit.updateSelectedTransmissionType(TransmissionType.automatic),
+      expect: () => [
+        cubit.state.copyWith(
+          selectedTransmissionType: TransmissionType.automatic,
+        ),
+      ],
     );
 
     blocTest<NewItemPageCubit, NewItemPageState>(

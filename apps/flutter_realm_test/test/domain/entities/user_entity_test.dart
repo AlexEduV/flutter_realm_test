@@ -66,7 +66,10 @@ void main() {
         viewedIds: [],
       );
 
-      final updated = original.copyWith(firstName: 'Alicia', isLocationPermissionGranted: true);
+      final updated = original.copyWith(
+        firstName: 'Alicia',
+        isLocationPermissionGranted: true,
+      );
 
       expect(updated.userId, 'u3');
       expect(updated.firstName, 'Alicia');
@@ -95,7 +98,10 @@ void main() {
       expect(copy.userId, original.userId);
       expect(copy.firstName, original.firstName);
       expect(copy.lastName, original.lastName);
-      expect(copy.isLocationPermissionGranted, original.isLocationPermissionGranted);
+      expect(
+        copy.isLocationPermissionGranted,
+        original.isLocationPermissionGranted,
+      );
     });
 
     test('fromJson creates UserEntity from JSON', () {

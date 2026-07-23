@@ -16,7 +16,9 @@ void main() {
 
   group('PermissionRepository', () {
     test('requestLocationPermission returns a Future<bool>', () async {
-      when(mockRepository.requestLocationPermission()).thenAnswer((_) async => true);
+      when(
+        mockRepository.requestLocationPermission(),
+      ).thenAnswer((_) async => true);
 
       final result = await mockRepository.requestLocationPermission();
 
@@ -24,15 +26,18 @@ void main() {
       expect(result, isTrue);
     });
 
-    test('checkLocationPermissionState returns a Future<PermissionStatus>', () async {
-      when(
-        mockRepository.checkLocationPermissionState(),
-      ).thenAnswer((_) async => PermissionStatus.denied);
+    test(
+      'checkLocationPermissionState returns a Future<PermissionStatus>',
+      () async {
+        when(
+          mockRepository.checkLocationPermissionState(),
+        ).thenAnswer((_) async => PermissionStatus.denied);
 
-      final result = await mockRepository.checkLocationPermissionState();
+        final result = await mockRepository.checkLocationPermissionState();
 
-      expect(result, isA<PermissionStatus>());
-      expect(result.isGranted, isFalse);
-    });
+        expect(result, isA<PermissionStatus>());
+        expect(result.isGranted, isFalse);
+      },
+    );
   });
 }

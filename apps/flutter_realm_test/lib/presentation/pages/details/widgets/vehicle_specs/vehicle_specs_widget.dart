@@ -36,24 +36,32 @@ class VehicleSpecsWidget extends StatelessWidget {
             children: [
               Text(
                 context.tr(L10nKeys.vehicleSpecificationsSectionTitle),
-                style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w600),
+                style: AppTextStyles.zonaPro20.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
 
               BlocBuilder<DetailsPageCubit, DetailsPageState>(
                 buildWhen: (previous, current) =>
                     previous.isLoading != current.isLoading ||
-                    previous.isVehicleSpecsExpanded != current.isVehicleSpecsExpanded,
+                    previous.isVehicleSpecsExpanded !=
+                        current.isVehicleSpecsExpanded,
                 builder: (context, state) {
                   return AppSemantics(
                     button: true,
                     expanded: state.isVehicleSpecsExpanded,
-                    label: AppSemanticsLabels.detailsPageVehicleSpecsExpandButton,
+                    label:
+                        AppSemanticsLabels.detailsPageVehicleSpecsExpandButton,
                     child: IconButton(
                       onPressed: () => context
                           .read<DetailsPageCubit>()
-                          .setVehicleSpecsExpansionState(!state.isVehicleSpecsExpanded),
+                          .setVehicleSpecsExpansionState(
+                            !state.isVehicleSpecsExpanded,
+                          ),
                       icon: AnimatedRotation(
-                        turns: state.isVehicleSpecsExpanded ? 0.toTurns : 180.toTurns,
+                        turns: state.isVehicleSpecsExpanded
+                            ? 0.toTurns
+                            : 180.toTurns,
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeInOut,
                         child: const Icon(
@@ -82,10 +90,15 @@ class VehicleSpecsWidget extends StatelessWidget {
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                height: state.isVehicleSpecsExpanded ? AppDimensions.vehicleSpecsExpandedSize : 0,
+                height: state.isVehicleSpecsExpanded
+                    ? AppDimensions.vehicleSpecsExpandedSize
+                    : 0,
                 child: SingleChildScrollView(
                   physics: const NeverScrollableScrollPhysics(),
-                  child: VehicleSpecsContent(car: car, carColor: state.carColor),
+                  child: VehicleSpecsContent(
+                    car: car,
+                    carColor: state.carColor,
+                  ),
                 ),
               );
             },

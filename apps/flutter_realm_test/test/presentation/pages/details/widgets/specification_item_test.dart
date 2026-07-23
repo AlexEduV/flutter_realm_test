@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/specification_item/specification_item.dart';
 
 void main() {
-  testWidgets('SpecificationItem displays title and subtitle', (WidgetTester tester) async {
+  testWidgets('SpecificationItem displays title and subtitle', (
+    WidgetTester tester,
+  ) async {
     const title = 'Engine';
     const subtitle = 'V8 Turbo';
 
@@ -19,7 +21,9 @@ void main() {
     expect(find.text(subtitle), findsOneWidget);
   });
 
-  testWidgets('SpecificationItem uses correct text styles', (WidgetTester tester) async {
+  testWidgets('SpecificationItem uses correct text styles', (
+    WidgetTester tester,
+  ) async {
     const title = 'Color';
     const subtitle = 'Red';
 

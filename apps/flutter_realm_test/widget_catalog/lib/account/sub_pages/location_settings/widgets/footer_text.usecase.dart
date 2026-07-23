@@ -13,12 +13,23 @@ Widget buildFooterTextUseCase(BuildContext context) {
     body: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
       child: MultiBlocProvider(
-        providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+        providers: [
+          BlocProvider<AppLocalisationsCubit>(
+            create: (_) => appLocalisationsCubit,
+          ),
+        ],
         child: Row(
           children: [
             FooterText(
-              text: context.knobs.string(label: 'Label', initialValue: 'Footer link'),
-              url: context.knobs.boolean(label: 'Is url empty', initialValue: false)
+              text: context.knobs.string(
+                label: 'Label',
+                initialValue: 'Footer link',
+              ),
+              url:
+                  context.knobs.boolean(
+                    label: 'Is url empty',
+                    initialValue: false,
+                  )
                   ? null
                   : 'https://google.com',
             ),

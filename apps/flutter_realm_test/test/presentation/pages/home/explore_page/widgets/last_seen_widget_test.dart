@@ -78,8 +78,12 @@ void main() {
     );
   }
 
-  testWidgets('shows loading indicator when userState.isLoading is true', (tester) async {
-    when(mockUserDataCubit.state).thenReturn(const UserDataState(isLoading: true));
+  testWidgets('shows loading indicator when userState.isLoading is true', (
+    tester,
+  ) async {
+    when(
+      mockUserDataCubit.state,
+    ).thenReturn(const UserDataState(isLoading: true));
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
@@ -105,13 +109,21 @@ void main() {
     final exploreState = const ExplorePageState();
 
     when(mockUserDataCubit.state).thenReturn(userState);
-    when(mockUserDataCubit.stream).thenAnswer((_) => Stream.fromIterable([userState]));
+    when(
+      mockUserDataCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([userState]));
 
     when(mockExplorePageCubit.state).thenReturn(exploreState);
-    when(mockExplorePageCubit.stream).thenAnswer((_) => Stream.fromIterable([exploreState]));
+    when(
+      mockExplorePageCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([exploreState]));
 
     await tester.pumpWidget(
-      buildTestWidget(userState: userState, exploreState: exploreState, carEntity: carEntity),
+      buildTestWidget(
+        userState: userState,
+        exploreState: exploreState,
+        carEntity: carEntity,
+      ),
     );
 
     await tester.pumpAndSettle();

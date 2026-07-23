@@ -29,31 +29,28 @@ import 'package:test_flutter_project/domain/repositories/region_repository.dart'
 /// See the documentation for Mockito's code generation for more information.
 class MockRegionRepository extends _i1.Mock implements _i2.RegionRepository {
   @override
-  _i3.Future<void> loadRegions() => (super.noSuchMethod(
-        Invocation.method(
-          #loadRegions,
-          [],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+  _i3.Future<void> loadRegions() =>
+      (super.noSuchMethod(
+            Invocation.method(#loadRegions, []),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 
   @override
-  _i4.RegionEntity? getRegionByCode(String? code) => (super.noSuchMethod(
-        Invocation.method(
-          #getRegionByCode,
-          [code],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i4.RegionEntity?);
+  _i4.RegionEntity? getRegionByCode(String? code) =>
+      (super.noSuchMethod(
+            Invocation.method(#getRegionByCode, [code]),
+            returnValueForMissingStub: null,
+          )
+          as _i4.RegionEntity?);
 
   @override
-  List<_i4.RegionEntity> getAllRegions() => (super.noSuchMethod(
-        Invocation.method(
-          #getAllRegions,
-          [],
-        ),
-        returnValue: <_i4.RegionEntity>[],
-        returnValueForMissingStub: <_i4.RegionEntity>[],
-      ) as List<_i4.RegionEntity>);
+  List<_i4.RegionEntity> getAllRegions() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAllRegions, []),
+            returnValue: <_i4.RegionEntity>[],
+            returnValueForMissingStub: <_i4.RegionEntity>[],
+          )
+          as List<_i4.RegionEntity>);
 }

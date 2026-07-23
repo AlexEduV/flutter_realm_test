@@ -59,7 +59,10 @@ class MessageItem extends StatelessWidget {
 
             if (info.visibleFraction > 0.75) {
               //update message status to 'read'
-              context.read<InboxPageCubit>().markMessageAsRead(conversationId, messageIndex);
+              context.read<InboxPageCubit>().markMessageAsRead(
+                conversationId,
+                messageIndex,
+              );
             }
           },
           key: ValueKey('message-${message.hashCode}'),
@@ -67,7 +70,9 @@ class MessageItem extends StatelessWidget {
             textDirection: isMyMessage ? TextDirection.ltr : TextDirection.rtl,
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: AppDimensions.minorL,
-            mainAxisAlignment: isMyMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
+            mainAxisAlignment: isMyMessage
+                ? MainAxisAlignment.end
+                : MainAxisAlignment.start,
             children: [
               Expanded(
                 child: Column(
@@ -77,7 +82,11 @@ class MessageItem extends StatelessWidget {
                       : CrossAxisAlignment.start,
                   children: [
                     if (withExtendedData) ...[
-                      MessageInfoRow(time: time, isMyMessage: isMyMessage, senderName: senderName),
+                      MessageInfoRow(
+                        time: time,
+                        isMyMessage: isMyMessage,
+                        senderName: senderName,
+                      ),
                     ],
 
                     MessageContent(

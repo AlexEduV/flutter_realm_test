@@ -42,13 +42,17 @@ class SearchFilterButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppDimensions.normalL),
             onTap: onPressed,
             child: Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalL)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+              ),
               padding: const EdgeInsets.all(AppDimensions.normalL),
               child: Row(
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppDimensions.normalXS),
+                      borderRadius: BorderRadius.circular(
+                        AppDimensions.normalXS,
+                      ),
                       color: AppColors.scaffoldColor,
                     ),
                     height: iconSize,
@@ -58,7 +62,12 @@ class SearchFilterButton extends StatelessWidget {
 
                   const SizedBox(width: AppDimensions.normalXS),
 
-                  Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
+                  Text(
+                    title,
+                    style: AppTextStyles.zonaPro16.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
 
                   if (text != null) ...[
                     Expanded(
@@ -78,7 +87,9 @@ class SearchFilterButton extends StatelessWidget {
                     const Spacer(),
                   ],
 
-                  if ((int.tryParse(selectionCount) ?? 0) > 0) ...[AppBadge(text: selectionCount)],
+                  if ((int.tryParse(selectionCount) ?? 0) > 0) ...[
+                    AppBadge(text: selectionCount),
+                  ],
                 ],
               ),
             ),

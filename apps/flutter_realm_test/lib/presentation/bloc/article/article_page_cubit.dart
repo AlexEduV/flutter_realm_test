@@ -3,7 +3,8 @@ import 'package:test_flutter_project/domain/usecases/articles/get_article_by_id_
 import 'package:test_flutter_project/presentation/bloc/article/article_page_state.dart';
 
 class ArticlePageCubit extends Cubit<ArticlePageState> {
-  ArticlePageCubit(this._getArticleByIdUseCase) : super(const ArticlePageState());
+  ArticlePageCubit(this._getArticleByIdUseCase)
+    : super(const ArticlePageState());
 
   final GetArticleByIdUseCase _getArticleByIdUseCase;
 

@@ -19,61 +19,75 @@ void main() {
     repository = GifsRepositoryImpl(mockRemoteDataSource);
   });
 
-  test('searchGifs calls remote data source and returns list of GifEntity', () async {
-    final gifDtos = [
-      KlipyGifDto(
-        id: '1',
-        title: 'Funny Cat',
-        previewImageUrl: 'http://preview.com/cat.gif',
-        imageUrl: 'http://image.com/cat.gif',
-        width: 320.0,
-        height: 240.0,
-      ),
-      KlipyGifDto(
-        id: '2',
-        title: 'Dancing Dog',
-        previewImageUrl: 'http://preview.com/dog.gif',
-        imageUrl: 'http://image.com/dog.gif',
-        width: 400.0,
-        height: 300.0,
-      ),
-    ];
-    when(mockRemoteDataSource.searchGifs('funny')).thenAnswer((_) async => Right(gifDtos));
+  test(
+    'searchGifs calls remote data source and returns list of GifEntity',
+    () async {
+      final gifDtos = [
+        KlipyGifDto(
+          id: '1',
+          title: 'Funny Cat',
+          previewImageUrl: 'http://preview.com/cat.gif',
+          imageUrl: 'http://image.com/cat.gif',
+          width: 320.0,
+          height: 240.0,
+        ),
+        KlipyGifDto(
+          id: '2',
+          title: 'Dancing Dog',
+          previewImageUrl: 'http://preview.com/dog.gif',
+          imageUrl: 'http://image.com/dog.gif',
+          width: 400.0,
+          height: 300.0,
+        ),
+      ];
+      when(
+        mockRemoteDataSource.searchGifs('funny'),
+      ).thenAnswer((_) async => Right(gifDtos));
 
-    final result = await repository.searchGifs('funny');
+      final result = await repository.searchGifs('funny');
 
-    // Extract the value from Either
-    result.fold((failure) => fail('Expected Right, got Left: $failure'), (entities) {
-      expect(entities.length, 2);
-      expect(entities[0], equals(GifEntity.fromDto(gifDtos[0])));
-      expect(entities[1], equals(GifEntity.fromDto(gifDtos[1])));
-    });
+      // Extract the value from Either
+      result.fold((failure) => fail('Expected Right, got Left: $failure'), (
+        entities,
+      ) {
+        expect(entities.length, 2);
+        expect(entities[0], equals(GifEntity.fromDto(gifDtos[0])));
+        expect(entities[1], equals(GifEntity.fromDto(gifDtos[1])));
+      });
 
-    verify(mockRemoteDataSource.searchGifs('funny')).called(1);
-    verifyNoMoreInteractions(mockRemoteDataSource);
-  });
+      verify(mockRemoteDataSource.searchGifs('funny')).called(1);
+      verifyNoMoreInteractions(mockRemoteDataSource);
+    },
+  );
 
-  test('getTrending calls remote data source and returns list of GifEntity', () async {
-    final gifDtos = [
-      KlipyGifDto(
-        id: '3',
-        title: 'Jumping Fox',
-        previewImageUrl: 'http://preview.com/fox.gif',
-        imageUrl: 'http://image.com/fox.gif',
-        width: 500.0,
-        height: 350.0,
-      ),
-    ];
-    when(mockRemoteDataSource.getTrending()).thenAnswer((_) async => Right(gifDtos));
+  test(
+    'getTrending calls remote data source and returns list of GifEntity',
+    () async {
+      final gifDtos = [
+        KlipyGifDto(
+          id: '3',
+          title: 'Jumping Fox',
+          previewImageUrl: 'http://preview.com/fox.gif',
+          imageUrl: 'http://image.com/fox.gif',
+          width: 500.0,
+          height: 350.0,
+        ),
+      ];
+      when(
+        mockRemoteDataSource.getTrending(),
+      ).thenAnswer((_) async => Right(gifDtos));
 
-    final result = await repository.getTrending();
+      final result = await repository.getTrending();
 
-    result.fold((failure) => fail('Expected Right, got Left: $failure'), (entities) {
-      expect(entities.length, 1);
-      expect(entities[0], equals(GifEntity.fromDto(gifDtos[0])));
-    });
+      result.fold((failure) => fail('Expected Right, got Left: $failure'), (
+        entities,
+      ) {
+        expect(entities.length, 1);
+        expect(entities[0], equals(GifEntity.fromDto(gifDtos[0])));
+      });
 
-    verify(mockRemoteDataSource.getTrending()).called(1);
-    verifyNoMoreInteractions(mockRemoteDataSource);
-  });
+      verify(mockRemoteDataSource.getTrending()).called(1);
+      verifyNoMoreInteractions(mockRemoteDataSource);
+    },
+  );
 }

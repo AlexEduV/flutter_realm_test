@@ -51,9 +51,13 @@ class _MessagesPageState extends State<MessagesPage> {
 
   @override
   void initState() {
-    context.read<MessagesPageCubit>().setCurrentConversationId(widget.conversationId);
+    context.read<MessagesPageCubit>().setCurrentConversationId(
+      widget.conversationId,
+    );
 
-    conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
+    conversation = serviceLocator<GetConversationByIdUseCase>().call(
+      widget.conversationId,
+    );
     owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -83,12 +87,18 @@ class _MessagesPageState extends State<MessagesPage> {
       backgroundColor: AppColors.scaffoldColor,
       extendBody: true,
       appBar: AppBar(
-        title: Text('${owner.firstName} ${owner.lastName}', style: AppTextStyles.zonaPro20),
+        title: Text(
+          '${owner.firstName} ${owner.lastName}',
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: AppDimensions.normalS),
-            child: AvatarWidget(imageSrc: owner.imageSrc, size: AppDimensions.appBarIconSize * 1.5),
+            child: AvatarWidget(
+              imageSrc: owner.imageSrc,
+              size: AppDimensions.appBarIconSize * 1.5,
+            ),
           ),
         ],
       ),
@@ -108,7 +118,8 @@ class _MessagesPageState extends State<MessagesPage> {
       body: BlocBuilder<InboxPageCubit, InboxPageState>(
         builder: (context, state) {
           final conversation = getConversationById(widget.conversationId);
-          final users = serviceLocator<ExtractUsersFromConversationUseCase>().call(conversation);
+          final users = serviceLocator<ExtractUsersFromConversationUseCase>()
+              .call(conversation);
 
           final messages = conversation.messages.reversed.toList();
 
@@ -121,7 +132,8 @@ class _MessagesPageState extends State<MessagesPage> {
             reverse: true,
             controller: listViewScrollController,
             padding: const EdgeInsets.only(
-              bottom: AppDimensions.bottomMessageBarHeight + AppDimensions.majorXL,
+              bottom:
+                  AppDimensions.bottomMessageBarHeight + AppDimensions.majorXL,
             ),
             initialItemCount: messages.length,
             itemBuilder: (context, index, animation) {
@@ -146,7 +158,9 @@ class _MessagesPageState extends State<MessagesPage> {
                       AppSemantics(
                         label: AppSemanticsLabels.dateDivider,
                         child: DateDivider(
-                          text: DateFormatter.formatMessageDividerDate(message.date),
+                          text: DateFormatter.formatMessageDividerDate(
+                            message.date,
+                          ),
                         ),
                       ),
                     ],
@@ -154,7 +168,8 @@ class _MessagesPageState extends State<MessagesPage> {
                     AppSemantics(
                       label: AppSemanticsLabels.messageListItem,
                       child: MessageItem(
-                        senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
+                        senderName:
+                            '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
                         imageSrc: sender?.avatarImageSrc,
                         message: message.payload,
                         time: DateFormatter.formatSmartDate(message.date),
@@ -164,10 +179,14 @@ class _MessagesPageState extends State<MessagesPage> {
                         conversationId: conversation.conversationId,
                         messageIndex: index,
                         imageMetaData: message.payload.contains('url')
-                            ? SentImageMetaDataModel.fromJson(jsonDecode(message.payload))
+                            ? SentImageMetaDataModel.fromJson(
+                                jsonDecode(message.payload),
+                              )
                             : null,
                         attachmentMetaData: message.payload.contains('file')
-                            ? SentAttachmentMetaDataModel.fromJson(jsonDecode(message.payload))
+                            ? SentAttachmentMetaDataModel.fromJson(
+                                jsonDecode(message.payload),
+                              )
                             : null,
                       ),
                     ),
@@ -185,9 +204,13 @@ class _MessagesPageState extends State<MessagesPage> {
     if (index < messages.length - 1) {
       final currentMessage = messages[index];
       final nextMessage = messages[index + 1];
-      final differenceInMinutes = currentMessage.date.difference(nextMessage.date).inMinutes.abs();
+      final differenceInMinutes = currentMessage.date
+          .difference(nextMessage.date)
+          .inMinutes
+          .abs();
 
-      if (nextMessage.senderId == currentMessage.senderId && differenceInMinutes < 2) {
+      if (nextMessage.senderId == currentMessage.senderId &&
+          differenceInMinutes < 2) {
         return false;
       }
     }
@@ -211,7 +234,9 @@ class _MessagesPageState extends State<MessagesPage> {
   }
 
   ConversationModel getConversationById(String conversationId) {
-    final conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
+    final conversation = serviceLocator<GetConversationByIdUseCase>().call(
+      widget.conversationId,
+    );
     return conversation;
   }
 

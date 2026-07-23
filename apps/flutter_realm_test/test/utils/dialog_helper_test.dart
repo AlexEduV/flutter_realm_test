@@ -45,7 +45,9 @@ void main() {
     });
   });
 
-  testWidgets('showConfirmationDialog shows ConfirmationDialog', (tester) async {
+  testWidgets('showConfirmationDialog shows ConfirmationDialog', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Builder(
@@ -81,7 +83,9 @@ void main() {
   testWidgets('showEditDialog shows EditPersonalInfoDialog', (tester) async {
     await tester.pumpWidget(
       MultiBlocProvider(
-        providers: [BlocProvider<EditDialogCubit>(create: (_) => EditDialogCubit())],
+        providers: [
+          BlocProvider<EditDialogCubit>(create: (_) => EditDialogCubit()),
+        ],
         child: MaterialApp(
           home: Builder(
             builder: (context) {
@@ -113,11 +117,15 @@ void main() {
     expect(find.text('Cancel'), findsOneWidget);
   });
 
-  testWidgets('showEditPasswordDialog shows EditPasswordDialog', (tester) async {
+  testWidgets('showEditPasswordDialog shows EditPasswordDialog', (
+    tester,
+  ) async {
     await tester.pumpWidget(
       MultiBlocProvider(
         providers: [
-          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          BlocProvider<AppLocalisationsCubit>.value(
+            value: appLocalisationsCubit,
+          ),
           BlocProvider<EditDialogCubit>(create: (_) => EditDialogCubit()),
         ],
         child: MaterialApp(
@@ -150,7 +158,9 @@ void main() {
     expect(find.text('Cancel'), findsOneWidget);
   });
 
-  testWidgets('showCountryPicker shows CountryPickerBottomSheet and items', (tester) async {
+  testWidgets('showCountryPicker shows CountryPickerBottomSheet and items', (
+    tester,
+  ) async {
     final items = [
       const RegionUiModel(code: 'US', countryName: 'United States'),
       const RegionUiModel(code: 'IT', countryName: 'Italy'),
@@ -161,7 +171,8 @@ void main() {
         home: Builder(
           builder: (context) {
             return ElevatedButton(
-              onPressed: () => DialogHelper.showCountryPicker(context, items, 0),
+              onPressed: () =>
+                  DialogHelper.showCountryPicker(context, items, 0),
               child: const Text('Open'),
             );
           },
@@ -177,7 +188,9 @@ void main() {
     expect(find.text('Italy'), findsOneWidget);
   });
 
-  testWidgets('showInboxItemModalBottomSheet shows InboxItemMenuBottomSheet', (tester) async {
+  testWidgets('showInboxItemModalBottomSheet shows InboxItemMenuBottomSheet', (
+    tester,
+  ) async {
     final mockInboxCubit = MockInboxPageCubit();
     when(mockInboxCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockInboxCubit.state).thenReturn(const InboxPageState());
@@ -185,14 +198,19 @@ void main() {
     await tester.pumpWidget(
       MultiBlocProvider(
         providers: [
-          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          BlocProvider<AppLocalisationsCubit>.value(
+            value: appLocalisationsCubit,
+          ),
           BlocProvider<InboxPageCubit>.value(value: mockInboxCubit),
         ],
         child: MaterialApp(
           home: Builder(
             builder: (context) {
               return ElevatedButton(
-                onPressed: () => DialogHelper.showInboxItemModalBottomSheet(context, 'conv1'),
+                onPressed: () => DialogHelper.showInboxItemModalBottomSheet(
+                  context,
+                  'conv1',
+                ),
                 child: const Text('Open'),
               );
             },
@@ -207,7 +225,9 @@ void main() {
     expect(find.byType(InboxItemMenuBottomSheet), findsOneWidget);
   });
 
-  testWidgets('showGifsPickerModalBottomSheet shows GifsPickerBottomSheet', (tester) async {
+  testWidgets('showGifsPickerModalBottomSheet shows GifsPickerBottomSheet', (
+    tester,
+  ) async {
     final listKey = GlobalKey<AnimatedListState>();
     final mockMessagesPageCubit = MockMessagesPageCubit();
     when(mockMessagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
@@ -216,14 +236,19 @@ void main() {
     await tester.pumpWidget(
       MultiBlocProvider(
         providers: [
-          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          BlocProvider<AppLocalisationsCubit>.value(
+            value: appLocalisationsCubit,
+          ),
           BlocProvider<MessagesPageCubit>.value(value: mockMessagesPageCubit),
         ],
         child: MaterialApp(
           home: Builder(
             builder: (context) {
               return ElevatedButton(
-                onPressed: () => DialogHelper.showGifsPickerModalBottomSheet(context, listKey),
+                onPressed: () => DialogHelper.showGifsPickerModalBottomSheet(
+                  context,
+                  listKey,
+                ),
                 child: const Text('Open'),
               );
             },
@@ -242,14 +267,21 @@ void main() {
     setUp(() {
       final mockGetCarColorsUseCase = MockGetCarColorsUseCase();
       final mockGetCarColorByNameUseCase = MockGetCarColorByNameUseCase();
-      final mockGetCarColorNameFromColorUseCase = MockGetCarColorNameFromColorUseCase();
+      final mockGetCarColorNameFromColorUseCase =
+          MockGetCarColorNameFromColorUseCase();
 
-      when(mockGetCarColorsUseCase.call()).thenReturn({'red': Colors.red, 'blue': Colors.blue});
+      when(
+        mockGetCarColorsUseCase.call(),
+      ).thenReturn({'red': Colors.red, 'blue': Colors.blue});
       when(mockGetCarColorByNameUseCase.call(any)).thenReturn(Colors.red);
       when(mockGetCarColorNameFromColorUseCase.call(any)).thenReturn('red');
 
-      serviceLocator.registerSingleton<GetCarColorsUseCase>(mockGetCarColorsUseCase);
-      serviceLocator.registerSingleton<GetCarColorByNameUseCase>(mockGetCarColorByNameUseCase);
+      serviceLocator.registerSingleton<GetCarColorsUseCase>(
+        mockGetCarColorsUseCase,
+      );
+      serviceLocator.registerSingleton<GetCarColorByNameUseCase>(
+        mockGetCarColorByNameUseCase,
+      );
       serviceLocator.registerSingleton<GetCarColorNameFromColorUseCase>(
         mockGetCarColorNameFromColorUseCase,
       );
@@ -264,12 +296,17 @@ void main() {
     testWidgets('shows ColorPickerDialog', (tester) async {
       await tester.pumpWidget(
         MultiBlocProvider(
-          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+          providers: [
+            BlocProvider<AppLocalisationsCubit>.value(
+              value: appLocalisationsCubit,
+            ),
+          ],
           child: MaterialApp(
             home: Builder(
               builder: (context) {
                 return ElevatedButton(
-                  onPressed: () => DialogHelper.showColorsPickerDialog(context, 'red'),
+                  onPressed: () =>
+                      DialogHelper.showColorsPickerDialog(context, 'red'),
                   child: const Text('Open'),
                 );
               },

@@ -21,7 +21,10 @@ void main() {
 
     test('should call ShareUseCase with correct params', () async {
       // Arrange
-      final params = ShareParamsModel(title: 'Simple title', text: 'Check this out!');
+      final params = ShareParamsModel(
+        title: 'Simple title',
+        text: 'Check this out!',
+      );
       when(mockShareUseCase.call(params)).thenAnswer((_) async {});
 
       // Act

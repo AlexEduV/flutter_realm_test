@@ -8,7 +8,10 @@ class EngineEntity {
   }
 
   factory EngineEntity.fromJson(Map<String, dynamic> json) {
-    return EngineEntity(type: json['type'] as String?, volume: json['volume'] as String?);
+    return EngineEntity(
+      type: json['type'] as String?,
+      volume: json['volume'] as String?,
+    );
   }
 
   final String? type;

@@ -40,7 +40,11 @@ class _EditPersonalInfoDialogState extends State<EditPersonalInfoDialog> {
   @override
   void initState() {
     textEditingController.text = widget.initialValue;
-    _validateEditField(context, textEditingController.text, widget.validationCallback);
+    _validateEditField(
+      context,
+      textEditingController.text,
+      widget.validationCallback,
+    );
 
     super.initState();
   }
@@ -60,7 +64,9 @@ class _EditPersonalInfoDialogState extends State<EditPersonalInfoDialog> {
         return AlertDialog(
           title: Text(
             widget.title,
-            style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
+            style: AppTextStyles.zonaPro16.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
           ),
           content: AppSemantics(
             textField: true,
@@ -68,14 +74,19 @@ class _EditPersonalInfoDialogState extends State<EditPersonalInfoDialog> {
             child: TextFormField(
               controller: textEditingController,
               focusNode: focusNode,
-              onChanged: (newValue) =>
-                  _validateEditField(context, newValue, widget.validationCallback),
+              onChanged: (newValue) => _validateEditField(
+                context,
+                newValue,
+                widget.validationCallback,
+              ),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(AppDimensions.normalS),
                   borderSide: const BorderSide(color: AppColors.accentColor),
                 ),
-                hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),
+                hintStyle: AppTextStyles.zonaPro16.copyWith(
+                  color: AppColors.hintColor,
+                ),
               ),
               keyboardType: widget.textInputType,
               style: AppTextStyles.zonaPro16,
@@ -109,7 +120,9 @@ class _EditPersonalInfoDialogState extends State<EditPersonalInfoDialog> {
                       }
                     : null,
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
+                  backgroundColor: WidgetStateProperty.resolveWith<Color?>((
+                    states,
+                  ) {
                     if (states.contains(WidgetState.disabled)) {
                       return Colors.grey;
                     }

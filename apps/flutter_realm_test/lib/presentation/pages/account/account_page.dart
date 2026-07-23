@@ -21,7 +21,9 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemTextStyle = AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600);
+    final itemTextStyle = AppTextStyles.zonaPro14.copyWith(
+      fontWeight: FontWeight.w600,
+    );
 
     return BlocBuilder<UserDataCubit, UserDataState>(
       builder: (context, state) {
@@ -32,7 +34,10 @@ class AccountPage extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
-            title: Text(context.tr(L10nKeys.accountPageTitle), style: AppTextStyles.zonaPro20),
+            title: Text(
+              context.tr(L10nKeys.accountPageTitle),
+              style: AppTextStyles.zonaPro20,
+            ),
             centerTitle: true,
           ),
           body: SingleChildScrollView(
@@ -40,10 +45,14 @@ class AccountPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    bottom: AppDimensions.minorL,
+                  ),
                   child: UserAvatarEnhanced(
                     imageSrc: state.avatarImageSrc,
-                    onTap: () => context.read<UserDataCubit>().updateAvatarImage(),
+                    onTap: () =>
+                        context.read<UserDataCubit>().updateAvatarImage(),
                   ),
                 ),
 
@@ -51,7 +60,9 @@ class AccountPage extends StatelessWidget {
                   title: Center(
                     child: Text(
                       '${state.firstName} ${state.lastName}',
-                      style: AppTextStyles.zonaPro18.copyWith(color: AppColors.headerColor),
+                      style: AppTextStyles.zonaPro18.copyWith(
+                        color: AppColors.headerColor,
+                      ),
                     ),
                   ),
                   subtitle: Center(
@@ -76,33 +87,44 @@ class AccountPage extends StatelessWidget {
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.person_outlined,
-                          label: context.tr(L10nKeys.accountItemPersonalDetails),
-                          onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
+                          label: context.tr(
+                            L10nKeys.accountItemPersonalDetails,
+                          ),
+                          onTap: () => context.go(
+                            AppRoutes.home + AppRoutes.personalDetails,
+                          ),
                         ),
 
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.location_on_outlined,
                           label: context.tr(L10nKeys.accountItemLocation),
-                          onTap: () => context.go(AppRoutes.home + AppRoutes.locationSettings),
+                          onTap: () => context.go(
+                            AppRoutes.home + AppRoutes.locationSettings,
+                          ),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.checklist_outlined,
                           label: context.tr(L10nKeys.accountItemMyItems),
-                          onTap: () => context.go(AppRoutes.home + AppRoutes.myItems),
+                          onTap: () =>
+                              context.go(AppRoutes.home + AppRoutes.myItems),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.remove_red_eye_outlined,
                           label: context.tr(L10nKeys.accountItemViewedItems),
-                          onTap: () => context.go(AppRoutes.home + AppRoutes.recentlyViewed),
+                          onTap: () => context.go(
+                            AppRoutes.home + AppRoutes.recentlyViewed,
+                          ),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.cleaning_services,
                           label: context.tr(L10nKeys.accountItemClearData),
-                          onTap: () => context.go(AppRoutes.home + AppRoutes.clearUserData),
+                          onTap: () => context.go(
+                            AppRoutes.home + AppRoutes.clearUserData,
+                          ),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
@@ -128,14 +150,22 @@ class AccountPage extends StatelessWidget {
                     onTap: () {
                       DialogHelper.showConfirmationDialog(
                         context,
-                        title: context.trRead(L10nKeys.accountItemDeleteAccount),
-                        description: context.trRead(L10nKeys.deleteAccountDialogDescription),
-                        cancelButtonTitle: context.trRead(L10nKeys.deleteAccountDialogCancelLabel),
+                        title: context.trRead(
+                          L10nKeys.accountItemDeleteAccount,
+                        ),
+                        description: context.trRead(
+                          L10nKeys.deleteAccountDialogDescription,
+                        ),
+                        cancelButtonTitle: context.trRead(
+                          L10nKeys.deleteAccountDialogCancelLabel,
+                        ),
                         confirmButtonTitle: context.trRead(
                           L10nKeys.deleteAccountDialogConfirmLabel,
                         ),
                         onConfirm: () async {
-                          await context.read<AuthenticationCubit>().deleteAccount(state.email);
+                          await context
+                              .read<AuthenticationCubit>()
+                              .deleteAccount(state.email);
 
                           if (!context.mounted) return;
 

@@ -18,7 +18,11 @@ void main() {
   });
 
   test('pickFile calls local data source and returns attachment', () async {
-    final attachment = AttachmentEntity(name: 'file.txt', size: 1234, path: '/some/path/file.txt');
+    final attachment = AttachmentEntity(
+      name: 'file.txt',
+      size: 1234,
+      path: '/some/path/file.txt',
+    );
     when(mockLocalDataSource.pickFile()).thenAnswer((_) async => attachment);
 
     final result = await repository.pickFile();

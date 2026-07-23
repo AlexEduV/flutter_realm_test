@@ -41,7 +41,9 @@ void main() {
 
   setUp(() async {
     await getIt.reset();
-    getIt.registerSingleton<GetConversationByIdUseCase>(MockGetConversationByIdUseCase());
+    getIt.registerSingleton<GetConversationByIdUseCase>(
+      MockGetConversationByIdUseCase(),
+    );
     getIt.registerSingleton<AppLocalisationsCubit>(appLocalisationsCubit);
     getIt.registerSingleton<GetOwnerByIdUseCase>(MockGetOwnerByIdUseCase());
     getIt.registerSingleton<ExtractUsersFromConversationUseCase>(
@@ -65,14 +67,29 @@ void main() {
     );
   }
 
-  testWidgets('displays app bar with owner name and avatar', (WidgetTester tester) async {
-    final owner = OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []);
-    final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
+  testWidgets('displays app bar with owner name and avatar', (
+    WidgetTester tester,
+  ) async {
+    final owner = OwnerEntity(
+      id: 'o1',
+      firstName: 'John',
+      lastName: 'Doe',
+      linkedItemIds: [],
+    );
+    final conversation = ConversationModel(
+      conversationId: 'c1',
+      ownerId: 'o1',
+      messages: [],
+    );
     final cubit = MockInboxPageCubit();
 
-    when(getIt<GetConversationByIdUseCase>().call('c1')).thenReturn(conversation);
+    when(
+      getIt<GetConversationByIdUseCase>().call('c1'),
+    ).thenReturn(conversation);
     when(getIt<GetOwnerByIdUseCase>().call('o1')).thenReturn(owner);
-    when(getIt<ExtractUsersFromConversationUseCase>().call(conversation)).thenReturn({});
+    when(
+      getIt<ExtractUsersFromConversationUseCase>().call(conversation),
+    ).thenReturn({});
     when(cubit.state).thenReturn(const InboxPageState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
 
@@ -81,7 +98,11 @@ void main() {
     when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(conversationId: 'c1', cubit: cubit, messagesCubit: messagesPageCubit),
+      buildTestableWidget(
+        conversationId: 'c1',
+        cubit: cubit,
+        messagesCubit: messagesPageCubit,
+      ),
     );
     await tester.pumpAndSettle();
 
@@ -89,15 +110,30 @@ void main() {
     expect(find.byType(AvatarWidget), findsOneWidget);
   });
 
-  testWidgets('shows EmptyConversationPlaceholder when no messages', (WidgetTester tester) async {
-    final owner = OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []);
-    final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
+  testWidgets('shows EmptyConversationPlaceholder when no messages', (
+    WidgetTester tester,
+  ) async {
+    final owner = OwnerEntity(
+      id: 'o1',
+      firstName: 'John',
+      lastName: 'Doe',
+      linkedItemIds: [],
+    );
+    final conversation = ConversationModel(
+      conversationId: 'c1',
+      ownerId: 'o1',
+      messages: [],
+    );
     final cubit = MockInboxPageCubit();
 
-    when(getIt<GetConversationByIdUseCase>().call('c1')).thenReturn(conversation);
+    when(
+      getIt<GetConversationByIdUseCase>().call('c1'),
+    ).thenReturn(conversation);
     when(getIt<GetOwnerByIdUseCase>().call('o1')).thenReturn(owner);
     when(cubit.state).thenReturn(const InboxPageState());
-    when(getIt<ExtractUsersFromConversationUseCase>().call(conversation)).thenReturn({
+    when(
+      getIt<ExtractUsersFromConversationUseCase>().call(conversation),
+    ).thenReturn({
       'u1': UserEntity.initial(
         userId: 'u1',
         firstName: 'Alice',
@@ -113,15 +149,26 @@ void main() {
     when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(conversationId: 'c1', cubit: cubit, messagesCubit: messagesPageCubit),
+      buildTestableWidget(
+        conversationId: 'c1',
+        cubit: cubit,
+        messagesCubit: messagesPageCubit,
+      ),
     );
     await tester.pumpAndSettle();
 
     expect(find.byType(EmptyConversationPlaceholder), findsOneWidget);
   });
 
-  testWidgets('shows a list of messages when present', (WidgetTester tester) async {
-    final owner = OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []);
+  testWidgets('shows a list of messages when present', (
+    WidgetTester tester,
+  ) async {
+    final owner = OwnerEntity(
+      id: 'o1',
+      firstName: 'John',
+      lastName: 'Doe',
+      linkedItemIds: [],
+    );
     final message = MessageModel(
       senderId: 'u1',
       messageStatus: MessageStatus.sent,
@@ -135,12 +182,16 @@ void main() {
     );
     final cubit = MockInboxPageCubit();
 
-    when(getIt<GetConversationByIdUseCase>().call('c1')).thenReturn(conversation);
+    when(
+      getIt<GetConversationByIdUseCase>().call('c1'),
+    ).thenReturn(conversation);
     when(getIt<GetOwnerByIdUseCase>().call('o1')).thenReturn(owner);
     when(cubit.state).thenReturn(const InboxPageState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(getIt<ExtractUsersFromConversationUseCase>().call(conversation)).thenReturn({
+    when(
+      getIt<ExtractUsersFromConversationUseCase>().call(conversation),
+    ).thenReturn({
       'u1': UserEntity.initial(
         userId: 'u1',
         firstName: 'Alice',
@@ -155,7 +206,11 @@ void main() {
     when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(conversationId: 'c1', cubit: cubit, messagesCubit: messagesPageCubit),
+      buildTestableWidget(
+        conversationId: 'c1',
+        cubit: cubit,
+        messagesCubit: messagesPageCubit,
+      ),
     );
     await tester.pumpAndSettle();
 
@@ -164,13 +219,26 @@ void main() {
   });
 
   testWidgets('shows ChatInputBar at the bottom', (WidgetTester tester) async {
-    final owner = OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []);
-    final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
+    final owner = OwnerEntity(
+      id: 'o1',
+      firstName: 'John',
+      lastName: 'Doe',
+      linkedItemIds: [],
+    );
+    final conversation = ConversationModel(
+      conversationId: 'c1',
+      ownerId: 'o1',
+      messages: [],
+    );
     final cubit = MockInboxPageCubit();
 
-    when(getIt<GetConversationByIdUseCase>().call('c1')).thenReturn(conversation);
+    when(
+      getIt<GetConversationByIdUseCase>().call('c1'),
+    ).thenReturn(conversation);
     when(getIt<GetOwnerByIdUseCase>().call('o1')).thenReturn(owner);
-    when(getIt<ExtractUsersFromConversationUseCase>().call(conversation)).thenReturn({
+    when(
+      getIt<ExtractUsersFromConversationUseCase>().call(conversation),
+    ).thenReturn({
       'u1': UserEntity.initial(
         userId: 'u1',
         firstName: 'Alice',
@@ -187,7 +255,11 @@ void main() {
     when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(conversationId: 'c1', cubit: cubit, messagesCubit: messagesPageCubit),
+      buildTestableWidget(
+        conversationId: 'c1',
+        cubit: cubit,
+        messagesCubit: messagesPageCubit,
+      ),
     );
     await tester.pumpAndSettle();
 

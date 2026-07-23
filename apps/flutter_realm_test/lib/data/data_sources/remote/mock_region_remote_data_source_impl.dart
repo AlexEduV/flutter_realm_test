@@ -26,9 +26,10 @@ class MockRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
         .map(
           (element) => RegionUiModel(
             code: element.locale,
-            countryName: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-              '${L10nKeys.countryPrefix}${element.locale}',
-            ),
+            countryName: serviceLocator<AppLocalisationsCubit>()
+                .getLocalisationByKey(
+                  '${L10nKeys.countryPrefix}${element.locale}',
+                ),
           ),
         )
         .toList();

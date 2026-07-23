@@ -14,7 +14,11 @@ class EmptyConversationPlaceholder extends StatelessWidget {
         spacing: AppDimensions.minorM,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.forum, color: AppColors.headerColor, size: AppDimensions.majorXL),
+          const Icon(
+            Icons.forum,
+            color: AppColors.headerColor,
+            size: AppDimensions.majorXL,
+          ),
           Text(context.tr(L10nKeys.inboxPageEmptyText)),
         ],
       ),

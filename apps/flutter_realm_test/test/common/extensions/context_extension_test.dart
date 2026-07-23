@@ -9,7 +9,10 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_st
 
 import 'context_extension_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<AppLocalisationsCubit>(), MockSpec<AppLocalisationsState>()])
+@GenerateNiceMocks([
+  MockSpec<AppLocalisationsCubit>(),
+  MockSpec<AppLocalisationsState>(),
+])
 void main() {
   late MockAppLocalisationsCubit mockCubit;
   late MockAppLocalisationsState mockState;
@@ -23,7 +26,10 @@ void main() {
 
   Widget buildTestWidget({required Widget child}) {
     return MaterialApp(
-      home: BlocProvider<AppLocalisationsCubit>.value(value: mockCubit, child: child),
+      home: BlocProvider<AppLocalisationsCubit>.value(
+        value: mockCubit,
+        child: child,
+      ),
     );
   }
 

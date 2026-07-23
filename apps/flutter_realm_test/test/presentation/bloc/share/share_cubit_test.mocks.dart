@@ -30,12 +30,11 @@ import 'package:test_flutter_project/domain/usecases/share/share_use_case.dart'
 /// See the documentation for Mockito's code generation for more information.
 class MockShareUseCase extends _i1.Mock implements _i2.ShareUseCase {
   @override
-  _i3.Future<void> call(_i4.ShareParamsModel? model) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [model],
-        ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+  _i3.Future<void> call(_i4.ShareParamsModel? model) =>
+      (super.noSuchMethod(
+            Invocation.method(#call, [model]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 }

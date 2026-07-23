@@ -23,5 +23,6 @@ class AuthorEntity {
           imageSrc == other.imageSrc;
 
   @override
-  int get hashCode => id.hashCode ^ fullName.hashCode ^ (imageSrc?.hashCode ?? 0);
+  int get hashCode =>
+      id.hashCode ^ fullName.hashCode ^ (imageSrc?.hashCode ?? 0);
 }

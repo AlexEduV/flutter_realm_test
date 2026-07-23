@@ -17,17 +17,25 @@ void main() {
     useCase = GetOwnerByIdUseCase(mockRepository);
   });
 
-  test('should call getOwnerById on repository with correct id and return OwnerEntity', () {
-    final ownerId = 'owner123';
-    final owner = OwnerEntity(id: ownerId, firstName: 'Test', lastName: 'Owner', linkedItemIds: []);
-    when(mockRepository.getOwnerById(ownerId)).thenReturn(owner);
+  test(
+    'should call getOwnerById on repository with correct id and return OwnerEntity',
+    () {
+      final ownerId = 'owner123';
+      final owner = OwnerEntity(
+        id: ownerId,
+        firstName: 'Test',
+        lastName: 'Owner',
+        linkedItemIds: [],
+      );
+      when(mockRepository.getOwnerById(ownerId)).thenReturn(owner);
 
-    final result = useCase.call(ownerId);
+      final result = useCase.call(ownerId);
 
-    expect(result, equals(owner));
-    verify(mockRepository.getOwnerById(ownerId)).called(1);
-    verifyNoMoreInteractions(mockRepository);
-  });
+      expect(result, equals(owner));
+      verify(mockRepository.getOwnerById(ownerId)).called(1);
+      verifyNoMoreInteractions(mockRepository);
+    },
+  );
 
   test('should return null when repository returns null', () {
     final ownerId = 'not_found';

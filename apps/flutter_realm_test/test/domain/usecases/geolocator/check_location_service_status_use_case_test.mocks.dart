@@ -29,22 +29,20 @@ import 'package:test_flutter_project/domain/repositories/geolocator_repository.d
 class MockGeolocatorRepository extends _i1.Mock
     implements _i2.GeolocatorRepository {
   @override
-  _i3.Future<bool> checkLocationServiceStatus() => (super.noSuchMethod(
-        Invocation.method(
-          #checkLocationServiceStatus,
-          [],
-        ),
-        returnValue: _i3.Future<bool>.value(false),
-        returnValueForMissingStub: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+  _i3.Future<bool> checkLocationServiceStatus() =>
+      (super.noSuchMethod(
+            Invocation.method(#checkLocationServiceStatus, []),
+            returnValue: _i3.Future<bool>.value(false),
+            returnValueForMissingStub: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
 
   @override
-  _i3.Future<bool> openAppSettings() => (super.noSuchMethod(
-        Invocation.method(
-          #openAppSettings,
-          [],
-        ),
-        returnValue: _i3.Future<bool>.value(false),
-        returnValueForMissingStub: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+  _i3.Future<bool> openAppSettings() =>
+      (super.noSuchMethod(
+            Invocation.method(#openAppSettings, []),
+            returnValue: _i3.Future<bool>.value(false),
+            returnValueForMissingStub: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
 }

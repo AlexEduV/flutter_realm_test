@@ -68,7 +68,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
           child: Column(
             spacing: AppDimensions.normalS,
             children: [
-              RadioGroupTitle(text: context.tr(L10nKeys.addNewItemInfoFormDescription)),
+              RadioGroupTitle(
+                text: context.tr(L10nKeys.addNewItemInfoFormDescription),
+              ),
 
               BlocBuilder<NewItemPageCubit, NewItemPageState>(
                 builder: (context, state) {
@@ -89,7 +91,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                     },
                     displayStringForOption: (option) => option.manufacturer,
                     optionsViewBuilder: (context, onSelected, options) {
-                      final borderRadius = BorderRadius.circular(AppDimensions.normalS);
+                      final borderRadius = BorderRadius.circular(
+                        AppDimensions.normalS,
+                      );
 
                       return Align(
                         alignment: Alignment.topLeft,
@@ -131,7 +135,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                                     title: Text(option.manufacturer),
                                     onTap: () {
                                       onSelected(option);
-                                      selectedManufacturerImageSrc = option.imageSrc != null
+                                      selectedManufacturerImageSrc =
+                                          option.imageSrc != null
                                           ? '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc}'
                                           : null;
                                       widget.manufacturerFocusNode.unfocus();
@@ -145,32 +150,45 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                       );
                     },
                     fieldViewBuilder:
-                        (context, textEditingController, focusNode, onFieldSubmitted) {
+                        (
+                          context,
+                          textEditingController,
+                          focusNode,
+                          onFieldSubmitted,
+                        ) {
                           return AppFormField(
                             focusNode: focusNode,
                             textEditingController: textEditingController,
-                            labelText: state.manufacturerFieldParams?.label ?? '',
-                            hintText: state.manufacturerFieldParams?.hintText ?? '',
+                            labelText:
+                                state.manufacturerFieldParams?.label ?? '',
+                            hintText:
+                                state.manufacturerFieldParams?.hintText ?? '',
                             textInputType: TextInputType.text,
                             textInputAction: TextInputAction.next,
                             errorText: state.manufacturerErrorText,
                             onFocusChange: (hasFocus) {
                               if (hasFocus) return;
 
-                              context.read<NewItemPageCubit>().validateManufacturer(
-                                textEditingController.text,
-                                false,
-                              );
+                              context
+                                  .read<NewItemPageCubit>()
+                                  .validateManufacturer(
+                                    textEditingController.text,
+                                    false,
+                                  );
                             },
                             onChanged: (newText) {
-                              context.read<NewItemPageCubit>().validateManufacturer(
-                                newText ?? '',
-                                focusNode.hasFocus,
-                              );
+                              context
+                                  .read<NewItemPageCubit>()
+                                  .validateManufacturer(
+                                    newText ?? '',
+                                    focusNode.hasFocus,
+                                  );
 
-                              context.read<NewItemPageCubit>().updateManufacturerText(
-                                textEditingController.text,
-                              );
+                              context
+                                  .read<NewItemPageCubit>()
+                                  .updateManufacturerText(
+                                    textEditingController.text,
+                                  );
                             },
                             padding: 0.0,
                             maxLength: state.manufacturerFieldParams?.maxLength,
@@ -181,7 +199,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                       final manufacturer = selection.manufacturer;
 
                       manufacturerTextController.text = manufacturer;
-                      context.read<NewItemPageCubit>().updateManufacturerText(manufacturer);
+                      context.read<NewItemPageCubit>().updateManufacturerText(
+                        manufacturer,
+                      );
                     },
                   );
                 },
@@ -193,7 +213,8 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                   final models =
                       state.autoCompleteEntities
                           .firstWhereOrNull(
-                            (element) => element.manufacturer == selectedManufacturer,
+                            (element) =>
+                                element.manufacturer == selectedManufacturer,
                           )
                           ?.models ??
                       [];
@@ -206,11 +227,15 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                         return const Iterable<String>.empty();
                       }
                       return models.where((String option) {
-                        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                        return option.toLowerCase().contains(
+                          textEditingValue.text.toLowerCase(),
+                        );
                       });
                     },
                     optionsViewBuilder: (context, onSelected, options) {
-                      final borderRadius = BorderRadius.circular(AppDimensions.normalS);
+                      final borderRadius = BorderRadius.circular(
+                        AppDimensions.normalS,
+                      );
 
                       return Align(
                         alignment: Alignment.topLeft,
@@ -253,7 +278,12 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                       );
                     },
                     fieldViewBuilder:
-                        (context, textEditingController, focusNode, onFieldSubmitted) {
+                        (
+                          context,
+                          textEditingController,
+                          focusNode,
+                          onFieldSubmitted,
+                        ) {
                           return AppFormField(
                             focusNode: focusNode,
                             textEditingController: textEditingController,
@@ -286,7 +316,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                         },
                     onSelected: (String selection) {
                       modelTextController.text = selection;
-                      context.read<NewItemPageCubit>().updateModelText(selection);
+                      context.read<NewItemPageCubit>().updateModelText(
+                        selection,
+                      );
                     },
                   );
                 },
@@ -303,7 +335,10 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 onFocusChange: (hasFocus) {
                   if (hasFocus) return;
 
-                  context.read<NewItemPageCubit>().validateYear(yearTextController.text, false);
+                  context.read<NewItemPageCubit>().validateYear(
+                    yearTextController.text,
+                    false,
+                  );
                 },
                 onChanged: (newText) {
                   context.read<NewItemPageCubit>().validateYear(
@@ -311,7 +346,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                     widget.yearFocusNode.hasFocus,
                   );
 
-                  context.read<NewItemPageCubit>().updateYearText(yearTextController.text);
+                  context.read<NewItemPageCubit>().updateYearText(
+                    yearTextController.text,
+                  );
                 },
                 padding: 0.0,
               ),
@@ -327,7 +364,10 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 onFocusChange: (hasFocus) {
                   if (hasFocus) return;
 
-                  context.read<NewItemPageCubit>().validatePrice(priceTextController.text, false);
+                  context.read<NewItemPageCubit>().validatePrice(
+                    priceTextController.text,
+                    false,
+                  );
                 },
                 onChanged: (newText) {
                   context.read<NewItemPageCubit>().validatePrice(
@@ -335,7 +375,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                     widget.priceFocusNode.hasFocus,
                   );
 
-                  context.read<NewItemPageCubit>().updatePriceText(priceTextController.text);
+                  context.read<NewItemPageCubit>().updatePriceText(
+                    priceTextController.text,
+                  );
                 },
                 padding: 0.0,
               ),
@@ -351,7 +393,10 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
                 onFocusChange: (hasFocus) {
                   if (hasFocus) return;
 
-                  context.read<NewItemPageCubit>().validateColor(colorTextController.text, false);
+                  context.read<NewItemPageCubit>().validateColor(
+                    colorTextController.text,
+                    false,
+                  );
                 },
                 onChanged: (newText) => onColorChanged(),
                 padding: 0.0,

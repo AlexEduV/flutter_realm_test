@@ -21,12 +21,15 @@ class MockOwnersRemoteDataSourceImpl implements OwnersRemoteDataSource {
 
   @override
   Future<List<OwnerEntity>> fetchOwners() async {
-    final jsonString = await rootBundle.loadString('assets/mocks/mock_owners.json');
+    final jsonString = await rootBundle.loadString(
+      'assets/mocks/mock_owners.json',
+    );
     final jsonDecoded = json.decode(jsonString);
     final response = ApiResponse.fromJson(
       jsonDecoded,
-      (data) =>
-          (data as List).map((item) => OwnerEntity.fromJson(item as Map<String, dynamic>)).toList(),
+      (data) => (data as List)
+          .map((item) => OwnerEntity.fromJson(item as Map<String, dynamic>))
+          .toList(),
     );
 
     if (response.status != ApiConstants.apiSuccessStatus) {
@@ -45,7 +48,9 @@ class MockOwnersRemoteDataSourceImpl implements OwnersRemoteDataSource {
         serviceLocator<UsersRemoteDataSource>().users.add(newUser);
       }
     }
-    await serviceLocator<SaveUsersUseCase>().call(serviceLocator<UsersRemoteDataSource>().users);
+    await serviceLocator<SaveUsersUseCase>().call(
+      serviceLocator<UsersRemoteDataSource>().users,
+    );
 
     return _owners;
   }

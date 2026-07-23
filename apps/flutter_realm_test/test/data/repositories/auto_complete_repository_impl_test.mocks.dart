@@ -34,38 +34,32 @@ class MockMockAutoCompleteRemoteDataSource extends _i1.Mock
     implements _i2.MockAutoCompleteRemoteDataSource {
   @override
   _i3.Future<List<_i4.CarAutoCompleteEntity>> getAutoCompleteModelListByType(
-          _i5.CarType? type) =>
+    _i5.CarType? type,
+  ) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #getAutoCompleteModelListByType,
-          [type],
-        ),
-        returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
-            <_i4.CarAutoCompleteEntity>[]),
-        returnValueForMissingStub:
-            _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
-                <_i4.CarAutoCompleteEntity>[]),
-      ) as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
+            Invocation.method(#getAutoCompleteModelListByType, [type]),
+            returnValue: _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
+              <_i4.CarAutoCompleteEntity>[],
+            ),
+            returnValueForMissingStub:
+                _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
+                  <_i4.CarAutoCompleteEntity>[],
+                ),
+          )
+          as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
 
   @override
-  String getResourceByType(_i5.CarType? type) => (super.noSuchMethod(
-        Invocation.method(
-          #getResourceByType,
-          [type],
-        ),
-        returnValue: _i6.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getResourceByType,
-            [type],
-          ),
-        ),
-        returnValueForMissingStub: _i6.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getResourceByType,
-            [type],
-          ),
-        ),
-      ) as String);
+  String getResourceByType(_i5.CarType? type) =>
+      (super.noSuchMethod(
+            Invocation.method(#getResourceByType, [type]),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.method(#getResourceByType, [type]),
+            ),
+            returnValueForMissingStub: _i6.dummyValue<String>(
+              this,
+              Invocation.method(#getResourceByType, [type]),
+            ),
+          )
+          as String);
 }

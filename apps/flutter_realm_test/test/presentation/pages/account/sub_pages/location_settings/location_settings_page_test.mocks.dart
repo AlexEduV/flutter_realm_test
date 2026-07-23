@@ -31,13 +31,12 @@ import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_
 class MockGetRegionByCodeUseCase extends _i1.Mock
     implements _i2.GetRegionByCodeUseCase {
   @override
-  _i3.RegionEntity? call(String? code) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [code],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i3.RegionEntity?);
+  _i3.RegionEntity? call(String? code) =>
+      (super.noSuchMethod(
+            Invocation.method(#call, [code]),
+            returnValueForMissingStub: null,
+          )
+          as _i3.RegionEntity?);
 }
 
 /// A class which mocks [GetAllRegionModelsUseCase].
@@ -46,12 +45,11 @@ class MockGetRegionByCodeUseCase extends _i1.Mock
 class MockGetAllRegionModelsUseCase extends _i1.Mock
     implements _i4.GetAllRegionModelsUseCase {
   @override
-  List<_i5.RegionUiModel> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: <_i5.RegionUiModel>[],
-        returnValueForMissingStub: <_i5.RegionUiModel>[],
-      ) as List<_i5.RegionUiModel>);
+  List<_i5.RegionUiModel> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: <_i5.RegionUiModel>[],
+            returnValueForMissingStub: <_i5.RegionUiModel>[],
+          )
+          as List<_i5.RegionUiModel>);
 }

@@ -17,7 +17,10 @@ class SpecColorWidget extends StatelessWidget {
         shape: BoxShape.circle,
         color: color,
         border: Border.all(
-          color: Color.alphaBlend(Colors.black.withAlpha(50), color ?? Colors.black),
+          color: Color.alphaBlend(
+            Colors.black.withAlpha(50),
+            color ?? Colors.black,
+          ),
           width: AppDimensions.minorXS,
         ),
       ),

@@ -42,7 +42,9 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     final appBarButtonStyle = IconButton.styleFrom(
       backgroundColor: Colors.white.withAlpha(140),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimensions.normalS)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppDimensions.normalS),
+      ),
     );
 
     return Scaffold(
@@ -81,7 +83,10 @@ class _DetailsPageState extends State<DetailsPage> {
               icon: const AppSemantics(
                 button: true,
                 label: AppSemanticsLabels.shareButton,
-                child: Icon(Icons.ios_share_rounded, size: AppDimensions.appBarIconSize),
+                child: Icon(
+                  Icons.ios_share_rounded,
+                  size: AppDimensions.appBarIconSize,
+                ),
               ),
               style: appBarButtonStyle,
             ),
@@ -92,18 +97,26 @@ class _DetailsPageState extends State<DetailsPage> {
               return BlocBuilder<UserDataCubit, UserDataState>(
                 builder: (context, userState) {
                   final car = detailsState.car;
-                  final isCarFavorite = userState.favoriteIds.contains(car?.carId);
+                  final isCarFavorite = userState.favoriteIds.contains(
+                    car?.carId,
+                  );
 
                   return Padding(
-                    padding: const EdgeInsets.only(right: AppDimensions.normalM),
+                    padding: const EdgeInsets.only(
+                      right: AppDimensions.normalM,
+                    ),
                     child: IconButton(
                       onPressed: () {
                         if (car == null) return;
 
                         if (isCarFavorite) {
-                          context.read<UserDataCubit>().removeCarIdFromFavorites(car.carId);
+                          context
+                              .read<UserDataCubit>()
+                              .removeCarIdFromFavorites(car.carId);
                         } else {
-                          context.read<UserDataCubit>().addCarIdToFavorites(car.carId);
+                          context.read<UserDataCubit>().addCarIdToFavorites(
+                            car.carId,
+                          );
                         }
                       },
                       icon: AppSemantics(
@@ -137,7 +150,9 @@ class _DetailsPageState extends State<DetailsPage> {
                   aspectRatio: AppConstants.aspectRatio,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
+                      color: (car?.images.isEmpty ?? true)
+                          ? AppColors.placeholderColor
+                          : null,
                       borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(AppDimensions.majorM),
                         bottomRight: Radius.circular(AppDimensions.majorM),
@@ -164,12 +179,16 @@ class _DetailsPageState extends State<DetailsPage> {
                           Flexible(
                             child: Text(
                               '${car?.manufacturer ?? ''} ${car?.model ?? ''} ${car?.year ?? ''}',
-                              style: AppTextStyles.zonaPro24.copyWith(fontWeight: FontWeight.w600),
+                              style: AppTextStyles.zonaPro24.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
                               maxLines: 2,
                             ),
                           ),
 
-                          if (car?.isVerified ?? false) ...[const VerifiedBadge()],
+                          if (car?.isVerified ?? false) ...[
+                            const VerifiedBadge(),
+                          ],
                         ],
                       ),
 
@@ -178,7 +197,9 @@ class _DetailsPageState extends State<DetailsPage> {
                         children: [
                           Text(
                             '\$ ${car?.price ?? ''}',
-                            style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w600),
+                            style: AppTextStyles.zonaPro20.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
 
                           if (car?.promoType != null) ...[

@@ -10,7 +10,9 @@ class NetworkErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppDimensions.normalS).copyWith(bottom: AppDimensions.majorS),
+      padding: const EdgeInsets.all(
+        AppDimensions.normalS,
+      ).copyWith(bottom: AppDimensions.majorS),
       child: ClipRRect(
         borderRadius: BorderRadiusGeometry.circular(AppDimensions.normalM),
         child: Stack(
@@ -25,7 +27,9 @@ class NetworkErrorWidget extends StatelessWidget {
             ),
 
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppDimensions.majorM),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimensions.majorM,
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +44,9 @@ class NetworkErrorWidget extends StatelessWidget {
                   ),
                   Text(
                     context.tr(L10nKeys.noContentWidgetSubtitle),
-                    style: AppTextStyles.zonaPro16.copyWith(color: Colors.white),
+                    style: AppTextStyles.zonaPro16.copyWith(
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),

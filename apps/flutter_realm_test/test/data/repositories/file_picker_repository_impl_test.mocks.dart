@@ -31,12 +31,12 @@ import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
 class MockFilePickerLocalDataSource extends _i1.Mock
     implements _i2.FilePickerLocalDataSource {
   @override
-  _i3.Future<_i4.AttachmentEntity?> pickFile() => (super.noSuchMethod(
-        Invocation.method(
-          #pickFile,
-          [],
-        ),
-        returnValue: _i3.Future<_i4.AttachmentEntity?>.value(),
-        returnValueForMissingStub: _i3.Future<_i4.AttachmentEntity?>.value(),
-      ) as _i3.Future<_i4.AttachmentEntity?>);
+  _i3.Future<_i4.AttachmentEntity?> pickFile() =>
+      (super.noSuchMethod(
+            Invocation.method(#pickFile, []),
+            returnValue: _i3.Future<_i4.AttachmentEntity?>.value(),
+            returnValueForMissingStub:
+                _i3.Future<_i4.AttachmentEntity?>.value(),
+          )
+          as _i3.Future<_i4.AttachmentEntity?>);
 }

@@ -11,7 +11,9 @@ class MessageModel {
   factory MessageModel.fromJson(Map<String, dynamic> json) {
     return MessageModel(
       senderId: json['senderId'] as String,
-      messageStatus: MessageStatus.values.byName(json['messageStatus'] as String),
+      messageStatus: MessageStatus.values.byName(
+        json['messageStatus'] as String,
+      ),
       payload: json['text'] as String,
       date: DateTime.parse(json['date'] as String),
     );
@@ -56,5 +58,9 @@ class MessageModel {
           date == other.date;
 
   @override
-  int get hashCode => senderId.hashCode ^ messageStatus.hashCode ^ payload.hashCode ^ date.hashCode;
+  int get hashCode =>
+      senderId.hashCode ^
+      messageStatus.hashCode ^
+      payload.hashCode ^
+      date.hashCode;
 }

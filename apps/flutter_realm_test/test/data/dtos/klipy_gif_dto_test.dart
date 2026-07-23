@@ -50,7 +50,11 @@ void main() {
         'title': 'Jumping Fox',
         'file': {
           'sm': {
-            'gif': {'url': 'http://image.com/fox.gif', 'width': 500, 'height': 350},
+            'gif': {
+              'url': 'http://image.com/fox.gif',
+              'width': 500,
+              'height': 350,
+            },
           },
           'xs': {
             'gif': {'url': 'http://preview.com/fox.gif'},

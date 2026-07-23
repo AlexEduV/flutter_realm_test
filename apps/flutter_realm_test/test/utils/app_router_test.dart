@@ -45,7 +45,8 @@ void main() {
   final MockSearchPageCubit mockSearchPageCubit = MockSearchPageCubit();
   final MockDetailsPageCubit mockDetailsPageCubit = MockDetailsPageCubit();
   final AppLocalisationsCubit appLocalisationsCubit = AppLocalisationsCubit();
-  final MockCheckLocationPermissionStatusUseCase mockCheckLocationPermissionStatusUseCase =
+  final MockCheckLocationPermissionStatusUseCase
+  mockCheckLocationPermissionStatusUseCase =
       MockCheckLocationPermissionStatusUseCase();
 
   late Widget widget;
@@ -63,7 +64,9 @@ void main() {
     when(homeBottomBarCubit.state).thenReturn(const HomeBottomBarState());
 
     when(explorePageCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(explorePageCubit.state).thenReturn(const ExplorePageState(cars: [], isLoading: false));
+    when(
+      explorePageCubit.state,
+    ).thenReturn(const ExplorePageState(cars: [], isLoading: false));
 
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
     when(
@@ -90,12 +93,18 @@ void main() {
   setUp(() {
     widget = MultiBlocProvider(
       providers: [
-        BlocProvider<HomeBottomBarCubit>(create: (context) => homeBottomBarCubit),
+        BlocProvider<HomeBottomBarCubit>(
+          create: (context) => homeBottomBarCubit,
+        ),
         BlocProvider<ExplorePageCubit>(create: (context) => explorePageCubit),
         BlocProvider<UserDataCubit>(create: (context) => mockUserDataCubit),
         BlocProvider<SearchPageCubit>(create: (context) => mockSearchPageCubit),
-        BlocProvider<DetailsPageCubit>(create: (context) => mockDetailsPageCubit),
-        BlocProvider<AppLocalisationsCubit>(create: (context) => appLocalisationsCubit),
+        BlocProvider<DetailsPageCubit>(
+          create: (context) => mockDetailsPageCubit,
+        ),
+        BlocProvider<AppLocalisationsCubit>(
+          create: (context) => appLocalisationsCubit,
+        ),
       ],
       child: MaterialApp.router(routerConfig: AppRouter.router),
     );
@@ -105,7 +114,9 @@ void main() {
     serviceLocator.unregister<CheckLocationPermissionStatusUseCase>();
   });
 
-  testWidgets('Navigates to HomePage on root route', (WidgetTester tester) async {
+  testWidgets('Navigates to HomePage on root route', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(widget);
 
     // The static router retains its location across tests, so navigate explicitly
@@ -117,7 +128,9 @@ void main() {
     expect(find.byType(SearchPage), findsNothing);
   });
 
-  testWidgets('Navigates to SearchPage on /search route', (WidgetTester tester) async {
+  testWidgets('Navigates to SearchPage on /search route', (
+    WidgetTester tester,
+  ) async {
     when(mockSearchPageCubit.getSelectedFilterCount()).thenReturn(0);
 
     await tester.pumpWidget(widget);
@@ -151,7 +164,9 @@ void main() {
     expect(detailsPage.carId, 'car456');
   });
 
-  testWidgets('DetailsPage carId is empty string if not provided', (tester) async {
+  testWidgets('DetailsPage carId is empty string if not provided', (
+    tester,
+  ) async {
     await tester.pumpWidget(widget);
 
     AppRouter.router.go('${AppRoutes.home}${AppRoutes.details}');

@@ -88,7 +88,10 @@ class CarEntity {
         imageSrc: car.owner?.imageSrc,
       ),
       mileage: car.mileage,
-      engine: EngineEntity(type: car.engine?.fuelType, volume: car.engine?.volume),
+      engine: EngineEntity(
+        type: car.engine?.fuelType,
+        volume: car.engine?.volume,
+      ),
       bodyType: car.bodyType ?? '',
       transmissionType: car.transmissionType ?? '',
       images: car.images.toList(),

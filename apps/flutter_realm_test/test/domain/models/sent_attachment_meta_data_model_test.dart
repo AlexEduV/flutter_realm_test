@@ -15,7 +15,11 @@ void main() {
     });
 
     test('fromJson with all fields', () {
-      final json = {'name': 'image.png', 'path': '/images/image.png', 'size': 2048};
+      final json = {
+        'name': 'image.png',
+        'path': '/images/image.png',
+        'size': 2048,
+      };
       final model = SentAttachmentMetaDataModel.fromJson(json);
       expect(model.name, 'image.png');
       expect(model.path, '/images/image.png');

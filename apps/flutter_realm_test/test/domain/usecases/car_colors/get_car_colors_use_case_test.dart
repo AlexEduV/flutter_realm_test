@@ -20,7 +20,10 @@ void main() {
 
   test('should return a map of car colors from the repository', () {
     // Arrange
-    final testColors = {'red': const Color(0xFFFF0000), 'blue': const Color(0xFF0000FF)};
+    final testColors = {
+      'red': const Color(0xFFFF0000),
+      'blue': const Color(0xFF0000FF),
+    };
     when(mockCarColorRepository.getColors()).thenReturn(testColors);
 
     // Act

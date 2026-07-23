@@ -47,16 +47,17 @@ class PersonalDetailsPage extends StatelessWidget {
                     icon: Icons.person_pin_outlined,
                     onTap: () => DialogHelper.showEditDialog(
                       context,
-                      title: context.trRead(L10nKeys.personalDetailsItemFirstName),
+                      title: context.trRead(
+                        L10nKeys.personalDetailsItemFirstName,
+                      ),
                       initialValue: state.firstName,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setFirstName,
                       validationCallback: (newValue) {
-                        return context.read<AuthenticationCubit>().validateFullName(
-                          newValue,
-                          false,
-                        );
+                        return context
+                            .read<AuthenticationCubit>()
+                            .validateFullName(newValue, false);
                       },
                     ),
                   ),
@@ -67,16 +68,17 @@ class PersonalDetailsPage extends StatelessWidget {
                     icon: Icons.person_outlined,
                     onTap: () => DialogHelper.showEditDialog(
                       context,
-                      title: context.trRead(L10nKeys.personalDetailsItemLastName),
+                      title: context.trRead(
+                        L10nKeys.personalDetailsItemLastName,
+                      ),
                       initialValue: state.lastName,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setLastName,
                       validationCallback: (newValue) {
-                        return context.read<AuthenticationCubit>().validateFullName(
-                          newValue,
-                          false,
-                        );
+                        return context
+                            .read<AuthenticationCubit>()
+                            .validateFullName(newValue, false);
                       },
                     ),
                   ),
@@ -104,7 +106,9 @@ class PersonalDetailsPage extends StatelessWidget {
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setEmail,
                       validationCallback: (newValue) {
-                        return context.read<AuthenticationCubit>().validateEmail(newValue, false);
+                        return context
+                            .read<AuthenticationCubit>()
+                            .validateEmail(newValue, false);
                       },
                       textInputType: TextInputType.emailAddress,
                     ),
@@ -116,15 +120,16 @@ class PersonalDetailsPage extends StatelessWidget {
                     icon: Icons.password,
                     onTap: () => DialogHelper.showEditPasswordDialog(
                       context,
-                      title: context.trRead(L10nKeys.personalDetailsItemPassword),
+                      title: context.trRead(
+                        L10nKeys.personalDetailsItemPassword,
+                      ),
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setPassword,
                       validationCallback: (newValue) {
-                        return context.read<AuthenticationCubit>().validatePassword(
-                          newValue,
-                          false,
-                        );
+                        return context
+                            .read<AuthenticationCubit>()
+                            .validatePassword(newValue, false);
                       },
                     ),
                   ),

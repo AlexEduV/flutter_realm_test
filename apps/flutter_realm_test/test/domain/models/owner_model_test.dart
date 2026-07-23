@@ -30,17 +30,47 @@ void main() {
     });
 
     test('equality and hashCode: identical objects', () {
-      final o1 = OwnerEntity(id: '1', firstName: 'Alice', lastName: '', linkedItemIds: ['a', 'b']);
-      final o2 = OwnerEntity(id: '1', firstName: 'Alice', lastName: '', linkedItemIds: ['a', 'b']);
+      final o1 = OwnerEntity(
+        id: '1',
+        firstName: 'Alice',
+        lastName: '',
+        linkedItemIds: ['a', 'b'],
+      );
+      final o2 = OwnerEntity(
+        id: '1',
+        firstName: 'Alice',
+        lastName: '',
+        linkedItemIds: ['a', 'b'],
+      );
       expect(o1, o2);
       expect(o1.hashCode, o2.hashCode);
     });
 
     test('equality and hashCode: different objects', () {
-      final o1 = OwnerEntity(id: '1', firstName: 'Alice', lastName: '', linkedItemIds: ['a', 'b']);
-      final o2 = OwnerEntity(id: '2', firstName: 'Alice', lastName: '', linkedItemIds: ['a', 'b']);
-      final o3 = OwnerEntity(id: '1', firstName: 'Bob', lastName: '', linkedItemIds: ['a', 'b']);
-      final o4 = OwnerEntity(id: '1', firstName: 'Alice', lastName: '', linkedItemIds: ['b', 'a']);
+      final o1 = OwnerEntity(
+        id: '1',
+        firstName: 'Alice',
+        lastName: '',
+        linkedItemIds: ['a', 'b'],
+      );
+      final o2 = OwnerEntity(
+        id: '2',
+        firstName: 'Alice',
+        lastName: '',
+        linkedItemIds: ['a', 'b'],
+      );
+      final o3 = OwnerEntity(
+        id: '1',
+        firstName: 'Bob',
+        lastName: '',
+        linkedItemIds: ['a', 'b'],
+      );
+      final o4 = OwnerEntity(
+        id: '1',
+        firstName: 'Alice',
+        lastName: '',
+        linkedItemIds: ['b', 'a'],
+      );
       expect(o1 == o2, isFalse);
       expect(o1 == o3, isFalse);
       expect(o1 == o4, isFalse); // order matters

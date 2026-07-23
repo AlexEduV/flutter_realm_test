@@ -28,13 +28,18 @@ class _InboxPageState extends State<InboxPage> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(context.tr(L10nKeys.inboxPageTitle), style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(L10nKeys.inboxPageTitle),
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         builder: (context, state) {
           if (!state.isUserAuthenticated) {
-            return EmptyResultsPlaceholderWidget(text: context.tr(L10nKeys.inboxPageLoggedOutText));
+            return EmptyResultsPlaceholderWidget(
+              text: context.tr(L10nKeys.inboxPageLoggedOutText),
+            );
           }
 
           return BlocBuilder<InboxPageCubit, InboxPageState>(
@@ -46,13 +51,17 @@ class _InboxPageState extends State<InboxPage> {
               }
 
               if (state.conversations.isEmpty) {
-                return EmptyResultsPlaceholderWidget(text: context.tr(L10nKeys.inboxPageEmptyText));
+                return EmptyResultsPlaceholderWidget(
+                  text: context.tr(L10nKeys.inboxPageEmptyText),
+                );
               }
 
               return ListView.builder(
                 padding: const EdgeInsets.only(top: AppDimensions.normalL),
                 itemBuilder: (context, index) {
-                  return InboxListItem(conversation: state.conversations[index]);
+                  return InboxListItem(
+                    conversation: state.conversations[index],
+                  );
                 },
                 itemCount: items.length,
               );

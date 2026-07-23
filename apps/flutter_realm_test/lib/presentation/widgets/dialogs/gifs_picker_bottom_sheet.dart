@@ -56,7 +56,9 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
         return Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(AppDimensions.normalS).copyWith(bottom: 0.0),
+              padding: const EdgeInsets.all(
+                AppDimensions.normalS,
+              ).copyWith(bottom: 0.0),
               child: AnimatedScale(
                 duration: const Duration(milliseconds: 300),
                 scale: textFieldScale,
@@ -64,15 +66,18 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                 child: TextFormField(
                   onTap: onTextFieldTap,
                   controller: textController,
-                  onChanged: (newValue) =>
-                      context.read<MessagesPageCubit>().updateGifsSearch(newValue),
+                  onChanged: (newValue) => context
+                      .read<MessagesPageCubit>()
+                      .updateGifsSearch(newValue),
                   decoration: InputDecoration(
                     hintText: context.tr(L10nKeys.gifsTextFieldHint),
                     fillColor: Colors.white,
                     filled: true,
                     border: OutlineInputBorder(
                       borderRadius: textFieldBorderRadius,
-                      borderSide: const BorderSide(color: AppColors.accentColor),
+                      borderSide: const BorderSide(
+                        color: AppColors.accentColor,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: textFieldBorderRadius,
@@ -85,7 +90,9 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                         width: AppDimensions.minorXS,
                       ),
                     ),
-                    hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),
+                    hintStyle: AppTextStyles.zonaPro16.copyWith(
+                      color: AppColors.hintColor,
+                    ),
                   ),
                   style: AppTextStyles.zonaPro16,
                 ),
@@ -100,24 +107,34 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(AppDimensions.normalM),
+                            padding: const EdgeInsets.all(
+                              AppDimensions.normalM,
+                            ),
                             child: Text.rich(
                               TextSpan(
                                 style: AppTextStyles.zonaPro18,
                                 children: [
                                   if (isQueryEmpty)
                                     TextSpan(
-                                      text: context.tr(L10nKeys.gifsResultsTrendingLabel),
-                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                      text: context.tr(
+                                        L10nKeys.gifsResultsTrendingLabel,
+                                      ),
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     )
                                   else ...[
                                     TextSpan(
-                                      text: context.tr(L10nKeys.gifsResultsQueryLabel),
+                                      text: context.tr(
+                                        L10nKeys.gifsResultsQueryLabel,
+                                      ),
                                       style: AppTextStyles.zonaPro18,
                                     ),
                                     TextSpan(
                                       text: '"${state.latestQuery}"',
-                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ],
                                 ],
@@ -132,18 +149,22 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
 
                     Expanded(
                       child: GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                        ),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                            ),
                         itemCount: state.gifsInSearch.length,
                         itemBuilder: (context, index) {
                           final gif = state.gifsInSearch[index];
 
                           return AppSemantics(
-                            label: '${AppSemanticsLabels.gifListItem} ${gif.title}',
+                            label:
+                                '${AppSemanticsLabels.gifListItem} ${gif.title}',
                             button: true,
                             child: Padding(
-                              padding: const EdgeInsets.all(AppDimensions.minorXS),
+                              padding: const EdgeInsets.all(
+                                AppDimensions.minorXS,
+                              ),
                               child: InkWell(
                                 onTap: () => onGifItemTap(gif),
                                 child: SkipWidget(
@@ -182,7 +203,10 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
 
     final userId = context.read<UserDataCubit>().user.userId;
 
-    final conversationId = context.read<MessagesPageCubit>().state.currentConversationId;
+    final conversationId = context
+        .read<MessagesPageCubit>()
+        .state
+        .currentConversationId;
     context.read<InboxPageCubit>().sendMessage(
       conversationId,
       MessageModel(

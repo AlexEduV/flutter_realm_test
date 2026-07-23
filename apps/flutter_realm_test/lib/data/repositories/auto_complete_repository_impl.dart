@@ -9,7 +9,9 @@ class AutoCompleteRepositoryImpl implements AutoCompleteRepository {
   final AutoCompleteRemoteDataSource _autoCompleteRemoteDataSource;
 
   @override
-  Future<List<CarAutoCompleteEntity>> getAutoCompleteModelListByType(CarType type) {
+  Future<List<CarAutoCompleteEntity>> getAutoCompleteModelListByType(
+    CarType type,
+  ) {
     return _autoCompleteRemoteDataSource.getAutoCompleteModelListByType(type);
   }
 }

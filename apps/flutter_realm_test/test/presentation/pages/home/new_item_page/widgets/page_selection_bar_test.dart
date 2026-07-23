@@ -6,7 +6,9 @@ import 'package:test_flutter_project/common/enums/item_setup_tab.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar.dart';
 
 void main() {
-  testWidgets('PageSelectionBar renders and triggers callbacks', (WidgetTester tester) async {
+  testWidgets('PageSelectionBar renders and triggers callbacks', (
+    WidgetTester tester,
+  ) async {
     // Arrange
     var backPressed = false;
     var forwardPressed = false;
@@ -26,8 +28,14 @@ void main() {
     );
 
     // Assert: IconButtons are present
-    final leftButton = find.widgetWithIcon(IconButton, Icons.chevron_left_outlined);
-    final rightButton = find.widgetWithIcon(IconButton, Icons.chevron_right_outlined);
+    final leftButton = find.widgetWithIcon(
+      IconButton,
+      Icons.chevron_left_outlined,
+    );
+    final rightButton = find.widgetWithIcon(
+      IconButton,
+      Icons.chevron_right_outlined,
+    );
     expect(leftButton, findsOneWidget);
     expect(rightButton, findsOneWidget);
 
@@ -54,11 +62,17 @@ void main() {
     expect(forwardPressed, isTrue);
   });
 
-  testWidgets('PageSelectionBar uses default icon color and size', (WidgetTester tester) async {
+  testWidgets('PageSelectionBar uses default icon color and size', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: PageSelectionBar(onBackPressed: () {}, onForwardPressed: () {}, currentIndex: 0),
+          body: PageSelectionBar(
+            onBackPressed: () {},
+            onForwardPressed: () {},
+            currentIndex: 0,
+          ),
         ),
       ),
     );

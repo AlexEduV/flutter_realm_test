@@ -11,7 +11,9 @@ void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
+      () => appLocalisationsCubit,
+    );
 
     // Set up localisation values for the test
     final localisations = {
@@ -30,7 +32,11 @@ void main() {
     testWidgets('displays the hourglass icon', (WidgetTester tester) async {
       await tester.pumpWidget(
         MultiBlocProvider(
-          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+          providers: [
+            BlocProvider<AppLocalisationsCubit>.value(
+              value: appLocalisationsCubit,
+            ),
+          ],
           child: const MaterialApp(home: PlaceholderPage()),
         ),
       );
@@ -43,23 +49,33 @@ void main() {
       expect(iconWidget.color, Colors.grey);
     });
 
-    testWidgets('displays the correct title and subtitle', (WidgetTester tester) async {
+    testWidgets('displays the correct title and subtitle', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MultiBlocProvider(
-          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+          providers: [
+            BlocProvider<AppLocalisationsCubit>.value(
+              value: appLocalisationsCubit,
+            ),
+          ],
           child: const MaterialApp(home: PlaceholderPage()),
         ),
       );
 
       expect(
         find.text(
-          appLocalisationsCubit.getLocalisationByKey(L10nKeys.comingSoonPlaceholderPageTitle),
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.comingSoonPlaceholderPageTitle,
+          ),
         ),
         findsOneWidget,
       );
       expect(
         find.text(
-          appLocalisationsCubit.getLocalisationByKey(L10nKeys.comingSoonPlaceholderPageSubTitle),
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.comingSoonPlaceholderPageSubTitle,
+          ),
         ),
         findsOneWidget,
       );
@@ -68,14 +84,20 @@ void main() {
     testWidgets('uses correct text styles', (WidgetTester tester) async {
       await tester.pumpWidget(
         MultiBlocProvider(
-          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+          providers: [
+            BlocProvider<AppLocalisationsCubit>.value(
+              value: appLocalisationsCubit,
+            ),
+          ],
           child: const MaterialApp(home: PlaceholderPage()),
         ),
       );
 
       final titleText = tester.widget<Text>(
         find.text(
-          appLocalisationsCubit.getLocalisationByKey(L10nKeys.comingSoonPlaceholderPageTitle),
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.comingSoonPlaceholderPageTitle,
+          ),
         ),
       );
       expect(titleText.style?.fontSize, AppTextStyles.zonaPro24.fontSize);
@@ -83,11 +105,16 @@ void main() {
 
       final subtitleText = tester.widget<Text>(
         find.text(
-          appLocalisationsCubit.getLocalisationByKey(L10nKeys.comingSoonPlaceholderPageSubTitle),
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.comingSoonPlaceholderPageSubTitle,
+          ),
         ),
       );
       expect(subtitleText.style?.fontSize, AppTextStyles.zonaPro16.fontSize);
-      expect(subtitleText.style?.fontWeight, AppTextStyles.zonaPro16.fontWeight);
+      expect(
+        subtitleText.style?.fontWeight,
+        AppTextStyles.zonaPro16.fontWeight,
+      );
       expect(subtitleText.style?.color, Colors.grey);
       expect(subtitleText.textAlign, TextAlign.center);
     });
@@ -95,7 +122,11 @@ void main() {
     testWidgets('has correct background color', (WidgetTester tester) async {
       await tester.pumpWidget(
         MultiBlocProvider(
-          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+          providers: [
+            BlocProvider<AppLocalisationsCubit>.value(
+              value: appLocalisationsCubit,
+            ),
+          ],
           child: const MaterialApp(home: PlaceholderPage()),
         ),
       );

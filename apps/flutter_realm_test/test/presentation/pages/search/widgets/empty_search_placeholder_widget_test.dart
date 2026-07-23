@@ -9,7 +9,9 @@ void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
+      () => appLocalisationsCubit,
+    );
 
     // Set up localisation values for the test
     final localisations = {
@@ -24,36 +26,52 @@ void main() {
   });
 
   group('EmptySearchPlaceholderWidget', () {
-    testWidgets('displays the correct placeholder text', (WidgetTester tester) async {
+    testWidgets('displays the correct placeholder text', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: EmptyResultsPlaceholderWidget(
-              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+              text: appLocalisationsCubit.getLocalisationByKey(
+                L10nKeys.emptySearchPlaceholderText,
+              ),
             ),
           ),
         ),
       );
 
       expect(
-        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText)),
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.emptySearchPlaceholderText,
+          ),
+        ),
         findsOneWidget,
       );
     });
 
-    testWidgets('uses correct text style and maxLines', (WidgetTester tester) async {
+    testWidgets('uses correct text style and maxLines', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: EmptyResultsPlaceholderWidget(
-              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+              text: appLocalisationsCubit.getLocalisationByKey(
+                L10nKeys.emptySearchPlaceholderText,
+              ),
             ),
           ),
         ),
       );
 
       final textWidget = tester.widget<Text>(
-        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText)),
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.emptySearchPlaceholderText,
+          ),
+        ),
       );
       expect(textWidget.style?.fontSize, AppTextStyles.zonaPro18.fontSize);
       expect(textWidget.style?.fontWeight, AppTextStyles.zonaPro18.fontWeight);
@@ -65,22 +83,31 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: EmptyResultsPlaceholderWidget(
-              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+              text: appLocalisationsCubit.getLocalisationByKey(
+                L10nKeys.emptySearchPlaceholderText,
+              ),
             ),
           ),
         ),
       );
 
       final paddingWidget = tester.widget<Padding>(find.byType(Padding));
-      expect(paddingWidget.padding, const EdgeInsets.all(AppDimensions.normalL));
+      expect(
+        paddingWidget.padding,
+        const EdgeInsets.all(AppDimensions.normalL),
+      );
     });
 
-    testWidgets('text is a direct child of padding with ellipsis overflow', (WidgetTester tester) async {
+    testWidgets('text is a direct child of padding with ellipsis overflow', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: EmptyResultsPlaceholderWidget(
-              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+              text: appLocalisationsCubit.getLocalisationByKey(
+                L10nKeys.emptySearchPlaceholderText,
+              ),
             ),
           ),
         ),
@@ -90,7 +117,11 @@ void main() {
       expect(find.byType(Flexible), findsNothing);
 
       final textWidget = tester.widget<Text>(
-        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText)),
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.emptySearchPlaceholderText,
+          ),
+        ),
       );
       expect(textWidget.overflow, TextOverflow.ellipsis);
     });

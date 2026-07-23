@@ -30,43 +30,34 @@ import 'package:test_flutter_project/domain/repositories/car_color_repository.da
 class MockCarColorRepository extends _i1.Mock
     implements _i2.CarColorRepository {
   @override
-  Map<String, _i3.Color> getColors() => (super.noSuchMethod(
-        Invocation.method(
-          #getColors,
-          [],
-        ),
-        returnValue: <String, _i3.Color>{},
-        returnValueForMissingStub: <String, _i3.Color>{},
-      ) as Map<String, _i3.Color>);
+  Map<String, _i3.Color> getColors() =>
+      (super.noSuchMethod(
+            Invocation.method(#getColors, []),
+            returnValue: <String, _i3.Color>{},
+            returnValueForMissingStub: <String, _i3.Color>{},
+          )
+          as Map<String, _i3.Color>);
 
   @override
-  _i3.Color? getColorByName(String? colorName) => (super.noSuchMethod(
-        Invocation.method(
-          #getColorByName,
-          [colorName],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i3.Color?);
+  _i3.Color? getColorByName(String? colorName) =>
+      (super.noSuchMethod(
+            Invocation.method(#getColorByName, [colorName]),
+            returnValueForMissingStub: null,
+          )
+          as _i3.Color?);
 
   @override
-  String getColorNameFromColor(_i3.Color? color) => (super.noSuchMethod(
-        Invocation.method(
-          #getColorNameFromColor,
-          [color],
-        ),
-        returnValue: _i4.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getColorNameFromColor,
-            [color],
-          ),
-        ),
-        returnValueForMissingStub: _i4.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getColorNameFromColor,
-            [color],
-          ),
-        ),
-      ) as String);
+  String getColorNameFromColor(_i3.Color? color) =>
+      (super.noSuchMethod(
+            Invocation.method(#getColorNameFromColor, [color]),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.method(#getColorNameFromColor, [color]),
+            ),
+            returnValueForMissingStub: _i4.dummyValue<String>(
+              this,
+              Invocation.method(#getColorNameFromColor, [color]),
+            ),
+          )
+          as String);
 }

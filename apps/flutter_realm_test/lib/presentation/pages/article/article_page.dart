@@ -40,7 +40,10 @@ class _ArticlePageState extends State<ArticlePage> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text(state.article?.title ?? '', style: AppTextStyles.zonaPro20),
+            title: Text(
+              state.article?.title ?? '',
+              style: AppTextStyles.zonaPro20,
+            ),
             centerTitle: true,
             actions: [
               Padding(
@@ -50,14 +53,18 @@ class _ArticlePageState extends State<ArticlePage> {
                     await context.read<ShareCubit>().share(
                       ShareParamsModel(
                         title: '${state.article?.title}',
-                        text: '${ApiConstants.webHost}articles/?id=${widget.articleId}',
+                        text:
+                            '${ApiConstants.webHost}articles/?id=${widget.articleId}',
                       ),
                     );
                   },
                   icon: const AppSemantics(
                     button: true,
                     label: AppSemanticsLabels.shareButton,
-                    child: Icon(Icons.ios_share_rounded, size: AppDimensions.normalXL),
+                    child: Icon(
+                      Icons.ios_share_rounded,
+                      size: AppDimensions.normalXL,
+                    ),
                   ),
                 ),
               ),
@@ -66,7 +73,9 @@ class _ArticlePageState extends State<ArticlePage> {
           body: state.isLoading
               ? const Center(child: CircularProgressIndicator())
               : Padding(
-                  padding: const EdgeInsetsGeometry.symmetric(horizontal: AppDimensions.normalL),
+                  padding: const EdgeInsetsGeometry.symmetric(
+                    horizontal: AppDimensions.normalL,
+                  ),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,14 +84,17 @@ class _ArticlePageState extends State<ArticlePage> {
                         AspectRatio(
                           aspectRatio: AppConstants.aspectRatio,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                            borderRadius: BorderRadius.circular(
+                              AppDimensions.normalL,
+                            ),
                             child: CachedNetworkImage(
                               imageUrl: state.article?.imageUrl ?? '',
                               fit: BoxFit.cover,
                               width: double.infinity,
                               placeholder: (context, url) =>
                                   Container(color: AppColors.placeholderColor),
-                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
                               color: Colors.black.withAlpha(70),
                               colorBlendMode: BlendMode.darken,
                             ),
@@ -93,7 +105,9 @@ class _ArticlePageState extends State<ArticlePage> {
                           spacing: AppDimensions.minorL,
                           children: [
                             if (minsToRead != null) ...[
-                              Text('$minsToRead ${context.tr(L10nKeys.articlePageMinsToRead)}'),
+                              Text(
+                                '$minsToRead ${context.tr(L10nKeys.articlePageMinsToRead)}',
+                              ),
                             ],
 
                             Text(state.article?.datePublished ?? ''),
@@ -103,11 +117,15 @@ class _ArticlePageState extends State<ArticlePage> {
                         Row(
                           spacing: AppDimensions.normalXS,
                           children: [
-                            AvatarWidget(imageSrc: state.article?.author.imageSrc),
+                            AvatarWidget(
+                              imageSrc: state.article?.author.imageSrc,
+                            ),
 
                             Text(
                               state.article?.author.fullName ?? '',
-                              style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600),
+                              style: AppTextStyles.zonaPro14.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ],
                         ),
@@ -123,7 +141,9 @@ class _ArticlePageState extends State<ArticlePage> {
                         ...?state.article?.paragraphs.map(
                           (paragraph) => Text(
                             paragraph,
-                            style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w400),
+                            style: AppTextStyles.zonaPro16.copyWith(
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         ),
 

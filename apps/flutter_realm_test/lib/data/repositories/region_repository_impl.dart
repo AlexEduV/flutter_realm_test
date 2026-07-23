@@ -20,7 +20,10 @@ class RegionRepositoryImpl implements RegionRepository {
   // Get region by code
   @override
   RegionEntity? getRegionByCode(String code) {
-    return regions?.cast<RegionEntity?>().firstWhere((r) => r?.locale == code, orElse: () => null);
+    return regions?.cast<RegionEntity?>().firstWhere(
+      (r) => r?.locale == code,
+      orElse: () => null,
+    );
   }
 
   // Optionally, get all regions

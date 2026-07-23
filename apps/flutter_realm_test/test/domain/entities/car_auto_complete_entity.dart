@@ -65,9 +65,18 @@ void main() {
       final jsonMissingModels = {'id': 4, 'name': 'BMW'};
 
       // Act & Assert
-      expect(() => CarAutoCompleteEntity.fromJson(jsonMissingId), throwsA(isA<TypeError>()));
-      expect(() => CarAutoCompleteEntity.fromJson(jsonMissingName), throwsA(isA<TypeError>()));
-      expect(() => CarAutoCompleteEntity.fromJson(jsonMissingModels), throwsA(isA<TypeError>()));
+      expect(
+        () => CarAutoCompleteEntity.fromJson(jsonMissingId),
+        throwsA(isA<TypeError>()),
+      );
+      expect(
+        () => CarAutoCompleteEntity.fromJson(jsonMissingName),
+        throwsA(isA<TypeError>()),
+      );
+      expect(
+        () => CarAutoCompleteEntity.fromJson(jsonMissingModels),
+        throwsA(isA<TypeError>()),
+      );
     });
   });
 }

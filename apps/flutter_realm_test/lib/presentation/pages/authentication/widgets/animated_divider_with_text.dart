@@ -12,7 +12,8 @@ class AnimatedDividerWithText extends StatefulWidget {
   final Duration duration;
 
   @override
-  State<AnimatedDividerWithText> createState() => _AnimatedDividerWithTextState();
+  State<AnimatedDividerWithText> createState() =>
+      _AnimatedDividerWithTextState();
 }
 
 class _AnimatedDividerWithTextState extends State<AnimatedDividerWithText>
@@ -53,7 +54,9 @@ class _AnimatedDividerWithTextState extends State<AnimatedDividerWithText>
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.minorL),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppDimensions.minorL,
+            ),
             child: Text(widget.text),
           ),
           Expanded(

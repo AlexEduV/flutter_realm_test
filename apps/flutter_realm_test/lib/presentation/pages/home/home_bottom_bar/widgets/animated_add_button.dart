@@ -52,7 +52,11 @@ class _AnimatedAddButtonState extends State<AnimatedAddButton> {
           child: CircleAvatar(
             backgroundColor: widget.backgroundColor,
             radius: widget.size,
-            child: Icon(Icons.add, color: Colors.white, size: widget.size * 1.2),
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+              size: widget.size * 1.2,
+            ),
           ),
         ),
       ),

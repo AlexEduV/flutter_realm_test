@@ -92,7 +92,9 @@ class AppFormField extends StatelessWidget {
               borderSide: const BorderSide(color: Colors.red),
             ),
             prefixIcon: getPrefixIcon(),
-            suffixIcon: onSuffixIconPressed != null ? getFieldSuffixWidget() : null,
+            suffixIcon: onSuffixIconPressed != null
+                ? getFieldSuffixWidget()
+                : null,
           ),
           keyboardType: textInputType,
           textInputAction: textInputAction,

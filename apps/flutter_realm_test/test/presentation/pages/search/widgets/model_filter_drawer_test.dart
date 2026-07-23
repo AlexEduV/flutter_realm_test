@@ -17,9 +17,14 @@ void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
+      () => appLocalisationsCubit,
+    );
 
-    final localisations = {'filters.model.title': 'Model', 'filters.model.placeholder': 'All'};
+    final localisations = {
+      'filters.model.title': 'Model',
+      'filters.model.placeholder': 'All',
+    };
     appLocalisationsCubit.load(localisations);
   });
 
@@ -45,36 +50,53 @@ void main() {
           providers: [
             BlocProvider<SearchPageCubit>.value(value: mockCubit),
 
-            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+            BlocProvider<AppLocalisationsCubit>.value(
+              value: appLocalisationsCubit,
+            ),
           ],
           child: ModelFilterDrawer(models: models),
         ),
       );
     }
 
-    testWidgets('displays header and "All" checkbox', (WidgetTester tester) async {
+    testWidgets('displays header and "All" checkbox', (
+      WidgetTester tester,
+    ) async {
       when(mockCubit.state).thenReturn(initialState);
-      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([initialState]));
+      when(
+        mockCubit.stream,
+      ).thenAnswer((_) => Stream.fromIterable([initialState]));
 
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
 
       expect(
-        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.searchFilterModelTitle)),
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.searchFilterModelTitle,
+          ),
+        ),
         findsOneWidget,
       );
       expect(
         find.text(
-          appLocalisationsCubit.getLocalisationByKey(L10nKeys.searchFilterModelPlaceholder),
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.searchFilterModelPlaceholder,
+          ),
         ),
         findsOneWidget,
       );
-      expect(find.byType(CheckboxListTile), findsNWidgets(5)); // "All" + each model
+      expect(
+        find.byType(CheckboxListTile),
+        findsNWidgets(5),
+      ); // "All" + each model
     });
 
     testWidgets('displays model checkboxes', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(initialState);
-      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([initialState]));
+      when(
+        mockCubit.stream,
+      ).thenAnswer((_) => Stream.fromIterable([initialState]));
 
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
@@ -84,16 +106,22 @@ void main() {
       }
     });
 
-    testWidgets('tapping "All" checkbox calls updateModelSelection', (WidgetTester tester) async {
+    testWidgets('tapping "All" checkbox calls updateModelSelection', (
+      WidgetTester tester,
+    ) async {
       when(mockCubit.state).thenReturn(initialState);
-      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([initialState]));
+      when(
+        mockCubit.stream,
+      ).thenAnswer((_) => Stream.fromIterable([initialState]));
 
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
 
       await tester.tap(
         find.text(
-          appLocalisationsCubit.getLocalisationByKey(L10nKeys.searchFilterModelPlaceholder),
+          appLocalisationsCubit.getLocalisationByKey(
+            L10nKeys.searchFilterModelPlaceholder,
+          ),
         ),
       );
       await tester.pump();
@@ -105,7 +133,9 @@ void main() {
       WidgetTester tester,
     ) async {
       when(mockCubit.state).thenReturn(initialState);
-      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([initialState]));
+      when(
+        mockCubit.stream,
+      ).thenAnswer((_) => Stream.fromIterable([initialState]));
 
       await tester.pumpWidget(buildTestWidget(initialState));
       await tester.pumpAndSettle();
@@ -116,24 +146,29 @@ void main() {
       verify(mockCubit.addCarModelToSelection('manufacturer', 'A')).called(1);
     });
 
-    testWidgets('unchecking a model checkbox calls removeCarModelFromSelection', (
-      WidgetTester tester,
-    ) async {
-      final selectedState = const SearchPageState(
-        selectedModels: {
-          'manufacturer': ['A'],
-        },
-      );
-      when(mockCubit.state).thenReturn(selectedState);
-      when(mockCubit.stream).thenAnswer((_) => Stream.fromIterable([selectedState]));
+    testWidgets(
+      'unchecking a model checkbox calls removeCarModelFromSelection',
+      (WidgetTester tester) async {
+        final selectedState = const SearchPageState(
+          selectedModels: {
+            'manufacturer': ['A'],
+          },
+        );
+        when(mockCubit.state).thenReturn(selectedState);
+        when(
+          mockCubit.stream,
+        ).thenAnswer((_) => Stream.fromIterable([selectedState]));
 
-      await tester.pumpWidget(buildTestWidget(selectedState));
-      await tester.pumpAndSettle();
+        await tester.pumpWidget(buildTestWidget(selectedState));
+        await tester.pumpAndSettle();
 
-      await tester.tap(find.text('A'));
-      await tester.pump();
+        await tester.tap(find.text('A'));
+        await tester.pump();
 
-      verify(mockCubit.removeCarModelFromSelection('manufacturer', 'A')).called(1);
-    });
+        verify(
+          mockCubit.removeCarModelFromSelection('manufacturer', 'A'),
+        ).called(1);
+      },
+    );
   });
 }

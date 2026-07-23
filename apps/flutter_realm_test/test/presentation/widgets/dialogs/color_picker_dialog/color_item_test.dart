@@ -3,7 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_item.dart';
 
 void main() {
-  testWidgets('ColorItem renders and triggers onTap', (WidgetTester tester) async {
+  testWidgets('ColorItem renders and triggers onTap', (
+    WidgetTester tester,
+  ) async {
     // Arrange
     bool tapped = false;
     const testColor = Colors.red;
@@ -26,7 +28,9 @@ void main() {
     expect(find.byType(InkWell), findsOneWidget);
 
     // Assert: Icon is visible when isPicked is true
-    final animatedOpacity = tester.widget<AnimatedOpacity>(find.byType(AnimatedOpacity));
+    final animatedOpacity = tester.widget<AnimatedOpacity>(
+      find.byType(AnimatedOpacity),
+    );
     expect(animatedOpacity.opacity, 1.0);
 
     // Assert: Icon is present
@@ -37,7 +41,9 @@ void main() {
     expect(tapped, isTrue);
   });
 
-  testWidgets('ColorItem hides icon when isPicked is false', (WidgetTester tester) async {
+  testWidgets('ColorItem hides icon when isPicked is false', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -47,7 +53,9 @@ void main() {
     );
 
     // Assert: AnimatedOpacity opacity is 0.0
-    final animatedOpacity = tester.widget<AnimatedOpacity>(find.byType(AnimatedOpacity));
+    final animatedOpacity = tester.widget<AnimatedOpacity>(
+      find.byType(AnimatedOpacity),
+    );
     expect(animatedOpacity.opacity, 0.0);
 
     // Assert: Icon is present in the widget tree (but hidden)

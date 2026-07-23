@@ -23,7 +23,9 @@ void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
+      () => appLocalisationsCubit,
+    );
 
     mockCubit = MockSearchPageCubit();
 
@@ -59,14 +61,18 @@ void main() {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<SearchPageCubit>.value(value: mockCubit),
-          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          BlocProvider<AppLocalisationsCubit>.value(
+            value: appLocalisationsCubit,
+          ),
         ],
         child: const FiltersDrawer(),
       ),
     );
   }
 
-  testWidgets('renders FiltersDrawer and displays initial values', (tester) async {
+  testWidgets('renders FiltersDrawer and displays initial values', (
+    tester,
+  ) async {
     final localisations = {
       'filters.parameters.title': 'Parameters',
       'filters.parameters.bodyTypes.sedan': 'Sedan',
@@ -78,13 +84,19 @@ void main() {
 
     // Check DrawerHeader title
     expect(
-      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.searchFilterParametersTitle)),
+      find.text(
+        appLocalisationsCubit.getLocalisationByKey(
+          L10nKeys.searchFilterParametersTitle,
+        ),
+      ),
       findsOneWidget,
     );
 
     // Check selected body type
     expect(
-      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.bodyTypeSedan)),
+      find.text(
+        appLocalisationsCubit.getLocalisationByKey(L10nKeys.bodyTypeSedan),
+      ),
       findsOneWidget,
     );
     final sedanCheckbox = find.byWidgetPredicate(
@@ -92,7 +104,9 @@ void main() {
           widget is CheckboxListTile &&
           widget.title is Text &&
           (widget.title as Text).data ==
-              appLocalisationsCubit.getLocalisationByKey(L10nKeys.bodyTypeSedan),
+              appLocalisationsCubit.getLocalisationByKey(
+                L10nKeys.bodyTypeSedan,
+              ),
     );
     expect(sedanCheckbox, findsOneWidget);
   });
@@ -108,7 +122,9 @@ void main() {
     verify(mockCubit.updateSelectedMinYear('2010')).called(1);
   });
 
-  testWidgets('calls cubit methods when body type checkbox is toggled', (tester) async {
+  testWidgets('calls cubit methods when body type checkbox is toggled', (
+    tester,
+  ) async {
     final localisations = {'filters.parameters.bodyTypes.sedan': 'Sedan'};
     appLocalisationsCubit.load(localisations);
 
@@ -120,15 +136,21 @@ void main() {
           widget is CheckboxListTile &&
           widget.title is Text &&
           (widget.title as Text).data ==
-              appLocalisationsCubit.getLocalisationByKey(L10nKeys.bodyTypeSedan),
+              appLocalisationsCubit.getLocalisationByKey(
+                L10nKeys.bodyTypeSedan,
+              ),
     );
     await tester.tap(sedanCheckbox);
     await tester.pumpAndSettle();
 
-    verify(mockCubit.removeBodyTypeFromSelection(BodyType.sedan.name)).called(1);
+    verify(
+      mockCubit.removeBodyTypeFromSelection(BodyType.sedan.name),
+    ).called(1);
   });
 
-  testWidgets('calls cubit methods when fuel type checkbox is toggled', (tester) async {
+  testWidgets('calls cubit methods when fuel type checkbox is toggled', (
+    tester,
+  ) async {
     final localisations = {'filters.parameters.fuelTypes.diesel': 'Diesel'};
     appLocalisationsCubit.load(localisations);
 
@@ -139,7 +161,9 @@ void main() {
           widget is CheckboxListTile &&
           widget.title is Text &&
           (widget.title as Text).data ==
-              appLocalisationsCubit.getLocalisationByKey(L10nKeys.fuelTypeDiesel),
+              appLocalisationsCubit.getLocalisationByKey(
+                L10nKeys.fuelTypeDiesel,
+              ),
     );
 
     await tester.scrollUntilVisible(
@@ -151,32 +175,45 @@ void main() {
     await tester.tap(dieselCheckbox);
     await tester.pumpAndSettle();
 
-    verify(mockCubit.removeFuelTypeFromSelection(FuelType.diesel.name)).called(1);
+    verify(
+      mockCubit.removeFuelTypeFromSelection(FuelType.diesel.name),
+    ).called(1);
   });
 
-  testWidgets('calls cubit methods when transmission type checkbox is toggled', (tester) async {
-    final localisations = {'filters.parameters.transmissionTypes.manual': 'Manual'};
-    appLocalisationsCubit.load(localisations);
+  testWidgets(
+    'calls cubit methods when transmission type checkbox is toggled',
+    (tester) async {
+      final localisations = {
+        'filters.parameters.transmissionTypes.manual': 'Manual',
+      };
+      appLocalisationsCubit.load(localisations);
 
-    await tester.pumpWidget(buildTestWidget());
+      await tester.pumpWidget(buildTestWidget());
 
-    final manualCheckbox = find.byWidgetPredicate(
-      (widget) =>
-          widget is CheckboxListTile &&
-          widget.title is Text &&
-          (widget.title as Text).data ==
-              appLocalisationsCubit.getLocalisationByKey(L10nKeys.transmissionTypeManual),
-    );
+      final manualCheckbox = find.byWidgetPredicate(
+        (widget) =>
+            widget is CheckboxListTile &&
+            widget.title is Text &&
+            (widget.title as Text).data ==
+                appLocalisationsCubit.getLocalisationByKey(
+                  L10nKeys.transmissionTypeManual,
+                ),
+      );
 
-    await tester.scrollUntilVisible(
-      manualCheckbox,
-      400.0, // scroll delta, adjust as needed
-      scrollable: find.byType(Scrollable).first,
-    );
+      await tester.scrollUntilVisible(
+        manualCheckbox,
+        400.0, // scroll delta, adjust as needed
+        scrollable: find.byType(Scrollable).first,
+      );
 
-    await tester.tap(manualCheckbox);
-    await tester.pumpAndSettle();
+      await tester.tap(manualCheckbox);
+      await tester.pumpAndSettle();
 
-    verify(mockCubit.removeTransmissionTypeFromSelection(TransmissionType.manual.name)).called(1);
-  });
+      verify(
+        mockCubit.removeTransmissionTypeFromSelection(
+          TransmissionType.manual.name,
+        ),
+      ).called(1);
+    },
+  );
 }

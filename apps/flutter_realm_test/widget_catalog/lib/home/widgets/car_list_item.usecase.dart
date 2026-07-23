@@ -8,23 +8,39 @@ import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_it
 import 'package:widgetbook/widgetbook.dart';
 
 Widget buildCarListItemUseCase(BuildContext context) {
-  final appLocalisationsCubit = AppLocalisationsCubit()..load({L10nKeys.emptyStateLabel: 'Empty'});
+  final appLocalisationsCubit = AppLocalisationsCubit()
+    ..load({L10nKeys.emptyStateLabel: 'Empty'});
 
   return Scaffold(
     backgroundColor: AppColors.scaffoldColor,
     body: Padding(
       padding: const EdgeInsets.only(top: AppDimensions.normalM),
       child: MultiBlocProvider(
-        providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+        providers: [
+          BlocProvider<AppLocalisationsCubit>(
+            create: (_) => appLocalisationsCubit,
+          ),
+        ],
         child: Column(
           spacing: AppDimensions.normalL,
           children: [
             CarListItem(
               car: CarEntity.empty().copyWith(
-                model: context.knobs.string(label: 'Model', initialValue: 'Model S'),
-                manufacturer: context.knobs.string(label: 'Manufacturer', initialValue: 'Tesla'),
-                year: context.knobs.int.input(label: 'Year', initialValue: 2010).toString(),
-                price: context.knobs.int.input(label: 'Price', initialValue: 20000),
+                model: context.knobs.string(
+                  label: 'Model',
+                  initialValue: 'Model S',
+                ),
+                manufacturer: context.knobs.string(
+                  label: 'Manufacturer',
+                  initialValue: 'Tesla',
+                ),
+                year: context.knobs.int
+                    .input(label: 'Year', initialValue: 2010)
+                    .toString(),
+                price: context.knobs.int.input(
+                  label: 'Price',
+                  initialValue: 20000,
+                ),
               ),
             ),
           ],

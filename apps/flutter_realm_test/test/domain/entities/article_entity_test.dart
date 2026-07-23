@@ -36,7 +36,10 @@ void main() {
       expect(empty.title, '');
       expect(empty.summary, '');
       expect(empty.paragraphs, []);
-      expect(empty.author, const AuthorEntity(id: 'testId', fullName: 'Test Author'));
+      expect(
+        empty.author,
+        const AuthorEntity(id: 'testId', fullName: 'Test Author'),
+      );
       expect(empty.datePublished, '20/11/2022');
       expect(empty.minsToRead, isNull);
       expect(empty.imageUrl, isNull);
@@ -61,7 +64,10 @@ void main() {
       expect(article.paragraphs, ['P1', 'P2']);
       expect(article.imageUrl, 'http://img.com/2.png');
       expect(article.minsToRead, 10);
-      expect(article.author, const AuthorEntity(id: 'a2', fullName: 'Author 2'));
+      expect(
+        article.author,
+        const AuthorEntity(id: 'a2', fullName: 'Author 2'),
+      );
       expect(article.datePublished, '2023-02-02');
     });
 

@@ -11,6 +11,9 @@ clean-get:
 	$(MAKE) clean
 	$(MAKE) get
 
+format:
+	dart format .
+
 
 # File Generation
 clean-build:

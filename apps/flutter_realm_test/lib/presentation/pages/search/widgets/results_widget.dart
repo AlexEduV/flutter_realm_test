@@ -21,7 +21,9 @@ class ResultsWidget extends StatelessWidget {
         children: [
           Text(
             context.tr(L10nKeys.results),
-            style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
+            style: AppTextStyles.zonaPro16.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
           ),
 
           AppBadge(text: resultsCount),

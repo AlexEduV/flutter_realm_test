@@ -43,7 +43,8 @@ class UserDataCubit extends Cubit<UserDataState> {
   final PickImageFromGalleryUseCase _pickImageFromGalleryUseCase;
 
   final RequestLocationPermissionUseCase _requestLocationPermissionUseCase;
-  final CheckLocationPermissionStatusUseCase _checkLocationPermissionStatusUseCase;
+  final CheckLocationPermissionStatusUseCase
+  _checkLocationPermissionStatusUseCase;
 
   final GetUserByEmailUseCase _getUserByEmailUseCase;
   final DeleteCarByIdUseCase _deleteCarByIdUseCase;
@@ -61,9 +62,8 @@ class UserDataCubit extends Cubit<UserDataState> {
     await initLocalisation(user.region);
 
     checkLastSeenCarExpiration(days: 7);
-    final isLocationPermissionGranted = await _checkLocationPermissionStatusUseCase
-        .call()
-        .isGranted;
+    final isLocationPermissionGranted =
+        await _checkLocationPermissionStatusUseCase.call().isGranted;
 
     emit(
       state.copyWith(
@@ -128,8 +128,9 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void setLastSeenCar(String? carId) {
-    final newLastSeenCar =
-        carId == null ? null : LastSeenCarEntity(carId: carId, seenAt: DateTime.now());
+    final newLastSeenCar = carId == null
+        ? null
+        : LastSeenCarEntity(carId: carId, seenAt: DateTime.now());
 
     user = user.copyWith(lastSeenCar: newLastSeenCar);
     emit(state.copyWith(lastSeenCar: newLastSeenCar));

@@ -18,7 +18,9 @@ void main() {
   appLocalisationsCubit.load(localisations);
 
   setUpAll(() {
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
+      () => appLocalisationsCubit,
+    );
   });
 
   tearDownAll(() {

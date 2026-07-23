@@ -38,10 +38,13 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   final appLocalisationsCubit = AppLocalisationsCubit();
-  final mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
+  final mockCheckLocationPermissionStatusUseCase =
+      MockCheckLocationPermissionStatusUseCase();
 
   setUpAll(() {
-    serviceLocator.registerSingleton<AppLocalisationsCubit>(appLocalisationsCubit);
+    serviceLocator.registerSingleton<AppLocalisationsCubit>(
+      appLocalisationsCubit,
+    );
     serviceLocator.registerSingleton<CheckLocationPermissionStatusUseCase>(
       mockCheckLocationPermissionStatusUseCase,
     );
@@ -67,7 +70,9 @@ void main() {
     final mockExplorePageCubit = MockExplorePageCubit();
 
     when(mockHomeBottomBarCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(mockHomeBottomBarCubit.state).thenAnswer((_) => const HomeBottomBarState());
+    when(
+      mockHomeBottomBarCubit.state,
+    ).thenAnswer((_) => const HomeBottomBarState());
 
     when(mockExplorePageCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockExplorePageCubit.state).thenReturn(const ExplorePageState());
@@ -114,9 +119,11 @@ void main() {
       ),
     );
 
-    when(
-      appLocalisationsCubit.state,
-    ).thenReturn(const AppLocalisationsState(localisations: {L10nKeys.searchPageTitle: 'Search'}));
+    when(appLocalisationsCubit.state).thenReturn(
+      const AppLocalisationsState(
+        localisations: {L10nKeys.searchPageTitle: 'Search'},
+      ),
+    );
 
     return MultiBlocProvider(
       providers: [
@@ -130,7 +137,9 @@ void main() {
     );
   }
 
-  testWidgets('shows app bar title and back button', (WidgetTester tester) async {
+  testWidgets('shows app bar title and back button', (
+    WidgetTester tester,
+  ) async {
     final searchCubit = MockSearchPageCubit();
     final userCubit = MockUserDataCubit();
     final appLocalisationsCubit = MockAppLocalisationsCubit();
@@ -143,11 +152,16 @@ void main() {
       ),
     );
 
-    expect(find.textContaining('Search'), findsOneWidget); // Adjust for your localization
+    expect(
+      find.textContaining('Search'),
+      findsOneWidget,
+    ); // Adjust for your localization
     expect(find.byIcon(Icons.arrow_back), findsOneWidget);
   });
 
-  testWidgets('shows segmented switch and filter buttons', (WidgetTester tester) async {
+  testWidgets('shows segmented switch and filter buttons', (
+    WidgetTester tester,
+  ) async {
     final searchCubit = MockSearchPageCubit();
     final userCubit = MockUserDataCubit();
     final appLocalisationsCubit = MockAppLocalisationsCubit();
@@ -164,7 +178,9 @@ void main() {
     expect(find.byType(SearchFilterButton), findsNWidgets(2));
   });
 
-  testWidgets('shows empty placeholder when there are no results', (WidgetTester tester) async {
+  testWidgets('shows empty placeholder when there are no results', (
+    WidgetTester tester,
+  ) async {
     final searchCubit = MockSearchPageCubit();
     final userCubit = MockUserDataCubit();
     final appLocalisationsCubit = MockAppLocalisationsCubit();
@@ -233,7 +249,9 @@ void main() {
         searchCubit: searchCubit,
         userCubit: userCubit,
         appLocalisationsCubit: appLocalisationsCubit,
-        searchState: const SearchPageState(drawerOpened: SearchDrawerType.model),
+        searchState: const SearchPageState(
+          drawerOpened: SearchDrawerType.model,
+        ),
       ),
     );
 
@@ -242,44 +260,51 @@ void main() {
     await tester.pumpAndSettle();
 
     // Simulate opening the drawer
-    when(searchCubit.state).thenReturn(const SearchPageState(drawerOpened: SearchDrawerType.model));
+    when(
+      searchCubit.state,
+    ).thenReturn(const SearchPageState(drawerOpened: SearchDrawerType.model));
     await tester.pumpAndSettle();
 
     expect(find.byType(ModelFilterDrawer), findsOneWidget);
   });
 
-  testWidgets('opens parameters filter drawer when parameters filter button is pressed', (
+  testWidgets(
+    'opens parameters filter drawer when parameters filter button is pressed',
+    (WidgetTester tester) async {
+      final searchCubit = MockSearchPageCubit();
+      final userCubit = MockUserDataCubit();
+      final appLocalisationsCubit = MockAppLocalisationsCubit();
+
+      when(
+        searchCubit.state,
+      ).thenReturn(const SearchPageState(drawerOpened: SearchDrawerType.empty));
+      when(userCubit.state).thenReturn(const UserDataState());
+
+      await tester.pumpWidget(
+        buildTestableWidget(
+          searchCubit: searchCubit,
+          userCubit: userCubit,
+          appLocalisationsCubit: appLocalisationsCubit,
+        ),
+      );
+
+      // Tap the second SearchFilterButton (parameters filter)
+      await tester.tap(find.byType(SearchFilterButton).last);
+      await tester.pumpAndSettle();
+
+      // Simulate opening the drawer
+      when(searchCubit.state).thenReturn(
+        const SearchPageState(drawerOpened: SearchDrawerType.parameters),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(FiltersDrawer), findsOneWidget);
+    },
+  );
+
+  testWidgets('calls context.pop() when back button is pressed', (
     WidgetTester tester,
   ) async {
-    final searchCubit = MockSearchPageCubit();
-    final userCubit = MockUserDataCubit();
-    final appLocalisationsCubit = MockAppLocalisationsCubit();
-
-    when(searchCubit.state).thenReturn(const SearchPageState(drawerOpened: SearchDrawerType.empty));
-    when(userCubit.state).thenReturn(const UserDataState());
-
-    await tester.pumpWidget(
-      buildTestableWidget(
-        searchCubit: searchCubit,
-        userCubit: userCubit,
-        appLocalisationsCubit: appLocalisationsCubit,
-      ),
-    );
-
-    // Tap the second SearchFilterButton (parameters filter)
-    await tester.tap(find.byType(SearchFilterButton).last);
-    await tester.pumpAndSettle();
-
-    // Simulate opening the drawer
-    when(
-      searchCubit.state,
-    ).thenReturn(const SearchPageState(drawerOpened: SearchDrawerType.parameters));
-    await tester.pumpAndSettle();
-
-    expect(find.byType(FiltersDrawer), findsOneWidget);
-  });
-
-  testWidgets('calls context.pop() when back button is pressed', (WidgetTester tester) async {
     final searchCubit = MockSearchPageCubit();
     final userCubit = MockUserDataCubit();
     final appLocalisationsCubit = MockAppLocalisationsCubit();

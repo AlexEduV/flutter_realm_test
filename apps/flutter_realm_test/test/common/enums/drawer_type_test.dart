@@ -19,7 +19,10 @@ void main() {
     test('should have correct string representation', () {
       expect(SearchDrawerType.empty.toString(), 'SearchDrawerType.empty');
       expect(SearchDrawerType.model.toString(), 'SearchDrawerType.model');
-      expect(SearchDrawerType.parameters.toString(), 'SearchDrawerType.parameters');
+      expect(
+        SearchDrawerType.parameters.toString(),
+        'SearchDrawerType.parameters',
+      );
     });
   });
 }

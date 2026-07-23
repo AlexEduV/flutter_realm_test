@@ -12,5 +12,6 @@ extension WidgetListDividers on List<Widget> {
     return result;
   }
 
-  List<Widget> withDividers({Widget? divider}) => _interleaveDividers(divider: divider);
+  List<Widget> withDividers({Widget? divider}) =>
+      _interleaveDividers(divider: divider);
 }

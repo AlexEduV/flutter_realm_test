@@ -67,9 +67,14 @@ void main() {
     when(carEntity.model).thenReturn('Model Y');
     when(carEntity.manufacturer).thenReturn('Tesla');
     when(carEntity.year).thenReturn('2007');
-    when(
-      carEntity.owner,
-    ).thenReturn(OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []));
+    when(carEntity.owner).thenReturn(
+      OwnerEntity(
+        id: 'test',
+        firstName: 'Elon',
+        lastName: 'Musk',
+        linkedItemIds: [],
+      ),
+    );
     when(carEntity.isVerified).thenReturn(true);
     when(carEntity.promoType).thenReturn(null);
     when(carEntity.mileage).thenReturn(12345);
@@ -148,7 +153,12 @@ void main() {
       transmissionType: 'hybrid',
       color: 'White',
       images: [],
-      owner: OwnerEntity(id: 'test', firstName: 'James', lastName: 'Morrison', linkedItemIds: []),
+      owner: OwnerEntity(
+        id: 'test',
+        firstName: 'James',
+        lastName: 'Morrison',
+        linkedItemIds: [],
+      ),
     );
 
     final carDtos = [carDto];

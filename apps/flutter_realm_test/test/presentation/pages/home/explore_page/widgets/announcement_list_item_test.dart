@@ -19,7 +19,10 @@ void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
-    final localisations = {'actions.delete.title': 'Delete', 'widgets.distance.text': 'km away'};
+    final localisations = {
+      'actions.delete.title': 'Delete',
+      'widgets.distance.text': 'km away',
+    };
 
     serviceLocator.registerLazySingleton(() => appLocalisationsCubit);
     appLocalisationsCubit.load(localisations);
@@ -62,12 +65,18 @@ void main() {
       viewedIds: [],
     );
 
-    testWidgets('displays car manufacturer, model, and year', (WidgetTester tester) async {
+    testWidgets('displays car manufacturer, model, and year', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              user: user,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -75,12 +84,18 @@ void main() {
       expect(find.text('TESLA MODEL S 2022'), findsOneWidget);
     });
 
-    testWidgets('displays price and hot promotion icon', (WidgetTester tester) async {
+    testWidgets('displays price and hot promotion icon', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              user: user,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -91,19 +106,27 @@ void main() {
       final priceTextWidget = textWidgets.firstWhere(
         (textWidget) =>
             textWidget.textSpan is TextSpan &&
-            (textWidget.textSpan as TextSpan).toPlainText().contains('\$ 90000'),
+            (textWidget.textSpan as TextSpan).toPlainText().contains(
+              '\$ 90000',
+            ),
       );
 
       expect(priceTextWidget, isNotNull);
       expect(find.byIcon(Icons.whatshot), findsOneWidget);
     });
 
-    testWidgets('displays location info if permission granted', (WidgetTester tester) async {
+    testWidgets('displays location info if permission granted', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              user: user,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -113,19 +136,27 @@ void main() {
       final distanceTextWidget = textWidgets.firstWhere(
         (textWidget) =>
             textWidget.textSpan is TextSpan &&
-            (textWidget.textSpan as TextSpan).toPlainText().contains('5 km away'),
+            (textWidget.textSpan as TextSpan).toPlainText().contains(
+              '5 km away',
+            ),
       );
 
       expect(find.byIcon(Icons.location_pin), findsOneWidget);
       expect(distanceTextWidget, isNotNull);
     });
 
-    testWidgets('displays verified icon if car is verified', (WidgetTester tester) async {
+    testWidgets('displays verified icon if car is verified', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              user: user,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -133,7 +164,9 @@ void main() {
       expect(find.byIcon(Icons.beenhere_outlined), findsOneWidget);
     });
 
-    testWidgets('calls onDismissed when delete action is pressed', (WidgetTester tester) async {
+    testWidgets('calls onDismissed when delete action is pressed', (
+      WidgetTester tester,
+    ) async {
       bool dismissed = false;
       await tester.pumpWidget(
         MultiBlocProvider(
@@ -191,7 +224,11 @@ void main() {
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: userNoLocation, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              user: userNoLocation,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -223,7 +260,11 @@ void main() {
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: carNotVerified, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: carNotVerified,
+              user: user,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
