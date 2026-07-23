@@ -31,6 +31,7 @@ class WidgetBookApp extends StatelessWidget {
     const defaultUseCaseName = 'Default';
 
     return Widgetbook.material(
+      initialRoute: '/?path=general/animated-favorite-icon/default',
       directories: [
         WidgetbookCategory(
           name: 'General',
