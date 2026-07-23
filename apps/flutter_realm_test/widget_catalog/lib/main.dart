@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:widget_catalog/search/widgets/results_widget.usecase.dart';
 import 'package:widget_catalog/search/widgets/search_filter_button.usecase.dart';
 import 'package:widget_catalog/widgets/animated_favorite_icon.usecase.dart';
@@ -118,12 +116,7 @@ class WidgetBookApp extends StatelessWidget {
                       initialValue: true,
                     );
 
-                    final mockCubit = MockDetailsPageCubit(isExpanded);
-
-                    return BlocProvider<DetailsPageCubit>.value(
-                      value: mockCubit,
-                      child: buildVehicleSpecsWidgetUseCase(context),
-                    );
+                    return buildVehicleSpecsWidgetUseCase(context, isExpanded: isExpanded);
                   },
                 ),
               ],

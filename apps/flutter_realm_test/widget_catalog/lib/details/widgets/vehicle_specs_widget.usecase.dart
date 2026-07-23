@@ -23,9 +23,12 @@ class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
 
   @override
   Stream<DetailsPageState> get stream => const Stream.empty();
+
+  @override
+  Future<void> close() async {}
 }
 
-Widget buildVehicleSpecsWidgetUseCase(BuildContext context) {
+Widget buildVehicleSpecsWidgetUseCase(BuildContext context, {bool isExpanded = true}) {
   final appLocalisationsCubit = AppLocalisationsCubit()
     ..load({
       L10nKeys.vehicleSpecificationsSectionTitle: 'Vehicle specs',
@@ -41,7 +44,7 @@ Widget buildVehicleSpecsWidgetUseCase(BuildContext context) {
   return MultiBlocProvider(
     providers: [
       BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
-      BlocProvider<DetailsPageCubit>(create: (_) => MockDetailsPageCubit(true)),
+      BlocProvider<DetailsPageCubit>(create: (_) => MockDetailsPageCubit(isExpanded)),
     ],
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
