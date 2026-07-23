@@ -37,6 +37,8 @@ class _SearchPageState extends State<SearchPage> {
           previous.currentSelectedType != current.currentSelectedType ||
           previous.allModels != current.allModels ||
           !listEquals(previous.selectedBodyTypes, current.selectedBodyTypes) ||
+          !listEquals(previous.selectedColors, current.selectedColors) ||
+          !listEquals(previous.selectedFuelTypes, current.selectedFuelTypes) ||
           !listEquals(previous.selectedTransmissionTypes, current.selectedTransmissionTypes) ||
           previous.selectedMinYear != current.selectedMinYear ||
           previous.selectedMaxYear != current.selectedMaxYear ||
