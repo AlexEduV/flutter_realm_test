@@ -15,8 +15,11 @@ class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
   MockDetailsPageCubit(this.isExpanded);
 
   @override
-  DetailsPageState get state =>
-      DetailsPageState(isVehicleSpecsExpanded: isExpanded, carColor: Colors.white);
+  DetailsPageState get state => DetailsPageState(
+    isVehicleSpecsExpanded: isExpanded,
+    carColor: Colors.white,
+    car: CarEntity.empty(),
+  );
 
   @override
   Stream<DetailsPageState> get stream => const Stream.empty();
@@ -36,14 +39,16 @@ Widget buildVehicleSpecsWidgetUseCase(BuildContext context) {
     });
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+      BlocProvider<DetailsPageCubit>(create: (_) => MockDetailsPageCubit(true)),
+    ],
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
       child: Column(
         spacing: AppDimensions.normalL,
         children: [
-          //Interactive
-          VehicleSpecsWidget(car: CarEntity.empty()),
+          const VehicleSpecsWidget(),
         ],
       ),
     ),

@@ -197,7 +197,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
                       const SizedBox(height: AppDimensions.minorS),
 
-                      if (car != null) ...[VehicleSpecsWidget(car: car)],
+                      const VehicleSpecsWidget(),
 
                       const SizedBox(height: AppDimensions.minorL),
 

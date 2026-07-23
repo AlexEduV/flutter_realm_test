@@ -70,6 +70,8 @@ void main() {
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
     when(cubit.state).thenReturn(const DetailsPageState());
 
+    when(cubit.state).thenReturn(DetailsPageState(car: testCar));
+
     await tester.pumpWidget(
       MaterialApp(
         home: MultiBlocProvider(
@@ -77,7 +79,7 @@ void main() {
             BlocProvider<DetailsPageCubit>.value(value: cubit),
             BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           ],
-          child: VehicleSpecsWidget(car: testCar),
+          child: const VehicleSpecsWidget(),
         ),
       ),
     );
@@ -88,11 +90,13 @@ void main() {
 
   testWidgets('expands and shows specifications when button is pressed', (tester) async {
     final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
+    when(mockGetCarByIdUseCase.call(any)).thenReturn(testCar);
     final cubit = DetailsPageCubit(
       mockGetCarByIdUseCase,
       mockGetCarColorsUseCase,
       mockGetConversationByOwnerIdUseCase,
     );
+    cubit.loadData(testCar.carId);
     cubit.setVehicleSpecsExpansionState(false);
 
     await tester.pumpWidget(
@@ -102,7 +106,7 @@ void main() {
             BlocProvider<DetailsPageCubit>.value(value: cubit),
             BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           ],
-          child: VehicleSpecsWidget(car: testCar),
+          child: const VehicleSpecsWidget(),
         ),
       ),
     );
@@ -123,11 +127,13 @@ void main() {
 
   testWidgets('collapses and hides specifications when button is pressed again', (tester) async {
     final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
+    when(mockGetCarByIdUseCase.call(any)).thenReturn(testCar);
     final cubit = DetailsPageCubit(
       mockGetCarByIdUseCase,
       mockGetCarColorsUseCase,
       mockGetConversationByOwnerIdUseCase,
     );
+    cubit.loadData(testCar.carId);
 
     await tester.pumpWidget(
       MaterialApp(
@@ -136,7 +142,7 @@ void main() {
             BlocProvider<DetailsPageCubit>.value(value: cubit),
             BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           ],
-          child: VehicleSpecsWidget(car: testCar),
+          child: const VehicleSpecsWidget(),
         ),
       ),
     );
