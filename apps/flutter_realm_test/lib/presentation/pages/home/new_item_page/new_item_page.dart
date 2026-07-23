@@ -45,7 +45,7 @@ class _NewItemPageState extends State<NewItemPage> {
       pageViewController.jumpToPage(initIndex);
     });
 
-    cubit.clearInfoForm();
+    cubit.clearFields();
   }
 
   @override
@@ -64,61 +64,60 @@ class _NewItemPageState extends State<NewItemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.scaffoldColor,
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(context.tr(L10nKeys.addNewItemPageTitle), style: AppTextStyles.zonaPro20),
-        ),
-        body: Stack(
-          alignment: AlignmentGeometry.center,
-          children: [
-            Padding(
-              padding: const EdgeInsetsGeometry.symmetric(
-                vertical: AppDimensions.normalL,
-                horizontal: AppDimensions.normalM,
-              ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: PageView(
-                      controller: pageViewController,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        const CarTypePicker(),
+      backgroundColor: AppColors.scaffoldColor,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(context.tr(L10nKeys.addNewItemPageTitle), style: AppTextStyles.zonaPro20),
+      ),
+      body: Stack(
+        alignment: AlignmentGeometry.center,
+        children: [
+          Padding(
+            padding: const EdgeInsetsGeometry.symmetric(
+              vertical: AppDimensions.normalL,
+              horizontal: AppDimensions.normalM,
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: PageView(
+                    controller: pageViewController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      const CarTypePicker(),
 
-                        ItemInfoForm(
-                          manufacturerFocusNode: manufacturerFocusNode,
-                          modelFocusNode: modelFocusNode,
-                          colorFocusNode: colorFocusNode,
-                          yearFocusNode: yearFocusNode,
-                          priceFocusNode: priceFocusNode,
-                        ),
+                      ItemInfoForm(
+                        manufacturerFocusNode: manufacturerFocusNode,
+                        modelFocusNode: modelFocusNode,
+                        colorFocusNode: colorFocusNode,
+                        yearFocusNode: yearFocusNode,
+                        priceFocusNode: priceFocusNode,
+                      ),
 
-                        const ItemSpecsPicker(),
-                      ],
-                    ),
+                      const ItemSpecsPicker(),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+          ),
 
-            Positioned(
-              bottom: AppDimensions.majorS,
-              child: BlocBuilder<NewItemPageCubit, NewItemPageState>(
-                builder: (context, state) {
-                  return PageSelectionBar(
-                    onBackPressed: () => pageLeftPressed(state.currentPageIndex),
-                    onForwardPressed: () => pageRightPressed(state),
-                    currentIndex: state.currentPageIndex,
-                  );
-                },
-              ),
+          Positioned(
+            bottom: AppDimensions.majorS,
+            child: BlocBuilder<NewItemPageCubit, NewItemPageState>(
+              builder: (context, state) {
+                return PageSelectionBar(
+                  onBackPressed: () => pageLeftPressed(state.currentPageIndex),
+                  onForwardPressed: () => pageRightPressed(state),
+                  currentIndex: state.currentPageIndex,
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
-
 
   void clearAllFocuses() {
     manufacturerFocusNode.unfocus();
@@ -147,7 +146,11 @@ class _NewItemPageState extends State<NewItemPage> {
     final isLastIndex = currentIndex == ItemSetupTab.pickers.index;
 
     if (isLastIndex) {
-      final updatedCars = context.read<NewItemPageCubit>().insertItem();
+      final cubit = context.read<NewItemPageCubit>();
+      final isEngineVolumeValid = cubit.validateEngineVolume(cubit.state.engineVolumeText, false);
+      if (!isEngineVolumeValid) return;
+
+      final updatedCars = cubit.insertItem();
       context.read<ExplorePageCubit>().updateCars(updatedCars);
       context.go(AppRoutes.home, extra: HomePageParams(isFromSetup: true));
       return;

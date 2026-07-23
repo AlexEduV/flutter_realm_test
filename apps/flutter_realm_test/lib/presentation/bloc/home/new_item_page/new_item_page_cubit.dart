@@ -75,7 +75,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsYearOfProductionRegexErrorMessage,
               ),
-              regex: r'^(198[0-9]|199[0-9]|200[0-9]|201[0-9]|202[0-6])$',
+              regex: r'^\d{4}$',
             ),
         priceFieldParams:
             FieldParamsModel.withLabel(
@@ -172,6 +172,12 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
     final yearRegex = RegExp(state.yearFieldParams?.regex ?? '');
     if (!yearRegex.hasMatch(year)) {
+      emit(state.copyWith(yearErrorText: state.yearFieldParams?.regexErrorMessage));
+      return false;
+    }
+
+    final yearInt = int.parse(year);
+    if (yearInt < 1980 || yearInt > DateTime.now().year) {
       emit(state.copyWith(yearErrorText: state.yearFieldParams?.regexErrorMessage));
       return false;
     }
@@ -318,18 +324,6 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     emit(state.copyWith(engineVolumeText: newVolume));
   }
 
-  void clearInfoForm() {
-    emit(
-      state.copyWith(
-        manufacturerText: '',
-        modelText: '',
-        yearText: '',
-        colorText: '',
-        priceText: '',
-      ),
-    );
-  }
-
   Future<void> getAutoCompleteEntitiesByType(CarType type) async {
     final result = await _autoCompleteManufacturersByTypeUseCase.call(type);
     emit(state.copyWith(autoCompleteEntities: result));
@@ -349,8 +343,6 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
   List<CarEntity> insertItem() {
     final newCarId = (_getCurrentMaxCarIdUseCase.call() + 1).toString();
-
-    _userDataCubit.addCarIdToCreated(newCarId);
 
     final car = CarEntity(
       id: ObjectId(),
@@ -373,7 +365,9 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
     _addCarUseCase.call(car);
 
-    return _getAllCarsUseCase.call()..add(car);
+    _userDataCubit.addCarIdToCreated(newCarId);
+
+    return _getAllCarsUseCase.call();
   }
 
   void clearFields() {

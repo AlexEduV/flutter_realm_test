@@ -82,6 +82,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
     emit(state.copyWith(allResults: results, isLoading: false));
 
+    _carSubscription?.cancel();
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
       final results = getFilteredResults(entities);
       emit(state.copyWith(results: results, allResults: entities));
@@ -170,24 +171,20 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   void updateModelListFromEntities(List<CarEntity> cars, CarType type) {
-    final Map<String, Set<String>> modelsByManufacturer = {};
+    final modelsByManufacturerMap = cars
+        .where((car) => car.type == type.name)
+        .fold(<String, Set<String>>{}, (map, car) {
+          map.putIfAbsent(car.manufacturer, () => {}).add(car.model);
+          return map;
+        })
+        .map((key, models) => MapEntry(key, models.toList()));
 
-    for (final car in cars) {
-      if (car.type == state.currentSelectedType.name) {
-        modelsByManufacturer.putIfAbsent(car.manufacturer, () => <String>{}).add(car.model);
-      }
-    }
-
-    final Map<String, List<String>> modelsByManufacturerList = {
-      for (var entry in modelsByManufacturer.entries) entry.key: entry.value.toList(),
-    };
-
-    emit(state.copyWith(allModels: modelsByManufacturerList));
+    emit(state.copyWith(allModels: modelsByManufacturerMap));
   }
 
   void updateColorListFromEntities(List<CarEntity> cars, CarType type) {
     final allColors = cars
-        .where((element) => element.type == state.currentSelectedType.name)
+        .where((element) => element.type == type.name)
         .map((element) => element.color?.capitalizeFirst())
         .whereType<String>()
         .toSet()
@@ -198,7 +195,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   String getMinYearFromEntities(List<CarEntity> cars, CarType type) {
     final filteredYears = cars
-        .where((element) => element.type == state.currentSelectedType.name)
+        .where((element) => element.type == type.name)
         .map((element) => int.tryParse(element.year ?? ''))
         .whereType<int>() // filters out nulls from failed parses
         .toList();
@@ -210,7 +207,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   String getMaxYearFromEntities(List<CarEntity> cars, CarType type) {
     final filteredYears = cars
-        .where((element) => element.type == state.currentSelectedType.name)
+        .where((element) => element.type == type.name)
         .map((element) => int.tryParse(element.year ?? ''))
         .whereType<int>() // filters out nulls from failed parses
         .toList();
@@ -222,7 +219,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   String getMinPriceFromEntities(List<CarEntity> cars, CarType type) {
     final filteredPrices = cars
-        .where((element) => element.type == state.currentSelectedType.name)
+        .where((element) => element.type == type.name)
         .map((element) => element.price)
         .whereType<int>() // filters out nulls from failed parses
         .toList();
@@ -236,7 +233,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   String getMaxPriceFromEntities(List<CarEntity> cars, CarType type) {
     final filteredPrices = cars
-        .where((element) => element.type == state.currentSelectedType.name)
+        .where((element) => element.type == type.name)
         .map((element) => element.price)
         .whereType<int>() // filters out nulls from failed parses
         .toList();

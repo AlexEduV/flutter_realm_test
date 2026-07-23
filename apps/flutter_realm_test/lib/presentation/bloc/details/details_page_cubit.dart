@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
@@ -12,7 +13,10 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
 
   void loadData(String id) {
     final entity = _getCarByIdUseCase.call(id);
-    final carColor = _getCarColorsUseCase.call()[entity.color?.toLowerCase()];
+    final normalized = entity.color?.toLowerCase().replaceAll(' ', '') ?? '';
+    final carColor = _getCarColorsUseCase.call().entries
+        .firstWhereOrNull((e) => e.key.toLowerCase() == normalized)
+        ?.value;
 
     emit(state.copyWith(car: entity, carColor: carColor));
   }

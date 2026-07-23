@@ -80,4 +80,19 @@ void main() {
       expect(repository.getColorNameFromColor(const Color(0xFFFF0000)), '');
     });
   });
+
+  group('color name round-trip', () {
+    // Guards the contract between getColorNameFromColor and getColorByName:
+    // whatever name is produced by one must be resolvable by the other.
+    // If the storage format or the lookup normalization diverges, this fails.
+    test('getColorNameFromColor result can be resolved back by getColorByName', () {
+      const lightBlue = Color(0xFF03A9F4);
+      when(mockDataSource.getColors()).thenReturn({'lightBlue': lightBlue});
+
+      final name = repository.getColorNameFromColor(lightBlue); // 'Light Blue'
+      final resolved = repository.getColorByName(name);
+
+      expect(resolved, lightBlue);
+    });
+  });
 }

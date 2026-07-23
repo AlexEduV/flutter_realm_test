@@ -244,7 +244,7 @@ void main() {
     blocTest<NewItemPageCubit, NewItemPageState>(
       'clearInfoForm emits state with cleared fields',
       build: () => cubit,
-      act: (cubit) => cubit.clearInfoForm(),
+      act: (cubit) => cubit.clearFields(),
       expect: () => [
         cubit.state.copyWith(
           manufacturerText: '',
