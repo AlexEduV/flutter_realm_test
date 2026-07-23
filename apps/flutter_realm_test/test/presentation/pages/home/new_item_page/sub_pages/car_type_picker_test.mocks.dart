@@ -296,15 +296,6 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
       );
 
   @override
-  void clearInfoForm() => super.noSuchMethod(
-        Invocation.method(
-          #clearInfoForm,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   _i4.Future<void> getAutoCompleteEntitiesByType(_i5.CarType? type) =>
       (super.noSuchMethod(
         Invocation.method(

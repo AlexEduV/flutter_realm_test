@@ -324,18 +324,6 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     emit(state.copyWith(engineVolumeText: newVolume));
   }
 
-  void clearInfoForm() {
-    emit(
-      state.copyWith(
-        manufacturerText: '',
-        modelText: '',
-        yearText: '',
-        colorText: '',
-        priceText: '',
-      ),
-    );
-  }
-
   Future<void> getAutoCompleteEntitiesByType(CarType type) async {
     final result = await _autoCompleteManufacturersByTypeUseCase.call(type);
     emit(state.copyWith(autoCompleteEntities: result));
