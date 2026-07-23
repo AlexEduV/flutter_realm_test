@@ -10,7 +10,6 @@ part 'search_page_state.freezed.dart';
 @freezed
 abstract class SearchPageState with _$SearchPageState {
   const factory SearchPageState({
-    @Default([]) List<CarEntity> results,
     @Default([]) List<CarEntity> allResults,
     @Default(CarType.car) CarType currentSelectedType,
     @Default(false) bool isLoading,

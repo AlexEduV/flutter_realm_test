@@ -42,9 +42,11 @@ class _SearchPageState extends State<SearchPage> {
           previous.selectedMaxYear != current.selectedMaxYear ||
           previous.selectedMinPrice != current.selectedMinPrice ||
           previous.selectedMaxPrice != current.selectedMaxPrice ||
-          previous.results != current.results,
+          previous.allResults != current.allResults,
       builder: (context, state) {
-        final selectedFilterCount = context.read<SearchPageCubit>().getSelectedFilterCount();
+        final cubit = context.read<SearchPageCubit>();
+        final selectedFilterCount = cubit.getSelectedFilterCount();
+        final filteredResults = cubit.getFilteredResults(state.allResults);
         final isDrawerOpened = state.drawerOpened != SearchDrawerType.empty;
 
         return Scaffold(
@@ -125,50 +127,41 @@ class _SearchPageState extends State<SearchPage> {
               ),
 
               SliverToBoxAdapter(
-                child: BlocBuilder<SearchPageCubit, SearchPageState>(
-                  builder: (context, state) {
-                    return Padding(
-                      padding: const EdgeInsets.all(AppDimensions.normalL),
-                      child: ResultsWidget(resultsCount: state.results.length.toString()),
-                    );
-                  },
+                child: Padding(
+                  padding: const EdgeInsets.all(AppDimensions.normalL),
+                  child: ResultsWidget(resultsCount: filteredResults.length.toString()),
                 ),
               ),
 
-              BlocBuilder<SearchPageCubit, SearchPageState>(
-                builder: (context, state) {
-                  if (state.results.isEmpty) {
-                    return SliverToBoxAdapter(
-                      child: EmptyResultsPlaceholderWidget(
-                        text: context.tr(L10nKeys.emptySearchPlaceholderText),
-                      ),
-                    );
-                  }
-
-                  return SliverPadding(
-                    padding: const EdgeInsetsGeometry.only(bottom: AppDimensions.normalXL),
-                    sliver: BlocBuilder<UserDataCubit, UserDataState>(
-                      buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
-                      builder: (context, userState) {
-                        return SliverGrid(
-                          delegate: SliverChildBuilderDelegate((context, index) {
-                            return AnnouncementListItem(
-                              isExploreItem: false,
-                              car: state.results[index],
-                              user: context.read<UserDataCubit>().user,
-                              onDismissed: () {},
-                            );
-                          }, childCount: state.results.length),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: isTablet ? 2 : 1,
-                            childAspectRatio: 16 / 14,
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
+              if (filteredResults.isEmpty)
+                SliverToBoxAdapter(
+                  child: EmptyResultsPlaceholderWidget(
+                    text: context.tr(L10nKeys.emptySearchPlaceholderText),
+                  ),
+                )
+              else
+                SliverPadding(
+                  padding: const EdgeInsetsGeometry.only(bottom: AppDimensions.normalXL),
+                  sliver: BlocBuilder<UserDataCubit, UserDataState>(
+                    buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
+                    builder: (context, userState) {
+                      return SliverGrid(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return AnnouncementListItem(
+                            isExploreItem: false,
+                            car: filteredResults[index],
+                            user: context.read<UserDataCubit>().user,
+                            onDismissed: () {},
+                          );
+                        }, childCount: filteredResults.length),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: isTablet ? 2 : 1,
+                          childAspectRatio: 16 / 14,
+                        ),
+                      );
+                    },
+                  ),
+                ),
             ],
           ),
           endDrawer: state.drawerOpened == SearchDrawerType.model

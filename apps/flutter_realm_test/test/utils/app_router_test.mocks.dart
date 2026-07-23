@@ -1300,6 +1300,28 @@ class MockDetailsPageCubit extends _i1.Mock implements _i18.DetailsPageCubit {
       );
 
   @override
+  String getConversationId(String? ownerId) => (super.noSuchMethod(
+        Invocation.method(
+          #getConversationId,
+          [ownerId],
+        ),
+        returnValue: _i16.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getConversationId,
+            [ownerId],
+          ),
+        ),
+        returnValueForMissingStub: _i16.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getConversationId,
+            [ownerId],
+          ),
+        ),
+      ) as String);
+
+  @override
   void emit(_i7.DetailsPageState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,

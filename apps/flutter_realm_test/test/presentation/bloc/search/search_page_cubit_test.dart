@@ -252,10 +252,9 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedModels: {}),
       act: (cubit) => cubit.addCarModelToSelection('Tesla', 'Model S'),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', {
-          'Tesla': ['Model S'],
-        }),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+        isA<SearchPageState>()
+            .having((s) => s.selectedModels, 'selectedModels', {'Tesla': ['Model S']})
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1]),
       ],
     );
 
@@ -264,14 +263,13 @@ void main() {
       build: () => cubit,
       seed: () => SearchPageState(
         allResults: carList,
-        selectedModels: {
-          'Tesla': ['Tesla Model S'],
-        },
+        selectedModels: {'Tesla': ['Tesla Model S']},
       ),
       act: (cubit) => cubit.removeCarModelFromSelection('Tesla', 'Tesla Model S'),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', isEmpty),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
+        isA<SearchPageState>()
+            .having((s) => s.selectedModels, 'selectedModels', isEmpty)
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
       ],
     );
 
@@ -281,10 +279,9 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedBodyTypes: []),
       act: (cubit) => cubit.addBodyTypeToSelection(BodyType.sedan.name),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedBodyTypes, 'selectedBodyTypes', [
-          BodyType.sedan.name,
-        ]),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
+        isA<SearchPageState>()
+            .having((s) => s.selectedBodyTypes, 'selectedBodyTypes', [BodyType.sedan.name])
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
       ],
     );
 
@@ -294,8 +291,9 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedBodyTypes: [BodyType.sedan.name]),
       act: (cubit) => cubit.removeBodyTypeFromSelection(BodyType.sedan.name),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedBodyTypes, 'selectedBodyTypes', isEmpty),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
+        isA<SearchPageState>()
+            .having((s) => s.selectedBodyTypes, 'selectedBodyTypes', isEmpty)
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
       ],
     );
 
@@ -305,10 +303,9 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedFuelTypes: []),
       act: (cubit) => cubit.addFuelTypeToSelection(FuelType.ev.name),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedFuelTypes, 'selectedFuelTypes', [
-          FuelType.ev.name,
-        ]),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
+        isA<SearchPageState>()
+            .having((s) => s.selectedFuelTypes, 'selectedFuelTypes', [FuelType.ev.name])
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1]),
       ],
     );
 
@@ -318,8 +315,9 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedFuelTypes: [FuelType.ev.name]),
       act: (cubit) => cubit.removeFuelTypeFromSelection(FuelType.ev.name),
       expect: () => [
-        isA<SearchPageState>().having((s) => s.selectedFuelTypes, 'selectedFuelTypes', isEmpty),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
+        isA<SearchPageState>()
+            .having((s) => s.selectedFuelTypes, 'selectedFuelTypes', isEmpty)
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
       ],
     );
 
@@ -329,12 +327,9 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedTransmissionTypes: []),
       act: (cubit) => cubit.addTransmissionTypeToSelection(TransmissionType.automatic.name),
       expect: () => [
-        isA<SearchPageState>().having(
-          (s) => s.selectedTransmissionTypes,
-          'selectedTransmissionTypes',
-          [TransmissionType.automatic.name],
-        ),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
+        isA<SearchPageState>()
+            .having((s) => s.selectedTransmissionTypes, 'selectedTransmissionTypes', [TransmissionType.automatic.name])
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
       ],
     );
 
@@ -347,12 +342,9 @@ void main() {
       ),
       act: (cubit) => cubit.removeTransmissionTypeFromSelection(TransmissionType.automatic.name),
       expect: () => [
-        isA<SearchPageState>().having(
-          (s) => s.selectedTransmissionTypes,
-          'selectedTransmissionTypes',
-          isEmpty,
-        ),
-        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
+        isA<SearchPageState>()
+            .having((s) => s.selectedTransmissionTypes, 'selectedTransmissionTypes', isEmpty)
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
       ],
     );
 
