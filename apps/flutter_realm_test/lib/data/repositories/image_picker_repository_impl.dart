@@ -1,13 +1,13 @@
-import 'package:test_flutter_project/domain/data_sources/local/image_picker_local_data_source.dart';
+import 'package:test_flutter_project/domain/services/image_picker_service.dart';
 import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart';
 
 class ImagePickerRepositoryImpl implements ImagePickerRepository {
-  ImagePickerRepositoryImpl(this._imagePickerLocalDataSource);
+  ImagePickerRepositoryImpl(this._imagePickerService);
 
-  final ImagePickerLocalDataSource _imagePickerLocalDataSource;
+  final ImagePickerService _imagePickerService;
 
   @override
   Future<String?> pickImage() {
-    return _imagePickerLocalDataSource.pickImage();
+    return _imagePickerService.pickImage();
   }
 }

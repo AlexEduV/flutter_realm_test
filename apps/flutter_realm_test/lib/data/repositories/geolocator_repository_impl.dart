@@ -1,10 +1,10 @@
-import 'package:test_flutter_project/domain/data_sources/local/geolocator_local_data_source.dart';
+import 'package:test_flutter_project/domain/services/geolocator_service.dart';
 import 'package:test_flutter_project/domain/repositories/geolocator_repository.dart';
 
 class GeolocatorRepositoryImpl implements GeolocatorRepository {
   GeolocatorRepositoryImpl(this._geolocatorService);
 
-  final GeolocatorLocalDataSource _geolocatorService;
+  final GeolocatorService _geolocatorService;
 
   @override
   Future<bool> checkLocationServiceStatus() {

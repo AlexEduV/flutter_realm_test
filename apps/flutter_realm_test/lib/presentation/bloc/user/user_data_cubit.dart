@@ -3,7 +3,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
-import 'package:test_flutter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
@@ -49,7 +49,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   final DeleteCarByIdUseCase _deleteCarByIdUseCase;
 
   UserEntity user = UserEntity.empty();
-  final BaseLogger _logger;
+  final LoggingService _logger;
   final AppLocalisationsCubit _appLocalisationsCubit;
 
   Future<void> init() async {
@@ -167,7 +167,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   Future<void> openLocationSettings() async {
     final canLocationSettingsBeOpened = await _openAppSettingsUseCase.call();
     if (!canLocationSettingsBeOpened) {
-      _logger.e('Could not open system location settings');
+      _logger.error('Could not open system location settings');
     }
   }
 

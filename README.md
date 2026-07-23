@@ -27,29 +27,39 @@ A clean‑architecture Flutter sample app that showcases **RealmDB**, **GoRouter
 ```
 lib/
 ├─ common/
+│   ├─ constants/
 │   ├─ enums/
 │   ├─ extensions/
-│   └─ constants/
+│   └─ logger/
+├─ core/
+│   ├─ di/             # GetIt service locator
+│   └─ network/
 ├─ data/
 │   ├─ data_sources/
-│   ├─ dtos/
+│   │   ├─ local/      # device storage (Realm, SharedPreferences)
+│   │   └─ remote/     # HTTP / mock API sources
+│   ├─ database/
+│   ├─ dto/
 │   ├─ models/
-│   └─ repositories/
-├─ di/                # get_it service locator
+│   ├─ repositories/
+│   └─ services/       # platform capability implementations (camera, location, share…)
 ├─ domain/
 │   ├─ data_sources/
+│   │   ├─ local/
+│   │   └─ remote/
 │   ├─ entities/
 │   ├─ models/
 │   ├─ repositories/
+│   ├─ services/       # platform capability interfaces
 │   └─ usecases/
+├─ l10n/
+├─ mocks/
 ├─ presentation/
-│   ├─ bloc/
-│   └─ pages/
+│   ├─ bloc/           # Cubits
+│   ├─ controllers/
+│   ├─ pages/
+│   └─ widgets/
 ├─ utils/
-│   ├─ router.dart
-│   ├─ json_util.dart
-│   ├─ l10n.dart
-│   └─ localisation_util.dart
 └─ main.dart
 ```
 

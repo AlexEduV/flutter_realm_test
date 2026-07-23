@@ -7,20 +7,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/extensions/get_it_extension.dart';
-import 'package:test_flutter_project/common/logger/app_network_logger_impl.dart';
-import 'package:test_flutter_project/common/logger/base_logger.dart';
 import 'package:test_flutter_project/core/network/app_http_client.dart';
 import 'package:test_flutter_project/core/network/app_http_client_impl.dart';
 import 'package:test_flutter_project/core/network/app_interceptor.dart';
 import 'package:test_flutter_project/data/data_sources/local/car_color_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/local/env_local_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/local/file_picker_local_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/local/geolocator_local_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/local/image_picker_local_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/local/permission_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart';
-import 'package:test_flutter_project/data/data_sources/local/share_local_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/local/url_launch_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/gifs_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_auto_complete_remote_data_source_impl.dart';
@@ -47,15 +39,17 @@ import 'package:test_flutter_project/data/repositories/region_repository_impl.da
 import 'package:test_flutter_project/data/repositories/share_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/url_launch_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/user_repository_impl.dart';
+import 'package:test_flutter_project/data/services/app_logging_service_impl.dart';
+import 'package:test_flutter_project/data/services/external_link_service_impl.dart';
+import 'package:test_flutter_project/data/services/file_picker_service_impl.dart';
+import 'package:test_flutter_project/data/services/geolocator_service_impl.dart';
+import 'package:test_flutter_project/data/services/image_picker_service_impl.dart';
+import 'package:test_flutter_project/data/services/network_logging_service_impl.dart';
+import 'package:test_flutter_project/data/services/permission_service_impl.dart';
+import 'package:test_flutter_project/data/services/share_service_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/local/car_colors_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/local/file_picker_local_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/local/geolocator_local_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/local/image_picker_local_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/local/permission_local_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/local/share_local_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/local/url_launch_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/article_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/auto_complete_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
@@ -79,6 +73,13 @@ import 'package:test_flutter_project/domain/repositories/region_model_repository
 import 'package:test_flutter_project/domain/repositories/region_repository.dart';
 import 'package:test_flutter_project/domain/repositories/share_repository.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
+import 'package:test_flutter_project/domain/services/external_link_service.dart';
+import 'package:test_flutter_project/domain/services/file_picker_service.dart';
+import 'package:test_flutter_project/domain/services/geolocator_service.dart';
+import 'package:test_flutter_project/domain/services/image_picker_service.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
+import 'package:test_flutter_project/domain/services/permission_service.dart';
+import 'package:test_flutter_project/domain/services/share_service.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
@@ -167,10 +168,14 @@ Future<void> initDependenciesContainer() async {
     }
   }
 
-  serviceLocator.registerLazySingleton<BaseLogger>(() => AppNetworkLoggerImpl());
+  serviceLocator.registerLazySingleton<LoggingService>(() => AppLoggingServiceImpl());
+  serviceLocator.registerLazySingleton<LoggingService>(
+    () => NetworkLoggingServiceImpl(),
+    instanceName: 'network',
+  );
 
   final client = http.Client();
-  final appInterceptor = AppInterceptor(serviceLocator());
+  final appInterceptor = AppInterceptor(serviceLocator<LoggingService>(instanceName: 'network'));
   serviceLocator.registerLazySingleton<AppHttpClient>(
     () => AppHttpClientImpl(client, appInterceptor),
   );
@@ -228,31 +233,27 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl(dotEnv));
 
   final imagePicker = ImagePicker();
-  serviceLocator.registerLazySingleton<ImagePickerLocalDataSource>(
-    () => ImagePickerLocalDataSourceImpl(imagePicker),
+  serviceLocator.registerLazySingleton<ImagePickerService>(
+    () => ImagePickerServiceImpl(imagePicker),
   );
   serviceLocator.registerLazySingleton<AutoCompleteRemoteDataSource>(
     () => MockAutoCompleteRemoteDataSource(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<UrlLaunchLocalDataSource>(
-    () => UrlLaunchLocalDataSourceImpl(serviceLocator()),
+  serviceLocator.registerLazySingleton<ExternalLinkService>(
+    () => ExternalLinkServiceImpl(serviceLocator()),
   );
 
   final filePicker = FilePickerIO();
-  serviceLocator.registerLazySingleton<FilePickerLocalDataSource>(
-    () => FilePickerLocalDataSourceImpl(filePicker),
-  );
+  serviceLocator.registerLazySingleton<FilePickerService>(() => FilePickerServiceImpl(filePicker));
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
     () => MockRegionRemoteDataSourceImpl(),
   );
-  serviceLocator.registerLazySingleton<GeolocatorLocalDataSource>(
-    () => GeolocatorLocalDataSourceImpl(),
-  );
+  serviceLocator.registerLazySingleton<GeolocatorService>(() => GeolocatorServiceImpl());
   serviceLocator.registerLazySingleton<CarColorLocalDataSource>(
     () => CarColorLocalDataSourceImpl(),
   );
-  serviceLocator.registerLazySingleton<ShareLocalDataSource>(() => ShareLocalDataSourceImpl());
+  serviceLocator.registerLazySingleton<ShareService>(() => ShareServiceImpl());
   serviceLocator.registerLazySingleton<ShareRepository>(
     () => ShareRepositoryImpl(serviceLocator()),
   );
@@ -264,9 +265,7 @@ Future<void> initDependenciesContainer() async {
     () => MockArticleRemoteDataSourceImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<PermissionLocalDataSource>(
-    () => PermissionLocalDataSourceImpl(),
-  );
+  serviceLocator.registerLazySingleton<PermissionService>(() => PermissionServiceImpl());
 
   serviceLocator.registerLazySingleton<ImagePickerRepository>(
     () => ImagePickerRepositoryImpl(serviceLocator()),
@@ -430,7 +429,7 @@ Future<void> initDependenciesContainer() async {
       serviceLocator<GetUserByEmailUseCase>(),
       serviceLocator<PickImageFromGalleryUseCase>(),
       serviceLocator<DeleteCarByIdUseCase>(),
-      serviceLocator<BaseLogger>(),
+      serviceLocator<LoggingService>(),
       serviceLocator<AppLocalisationsCubit>(),
     ),
   );

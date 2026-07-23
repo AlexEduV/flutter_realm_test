@@ -7,7 +7,7 @@ import 'dart:async' as _i6;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:permission_handler/permission_handler.dart' as _i12;
-import 'package:test_flutter_project/common/logger/base_logger.dart' as _i16;
+import 'package:test_flutter_project/domain/services/logging_service.dart' as _i16;
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart'
     as _i7;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i4;
@@ -448,24 +448,60 @@ class MockDeleteCarByIdUseCase extends _i1.Mock
       );
 }
 
-/// A class which mocks [BaseLogger].
+/// A class which mocks [LoggingService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBaseLogger extends _i1.Mock implements _i16.BaseLogger {
+class MockLoggingService extends _i1.Mock implements _i16.LoggingService {
   @override
-  void e(String? message) => super.noSuchMethod(
+  void verbose(String? message) => super.noSuchMethod(
         Invocation.method(
-          #e,
+          #verbose,
           [message],
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void i(String? message) => super.noSuchMethod(
+  void debug(String? message) => super.noSuchMethod(
         Invocation.method(
-          #i,
+          #debug,
           [message],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void info(String? message) => super.noSuchMethod(
+        Invocation.method(
+          #info,
+          [message],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void warning(String? message) => super.noSuchMethod(
+        Invocation.method(
+          #warning,
+          [message],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void error(
+    String? message, {
+    Object? error,
+    StackTrace? stackTrace,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #error,
+          [message],
+          {
+            #error: error,
+            #stackTrace: stackTrace,
+          },
         ),
         returnValueForMissingStub: null,
       );

@@ -1,10 +1,10 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
 
-import '../../../domain/data_sources/local/file_picker_local_data_source.dart';
+import '../../domain/services/file_picker_service.dart';
 
-class FilePickerLocalDataSourceImpl implements FilePickerLocalDataSource {
-  FilePickerLocalDataSourceImpl(this.filePicker);
+class FilePickerServiceImpl implements FilePickerService {
+  FilePickerServiceImpl(this.filePicker);
 
   final FilePickerIO filePicker;
 

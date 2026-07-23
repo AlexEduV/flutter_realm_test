@@ -1,12 +1,12 @@
-import 'package:test_flutter_project/domain/data_sources/local/share_local_data_source.dart';
+import 'package:test_flutter_project/domain/services/share_service.dart';
 import 'package:test_flutter_project/domain/repositories/share_repository.dart';
 
 import '../../domain/models/share_params_model.dart';
 
 class ShareRepositoryImpl implements ShareRepository {
-  ShareRepositoryImpl(this._shareLocalDataSource);
+  ShareRepositoryImpl(this._shareService);
 
-  final ShareLocalDataSource _shareLocalDataSource;
+  final ShareService _shareService;
   bool _isShareInProgress = false;
 
   @override
@@ -18,7 +18,7 @@ class ShareRepositoryImpl implements ShareRepository {
     //iOS 26 fix is not needed when using the newest version of plugin;
 
     _isShareInProgress = true;
-    await _shareLocalDataSource.share(model);
+    await _shareService.share(model);
     _isShareInProgress = false;
   }
 }

@@ -2,17 +2,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/data/repositories/image_picker_repository_impl.dart';
-import 'package:test_flutter_project/domain/data_sources/local/image_picker_local_data_source.dart';
+import 'package:test_flutter_project/domain/services/image_picker_service.dart';
 
 import 'image_picker_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<ImagePickerLocalDataSource>()])
+@GenerateNiceMocks([MockSpec<ImagePickerService>()])
 void main() {
-  late MockImagePickerLocalDataSource mockLocalDataSource;
+  late MockImagePickerService mockLocalDataSource;
   late ImagePickerRepositoryImpl repository;
 
   setUp(() {
-    mockLocalDataSource = MockImagePickerLocalDataSource();
+    mockLocalDataSource = MockImagePickerService();
     repository = ImagePickerRepositoryImpl(mockLocalDataSource);
   });
 

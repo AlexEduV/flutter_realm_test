@@ -2,18 +2,18 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/data/data_sources/local/file_picker_local_data_source_impl.dart';
+import 'package:test_flutter_project/data/services/file_picker_service_impl.dart';
 
-import 'file_picker_local_data_source_impl_test.mocks.dart';
+import 'file_picker_service_impl_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<FilePickerIO>(), MockSpec<FilePickerResult>()])
 void main() {
   late MockFilePickerIO mockFilePicker;
-  late FilePickerLocalDataSourceImpl dataSource;
+  late FilePickerServiceImpl dataSource;
 
   setUp(() {
     mockFilePicker = MockFilePickerIO();
-    dataSource = FilePickerLocalDataSourceImpl(mockFilePicker);
+    dataSource = FilePickerServiceImpl(mockFilePicker);
   });
 
   test('returns null if no file is picked', () async {

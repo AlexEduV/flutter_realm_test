@@ -4,18 +4,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/data/repositories/share_repository_impl.dart';
-import 'package:test_flutter_project/domain/data_sources/local/share_local_data_source.dart';
+import 'package:test_flutter_project/domain/services/share_service.dart';
 import 'package:test_flutter_project/domain/models/share_params_model.dart';
 
 import 'share_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<ShareLocalDataSource>()])
+@GenerateNiceMocks([MockSpec<ShareService>()])
 void main() {
-  late MockShareLocalDataSource mockLocalDataSource;
+  late MockShareService mockLocalDataSource;
   late ShareRepositoryImpl repository;
 
   setUp(() {
-    mockLocalDataSource = MockShareLocalDataSource();
+    mockLocalDataSource = MockShareService();
     repository = ShareRepositoryImpl(mockLocalDataSource);
   });
 

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
 
@@ -10,15 +10,15 @@ import 'article_remote_data_source_impl_test.mocks.dart';
 //Note: the tested class should be rticleRemoteDataSourceImpl, but since it will call real
 // HTTP requests, it's not testable.
 
-@GenerateNiceMocks([MockSpec<BaseLogger>()])
+@GenerateNiceMocks([MockSpec<LoggingService>()])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  late MockBaseLogger mockLogger;
+  late MockLoggingService mockLogger;
   late MockArticleRemoteDataSourceImpl dataSource;
 
   setUp(() {
-    mockLogger = MockBaseLogger();
+    mockLogger = MockLoggingService();
     dataSource = MockArticleRemoteDataSourceImpl(mockLogger);
   });
 
@@ -27,7 +27,7 @@ void main() {
       final articles = await dataSource.fetchArticles();
 
       expect(articles, isNotEmpty);
-      verifyNever(mockLogger.e(any));
+      verifyNever(mockLogger.error(any));
     });
 
     test('fetchArticles populates the internal articles list', () async {

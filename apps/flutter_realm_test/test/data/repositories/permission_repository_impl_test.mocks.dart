@@ -7,7 +7,7 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:permission_handler/permission_handler.dart' as _i4;
-import 'package:test_flutter_project/domain/data_sources/local/permission_local_data_source.dart'
+import 'package:test_flutter_project/domain/services/permission_service.dart'
     as _i2;
 
 // ignore_for_file: type=lint
@@ -24,11 +24,10 @@ import 'package:test_flutter_project/domain/data_sources/local/permission_local_
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [PermissionLocalDataSource].
+/// A class which mocks [PermissionService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPermissionLocalDataSource extends _i1.Mock
-    implements _i2.PermissionLocalDataSource {
+class MockPermissionService extends _i1.Mock implements _i2.PermissionService {
   @override
   _i3.Future<_i4.PermissionStatus> requestLocation() => (super.noSuchMethod(
         Invocation.method(

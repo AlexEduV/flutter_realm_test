@@ -2,18 +2,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/data/repositories/file_picker_repository_impl.dart';
-import 'package:test_flutter_project/domain/data_sources/local/file_picker_local_data_source.dart';
+import 'package:test_flutter_project/domain/services/file_picker_service.dart';
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
 
 import 'file_picker_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<FilePickerLocalDataSource>()])
+@GenerateNiceMocks([MockSpec<FilePickerService>()])
 void main() {
-  late MockFilePickerLocalDataSource mockLocalDataSource;
+  late MockFilePickerService mockLocalDataSource;
   late FilePickerRepositoryImpl repository;
 
   setUp(() {
-    mockLocalDataSource = MockFilePickerLocalDataSource();
+    mockLocalDataSource = MockFilePickerService();
     repository = FilePickerRepositoryImpl(mockLocalDataSource);
   });
 
