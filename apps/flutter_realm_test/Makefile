@@ -12,7 +12,7 @@ clean-get:
 	$(MAKE) get
 
 format:
-	dart format .
+	find lib/ -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" | xargs dart format
 
 
 # File Generation
