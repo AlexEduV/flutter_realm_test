@@ -32,7 +32,7 @@ class WidgetBookApp extends StatelessWidget {
 
     return Widgetbook.material(
       directories: [
-        WidgetbookFolder(
+        WidgetbookCategory(
           name: 'General',
           children: [
             WidgetbookComponent(
@@ -67,166 +67,161 @@ class WidgetBookApp extends StatelessWidget {
           ],
         ),
 
-        WidgetbookFolder(
-          name: 'Pages',
+        WidgetbookCategory(
+          name: 'Search',
           children: [
-            WidgetbookFolder(
-              name: 'Search',
-              children: [
-                WidgetbookComponent(
-                  name: 'Results widget',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) => buildResultsWidgetUseCase(context),
-                    ),
-                  ],
-                ),
-
-                WidgetbookComponent(
-                  name: 'Search filter button',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) =>
-                          buildSearchFilterButtonUseCase(context),
-                    ),
-                  ],
+            WidgetbookComponent(
+              name: 'Results widget',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildResultsWidgetUseCase(context),
                 ),
               ],
             ),
 
-            WidgetbookFolder(
-              name: 'Details',
-              children: [
-                WidgetbookComponent(
-                  name: 'Owner widget',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) => buildOwnerWidgetUseCase(context),
-                    ),
-                  ],
+            WidgetbookComponent(
+              name: 'Search filter button',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) =>
+                      buildSearchFilterButtonUseCase(context),
                 ),
+              ],
+            ),
+          ],
+        ),
 
-                WidgetbookComponent(
-                  name: 'Vehicle specs widget',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) {
-                        final isExpanded = context.knobs.boolean(
-                          label: 'Is expanded',
-                          initialValue: true,
-                        );
-
-                        final mockCubit = MockDetailsPageCubit(isExpanded);
-
-                        return BlocProvider<DetailsPageCubit>.value(
-                          value: mockCubit,
-                          child: buildVehicleSpecsWidgetUseCase(context),
-                        );
-                      },
-                    ),
-                  ],
+        WidgetbookCategory(
+          name: 'Details',
+          children: [
+            WidgetbookComponent(
+              name: 'Owner widget',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildOwnerWidgetUseCase(context),
                 ),
               ],
             ),
 
-            WidgetbookFolder(
-              name: 'Account',
-              children: [
-                WidgetbookComponent(
-                  name: 'Account item',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) => buildAccountItemUseCase(context),
-                    ),
-                  ],
-                ),
+            WidgetbookComponent(
+              name: 'Vehicle specs widget',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) {
+                    final isExpanded = context.knobs.boolean(
+                      label: 'Is expanded',
+                      initialValue: true,
+                    );
 
-                WidgetbookComponent(
-                  name: 'Account item separated',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) =>
-                          buildAccountItemSeparatedUseCase(context),
-                    ),
-                  ],
-                ),
+                    final mockCubit = MockDetailsPageCubit(isExpanded);
 
-                WidgetbookComponent(
-                  name: 'Footer text',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) => buildFooterTextUseCase(context),
-                    ),
-                  ],
+                    return BlocProvider<DetailsPageCubit>.value(
+                      value: mockCubit,
+                      child: buildVehicleSpecsWidgetUseCase(context),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+
+        WidgetbookCategory(
+          name: 'Account',
+          children: [
+            WidgetbookComponent(
+              name: 'Account item',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildAccountItemUseCase(context),
                 ),
               ],
             ),
 
-            WidgetbookFolder(
-              name: 'Authentication',
-              children: [
-                WidgetbookComponent(
-                  name: 'Splash button',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) => buildSplashButtonUseCase(context),
-                    ),
-                  ],
-                ),
-
-                WidgetbookComponent(
-                  name: 'Auth error widget',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) =>
-                          buildAuthErrorWidgetUseCase(context),
-                    ),
-                  ],
+            WidgetbookComponent(
+              name: 'Account item separated',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) =>
+                      buildAccountItemSeparatedUseCase(context),
                 ),
               ],
             ),
 
-            WidgetbookFolder(
-              name: 'Messages',
-              children: [
-                WidgetbookComponent(
-                  name: 'Chat input bar',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) => buildChatInputBarUseCase(context),
-                    ),
-                  ],
+            WidgetbookComponent(
+              name: 'Footer text',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildFooterTextUseCase(context),
                 ),
+              ],
+            ),
+          ],
+        ),
 
-                WidgetbookComponent(
-                  name: 'Message item',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) => buildMessageItemUseCase(context),
-                    ),
-                  ],
+        WidgetbookCategory(
+          name: 'Authentication',
+          children: [
+            WidgetbookComponent(
+              name: 'Splash button',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildSplashButtonUseCase(context),
                 ),
+              ],
+            ),
 
-                WidgetbookComponent(
-                  name: 'Date divider',
-                  useCases: [
-                    WidgetbookUseCase(
-                      name: defaultUseCaseName,
-                      builder: (context) =>
-                          buildMessageDateDividerUseCase(context),
-                    ),
-                  ],
+            WidgetbookComponent(
+              name: 'Auth error widget',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) =>
+                      buildAuthErrorWidgetUseCase(context),
+                ),
+              ],
+            ),
+          ],
+        ),
+
+        WidgetbookCategory(
+          name: 'Messages',
+          children: [
+            WidgetbookComponent(
+              name: 'Chat input bar',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildChatInputBarUseCase(context),
+                ),
+              ],
+            ),
+
+            WidgetbookComponent(
+              name: 'Message item',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildMessageItemUseCase(context),
+                ),
+              ],
+            ),
+
+            WidgetbookComponent(
+              name: 'Date divider',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) =>
+                      buildMessageDateDividerUseCase(context),
                 ),
               ],
             ),
