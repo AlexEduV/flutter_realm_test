@@ -16,8 +16,7 @@ class LocalisationUtil {
 
     final response = ApiResponse.fromJson(jsonDecoded, (json) => json as List);
 
-    if (response.status != ApiConstants.apiSuccessStatus ||
-        response.results == null) {
+    if (response.status != ApiConstants.apiSuccessStatus || response.results == null) {
       return {};
     }
 
@@ -27,9 +26,7 @@ class LocalisationUtil {
     return flatMap;
   }
 
-  static Future<void> saveLocalisations(
-    Map<String, dynamic> localisations,
-  ) async {
+  static Future<void> saveLocalisations(Map<String, dynamic> localisations) async {
     final prefs = await SharedPreferences.getInstance();
     localisations.forEach((key, value) async {
       await prefs.setString(key, value.toString());

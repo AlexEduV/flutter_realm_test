@@ -17,9 +17,7 @@ void main() {
   });
 
   test('pickImage calls local data source and returns image path', () async {
-    when(
-      mockLocalDataSource.pickImage(),
-    ).thenAnswer((_) async => '/images/photo.jpg');
+    when(mockLocalDataSource.pickImage()).thenAnswer((_) async => '/images/photo.jpg');
 
     final result = await repository.pickImage();
 

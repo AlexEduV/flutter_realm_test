@@ -60,9 +60,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               },
               errorText: state.fullNameError,
               onChanged: (newValue) {
-                context.read<AuthenticationCubit>().updateFullName(
-                  fullNameTextController.text,
-                );
+                context.read<AuthenticationCubit>().updateFullName(fullNameTextController.text);
 
                 context.read<AuthenticationCubit>().validateFullName(
                   fullNameTextController.text,
@@ -94,9 +92,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               },
               errorText: state.emailError,
               onChanged: (newValue) {
-                context.read<AuthenticationCubit>().updateEmail(
-                  emailTextController.text,
-                );
+                context.read<AuthenticationCubit>().updateEmail(emailTextController.text);
 
                 context.read<AuthenticationCubit>().validateEmail(
                   emailTextController.text,
@@ -132,28 +128,21 @@ class _RegistrationFormState extends State<RegistrationForm> {
               },
               errorText: state.passwordError,
               onChanged: (newValue) {
-                context.read<AuthenticationCubit>().updatePassword(
+                context.read<AuthenticationCubit>().updatePassword(passwordTextController.text);
+
+                context.read<AuthenticationCubit>().validatePasswordWithStrengthBar(
                   passwordTextController.text,
                 );
-
-                context
-                    .read<AuthenticationCubit>()
-                    .validatePasswordWithStrengthBar(
-                      passwordTextController.text,
-                    );
               },
               onFocusChange: (hasFocus) {
                 if (!hasFocus) {
-                  context
-                      .read<AuthenticationCubit>()
-                      .validatePasswordWithStrengthBar(
-                        passwordTextController.text,
-                      );
+                  context.read<AuthenticationCubit>().validatePasswordWithStrengthBar(
+                    passwordTextController.text,
+                  );
                 }
               },
               maxLength: state.passwordFieldParams?.maxLength,
-              trailingActionSemanticsLabel:
-                  AppSemanticsLabels.obscurePasswordButton,
+              trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
             ),
 
             const PasswordStrengthBarWidget(),
@@ -186,9 +175,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             //Or Divider
             AppSemantics(
               label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(
-                text: context.tr(L10nKeys.orDividerTitle),
-              ),
+              child: AnimatedDividerWithText(text: context.tr(L10nKeys.orDividerTitle)),
             ),
 
             // join us button if not registered
@@ -197,9 +184,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               label: AppSemanticsLabels.loginButton,
               child: SplashButton(
                 title: context.tr(L10nKeys.loginButtonTitle),
-                onPressed: () => context
-                    .read<AuthenticationCubit>()
-                    .setNewFormModeToLogin(true),
+                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
                 buttonType: ButtonType.secondary,
               ),
             ),

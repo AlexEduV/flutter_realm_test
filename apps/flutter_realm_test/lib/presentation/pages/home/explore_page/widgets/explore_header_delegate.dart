@@ -33,21 +33,12 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => minHeight;
 
   @override
-  double get maxExtent =>
-      showLastSeen ? maxHeightWithLastSeen : maxHeightWithoutLastSeen;
+  double get maxExtent => showLastSeen ? maxHeightWithLastSeen : maxHeightWithoutLastSeen;
 
   @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     final progress = (shrinkOffset / (maxExtent - minExtent)).clamp(0.0, 1.0);
-    final articleHeight = lerpDouble(
-      AppDimensions.exploreArticleItemBaseSize,
-      90,
-      progress,
-    )!;
+    final articleHeight = lerpDouble(AppDimensions.exploreArticleItemBaseSize, 90, progress)!;
     final lastSeenOpacity = showLastSeen ? (1.0 - progress) : 0.0;
 
     return ClipRRect(
@@ -75,8 +66,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                     label: AppSemanticsLabels.homePageSearchButton,
                     child: IconButton(
                       highlightColor: Colors.white10,
-                      onPressed: () =>
-                          context.go(AppRoutes.home + AppRoutes.search),
+                      onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
                       icon: const Icon(
                         Icons.search,
                         size: AppDimensions.appBarIconSize,
@@ -105,21 +95,15 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                         enabled: state.isArticleListLoading,
                         child: ListView.separated(
                           key: const ValueKey('list'),
-                          itemCount: state.isArticleListLoading
-                              ? 10
-                              : state.articles.length,
+                          itemCount: state.isArticleListLoading ? 10 : state.articles.length,
                           scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.only(
-                            right: AppDimensions.normalL,
-                          ),
+                          padding: const EdgeInsets.only(right: AppDimensions.normalL),
                           itemBuilder: (context, index) {
                             if (state.isArticleListLoading) {
                               return Container(
                                 width: AppDimensions.exploreArticleItemBaseSize,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    AppDimensions.normalL,
-                                  ),
+                                  borderRadius: BorderRadius.circular(AppDimensions.normalL),
                                   color: AppColors.placeholderColor,
                                 ),
                               );
@@ -146,10 +130,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                 top: minHeight + articleHeight + AppDimensions.minorL,
                 left: 0,
                 right: 0,
-                child: Opacity(
-                  opacity: lastSeenOpacity,
-                  child: const LastSeenWidget(),
-                ),
+                child: Opacity(opacity: lastSeenOpacity, child: const LastSeenWidget()),
               ),
           ],
         ),

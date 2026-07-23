@@ -26,9 +26,7 @@ class InboxListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final message = conversation.messages.lastOrNull;
-    final owner = serviceLocator<GetOwnerByIdUseCase>().call(
-      conversation.ownerId,
-    );
+    final owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
 
     final unreadCount = getUnreadCount();
 
@@ -38,21 +36,16 @@ class InboxListItem extends StatelessWidget {
         vertical: AppDimensions.minorM,
       ),
       child: AppSemantics(
-        label:
-            '${AppSemanticsLabels.inboxItem} ${owner.firstName} ${owner.lastName}',
+        label: '${AppSemanticsLabels.inboxItem} ${owner.firstName} ${owner.lastName}',
         child: Material(
           color: Colors.white,
           borderRadius: BorderRadius.circular(AppDimensions.normalM),
           child: InkWell(
-            onLongPress: () => DialogHelper.showInboxItemModalBottomSheet(
-              context,
-              conversation.conversationId,
-            ),
+            onLongPress: () =>
+                DialogHelper.showInboxItemModalBottomSheet(context, conversation.conversationId),
             borderRadius: BorderRadius.circular(AppDimensions.normalM),
-            onTap: () => context.go(
-              AppRoutes.home + AppRoutes.inbox,
-              extra: conversation.conversationId,
-            ),
+            onTap: () =>
+                context.go(AppRoutes.home + AppRoutes.inbox, extra: conversation.conversationId),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalXS),
               child: SizedBox(
@@ -71,9 +64,7 @@ class InboxListItem extends StatelessWidget {
                             '${owner.firstName} ${owner.lastName}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: AppTextStyles.zonaPro18.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                           ),
                           ExcludeSemantics(
                             child: Text.rich(
@@ -101,9 +92,7 @@ class InboxListItem extends StatelessWidget {
                             Icon(_getMessageStatusIcon(message)),
 
                             Text(
-                              message == null
-                                  ? ''
-                                  : DateFormatter.formatSmartDate(message.date),
+                              message == null ? '' : DateFormatter.formatSmartDate(message.date),
                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                 fontWeight: FontWeight.w400,
                               ),
@@ -111,9 +100,7 @@ class InboxListItem extends StatelessWidget {
                           ],
                         ),
 
-                        if (unreadCount > 0) ...[
-                          AppBadge(text: unreadCount.toString()),
-                        ],
+                        if (unreadCount > 0) ...[AppBadge(text: unreadCount.toString())],
                       ],
                     ),
                   ],

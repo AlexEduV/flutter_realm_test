@@ -22,9 +22,7 @@ void main() {
     provideDummy(const NewItemPageState());
   });
 
-  testWidgets('CarTypePicker renders and updates car type on tap', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('CarTypePicker renders and updates car type on tap', (WidgetTester tester) async {
     // Arrange
     final mockCubit = MockNewItemPageCubit();
     final mockAppLocalisationsCubit = MockAppLocalisationsCubit();
@@ -34,9 +32,7 @@ void main() {
     when(mockCubit.updateSelectedCarType(any)).thenReturn(null);
     when(mockCubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(
-      mockAppLocalisationsCubit.stream,
-    ).thenAnswer((_) => const Stream.empty());
+    when(mockAppLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockAppLocalisationsCubit.state).thenReturn(
       const AppLocalisationsState(
         localisations: {
@@ -54,9 +50,7 @@ void main() {
         home: MultiBlocProvider(
           providers: [
             BlocProvider<NewItemPageCubit>.value(value: mockCubit),
-            BlocProvider<AppLocalisationsCubit>.value(
-              value: mockAppLocalisationsCubit,
-            ),
+            BlocProvider<AppLocalisationsCubit>.value(value: mockAppLocalisationsCubit),
           ],
           child: const Scaffold(body: CarTypePicker()),
         ),
@@ -73,9 +67,7 @@ void main() {
     expect(find.textContaining('Truck'), findsOneWidget);
 
     // Assert: The correct radio is selected (CarType.bike)
-    final radioWidgets = tester.widgetList<Radio<CarType>>(
-      find.byType(Radio<CarType>),
-    );
+    final radioWidgets = tester.widgetList<Radio<CarType>>(find.byType(Radio<CarType>));
     expect(radioWidgets.any((r) => r.value == CarType.bike), isTrue);
 
     // Act: Tap on the "Car" ListTile

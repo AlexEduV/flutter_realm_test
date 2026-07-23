@@ -29,9 +29,7 @@ void main() {
     return MaterialApp(
       home: MultiBlocProvider(
         providers: [
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           BlocProvider<UserDataCubit>.value(value: userDataCubit),
           BlocProvider<InboxPageCubit>.value(value: inboxPageCubit),
         ],
@@ -41,12 +39,8 @@ void main() {
   }
 
   setUpAll(() {
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
-      () => appLocalisationsCubit,
-    );
-    serviceLocator.registerLazySingleton<GetOwnerByIdUseCase>(
-      () => mockGetOwnerByIdUseCase,
-    );
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+    serviceLocator.registerLazySingleton<GetOwnerByIdUseCase>(() => mockGetOwnerByIdUseCase);
 
     final localisations = {'pages.inbox.title': 'Inbox'};
     appLocalisationsCubit.load(localisations);
@@ -60,19 +54,14 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
 
-    when(
-      userDataCubit.state,
-    ).thenReturn(const UserDataState(isUserAuthenticated: true));
+    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: true));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(inboxPageCubit.state).thenReturn(const InboxPageState());
     when(inboxPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(
-        userDataCubit: userDataCubit,
-        inboxPageCubit: inboxPageCubit,
-      ),
+      buildTestableWidget(userDataCubit: userDataCubit, inboxPageCubit: inboxPageCubit),
     );
 
     expect(
@@ -87,45 +76,31 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
 
-    when(
-      userDataCubit.state,
-    ).thenReturn(const UserDataState(isUserAuthenticated: false));
+    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: false));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(inboxPageCubit.state).thenReturn(const InboxPageState());
     when(inboxPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(
-        userDataCubit: userDataCubit,
-        inboxPageCubit: inboxPageCubit,
-      ),
+      buildTestableWidget(userDataCubit: userDataCubit, inboxPageCubit: inboxPageCubit),
     );
 
     expect(find.byType(EmptyResultsPlaceholderWidget), findsOneWidget);
   });
 
-  testWidgets('shows loading indicator when loading', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('shows loading indicator when loading', (WidgetTester tester) async {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
 
-    when(
-      userDataCubit.state,
-    ).thenReturn(const UserDataState(isUserAuthenticated: true));
+    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: true));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(
-      inboxPageCubit.state,
-    ).thenReturn(const InboxPageState(isLoading: true));
+    when(inboxPageCubit.state).thenReturn(const InboxPageState(isLoading: true));
     when(inboxPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(
-        userDataCubit: userDataCubit,
-        inboxPageCubit: inboxPageCubit,
-      ),
+      buildTestableWidget(userDataCubit: userDataCubit, inboxPageCubit: inboxPageCubit),
     );
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
@@ -137,52 +112,36 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
 
-    when(
-      userDataCubit.state,
-    ).thenReturn(const UserDataState(isUserAuthenticated: true));
+    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: true));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(
-      inboxPageCubit.state,
-    ).thenReturn(const InboxPageState(conversations: []));
+    when(inboxPageCubit.state).thenReturn(const InboxPageState(conversations: []));
     when(inboxPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(
-        userDataCubit: userDataCubit,
-        inboxPageCubit: inboxPageCubit,
-      ),
+      buildTestableWidget(userDataCubit: userDataCubit, inboxPageCubit: inboxPageCubit),
     );
 
     expect(find.byType(EmptyResultsPlaceholderWidget), findsOneWidget);
   });
 
-  testWidgets('shows list of conversations when present', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('shows list of conversations when present', (WidgetTester tester) async {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
 
     // Replace with your actual ConversationModel
     final conversation = ConversationModel.empty();
 
-    when(
-      userDataCubit.state,
-    ).thenReturn(const UserDataState(isUserAuthenticated: true));
+    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: true));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(
-      inboxPageCubit.state,
-    ).thenReturn(InboxPageState(conversations: [conversation]));
+    when(inboxPageCubit.state).thenReturn(InboxPageState(conversations: [conversation]));
     when(inboxPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(mockGetOwnerByIdUseCase.call('')).thenReturn(OwnerEntity.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(
-        userDataCubit: userDataCubit,
-        inboxPageCubit: inboxPageCubit,
-      ),
+      buildTestableWidget(userDataCubit: userDataCubit, inboxPageCubit: inboxPageCubit),
     );
 
     expect(find.byType(InboxListItem), findsOneWidget);

@@ -22,18 +22,12 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_state.
 
 import 'search_page_cubit_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<GetAllCarsUseCase>(),
-  MockSpec<WatchCarsUseCase>(),
-])
+@GenerateNiceMocks([MockSpec<GetAllCarsUseCase>(), MockSpec<WatchCarsUseCase>()])
 void main() {
   late MockGetAllCarsUseCase mockGetAllCarsUseCase;
   late MockWatchCarsUseCase mockWatchCarsUseCase;
   final appLocalisationsCubit = AppLocalisationsCubit()
-    ..load({
-      L10nKeys.fieldParamsHintMin: 'Min:',
-      L10nKeys.fieldParamsHintMax: 'Max:',
-    });
+    ..load({L10nKeys.fieldParamsHintMin: 'Min:', L10nKeys.fieldParamsHintMax: 'Max:'});
 
   late SearchPageCubit cubit;
   final car1 = CarEntity(
@@ -89,11 +83,7 @@ void main() {
   setUp(() {
     mockWatchCarsUseCase = MockWatchCarsUseCase();
     mockGetAllCarsUseCase = MockGetAllCarsUseCase();
-    cubit = SearchPageCubit(
-      mockGetAllCarsUseCase,
-      mockWatchCarsUseCase,
-      appLocalisationsCubit,
-    );
+    cubit = SearchPageCubit(mockGetAllCarsUseCase, mockWatchCarsUseCase, appLocalisationsCubit);
   });
 
   group('SearchPageCubit', () {
@@ -132,31 +122,11 @@ void main() {
               'Max:',
             ),
         isA<SearchPageState>().having((s) => s.isLoading, 'isLoading', true),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
         isA<SearchPageState>()
             .having((s) => s.allResults, 'allResults', isNotEmpty)
             .having((s) => s.isLoading, 'isLoading', false),
@@ -173,31 +143,11 @@ void main() {
       act: (cubit) => cubit.loadData(),
       expect: () => [
         const SearchPageState(isLoading: true),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
-        isA<SearchPageState>().having(
-          (s) => s.allModels,
-          'allModels',
-          isNotEmpty,
-        ),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
+        isA<SearchPageState>().having((s) => s.allModels, 'allModels', isNotEmpty),
         isA<SearchPageState>()
             .having((s) => s.allResults, 'allResults', isNotEmpty)
             .having((s) => s.isLoading, 'isLoading', false),
@@ -235,11 +185,7 @@ void main() {
           CarType.car,
         ),
         isA<SearchPageState>()
-            .having(
-              (s) => s.currentSelectedType,
-              'currentSelectedType',
-              CarType.bike,
-            )
+            .having((s) => s.currentSelectedType, 'currentSelectedType', CarType.bike)
             .having((s) => s.selectedModels, 'selectedModels', isEmpty)
             .having((s) => s.selectedBodyTypes, 'selectedBodyTypes', isEmpty),
       ],
@@ -263,9 +209,7 @@ void main() {
     });
 
     test('applyAllFilters returns only cars with selected body types', () {
-      final state = cubit.state.copyWith(
-        selectedBodyTypes: [BodyType.sedan.name],
-      );
+      final state = cubit.state.copyWith(selectedBodyTypes: [BodyType.sedan.name]);
       cubit.emit(state);
       final filtered = cubit.getFilteredResults(carList);
       expect(filtered, [car1, car3]);
@@ -278,18 +222,15 @@ void main() {
       expect(filtered, [car1]);
     });
 
-    test(
-      'applyAllFilters returns only cars with selected transmission types',
-      () {
-        final state = cubit.state.copyWith(
-          currentSelectedType: CarType.car,
-          selectedTransmissionTypes: [TransmissionType.automatic.name],
-        );
-        cubit.emit(state);
-        final filtered = cubit.getFilteredResults(carList);
-        expect(filtered, [car1, car3]);
-      },
-    );
+    test('applyAllFilters returns only cars with selected transmission types', () {
+      final state = cubit.state.copyWith(
+        currentSelectedType: CarType.car,
+        selectedTransmissionTypes: [TransmissionType.automatic.name],
+      );
+      cubit.emit(state);
+      final filtered = cubit.getFilteredResults(carList);
+      expect(filtered, [car1, car3]);
+    });
 
     blocTest<SearchPageCubit, SearchPageState>(
       'updateModelSelection updates selectedModels and results',
@@ -299,13 +240,9 @@ void main() {
         'Tesla': ['Tesla Model S'],
       }),
       expect: () => [
-        isA<SearchPageState>().having(
-          (s) => s.selectedModels,
-          'selectedModels',
-          {
-            'Tesla': ['Tesla Model S'],
-          },
-        ),
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', {
+          'Tesla': ['Tesla Model S'],
+        }),
       ],
     );
 
@@ -315,13 +252,9 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedModels: {}),
       act: (cubit) => cubit.addCarModelToSelection('Tesla', 'Model S'),
       expect: () => [
-        isA<SearchPageState>().having(
-          (s) => s.selectedModels,
-          'selectedModels',
-          {
-            'Tesla': ['Model S'],
-          },
-        ),
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', {
+          'Tesla': ['Model S'],
+        }),
         isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
       ],
     );
@@ -335,18 +268,10 @@ void main() {
           'Tesla': ['Tesla Model S'],
         },
       ),
-      act: (cubit) =>
-          cubit.removeCarModelFromSelection('Tesla', 'Tesla Model S'),
+      act: (cubit) => cubit.removeCarModelFromSelection('Tesla', 'Tesla Model S'),
       expect: () => [
-        isA<SearchPageState>().having(
-          (s) => s.selectedModels,
-          'selectedModels',
-          isEmpty,
-        ),
-        isA<SearchPageState>().having((s) => s.results, 'results', [
-          car1,
-          car3,
-        ]),
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', isEmpty),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
       ],
     );
 
@@ -356,36 +281,21 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedBodyTypes: []),
       act: (cubit) => cubit.addBodyTypeToSelection(BodyType.sedan.name),
       expect: () => [
-        isA<SearchPageState>().having(
-          (s) => s.selectedBodyTypes,
-          'selectedBodyTypes',
-          [BodyType.sedan.name],
-        ),
-        isA<SearchPageState>().having((s) => s.results, 'results', [
-          car1,
-          car3,
+        isA<SearchPageState>().having((s) => s.selectedBodyTypes, 'selectedBodyTypes', [
+          BodyType.sedan.name,
         ]),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
       ],
     );
 
     blocTest<SearchPageCubit, SearchPageState>(
       'removeBodyTypeFromSelection removes body type and updates results',
       build: () => cubit,
-      seed: () => SearchPageState(
-        allResults: carList,
-        selectedBodyTypes: [BodyType.sedan.name],
-      ),
+      seed: () => SearchPageState(allResults: carList, selectedBodyTypes: [BodyType.sedan.name]),
       act: (cubit) => cubit.removeBodyTypeFromSelection(BodyType.sedan.name),
       expect: () => [
-        isA<SearchPageState>().having(
-          (s) => s.selectedBodyTypes,
-          'selectedBodyTypes',
-          isEmpty,
-        ),
-        isA<SearchPageState>().having((s) => s.results, 'results', [
-          car1,
-          car3,
-        ]),
+        isA<SearchPageState>().having((s) => s.selectedBodyTypes, 'selectedBodyTypes', isEmpty),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
       ],
     );
 
@@ -395,11 +305,9 @@ void main() {
       seed: () => SearchPageState(allResults: carList, selectedFuelTypes: []),
       act: (cubit) => cubit.addFuelTypeToSelection(FuelType.ev.name),
       expect: () => [
-        isA<SearchPageState>().having(
-          (s) => s.selectedFuelTypes,
-          'selectedFuelTypes',
-          [FuelType.ev.name],
-        ),
+        isA<SearchPageState>().having((s) => s.selectedFuelTypes, 'selectedFuelTypes', [
+          FuelType.ev.name,
+        ]),
         isA<SearchPageState>().having((s) => s.results, 'results', [car1]),
       ],
     );
@@ -407,41 +315,26 @@ void main() {
     blocTest<SearchPageCubit, SearchPageState>(
       'removeFuelTypeFromSelection removes fuel type and updates results',
       build: () => cubit,
-      seed: () => SearchPageState(
-        allResults: carList,
-        selectedFuelTypes: [FuelType.ev.name],
-      ),
+      seed: () => SearchPageState(allResults: carList, selectedFuelTypes: [FuelType.ev.name]),
       act: (cubit) => cubit.removeFuelTypeFromSelection(FuelType.ev.name),
       expect: () => [
-        isA<SearchPageState>().having(
-          (s) => s.selectedFuelTypes,
-          'selectedFuelTypes',
-          isEmpty,
-        ),
-        isA<SearchPageState>().having((s) => s.results, 'results', [
-          car1,
-          car3,
-        ]),
+        isA<SearchPageState>().having((s) => s.selectedFuelTypes, 'selectedFuelTypes', isEmpty),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
       ],
     );
 
     blocTest<SearchPageCubit, SearchPageState>(
       'addTransmissionTypeToSelection adds transmission type and updates results',
       build: () => cubit,
-      seed: () =>
-          SearchPageState(allResults: carList, selectedTransmissionTypes: []),
-      act: (cubit) =>
-          cubit.addTransmissionTypeToSelection(TransmissionType.automatic.name),
+      seed: () => SearchPageState(allResults: carList, selectedTransmissionTypes: []),
+      act: (cubit) => cubit.addTransmissionTypeToSelection(TransmissionType.automatic.name),
       expect: () => [
         isA<SearchPageState>().having(
           (s) => s.selectedTransmissionTypes,
           'selectedTransmissionTypes',
           [TransmissionType.automatic.name],
         ),
-        isA<SearchPageState>().having((s) => s.results, 'results', [
-          car1,
-          car3,
-        ]),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
       ],
     );
 
@@ -452,19 +345,14 @@ void main() {
         allResults: carList,
         selectedTransmissionTypes: [TransmissionType.automatic.name],
       ),
-      act: (cubit) => cubit.removeTransmissionTypeFromSelection(
-        TransmissionType.automatic.name,
-      ),
+      act: (cubit) => cubit.removeTransmissionTypeFromSelection(TransmissionType.automatic.name),
       expect: () => [
         isA<SearchPageState>().having(
           (s) => s.selectedTransmissionTypes,
           'selectedTransmissionTypes',
           isEmpty,
         ),
-        isA<SearchPageState>().having((s) => s.results, 'results', [
-          car1,
-          car3,
-        ]),
+        isA<SearchPageState>().having((s) => s.results, 'results', [car1, car3]),
       ],
     );
 
@@ -525,93 +413,81 @@ void main() {
       ],
     );
 
-    test(
-      'validateYears returns false and emits errors if minYear > maxYear',
-      () {
-        final minYearModel = FieldParamsModel.withLabel(
-          'Min:',
-        ).copyWith(validationMessage: 'Incorrect value');
-        final maxYearModel = FieldParamsModel.withLabel(
-          'Max:',
-        ).copyWith(validationMessage: 'Incorrect value');
-        cubit.emit(
-          cubit.state.copyWith(
-            minYearFieldParamsModel: minYearModel,
-            maxYearFieldParamsModel: maxYearModel,
-          ),
-        );
-        final result = cubit.validateYears('2022', '2020');
-        expect(result, false);
-        expect(cubit.state.minYearError, 'Incorrect value');
-        expect(cubit.state.maxYearError, 'Incorrect value');
-      },
-    );
+    test('validateYears returns false and emits errors if minYear > maxYear', () {
+      final minYearModel = FieldParamsModel.withLabel(
+        'Min:',
+      ).copyWith(validationMessage: 'Incorrect value');
+      final maxYearModel = FieldParamsModel.withLabel(
+        'Max:',
+      ).copyWith(validationMessage: 'Incorrect value');
+      cubit.emit(
+        cubit.state.copyWith(
+          minYearFieldParamsModel: minYearModel,
+          maxYearFieldParamsModel: maxYearModel,
+        ),
+      );
+      final result = cubit.validateYears('2022', '2020');
+      expect(result, false);
+      expect(cubit.state.minYearError, 'Incorrect value');
+      expect(cubit.state.maxYearError, 'Incorrect value');
+    });
 
-    test(
-      'validateYears returns true and clears errors if minYear <= maxYear',
-      () {
-        final minYearModel = FieldParamsModel.withLabel(
-          'Min:',
-        ).copyWith(validationMessage: 'Incorrect value');
-        final maxYearModel = FieldParamsModel.withLabel(
-          'Max:',
-        ).copyWith(validationMessage: 'Incorrect value');
-        cubit.emit(
-          cubit.state.copyWith(
-            minYearFieldParamsModel: minYearModel,
-            maxYearFieldParamsModel: maxYearModel,
-          ),
-        );
-        final result = cubit.validateYears('2020', '2022');
-        expect(result, true);
-        expect(cubit.state.minYearError, null);
-        expect(cubit.state.maxYearError, null);
-      },
-    );
+    test('validateYears returns true and clears errors if minYear <= maxYear', () {
+      final minYearModel = FieldParamsModel.withLabel(
+        'Min:',
+      ).copyWith(validationMessage: 'Incorrect value');
+      final maxYearModel = FieldParamsModel.withLabel(
+        'Max:',
+      ).copyWith(validationMessage: 'Incorrect value');
+      cubit.emit(
+        cubit.state.copyWith(
+          minYearFieldParamsModel: minYearModel,
+          maxYearFieldParamsModel: maxYearModel,
+        ),
+      );
+      final result = cubit.validateYears('2020', '2022');
+      expect(result, true);
+      expect(cubit.state.minYearError, null);
+      expect(cubit.state.maxYearError, null);
+    });
 
-    test(
-      'validatePrices returns false and emits errors if minPrice > maxPrice',
-      () {
-        final minPriceModel = FieldParamsModel.withLabel(
-          'Min:',
-        ).copyWith(validationMessage: 'Incorrect value');
-        final maxPriceModel = FieldParamsModel.withLabel(
-          'Max:',
-        ).copyWith(validationMessage: 'Incorrect value');
-        cubit.emit(
-          cubit.state.copyWith(
-            minPriceFieldParamsModel: minPriceModel,
-            maxPriceFieldParamsModel: maxPriceModel,
-          ),
-        );
-        final result = cubit.validatePrices('20000', '10000');
-        expect(result, false);
-        expect(cubit.state.minPriceError, 'Incorrect value');
-        expect(cubit.state.maxPriceError, 'Incorrect value');
-      },
-    );
+    test('validatePrices returns false and emits errors if minPrice > maxPrice', () {
+      final minPriceModel = FieldParamsModel.withLabel(
+        'Min:',
+      ).copyWith(validationMessage: 'Incorrect value');
+      final maxPriceModel = FieldParamsModel.withLabel(
+        'Max:',
+      ).copyWith(validationMessage: 'Incorrect value');
+      cubit.emit(
+        cubit.state.copyWith(
+          minPriceFieldParamsModel: minPriceModel,
+          maxPriceFieldParamsModel: maxPriceModel,
+        ),
+      );
+      final result = cubit.validatePrices('20000', '10000');
+      expect(result, false);
+      expect(cubit.state.minPriceError, 'Incorrect value');
+      expect(cubit.state.maxPriceError, 'Incorrect value');
+    });
 
-    test(
-      'validatePrices returns true and clears errors if minPrice <= maxPrice',
-      () {
-        final minPriceModel = FieldParamsModel.withLabel(
-          'Min:',
-        ).copyWith(validationMessage: 'Incorrect value');
-        final maxPriceModel = FieldParamsModel.withLabel(
-          'Max:',
-        ).copyWith(validationMessage: 'Incorrect value');
-        cubit.emit(
-          cubit.state.copyWith(
-            minPriceFieldParamsModel: minPriceModel,
-            maxPriceFieldParamsModel: maxPriceModel,
-          ),
-        );
-        final result = cubit.validatePrices('10000', '20000');
-        expect(result, true);
-        expect(cubit.state.minPriceError, null);
-        expect(cubit.state.maxPriceError, null);
-      },
-    );
+    test('validatePrices returns true and clears errors if minPrice <= maxPrice', () {
+      final minPriceModel = FieldParamsModel.withLabel(
+        'Min:',
+      ).copyWith(validationMessage: 'Incorrect value');
+      final maxPriceModel = FieldParamsModel.withLabel(
+        'Max:',
+      ).copyWith(validationMessage: 'Incorrect value');
+      cubit.emit(
+        cubit.state.copyWith(
+          minPriceFieldParamsModel: minPriceModel,
+          maxPriceFieldParamsModel: maxPriceModel,
+        ),
+      );
+      final result = cubit.validatePrices('10000', '20000');
+      expect(result, true);
+      expect(cubit.state.minPriceError, null);
+      expect(cubit.state.maxPriceError, null);
+    });
 
     test('close cancels car subscription', () {
       final controller = StreamController<List<CarEntity>>();

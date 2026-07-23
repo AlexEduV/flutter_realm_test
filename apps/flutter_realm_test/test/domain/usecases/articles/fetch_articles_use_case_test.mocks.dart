@@ -6,10 +6,8 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/entities/article_entity.dart'
-    as _i2;
-import 'package:test_flutter_project/domain/repositories/article_repository.dart'
-    as _i3;
+import 'package:test_flutter_project/domain/entities/article_entity.dart' as _i2;
+import 'package:test_flutter_project/domain/repositories/article_repository.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -38,13 +36,10 @@ class MockArticleRepository extends _i1.Mock implements _i3.ArticleRepository {
   _i4.Future<List<_i2.ArticleEntity>> fetchArticles() =>
       (super.noSuchMethod(
             Invocation.method(#fetchArticles, []),
-            returnValue: _i4.Future<List<_i2.ArticleEntity>>.value(
+            returnValue: _i4.Future<List<_i2.ArticleEntity>>.value(<_i2.ArticleEntity>[]),
+            returnValueForMissingStub: _i4.Future<List<_i2.ArticleEntity>>.value(
               <_i2.ArticleEntity>[],
             ),
-            returnValueForMissingStub:
-                _i4.Future<List<_i2.ArticleEntity>>.value(
-                  <_i2.ArticleEntity>[],
-                ),
           )
           as _i4.Future<List<_i2.ArticleEntity>>);
 
@@ -53,16 +48,10 @@ class MockArticleRepository extends _i1.Mock implements _i3.ArticleRepository {
       (super.noSuchMethod(
             Invocation.method(#getArticleById, [id]),
             returnValue: _i4.Future<_i2.ArticleEntity>.value(
-              _FakeArticleEntity_0(
-                this,
-                Invocation.method(#getArticleById, [id]),
-              ),
+              _FakeArticleEntity_0(this, Invocation.method(#getArticleById, [id])),
             ),
             returnValueForMissingStub: _i4.Future<_i2.ArticleEntity>.value(
-              _FakeArticleEntity_0(
-                this,
-                Invocation.method(#getArticleById, [id]),
-              ),
+              _FakeArticleEntity_0(this, Invocation.method(#getArticleById, [id])),
             ),
           )
           as _i4.Future<_i2.ArticleEntity>);

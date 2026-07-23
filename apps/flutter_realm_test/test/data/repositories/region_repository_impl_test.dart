@@ -12,10 +12,7 @@ void main() {
   late MockRegionRemoteDataSource mockRemoteDataSource;
   late RegionRepositoryImpl repository;
 
-  final regionList = [
-    const RegionEntity(locale: 'US'),
-    const RegionEntity(locale: 'CA'),
-  ];
+  final regionList = [const RegionEntity(locale: 'US'), const RegionEntity(locale: 'CA')];
 
   setUp(() {
     mockRemoteDataSource = MockRegionRemoteDataSource();

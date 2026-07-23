@@ -35,10 +35,7 @@ void main() {
     serviceLocator.unregister<UserDataCubit>();
   });
 
-  Widget buildTestable({
-    required UserDataState userState,
-    required ExplorePageState exploreState,
-  }) {
+  Widget buildTestable({required UserDataState userState, required ExplorePageState exploreState}) {
     when(mockUserDataCubit.state).thenReturn(userState);
     when(mockExplorePageCubit.state).thenReturn(exploreState);
 
@@ -51,9 +48,7 @@ void main() {
       ),
     );
 
-    when(
-      mockAppLocalisationsCubit.stream,
-    ).thenAnswer((_) => const Stream.empty());
+    when(mockAppLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockExplorePageCubit.stream).thenAnswer((_) => const Stream.empty());
 
@@ -62,31 +57,22 @@ void main() {
         providers: [
           BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
           BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: mockAppLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: mockAppLocalisationsCubit),
         ],
         child: const RecentlyViewedPage(),
       ),
     );
   }
 
-  testWidgets('shows empty placeholder when viewedIds is empty', (
-    tester,
-  ) async {
+  testWidgets('shows empty placeholder when viewedIds is empty', (tester) async {
     final userState = const UserDataState(viewedIds: []);
     final exploreState = const ExplorePageState(cars: []);
 
-    await tester.pumpWidget(
-      buildTestable(userState: userState, exploreState: exploreState),
-    );
+    await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));
 
     await tester.pumpAndSettle();
 
-    expect(
-      find.textContaining('No results', findRichText: true),
-      findsOneWidget,
-    );
+    expect(find.textContaining('No results', findRichText: true), findsOneWidget);
   });
 
   testWidgets('shows car list items for each viewedId', (tester) async {
@@ -95,9 +81,7 @@ void main() {
     final userState = const UserDataState(viewedIds: ['car1', 'car2']);
     final exploreState = ExplorePageState(cars: [car1, car2]);
 
-    await tester.pumpWidget(
-      buildTestable(userState: userState, exploreState: exploreState),
-    );
+    await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));
 
     // Should show a CarListItem for each viewed car
     expect(find.byType(CarListItem), findsNWidgets(2));
@@ -106,17 +90,13 @@ void main() {
     expect(find.textContaining('Model 2'), findsOneWidget);
   });
 
-  testWidgets('does not crash when a viewedId references a deleted car', (
-    tester,
-  ) async {
+  testWidgets('does not crash when a viewedId references a deleted car', (tester) async {
     final car1 = CarEntity.empty().copyWith(carId: 'car1', model: 'Model 1');
     // 'orphan_id' was once viewed but the car has since been removed.
     final userState = const UserDataState(viewedIds: ['car1', 'orphan_id']);
     final exploreState = ExplorePageState(cars: [car1]);
 
-    await tester.pumpWidget(
-      buildTestable(userState: userState, exploreState: exploreState),
-    );
+    await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));
     await tester.pumpAndSettle();
 
     // Should show the one car that still exists, skipping the orphan.

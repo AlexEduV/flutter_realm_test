@@ -2,8 +2,7 @@ import 'package:test_flutter_project/domain/repositories/geolocator_repository.d
 
 import '../usecase.dart';
 
-class CheckLocationServiceStatusUseCase
-    implements UseCaseNoParams<Future<bool>> {
+class CheckLocationServiceStatusUseCase implements UseCaseNoParams<Future<bool>> {
   CheckLocationServiceStatusUseCase(this._geolocatorRepository);
 
   final GeolocatorRepository _geolocatorRepository;

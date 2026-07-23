@@ -8,8 +8,7 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart'
     as _i3;
-import 'package:test_flutter_project/domain/models/conversation_model.dart'
-    as _i2;
+import 'package:test_flutter_project/domain/models/conversation_model.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,8 +24,7 @@ import 'package:test_flutter_project/domain/models/conversation_model.dart'
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeConversationModel_0 extends _i1.SmartFake
-    implements _i2.ConversationModel {
+class _FakeConversationModel_0 extends _i1.SmartFake implements _i2.ConversationModel {
   _FakeConversationModel_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
@@ -34,12 +32,9 @@ class _FakeConversationModel_0 extends _i1.SmartFake
 /// A class which mocks [MessagesRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMessagesRemoteDataSource extends _i1.Mock
-    implements _i3.MessagesRemoteDataSource {
+class MockMessagesRemoteDataSource extends _i1.Mock implements _i3.MessagesRemoteDataSource {
   @override
-  _i4.Future<void> saveConversations(
-    List<_i2.ConversationModel>? conversations,
-  ) =>
+  _i4.Future<void> saveConversations(List<_i2.ConversationModel>? conversations) =>
       (super.noSuchMethod(
             Invocation.method(#saveConversations, [conversations]),
             returnValue: _i4.Future<void>.value(),
@@ -51,13 +46,10 @@ class MockMessagesRemoteDataSource extends _i1.Mock
   _i4.Future<List<_i2.ConversationModel>> loadConversations() =>
       (super.noSuchMethod(
             Invocation.method(#loadConversations, []),
-            returnValue: _i4.Future<List<_i2.ConversationModel>>.value(
+            returnValue: _i4.Future<List<_i2.ConversationModel>>.value(<_i2.ConversationModel>[]),
+            returnValueForMissingStub: _i4.Future<List<_i2.ConversationModel>>.value(
               <_i2.ConversationModel>[],
             ),
-            returnValueForMissingStub:
-                _i4.Future<List<_i2.ConversationModel>>.value(
-                  <_i2.ConversationModel>[],
-                ),
           )
           as _i4.Future<List<_i2.ConversationModel>>);
 
@@ -92,8 +84,6 @@ class MockMessagesRemoteDataSource extends _i1.Mock
           as _i2.ConversationModel);
 
   @override
-  void dispose() => super.noSuchMethod(
-    Invocation.method(#dispose, []),
-    returnValueForMissingStub: null,
-  );
+  void dispose() =>
+      super.noSuchMethod(Invocation.method(#dispose, []), returnValueForMissingStub: null);
 }

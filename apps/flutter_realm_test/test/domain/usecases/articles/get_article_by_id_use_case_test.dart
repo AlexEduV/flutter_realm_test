@@ -27,9 +27,7 @@ void main() {
       author: AuthorEntity(id: '1', fullName: 'Test Author'),
       datePublished: 'April 12',
     );
-    when(
-      mockRepository.getArticleById(articleId),
-    ).thenAnswer((_) async => article);
+    when(mockRepository.getArticleById(articleId)).thenAnswer((_) async => article);
 
     // Act
     final result = await useCase.call(articleId);
@@ -43,9 +41,7 @@ void main() {
   test('should propagate exceptions from repository', () {
     // Arrange
     const articleId = 'not_found';
-    when(
-      mockRepository.getArticleById(articleId),
-    ).thenThrow(Exception('Not found'));
+    when(mockRepository.getArticleById(articleId)).thenThrow(Exception('Not found'));
 
     // Act & Assert
     expect(() => useCase.call(articleId), throwsA(isA<Exception>()));

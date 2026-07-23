@@ -24,18 +24,14 @@ class LastSeenWidget extends StatelessWidget {
       builder: (context, userState) {
         if (userState.isLoading) {
           return const Center(
-            child: CircularProgressIndicator(
-              padding: EdgeInsets.all(AppDimensions.minorL),
-            ),
+            child: CircularProgressIndicator(padding: EdgeInsets.all(AppDimensions.minorL)),
           );
         }
 
         return BlocBuilder<ExplorePageCubit, ExplorePageState>(
           builder: (context, state) {
             final carId = userState.lastSeenCar?.carId;
-            final carEntityFull = serviceLocator<GetCarByIdUseCase>().call(
-              carId ?? '',
-            );
+            final carEntityFull = serviceLocator<GetCarByIdUseCase>().call(carId ?? '');
             final isTestCar = carEntityFull.carId == 'testId';
 
             final image = carEntityFull.images.firstOrNull;
@@ -50,9 +46,7 @@ class LastSeenWidget extends StatelessWidget {
                   ),
                   child: Text(
                     context.tr(L10nKeys.lastSeenSectionTitle),
-                    style: AppTextStyles.zonaPro18White.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppTextStyles.zonaPro18White.copyWith(fontWeight: FontWeight.w600),
                   ),
                 ),
 
@@ -70,41 +64,26 @@ class LastSeenWidget extends StatelessWidget {
                         from: DetailsPageSource.explore,
                         carId: carEntityFull.carId,
                       ),
-                      borderRadius: BorderRadius.circular(
-                        AppDimensions.normalL,
-                      ),
+                      borderRadius: BorderRadius.circular(AppDimensions.normalL),
                       child: Container(
                         decoration: BoxDecoration(
                           color: AppColors.accentColor.withAlpha(60),
-                          borderRadius: BorderRadius.circular(
-                            AppDimensions.normalL,
-                          ),
+                          borderRadius: BorderRadius.circular(AppDimensions.normalL),
                         ),
-                        padding: const EdgeInsetsGeometry.all(
-                          AppDimensions.minorM,
-                        ),
+                        padding: const EdgeInsetsGeometry.all(AppDimensions.minorM),
                         child: Row(
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  AppDimensions.normalXS,
-                                ),
-                                color: image == null
-                                    ? AppColors.headerColor
-                                    : null,
+                                borderRadius: BorderRadius.circular(AppDimensions.normalXS),
+                                color: image == null ? AppColors.headerColor : null,
                                 image: image != null
-                                    ? DecorationImage(
-                                        image: AssetImage(image),
-                                        fit: BoxFit.cover,
-                                      )
+                                    ? DecorationImage(image: AssetImage(image), fit: BoxFit.cover)
                                     : null,
                               ),
                               height: AppDimensions.lastSeenSectionImageSize,
                               width: AppDimensions.lastSeenSectionImageSize,
-                              margin: const EdgeInsetsGeometry.all(
-                                AppDimensions.minorL,
-                              ),
+                              margin: const EdgeInsetsGeometry.all(AppDimensions.minorL),
                             ),
 
                             const SizedBox(width: AppDimensions.minorL),
@@ -115,8 +94,9 @@ class LastSeenWidget extends StatelessWidget {
                                 children: [
                                   Text(
                                     '${carEntityFull.manufacturer} ${carEntityFull.model} ${carEntityFull.year ?? ''}',
-                                    style: AppTextStyles.zonaPro16White
-                                        .copyWith(fontWeight: FontWeight.w600),
+                                    style: AppTextStyles.zonaPro16White.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                   Text(
                                     '\$ ${carEntityFull.price ?? 0}',

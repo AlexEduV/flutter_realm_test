@@ -56,11 +56,7 @@ void main() {
         date: DateTime.now(),
       ),
     ];
-    final conversation = ConversationModel(
-      messages: messages,
-      conversationId: '1',
-      ownerId: '2',
-    );
+    final conversation = ConversationModel(messages: messages, conversationId: '1', ownerId: '2');
 
     when(mockGetUserByIdUseCase.call('1')).thenReturn(user1);
     when(mockGetUserByIdUseCase.call('2')).thenReturn(user2);
@@ -85,11 +81,7 @@ void main() {
         date: DateTime.now(),
       ),
     ];
-    final conversation = ConversationModel(
-      messages: messages,
-      ownerId: '1',
-      conversationId: '505',
-    );
+    final conversation = ConversationModel(messages: messages, ownerId: '1', conversationId: '505');
 
     when(mockGetUserByIdUseCase.call('3')).thenReturn(null);
 

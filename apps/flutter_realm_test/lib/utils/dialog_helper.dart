@@ -100,10 +100,7 @@ class DialogHelper {
       backgroundColor: Colors.white,
       clipBehavior: Clip.antiAlias,
       builder: (BuildContext context) {
-        return CountryPickerBottomSheet(
-          items: items,
-          currentSelectedIndex: currentIndex,
-        );
+        return CountryPickerBottomSheet(items: items, currentSelectedIndex: currentIndex);
       },
     );
   }
@@ -132,10 +129,7 @@ class DialogHelper {
     );
   }
 
-  static Future<String?> showColorsPickerDialog(
-    BuildContext context,
-    String initialColor,
-  ) async {
+  static Future<String?> showColorsPickerDialog(BuildContext context, String initialColor) async {
     final result = await showDialog<String>(
       context: context,
       builder: (context) {

@@ -42,26 +42,16 @@ void main() {
 
     testWidgets('displays the correct icon', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(state);
-      when(
-        mockCubit.stream,
-      ).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
+      when(mockCubit.stream).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
 
       await tester.pumpWidget(
-        buildTestWidget(
-          index: 1,
-          selectedIcon: Icons.home,
-          unselectedIcon: Icons.home_outlined,
-        ),
+        buildTestWidget(index: 1, selectedIcon: Icons.home, unselectedIcon: Icons.home_outlined),
       );
       expect(find.byIcon(Icons.home), findsOneWidget);
     });
 
-    testWidgets('uses selected color when selected', (
-      WidgetTester tester,
-    ) async {
-      when(
-        mockCubit.state,
-      ).thenReturn(const HomeBottomBarState(currentSelectedTabIndex: 2));
+    testWidgets('uses selected color when selected', (WidgetTester tester) async {
+      when(mockCubit.state).thenReturn(const HomeBottomBarState(currentSelectedTabIndex: 2));
       when(mockCubit.stream).thenAnswer(
         (_) => Stream<HomeBottomBarState>.fromIterable([
           const HomeBottomBarState(currentSelectedTabIndex: 2),
@@ -81,16 +71,10 @@ void main() {
       expect(foregroundColor, AppColors.headerColor);
     });
 
-    testWidgets('uses unselected color when not selected', (
-      WidgetTester tester,
-    ) async {
-      when(
-        mockCubit.state,
-      ).thenReturn(const HomeBottomBarState(currentSelectedTabIndex: 0));
+    testWidgets('uses unselected color when not selected', (WidgetTester tester) async {
+      when(mockCubit.state).thenReturn(const HomeBottomBarState(currentSelectedTabIndex: 0));
       when(mockCubit.stream).thenAnswer(
-        (_) => Stream.fromIterable([
-          const HomeBottomBarState(currentSelectedTabIndex: 0),
-        ]),
+        (_) => Stream.fromIterable([const HomeBottomBarState(currentSelectedTabIndex: 0)]),
       );
 
       await tester.pumpWidget(
@@ -103,26 +87,15 @@ void main() {
       final icon = tester.widget<Icon>(find.byType(Icon));
       final foregroundColor = icon.color;
 
-      expect(
-        foregroundColor,
-        AppColors.headerColor.withAlpha((0.48 * 255).toInt()),
-      );
+      expect(foregroundColor, AppColors.headerColor.withAlpha((0.48 * 255).toInt()));
     });
 
-    testWidgets('calls updateSelectedIndex when pressed', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('calls updateSelectedIndex when pressed', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(state);
-      when(
-        mockCubit.stream,
-      ).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
+      when(mockCubit.stream).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
 
       await tester.pumpWidget(
-        buildTestWidget(
-          index: 1,
-          selectedIcon: Icons.home,
-          unselectedIcon: Icons.home_outlined,
-        ),
+        buildTestWidget(index: 1, selectedIcon: Icons.home, unselectedIcon: Icons.home_outlined),
       );
       await tester.tap(find.byType(Icon));
       await tester.pump();

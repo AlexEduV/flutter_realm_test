@@ -36,10 +36,7 @@ void main() {
     serviceLocator.unregister<UserDataCubit>();
   });
 
-  Widget buildTestable({
-    required UserDataState userState,
-    required ExplorePageState exploreState,
-  }) {
+  Widget buildTestable({required UserDataState userState, required ExplorePageState exploreState}) {
     when(mockUserDataCubit.state).thenReturn(userState);
     when(mockExplorePageCubit.state).thenReturn(exploreState);
 
@@ -49,9 +46,7 @@ void main() {
       ),
     );
 
-    when(
-      mockAppLocalisationsCubit.stream,
-    ).thenAnswer((_) => const Stream.empty());
+    when(mockAppLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockExplorePageCubit.stream).thenAnswer((_) => const Stream.empty());
 
@@ -60,30 +55,21 @@ void main() {
         providers: [
           BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
           BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: mockAppLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: mockAppLocalisationsCubit),
         ],
         child: const MyItemsPage(),
       ),
     );
   }
 
-  testWidgets('shows empty placeholder when createdIds is empty', (
-    tester,
-  ) async {
+  testWidgets('shows empty placeholder when createdIds is empty', (tester) async {
     final userState = const UserDataState(createdIds: []);
     final exploreState = const ExplorePageState(cars: []);
 
-    await tester.pumpWidget(
-      buildTestable(userState: userState, exploreState: exploreState),
-    );
+    await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));
 
     // Should show the empty placeholder text (contains 'myItemsNoResultsPlaceholder')
-    expect(
-      find.textContaining('No results', findRichText: true),
-      findsOneWidget,
-    );
+    expect(find.textContaining('No results', findRichText: true), findsOneWidget);
   });
 
   testWidgets('shows car list items for each createdId', (tester) async {
@@ -92,9 +78,7 @@ void main() {
     final userState = const UserDataState(createdIds: ['car1', 'car2']);
     final exploreState = ExplorePageState(cars: [car1, car2]);
 
-    await tester.pumpWidget(
-      buildTestable(userState: userState, exploreState: exploreState),
-    );
+    await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));
 
     // Should show a CarListItem for each created car
     expect(find.byType(CarListItem), findsNWidgets(2));

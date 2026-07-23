@@ -31,9 +31,7 @@ void main() {
       'dialogs.deleteAccount.confirmLabel': 'Yes, delete it.',
     };
 
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
-      () => appLocalisationCubit,
-    );
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationCubit);
     appLocalisationCubit.load(localisations);
   });
 
@@ -58,20 +56,13 @@ void main() {
   }
 
   testWidgets('shows LoginPage when user is not authenticated', (tester) async {
-    when(
-      userDataCubit.stream,
-    ).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
+    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
 
     when(userDataCubit.state).thenReturn(
-      const UserDataState(
-        isUserAuthenticated: false,
-        firstName: '',
-        lastName: '',
-        email: '',
-      ),
+      const UserDataState(isUserAuthenticated: false, firstName: '', lastName: '', email: ''),
     );
     when(authenticationCubit.state).thenReturn(const AuthenticationState());
 
@@ -80,12 +71,8 @@ void main() {
     expect(find.byType(LoginPage), findsOneWidget);
   });
 
-  testWidgets('shows user info and account items when authenticated', (
-    tester,
-  ) async {
-    when(
-      userDataCubit.stream,
-    ).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
+  testWidgets('shows user info and account items when authenticated', (tester) async {
+    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
@@ -117,9 +104,7 @@ void main() {
   });
 
   testWidgets('tapping logout calls cubit methods', (tester) async {
-    when(
-      userDataCubit.stream,
-    ).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
+    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
@@ -151,9 +136,7 @@ void main() {
   });
 
   testWidgets('tapping delete account calls cubit methods', (tester) async {
-    when(
-      userDataCubit.stream,
-    ).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
+    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
@@ -173,10 +156,7 @@ void main() {
 
     await tester.pumpWidget(makeTestableWidget(const AccountPage()));
 
-    await tester.drag(
-      find.byType(SingleChildScrollView),
-      const Offset(0, -300),
-    );
+    await tester.drag(find.byType(SingleChildScrollView), const Offset(0, -300));
 
     // Tap the delete account item (replace with actual localized string if needed)
     final deleteAccountFinder = find.textContaining('Delete Account');

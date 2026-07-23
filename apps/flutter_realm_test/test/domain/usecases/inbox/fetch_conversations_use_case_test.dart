@@ -24,9 +24,7 @@ void main() {
         ConversationModel(conversationId: '1', ownerId: '3', messages: []),
         ConversationModel(conversationId: '2', ownerId: '4', messages: []),
       ];
-      when(
-        mockRepository.fetchConversations(),
-      ).thenAnswer((_) async => conversations);
+      when(mockRepository.fetchConversations()).thenAnswer((_) async => conversations);
 
       final result = await useCase.call();
 

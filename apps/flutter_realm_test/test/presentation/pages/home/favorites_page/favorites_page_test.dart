@@ -23,9 +23,7 @@ void main() {
     serviceLocator.registerSingleton<ExplorePageCubit>(explorePageCubit);
     serviceLocator.registerSingleton<UserDataCubit>(userDataCubit);
 
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
-      () => appLocalisationsCubit,
-    );
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
     final localisations = {'pages.favorites.title': 'Favorites'};
     appLocalisationsCubit.load(localisations);
   });
@@ -39,9 +37,7 @@ void main() {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<ExplorePageCubit>.value(value: explorePageCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           BlocProvider<UserDataCubit>.value(value: userDataCubit),
         ],
         child: child,
@@ -59,9 +55,7 @@ void main() {
     await tester.pumpWidget(makeTestableWidget(const FavoritesPage()));
 
     expect(
-      find.text(
-        appLocalisationsCubit.getLocalisationByKey(L10nKeys.favoritesPageTitle),
-      ),
+      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.favoritesPageTitle)),
       findsOneWidget,
     );
   });
@@ -69,12 +63,8 @@ void main() {
   testWidgets('shows only favorite cars', (tester) async {
     final car1 = CarEntity.empty().copyWith(carId: '1', model: 'Car 1');
     final car2 = CarEntity.empty().copyWith(carId: '2', model: 'Car 2');
-    when(
-      userDataCubit.state,
-    ).thenReturn(const UserDataState(favoriteIds: ['1']));
-    when(
-      explorePageCubit.state,
-    ).thenReturn(ExplorePageState(cars: [car1, car2]));
+    when(userDataCubit.state).thenReturn(const UserDataState(favoriteIds: ['1']));
+    when(explorePageCubit.state).thenReturn(ExplorePageState(cars: [car1, car2]));
 
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
     when(explorePageCubit.stream).thenAnswer((_) => const Stream.empty());
@@ -93,20 +83,14 @@ void main() {
 
     // Replace with your actual empty state text
     expect(
-      find.text(
-        appLocalisationsCubit.getLocalisationByKey(
-          L10nKeys.favoritesEmptyPlaceholder,
-        ),
-      ),
+      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.favoritesEmptyPlaceholder)),
       findsOneWidget,
     );
   });
 
   testWidgets('delete button calls removeCarIdFromFavorites', (tester) async {
     final car = CarEntity.empty().copyWith(carId: '1', model: 'Car 1');
-    when(
-      userDataCubit.state,
-    ).thenReturn(const UserDataState(favoriteIds: ['1']));
+    when(userDataCubit.state).thenReturn(const UserDataState(favoriteIds: ['1']));
     when(explorePageCubit.state).thenReturn(ExplorePageState(cars: [car]));
 
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());

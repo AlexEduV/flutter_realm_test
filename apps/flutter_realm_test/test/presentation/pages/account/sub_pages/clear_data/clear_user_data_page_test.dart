@@ -16,8 +16,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late MockUserDataCubit mockCubit;
-  final MockAppLocalisationsCubit mockAppLocalisationsCubit =
-      MockAppLocalisationsCubit();
+  final MockAppLocalisationsCubit mockAppLocalisationsCubit = MockAppLocalisationsCubit();
 
   late UserDataState stateWithData;
   late UserDataState stateCleared;
@@ -25,25 +24,15 @@ void main() {
   setUp(() {
     mockCubit = MockUserDataCubit();
 
-    stateWithData = const UserDataState(
-      viewedIds: ['1'],
-      favoriteIds: ['2'],
-      createdIds: ['3'],
-    );
-    stateCleared = const UserDataState(
-      viewedIds: [],
-      favoriteIds: [],
-      createdIds: [],
-    );
+    stateWithData = const UserDataState(viewedIds: ['1'], favoriteIds: ['2'], createdIds: ['3']);
+    stateCleared = const UserDataState(viewedIds: [], favoriteIds: [], createdIds: []);
   });
 
   Widget buildTestable({required UserDataState state}) {
     when(mockCubit.state).thenReturn(state);
     when(mockCubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(
-      mockAppLocalisationsCubit.stream,
-    ).thenAnswer((_) => const Stream.empty());
+    when(mockAppLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockAppLocalisationsCubit.state).thenReturn(
       const AppLocalisationsState(
         localisations: {
@@ -61,9 +50,7 @@ void main() {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<UserDataCubit>.value(value: mockCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: mockAppLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: mockAppLocalisationsCubit),
         ],
         child: const ClearUserDataPage(),
       ),
@@ -74,36 +61,18 @@ void main() {
     await tester.pumpWidget(buildTestable(state: stateWithData));
 
     // AppBar title
-    expect(
-      find.textContaining('clearData', findRichText: true),
-      findsOneWidget,
-    );
+    expect(find.textContaining('clearData', findRichText: true), findsOneWidget);
 
     // Section description
-    expect(
-      find.textContaining('dataDeletionDescription', findRichText: true),
-      findsOneWidget,
-    );
+    expect(find.textContaining('dataDeletionDescription', findRichText: true), findsOneWidget);
 
     // PersonalDetailsListItem titles
-    expect(
-      find.textContaining('clearViewHistoryItem', findRichText: true),
-      findsOneWidget,
-    );
-    expect(
-      find.textContaining('clearFavoritesItem', findRichText: true),
-      findsOneWidget,
-    );
-    expect(
-      find.textContaining('clearMyItemsItem', findRichText: true),
-      findsOneWidget,
-    );
+    expect(find.textContaining('clearViewHistoryItem', findRichText: true), findsOneWidget);
+    expect(find.textContaining('clearFavoritesItem', findRichText: true), findsOneWidget);
+    expect(find.textContaining('clearMyItemsItem', findRichText: true), findsOneWidget);
 
     // AccountItemSeparated title
-    expect(
-      find.textContaining('clearAllDataItem', findRichText: true),
-      findsOneWidget,
-    );
+    expect(find.textContaining('clearAllDataItem', findRichText: true), findsOneWidget);
   });
 
   testWidgets('disables clear actions when lists are empty', (tester) async {
@@ -114,16 +83,11 @@ void main() {
     // You can check for the presence of disabled widgets or their properties if you expose them
   });
 
-  testWidgets('tapping clearViewHistoryItem triggers dialog and cubit method', (
-    tester,
-  ) async {
+  testWidgets('tapping clearViewHistoryItem triggers dialog and cubit method', (tester) async {
     await tester.pumpWidget(buildTestable(state: stateWithData));
 
     // Tap the first PersonalDetailsListItem (clearViewHistoryItem)
-    final clearViewHistoryFinder = find.textContaining(
-      'clearViewHistoryItem',
-      findRichText: true,
-    );
+    final clearViewHistoryFinder = find.textContaining('clearViewHistoryItem', findRichText: true);
     expect(clearViewHistoryFinder, findsOneWidget);
 
     // Simulate tap

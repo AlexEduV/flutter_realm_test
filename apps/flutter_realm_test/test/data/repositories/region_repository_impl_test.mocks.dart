@@ -28,8 +28,7 @@ import 'package:test_flutter_project/domain/models/region_ui_model.dart' as _i5;
 /// A class which mocks [RegionRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRegionRemoteDataSource extends _i1.Mock
-    implements _i2.RegionRemoteDataSource {
+class MockRegionRemoteDataSource extends _i1.Mock implements _i2.RegionRemoteDataSource {
   @override
   _i3.Future<void> init() =>
       (super.noSuchMethod(

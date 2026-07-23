@@ -62,14 +62,8 @@ void main() {
     expect(serviceLocator.isRegistered<HomeBottomBarCubit>(), isTrue);
     expect(serviceLocator.isRegistered<DetailsPageCubit>(), isTrue);
 
-    expect(
-      serviceLocator.isRegistered<RequestLocationPermissionUseCase>(),
-      isTrue,
-    );
-    expect(
-      serviceLocator.isRegistered<CheckLocationPermissionStatusUseCase>(),
-      isTrue,
-    );
+    expect(serviceLocator.isRegistered<RequestLocationPermissionUseCase>(), isTrue);
+    expect(serviceLocator.isRegistered<CheckLocationPermissionStatusUseCase>(), isTrue);
     expect(serviceLocator.isRegistered<WatchCarsUseCase>(), isTrue);
     expect(serviceLocator.isRegistered<SyncCarsUseCase>(), isTrue);
     expect(serviceLocator.isRegistered<AddCarUseCase>(), isTrue);
@@ -109,10 +103,7 @@ void main() {
     expect(serviceLocator<DeleteCarByIdUseCase>(), isA<DeleteCarByIdUseCase>());
     expect(serviceLocator<DeleteAllCarsUseCase>(), isA<DeleteAllCarsUseCase>());
     expect(serviceLocator<GetCarByIdUseCase>(), isA<GetCarByIdUseCase>());
-    expect(
-      serviceLocator<GetCurrentMaxCarIdUseCase>(),
-      isA<GetCurrentMaxCarIdUseCase>(),
-    );
+    expect(serviceLocator<GetCurrentMaxCarIdUseCase>(), isA<GetCurrentMaxCarIdUseCase>());
     expect(serviceLocator<AuthenticationCubit>(), isA<AuthenticationCubit>());
   });
 }

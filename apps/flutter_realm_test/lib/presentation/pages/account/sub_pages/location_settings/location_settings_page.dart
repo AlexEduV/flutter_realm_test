@@ -25,10 +25,7 @@ class LocationSettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(
-          context.tr(L10nKeys.accountItemLocation),
-          style: AppTextStyles.zonaPro20,
-        ),
+        title: Text(context.tr(L10nKeys.accountItemLocation), style: AppTextStyles.zonaPro20),
         centerTitle: true,
       ),
       body: Padding(
@@ -40,10 +37,7 @@ class LocationSettingsPage extends StatelessWidget {
           children: [
             const SizedBox(height: AppDimensions.minorS),
 
-            Text(
-              context.tr(L10nKeys.locationUsageDescription),
-              style: AppTextStyles.zonaPro14,
-            ),
+            Text(context.tr(L10nKeys.locationUsageDescription), style: AppTextStyles.zonaPro14),
 
             const SizedBox(height: AppDimensions.normalXS),
 
@@ -53,9 +47,7 @@ class LocationSettingsPage extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: BlocBuilder<UserDataCubit, UserDataState>(
                 builder: (context, state) {
-                  final region = serviceLocator<GetRegionByCodeUseCase>().call(
-                    state.region,
-                  );
+                  final region = serviceLocator<GetRegionByCodeUseCase>().call(state.region);
 
                   return Column(
                     children: [
@@ -66,16 +58,12 @@ class LocationSettingsPage extends StatelessWidget {
                             : context.tr(L10nKeys.offLabel),
                         icon: Icons.location_on_outlined,
                         showEnabled: state.isLocationPermissionGranted,
-                        onTap: () => context
-                            .read<UserDataCubit>()
-                            .openLocationSettings(),
+                        onTap: () => context.read<UserDataCubit>().openLocationSettings(),
                       ),
 
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.locationSettingsItemRegion),
-                        description: context.tr(
-                          '${L10nKeys.countryPrefix}${region?.locale}',
-                        ),
+                        description: context.tr('${L10nKeys.countryPrefix}${region?.locale}'),
                         icon: Icons.explore,
                         onTap: () => onRegionItemTap(state, context),
                       ),
@@ -93,15 +81,11 @@ class LocationSettingsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FooterText(
-                    text: context.tr(
-                      L10nKeys.locationSettingsPrivacyItemConditions,
-                    ),
+                    text: context.tr(L10nKeys.locationSettingsPrivacyItemConditions),
                     url: ApiConstants.termsAndConditionsUrl,
                   ),
                   FooterText(
-                    text: context.tr(
-                      L10nKeys.locationSettingsPrivacyItemPrivacyPolicy,
-                    ),
+                    text: context.tr(L10nKeys.locationSettingsPrivacyItemPrivacyPolicy),
                     url: ApiConstants.privacyPolicyUrl,
                   ),
                 ],
@@ -113,12 +97,8 @@ class LocationSettingsPage extends StatelessWidget {
     );
   }
 
-  Future<void> onRegionItemTap(
-    UserDataState state,
-    BuildContext context,
-  ) async {
-    final availableCountries = serviceLocator<GetAllRegionModelsUseCase>()
-        .call();
+  Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
+    final availableCountries = serviceLocator<GetAllRegionModelsUseCase>().call();
 
     final currentRegion = state.region;
     final currentIndex = availableCountries.indexWhereOrNull(
@@ -127,11 +107,7 @@ class LocationSettingsPage extends StatelessWidget {
 
     if (currentIndex == null) return;
 
-    final region = await DialogHelper.showCountryPicker(
-      context,
-      availableCountries,
-      currentIndex,
-    );
+    final region = await DialogHelper.showCountryPicker(context, availableCountries, currentIndex);
 
     if (!context.mounted) return;
 

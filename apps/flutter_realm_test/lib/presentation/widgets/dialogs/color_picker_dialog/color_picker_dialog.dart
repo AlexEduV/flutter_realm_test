@@ -21,16 +21,13 @@ class ColorPickerDialog extends StatefulWidget {
 }
 
 class _ColorPickerDialogState extends State<ColorPickerDialog> {
-  final Map<String, Color> colors = serviceLocator<GetCarColorsUseCase>()
-      .call();
+  final Map<String, Color> colors = serviceLocator<GetCarColorsUseCase>().call();
 
   Color? pickedColor = Colors.white;
 
   @override
   void initState() {
-    pickedColor = serviceLocator<GetCarColorByNameUseCase>().call(
-      widget.initialColor,
-    );
+    pickedColor = serviceLocator<GetCarColorByNameUseCase>().call(widget.initialColor);
 
     super.initState();
   }
@@ -83,15 +80,12 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
           button: true,
           child: ElevatedButton(
             onPressed: () {
-              final result = serviceLocator<GetCarColorNameFromColorUseCase>()
-                  .call(pickedColor);
+              final result = serviceLocator<GetCarColorNameFromColorUseCase>().call(pickedColor);
 
               Navigator.of(context).pop(result);
             },
             style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.resolveWith<Color?>((
-                states,
-              ) {
+              backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
                 if (states.contains(WidgetState.disabled)) {
                   return Colors.grey;
                 }

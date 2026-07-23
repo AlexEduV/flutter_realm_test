@@ -29,9 +29,7 @@ void main() {
         datePublished: '2023-01-01',
       ),
     ];
-    when(
-      mockRemoteDataSource.fetchArticles(),
-    ).thenAnswer((_) async => articles);
+    when(mockRemoteDataSource.fetchArticles()).thenAnswer((_) async => articles);
 
     final result = await repository.fetchArticles();
 
@@ -49,9 +47,7 @@ void main() {
       author: AuthorEntity(id: 'auth2', fullName: 'Author 2'),
       datePublished: '2023-02-02',
     );
-    when(
-      mockRemoteDataSource.getArticleById('a2'),
-    ).thenAnswer((_) async => article);
+    when(mockRemoteDataSource.getArticleById('a2')).thenAnswer((_) async => article);
 
     final result = await repository.getArticleById('a2');
 

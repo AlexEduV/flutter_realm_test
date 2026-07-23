@@ -27,8 +27,7 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i3;
 /// A class which mocks [UsersRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUsersRemoteDataSource extends _i1.Mock
-    implements _i2.UsersRemoteDataSource {
+class MockUsersRemoteDataSource extends _i1.Mock implements _i2.UsersRemoteDataSource {
   @override
   List<_i3.UserEntity> get users =>
       (super.noSuchMethod(
@@ -39,10 +38,8 @@ class MockUsersRemoteDataSource extends _i1.Mock
           as List<_i3.UserEntity>);
 
   @override
-  set users(List<_i3.UserEntity>? _users) => super.noSuchMethod(
-    Invocation.setter(#users, _users),
-    returnValueForMissingStub: null,
-  );
+  set users(List<_i3.UserEntity>? _users) =>
+      super.noSuchMethod(Invocation.setter(#users, _users), returnValueForMissingStub: null);
 
   @override
   _i4.Future<void> saveMockUsers(List<_i3.UserEntity>? users) =>
@@ -57,12 +54,8 @@ class MockUsersRemoteDataSource extends _i1.Mock
   _i4.Future<List<_i3.UserEntity>> loadMockUsers() =>
       (super.noSuchMethod(
             Invocation.method(#loadMockUsers, []),
-            returnValue: _i4.Future<List<_i3.UserEntity>>.value(
-              <_i3.UserEntity>[],
-            ),
-            returnValueForMissingStub: _i4.Future<List<_i3.UserEntity>>.value(
-              <_i3.UserEntity>[],
-            ),
+            returnValue: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
+            returnValueForMissingStub: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
           )
           as _i4.Future<List<_i3.UserEntity>>);
 
@@ -85,9 +78,6 @@ class MockUsersRemoteDataSource extends _i1.Mock
 
   @override
   _i3.UserEntity? getUserById(String? id) =>
-      (super.noSuchMethod(
-            Invocation.method(#getUserById, [id]),
-            returnValueForMissingStub: null,
-          )
+      (super.noSuchMethod(Invocation.method(#getUserById, [id]), returnValueForMissingStub: null)
           as _i3.UserEntity?);
 }

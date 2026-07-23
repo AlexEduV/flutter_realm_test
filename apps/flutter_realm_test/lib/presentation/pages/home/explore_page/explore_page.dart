@@ -54,12 +54,9 @@ class ExplorePage extends StatelessWidget {
               builder: (context, state) {
                 final cars = state.cars;
                 return SliverPadding(
-                  padding: const EdgeInsets.only(
-                    bottom: AppDimensions.normalXL,
-                  ),
+                  padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
                   sliver: BlocBuilder<UserDataCubit, UserDataState>(
-                    buildWhen: (previous, current) =>
-                        previous.favoriteIds != current.favoriteIds,
+                    buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
                     builder: (context, userState) {
                       Widget buildAnimatedItem(int index) {
                         final car = cars[index];
@@ -69,9 +66,7 @@ class ExplorePage extends StatelessWidget {
                           tween: Tween(begin: 1, end: car.isShown ? 1 : 0),
                           duration: const Duration(milliseconds: 250),
                           builder: (context, removalValue, child) {
-                            final curvedRemoval = Curves.easeInOut.transform(
-                              removalValue,
-                            );
+                            final curvedRemoval = Curves.easeInOut.transform(removalValue);
 
                             return ClipRect(
                               child: Align(
@@ -82,9 +77,7 @@ class ExplorePage extends StatelessWidget {
                                   child: TweenAnimationBuilder<double>(
                                     key: ValueKey('entry_${car.carId}'),
                                     tween: Tween(begin: 0.0, end: 1.0),
-                                    duration: Duration(
-                                      milliseconds: 300 + (index * 200),
-                                    ),
+                                    duration: Duration(milliseconds: 300 + (index * 200)),
                                     builder: (context, value, child) {
                                       return Opacity(
                                         opacity: value,
@@ -133,11 +126,10 @@ class ExplorePage extends StatelessWidget {
                                 : buildAnimatedItem(index),
                             childCount: state.isLoading ? 12 : cars.length,
                           ),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio: 16 / 14,
-                              ),
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 16 / 14,
+                          ),
                         ),
                       );
                     },

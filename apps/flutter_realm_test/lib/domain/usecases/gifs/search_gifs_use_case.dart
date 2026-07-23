@@ -6,11 +6,7 @@ import 'package:test_flutter_project/domain/usecases/usecase.dart';
 import '../../../common/enums/server_failure.dart';
 
 class SearchGifsUseCase
-    implements
-        UseCaseWithParams<
-          String,
-          Future<Either<ServerFailure, List<GifEntity>>>
-        > {
+    implements UseCaseWithParams<String, Future<Either<ServerFailure, List<GifEntity>>>> {
   SearchGifsUseCase(this._gifsRepository);
 
   final GifsRepository _gifsRepository;

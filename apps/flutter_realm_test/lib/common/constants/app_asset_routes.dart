@@ -8,21 +8,15 @@ class AppAssetRoutes {
 
   static const flagRoute = '$assetFolder$imagesFolder$flagsFolder';
 
-  static const yellowCarLoginBackground =
-      '$assetFolder${imagesFolder}car-yellow.jpg';
+  static const yellowCarLoginBackground = '$assetFolder${imagesFolder}car-yellow.jpg';
 
-  static const scaniaTruckBlackImage =
-      '$assetFolder${imagesFolder}scania-black.jpg';
-  static const hondaCivicRedImage =
-      '$assetFolder${imagesFolder}honda-civic-red.jpg';
-  static const porscheYellowImage =
-      '$assetFolder${imagesFolder}porsche-yellow.jpeg';
+  static const scaniaTruckBlackImage = '$assetFolder${imagesFolder}scania-black.jpg';
+  static const hondaCivicRedImage = '$assetFolder${imagesFolder}honda-civic-red.jpg';
+  static const porscheYellowImage = '$assetFolder${imagesFolder}porsche-yellow.jpeg';
 
   static const envRoute = '$assetFolder${envFolder}environment.env';
 
-  static const errorImageRoute =
-      '$assetFolder${imagesFolder}404-background.jpg';
+  static const errorImageRoute = '$assetFolder${imagesFolder}404-background.jpg';
 
-  static const manufacturerIconRoute =
-      '$assetFolder$imagesFolder$manufacturerIconsFolder';
+  static const manufacturerIconRoute = '$assetFolder$imagesFolder$manufacturerIconsFolder';
 }

@@ -39,12 +39,9 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late MockBaseLocalStorage mockLocalStorage;
-  late MockRequestLocationPermissionUseCase
-  mockRequestLocationPermissionUseCase;
-  late MockCheckLocationPermissionStatusUseCase
-  mockCheckLocationPermissionStatusUseCase;
-  late MockCheckLocationServiceStatusUseCase
-  mockCheckLocationServiceStatusUseCase;
+  late MockRequestLocationPermissionUseCase mockRequestLocationPermissionUseCase;
+  late MockCheckLocationPermissionStatusUseCase mockCheckLocationPermissionStatusUseCase;
+  late MockCheckLocationServiceStatusUseCase mockCheckLocationServiceStatusUseCase;
   late MockGetUserByEmailUseCase mockGetUserByEmailUseCase;
   late MockOpenAppSettingsUseCase mockOpenAppSettingsUseCase;
   late MockPickImageFromGalleryUseCase mockPickImageFromGalleryUseCase;
@@ -57,10 +54,8 @@ void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   mockRequestLocationPermissionUseCase = MockRequestLocationPermissionUseCase();
-  mockCheckLocationPermissionStatusUseCase =
-      MockCheckLocationPermissionStatusUseCase();
-  mockCheckLocationServiceStatusUseCase =
-      MockCheckLocationServiceStatusUseCase();
+  mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
+  mockCheckLocationServiceStatusUseCase = MockCheckLocationServiceStatusUseCase();
   mockOpenAppSettingsUseCase = MockOpenAppSettingsUseCase();
   mockGetUserByEmailUseCase = MockGetUserByEmailUseCase();
   mockPickImageFromGalleryUseCase = MockPickImageFromGalleryUseCase();
@@ -106,12 +101,8 @@ void main() {
   });
 
   setUpAll(() {
-    serviceLocator.registerLazySingleton<AuthRepository>(
-      () => mockAuthRepository,
-    );
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
-      () => appLocalisationsCubit,
-    );
+    serviceLocator.registerLazySingleton<AuthRepository>(() => mockAuthRepository);
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
 
     serviceLocator.registerLazySingleton<CheckLocationPermissionStatusUseCase>(
       () => mockCheckLocationPermissionStatusUseCase,
@@ -139,9 +130,7 @@ void main() {
     blocTest<UserDataCubit, UserDataState>(
       'requestLocationPermission does nothing if permission not granted',
       build: () {
-        when(
-          mockRequestLocationPermissionUseCase.call(),
-        ).thenAnswer((_) async => false);
+        when(mockRequestLocationPermissionUseCase.call()).thenAnswer((_) async => false);
         return cubit;
       },
       act: (cubit) async {
@@ -153,15 +142,11 @@ void main() {
     blocTest<UserDataCubit, UserDataState>(
       'requestLocationPermission updates permission status and opens location settings if service not enabled',
       build: () {
-        when(
-          mockRequestLocationPermissionUseCase.call(),
-        ).thenAnswer((_) async => true);
+        when(mockRequestLocationPermissionUseCase.call()).thenAnswer((_) async => true);
         when(mockLocalStorage.initUser()).thenReturn(testUser);
         when(mockLocalStorage.update(any)).thenReturn(null);
 
-        when(
-          mockCheckLocationServiceStatusUseCase.call(),
-        ).thenAnswer((_) async => false);
+        when(mockCheckLocationServiceStatusUseCase.call()).thenAnswer((_) async => false);
         when(mockOpenAppSettingsUseCase.call()).thenAnswer((_) async => true);
 
         cubit.init();
@@ -288,9 +273,7 @@ void main() {
 
     test('does nothing if user not found', () {
       final prevState = cubit.state;
-      when(
-        mockGetUserByEmailUseCase.call('notfound@example.com'),
-      ).thenReturn(null);
+      when(mockGetUserByEmailUseCase.call('notfound@example.com')).thenReturn(null);
 
       cubit.authUser('notfound@example.com');
       expect(cubit.state, prevState);

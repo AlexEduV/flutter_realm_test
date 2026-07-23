@@ -2,8 +2,7 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
-class SaveUsersUseCase
-    implements UseCaseWithParams<List<UserEntity>, Future<void>> {
+class SaveUsersUseCase implements UseCaseWithParams<List<UserEntity>, Future<void>> {
   SaveUsersUseCase(this._userRepository);
 
   final UserRepository _userRepository;

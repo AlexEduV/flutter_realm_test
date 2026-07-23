@@ -23,8 +23,7 @@ import 'package:mockito/src/dummies.dart' as _i4;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeXFile_0 extends _i1.SmartFake implements _i2.XFile {
-  _FakeXFile_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeXFile_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 /// A class which mocks [PlatformFile].
@@ -36,20 +35,13 @@ class MockPlatformFile extends _i1.Mock implements _i3.PlatformFile {
       (super.noSuchMethod(
             Invocation.getter(#name),
             returnValue: _i4.dummyValue<String>(this, Invocation.getter(#name)),
-            returnValueForMissingStub: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#name),
-            ),
+            returnValueForMissingStub: _i4.dummyValue<String>(this, Invocation.getter(#name)),
           )
           as String);
 
   @override
   int get size =>
-      (super.noSuchMethod(
-            Invocation.getter(#size),
-            returnValue: 0,
-            returnValueForMissingStub: 0,
-          )
+      (super.noSuchMethod(Invocation.getter(#size), returnValue: 0, returnValueForMissingStub: 0)
           as int);
 
   @override
@@ -57,10 +49,7 @@ class MockPlatformFile extends _i1.Mock implements _i3.PlatformFile {
       (super.noSuchMethod(
             Invocation.getter(#xFile),
             returnValue: _FakeXFile_0(this, Invocation.getter(#xFile)),
-            returnValueForMissingStub: _FakeXFile_0(
-              this,
-              Invocation.getter(#xFile),
-            ),
+            returnValueForMissingStub: _FakeXFile_0(this, Invocation.getter(#xFile)),
           )
           as _i2.XFile);
 }

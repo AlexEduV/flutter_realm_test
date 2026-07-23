@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart'
-    show Brightness, Color, Colors, ThemeData;
+import 'package:flutter/material.dart' show Brightness, Color, Colors, ThemeData;
 
 extension ContrastingColor on Color {
   Color getContrastingIconColor() {

@@ -64,18 +64,12 @@ void main() {
         const lightBlue = Color(0xFF03A9F4);
         final car = CarEntity.empty().copyWith(carId: '1', color: 'Light Blue');
         when(mockGetCarByIdUseCase.call('1')).thenReturn(car);
-        when(
-          mockGetCarColorsUseCase.call(),
-        ).thenReturn({'lightBlue': lightBlue});
+        when(mockGetCarColorsUseCase.call()).thenReturn({'lightBlue': lightBlue});
         return cubit;
       },
       act: (cubit) => cubit.loadData('1'),
       expect: () => [
-        isA<DetailsPageState>().having(
-          (s) => s.carColor,
-          'carColor',
-          const Color(0xFF03A9F4),
-        ),
+        isA<DetailsPageState>().having((s) => s.carColor, 'carColor', const Color(0xFF03A9F4)),
       ],
     );
   });

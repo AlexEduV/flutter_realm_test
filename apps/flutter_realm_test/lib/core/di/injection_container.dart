@@ -167,9 +167,7 @@ Future<void> initDependenciesContainer() async {
     }
   }
 
-  serviceLocator.registerLazySingleton<BaseLogger>(
-    () => AppNetworkLoggerImpl(),
-  );
+  serviceLocator.registerLazySingleton<BaseLogger>(() => AppNetworkLoggerImpl());
 
   final client = http.Client();
   final appInterceptor = AppInterceptor(serviceLocator());
@@ -189,31 +187,19 @@ Future<void> initDependenciesContainer() async {
     () => OwnerRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(
-    () => GetOwnerByIdUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => FetchOwnersUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
     () => MockUsersRemoteDataSourceImpl(),
   );
 
-  serviceLocator.registerLazySingleton<UserRepository>(
-    () => UserRepositoryImpl(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => LoadUsersUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => SaveUsersUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => GetMaxUserIdUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
 
   final cloudStorage = await SharedPreferences.getInstance();
   final authRepositoryImpl = AuthRepositoryImpl(
@@ -230,22 +216,16 @@ Future<void> initDependenciesContainer() async {
   final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(serviceLocator());
   mockCarRemoteDataSource.init();
 
-  serviceLocator.registerLazySingleton<CarRemoteDataSource>(
-    () => mockCarRemoteDataSource,
-  );
+  serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
 
   serviceLocator.registerLazySingleton<CarRepository>(
     () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(
-    () => GetAllCarsUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));
 
   final dotEnv = dotenv;
-  serviceLocator.registerLazySingleton<EnvLocalDataSource>(
-    () => EnvLocalDataSourceImpl(dotEnv),
-  );
+  serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl(dotEnv));
 
   final imagePicker = ImagePicker();
   serviceLocator.registerLazySingleton<ImagePickerLocalDataSource>(
@@ -272,9 +252,7 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<CarColorLocalDataSource>(
     () => CarColorLocalDataSourceImpl(),
   );
-  serviceLocator.registerLazySingleton<ShareLocalDataSource>(
-    () => ShareLocalDataSourceImpl(),
-  );
+  serviceLocator.registerLazySingleton<ShareLocalDataSource>(() => ShareLocalDataSourceImpl());
   serviceLocator.registerLazySingleton<ShareRepository>(
     () => ShareRepositoryImpl(serviceLocator()),
   );
@@ -310,12 +288,8 @@ Future<void> initDependenciesContainer() async {
     () => AutoCompleteRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(
-    () => GetUserByIdUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => GetUserByEmailUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
 
   //Register Repository (passing Realm from GetIt)
   serviceLocator.registerLazySingleton<PermissionRepository>(
@@ -326,17 +300,10 @@ Future<void> initDependenciesContainer() async {
     () => RegionModelRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<AuthRepository>(
-    () => authRepositoryImpl,
-  );
+  serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
 
   serviceLocator.registerFactory(
-    () => ExplorePageCubit(
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-    ),
+    () => ExplorePageCubit(serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator()),
   );
 
   serviceLocator.registerFactory(
@@ -356,41 +323,27 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
 
-  serviceLocator.registerFactory(
-    () => DetailsPageCubit(serviceLocator(), serviceLocator()),
-  );
+  serviceLocator.registerFactory(() => DetailsPageCubit(serviceLocator(), serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => RequestLocationPermissionUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => RequestLocationPermissionUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(
     () => CheckLocationPermissionStatusUseCase(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(
-    () => WatchCarsUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => WatchCarsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => SyncCarsUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AddCarUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => DeleteCarByIdUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => DeleteCarByIdUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => DeleteAllCarsUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => DeleteAllCarsUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => GetCarByIdUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetCarByIdUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => GetCurrentMaxCarIdUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(
     () => AuthenticationCubit(
@@ -406,69 +359,43 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
     () => MockMessagesRemoteDataSourceImpl(),
   );
-  serviceLocator.registerLazySingleton(
-    () => InboxPageCubit(serviceLocator(), serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => InboxPageCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(
-    () => DeleteAccountUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => DeleteAccountUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => FetchConversationsUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => SaveConversationsUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => FetchConversationsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SaveConversationsUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => FetchArticlesUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => GetArticleByIdUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => FetchArticlesUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetArticleByIdUseCase(serviceLocator()));
   serviceLocator.registerFactory(() => ArticlePageCubit(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => FetchRegionsUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => GetRegionByCodeUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => GetAllRegionsUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => FetchRegionsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetRegionByCodeUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => OpenUrlLinkUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 
   serviceLocator.registerLazySingleton<GeolocatorRepository>(
     () => GeolocatorRepositoryImpl(serviceLocator()),
   );
-  serviceLocator.registerLazySingleton<EnvRepository>(
-    () => EnvRepositoryImpl(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton<EnvRepository>(() => EnvRepositoryImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<UrlLaunchRepository>(
     () => UrlLaunchRepositoryImpl(serviceLocator()),
   );
-  serviceLocator.registerLazySingleton<GifsRepository>(
-    () => GifsRepositoryImpl(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton<GifsRepository>(() => GifsRepositoryImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<OpenAppSettingsUseCase>(
     () => OpenAppSettingsUseCase(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<CheckLocationServiceStatusUseCase>(
     () => CheckLocationServiceStatusUseCase(serviceLocator()),
   );
-  serviceLocator.registerLazySingleton<ShareUseCase>(
-    () => ShareUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton<ShareUseCase>(() => ShareUseCase(serviceLocator()));
   serviceLocator.registerFactory(() => ShareCubit(serviceLocator()));
   serviceLocator.registerFactory(() => EditDialogCubit());
 
@@ -476,32 +403,19 @@ Future<void> initDependenciesContainer() async {
     () => InboxRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(
-    () => GetConversationByIdUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
 
   serviceLocator.registerFactory(
-    () =>
-        MessagesPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+    () => MessagesPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(
-    () => GetConversationByOwnerIdUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => SearchGifsUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => GetTrendingGifsUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => SearchGifsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetTrendingGifsUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => PickImageFromGalleryUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => PickAttachmentFileUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => PickAttachmentFileUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(
     () => UserDataCubit(
@@ -519,33 +433,19 @@ Future<void> initDependenciesContainer() async {
     ),
   );
 
-  serviceLocator.registerLazySingleton(
-    () => ExtractUsersFromConversationUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => ExtractUsersFromConversationUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => GetAllRegionModelsUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => InitRegionModelsUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetAllRegionModelsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(
-    () => GetCarColorsUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => GetCarColorByNameUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton(
-    () => GetCarColorNameFromColorUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetCarColorsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetCarColorByNameUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetCarColorNameFromColorUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(
     () => GetAutoCompleteManufacturersByTypeUseCase(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(
-    () => GetEnvDataByKeyUseCase(serviceLocator()),
-  );
+  serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
 }

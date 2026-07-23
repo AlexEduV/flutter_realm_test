@@ -11,10 +11,8 @@ import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i6;
 import 'package:test_flutter_project/common/enums/drawer_type.dart' as _i8;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i5;
-import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart'
-    as _i3;
-import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart'
-    as _i2;
+import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart' as _i3;
+import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -30,8 +28,7 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_state.
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeSearchPageState_0 extends _i1.SmartFake
-    implements _i2.SearchPageState {
+class _FakeSearchPageState_0 extends _i1.SmartFake implements _i2.SearchPageState {
   _FakeSearchPageState_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
@@ -44,14 +41,8 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   _i2.SearchPageState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _FakeSearchPageState_0(
-              this,
-              Invocation.getter(#state),
-            ),
-            returnValueForMissingStub: _FakeSearchPageState_0(
-              this,
-              Invocation.getter(#state),
-            ),
+            returnValue: _FakeSearchPageState_0(this, Invocation.getter(#state)),
+            returnValueForMissingStub: _FakeSearchPageState_0(this, Invocation.getter(#state)),
           )
           as _i2.SearchPageState);
 
@@ -74,16 +65,11 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           as bool);
 
   @override
-  void init() => super.noSuchMethod(
-    Invocation.method(#init, []),
-    returnValueForMissingStub: null,
-  );
+  void init() => super.noSuchMethod(Invocation.method(#init, []), returnValueForMissingStub: null);
 
   @override
-  void loadData() => super.noSuchMethod(
-    Invocation.method(#loadData, []),
-    returnValueForMissingStub: null,
-  );
+  void loadData() =>
+      super.noSuchMethod(Invocation.method(#loadData, []), returnValueForMissingStub: null);
 
   @override
   List<_i5.CarEntity> getFilteredResults(List<_i5.CarEntity>? cars) =>
@@ -101,22 +87,18 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   );
 
   @override
-  void updateModelListFromEntities(
-    List<_i5.CarEntity>? cars,
-    _i6.CarType? type,
-  ) => super.noSuchMethod(
-    Invocation.method(#updateModelListFromEntities, [cars, type]),
-    returnValueForMissingStub: null,
-  );
+  void updateModelListFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
+      super.noSuchMethod(
+        Invocation.method(#updateModelListFromEntities, [cars, type]),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void updateColorListFromEntities(
-    List<_i5.CarEntity>? cars,
-    _i6.CarType? type,
-  ) => super.noSuchMethod(
-    Invocation.method(#updateColorListFromEntities, [cars, type]),
-    returnValueForMissingStub: null,
-  );
+  void updateColorListFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
+      super.noSuchMethod(
+        Invocation.method(#updateColorListFromEntities, [cars, type]),
+        returnValueForMissingStub: null,
+      );
 
   @override
   String getMinYearFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
@@ -149,10 +131,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           as String);
 
   @override
-  String getMinPriceFromEntities(
-    List<_i5.CarEntity>? cars,
-    _i6.CarType? type,
-  ) =>
+  String getMinPriceFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
       (super.noSuchMethod(
             Invocation.method(#getMinPriceFromEntities, [cars, type]),
             returnValue: _i7.dummyValue<String>(
@@ -167,10 +146,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           as String);
 
   @override
-  String getMaxPriceFromEntities(
-    List<_i5.CarEntity>? cars,
-    _i6.CarType? type,
-  ) =>
+  String getMaxPriceFromEntities(List<_i5.CarEntity>? cars, _i6.CarType? type) =>
       (super.noSuchMethod(
             Invocation.method(#getMaxPriceFromEntities, [cars, type]),
             returnValue: _i7.dummyValue<String>(
@@ -185,11 +161,10 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           as String);
 
   @override
-  void updateModelSelection(Map<String, List<String>>? newList) =>
-      super.noSuchMethod(
-        Invocation.method(#updateModelSelection, [newList]),
-        returnValueForMissingStub: null,
-      );
+  void updateModelSelection(Map<String, List<String>>? newList) => super.noSuchMethod(
+    Invocation.method(#updateModelSelection, [newList]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void addManufacturerToSelection(String? manufacturer) => super.noSuchMethod(
@@ -198,25 +173,22 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   );
 
   @override
-  void removeManufacturerFromSelection(String? manufacturer) =>
-      super.noSuchMethod(
-        Invocation.method(#removeManufacturerFromSelection, [manufacturer]),
-        returnValueForMissingStub: null,
-      );
+  void removeManufacturerFromSelection(String? manufacturer) => super.noSuchMethod(
+    Invocation.method(#removeManufacturerFromSelection, [manufacturer]),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  void addCarModelToSelection(String? manufacturer, String? model) =>
-      super.noSuchMethod(
-        Invocation.method(#addCarModelToSelection, [manufacturer, model]),
-        returnValueForMissingStub: null,
-      );
+  void addCarModelToSelection(String? manufacturer, String? model) => super.noSuchMethod(
+    Invocation.method(#addCarModelToSelection, [manufacturer, model]),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  void removeCarModelFromSelection(String? manufacturer, String? model) =>
-      super.noSuchMethod(
-        Invocation.method(#removeCarModelFromSelection, [manufacturer, model]),
-        returnValueForMissingStub: null,
-      );
+  void removeCarModelFromSelection(String? manufacturer, String? model) => super.noSuchMethod(
+    Invocation.method(#removeCarModelFromSelection, [manufacturer, model]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void addCarColorToSelection(String? color) => super.noSuchMethod(
@@ -255,20 +227,16 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   );
 
   @override
-  void addTransmissionTypeToSelection(String? transmissionType) =>
-      super.noSuchMethod(
-        Invocation.method(#addTransmissionTypeToSelection, [transmissionType]),
-        returnValueForMissingStub: null,
-      );
+  void addTransmissionTypeToSelection(String? transmissionType) => super.noSuchMethod(
+    Invocation.method(#addTransmissionTypeToSelection, [transmissionType]),
+    returnValueForMissingStub: null,
+  );
 
   @override
-  void removeTransmissionTypeFromSelection(String? transmissionType) =>
-      super.noSuchMethod(
-        Invocation.method(#removeTransmissionTypeFromSelection, [
-          transmissionType,
-        ]),
-        returnValueForMissingStub: null,
-      );
+  void removeTransmissionTypeFromSelection(String? transmissionType) => super.noSuchMethod(
+    Invocation.method(#removeTransmissionTypeFromSelection, [transmissionType]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updateSelectedMinYear(String? newValue) => super.noSuchMethod(
@@ -295,10 +263,8 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   );
 
   @override
-  void openDrawer(_i8.SearchDrawerType? type) => super.noSuchMethod(
-    Invocation.method(#openDrawer, [type]),
-    returnValueForMissingStub: null,
-  );
+  void openDrawer(_i8.SearchDrawerType? type) =>
+      super.noSuchMethod(Invocation.method(#openDrawer, [type]), returnValueForMissingStub: null);
 
   @override
   bool validateYears(String? minYearString, String? maxYearString) =>
@@ -312,10 +278,7 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
   @override
   bool validatePrices(String? minPriceString, String? maxPriceString) =>
       (super.noSuchMethod(
-            Invocation.method(#validatePrices, [
-              minPriceString,
-              maxPriceString,
-            ]),
+            Invocation.method(#validatePrices, [minPriceString, maxPriceString]),
             returnValue: false,
             returnValueForMissingStub: false,
           )
@@ -340,16 +303,12 @@ class MockSearchPageCubit extends _i1.Mock implements _i3.SearchPageCubit {
           as _i4.Future<void>);
 
   @override
-  void emit(_i2.SearchPageState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
+  void emit(_i2.SearchPageState? state) =>
+      super.noSuchMethod(Invocation.method(#emit, [state]), returnValueForMissingStub: null);
 
   @override
-  void onChange(_i9.Change<_i2.SearchPageState>? change) => super.noSuchMethod(
-    Invocation.method(#onChange, [change]),
-    returnValueForMissingStub: null,
-  );
+  void onChange(_i9.Change<_i2.SearchPageState>? change) =>
+      super.noSuchMethod(Invocation.method(#onChange, [change]), returnValueForMissingStub: null);
 
   @override
   void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(

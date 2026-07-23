@@ -6,8 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/entities/article_entity.dart'
-    as _i2;
+import 'package:test_flutter_project/domain/entities/article_entity.dart' as _i2;
 import 'package:test_flutter_project/domain/usecases/articles/get_article_by_id_use_case.dart'
     as _i3;
 
@@ -33,8 +32,7 @@ class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
 /// A class which mocks [GetArticleByIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetArticleByIdUseCase extends _i1.Mock
-    implements _i3.GetArticleByIdUseCase {
+class MockGetArticleByIdUseCase extends _i1.Mock implements _i3.GetArticleByIdUseCase {
   @override
   _i4.Future<_i2.ArticleEntity> call(String? id) =>
       (super.noSuchMethod(

@@ -9,26 +9,12 @@ void main() {
     final date2 = DateTime.now();
 
     final messages = [
-      MessageModel(
-        senderId: '1',
-        messageStatus: MessageStatus.sent,
-        payload: 'Hello',
-        date: date1,
-      ),
-      MessageModel(
-        senderId: '1',
-        messageStatus: MessageStatus.sent,
-        payload: 'World',
-        date: date2,
-      ),
+      MessageModel(senderId: '1', messageStatus: MessageStatus.sent, payload: 'Hello', date: date1),
+      MessageModel(senderId: '1', messageStatus: MessageStatus.sent, payload: 'World', date: date2),
     ];
 
     test('constructor and properties', () {
-      final model = ConversationModel(
-        conversationId: 'c1',
-        ownerId: 'o1',
-        messages: messages,
-      );
+      final model = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
       expect(model.conversationId, 'c1');
       expect(model.ownerId, 'o1');
       expect(model.messages, messages);
@@ -42,11 +28,7 @@ void main() {
     });
 
     test('copyWith returns updated values', () {
-      final model = ConversationModel(
-        conversationId: 'c1',
-        ownerId: 'o1',
-        messages: messages,
-      );
+      final model = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
       final copy = model.copyWith(conversationId: 'c2', ownerId: 'o2');
       expect(copy.conversationId, 'c2');
       expect(copy.ownerId, 'o2');
@@ -57,11 +39,7 @@ void main() {
     });
 
     test('toJson and fromJson', () {
-      final model = ConversationModel(
-        conversationId: 'c1',
-        ownerId: 'o1',
-        messages: messages,
-      );
+      final model = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
       final json = model.toJson();
       expect(json['conversationId'], 'c1');
       expect(json['ownerId'], 'o1');
@@ -92,21 +70,9 @@ void main() {
     });
 
     test('== and hashCode', () {
-      final model1 = ConversationModel(
-        conversationId: 'c1',
-        ownerId: 'o1',
-        messages: messages,
-      );
-      final model2 = ConversationModel(
-        conversationId: 'c1',
-        ownerId: 'o1',
-        messages: messages,
-      );
-      final model3 = ConversationModel(
-        conversationId: 'c2',
-        ownerId: 'o1',
-        messages: messages,
-      );
+      final model1 = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
+      final model2 = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
+      final model3 = ConversationModel(conversationId: 'c2', ownerId: 'o1', messages: messages);
       expect(model1, model2);
       expect(model1.hashCode, model2.hashCode);
       expect(model1 == model3, false);
@@ -161,18 +127,8 @@ void main() {
         'conversationId': 'conv1',
         'ownerId': 'owner1',
         'messages': [
-          {
-            'senderId': 'user1',
-            'text': 'Hello',
-            'date': '1234567890',
-            'messageStatus': 'read',
-          },
-          {
-            'senderId': 'user2',
-            'text': 'Hi!',
-            'date': '1234567891',
-            'messageStatus': 'read',
-          },
+          {'senderId': 'user1', 'text': 'Hello', 'date': '1234567890', 'messageStatus': 'read'},
+          {'senderId': 'user2', 'text': 'Hi!', 'date': '1234567891', 'messageStatus': 'read'},
         ],
       };
 

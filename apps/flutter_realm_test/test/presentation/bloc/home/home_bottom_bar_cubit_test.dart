@@ -5,14 +5,11 @@ import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home
 
 void main() {
   group('HomeBottomBarCubit', () {
-    test(
-      'initial state is HomeBottomBarState with currentSelectedTabIndex 0',
-      () {
-        final cubit = HomeBottomBarCubit();
-        expect(cubit.state, const HomeBottomBarState());
-        expect(cubit.state.currentSelectedTabIndex, 0);
-      },
-    );
+    test('initial state is HomeBottomBarState with currentSelectedTabIndex 0', () {
+      final cubit = HomeBottomBarCubit();
+      expect(cubit.state, const HomeBottomBarState());
+      expect(cubit.state.currentSelectedTabIndex, 0);
+    });
 
     blocTest<HomeBottomBarCubit, HomeBottomBarState>(
       'emits state with updated currentSelectedTabIndex when updateSelectedIndex is called',

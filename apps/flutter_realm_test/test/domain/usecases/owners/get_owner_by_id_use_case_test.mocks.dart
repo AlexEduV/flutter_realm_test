@@ -7,8 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i2;
-import 'package:test_flutter_project/domain/repositories/owner_repository.dart'
-    as _i3;
+import 'package:test_flutter_project/domain/repositories/owner_repository.dart' as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -25,8 +24,7 @@ import 'package:test_flutter_project/domain/repositories/owner_repository.dart'
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
-  _FakeOwnerEntity_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeOwnerEntity_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 /// A class which mocks [OwnerRepository].
@@ -37,12 +35,8 @@ class MockOwnerRepository extends _i1.Mock implements _i3.OwnerRepository {
   _i4.Future<List<_i2.OwnerEntity>> fetchOwners() =>
       (super.noSuchMethod(
             Invocation.method(#fetchOwners, []),
-            returnValue: _i4.Future<List<_i2.OwnerEntity>>.value(
-              <_i2.OwnerEntity>[],
-            ),
-            returnValueForMissingStub: _i4.Future<List<_i2.OwnerEntity>>.value(
-              <_i2.OwnerEntity>[],
-            ),
+            returnValue: _i4.Future<List<_i2.OwnerEntity>>.value(<_i2.OwnerEntity>[]),
+            returnValueForMissingStub: _i4.Future<List<_i2.OwnerEntity>>.value(<_i2.OwnerEntity>[]),
           )
           as _i4.Future<List<_i2.OwnerEntity>>);
 
@@ -50,10 +44,7 @@ class MockOwnerRepository extends _i1.Mock implements _i3.OwnerRepository {
   _i2.OwnerEntity getOwnerById(String? id) =>
       (super.noSuchMethod(
             Invocation.method(#getOwnerById, [id]),
-            returnValue: _FakeOwnerEntity_0(
-              this,
-              Invocation.method(#getOwnerById, [id]),
-            ),
+            returnValue: _FakeOwnerEntity_0(this, Invocation.method(#getOwnerById, [id])),
             returnValueForMissingStub: _FakeOwnerEntity_0(
               this,
               Invocation.method(#getOwnerById, [id]),

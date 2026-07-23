@@ -12,12 +12,7 @@ class FieldParamsModel {
   });
 
   factory FieldParamsModel.withLabel(String label) {
-    return FieldParamsModel(
-      label: label,
-      validationMessage: '',
-      regex: '',
-      regexErrorMessage: '',
-    );
+    return FieldParamsModel(label: label, validationMessage: '', regex: '', regexErrorMessage: '');
   }
 
   final String label;
@@ -45,10 +40,8 @@ class FieldParamsModel {
       label: label ?? this.label,
       maxLength: maxLength ?? this.maxLength,
       minLength: minLength ?? this.minLength,
-      minLengthErrorMessage:
-          minLengthErrorMessage ?? this.minLengthErrorMessage,
-      maxLengthErrorMessage:
-          maxLengthErrorMessage ?? this.maxLengthErrorMessage,
+      minLengthErrorMessage: minLengthErrorMessage ?? this.minLengthErrorMessage,
+      maxLengthErrorMessage: maxLengthErrorMessage ?? this.maxLengthErrorMessage,
       validationMessage: validationMessage ?? this.validationMessage,
       regexErrorMessage: regexErrorMessage ?? this.regexErrorMessage,
       regex: regex ?? this.regex,

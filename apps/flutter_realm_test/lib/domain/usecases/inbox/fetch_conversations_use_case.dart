@@ -3,8 +3,7 @@ import 'package:test_flutter_project/domain/repositories/inbox_repository.dart';
 
 import '../usecase.dart';
 
-class FetchConversationsUseCase
-    extends UseCaseNoParams<Future<List<ConversationModel>>> {
+class FetchConversationsUseCase extends UseCaseNoParams<Future<List<ConversationModel>>> {
   FetchConversationsUseCase(this._inboxRepository);
 
   final InboxRepository _inboxRepository;

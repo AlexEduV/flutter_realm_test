@@ -38,8 +38,7 @@ class _LoginPageState extends State<LoginPage> {
             body: Stack(
               children: [
                 FractionallySizedBox(
-                  alignment:
-                      Alignment.bottomCenter, // or any alignment you need
+                  alignment: Alignment.bottomCenter, // or any alignment you need
                   heightFactor: 0.5, // 50% of the parent's height
                   widthFactor: 1.0, // full width
                   child: ShaderMask(

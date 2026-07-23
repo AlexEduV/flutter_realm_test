@@ -1,9 +1,5 @@
 class SentImageMetaDataModel {
-  SentImageMetaDataModel({
-    required this.url,
-    required this.width,
-    required this.height,
-  });
+  SentImageMetaDataModel({required this.url, required this.width, required this.height});
 
   factory SentImageMetaDataModel.fromJson(Map<String, dynamic> json) {
     return SentImageMetaDataModel(

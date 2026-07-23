@@ -15,9 +15,7 @@ void main() {
       expect(find.text('5'), findsOneWidget);
     });
 
-    testWidgets('has circular shape and black background', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('has circular shape and black background', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(body: AppBadge(text: 'A')),
@@ -39,9 +37,7 @@ void main() {
       );
 
       final textWidget = tester.widget<Text>(find.text('X'));
-      final expectedStyle = AppTextStyles.zonaPro16.copyWith(
-        color: Colors.white,
-      );
+      final expectedStyle = AppTextStyles.zonaPro16.copyWith(color: Colors.white);
 
       expect(textWidget.style?.fontSize, expectedStyle.fontSize);
       expect(textWidget.style?.fontWeight, FontWeight.w600);

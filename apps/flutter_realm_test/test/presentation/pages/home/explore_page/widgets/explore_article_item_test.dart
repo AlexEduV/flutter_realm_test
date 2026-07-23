@@ -29,9 +29,7 @@ void main() {
   Widget makeTestableWidget(Widget child) {
     return MaterialApp(
       home: MultiBlocProvider(
-        providers: [
-          BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
-        ],
+        providers: [BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit)],
         child: child,
       ),
     );
@@ -41,9 +39,7 @@ void main() {
     testWidgets('has default height and width', (WidgetTester tester) async {
       await tester.pumpWidget(
         makeTestableWidget(
-          Scaffold(
-            body: ExploreArticleItem(article: ArticleEntity.empty(), index: 0),
-          ),
+          Scaffold(body: ExploreArticleItem(article: ArticleEntity.empty(), index: 0)),
         ),
       );
 
@@ -53,18 +49,12 @@ void main() {
       expect(size.width, 120.0);
     });
 
-    testWidgets('uses custom height when provided', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('uses custom height when provided', (WidgetTester tester) async {
       await tester.pumpWidget(
         makeTestableWidget(
           MaterialApp(
             home: Scaffold(
-              body: ExploreArticleItem(
-                height: 200.0,
-                article: ArticleEntity.empty(),
-                index: 0,
-              ),
+              body: ExploreArticleItem(height: 200.0, article: ArticleEntity.empty(), index: 0),
             ),
           ),
         ),
@@ -76,32 +66,20 @@ void main() {
       expect(size.width, 120.0);
     });
 
-    testWidgets('has correct color and border radius', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('has correct color and border radius', (WidgetTester tester) async {
       await tester.pumpWidget(
         makeTestableWidget(
           MaterialApp(
-            home: Scaffold(
-              body: ExploreArticleItem(
-                article: ArticleEntity.empty(),
-                index: 0,
-              ),
-            ),
+            home: Scaffold(body: ExploreArticleItem(article: ArticleEntity.empty(), index: 0)),
           ),
         ),
       );
 
-      final containerWidget = tester.widget<Container>(
-        find.byType(Container).first,
-      );
+      final containerWidget = tester.widget<Container>(find.byType(Container).first);
       final decoration = containerWidget.decoration as BoxDecoration;
 
       expect(decoration.color, AppColors.accentColor.withAlpha(60));
-      expect(
-        decoration.borderRadius,
-        BorderRadius.circular(AppDimensions.normalL),
-      );
+      expect(decoration.borderRadius, BorderRadius.circular(AppDimensions.normalL));
     });
   });
 }

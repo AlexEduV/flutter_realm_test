@@ -27,10 +27,7 @@ class ConfirmationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
-        title,
-        style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
-      ),
+      title: Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700)),
       content: Text(description),
       backgroundColor: Colors.white,
       actions: [
@@ -42,10 +39,7 @@ class ConfirmationDialog extends StatelessWidget {
               Navigator.of(context).pop();
               onCancel?.call();
             },
-            child: Text(
-              cancelButtonTitle,
-              style: const TextStyle(fontWeight: FontWeight.w600),
-            ),
+            child: Text(cancelButtonTitle, style: const TextStyle(fontWeight: FontWeight.w600)),
           ),
         ),
         AppSemantics(
@@ -57,9 +51,7 @@ class ConfirmationDialog extends StatelessWidget {
               onConfirm?.call();
             },
             style: isDeletion
-                ? const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.red),
-                  )
+                ? const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.red))
                 : null,
             child: Text(
               confirmButtonTitle,

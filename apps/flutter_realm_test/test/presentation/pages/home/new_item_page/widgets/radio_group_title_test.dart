@@ -4,9 +4,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/radio_group_title.dart';
 
 void main() {
-  testWidgets('RadioGroupTitle displays the correct text and style', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('RadioGroupTitle displays the correct text and style', (WidgetTester tester) async {
     // Arrange
     const testText = 'Test Title';
 

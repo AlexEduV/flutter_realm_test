@@ -16,10 +16,7 @@ void main() {
 
   group('GetAllRegionsUseCase', () {
     test('call returns list from regionRepository.getAllRegions', () {
-      final regions = [
-        const RegionEntity(locale: 'US'),
-        const RegionEntity(locale: 'DE'),
-      ];
+      final regions = [const RegionEntity(locale: 'US'), const RegionEntity(locale: 'DE')];
 
       when(mockRepository.getAllRegions()).thenReturn(regions);
 

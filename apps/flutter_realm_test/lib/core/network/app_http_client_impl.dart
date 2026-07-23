@@ -15,10 +15,7 @@ class AppHttpClientImpl implements AppHttpClient {
   final BaseInterceptor _appInterceptor;
 
   @override
-  Future<Either<ServerFailure, String>> get(
-    Uri url, {
-    Map<String, String>? headers,
-  }) {
+  Future<Either<ServerFailure, String>> get(Uri url, {Map<String, String>? headers}) {
     return _appInterceptor.onRequest(
       request: () => _client.get(url, headers: headers),
       url: url.path,
@@ -34,8 +31,7 @@ class AppHttpClientImpl implements AppHttpClient {
     Encoding? encoding,
   }) {
     return _appInterceptor.onRequest(
-      request: () =>
-          _client.post(url, headers: headers, body: body, encoding: encoding),
+      request: () => _client.post(url, headers: headers, body: body, encoding: encoding),
       url: url.path,
       requestType: HttpRequestType.post.name,
     );

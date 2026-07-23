@@ -21,19 +21,11 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   );
 
   @override
-  Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(
-    String query,
-  ) async {
+  Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(String query) async {
     final limit = '15';
 
-    final path = ApiConstants.klipySearchPath.replaceFirst(
-      '{API_KEY}',
-      _apiKey,
-    );
-    final url = Uri.https(ApiConstants.klipyApiHost, path, {
-      'q': query,
-      'limit': limit,
-    });
+    final path = ApiConstants.klipySearchPath.replaceFirst('{API_KEY}', _apiKey);
+    final url = Uri.https(ApiConstants.klipyApiHost, path, {'q': query, 'limit': limit});
 
     final response = await client.get(url);
     return processKlipyResponse(response);
@@ -41,10 +33,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
   @override
   Future<Either<ServerFailure, List<KlipyGifDto>>> getTrending() async {
-    final path = ApiConstants.klipyTrendingPath.replaceFirst(
-      '{API_KEY}',
-      _apiKey,
-    );
+    final path = ApiConstants.klipyTrendingPath.replaceFirst('{API_KEY}', _apiKey);
     final url = Uri.https(ApiConstants.klipyApiHost, path);
 
     final response = await client.get(url);

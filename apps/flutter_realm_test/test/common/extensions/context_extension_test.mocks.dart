@@ -8,10 +8,8 @@ import 'dart:async' as _i4;
 import 'package:flutter_bloc/flutter_bloc.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i5;
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart'
-    as _i3;
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart'
-    as _i2;
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart' as _i3;
+import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,8 +25,7 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_st
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeAppLocalisationsState_0 extends _i1.SmartFake
-    implements _i2.AppLocalisationsState {
+class _FakeAppLocalisationsState_0 extends _i1.SmartFake implements _i2.AppLocalisationsState {
   _FakeAppLocalisationsState_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
@@ -36,16 +33,12 @@ class _FakeAppLocalisationsState_0 extends _i1.SmartFake
 /// A class which mocks [AppLocalisationsCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAppLocalisationsCubit extends _i1.Mock
-    implements _i3.AppLocalisationsCubit {
+class MockAppLocalisationsCubit extends _i1.Mock implements _i3.AppLocalisationsCubit {
   @override
   _i2.AppLocalisationsState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _FakeAppLocalisationsState_0(
-              this,
-              Invocation.getter(#state),
-            ),
+            returnValue: _FakeAppLocalisationsState_0(this, Invocation.getter(#state)),
             returnValueForMissingStub: _FakeAppLocalisationsState_0(
               this,
               Invocation.getter(#state),
@@ -58,8 +51,7 @@ class MockAppLocalisationsCubit extends _i1.Mock
       (super.noSuchMethod(
             Invocation.getter(#stream),
             returnValue: _i4.Stream<_i2.AppLocalisationsState>.empty(),
-            returnValueForMissingStub:
-                _i4.Stream<_i2.AppLocalisationsState>.empty(),
+            returnValueForMissingStub: _i4.Stream<_i2.AppLocalisationsState>.empty(),
           )
           as _i4.Stream<_i2.AppLocalisationsState>);
 
@@ -94,23 +86,16 @@ class MockAppLocalisationsCubit extends _i1.Mock
           as String);
 
   @override
-  void clear() => super.noSuchMethod(
-    Invocation.method(#clear, []),
-    returnValueForMissingStub: null,
-  );
+  void clear() =>
+      super.noSuchMethod(Invocation.method(#clear, []), returnValueForMissingStub: null);
 
   @override
-  void emit(_i2.AppLocalisationsState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
+  void emit(_i2.AppLocalisationsState? state) =>
+      super.noSuchMethod(Invocation.method(#emit, [state]), returnValueForMissingStub: null);
 
   @override
   void onChange(_i6.Change<_i2.AppLocalisationsState>? change) =>
-      super.noSuchMethod(
-        Invocation.method(#onChange, [change]),
-        returnValueForMissingStub: null,
-      );
+      super.noSuchMethod(Invocation.method(#onChange, [change]), returnValueForMissingStub: null);
 
   @override
   void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
@@ -137,8 +122,7 @@ class MockAppLocalisationsCubit extends _i1.Mock
 /// A class which mocks [AppLocalisationsState].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAppLocalisationsState extends _i1.Mock
-    implements _i2.AppLocalisationsState {
+class MockAppLocalisationsState extends _i1.Mock implements _i2.AppLocalisationsState {
   @override
   Map<String, String> get localisations =>
       (super.noSuchMethod(
@@ -152,14 +136,8 @@ class MockAppLocalisationsState extends _i1.Mock
   String get(String? key) =>
       (super.noSuchMethod(
             Invocation.method(#get, [key]),
-            returnValue: _i5.dummyValue<String>(
-              this,
-              Invocation.method(#get, [key]),
-            ),
-            returnValueForMissingStub: _i5.dummyValue<String>(
-              this,
-              Invocation.method(#get, [key]),
-            ),
+            returnValue: _i5.dummyValue<String>(this, Invocation.method(#get, [key])),
+            returnValueForMissingStub: _i5.dummyValue<String>(this, Invocation.method(#get, [key])),
           )
           as String);
 }

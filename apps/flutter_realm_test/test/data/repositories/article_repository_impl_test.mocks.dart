@@ -8,8 +8,7 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/data_sources/remote/article_remote_data_source.dart'
     as _i3;
-import 'package:test_flutter_project/domain/entities/article_entity.dart'
-    as _i2;
+import 'package:test_flutter_project/domain/entities/article_entity.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -33,19 +32,15 @@ class _FakeArticleEntity_0 extends _i1.SmartFake implements _i2.ArticleEntity {
 /// A class which mocks [ArticleRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockArticleRemoteDataSource extends _i1.Mock
-    implements _i3.ArticleRemoteDataSource {
+class MockArticleRemoteDataSource extends _i1.Mock implements _i3.ArticleRemoteDataSource {
   @override
   _i4.Future<List<_i2.ArticleEntity>> fetchArticles() =>
       (super.noSuchMethod(
             Invocation.method(#fetchArticles, []),
-            returnValue: _i4.Future<List<_i2.ArticleEntity>>.value(
+            returnValue: _i4.Future<List<_i2.ArticleEntity>>.value(<_i2.ArticleEntity>[]),
+            returnValueForMissingStub: _i4.Future<List<_i2.ArticleEntity>>.value(
               <_i2.ArticleEntity>[],
             ),
-            returnValueForMissingStub:
-                _i4.Future<List<_i2.ArticleEntity>>.value(
-                  <_i2.ArticleEntity>[],
-                ),
           )
           as _i4.Future<List<_i2.ArticleEntity>>);
 
@@ -54,16 +49,10 @@ class MockArticleRemoteDataSource extends _i1.Mock
       (super.noSuchMethod(
             Invocation.method(#getArticleById, [id]),
             returnValue: _i4.Future<_i2.ArticleEntity>.value(
-              _FakeArticleEntity_0(
-                this,
-                Invocation.method(#getArticleById, [id]),
-              ),
+              _FakeArticleEntity_0(this, Invocation.method(#getArticleById, [id])),
             ),
             returnValueForMissingStub: _i4.Future<_i2.ArticleEntity>.value(
-              _FakeArticleEntity_0(
-                this,
-                Invocation.method(#getArticleById, [id]),
-              ),
+              _FakeArticleEntity_0(this, Invocation.method(#getArticleById, [id])),
             ),
           )
           as _i4.Future<_i2.ArticleEntity>);

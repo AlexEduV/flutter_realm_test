@@ -18,43 +18,30 @@ void main() {
     useCase = GetAutoCompleteManufacturersByTypeUseCase(mockRepository);
   });
 
-  test(
-    'should return a list of CarAutoCompleteEntity for the given CarType',
-    () async {
-      // Arrange
-      final carType = CarType.car;
-      final testEntities = [
-        CarAutoCompleteEntity(
-          manufacturerId: 1,
-          manufacturer: 'Toyota',
-          models: [],
-        ),
-        CarAutoCompleteEntity(
-          manufacturerId: 2,
-          manufacturer: 'Honda',
-          models: ['Civic'],
-        ),
-      ];
-      when(
-        mockRepository.getAutoCompleteModelListByType(carType),
-      ).thenAnswer((_) async => testEntities);
+  test('should return a list of CarAutoCompleteEntity for the given CarType', () async {
+    // Arrange
+    final carType = CarType.car;
+    final testEntities = [
+      CarAutoCompleteEntity(manufacturerId: 1, manufacturer: 'Toyota', models: []),
+      CarAutoCompleteEntity(manufacturerId: 2, manufacturer: 'Honda', models: ['Civic']),
+    ];
+    when(
+      mockRepository.getAutoCompleteModelListByType(carType),
+    ).thenAnswer((_) async => testEntities);
 
-      // Act
-      final result = await useCase(carType);
+    // Act
+    final result = await useCase(carType);
 
-      // Assert
-      expect(result, testEntities);
-      verify(mockRepository.getAutoCompleteModelListByType(carType)).called(1);
-      verifyNoMoreInteractions(mockRepository);
-    },
-  );
+    // Assert
+    expect(result, testEntities);
+    verify(mockRepository.getAutoCompleteModelListByType(carType)).called(1);
+    verifyNoMoreInteractions(mockRepository);
+  });
 
   test('should return an empty list if repository returns empty', () async {
     // Arrange
     final carType = CarType.truck;
-    when(
-      mockRepository.getAutoCompleteModelListByType(carType),
-    ).thenAnswer((_) async => []);
+    when(mockRepository.getAutoCompleteModelListByType(carType)).thenAnswer((_) async => []);
 
     // Act
     final result = await useCase(carType);

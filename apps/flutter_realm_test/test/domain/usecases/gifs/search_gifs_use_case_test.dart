@@ -37,15 +37,11 @@ void main() {
           title: '1',
         ),
       ];
-      when(
-        mockRepository.searchGifs(query),
-      ).thenAnswer((_) async => Right(gifs));
+      when(mockRepository.searchGifs(query)).thenAnswer((_) async => Right(gifs));
 
       final result = await useCase.call(query);
 
-      result.fold((failure) => fail('Expected Right, got Left: $failure'), (
-        entities,
-      ) {
+      result.fold((failure) => fail('Expected Right, got Left: $failure'), (entities) {
         expect(entities, equals(gifs));
       });
 
@@ -56,15 +52,11 @@ void main() {
 
   test('should return empty list when repository returns empty list', () async {
     final query = 'no results';
-    when(
-      mockRepository.searchGifs(query),
-    ).thenAnswer((_) async => const Right([]));
+    when(mockRepository.searchGifs(query)).thenAnswer((_) async => const Right([]));
 
     final result = await useCase.call(query);
 
-    result.fold((failure) => fail('Expected Right, got Left: $failure'), (
-      entities,
-    ) {
+    result.fold((failure) => fail('Expected Right, got Left: $failure'), (entities) {
       expect(entities, isEmpty);
     });
 

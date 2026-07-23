@@ -7,8 +7,7 @@ import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i4;
-import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart'
-    as _i2;
+import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,8 +26,7 @@ import 'package:test_flutter_project/domain/data_sources/local/env_local_data_so
 /// A class which mocks [EnvLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockEnvLocalDataSource extends _i1.Mock
-    implements _i2.EnvLocalDataSource {
+class MockEnvLocalDataSource extends _i1.Mock implements _i2.EnvLocalDataSource {
   @override
   _i3.Future<void> init() =>
       (super.noSuchMethod(

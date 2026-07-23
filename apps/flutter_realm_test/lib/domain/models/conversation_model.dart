@@ -1,11 +1,7 @@
 import 'package:test_flutter_project/domain/models/message_model.dart';
 
 class ConversationModel {
-  ConversationModel({
-    required this.conversationId,
-    required this.ownerId,
-    required this.messages,
-  });
+  ConversationModel({required this.conversationId, required this.ownerId, required this.messages});
 
   factory ConversationModel.empty() {
     return ConversationModel(conversationId: '', ownerId: '', messages: []);
@@ -55,8 +51,7 @@ class ConversationModel {
   }
 
   @override
-  int get hashCode =>
-      conversationId.hashCode ^ ownerId.hashCode ^ messages.hashCode;
+  int get hashCode => conversationId.hashCode ^ ownerId.hashCode ^ messages.hashCode;
 
   // Helper for deep list equality
   bool _listEquals(List<MessageModel> a, List<MessageModel> b) {

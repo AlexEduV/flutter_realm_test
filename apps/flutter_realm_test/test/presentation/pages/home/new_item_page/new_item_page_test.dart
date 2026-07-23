@@ -34,8 +34,7 @@ import 'sub_pages/car_type_picker_test.mocks.dart';
 
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
-  final mockCheckLocationPermissionStatusUseCase =
-      MockCheckLocationPermissionStatusUseCase();
+  final mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
 
   setUpAll(() {
     provideDummy(const NewItemPageState());
@@ -51,9 +50,7 @@ void main() {
     serviceLocator.unregister<CheckLocationPermissionStatusUseCase>();
   });
 
-  testWidgets('NewItemPage renders all main widgets', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('NewItemPage renders all main widgets', (WidgetTester tester) async {
     final mockCubit = MockNewItemPageCubit();
     final mockUserDataCubit = MockUserDataCubit();
     final mockExplorePageCubit = MockExplorePageCubit();
@@ -77,9 +74,7 @@ void main() {
           BlocProvider<NewItemPageCubit>.value(value: mockCubit),
           BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
           BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
         child: const MaterialApp(home: NewItemPage()),
       ),
@@ -119,9 +114,7 @@ void main() {
           BlocProvider<NewItemPageCubit>.value(value: mockCubit),
           BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
           BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
         child: const MaterialApp(home: NewItemPage()),
       ),
@@ -138,9 +131,7 @@ void main() {
     // You can add verify checks if you want to ensure cubit.updateTabIndex is called, etc.
   });
 
-  testWidgets('Back button pops the route if canPop is true', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('Back button pops the route if canPop is true', (WidgetTester tester) async {
     final mockCubit = MockNewItemPageCubit();
     final mockUserDataCubit = MockUserDataCubit();
     final mockExplorePageCubit = MockExplorePageCubit();
@@ -186,9 +177,7 @@ void main() {
           BlocProvider<NewItemPageCubit>.value(value: mockCubit),
           BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
           BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
         ],
         child: MaterialApp.router(routerConfig: router),
@@ -205,65 +194,57 @@ void main() {
     expect(find.byType(HomePage), findsOneWidget);
   });
 
-  testWidgets(
-    'insertItem is called on cubit when forward is pressed on last page',
-    (WidgetTester tester) async {
-      final mockCubit = MockNewItemPageCubit();
-      final mockUserDataCubit = MockUserDataCubit();
-      final mockExplorePageCubit = MockExplorePageCubit();
+  testWidgets('insertItem is called on cubit when forward is pressed on last page', (
+    WidgetTester tester,
+  ) async {
+    final mockCubit = MockNewItemPageCubit();
+    final mockUserDataCubit = MockUserDataCubit();
+    final mockExplorePageCubit = MockExplorePageCubit();
 
-      when(mockCubit.state).thenReturn(
-        const NewItemPageState(
-          currentPageIndex: 2,
-          selectedBodyType: BodyType.sedan,
-          selectedTransmissionType: TransmissionType.manual,
-          selectedFuelType: FuelType.diesel,
-          selectedCarType: CarType.car,
+    when(mockCubit.state).thenReturn(
+      const NewItemPageState(
+        currentPageIndex: 2,
+        selectedBodyType: BodyType.sedan,
+        selectedTransmissionType: TransmissionType.manual,
+        selectedFuelType: FuelType.diesel,
+        selectedCarType: CarType.car,
+      ),
+    );
+    when(mockCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(mockCubit.validateEngineVolume(any, any)).thenReturn(true);
+    when(mockCubit.insertItem()).thenReturn([]);
+    when(mockExplorePageCubit.updateCars(any)).thenReturn(null);
+    when(mockExplorePageCubit.state).thenReturn(const ExplorePageState());
+    when(mockExplorePageCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    final router = GoRouter(
+      initialLocation: AppRoutes.home + AppRoutes.newItem,
+      routes: [
+        GoRoute(
+          path: AppRoutes.home,
+          builder: (_, __) => const SizedBox(),
+          routes: [GoRoute(path: AppRoutes.newItem, builder: (_, __) => const NewItemPage())],
         ),
-      );
-      when(mockCubit.stream).thenAnswer((_) => const Stream.empty());
-      when(mockCubit.validateEngineVolume(any, any)).thenReturn(true);
-      when(mockCubit.insertItem()).thenReturn([]);
-      when(mockExplorePageCubit.updateCars(any)).thenReturn(null);
-      when(mockExplorePageCubit.state).thenReturn(const ExplorePageState());
-      when(mockExplorePageCubit.stream).thenAnswer((_) => const Stream.empty());
+      ],
+    );
 
-      final router = GoRouter(
-        initialLocation: AppRoutes.home + AppRoutes.newItem,
-        routes: [
-          GoRoute(
-            path: AppRoutes.home,
-            builder: (_, __) => const SizedBox(),
-            routes: [
-              GoRoute(
-                path: AppRoutes.newItem,
-                builder: (_, __) => const NewItemPage(),
-              ),
-            ],
-          ),
+    await tester.pumpWidget(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<NewItemPageCubit>.value(value: mockCubit),
+          BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
+          BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
-      );
+        child: MaterialApp.router(routerConfig: router),
+      ),
+    );
+    await tester.pumpAndSettle();
 
-      await tester.pumpWidget(
-        MultiBlocProvider(
-          providers: [
-            BlocProvider<NewItemPageCubit>.value(value: mockCubit),
-            BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
-            BlocProvider<ExplorePageCubit>.value(value: mockExplorePageCubit),
-            BlocProvider<AppLocalisationsCubit>.value(
-              value: appLocalisationsCubit,
-            ),
-          ],
-          child: MaterialApp.router(routerConfig: router),
-        ),
-      );
-      await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.chevron_right_outlined));
+    await tester.pumpAndSettle();
 
-      await tester.tap(find.byIcon(Icons.chevron_right_outlined));
-      await tester.pumpAndSettle();
-
-      verify(mockCubit.insertItem()).called(1);
-      verify(mockExplorePageCubit.updateCars([])).called(1);
-    },
-  );
+    verify(mockCubit.insertItem()).called(1);
+    verify(mockExplorePageCubit.updateCars([])).called(1);
+  });
 }

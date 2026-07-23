@@ -15,9 +15,7 @@ class MessageGifContent extends StatelessWidget {
       children: [
         SizedBox(
           width: AppDimensions.imageMessageSize,
-          height:
-              AppDimensions.imageMessageSize *
-              (imageMetaData?.getImageFactor() ?? 1.0),
+          height: AppDimensions.imageMessageSize * (imageMetaData?.getImageFactor() ?? 1.0),
         ),
 
         const Positioned(bottom: 0.0, child: GifLabel()),

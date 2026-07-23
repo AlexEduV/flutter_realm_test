@@ -34,9 +34,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       state.copyWith(
         emailFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsEmailLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsEmailLabel),
             ).copyWith(
               regex: r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$',
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
@@ -51,9 +49,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
             ),
         passwordFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsPasswordLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsPasswordLabel),
             ).copyWith(
               minLength: 8,
               maxLength: 20,
@@ -70,9 +66,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
             ),
         fullNameFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsFullNameLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsFullNameLabel),
             ).copyWith(
               regex: r"^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$",
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
@@ -112,21 +106,13 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
 
     if (fullName.isEmpty) {
-      emit(
-        state.copyWith(
-          fullNameError: state.fullNameFieldParams?.validationMessage,
-        ),
-      );
+      emit(state.copyWith(fullNameError: state.fullNameFieldParams?.validationMessage));
       return false;
     }
 
     final emailRegex = RegExp(state.fullNameFieldParams?.regex ?? '');
     if (!emailRegex.hasMatch(fullName)) {
-      emit(
-        state.copyWith(
-          fullNameError: state.fullNameFieldParams?.regexErrorMessage,
-        ),
-      );
+      emit(state.copyWith(fullNameError: state.fullNameFieldParams?.regexErrorMessage));
       return false;
     }
 
@@ -141,17 +127,13 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
 
     if (email.isEmpty) {
-      emit(
-        state.copyWith(emailError: state.emailFieldParams?.validationMessage),
-      );
+      emit(state.copyWith(emailError: state.emailFieldParams?.validationMessage));
       return false;
     }
 
     final emailRegex = RegExp(state.emailFieldParams?.regex ?? '');
     if (!emailRegex.hasMatch(email)) {
-      emit(
-        state.copyWith(emailError: state.emailFieldParams?.regexErrorMessage),
-      );
+      emit(state.copyWith(emailError: state.emailFieldParams?.regexErrorMessage));
       return false;
     }
 
@@ -166,21 +148,13 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
 
     if (password.isEmpty) {
-      emit(
-        state.copyWith(
-          passwordError: state.passwordFieldParams?.validationMessage,
-        ),
-      );
+      emit(state.copyWith(passwordError: state.passwordFieldParams?.validationMessage));
       return false;
     }
 
     final passwordRegex = RegExp(state.passwordFieldParams?.regex ?? '');
     if (!passwordRegex.hasMatch(password)) {
-      emit(
-        state.copyWith(
-          passwordError: state.passwordFieldParams?.regexErrorMessage,
-        ),
-      );
+      emit(state.copyWith(passwordError: state.passwordFieldParams?.regexErrorMessage));
       return false;
     }
 
@@ -250,12 +224,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       return false;
     }
 
-    emit(
-      state.copyWith(
-        passwordValidationStage: 5,
-        passwordStrengthHintText: null,
-      ),
-    );
+    emit(state.copyWith(passwordValidationStage: 5, passwordStrengthHintText: null));
     return true;
   }
 
@@ -270,9 +239,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
 
     emit(state.copyWith(isLoading: true));
-    final result = await _loginUseCase.call(
-      LoginModel(state.emailValue, state.passwordValue),
-    );
+    final result = await _loginUseCase.call(LoginModel(state.emailValue, state.passwordValue));
 
     if (!result.success) {
       emit(state.copyWith(authenticationErrorText: result.message));

@@ -13,8 +13,9 @@ enum TransmissionType {
   final String localisationKey;
 
   String fromLocalisations() {
-    final localisation = serviceLocator<AppLocalisationsCubit>()
-        .getLocalisationByKey(localisationKey);
+    final localisation = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
+      localisationKey,
+    );
     return localisation;
   }
 }

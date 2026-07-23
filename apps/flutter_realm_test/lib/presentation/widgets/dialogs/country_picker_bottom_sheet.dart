@@ -45,9 +45,7 @@ class CountryPickerBottomSheet extends StatelessWidget {
           ),
           title: Text(
             items[index].countryName,
-            style: AppTextStyles.zonaPro16.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
           ),
           selected: index == currentSelectedIndex,
           selectedTileColor: AppColors.lightGrey,

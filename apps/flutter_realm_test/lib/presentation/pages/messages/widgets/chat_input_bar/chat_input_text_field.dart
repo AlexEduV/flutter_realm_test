@@ -56,21 +56,12 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
                     onLongPress: () {
                       //this blocks refocus on field when long pressing the button
                     },
-                    icon: const Icon(
-                      Icons.gif,
-                      size: AppDimensions.bottomMessageBarIconSize,
-                    ),
+                    icon: const Icon(Icons.gif, size: AppDimensions.bottomMessageBarIconSize),
                     onPressed: () async {
-                      await DialogHelper.showGifsPickerModalBottomSheet(
-                        context,
-                        widget.listKey,
-                      );
+                      await DialogHelper.showGifsPickerModalBottomSheet(context, widget.listKey);
                       if (!context.mounted) return;
 
-                      final result = context
-                          .read<MessagesPageCubit>()
-                          .state
-                          .selectedGif;
+                      final result = context.read<MessagesPageCubit>().state.selectedGif;
                       if (result != null) {
                         widget.onMessageSent?.call();
                       }
@@ -78,9 +69,7 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
                   ),
                 ),
               ),
-              hintStyle: AppTextStyles.zonaPro16.copyWith(
-                color: AppColors.hintColor,
-              ),
+              hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),
               hintText: context.tr(L10nKeys.messageBarHint),
               contentPadding: const EdgeInsets.symmetric(
                 vertical: AppDimensions.normalM,
@@ -111,8 +100,7 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
             style: AppTextStyles.zonaPro16,
             keyboardType: TextInputType.multiline,
             maxLines: null,
-            onChanged: (newValue) =>
-                context.read<MessagesPageCubit>().updateMessageText(newValue),
+            onChanged: (newValue) => context.read<MessagesPageCubit>().updateMessageText(newValue),
             onFieldSubmitted: (value) {
               if (value.isEmpty) return;
 

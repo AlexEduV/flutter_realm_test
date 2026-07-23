@@ -81,9 +81,7 @@ void main() {
     'should init',
     setUp: () {
       when(mockSyncCarsUseCase.call()).thenAnswer((_) async => {});
-      when(
-        mockWatchCarsUseCase.call(),
-      ).thenAnswer((_) => Stream.value(carList));
+      when(mockWatchCarsUseCase.call()).thenAnswer((_) => Stream.value(carList));
       when(mockFetchArticlesUseCase.call()).thenAnswer((_) async => []);
     },
     build: () {
@@ -112,9 +110,7 @@ void main() {
     'updateCars emits state with new cars',
     build: () => cubit,
     act: (cubit) => cubit.updateCars(carList),
-    expect: () => [
-      isA<ExplorePageState>().having((s) => s.cars, 'cars', carList),
-    ],
+    expect: () => [isA<ExplorePageState>().having((s) => s.cars, 'cars', carList)],
   );
 
   blocTest<ExplorePageCubit, ExplorePageState>(

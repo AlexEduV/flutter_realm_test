@@ -108,17 +108,12 @@ void main() {
     blocTest<AuthenticationCubit, AuthenticationState>(
       'onLoginButtonPressed emits loading, calls repo, emits result and stops loading (success)',
       setUp: () {
-        when(
-          mockLoginUseCase.call(any),
-        ).thenAnswer((_) async => AuthResult(success: true));
+        when(mockLoginUseCase.call(any)).thenAnswer((_) async => AuthResult(success: true));
       },
       build: () {
         return cubit;
       },
-      seed: () => cubit.state.copyWith(
-        emailValue: 'a@mail.com',
-        passwordValue: 'Password1!',
-      ),
+      seed: () => cubit.state.copyWith(emailValue: 'a@mail.com', passwordValue: 'Password1!'),
       act: (cubit) => cubit.onLoginButtonPressed(),
       expect: () => [
         cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
@@ -139,10 +134,7 @@ void main() {
         ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
         return cubit;
       },
-      seed: () => cubit.state.copyWith(
-        emailValue: 'a@mail.com',
-        passwordValue: 'Password1!',
-      ),
+      seed: () => cubit.state.copyWith(emailValue: 'a@mail.com', passwordValue: 'Password1!'),
       act: (cubit) => cubit.onLoginButtonPressed(),
       expect: () => [
         cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
@@ -158,9 +150,7 @@ void main() {
     blocTest<AuthenticationCubit, AuthenticationState>(
       'onRegisterButtonPressed emits loading, calls repo, emits result and stops loading (success)',
       build: () {
-        when(
-          mockRegisterUseCase.call(any),
-        ).thenAnswer((_) async => AuthResult(success: true));
+        when(mockRegisterUseCase.call(any)).thenAnswer((_) async => AuthResult(success: true));
         return cubit;
       },
       seed: () => cubit.state.copyWith(

@@ -11,12 +11,9 @@ import 'package:test_flutter_project/domain/models/login_model.dart' as _i6;
 import 'package:test_flutter_project/domain/models/register_model.dart' as _i8;
 import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart'
     as _i9;
-import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart'
-    as _i5;
-import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart'
-    as _i3;
-import 'package:test_flutter_project/domain/usecases/authentication/register_use_case.dart'
-    as _i7;
+import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart' as _i5;
+import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart' as _i3;
+import 'package:test_flutter_project/domain/usecases/authentication/register_use_case.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -33,8 +30,7 @@ import 'package:test_flutter_project/domain/usecases/authentication/register_use
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeAuthResult_0 extends _i1.SmartFake implements _i2.AuthResult {
-  _FakeAuthResult_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
+  _FakeAuthResult_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 /// A class which mocks [LogoutUseCase].
@@ -90,8 +86,7 @@ class MockRegisterUseCase extends _i1.Mock implements _i7.RegisterUseCase {
 /// A class which mocks [DeleteAccountUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDeleteAccountUseCase extends _i1.Mock
-    implements _i9.DeleteAccountUseCase {
+class MockDeleteAccountUseCase extends _i1.Mock implements _i9.DeleteAccountUseCase {
   @override
   _i4.Future<void> call(String? email) =>
       (super.noSuchMethod(

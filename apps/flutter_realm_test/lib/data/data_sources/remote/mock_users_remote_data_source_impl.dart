@@ -44,9 +44,7 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
       }
 
       final users = decoded
-          .map<UserEntity>(
-            (value) => UserEntity.fromJson(value as Map<String, dynamic>),
-          )
+          .map<UserEntity>((value) => UserEntity.fromJson(value as Map<String, dynamic>))
           .toList();
 
       this.users = users;

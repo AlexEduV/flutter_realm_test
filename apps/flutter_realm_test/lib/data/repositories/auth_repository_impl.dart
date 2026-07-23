@@ -55,10 +55,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<AuthResult> login({
-    required String email,
-    required String password,
-  }) async {
+  Future<AuthResult> login({required String email, required String password}) async {
     // Simulate network delay
     await Future.delayed(const Duration(milliseconds: 1500));
 
@@ -71,9 +68,7 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     }
 
-    if (!users.any(
-      (element) => element.password == password && element.email == email,
-    )) {
+    if (!users.any((element) => element.password == password && element.email == email)) {
       return AuthResult(
         success: false,
         message: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(

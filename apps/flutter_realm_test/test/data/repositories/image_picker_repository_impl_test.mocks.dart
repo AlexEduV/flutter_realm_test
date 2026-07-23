@@ -26,8 +26,7 @@ import 'package:test_flutter_project/domain/data_sources/local/image_picker_loca
 /// A class which mocks [ImagePickerLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockImagePickerLocalDataSource extends _i1.Mock
-    implements _i2.ImagePickerLocalDataSource {
+class MockImagePickerLocalDataSource extends _i1.Mock implements _i2.ImagePickerLocalDataSource {
   @override
   _i3.Future<String?> pickImage() =>
       (super.noSuchMethod(

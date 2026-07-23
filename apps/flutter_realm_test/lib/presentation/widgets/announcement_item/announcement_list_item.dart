@@ -27,11 +27,7 @@ class AnnouncementListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final carId = car?.carId ?? '';
 
-    final content = AnnouncementItemBody(
-      car: car,
-      isExploreItem: isExploreItem,
-      user: user,
-    );
+    final content = AnnouncementItemBody(car: car, isExploreItem: isExploreItem, user: user);
 
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalS),

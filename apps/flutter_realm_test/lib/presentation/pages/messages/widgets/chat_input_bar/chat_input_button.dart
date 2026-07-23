@@ -64,12 +64,8 @@ class _ChatInputButtonState extends State<ChatInputButton> {
                 child: Icon(widget.icon),
               ),
               style: ButtonStyle(
-                iconSize: const WidgetStatePropertyAll(
-                  AppDimensions.bottomMessageBarIconSize,
-                ),
-                foregroundColor: WidgetStateProperty.resolveWith<Color>((
-                  Set<WidgetState> states,
-                ) {
+                iconSize: const WidgetStatePropertyAll(AppDimensions.bottomMessageBarIconSize),
+                foregroundColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
                   if (states.contains(WidgetState.disabled)) {
                     return AppColors.lightGrey;
                   }

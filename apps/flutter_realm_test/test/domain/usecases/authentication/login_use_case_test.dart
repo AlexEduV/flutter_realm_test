@@ -15,30 +15,21 @@ void main() {
     loginUseCase = LoginUseCase(mockAuthRepository);
   });
 
-  test(
-    'calls login on the repository with correct params and returns result',
-    () async {
-      // Arrange
-      final loginModel = LoginModel('test@mail.com', 'password123');
-      final expectedResult = AuthResult(success: true, message: 'Success');
-      when(
-        mockAuthRepository.login(
-          email: loginModel.email,
-          password: loginModel.password,
-        ),
-      ).thenAnswer((_) async => expectedResult);
+  test('calls login on the repository with correct params and returns result', () async {
+    // Arrange
+    final loginModel = LoginModel('test@mail.com', 'password123');
+    final expectedResult = AuthResult(success: true, message: 'Success');
+    when(
+      mockAuthRepository.login(email: loginModel.email, password: loginModel.password),
+    ).thenAnswer((_) async => expectedResult);
 
-      // Act
-      final result = await loginUseCase(loginModel);
+    // Act
+    final result = await loginUseCase(loginModel);
 
-      // Assert
-      expect(result, expectedResult);
-      verify(
-        mockAuthRepository.login(
-          email: loginModel.email,
-          password: loginModel.password,
-        ),
-      ).called(1);
-    },
-  );
+    // Assert
+    expect(result, expectedResult);
+    verify(
+      mockAuthRepository.login(email: loginModel.email, password: loginModel.password),
+    ).called(1);
+  });
 }

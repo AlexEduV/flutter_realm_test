@@ -60,14 +60,10 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
         final selectedBodyTypeSet = Set<String>.from(state.selectedBodyTypes);
         final selectedFuelTypeSet = Set<String>.from(state.selectedFuelTypes);
-        final selectedTransmissionTypeSet = Set<String>.from(
-          state.selectedTransmissionTypes,
-        );
+        final selectedTransmissionTypeSet = Set<String>.from(state.selectedTransmissionTypes);
         final selectedColorSet = Set<String>.from(state.selectedColors);
 
-        final bodyTypeList = BodyType.filterByCarType(
-          state.currentSelectedType,
-        );
+        final bodyTypeList = BodyType.filterByCarType(state.currentSelectedType);
 
         return Drawer(
           backgroundColor: AppColors.scaffoldColor,
@@ -96,18 +92,13 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                   semanticsLabel: AppSemanticsLabels.filterDrawerColorCheckbox,
                   label: element.capitalizeFirst(),
                   isChecked: selectedColorSet.contains(capitalisedElement),
-                  onChecked: () =>
-                      cubit.addCarColorToSelection(capitalisedElement),
-                  onUnChecked: () =>
-                      cubit.removeCarColorFromSelection(capitalisedElement),
+                  onChecked: () => cubit.addCarColorToSelection(capitalisedElement),
+                  onUnChecked: () => cubit.removeCarColorFromSelection(capitalisedElement),
                 );
               }),
 
               ListTile(
-                title: Text(
-                  context.tr(L10nKeys.parameterYearName),
-                  style: AppTextStyles.zonaPro18,
-                ),
+                title: Text(context.tr(L10nKeys.parameterYearName), style: AppTextStyles.zonaPro18),
               ),
 
               //todo: use a slider here
@@ -119,8 +110,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       child: DebouncedTextFormField(
                         controller: minYearTextController,
                         label: '',
-                        onDebouncedChanged: (value) =>
-                            cubit.updateSelectedMinYear(value),
+                        onDebouncedChanged: (value) => cubit.updateSelectedMinYear(value),
                         errorText: state.minYearError,
                       ),
                     ),
@@ -131,8 +121,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       child: DebouncedTextFormField(
                         controller: maxYearTextController,
                         label: '',
-                        onDebouncedChanged: (value) =>
-                            cubit.updateSelectedMaxYear(value),
+                        onDebouncedChanged: (value) => cubit.updateSelectedMaxYear(value),
                         errorText: state.maxYearError,
                       ),
                     ),
@@ -149,13 +138,11 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ...bodyTypeList.map(
                 (element) => _buildCheckboxTile(
-                  semanticsLabel:
-                      AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
                   label: element.fromLocalisations(),
                   isChecked: selectedBodyTypeSet.contains(element.name),
                   onChecked: () => cubit.addBodyTypeToSelection(element.name),
-                  onUnChecked: () =>
-                      cubit.removeBodyTypeFromSelection(element.name),
+                  onUnChecked: () => cubit.removeBodyTypeFromSelection(element.name),
                 ),
               ),
 
@@ -176,8 +163,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                         //the label is empty here, because now the fields are auto-filled, and it's not
                         //necessary.
                         label: '',
-                        onDebouncedChanged: (newValue) =>
-                            cubit.updateSelectedMinPrice(newValue),
+                        onDebouncedChanged: (newValue) => cubit.updateSelectedMinPrice(newValue),
                         errorText: state.minPriceError,
                       ),
                     ),
@@ -188,8 +174,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                       child: DebouncedTextFormField(
                         controller: maxPriceTextController,
                         label: '',
-                        onDebouncedChanged: (newValue) =>
-                            cubit.updateSelectedMaxPrice(newValue),
+                        onDebouncedChanged: (newValue) => cubit.updateSelectedMaxPrice(newValue),
                         errorText: state.maxPriceError,
                       ),
                     ),
@@ -206,13 +191,11 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ...FuelType.values.map(
                 (element) => _buildCheckboxTile(
-                  semanticsLabel:
-                      AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
+                  semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
                   label: element.fromLocalisations(),
                   isChecked: selectedFuelTypeSet.contains(element.name),
                   onChecked: () => cubit.addFuelTypeToSelection(element.name),
-                  onUnChecked: () =>
-                      cubit.removeFuelTypeFromSelection(element.name),
+                  onUnChecked: () => cubit.removeFuelTypeFromSelection(element.name),
                 ),
               ),
 
@@ -225,14 +208,11 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ...TransmissionType.values.map(
                 (element) => _buildCheckboxTile(
-                  semanticsLabel:
-                      AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
+                  semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
                   label: element.fromLocalisations(),
                   isChecked: selectedTransmissionTypeSet.contains(element.name),
-                  onChecked: () =>
-                      cubit.addTransmissionTypeToSelection(element.name),
-                  onUnChecked: () =>
-                      cubit.removeTransmissionTypeFromSelection(element.name),
+                  onChecked: () => cubit.addTransmissionTypeToSelection(element.name),
+                  onUnChecked: () => cubit.removeTransmissionTypeFromSelection(element.name),
                 ),
               ),
             ],

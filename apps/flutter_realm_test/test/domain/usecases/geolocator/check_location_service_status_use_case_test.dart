@@ -18,9 +18,7 @@ void main() {
 
   group('CheckLocationServiceStatusUseCase', () {
     test('call returns true when repository returns true', () async {
-      when(
-        mockRepository.checkLocationServiceStatus(),
-      ).thenAnswer((_) async => true);
+      when(mockRepository.checkLocationServiceStatus()).thenAnswer((_) async => true);
 
       final result = await useCase.call();
 
@@ -29,9 +27,7 @@ void main() {
     });
 
     test('call returns false when repository returns false', () async {
-      when(
-        mockRepository.checkLocationServiceStatus(),
-      ).thenAnswer((_) async => false);
+      when(mockRepository.checkLocationServiceStatus()).thenAnswer((_) async => false);
 
       final result = await useCase.call();
 

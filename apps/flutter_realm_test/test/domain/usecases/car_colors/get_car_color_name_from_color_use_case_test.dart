@@ -19,9 +19,7 @@ void main() {
     // Arrange
     const color = Color(0xFF0000FF);
     const colorName = 'blue';
-    when(
-      mockCarColorRepository.getColorNameFromColor(color),
-    ).thenReturn(colorName);
+    when(mockCarColorRepository.getColorNameFromColor(color)).thenReturn(colorName);
 
     // Act
     final result = useCase(color);

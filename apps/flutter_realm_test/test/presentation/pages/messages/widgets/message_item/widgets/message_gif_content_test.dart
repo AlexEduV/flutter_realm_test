@@ -15,14 +15,10 @@ void main() {
 
   setUpAll(() {
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(
-      appLocalisationsCubit.state,
-    ).thenReturn(const AppLocalisationsState(localisations: {}));
+    when(appLocalisationsCubit.state).thenReturn(const AppLocalisationsState(localisations: {}));
   });
 
-  testWidgets('renders SizedBox with correct dimensions and GifLabel', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('renders SizedBox with correct dimensions and GifLabel', (WidgetTester tester) async {
     // Assume AppDimensions.imageMessageSize is 100.0 for this test
     final imageMetaData = SentImageMetaDataModel(
       url: 'http://example.com/image.gif',
@@ -36,9 +32,7 @@ void main() {
       MaterialApp(
         home: BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
-          child: Scaffold(
-            body: MessageGifContent(imageMetaData: imageMetaData),
-          ),
+          child: Scaffold(body: MessageGifContent(imageMetaData: imageMetaData)),
         ),
       ),
     );
@@ -52,9 +46,7 @@ void main() {
     expect(find.byType(GifLabel), findsOneWidget);
   });
 
-  testWidgets('uses default image factor when imageMetaData is null', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('uses default image factor when imageMetaData is null', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: BlocProvider<AppLocalisationsCubit>.value(

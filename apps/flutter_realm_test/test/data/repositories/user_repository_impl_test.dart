@@ -120,9 +120,7 @@ void main() {
         password: 'test',
       ),
     ];
-    when(
-      mockRemoteDataSource.saveMockUsers(tUsers),
-    ).thenAnswer((_) async => {});
+    when(mockRemoteDataSource.saveMockUsers(tUsers)).thenAnswer((_) async => {});
 
     // Act
     await repository.saveMockUsers(tUsers);

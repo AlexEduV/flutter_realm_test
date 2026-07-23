@@ -22,18 +22,14 @@ void main() {
   setUpAll(() {
     provideDummy(const NewItemPageState());
 
-    serviceLocator.registerFactory<AppLocalisationsCubit>(
-      () => appLocalisationsCubit,
-    );
+    serviceLocator.registerFactory<AppLocalisationsCubit>(() => appLocalisationsCubit);
   });
 
   tearDownAll(() {
     serviceLocator.unregister<AppLocalisationsCubit>();
   });
 
-  testWidgets('ItemSpecsPicker renders and updates selections on tap', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('ItemSpecsPicker renders and updates selections on tap', (WidgetTester tester) async {
     // Arrange
 
     const state = NewItemPageState(
@@ -55,9 +51,7 @@ void main() {
         home: MultiBlocProvider(
           providers: [
             BlocProvider<NewItemPageCubit>.value(value: mockCubit),
-            BlocProvider<AppLocalisationsCubit>.value(
-              value: appLocalisationsCubit,
-            ),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           ],
           child: const Scaffold(body: ItemSpecsPicker()),
         ),
@@ -99,9 +93,7 @@ void main() {
     if (transmissionTypeTile.evaluate().isNotEmpty) {
       await tester.tap(transmissionTypeTile);
       await tester.pump();
-      verify(
-        mockCubit.updateSelectedTransmissionType(TransmissionType.manual),
-      ).called(1);
+      verify(mockCubit.updateSelectedTransmissionType(TransmissionType.manual)).called(1);
     }
   });
 }

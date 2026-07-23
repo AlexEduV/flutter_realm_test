@@ -15,9 +15,7 @@ class MockAutoCompleteRemoteDataSource implements AutoCompleteRemoteDataSource {
   final BaseLogger _logger;
 
   @override
-  Future<List<CarAutoCompleteEntity>> getAutoCompleteModelListByType(
-    CarType type,
-  ) async {
+  Future<List<CarAutoCompleteEntity>> getAutoCompleteModelListByType(CarType type) async {
     final resourceSrc = getResourceByType(type);
 
     final jsonString = await rootBundle.loadString('assets/mocks/$resourceSrc');
@@ -26,10 +24,7 @@ class MockAutoCompleteRemoteDataSource implements AutoCompleteRemoteDataSource {
     final response = ApiResponse.fromJson(
       jsonDecoded,
       (data) => (data as List)
-          .map(
-            (item) =>
-                CarAutoCompleteEntity.fromJson(item as Map<String, dynamic>),
-          )
+          .map((item) => CarAutoCompleteEntity.fromJson(item as Map<String, dynamic>))
           .toList(),
     );
 

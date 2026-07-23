@@ -62,10 +62,7 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
 
     final prefs = await SharedPreferences.getInstance();
     final conversationsJsonList = conversations.map((c) => c.toJson()).toList();
-    await prefs.setString(
-      'mock_conversations',
-      jsonEncode(conversationsJsonList),
-    );
+    await prefs.setString('mock_conversations', jsonEncode(conversationsJsonList));
   }
 
   @override
@@ -82,8 +79,7 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
 
       final conversations = decoded
           .map<ConversationModel>(
-            (value) =>
-                ConversationModel.fromJson(value as Map<String, dynamic>),
+            (value) => ConversationModel.fromJson(value as Map<String, dynamic>),
           )
           .toList();
 
@@ -117,9 +113,7 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
 
   @override
   ConversationModel getConversationByOwnerId(String ownerId) {
-    final conversationIndex = _list.indexWhereOrNull(
-      (element) => element.ownerId == ownerId,
-    );
+    final conversationIndex = _list.indexWhereOrNull((element) => element.ownerId == ownerId);
 
     if (conversationIndex == null) {
       final newConversationId = getMaxConversationId() + 1;

@@ -2,8 +2,7 @@ import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/domain/repositories/article_repository.dart';
 import 'package:test_flutter_project/domain/usecases/usecase.dart';
 
-class GetArticleByIdUseCase
-    extends UseCaseWithParams<String, Future<ArticleEntity>> {
+class GetArticleByIdUseCase extends UseCaseWithParams<String, Future<ArticleEntity>> {
   GetArticleByIdUseCase(this._articleRepository);
 
   final ArticleRepository _articleRepository;

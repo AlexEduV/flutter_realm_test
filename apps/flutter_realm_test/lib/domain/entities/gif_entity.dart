@@ -31,11 +31,7 @@ class GifEntity {
   final double height;
 
   String toPayload() {
-    return jsonEncode({
-      'url': imageUrl,
-      'width': width.toString(),
-      'height': height.toString(),
-    });
+    return jsonEncode({'url': imageUrl, 'width': width.toString(), 'height': height.toString()});
   }
 
   @override

@@ -4,19 +4,12 @@ import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_mod
 import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_file_content.dart';
 
 void main() {
-  testWidgets('renders file name and icon for my message', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('renders file name and icon for my message', (WidgetTester tester) async {
     final attachment = SentAttachmentMetaDataModel(name: 'file.txt', size: 123);
 
     await tester.pumpWidget(
       MaterialApp(
-        home: Scaffold(
-          body: MessageFileContent(
-            attachmentMetaData: attachment,
-            isMyMessage: true,
-          ),
-        ),
+        home: Scaffold(body: MessageFileContent(attachmentMetaData: attachment, isMyMessage: true)),
       ),
     );
 
@@ -28,21 +21,13 @@ void main() {
     expect(icon.color, Colors.white);
   });
 
-  testWidgets('renders file name and icon for other message', (
-    WidgetTester tester,
-  ) async {
-    final attachment = SentAttachmentMetaDataModel(
-      name: 'document.pdf',
-      size: 456,
-    );
+  testWidgets('renders file name and icon for other message', (WidgetTester tester) async {
+    final attachment = SentAttachmentMetaDataModel(name: 'document.pdf', size: 456);
 
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: MessageFileContent(
-            attachmentMetaData: attachment,
-            isMyMessage: false,
-          ),
+          body: MessageFileContent(attachmentMetaData: attachment, isMyMessage: false),
         ),
       ),
     );
@@ -55,17 +40,10 @@ void main() {
     expect(icon.color, isNull);
   });
 
-  testWidgets('renders empty string when attachmentMetaData is null', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('renders empty string when attachmentMetaData is null', (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
-        home: Scaffold(
-          body: MessageFileContent(
-            attachmentMetaData: null,
-            isMyMessage: false,
-          ),
-        ),
+        home: Scaffold(body: MessageFileContent(attachmentMetaData: null, isMyMessage: false)),
       ),
     );
 

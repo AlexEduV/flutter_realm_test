@@ -40,9 +40,7 @@ class ModelFilterDrawer extends StatelessWidget {
                 value: areAllSelected,
                 onChanged: (bool? value) {
                   if (value ?? false) {
-                    context.read<SearchPageCubit>().updateModelSelection(
-                      models,
-                    );
+                    context.read<SearchPageCubit>().updateModelSelection(models);
                   } else {
                     context.read<SearchPageCubit>().updateModelSelection({});
                   }
@@ -62,9 +60,7 @@ class ModelFilterDrawer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: AppDimensions.minorL,
-                      ),
+                      padding: const EdgeInsets.symmetric(vertical: AppDimensions.minorL),
                       child: CheckboxListTile(
                         value: unorderedListEquality.equals(
                           state.selectedModels[manufacturer],
@@ -72,13 +68,13 @@ class ModelFilterDrawer extends StatelessWidget {
                         ),
                         onChanged: (bool? newValue) {
                           if (newValue == true) {
-                            context
-                                .read<SearchPageCubit>()
-                                .addManufacturerToSelection(manufacturer);
+                            context.read<SearchPageCubit>().addManufacturerToSelection(
+                              manufacturer,
+                            );
                           } else {
-                            context
-                                .read<SearchPageCubit>()
-                                .removeManufacturerFromSelection(manufacturer);
+                            context.read<SearchPageCubit>().removeManufacturerFromSelection(
+                              manufacturer,
+                            );
                           }
                         },
                         title: Text(
@@ -89,22 +85,20 @@ class ModelFilterDrawer extends StatelessWidget {
                       ),
                     ),
                     ...models.map((model) {
-                      final isSelected =
-                          selectedSet[manufacturer]?.contains(model) ?? false;
+                      final isSelected = selectedSet[manufacturer]?.contains(model) ?? false;
                       return CheckboxListTile(
                         value: isSelected,
                         onChanged: (bool? newValue) {
                           if (newValue == true) {
-                            context
-                                .read<SearchPageCubit>()
-                                .addCarModelToSelection(manufacturer, model);
+                            context.read<SearchPageCubit>().addCarModelToSelection(
+                              manufacturer,
+                              model,
+                            );
                           } else {
-                            context
-                                .read<SearchPageCubit>()
-                                .removeCarModelFromSelection(
-                                  manufacturer,
-                                  model,
-                                );
+                            context.read<SearchPageCubit>().removeCarModelFromSelection(
+                              manufacturer,
+                              model,
+                            );
                           }
                         },
                         title: Text(model),

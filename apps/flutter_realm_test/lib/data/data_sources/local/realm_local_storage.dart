@@ -35,10 +35,7 @@ class RealmLocalStorage implements BaseLocalStorage {
 
   @override
   List<CarEntity> getAll() {
-    return realm
-        .all<Car>()
-        .map((element) => CarEntity.fromSchema(element))
-        .toList();
+    return realm.all<Car>().map((element) => CarEntity.fromSchema(element)).toList();
   }
 
   @override
@@ -62,10 +59,7 @@ class RealmLocalStorage implements BaseLocalStorage {
 
   @override
   UserEntity initUser() {
-    final users = realm
-        .all<User>()
-        .map((element) => UserEntity.fromSchema(element))
-        .toList();
+    final users = realm.all<User>().map((element) => UserEntity.fromSchema(element)).toList();
 
     if (users.isNotEmpty) {
       return users.first;

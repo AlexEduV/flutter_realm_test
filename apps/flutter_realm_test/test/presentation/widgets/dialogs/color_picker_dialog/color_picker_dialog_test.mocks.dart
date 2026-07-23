@@ -29,14 +29,10 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_na
 /// A class which mocks [GetCarColorByNameUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCarColorByNameUseCase extends _i1.Mock
-    implements _i2.GetCarColorByNameUseCase {
+class MockGetCarColorByNameUseCase extends _i1.Mock implements _i2.GetCarColorByNameUseCase {
   @override
   _i3.Color? call(String? colorName) =>
-      (super.noSuchMethod(
-            Invocation.method(#call, [colorName]),
-            returnValueForMissingStub: null,
-          )
+      (super.noSuchMethod(Invocation.method(#call, [colorName]), returnValueForMissingStub: null)
           as _i3.Color?);
 }
 
@@ -49,10 +45,7 @@ class MockGetCarColorNameFromColorUseCase extends _i1.Mock
   String call(_i3.Color? color) =>
       (super.noSuchMethod(
             Invocation.method(#call, [color]),
-            returnValue: _i5.dummyValue<String>(
-              this,
-              Invocation.method(#call, [color]),
-            ),
+            returnValue: _i5.dummyValue<String>(this, Invocation.method(#call, [color])),
             returnValueForMissingStub: _i5.dummyValue<String>(
               this,
               Invocation.method(#call, [color]),

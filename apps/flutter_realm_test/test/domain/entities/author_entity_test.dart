@@ -4,22 +4,14 @@ import 'package:test_flutter_project/domain/entities/author_entity.dart';
 void main() {
   group('AuthorEntity', () {
     test('constructor assigns values correctly', () {
-      const author = AuthorEntity(
-        id: '1',
-        fullName: 'John Doe',
-        imageSrc: 'img.png',
-      );
+      const author = AuthorEntity(id: '1', fullName: 'John Doe', imageSrc: 'img.png');
       expect(author.id, '1');
       expect(author.fullName, 'John Doe');
       expect(author.imageSrc, 'img.png');
     });
 
     test('fromJson creates correct AuthorEntity with imageSrc', () {
-      final json = {
-        'id': '2',
-        'full_name': 'Jane Smith',
-        'image_src': 'avatar.png',
-      };
+      final json = {'id': '2', 'full_name': 'Jane Smith', 'image_src': 'avatar.png'};
       final author = AuthorEntity.fromJson(json);
       expect(author.id, '2');
       expect(author.fullName, 'Jane Smith');
@@ -35,31 +27,15 @@ void main() {
     });
 
     test('equality and hashCode: identical objects', () {
-      const a1 = AuthorEntity(
-        id: '1',
-        fullName: 'John Doe',
-        imageSrc: 'img.png',
-      );
-      const a2 = AuthorEntity(
-        id: '1',
-        fullName: 'John Doe',
-        imageSrc: 'img.png',
-      );
+      const a1 = AuthorEntity(id: '1', fullName: 'John Doe', imageSrc: 'img.png');
+      const a2 = AuthorEntity(id: '1', fullName: 'John Doe', imageSrc: 'img.png');
       expect(a1, a2);
       expect(a1.hashCode, a2.hashCode);
     });
 
     test('equality and hashCode: different objects', () {
-      const a1 = AuthorEntity(
-        id: '1',
-        fullName: 'John Doe',
-        imageSrc: 'img.png',
-      );
-      const a2 = AuthorEntity(
-        id: '2',
-        fullName: 'Jane Smith',
-        imageSrc: 'avatar.png',
-      );
+      const a1 = AuthorEntity(id: '1', fullName: 'John Doe', imageSrc: 'img.png');
+      const a2 = AuthorEntity(id: '2', fullName: 'Jane Smith', imageSrc: 'avatar.png');
       expect(a1 == a2, isFalse);
       expect(a1.hashCode == a2.hashCode, isFalse);
     });

@@ -19,9 +19,7 @@ void main() {
     mockLocalisationsCubit = MockAppLocalisationsCubit();
 
     // Register the mock cubit in the service locator
-    serviceLocator.registerSingleton<AppLocalisationsCubit>(
-      mockLocalisationsCubit,
-    );
+    serviceLocator.registerSingleton<AppLocalisationsCubit>(mockLocalisationsCubit);
   });
 
   tearDown(() async {
@@ -35,28 +33,18 @@ void main() {
     });
 
     test('getAllRegions returns regions if not null', () {
-      final regions = [
-        const RegionEntity(locale: 'US'),
-        const RegionEntity(locale: 'CA'),
-      ];
+      final regions = [const RegionEntity(locale: 'US'), const RegionEntity(locale: 'CA')];
       dataSource.regions = regions;
       expect(dataSource.getAllRegions(), regions);
     });
 
     test('getAvailableCountries returns correct UI models', () {
-      final regions = [
-        const RegionEntity(locale: 'US'),
-        const RegionEntity(locale: 'CA'),
-      ];
+      final regions = [const RegionEntity(locale: 'US'), const RegionEntity(locale: 'CA')];
       dataSource.regions = regions;
 
       // Key prefix is L10nKeys.countryPrefix = 'countries.'
-      when(
-        mockLocalisationsCubit.getLocalisationByKey('countries.US'),
-      ).thenReturn('United States');
-      when(
-        mockLocalisationsCubit.getLocalisationByKey('countries.CA'),
-      ).thenReturn('Canada');
+      when(mockLocalisationsCubit.getLocalisationByKey('countries.US')).thenReturn('United States');
+      when(mockLocalisationsCubit.getLocalisationByKey('countries.CA')).thenReturn('Canada');
 
       final countries = dataSource.getAvailableCountries();
 

@@ -42,16 +42,8 @@ class _EditPasswordDialogState extends State<EditPasswordDialog> {
 
   @override
   void initState() {
-    _validateEditField(
-      context,
-      textEditingController.text,
-      widget.validationCallback,
-    );
-    _validateEditField(
-      context,
-      confirmationTextEditingController.text,
-      widget.validationCallback,
-    );
+    _validateEditField(context, textEditingController.text, widget.validationCallback);
+    _validateEditField(context, confirmationTextEditingController.text, widget.validationCallback);
 
     super.initState();
   }
@@ -73,15 +65,12 @@ class _EditPasswordDialogState extends State<EditPasswordDialog> {
       builder: (context, state) {
         final isConfirmButtonEnabled =
             state.isConfirmButtonEnabled &&
-            textEditingController.text ==
-                confirmationTextEditingController.text;
+            textEditingController.text == confirmationTextEditingController.text;
 
         return AlertDialog(
           title: Text(
             widget.title,
-            style: AppTextStyles.zonaPro16.copyWith(
-              fontWeight: FontWeight.w700,
-            ),
+            style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
           ),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,18 +85,14 @@ class _EditPasswordDialogState extends State<EditPasswordDialog> {
                 validateEditField: _validateEditField,
                 validationCallback: widget.validationCallback,
                 isObscureText: state.isPasswordFieldObscure,
-                onSuffixIconTap: () => context
-                    .read<EditDialogCubit>()
-                    .setPasswordFieldObscurity(!state.isPasswordFieldObscure),
+                onSuffixIconTap: () => context.read<EditDialogCubit>().setPasswordFieldObscurity(
+                  !state.isPasswordFieldObscure,
+                ),
               ),
 
               const SizedBox(height: AppDimensions.minorS),
 
-              Text(
-                context.tr(
-                  L10nKeys.personalDetailsItemPasswordDialogSecondLabel,
-                ),
-              ),
+              Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogSecondLabel)),
 
               EditPasswordFieldWidget(
                 textEditingController: confirmationTextEditingController,
@@ -115,9 +100,8 @@ class _EditPasswordDialogState extends State<EditPasswordDialog> {
                 validationCallback: widget.validationCallback,
                 validateEditField: _validateEditField,
                 isObscureText: state.isConfirmationPasswordFieldObscure,
-                onSuffixIconTap: () => context
-                    .read<EditDialogCubit>()
-                    .setPasswordConfirmationFieldObscurity(
+                onSuffixIconTap: () =>
+                    context.read<EditDialogCubit>().setPasswordConfirmationFieldObscurity(
                       !state.isConfirmationPasswordFieldObscure,
                     ),
               ),
@@ -151,9 +135,7 @@ class _EditPasswordDialogState extends State<EditPasswordDialog> {
                       }
                     : null,
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.resolveWith<Color?>((
-                    states,
-                  ) {
+                  backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
                     if (states.contains(WidgetState.disabled)) {
                       return Colors.grey;
                     }

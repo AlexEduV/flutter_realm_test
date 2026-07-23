@@ -47,10 +47,8 @@ class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
           as bool);
 
   @override
-  void clean() => super.noSuchMethod(
-    Invocation.method(#clean, []),
-    returnValueForMissingStub: null,
-  );
+  void clean() =>
+      super.noSuchMethod(Invocation.method(#clean, []), returnValueForMissingStub: null);
 
   @override
   String get(String? name, {String? fallback}) =>

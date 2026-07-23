@@ -30,10 +30,7 @@ class UserEntity {
       viewedIds: user.viewedIds.toList(),
       email: user.email,
       lastSeenCar: user.lastSeenCar != null && user.lastSeenCar!.carId != null
-          ? LastSeenCarEntity(
-              carId: user.lastSeenCar!.carId!,
-              seenAt: user.lastSeenCar!.date,
-            )
+          ? LastSeenCarEntity(carId: user.lastSeenCar!.carId!, seenAt: user.lastSeenCar!.date)
           : null,
       password: user.password,
       region: user.region,
@@ -75,23 +72,13 @@ class UserEntity {
       avatarImageSrc: json['avatarImageSrc'] as String?,
       lastSeenCar: json['lastSeenCar'] != null
           ? LastSeenCarEntity(
-              seenAt: DateTime.parse(
-                (json['lastSeenCar'] as Map<String, dynamic>).keys.first,
-              ),
-              carId:
-                  (json['lastSeenCar'] as Map<String, dynamic>).values.first
-                      as String,
+              seenAt: DateTime.parse((json['lastSeenCar'] as Map<String, dynamic>).keys.first),
+              carId: (json['lastSeenCar'] as Map<String, dynamic>).values.first as String,
             )
           : null,
-      viewedIds: (json['viewedIds'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      createdIds: (json['createdIds'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      favoriteIds: (json['favoriteIds'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      viewedIds: (json['viewedIds'] as List<dynamic>).map((e) => e as String).toList(),
+      createdIds: (json['createdIds'] as List<dynamic>).map((e) => e as String).toList(),
+      favoriteIds: (json['favoriteIds'] as List<dynamic>).map((e) => e as String).toList(),
       isLocationPermissionGranted: json['isLocationPermissionGranted'] as bool,
     );
   }
@@ -137,8 +124,7 @@ class UserEntity {
       userId: userId ?? this.userId,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
-      isLocationPermissionGranted:
-          isLocationPermissionGranted ?? this.isLocationPermissionGranted,
+      isLocationPermissionGranted: isLocationPermissionGranted ?? this.isLocationPermissionGranted,
       favoriteIds: favoriteIds ?? this.favoriteIds,
       createdIds: createdIds ?? this.createdIds,
       viewedIds: viewedIds ?? this.viewedIds,

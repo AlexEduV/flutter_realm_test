@@ -6,12 +6,10 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/models/conversation_model.dart'
-    as _i4;
+import 'package:test_flutter_project/domain/models/conversation_model.dart' as _i4;
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart'
     as _i2;
-import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart'
-    as _i5;
+import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -30,19 +28,15 @@ import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_us
 /// A class which mocks [FetchConversationsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFetchConversationsUseCase extends _i1.Mock
-    implements _i2.FetchConversationsUseCase {
+class MockFetchConversationsUseCase extends _i1.Mock implements _i2.FetchConversationsUseCase {
   @override
   _i3.Future<List<_i4.ConversationModel>> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i3.Future<List<_i4.ConversationModel>>.value(
+            returnValue: _i3.Future<List<_i4.ConversationModel>>.value(<_i4.ConversationModel>[]),
+            returnValueForMissingStub: _i3.Future<List<_i4.ConversationModel>>.value(
               <_i4.ConversationModel>[],
             ),
-            returnValueForMissingStub:
-                _i3.Future<List<_i4.ConversationModel>>.value(
-                  <_i4.ConversationModel>[],
-                ),
           )
           as _i3.Future<List<_i4.ConversationModel>>);
 }
@@ -50,8 +44,7 @@ class MockFetchConversationsUseCase extends _i1.Mock
 /// A class which mocks [SaveConversationsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSaveConversationsUseCase extends _i1.Mock
-    implements _i5.SaveConversationsUseCase {
+class MockSaveConversationsUseCase extends _i1.Mock implements _i5.SaveConversationsUseCase {
   @override
   _i3.Future<void> call(List<_i4.ConversationModel>? params) =>
       (super.noSuchMethod(

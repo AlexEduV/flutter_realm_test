@@ -29,8 +29,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     this._userDataCubit,
   ) : super(const NewItemPageState());
 
-  final GetAutoCompleteManufacturersByTypeUseCase
-  _autoCompleteManufacturersByTypeUseCase;
+  final GetAutoCompleteManufacturersByTypeUseCase _autoCompleteManufacturersByTypeUseCase;
   final AppLocalisationsCubit _appLocalisationsCubit;
   final AddCarUseCase _addCarUseCase;
   final GetAllCarsUseCase _getAllCarsUseCase;
@@ -42,9 +41,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       state.copyWith(
         manufacturerFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsManufacturerLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsManufacturerLabel),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
@@ -56,9 +53,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
             ),
         modelFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsVehicleModelLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsVehicleModelLabel),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
@@ -84,9 +79,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
             ),
         priceFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsPriceLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsPriceLabel),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
@@ -98,9 +91,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
             ),
         colorFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsColorLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsColorLabel),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
@@ -112,9 +103,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
             ),
         engineVolumeFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsEngineVolumeLabel,
-              ),
+              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsEngineVolumeLabel),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
@@ -135,25 +124,13 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     }
 
     if (manufacturer.isEmpty) {
-      emit(
-        state.copyWith(
-          manufacturerErrorText:
-              state.manufacturerFieldParams?.validationMessage,
-        ),
-      );
+      emit(state.copyWith(manufacturerErrorText: state.manufacturerFieldParams?.validationMessage));
       return false;
     }
 
-    final manufacturerRegex = RegExp(
-      state.manufacturerFieldParams?.regex ?? '',
-    );
+    final manufacturerRegex = RegExp(state.manufacturerFieldParams?.regex ?? '');
     if (!manufacturerRegex.hasMatch(manufacturer)) {
-      emit(
-        state.copyWith(
-          manufacturerErrorText:
-              state.manufacturerFieldParams?.regexErrorMessage,
-        ),
-      );
+      emit(state.copyWith(manufacturerErrorText: state.manufacturerFieldParams?.regexErrorMessage));
       return false;
     }
 
@@ -168,21 +145,13 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     }
 
     if (model.isEmpty) {
-      emit(
-        state.copyWith(
-          modelErrorText: state.modelFieldParams?.validationMessage,
-        ),
-      );
+      emit(state.copyWith(modelErrorText: state.modelFieldParams?.validationMessage));
       return false;
     }
 
     final modelRegex = RegExp(state.modelFieldParams?.regex ?? '');
     if (!modelRegex.hasMatch(model)) {
-      emit(
-        state.copyWith(
-          modelErrorText: state.modelFieldParams?.regexErrorMessage,
-        ),
-      );
+      emit(state.copyWith(modelErrorText: state.modelFieldParams?.regexErrorMessage));
       return false;
     }
 
@@ -197,25 +166,19 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     }
 
     if (year.isEmpty) {
-      emit(
-        state.copyWith(yearErrorText: state.yearFieldParams?.validationMessage),
-      );
+      emit(state.copyWith(yearErrorText: state.yearFieldParams?.validationMessage));
       return false;
     }
 
     final yearRegex = RegExp(state.yearFieldParams?.regex ?? '');
     if (!yearRegex.hasMatch(year)) {
-      emit(
-        state.copyWith(yearErrorText: state.yearFieldParams?.regexErrorMessage),
-      );
+      emit(state.copyWith(yearErrorText: state.yearFieldParams?.regexErrorMessage));
       return false;
     }
 
     final yearInt = int.parse(year);
     if (yearInt < 1980 || yearInt > DateTime.now().year) {
-      emit(
-        state.copyWith(yearErrorText: state.yearFieldParams?.regexErrorMessage),
-      );
+      emit(state.copyWith(yearErrorText: state.yearFieldParams?.regexErrorMessage));
       return false;
     }
 
@@ -230,21 +193,13 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     }
 
     if (price.isEmpty) {
-      emit(
-        state.copyWith(
-          priceErrorText: state.priceFieldParams?.validationMessage,
-        ),
-      );
+      emit(state.copyWith(priceErrorText: state.priceFieldParams?.validationMessage));
       return false;
     }
 
     final priceRegex = RegExp(state.priceFieldParams?.regex ?? '');
     if (!priceRegex.hasMatch(price)) {
-      emit(
-        state.copyWith(
-          priceErrorText: state.priceFieldParams?.regexErrorMessage,
-        ),
-      );
+      emit(state.copyWith(priceErrorText: state.priceFieldParams?.regexErrorMessage));
       return false;
     }
 
@@ -259,21 +214,13 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     }
 
     if (color.isEmpty) {
-      emit(
-        state.copyWith(
-          colorErrorText: state.colorFieldParams?.validationMessage,
-        ),
-      );
+      emit(state.copyWith(colorErrorText: state.colorFieldParams?.validationMessage));
       return false;
     }
 
     final colorRegex = RegExp(state.colorFieldParams?.regex ?? '');
     if (!colorRegex.hasMatch(color)) {
-      emit(
-        state.copyWith(
-          colorErrorText: state.colorFieldParams?.regexErrorMessage,
-        ),
-      );
+      emit(state.copyWith(colorErrorText: state.colorFieldParams?.regexErrorMessage));
       return false;
     }
 
@@ -288,25 +235,13 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     }
 
     if (volume.isEmpty) {
-      emit(
-        state.copyWith(
-          engineVolumeErrorText:
-              state.engineVolumeFieldParams?.validationMessage,
-        ),
-      );
+      emit(state.copyWith(engineVolumeErrorText: state.engineVolumeFieldParams?.validationMessage));
       return false;
     }
 
-    final engineVolumeRegex = RegExp(
-      state.engineVolumeFieldParams?.regex ?? '',
-    );
+    final engineVolumeRegex = RegExp(state.engineVolumeFieldParams?.regex ?? '');
     if (!engineVolumeRegex.hasMatch(volume)) {
-      emit(
-        state.copyWith(
-          engineVolumeErrorText:
-              state.engineVolumeFieldParams?.regexErrorMessage,
-        ),
-      );
+      emit(state.copyWith(engineVolumeErrorText: state.engineVolumeFieldParams?.regexErrorMessage));
       return false;
     }
 
@@ -321,10 +256,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
   bool areAllFieldsValid() {
     bool result = true;
 
-    final isManufacturerValid = validateManufacturer(
-      state.manufacturerText,
-      false,
-    );
+    final isManufacturerValid = validateManufacturer(state.manufacturerText, false);
     if (!isManufacturerValid) {
       result = false;
     }
@@ -381,11 +313,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
   }
 
   void updateSelectedTransmissionType(TransmissionType? newType) {
-    emit(
-      state.copyWith(
-        selectedTransmissionType: newType ?? TransmissionType.manual,
-      ),
-    );
+    emit(state.copyWith(selectedTransmissionType: newType ?? TransmissionType.manual));
   }
 
   void updateSelectedFuelType(FuelType? newType) {
@@ -426,8 +354,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       bodyType: state.selectedBodyType?.name ?? '',
       engine: EngineEntity(
         type: state.selectedFuelType.name,
-        volume:
-            '${state.engineVolumeText}${state.selectedFuelType.getUnitOfMeasurement()}',
+        volume: '${state.engineVolumeText}${state.selectedFuelType.getUnitOfMeasurement()}',
       ),
       transmissionType: state.selectedTransmissionType.name,
       color: state.colorText.capitalizeFirst(),

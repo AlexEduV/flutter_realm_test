@@ -26,8 +26,7 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_u
 /// A class which mocks [GetCarColorsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCarColorsUseCase extends _i1.Mock
-    implements _i2.GetCarColorsUseCase {
+class MockGetCarColorsUseCase extends _i1.Mock implements _i2.GetCarColorsUseCase {
   @override
   Map<String, _i3.Color> call() =>
       (super.noSuchMethod(

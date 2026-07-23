@@ -43,18 +43,14 @@ void main() {
     'setCurrentConversationId emits updated state',
     build: () => cubit,
     act: (cubit) => cubit.setCurrentConversationId('conv123'),
-    expect: () => [
-      const MessagesPageState().copyWith(currentConversationId: 'conv123'),
-    ],
+    expect: () => [const MessagesPageState().copyWith(currentConversationId: 'conv123')],
   );
 
   blocTest<MessagesPageCubit, MessagesPageState>(
     'updateMessageText emits updated state',
     build: () => cubit,
     act: (cubit) => cubit.updateMessageText('Hello!'),
-    expect: () => [
-      const MessagesPageState().copyWith(currentMessageText: 'Hello!'),
-    ],
+    expect: () => [const MessagesPageState().copyWith(currentMessageText: 'Hello!')],
   );
 
   blocTest<MessagesPageCubit, MessagesPageState>(
@@ -77,10 +73,7 @@ void main() {
     act: (cubit) => cubit.updateGifsSearch(''),
     expect: () => [
       const MessagesPageState().copyWith(currentGifSearchText: ''),
-      const MessagesPageState().copyWith(
-        currentGifSearchText: '',
-        areGifsLoading: true,
-      ),
+      const MessagesPageState().copyWith(currentGifSearchText: '', areGifsLoading: true),
       const MessagesPageState().copyWith(
         currentGifSearchText: '',
         areGifsLoading: true,
@@ -133,10 +126,7 @@ void main() {
     act: (cubit) => cubit.updateGifsSearch('cat'),
     expect: () => [
       const MessagesPageState().copyWith(currentGifSearchText: 'cat'),
-      const MessagesPageState().copyWith(
-        currentGifSearchText: 'cat',
-        areGifsLoading: true,
-      ),
+      const MessagesPageState().copyWith(currentGifSearchText: 'cat', areGifsLoading: true),
       const MessagesPageState().copyWith(
         currentGifSearchText: 'cat',
         areGifsLoading: true,
@@ -178,9 +168,7 @@ void main() {
 
   test('getAttachmentFile returns result from use case', () async {
     final attachment = AttachmentEntity(name: 'a1', path: 'file_url', size: 12);
-    when(
-      mockPickAttachmentFileUseCase.call(),
-    ).thenAnswer((_) async => attachment);
+    when(mockPickAttachmentFileUseCase.call()).thenAnswer((_) async => attachment);
 
     final result = await cubit.getAttachmentFile();
 

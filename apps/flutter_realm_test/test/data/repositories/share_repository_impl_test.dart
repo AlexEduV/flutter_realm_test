@@ -20,10 +20,7 @@ void main() {
   });
 
   test('share calls local data source when not in progress', () async {
-    final params = ShareParamsModel(
-      text: 'https://example.com',
-      title: 'Hello!',
-    );
+    final params = ShareParamsModel(text: 'https://example.com', title: 'Hello!');
     when(mockLocalDataSource.share(params)).thenAnswer((_) async {});
 
     await repository.share(params);
@@ -32,34 +29,26 @@ void main() {
     verify(mockLocalDataSource.share(params)).called(2);
   });
 
-  test(
-    'share does not call local data source if already in progress',
-    () async {
-      final params = ShareParamsModel(
-        text: 'https://example.com',
-        title: 'Hello!',
-      );
-      final completer = Completer<void>();
-      when(
-        mockLocalDataSource.share(params),
-      ).thenAnswer((_) => completer.future);
+  test('share does not call local data source if already in progress', () async {
+    final params = ShareParamsModel(text: 'https://example.com', title: 'Hello!');
+    final completer = Completer<void>();
+    when(mockLocalDataSource.share(params)).thenAnswer((_) => completer.future);
 
-      // Start the first share, but don't await it yet
-      final future1 = repository.share(params);
+    // Start the first share, but don't await it yet
+    final future1 = repository.share(params);
 
-      // Immediately try to share again while the first is still in progress
-      final future2 = repository.share(params);
+    // Immediately try to share again while the first is still in progress
+    final future2 = repository.share(params);
 
-      // Only the first call should be made
-      verify(mockLocalDataSource.share(params)).called(1);
+    // Only the first call should be made
+    verify(mockLocalDataSource.share(params)).called(1);
 
-      // Complete the first share
-      completer.complete();
-      await future1;
-      await future2; // This should return immediately
+    // Complete the first share
+    completer.complete();
+    await future1;
+    await future2; // This should return immediately
 
-      // Still only one call should have been made
-      verifyNoMoreInteractions(mockLocalDataSource);
-    },
-  );
+    // Still only one call should have been made
+    verifyNoMoreInteractions(mockLocalDataSource);
+  });
 }

@@ -59,8 +59,7 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
               #readSequential: readSequential,
             }),
             returnValue: _i3.Future<_i2.FilePickerResult?>.value(),
-            returnValueForMissingStub:
-                _i3.Future<_i2.FilePickerResult?>.value(),
+            returnValueForMissingStub: _i3.Future<_i2.FilePickerResult?>.value(),
           )
           as _i3.Future<_i2.FilePickerResult?>);
 
@@ -157,11 +156,7 @@ class MockFilePickerResult extends _i1.Mock implements _i2.FilePickerResult {
 
   @override
   int get count =>
-      (super.noSuchMethod(
-            Invocation.getter(#count),
-            returnValue: 0,
-            returnValueForMissingStub: 0,
-          )
+      (super.noSuchMethod(Invocation.getter(#count), returnValue: 0, returnValueForMissingStub: 0)
           as int);
 
   @override

@@ -13,18 +13,13 @@ class AppBadge extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.black,
-      ),
+      decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.black),
       alignment: Alignment.center,
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: Text(
           text,
-          style: AppTextStyles.zonaPro16White.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.zonaPro16White.copyWith(fontWeight: FontWeight.w600),
           textAlign: TextAlign.center,
         ),
       ),

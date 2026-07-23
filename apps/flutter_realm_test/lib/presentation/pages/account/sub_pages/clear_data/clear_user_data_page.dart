@@ -20,10 +20,7 @@ class ClearUserDataPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(
-          context.tr(L10nKeys.accountItemClearData),
-          style: AppTextStyles.zonaPro20,
-        ),
+        title: Text(context.tr(L10nKeys.accountItemClearData), style: AppTextStyles.zonaPro20),
         centerTitle: true,
       ),
       body: Padding(
@@ -36,10 +33,7 @@ class ClearUserDataPage extends StatelessWidget {
           children: [
             const SizedBox(height: AppDimensions.minorS),
 
-            Text(
-              context.tr(L10nKeys.dataDeletionDescription),
-              style: AppTextStyles.zonaPro14,
-            ),
+            Text(context.tr(L10nKeys.dataDeletionDescription), style: AppTextStyles.zonaPro14),
 
             const SizedBox(height: AppDimensions.normalXS),
 
@@ -63,9 +57,7 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: context.trRead(
-                                    L10nKeys.clearViewHistoryItem,
-                                  ),
+                                  title: context.trRead(L10nKeys.clearViewHistoryItem),
                                   description: context.trRead(
                                     L10nKeys.clearViewHistoryDialogDescription,
                                   ),
@@ -76,9 +68,7 @@ class ClearUserDataPage extends StatelessWidget {
                                     L10nKeys.clearViewHistoryDialogConfirmLabel,
                                   ),
                                   onConfirm: () {
-                                    context
-                                        .read<UserDataCubit>()
-                                        .clearRecentItems();
+                                    context.read<UserDataCubit>().clearRecentItems();
                                   },
                                 );
                               },
@@ -96,25 +86,18 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: context.trRead(
-                                    L10nKeys.clearFavoritesItem,
-                                  ),
+                                  title: context.trRead(L10nKeys.clearFavoritesItem),
                                   description: context.trRead(
-                                    L10nKeys
-                                        .clearFavoriteItemsDialogDescription,
+                                    L10nKeys.clearFavoriteItemsDialogDescription,
                                   ),
                                   cancelButtonTitle: context.trRead(
-                                    L10nKeys
-                                        .clearFavoriteItemsDialogCancelLabel,
+                                    L10nKeys.clearFavoriteItemsDialogCancelLabel,
                                   ),
                                   confirmButtonTitle: context.trRead(
-                                    L10nKeys
-                                        .clearFavoriteItemsDialogConfirmLabel,
+                                    L10nKeys.clearFavoriteItemsDialogConfirmLabel,
                                   ),
                                   onConfirm: () {
-                                    context
-                                        .read<UserDataCubit>()
-                                        .clearFavorites();
+                                    context.read<UserDataCubit>().clearFavorites();
                                   },
                                 );
                               },
@@ -132,9 +115,7 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: context.trRead(
-                                    L10nKeys.clearMyItemsItem,
-                                  ),
+                                  title: context.trRead(L10nKeys.clearMyItemsItem),
                                   description: context.trRead(
                                     L10nKeys.clearMyItemsDialogDescription,
                                   ),
@@ -145,9 +126,7 @@ class ClearUserDataPage extends StatelessWidget {
                                     L10nKeys.clearMyItemsDialogConfirmLabel,
                                   ),
                                   onConfirm: () {
-                                    context
-                                        .read<UserDataCubit>()
-                                        .clearMyItems();
+                                    context.read<UserDataCubit>().clearMyItems();
                                   },
                                 );
                               },
@@ -170,9 +149,7 @@ class ClearUserDataPage extends StatelessWidget {
                           DialogHelper.showConfirmationDialog(
                             context,
                             title: context.trRead(L10nKeys.clearAllDataItem),
-                            description: context.trRead(
-                              L10nKeys.clearAllDataDialogDescription,
-                            ),
+                            description: context.trRead(L10nKeys.clearAllDataDialogDescription),
                             cancelButtonTitle: context.trRead(
                               L10nKeys.clearAllDataDialogCancelLabel,
                             ),

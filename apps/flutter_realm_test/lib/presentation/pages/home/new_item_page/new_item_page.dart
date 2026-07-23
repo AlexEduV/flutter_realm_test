@@ -67,10 +67,7 @@ class _NewItemPageState extends State<NewItemPage> {
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          context.tr(L10nKeys.addNewItemPageTitle),
-          style: AppTextStyles.zonaPro20,
-        ),
+        title: Text(context.tr(L10nKeys.addNewItemPageTitle), style: AppTextStyles.zonaPro20),
       ),
       body: Stack(
         alignment: AlignmentGeometry.center,
@@ -150,10 +147,7 @@ class _NewItemPageState extends State<NewItemPage> {
 
     if (isLastIndex) {
       final cubit = context.read<NewItemPageCubit>();
-      final isEngineVolumeValid = cubit.validateEngineVolume(
-        cubit.state.engineVolumeText,
-        false,
-      );
+      final isEngineVolumeValid = cubit.validateEngineVolume(cubit.state.engineVolumeText, false);
       if (!isEngineVolumeValid) return;
 
       final updatedCars = cubit.insertItem();

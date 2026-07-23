@@ -23,6 +23,5 @@ abstract class UserDataState with _$UserDataState {
     String? avatarImageSrc,
   }) = _UserDataState;
 
-  bool get isDataClear =>
-      favoriteIds.isEmpty && viewedIds.isEmpty && createdIds.isEmpty;
+  bool get isDataClear => favoriteIds.isEmpty && viewedIds.isEmpty && createdIds.isEmpty;
 }

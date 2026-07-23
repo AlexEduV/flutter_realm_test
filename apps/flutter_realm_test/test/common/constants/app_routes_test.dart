@@ -7,30 +7,12 @@ void main() {
     test('search', () => expect(AppRoutes.search, 'search'));
     test('details', () => expect(AppRoutes.details, 'details'));
     test('inbox', () => expect(AppRoutes.inbox, 'inbox'));
-    test(
-      'forgotPassword',
-      () => expect(AppRoutes.forgotPassword, 'forgotPassword'),
-    );
-    test(
-      'articleDetails',
-      () => expect(AppRoutes.articleDetails, 'articleDetails'),
-    );
-    test(
-      'personalDetails',
-      () => expect(AppRoutes.personalDetails, 'personalDetails'),
-    );
-    test(
-      'locationSettings',
-      () => expect(AppRoutes.locationSettings, 'locationSettings'),
-    );
+    test('forgotPassword', () => expect(AppRoutes.forgotPassword, 'forgotPassword'));
+    test('articleDetails', () => expect(AppRoutes.articleDetails, 'articleDetails'));
+    test('personalDetails', () => expect(AppRoutes.personalDetails, 'personalDetails'));
+    test('locationSettings', () => expect(AppRoutes.locationSettings, 'locationSettings'));
     test('myItems', () => expect(AppRoutes.myItems, 'myItems'));
-    test(
-      'recentlyViewed',
-      () => expect(AppRoutes.recentlyViewed, 'recentlyViewed'),
-    );
-    test(
-      'clearUserData',
-      () => expect(AppRoutes.clearUserData, 'clearUserData'),
-    );
+    test('recentlyViewed', () => expect(AppRoutes.recentlyViewed, 'recentlyViewed'));
+    test('clearUserData', () => expect(AppRoutes.clearUserData, 'clearUserData'));
   });
 }

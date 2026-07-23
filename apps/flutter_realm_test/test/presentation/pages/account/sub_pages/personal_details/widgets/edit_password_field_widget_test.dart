@@ -72,33 +72,32 @@ void main() {
     expect(onSuffixIconTapCalled, isTrue);
   });
 
-  testWidgets(
-    'EditPasswordFieldWidget shows not obscured text when isObscureText is false',
-    (WidgetTester tester) async {
-      final controller = TextEditingController();
-      final focusNode = FocusNode();
+  testWidgets('EditPasswordFieldWidget shows not obscured text when isObscureText is false', (
+    WidgetTester tester,
+  ) async {
+    final controller = TextEditingController();
+    final focusNode = FocusNode();
 
-      await tester.pumpWidget(
-        MaterialApp(
-          home: BlocProvider<EditDialogCubit>(
-            create: (_) => EditDialogCubit(),
-            child: Scaffold(
-              body: EditPasswordFieldWidget(
-                textEditingController: controller,
-                focusNode: focusNode,
-                validateEditField: (_, __, ___) {},
-                onSuffixIconTap: () {},
-                isObscureText: false,
-              ),
+    await tester.pumpWidget(
+      MaterialApp(
+        home: BlocProvider<EditDialogCubit>(
+          create: (_) => EditDialogCubit(),
+          child: Scaffold(
+            body: EditPasswordFieldWidget(
+              textEditingController: controller,
+              focusNode: focusNode,
+              validateEditField: (_, __, ___) {},
+              onSuffixIconTap: () {},
+              isObscureText: false,
             ),
           ),
         ),
-      );
+      ),
+    );
 
-      final textFormField = tester.widget<EditPasswordFieldWidget>(
-        find.byType(EditPasswordFieldWidget),
-      );
-      expect(textFormField.isObscureText, isFalse);
-    },
-  );
+    final textFormField = tester.widget<EditPasswordFieldWidget>(
+      find.byType(EditPasswordFieldWidget),
+    );
+    expect(textFormField.isObscureText, isFalse);
+  });
 }

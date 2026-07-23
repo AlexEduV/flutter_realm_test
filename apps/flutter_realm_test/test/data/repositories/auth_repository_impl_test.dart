@@ -92,19 +92,13 @@ void main() {
 
   group('login', () {
     test('returns success for correct credentials', () async {
-      final result = await repo.login(
-        email: 'mock@example.com',
-        password: 'Password1!',
-      );
+      final result = await repo.login(email: 'mock@example.com', password: 'Password1!');
       expect(result.success, isTrue);
       expect(result.message, isNull);
     });
 
     test('returns user not found for unknown email', () async {
-      final result = await repo.login(
-        email: 'unknown@example.com',
-        password: 'Password1!',
-      );
+      final result = await repo.login(email: 'unknown@example.com', password: 'Password1!');
       expect(result.success, isFalse);
       expect(
         result.message,
@@ -115,10 +109,7 @@ void main() {
     });
 
     test('returns incorrect password for wrong password', () async {
-      final result = await repo.login(
-        email: 'mock@example.com',
-        password: 'wrongpassword',
-      );
+      final result = await repo.login(email: 'mock@example.com', password: 'wrongpassword');
       expect(result.success, isFalse);
       expect(
         result.message,
@@ -164,10 +155,7 @@ void main() {
         firstName: 'Unique',
         lastName: 'User',
       );
-      final result = await repo.login(
-        email: 'unique@example.com',
-        password: 'UniquePass!',
-      );
+      final result = await repo.login(email: 'unique@example.com', password: 'UniquePass!');
       expect(result.success, isTrue);
     });
   });

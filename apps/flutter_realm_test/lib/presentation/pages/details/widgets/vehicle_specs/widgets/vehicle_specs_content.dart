@@ -9,11 +9,7 @@ import '../../specification_item/specification_item.dart';
 import '../../specification_item/widgets/spec_color_widget.dart';
 
 class VehicleSpecsContent extends StatelessWidget {
-  const VehicleSpecsContent({
-    required this.car,
-    required this.carColor,
-    super.key,
-  });
+  const VehicleSpecsContent({required this.car, required this.carColor, super.key});
 
   final CarEntity car;
   final Color? carColor;
@@ -68,9 +64,7 @@ class VehicleSpecsContent extends StatelessWidget {
 
                 SpecificationItem(
                   title: context.tr(L10nKeys.vehicleSpecificationColor),
-                  subtitle:
-                      car.color?.capitalizeFirst() ??
-                      context.tr(L10nKeys.unknownLabel),
+                  subtitle: car.color?.capitalizeFirst() ?? context.tr(L10nKeys.unknownLabel),
                   leading: SpecColorWidget(color: carColor),
                 ),
               ],

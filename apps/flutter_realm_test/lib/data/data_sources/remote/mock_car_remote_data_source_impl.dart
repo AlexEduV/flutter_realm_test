@@ -136,9 +136,7 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
           return _generateRandomUpdates();
         })
         .listen((updatedList) {
-          _carStreamController.add(
-            updatedList,
-          ); // Push updates into the main stream
+          _carStreamController.add(updatedList); // Push updates into the main stream
         });
   }
 

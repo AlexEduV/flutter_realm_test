@@ -26,8 +26,7 @@ import 'package:test_flutter_project/domain/data_sources/local/car_colors_local_
 /// A class which mocks [CarColorLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarColorLocalDataSource extends _i1.Mock
-    implements _i2.CarColorLocalDataSource {
+class MockCarColorLocalDataSource extends _i1.Mock implements _i2.CarColorLocalDataSource {
   @override
   Map<String, _i3.Color> getColors() =>
       (super.noSuchMethod(

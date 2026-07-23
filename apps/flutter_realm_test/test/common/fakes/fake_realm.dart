@@ -26,14 +26,10 @@ class FakeRealm implements Realm {
   }
 
   @override
-  RealmResults<T> all<T extends RealmObject>() =>
-      _FakeRealmResults(List<T>.from(_cars));
+  RealmResults<T> all<T extends RealmObject>() => _FakeRealmResults(List<T>.from(_cars));
 
   @override
-  RealmResults<T> query<T extends RealmObject>(
-    String query, [
-    List<Object?> args = const [],
-  ]) {
+  RealmResults<T> query<T extends RealmObject>(String query, [List<Object?> args = const []]) {
     if (query.contains('carId') && args.isNotEmpty) {
       final id = args[0] as String;
       final filtered = _cars.where((c) => c.carId == id).toList();

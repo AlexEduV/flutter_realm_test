@@ -7,13 +7,7 @@ class RealmConfiguration {
 
   void init() {
     _config = Configuration.local(
-      [
-        Car.schema,
-        Person.schema,
-        User.schema,
-        LastSeenCar.schema,
-        Engine.schema,
-      ],
+      [Car.schema, Person.schema, User.schema, LastSeenCar.schema, Engine.schema],
       schemaVersion: 29,
       migrationCallback: (migration, oldVersion) {
         //add object id
@@ -61,9 +55,7 @@ class RealmConfiguration {
 
             final parts = oldName.split(' ');
             newUser.firstName = parts.isNotEmpty ? parts.first : '';
-            newUser.lastName = parts.length > 1
-                ? parts.sublist(1).join(' ')
-                : '';
+            newUser.lastName = parts.length > 1 ? parts.sublist(1).join(' ') : '';
           }
         }
 

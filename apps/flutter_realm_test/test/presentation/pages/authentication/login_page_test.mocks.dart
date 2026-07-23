@@ -26,8 +26,7 @@ import 'package:test_flutter_project/presentation/bloc/authentication/authentica
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeAuthenticationState_0 extends _i1.SmartFake
-    implements _i2.AuthenticationState {
+class _FakeAuthenticationState_0 extends _i1.SmartFake implements _i2.AuthenticationState {
   _FakeAuthenticationState_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
@@ -35,20 +34,13 @@ class _FakeAuthenticationState_0 extends _i1.SmartFake
 /// A class which mocks [AuthenticationCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthenticationCubit extends _i1.Mock
-    implements _i3.AuthenticationCubit {
+class MockAuthenticationCubit extends _i1.Mock implements _i3.AuthenticationCubit {
   @override
   _i2.AuthenticationState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _FakeAuthenticationState_0(
-              this,
-              Invocation.getter(#state),
-            ),
-            returnValueForMissingStub: _FakeAuthenticationState_0(
-              this,
-              Invocation.getter(#state),
-            ),
+            returnValue: _FakeAuthenticationState_0(this, Invocation.getter(#state)),
+            returnValueForMissingStub: _FakeAuthenticationState_0(this, Invocation.getter(#state)),
           )
           as _i2.AuthenticationState);
 
@@ -57,8 +49,7 @@ class MockAuthenticationCubit extends _i1.Mock
       (super.noSuchMethod(
             Invocation.getter(#stream),
             returnValue: _i4.Stream<_i2.AuthenticationState>.empty(),
-            returnValueForMissingStub:
-                _i4.Stream<_i2.AuthenticationState>.empty(),
+            returnValueForMissingStub: _i4.Stream<_i2.AuthenticationState>.empty(),
           )
           as _i4.Stream<_i2.AuthenticationState>);
 
@@ -72,10 +63,7 @@ class MockAuthenticationCubit extends _i1.Mock
           as bool);
 
   @override
-  void init() => super.noSuchMethod(
-    Invocation.method(#init, []),
-    returnValueForMissingStub: null,
-  );
+  void init() => super.noSuchMethod(Invocation.method(#init, []), returnValueForMissingStub: null);
 
   @override
   void setObscurePassword(bool? newState) => super.noSuchMethod(
@@ -174,17 +162,12 @@ class MockAuthenticationCubit extends _i1.Mock
           as _i4.Future<void>);
 
   @override
-  void emit(_i2.AuthenticationState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
+  void emit(_i2.AuthenticationState? state) =>
+      super.noSuchMethod(Invocation.method(#emit, [state]), returnValueForMissingStub: null);
 
   @override
   void onChange(_i5.Change<_i2.AuthenticationState>? change) =>
-      super.noSuchMethod(
-        Invocation.method(#onChange, [change]),
-        returnValueForMissingStub: null,
-      );
+      super.noSuchMethod(Invocation.method(#onChange, [change]), returnValueForMissingStub: null);
 
   @override
   void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(

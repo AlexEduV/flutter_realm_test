@@ -21,8 +21,7 @@ class DateFormatter {
         L10nKeys.dateFormattingYesterday,
       );
     } else {
-      final locale = serviceLocator<AppLocalisationsCubit>()
-          .getLocalisationByKey(L10nKeys.locale);
+      final locale = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.locale);
 
       // Day of the week shortened, e.g. "Mon"
       return DateFormat.E(locale).format(date).capitalizeFirst();
@@ -47,8 +46,7 @@ class DateFormatter {
         L10nKeys.dateFormattingYesterday,
       );
     } else {
-      final locale = serviceLocator<AppLocalisationsCubit>()
-          .getLocalisationByKey(L10nKeys.locale);
+      final locale = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.locale);
       final isThisYear = date.year == now.year;
 
       if (isThisYear) {

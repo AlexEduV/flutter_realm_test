@@ -6,10 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/models/share_params_model.dart'
-    as _i4;
-import 'package:test_flutter_project/domain/repositories/share_repository.dart'
-    as _i2;
+import 'package:test_flutter_project/domain/models/share_params_model.dart' as _i4;
+import 'package:test_flutter_project/domain/repositories/share_repository.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

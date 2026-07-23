@@ -7,10 +7,8 @@ import 'dart:async' as _i4;
 
 import 'package:flutter_bloc/flutter_bloc.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart'
-    as _i3;
-import 'package:test_flutter_project/presentation/bloc/article/article_page_state.dart'
-    as _i2;
+import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart' as _i3;
+import 'package:test_flutter_project/presentation/bloc/article/article_page_state.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,8 +24,7 @@ import 'package:test_flutter_project/presentation/bloc/article/article_page_stat
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeArticlePageState_0 extends _i1.SmartFake
-    implements _i2.ArticlePageState {
+class _FakeArticlePageState_0 extends _i1.SmartFake implements _i2.ArticlePageState {
   _FakeArticlePageState_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
@@ -40,14 +37,8 @@ class MockArticlePageCubit extends _i1.Mock implements _i3.ArticlePageCubit {
   _i2.ArticlePageState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _FakeArticlePageState_0(
-              this,
-              Invocation.getter(#state),
-            ),
-            returnValueForMissingStub: _FakeArticlePageState_0(
-              this,
-              Invocation.getter(#state),
-            ),
+            returnValue: _FakeArticlePageState_0(this, Invocation.getter(#state)),
+            returnValueForMissingStub: _FakeArticlePageState_0(this, Invocation.getter(#state)),
           )
           as _i2.ArticlePageState);
 
@@ -79,16 +70,12 @@ class MockArticlePageCubit extends _i1.Mock implements _i3.ArticlePageCubit {
           as _i4.Future<void>);
 
   @override
-  void emit(_i2.ArticlePageState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
+  void emit(_i2.ArticlePageState? state) =>
+      super.noSuchMethod(Invocation.method(#emit, [state]), returnValueForMissingStub: null);
 
   @override
-  void onChange(_i5.Change<_i2.ArticlePageState>? change) => super.noSuchMethod(
-    Invocation.method(#onChange, [change]),
-    returnValueForMissingStub: null,
-  );
+  void onChange(_i5.Change<_i2.ArticlePageState>? change) =>
+      super.noSuchMethod(Invocation.method(#onChange, [change]), returnValueForMissingStub: null);
 
   @override
   void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(

@@ -17,51 +17,35 @@ void main() {
     permissionRepository = PermissionRepositoryImpl(mockPermissionService);
   });
 
-  test(
-    'requestLocationPermission returns true when permission is granted',
-    () async {
-      when(
-        mockPermissionService.requestLocation(),
-      ).thenAnswer((_) async => PermissionStatus.granted);
+  test('requestLocationPermission returns true when permission is granted', () async {
+    when(mockPermissionService.requestLocation()).thenAnswer((_) async => PermissionStatus.granted);
 
-      final result = await permissionRepository.requestLocationPermission();
-      expect(result, isTrue);
-    },
-  );
+    final result = await permissionRepository.requestLocationPermission();
+    expect(result, isTrue);
+  });
 
-  test(
-    'requestLocationPermission returns false when permission is denied',
-    () async {
-      when(
-        mockPermissionService.requestLocation(),
-      ).thenAnswer((_) async => PermissionStatus.denied);
+  test('requestLocationPermission returns false when permission is denied', () async {
+    when(mockPermissionService.requestLocation()).thenAnswer((_) async => PermissionStatus.denied);
 
-      final result = await permissionRepository.requestLocationPermission();
-      expect(result, isFalse);
-    },
-  );
+    final result = await permissionRepository.requestLocationPermission();
+    expect(result, isFalse);
+  });
 
-  test(
-    'checkLocationPermissionState returns granted when permission is granted',
-    () async {
-      when(
-        mockPermissionService.checkLocationStatus(),
-      ).thenAnswer((_) async => PermissionStatus.granted);
+  test('checkLocationPermissionState returns granted when permission is granted', () async {
+    when(
+      mockPermissionService.checkLocationStatus(),
+    ).thenAnswer((_) async => PermissionStatus.granted);
 
-      final result = await permissionRepository.checkLocationPermissionState();
-      expect(result, PermissionStatus.granted);
-    },
-  );
+    final result = await permissionRepository.checkLocationPermissionState();
+    expect(result, PermissionStatus.granted);
+  });
 
-  test(
-    'checkLocationPermissionState returns denied when permission is denied',
-    () async {
-      when(
-        mockPermissionService.checkLocationStatus(),
-      ).thenAnswer((_) async => PermissionStatus.denied);
+  test('checkLocationPermissionState returns denied when permission is denied', () async {
+    when(
+      mockPermissionService.checkLocationStatus(),
+    ).thenAnswer((_) async => PermissionStatus.denied);
 
-      final result = await permissionRepository.checkLocationPermissionState();
-      expect(result, PermissionStatus.denied);
-    },
-  );
+    final result = await permissionRepository.checkLocationPermissionState();
+    expect(result, PermissionStatus.denied);
+  });
 }

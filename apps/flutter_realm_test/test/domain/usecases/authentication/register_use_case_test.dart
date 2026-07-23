@@ -15,39 +15,31 @@ void main() {
     registerUseCase = RegisterUseCase(mockAuthRepository);
   });
 
-  test(
-    'calls register on the repository with correct params and returns result',
-    () async {
-      // Arrange
-      final registerModel = RegisterModel(
-        'test@mail.com',
-        'password123',
-        'Test',
-        'User',
-      );
-      final expectedResult = AuthResult(success: true, message: 'Registered');
-      when(
-        mockAuthRepository.register(
-          email: registerModel.email,
-          password: registerModel.password,
-          firstName: registerModel.firstName,
-          lastName: registerModel.lastName,
-        ),
-      ).thenAnswer((_) async => expectedResult);
+  test('calls register on the repository with correct params and returns result', () async {
+    // Arrange
+    final registerModel = RegisterModel('test@mail.com', 'password123', 'Test', 'User');
+    final expectedResult = AuthResult(success: true, message: 'Registered');
+    when(
+      mockAuthRepository.register(
+        email: registerModel.email,
+        password: registerModel.password,
+        firstName: registerModel.firstName,
+        lastName: registerModel.lastName,
+      ),
+    ).thenAnswer((_) async => expectedResult);
 
-      // Act
-      final result = await registerUseCase(registerModel);
+    // Act
+    final result = await registerUseCase(registerModel);
 
-      // Assert
-      expect(result, expectedResult);
-      verify(
-        mockAuthRepository.register(
-          email: registerModel.email,
-          password: registerModel.password,
-          firstName: registerModel.firstName,
-          lastName: registerModel.lastName,
-        ),
-      ).called(1);
-    },
-  );
+    // Assert
+    expect(result, expectedResult);
+    verify(
+      mockAuthRepository.register(
+        email: registerModel.email,
+        password: registerModel.password,
+        firstName: registerModel.firstName,
+        lastName: registerModel.lastName,
+      ),
+    ).called(1);
+  });
 }

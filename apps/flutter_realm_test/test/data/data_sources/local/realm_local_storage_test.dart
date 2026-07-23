@@ -46,9 +46,7 @@ void main() {
 
     test('update overwrites an existing car by primary key', () {
       final id = ObjectId();
-      fakeRealm.write(
-        () => fakeRealm.add(Car(id, 'car1', 'Tesla', CarType.car.name)),
-      );
+      fakeRealm.write(() => fakeRealm.add(Car(id, 'car1', 'Tesla', CarType.car.name)));
 
       storage.update(Car(id, 'car1', 'BMW', CarType.car.name));
 
@@ -57,10 +55,7 @@ void main() {
     });
 
     test('deleteById removes the matching car', () {
-      fakeRealm.write(
-        () =>
-            fakeRealm.add(Car(ObjectId(), 'car123', 'Tesla', CarType.car.name)),
-      );
+      fakeRealm.write(() => fakeRealm.add(Car(ObjectId(), 'car123', 'Tesla', CarType.car.name)));
 
       storage.deleteById('car123');
 

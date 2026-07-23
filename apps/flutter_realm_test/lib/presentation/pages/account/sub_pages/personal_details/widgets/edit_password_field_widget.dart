@@ -22,8 +22,7 @@ class EditPasswordFieldWidget extends StatelessWidget {
   final TextEditingController textEditingController;
   final FocusNode focusNode;
   final bool Function(String)? validationCallback;
-  final void Function(BuildContext, String, bool Function(String)?)
-  validateEditField;
+  final void Function(BuildContext, String, bool Function(String)?) validateEditField;
   final void Function() onSuffixIconTap;
   final bool isObscureText;
 
@@ -37,8 +36,7 @@ class EditPasswordFieldWidget extends StatelessWidget {
           child: TextFormField(
             controller: textEditingController,
             focusNode: focusNode,
-            onChanged: (newValue) =>
-                validateEditField(context, newValue, validationCallback),
+            onChanged: (newValue) => validateEditField(context, newValue, validationCallback),
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(
                 vertical: AppDimensions.minorL,
@@ -53,9 +51,7 @@ class EditPasswordFieldWidget extends StatelessWidget {
                 AppSemanticsLabels.obscurePasswordButton,
                 onSuffixIconTap,
               ),
-              hintStyle: AppTextStyles.zonaPro16.copyWith(
-                color: AppColors.hintColor,
-              ),
+              hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),
             ),
             obscureText: isObscureText,
             keyboardType: TextInputType.visiblePassword,
@@ -72,9 +68,7 @@ class EditPasswordFieldWidget extends StatelessWidget {
     final void Function() onTap,
   ) {
     return Padding(
-      padding: const EdgeInsets.all(
-        AppDimensions.minorS,
-      ).copyWith(right: AppDimensions.normalS),
+      padding: const EdgeInsets.all(AppDimensions.minorS).copyWith(right: AppDimensions.normalS),
       child: AppSemantics(
         label: trailingActionSemanticsLabel ?? '',
         button: true,

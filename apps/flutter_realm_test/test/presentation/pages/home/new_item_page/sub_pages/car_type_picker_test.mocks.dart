@@ -10,8 +10,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/common/enums/body_type.dart' as _i6;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i5;
 import 'package:test_flutter_project/common/enums/fuel_type.dart' as _i8;
-import 'package:test_flutter_project/common/enums/transmission_type.dart'
-    as _i7;
+import 'package:test_flutter_project/common/enums/transmission_type.dart' as _i7;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i9;
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart'
     as _i3;
@@ -32,8 +31,7 @@ import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_it
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeNewItemPageState_0 extends _i1.SmartFake
-    implements _i2.NewItemPageState {
+class _FakeNewItemPageState_0 extends _i1.SmartFake implements _i2.NewItemPageState {
   _FakeNewItemPageState_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
@@ -46,14 +44,8 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
   _i2.NewItemPageState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _FakeNewItemPageState_0(
-              this,
-              Invocation.getter(#state),
-            ),
-            returnValueForMissingStub: _FakeNewItemPageState_0(
-              this,
-              Invocation.getter(#state),
-            ),
+            returnValue: _FakeNewItemPageState_0(this, Invocation.getter(#state)),
+            returnValueForMissingStub: _FakeNewItemPageState_0(this, Invocation.getter(#state)),
           )
           as _i2.NewItemPageState);
 
@@ -76,10 +68,7 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           as bool);
 
   @override
-  void init() => super.noSuchMethod(
-    Invocation.method(#init, []),
-    returnValueForMissingStub: null,
-  );
+  void init() => super.noSuchMethod(Invocation.method(#init, []), returnValueForMissingStub: null);
 
   @override
   bool validateManufacturer(String? manufacturer, bool? isEditing) =>
@@ -193,11 +182,10 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
   );
 
   @override
-  void updateSelectedTransmissionType(_i7.TransmissionType? newType) =>
-      super.noSuchMethod(
-        Invocation.method(#updateSelectedTransmissionType, [newType]),
-        returnValueForMissingStub: null,
-      );
+  void updateSelectedTransmissionType(_i7.TransmissionType? newType) => super.noSuchMethod(
+    Invocation.method(#updateSelectedTransmissionType, [newType]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void updateSelectedFuelType(_i8.FuelType? newType) => super.noSuchMethod(
@@ -221,10 +209,8 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           as _i4.Future<void>);
 
   @override
-  void clearFieldErrors() => super.noSuchMethod(
-    Invocation.method(#clearFieldErrors, []),
-    returnValueForMissingStub: null,
-  );
+  void clearFieldErrors() =>
+      super.noSuchMethod(Invocation.method(#clearFieldErrors, []), returnValueForMissingStub: null);
 
   @override
   List<_i9.CarEntity> insertItem() =>
@@ -236,23 +222,16 @@ class MockNewItemPageCubit extends _i1.Mock implements _i3.NewItemPageCubit {
           as List<_i9.CarEntity>);
 
   @override
-  void clearFields() => super.noSuchMethod(
-    Invocation.method(#clearFields, []),
-    returnValueForMissingStub: null,
-  );
+  void clearFields() =>
+      super.noSuchMethod(Invocation.method(#clearFields, []), returnValueForMissingStub: null);
 
   @override
-  void emit(_i2.NewItemPageState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
+  void emit(_i2.NewItemPageState? state) =>
+      super.noSuchMethod(Invocation.method(#emit, [state]), returnValueForMissingStub: null);
 
   @override
   void onChange(_i10.Change<_i2.NewItemPageState>? change) =>
-      super.noSuchMethod(
-        Invocation.method(#onChange, [change]),
-        returnValueForMissingStub: null,
-      );
+      super.noSuchMethod(Invocation.method(#onChange, [change]), returnValueForMissingStub: null);
 
   @override
   void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(

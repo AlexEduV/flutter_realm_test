@@ -25,10 +25,7 @@ class PasswordStrengthBarWidget extends StatelessWidget {
               AnimatedOpacity(
                 duration: const Duration(milliseconds: 500),
                 opacity: state.passwordStrengthHintText != null ? 1.0 : 0.0,
-                child: Text(
-                  '${state.passwordStrengthHintText ?? ''}\n',
-                  maxLines: 2,
-                ),
+                child: Text('${state.passwordStrengthHintText ?? ''}\n', maxLines: 2),
               ),
             ],
           );
@@ -39,11 +36,7 @@ class PasswordStrengthBarWidget extends StatelessWidget {
 }
 
 class AnimatedStageBar extends StatefulWidget {
-  const AnimatedStageBar({
-    required this.stagesAvailable,
-    required this.currentStage,
-    super.key,
-  });
+  const AnimatedStageBar({required this.stagesAvailable, required this.currentStage, super.key});
 
   final int stagesAvailable;
   final int currentStage;
@@ -58,10 +51,7 @@ class _AnimatedStageBarState extends State<AnimatedStageBar> {
   @override
   void initState() {
     super.initState();
-    _activeStages = List.generate(
-      widget.stagesAvailable,
-      (i) => i < widget.currentStage,
-    );
+    _activeStages = List.generate(widget.stagesAvailable, (i) => i < widget.currentStage);
   }
 
   @override
@@ -103,9 +93,7 @@ class _AnimatedStageBarState extends State<AnimatedStageBar> {
               color: _activeStages[index] ? Colors.green : Colors.grey,
               borderRadius: BorderRadius.circular(AppDimensions.minorXS),
             ),
-            margin: const EdgeInsets.symmetric(
-              horizontal: AppDimensions.minorXS,
-            ),
+            margin: const EdgeInsets.symmetric(horizontal: AppDimensions.minorXS),
           ),
         ),
       ),

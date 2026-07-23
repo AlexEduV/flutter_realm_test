@@ -24,10 +24,7 @@ void main() {
               onPressed: () async {
                 selected = await showModalBottomSheet<RegionUiModel>(
                   context: context,
-                  builder: (_) => CountryPickerBottomSheet(
-                    items: items,
-                    currentSelectedIndex: 1,
-                  ),
+                  builder: (_) => CountryPickerBottomSheet(items: items, currentSelectedIndex: 1),
                 );
               },
               child: const Text('Open'),

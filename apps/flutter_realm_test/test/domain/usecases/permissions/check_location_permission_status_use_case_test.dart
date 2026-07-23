@@ -15,20 +15,15 @@ void main() {
       useCase = CheckLocationPermissionStatusUseCase(mockPermissionRepository);
     });
 
-    test(
-      'calls checkLocationPermissionState on repository and returns the result',
-      () async {
-        when(
-          mockPermissionRepository.checkLocationPermissionState(),
-        ).thenAnswer((_) async => PermissionStatus.granted);
+    test('calls checkLocationPermissionState on repository and returns the result', () async {
+      when(
+        mockPermissionRepository.checkLocationPermissionState(),
+      ).thenAnswer((_) async => PermissionStatus.granted);
 
-        final result = await useCase.call();
+      final result = await useCase.call();
 
-        expect(result, PermissionStatus.granted);
-        verify(
-          mockPermissionRepository.checkLocationPermissionState(),
-        ).called(1);
-      },
-    );
+      expect(result, PermissionStatus.granted);
+      verify(mockPermissionRepository.checkLocationPermissionState()).called(1);
+    });
   });
 }

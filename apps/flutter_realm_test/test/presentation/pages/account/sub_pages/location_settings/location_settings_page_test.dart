@@ -20,10 +20,7 @@ import '../../../../../common/extensions/context_extension_test.mocks.dart';
 import '../../../../../utils/app_router_test.mocks.dart';
 import 'location_settings_page_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<GetRegionByCodeUseCase>(),
-  MockSpec<GetAllRegionModelsUseCase>(),
-])
+@GenerateNiceMocks([MockSpec<GetRegionByCodeUseCase>(), MockSpec<GetAllRegionModelsUseCase>()])
 void main() {
   final appLocalisationsCubit = MockAppLocalisationsCubit();
   final getRegionByCodeUseCase = MockGetRegionByCodeUseCase();
@@ -37,9 +34,7 @@ void main() {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<UserDataCubit>.value(value: userDataCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
         child: const LocationSettingsPage(),
       ),
@@ -47,15 +42,11 @@ void main() {
   }
 
   setUp(() {
-    serviceLocator.registerLazySingleton<GetRegionByCodeUseCase>(
-      () => getRegionByCodeUseCase,
-    );
+    serviceLocator.registerLazySingleton<GetRegionByCodeUseCase>(() => getRegionByCodeUseCase);
     serviceLocator.registerLazySingleton<GetAllRegionModelsUseCase>(
       () => getAllRegionModelsUseCase,
     );
-    when(
-      getRegionByCodeUseCase.call('us'),
-    ).thenReturn(const RegionEntity(locale: 'US'));
+    when(getRegionByCodeUseCase.call('us')).thenReturn(const RegionEntity(locale: 'US'));
     when(getAllRegionModelsUseCase.call()).thenReturn([]);
 
     when(appLocalisationsCubit.state).thenReturn(
@@ -74,13 +65,11 @@ void main() {
     serviceLocator.unregister<GetAllRegionModelsUseCase>();
   });
 
-  testWidgets('shows app bar title and location usage description', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('shows app bar title and location usage description', (WidgetTester tester) async {
     final userDataCubit = MockUserDataCubit();
-    when(userDataCubit.state).thenReturn(
-      const UserDataState(isLocationPermissionGranted: true, region: 'us'),
-    );
+    when(
+      userDataCubit.state,
+    ).thenReturn(const UserDataState(isLocationPermissionGranted: true, region: 'us'));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
@@ -102,9 +91,9 @@ void main() {
 
   testWidgets('shows region and permission items', (WidgetTester tester) async {
     final userDataCubit = MockUserDataCubit();
-    when(userDataCubit.state).thenReturn(
-      const UserDataState(isLocationPermissionGranted: true, region: 'us'),
-    );
+    when(
+      userDataCubit.state,
+    ).thenReturn(const UserDataState(isLocationPermissionGranted: true, region: 'us'));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
@@ -119,9 +108,9 @@ void main() {
 
   testWidgets('shows footer texts', (WidgetTester tester) async {
     final userDataCubit = MockUserDataCubit();
-    when(userDataCubit.state).thenReturn(
-      const UserDataState(isLocationPermissionGranted: true, region: 'us'),
-    );
+    when(
+      userDataCubit.state,
+    ).thenReturn(const UserDataState(isLocationPermissionGranted: true, region: 'us'));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
@@ -134,13 +123,11 @@ void main() {
     expect(find.byType(FooterText), findsNWidgets(2));
   });
 
-  testWidgets('tapping region item calls onRegionItemTap', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('tapping region item calls onRegionItemTap', (WidgetTester tester) async {
     final userDataCubit = MockUserDataCubit();
-    when(userDataCubit.state).thenReturn(
-      const UserDataState(isLocationPermissionGranted: true, region: 'us'),
-    );
+    when(
+      userDataCubit.state,
+    ).thenReturn(const UserDataState(isLocationPermissionGranted: true, region: 'us'));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(

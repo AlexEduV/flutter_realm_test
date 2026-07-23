@@ -52,11 +52,7 @@ class _AnimatedVisibilityIconState extends State<AnimatedVisibilityIcon>
     return Stack(
       alignment: Alignment.center,
       children: [
-        const Icon(
-          Icons.visibility,
-          size: AppDimensions.normalXL,
-          color: AppColors.headerColor,
-        ),
+        const Icon(Icons.visibility, size: AppDimensions.normalXL, color: AppColors.headerColor),
         AnimatedBuilder(
           animation: _controller,
           builder: (context, child) {
@@ -101,6 +97,5 @@ class _LinePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_LinePainter oldDelegate) =>
-      oldDelegate.progress != progress;
+  bool shouldRepaint(_LinePainter oldDelegate) => oldDelegate.progress != progress;
 }

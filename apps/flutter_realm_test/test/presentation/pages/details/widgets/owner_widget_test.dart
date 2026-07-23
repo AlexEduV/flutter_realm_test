@@ -23,8 +23,7 @@ import 'owner_widget_test.mocks.dart';
 @GenerateNiceMocks([MockSpec<GetConversationByOwnerIdUseCase>()])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
-  final mockGetConversationByOwnerUseCase =
-      MockGetConversationByOwnerIdUseCase();
+  final mockGetConversationByOwnerUseCase = MockGetConversationByOwnerIdUseCase();
   final mockUserDataCubit = MockUserDataCubit();
 
   final mockUser = UserEntity.initial(
@@ -40,9 +39,7 @@ void main() {
     when(mockUserDataCubit.state).thenReturn(const UserDataState());
     when(mockUserDataCubit.user).thenReturn(mockUser);
 
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
-      () => appLocalisationsCubit,
-    );
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
     serviceLocator.registerLazySingleton<GetConversationByOwnerIdUseCase>(
       () => mockGetConversationByOwnerUseCase,
     );
@@ -62,9 +59,7 @@ void main() {
     serviceLocator.unregister<GetConversationByOwnerIdUseCase>();
   });
 
-  testWidgets('displays owner name, type, and distance', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('displays owner name, type, and distance', (WidgetTester tester) async {
     final car = CarEntity(
       id: ObjectId(),
       carId: '1',
@@ -75,12 +70,7 @@ void main() {
       bodyType: 'sedan',
       engine: EngineEntity(type: FuelType.ev.name),
       transmissionType: 'automatic',
-      owner: OwnerEntity(
-        id: 'test',
-        firstName: 'Elon',
-        lastName: 'Musk',
-        linkedItemIds: [],
-      ),
+      owner: OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []),
       distanceTo: 42,
     );
 
@@ -88,9 +78,7 @@ void main() {
       MultiBlocProvider(
         providers: [
           BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
         child: MaterialApp(
           home: Scaffold(
@@ -126,12 +114,7 @@ void main() {
       bodyType: 'sedan',
       engine: EngineEntity(type: FuelType.ev.name),
       transmissionType: 'automatic',
-      owner: OwnerEntity(
-        id: '1',
-        firstName: 'Elon',
-        lastName: 'Musk',
-        linkedItemIds: [],
-      ),
+      owner: OwnerEntity(id: '1', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []),
       distanceTo: 42,
     );
 
@@ -139,9 +122,7 @@ void main() {
       MultiBlocProvider(
         providers: [
           BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
         child: MaterialApp(
           home: Scaffold(
@@ -176,27 +157,18 @@ void main() {
       bodyType: 'sedan',
       engine: EngineEntity(type: FuelType.ev.name),
       transmissionType: 'automatic',
-      owner: OwnerEntity(
-        id: 'test',
-        firstName: 'Elon',
-        lastName: 'Musk',
-        linkedItemIds: [],
-      ),
+      owner: OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []),
       distanceTo: 42,
     );
 
-    when(
-      mockGetConversationByOwnerUseCase.call('test'),
-    ).thenReturn(ConversationModel.empty());
+    when(mockGetConversationByOwnerUseCase.call('test')).thenReturn(ConversationModel.empty());
 
     // Override OwnerWidget to inject a callback for testing
     await tester.pumpWidget(
       MultiBlocProvider(
         providers: [
           BlocProvider<UserDataCubit>.value(value: mockUserDataCubit),
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
         ],
         child: MaterialApp(
           home: Scaffold(

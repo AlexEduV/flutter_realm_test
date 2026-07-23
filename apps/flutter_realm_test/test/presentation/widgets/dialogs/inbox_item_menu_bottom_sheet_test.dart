@@ -16,9 +16,7 @@ void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUpAll(() {
-    appLocalisationsCubit.load({
-      L10nKeys.conversationDialogDeleteItemTitle: 'Delete conversation',
-    });
+    appLocalisationsCubit.load({L10nKeys.conversationDialogDeleteItemTitle: 'Delete conversation'});
   });
 
   testWidgets('InboxItemMenuBottomSheet renders and handles delete tap', (
@@ -40,9 +38,7 @@ void main() {
               builder: (context) => ElevatedButton(
                 onPressed: () => showModalBottomSheet(
                   context: context,
-                  builder: (_) => const InboxItemMenuBottomSheet(
-                    conversationId: conversationId,
-                  ),
+                  builder: (_) => const InboxItemMenuBottomSheet(conversationId: conversationId),
                 ),
                 child: const Text('Open'),
               ),
@@ -57,9 +53,7 @@ void main() {
     await tester.pumpWidget(
       MultiBlocProvider(
         providers: [
-          BlocProvider<AppLocalisationsCubit>.value(
-            value: appLocalisationsCubit,
-          ),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           BlocProvider<InboxPageCubit>.value(value: mockCubit),
         ],
         child: MaterialApp.router(routerConfig: router),

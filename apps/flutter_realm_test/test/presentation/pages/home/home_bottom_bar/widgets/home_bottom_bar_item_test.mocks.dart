@@ -26,8 +26,7 @@ import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeHomeBottomBarState_0 extends _i1.SmartFake
-    implements _i2.HomeBottomBarState {
+class _FakeHomeBottomBarState_0 extends _i1.SmartFake implements _i2.HomeBottomBarState {
   _FakeHomeBottomBarState_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
@@ -35,20 +34,13 @@ class _FakeHomeBottomBarState_0 extends _i1.SmartFake
 /// A class which mocks [HomeBottomBarCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHomeBottomBarCubit extends _i1.Mock
-    implements _i3.HomeBottomBarCubit {
+class MockHomeBottomBarCubit extends _i1.Mock implements _i3.HomeBottomBarCubit {
   @override
   _i2.HomeBottomBarState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _FakeHomeBottomBarState_0(
-              this,
-              Invocation.getter(#state),
-            ),
-            returnValueForMissingStub: _FakeHomeBottomBarState_0(
-              this,
-              Invocation.getter(#state),
-            ),
+            returnValue: _FakeHomeBottomBarState_0(this, Invocation.getter(#state)),
+            returnValueForMissingStub: _FakeHomeBottomBarState_0(this, Invocation.getter(#state)),
           )
           as _i2.HomeBottomBarState);
 
@@ -57,8 +49,7 @@ class MockHomeBottomBarCubit extends _i1.Mock
       (super.noSuchMethod(
             Invocation.getter(#stream),
             returnValue: _i4.Stream<_i2.HomeBottomBarState>.empty(),
-            returnValueForMissingStub:
-                _i4.Stream<_i2.HomeBottomBarState>.empty(),
+            returnValueForMissingStub: _i4.Stream<_i2.HomeBottomBarState>.empty(),
           )
           as _i4.Stream<_i2.HomeBottomBarState>);
 
@@ -78,17 +69,12 @@ class MockHomeBottomBarCubit extends _i1.Mock
   );
 
   @override
-  void emit(_i2.HomeBottomBarState? state) => super.noSuchMethod(
-    Invocation.method(#emit, [state]),
-    returnValueForMissingStub: null,
-  );
+  void emit(_i2.HomeBottomBarState? state) =>
+      super.noSuchMethod(Invocation.method(#emit, [state]), returnValueForMissingStub: null);
 
   @override
   void onChange(_i5.Change<_i2.HomeBottomBarState>? change) =>
-      super.noSuchMethod(
-        Invocation.method(#onChange, [change]),
-        returnValueForMissingStub: null,
-      );
+      super.noSuchMethod(Invocation.method(#onChange, [change]), returnValueForMissingStub: null);
 
   @override
   void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(

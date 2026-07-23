@@ -14,11 +14,6 @@ class AttachmentEntity {
   final int size;
 
   String toPayload() {
-    return jsonEncode({
-      'file': true,
-      'name': name,
-      if (path != null) 'path': path,
-      'size': size,
-    });
+    return jsonEncode({'file': true, 'name': name, if (path != null) 'path': path, 'size': size});
   }
 }

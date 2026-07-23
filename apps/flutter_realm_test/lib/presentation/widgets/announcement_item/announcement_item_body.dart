@@ -38,9 +38,7 @@ class AnnouncementItemBody extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(AppDimensions.normalL),
           onTap: () => AppRouter.goToDetails(
-            from: isExploreItem
-                ? DetailsPageSource.explore
-                : DetailsPageSource.search,
+            from: isExploreItem ? DetailsPageSource.explore : DetailsPageSource.search,
             carId: carId,
           ),
           child: Column(
@@ -53,12 +51,8 @@ class AnnouncementItemBody extends StatelessWidget {
                     aspectRatio: AppConstants.aspectRatio,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: (car?.images.isEmpty ?? true)
-                            ? AppColors.placeholderColor
-                            : null,
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.normalL,
-                        ),
+                        color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
+                        borderRadius: BorderRadius.circular(AppDimensions.normalL),
                         image: (car?.images.isNotEmpty ?? false)
                             ? DecorationImage(
                                 image: AssetImage(car?.images.first ?? ''),
@@ -79,14 +73,11 @@ class AnnouncementItemBody extends StatelessWidget {
                         button: true,
                         label: AppSemanticsLabels.favoriteButton,
                         child: InkWell(
-                          borderRadius: BorderRadius.circular(
-                            AppDimensions.minorL,
-                          ),
+                          borderRadius: BorderRadius.circular(AppDimensions.minorL),
                           onTap: () => onFavoriteButtonTap(context, carId),
                           child: AnimatedFavoriteIcon(
                             size: AppDimensions.favoriteButtonSize,
-                            isFavorite:
-                                user?.favoriteIds.contains(carId) ?? false,
+                            isFavorite: user?.favoriteIds.contains(carId) ?? false,
                           ),
                         ),
                       ),
@@ -96,9 +87,7 @@ class AnnouncementItemBody extends StatelessWidget {
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimensions.normalS,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
                 child: Row(
                   spacing: AppDimensions.minorM,
                   children: [
@@ -121,9 +110,7 @@ class AnnouncementItemBody extends StatelessWidget {
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppDimensions.normalS,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalS),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -132,15 +119,10 @@ class AnnouncementItemBody extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: '\$ ${car?.price ?? 0} ',
-                            style: AppTextStyles.zonaPro20.copyWith(
-                              fontWeight: FontWeight.w400,
-                            ),
+                            style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
                           ),
                           if (car?.promoType != null)
-                            getSpanIcon(
-                              icon: Icons.whatshot,
-                              color: Colors.redAccent,
-                            ),
+                            getSpanIcon(icon: Icons.whatshot, color: Colors.redAccent),
                         ],
                       ),
                     ),
@@ -151,11 +133,8 @@ class AnnouncementItemBody extends StatelessWidget {
                           children: [
                             getSpanIcon(icon: Icons.location_pin),
                             TextSpan(
-                              text:
-                                  '${car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceAway)}',
-                              style: AppTextStyles.zonaPro20.copyWith(
-                                fontWeight: FontWeight.w400,
-                              ),
+                              text: '${car?.distanceTo ?? 0} ${context.tr(L10nKeys.distanceAway)}',
+                              style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w400),
                             ),
                           ],
                         ),

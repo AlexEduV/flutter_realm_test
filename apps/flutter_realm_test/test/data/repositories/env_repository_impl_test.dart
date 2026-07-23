@@ -26,9 +26,7 @@ void main() {
   });
 
   test('get delegates to EnvLocalDataSource.get and returns value', () {
-    when(
-      mockDataSource.get(key: 'API_KEY', fallback: 'default'),
-    ).thenReturn('12345');
+    when(mockDataSource.get(key: 'API_KEY', fallback: 'default')).thenReturn('12345');
 
     final result = repository.get(key: 'API_KEY', fallback: 'default');
 
@@ -38,16 +36,12 @@ void main() {
   });
 
   test('get returns fallback if key is missing', () {
-    when(
-      mockDataSource.get(key: 'MISSING_KEY', fallback: 'fallback'),
-    ).thenReturn('fallback');
+    when(mockDataSource.get(key: 'MISSING_KEY', fallback: 'fallback')).thenReturn('fallback');
 
     final result = repository.get(key: 'MISSING_KEY', fallback: 'fallback');
 
     expect(result, 'fallback');
-    verify(
-      mockDataSource.get(key: 'MISSING_KEY', fallback: 'fallback'),
-    ).called(1);
+    verify(mockDataSource.get(key: 'MISSING_KEY', fallback: 'fallback')).called(1);
     verifyNoMoreInteractions(mockDataSource);
   });
 }

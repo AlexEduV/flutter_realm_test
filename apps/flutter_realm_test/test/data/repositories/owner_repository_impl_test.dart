@@ -19,18 +19,8 @@ void main() {
 
   test('fetchOwners calls remote data source and returns owners', () async {
     final owners = [
-      OwnerEntity(
-        id: 'o1',
-        firstName: 'John',
-        lastName: 'Doe',
-        linkedItemIds: [],
-      ),
-      OwnerEntity(
-        id: 'o2',
-        firstName: 'Jane',
-        lastName: 'Smith',
-        linkedItemIds: [],
-      ),
+      OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
+      OwnerEntity(id: 'o2', firstName: 'Jane', lastName: 'Smith', linkedItemIds: []),
     ];
     when(mockRemoteDataSource.fetchOwners()).thenAnswer((_) async => owners);
 
@@ -42,12 +32,7 @@ void main() {
   });
 
   test('getOwnerById calls remote data source and returns owner', () {
-    final owner = OwnerEntity(
-      id: 'o1',
-      firstName: 'John',
-      lastName: 'Doe',
-      linkedItemIds: [],
-    );
+    final owner = OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []);
     when(mockRemoteDataSource.getOwnerById('o1')).thenReturn(owner);
 
     final result = repository.getOwnerById('o1');

@@ -25,19 +25,14 @@ class PersonalDetailsListItem extends StatelessWidget {
       label: '${AppSemanticsLabels.personalDetailsItem} $title',
       child: ListTile(
         contentPadding: const EdgeInsets.all(AppDimensions.normalS),
-        title: Text(
-          title,
-          style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
-        ),
+        title: Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),
         onTap: onTap,
         subtitle: Row(
           spacing: AppDimensions.minorL,
           children: [
             if (showEnabled != null) ...[
               CircleAvatar(
-                backgroundColor: (showEnabled ?? false)
-                    ? AppColors.teal
-                    : Colors.grey,
+                backgroundColor: (showEnabled ?? false) ? AppColors.teal : Colors.grey,
                 radius: AppDimensions.normalXS,
                 child: Icon(
                   (showEnabled ?? false) ? Icons.check : Icons.pause,
@@ -49,9 +44,7 @@ class PersonalDetailsListItem extends StatelessWidget {
 
             Text(
               description,
-              style: AppTextStyles.zonaPro16.copyWith(
-                color: AppColors.placeholderColorDark,
-              ),
+              style: AppTextStyles.zonaPro16.copyWith(color: AppColors.placeholderColorDark),
             ),
           ],
         ),

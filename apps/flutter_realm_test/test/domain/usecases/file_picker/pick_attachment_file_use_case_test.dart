@@ -17,23 +17,16 @@ void main() {
     useCase = PickAttachmentFileUseCase(mockRepository);
   });
 
-  test(
-    'should call pickFile on repository and return AttachmentEntity',
-    () async {
-      final attachment = AttachmentEntity(
-        name: 'file.txt',
-        path: '/path/file.txt',
-        size: 2000,
-      );
-      when(mockRepository.pickFile()).thenAnswer((_) async => attachment);
+  test('should call pickFile on repository and return AttachmentEntity', () async {
+    final attachment = AttachmentEntity(name: 'file.txt', path: '/path/file.txt', size: 2000);
+    when(mockRepository.pickFile()).thenAnswer((_) async => attachment);
 
-      final result = await useCase.call();
+    final result = await useCase.call();
 
-      expect(result, equals(attachment));
-      verify(mockRepository.pickFile()).called(1);
-      verifyNoMoreInteractions(mockRepository);
-    },
-  );
+    expect(result, equals(attachment));
+    verify(mockRepository.pickFile()).called(1);
+    verifyNoMoreInteractions(mockRepository);
+  });
 
   test('should return null when repository returns null', () async {
     when(mockRepository.pickFile()).thenAnswer((_) async => null);

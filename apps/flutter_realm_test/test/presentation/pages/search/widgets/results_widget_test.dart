@@ -12,9 +12,7 @@ void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUp(() {
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
-      () => appLocalisationsCubit,
-    );
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
 
     // Set up localisation values for the test
     final localisations = {'pages.results.title': 'Results'};
@@ -26,9 +24,7 @@ void main() {
   });
 
   group('ResultsWidget', () {
-    testWidgets('displays the results text from localisation', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('displays the results text from localisation', (WidgetTester tester) async {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
@@ -44,9 +40,7 @@ void main() {
       );
     });
 
-    testWidgets('displays the badge with the correct value', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('displays the badge with the correct value', (WidgetTester tester) async {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
@@ -60,9 +54,7 @@ void main() {
       expect(find.text('10'), findsOneWidget);
     });
 
-    testWidgets('uses correct text style for results', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('uses correct text style for results', (WidgetTester tester) async {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,

@@ -44,17 +44,12 @@ class OwnerWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimensions.normalM,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
             child: Row(
               spacing: AppDimensions.normalM,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AvatarWidget(
-                  imageSrc: owner?.imageSrc,
-                  isLocal: !isUserNotTheOwner,
-                ),
+                AvatarWidget(imageSrc: owner?.imageSrc, isLocal: !isUserNotTheOwner),
 
                 Expanded(
                   child: Column(
@@ -64,9 +59,7 @@ class OwnerWidget extends StatelessWidget {
                         isUserNotTheOwner
                             ? '${owner?.firstName ?? ''} ${owner?.lastName ?? ''}'
                             : context.tr(L10nKeys.messageSenderYou),
-                        style: AppTextStyles.zonaPro18.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: AppTextStyles.zonaPro18.copyWith(fontWeight: FontWeight.w600),
                       ),
 
                       Row(
@@ -153,10 +146,7 @@ class OwnerWidget extends StatelessWidget {
         .call(ownerId)
         .conversationId;
 
-    context.go(
-      '${AppRoutes.home}${AppRoutes.details}/${AppRoutes.inbox}',
-      extra: conversationId,
-    );
+    context.go('${AppRoutes.home}${AppRoutes.details}/${AppRoutes.inbox}', extra: conversationId);
   }
 }
 
@@ -186,9 +176,7 @@ Widget _basePreview({required bool isOwner}) {
   });
 
   return MultiBlocProvider(
-    providers: [
-      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
-    ],
+    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: MaterialApp(
       theme: ThemeData(
         useMaterial3: true,

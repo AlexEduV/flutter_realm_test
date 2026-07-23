@@ -19,10 +19,7 @@ void main() {
 
   test('should return value from repository when key exists', () {
     // Arrange
-    final params = EnvParamsModel(
-      key: 'API_URL',
-      fallbackValue: 'https://fallback.com',
-    );
+    final params = EnvParamsModel(key: 'API_URL', fallbackValue: 'https://fallback.com');
     when(
       mockEnvRepository.get(key: 'API_URL', fallback: 'https://fallback.com'),
     ).thenReturn('https://real.com');
@@ -32,27 +29,21 @@ void main() {
 
     // Assert
     expect(result, 'https://real.com');
-    verify(
-      mockEnvRepository.get(key: 'API_URL', fallback: 'https://fallback.com'),
-    ).called(1);
+    verify(mockEnvRepository.get(key: 'API_URL', fallback: 'https://fallback.com')).called(1);
     verifyNoMoreInteractions(mockEnvRepository);
   });
 
   test('should return fallback value when key does not exist', () {
     // Arrange
     final params = EnvParamsModel(key: 'MISSING_KEY', fallbackValue: 'default');
-    when(
-      mockEnvRepository.get(key: 'MISSING_KEY', fallback: 'default'),
-    ).thenReturn('default');
+    when(mockEnvRepository.get(key: 'MISSING_KEY', fallback: 'default')).thenReturn('default');
 
     // Act
     final result = useCase(params);
 
     // Assert
     expect(result, 'default');
-    verify(
-      mockEnvRepository.get(key: 'MISSING_KEY', fallback: 'default'),
-    ).called(1);
+    verify(mockEnvRepository.get(key: 'MISSING_KEY', fallback: 'default')).called(1);
     verifyNoMoreInteractions(mockEnvRepository);
   });
 }

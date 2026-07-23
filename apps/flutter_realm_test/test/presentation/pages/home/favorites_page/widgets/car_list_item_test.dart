@@ -34,9 +34,7 @@ void main() {
     expect(find.byIcon(Icons.directions_car_outlined), findsOneWidget);
   });
 
-  testWidgets('calls onDeleteCallback when favorite icon is tapped', (
-    tester,
-  ) async {
+  testWidgets('calls onDeleteCallback when favorite icon is tapped', (tester) async {
     bool tapped = false;
     await tester.pumpWidget(
       MaterialApp(

@@ -20,9 +20,7 @@ void main() {
     final localisations = {'actions.addCar.tooltip': 'Add a car'};
     appLocalisationsCubit.load(localisations);
 
-    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(
-      () => appLocalisationsCubit,
-    );
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
 
     when(
       mockHomeBottomBarCubit.stream,
@@ -36,23 +34,15 @@ void main() {
   });
 
   group('HomeBottomBar', () {
-    testWidgets('displays all HomeBottomBarItems and add button', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('displays all HomeBottomBarItems and add button', (WidgetTester tester) async {
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [
-            BlocProvider<HomeBottomBarCubit>.value(
-              value: mockHomeBottomBarCubit,
-            ),
-            BlocProvider<AppLocalisationsCubit>.value(
-              value: appLocalisationsCubit,
-            ),
+            BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           ],
           child: MaterialApp(
-            home: Scaffold(
-              bottomNavigationBar: HomeBottomBar(onAddPressed: () {}),
-            ),
+            home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
           ),
         ),
       );
@@ -61,19 +51,13 @@ void main() {
       expect(find.byIcon(Icons.add), findsOneWidget);
     });
 
-    testWidgets('calls onAddPressed when add button is tapped', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('calls onAddPressed when add button is tapped', (WidgetTester tester) async {
       bool pressed = false;
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [
-            BlocProvider<HomeBottomBarCubit>.value(
-              value: mockHomeBottomBarCubit,
-            ),
-            BlocProvider<AppLocalisationsCubit>.value(
-              value: appLocalisationsCubit,
-            ),
+            BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           ],
           child: MaterialApp(
             home: Scaffold(
@@ -91,61 +75,40 @@ void main() {
       expect(pressed, isTrue);
     });
 
-    testWidgets('add button has correct style and tooltip', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('add button has correct style and tooltip', (WidgetTester tester) async {
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [
-            BlocProvider<HomeBottomBarCubit>.value(
-              value: mockHomeBottomBarCubit,
-            ),
-            BlocProvider<AppLocalisationsCubit>.value(
-              value: appLocalisationsCubit,
-            ),
+            BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           ],
           child: MaterialApp(
-            home: Scaffold(
-              bottomNavigationBar: HomeBottomBar(onAddPressed: () {}),
-            ),
+            home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
           ),
         ),
       );
 
-      final iconButton = tester.widget<InkWell>(
-        find.widgetWithIcon(InkWell, Icons.add),
-      );
+      final iconButton = tester.widget<InkWell>(find.widgetWithIcon(InkWell, Icons.add));
 
       expect(iconButton.splashColor, AppColors.accentColor.withAlpha(60));
       expect(iconButton.highlightColor, Colors.transparent);
     });
 
-    testWidgets('container has correct decoration', (
-      WidgetTester tester,
-    ) async {
+    testWidgets('container has correct decoration', (WidgetTester tester) async {
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [
-            BlocProvider<HomeBottomBarCubit>.value(
-              value: mockHomeBottomBarCubit,
-            ),
-            BlocProvider<AppLocalisationsCubit>.value(
-              value: appLocalisationsCubit,
-            ),
+            BlocProvider<HomeBottomBarCubit>.value(value: mockHomeBottomBarCubit),
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           ],
           child: MaterialApp(
-            home: Scaffold(
-              bottomNavigationBar: HomeBottomBar(onAddPressed: () {}),
-            ),
+            home: Scaffold(bottomNavigationBar: HomeBottomBar(onAddPressed: () {})),
           ),
         ),
       );
 
       final decoratedBox = tester.widget<DecoratedBox>(
-        find.descendant(
-          of: find.byType(HomeBottomBar),
-          matching: find.byType(DecoratedBox).first,
-        ),
+        find.descendant(of: find.byType(HomeBottomBar), matching: find.byType(DecoratedBox).first),
       );
 
       final decoration = decoratedBox.decoration as BoxDecoration;
