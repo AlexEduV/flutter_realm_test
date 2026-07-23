@@ -13,5 +13,6 @@ class AppConstants {
   static const bool showSemantics = false;
   static const bool showNetworkLogs = true;
 
+  //todo: remove this
   static final bool kIsTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
 }
