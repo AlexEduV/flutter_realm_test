@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:test_flutter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
 
 import '../../../common/constants/api_constants.dart';
@@ -11,7 +11,7 @@ import '../../../domain/models/api_response.dart';
 class MockArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   MockArticleRemoteDataSourceImpl(this._logger);
 
-  final BaseLogger _logger;
+  final LoggingService _logger;
 
   List<ArticleEntity> articles = [];
 
@@ -29,7 +29,7 @@ class MockArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
     );
 
     if (response.status != ApiConstants.apiSuccessStatus) {
-      _logger.e('Could not fetch articles: ${response.message}');
+      _logger.error('Could not fetch articles: ${response.message}');
       return [];
     }
 

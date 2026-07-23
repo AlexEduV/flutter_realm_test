@@ -7,8 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/extensions/get_it_extension.dart';
-import 'package:test_flutter_project/common/logger/app_network_logger_impl.dart';
-import 'package:test_flutter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/data/services/app_logging_service_impl.dart';
+import 'package:test_flutter_project/data/services/network_logging_service_impl.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/core/network/app_http_client.dart';
 import 'package:test_flutter_project/core/network/app_http_client_impl.dart';
 import 'package:test_flutter_project/core/network/app_interceptor.dart';
@@ -167,10 +168,13 @@ Future<void> initDependenciesContainer() async {
     }
   }
 
-  serviceLocator.registerLazySingleton<BaseLogger>(() => AppNetworkLoggerImpl());
+  serviceLocator.registerLazySingleton<LoggingService>(() => AppLoggingServiceImpl());
+  serviceLocator.registerLazySingleton<NetworkLoggingServiceImpl>(
+    () => NetworkLoggingServiceImpl(),
+  );
 
   final client = http.Client();
-  final appInterceptor = AppInterceptor(serviceLocator());
+  final appInterceptor = AppInterceptor(serviceLocator<NetworkLoggingServiceImpl>());
   serviceLocator.registerLazySingleton<AppHttpClient>(
     () => AppHttpClientImpl(client, appInterceptor),
   );
@@ -430,7 +434,7 @@ Future<void> initDependenciesContainer() async {
       serviceLocator<GetUserByEmailUseCase>(),
       serviceLocator<PickImageFromGalleryUseCase>(),
       serviceLocator<DeleteCarByIdUseCase>(),
-      serviceLocator<BaseLogger>(),
+      serviceLocator<LoggingService>(),
       serviceLocator<AppLocalisationsCubit>(),
     ),
   );

@@ -4,7 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_flutter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
@@ -33,7 +33,7 @@ import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
   MockSpec<GetUserByEmailUseCase>(),
   MockSpec<PickImageFromGalleryUseCase>(),
   MockSpec<DeleteCarByIdUseCase>(),
-  MockSpec<BaseLogger>(),
+  MockSpec<LoggingService>(),
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -48,7 +48,7 @@ void main() {
   late MockDeleteCarByIdUseCase mockDeleteCarByIdUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
-  late MockBaseLogger mockBaseLogger;
+  late MockLoggingService mockBaseLogger;
 
   final mockAuthRepository = MockAuthRepository();
   final appLocalisationsCubit = AppLocalisationsCubit();
@@ -60,7 +60,7 @@ void main() {
   mockGetUserByEmailUseCase = MockGetUserByEmailUseCase();
   mockPickImageFromGalleryUseCase = MockPickImageFromGalleryUseCase();
   mockDeleteCarByIdUseCase = MockDeleteCarByIdUseCase();
-  mockBaseLogger = MockBaseLogger();
+  mockBaseLogger = MockLoggingService();
 
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});

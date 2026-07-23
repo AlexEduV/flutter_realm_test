@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:test_flutter_project/common/logger/base_logger.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
@@ -15,7 +15,7 @@ import '../../../domain/models/api_response.dart';
 class MockOwnersRemoteDataSourceImpl implements OwnersRemoteDataSource {
   MockOwnersRemoteDataSourceImpl(this._logger);
 
-  final BaseLogger _logger;
+  final LoggingService _logger;
 
   List<OwnerEntity> _owners = [];
 
@@ -30,7 +30,7 @@ class MockOwnersRemoteDataSourceImpl implements OwnersRemoteDataSource {
     );
 
     if (response.status != ApiConstants.apiSuccessStatus) {
-      _logger.e('Could not fetch owners: ${response.message}');
+      _logger.error('Could not fetch owners: ${response.message}');
       return [];
     }
 
