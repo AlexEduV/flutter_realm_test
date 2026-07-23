@@ -9,7 +9,9 @@ Widget buildMessageDateDividerUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       body: Padding(
@@ -18,7 +20,10 @@ Widget buildMessageDateDividerUseCase(BuildContext context) {
           spacing: AppDimensions.normalL,
           children: [
             DateDivider(
-              text: context.knobs.string(label: 'Divider label', initialValue: 'Some Text'),
+              text: context.knobs.string(
+                label: 'Divider label',
+                initialValue: 'Some Text',
+              ),
             ),
           ],
         ),

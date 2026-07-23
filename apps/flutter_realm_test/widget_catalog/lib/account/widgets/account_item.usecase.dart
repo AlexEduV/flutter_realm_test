@@ -8,7 +8,9 @@ Widget buildAccountItemUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       body: Padding(
@@ -17,10 +19,22 @@ Widget buildAccountItemUseCase(BuildContext context) {
           spacing: AppDimensions.normalL,
           children: [
             AccountItem(
-              label: context.knobs.string(label: 'Item name', initialValue: 'Account item'),
+              label: context.knobs.string(
+                label: 'Item name',
+                initialValue: 'Account item',
+              ),
               icon: Icons.settings_input_composite_sharp,
-              onTap: context.knobs.boolean(label: 'With onTap', initialValue: false) ? () {} : null,
-              isCentered: context.knobs.boolean(label: 'Centered', initialValue: false),
+              onTap:
+                  context.knobs.boolean(
+                    label: 'With onTap',
+                    initialValue: false,
+                  )
+                  ? () {}
+                  : null,
+              isCentered: context.knobs.boolean(
+                label: 'Centered',
+                initialValue: false,
+              ),
             ),
           ],
         ),

@@ -13,7 +13,9 @@ Widget buildAnnouncementListItemUseCase(BuildContext context) {
     ..load({L10nKeys.deleteButtonTitle: 'Delete'});
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       body: Column(
@@ -29,7 +31,10 @@ Widget buildAnnouncementListItemUseCase(BuildContext context) {
               password: 'pass',
             ),
             onDismissed: () {},
-            isExploreItem: context.knobs.boolean(label: 'Is explore item', initialValue: true),
+            isExploreItem: context.knobs.boolean(
+              label: 'Is explore item',
+              initialValue: true,
+            ),
           ),
         ],
       ),

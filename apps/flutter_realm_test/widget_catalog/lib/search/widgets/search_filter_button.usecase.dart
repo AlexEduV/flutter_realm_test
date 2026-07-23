@@ -11,7 +11,11 @@ Widget buildSearchFilterButtonUseCase(BuildContext context) {
   return Scaffold(
     backgroundColor: AppColors.scaffoldColor,
     body: MultiBlocProvider(
-      providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+      providers: [
+        BlocProvider<AppLocalisationsCubit>(
+          create: (_) => appLocalisationsCubit,
+        ),
+      ],
       child: Column(
         spacing: AppDimensions.normalL,
         children: [
@@ -27,7 +31,9 @@ Widget buildSearchFilterButtonUseCase(BuildContext context) {
               min: 12,
               max: 60,
             ),
-            isPlaceHolder: context.knobs.boolean(label: 'Is a placeholder title'),
+            isPlaceHolder: context.knobs.boolean(
+              label: 'Is a placeholder title',
+            ),
           ),
         ],
       ),

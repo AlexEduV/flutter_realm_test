@@ -19,7 +19,9 @@ Widget buildOwnerWidgetUseCase(BuildContext context) {
     });
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
       child: Column(
@@ -28,13 +30,26 @@ Widget buildOwnerWidgetUseCase(BuildContext context) {
           //Interactive
           OwnerWidget(
             car: CarEntity.empty().copyWith(
-              distanceTo: context.knobs.int.input(label: 'Distance to', initialValue: 5),
+              distanceTo: context.knobs.int.input(
+                label: 'Distance to',
+                initialValue: 5,
+              ),
               owner: OwnerEntity(
-                id: context.knobs.boolean(label: 'Is User the owner', initialValue: false)
+                id:
+                    context.knobs.boolean(
+                      label: 'Is User the owner',
+                      initialValue: false,
+                    )
                     ? '1'
                     : '2',
-                firstName: context.knobs.string(label: 'First name', initialValue: 'Henry'),
-                lastName: context.knobs.string(label: 'Last name', initialValue: 'Morgan'),
+                firstName: context.knobs.string(
+                  label: 'First name',
+                  initialValue: 'Henry',
+                ),
+                lastName: context.knobs.string(
+                  label: 'Last name',
+                  initialValue: 'Morgan',
+                ),
                 linkedItemIds: [],
               ),
             ),

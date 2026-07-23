@@ -9,7 +9,9 @@ Widget buildAccountItemSeparatedUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       body: Padding(
@@ -18,9 +20,21 @@ Widget buildAccountItemSeparatedUseCase(BuildContext context) {
           spacing: AppDimensions.normalL,
           children: [
             AccountItemSeparated(
-              title: context.knobs.string(label: 'Item name', initialValue: 'Account item'),
-              onTap: context.knobs.boolean(label: 'With onTap', initialValue: false) ? () {} : null,
-              isEnabled: context.knobs.boolean(label: 'Is enabled', initialValue: true),
+              title: context.knobs.string(
+                label: 'Item name',
+                initialValue: 'Account item',
+              ),
+              onTap:
+                  context.knobs.boolean(
+                    label: 'With onTap',
+                    initialValue: false,
+                  )
+                  ? () {}
+                  : null,
+              isEnabled: context.knobs.boolean(
+                label: 'Is enabled',
+                initialValue: true,
+              ),
             ),
           ],
         ),

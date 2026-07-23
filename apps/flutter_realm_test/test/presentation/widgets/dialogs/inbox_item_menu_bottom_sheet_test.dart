@@ -16,9 +16,7 @@ void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
   setUpAll(() {
-    appLocalisationsCubit.load({
-      L10nKeys.conversationDialogDeleteItemTitle: 'Delete conversation',
-    });
+    appLocalisationsCubit.load({L10nKeys.conversationDialogDeleteItemTitle: 'Delete conversation'});
   });
 
   testWidgets('InboxItemMenuBottomSheet renders and handles delete tap', (
@@ -40,8 +38,7 @@ void main() {
               builder: (context) => ElevatedButton(
                 onPressed: () => showModalBottomSheet(
                   context: context,
-                  builder: (_) =>
-                      const InboxItemMenuBottomSheet(conversationId: conversationId),
+                  builder: (_) => const InboxItemMenuBottomSheet(conversationId: conversationId),
                 ),
                 child: const Text('Open'),
               ),

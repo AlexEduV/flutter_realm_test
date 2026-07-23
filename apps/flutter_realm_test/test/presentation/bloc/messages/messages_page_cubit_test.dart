@@ -13,7 +13,11 @@ import 'package:test_flutter_project/presentation/bloc/messages/messages_page_st
 
 import 'messages_page_cubit_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<SearchGifsUseCase>(), MockSpec<GetTrendingGifsUseCase>(), MockSpec<PickAttachmentFileUseCase>()])
+@GenerateNiceMocks([
+  MockSpec<SearchGifsUseCase>(),
+  MockSpec<GetTrendingGifsUseCase>(),
+  MockSpec<PickAttachmentFileUseCase>(),
+])
 void main() {
   late MockSearchGifsUseCase mockSearchGifsUseCase;
   late MockGetTrendingGifsUseCase mockGetTrendingGifsUseCase;

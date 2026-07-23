@@ -8,7 +8,9 @@ Widget buildAnimatedFavoriteIconUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 
   return MultiBlocProvider(
-    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
+    providers: [
+      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
+    ],
     child: Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       body: Padding(
@@ -17,8 +19,14 @@ Widget buildAnimatedFavoriteIconUseCase(BuildContext context) {
           spacing: AppDimensions.normalL,
           children: [
             AnimatedFavoriteIcon(
-              isFavorite: context.knobs.boolean(label: 'Is favorite', initialValue: true),
-              decorated: context.knobs.boolean(label: 'Is decorated', initialValue: false),
+              isFavorite: context.knobs.boolean(
+                label: 'Is favorite',
+                initialValue: true,
+              ),
+              decorated: context.knobs.boolean(
+                label: 'Is decorated',
+                initialValue: false,
+              ),
               size: AppDimensions.majorM,
             ),
           ],

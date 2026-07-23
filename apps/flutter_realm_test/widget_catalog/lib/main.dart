@@ -40,7 +40,8 @@ class WidgetBookApp extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: defaultUseCaseName,
-                  builder: (context) => buildAnimatedFavoriteIconUseCase(context),
+                  builder: (context) =>
+                      buildAnimatedFavoriteIconUseCase(context),
                 ),
               ],
             ),
@@ -58,7 +59,8 @@ class WidgetBookApp extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: defaultUseCaseName,
-                  builder: (context) => buildAnnouncementListItemUseCase(context),
+                  builder: (context) =>
+                      buildAnnouncementListItemUseCase(context),
                 ),
               ],
             ),
@@ -86,7 +88,8 @@ class WidgetBookApp extends StatelessWidget {
                   useCases: [
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
-                      builder: (context) => buildSearchFilterButtonUseCase(context),
+                      builder: (context) =>
+                          buildSearchFilterButtonUseCase(context),
                     ),
                   ],
                 ),
@@ -148,7 +151,8 @@ class WidgetBookApp extends StatelessWidget {
                   useCases: [
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
-                      builder: (context) => buildAccountItemSeparatedUseCase(context),
+                      builder: (context) =>
+                          buildAccountItemSeparatedUseCase(context),
                     ),
                   ],
                 ),
@@ -183,7 +187,8 @@ class WidgetBookApp extends StatelessWidget {
                   useCases: [
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
-                      builder: (context) => buildAuthErrorWidgetUseCase(context),
+                      builder: (context) =>
+                          buildAuthErrorWidgetUseCase(context),
                     ),
                   ],
                 ),
@@ -218,7 +223,8 @@ class WidgetBookApp extends StatelessWidget {
                   useCases: [
                     WidgetbookUseCase(
                       name: defaultUseCaseName,
-                      builder: (context) => buildMessageDateDividerUseCase(context),
+                      builder: (context) =>
+                          buildMessageDateDividerUseCase(context),
                     ),
                   ],
                 ),

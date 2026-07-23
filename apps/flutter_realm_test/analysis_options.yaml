@@ -37,5 +37,8 @@ linter:
     sort_constructors_first: true
     eol_at_end_of_file: true
 
+formatter:
+  page_width: 100
+
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

@@ -15,7 +15,10 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_d
 import '../../../pages/details/widgets/vehicle_specs_widget_test.mocks.dart';
 import 'color_picker_dialog_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<GetCarColorByNameUseCase>(), MockSpec<GetCarColorNameFromColorUseCase>()])
+@GenerateNiceMocks([
+  MockSpec<GetCarColorByNameUseCase>(),
+  MockSpec<GetCarColorNameFromColorUseCase>(),
+])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
   appLocalisationsCubit.load({

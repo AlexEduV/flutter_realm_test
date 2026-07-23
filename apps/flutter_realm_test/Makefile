@@ -11,6 +11,9 @@ clean-get:
 	$(MAKE) clean
 	$(MAKE) get
 
+format:
+	find lib/ -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.realm.dart" | xargs dart format
+
 
 # File Generation
 clean-build:

@@ -223,9 +223,7 @@ void main() {
         GoRoute(
           path: AppRoutes.home,
           builder: (_, __) => const SizedBox(),
-          routes: [
-            GoRoute(path: AppRoutes.newItem, builder: (_, __) => const NewItemPage()),
-          ],
+          routes: [GoRoute(path: AppRoutes.newItem, builder: (_, __) => const NewItemPage())],
         ),
       ],
     );

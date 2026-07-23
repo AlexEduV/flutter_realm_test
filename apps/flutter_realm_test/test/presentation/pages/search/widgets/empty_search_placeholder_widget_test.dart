@@ -75,7 +75,9 @@ void main() {
       expect(paddingWidget.padding, const EdgeInsets.all(AppDimensions.normalL));
     });
 
-    testWidgets('text is a direct child of padding with ellipsis overflow', (WidgetTester tester) async {
+    testWidgets('text is a direct child of padding with ellipsis overflow', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
