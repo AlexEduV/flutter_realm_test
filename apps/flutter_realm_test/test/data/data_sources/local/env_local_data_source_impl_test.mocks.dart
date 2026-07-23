@@ -29,76 +29,115 @@ import 'package:mockito/src/dummies.dart' as _i3;
 /// See the documentation for Mockito's code generation for more information.
 class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
   @override
-  Map<String, String> get env =>
-      (super.noSuchMethod(
-            Invocation.getter(#env),
-            returnValue: <String, String>{},
-            returnValueForMissingStub: <String, String>{},
-          )
-          as Map<String, String>);
+  Map<String, String> get env => (super.noSuchMethod(
+        Invocation.getter(#env),
+        returnValue: <String, String>{},
+        returnValueForMissingStub: <String, String>{},
+      ) as Map<String, String>);
 
   @override
-  bool get isInitialized =>
-      (super.noSuchMethod(
-            Invocation.getter(#isInitialized),
-            returnValue: false,
-            returnValueForMissingStub: false,
-          )
-          as bool);
+  bool get isInitialized => (super.noSuchMethod(
+        Invocation.getter(#isInitialized),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 
   @override
-  void clean() =>
-      super.noSuchMethod(Invocation.method(#clean, []), returnValueForMissingStub: null);
+  void clean() => super.noSuchMethod(
+        Invocation.method(
+          #clean,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  String get(String? name, {String? fallback}) =>
+  String get(
+    String? name, {
+    String? fallback,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#get, [name], {#fallback: fallback}),
-            returnValue: _i3.dummyValue<String>(
-              this,
-              Invocation.method(#get, [name], {#fallback: fallback}),
-            ),
-            returnValueForMissingStub: _i3.dummyValue<String>(
-              this,
-              Invocation.method(#get, [name], {#fallback: fallback}),
-            ),
-          )
-          as String);
+        Invocation.method(
+          #get,
+          [name],
+          {#fallback: fallback},
+        ),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #get,
+            [name],
+            {#fallback: fallback},
+          ),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #get,
+            [name],
+            {#fallback: fallback},
+          ),
+        ),
+      ) as String);
 
   @override
-  int getInt(String? name, {int? fallback}) =>
+  int getInt(
+    String? name, {
+    int? fallback,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#getInt, [name], {#fallback: fallback}),
-            returnValue: 0,
-            returnValueForMissingStub: 0,
-          )
-          as int);
+        Invocation.method(
+          #getInt,
+          [name],
+          {#fallback: fallback},
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
 
   @override
-  double getDouble(String? name, {double? fallback}) =>
+  double getDouble(
+    String? name, {
+    double? fallback,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#getDouble, [name], {#fallback: fallback}),
-            returnValue: 0.0,
-            returnValueForMissingStub: 0.0,
-          )
-          as double);
+        Invocation.method(
+          #getDouble,
+          [name],
+          {#fallback: fallback},
+        ),
+        returnValue: 0.0,
+        returnValueForMissingStub: 0.0,
+      ) as double);
 
   @override
-  bool getBool(String? name, {bool? fallback}) =>
+  bool getBool(
+    String? name, {
+    bool? fallback,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#getBool, [name], {#fallback: fallback}),
-            returnValue: false,
-            returnValueForMissingStub: false,
-          )
-          as bool);
+        Invocation.method(
+          #getBool,
+          [name],
+          {#fallback: fallback},
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 
   @override
-  String? maybeGet(String? name, {String? fallback}) =>
+  String? maybeGet(
+    String? name, {
+    String? fallback,
+  }) =>
       (super.noSuchMethod(
-            Invocation.method(#maybeGet, [name], {#fallback: fallback}),
-            returnValueForMissingStub: null,
-          )
-          as String?);
+        Invocation.method(
+          #maybeGet,
+          [name],
+          {#fallback: fallback},
+        ),
+        returnValueForMissingStub: null,
+      ) as String?);
 
   @override
   _i4.Future<void> load({
@@ -109,17 +148,20 @@ class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
     _i5.Parser? parser = const _i5.Parser(),
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#load, [], {
-              #fileName: fileName,
-              #overrideWithFiles: overrideWithFiles,
-              #mergeWith: mergeWith,
-              #isOptional: isOptional,
-              #parser: parser,
-            }),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
-          )
-          as _i4.Future<void>);
+        Invocation.method(
+          #load,
+          [],
+          {
+            #fileName: fileName,
+            #overrideWithFiles: overrideWithFiles,
+            #mergeWith: mergeWith,
+            #isOptional: isOptional,
+            #parser: parser,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
   void loadFromString({
@@ -128,23 +170,29 @@ class MockDotEnv extends _i1.Mock implements _i2.DotEnv {
     Map<String, String>? mergeWith = const {},
     bool? isOptional = false,
     _i5.Parser? parser = const _i5.Parser(),
-  }) => super.noSuchMethod(
-    Invocation.method(#loadFromString, [], {
-      #envString: envString,
-      #overrideWith: overrideWith,
-      #mergeWith: mergeWith,
-      #isOptional: isOptional,
-      #parser: parser,
-    }),
-    returnValueForMissingStub: null,
-  );
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #loadFromString,
+          [],
+          {
+            #envString: envString,
+            #overrideWith: overrideWith,
+            #mergeWith: mergeWith,
+            #isOptional: isOptional,
+            #parser: parser,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  bool isEveryDefined(Iterable<String>? vars) =>
-      (super.noSuchMethod(
-            Invocation.method(#isEveryDefined, [vars]),
-            returnValue: false,
-            returnValueForMissingStub: false,
-          )
-          as bool);
+  bool isEveryDefined(Iterable<String>? vars) => (super.noSuchMethod(
+        Invocation.method(
+          #isEveryDefined,
+          [vars],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 }
