@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -51,6 +53,24 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.setVehicleSpecsExpansionState(true),
       expect: () => [cubit.state.copyWith(isVehicleSpecsExpanded: true)],
+    );
+
+    // Guards the contract between how color names are stored (title case, e.g. 'Light Blue')
+    // and how the cubit resolves them against the camelCase color map keys ('lightBlue').
+    // If either side changes its format, this test will fail.
+    blocTest<DetailsPageCubit, DetailsPageState>(
+      'loadData resolves title-case color name to the correct Color',
+      build: () {
+        const lightBlue = Color(0xFF03A9F4);
+        final car = CarEntity.empty().copyWith(carId: '1', color: 'Light Blue');
+        when(mockGetCarByIdUseCase.call('1')).thenReturn(car);
+        when(mockGetCarColorsUseCase.call()).thenReturn({'lightBlue': lightBlue});
+        return cubit;
+      },
+      act: (cubit) => cubit.loadData('1'),
+      expect: () => [
+        isA<DetailsPageState>().having((s) => s.carColor, 'carColor', const Color(0xFF03A9F4)),
+      ],
     );
   });
 }
