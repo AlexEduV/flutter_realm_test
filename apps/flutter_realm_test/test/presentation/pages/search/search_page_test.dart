@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
@@ -96,6 +96,7 @@ void main() {
 
     when(searchCubit.stream).thenAnswer((_) => const Stream.empty());
     when(searchCubit.getSelectedFilterCount()).thenReturn(0);
+    when(searchCubit.getFilteredResults(searchState?.allResults ?? [])).thenReturn(searchState?.allResults ?? []);
 
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(userCubit.stream).thenAnswer(
@@ -169,7 +170,7 @@ void main() {
     final userCubit = MockUserDataCubit();
     final appLocalisationsCubit = MockAppLocalisationsCubit();
 
-    when(searchCubit.state).thenReturn(const SearchPageState(results: []));
+    when(searchCubit.state).thenReturn(const SearchPageState(allResults: []));
     when(userCubit.state).thenReturn(const UserDataState());
 
     await tester.pumpWidget(
@@ -205,7 +206,7 @@ void main() {
         searchCubit: searchCubit,
         userCubit: userCubit,
         appLocalisationsCubit: appLocalisationsCubit,
-        searchState: SearchPageState(results: [car], isLoading: false),
+        searchState: SearchPageState(allResults: [car], isLoading: false),
       ),
     );
 

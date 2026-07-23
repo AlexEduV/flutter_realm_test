@@ -15,7 +15,6 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$SearchPageState {
-  List<CarEntity> get results;
   List<CarEntity> get allResults;
   CarType get currentSelectedType;
   bool get isLoading;
@@ -53,7 +52,6 @@ mixin _$SearchPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SearchPageState &&
-            const DeepCollectionEquality().equals(other.results, results) &&
             const DeepCollectionEquality()
                 .equals(other.allResults, allResults) &&
             (identical(other.currentSelectedType, currentSelectedType) ||
@@ -107,7 +105,6 @@ mixin _$SearchPageState {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(results),
         const DeepCollectionEquality().hash(allResults),
         currentSelectedType,
         isLoading,
@@ -135,7 +132,7 @@ mixin _$SearchPageState {
 
   @override
   String toString() {
-    return 'SearchPageState(results: $results, allResults: $allResults, currentSelectedType: $currentSelectedType, isLoading: $isLoading, allModels: $allModels, selectedModels: $selectedModels, selectedMinYear: $selectedMinYear, selectedMaxYear: $selectedMaxYear, allColors: $allColors, selectedColors: $selectedColors, minYearError: $minYearError, maxYearError: $maxYearError, selectedBodyTypes: $selectedBodyTypes, selectedMinPrice: $selectedMinPrice, selectedMaxPrice: $selectedMaxPrice, minPriceError: $minPriceError, maxPriceError: $maxPriceError, minYearFieldParamsModel: $minYearFieldParamsModel, maxYearFieldParamsModel: $maxYearFieldParamsModel, minPriceFieldParamsModel: $minPriceFieldParamsModel, maxPriceFieldParamsModel: $maxPriceFieldParamsModel, selectedFuelTypes: $selectedFuelTypes, selectedTransmissionTypes: $selectedTransmissionTypes, drawerOpened: $drawerOpened)';
+    return 'SearchPageState(allResults: $allResults, currentSelectedType: $currentSelectedType, isLoading: $isLoading, allModels: $allModels, selectedModels: $selectedModels, selectedMinYear: $selectedMinYear, selectedMaxYear: $selectedMaxYear, allColors: $allColors, selectedColors: $selectedColors, minYearError: $minYearError, maxYearError: $maxYearError, selectedBodyTypes: $selectedBodyTypes, selectedMinPrice: $selectedMinPrice, selectedMaxPrice: $selectedMaxPrice, minPriceError: $minPriceError, maxPriceError: $maxPriceError, minYearFieldParamsModel: $minYearFieldParamsModel, maxYearFieldParamsModel: $maxYearFieldParamsModel, minPriceFieldParamsModel: $minPriceFieldParamsModel, maxPriceFieldParamsModel: $maxPriceFieldParamsModel, selectedFuelTypes: $selectedFuelTypes, selectedTransmissionTypes: $selectedTransmissionTypes, drawerOpened: $drawerOpened)';
   }
 }
 
@@ -146,8 +143,7 @@ abstract mixin class $SearchPageStateCopyWith<$Res> {
       _$SearchPageStateCopyWithImpl;
   @useResult
   $Res call(
-      {List<CarEntity> results,
-      List<CarEntity> allResults,
+      {List<CarEntity> allResults,
       CarType currentSelectedType,
       bool isLoading,
       Map<String, List<String>> allModels,
@@ -185,7 +181,6 @@ class _$SearchPageStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? results = null,
     Object? allResults = null,
     Object? currentSelectedType = null,
     Object? isLoading = null,
@@ -211,10 +206,6 @@ class _$SearchPageStateCopyWithImpl<$Res>
     Object? drawerOpened = null,
   }) {
     return _then(_self.copyWith(
-      results: null == results
-          ? _self.results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<CarEntity>,
       allResults: null == allResults
           ? _self.allResults
           : allResults // ignore: cast_nullable_to_non_nullable
@@ -315,8 +306,7 @@ class _$SearchPageStateCopyWithImpl<$Res>
 
 class _SearchPageState implements SearchPageState {
   const _SearchPageState(
-      {final List<CarEntity> results = const [],
-      final List<CarEntity> allResults = const [],
+      {final List<CarEntity> allResults = const [],
       this.currentSelectedType = CarType.car,
       this.isLoading = false,
       final Map<String, List<String>> allModels = const {},
@@ -339,8 +329,7 @@ class _SearchPageState implements SearchPageState {
       final List<String> selectedFuelTypes = const [],
       final List<String> selectedTransmissionTypes = const [],
       this.drawerOpened = SearchDrawerType.empty})
-      : _results = results,
-        _allResults = allResults,
+      : _allResults = allResults,
         _allModels = allModels,
         _selectedModels = selectedModels,
         _allColors = allColors,
@@ -348,15 +337,6 @@ class _SearchPageState implements SearchPageState {
         _selectedBodyTypes = selectedBodyTypes,
         _selectedFuelTypes = selectedFuelTypes,
         _selectedTransmissionTypes = selectedTransmissionTypes;
-
-  final List<CarEntity> _results;
-  @override
-  @JsonKey()
-  List<CarEntity> get results {
-    if (_results is EqualUnmodifiableListView) return _results;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_results);
-  }
 
   final List<CarEntity> _allResults;
   @override
@@ -480,7 +460,6 @@ class _SearchPageState implements SearchPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SearchPageState &&
-            const DeepCollectionEquality().equals(other._results, _results) &&
             const DeepCollectionEquality()
                 .equals(other._allResults, _allResults) &&
             (identical(other.currentSelectedType, currentSelectedType) ||
@@ -536,7 +515,6 @@ class _SearchPageState implements SearchPageState {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        const DeepCollectionEquality().hash(_results),
         const DeepCollectionEquality().hash(_allResults),
         currentSelectedType,
         isLoading,
@@ -564,7 +542,7 @@ class _SearchPageState implements SearchPageState {
 
   @override
   String toString() {
-    return 'SearchPageState(results: $results, allResults: $allResults, currentSelectedType: $currentSelectedType, isLoading: $isLoading, allModels: $allModels, selectedModels: $selectedModels, selectedMinYear: $selectedMinYear, selectedMaxYear: $selectedMaxYear, allColors: $allColors, selectedColors: $selectedColors, minYearError: $minYearError, maxYearError: $maxYearError, selectedBodyTypes: $selectedBodyTypes, selectedMinPrice: $selectedMinPrice, selectedMaxPrice: $selectedMaxPrice, minPriceError: $minPriceError, maxPriceError: $maxPriceError, minYearFieldParamsModel: $minYearFieldParamsModel, maxYearFieldParamsModel: $maxYearFieldParamsModel, minPriceFieldParamsModel: $minPriceFieldParamsModel, maxPriceFieldParamsModel: $maxPriceFieldParamsModel, selectedFuelTypes: $selectedFuelTypes, selectedTransmissionTypes: $selectedTransmissionTypes, drawerOpened: $drawerOpened)';
+    return 'SearchPageState(allResults: $allResults, currentSelectedType: $currentSelectedType, isLoading: $isLoading, allModels: $allModels, selectedModels: $selectedModels, selectedMinYear: $selectedMinYear, selectedMaxYear: $selectedMaxYear, allColors: $allColors, selectedColors: $selectedColors, minYearError: $minYearError, maxYearError: $maxYearError, selectedBodyTypes: $selectedBodyTypes, selectedMinPrice: $selectedMinPrice, selectedMaxPrice: $selectedMaxPrice, minPriceError: $minPriceError, maxPriceError: $maxPriceError, minYearFieldParamsModel: $minYearFieldParamsModel, maxYearFieldParamsModel: $maxYearFieldParamsModel, minPriceFieldParamsModel: $minPriceFieldParamsModel, maxPriceFieldParamsModel: $maxPriceFieldParamsModel, selectedFuelTypes: $selectedFuelTypes, selectedTransmissionTypes: $selectedTransmissionTypes, drawerOpened: $drawerOpened)';
   }
 }
 
@@ -577,8 +555,7 @@ abstract mixin class _$SearchPageStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<CarEntity> results,
-      List<CarEntity> allResults,
+      {List<CarEntity> allResults,
       CarType currentSelectedType,
       bool isLoading,
       Map<String, List<String>> allModels,
@@ -616,7 +593,6 @@ class __$SearchPageStateCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? results = null,
     Object? allResults = null,
     Object? currentSelectedType = null,
     Object? isLoading = null,
@@ -642,10 +618,6 @@ class __$SearchPageStateCopyWithImpl<$Res>
     Object? drawerOpened = null,
   }) {
     return _then(_SearchPageState(
-      results: null == results
-          ? _self._results
-          : results // ignore: cast_nullable_to_non_nullable
-              as List<CarEntity>,
       allResults: null == allResults
           ? _self._allResults
           : allResults // ignore: cast_nullable_to_non_nullable

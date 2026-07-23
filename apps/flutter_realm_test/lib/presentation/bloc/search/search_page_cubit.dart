@@ -68,27 +68,23 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void loadData() {
     emit(state.copyWith(isLoading: true));
 
-    final results = getFilteredResults(_getAllCarsUseCase.call());
+    final allCars = _getAllCarsUseCase.call();
     final currentType = state.currentSelectedType;
 
-    updateModelListFromEntities(results, currentType);
-    updateColorListFromEntities(results, currentType);
+    updateModelListFromEntities(allCars, currentType);
+    updateColorListFromEntities(allCars, currentType);
 
-    updateSelectedMinYear(getMinYearFromEntities(results, currentType));
-    updateSelectedMaxYear(getMaxYearFromEntities(results, currentType));
+    updateSelectedMinYear(getMinYearFromEntities(allCars, currentType));
+    updateSelectedMaxYear(getMaxYearFromEntities(allCars, currentType));
 
-    updateSelectedMinPrice(getMinPriceFromEntities(results, currentType));
-    updateSelectedMaxPrice(getMaxPriceFromEntities(results, currentType));
+    updateSelectedMinPrice(getMinPriceFromEntities(allCars, currentType));
+    updateSelectedMaxPrice(getMaxPriceFromEntities(allCars, currentType));
 
-    emit(state.copyWith(allResults: results, isLoading: false));
+    emit(state.copyWith(allResults: allCars, isLoading: false));
 
     _carSubscription?.cancel();
     _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
-      final results = getFilteredResults(entities);
-      emit(state.copyWith(results: results, allResults: entities));
-
-      //todo: maybe I should not use two identical lists for all and selected items;
-      // maybe use reference id list and full list. And get needed item by id.
+      emit(state.copyWith(allResults: entities));
     });
   }
 
@@ -151,21 +147,19 @@ class SearchPageCubit extends Cubit<SearchPageState> {
         return false;
       }
 
-      // Add more filters here as needed
       return true;
     }).toList();
   }
 
   void updateTypeSelection(CarType newType) {
-    //todo: maybe better to save Map<> for each type, so the user can easily switch between tabs
-    updateModelListFromEntities(state.results, newType);
-    updateColorListFromEntities(state.results, newType);
+    updateModelListFromEntities(state.allResults, newType);
+    updateColorListFromEntities(state.allResults, newType);
 
-    updateSelectedMinYear(getMinYearFromEntities(state.results, newType));
-    updateSelectedMaxYear(getMaxYearFromEntities(state.results, newType));
+    updateSelectedMinYear(getMinYearFromEntities(state.allResults, newType));
+    updateSelectedMaxYear(getMaxYearFromEntities(state.allResults, newType));
 
-    updateSelectedMinPrice(getMinPriceFromEntities(state.results, newType));
-    updateSelectedMaxPrice(getMaxPriceFromEntities(state.results, newType));
+    updateSelectedMinPrice(getMinPriceFromEntities(state.allResults, newType));
+    updateSelectedMaxPrice(getMaxPriceFromEntities(state.allResults, newType));
 
     emit(state.copyWith(currentSelectedType: newType, selectedModels: {}, selectedBodyTypes: []));
   }
@@ -247,139 +241,93 @@ class SearchPageCubit extends Cubit<SearchPageState> {
 
   void updateModelSelection(Map<String, List<String>> newList) {
     emit(state.copyWith(selectedModels: newList));
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void addManufacturerToSelection(String manufacturer) {
     final map = Map<String, List<String>>.from(state.selectedModels);
     map[manufacturer] = state.allModels[manufacturer] ?? [];
-
     emit(state.copyWith(selectedModels: map));
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void removeManufacturerFromSelection(String manufacturer) {
     final map = Map<String, List<String>>.from(state.selectedModels);
     map.remove(manufacturer);
-
     emit(state.copyWith(selectedModels: map));
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void addCarModelToSelection(String manufacturer, String model) {
     final map = Map<String, List<String>>.from(state.selectedModels);
-
     map.putIfAbsent(manufacturer, () => []);
     if (!map[manufacturer]!.contains(model)) {
       map[manufacturer]!.add(model);
     }
-
     emit(state.copyWith(selectedModels: map));
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void removeCarModelFromSelection(String manufacturer, String model) {
     final map = Map<String, List<String>>.from(state.selectedModels);
-
     if (map.containsKey(manufacturer)) {
       final models = List<String>.from(map[manufacturer]!);
       models.remove(model);
-
       if (models.isEmpty) {
         map.remove(manufacturer);
       } else {
         map[manufacturer] = models;
       }
     }
-
     emit(state.copyWith(selectedModels: map));
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void addCarColorToSelection(String color) {
-    final newSelection = List<String>.from(state.selectedColors)..add(color);
-    emit(state.copyWith(selectedColors: newSelection));
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
+    emit(state.copyWith(selectedColors: List<String>.from(state.selectedColors)..add(color)));
   }
 
   void removeCarColorFromSelection(String color) {
-    final newSelection = List<String>.from(state.selectedColors)..remove(color);
-    emit(state.copyWith(selectedColors: newSelection));
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
+    emit(state.copyWith(selectedColors: List<String>.from(state.selectedColors)..remove(color)));
   }
 
   void addBodyTypeToSelection(String bodyType) {
-    final newSelection = List<String>.from(state.selectedBodyTypes)..add(bodyType);
-    emit(state.copyWith(selectedBodyTypes: newSelection));
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
+    emit(state.copyWith(selectedBodyTypes: List<String>.from(state.selectedBodyTypes)..add(bodyType)));
   }
 
   void removeBodyTypeFromSelection(String bodyType) {
-    final newSelection = List<String>.from(state.selectedBodyTypes)..remove(bodyType);
-    emit(state.copyWith(selectedBodyTypes: newSelection));
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
+    emit(state.copyWith(selectedBodyTypes: List<String>.from(state.selectedBodyTypes)..remove(bodyType)));
   }
 
   void addFuelTypeToSelection(String fuelType) {
-    final newSelection = List<String>.from(state.selectedFuelTypes)..add(fuelType);
-    emit(state.copyWith(selectedFuelTypes: newSelection));
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
+    emit(state.copyWith(selectedFuelTypes: List<String>.from(state.selectedFuelTypes)..add(fuelType)));
   }
 
   void removeFuelTypeFromSelection(String fuelType) {
-    final newSelection = List<String>.from(state.selectedFuelTypes)..remove(fuelType);
-    emit(state.copyWith(selectedFuelTypes: newSelection));
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
+    emit(state.copyWith(selectedFuelTypes: List<String>.from(state.selectedFuelTypes)..remove(fuelType)));
   }
 
   void addTransmissionTypeToSelection(String transmissionType) {
-    final newSelection = List<String>.from(state.selectedTransmissionTypes)..add(transmissionType);
-    emit(state.copyWith(selectedTransmissionTypes: newSelection));
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
+    emit(state.copyWith(selectedTransmissionTypes: List<String>.from(state.selectedTransmissionTypes)..add(transmissionType)));
   }
 
   void removeTransmissionTypeFromSelection(String transmissionType) {
-    final newSelection = List<String>.from(state.selectedTransmissionTypes)
-      ..remove(transmissionType);
-    emit(state.copyWith(selectedTransmissionTypes: newSelection));
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
+    emit(state.copyWith(selectedTransmissionTypes: List<String>.from(state.selectedTransmissionTypes)..remove(transmissionType)));
   }
 
   void updateSelectedMinYear(String newValue) {
     emit(state.copyWith(selectedMinYear: newValue));
     validateYears(state.selectedMinYear, state.selectedMaxYear);
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void updateSelectedMaxYear(String newValue) {
     emit(state.copyWith(selectedMaxYear: newValue));
     validateYears(state.selectedMinYear, state.selectedMaxYear);
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void updateSelectedMinPrice(String newValue) {
     emit(state.copyWith(selectedMinPrice: newValue));
     validatePrices(state.selectedMinPrice, state.selectedMaxPrice);
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void updateSelectedMaxPrice(String newValue) {
     emit(state.copyWith(selectedMaxPrice: newValue));
     validatePrices(state.selectedMinPrice, state.selectedMaxPrice);
-
-    emit(state.copyWith(results: getFilteredResults(state.allResults)));
   }
 
   void openDrawer(SearchDrawerType type) {
