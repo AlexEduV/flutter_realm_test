@@ -48,7 +48,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   final GetUserByEmailUseCase _getUserByEmailUseCase;
   final DeleteCarByIdUseCase _deleteCarByIdUseCase;
 
-  late UserEntity user;
+  UserEntity user = UserEntity.empty();
   final BaseLogger _logger;
   final AppLocalisationsCubit _appLocalisationsCubit;
 

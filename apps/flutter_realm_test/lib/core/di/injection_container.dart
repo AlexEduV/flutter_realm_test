@@ -323,7 +323,9 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
 
-  serviceLocator.registerFactory(() => DetailsPageCubit(serviceLocator(), serviceLocator()));
+  serviceLocator.registerFactory(
+    () => DetailsPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton(() => RequestLocationPermissionUseCase(serviceLocator()));
 

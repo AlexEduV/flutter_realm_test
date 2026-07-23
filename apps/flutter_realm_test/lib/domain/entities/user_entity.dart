@@ -93,6 +93,10 @@ class UserEntity {
     ).copyWith(avatarImageSrc: owner.imageSrc);
   }
 
+  factory UserEntity.empty() {
+    return UserEntity.initial(userId: '', firstName: '', lastName: '', email: '', password: '');
+  }
+
   final String userId;
   final String firstName;
   final String lastName;

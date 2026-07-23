@@ -8,7 +8,6 @@ part 'details_page_state.freezed.dart';
 @freezed
 abstract class DetailsPageState with _$DetailsPageState {
   const factory DetailsPageState({
-    @Default(false) bool isLoading,
     @Default(true) bool isVehicleSpecsExpanded,
     CarEntity? car,
     Color? carColor,

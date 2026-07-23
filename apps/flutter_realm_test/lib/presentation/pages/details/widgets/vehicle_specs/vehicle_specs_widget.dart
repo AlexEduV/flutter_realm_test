@@ -1,10 +1,9 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/num_extension.dart';
-import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs/widgets/vehicle_specs_content.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
@@ -13,9 +12,7 @@ import '../../../../../l10n/l10n_keys.dart';
 import '../../../../bloc/details/details_page_cubit.dart';
 
 class VehicleSpecsWidget extends StatelessWidget {
-  const VehicleSpecsWidget({required this.car, super.key});
-
-  final CarEntity car;
+  const VehicleSpecsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +38,6 @@ class VehicleSpecsWidget extends StatelessWidget {
 
               BlocBuilder<DetailsPageCubit, DetailsPageState>(
                 buildWhen: (previous, current) =>
-                    previous.isLoading != current.isLoading ||
                     previous.isVehicleSpecsExpanded != current.isVehicleSpecsExpanded,
                 builder: (context, state) {
                   return AppSemantics(
@@ -79,6 +75,10 @@ class VehicleSpecsWidget extends StatelessWidget {
 
           BlocBuilder<DetailsPageCubit, DetailsPageState>(
             builder: (context, state) {
+              final car = state.car;
+
+              if (car == null) return const SizedBox.shrink();
+
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
