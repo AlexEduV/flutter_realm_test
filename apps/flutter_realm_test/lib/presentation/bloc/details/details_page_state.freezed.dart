@@ -15,7 +15,6 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$DetailsPageState {
-  bool get isLoading;
   bool get isVehicleSpecsExpanded;
   CarEntity? get car;
   Color? get carColor;
@@ -33,8 +32,6 @@ mixin _$DetailsPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is DetailsPageState &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
             (identical(other.isVehicleSpecsExpanded, isVehicleSpecsExpanded) ||
                 other.isVehicleSpecsExpanded == isVehicleSpecsExpanded) &&
             (identical(other.car, car) || other.car == car) &&
@@ -43,12 +40,12 @@ mixin _$DetailsPageState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, isVehicleSpecsExpanded, car, carColor);
+  int get hashCode =>
+      Object.hash(runtimeType, isVehicleSpecsExpanded, car, carColor);
 
   @override
   String toString() {
-    return 'DetailsPageState(isLoading: $isLoading, isVehicleSpecsExpanded: $isVehicleSpecsExpanded, car: $car, carColor: $carColor)';
+    return 'DetailsPageState(isVehicleSpecsExpanded: $isVehicleSpecsExpanded, car: $car, carColor: $carColor)';
   }
 }
 
@@ -58,11 +55,7 @@ abstract mixin class $DetailsPageStateCopyWith<$Res> {
           DetailsPageState value, $Res Function(DetailsPageState) _then) =
       _$DetailsPageStateCopyWithImpl;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isVehicleSpecsExpanded,
-      CarEntity? car,
-      Color? carColor});
+  $Res call({bool isVehicleSpecsExpanded, CarEntity? car, Color? carColor});
 }
 
 /// @nodoc
@@ -78,16 +71,11 @@ class _$DetailsPageStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
     Object? isVehicleSpecsExpanded = null,
     Object? car = freezed,
     Object? carColor = freezed,
   }) {
     return _then(_self.copyWith(
-      isLoading: null == isLoading
-          ? _self.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       isVehicleSpecsExpanded: null == isVehicleSpecsExpanded
           ? _self.isVehicleSpecsExpanded
           : isVehicleSpecsExpanded // ignore: cast_nullable_to_non_nullable
@@ -108,14 +96,8 @@ class _$DetailsPageStateCopyWithImpl<$Res>
 
 class _DetailsPageState implements DetailsPageState {
   const _DetailsPageState(
-      {this.isLoading = false,
-      this.isVehicleSpecsExpanded = true,
-      this.car,
-      this.carColor});
+      {this.isVehicleSpecsExpanded = true, this.car, this.carColor});
 
-  @override
-  @JsonKey()
-  final bool isLoading;
   @override
   @JsonKey()
   final bool isVehicleSpecsExpanded;
@@ -137,8 +119,6 @@ class _DetailsPageState implements DetailsPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DetailsPageState &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
             (identical(other.isVehicleSpecsExpanded, isVehicleSpecsExpanded) ||
                 other.isVehicleSpecsExpanded == isVehicleSpecsExpanded) &&
             (identical(other.car, car) || other.car == car) &&
@@ -147,12 +127,12 @@ class _DetailsPageState implements DetailsPageState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, isVehicleSpecsExpanded, car, carColor);
+  int get hashCode =>
+      Object.hash(runtimeType, isVehicleSpecsExpanded, car, carColor);
 
   @override
   String toString() {
-    return 'DetailsPageState(isLoading: $isLoading, isVehicleSpecsExpanded: $isVehicleSpecsExpanded, car: $car, carColor: $carColor)';
+    return 'DetailsPageState(isVehicleSpecsExpanded: $isVehicleSpecsExpanded, car: $car, carColor: $carColor)';
   }
 }
 
@@ -164,11 +144,7 @@ abstract mixin class _$DetailsPageStateCopyWith<$Res>
       __$DetailsPageStateCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isVehicleSpecsExpanded,
-      CarEntity? car,
-      Color? carColor});
+  $Res call({bool isVehicleSpecsExpanded, CarEntity? car, Color? carColor});
 }
 
 /// @nodoc
@@ -184,16 +160,11 @@ class __$DetailsPageStateCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? isLoading = null,
     Object? isVehicleSpecsExpanded = null,
     Object? car = freezed,
     Object? carColor = freezed,
   }) {
     return _then(_DetailsPageState(
-      isLoading: null == isLoading
-          ? _self.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       isVehicleSpecsExpanded: null == isVehicleSpecsExpanded
           ? _self.isVehicleSpecsExpanded
           : isVehicleSpecsExpanded // ignore: cast_nullable_to_non_nullable

@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/num_extension.dart';
@@ -41,7 +41,6 @@ class VehicleSpecsWidget extends StatelessWidget {
 
               BlocBuilder<DetailsPageCubit, DetailsPageState>(
                 buildWhen: (previous, current) =>
-                    previous.isLoading != current.isLoading ||
                     previous.isVehicleSpecsExpanded != current.isVehicleSpecsExpanded,
                 builder: (context, state) {
                   return AppSemantics(

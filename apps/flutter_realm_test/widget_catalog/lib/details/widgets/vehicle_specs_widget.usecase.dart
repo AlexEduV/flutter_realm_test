@@ -1,7 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mockito/mockito.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -15,11 +15,8 @@ class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
   MockDetailsPageCubit(this.isExpanded);
 
   @override
-  DetailsPageState get state => DetailsPageState(
-    isLoading: false,
-    isVehicleSpecsExpanded: isExpanded,
-    carColor: Colors.white,
-  );
+  DetailsPageState get state =>
+      DetailsPageState(isVehicleSpecsExpanded: isExpanded, carColor: Colors.white);
 
   @override
   Stream<DetailsPageState> get stream => const Stream.empty();
@@ -39,9 +36,7 @@ Widget buildVehicleSpecsWidgetUseCase(BuildContext context) {
     });
 
   return MultiBlocProvider(
-    providers: [
-      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
-    ],
+    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
       child: Column(
