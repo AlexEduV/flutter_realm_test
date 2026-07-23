@@ -6,7 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/data_sources/local/url_launch_local_data_source.dart'
+import 'package:test_flutter_project/domain/services/external_link_service.dart'
     as _i2;
 
 // ignore_for_file: type=lint
@@ -23,11 +23,11 @@ import 'package:test_flutter_project/domain/data_sources/local/url_launch_local_
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [UrlLaunchLocalDataSource].
+/// A class which mocks [ExternalLinkService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUrlLaunchLocalDataSource extends _i1.Mock
-    implements _i2.UrlLaunchLocalDataSource {
+class MockExternalLinkService extends _i1.Mock
+    implements _i2.ExternalLinkService {
   @override
   _i3.Future<void> openUrl(String? url) => (super.noSuchMethod(
         Invocation.method(

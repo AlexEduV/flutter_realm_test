@@ -1,11 +1,11 @@
 import 'package:test_flutter_project/common/logger/base_logger.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../common/constants/api_constants.dart';
-import '../../../domain/data_sources/local/url_launch_local_data_source.dart';
+import '../../common/constants/api_constants.dart';
+import '../../domain/services/external_link_service.dart';
 
-class UrlLaunchLocalDataSourceImpl implements UrlLaunchLocalDataSource {
-  UrlLaunchLocalDataSourceImpl(this._logger);
+class ExternalLinkServiceImpl implements ExternalLinkService {
+  ExternalLinkServiceImpl(this._logger);
 
   final BaseLogger _logger;
 

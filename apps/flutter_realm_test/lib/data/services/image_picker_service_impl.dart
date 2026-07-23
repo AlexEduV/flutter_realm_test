@@ -1,8 +1,8 @@
 import 'package:image_picker/image_picker.dart';
-import 'package:test_flutter_project/domain/data_sources/local/image_picker_local_data_source.dart';
+import 'package:test_flutter_project/domain/services/image_picker_service.dart';
 
-class ImagePickerLocalDataSourceImpl implements ImagePickerLocalDataSource {
-  ImagePickerLocalDataSourceImpl(this._imagePicker);
+class ImagePickerServiceImpl implements ImagePickerService {
+  ImagePickerServiceImpl(this._imagePicker);
 
   final ImagePicker _imagePicker;
 
