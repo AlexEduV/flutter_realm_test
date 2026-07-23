@@ -1,7 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/api_constants.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -12,7 +12,6 @@ import 'package:test_flutter_project/presentation/pages/details/widgets/owner_wi
 import 'package:test_flutter_project/presentation/pages/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
-import '../../../core/di/injection_container.dart';
 import '../../../domain/models/share_params_model.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../widgets/app_semantics.dart';
@@ -71,7 +70,7 @@ class _DetailsPageState extends State<DetailsPage> {
               onPressed: () async {
                 final car = context.read<DetailsPageCubit>().state.car;
 
-                await serviceLocator<ShareCubit>().share(
+                await context.read<ShareCubit>().share(
                   ShareParamsModel(
                     title: '${car?.manufacturer} ${car?.model} ${car?.year}',
                     text: '${ApiConstants.webHost}cars/?carId=${car?.carId}',
