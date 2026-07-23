@@ -211,6 +211,7 @@ void main() {
       ),
     );
     when(mockCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(mockCubit.validateEngineVolume(any, any)).thenReturn(true);
     when(mockCubit.insertItem()).thenReturn([]);
     when(mockExplorePageCubit.updateCars(any)).thenReturn(null);
     when(mockExplorePageCubit.state).thenReturn(const ExplorePageState());
