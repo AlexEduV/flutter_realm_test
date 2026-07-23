@@ -125,7 +125,6 @@ class _DetailsPageState extends State<DetailsPage> {
       body: BlocBuilder<DetailsPageCubit, DetailsPageState>(
         builder: (context, state) {
           final car = state.car;
-          final user = context.read<UserDataCubit>().user;
 
           return SingleChildScrollView(
             child: Column(
@@ -202,7 +201,18 @@ class _DetailsPageState extends State<DetailsPage> {
 
                       const SizedBox(height: AppDimensions.minorL),
 
-                      if (car != null) ...[OwnerWidget(car: car, user: user)],
+                      if (car != null) ...[
+                        BlocBuilder<UserDataCubit, UserDataState>(
+                          buildWhen: (previous, current) =>
+                              previous.lastSeenCar != current.lastSeenCar ||
+                              previous.favoriteIds != current.favoriteIds ||
+                              previous.email != current.email,
+                          builder: (context, state) {
+                            final user = context.read<UserDataCubit>().user;
+                            return OwnerWidget(car: car, user: user);
+                          },
+                        ),
+                      ],
                     ],
                   ),
                 ),
