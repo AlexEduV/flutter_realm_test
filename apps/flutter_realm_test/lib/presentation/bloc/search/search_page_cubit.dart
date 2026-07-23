@@ -157,7 +157,6 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   void updateTypeSelection(CarType newType) {
-    //todo: maybe better to save Map<> for each type, so the user can easily switch between tabs
     updateModelListFromEntities(state.results, newType);
     updateColorListFromEntities(state.results, newType);
 
