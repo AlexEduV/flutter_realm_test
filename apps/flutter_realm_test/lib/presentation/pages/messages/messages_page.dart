@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
@@ -17,7 +17,6 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_ca
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
-import 'package:test_flutter_project/presentation/controllers/inline_style_text_controller.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/date_divider.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
@@ -26,6 +25,7 @@ import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../utils/date_formatter.dart';
+import '../../../utils/inline_style_parser.dart';
 
 class MessagesPage extends StatefulWidget {
   const MessagesPage({required this.conversationId, super.key});
@@ -39,7 +39,7 @@ class MessagesPage extends StatefulWidget {
 class _MessagesPageState extends State<MessagesPage> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
-  final messageInputTextController = InlineStyleTextController();
+  final messageInputTextController = _InlineStyleTextController();
   final messageInputFocusNode = FocusNode();
 
   final listViewScrollController = ScrollController();
@@ -226,5 +226,18 @@ class _MessagesPageState extends State<MessagesPage> {
       controller.jumpTo(minExtent);
       return;
     }
+  }
+}
+
+class _InlineStyleTextController extends TextEditingController {
+  _InlineStyleTextController();
+
+  @override
+  TextSpan buildTextSpan({
+    required BuildContext context,
+    required bool withComposing,
+    TextStyle? style,
+  }) {
+    return TextSpan(style: style, children: parseInlineStyles(text));
   }
 }
