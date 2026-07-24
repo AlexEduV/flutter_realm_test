@@ -1,4 +1,7 @@
 <project version="4">
+  <component name="DartProjectSettings">
+    <option name="sdk" value="$PROJECT_DIR$/../../.fvm/flutter_sdk/bin/cache/dart-sdk" />
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
