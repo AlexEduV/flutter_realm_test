@@ -1,7 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
-
 class AppConstants {
   static const int homeTabExplore = 0;
   static const int homeTabFavorites = 1;
@@ -12,7 +8,4 @@ class AppConstants {
 
   static const bool showSemantics = false;
   static const bool showNetworkLogs = true;
-
-  //todo: remove this
-  static final bool kIsTest = !kIsWeb && Platform.environment.containsKey('FLUTTER_TEST');
 }
