@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,10 +17,14 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart
 import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 
 import '../../common/extensions/context_extension_test.mocks.dart';
+import '../../common/fakes/image_fakes.dart';
 import '../../utils/app_router_test.mocks.dart';
 import '../pages/messages/messages_page_test.mocks.dart';
 
 void main() {
+  setUp(() => HttpOverrides.global = MockHttpOverrides());
+  tearDown(() => HttpOverrides.global = null);
+
   Widget buildTestableWidget({
     required MessagesPageCubit messagesCubit,
     required InboxPageCubit inboxCubit,
@@ -112,13 +118,6 @@ void main() {
   });
 
   testWidgets('renders GIF grid', (WidgetTester tester) async {
-    final originalError = FlutterError.onError;
-    FlutterError.onError = (details) {
-      if (details.library == 'image resource service') return;
-      originalError?.call(details);
-    };
-    addTearDown(() => FlutterError.onError = originalError);
-
     final messagesCubit = MockMessagesPageCubit();
     final inboxCubit = MockInboxPageCubit();
     final userCubit = MockUserDataCubit();
@@ -153,13 +152,6 @@ void main() {
   });
 
   testWidgets('tapping a GIF calls sendMessage and updateSelectedGif', (WidgetTester tester) async {
-    final originalError = FlutterError.onError;
-    FlutterError.onError = (details) {
-      if (details.library == 'image resource service') return;
-      originalError?.call(details);
-    };
-    addTearDown(() => FlutterError.onError = originalError);
-
     final messagesCubit = MockMessagesPageCubit();
     final inboxCubit = MockInboxPageCubit();
     final userCubit = MockUserDataCubit();

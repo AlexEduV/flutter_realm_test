@@ -23,6 +23,7 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bo
 import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
+import '../common/fakes/image_fakes.dart';
 import '../presentation/pages/details/widgets/vehicle_specs_widget_test.mocks.dart';
 import '../presentation/pages/messages/messages_page_test.mocks.dart';
 import '../presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog_test.mocks.dart';
@@ -151,27 +152,23 @@ void main() {
   });
 
   testWidgets('showCountryPicker shows CountryPickerBottomSheet and items', (tester) async {
-    final originalError = FlutterError.onError;
-    FlutterError.onError = (details) {
-      if (details.library == 'image resource service') return;
-      originalError?.call(details);
-    };
-    addTearDown(() => FlutterError.onError = originalError);
-
     final items = [
       const RegionUiModel(code: 'US', countryName: 'United States'),
       const RegionUiModel(code: 'IT', countryName: 'Italy'),
     ];
 
     await tester.pumpWidget(
-      MaterialApp(
-        home: Builder(
-          builder: (context) {
-            return ElevatedButton(
-              onPressed: () => DialogHelper.showCountryPicker(context, items, 0),
-              child: const Text('Open'),
-            );
-          },
+      DefaultAssetBundle(
+        bundle: FakeAssetBundle(),
+        child: MaterialApp(
+          home: Builder(
+            builder: (context) {
+              return ElevatedButton(
+                onPressed: () => DialogHelper.showCountryPicker(context, items, 0),
+                child: const Text('Open'),
+              );
+            },
+          ),
         ),
       ),
     );
