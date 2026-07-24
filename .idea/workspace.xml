@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="863b5efb-1404-47d7-80e7-279b2e403afe" name="Changes" comment="fixing ide config; the melos suite is now working with build runner through melos run build --scope=test_flutter_project" />
+    <list default="true" id="863b5efb-1404-47d7-80e7-279b2e403afe" name="Changes" comment="updated makefile;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,11 +94,20 @@
       <option name="project" value="LOCAL" />
       <updated>1784891221168</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updated makefile;">
+      <option name="closed" value="true" />
+      <created>1784891534598</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1784891534598</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixing ide config; the melos suite is now working with build runner through melos run build --scope=test_flutter_project" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing ide config; the melos suite is now working with build runner through melos run build --scope=test_flutter_project" />
+    <MESSAGE value="updated makefile;" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated makefile;" />
   </component>
 </project>
