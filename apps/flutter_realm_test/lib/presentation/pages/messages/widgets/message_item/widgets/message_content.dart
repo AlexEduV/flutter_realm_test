@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/extensions/text_style_extension.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
@@ -7,7 +7,7 @@ import 'package:test_flutter_project/presentation/pages/messages/widgets/message
 import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_gif_content.dart';
 
 import '../../../../../../common/constants/app_semantics_labels.dart';
-import '../../../../../controllers/inline_style_text_controller.dart';
+import '../../../../../../utils/inline_style_parser.dart';
 import '../../../../../widgets/app_semantics.dart';
 
 class MessageContent extends StatelessWidget {
@@ -66,7 +66,7 @@ class MessageContent extends StatelessWidget {
     }
 
     return Text.rich(
-      TextSpan(children: InlineStyleTextController.parseText(message)),
+      TextSpan(children: parseInlineStyles(message)),
       style: isMyMessage ? const TextStyle().whiten() : null,
     );
   }

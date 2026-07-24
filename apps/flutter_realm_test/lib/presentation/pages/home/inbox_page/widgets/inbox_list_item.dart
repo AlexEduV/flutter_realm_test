@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
@@ -10,11 +10,11 @@ import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/controllers/inline_style_text_controller.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
+import 'package:test_flutter_project/utils/inline_style_parser.dart';
 
 import '../../../../widgets/app_badge.dart';
 
@@ -69,7 +69,7 @@ class InboxListItem extends StatelessWidget {
                           ExcludeSemantics(
                             child: Text.rich(
                               TextSpan(
-                                children: InlineStyleTextController.parseText(
+                                children: parseInlineStyles(
                                   '${formatMessageText(message?.payload, context)}\n',
                                 ),
                               ),
