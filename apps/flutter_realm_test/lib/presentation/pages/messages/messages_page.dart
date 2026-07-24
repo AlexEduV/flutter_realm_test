@@ -39,7 +39,7 @@ class MessagesPage extends StatefulWidget {
 class _MessagesPageState extends State<MessagesPage> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
-  final messageInputTextController = InlineStyleTextController();
+  final messageInputTextController = _InlineStyleTextController();
   final messageInputFocusNode = FocusNode();
 
   final listViewScrollController = ScrollController();
@@ -229,8 +229,8 @@ class _MessagesPageState extends State<MessagesPage> {
   }
 }
 
-class InlineStyleTextController extends TextEditingController {
-  InlineStyleTextController({super.text});
+class _InlineStyleTextController extends TextEditingController {
+  _InlineStyleTextController();
 
   @override
   TextSpan buildTextSpan({
