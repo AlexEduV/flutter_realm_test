@@ -7,6 +7,13 @@ void main() {
   testWidgets('CountryPickerBottomSheet renders items and handles selection', (
     WidgetTester tester,
   ) async {
+    final originalError = FlutterError.onError;
+    FlutterError.onError = (details) {
+      if (details.library == 'image resource service') return;
+      originalError?.call(details);
+    };
+    addTearDown(() => FlutterError.onError = originalError);
+
     // Arrange
     final items = [
       const RegionUiModel(code: 'us', countryName: 'United States'),

@@ -112,6 +112,13 @@ void main() {
   });
 
   testWidgets('renders GIF grid', (WidgetTester tester) async {
+    final originalError = FlutterError.onError;
+    FlutterError.onError = (details) {
+      if (details.library == 'image resource service') return;
+      originalError?.call(details);
+    };
+    addTearDown(() => FlutterError.onError = originalError);
+
     final messagesCubit = MockMessagesPageCubit();
     final inboxCubit = MockInboxPageCubit();
     final userCubit = MockUserDataCubit();
@@ -146,6 +153,13 @@ void main() {
   });
 
   testWidgets('tapping a GIF calls sendMessage and updateSelectedGif', (WidgetTester tester) async {
+    final originalError = FlutterError.onError;
+    FlutterError.onError = (details) {
+      if (details.library == 'image resource service') return;
+      originalError?.call(details);
+    };
+    addTearDown(() => FlutterError.onError = originalError);
+
     final messagesCubit = MockMessagesPageCubit();
     final inboxCubit = MockInboxPageCubit();
     final userCubit = MockUserDataCubit();

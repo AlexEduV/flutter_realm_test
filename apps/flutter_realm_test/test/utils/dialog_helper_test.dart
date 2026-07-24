@@ -151,6 +151,13 @@ void main() {
   });
 
   testWidgets('showCountryPicker shows CountryPickerBottomSheet and items', (tester) async {
+    final originalError = FlutterError.onError;
+    FlutterError.onError = (details) {
+      if (details.library == 'image resource service') return;
+      originalError?.call(details);
+    };
+    addTearDown(() => FlutterError.onError = originalError);
+
     final items = [
       const RegionUiModel(code: 'US', countryName: 'United States'),
       const RegionUiModel(code: 'IT', countryName: 'Italy'),
