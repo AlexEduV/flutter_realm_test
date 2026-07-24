@@ -22,6 +22,7 @@ dev_dependencies:
 dependency_overrides:
   analyzer: 7.3.0
   test_api: 0.7.10
+  test_core: 0.6.17
   dart_style: 2.3.7
   analyzer_plugin: 0.12.0
   build_runner: 2.4.9
@@ -34,6 +35,12 @@ melos:
     hello: echo "Hello from Melos"
     test: flutter test .
     analyse: dart analyze .
+    build:
+      run: dart run build_runner build --delete-conflicting-outputs
+      description: "Run build_runner from workspace root"
+    build:clean:
+      run: dart run build_runner clean
+      description: "Clean build_runner cache from workspace root"
     pods:clean:
       run: |
         melos exec --dir-exists="ios" -- \

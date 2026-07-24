@@ -1,3 +1,6 @@
+@Tags(['streams'])
+library;
+
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -50,131 +53,133 @@ void main() {
     images: [],
   );
 
-  setUpAll(() {
-    provideDummy<Car>(mockCar);
-  });
+  group('car_repository_impl tests', () {
+    setUpAll(() {
+      provideDummy<Car>(mockCar);
+    });
 
-  setUp(() {
-    apiService = MockCarRemoteDataSource();
-    localStorage = MockRealmLocalStorage();
-    repository = CarRepositoryImpl(localStorage, apiService);
-  });
+    setUp(() {
+      apiService = MockCarRemoteDataSource();
+      localStorage = MockRealmLocalStorage();
+      repository = CarRepositoryImpl(localStorage, apiService);
+    });
 
-  test('addCar calls realm.write and adds car', () {
-    final carEntity = MockCarEntity();
+    test('addCar calls realm.write and adds car', () {
+      final carEntity = MockCarEntity();
 
-    when(carEntity.carId).thenReturn('id');
-    when(carEntity.model).thenReturn('Model Y');
-    when(carEntity.manufacturer).thenReturn('Tesla');
-    when(carEntity.year).thenReturn('2007');
-    when(
-      carEntity.owner,
-    ).thenReturn(OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []));
-    when(carEntity.isVerified).thenReturn(true);
-    when(carEntity.promoType).thenReturn(null);
-    when(carEntity.mileage).thenReturn(12345);
-    when(carEntity.distanceTo).thenReturn(50);
-    when(carEntity.price).thenReturn(60000);
-    when(carEntity.type).thenReturn('car');
+      when(carEntity.carId).thenReturn('id');
+      when(carEntity.model).thenReturn('Model Y');
+      when(carEntity.manufacturer).thenReturn('Tesla');
+      when(carEntity.year).thenReturn('2007');
+      when(
+        carEntity.owner,
+      ).thenReturn(OwnerEntity(id: 'test', firstName: 'Elon', lastName: 'Musk', linkedItemIds: []));
+      when(carEntity.isVerified).thenReturn(true);
+      when(carEntity.promoType).thenReturn(null);
+      when(carEntity.mileage).thenReturn(12345);
+      when(carEntity.distanceTo).thenReturn(50);
+      when(carEntity.price).thenReturn(60000);
+      when(carEntity.type).thenReturn('car');
 
-    repository.addCar(carEntity);
+      repository.addCar(carEntity);
 
-    verify(localStorage.add(carEntity)).called(1);
-  });
+      verify(localStorage.add(carEntity)).called(1);
+    });
 
-  test('deleteCarById deletes car if found and valid', () {
-    final carId = '1';
-    final car = mockCar;
-    car.isChecked = true;
+    test('deleteCarById deletes car if found and valid', () {
+      final carId = '1';
+      final car = mockCar;
+      car.isChecked = true;
 
-    repository.deleteCarById(carId);
+      repository.deleteCarById(carId);
 
-    verify(localStorage.deleteById(any)).called(1);
-  });
+      verify(localStorage.deleteById(any)).called(1);
+    });
 
-  test('deleteCarById delegates to localStorage.deleteById', () {
-    final carId = '1';
+    test('deleteCarById delegates to localStorage.deleteById', () {
+      final carId = '1';
 
-    repository.deleteCarById(carId);
+      repository.deleteCarById(carId);
 
-    verify(localStorage.deleteById(carId)).called(1);
-  });
+      verify(localStorage.deleteById(carId)).called(1);
+    });
 
-  test('deleteAll calls realm.deleteAll<Car>()', () {
-    repository.deleteAll();
+    test('deleteAll calls realm.deleteAll<Car>()', () {
+      repository.deleteAll();
 
-    verify(localStorage.deleteAllCars()).called(1);
-  });
+      verify(localStorage.deleteAllCars()).called(1);
+    });
 
-  test('getCarById calls realm.getCarById()', () {
-    when(localStorage.getCarById('id')).thenReturn(CarEntity.empty());
+    test('getCarById calls realm.getCarById()', () {
+      when(localStorage.getCarById('id')).thenReturn(CarEntity.empty());
 
-    repository.getCarById('id');
+      repository.getCarById('id');
 
-    verify(localStorage.getCarById('id')).called(1);
-  });
+      verify(localStorage.getCarById('id')).called(1);
+    });
 
-  test('getMaxCarId calls realm.getMaxCarId()', () {
-    when(localStorage.getMaxCarId()).thenReturn(1);
+    test('getMaxCarId calls realm.getMaxCarId()', () {
+      when(localStorage.getMaxCarId()).thenReturn(1);
 
-    repository.getMaxCarId();
+      repository.getMaxCarId();
 
-    verify(localStorage.getMaxCarId()).called(1);
-  });
+      verify(localStorage.getMaxCarId()).called(1);
+    });
 
-  test('getAllCars returns mapped entities', () {
-    when(localStorage.getAll()).thenReturn([CarEntity.empty()]);
+    test('getAllCars returns mapped entities', () {
+      when(localStorage.getAll()).thenReturn([CarEntity.empty()]);
 
-    final result = repository.getAllCars();
+      final result = repository.getAllCars();
 
-    expect(result.length, 1);
-    expect(result.first, isA<CarEntity>());
-  });
+      expect(result.length, 1);
+      expect(result.first, isA<CarEntity>());
+    });
 
-  test('syncCars deletes all, fetches, and adds cars', () async {
-    final carDto = CarDto(
-      id: ObjectId(),
-      carId: 'testId',
-      manufacturer: 'Test Motors',
-      model: 'Model X',
-      year: '2010',
-      isVerified: false,
-      mileage: 100,
-      distanceTo: 0,
-      price: 2000,
-      type: 'car',
-      bodyType: 'sedan',
-      engine: const EngineEntity(type: 'gasoline'),
-      transmissionType: 'hybrid',
-      color: 'White',
-      images: [],
-      owner: OwnerEntity(id: 'test', firstName: 'James', lastName: 'Morrison', linkedItemIds: []),
-    );
+    test('syncCars deletes all, fetches, and adds cars', () async {
+      final carDto = CarDto(
+        id: ObjectId(),
+        carId: 'testId',
+        manufacturer: 'Test Motors',
+        model: 'Model X',
+        year: '2010',
+        isVerified: false,
+        mileage: 100,
+        distanceTo: 0,
+        price: 2000,
+        type: 'car',
+        bodyType: 'sedan',
+        engine: const EngineEntity(type: 'gasoline'),
+        transmissionType: 'hybrid',
+        color: 'White',
+        images: [],
+        owner: OwnerEntity(id: 'test', firstName: 'James', lastName: 'Morrison', linkedItemIds: []),
+      );
 
-    final carDtos = [carDto];
-    when(apiService.fetchCars()).thenAnswer((_) async => carDtos);
-    when(apiService.carStream).thenAnswer(
-      (_) => Stream.fromIterable([
-        [
-          CarDto(
-            id: ObjectId(),
-            carId: '1',
-            model: 'Model S',
-            manufacturer: 'Tesla',
-            isVerified: false,
-            type: CarType.car.name,
-            bodyType: BodyType.sedan.name,
-            engine: EngineEntity(type: FuelType.hybrid.name),
-            transmissionType: TransmissionType.manual.name,
-          ),
-        ],
-      ]),
-    );
+      final carDtos = [carDto];
+      when(apiService.fetchCars()).thenAnswer((_) async => carDtos);
+      when(apiService.carStream).thenAnswer(
+        (_) => Stream.fromIterable([
+          [
+            CarDto(
+              id: ObjectId(),
+              carId: '1',
+              model: 'Model S',
+              manufacturer: 'Tesla',
+              isVerified: false,
+              type: CarType.car.name,
+              bodyType: BodyType.sedan.name,
+              engine: EngineEntity(type: FuelType.hybrid.name),
+              transmissionType: TransmissionType.manual.name,
+            ),
+          ],
+        ]),
+      );
 
-    await repository.syncCars();
+      await repository.syncCars();
 
-    verify(localStorage.deleteAllCars()).called(1);
-    verify(localStorage.update(any)).called(1);
-    verify(apiService.fetchCars()).called(1);
+      verify(localStorage.deleteAllCars()).called(1);
+      verify(localStorage.update(any)).called(1);
+      verify(apiService.fetchCars()).called(1);
+    });
   });
 }

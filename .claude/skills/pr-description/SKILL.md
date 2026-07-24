@@ -12,7 +12,7 @@ it's not clear from the context.
 # Behavior Rules
 The regular MR description summary section is fine, but please, do not add sections like testing stages or code
 snippets.
-When preparing the description, mark it up properly using GFM and make it ready for easy copy-paste.
+When preparing the description, mark it up properly using GitHub Flavored Markup, like using '``' for file names, ## for bigger text, etc. and make it ready for easy copy-paste.
 
 # Tone Rules
 The regular tone is fine.
