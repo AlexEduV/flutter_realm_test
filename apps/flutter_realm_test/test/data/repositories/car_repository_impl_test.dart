@@ -1,3 +1,6 @@
+//@Tags(['streams'])
+//library;
+
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -81,7 +84,7 @@ void main() {
       repository.addCar(carEntity);
 
       verify(localStorage.add(carEntity)).called(1);
-    }, tags: ['stream']);
+    }, tags: ['streams']);
 
     test('deleteCarById deletes car if found and valid', () {
       final carId = '1';
@@ -91,7 +94,7 @@ void main() {
       repository.deleteCarById(carId);
 
       verify(localStorage.deleteById(any)).called(1);
-    }, tags: ['stream']);
+    }, tags: ['streams']);
 
     test('deleteCarById delegates to localStorage.deleteById', () {
       final carId = '1';
@@ -99,13 +102,13 @@ void main() {
       repository.deleteCarById(carId);
 
       verify(localStorage.deleteById(carId)).called(1);
-    }, tags: ['stream']);
+    }, tags: ['streams']);
 
     test('deleteAll calls realm.deleteAll<Car>()', () {
       repository.deleteAll();
 
       verify(localStorage.deleteAllCars()).called(1);
-    }, tags: ['stream']);
+    }, tags: ['streams']);
 
     test('getCarById calls realm.getCarById()', () {
       when(localStorage.getCarById('id')).thenReturn(CarEntity.empty());
@@ -113,7 +116,7 @@ void main() {
       repository.getCarById('id');
 
       verify(localStorage.getCarById('id')).called(1);
-    }, tags: ['stream']);
+    }, tags: ['streams']);
 
     test('getMaxCarId calls realm.getMaxCarId()', () {
       when(localStorage.getMaxCarId()).thenReturn(1);
@@ -121,7 +124,7 @@ void main() {
       repository.getMaxCarId();
 
       verify(localStorage.getMaxCarId()).called(1);
-    }, tags: ['stream']);
+    }, tags: ['streams']);
 
     test('getAllCars returns mapped entities', () {
       when(localStorage.getAll()).thenReturn([CarEntity.empty()]);
@@ -130,7 +133,7 @@ void main() {
 
       expect(result.length, 1);
       expect(result.first, isA<CarEntity>());
-    }, tags: ['stream']);
+    }, tags: ['streams']);
 
     test('syncCars deletes all, fetches, and adds cars', () async {
       final carDto = CarDto(
@@ -177,6 +180,6 @@ void main() {
       verify(localStorage.deleteAllCars()).called(1);
       verify(localStorage.update(any)).called(1);
       verify(apiService.fetchCars()).called(1);
-    }, tags: ['stream']);
+    }, tags: ['streams']);
   });
 }
