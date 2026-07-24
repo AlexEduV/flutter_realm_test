@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+/// Parses a string with inline markdown-lite markers into styled [TextSpan]s.
+/// Supports `_italic_`, `-strikethrough-`, and `*bold*`.
 List<TextSpan> parseInlineStyles(String text) {
   final spans = <TextSpan>[];
   final regex = RegExp(r'(_[^_]+_|-[^-]+-|\*[^*]+\*)');
