@@ -1,7 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
@@ -44,72 +44,80 @@ class _LoginFormState extends State<LoginForm> {
       builder: (context, state) {
         return Column(
           children: [
-            AppFormField(
-              focusNode: emailFocusNode,
-              textEditingController: emailTextController,
-              labelText: state.emailFieldParams?.label ?? '',
-              hintText: state.emailFieldParams?.hintText ?? '',
-              textInputType: TextInputType.emailAddress,
-              leadingIcon: Icons.email_outlined,
-              textInputAction: TextInputAction.next,
-              onEditingComplete: () {
-                passwordFocusNode.requestFocus();
-              },
-              errorText: state.emailError,
-              onChanged: (newValue) {
-                context.read<AuthenticationCubit>().updateEmail(emailTextController.text);
+            AppSemantics(
+              label: AppSemanticsLabels.emailTextField,
+              textField: true,
+              child: AppFormField(
+                focusNode: emailFocusNode,
+                textEditingController: emailTextController,
+                labelText: state.emailFieldParams?.label ?? '',
+                hintText: state.emailFieldParams?.hintText ?? '',
+                textInputType: TextInputType.emailAddress,
+                leadingIcon: Icons.email_outlined,
+                textInputAction: TextInputAction.next,
+                onEditingComplete: () {
+                  passwordFocusNode.requestFocus();
+                },
+                errorText: state.emailError,
+                onChanged: (newValue) {
+                  context.read<AuthenticationCubit>().updateEmail(emailTextController.text);
 
-                context.read<AuthenticationCubit>().validateEmail(
-                  emailTextController.text,
-                  emailFocusNode.hasFocus,
-                );
-              },
-              onFocusChange: (hasFocus) {
-                if (!hasFocus) {
                   context.read<AuthenticationCubit>().validateEmail(
                     emailTextController.text,
-                    false,
+                    emailFocusNode.hasFocus,
                   );
-                }
-              },
+                },
+                onFocusChange: (hasFocus) {
+                  if (!hasFocus) {
+                    context.read<AuthenticationCubit>().validateEmail(
+                      emailTextController.text,
+                      false,
+                    );
+                  }
+                },
+              ),
             ),
 
             const SizedBox(height: 20),
 
             // password textField
-            AppFormField(
-              focusNode: passwordFocusNode,
-              textEditingController: passwordTextController,
-              labelText: state.passwordFieldParams?.label ?? '',
-              hintText: state.passwordFieldParams?.hintText ?? '',
-              textInputType: TextInputType.visiblePassword,
-              leadingIcon: Icons.lock_outline,
-              textInputAction: TextInputAction.done,
-              isObscureText: state.isPasswordFieldObscure,
-              onSuffixIconPressed: () {
-                context.read<AuthenticationCubit>().setObscurePassword(
-                  !state.isPasswordFieldObscure,
-                );
-              },
-              errorText: state.passwordError,
-              onChanged: (newValue) {
-                context.read<AuthenticationCubit>().updatePassword(passwordTextController.text);
+            AppSemantics(
+              label: AppSemanticsLabels.passwordTextField,
+              textField: true,
+              child: AppFormField(
+                focusNode: passwordFocusNode,
+                textEditingController: passwordTextController,
+                labelText: state.passwordFieldParams?.label ?? '',
+                hintText: state.passwordFieldParams?.hintText ?? '',
+                textInputType: TextInputType.visiblePassword,
+                leadingIcon: Icons.lock_outline,
+                textInputAction: TextInputAction.done,
+                isObscureText: state.isPasswordFieldObscure,
+                onSuffixIconPressed: () {
+                  context.read<AuthenticationCubit>().setObscurePassword(
+                    !state.isPasswordFieldObscure,
+                  );
+                },
+                errorText: state.passwordError,
+                onChanged: (newValue) {
+                  context.read<AuthenticationCubit>().updatePassword(passwordTextController.text);
 
-                context.read<AuthenticationCubit>().validatePassword(
-                  passwordTextController.text,
-                  passwordFocusNode.hasFocus,
-                );
-              },
-              onFocusChange: (hasFocus) {
-                if (!hasFocus) {
                   context.read<AuthenticationCubit>().validatePassword(
                     passwordTextController.text,
-                    false,
+                    passwordFocusNode.hasFocus,
                   );
-                }
-              },
-              maxLength: state.passwordFieldParams?.maxLength,
-              trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
+                },
+                onFocusChange: (hasFocus) {
+                  if (!hasFocus) {
+                    context.read<AuthenticationCubit>().validatePassword(
+                      passwordTextController.text,
+                      false,
+                    );
+                  }
+                },
+                maxLength: state.passwordFieldParams?.maxLength,
+                trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
+              ),
             ),
 
             //forgot password button
