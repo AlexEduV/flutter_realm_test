@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="863b5efb-1404-47d7-80e7-279b2e403afe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/apps/flutter_realm_test/dart_test.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/flutter_realm_workspace.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/flutter_realm_workspace.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/flutter_realm_test/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/apps/flutter_realm_test/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/flutter_realm_test/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/flutter_realm_test/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/flutter_realm_test/melos_test_futter_project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/flutter_realm_test/pubspec.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/flutter_realm_test/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/apps/flutter_realm_test/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="863b5efb-1404-47d7-80e7-279b2e403afe" name="Changes" comment="fixing ide config; the melos suite is now working with build runner through melos run build --scope=test_flutter_project" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,6 +86,19 @@
       <option name="presentableId" value="Default" />
       <updated>1784885187490</updated>
     </task>
+    <task id="LOCAL-00001" summary="fixing ide config; the melos suite is now working with build runner through melos run build --scope=test_flutter_project">
+      <option name="closed" value="true" />
+      <created>1784891221168</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1784891221168</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixing ide config; the melos suite is now working with build runner through melos run build --scope=test_flutter_project" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing ide config; the melos suite is now working with build runner through melos run build --scope=test_flutter_project" />
   </component>
 </project>

@@ -15,13 +15,13 @@ format:
 	find lib/ -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.realm.dart" | xargs dart format
 
 
-# File Generation
-clean-build:
-	dart run build_runner clean
-	$(MAKE) build-verbose-delete-conflicting-outputs
-
-build-verbose-delete-conflicting-outputs:
-	dart run build_runner build -v --delete-conflicting-outputs
+# File Generation - outdated, migrated to melos commands below.
+#clean-build:
+#	dart run build_runner clean
+#	$(MAKE) build-verbose-delete-conflicting-outputs
+#
+#build-verbose-delete-conflicting-outputs:
+#	dart run build_runner build -v --delete-conflicting-outputs
 
 
 # Tests
@@ -50,3 +50,9 @@ melos-init:
 
 melos-clean:
 	melos clean
+
+melos-build:
+	melos run build --scope=test_flutter_project
+
+melos-build-clean:
+	melos run build:clean --scope=test_flutter_project
