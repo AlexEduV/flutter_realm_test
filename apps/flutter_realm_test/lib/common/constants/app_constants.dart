@@ -6,6 +6,6 @@ class AppConstants {
 
   static const double aspectRatio = 16 / 9;
 
-  static const bool showSemantics = true;
+  static const bool showSemantics = false;
   static const bool showNetworkLogs = true;
 }
