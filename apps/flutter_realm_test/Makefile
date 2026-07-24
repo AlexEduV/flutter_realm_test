@@ -36,6 +36,11 @@ show-coverage:
 run-all-tests:
 	flutter test --concurrency=4
 
+run-tagged-tests:
+# usage: make run-tagged-tests tag='some tag'
+	@test -n "$(tag)" || (echo "Usage: make run-tagged-tests tag=<tag>"; exit 1)
+	flutter test --tags "$(tag)"
+
 
 # Native Splash Commands
 generate-native-splash:
