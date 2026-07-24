@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -11,11 +11,7 @@ Widget buildSearchFilterButtonUseCase(BuildContext context) {
   return Scaffold(
     backgroundColor: AppColors.scaffoldColor,
     body: MultiBlocProvider(
-      providers: [
-        BlocProvider<AppLocalisationsCubit>(
-          create: (_) => appLocalisationsCubit,
-        ),
-      ],
+      providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
       child: Column(
         spacing: AppDimensions.normalL,
         children: [
@@ -28,12 +24,10 @@ Widget buildSearchFilterButtonUseCase(BuildContext context) {
             iconSize: context.knobs.double.slider(
               label: 'Icon size',
               initialValue: 40,
-              min: 12,
+              min: 30,
               max: 60,
             ),
-            isPlaceHolder: context.knobs.boolean(
-              label: 'Is a placeholder title',
-            ),
+            isPlaceHolder: context.knobs.boolean(label: 'Is a placeholder title'),
           ),
         ],
       ),

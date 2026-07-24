@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
-import 'package:test_flutter_project/presentation/widgets/skip_widget.dart';
 
 import '../../../common/constants/app_asset_routes.dart';
 
@@ -34,13 +32,10 @@ class CountryPickerBottomSheet extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(width: 3.0, color: AppColors.accentColor),
             ),
-            child: SkipWidget(
-              skip: AppConstants.kIsTest,
-              child: Image.asset(
-                '${AppAssetRoutes.flagRoute}${items[index].code}.png',
-                height: AppDimensions.regionFlagIconSize,
-                width: AppDimensions.regionFlagIconSize,
-              ),
+            child: Image.asset(
+              '${AppAssetRoutes.flagRoute}${items[index].code}.png',
+              height: AppDimensions.regionFlagIconSize,
+              width: AppDimensions.regionFlagIconSize,
             ),
           ),
           title: Text(

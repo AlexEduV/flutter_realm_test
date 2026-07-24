@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_content.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_info_row.dart';
-import 'package:test_flutter_project/presentation/widgets/skip_widget.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../widgets/avatar_widget.dart';
@@ -50,9 +48,7 @@ class MessageItem extends StatelessWidget {
         top: withExtendedData ? AppDimensions.normalS : 0.0,
         bottom: AppDimensions.minorS,
       ),
-      child: SkipWidget(
-        skip: AppConstants.kIsTest,
-        child: VisibilityDetector(
+      child: VisibilityDetector(
           onVisibilityChanged: (info) {
             if (isMyMessage) return;
             if (messageStatus == MessageStatus.read) return;
@@ -100,7 +96,6 @@ class MessageItem extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
 
+import '../../../common/fakes/image_fakes.dart';
+
 void main() {
   testWidgets('CountryPickerBottomSheet renders items and handles selection', (
     WidgetTester tester,
@@ -17,8 +19,10 @@ void main() {
     // Build the widget inside a MaterialApp with a Navigator for pop
     RegionUiModel? selected;
     await tester.pumpWidget(
-      MaterialApp(
-        home: Builder(
+      DefaultAssetBundle(
+        bundle: FakeAssetBundle(),
+        child: MaterialApp(
+          home: Builder(
           builder: (context) => Scaffold(
             body: ElevatedButton(
               onPressed: () async {
@@ -31,6 +35,7 @@ void main() {
             ),
           ),
         ),
+      ),
       ),
     );
 
