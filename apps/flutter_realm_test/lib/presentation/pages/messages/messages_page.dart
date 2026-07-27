@@ -146,7 +146,9 @@ class _MessagesPageState extends State<MessagesPage> {
                       AppSemantics(
                         label: AppSemanticsLabels.dateDivider,
                         child: DateDivider(
-                          text: DateFormatter.formatMessageDividerDate(message.date),
+                          text: serviceLocator<DateFormatter>().formatMessageDividerDate(
+                            message.date,
+                          ),
                         ),
                       ),
                     ],
@@ -157,7 +159,7 @@ class _MessagesPageState extends State<MessagesPage> {
                         senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
                         imageSrc: sender?.avatarImageSrc,
                         message: message.payload,
-                        time: DateFormatter.formatSmartDate(message.date),
+                        time: serviceLocator<DateFormatter>().formatSmartDate(message.date),
                         isMyMessage: sender?.userId != owner.id,
                         withExtendedData: isExpanded,
                         messageStatus: message.messageStatus,

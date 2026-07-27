@@ -89,9 +89,12 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> initLocalisation(String locale) async {
-    final localisations = await LocalisationUtil.loadLocalisations(
+    final rawJson = await LocalisationUtil.loadRawJson(
       '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}localisation_mock_response_data_$locale.json',
     );
+
+    final localisations = LocalisationUtil.extractLocalisations(rawJson);
+    if (localisations == null) return;
 
     _appLocalisationsCubit.load(localisations);
 

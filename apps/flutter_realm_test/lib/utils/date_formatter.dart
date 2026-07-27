@@ -1,53 +1,56 @@
 import 'package:intl/intl.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
+typedef _NormalizedDates = ({DateTime today, DateTime dateDay});
+
 class DateFormatter {
-  static String formatSmartDate(DateTime? date) {
+  DateFormatter(this._appLocalisationsCubit);
+
+  final AppLocalisationsCubit _appLocalisationsCubit;
+
+  _NormalizedDates _normalizeDates(DateTime date) {
+    final now = DateTime.now();
+    return (
+      today: DateTime(now.year, now.month, now.day),
+      dateDay: DateTime(date.year, date.month, date.day),
+    );
+  }
+
+  String formatSmartDate(DateTime? date) {
     if (date == null) return '';
 
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final dateDay = DateTime(date.year, date.month, date.day);
+    final dates = _normalizeDates(date);
 
-    if (dateDay == today) {
+    if (dates.dateDay == dates.today) {
       // Today: show time
       return DateFormat.Hm().format(date); // e.g., "14:23"
-    } else if (dateDay == today.subtract(const Duration(days: 1))) {
+    } else if (dates.dateDay == dates.today.subtract(const Duration(days: 1))) {
       // Yesterday
-      return serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-        L10nKeys.dateFormattingYesterday,
-      );
+      return _appLocalisationsCubit.getLocalisationByKey(L10nKeys.dateFormattingYesterday);
     } else {
-      final locale = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.locale);
+      final locale = _appLocalisationsCubit.getLocalisationByKey(L10nKeys.locale);
 
       // Day of the week shortened, e.g. "Mon"
       return DateFormat.E(locale).format(date).capitalizeFirst();
     }
   }
 
-  static String formatMessageDividerDate(DateTime? date) {
+  String formatMessageDividerDate(DateTime? date) {
     if (date == null) return '';
 
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final dateDay = DateTime(date.year, date.month, date.day);
+    final dates = _normalizeDates(date);
 
-    if (dateDay == today) {
+    if (dates.dateDay == dates.today) {
       // Today
-      return serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-        L10nKeys.dateFormattingToday,
-      );
-    } else if (dateDay == today.subtract(const Duration(days: 1))) {
+      return _appLocalisationsCubit.getLocalisationByKey(L10nKeys.dateFormattingToday);
+    } else if (dates.dateDay == dates.today.subtract(const Duration(days: 1))) {
       // Yesterday
-      return serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-        L10nKeys.dateFormattingYesterday,
-      );
+      return _appLocalisationsCubit.getLocalisationByKey(L10nKeys.dateFormattingYesterday);
     } else {
-      final locale = serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.locale);
-      final isThisYear = date.year == now.year;
+      final locale = _appLocalisationsCubit.getLocalisationByKey(L10nKeys.locale);
+      final isThisYear = date.year == dates.today.year;
 
       if (isThisYear) {
         // Example: March 16

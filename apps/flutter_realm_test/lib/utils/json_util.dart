@@ -3,8 +3,8 @@ class JsonUtil {
     final Map<String, String> result = {};
     json.forEach((key, value) {
       final newKey = prefix.isEmpty ? key : '$prefix.$key';
-      if (value is Map) {
-        result.addAll(flattenJson(value as Map<String, dynamic>, newKey));
+      if (value is Map<String, dynamic>) {
+        result.addAll(flattenJson(value, newKey));
       } else {
         result[newKey] = value.toString();
       }

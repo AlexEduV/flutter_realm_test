@@ -152,7 +152,7 @@ class _MyAppState extends State<MyApp> {
           L10nKeys.locationPermissionDialogOpenSettings,
         ),
         cancelButtonTitle: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogLater),
-        isDeletion: false,
+        isAlertStyling: false,
         onConfirm: () => serviceLocator<OpenAppSettingsUseCase>().call(),
       ),
     );

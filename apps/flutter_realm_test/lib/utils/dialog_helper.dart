@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
@@ -17,7 +17,7 @@ class DialogHelper {
     required VoidCallback? onConfirm,
     required String confirmButtonTitle,
     required String cancelButtonTitle,
-    bool isDeletion = true,
+    bool isAlertStyling = true,
     VoidCallback? onCancel,
   }) async {
     await showDialog(
@@ -30,7 +30,7 @@ class DialogHelper {
           cancelButtonTitle: cancelButtonTitle,
           onCancel: onCancel,
           onConfirm: onConfirm,
-          isDeletion: isDeletion,
+          isAlertStyling: isAlertStyling,
         );
       },
     );
@@ -72,7 +72,6 @@ class DialogHelper {
     required void Function(String)? onConfirm,
     VoidCallback? onCancel,
     bool Function(String)? validationCallback,
-    bool isPasswordField = false,
   }) async {
     await showDialog(
       context: context,
@@ -84,7 +83,6 @@ class DialogHelper {
           onCancel: onCancel,
           onConfirm: onConfirm,
           validationCallback: validationCallback,
-          isPasswordField: isPasswordField,
         );
       },
     );
@@ -97,7 +95,7 @@ class DialogHelper {
   ) async {
     return await showModalBottomSheet<RegionUiModel>(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.scaffoldColor,
       clipBehavior: Clip.antiAlias,
       builder: (BuildContext context) {
         return CountryPickerBottomSheet(items: items, currentSelectedIndex: currentIndex);

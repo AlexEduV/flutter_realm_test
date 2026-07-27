@@ -47,9 +47,9 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.search,
             pageBuilder: (context, state) => const CupertinoPage(child: SearchPage()),
-            routes: <RouteBase>[_detailsRoute],
+            routes: <RouteBase>[_buildDetailsRoute()],
           ),
-          _detailsRoute,
+          _buildDetailsRoute(),
           GoRoute(
             path: AppRoutes.newItem,
             pageBuilder: (context, state) {
@@ -73,14 +73,14 @@ class AppRouter {
             pageBuilder: (context, state) {
               return const CupertinoPage(child: MyItemsPage());
             },
-            routes: <RouteBase>[_detailsRoute],
+            routes: <RouteBase>[_buildDetailsRoute()],
           ),
           GoRoute(
             path: AppRoutes.recentlyViewed,
             pageBuilder: (context, state) {
               return const CupertinoPage(child: RecentlyViewedPage());
             },
-            routes: <RouteBase>[_detailsRoute],
+            routes: <RouteBase>[_buildDetailsRoute()],
           ),
           GoRoute(
             path: AppRoutes.clearUserData,
@@ -98,7 +98,7 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.articleDetails,
             pageBuilder: (context, state) {
-              final articleId = state.extra as String? ?? '';
+              final articleId = state.extra is String ? state.extra as String : '';
 
               return CupertinoPage(child: ArticlePage(articleId: articleId));
             },
@@ -113,16 +113,16 @@ class AppRouter {
   static final _inboxRoute = GoRoute(
     path: AppRoutes.inbox,
     pageBuilder: (context, state) {
-      final conversationId = state.extra as String? ?? '';
+      final conversationId = state.extra is String ? state.extra as String : '';
 
       return CupertinoPage(child: MessagesPage(conversationId: conversationId));
     },
   );
 
-  static final _detailsRoute = GoRoute(
+  static GoRoute _buildDetailsRoute() => GoRoute(
     path: AppRoutes.details,
     pageBuilder: (context, state) {
-      final carId = state.extra as String? ?? '';
+      final carId = state.extra is String ? state.extra as String : '';
       return CupertinoPage(child: DetailsPage(carId: carId));
     },
     routes: [_inboxRoute],
