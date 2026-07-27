@@ -183,6 +183,7 @@ Future<void> initDependenciesContainer() async {
     () => AppHttpClientImpl(client, appInterceptor),
   );
 
+  serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
   final apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
     EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
   );
@@ -455,6 +456,5 @@ Future<void> initDependenciesContainer() async {
     () => GetAutoCompleteManufacturersByTypeUseCase(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
 }
