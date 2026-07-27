@@ -98,7 +98,7 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.articleDetails,
             pageBuilder: (context, state) {
-              final articleId = state.extra as String? ?? '';
+              final articleId = state.extra is String ? state.extra as String : '';
 
               return CupertinoPage(child: ArticlePage(articleId: articleId));
             },
@@ -113,7 +113,7 @@ class AppRouter {
   static final _inboxRoute = GoRoute(
     path: AppRoutes.inbox,
     pageBuilder: (context, state) {
-      final conversationId = state.extra as String? ?? '';
+      final conversationId = state.extra is String ? state.extra as String : '';
 
       return CupertinoPage(child: MessagesPage(conversationId: conversationId));
     },
@@ -122,7 +122,7 @@ class AppRouter {
   static GoRoute _buildDetailsRoute() => GoRoute(
     path: AppRoutes.details,
     pageBuilder: (context, state) {
-      final carId = state.extra as String? ?? '';
+      final carId = state.extra is String ? state.extra as String : '';
       return CupertinoPage(child: DetailsPage(carId: carId));
     },
     routes: [_inboxRoute],
