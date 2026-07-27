@@ -23,6 +23,7 @@ import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_in
 import 'package:test_flutter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/message_item.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
+import 'package:test_flutter_project/utils/date_formatter.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import 'messages_page_test.mocks.dart';
@@ -50,6 +51,7 @@ void main() {
       MockExtractUsersFromConversationUseCase(),
     );
     getIt.registerSingleton<GetUserByIdUseCase>(MockGetUserByIdUseCase());
+    getIt.registerLazySingleton<DateFormatter>(() => DateFormatter(appLocalisationsCubit));
   });
 
   Widget buildTestableWidget({
