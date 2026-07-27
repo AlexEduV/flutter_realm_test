@@ -44,27 +44,23 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Incorrect password.'), findsOneWidget);
-      // Login page is still visible — we did not navigate away
       expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
     });
 
-    // testWidgets('unknown email — shows inline auth error', (tester) async {
-    //   app.main();
-    //   await tester.pumpAndSettle();
-    //
-    //   await _enterCredentials(tester, email: 'nobody@example.com', password: _validPassword);
-    //   await _tapLogin(tester);
-    //
-    //   await tester.pumpAndSettle(
-    //     const Duration(milliseconds: 100),
-    //     EnginePhase.sendSemanticsUpdate,
-    //     _networkTimeout,
-    //   );
-    //
-    //   expect(find.bySemanticsLabel(AppSemanticsLabels.authErrorMessage), findsOneWidget);
-    //   expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
-    // });
-    //
+    testWidgets('unknown email — shows inline auth error', (tester) async {
+      app.main();
+      await tester.pump(const Duration(seconds: 3));
+
+      await _goToLoginViaAccountTab(tester);
+      await _enterCredentials(tester, email: 'nobody@example.com', password: _validPassword);
+      await _tapLogin(tester);
+
+      await tester.pumpAndSettle();
+
+      expect(find.text('The user not found.'), findsOneWidget);
+      expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
+    });
+
     // testWidgets('empty fields — client-side validation blocks submission', (tester) async {
     //   app.main();
     //   await tester.pumpAndSettle();
