@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_flutter_project/common/constants/api_constants.dart';
 import 'package:test_flutter_project/common/extensions/get_it_extension.dart';
 import 'package:test_flutter_project/core/network/app_http_client.dart';
 import 'package:test_flutter_project/core/network/app_http_client_impl.dart';
@@ -58,6 +59,7 @@ import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_
 import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/region_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
+import 'package:test_flutter_project/domain/models/env_params_model.dart';
 import 'package:test_flutter_project/domain/repositories/article_repository.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/auto_complete_repository.dart';
@@ -181,8 +183,11 @@ Future<void> initDependenciesContainer() async {
     () => AppHttpClientImpl(client, appInterceptor),
   );
 
+  final apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
+    EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
+  );
   serviceLocator.registerLazySingleton<GifsRemoteDataSource>(
-    () => GifsRemoteDataSourceImpl(serviceLocator()),
+    () => GifsRemoteDataSourceImpl(serviceLocator(), apiKey),
   );
 
   serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(
