@@ -3,12 +3,14 @@ import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
+typedef _NormalizedDates = ({DateTime today, DateTime dateDay});
+
 class DateFormatter {
   DateFormatter(this._appLocalisationsCubit);
 
   final AppLocalisationsCubit _appLocalisationsCubit;
 
-  ({DateTime today, DateTime dateDay}) _normalizeDates(DateTime date) {
+  _NormalizedDates _normalizeDates(DateTime date) {
     final now = DateTime.now();
     return (
       today: DateTime(now.year, now.month, now.day),
