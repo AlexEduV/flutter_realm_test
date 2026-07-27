@@ -7,6 +7,49 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
+  group('LocalisationUtil.extractLocalisations', () {
+    test('returns flattened map on success', () {
+      final rawJson = {
+        'status': 'success',
+        'message': '',
+        'results': [
+          {
+            'app': {'locale': 'en'},
+            'greeting': 'Hello',
+          },
+        ],
+      };
+
+      final result = LocalisationUtil.extractLocalisations(rawJson);
+
+      expect(result, {'app.locale': 'en', 'greeting': 'Hello'});
+    });
+
+    test('returns null when status is not success', () {
+      final rawJson = {
+        'status': 'error',
+        'message': '',
+        'results': [
+          {'greeting': 'Hello'},
+        ],
+      };
+
+      expect(LocalisationUtil.extractLocalisations(rawJson), isNull);
+    });
+
+    test('returns null when results is null', () {
+      final rawJson = {'status': 'success', 'message': '', 'results': null};
+
+      expect(LocalisationUtil.extractLocalisations(rawJson), isNull);
+    });
+
+    test('returns null when results list is empty', () {
+      final rawJson = {'status': 'success', 'message': '', 'results': []};
+
+      expect(LocalisationUtil.extractLocalisations(rawJson), isNull);
+    });
+  });
+
   group('LocalisationUtil', () {
     test('saveLocalisations saves all key-value pairs to SharedPreferences', () async {
       final localisations = {'key1': 'value1', 'key2': 'value2'};

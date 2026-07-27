@@ -10,20 +10,22 @@ import '../common/constants/api_constants.dart';
 class LocalisationUtil {
   //todo: use abstraction of shared preferences storage, so that the vendor might be changed easily
 
-  static Future<Map<String, String>> loadLocalisations(String path) async {
+  static Future<Map<String, dynamic>> loadRawJson(String path) async {
     final jsonString = await rootBundle.loadString(path);
-    final Map<String, dynamic> jsonDecoded = json.decode(jsonString);
+    return json.decode(jsonString) as Map<String, dynamic>;
+  }
 
-    final response = ApiResponse.fromJson(jsonDecoded, (json) => json as List);
+  static Map<String, String>? extractLocalisations(Map<String, dynamic> rawJson) {
+    final response = ApiResponse.fromJson(rawJson, (json) => json as List);
 
     if (response.status != ApiConstants.apiSuccessStatus || response.results == null) {
-      return {};
+      return null;
     }
 
-    final Map<String, dynamic> jsonMap = response.results?.firstOrNull ?? {};
-    final flatMap = JsonUtil.flattenJson(jsonMap);
+    final Map<String, dynamic>? jsonMap = response.results?.firstOrNull;
+    if (jsonMap == null) return null;
 
-    return flatMap;
+    return JsonUtil.flattenJson(jsonMap);
   }
 
   static Future<void> saveLocalisations(Map<String, dynamic> localisations) async {
