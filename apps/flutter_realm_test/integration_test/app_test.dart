@@ -53,7 +53,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Incorrect password.'), findsOneWidget);
-      expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
+      loginPage.assertLoginButtonVisible();
     });
 
     testWidgets('unknown email — shows inline auth error', (tester) async {
@@ -70,7 +70,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('The user not found.'), findsOneWidget);
-      expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
+      loginPage.assertLoginButtonVisible();
     });
 
     testWidgets('empty fields — client-side validation blocks submission', (tester) async {
@@ -87,7 +87,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Still on the login page
-      expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
+      loginPage.assertLoginButtonVisible();
       // Home nav is absent
       expect(find.bySemanticsLabel(AppSemanticsLabels.homeBottomBarItemHome), findsNothing);
     });
@@ -115,6 +115,10 @@ class LoginPagePOM {
     await _tester.tap(passwordField);
     await _tester.enterText(passwordField, password);
     await _tester.pump();
+  }
+
+  void assertLoginButtonVisible() {
+    expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
   }
 }
 
