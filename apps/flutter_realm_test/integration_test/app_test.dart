@@ -43,7 +43,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.bySemanticsLabel(AppSemanticsLabels.authErrorMessage), findsOneWidget);
+      expect(find.text('Incorrect password.'), findsOneWidget);
       // Login page is still visible — we did not navigate away
       expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
     });
