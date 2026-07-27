@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
@@ -97,7 +97,7 @@ class DialogHelper {
   ) async {
     return await showModalBottomSheet<RegionUiModel>(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.scaffoldColor,
       clipBehavior: Clip.antiAlias,
       builder: (BuildContext context) {
         return CountryPickerBottomSheet(items: items, currentSelectedIndex: currentIndex);
