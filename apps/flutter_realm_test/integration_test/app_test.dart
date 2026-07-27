@@ -26,7 +26,7 @@ void main() {
       app.main();
       await tester.pump(const Duration(seconds: 3));
 
-      final loginPage = AccountPagePOM(tester);
+      final loginPage = LoginPagePOM(tester);
       final homePage = HomePagePOM(tester);
 
       await homePage.openAccountTab();
@@ -43,7 +43,7 @@ void main() {
       app.main();
       await tester.pump(const Duration(seconds: 3));
 
-      final loginPage = AccountPagePOM(tester);
+      final loginPage = LoginPagePOM(tester);
       final homePage = HomePagePOM(tester);
 
       await homePage.openAccountTab();
@@ -60,7 +60,7 @@ void main() {
       app.main();
       await tester.pump(const Duration(seconds: 3));
 
-      final loginPage = AccountPagePOM(tester);
+      final loginPage = LoginPagePOM(tester);
       final homePage = HomePagePOM(tester);
 
       await homePage.openAccountTab();
@@ -77,7 +77,7 @@ void main() {
       app.main();
       await tester.pump(const Duration(seconds: 3));
 
-      final loginPage = AccountPagePOM(tester);
+      final loginPage = LoginPagePOM(tester);
       final homePage = HomePagePOM(tester);
 
       await homePage.openAccountTab();
@@ -94,8 +94,8 @@ void main() {
   });
 }
 
-class AccountPagePOM {
-  AccountPagePOM(this._tester);
+class LoginPagePOM {
+  LoginPagePOM(this._tester);
 
   final WidgetTester _tester;
 
