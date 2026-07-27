@@ -215,13 +215,13 @@ Future<void> initDependenciesContainer() async {
 
   final cloudStorage = await SharedPreferences.getInstance();
   final authRepositoryImpl = AuthRepositoryImpl(
-    serviceLocator(),
+    serviceLocator<BaseLocalStorage>(),
     cloudStorage,
-    serviceLocator(),
-    serviceLocator(),
-    serviceLocator(),
-    serviceLocator(),
-    serviceLocator(),
+    serviceLocator<FetchOwnersUseCase>(),
+    serviceLocator<LoadUsersUseCase>(),
+    serviceLocator<UsersRemoteDataSource>(),
+    serviceLocator<SaveUsersUseCase>(),
+    serviceLocator<GetMaxUserIdUseCase>(),
   );
   await authRepositoryImpl.init();
 
@@ -314,12 +314,12 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerFactory(
     () => NewItemPageCubit(
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
+      serviceLocator<GetAutoCompleteManufacturersByTypeUseCase>(),
+      serviceLocator<AppLocalisationsCubit>(),
+      serviceLocator<AddCarUseCase>(),
+      serviceLocator<GetAllCarsUseCase>(),
+      serviceLocator<GetCurrentMaxCarIdUseCase>(),
+      serviceLocator<UserDataCubit>(),
     ),
   );
 
@@ -355,12 +355,12 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(
     () => AuthenticationCubit(
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
-      serviceLocator(),
+      serviceLocator<AppLocalisationsCubit>(),
+      serviceLocator<UserDataCubit>(),
+      serviceLocator<LoginUseCase>(),
+      serviceLocator<LogoutUseCase>(),
+      serviceLocator<RegisterUseCase>(),
+      serviceLocator<DeleteAccountUseCase>(),
     ),
   );
 
