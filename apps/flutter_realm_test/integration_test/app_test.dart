@@ -26,9 +26,9 @@ void main() {
       app.main();
       await tester.pump(const Duration(seconds: 3));
 
-      await _goToLoginViaAccountTab(tester);
-      await _enterCredentials(tester, email: _validEmail, password: _validPassword);
-      await _tapLogin(tester);
+      await AccountPagePOM.openAccountTab(tester);
+      await AccountPagePOM.enterCredentials(tester, email: _validEmail, password: _validPassword);
+      await AccountPagePOM.tapLogin(tester);
 
       await tester.pumpAndSettle();
 
@@ -40,9 +40,9 @@ void main() {
       app.main();
       await tester.pump(const Duration(seconds: 3));
 
-      await _goToLoginViaAccountTab(tester);
-      await _enterCredentials(tester, email: _validEmail, password: 'WrongPass1!');
-      await _tapLogin(tester);
+      await AccountPagePOM.openAccountTab(tester);
+      await AccountPagePOM.enterCredentials(tester, email: _validEmail, password: 'WrongPass1!');
+      await AccountPagePOM.tapLogin(tester);
 
       await tester.pumpAndSettle();
 
@@ -54,9 +54,13 @@ void main() {
       app.main();
       await tester.pump(const Duration(seconds: 3));
 
-      await _goToLoginViaAccountTab(tester);
-      await _enterCredentials(tester, email: 'nobody@example.com', password: _validPassword);
-      await _tapLogin(tester);
+      await AccountPagePOM.openAccountTab(tester);
+      await AccountPagePOM.enterCredentials(
+        tester,
+        email: 'nobody@example.com',
+        password: _validPassword,
+      );
+      await AccountPagePOM.tapLogin(tester);
 
       await tester.pumpAndSettle();
 
@@ -68,8 +72,8 @@ void main() {
       app.main();
       await tester.pump(const Duration(seconds: 3));
 
-      await _goToLoginViaAccountTab(tester);
-      await _tapLogin(tester);
+      await AccountPagePOM.openAccountTab(tester);
+      await AccountPagePOM.tapLogin(tester);
 
       // No network call is made — pumpAndSettle resolves immediately
       await tester.pumpAndSettle();
@@ -82,29 +86,31 @@ void main() {
   });
 }
 
-Future<void> _enterCredentials(
-  WidgetTester tester, {
-  required String email,
-  required String password,
-}) async {
-  final emailField = find.bySemanticsLabel(AppSemanticsLabels.emailTextField);
-  final passwordField = find.bySemanticsLabel(AppSemanticsLabels.passwordTextField);
+class AccountPagePOM {
+  static Future<void> tapLogin(WidgetTester tester) async {
+    await tester.tap(find.bySemanticsLabel(AppSemanticsLabels.loginButton));
+    await tester.pump();
+  }
 
-  await tester.tap(emailField);
-  await tester.enterText(emailField, email);
-  await tester.pump();
+  static Future<void> openAccountTab(WidgetTester tester) async {
+    await tester.tap(find.bySemanticsLabel(AppSemanticsLabels.homeBottomBarItemAccount));
+    await tester.pumpAndSettle();
+  }
 
-  await tester.tap(passwordField);
-  await tester.enterText(passwordField, password);
-  await tester.pump();
-}
+  static Future<void> enterCredentials(
+    WidgetTester tester, {
+    required String email,
+    required String password,
+  }) async {
+    final emailField = find.bySemanticsLabel(AppSemanticsLabels.emailTextField);
+    final passwordField = find.bySemanticsLabel(AppSemanticsLabels.passwordTextField);
 
-Future<void> _goToLoginViaAccountTab(WidgetTester tester) async {
-  await tester.tap(find.bySemanticsLabel(AppSemanticsLabels.homeBottomBarItemAccount));
-  await tester.pumpAndSettle();
-}
+    await tester.tap(emailField);
+    await tester.enterText(emailField, email);
+    await tester.pump();
 
-Future<void> _tapLogin(WidgetTester tester) async {
-  await tester.tap(find.bySemanticsLabel(AppSemanticsLabels.loginButton));
-  await tester.pump();
+    await tester.tap(passwordField);
+    await tester.enterText(passwordField, password);
+    await tester.pump();
+  }
 }
