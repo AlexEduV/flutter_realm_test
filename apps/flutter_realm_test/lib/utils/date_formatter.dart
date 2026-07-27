@@ -8,17 +8,23 @@ class DateFormatter {
 
   final AppLocalisationsCubit _appLocalisationsCubit;
 
+  ({DateTime today, DateTime dateDay}) _normalizeDates(DateTime date) {
+    final now = DateTime.now();
+    return (
+      today: DateTime(now.year, now.month, now.day),
+      dateDay: DateTime(date.year, date.month, date.day),
+    );
+  }
+
   String formatSmartDate(DateTime? date) {
     if (date == null) return '';
 
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final dateDay = DateTime(date.year, date.month, date.day);
+    final dates = _normalizeDates(date);
 
-    if (dateDay == today) {
+    if (dates.dateDay == dates.today) {
       // Today: show time
       return DateFormat.Hm().format(date); // e.g., "14:23"
-    } else if (dateDay == today.subtract(const Duration(days: 1))) {
+    } else if (dates.dateDay == dates.today.subtract(const Duration(days: 1))) {
       // Yesterday
       return _appLocalisationsCubit.getLocalisationByKey(L10nKeys.dateFormattingYesterday);
     } else {
@@ -32,19 +38,17 @@ class DateFormatter {
   String formatMessageDividerDate(DateTime? date) {
     if (date == null) return '';
 
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final dateDay = DateTime(date.year, date.month, date.day);
+    final dates = _normalizeDates(date);
 
-    if (dateDay == today) {
+    if (dates.dateDay == dates.today) {
       // Today
       return _appLocalisationsCubit.getLocalisationByKey(L10nKeys.dateFormattingToday);
-    } else if (dateDay == today.subtract(const Duration(days: 1))) {
+    } else if (dates.dateDay == dates.today.subtract(const Duration(days: 1))) {
       // Yesterday
       return _appLocalisationsCubit.getLocalisationByKey(L10nKeys.dateFormattingYesterday);
     } else {
       final locale = _appLocalisationsCubit.getLocalisationByKey(L10nKeys.locale);
-      final isThisYear = date.year == now.year;
+      final isThisYear = date.year == dates.today.year;
 
       if (isThisYear) {
         // Example: March 16
