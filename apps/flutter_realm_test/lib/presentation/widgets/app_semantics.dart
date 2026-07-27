@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 
 class AppSemantics extends StatelessWidget {
   const AppSemantics({
@@ -25,17 +25,16 @@ class AppSemantics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MergeSemantics(
-      child: Semantics(
-        label: label,
-        textField: textField,
-        button: button,
-        selected: isSelected,
-        checked: isChecked,
-        expanded: expanded,
-        enabled: enabled,
-        child: child,
-      ),
+    return Semantics(
+      container: true,
+      label: label,
+      textField: textField,
+      button: button,
+      selected: isSelected,
+      checked: isChecked,
+      expanded: expanded,
+      enabled: enabled,
+      child: child,
     );
   }
 }

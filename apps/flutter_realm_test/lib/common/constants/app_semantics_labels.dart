@@ -32,7 +32,7 @@ class AppSemanticsLabels {
 
   static const fullNameTextField = 'fullNameTextField';
   static const emailTextField = 'emailTextField';
-  static const passwordTextField = ' passwordTextField';
+  static const passwordTextField = 'passwordTextField';
 
   static const forgotPasswordButton = 'forgotPasswordButton';
 

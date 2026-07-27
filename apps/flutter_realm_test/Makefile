@@ -29,12 +29,15 @@ format:
 # other, so I migrated to flutter test.
 show-coverage:
 	PATH=$$PATH:$$HOME/.pub-cache/bin \
-	flutter test --coverage --concurrency=4
+	flutter test --coverage --concurrency=4 --exclude-tags integration
 	genhtml coverage/lcov.info -o coverage/html
 	open coverage/html/index.html
 
 run-all-tests:
-	flutter test --concurrency=4
+	flutter test --concurrency=4 --exclude-tags integration
+
+run-integration-tests:
+	flutter test integration_test/ --tags integration
 
 run-tagged-tests:
 # usage: make run-tagged-tests tag='some tag'

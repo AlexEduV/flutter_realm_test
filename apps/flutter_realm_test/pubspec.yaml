@@ -54,6 +54,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^3.0.0
+  integration_test:
+    sdk: flutter
   melos: ^7.0.0
 
 flutter:
