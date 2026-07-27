@@ -17,7 +17,7 @@ class DialogHelper {
     required VoidCallback? onConfirm,
     required String confirmButtonTitle,
     required String cancelButtonTitle,
-    bool isDeletion = true,
+    bool isAlertStyling = true,
     VoidCallback? onCancel,
   }) async {
     await showDialog(
@@ -30,7 +30,7 @@ class DialogHelper {
           cancelButtonTitle: cancelButtonTitle,
           onCancel: onCancel,
           onConfirm: onConfirm,
-          isDeletion: isDeletion,
+          isAlertStyling: isAlertStyling,
         );
       },
     );

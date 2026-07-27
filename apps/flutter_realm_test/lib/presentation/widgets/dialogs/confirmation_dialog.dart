@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
 import '../app_semantics.dart';
@@ -10,7 +10,7 @@ class ConfirmationDialog extends StatelessWidget {
     required this.description,
     required this.confirmButtonTitle,
     required this.cancelButtonTitle,
-    this.isDeletion = true,
+    this.isAlertStyling = true,
     this.onConfirm,
     this.onCancel,
     super.key,
@@ -21,7 +21,7 @@ class ConfirmationDialog extends StatelessWidget {
   final VoidCallback? onConfirm;
   final String confirmButtonTitle;
   final String cancelButtonTitle;
-  final bool isDeletion;
+  final bool isAlertStyling;
   final VoidCallback? onCancel;
 
   @override
@@ -50,13 +50,13 @@ class ConfirmationDialog extends StatelessWidget {
               Navigator.of(context).pop();
               onConfirm?.call();
             },
-            style: isDeletion
+            style: isAlertStyling
                 ? const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.red))
                 : null,
             child: Text(
               confirmButtonTitle,
               style: TextStyle(
-                color: isDeletion ? Colors.white : null,
+                color: isAlertStyling ? Colors.white : null,
                 fontWeight: FontWeight.w600,
               ),
             ),
