@@ -61,20 +61,21 @@ void main() {
       expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
     });
 
-    // testWidgets('empty fields — client-side validation blocks submission', (tester) async {
-    //   app.main();
-    //   await tester.pumpAndSettle();
-    //
-    //   await _tapLogin(tester);
-    //
-    //   // No network call is made — pumpAndSettle resolves immediately
-    //   await tester.pumpAndSettle();
-    //
-    //   // Still on the login page
-    //   expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
-    //   // Home nav is absent
-    //   expect(find.bySemanticsLabel(AppSemanticsLabels.homeBottomBarItemHome), findsNothing);
-    // });
+    testWidgets('empty fields — client-side validation blocks submission', (tester) async {
+      app.main();
+      await tester.pump(const Duration(seconds: 3));
+
+      await _goToLoginViaAccountTab(tester);
+      await _tapLogin(tester);
+
+      // No network call is made — pumpAndSettle resolves immediately
+      await tester.pumpAndSettle();
+
+      // Still on the login page
+      expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
+      // Home nav is absent
+      expect(find.bySemanticsLabel(AppSemanticsLabels.homeBottomBarItemHome), findsNothing);
+    });
   });
 }
 
