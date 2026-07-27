@@ -19,7 +19,6 @@ class EditPasswordDialog extends StatefulWidget {
     this.onConfirm,
     this.onCancel,
     this.validationCallback,
-    this.isPasswordField = false,
   });
 
   final String title;
@@ -28,7 +27,6 @@ class EditPasswordDialog extends StatefulWidget {
   final void Function(String)? onConfirm;
   final VoidCallback? onCancel;
   final bool Function(String)? validationCallback;
-  final bool isPasswordField;
 
   @override
   State<EditPasswordDialog> createState() => _EditPasswordDialogState();

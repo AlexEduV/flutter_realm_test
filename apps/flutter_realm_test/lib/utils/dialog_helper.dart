@@ -72,7 +72,6 @@ class DialogHelper {
     required void Function(String)? onConfirm,
     VoidCallback? onCancel,
     bool Function(String)? validationCallback,
-    bool isPasswordField = false,
   }) async {
     await showDialog(
       context: context,
@@ -84,7 +83,6 @@ class DialogHelper {
           onCancel: onCancel,
           onConfirm: onConfirm,
           validationCallback: validationCallback,
-          isPasswordField: isPasswordField,
         );
       },
     );
