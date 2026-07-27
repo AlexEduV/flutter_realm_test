@@ -28,9 +28,11 @@ class LocalisationUtil {
 
   static Future<void> saveLocalisations(Map<String, dynamic> localisations) async {
     final prefs = await SharedPreferences.getInstance();
-    localisations.forEach((key, value) async {
-      await prefs.setString(key, value.toString());
-    });
+
+    //todo: use future.wait here
+    for (final entry in localisations.entries) {
+      await prefs.setString(entry.key, entry.value.toString());
+    }
   }
 
   static Future<String> getLocalisation(String key) async {
