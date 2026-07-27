@@ -138,6 +138,7 @@ import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cu
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/utils/date_formatter.dart';
 
 import '../../data/repositories/car_repository_impl.dart';
 import '../../domain/repositories/car_repository.dart';
@@ -381,6 +382,8 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
+
+  serviceLocator.registerLazySingleton(() => DateFormatter(serviceLocator()));
 
   serviceLocator.registerLazySingleton<GeolocatorRepository>(
     () => GeolocatorRepositoryImpl(serviceLocator()),

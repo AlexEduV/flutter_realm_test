@@ -92,7 +92,9 @@ class InboxListItem extends StatelessWidget {
                             Icon(_getMessageStatusIcon(message)),
 
                             Text(
-                              message == null ? '' : DateFormatter.formatSmartDate(message.date),
+                              message == null
+                                  ? ''
+                                  : serviceLocator<DateFormatter>().formatSmartDate(message.date),
                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                 fontWeight: FontWeight.w400,
                               ),
