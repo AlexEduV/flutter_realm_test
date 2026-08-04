@@ -18,6 +18,8 @@ import '../presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'app_router.dart';
 
 class DialogHelper {
+  static bool _isLocationPermissionDialogShowing = false;
+
   static Future<void> showConfirmationDialog(
     BuildContext context, {
     required String title,
@@ -147,9 +149,11 @@ class DialogHelper {
   }
 
   static Future<void> showLocationPermissionDialog() async {
+    if (_isLocationPermissionDialogShowing) return;
     final navigatorContext = AppRouter.router.routerDelegate.navigatorKey.currentContext;
-    if (navigatorContext == null || navigatorContext.widget is AcknowledgementDialog) return;
+    if (navigatorContext == null) return;
 
+    _isLocationPermissionDialogShowing = true;
     await showDialog(
       barrierDismissible: false,
       context: navigatorContext,
@@ -167,5 +171,6 @@ class DialogHelper {
         );
       },
     );
+    _isLocationPermissionDialogShowing = false;
   }
 }
