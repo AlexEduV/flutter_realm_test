@@ -6,7 +6,6 @@ class AcknowledgementDialog extends StatelessWidget {
     required this.title,
     required this.description,
     required this.confirmButtonTitle,
-    this.isAlertStyling = true,
     this.onConfirm,
     this.icon,
     super.key,
@@ -17,7 +16,6 @@ class AcknowledgementDialog extends StatelessWidget {
   final Widget? icon;
   final VoidCallback? onConfirm;
   final String confirmButtonTitle;
-  final bool isAlertStyling;
 
   @override
   Widget build(BuildContext context) {

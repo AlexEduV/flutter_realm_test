@@ -166,7 +166,6 @@ class DialogHelper {
           confirmButtonTitle: l10n.getLocalisationByKey(
             L10nKeys.locationPermissionDialogOpenSettings,
           ),
-          isAlertStyling: false,
           onConfirm: () => serviceLocator<OpenAppSettingsUseCase>().call(),
           icon: const Icon(Icons.location_on, color: AppColors.headerColor),
         );

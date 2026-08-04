@@ -3,6 +3,9 @@ import 'package:widget_catalog/search/widgets/results_widget.usecase.dart';
 import 'package:widget_catalog/search/widgets/search_filter_button.usecase.dart';
 import 'package:widget_catalog/widgets/animated_favorite_icon.usecase.dart';
 import 'package:widget_catalog/widgets/announcement_item/announcement_list_item.usecase.dart';
+import 'package:widget_catalog/widgets/dialogs/acknowledgement_dialog.usecase.dart';
+import 'package:widget_catalog/widgets/dialogs/color_picker_dialog.usecase.dart';
+import 'package:widget_catalog/widgets/dialogs/confirmation_dialog.usecase.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 import 'account/sub_pages/location_settings/widgets/footer_text.usecase.dart';
@@ -39,8 +42,7 @@ class WidgetBookApp extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: defaultUseCaseName,
-                  builder: (context) =>
-                      buildAnimatedFavoriteIconUseCase(context),
+                  builder: (context) => buildAnimatedFavoriteIconUseCase(context),
                 ),
               ],
             ),
@@ -58,8 +60,42 @@ class WidgetBookApp extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: defaultUseCaseName,
-                  builder: (context) =>
-                      buildAnnouncementListItemUseCase(context),
+                  builder: (context) => buildAnnouncementListItemUseCase(context),
+                ),
+              ],
+            ),
+          ],
+        ),
+
+        WidgetbookCategory(
+          name: 'Dialogs',
+          children: [
+            WidgetbookComponent(
+              name: 'Confirmation dialog',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildConfirmationDialogUseCase(context),
+                ),
+              ],
+            ),
+
+            WidgetbookComponent(
+              name: 'Acknowledgement dialog',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildAcknowledgementDialogUseCase(context),
+                ),
+              ],
+            ),
+
+            WidgetbookComponent(
+              name: 'Color Picker dialog',
+              useCases: [
+                WidgetbookUseCase(
+                  name: defaultUseCaseName,
+                  builder: (context) => buildColorPickerDialogUseCase(context),
                 ),
               ],
             ),
@@ -84,8 +120,7 @@ class WidgetBookApp extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: defaultUseCaseName,
-                  builder: (context) =>
-                      buildSearchFilterButtonUseCase(context),
+                  builder: (context) => buildSearchFilterButtonUseCase(context),
                 ),
               ],
             ),
@@ -142,8 +177,7 @@ class WidgetBookApp extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: defaultUseCaseName,
-                  builder: (context) =>
-                      buildAccountItemSeparatedUseCase(context),
+                  builder: (context) => buildAccountItemSeparatedUseCase(context),
                 ),
               ],
             ),
@@ -178,8 +212,7 @@ class WidgetBookApp extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: defaultUseCaseName,
-                  builder: (context) =>
-                      buildAuthErrorWidgetUseCase(context),
+                  builder: (context) => buildAuthErrorWidgetUseCase(context),
                 ),
               ],
             ),
@@ -214,8 +247,7 @@ class WidgetBookApp extends StatelessWidget {
               useCases: [
                 WidgetbookUseCase(
                   name: defaultUseCaseName,
-                  builder: (context) =>
-                      buildMessageDateDividerUseCase(context),
+                  builder: (context) => buildMessageDateDividerUseCase(context),
                 ),
               ],
             ),
