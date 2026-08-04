@@ -1,6 +1,8 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/acknowledgement_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
@@ -8,6 +10,12 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/edit_password_
 import 'package:test_flutter_project/presentation/widgets/dialogs/edit_personal_info_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
+
+import '../core/di/injection_container.dart';
+import '../domain/usecases/geolocator/open_app_settings_use_case.dart';
+import '../l10n/l10n_keys.dart';
+import '../presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'app_router.dart';
 
 class DialogHelper {
   static Future<void> showConfirmationDialog(
@@ -136,5 +144,28 @@ class DialogHelper {
     );
 
     return result;
+  }
+
+  static Future<void> showLocationPermissionDialog() async {
+    final navigatorContext = AppRouter.router.routerDelegate.navigatorKey.currentContext;
+    if (navigatorContext == null || navigatorContext.widget is AcknowledgementDialog) return;
+
+    await showDialog(
+      barrierDismissible: false,
+      context: navigatorContext,
+      builder: (context) {
+        final l10n = context.read<AppLocalisationsCubit>();
+
+        return AcknowledgementDialog(
+          title: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogTitle),
+          description: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogDescription),
+          confirmButtonTitle: l10n.getLocalisationByKey(
+            L10nKeys.locationPermissionDialogOpenSettings,
+          ),
+          isAlertStyling: false,
+          onConfirm: () => serviceLocator<OpenAppSettingsUseCase>().call(),
+        );
+      },
+    );
   }
 }
