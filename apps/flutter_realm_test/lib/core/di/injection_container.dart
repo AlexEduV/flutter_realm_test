@@ -152,7 +152,8 @@ import '../../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 final serviceLocator = GetIt.instance;
 
 //todo: maybe convert to class;
-///NOTE: type annotations for registrations are used only where necessary.
+///NOTE: explicit type annotations for registrations are used only in implementations of abstract classes
+/// and when serviceLocator() is used as a param 3+ times.
 
 Future<void> initDependenciesContainer() async {
   _registerStorage();
@@ -294,10 +295,7 @@ void _registerUtils() {
 
 Future<void> _registerRepositories() async {
   serviceLocator.registerLazySingleton<OwnerRepository>(
-    () => OwnerRepositoryImpl(
-      serviceLocator<OwnersRemoteDataSource>(),
-      serviceLocator<UsersRemoteDataSource>(),
-    ),
+    () => OwnerRepositoryImpl(serviceLocator(), serviceLocator()),
   );
   serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
 
@@ -430,7 +428,12 @@ void _registerUseCases() {
 
 void _registerCubits() {
   serviceLocator.registerFactory(
-    () => ExplorePageCubit(serviceLocator(), serviceLocator(), serviceLocator(), serviceLocator()),
+    () => ExplorePageCubit(
+      serviceLocator<WatchCarsUseCase>(),
+      serviceLocator<SyncCarsUseCase>(),
+      serviceLocator<FetchArticlesUseCase>(),
+      serviceLocator<GetCarByIdUseCase>(),
+    ),
   );
 
   serviceLocator.registerFactory(
