@@ -24,8 +24,8 @@ class OwnerRepositoryImpl implements OwnerRepository {
 
   Future<void> _syncUsersFromOwners(List<OwnerEntity> owners) async {
     for (final owner in owners) {
-      final exists = _usersRemoteDataSource.users.any((u) => u.userId == owner.id);
-      if (!exists) {
+      final isExisting = _usersRemoteDataSource.users.any((u) => u.userId == owner.id);
+      if (!isExisting) {
         _usersRemoteDataSource.users.add(UserEntity.fromOwner(owner));
       }
     }
