@@ -152,7 +152,7 @@ import '../../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 final serviceLocator = GetIt.instance;
 
 //todo: maybe convert to class;
-//todo: maybe use explicit type annotation
+///NOTE: type annotations for registrations are used only where necessary.
 
 Future<void> initDependenciesContainer() async {
   _registerStorage();
@@ -400,13 +400,9 @@ void _registerUseCases() {
 
   serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton<OpenAppSettingsUseCase>(
-    () => OpenAppSettingsUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton<CheckLocationServiceStatusUseCase>(
-    () => CheckLocationServiceStatusUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton<ShareUseCase>(() => ShareUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => OpenAppSettingsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => CheckLocationServiceStatusUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => ShareUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
 
