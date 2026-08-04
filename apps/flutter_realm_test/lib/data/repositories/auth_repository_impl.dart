@@ -1,8 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
+import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
@@ -16,12 +16,12 @@ class AuthRepositoryImpl implements AuthRepository {
     this._localStorage,
     this._cloudStorage,
     this._usersRemoteDataSource,
-    this._ownersRemoteDataSource,
+    this._ownerRepository,
   );
 
   final BaseLocalStorage _localStorage;
   final SharedPreferences _cloudStorage;
-  final OwnersRemoteDataSource _ownersRemoteDataSource;
+  final OwnerRepository _ownerRepository;
   final UsersRemoteDataSource _usersRemoteDataSource;
 
   late final List<UserEntity> users;
@@ -30,7 +30,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   Future<void> init() async {
     await _usersRemoteDataSource.loadMockUsers();
-    await _ownersRemoteDataSource.fetchOwners();
+    await _ownerRepository.fetchOwners();
 
     users = List.from(_usersRemoteDataSource.users);
   }

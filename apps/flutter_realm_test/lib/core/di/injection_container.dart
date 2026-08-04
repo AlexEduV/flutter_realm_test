@@ -281,7 +281,11 @@ void _registerUtils() {
 
 Future<void> _registerRepositories() async {
   serviceLocator.registerLazySingleton<OwnerRepository>(
-    () => OwnerRepositoryImpl(serviceLocator()),
+    () => OwnerRepositoryImpl(
+      serviceLocator(),
+      serviceLocator<UsersRemoteDataSource>(),
+      serviceLocator<SaveUsersUseCase>(),
+    ),
   );
   serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
 
@@ -290,7 +294,7 @@ Future<void> _registerRepositories() async {
     serviceLocator<BaseLocalStorage>(),
     cloudStorage,
     serviceLocator<UsersRemoteDataSource>(),
-    serviceLocator<OwnersRemoteDataSource>(),
+    serviceLocator<OwnerRepository>(),
   );
   await authRepositoryImpl.init();
 
