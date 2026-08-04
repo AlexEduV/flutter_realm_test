@@ -156,6 +156,7 @@ Future<void> initDependenciesContainer() async {
   _registerNetwork();
 
   await _registerEnv();
+  _registerUseCases();
 
   final apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
     EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
@@ -172,19 +173,11 @@ Future<void> initDependenciesContainer() async {
     () => OwnerRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
-
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
     () => MockUsersRemoteDataSourceImpl(),
   );
 
   serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
 
   final cloudStorage = await SharedPreferences.getInstance();
   final authRepositoryImpl = AuthRepositoryImpl(
@@ -206,8 +199,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<CarRepository>(
     () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
   );
-
-  serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));
 
   final imagePicker = ImagePicker();
   serviceLocator.registerLazySingleton<ImagePickerService>(
@@ -264,9 +255,6 @@ Future<void> initDependenciesContainer() async {
     () => AutoCompleteRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
-
   //Register Repository (passing Realm from GetIt)
   serviceLocator.registerLazySingleton<PermissionRepository>(
     () => PermissionRepositoryImpl(serviceLocator()),
@@ -278,46 +266,9 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
 
-  serviceLocator.registerLazySingleton(() => RequestLocationPermissionUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(
-    () => CheckLocationPermissionStatusUseCase(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton(() => WatchCarsUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => SyncCarsUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => AddCarUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => DeleteCarByIdUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => DeleteAllCarsUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => GetCarByIdUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
-
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
     () => MockMessagesRemoteDataSourceImpl(),
   );
-
-  serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => DeleteAccountUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => FetchConversationsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => SaveConversationsUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => FetchArticlesUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetArticleByIdUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => FetchRegionsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetRegionByCodeUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => DateFormatter(serviceLocator()));
 
@@ -328,39 +279,9 @@ Future<void> initDependenciesContainer() async {
     () => UrlLaunchRepositoryImpl(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<GifsRepository>(() => GifsRepositoryImpl(serviceLocator()));
-  serviceLocator.registerLazySingleton<OpenAppSettingsUseCase>(
-    () => OpenAppSettingsUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton<CheckLocationServiceStatusUseCase>(
-    () => CheckLocationServiceStatusUseCase(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton<ShareUseCase>(() => ShareUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton<InboxRepository>(
     () => InboxRepositoryImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => SearchGifsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetTrendingGifsUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => PickAttachmentFileUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => ExtractUsersFromConversationUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => GetAllRegionModelsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => GetCarColorsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetCarColorByNameUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetCarColorNameFromColorUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(
-    () => GetAutoCompleteManufacturersByTypeUseCase(serviceLocator()),
   );
 
   _registerCubits();
@@ -408,6 +329,75 @@ Future<void> _registerEnv() async {
   serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
   await serviceLocator<InitEnvUseCase>().call();
+}
+
+void _registerUseCases() {
+  serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(
+    () => CheckLocationPermissionStatusUseCase(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(() => WatchCarsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SyncCarsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => AddCarUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => DeleteCarByIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => DeleteAllCarsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetCarByIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => RequestLocationPermissionUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => DeleteAccountUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => FetchConversationsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => SaveConversationsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => FetchArticlesUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetArticleByIdUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => FetchRegionsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetRegionByCodeUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton<OpenAppSettingsUseCase>(
+    () => OpenAppSettingsUseCase(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<CheckLocationServiceStatusUseCase>(
+    () => CheckLocationServiceStatusUseCase(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<ShareUseCase>(() => ShareUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => SearchGifsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetTrendingGifsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => PickAttachmentFileUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => ExtractUsersFromConversationUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetAllRegionModelsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(() => GetCarColorsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetCarColorByNameUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetCarColorNameFromColorUseCase(serviceLocator()));
+
+  serviceLocator.registerLazySingleton(
+    () => GetAutoCompleteManufacturersByTypeUseCase(serviceLocator()),
+  );
 }
 
 void _registerCubits() {
