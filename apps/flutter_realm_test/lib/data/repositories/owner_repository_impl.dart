@@ -3,18 +3,12 @@ import 'package:test_flutter_project/domain/data_sources/remote/users_remote_dat
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
-import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
 
 class OwnerRepositoryImpl implements OwnerRepository {
-  OwnerRepositoryImpl(
-    this._ownersRemoteDataSource,
-    this._usersRemoteDataSource,
-    this._saveUsersUseCase,
-  );
+  OwnerRepositoryImpl(this._ownersRemoteDataSource, this._usersRemoteDataSource);
 
   final OwnersRemoteDataSource _ownersRemoteDataSource;
   final UsersRemoteDataSource _usersRemoteDataSource;
-  final SaveUsersUseCase _saveUsersUseCase;
 
   @override
   Future<List<OwnerEntity>> fetchOwners() async {
@@ -35,6 +29,6 @@ class OwnerRepositoryImpl implements OwnerRepository {
         _usersRemoteDataSource.users.add(UserEntity.fromOwner(owner));
       }
     }
-    await _saveUsersUseCase.call(_usersRemoteDataSource.users);
+    await _usersRemoteDataSource.saveMockUsers(_usersRemoteDataSource.users);
   }
 }

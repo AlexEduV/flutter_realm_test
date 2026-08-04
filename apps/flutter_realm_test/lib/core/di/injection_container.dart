@@ -159,13 +159,14 @@ Future<void> initDependenciesContainer() async {
   _registerNetwork();
 
   await _registerEnv();
-  _registerUseCases();
 
   _registerServices();
   _registerDataSources();
   _registerUtils();
 
   await _registerRepositories();
+  _registerUseCases();
+
   _registerCubits();
 }
 
@@ -282,9 +283,8 @@ void _registerUtils() {
 Future<void> _registerRepositories() async {
   serviceLocator.registerLazySingleton<OwnerRepository>(
     () => OwnerRepositoryImpl(
-      serviceLocator(),
+      serviceLocator<OwnersRemoteDataSource>(),
       serviceLocator<UsersRemoteDataSource>(),
-      serviceLocator<SaveUsersUseCase>(),
     ),
   );
   serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
