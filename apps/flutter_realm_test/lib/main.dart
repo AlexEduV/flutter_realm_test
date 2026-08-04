@@ -68,7 +68,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    _listener = AppLifecycleListener(onResume: () => _checkPermissionStatusAndResume());
+    _listener = AppLifecycleListener(onResume: () => _handleLocationPermission());
+    WidgetsBinding.instance.addPostFrameCallback((_) => _handleLocationPermission());
   }
 
   @override
@@ -121,7 +122,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Future<void> _checkPermissionStatusAndResume() async {
+  Future<void> _handleLocationPermission() async {
     final locationPermissionStatus = await serviceLocator<CheckLocationPermissionStatusUseCase>()
         .call();
 
