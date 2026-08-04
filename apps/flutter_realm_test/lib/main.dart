@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     _listener = AppLifecycleListener(onResume: () => _handleLocationPermission());
-    WidgetsBinding.instance.addPostFrameCallback((_) => _handleLocationPermission());
+    _scheduleInitialPermissionCheck();
   }
 
   @override
@@ -120,6 +120,16 @@ class _MyAppState extends State<MyApp> {
         showSemanticsDebugger: AppConstants.showSemantics,
       ),
     );
+  }
+
+  void _scheduleInitialPermissionCheck() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (AppRouter.router.routerDelegate.navigatorKey.currentContext != null) {
+        _handleLocationPermission();
+      } else {
+        _scheduleInitialPermissionCheck();
+      }
+    });
   }
 
   Future<void> _handleLocationPermission() async {
