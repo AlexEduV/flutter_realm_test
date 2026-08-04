@@ -286,11 +286,8 @@ Future<void> _registerRepositories() async {
   final authRepositoryImpl = AuthRepositoryImpl(
     serviceLocator<BaseLocalStorage>(),
     cloudStorage,
-    serviceLocator<FetchOwnersUseCase>(),
-    serviceLocator<LoadUsersUseCase>(),
     serviceLocator<UsersRemoteDataSource>(),
-    serviceLocator<SaveUsersUseCase>(),
-    serviceLocator<GetMaxUserIdUseCase>(),
+    serviceLocator<OwnersRemoteDataSource>(),
   );
   await authRepositoryImpl.init();
 
