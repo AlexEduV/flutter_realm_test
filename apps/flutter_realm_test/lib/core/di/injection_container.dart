@@ -211,7 +211,11 @@ Future<void> _registerEnv() async {
   serviceLocator.registerLazySingleton<EnvRepository>(() => EnvRepositoryImpl(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
-  await serviceLocator<InitEnvUseCase>().call();
+  try {
+    await serviceLocator<InitEnvUseCase>().call();
+  } catch (e) {
+    debugPrint('Could not load .env file: $e');
+  }
 }
 
 void _registerDataSources() {
