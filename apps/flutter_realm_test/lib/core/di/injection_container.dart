@@ -169,36 +169,14 @@ Future<void> initDependenciesContainer() async {
     () => MockOwnersRemoteDataSourceImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton<OwnerRepository>(
-    () => OwnerRepositoryImpl(serviceLocator()),
-  );
-
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
     () => MockUsersRemoteDataSourceImpl(),
   );
-
-  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
-
-  final cloudStorage = await SharedPreferences.getInstance();
-  final authRepositoryImpl = AuthRepositoryImpl(
-    serviceLocator<BaseLocalStorage>(),
-    cloudStorage,
-    serviceLocator<FetchOwnersUseCase>(),
-    serviceLocator<LoadUsersUseCase>(),
-    serviceLocator<UsersRemoteDataSource>(),
-    serviceLocator<SaveUsersUseCase>(),
-    serviceLocator<GetMaxUserIdUseCase>(),
-  );
-  await authRepositoryImpl.init();
 
   final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(serviceLocator());
   mockCarRemoteDataSource.init();
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
-
-  serviceLocator.registerLazySingleton<CarRepository>(
-    () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
-  );
 
   final imagePicker = ImagePicker();
   serviceLocator.registerLazySingleton<ImagePickerService>(
@@ -222,49 +200,12 @@ Future<void> initDependenciesContainer() async {
     () => CarColorLocalDataSourceImpl(),
   );
   serviceLocator.registerLazySingleton<ShareService>(() => ShareServiceImpl());
-  serviceLocator.registerLazySingleton<ShareRepository>(
-    () => ShareRepositoryImpl(serviceLocator()),
-  );
 
-  serviceLocator.registerLazySingleton<ArticleRepository>(
-    () => ArticleRepositoryImpl(serviceLocator()),
-  );
   serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
     () => MockArticleRemoteDataSourceImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<PermissionService>(() => PermissionServiceImpl());
-
-  serviceLocator.registerLazySingleton<ImagePickerRepository>(
-    () => ImagePickerRepositoryImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton<FilePickerRepository>(
-    () => FilePickerRepositoryImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton<CarColorRepository>(
-    () => CarColorRepositoryImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton<RegionRepository>(
-    () => RegionRepositoryImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton<AutoCompleteRepository>(
-    () => AutoCompleteRepositoryImpl(serviceLocator()),
-  );
-
-  //Register Repository (passing Realm from GetIt)
-  serviceLocator.registerLazySingleton<PermissionRepository>(
-    () => PermissionRepositoryImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton<RegionModelRepository>(
-    () => RegionModelRepositoryImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
 
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
     () => MockMessagesRemoteDataSourceImpl(),
@@ -272,18 +213,7 @@ Future<void> initDependenciesContainer() async {
 
   serviceLocator.registerLazySingleton(() => DateFormatter(serviceLocator()));
 
-  serviceLocator.registerLazySingleton<GeolocatorRepository>(
-    () => GeolocatorRepositoryImpl(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton<UrlLaunchRepository>(
-    () => UrlLaunchRepositoryImpl(serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton<GifsRepository>(() => GifsRepositoryImpl(serviceLocator()));
-
-  serviceLocator.registerLazySingleton<InboxRepository>(
-    () => InboxRepositoryImpl(serviceLocator()),
-  );
-
+  await _registerRepositories();
   _registerCubits();
 }
 
@@ -329,6 +259,77 @@ Future<void> _registerEnv() async {
   serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
   await serviceLocator<InitEnvUseCase>().call();
+}
+
+Future<void> _registerRepositories() async {
+  serviceLocator.registerLazySingleton<OwnerRepository>(
+    () => OwnerRepositoryImpl(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
+
+  final cloudStorage = await SharedPreferences.getInstance();
+  final authRepositoryImpl = AuthRepositoryImpl(
+    serviceLocator<BaseLocalStorage>(),
+    cloudStorage,
+    serviceLocator<FetchOwnersUseCase>(),
+    serviceLocator<LoadUsersUseCase>(),
+    serviceLocator<UsersRemoteDataSource>(),
+    serviceLocator<SaveUsersUseCase>(),
+    serviceLocator<GetMaxUserIdUseCase>(),
+  );
+  await authRepositoryImpl.init();
+
+  serviceLocator.registerLazySingleton<CarRepository>(
+    () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<ShareRepository>(
+    () => ShareRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<ArticleRepository>(
+    () => ArticleRepositoryImpl(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<ImagePickerRepository>(
+    () => ImagePickerRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<FilePickerRepository>(
+    () => FilePickerRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<CarColorRepository>(
+    () => CarColorRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<RegionRepository>(
+    () => RegionRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<AutoCompleteRepository>(
+    () => AutoCompleteRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<PermissionRepository>(
+    () => PermissionRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<RegionModelRepository>(
+    () => RegionModelRepositoryImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
+
+  serviceLocator.registerLazySingleton<GeolocatorRepository>(
+    () => GeolocatorRepositoryImpl(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<UrlLaunchRepository>(
+    () => UrlLaunchRepositoryImpl(serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton<GifsRepository>(() => GifsRepositoryImpl(serviceLocator()));
+
+  serviceLocator.registerLazySingleton<InboxRepository>(
+    () => InboxRepositoryImpl(serviceLocator()),
+  );
 }
 
 void _registerUseCases() {
