@@ -4,6 +4,7 @@ import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/car_repository.dart';
@@ -38,7 +39,7 @@ void main() {
     serviceLocator.registerSingleton<Realm>(FakeRealm());
 
     final mockLocalStorage = MockBaseLocalStorage();
-    when(mockLocalStorage.getAll()).thenReturn([]);
+    when(mockLocalStorage.getAll()).thenReturn([CarEntity.empty()]);
 
     serviceLocator.registerSingleton<BaseLocalStorage>(mockLocalStorage);
     // Register other mocks as needed

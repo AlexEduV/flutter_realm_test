@@ -6,10 +6,7 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/usecases/owners/fetch_owners_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_max_user_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
@@ -17,10 +14,7 @@ import '../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'auth_repository_impl_test.mocks.dart';
 
 @GenerateNiceMocks([
-  MockSpec<FetchOwnersUseCase>(),
-  MockSpec<GetMaxUserIdUseCase>(),
-  MockSpec<SaveUsersUseCase>(),
-  MockSpec<LoadUsersUseCase>(),
+  MockSpec<OwnerRepository>(),
   MockSpec<UsersRemoteDataSource>(),
 ])
 void main() {
@@ -28,10 +22,7 @@ void main() {
   late AuthRepositoryImpl repo;
 
   final mockLocalStorage = MockBaseLocalStorage();
-  final mockFetchOwnersUseCase = MockFetchOwnersUseCase();
-  final mockGetMaxUserIdUseCase = MockGetMaxUserIdUseCase();
-  final mockSaveUsersUseCase = MockSaveUsersUseCase();
-  final mockLoadUsersUseCase = MockLoadUsersUseCase();
+  final mockOwnerRepository = MockOwnerRepository();
   final mockUsersRemoteDataSource = MockUsersRemoteDataSource();
 
   final appLocalisationsCubit = AppLocalisationsCubit();
@@ -66,18 +57,14 @@ void main() {
     appLocalisationsCubit.load(localisations);
 
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);
-    when(mockGetMaxUserIdUseCase.call()).thenReturn(1);
-    when(mockSaveUsersUseCase.call(any)).thenAnswer((_) async {});
-    when(mockLoadUsersUseCase.call()).thenAnswer((_) async => initUsers);
+    when(mockUsersRemoteDataSource.getMaxUserId()).thenReturn(1);
+    when(mockUsersRemoteDataSource.saveMockUsers(any)).thenAnswer((_) async {});
 
     repo = AuthRepositoryImpl(
       mockLocalStorage,
       prefs,
-      mockFetchOwnersUseCase,
-      mockLoadUsersUseCase,
       mockUsersRemoteDataSource,
-      mockSaveUsersUseCase,
-      mockGetMaxUserIdUseCase,
+      mockOwnerRepository,
     );
     repo.users = initUsers;
   });

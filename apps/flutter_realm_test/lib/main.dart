@@ -6,7 +6,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/domain/usecases/env/init_env_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/fetch_regions_use_case.dart';
@@ -46,7 +45,6 @@ void main() async {
     await Future.wait([
       serviceLocator<InitRegionModelsUseCase>().call(),
       serviceLocator<FetchRegionsUseCase>().call(),
-      serviceLocator<InitEnvUseCase>().call(),
     ]);
 
     ImageCacheUtil.initExtendedCacheSize();

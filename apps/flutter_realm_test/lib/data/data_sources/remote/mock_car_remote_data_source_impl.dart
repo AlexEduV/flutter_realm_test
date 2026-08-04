@@ -12,16 +12,15 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/data/dto/car_dto.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
-
-import '../../../core/di/injection_container.dart';
 
 class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
-  MockCarRemoteDataSourceImpl(this._localStorage);
+  MockCarRemoteDataSourceImpl(this._localStorage, this._ownersRemoteDataSource);
 
   final BaseLocalStorage _localStorage;
+  final OwnersRemoteDataSource _ownersRemoteDataSource;
 
   // 1. Single source of truth
   final _carStreamController = BehaviorSubject<List<CarDto>>();
@@ -46,9 +45,9 @@ class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
 
     final List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
 
-    final owner1 = serviceLocator<GetOwnerByIdUseCase>().call('1');
-    final owner2 = serviceLocator<GetOwnerByIdUseCase>().call('2');
-    final owner3 = serviceLocator<GetOwnerByIdUseCase>().call('3');
+    final owner1 = _ownersRemoteDataSource.getOwnerById('1');
+    final owner2 = _ownersRemoteDataSource.getOwnerById('2');
+    final owner3 = _ownersRemoteDataSource.getOwnerById('3');
 
     initialData = [
       CarDto(

@@ -3,10 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _i3;
+
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i2;
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart'
-    as _i3;
+import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart'
+    as _i2;
+import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -22,7 +24,7 @@ import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
+class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i4.OwnerEntity {
   _FakeOwnerEntity_0(
     Object parent,
     Invocation parentInvocation,
@@ -32,30 +34,42 @@ class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
         );
 }
 
-/// A class which mocks [GetOwnerByIdUseCase].
+/// A class which mocks [OwnersRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetOwnerByIdUseCase extends _i1.Mock
-    implements _i3.GetOwnerByIdUseCase {
+class MockOwnersRemoteDataSource extends _i1.Mock
+    implements _i2.OwnersRemoteDataSource {
   @override
-  _i2.OwnerEntity call(String? params) => (super.noSuchMethod(
+  _i3.Future<List<_i4.OwnerEntity>> fetchOwners() => (super.noSuchMethod(
         Invocation.method(
-          #call,
-          [params],
+          #fetchOwners,
+          [],
+        ),
+        returnValue:
+            _i3.Future<List<_i4.OwnerEntity>>.value(<_i4.OwnerEntity>[]),
+        returnValueForMissingStub:
+            _i3.Future<List<_i4.OwnerEntity>>.value(<_i4.OwnerEntity>[]),
+      ) as _i3.Future<List<_i4.OwnerEntity>>);
+
+  @override
+  _i4.OwnerEntity getOwnerById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getOwnerById,
+          [id],
         ),
         returnValue: _FakeOwnerEntity_0(
           this,
           Invocation.method(
-            #call,
-            [params],
+            #getOwnerById,
+            [id],
           ),
         ),
         returnValueForMissingStub: _FakeOwnerEntity_0(
           this,
           Invocation.method(
-            #call,
-            [params],
+            #getOwnerById,
+            [id],
           ),
         ),
-      ) as _i2.OwnerEntity);
+      ) as _i4.OwnerEntity);
 }

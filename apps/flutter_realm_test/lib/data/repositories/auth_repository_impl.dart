@@ -2,10 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
-import 'package:test_flutter_project/domain/usecases/owners/fetch_owners_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_max_user_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 
@@ -18,28 +15,22 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(
     this._localStorage,
     this._cloudStorage,
-    this._fetchOwnersUseCase,
-    this._loadUsersUseCase,
     this._usersRemoteDataSource,
-    this._saveUsersUseCase,
-    this._getMaxUserIdUseCase,
+    this._ownerRepository,
   );
 
   final BaseLocalStorage _localStorage;
   final SharedPreferences _cloudStorage;
-  final FetchOwnersUseCase _fetchOwnersUseCase;
-  final LoadUsersUseCase _loadUsersUseCase;
+  final OwnerRepository _ownerRepository;
   final UsersRemoteDataSource _usersRemoteDataSource;
-  final SaveUsersUseCase _saveUsersUseCase;
-  final GetMaxUserIdUseCase _getMaxUserIdUseCase;
 
   late final List<UserEntity> users;
   late bool isAuthenticated = false;
   final _userSessionKey = 'userId';
 
   Future<void> init() async {
-    await _loadUsersUseCase.call();
-    await _fetchOwnersUseCase.call();
+    await _usersRemoteDataSource.loadMockUsers();
+    await _ownerRepository.fetchOwners();
 
     users = List.from(_usersRemoteDataSource.users);
   }
@@ -106,7 +97,7 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     }
 
-    final newUserId = _getMaxUserIdUseCase.call() + 1;
+    final newUserId = _usersRemoteDataSource.getMaxUserId() + 1;
     final user = UserEntity.initial(
       userId: '$newUserId',
       email: email,
@@ -118,7 +109,7 @@ class AuthRepositoryImpl implements AuthRepository {
     users.add(user);
     _usersRemoteDataSource.users = List.from(users);
 
-    await _saveUsersUseCase.call(users);
+    await _usersRemoteDataSource.saveMockUsers(users);
     await _saveUserSession(newUserId.toString());
 
     _localStorage.clearUser();
@@ -134,7 +125,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
     users.removeWhere((element) => element.email == email);
     _usersRemoteDataSource.users = List.from(users);
-    await _saveUsersUseCase.call(users);
+    await _usersRemoteDataSource.saveMockUsers(users);
   }
 
   @override
@@ -144,7 +135,7 @@ class AuthRepositoryImpl implements AuthRepository {
     users.removeWhere((element) => element.userId == userId);
     users.add(data);
 
-    await _saveUsersUseCase.call(users);
+    await _usersRemoteDataSource.saveMockUsers(users);
   }
 
   @override
