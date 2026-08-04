@@ -158,6 +158,57 @@ Future<void> initDependenciesContainer() async {
   await _registerEnv();
   _registerUseCases();
 
+  _registerDataSources();
+
+  await _registerRepositories();
+  _registerCubits();
+}
+
+void _registerStorage() {
+  if (serviceLocator.isNotRegistered<Realm>()) {
+    try {
+      final config = RealmConfiguration()..init();
+      serviceLocator.registerLazySingleton<Realm>(() => Realm(config.instance));
+    } catch (e) {
+      debugPrint('Could not open realm');
+    }
+  }
+
+  if (serviceLocator.isNotRegistered<BaseLocalStorage>()) {
+    try {
+      serviceLocator.registerLazySingleton<BaseLocalStorage>(
+        () => RealmLocalStorage(serviceLocator()),
+      );
+    } catch (e) {
+      debugPrint('Could not register local storage');
+    }
+  }
+}
+
+void _registerNetwork() {
+  serviceLocator.registerLazySingleton<LoggingService>(() => AppLoggingServiceImpl());
+  serviceLocator.registerLazySingleton<LoggingService>(
+    () => NetworkLoggingServiceImpl(),
+    instanceName: 'network',
+  );
+
+  final client = http.Client();
+  final appInterceptor = AppInterceptor(serviceLocator<LoggingService>(instanceName: 'network'));
+  serviceLocator.registerLazySingleton<AppHttpClient>(
+    () => AppHttpClientImpl(client, appInterceptor),
+  );
+}
+
+Future<void> _registerEnv() async {
+  final dotEnv = dotenv;
+  serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl(dotEnv));
+  serviceLocator.registerLazySingleton<EnvRepository>(() => EnvRepositoryImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
+  await serviceLocator<InitEnvUseCase>().call();
+}
+
+void _registerDataSources() {
   final apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
     EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
   );
@@ -212,53 +263,6 @@ Future<void> initDependenciesContainer() async {
   );
 
   serviceLocator.registerLazySingleton(() => DateFormatter(serviceLocator()));
-
-  await _registerRepositories();
-  _registerCubits();
-}
-
-void _registerStorage() {
-  if (serviceLocator.isNotRegistered<Realm>()) {
-    try {
-      final config = RealmConfiguration()..init();
-      serviceLocator.registerLazySingleton<Realm>(() => Realm(config.instance));
-    } catch (e) {
-      debugPrint('Could not open realm');
-    }
-  }
-
-  if (serviceLocator.isNotRegistered<BaseLocalStorage>()) {
-    try {
-      serviceLocator.registerLazySingleton<BaseLocalStorage>(
-        () => RealmLocalStorage(serviceLocator()),
-      );
-    } catch (e) {
-      debugPrint('Could not register local storage');
-    }
-  }
-}
-
-void _registerNetwork() {
-  serviceLocator.registerLazySingleton<LoggingService>(() => AppLoggingServiceImpl());
-  serviceLocator.registerLazySingleton<LoggingService>(
-    () => NetworkLoggingServiceImpl(),
-    instanceName: 'network',
-  );
-
-  final client = http.Client();
-  final appInterceptor = AppInterceptor(serviceLocator<LoggingService>(instanceName: 'network'));
-  serviceLocator.registerLazySingleton<AppHttpClient>(
-    () => AppHttpClientImpl(client, appInterceptor),
-  );
-}
-
-Future<void> _registerEnv() async {
-  final dotEnv = dotenv;
-  serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl(dotEnv));
-  serviceLocator.registerLazySingleton<EnvRepository>(() => EnvRepositoryImpl(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
-  await serviceLocator<InitEnvUseCase>().call();
 }
 
 Future<void> _registerRepositories() async {
