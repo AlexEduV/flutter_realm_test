@@ -219,9 +219,14 @@ Future<void> _registerEnv() async {
 }
 
 void _registerDataSources() {
-  final apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
-    EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
-  );
+  String apiKey = '';
+  try {
+    apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
+      EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
+    );
+  } catch (e) {
+    debugPrint('Could not load API key: $e');
+  }
   serviceLocator.registerLazySingleton<GifsRemoteDataSource>(
     () => GifsRemoteDataSourceImpl(serviceLocator(), apiKey),
   );
