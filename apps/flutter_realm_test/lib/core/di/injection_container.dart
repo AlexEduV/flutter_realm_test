@@ -151,6 +151,9 @@ import '../../presentation/bloc/home/explore_page/explore_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 
+//todo: maybe convert to class;
+//todo: maybe use type annotation everywhere
+
 Future<void> initDependenciesContainer() async {
   _registerStorage();
   _registerNetwork();
