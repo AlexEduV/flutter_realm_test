@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    _listener = AppLifecycleListener(onResume: () => checkPermissionStatusAndResume());
+    _listener = AppLifecycleListener(onResume: () => _checkPermissionStatusAndResume());
   }
 
   @override
@@ -121,7 +121,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Future<void> checkPermissionStatusAndResume() async {
+  Future<void> _checkPermissionStatusAndResume() async {
     final locationPermissionStatus = await serviceLocator<CheckLocationPermissionStatusUseCase>()
         .call();
 
