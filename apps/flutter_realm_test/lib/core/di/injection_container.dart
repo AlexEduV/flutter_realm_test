@@ -230,7 +230,10 @@ void _registerDataSources() {
     () => MockUsersRemoteDataSourceImpl(),
   );
 
-  final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(serviceLocator());
+  final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(
+    serviceLocator(),
+    serviceLocator<OwnersRemoteDataSource>(),
+  );
   mockCarRemoteDataSource.init();
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
