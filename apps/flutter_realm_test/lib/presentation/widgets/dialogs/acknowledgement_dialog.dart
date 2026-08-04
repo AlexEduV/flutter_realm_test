@@ -8,11 +8,13 @@ class AcknowledgementDialog extends StatelessWidget {
     required this.confirmButtonTitle,
     this.isAlertStyling = true,
     this.onConfirm,
+    this.icon,
     super.key,
   });
 
   final String title;
   final String description;
+  final Widget? icon;
   final VoidCallback? onConfirm;
   final String confirmButtonTitle;
   final bool isAlertStyling;
@@ -21,11 +23,22 @@ class AcknowledgementDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Colors.white,
-      title: Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700)),
+      title: Row(
+        children: [
+          if (icon != null) ...[icon!, const SizedBox(width: AppDimensions.normalM)],
+          Expanded(
+            child: Text(
+              title,
+              style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
+            ),
+          ),
+        ],
+      ),
       content: Text(description),
       actionsPadding: const EdgeInsets.only(bottom: AppDimensions.normalM),
       actions: [
         SplashButton(
+          buttonType: ButtonType.primary,
           title: confirmButtonTitle,
           onPressed: () {
             Navigator.of(context).pop();

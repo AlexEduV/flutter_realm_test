@@ -168,6 +168,7 @@ class DialogHelper {
           ),
           isAlertStyling: false,
           onConfirm: () => serviceLocator<OpenAppSettingsUseCase>().call(),
+          icon: const Icon(Icons.location_on, color: AppColors.headerColor),
         );
       },
     );
