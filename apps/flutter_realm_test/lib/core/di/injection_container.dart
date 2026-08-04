@@ -158,7 +158,9 @@ Future<void> initDependenciesContainer() async {
   await _registerEnv();
   _registerUseCases();
 
+  _registerServices();
   _registerDataSources();
+  _registerUtils();
 
   await _registerRepositories();
   _registerCubits();
@@ -229,12 +231,31 @@ void _registerDataSources() {
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
 
+  serviceLocator.registerLazySingleton<AutoCompleteRemoteDataSource>(
+    () => MockAutoCompleteRemoteDataSource(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
+    () => MockRegionRemoteDataSourceImpl(),
+  );
+
+  serviceLocator.registerLazySingleton<CarColorLocalDataSource>(
+    () => CarColorLocalDataSourceImpl(),
+  );
+
+  serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
+    () => MockArticleRemoteDataSourceImpl(serviceLocator()),
+  );
+
+  serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
+    () => MockMessagesRemoteDataSourceImpl(),
+  );
+}
+
+void _registerServices() {
   final imagePicker = ImagePicker();
   serviceLocator.registerLazySingleton<ImagePickerService>(
     () => ImagePickerServiceImpl(imagePicker),
-  );
-  serviceLocator.registerLazySingleton<AutoCompleteRemoteDataSource>(
-    () => MockAutoCompleteRemoteDataSource(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<ExternalLinkService>(
@@ -243,25 +264,15 @@ void _registerDataSources() {
 
   final filePicker = FilePickerIO();
   serviceLocator.registerLazySingleton<FilePickerService>(() => FilePickerServiceImpl(filePicker));
-  serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
-    () => MockRegionRemoteDataSourceImpl(),
-  );
+
   serviceLocator.registerLazySingleton<GeolocatorService>(() => GeolocatorServiceImpl());
-  serviceLocator.registerLazySingleton<CarColorLocalDataSource>(
-    () => CarColorLocalDataSourceImpl(),
-  );
+
   serviceLocator.registerLazySingleton<ShareService>(() => ShareServiceImpl());
 
-  serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
-    () => MockArticleRemoteDataSourceImpl(serviceLocator()),
-  );
-
   serviceLocator.registerLazySingleton<PermissionService>(() => PermissionServiceImpl());
+}
 
-  serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
-    () => MockMessagesRemoteDataSourceImpl(),
-  );
-
+void _registerUtils() {
   serviceLocator.registerLazySingleton(() => DateFormatter(serviceLocator()));
 }
 
