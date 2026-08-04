@@ -183,7 +183,12 @@ Future<void> initDependenciesContainer() async {
     () => AppHttpClientImpl(client, appInterceptor),
   );
 
+  final dotEnv = dotenv;
+  serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl(dotEnv));
+  serviceLocator.registerLazySingleton<EnvRepository>(() => EnvRepositoryImpl(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
+  await serviceLocator<InitEnvUseCase>().call();
   final apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
     EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
   );
@@ -235,9 +240,6 @@ Future<void> initDependenciesContainer() async {
   );
 
   serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));
-
-  final dotEnv = dotenv;
-  serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl(dotEnv));
 
   final imagePicker = ImagePicker();
   serviceLocator.registerLazySingleton<ImagePickerService>(
@@ -394,7 +396,6 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton<GeolocatorRepository>(
     () => GeolocatorRepositoryImpl(serviceLocator()),
   );
-  serviceLocator.registerLazySingleton<EnvRepository>(() => EnvRepositoryImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<UrlLaunchRepository>(
     () => UrlLaunchRepositoryImpl(serviceLocator()),
   );
@@ -455,6 +456,4 @@ Future<void> initDependenciesContainer() async {
   serviceLocator.registerLazySingleton(
     () => GetAutoCompleteManufacturersByTypeUseCase(serviceLocator()),
   );
-
-  serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
 }
