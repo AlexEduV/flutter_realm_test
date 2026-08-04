@@ -448,13 +448,21 @@ void _registerCubits() {
   );
 
   serviceLocator.registerFactory(
-    () => SearchPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+    () => SearchPageCubit(
+      serviceLocator<GetAllCarsUseCase>(),
+      serviceLocator<WatchCarsUseCase>(),
+      serviceLocator<AppLocalisationsCubit>(),
+    ),
   );
 
   serviceLocator.registerFactory(() => HomeBottomBarCubit());
 
   serviceLocator.registerFactory(
-    () => DetailsPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+    () => DetailsPageCubit(
+      serviceLocator<GetCarByIdUseCase>(),
+      serviceLocator<GetCarColorsUseCase>(),
+      serviceLocator<GetConversationByOwnerIdUseCase>(),
+    ),
   );
 
   serviceLocator.registerLazySingleton(
@@ -478,7 +486,11 @@ void _registerCubits() {
   serviceLocator.registerFactory(() => EditDialogCubit());
 
   serviceLocator.registerFactory(
-    () => MessagesPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+    () => MessagesPageCubit(
+      serviceLocator<SearchGifsUseCase>(),
+      serviceLocator<GetTrendingGifsUseCase>(),
+      serviceLocator<PickAttachmentFileUseCase>(),
+    ),
   );
 
   serviceLocator.registerLazySingleton(
