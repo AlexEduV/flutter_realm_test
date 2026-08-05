@@ -63,5 +63,5 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   }
 
   @override
-  List<UserEntity> users = MockUsers.initialUsers;
+  List<UserEntity> users = List.from(MockUsers.initialUsers);
 }
