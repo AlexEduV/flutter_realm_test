@@ -1,7 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/gif_entity.dart';
@@ -175,7 +175,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
   void onGifItemTap(GifEntity gif) {
     final payload = gif.toPayload();
 
-    final userId = context.read<UserDataCubit>().user.userId;
+    final userId = context.read<UserDataCubit>().state.user.userId;
 
     final conversationId = context.read<MessagesPageCubit>().state.currentConversationId;
     context.read<InboxPageCubit>().sendMessage(

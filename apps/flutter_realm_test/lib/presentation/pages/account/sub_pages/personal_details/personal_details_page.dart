@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
@@ -43,12 +43,12 @@ class PersonalDetailsPage extends StatelessWidget {
                 children: [
                   PersonalDetailsListItem(
                     title: context.tr(L10nKeys.personalDetailsItemFirstName),
-                    description: state.firstName,
+                    description: state.user.firstName,
                     icon: Icons.person_pin_outlined,
                     onTap: () => DialogHelper.showEditDialog(
                       context,
                       title: context.trRead(L10nKeys.personalDetailsItemFirstName),
-                      initialValue: state.firstName,
+                      initialValue: state.user.firstName,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setFirstName,
@@ -63,12 +63,12 @@ class PersonalDetailsPage extends StatelessWidget {
 
                   PersonalDetailsListItem(
                     title: context.tr(L10nKeys.personalDetailsItemLastName),
-                    description: state.lastName,
+                    description: state.user.lastName,
                     icon: Icons.person_outlined,
                     onTap: () => DialogHelper.showEditDialog(
                       context,
                       title: context.trRead(L10nKeys.personalDetailsItemLastName),
-                      initialValue: state.lastName,
+                      initialValue: state.user.lastName,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setLastName,
@@ -94,12 +94,12 @@ class PersonalDetailsPage extends StatelessWidget {
                   //),
                   PersonalDetailsListItem(
                     title: context.tr(L10nKeys.personalDetailsItemEmail),
-                    description: state.email,
+                    description: state.user.email,
                     icon: Icons.email_outlined,
                     onTap: () => DialogHelper.showEditDialog(
                       context,
                       title: context.trRead(L10nKeys.personalDetailsItemEmail),
-                      initialValue: state.email,
+                      initialValue: state.user.email,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setEmail,
@@ -112,7 +112,7 @@ class PersonalDetailsPage extends StatelessWidget {
 
                   PersonalDetailsListItem(
                     title: context.tr(L10nKeys.personalDetailsItemPassword),
-                    description: state.password.obscure(),
+                    description: state.user.password.obscure(),
                     icon: Icons.password,
                     onTap: () => DialogHelper.showEditPasswordDialog(
                       context,

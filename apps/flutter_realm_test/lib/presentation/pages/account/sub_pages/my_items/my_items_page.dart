@@ -23,13 +23,13 @@ class MyItemsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
-        buildWhen: (previous, current) => previous.createdIds != current.createdIds,
+        buildWhen: (previous, current) => previous.user.createdIds != current.user.createdIds,
         builder: (context, userState) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, exploreState) {
               final allCars = exploreState.cars;
 
-              final createdIds = userState.createdIds;
+              final createdIds = userState.user.createdIds;
               final createdEntities = allCars
                   .where((entity) => createdIds.contains(entity.carId))
                   .toList();

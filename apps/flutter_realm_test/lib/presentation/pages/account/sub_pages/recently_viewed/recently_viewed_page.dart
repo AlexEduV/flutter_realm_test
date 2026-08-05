@@ -25,13 +25,13 @@ class RecentlyViewedPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
-        buildWhen: (previous, current) => previous.viewedIds != current.viewedIds,
+        buildWhen: (previous, current) => previous.user.viewedIds != current.user.viewedIds,
         builder: (context, userState) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
               final allCars = state.cars;
 
-              final viewedIds = userState.viewedIds.reversed;
+              final viewedIds = userState.user.viewedIds.reversed;
 
               final viewedEntities = viewedIds
                   .map((id) => allCars.firstWhereOrNull((entity) => entity.carId == id))

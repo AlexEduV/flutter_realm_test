@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
@@ -87,7 +87,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
 
   void sendMessage(String message) {
     final conversationId = context.read<MessagesPageCubit>().state.currentConversationId ?? '';
-    final user = context.read<UserDataCubit>().user;
+    final user = context.read<UserDataCubit>().state.user;
 
     context.read<InboxPageCubit>().sendMessage(
       conversationId,

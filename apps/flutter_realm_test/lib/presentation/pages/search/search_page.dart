@@ -1,7 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
@@ -145,14 +145,15 @@ class _SearchPageState extends State<SearchPage> {
                 SliverPadding(
                   padding: const EdgeInsetsGeometry.only(bottom: AppDimensions.normalXL),
                   sliver: BlocBuilder<UserDataCubit, UserDataState>(
-                    buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
+                    buildWhen: (previous, current) =>
+                        previous.user.favoriteIds != current.user.favoriteIds,
                     builder: (context, userState) {
                       return SliverGrid(
                         delegate: SliverChildBuilderDelegate((context, index) {
                           return AnnouncementListItem(
                             isExploreItem: false,
                             car: filteredResults[index],
-                            user: context.read<UserDataCubit>().user,
+                            user: context.read<UserDataCubit>().state.user,
                             onDismissed: () {},
                           );
                         }, childCount: filteredResults.length),

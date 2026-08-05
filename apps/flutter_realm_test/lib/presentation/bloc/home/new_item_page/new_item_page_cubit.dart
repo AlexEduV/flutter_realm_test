@@ -358,7 +358,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       ),
       transmissionType: state.selectedTransmissionType.name,
       color: state.colorText.capitalizeFirst(),
-      owner: OwnerEntity.fromUser(_userDataCubit.user),
+      owner: OwnerEntity.fromUser(_userDataCubit.state.user),
       price: int.tryParse(state.priceText) ?? 0,
       year: state.yearText,
     );
