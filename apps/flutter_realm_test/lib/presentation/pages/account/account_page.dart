@@ -50,7 +50,7 @@ class AccountPage extends StatelessWidget {
                 ListTile(
                   title: Center(
                     child: Text(
-                      '${state.user..firstName} ${state.user.lastName}',
+                      '${state.user.firstName} ${state.user.lastName}',
                       style: AppTextStyles.zonaPro18.copyWith(color: AppColors.headerColor),
                     ),
                   ),
