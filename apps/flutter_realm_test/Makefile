@@ -15,15 +15,6 @@ format:
 	find lib/ -name "*.dart" ! -name "*.g.dart" ! -name "*.freezed.dart" ! -name "*.realm.dart" | xargs dart format
 
 
-# File Generation - outdated, migrated to melos commands below.
-#clean-build:
-#	dart run build_runner clean
-#	$(MAKE) build-verbose-delete-conflicting-outputs
-#
-#build-verbose-delete-conflicting-outputs:
-#	dart run build_runner build -v --delete-conflicting-outputs
-
-
 # Tests
 #NOTE: very good cli produces flaky tests in CI-CD, regarding get it registration. It was one file after the
 # other, so I migrated to flutter test.
@@ -64,3 +55,11 @@ melos-build:
 
 melos-build-clean:
 	melos run build:clean --scope=test_flutter_project
+
+# File Generation - only when melos gen is stuck.
+clean-build-hard:
+	dart run build_runner clean
+	$(MAKE) build-verbose-delete-conflicting-outputs
+
+build-hard:
+	dart run build_runner build -v --delete-conflicting-outputs
