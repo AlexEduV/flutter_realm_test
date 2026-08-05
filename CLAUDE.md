@@ -30,10 +30,11 @@ flutter test          # run all tests
 flutter test test/path/to/foo_test.dart  # run a single test file
 make run-all-tests    # run all tests with concurrency=4
 
-# Code generation — must run from repo root (resolution: workspace)
+# Code generation — must run from apps/flutter_realm_test/ (not repo root)
+dart run build_runner build --delete-conflicting-outputs
+# If outputs are stale/stuck, delete the generated file + cache then rebuild:
 find . -path '*/.dart_tool/build' -type d -exec rm -rf {} + 2>/dev/null
-melos run build       # run build_runner across all packages
-melos run build:clean # clean build_runner cache
+dart run build_runner build --delete-conflicting-outputs
 
 # Lint / format (from apps/flutter_realm_test/)
 flutter analyze

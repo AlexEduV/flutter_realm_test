@@ -37,7 +37,7 @@ melos:
     analyse: dart analyze .
     build:
       run: dart run build_runner build --delete-conflicting-outputs
-      description: "Run build_runner from workspace root"
+      description: "Run build_runner for the app package (run from apps/flutter_realm_test/)"
     build:clean:
       run: dart run build_runner clean
       description: "Clean build_runner cache from workspace root"

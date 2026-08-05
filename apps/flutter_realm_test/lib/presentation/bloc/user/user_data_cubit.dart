@@ -54,7 +54,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
 
-    user = _localStorage.initUser();
+    final user = _localStorage.initUser();
     final isUserLoggedIn = await _authRepository.isUserLoggedIn();
 
     await initLocalisation(user.region);
@@ -66,6 +66,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     emit(
       state.copyWith(
+        user: user,
         isLoading: false,
         isLocationPermissionGranted: isLocationPermissionGranted,
         isUserAuthenticated: isUserLoggedIn,
@@ -92,29 +93,29 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void setFirstName(String firstName) {
-    user = user.copyWith(firstName: firstName);
-    emit(state.copyWith(firstName: firstName));
+    final user = state.user.copyWith(firstName: firstName);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void setLastName(String lastName) {
-    user = user.copyWith(lastName: lastName);
-    emit(state.copyWith(lastName: lastName));
+    final user = state.user.copyWith(lastName: lastName);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void setEmail(String email) {
-    user = user.copyWith(email: email);
-    emit(state.copyWith(email: email));
+    final user = state.user.copyWith(email: email);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void setPassword(String password) {
-    user = user.copyWith(password: password);
-    emit(state.copyWith(password: password));
+    final user = state.user.copyWith(password: password);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
@@ -124,14 +125,14 @@ class UserDataCubit extends Cubit<UserDataState> {
         ? null
         : LastSeenCarEntity(carId: carId, seenAt: DateTime.now());
 
-    user = user.copyWith(lastSeenCar: newLastSeenCar);
-    emit(state.copyWith(lastSeenCar: newLastSeenCar));
+    final user = state.user.copyWith(lastSeenCar: newLastSeenCar);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void checkLastSeenCarExpiration({required int days}) {
-    final lastSeenCar = user.lastSeenCar;
+    final lastSeenCar = state.user.lastSeenCar;
 
     if (lastSeenCar == null) return;
 
@@ -164,7 +165,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void updateLocationPermissionStatus(bool newStatus) {
-    user = user.copyWith(isLocationPermissionGranted: newStatus);
+    final user = state.user.copyWith(isLocationPermissionGranted: newStatus);
     emit(state.copyWith(isLocationPermissionGranted: newStatus));
 
     updateUser(user: user);

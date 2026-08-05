@@ -15,9 +15,8 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$UserDataState {
-  bool get isLoading;
-  bool get isLocationPermissionGranted;
   UserEntity get user;
+  bool get isLoading;
   bool get isUserAuthenticated;
 
   /// Create a copy of UserDataState
@@ -33,24 +32,20 @@ mixin _$UserDataState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UserDataState &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.isLocationPermissionGranted,
-                    isLocationPermissionGranted) ||
-                other.isLocationPermissionGranted ==
-                    isLocationPermissionGranted) &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.isUserAuthenticated, isUserAuthenticated) ||
                 other.isUserAuthenticated == isUserAuthenticated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading,
-      isLocationPermissionGranted, user, isUserAuthenticated);
+  int get hashCode =>
+      Object.hash(runtimeType, user, isLoading, isUserAuthenticated);
 
   @override
   String toString() {
-    return 'UserDataState(isLoading: $isLoading, isLocationPermissionGranted: $isLocationPermissionGranted, user: $user, isUserAuthenticated: $isUserAuthenticated)';
+    return 'UserDataState(user: $user, isLoading: $isLoading, isUserAuthenticated: $isUserAuthenticated)';
   }
 }
 
@@ -60,11 +55,7 @@ abstract mixin class $UserDataStateCopyWith<$Res> {
           UserDataState value, $Res Function(UserDataState) _then) =
       _$UserDataStateCopyWithImpl;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isLocationPermissionGranted,
-      UserEntity user,
-      bool isUserAuthenticated});
+  $Res call({UserEntity user, bool isLoading, bool isUserAuthenticated});
 }
 
 /// @nodoc
@@ -80,24 +71,19 @@ class _$UserDataStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
-    Object? isLocationPermissionGranted = null,
     Object? user = null,
+    Object? isLoading = null,
     Object? isUserAuthenticated = null,
   }) {
     return _then(_self.copyWith(
-      isLoading: null == isLoading
-          ? _self.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLocationPermissionGranted: null == isLocationPermissionGranted
-          ? _self.isLocationPermissionGranted
-          : isLocationPermissionGranted // ignore: cast_nullable_to_non_nullable
-              as bool,
       user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserEntity,
+      isLoading: null == isLoading
+          ? _self.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isUserAuthenticated: null == isUserAuthenticated
           ? _self.isUserAuthenticated
           : isUserAuthenticated // ignore: cast_nullable_to_non_nullable
@@ -110,20 +96,16 @@ class _$UserDataStateCopyWithImpl<$Res>
 
 class _UserDataState extends UserDataState {
   const _UserDataState(
-      {this.isLoading = false,
-      this.isLocationPermissionGranted = false,
-      required this.user,
+      {required this.user,
+      this.isLoading = false,
       this.isUserAuthenticated = false})
       : super._();
 
   @override
+  final UserEntity user;
+  @override
   @JsonKey()
   final bool isLoading;
-  @override
-  @JsonKey()
-  final bool isLocationPermissionGranted;
-  @override
-  final UserEntity user;
   @override
   @JsonKey()
   final bool isUserAuthenticated;
@@ -141,24 +123,20 @@ class _UserDataState extends UserDataState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UserDataState &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.isLocationPermissionGranted,
-                    isLocationPermissionGranted) ||
-                other.isLocationPermissionGranted ==
-                    isLocationPermissionGranted) &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.isUserAuthenticated, isUserAuthenticated) ||
                 other.isUserAuthenticated == isUserAuthenticated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading,
-      isLocationPermissionGranted, user, isUserAuthenticated);
+  int get hashCode =>
+      Object.hash(runtimeType, user, isLoading, isUserAuthenticated);
 
   @override
   String toString() {
-    return 'UserDataState(isLoading: $isLoading, isLocationPermissionGranted: $isLocationPermissionGranted, user: $user, isUserAuthenticated: $isUserAuthenticated)';
+    return 'UserDataState(user: $user, isLoading: $isLoading, isUserAuthenticated: $isUserAuthenticated)';
   }
 }
 
@@ -170,11 +148,7 @@ abstract mixin class _$UserDataStateCopyWith<$Res>
       __$UserDataStateCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isLocationPermissionGranted,
-      UserEntity user,
-      bool isUserAuthenticated});
+  $Res call({UserEntity user, bool isLoading, bool isUserAuthenticated});
 }
 
 /// @nodoc
@@ -190,24 +164,19 @@ class __$UserDataStateCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? isLoading = null,
-    Object? isLocationPermissionGranted = null,
     Object? user = null,
+    Object? isLoading = null,
     Object? isUserAuthenticated = null,
   }) {
     return _then(_UserDataState(
-      isLoading: null == isLoading
-          ? _self.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLocationPermissionGranted: null == isLocationPermissionGranted
-          ? _self.isLocationPermissionGranted
-          : isLocationPermissionGranted // ignore: cast_nullable_to_non_nullable
-              as bool,
       user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserEntity,
+      isLoading: null == isLoading
+          ? _self.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isUserAuthenticated: null == isUserAuthenticated
           ? _self.isUserAuthenticated
           : isUserAuthenticated // ignore: cast_nullable_to_non_nullable
