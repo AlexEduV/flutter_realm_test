@@ -13,6 +13,7 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/home/inbox_page/inbox_page.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/pages/home/inbox_page/widgets/inbox_list_item.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
@@ -54,7 +55,7 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
 
-    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: true));
+    when(userDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty(), isUserAuthenticated: true));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(inboxPageCubit.state).thenReturn(const InboxPageState());
@@ -76,7 +77,7 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
 
-    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: false));
+    when(userDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty(), isUserAuthenticated: false));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(inboxPageCubit.state).thenReturn(const InboxPageState());
@@ -93,7 +94,7 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
 
-    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: true));
+    when(userDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty(), isUserAuthenticated: true));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(inboxPageCubit.state).thenReturn(const InboxPageState(isLoading: true));
@@ -112,7 +113,7 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
 
-    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: true));
+    when(userDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty(), isUserAuthenticated: true));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(inboxPageCubit.state).thenReturn(const InboxPageState(conversations: []));
@@ -132,7 +133,7 @@ void main() {
     // Replace with your actual ConversationModel
     final conversation = ConversationModel.empty();
 
-    when(userDataCubit.state).thenReturn(const UserDataState(isUserAuthenticated: true));
+    when(userDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty(), isUserAuthenticated: true));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(inboxPageCubit.state).thenReturn(InboxPageState(conversations: [conversation]));

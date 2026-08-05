@@ -25,7 +25,7 @@ dependency_overrides:
   test_core: 0.6.17
   dart_style: 2.3.7
   analyzer_plugin: 0.12.0
-  build_runner: 2.4.9
+  build_runner: 2.4.15
   build_daemon: 4.0.1
 
 melos:
@@ -37,7 +37,7 @@ melos:
     analyse: dart analyze .
     build:
       run: dart run build_runner build --delete-conflicting-outputs
-      description: "Run build_runner from workspace root"
+      description: "Run build_runner for the app package (run from apps/flutter_realm_test/)"
     build:clean:
       run: dart run build_runner clean
       description: "Clean build_runner cache from workspace root"

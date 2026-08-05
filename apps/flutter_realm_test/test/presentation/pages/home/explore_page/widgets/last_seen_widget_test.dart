@@ -8,6 +8,7 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
@@ -79,7 +80,7 @@ void main() {
   }
 
   testWidgets('shows loading indicator when userState.isLoading is true', (tester) async {
-    when(mockUserDataCubit.state).thenReturn(const UserDataState(isLoading: true));
+    when(mockUserDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty(), isLoading: true));
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
@@ -99,8 +100,8 @@ void main() {
     final carId = 'car124';
 
     final userState = UserDataState(
+      user: UserEntity.empty().copyWith(lastSeenCar: LastSeenCarEntity(carId: carId, seenAt: DateTime.now())),
       isLoading: false,
-      lastSeenCar: LastSeenCarEntity(carId: carId, seenAt: DateTime.now()),
     );
     final exploreState = const ExplorePageState();
 

@@ -42,7 +42,7 @@ class AccountPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: AppDimensions.minorL),
                   child: UserAvatarEnhanced(
-                    imageSrc: state.avatarImageSrc,
+                    imageSrc: state.user.avatarImageSrc,
                     onTap: () => context.read<UserDataCubit>().updateAvatarImage(),
                   ),
                 ),
@@ -50,13 +50,13 @@ class AccountPage extends StatelessWidget {
                 ListTile(
                   title: Center(
                     child: Text(
-                      '${state.firstName} ${state.lastName}',
+                      '${state.user.firstName} ${state.user.lastName}',
                       style: AppTextStyles.zonaPro18.copyWith(color: AppColors.headerColor),
                     ),
                   ),
                   subtitle: Center(
                     child: Text(
-                      state.email,
+                      state.user.email,
                       style: AppTextStyles.zonaPro16.copyWith(
                         color: AppColors.placeholderColorDark,
                         fontWeight: FontWeight.w400,
@@ -135,7 +135,7 @@ class AccountPage extends StatelessWidget {
                           L10nKeys.deleteAccountDialogConfirmLabel,
                         ),
                         onConfirm: () async {
-                          await context.read<AuthenticationCubit>().deleteAccount(state.email);
+                          await context.read<AuthenticationCubit>().deleteAccount(state.user.email);
 
                           if (!context.mounted) return;
 

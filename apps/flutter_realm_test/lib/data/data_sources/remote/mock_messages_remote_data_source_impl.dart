@@ -41,13 +41,13 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
           date: DateTime.now().subtract(const Duration(days: 2)),
         ),
         MessageModel(
-          senderId: serviceLocator<UserDataCubit>().user.userId,
+          senderId: serviceLocator<UserDataCubit>().state.user.userId,
           messageStatus: MessageStatus.sent,
           payload: 'Hello there.',
           date: DateTime.now().subtract(const Duration(days: 2)),
         ),
         MessageModel(
-          senderId: serviceLocator<UserDataCubit>().user.userId,
+          senderId: serviceLocator<UserDataCubit>().state.user.userId,
           messageStatus: MessageStatus.sent,
           payload: 'Hello there again.',
           date: DateTime.now().subtract(const Duration(days: 2)),

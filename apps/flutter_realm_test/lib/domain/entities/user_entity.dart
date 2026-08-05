@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
@@ -156,4 +157,38 @@ class UserEntity {
         : null,
     'isLocationPermissionGranted': isLocationPermissionGranted,
   };
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UserEntity) return false;
+    return other.userId == userId &&
+        other.firstName == firstName &&
+        other.lastName == lastName &&
+        other.email == email &&
+        other.password == password &&
+        other.region == region &&
+        other.isLocationPermissionGranted == isLocationPermissionGranted &&
+        other.avatarImageSrc == avatarImageSrc &&
+        other.lastSeenCar == lastSeenCar &&
+        listEquals(other.favoriteIds, favoriteIds) &&
+        listEquals(other.createdIds, createdIds) &&
+        listEquals(other.viewedIds, viewedIds);
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    userId,
+    firstName,
+    lastName,
+    email,
+    password,
+    region,
+    isLocationPermissionGranted,
+    avatarImageSrc,
+    lastSeenCar,
+    Object.hashAll(favoriteIds),
+    Object.hashAll(createdIds),
+    Object.hashAll(viewedIds),
+  );
 }

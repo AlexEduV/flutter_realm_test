@@ -3,10 +3,10 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
-import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
@@ -33,7 +33,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._deleteCarByIdUseCase,
     this._logger,
     this._appLocalisationsCubit,
-  ) : super(const UserDataState());
+  ) : super(UserDataState(user: UserEntity.empty()));
 
   final BaseLocalStorage _localStorage;
   final AuthRepository _authRepository;
@@ -48,14 +48,13 @@ class UserDataCubit extends Cubit<UserDataState> {
   final GetUserByEmailUseCase _getUserByEmailUseCase;
   final DeleteCarByIdUseCase _deleteCarByIdUseCase;
 
-  UserEntity user = UserEntity.empty();
   final LoggingService _logger;
   final AppLocalisationsCubit _appLocalisationsCubit;
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
 
-    user = _localStorage.initUser();
+    final user = _localStorage.initUser();
     final isUserLoggedIn = await _authRepository.isUserLoggedIn();
 
     await initLocalisation(user.region);
@@ -65,23 +64,9 @@ class UserDataCubit extends Cubit<UserDataState> {
         .call()
         .isGranted;
 
-    emit(
-      state.copyWith(
-        isLoading: false,
-        favoriteIds: user.favoriteIds,
-        createdIds: user.createdIds,
-        viewedIds: user.viewedIds,
-        isLocationPermissionGranted: isLocationPermissionGranted,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        lastSeenCar: user.lastSeenCar,
-        password: user.password,
-        region: user.region,
-        avatarImageSrc: user.avatarImageSrc,
-        isUserAuthenticated: isUserLoggedIn,
-      ),
-    );
+    final updatedUser = user.copyWith(isLocationPermissionGranted: isLocationPermissionGranted);
+
+    emit(state.copyWith(user: updatedUser, isLoading: false, isUserAuthenticated: isUserLoggedIn));
   }
 
   void updateCloudUser(UserEntity user) {
@@ -103,29 +88,29 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void setFirstName(String firstName) {
-    user = user.copyWith(firstName: firstName);
-    emit(state.copyWith(firstName: firstName));
+    final user = state.user.copyWith(firstName: firstName);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void setLastName(String lastName) {
-    user = user.copyWith(lastName: lastName);
-    emit(state.copyWith(lastName: lastName));
+    final user = state.user.copyWith(lastName: lastName);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void setEmail(String email) {
-    user = user.copyWith(email: email);
-    emit(state.copyWith(email: email));
+    final user = state.user.copyWith(email: email);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void setPassword(String password) {
-    user = user.copyWith(password: password);
-    emit(state.copyWith(password: password));
+    final user = state.user.copyWith(password: password);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
@@ -135,14 +120,14 @@ class UserDataCubit extends Cubit<UserDataState> {
         ? null
         : LastSeenCarEntity(carId: carId, seenAt: DateTime.now());
 
-    user = user.copyWith(lastSeenCar: newLastSeenCar);
-    emit(state.copyWith(lastSeenCar: newLastSeenCar));
+    final user = state.user.copyWith(lastSeenCar: newLastSeenCar);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void checkLastSeenCarExpiration({required int days}) {
-    final lastSeenCar = user.lastSeenCar;
+    final lastSeenCar = state.user.lastSeenCar;
 
     if (lastSeenCar == null) return;
 
@@ -175,8 +160,8 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void updateLocationPermissionStatus(bool newStatus) {
-    user = user.copyWith(isLocationPermissionGranted: newStatus);
-    emit(state.copyWith(isLocationPermissionGranted: newStatus));
+    final user = state.user.copyWith(isLocationPermissionGranted: newStatus);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
@@ -185,44 +170,44 @@ class UserDataCubit extends Cubit<UserDataState> {
     final path = await _pickImageFromGalleryUseCase.call();
     if (path == null) return;
 
-    user = user.copyWith(avatarImageSrc: path);
-    emit(state.copyWith(avatarImageSrc: path));
+    final user = state.user.copyWith(avatarImageSrc: path);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void addCarIdToFavorites(String carId) {
-    final newList = user.favoriteIds.toList()..add(carId);
+    final newList = state.user.favoriteIds.toList()..add(carId);
     final cleanedList = newList.toSet().toList();
 
-    user = user.copyWith(favoriteIds: cleanedList);
-    emit(state.copyWith(favoriteIds: cleanedList));
+    final user = state.user.copyWith(favoriteIds: cleanedList);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void removeCarIdFromFavorites(String carId) {
-    final newList = user.favoriteIds.toList()..remove(carId);
-    user = user.copyWith(favoriteIds: newList);
-    emit(state.copyWith(favoriteIds: newList));
+    final newList = state.user.favoriteIds.toList()..remove(carId);
+    final user = state.user.copyWith(favoriteIds: newList);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void addCarIdToCreated(String carId) {
-    final newList = user.createdIds.toList()..add(carId);
+    final newList = state.user.createdIds.toList()..add(carId);
     final cleanedList = newList.toSet().toList();
 
-    user = user.copyWith(createdIds: cleanedList);
-    emit(state.copyWith(createdIds: cleanedList));
+    final user = state.user.copyWith(createdIds: cleanedList);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void removeCarIdFromCreated(String carId) {
-    final newList = user.createdIds.toList()..remove(carId);
-    user = user.copyWith(createdIds: newList);
-    emit(state.copyWith(createdIds: newList));
+    final newList = state.user.createdIds.toList()..remove(carId);
+    final user = state.user.copyWith(createdIds: newList);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
 
@@ -232,51 +217,51 @@ class UserDataCubit extends Cubit<UserDataState> {
   void addCarToRecentlyViewed(String carId) {
     if (carId.isEmpty) return;
 
-    if (user.viewedIds.lastOrNull == carId) return;
+    if (state.user.viewedIds.lastOrNull == carId) return;
 
-    final newList = user.viewedIds.toList()..add(carId);
+    final newList = state.user.viewedIds.toList()..add(carId);
 
     final int maxEntriesAllowed = 20;
     final limitedList = newList.length > maxEntriesAllowed
         ? newList.sublist(newList.length - maxEntriesAllowed)
         : newList;
 
-    user = user.copyWith(viewedIds: limitedList);
-    emit(state.copyWith(viewedIds: limitedList));
+    final user = state.user.copyWith(viewedIds: limitedList);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void clearFavorites() {
-    if (state.favoriteIds.isEmpty) return;
+    if (state.user.favoriteIds.isEmpty) return;
 
     final List<String> newList = [];
-    user = user.copyWith(favoriteIds: newList);
-    emit(state.copyWith(favoriteIds: newList));
+    final user = state.user.copyWith(favoriteIds: newList);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void clearRecentItems() {
-    if (state.viewedIds.isEmpty) return;
+    if (state.user.viewedIds.isEmpty) return;
 
     final List<String> newList = [];
-    user = user.copyWith(viewedIds: newList);
-    emit(state.copyWith(viewedIds: newList));
+    final user = state.user.copyWith(viewedIds: newList);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
 
   void clearMyItems() {
-    if (state.createdIds.isEmpty) return;
+    if (state.user.createdIds.isEmpty) return;
 
-    for (final id in state.createdIds) {
+    for (final id in state.user.createdIds) {
       _deleteCarByIdUseCase.call(id);
     }
 
     final List<String> newList = [];
-    user = user.copyWith(createdIds: newList);
-    emit(state.copyWith(createdIds: newList));
+    final user = state.user.copyWith(createdIds: newList);
+    emit(state.copyWith(user: user));
 
     updateUser(user: user);
   }
@@ -288,10 +273,10 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void updateRegion(String? region) {
-    if (region == null || region == user.region) return;
+    if (region == null || region == state.user.region) return;
 
-    user = user.copyWith(region: region);
-    emit(state.copyWith(region: region));
+    final user = state.user.copyWith(region: region);
+    emit(state.copyWith(user: user));
 
     initLocalisation(region);
 

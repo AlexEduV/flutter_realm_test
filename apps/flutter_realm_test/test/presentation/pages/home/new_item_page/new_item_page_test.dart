@@ -20,6 +20,7 @@ import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_it
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/new_item_page.dart';
@@ -147,7 +148,7 @@ void main() {
     when(mockHomeBottomBarCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(mockUserDataCubit.state).thenReturn(const UserDataState());
+    when(mockUserDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty()));
 
     when(
       mockCheckLocationPermissionStatusUseCase.call(),

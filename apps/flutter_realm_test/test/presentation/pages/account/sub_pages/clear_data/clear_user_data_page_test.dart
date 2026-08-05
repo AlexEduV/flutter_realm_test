@@ -6,6 +6,7 @@ import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/clear_data/clear_user_data_page.dart';
 
@@ -24,8 +25,8 @@ void main() {
   setUp(() {
     mockCubit = MockUserDataCubit();
 
-    stateWithData = const UserDataState(viewedIds: ['1'], favoriteIds: ['2'], createdIds: ['3']);
-    stateCleared = const UserDataState(viewedIds: [], favoriteIds: [], createdIds: []);
+    stateWithData = UserDataState(user: UserEntity.empty().copyWith(viewedIds: ['1'], favoriteIds: ['2'], createdIds: ['3']));
+    stateCleared = UserDataState(user: UserEntity.empty());
   });
 
   Widget buildTestable({required UserDataState state}) {

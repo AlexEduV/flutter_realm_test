@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
@@ -47,17 +47,17 @@ class LocationSettingsPage extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: BlocBuilder<UserDataCubit, UserDataState>(
                 builder: (context, state) {
-                  final region = serviceLocator<GetRegionByCodeUseCase>().call(state.region);
+                  final region = serviceLocator<GetRegionByCodeUseCase>().call(state.user.region);
 
                   return Column(
                     children: [
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.locationSettingsItemAccess),
-                        description: state.isLocationPermissionGranted
+                        description: state.user.isLocationPermissionGranted
                             ? context.tr(L10nKeys.onLabel)
                             : context.tr(L10nKeys.offLabel),
                         icon: Icons.location_on_outlined,
-                        showEnabled: state.isLocationPermissionGranted,
+                        showEnabled: state.user.isLocationPermissionGranted,
                         onTap: () => context.read<UserDataCubit>().openLocationSettings(),
                       ),
 
@@ -100,7 +100,7 @@ class LocationSettingsPage extends StatelessWidget {
   Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
     final availableCountries = serviceLocator<GetAllRegionModelsUseCase>().call();
 
-    final currentRegion = state.region;
+    final currentRegion = state.user.region;
     final currentIndex = availableCountries.indexWhereOrNull(
       (element) => element.code == currentRegion,
     );

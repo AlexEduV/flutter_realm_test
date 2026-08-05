@@ -66,25 +66,23 @@ void main() {
     when(explorePageCubit.state).thenReturn(const ExplorePageState(cars: [], isLoading: false));
 
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(
-      mockUserDataCubit.state,
-    ).thenReturn(const UserDataState(isLocationPermissionGranted: true));
+    when(mockUserDataCubit.state).thenReturn(
+      UserDataState(
+        user: UserEntity.initial(
+          userId: '1',
+          firstName: 'Alexander',
+          lastName: 'the Third',
+          email: 'alexander-iii@pella.mk',
+          password: 'daGreat',
+        ).copyWith(isLocationPermissionGranted: true),
+      ),
+    );
 
     when(mockSearchPageCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockSearchPageCubit.state).thenReturn(const SearchPageState());
 
     when(mockDetailsPageCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockDetailsPageCubit.state).thenReturn(const DetailsPageState());
-
-    when(mockUserDataCubit.user).thenReturn(
-      UserEntity.initial(
-        userId: '1',
-        firstName: 'Alexander',
-        lastName: 'the Third',
-        email: 'alexander-iii@pella.mk',
-        password: 'daGreat',
-      ),
-    );
   });
 
   setUp(() {

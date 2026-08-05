@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
@@ -30,7 +30,7 @@ class LastSeenWidget extends StatelessWidget {
 
         return BlocBuilder<ExplorePageCubit, ExplorePageState>(
           builder: (context, state) {
-            final carId = userState.lastSeenCar?.carId;
+            final carId = userState.user.lastSeenCar?.carId;
             final carEntityFull = serviceLocator<GetCarByIdUseCase>().call(carId ?? '');
             final isTestCar = carEntityFull.carId == 'testId';
 

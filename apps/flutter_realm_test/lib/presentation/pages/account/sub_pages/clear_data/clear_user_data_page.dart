@@ -1,6 +1,6 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
@@ -47,12 +47,12 @@ class ClearUserDataPage extends StatelessWidget {
                     children: [
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.clearViewHistoryItem),
-                        description: state.viewedIds.isNotEmpty
+                        description: state.user.viewedIds.isNotEmpty
                             ? context.tr(L10nKeys.activeStateLabel)
                             : context.tr(L10nKeys.emptyStateLabel),
                         icon: Icons.history_outlined,
-                        showEnabled: state.viewedIds.isNotEmpty,
-                        onTap: state.viewedIds.isEmpty
+                        showEnabled: state.user.viewedIds.isNotEmpty,
+                        onTap: state.user.viewedIds.isEmpty
                             ? null
                             : () {
                                 DialogHelper.showConfirmationDialog(
@@ -76,12 +76,12 @@ class ClearUserDataPage extends StatelessWidget {
 
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.clearFavoritesItem),
-                        description: state.favoriteIds.isNotEmpty
+                        description: state.user.favoriteIds.isNotEmpty
                             ? context.tr(L10nKeys.activeStateLabel)
                             : context.tr(L10nKeys.emptyStateLabel),
                         icon: Icons.favorite_border_outlined,
-                        showEnabled: state.favoriteIds.isNotEmpty,
-                        onTap: state.favoriteIds.isEmpty
+                        showEnabled: state.user.favoriteIds.isNotEmpty,
+                        onTap: state.user.favoriteIds.isEmpty
                             ? null
                             : () {
                                 DialogHelper.showConfirmationDialog(
@@ -105,12 +105,12 @@ class ClearUserDataPage extends StatelessWidget {
 
                       PersonalDetailsListItem(
                         title: context.tr(L10nKeys.clearMyItemsItem),
-                        description: state.createdIds.isNotEmpty
+                        description: state.user.createdIds.isNotEmpty
                             ? context.tr(L10nKeys.activeStateLabel)
                             : context.tr(L10nKeys.emptyStateLabel),
                         icon: Icons.checklist_outlined,
-                        showEnabled: state.createdIds.isNotEmpty,
-                        onTap: state.createdIds.isEmpty
+                        showEnabled: state.user.createdIds.isNotEmpty,
+                        onTap: state.user.createdIds.isEmpty
                             ? null
                             : () {
                                 DialogHelper.showConfirmationDialog(

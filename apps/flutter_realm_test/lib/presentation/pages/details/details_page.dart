@@ -90,7 +90,7 @@ class _DetailsPageState extends State<DetailsPage> {
               return BlocBuilder<UserDataCubit, UserDataState>(
                 builder: (context, userState) {
                   final car = detailsState.car;
-                  final isCarFavorite = userState.favoriteIds.contains(car?.carId);
+                  final isCarFavorite = userState.user.favoriteIds.contains(car?.carId);
 
                   return Padding(
                     padding: const EdgeInsets.only(right: AppDimensions.normalM),
@@ -204,11 +204,11 @@ class _DetailsPageState extends State<DetailsPage> {
                       if (car != null) ...[
                         BlocBuilder<UserDataCubit, UserDataState>(
                           buildWhen: (previous, current) =>
-                              previous.lastSeenCar != current.lastSeenCar ||
-                              previous.favoriteIds != current.favoriteIds ||
-                              previous.email != current.email,
+                              previous.user.lastSeenCar != current.user.lastSeenCar ||
+                              previous.user.favoriteIds != current.user.favoriteIds ||
+                              previous.user.email != current.user.email,
                           builder: (context, state) {
-                            final user = context.read<UserDataCubit>().user;
+                            final user = context.read<UserDataCubit>().state.user;
                             return OwnerWidget(car: car, user: user);
                           },
                         ),

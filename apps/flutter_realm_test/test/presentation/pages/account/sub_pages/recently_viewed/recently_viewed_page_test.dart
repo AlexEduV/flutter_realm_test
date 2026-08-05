@@ -10,6 +10,7 @@ import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/recently_viewed/recently_viewed_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.dart';
@@ -65,7 +66,7 @@ void main() {
   }
 
   testWidgets('shows empty placeholder when viewedIds is empty', (tester) async {
-    final userState = const UserDataState(viewedIds: []);
+    final userState = UserDataState(user: UserEntity.empty());
     final exploreState = const ExplorePageState(cars: []);
 
     await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));
@@ -78,7 +79,7 @@ void main() {
   testWidgets('shows car list items for each viewedId', (tester) async {
     final car1 = CarEntity.empty().copyWith(carId: 'car1', model: 'Model 1');
     final car2 = CarEntity.empty().copyWith(carId: 'car2', model: 'Model 2');
-    final userState = const UserDataState(viewedIds: ['car1', 'car2']);
+    final userState = UserDataState(user: UserEntity.empty().copyWith(viewedIds: ['car1', 'car2']));
     final exploreState = ExplorePageState(cars: [car1, car2]);
 
     await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));
@@ -93,7 +94,7 @@ void main() {
   testWidgets('does not crash when a viewedId references a deleted car', (tester) async {
     final car1 = CarEntity.empty().copyWith(carId: 'car1', model: 'Model 1');
     // 'orphan_id' was once viewed but the car has since been removed.
-    final userState = const UserDataState(viewedIds: ['car1', 'orphan_id']);
+    final userState = UserDataState(user: UserEntity.empty().copyWith(viewedIds: ['car1', 'orphan_id']));
     final exploreState = ExplorePageState(cars: [car1]);
 
     await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));

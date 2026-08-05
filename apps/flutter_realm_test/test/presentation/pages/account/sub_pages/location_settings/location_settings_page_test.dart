@@ -12,6 +12,7 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/location_settings_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
@@ -69,7 +70,7 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     when(
       userDataCubit.state,
-    ).thenReturn(const UserDataState(isLocationPermissionGranted: true, region: 'us'));
+    ).thenReturn(UserDataState(user: UserEntity.empty().copyWith(isLocationPermissionGranted: true, region: 'us')));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
@@ -93,7 +94,7 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     when(
       userDataCubit.state,
-    ).thenReturn(const UserDataState(isLocationPermissionGranted: true, region: 'us'));
+    ).thenReturn(UserDataState(user: UserEntity.empty().copyWith(isLocationPermissionGranted: true, region: 'us')));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
@@ -110,7 +111,7 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     when(
       userDataCubit.state,
-    ).thenReturn(const UserDataState(isLocationPermissionGranted: true, region: 'us'));
+    ).thenReturn(UserDataState(user: UserEntity.empty().copyWith(isLocationPermissionGranted: true, region: 'us')));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
@@ -127,7 +128,7 @@ void main() {
     final userDataCubit = MockUserDataCubit();
     when(
       userDataCubit.state,
-    ).thenReturn(const UserDataState(isLocationPermissionGranted: true, region: 'us'));
+    ).thenReturn(UserDataState(user: UserEntity.empty().copyWith(isLocationPermissionGranted: true, region: 'us')));
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(

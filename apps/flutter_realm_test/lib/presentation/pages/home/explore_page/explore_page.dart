@@ -56,7 +56,8 @@ class ExplorePage extends StatelessWidget {
                 return SliverPadding(
                   padding: const EdgeInsets.only(bottom: AppDimensions.normalXL),
                   sliver: BlocBuilder<UserDataCubit, UserDataState>(
-                    buildWhen: (previous, current) => previous.favoriteIds != current.favoriteIds,
+                    buildWhen: (previous, current) =>
+                        previous.user.favoriteIds != current.user.favoriteIds,
                     builder: (context, userState) {
                       Widget buildAnimatedItem(int index) {
                         final car = cars[index];
@@ -145,7 +146,7 @@ class ExplorePage extends StatelessWidget {
 
   Widget _buildItem(CarEntity car, BuildContext context) {
     return AnnouncementListItem(
-      user: context.read<UserDataCubit>().user,
+      user: context.read<UserDataCubit>().state.user,
       car: car,
       onDismissed: () => _handleDelete(car, context),
     );
@@ -168,12 +169,12 @@ class _ExploreHeader extends StatelessWidget {
       buildWhen: (prev, curr) => prev.isLoading != curr.isLoading,
       builder: (context, _) {
         return BlocBuilder<UserDataCubit, UserDataState>(
-          buildWhen: (prev, curr) => prev.lastSeenCar != curr.lastSeenCar,
+          buildWhen: (prev, curr) => prev.user.lastSeenCar != curr.user.lastSeenCar,
           builder: (context, userState) {
             final showLastSeen =
-                userState.lastSeenCar != null &&
+                userState.user.lastSeenCar != null &&
                 context.read<ExplorePageCubit>().isCarExistsById(
-                  userState.lastSeenCar?.carId ?? '',
+                  userState.user.lastSeenCar?.carId ?? '',
                 );
 
             return SliverPersistentHeader(

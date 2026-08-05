@@ -7,7 +7,6 @@ import 'dart:async' as _i6;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:permission_handler/permission_handler.dart' as _i12;
-import 'package:test_flutter_project/domain/services/logging_service.dart' as _i16;
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart'
     as _i7;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i4;
@@ -15,6 +14,8 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i3;
 import 'package:test_flutter_project/domain/models/auth_result.dart' as _i2;
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart'
     as _i5;
+import 'package:test_flutter_project/domain/services/logging_service.dart'
+    as _i16;
 import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart'
     as _i15;
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'

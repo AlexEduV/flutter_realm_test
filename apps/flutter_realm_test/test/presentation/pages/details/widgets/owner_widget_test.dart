@@ -36,8 +36,7 @@ void main() {
 
   setUp(() {
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
-    when(mockUserDataCubit.state).thenReturn(const UserDataState());
-    when(mockUserDataCubit.user).thenReturn(mockUser);
+    when(mockUserDataCubit.state).thenReturn(UserDataState(user: mockUser));
 
     serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
     serviceLocator.registerLazySingleton<GetConversationByOwnerIdUseCase>(
