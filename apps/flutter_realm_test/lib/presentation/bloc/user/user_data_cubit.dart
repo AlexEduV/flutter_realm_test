@@ -3,10 +3,10 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
-import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
@@ -48,7 +48,6 @@ class UserDataCubit extends Cubit<UserDataState> {
   final GetUserByEmailUseCase _getUserByEmailUseCase;
   final DeleteCarByIdUseCase _deleteCarByIdUseCase;
 
-  UserEntity user = UserEntity.empty();
   final LoggingService _logger;
   final AppLocalisationsCubit _appLocalisationsCubit;
 
@@ -68,17 +67,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(
       state.copyWith(
         isLoading: false,
-        favoriteIds: user.favoriteIds,
-        createdIds: user.createdIds,
-        viewedIds: user.viewedIds,
         isLocationPermissionGranted: isLocationPermissionGranted,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        lastSeenCar: user.lastSeenCar,
-        password: user.password,
-        region: user.region,
-        avatarImageSrc: user.avatarImageSrc,
         isUserAuthenticated: isUserLoggedIn,
       ),
     );
