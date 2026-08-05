@@ -4,11 +4,11 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
@@ -124,7 +124,9 @@ void main() {
 
       await cubit.init();
 
-      expect(cubit.user, testUser);
+      expect(cubit.state.user.userId, testUser.userId);
+      expect(cubit.state.user.email, testUser.email);
+      expect(cubit.state.isLoading, false);
     });
 
     blocTest<UserDataCubit, UserDataState>(
@@ -143,27 +145,21 @@ void main() {
       'requestLocationPermission updates permission status and opens location settings if service not enabled',
       build: () {
         when(mockRequestLocationPermissionUseCase.call()).thenAnswer((_) async => true);
-        when(mockLocalStorage.initUser()).thenReturn(testUser);
         when(mockLocalStorage.update(any)).thenReturn(null);
-
         when(mockCheckLocationServiceStatusUseCase.call()).thenAnswer((_) async => false);
         when(mockOpenAppSettingsUseCase.call()).thenAnswer((_) async => true);
-
-        cubit.init();
+        cubit.emit(cubit.state.copyWith(user: testUser));
         return cubit;
       },
       act: (cubit) async {
         await cubit.requestLocationPermission();
       },
       expect: () => [
-        const UserDataState(isLoading: true, isLocationPermissionGranted: true),
-        isA<UserDataState>()
-            .having((state) => state.isLoading, 'loading', false)
-            .having(
-              (state) => state.isLocationPermissionGranted,
-              'locationPermissionGranted',
-              true,
-            ),
+        isA<UserDataState>().having(
+          (state) => state.user.isLocationPermissionGranted,
+          'locationPermissionGranted',
+          true,
+        ),
       ],
       verify: (cubit) {
         verify(mockOpenAppSettingsUseCase.call()).called(1);
@@ -175,78 +171,45 @@ void main() {
       'updateLocationPermissionStatus updates user and emits new state',
       build: () {
         when(mockLocalStorage.update(any)).thenReturn(null);
-        cubit.user = testUser;
+        cubit.emit(cubit.state.copyWith(user: testUser));
         return cubit;
       },
       act: (cubit) {
         cubit.updateLocationPermissionStatus(true);
       },
-      expect: () => [const UserDataState(isLocationPermissionGranted: true)],
+      expect: () => [
+        isA<UserDataState>().having(
+          (state) => state.user.isLocationPermissionGranted,
+          'isLocationPermissionGranted',
+          true,
+        ),
+      ],
     );
   });
 
   group('addCarIdToFavorites', () {
     test('adds new carId and emits updated state without duplicates', () {
-      cubit.user = const UserEntity(
-        favoriteIds: ['1', '2'],
-        email: 'test@example.com',
-        password: '',
-        firstName: 'Test',
-        lastName: 'User',
-        userId: '1',
-        isLocationPermissionGranted: false,
-        lastSeenCar: null,
-        region: 'uk',
-        createdIds: [],
-        avatarImageSrc: null,
-        viewedIds: [],
-      );
+      cubit.emit(cubit.state.copyWith(user: testUser.copyWith(favoriteIds: ['1', '2'])));
       when(mockLocalStorage.update(any)).thenReturn(null);
       cubit.addCarIdToFavorites('3');
-      expect(cubit.user.favoriteIds, contains('3'));
-      expect(cubit.user.favoriteIds.length, 3);
+      expect(cubit.state.user.favoriteIds, contains('3'));
+      expect(cubit.state.user.favoriteIds.length, 3);
     });
 
     test('does not add duplicate carId', () {
-      cubit.user = const UserEntity(
-        favoriteIds: ['1', '2'],
-        email: 'test@example.com',
-        password: '',
-        firstName: 'Test',
-        lastName: 'User',
-        userId: '1',
-        isLocationPermissionGranted: false,
-        lastSeenCar: null,
-        region: 'uk',
-        createdIds: [],
-        avatarImageSrc: null,
-        viewedIds: [],
-      );
+      cubit.emit(cubit.state.copyWith(user: testUser.copyWith(favoriteIds: ['1', '2'])));
       when(mockLocalStorage.update(any)).thenReturn(null);
       cubit.addCarIdToFavorites('1');
-      expect(cubit.user.favoriteIds.length, 2);
+      expect(cubit.state.user.favoriteIds.length, 2);
     });
   });
 
   group('removeCarIdFromFavorites', () {
     test('removes carId and emits updated state', () {
-      cubit.user = const UserEntity(
-        favoriteIds: ['1', '2'],
-        email: 'test@example.com',
-        password: '',
-        firstName: 'Test',
-        lastName: 'User',
-        userId: '1',
-        isLocationPermissionGranted: false,
-        lastSeenCar: null,
-        region: 'uk',
-        createdIds: [],
-        avatarImageSrc: null,
-        viewedIds: [],
-      );
+      cubit.emit(cubit.state.copyWith(user: testUser.copyWith(favoriteIds: ['1', '2'])));
       when(mockLocalStorage.update(any)).thenReturn(null);
       cubit.removeCarIdFromFavorites('1');
-      expect(cubit.user.favoriteIds, isNot(contains('1')));
+      expect(cubit.state.user.favoriteIds, isNot(contains('1')));
     });
   });
 
@@ -266,9 +229,9 @@ void main() {
 
       await cubit.authUser('auth@example.com');
       expect(cubit.state.isUserAuthenticated, true);
-      expect(cubit.state.email, 'auth@example.com');
-      expect(cubit.state.firstName, 'Auth');
-      expect(cubit.state.lastName, 'User');
+      expect(cubit.state.user.email, 'auth@example.com');
+      expect(cubit.state.user.firstName, 'Auth');
+      expect(cubit.state.user.lastName, 'User');
     });
 
     test('does nothing if user not found', () {

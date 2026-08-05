@@ -6,6 +6,7 @@ import 'package:test_flutter_project/presentation/bloc/authentication/authentica
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/personal_details_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
@@ -16,7 +17,7 @@ import '../../../authentication/login_page_test.mocks.dart';
 
 void main() {
   setUpAll(() {
-    provideDummy(const UserDataState());
+    provideDummy(UserDataState(user: UserEntity.empty()));
   });
 
   testWidgets('PersonalDetailsPage renders all PersonalDetailsListItems with correct data', (
@@ -29,11 +30,8 @@ void main() {
 
     // Provide a fake state
     when(mockUserDataCubit.state).thenReturn(
-      const UserDataState(
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        password: 'secret',
+      UserDataState(
+        user: UserEntity.initial(userId: '', firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', password: 'secret'),
       ),
     );
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());

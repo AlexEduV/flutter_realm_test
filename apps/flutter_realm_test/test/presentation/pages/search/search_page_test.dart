@@ -92,7 +92,7 @@ void main() {
 
     // Set up cubit states
     when(searchCubit.state).thenReturn(searchState ?? const SearchPageState());
-    when(userCubit.state).thenReturn(userState ?? const UserDataState());
+    when(userCubit.state).thenReturn(userState ?? UserDataState(user: UserEntity.empty()));
 
     when(searchCubit.stream).thenAnswer((_) => const Stream.empty());
     when(searchCubit.getSelectedFilterCount()).thenReturn(0);
@@ -101,18 +101,9 @@ void main() {
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(userCubit.stream).thenAnswer(
       (_) => Stream.fromIterable([
-        const UserDataState(favoriteIds: []),
-        const UserDataState(favoriteIds: ['1']),
+        UserDataState(user: UserEntity.empty()),
+        UserDataState(user: UserEntity.empty().copyWith(favoriteIds: ['1'])),
       ]),
-    );
-    when(userCubit.user).thenReturn(
-      UserEntity.initial(
-        userId: '5',
-        firstName: 'Bobby',
-        lastName: 'Fischer',
-        email: 'fisher@mock.com',
-        password: '',
-      ),
     );
 
     when(
@@ -171,7 +162,7 @@ void main() {
     final appLocalisationsCubit = MockAppLocalisationsCubit();
 
     when(searchCubit.state).thenReturn(const SearchPageState(allResults: []));
-    when(userCubit.state).thenReturn(const UserDataState());
+    when(userCubit.state).thenReturn(UserDataState(user: UserEntity.empty()));
 
     await tester.pumpWidget(
       buildTestableWidget(
@@ -257,7 +248,7 @@ void main() {
     final appLocalisationsCubit = MockAppLocalisationsCubit();
 
     when(searchCubit.state).thenReturn(const SearchPageState(drawerOpened: SearchDrawerType.empty));
-    when(userCubit.state).thenReturn(const UserDataState());
+    when(userCubit.state).thenReturn(UserDataState(user: UserEntity.empty()));
 
     await tester.pumpWidget(
       buildTestableWidget(

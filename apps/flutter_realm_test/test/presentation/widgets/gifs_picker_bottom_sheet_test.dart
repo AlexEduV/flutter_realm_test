@@ -14,6 +14,7 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_st
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 
 import '../../common/extensions/context_extension_test.mocks.dart';
@@ -180,7 +181,7 @@ void main() {
     when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.state).thenReturn(const AppLocalisationsState(localisations: {}));
-    when(userCubit.user).thenReturn(user);
+    when(userCubit.state).thenReturn(UserDataState(user: user));
     when(userCubit.stream).thenAnswer((_) => const Stream.empty());
     when(inboxCubit.stream).thenAnswer((_) => const Stream.empty());
 

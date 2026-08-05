@@ -9,6 +9,7 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/account_page.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/login_page.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
@@ -56,13 +57,13 @@ void main() {
   }
 
   testWidgets('shows LoginPage when user is not authenticated', (tester) async {
-    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
+    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
 
     when(userDataCubit.state).thenReturn(
-      const UserDataState(isUserAuthenticated: false, firstName: '', lastName: '', email: ''),
+      UserDataState(user: UserEntity.empty(), isUserAuthenticated: false),
     );
     when(authenticationCubit.state).thenReturn(const AuthenticationState());
 
@@ -72,17 +73,15 @@ void main() {
   });
 
   testWidgets('shows user info and account items when authenticated', (tester) async {
-    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
+    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
 
     when(userDataCubit.state).thenReturn(
-      const UserDataState(
+      UserDataState(
+        user: UserEntity.initial(userId: '', firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', password: ''),
         isUserAuthenticated: true,
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
       ),
     );
 
@@ -104,7 +103,7 @@ void main() {
   });
 
   testWidgets('tapping logout calls cubit methods', (tester) async {
-    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
+    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
@@ -112,11 +111,9 @@ void main() {
     when(authenticationCubit.state).thenReturn(const AuthenticationState());
 
     when(userDataCubit.state).thenReturn(
-      const UserDataState(
+      UserDataState(
+        user: UserEntity.initial(userId: '', firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', password: ''),
         isUserAuthenticated: true,
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
       ),
     );
     when(authenticationCubit.logOut()).thenAnswer((_) async {});
@@ -136,7 +133,7 @@ void main() {
   });
 
   testWidgets('tapping delete account calls cubit methods', (tester) async {
-    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([const UserDataState()]));
+    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
@@ -144,11 +141,9 @@ void main() {
     when(authenticationCubit.state).thenReturn(const AuthenticationState());
 
     when(userDataCubit.state).thenReturn(
-      const UserDataState(
+      UserDataState(
+        user: UserEntity.initial(userId: '', firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', password: ''),
         isUserAuthenticated: true,
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
       ),
     );
     when(authenticationCubit.deleteAccount(any)).thenAnswer((_) async {});
