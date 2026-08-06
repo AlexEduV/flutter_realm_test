@@ -111,19 +111,15 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   }
 
   @override
-  ConversationModel getConversationByOwnerId(String ownerId) {
+  ConversationModel getOrCreateConversationByOwnerId(String ownerId) {
     final conversationIndex = _conversationsList.indexWhereOrNull(
       (element) => element.ownerId == ownerId,
     );
 
     if (conversationIndex == null) {
-      final newConversationId = _getMaxConversationId() + 1;
-      final conversation = ConversationModel.empty().copyWith(
-        conversationId: newConversationId.toString(),
-        ownerId: ownerId,
-      );
-
+      final conversation = _getNewConversation(ownerId);
       _conversationsList.add(conversation);
+
       return conversation;
     }
 
@@ -137,6 +133,16 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
         .fold<int>(1, (prev, curr) => (curr > prev ? curr : prev));
 
     return maxId;
+  }
+
+  ConversationModel _getNewConversation(String ownerId) {
+    final newConversationId = _getMaxConversationId() + 1;
+    final conversation = ConversationModel.empty().copyWith(
+      conversationId: newConversationId.toString(),
+      ownerId: ownerId,
+    );
+
+    return conversation;
   }
 
   @override

@@ -9,7 +9,7 @@ abstract class MessagesRemoteDataSource {
 
   ConversationModel getConversationById(String conversationId);
 
-  ConversationModel getConversationByOwnerId(String ownerId);
+  ConversationModel getOrCreateConversationByOwnerId(String ownerId);
 
   void dispose();
 }

@@ -24,6 +24,6 @@ class InboxRepositoryImpl implements InboxRepository {
 
   @override
   ConversationModel getConversationByOwnerId(String ownerId) {
-    return _messagesRemoteDataSource.getConversationByOwnerId(ownerId);
+    return _messagesRemoteDataSource.getOrCreateConversationByOwnerId(ownerId);
   }
 }
