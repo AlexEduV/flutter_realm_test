@@ -12,11 +12,9 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'auth_repository_impl_test.mocks.dart';
+import 'inbox_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<OwnerRepository>(),
-  MockSpec<UsersRemoteDataSource>(),
-])
+@GenerateNiceMocks([MockSpec<OwnerRepository>(), MockSpec<UsersRemoteDataSource>()])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late AuthRepositoryImpl repo;
@@ -24,6 +22,7 @@ void main() {
   final mockLocalStorage = MockBaseLocalStorage();
   final mockOwnerRepository = MockOwnerRepository();
   final mockUsersRemoteDataSource = MockUsersRemoteDataSource();
+  final mockMessagesRemoteDataSource = MockMessagesRemoteDataSource();
 
   final appLocalisationsCubit = AppLocalisationsCubit();
 
@@ -64,6 +63,7 @@ void main() {
       mockLocalStorage,
       prefs,
       mockUsersRemoteDataSource,
+      mockMessagesRemoteDataSource,
       mockOwnerRepository,
     );
     repo.users = initUsers;

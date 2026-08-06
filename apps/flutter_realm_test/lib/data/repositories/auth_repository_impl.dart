@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
@@ -16,6 +17,7 @@ class AuthRepositoryImpl implements AuthRepository {
     this._localStorage,
     this._cloudStorage,
     this._usersRemoteDataSource,
+    this._messagesRemoteDataSource,
     this._ownerRepository,
   );
 
@@ -23,6 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
   final SharedPreferences _cloudStorage;
   final OwnerRepository _ownerRepository;
   final UsersRemoteDataSource _usersRemoteDataSource;
+  final MessagesRemoteDataSource _messagesRemoteDataSource;
 
   late final List<UserEntity> users;
   late bool isAuthenticated = false;
@@ -71,6 +74,8 @@ class AuthRepositoryImpl implements AuthRepository {
     final user = users.firstWhere((element) => element.email == email);
 
     await _saveUserSession(user.userId);
+
+    _messagesRemoteDataSource.initSampleData(user.userId);
 
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
