@@ -64,7 +64,7 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
 
   @override
   Future<void> saveConversations(List<ConversationModel> conversations) async {
-    _conversationsList = conversations;
+    _conversationsList = List.from(conversations);
 
     final prefs = await SharedPreferences.getInstance();
     final conversationsJsonList = conversations.map((c) => c.toJson()).toList();
@@ -96,8 +96,6 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
     await saveConversations(_conversationsList);
     return _conversationsList;
   }
-
-  List<ConversationModel> get list => _conversationsList;
 
   @override
   ConversationModel getConversationById(String conversationId) {
