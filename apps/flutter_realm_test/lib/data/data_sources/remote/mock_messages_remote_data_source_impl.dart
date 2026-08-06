@@ -94,11 +94,6 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   List<ConversationModel> get list => _list;
 
   @override
-  void dispose() {
-    _list.clear();
-  }
-
-  @override
   ConversationModel getConversationById(String conversationId) {
     final conversationIndex = _list.indexWhereOrNull(
       (element) => element.conversationId == conversationId,
@@ -116,7 +111,7 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
     final conversationIndex = _list.indexWhereOrNull((element) => element.ownerId == ownerId);
 
     if (conversationIndex == null) {
-      final newConversationId = getMaxConversationId() + 1;
+      final newConversationId = _getMaxConversationId() + 1;
       final conversation = ConversationModel.empty().copyWith(
         conversationId: newConversationId.toString(),
         ownerId: ownerId,
@@ -129,12 +124,17 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
     return _list[conversationIndex];
   }
 
-  int getMaxConversationId() {
+  int _getMaxConversationId() {
     final maxId = _list
         .map((element) => int.parse(element.conversationId))
         .whereType<int>() // filters out nulls
         .fold<int>(1, (prev, curr) => (curr > prev ? curr : prev));
 
     return maxId;
+  }
+
+  @override
+  void dispose() {
+    _list.clear();
   }
 }
