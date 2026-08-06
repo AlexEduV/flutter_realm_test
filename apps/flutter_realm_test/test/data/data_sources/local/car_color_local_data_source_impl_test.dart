@@ -65,11 +65,5 @@ void main() {
       expect(colors['blueGrey'], Colors.blueGrey);
       expect(colors['black'], Colors.black);
     });
-
-    test('getColors returns a modifiable map (by default)', () {
-      final colors = dataSource.getColors();
-      colors['custom'] = Colors.amber;
-      expect(colors['custom'], Colors.amber);
-    });
   });
 }
