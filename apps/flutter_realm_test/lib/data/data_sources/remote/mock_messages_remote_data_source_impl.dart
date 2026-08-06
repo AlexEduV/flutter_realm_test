@@ -134,7 +134,7 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
 
   int _getMaxConversationId() {
     final maxId = _conversationsList
-        .map((element) => int.parse(element.conversationId))
+        .map((element) => int.tryParse(element.conversationId))
         .whereType<int>() // filters out nulls
         .fold<int>(1, (prev, curr) => (curr > prev ? curr : prev));
 
