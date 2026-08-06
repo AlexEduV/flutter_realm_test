@@ -5,60 +5,66 @@ import 'package:test_flutter_project/common/extensions/list_extension.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
-import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 
 import '../../../common/enums/message_status.dart';
-import '../../../core/di/injection_container.dart';
 
 class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
-  List<ConversationModel> _list = [
-    ConversationModel(
-      conversationId: '1',
-      ownerId: '1',
-      messages: [
-        MessageModel(
-          senderId: '1',
-          messageStatus: MessageStatus.unknown,
-          payload: 'Some Message here.',
-          date: DateTime.now().subtract(const Duration(hours: 4)),
-        ),
-      ],
-    ),
-    ConversationModel(
-      conversationId: '2',
-      ownerId: '4',
-      messages: [
-        MessageModel(
-          senderId: '4',
-          messageStatus: MessageStatus.sent,
-          payload: 'Some Message here.',
-          date: DateTime.now().subtract(const Duration(days: 2)),
-        ),
-        MessageModel(
-          senderId: '4',
-          messageStatus: MessageStatus.sent,
-          payload: 'Other message is here.',
-          date: DateTime.now().subtract(const Duration(days: 2)),
-        ),
-        MessageModel(
-          senderId: serviceLocator<UserDataCubit>().state.user.userId,
-          messageStatus: MessageStatus.sent,
-          payload: 'Hello there.',
-          date: DateTime.now().subtract(const Duration(days: 2)),
-        ),
-        MessageModel(
-          senderId: serviceLocator<UserDataCubit>().state.user.userId,
-          messageStatus: MessageStatus.sent,
-          payload: 'Hello there again.',
-          date: DateTime.now().subtract(const Duration(days: 2)),
-        ),
-      ],
-    ),
-  ];
+  List<ConversationModel> _conversationsList = [];
+
+  @override
+  void initSampleData(String currentUserId) {
+    final testDate = DateTime.now().subtract(const Duration(hours: 4));
+    final testDateOlder = DateTime.now().subtract(const Duration(days: 2));
+
+    _conversationsList = [
+      ConversationModel(
+        conversationId: '1',
+        ownerId: '1',
+        messages: [
+          MessageModel(
+            senderId: '1',
+            messageStatus: MessageStatus.unknown,
+            payload: 'Some Message here.',
+            date: testDate,
+          ),
+        ],
+      ),
+      ConversationModel(
+        conversationId: '2',
+        ownerId: '4',
+        messages: [
+          MessageModel(
+            senderId: '4',
+            messageStatus: MessageStatus.sent,
+            payload: 'Some Message here.',
+            date: testDateOlder,
+          ),
+          MessageModel(
+            senderId: '4',
+            messageStatus: MessageStatus.sent,
+            payload: 'Other message is here.',
+            date: testDateOlder,
+          ),
+          MessageModel(
+            senderId: currentUserId,
+            messageStatus: MessageStatus.sent,
+            payload: 'Hello there.',
+            date: testDateOlder,
+          ),
+          MessageModel(
+            senderId: currentUserId,
+            messageStatus: MessageStatus.sent,
+            payload: 'Hello there again.',
+            date: testDateOlder,
+          ),
+        ],
+      ),
+    ];
+  }
 
   @override
   Future<void> saveConversations(List<ConversationModel> conversations) async {
-    _list = conversations;
+    _conversationsList = List.from(conversations);
 
     final prefs = await SharedPreferences.getInstance();
     final conversationsJsonList = conversations.map((c) => c.toJson()).toList();
@@ -73,8 +79,8 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
       final decoded = jsonDecode(usersJson);
 
       if (decoded is! List) {
-        await saveConversations(_list);
-        return _list;
+        await saveConversations(_conversationsList);
+        return _conversationsList;
       }
 
       final conversations = decoded
@@ -83,24 +89,17 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
           )
           .toList();
 
-      _list = conversations;
+      _conversationsList = conversations;
       return conversations;
     }
 
-    await saveConversations(_list);
-    return _list;
-  }
-
-  List<ConversationModel> get list => _list;
-
-  @override
-  void dispose() {
-    _list.clear();
+    await saveConversations(_conversationsList);
+    return _conversationsList;
   }
 
   @override
   ConversationModel getConversationById(String conversationId) {
-    final conversationIndex = _list.indexWhereOrNull(
+    final conversationIndex = _conversationsList.indexWhereOrNull(
       (element) => element.conversationId == conversationId,
     );
 
@@ -108,33 +107,46 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
       return ConversationModel.empty();
     }
 
-    return _list[conversationIndex];
+    return _conversationsList[conversationIndex];
   }
 
   @override
-  ConversationModel getConversationByOwnerId(String ownerId) {
-    final conversationIndex = _list.indexWhereOrNull((element) => element.ownerId == ownerId);
+  ConversationModel getOrCreateConversationByOwnerId(String ownerId) {
+    final conversationIndex = _conversationsList.indexWhereOrNull(
+      (element) => element.ownerId == ownerId,
+    );
 
     if (conversationIndex == null) {
-      final newConversationId = getMaxConversationId() + 1;
-      final conversation = ConversationModel.empty().copyWith(
-        conversationId: newConversationId.toString(),
-        ownerId: ownerId,
-      );
+      final conversation = _getNewConversation(ownerId);
+      _conversationsList.add(conversation);
 
-      list.add(conversation);
-      return _list.last;
+      return conversation;
     }
 
-    return _list[conversationIndex];
+    return _conversationsList[conversationIndex];
   }
 
-  int getMaxConversationId() {
-    final maxId = _list
-        .map((element) => int.parse(element.conversationId))
+  int _getMaxConversationId() {
+    final maxId = _conversationsList
+        .map((element) => int.tryParse(element.conversationId))
         .whereType<int>() // filters out nulls
         .fold<int>(1, (prev, curr) => (curr > prev ? curr : prev));
 
     return maxId;
+  }
+
+  ConversationModel _getNewConversation(String ownerId) {
+    final newConversationId = _getMaxConversationId() + 1;
+    final conversation = ConversationModel.empty().copyWith(
+      conversationId: newConversationId.toString(),
+      ownerId: ownerId,
+    );
+
+    return conversation;
+  }
+
+  @override
+  void dispose() {
+    _conversationsList.clear();
   }
 }

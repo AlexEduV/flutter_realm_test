@@ -304,6 +304,7 @@ Future<void> _registerRepositories() async {
     serviceLocator<BaseLocalStorage>(),
     cloudStorage,
     serviceLocator<UsersRemoteDataSource>(),
+    serviceLocator<MessagesRemoteDataSource>(),
     serviceLocator<OwnerRepository>(),
   );
   await authRepositoryImpl.init();

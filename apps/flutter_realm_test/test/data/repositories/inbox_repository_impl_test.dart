@@ -54,12 +54,12 @@ void main() {
 
   test('getConversationByOwnerId calls remote data source and returns conversation', () {
     final conversation = ConversationModel(conversationId: 'c2', ownerId: 'o2', messages: []);
-    when(mockRemoteDataSource.getConversationByOwnerId('o2')).thenReturn(conversation);
+    when(mockRemoteDataSource.getOrCreateConversationByOwnerId('o2')).thenReturn(conversation);
 
     final result = repository.getConversationByOwnerId('o2');
 
     expect(result, conversation);
-    verify(mockRemoteDataSource.getConversationByOwnerId('o2')).called(1);
+    verify(mockRemoteDataSource.getOrCreateConversationByOwnerId('o2')).called(1);
     verifyNoMoreInteractions(mockRemoteDataSource);
   });
 }
