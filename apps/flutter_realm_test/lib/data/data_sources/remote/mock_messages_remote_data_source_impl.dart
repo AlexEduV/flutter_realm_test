@@ -125,8 +125,8 @@ class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
         ownerId: ownerId,
       );
 
-      list.add(conversation);
-      return _conversationsList.last;
+      _conversationsList.add(conversation);
+      return conversation;
     }
 
     return _conversationsList[conversationIndex];
