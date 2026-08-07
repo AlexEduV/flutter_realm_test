@@ -4,7 +4,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'location_settings_state.dart';
+part of 'location_settings_page_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,23 +14,23 @@ part of 'location_settings_state.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$LocationSettingsState {
+mixin _$LocationSettingsPageState {
   List<RegionUiModel> get availableRegions;
   RegionEntity? get currentRegion;
 
-  /// Create a copy of LocationSettingsState
+  /// Create a copy of LocationSettingsPageState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $LocationSettingsStateCopyWith<LocationSettingsState> get copyWith =>
-      _$LocationSettingsStateCopyWithImpl<LocationSettingsState>(
-          this as LocationSettingsState, _$identity);
+  $LocationSettingsPageStateCopyWith<LocationSettingsPageState> get copyWith =>
+      _$LocationSettingsPageStateCopyWithImpl<LocationSettingsPageState>(
+          this as LocationSettingsPageState, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is LocationSettingsState &&
+            other is LocationSettingsPageState &&
             const DeepCollectionEquality()
                 .equals(other.availableRegions, availableRegions) &&
             (identical(other.currentRegion, currentRegion) ||
@@ -43,29 +43,29 @@ mixin _$LocationSettingsState {
 
   @override
   String toString() {
-    return 'LocationSettingsState(availableRegions: $availableRegions, currentRegion: $currentRegion)';
+    return 'LocationSettingsPageState(availableRegions: $availableRegions, currentRegion: $currentRegion)';
   }
 }
 
 /// @nodoc
-abstract mixin class $LocationSettingsStateCopyWith<$Res> {
-  factory $LocationSettingsStateCopyWith(LocationSettingsState value,
-          $Res Function(LocationSettingsState) _then) =
-      _$LocationSettingsStateCopyWithImpl;
+abstract mixin class $LocationSettingsPageStateCopyWith<$Res> {
+  factory $LocationSettingsPageStateCopyWith(LocationSettingsPageState value,
+          $Res Function(LocationSettingsPageState) _then) =
+      _$LocationSettingsPageStateCopyWithImpl;
   @useResult
   $Res call(
       {List<RegionUiModel> availableRegions, RegionEntity? currentRegion});
 }
 
 /// @nodoc
-class _$LocationSettingsStateCopyWithImpl<$Res>
-    implements $LocationSettingsStateCopyWith<$Res> {
-  _$LocationSettingsStateCopyWithImpl(this._self, this._then);
+class _$LocationSettingsPageStateCopyWithImpl<$Res>
+    implements $LocationSettingsPageStateCopyWith<$Res> {
+  _$LocationSettingsPageStateCopyWithImpl(this._self, this._then);
 
-  final LocationSettingsState _self;
-  final $Res Function(LocationSettingsState) _then;
+  final LocationSettingsPageState _self;
+  final $Res Function(LocationSettingsPageState) _then;
 
-  /// Create a copy of LocationSettingsState
+  /// Create a copy of LocationSettingsPageState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -88,8 +88,8 @@ class _$LocationSettingsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _LocationSettingsState implements LocationSettingsState {
-  const _LocationSettingsState(
+class _LocationSettingsPageState implements LocationSettingsPageState {
+  const _LocationSettingsPageState(
       {final List<RegionUiModel> availableRegions = const [],
       this.currentRegion})
       : _availableRegions = availableRegions;
@@ -107,20 +107,21 @@ class _LocationSettingsState implements LocationSettingsState {
   @override
   final RegionEntity? currentRegion;
 
-  /// Create a copy of LocationSettingsState
+  /// Create a copy of LocationSettingsPageState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$LocationSettingsStateCopyWith<_LocationSettingsState> get copyWith =>
-      __$LocationSettingsStateCopyWithImpl<_LocationSettingsState>(
-          this, _$identity);
+  _$LocationSettingsPageStateCopyWith<_LocationSettingsPageState>
+      get copyWith =>
+          __$LocationSettingsPageStateCopyWithImpl<_LocationSettingsPageState>(
+              this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LocationSettingsState &&
+            other is _LocationSettingsPageState &&
             const DeepCollectionEquality()
                 .equals(other._availableRegions, _availableRegions) &&
             (identical(other.currentRegion, currentRegion) ||
@@ -133,16 +134,16 @@ class _LocationSettingsState implements LocationSettingsState {
 
   @override
   String toString() {
-    return 'LocationSettingsState(availableRegions: $availableRegions, currentRegion: $currentRegion)';
+    return 'LocationSettingsPageState(availableRegions: $availableRegions, currentRegion: $currentRegion)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$LocationSettingsStateCopyWith<$Res>
-    implements $LocationSettingsStateCopyWith<$Res> {
-  factory _$LocationSettingsStateCopyWith(_LocationSettingsState value,
-          $Res Function(_LocationSettingsState) _then) =
-      __$LocationSettingsStateCopyWithImpl;
+abstract mixin class _$LocationSettingsPageStateCopyWith<$Res>
+    implements $LocationSettingsPageStateCopyWith<$Res> {
+  factory _$LocationSettingsPageStateCopyWith(_LocationSettingsPageState value,
+          $Res Function(_LocationSettingsPageState) _then) =
+      __$LocationSettingsPageStateCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -150,14 +151,14 @@ abstract mixin class _$LocationSettingsStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$LocationSettingsStateCopyWithImpl<$Res>
-    implements _$LocationSettingsStateCopyWith<$Res> {
-  __$LocationSettingsStateCopyWithImpl(this._self, this._then);
+class __$LocationSettingsPageStateCopyWithImpl<$Res>
+    implements _$LocationSettingsPageStateCopyWith<$Res> {
+  __$LocationSettingsPageStateCopyWithImpl(this._self, this._then);
 
-  final _LocationSettingsState _self;
-  final $Res Function(_LocationSettingsState) _then;
+  final _LocationSettingsPageState _self;
+  final $Res Function(_LocationSettingsPageState) _then;
 
-  /// Create a copy of LocationSettingsState
+  /// Create a copy of LocationSettingsPageState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -165,7 +166,7 @@ class __$LocationSettingsStateCopyWithImpl<$Res>
     Object? availableRegions = null,
     Object? currentRegion = freezed,
   }) {
-    return _then(_LocationSettingsState(
+    return _then(_LocationSettingsPageState(
       availableRegions: null == availableRegions
           ? _self._availableRegions
           : availableRegions // ignore: cast_nullable_to_non_nullable

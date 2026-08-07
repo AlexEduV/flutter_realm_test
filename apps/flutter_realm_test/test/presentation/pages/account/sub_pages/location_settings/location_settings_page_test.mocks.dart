@@ -15,7 +15,7 @@ import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_
     as _i3;
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart'
     as _i7;
-import 'package:test_flutter_project/presentation/features/location_settings/location_settings_state.dart'
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_state.dart'
     as _i2;
 
 // ignore_for_file: type=lint
@@ -32,9 +32,9 @@ import 'package:test_flutter_project/presentation/features/location_settings/loc
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeLocationSettingsState_0 extends _i1.SmartFake
-    implements _i2.LocationSettingsState {
-  _FakeLocationSettingsState_0(
+class _FakeLocationSettingsPageState_0 extends _i1.SmartFake
+    implements _i2.LocationSettingsPageState {
+  _FakeLocationSettingsPageState_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -80,25 +80,25 @@ class MockGetAllRegionModelsUseCase extends _i1.Mock
 class MockLocationSettingsPageCubit extends _i1.Mock
     implements _i7.LocationSettingsPageCubit {
   @override
-  _i2.LocationSettingsState get state => (super.noSuchMethod(
+  _i2.LocationSettingsPageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeLocationSettingsState_0(
+        returnValue: _FakeLocationSettingsPageState_0(
           this,
           Invocation.getter(#state),
         ),
-        returnValueForMissingStub: _FakeLocationSettingsState_0(
+        returnValueForMissingStub: _FakeLocationSettingsPageState_0(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i2.LocationSettingsState);
+      ) as _i2.LocationSettingsPageState);
 
   @override
-  _i8.Stream<_i2.LocationSettingsState> get stream => (super.noSuchMethod(
+  _i8.Stream<_i2.LocationSettingsPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i8.Stream<_i2.LocationSettingsState>.empty(),
+        returnValue: _i8.Stream<_i2.LocationSettingsPageState>.empty(),
         returnValueForMissingStub:
-            _i8.Stream<_i2.LocationSettingsState>.empty(),
-      ) as _i8.Stream<_i2.LocationSettingsState>);
+            _i8.Stream<_i2.LocationSettingsPageState>.empty(),
+      ) as _i8.Stream<_i2.LocationSettingsPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -108,14 +108,13 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       ) as bool);
 
   @override
-  _i4.RegionEntity? loadCurrentRegionByCode(String? code) =>
-      (super.noSuchMethod(
+  void loadCurrentRegionByCode(String? code) => super.noSuchMethod(
         Invocation.method(
           #loadCurrentRegionByCode,
           [code],
         ),
         returnValueForMissingStub: null,
-      ) as _i4.RegionEntity?);
+      );
 
   @override
   void updateAvailableCountries() => super.noSuchMethod(
@@ -137,7 +136,7 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       ) as _i8.Future<void>);
 
   @override
-  void emit(_i2.LocationSettingsState? state) => super.noSuchMethod(
+  void emit(_i2.LocationSettingsPageState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -146,7 +145,7 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       );
 
   @override
-  void onChange(_i9.Change<_i2.LocationSettingsState>? change) =>
+  void onChange(_i9.Change<_i2.LocationSettingsPageState>? change) =>
       super.noSuchMethod(
         Invocation.method(
           #onChange,

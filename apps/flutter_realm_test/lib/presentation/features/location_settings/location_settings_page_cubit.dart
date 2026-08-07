@@ -2,14 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/usecases/regions/get_all_region_models_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/url/open_url_link_use_case.dart';
-import 'package:test_flutter_project/presentation/features/location_settings/location_settings_state.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_state.dart';
 
-class LocationSettingsPageCubit extends Cubit<LocationSettingsState> {
+class LocationSettingsPageCubit extends Cubit<LocationSettingsPageState> {
   LocationSettingsPageCubit(
     this._getRegionByCodeUseCase,
     this._getAllRegionModelsUseCase,
     this._openUrlLinkUseCase,
-  ) : super(const LocationSettingsState());
+  ) : super(const LocationSettingsPageState());
 
   final GetRegionByCodeUseCase _getRegionByCodeUseCase;
   final GetAllRegionModelsUseCase _getAllRegionModelsUseCase;

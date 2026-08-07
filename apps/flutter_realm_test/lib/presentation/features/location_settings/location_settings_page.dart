@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_state.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/widgets/footer_text.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
@@ -65,13 +66,19 @@ class LocationSettingsPage extends StatelessWidget {
                         onTap: () => context.read<UserDataCubit>().openLocationSettings(),
                       ),
 
-                      PersonalDetailsListItem(
-                        title: context.tr(LocationSettingsLocaleKeys.locationSettingsItemRegion),
-                        description: context.tr(
-                          '${L10nKeys.countryPrefix}${context.read<LocationSettingsPageCubit>().state.currentRegion?.locale}',
-                        ),
-                        icon: Icons.explore,
-                        onTap: () => onRegionItemTap(state, context),
+                      BlocBuilder<LocationSettingsPageCubit, LocationSettingsPageState>(
+                        builder: (context, locationState) {
+                          return PersonalDetailsListItem(
+                            title: context.tr(
+                              LocationSettingsLocaleKeys.locationSettingsItemRegion,
+                            ),
+                            description: context.tr(
+                              '${L10nKeys.countryPrefix}${locationState.currentRegion?.locale}',
+                            ),
+                            icon: Icons.explore,
+                            onTap: () => onRegionItemTap(state, context),
+                          );
+                        },
                       ),
                     ].withDividers(divider: const CustomDivider()),
                   );
