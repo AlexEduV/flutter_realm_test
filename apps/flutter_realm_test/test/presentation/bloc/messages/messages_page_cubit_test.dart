@@ -8,8 +8,12 @@ import 'package:test_flutter_project/domain/entities/gif_entity.dart';
 import 'package:test_flutter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
+import 'package:test_flutter_project/utils/date_formatter.dart';
 
 import 'messages_page_cubit_test.mocks.dart';
 
@@ -17,21 +21,37 @@ import 'messages_page_cubit_test.mocks.dart';
   MockSpec<SearchGifsUseCase>(),
   MockSpec<GetTrendingGifsUseCase>(),
   MockSpec<PickAttachmentFileUseCase>(),
+  MockSpec<GetConversationByIdUseCase>(),
+  MockSpec<GetOwnerByIdUseCase>(),
+  MockSpec<ExtractUsersFromConversationUseCase>(),
+  MockSpec<DateFormatter>(),
 ])
 void main() {
   late MockSearchGifsUseCase mockSearchGifsUseCase;
   late MockGetTrendingGifsUseCase mockGetTrendingGifsUseCase;
   late MockPickAttachmentFileUseCase mockPickAttachmentFileUseCase;
+  late MockGetConversationByIdUseCase mockGetConversationByIdUseCase;
+  late MockGetOwnerByIdUseCase mockGetOwnerByIdUseCase;
+  late MockExtractUsersFromConversationUseCase mockExtractUsersFromConversationUseCase;
+  late MockDateFormatter mockDateFormatter;
   late MessagesPageCubit cubit;
 
   setUp(() {
     mockSearchGifsUseCase = MockSearchGifsUseCase();
     mockGetTrendingGifsUseCase = MockGetTrendingGifsUseCase();
     mockPickAttachmentFileUseCase = MockPickAttachmentFileUseCase();
+    mockGetConversationByIdUseCase = MockGetConversationByIdUseCase();
+    mockGetOwnerByIdUseCase = MockGetOwnerByIdUseCase();
+    mockExtractUsersFromConversationUseCase = MockExtractUsersFromConversationUseCase();
+    mockDateFormatter = MockDateFormatter();
     cubit = MessagesPageCubit(
       mockSearchGifsUseCase,
       mockGetTrendingGifsUseCase,
       mockPickAttachmentFileUseCase,
+      mockGetConversationByIdUseCase,
+      mockGetOwnerByIdUseCase,
+      mockExtractUsersFromConversationUseCase,
+      mockDateFormatter,
     );
   });
 

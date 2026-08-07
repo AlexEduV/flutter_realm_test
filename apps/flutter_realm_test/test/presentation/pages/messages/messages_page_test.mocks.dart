@@ -8,6 +8,7 @@ import 'dart:async' as _i12;
 import 'package:flutter/cupertino.dart' as _i14;
 import 'package:flutter_bloc/flutter_bloc.dart' as _i15;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i18;
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
     as _i17;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i3;
@@ -421,6 +422,107 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
         returnValue: _i12.Future<_i17.AttachmentEntity?>.value(),
         returnValueForMissingStub: _i12.Future<_i17.AttachmentEntity?>.value(),
       ) as _i12.Future<_i17.AttachmentEntity?>);
+
+  @override
+  _i2.ConversationModel getConversationById(String? conversationId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getConversationById,
+          [conversationId],
+        ),
+        returnValue: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #getConversationById,
+            [conversationId],
+          ),
+        ),
+        returnValueForMissingStub: _FakeConversationModel_0(
+          this,
+          Invocation.method(
+            #getConversationById,
+            [conversationId],
+          ),
+        ),
+      ) as _i2.ConversationModel);
+
+  @override
+  _i3.OwnerEntity getOwnerById(String? ownerId) => (super.noSuchMethod(
+        Invocation.method(
+          #getOwnerById,
+          [ownerId],
+        ),
+        returnValue: _FakeOwnerEntity_1(
+          this,
+          Invocation.method(
+            #getOwnerById,
+            [ownerId],
+          ),
+        ),
+        returnValueForMissingStub: _FakeOwnerEntity_1(
+          this,
+          Invocation.method(
+            #getOwnerById,
+            [ownerId],
+          ),
+        ),
+      ) as _i3.OwnerEntity);
+
+  @override
+  Map<String, _i9.UserEntity?> getUsersFromConversation(
+          _i2.ConversationModel? conversation) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getUsersFromConversation,
+          [conversation],
+        ),
+        returnValue: <String, _i9.UserEntity?>{},
+        returnValueForMissingStub: <String, _i9.UserEntity?>{},
+      ) as Map<String, _i9.UserEntity?>);
+
+  @override
+  String getMessageDividerDate(DateTime? date) => (super.noSuchMethod(
+        Invocation.method(
+          #getMessageDividerDate,
+          [date],
+        ),
+        returnValue: _i18.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMessageDividerDate,
+            [date],
+          ),
+        ),
+        returnValueForMissingStub: _i18.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMessageDividerDate,
+            [date],
+          ),
+        ),
+      ) as String);
+
+  @override
+  String getMessageTime(DateTime? date) => (super.noSuchMethod(
+        Invocation.method(
+          #getMessageTime,
+          [date],
+        ),
+        returnValue: _i18.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMessageTime,
+            [date],
+          ),
+        ),
+        returnValueForMissingStub: _i18.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getMessageTime,
+            [date],
+          ),
+        ),
+      ) as String);
 
   @override
   void emit(_i5.MessagesPageState? state) => super.noSuchMethod(
