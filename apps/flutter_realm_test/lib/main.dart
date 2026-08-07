@@ -9,6 +9,7 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/init_region_models_use_case.dart';
+import 'package:test_flutter_project/features/location_settings_page/location_settings_page_cubit.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart';
@@ -104,6 +105,9 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<MessagesPageCubit>(create: (context) => serviceLocator<MessagesPageCubit>()),
         BlocProvider<NewItemPageCubit>(
           create: (context) => serviceLocator<NewItemPageCubit>()..init(),
+        ),
+        BlocProvider<LocationSettingsPageCubit>(
+          create: (context) => serviceLocator<LocationSettingsPageCubit>(),
         ),
       ],
       child: MaterialApp.router(

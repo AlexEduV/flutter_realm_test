@@ -128,6 +128,7 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
+import 'package:test_flutter_project/features/location_settings_page/location_settings_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
@@ -480,6 +481,10 @@ void _registerCubits() {
   serviceLocator.registerLazySingleton(() => InboxPageCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerFactory(() => ArticlePageCubit(serviceLocator()));
+
+  serviceLocator.registerFactory(
+    () => LocationSettingsPageCubit(serviceLocator(), serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 

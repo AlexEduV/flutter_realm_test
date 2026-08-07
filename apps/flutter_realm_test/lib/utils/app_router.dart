@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/domain/models/home_page_params.dart';
+import 'package:test_flutter_project/features/location_settings_page/location_settings_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/clear_data/clear_user_data_page.dart';
-import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/location_settings_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/my_items/my_items_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/personal_details_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/recently_viewed/recently_viewed_page.dart';
