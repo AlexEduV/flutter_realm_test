@@ -18,9 +18,9 @@ Widget buildFooterTextUseCase(BuildContext context) {
           children: [
             FooterText(
               text: context.knobs.string(label: 'Label', initialValue: 'Footer link'),
-              url: context.knobs.boolean(label: 'Is url empty', initialValue: false)
+              onTap: context.knobs.boolean(label: 'Is url empty', initialValue: false)
                   ? null
-                  : 'https://google.com',
+                  : () {},
             ),
           ],
         ),

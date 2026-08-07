@@ -88,13 +88,17 @@ class LocationSettingsPage extends StatelessWidget {
                     text: context.tr(
                       LocationSettingsLocaleKeys.locationSettingsPrivacyItemConditions,
                     ),
-                    url: ApiConstants.termsAndConditionsUrl,
+                    onTap: () => context.read<LocationSettingsPageCubit>().openUrl(
+                      ApiConstants.termsAndConditionsUrl,
+                    ),
                   ),
                   FooterText(
                     text: context.tr(
                       LocationSettingsLocaleKeys.locationSettingsPrivacyItemPrivacyPolicy,
                     ),
-                    url: ApiConstants.privacyPolicyUrl,
+                    onTap: () => context.read<LocationSettingsPageCubit>().openUrl(
+                      ApiConstants.privacyPolicyUrl,
+                    ),
                   ),
                 ],
               ),

@@ -483,7 +483,11 @@ void _registerCubits() {
   serviceLocator.registerFactory(() => ArticlePageCubit(serviceLocator()));
 
   serviceLocator.registerFactory(
-    () => LocationSettingsPageCubit(serviceLocator(), serviceLocator()),
+    () => LocationSettingsPageCubit(
+      serviceLocator<GetRegionByCodeUseCase>(),
+      serviceLocator<GetAllRegionModelsUseCase>(),
+      serviceLocator<OpenUrlLinkUseCase>(),
+    ),
   );
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
