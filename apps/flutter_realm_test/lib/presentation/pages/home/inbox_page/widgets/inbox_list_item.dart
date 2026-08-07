@@ -6,10 +6,10 @@ import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
@@ -19,16 +19,20 @@ import 'package:test_flutter_project/utils/inline_style_parser.dart';
 import '../../../../widgets/app_badge.dart';
 
 class InboxListItem extends StatelessWidget {
-  const InboxListItem({required this.conversation, super.key});
+  const InboxListItem({
+    required this.conversation,
+    required this.owner,
+    required this.unreadCount,
+    super.key,
+  });
 
   final ConversationModel conversation;
+  final OwnerEntity owner;
+  final int unreadCount;
 
   @override
   Widget build(BuildContext context) {
     final message = conversation.messages.lastOrNull;
-    final owner = context.read<MessagesPageCubit>().getOwnerById(conversation.ownerId);
-
-    final unreadCount = context.read<InboxPageCubit>().getUnreadCountFromConversation(conversation);
 
     return Padding(
       padding: const EdgeInsetsGeometry.symmetric(

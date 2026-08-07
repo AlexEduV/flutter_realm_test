@@ -1,9 +1,10 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
+import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/home/inbox_page/widgets/inbox_list_item.dart';
@@ -52,7 +53,19 @@ class _InboxPageState extends State<InboxPage> {
               return ListView.builder(
                 padding: const EdgeInsets.only(top: AppDimensions.normalL),
                 itemBuilder: (context, index) {
-                  return InboxListItem(conversation: state.conversations[index]);
+                  final conversation = state.conversations[index];
+                  final unreadCount = context.read<InboxPageCubit>().getUnreadCountFromConversation(
+                    conversation,
+                  );
+                  final owner = context.read<MessagesPageCubit>().getOwnerById(
+                    conversation.ownerId,
+                  );
+
+                  return InboxListItem(
+                    conversation: conversation,
+                    unreadCount: unreadCount,
+                    owner: owner,
+                  );
                 },
                 itemCount: items.length,
               );
