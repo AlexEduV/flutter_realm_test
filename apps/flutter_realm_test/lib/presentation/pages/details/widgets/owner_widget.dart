@@ -8,6 +8,7 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_params.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 
@@ -141,6 +142,9 @@ class OwnerWidget extends StatelessWidget {
 
     final conversationId = context.read<DetailsPageCubit>().getConversationId(ownerId);
 
-    context.go('${AppRoutes.home}${AppRoutes.details}/${AppRoutes.inbox}', extra: conversationId);
+    context.go(
+      '${AppRoutes.home}${AppRoutes.details}/${AppRoutes.inbox}',
+      extra: InboxPageParams(conversationId: conversationId),
+    );
   }
 }

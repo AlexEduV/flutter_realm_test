@@ -11,6 +11,7 @@ import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_params.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
@@ -33,6 +34,7 @@ class InboxListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final message = conversation.messages.lastOrNull;
+    final conversationId = conversation.conversationId;
 
     return Padding(
       padding: const EdgeInsetsGeometry.symmetric(
@@ -45,11 +47,12 @@ class InboxListItem extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(AppDimensions.normalM),
           child: InkWell(
-            onLongPress: () =>
-                DialogHelper.showInboxItemModalBottomSheet(context, conversation.conversationId),
+            onLongPress: () => DialogHelper.showInboxItemModalBottomSheet(context, conversationId),
             borderRadius: BorderRadius.circular(AppDimensions.normalM),
-            onTap: () =>
-                context.go(AppRoutes.home + AppRoutes.inbox, extra: conversation.conversationId),
+            onTap: () => context.go(
+              AppRoutes.home + AppRoutes.inbox,
+              extra: InboxPageParams(conversationId: conversationId),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalXS),
               child: SizedBox(

@@ -7,6 +7,7 @@ import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_flutter_project/presentation/features/article_details/article_details_page_params.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
@@ -60,8 +61,10 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
               color: AppColors.accentColor.withAlpha(60),
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
               child: InkWell(
-                onTap: () =>
-                    context.go(AppRoutes.home + AppRoutes.articleDetails, extra: widget.article.id),
+                onTap: () => context.go(
+                  AppRoutes.home + AppRoutes.articleDetails,
+                  extra: ArticleDetailsPageParams(articleId: widget.article.id),
+                ),
                 onTapDown: (_) => _setPressed(true),
                 onTapUp: (_) => _setPressed(false),
                 onTapCancel: () => _setPressed(false),

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_flutter_project/domain/models/home_page_params.dart';
+import 'package:test_flutter_project/presentation/features/article_details/article_details_page_params.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_params.dart';
+import 'package:test_flutter_project/presentation/features/home/home_page_params.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_params.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/clear_data/clear_user_data_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/my_items/my_items_page.dart';
@@ -98,7 +101,8 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.articleDetails,
             pageBuilder: (context, state) {
-              final articleId = state.extra is String ? state.extra as String : '';
+              final extra = state.extra;
+              final articleId = extra is ArticleDetailsPageParams ? extra.articleId : '';
 
               return CupertinoPage(child: ArticlePage(articleId: articleId));
             },
@@ -113,7 +117,8 @@ class AppRouter {
   static final _inboxRoute = GoRoute(
     path: AppRoutes.inbox,
     pageBuilder: (context, state) {
-      final conversationId = state.extra is String ? state.extra as String : '';
+      final extra = state.extra;
+      final conversationId = extra is InboxPageParams ? extra.conversationId : '';
 
       return CupertinoPage(child: MessagesPage(conversationId: conversationId));
     },
@@ -122,13 +127,14 @@ class AppRouter {
   static GoRoute _buildDetailsRoute() => GoRoute(
     path: AppRoutes.details,
     pageBuilder: (context, state) {
-      final carId = state.extra is String ? state.extra as String : '';
+      final extra = state.extra;
+      final carId = extra is DetailsPageParams ? extra.carId : '';
       return CupertinoPage(child: DetailsPage(carId: carId));
     },
     routes: [_inboxRoute],
   );
 
   static void goToDetails({required DetailsPageSource from, required String carId}) {
-    _router.go(from.detailsPath, extra: carId);
+    _router.go(from.detailsPath, extra: DetailsPageParams(carId: carId));
   }
 }
