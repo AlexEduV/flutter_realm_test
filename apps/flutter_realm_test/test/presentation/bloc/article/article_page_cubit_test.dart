@@ -5,8 +5,8 @@ import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/domain/entities/author_entity.dart';
 import 'package:test_flutter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/article/article_page_state.dart';
+import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/article/article_page_state.dart';
 
 import 'article_page_cubit_test.mocks.dart';
 

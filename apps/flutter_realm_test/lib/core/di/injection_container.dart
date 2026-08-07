@@ -129,7 +129,6 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_ca
 import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
@@ -140,6 +139,7 @@ import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cu
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 

@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/api_constants.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/article/article_page_state.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
@@ -14,6 +12,8 @@ import '../../../domain/models/share_params_model.dart';
 import '../../../l10n/l10n_keys.dart';
 import '../../bloc/share/share_cubit.dart';
 import '../../widgets/app_semantics.dart';
+import 'article_page_cubit.dart';
+import 'article_page_state.dart';
 
 class ArticlePage extends StatefulWidget {
   const ArticlePage({required this.articleId, super.key});
