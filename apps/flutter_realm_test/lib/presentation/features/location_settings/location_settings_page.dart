@@ -110,9 +110,10 @@ class LocationSettingsPage extends StatelessWidget {
   }
 
   Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
-    final availableCountries = context.read<LocationSettingsPageCubit>().getAvailableCountries();
+    context.read<LocationSettingsPageCubit>().updateAvailableCountries();
 
     final currentRegion = state.user.region;
+    final availableCountries = context.read<LocationSettingsPageCubit>().state.availableRegions;
     final currentIndex = availableCountries.indexWhereOrNull(
       (element) => element.code == currentRegion,
     );
