@@ -2,7 +2,6 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
@@ -24,12 +23,12 @@ class FavoritesPage extends StatelessWidget {
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         buildWhen: (previous, current) => previous.user.favoriteIds != current.user.favoriteIds,
-        builder: (context, state) {
+        builder: (context, userState) {
           return BlocBuilder<ExplorePageCubit, ExplorePageState>(
             builder: (context, state) {
               final allCars = state.cars;
 
-              final favoriteIds = serviceLocator<UserDataCubit>().state.user.favoriteIds;
+              final favoriteIds = userState.user.favoriteIds;
               final favoriteEntities = allCars
                   .where((entity) => favoriteIds.contains(entity.carId))
                   .toList();
