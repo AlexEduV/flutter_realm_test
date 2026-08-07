@@ -3,18 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i8;
+import 'dart:async' as _i4;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i9;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/entities/region_entity.dart' as _i4;
-import 'package:test_flutter_project/domain/models/region_ui_model.dart' as _i6;
-import 'package:test_flutter_project/domain/usecases/regions/get_all_region_models_use_case.dart'
-    as _i5;
-import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart'
-    as _i3;
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart'
-    as _i7;
+    as _i3;
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_state.dart'
     as _i2;
 
@@ -43,42 +37,11 @@ class _FakeLocationSettingsPageState_0 extends _i1.SmartFake
         );
 }
 
-/// A class which mocks [GetRegionByCodeUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetRegionByCodeUseCase extends _i1.Mock
-    implements _i3.GetRegionByCodeUseCase {
-  @override
-  _i4.RegionEntity? call(String? code) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [code],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i4.RegionEntity?);
-}
-
-/// A class which mocks [GetAllRegionModelsUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetAllRegionModelsUseCase extends _i1.Mock
-    implements _i5.GetAllRegionModelsUseCase {
-  @override
-  List<_i6.RegionUiModel> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: <_i6.RegionUiModel>[],
-        returnValueForMissingStub: <_i6.RegionUiModel>[],
-      ) as List<_i6.RegionUiModel>);
-}
-
 /// A class which mocks [LocationSettingsPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLocationSettingsPageCubit extends _i1.Mock
-    implements _i7.LocationSettingsPageCubit {
+    implements _i3.LocationSettingsPageCubit {
   @override
   _i2.LocationSettingsPageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
@@ -93,12 +56,12 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       ) as _i2.LocationSettingsPageState);
 
   @override
-  _i8.Stream<_i2.LocationSettingsPageState> get stream => (super.noSuchMethod(
+  _i4.Stream<_i2.LocationSettingsPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i8.Stream<_i2.LocationSettingsPageState>.empty(),
+        returnValue: _i4.Stream<_i2.LocationSettingsPageState>.empty(),
         returnValueForMissingStub:
-            _i8.Stream<_i2.LocationSettingsPageState>.empty(),
-      ) as _i8.Stream<_i2.LocationSettingsPageState>);
+            _i4.Stream<_i2.LocationSettingsPageState>.empty(),
+      ) as _i4.Stream<_i2.LocationSettingsPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -126,14 +89,14 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       );
 
   @override
-  _i8.Future<void> openUrl(String? url) => (super.noSuchMethod(
+  _i4.Future<void> openUrl(String? url) => (super.noSuchMethod(
         Invocation.method(
           #openUrl,
           [url],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
   void emit(_i2.LocationSettingsPageState? state) => super.noSuchMethod(
@@ -145,7 +108,7 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       );
 
   @override
-  void onChange(_i9.Change<_i2.LocationSettingsPageState>? change) =>
+  void onChange(_i5.Change<_i2.LocationSettingsPageState>? change) =>
       super.noSuchMethod(
         Invocation.method(
           #onChange,
@@ -187,12 +150,12 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       );
 
   @override
-  _i8.Future<void> close() => (super.noSuchMethod(
+  _i4.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

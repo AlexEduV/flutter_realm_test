@@ -3,11 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/domain/entities/region_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/usecases/regions/get_all_region_models_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
@@ -16,6 +12,7 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_state.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/widgets/footer_text.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 
@@ -24,15 +21,11 @@ import '../../../../../utils/app_router_test.mocks.dart';
 import 'location_settings_page_test.mocks.dart';
 
 @GenerateNiceMocks([
-  MockSpec<GetRegionByCodeUseCase>(),
-  MockSpec<GetAllRegionModelsUseCase>(),
   MockSpec<LocationSettingsPageCubit>(),
 ])
 void main() {
   final appLocalisationsCubit = MockAppLocalisationsCubit();
   final mockLocationSettingsPageCubit = MockLocationSettingsPageCubit();
-  final getRegionByCodeUseCase = MockGetRegionByCodeUseCase();
-  final getAllRegionModelsUseCase = MockGetAllRegionModelsUseCase();
 
   Widget buildTestableWidget({
     required UserDataCubit userDataCubit,
@@ -51,12 +44,8 @@ void main() {
   }
 
   setUp(() {
-    serviceLocator.registerLazySingleton<GetRegionByCodeUseCase>(() => getRegionByCodeUseCase);
-    serviceLocator.registerLazySingleton<GetAllRegionModelsUseCase>(
-      () => getAllRegionModelsUseCase,
-    );
-    when(getRegionByCodeUseCase.call('us')).thenReturn(const RegionEntity(locale: 'US'));
-    when(getAllRegionModelsUseCase.call()).thenReturn([]);
+    when(mockLocationSettingsPageCubit.state).thenReturn(const LocationSettingsPageState());
+    when(mockLocationSettingsPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     when(appLocalisationsCubit.state).thenReturn(
       const AppLocalisationsState(
@@ -67,11 +56,6 @@ void main() {
       ),
     );
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
-  });
-
-  tearDown(() {
-    serviceLocator.unregister<GetRegionByCodeUseCase>();
-    serviceLocator.unregister<GetAllRegionModelsUseCase>();
   });
 
   testWidgets('shows app bar title and location usage description', (WidgetTester tester) async {
