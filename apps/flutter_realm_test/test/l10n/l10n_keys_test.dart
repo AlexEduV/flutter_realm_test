@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/article/article_page_identifiers.dart';
 
 void main() {
   group('L10nKeys', () {
@@ -398,7 +399,7 @@ void main() {
     );
     test(
       'articlePageMinsToRead',
-      () => expect(L10nKeys.articlePageMinsToRead, 'pages.article.minsToRead'),
+      () => expect(ArticlePageLocaleKeys.articlePageMinsToRead, 'pages.article.minsToRead'),
     );
     test('shareButtonLabel', () => expect(L10nKeys.shareButtonLabel, 'general.share'));
     test('onLabel', () => expect(L10nKeys.onLabel, 'general.on'));

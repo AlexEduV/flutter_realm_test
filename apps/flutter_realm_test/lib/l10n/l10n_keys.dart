@@ -154,8 +154,6 @@ class L10nKeys {
   static const String dateFormattingYesterday = 'dateFormatting.yesterday';
   static const String dateFormattingToday = 'dateFormatting.today';
 
-  static const String articlePageMinsToRead = 'pages.article.minsToRead';
-
   static const String shareButtonLabel = 'general.share';
   static const String onLabel = 'general.on';
   static const String offLabel = 'general.off';
