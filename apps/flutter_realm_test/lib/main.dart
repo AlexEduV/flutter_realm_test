@@ -138,19 +138,16 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _handleLocationPermission() async {
-    final locationPermissionStatus = await context
-        .read<UserDataCubit>()
+    final locationPermissionStatus = await serviceLocator<UserDataCubit>()
         .checkLocationPermissionStatus();
 
     final isGranted = locationPermissionStatus == PermissionStatus.granted;
 
-    //todo: maybe safeContext extension to check automatically if mounted
-    if (!mounted) return;
-    context.read()<UserDataCubit>().updateLocationPermissionStatus(isGranted);
+    serviceLocator<UserDataCubit>().updateLocationPermissionStatus(isGranted);
 
     if (!isGranted) {
       await DialogHelper.showLocationPermissionDialog(
-        () => context.read<UserDataCubit>().openLocationSettings(),
+        () => serviceLocator<UserDataCubit>().openLocationSettings(),
       );
     }
   }
