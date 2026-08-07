@@ -6,7 +6,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/init_region_models_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
@@ -139,15 +138,20 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _handleLocationPermission() async {
-    final locationPermissionStatus = await serviceLocator<CheckLocationPermissionStatusUseCase>()
-        .call();
+    final locationPermissionStatus = await context
+        .read<UserDataCubit>()
+        .checkLocationPermissionStatus();
 
     final isGranted = locationPermissionStatus == PermissionStatus.granted;
 
-    serviceLocator<UserDataCubit>().updateLocationPermissionStatus(isGranted);
+    //todo: maybe safeContext extension to check automatically if mounted
+    if (!mounted) return;
+    context.read()<UserDataCubit>().updateLocationPermissionStatus(isGranted);
 
     if (!isGranted) {
-      await DialogHelper.showLocationPermissionDialog();
+      await DialogHelper.showLocationPermissionDialog(
+        () => context.read<UserDataCubit>().openLocationSettings(),
+      );
     }
   }
 }
