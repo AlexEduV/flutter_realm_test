@@ -2,7 +2,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/features/location_settings_page/widgets/footer_text.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/widgets/footer_text.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 Widget buildFooterTextUseCase(BuildContext context) {

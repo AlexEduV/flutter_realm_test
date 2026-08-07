@@ -148,7 +148,7 @@ import '../../domain/repositories/geolocator_repository.dart';
 import '../../domain/repositories/url_launch_repository.dart';
 import '../../domain/usecases/inbox/save_conversations_use_case.dart';
 import '../../presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import '../../presentation/features/location_settings_page/location_settings_page_cubit.dart';
+import '../../presentation/features/location_settings/location_settings_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 

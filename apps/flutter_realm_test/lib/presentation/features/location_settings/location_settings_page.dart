@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
-import 'package:test_flutter_project/presentation/features/location_settings_page/widgets/footer_text.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/widgets/footer_text.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
 import '../../../common/constants/api_constants.dart';

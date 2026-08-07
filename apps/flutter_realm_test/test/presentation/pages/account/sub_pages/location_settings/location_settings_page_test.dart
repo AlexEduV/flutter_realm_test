@@ -13,10 +13,10 @@ import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cu
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/features/location_settings_page/location_settings_identifiers.dart';
-import 'package:test_flutter_project/presentation/features/location_settings_page/location_settings_page.dart';
-import 'package:test_flutter_project/presentation/features/location_settings_page/location_settings_page_cubit.dart';
-import 'package:test_flutter_project/presentation/features/location_settings_page/widgets/footer_text.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/widgets/footer_text.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 
 import '../../../../../common/extensions/context_extension_test.mocks.dart';

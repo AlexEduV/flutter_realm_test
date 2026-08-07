@@ -23,7 +23,7 @@ import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cu
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_flutter_project/presentation/features/location_settings_page/location_settings_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart';
 import 'package:test_flutter_project/utils/app_router.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 import 'package:test_flutter_project/utils/image_cache_util.dart';
