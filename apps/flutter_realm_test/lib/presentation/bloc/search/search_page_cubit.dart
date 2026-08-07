@@ -287,27 +287,49 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   }
 
   void addBodyTypeToSelection(String bodyType) {
-    emit(state.copyWith(selectedBodyTypes: List<String>.from(state.selectedBodyTypes)..add(bodyType)));
+    emit(
+      state.copyWith(selectedBodyTypes: List<String>.from(state.selectedBodyTypes)..add(bodyType)),
+    );
   }
 
   void removeBodyTypeFromSelection(String bodyType) {
-    emit(state.copyWith(selectedBodyTypes: List<String>.from(state.selectedBodyTypes)..remove(bodyType)));
+    emit(
+      state.copyWith(
+        selectedBodyTypes: List<String>.from(state.selectedBodyTypes)..remove(bodyType),
+      ),
+    );
   }
 
   void addFuelTypeToSelection(String fuelType) {
-    emit(state.copyWith(selectedFuelTypes: List<String>.from(state.selectedFuelTypes)..add(fuelType)));
+    emit(
+      state.copyWith(selectedFuelTypes: List<String>.from(state.selectedFuelTypes)..add(fuelType)),
+    );
   }
 
   void removeFuelTypeFromSelection(String fuelType) {
-    emit(state.copyWith(selectedFuelTypes: List<String>.from(state.selectedFuelTypes)..remove(fuelType)));
+    emit(
+      state.copyWith(
+        selectedFuelTypes: List<String>.from(state.selectedFuelTypes)..remove(fuelType),
+      ),
+    );
   }
 
   void addTransmissionTypeToSelection(String transmissionType) {
-    emit(state.copyWith(selectedTransmissionTypes: List<String>.from(state.selectedTransmissionTypes)..add(transmissionType)));
+    emit(
+      state.copyWith(
+        selectedTransmissionTypes: List<String>.from(state.selectedTransmissionTypes)
+          ..add(transmissionType),
+      ),
+    );
   }
 
   void removeTransmissionTypeFromSelection(String transmissionType) {
-    emit(state.copyWith(selectedTransmissionTypes: List<String>.from(state.selectedTransmissionTypes)..remove(transmissionType)));
+    emit(
+      state.copyWith(
+        selectedTransmissionTypes: List<String>.from(state.selectedTransmissionTypes)
+          ..remove(transmissionType),
+      ),
+    );
   }
 
   void updateSelectedMinYear(String newValue) {
@@ -395,6 +417,6 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   @override
   Future<void> close() async {
     await _carSubscription?.cancel();
-    return super.close();
+    await super.close();
   }
 }

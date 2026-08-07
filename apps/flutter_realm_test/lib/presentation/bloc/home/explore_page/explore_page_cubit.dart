@@ -29,14 +29,14 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     try {
       await _syncCarsUseCase.call();
     } finally {
-      emit(state.copyWith(isLoading: false));
+      if (!isClosed) emit(state.copyWith(isLoading: false));
     }
 
     try {
       final articles = await _fetchArticlesUseCase.call();
       emit(state.copyWith(articles: articles));
     } finally {
-      emit(state.copyWith(isArticleListLoading: false));
+      if (!isClosed) emit(state.copyWith(isLoading: false));
     }
 
     await _carSubscription?.cancel();
@@ -79,6 +79,6 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
   @override
   Future<void> close() async {
     await _carSubscription?.cancel();
-    return super.close();
+    await super.close();
   }
 }
