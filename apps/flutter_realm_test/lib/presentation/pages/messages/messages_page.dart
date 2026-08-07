@@ -4,16 +4,11 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
-import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
@@ -24,7 +19,6 @@ import 'package:test_flutter_project/presentation/pages/messages/widgets/message
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 
-import '../../../utils/date_formatter.dart';
 import '../../../utils/inline_style_parser.dart';
 
 class MessagesPage extends StatefulWidget {
@@ -39,22 +33,20 @@ class MessagesPage extends StatefulWidget {
 class _MessagesPageState extends State<MessagesPage> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
 
-  final messageInputTextController = _InlineStyleTextController();
-  final messageInputFocusNode = FocusNode();
+  final _messageInputTextController = _InlineStyleTextController();
+  final _messageInputFocusNode = FocusNode();
 
-  final listViewScrollController = ScrollController();
+  final _listViewScrollController = ScrollController();
 
   late ConversationModel conversation;
   late OwnerEntity owner;
-
-  final getUserById = serviceLocator<GetUserByIdUseCase>();
 
   @override
   void initState() {
     context.read<MessagesPageCubit>().setCurrentConversationId(widget.conversationId);
 
-    conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
-    owner = serviceLocator<GetOwnerByIdUseCase>().call(conversation.ownerId);
+    conversation = context.read<MessagesPageCubit>().getConversationById(widget.conversationId);
+    owner = context.read<MessagesPageCubit>().getOwnerById(conversation.ownerId);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //todo: maybe I should save the scroll position on exit, and do not scroll initially, only on
@@ -69,10 +61,10 @@ class _MessagesPageState extends State<MessagesPage> {
 
   @override
   void dispose() {
-    messageInputFocusNode.dispose();
-    messageInputTextController.dispose();
+    _messageInputFocusNode.dispose();
+    _messageInputTextController.dispose();
 
-    listViewScrollController.dispose();
+    _listViewScrollController.dispose();
 
     super.dispose();
   }
@@ -101,14 +93,16 @@ class _MessagesPageState extends State<MessagesPage> {
         child: ChatInputBar(
           listKey: _listKey,
           onMessageSent: scrollToBottom,
-          messageTextController: messageInputTextController,
-          messageFocusNode: messageInputFocusNode,
+          messageTextController: _messageInputTextController,
+          messageFocusNode: _messageInputFocusNode,
         ),
       ),
       body: BlocBuilder<InboxPageCubit, InboxPageState>(
         builder: (context, state) {
-          final conversation = getConversationById(widget.conversationId);
-          final users = serviceLocator<ExtractUsersFromConversationUseCase>().call(conversation);
+          final conversation = context.read<MessagesPageCubit>().getConversationById(
+            widget.conversationId,
+          );
+          final users = context.read<MessagesPageCubit>().getUsersFromConversation(conversation);
 
           final messages = conversation.messages.reversed.toList();
 
@@ -119,7 +113,7 @@ class _MessagesPageState extends State<MessagesPage> {
           return AnimatedList(
             key: _listKey,
             reverse: true,
-            controller: listViewScrollController,
+            controller: _listViewScrollController,
             padding: const EdgeInsets.only(
               bottom: AppDimensions.bottomMessageBarHeight + AppDimensions.majorXL,
             ),
@@ -146,7 +140,7 @@ class _MessagesPageState extends State<MessagesPage> {
                       AppSemantics(
                         label: AppSemanticsLabels.dateDivider,
                         child: DateDivider(
-                          text: serviceLocator<DateFormatter>().formatMessageDividerDate(
+                          text: context.read<MessagesPageCubit>().getMessageDividerDate(
                             message.date,
                           ),
                         ),
@@ -159,7 +153,7 @@ class _MessagesPageState extends State<MessagesPage> {
                         senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
                         imageSrc: sender?.avatarImageSrc,
                         message: message.payload,
-                        time: serviceLocator<DateFormatter>().formatSmartDate(message.date),
+                        time: context.read<MessagesPageCubit>().getMessageTime(message.date),
                         isMyMessage: sender?.userId != owner.id,
                         withExtendedData: isExpanded,
                         messageStatus: message.messageStatus,
@@ -212,13 +206,8 @@ class _MessagesPageState extends State<MessagesPage> {
     return false;
   }
 
-  ConversationModel getConversationById(String conversationId) {
-    final conversation = serviceLocator<GetConversationByIdUseCase>().call(widget.conversationId);
-    return conversation;
-  }
-
   void scrollToBottom({bool isInit = false}) {
-    final controller = listViewScrollController;
+    final controller = _listViewScrollController;
 
     if (!controller.hasClients) return;
 

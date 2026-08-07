@@ -491,6 +491,10 @@ void _registerCubits() {
       serviceLocator<SearchGifsUseCase>(),
       serviceLocator<GetTrendingGifsUseCase>(),
       serviceLocator<PickAttachmentFileUseCase>(),
+      serviceLocator<GetConversationByIdUseCase>(),
+      serviceLocator<GetOwnerByIdUseCase>(),
+      serviceLocator<ExtractUsersFromConversationUseCase>(),
+      serviceLocator<DateFormatter>(),
     ),
   );
 
