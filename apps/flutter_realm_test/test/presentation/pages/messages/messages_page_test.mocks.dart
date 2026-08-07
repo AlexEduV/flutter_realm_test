@@ -3,35 +3,27 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i12;
+import 'dart:async' as _i7;
 
-import 'package:flutter/cupertino.dart' as _i14;
-import 'package:flutter_bloc/flutter_bloc.dart' as _i15;
+import 'package:flutter/cupertino.dart' as _i9;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i18;
+import 'package:mockito/src/dummies.dart' as _i14;
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
-    as _i17;
-import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i3;
-import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i9;
+    as _i12;
+import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i5;
+import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i13;
 import 'package:test_flutter_project/domain/models/conversation_model.dart'
-    as _i2;
-import 'package:test_flutter_project/domain/models/message_model.dart' as _i13;
-import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart'
-    as _i8;
-import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart'
-    as _i6;
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart'
-    as _i7;
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart'
-    as _i10;
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart'
-    as _i11;
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart'
     as _i4;
+import 'package:test_flutter_project/domain/models/message_model.dart' as _i8;
+import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart'
+    as _i6;
+import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart'
+    as _i2;
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart'
-    as _i16;
+    as _i11;
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart'
-    as _i5;
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -47,9 +39,9 @@ import 'package:test_flutter_project/presentation/bloc/messages/messages_page_st
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeConversationModel_0 extends _i1.SmartFake
-    implements _i2.ConversationModel {
-  _FakeConversationModel_0(
+class _FakeInboxPageState_0 extends _i1.SmartFake
+    implements _i2.InboxPageState {
+  _FakeInboxPageState_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -58,8 +50,9 @@ class _FakeConversationModel_0 extends _i1.SmartFake
         );
 }
 
-class _FakeOwnerEntity_1 extends _i1.SmartFake implements _i3.OwnerEntity {
-  _FakeOwnerEntity_1(
+class _FakeMessagesPageState_1 extends _i1.SmartFake
+    implements _i3.MessagesPageState {
+  _FakeMessagesPageState_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -68,9 +61,9 @@ class _FakeOwnerEntity_1 extends _i1.SmartFake implements _i3.OwnerEntity {
         );
 }
 
-class _FakeInboxPageState_2 extends _i1.SmartFake
-    implements _i4.InboxPageState {
-  _FakeInboxPageState_2(
+class _FakeConversationModel_2 extends _i1.SmartFake
+    implements _i4.ConversationModel {
+  _FakeConversationModel_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -79,128 +72,39 @@ class _FakeInboxPageState_2 extends _i1.SmartFake
         );
 }
 
-class _FakeMessagesPageState_3 extends _i1.SmartFake
-    implements _i5.MessagesPageState {
-  _FakeMessagesPageState_3(
+class _FakeOwnerEntity_3 extends _i1.SmartFake implements _i5.OwnerEntity {
+  _FakeOwnerEntity_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
           parent,
           parentInvocation,
         );
-}
-
-/// A class which mocks [GetConversationByIdUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetConversationByIdUseCase extends _i1.Mock
-    implements _i6.GetConversationByIdUseCase {
-  @override
-  _i2.ConversationModel call(String? params) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValue: _FakeConversationModel_0(
-          this,
-          Invocation.method(
-            #call,
-            [params],
-          ),
-        ),
-        returnValueForMissingStub: _FakeConversationModel_0(
-          this,
-          Invocation.method(
-            #call,
-            [params],
-          ),
-        ),
-      ) as _i2.ConversationModel);
-}
-
-/// A class which mocks [GetOwnerByIdUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetOwnerByIdUseCase extends _i1.Mock
-    implements _i7.GetOwnerByIdUseCase {
-  @override
-  _i3.OwnerEntity call(String? params) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValue: _FakeOwnerEntity_1(
-          this,
-          Invocation.method(
-            #call,
-            [params],
-          ),
-        ),
-        returnValueForMissingStub: _FakeOwnerEntity_1(
-          this,
-          Invocation.method(
-            #call,
-            [params],
-          ),
-        ),
-      ) as _i3.OwnerEntity);
-}
-
-/// A class which mocks [ExtractUsersFromConversationUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockExtractUsersFromConversationUseCase extends _i1.Mock
-    implements _i8.ExtractUsersFromConversationUseCase {
-  @override
-  Map<String, _i9.UserEntity?> call(_i2.ConversationModel? conversation) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [conversation],
-        ),
-        returnValue: <String, _i9.UserEntity?>{},
-        returnValueForMissingStub: <String, _i9.UserEntity?>{},
-      ) as Map<String, _i9.UserEntity?>);
-}
-
-/// A class which mocks [GetUserByIdUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetUserByIdUseCase extends _i1.Mock
-    implements _i10.GetUserByIdUseCase {
-  @override
-  _i9.UserEntity? call(String? params) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i9.UserEntity?);
 }
 
 /// A class which mocks [InboxPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
+class MockInboxPageCubit extends _i1.Mock implements _i6.InboxPageCubit {
   @override
-  _i4.InboxPageState get state => (super.noSuchMethod(
+  _i2.InboxPageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeInboxPageState_2(
+        returnValue: _FakeInboxPageState_0(
           this,
           Invocation.getter(#state),
         ),
-        returnValueForMissingStub: _FakeInboxPageState_2(
+        returnValueForMissingStub: _FakeInboxPageState_0(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i4.InboxPageState);
+      ) as _i2.InboxPageState);
 
   @override
-  _i12.Stream<_i4.InboxPageState> get stream => (super.noSuchMethod(
+  _i7.Stream<_i2.InboxPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i12.Stream<_i4.InboxPageState>.empty(),
-        returnValueForMissingStub: _i12.Stream<_i4.InboxPageState>.empty(),
-      ) as _i12.Stream<_i4.InboxPageState>);
+        returnValue: _i7.Stream<_i2.InboxPageState>.empty(),
+        returnValueForMissingStub: _i7.Stream<_i2.InboxPageState>.empty(),
+      ) as _i7.Stream<_i2.InboxPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -210,20 +114,20 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
       ) as bool);
 
   @override
-  _i12.Future<void> init() => (super.noSuchMethod(
+  _i7.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
           #init,
           [],
         ),
-        returnValue: _i12.Future<void>.value(),
-        returnValueForMissingStub: _i12.Future<void>.value(),
-      ) as _i12.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 
   @override
-  _i12.Future<void> sendMessage(
+  _i7.Future<void> sendMessage(
     String? conversationId,
-    _i13.MessageModel? message,
-    _i14.GlobalKey<_i14.AnimatedListState>? listKey,
+    _i8.MessageModel? message,
+    _i9.GlobalKey<_i9.AnimatedListState>? listKey,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -234,12 +138,12 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
             listKey,
           ],
         ),
-        returnValue: _i12.Future<void>.value(),
-        returnValueForMissingStub: _i12.Future<void>.value(),
-      ) as _i12.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 
   @override
-  _i12.Future<void> markMessageAsRead(
+  _i7.Future<void> markMessageAsRead(
     String? conversationId,
     int? messageIndex,
   ) =>
@@ -251,23 +155,23 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
             messageIndex,
           ],
         ),
-        returnValue: _i12.Future<void>.value(),
-        returnValueForMissingStub: _i12.Future<void>.value(),
-      ) as _i12.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 
   @override
-  _i12.Future<void> deleteConversation(String? conversationId) =>
+  _i7.Future<void> deleteConversation(String? conversationId) =>
       (super.noSuchMethod(
         Invocation.method(
           #deleteConversation,
           [conversationId],
         ),
-        returnValue: _i12.Future<void>.value(),
-        returnValueForMissingStub: _i12.Future<void>.value(),
-      ) as _i12.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 
   @override
-  void emit(_i4.InboxPageState? state) => super.noSuchMethod(
+  void emit(_i2.InboxPageState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -276,7 +180,7 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
       );
 
   @override
-  void onChange(_i15.Change<_i4.InboxPageState>? change) => super.noSuchMethod(
+  void onChange(_i10.Change<_i2.InboxPageState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -317,20 +221,20 @@ class MockInboxPageCubit extends _i1.Mock implements _i11.InboxPageCubit {
       );
 
   @override
-  _i12.Future<void> close() => (super.noSuchMethod(
+  _i7.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i12.Future<void>.value(),
-        returnValueForMissingStub: _i12.Future<void>.value(),
-      ) as _i12.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 }
 
 /// A class which mocks [MessagesPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
+class MockMessagesPageCubit extends _i1.Mock implements _i11.MessagesPageCubit {
   @override
   int get activeRequestId => (super.noSuchMethod(
         Invocation.getter(#activeRequestId),
@@ -348,24 +252,24 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
       );
 
   @override
-  _i5.MessagesPageState get state => (super.noSuchMethod(
+  _i3.MessagesPageState get state => (super.noSuchMethod(
         Invocation.getter(#state),
-        returnValue: _FakeMessagesPageState_3(
+        returnValue: _FakeMessagesPageState_1(
           this,
           Invocation.getter(#state),
         ),
-        returnValueForMissingStub: _FakeMessagesPageState_3(
+        returnValueForMissingStub: _FakeMessagesPageState_1(
           this,
           Invocation.getter(#state),
         ),
-      ) as _i5.MessagesPageState);
+      ) as _i3.MessagesPageState);
 
   @override
-  _i12.Stream<_i5.MessagesPageState> get stream => (super.noSuchMethod(
+  _i7.Stream<_i3.MessagesPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i12.Stream<_i5.MessagesPageState>.empty(),
-        returnValueForMissingStub: _i12.Stream<_i5.MessagesPageState>.empty(),
-      ) as _i12.Stream<_i5.MessagesPageState>);
+        returnValue: _i7.Stream<_i3.MessagesPageState>.empty(),
+        returnValueForMissingStub: _i7.Stream<_i3.MessagesPageState>.empty(),
+      ) as _i7.Stream<_i3.MessagesPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -384,24 +288,24 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
       );
 
   @override
-  _i12.Future<void> updateMessageText(String? newText) => (super.noSuchMethod(
+  _i7.Future<void> updateMessageText(String? newText) => (super.noSuchMethod(
         Invocation.method(
           #updateMessageText,
           [newText],
         ),
-        returnValue: _i12.Future<void>.value(),
-        returnValueForMissingStub: _i12.Future<void>.value(),
-      ) as _i12.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 
   @override
-  _i12.Future<void> updateGifsSearch(String? query) => (super.noSuchMethod(
+  _i7.Future<void> updateGifsSearch(String? query) => (super.noSuchMethod(
         Invocation.method(
           #updateGifsSearch,
           [query],
         ),
-        returnValue: _i12.Future<void>.value(),
-        returnValueForMissingStub: _i12.Future<void>.value(),
-      ) as _i12.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 
   @override
   void updateSelectedGif(String? newGifUrl) => super.noSuchMethod(
@@ -413,72 +317,71 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
       );
 
   @override
-  _i12.Future<_i17.AttachmentEntity?> getAttachmentFile() =>
-      (super.noSuchMethod(
+  _i7.Future<_i12.AttachmentEntity?> getAttachmentFile() => (super.noSuchMethod(
         Invocation.method(
           #getAttachmentFile,
           [],
         ),
-        returnValue: _i12.Future<_i17.AttachmentEntity?>.value(),
-        returnValueForMissingStub: _i12.Future<_i17.AttachmentEntity?>.value(),
-      ) as _i12.Future<_i17.AttachmentEntity?>);
+        returnValue: _i7.Future<_i12.AttachmentEntity?>.value(),
+        returnValueForMissingStub: _i7.Future<_i12.AttachmentEntity?>.value(),
+      ) as _i7.Future<_i12.AttachmentEntity?>);
 
   @override
-  _i2.ConversationModel getConversationById(String? conversationId) =>
+  _i4.ConversationModel getConversationById(String? conversationId) =>
       (super.noSuchMethod(
         Invocation.method(
           #getConversationById,
           [conversationId],
         ),
-        returnValue: _FakeConversationModel_0(
+        returnValue: _FakeConversationModel_2(
           this,
           Invocation.method(
             #getConversationById,
             [conversationId],
           ),
         ),
-        returnValueForMissingStub: _FakeConversationModel_0(
+        returnValueForMissingStub: _FakeConversationModel_2(
           this,
           Invocation.method(
             #getConversationById,
             [conversationId],
           ),
         ),
-      ) as _i2.ConversationModel);
+      ) as _i4.ConversationModel);
 
   @override
-  _i3.OwnerEntity getOwnerById(String? ownerId) => (super.noSuchMethod(
+  _i5.OwnerEntity getOwnerById(String? ownerId) => (super.noSuchMethod(
         Invocation.method(
           #getOwnerById,
           [ownerId],
         ),
-        returnValue: _FakeOwnerEntity_1(
+        returnValue: _FakeOwnerEntity_3(
           this,
           Invocation.method(
             #getOwnerById,
             [ownerId],
           ),
         ),
-        returnValueForMissingStub: _FakeOwnerEntity_1(
+        returnValueForMissingStub: _FakeOwnerEntity_3(
           this,
           Invocation.method(
             #getOwnerById,
             [ownerId],
           ),
         ),
-      ) as _i3.OwnerEntity);
+      ) as _i5.OwnerEntity);
 
   @override
-  Map<String, _i9.UserEntity?> getUsersFromConversation(
-          _i2.ConversationModel? conversation) =>
+  Map<String, _i13.UserEntity?> getUsersFromConversation(
+          _i4.ConversationModel? conversation) =>
       (super.noSuchMethod(
         Invocation.method(
           #getUsersFromConversation,
           [conversation],
         ),
-        returnValue: <String, _i9.UserEntity?>{},
-        returnValueForMissingStub: <String, _i9.UserEntity?>{},
-      ) as Map<String, _i9.UserEntity?>);
+        returnValue: <String, _i13.UserEntity?>{},
+        returnValueForMissingStub: <String, _i13.UserEntity?>{},
+      ) as Map<String, _i13.UserEntity?>);
 
   @override
   String getMessageDividerDate(DateTime? date) => (super.noSuchMethod(
@@ -486,14 +389,14 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
           #getMessageDividerDate,
           [date],
         ),
-        returnValue: _i18.dummyValue<String>(
+        returnValue: _i14.dummyValue<String>(
           this,
           Invocation.method(
             #getMessageDividerDate,
             [date],
           ),
         ),
-        returnValueForMissingStub: _i18.dummyValue<String>(
+        returnValueForMissingStub: _i14.dummyValue<String>(
           this,
           Invocation.method(
             #getMessageDividerDate,
@@ -508,14 +411,14 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
           #getMessageTime,
           [date],
         ),
-        returnValue: _i18.dummyValue<String>(
+        returnValue: _i14.dummyValue<String>(
           this,
           Invocation.method(
             #getMessageTime,
             [date],
           ),
         ),
-        returnValueForMissingStub: _i18.dummyValue<String>(
+        returnValueForMissingStub: _i14.dummyValue<String>(
           this,
           Invocation.method(
             #getMessageTime,
@@ -525,7 +428,7 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
       ) as String);
 
   @override
-  void emit(_i5.MessagesPageState? state) => super.noSuchMethod(
+  void emit(_i3.MessagesPageState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -534,7 +437,7 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
       );
 
   @override
-  void onChange(_i15.Change<_i5.MessagesPageState>? change) =>
+  void onChange(_i10.Change<_i3.MessagesPageState>? change) =>
       super.noSuchMethod(
         Invocation.method(
           #onChange,
@@ -576,12 +479,12 @@ class MockMessagesPageCubit extends _i1.Mock implements _i16.MessagesPageCubit {
       );
 
   @override
-  _i12.Future<void> close() => (super.noSuchMethod(
+  _i7.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i12.Future<void>.value(),
-        returnValueForMissingStub: _i12.Future<void>.value(),
-      ) as _i12.Future<void>);
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 }
