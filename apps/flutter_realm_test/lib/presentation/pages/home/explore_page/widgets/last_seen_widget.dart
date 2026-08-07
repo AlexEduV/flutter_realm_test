@@ -7,8 +7,8 @@ import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
 import '../../../../../common/constants/app_semantics_labels.dart';
+import '../../../../../core/router/app_router.dart';
 import '../../../../../l10n/l10n_keys.dart';
-import '../../../../../utils/app_router.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
 import '../../../../bloc/user/user_data_state.dart';
 import '../../../../widgets/app_semantics.dart';

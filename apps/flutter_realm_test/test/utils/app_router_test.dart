@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
@@ -24,7 +25,6 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart
 import 'package:test_flutter_project/presentation/pages/details/details_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_page.dart';
 import 'package:test_flutter_project/presentation/pages/search/search_page.dart';
-import 'package:test_flutter_project/utils/app_router.dart';
 
 import '../presentation/bloc/user/user_data_cubit_test.mocks.dart';
 import 'app_router_test.mocks.dart';
