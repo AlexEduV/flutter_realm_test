@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
@@ -49,18 +49,18 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
           crossAxisCount: orientation == Orientation.portrait ? 4 : 5,
           crossAxisSpacing: AppDimensions.minorL,
           mainAxisSpacing: AppDimensions.minorL,
-          children: [
-            for (Color color in colors.values)
-              ColorItem(
-                color: color,
-                isPicked: pickedColor == color,
-                onTap: () {
-                  setState(() {
-                    pickedColor = color;
-                  });
-                },
-              ),
-          ],
+          children: List.generate(colors.values.length, (index) {
+            final color = colors.values.toList()[index];
+            return ColorItem(
+              color: color,
+              isPicked: pickedColor == color,
+              onTap: () {
+                setState(() {
+                  pickedColor = color;
+                });
+              },
+            );
+          }),
         ),
       ),
       actions: [
