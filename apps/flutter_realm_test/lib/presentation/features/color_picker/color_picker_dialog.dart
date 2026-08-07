@@ -1,7 +1,6 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_identifiers.dart';
@@ -66,7 +65,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
               label: AppSemanticsLabels.dialogCancelButton,
               button: true,
               child: TextButton(
-                onPressed: () => context.pop(widget.initialColor),
+                onPressed: () => Navigator.of(context).pop(widget.initialColor),
                 child: Text(
                   context.trRead(L10nKeys.cancelLabel),
                   style: const TextStyle(fontWeight: FontWeight.w600),
@@ -81,7 +80,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
                   final colorName = context.read<ColorPickerCubit>().getColorNameFromColor(
                     state.pickedColor,
                   );
-                  context.pop(colorName);
+                  Navigator.of(context).pop(colorName);
                 },
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {

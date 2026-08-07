@@ -7,26 +7,26 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/pages/home/inbox_page/inbox_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/inbox_page/widgets/inbox_list_item.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
-import '../../bloc/messages/messages_page_cubit_test.mocks.dart';
 import '../messages/messages_page_test.mocks.dart';
 
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
-  final mockGetOwnerByIdUseCase = MockGetOwnerByIdUseCase();
 
   Widget buildTestableWidget({
     required UserDataCubit userDataCubit,
     required InboxPageCubit inboxPageCubit,
+    MessagesPageCubit? messagesPageCubit,
   }) {
     return MaterialApp(
       home: MultiBlocProvider(
@@ -34,6 +34,8 @@ void main() {
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           BlocProvider<UserDataCubit>.value(value: userDataCubit),
           BlocProvider<InboxPageCubit>.value(value: inboxPageCubit),
+          if (messagesPageCubit != null)
+            BlocProvider<MessagesPageCubit>.value(value: messagesPageCubit),
         ],
         child: const InboxPage(),
       ),
@@ -42,7 +44,6 @@ void main() {
 
   setUpAll(() {
     serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
-    serviceLocator.registerLazySingleton<GetOwnerByIdUseCase>(() => mockGetOwnerByIdUseCase);
 
     final localisations = {'pages.inbox.title': 'Inbox'};
     appLocalisationsCubit.load(localisations);
@@ -138,8 +139,8 @@ void main() {
   testWidgets('shows list of conversations when present', (WidgetTester tester) async {
     final userDataCubit = MockUserDataCubit();
     final inboxPageCubit = MockInboxPageCubit();
+    final messagesPageCubit = MockMessagesPageCubit();
 
-    // Replace with your actual ConversationModel
     final conversation = ConversationModel.empty();
 
     when(
@@ -150,10 +151,16 @@ void main() {
     when(inboxPageCubit.state).thenReturn(InboxPageState(conversations: [conversation]));
     when(inboxPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
-    when(mockGetOwnerByIdUseCase.call('')).thenReturn(OwnerEntity.empty());
+    when(messagesPageCubit.state).thenReturn(const MessagesPageState());
+    when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(messagesPageCubit.getOwnerById(any)).thenReturn(OwnerEntity.empty());
 
     await tester.pumpWidget(
-      buildTestableWidget(userDataCubit: userDataCubit, inboxPageCubit: inboxPageCubit),
+      buildTestableWidget(
+        userDataCubit: userDataCubit,
+        inboxPageCubit: inboxPageCubit,
+        messagesPageCubit: messagesPageCubit,
+      ),
     );
 
     expect(find.byType(InboxListItem), findsOneWidget);
