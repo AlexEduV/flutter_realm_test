@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/color_picker_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_state.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
@@ -40,7 +41,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
         return AlertDialog(
           backgroundColor: Colors.white,
           title: Text(
-            context.tr(L10nKeys.pickColorDialogTitle),
+            context.tr(ColorPickerLocaleKeys.pickColorDialogTitle),
             style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700),
           ),
           content: SizedBox(
@@ -65,7 +66,7 @@ class _ColorPickerDialogState extends State<ColorPickerDialog> {
               label: AppSemanticsLabels.dialogCancelButton,
               button: true,
               child: TextButton(
-                onPressed: () => Navigator.of(context).pop(widget.initialColor),
+                onPressed: () => context.pop(widget.initialColor),
                 child: Text(
                   context.trRead(L10nKeys.cancelLabel),
                   style: const TextStyle(fontWeight: FontWeight.w600),
