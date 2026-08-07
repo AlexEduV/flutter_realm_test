@@ -6,8 +6,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_state.dart';
 
 import '../../pages/details/widgets/owner_widget_test.mocks.dart';
 import '../../pages/details/widgets/vehicle_specs_widget_test.mocks.dart';

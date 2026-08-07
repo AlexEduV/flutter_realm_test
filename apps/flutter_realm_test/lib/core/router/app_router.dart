@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_params.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_params.dart';
 import 'package:test_flutter_project/presentation/features/home/home_page_params.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_params.dart';
@@ -10,7 +11,6 @@ import 'package:test_flutter_project/presentation/pages/account/sub_pages/clear_
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/my_items/my_items_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/personal_details_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/recently_viewed/recently_viewed_page.dart';
-import 'package:test_flutter_project/presentation/pages/details/details_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/new_item_page.dart';
 import 'package:test_flutter_project/presentation/pages/messages/messages_page.dart';

@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
+
+import 'details_page_state.dart';
 
 class DetailsPageCubit extends Cubit<DetailsPageState> {
   DetailsPageCubit(

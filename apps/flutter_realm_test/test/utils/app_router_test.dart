@@ -11,8 +11,6 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/details/details_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
@@ -22,7 +20,9 @@ import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.
 import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/pages/details/details_page.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_page.dart';
 import 'package:test_flutter_project/presentation/pages/search/search_page.dart';
 
