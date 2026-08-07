@@ -14,7 +14,7 @@ import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_pag
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
-import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/color_picker_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/edit_password_dialog.dart';

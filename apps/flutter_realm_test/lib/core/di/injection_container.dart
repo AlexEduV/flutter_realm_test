@@ -140,6 +140,7 @@ import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cu
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 
 import '../../data/repositories/car_repository_impl.dart';
@@ -494,6 +495,14 @@ void _registerCubits() {
 
   serviceLocator.registerFactory(() => ShareCubit(serviceLocator()));
   serviceLocator.registerFactory(() => EditDialogCubit());
+
+  serviceLocator.registerFactory(
+    () => ColorPickerCubit(
+      serviceLocator<GetCarColorsUseCase>(),
+      serviceLocator<GetCarColorByNameUseCase>(),
+      serviceLocator<GetCarColorNameFromColorUseCase>(),
+    ),
+  );
 
   serviceLocator.registerFactory(
     () => MessagesPageCubit(

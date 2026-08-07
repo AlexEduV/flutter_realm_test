@@ -171,6 +171,17 @@ class MockInboxPageCubit extends _i1.Mock implements _i6.InboxPageCubit {
       ) as _i7.Future<void>);
 
   @override
+  int getUnreadCountFromConversation(_i4.ConversationModel? conversation) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getUnreadCountFromConversation,
+          [conversation],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
   void emit(_i2.InboxPageState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,

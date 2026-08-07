@@ -9,7 +9,7 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_na
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/color_picker_dialog.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 void _registerCarColorDependencies() {

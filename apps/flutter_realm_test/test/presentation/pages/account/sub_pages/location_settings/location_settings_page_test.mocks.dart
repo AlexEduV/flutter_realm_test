@@ -33,92 +33,139 @@ import 'package:test_flutter_project/presentation/features/location_settings/loc
 /// A class which mocks [GetRegionByCodeUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetRegionByCodeUseCase extends _i1.Mock implements _i2.GetRegionByCodeUseCase {
+class MockGetRegionByCodeUseCase extends _i1.Mock
+    implements _i2.GetRegionByCodeUseCase {
   @override
-  _i3.RegionEntity? call(String? code) =>
-      (super.noSuchMethod(Invocation.method(#call, [code]), returnValueForMissingStub: null)
-          as _i3.RegionEntity?);
+  _i3.RegionEntity? call(String? code) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [code],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.RegionEntity?);
 }
 
 /// A class which mocks [GetAllRegionModelsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetAllRegionModelsUseCase extends _i1.Mock implements _i4.GetAllRegionModelsUseCase {
+class MockGetAllRegionModelsUseCase extends _i1.Mock
+    implements _i4.GetAllRegionModelsUseCase {
   @override
-  List<_i5.RegionUiModel> call() =>
-      (super.noSuchMethod(
-            Invocation.method(#call, []),
-            returnValue: <_i5.RegionUiModel>[],
-            returnValueForMissingStub: <_i5.RegionUiModel>[],
-          )
-          as List<_i5.RegionUiModel>);
+  List<_i5.RegionUiModel> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: <_i5.RegionUiModel>[],
+        returnValueForMissingStub: <_i5.RegionUiModel>[],
+      ) as List<_i5.RegionUiModel>);
 }
 
 /// A class which mocks [LocationSettingsPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocationSettingsPageCubit extends _i1.Mock implements _i6.LocationSettingsPageCubit {
+class MockLocationSettingsPageCubit extends _i1.Mock
+    implements _i6.LocationSettingsPageCubit {
   @override
-  _i7.Stream<Object?> get stream =>
-      (super.noSuchMethod(
-            Invocation.getter(#stream),
-            returnValue: _i7.Stream<Object?>.empty(),
-            returnValueForMissingStub: _i7.Stream<Object?>.empty(),
-          )
-          as _i7.Stream<Object?>);
+  _i7.Stream<Object?> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i7.Stream<Object?>.empty(),
+        returnValueForMissingStub: _i7.Stream<Object?>.empty(),
+      ) as _i7.Stream<Object?>);
 
   @override
-  bool get isClosed =>
-      (super.noSuchMethod(
-            Invocation.getter(#isClosed),
-            returnValue: false,
-            returnValueForMissingStub: false,
-          )
-          as bool);
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 
   @override
-  _i3.RegionEntity? getRegionByCode(String? code) =>
-      (super.noSuchMethod(
-            Invocation.method(#getRegionByCode, [code]),
-            returnValueForMissingStub: null,
-          )
-          as _i3.RegionEntity?);
+  _i3.RegionEntity? getRegionByCode(String? code) => (super.noSuchMethod(
+        Invocation.method(
+          #getRegionByCode,
+          [code],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.RegionEntity?);
 
   @override
-  List<_i5.RegionUiModel> getAvailableCountries() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAvailableCountries, []),
-            returnValue: <_i5.RegionUiModel>[],
-            returnValueForMissingStub: <_i5.RegionUiModel>[],
-          )
-          as List<_i5.RegionUiModel>);
+  List<_i5.RegionUiModel> getAvailableCountries() => (super.noSuchMethod(
+        Invocation.method(
+          #getAvailableCountries,
+          [],
+        ),
+        returnValue: <_i5.RegionUiModel>[],
+        returnValueForMissingStub: <_i5.RegionUiModel>[],
+      ) as List<_i5.RegionUiModel>);
 
   @override
-  void emit(Object? state) =>
-      super.noSuchMethod(Invocation.method(#emit, [state]), returnValueForMissingStub: null);
+  _i7.Future<void> openUrl(String? url) => (super.noSuchMethod(
+        Invocation.method(
+          #openUrl,
+          [url],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 
   @override
-  void onChange(_i8.Change<Object?>? change) =>
-      super.noSuchMethod(Invocation.method(#onChange, [change]), returnValueForMissingStub: null);
+  void emit(Object? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void addError(Object? error, [StackTrace? stackTrace]) => super.noSuchMethod(
-    Invocation.method(#addError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void onChange(_i8.Change<Object?>? change) => super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void onError(Object? error, StackTrace? stackTrace) => super.noSuchMethod(
-    Invocation.method(#onError, [error, stackTrace]),
-    returnValueForMissingStub: null,
-  );
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i7.Future<void> close() =>
-      (super.noSuchMethod(
-            Invocation.method(#close, []),
-            returnValue: _i7.Future<void>.value(),
-            returnValueForMissingStub: _i7.Future<void>.value(),
-          )
-          as _i7.Future<void>);
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i7.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 }

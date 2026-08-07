@@ -5,8 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i13;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i14;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:permission_handler/permission_handler.dart' as _i13;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i6;
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart'
     as _i5;
@@ -163,6 +164,19 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
         ),
         returnValueForMissingStub: null,
       );
+
+  @override
+  _i4.Future<_i13.PermissionStatus> checkLocationPermissionStatus() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #checkLocationPermissionStatus,
+          [],
+        ),
+        returnValue: _i4.Future<_i13.PermissionStatus>.value(
+            _i13.PermissionStatus.denied),
+        returnValueForMissingStub: _i4.Future<_i13.PermissionStatus>.value(
+            _i13.PermissionStatus.denied),
+      ) as _i4.Future<_i13.PermissionStatus>);
 
   @override
   _i4.Future<void> initLocalisation(String? locale) => (super.noSuchMethod(
@@ -404,7 +418,7 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       );
 
   @override
-  void onChange(_i13.Change<_i2.UserDataState>? change) => super.noSuchMethod(
+  void onChange(_i14.Change<_i2.UserDataState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
