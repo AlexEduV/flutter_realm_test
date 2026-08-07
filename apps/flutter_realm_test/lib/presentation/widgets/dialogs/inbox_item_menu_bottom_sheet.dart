@@ -1,11 +1,11 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
 import '../../../l10n/l10n_keys.dart';
-import '../../bloc/home/inbox_page/inbox_page_cubit.dart';
+import '../../features/inbox/inbox_page_cubit.dart';
 import '../../pages/account/widgets/account_item_separated.dart';
 
 class InboxItemMenuBottomSheet extends StatelessWidget {

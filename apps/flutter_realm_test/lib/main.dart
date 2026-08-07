@@ -14,7 +14,6 @@ import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_cubit
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
@@ -24,6 +23,7 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart
 import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 import 'package:test_flutter_project/utils/image_cache_util.dart';

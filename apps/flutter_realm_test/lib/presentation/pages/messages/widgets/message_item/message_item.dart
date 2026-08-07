@@ -1,10 +1,10 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_content.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_info_row.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -49,53 +49,51 @@ class MessageItem extends StatelessWidget {
         bottom: AppDimensions.minorS,
       ),
       child: VisibilityDetector(
-          onVisibilityChanged: (info) {
-            if (isMyMessage) return;
-            if (messageStatus == MessageStatus.read) return;
+        onVisibilityChanged: (info) {
+          if (isMyMessage) return;
+          if (messageStatus == MessageStatus.read) return;
 
-            if (info.visibleFraction > 0.75) {
-              //update message status to 'read'
-              context.read<InboxPageCubit>().markMessageAsRead(conversationId, messageIndex);
-            }
-          },
-          key: ValueKey('message-${message.hashCode}'),
-          child: Row(
-            textDirection: isMyMessage ? TextDirection.ltr : TextDirection.rtl,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: AppDimensions.minorL,
-            mainAxisAlignment: isMyMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  spacing: AppDimensions.minorS,
-                  crossAxisAlignment: isMyMessage
-                      ? CrossAxisAlignment.end
-                      : CrossAxisAlignment.start,
-                  children: [
-                    if (withExtendedData) ...[
-                      MessageInfoRow(time: time, isMyMessage: isMyMessage, senderName: senderName),
-                    ],
-
-                    MessageContent(
-                      isMyMessage: isMyMessage,
-                      withExtendedData: withExtendedData,
-                      message: message,
-                      attachmentMetaData: attachmentMetaData,
-                      imageMetaData: imageMetaData,
-                    ),
+          if (info.visibleFraction > 0.75) {
+            //update message status to 'read'
+            context.read<InboxPageCubit>().markMessageAsRead(conversationId, messageIndex);
+          }
+        },
+        key: ValueKey('message-${message.hashCode}'),
+        child: Row(
+          textDirection: isMyMessage ? TextDirection.ltr : TextDirection.rtl,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: AppDimensions.minorL,
+          mainAxisAlignment: isMyMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                spacing: AppDimensions.minorS,
+                crossAxisAlignment: isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                children: [
+                  if (withExtendedData) ...[
+                    MessageInfoRow(time: time, isMyMessage: isMyMessage, senderName: senderName),
                   ],
-                ),
-              ),
 
-              AvatarWidget(
-                imageSrc: imageSrc,
-                size: AppDimensions.majorM,
-                isLocal: isMyMessage,
-                showPlaceholder: !withExtendedData,
+                  MessageContent(
+                    isMyMessage: isMyMessage,
+                    withExtendedData: withExtendedData,
+                    message: message,
+                    attachmentMetaData: attachmentMetaData,
+                    imageMetaData: imageMetaData,
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+
+            AvatarWidget(
+              imageSrc: imageSrc,
+              size: AppDimensions.majorM,
+              isLocal: isMyMessage,
+              showPlaceholder: !withExtendedData,
+            ),
+          ],
         ),
+      ),
     );
   }
 }

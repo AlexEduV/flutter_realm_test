@@ -9,10 +9,10 @@ import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home
 import 'package:test_flutter_project/presentation/pages/account/account_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/explore_page/explore_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/favorites_page/favorites_page.dart';
-import 'package:test_flutter_project/presentation/pages/home/inbox_page/inbox_page.dart';
 
 import '../../../common/constants/app_routes.dart';
 import '../../bloc/user/user_data_cubit.dart';
+import '../../features/inbox/inbox_page.dart';
 import 'home_bottom_bar/home_bottom_bar.dart';
 
 class HomePage extends StatefulWidget {

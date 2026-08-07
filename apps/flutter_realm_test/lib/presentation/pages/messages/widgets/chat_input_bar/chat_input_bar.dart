@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_button.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_text_field.dart';
 

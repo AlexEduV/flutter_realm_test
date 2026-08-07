@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
 

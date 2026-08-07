@@ -8,11 +8,11 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/pages/messages/messages_page.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
@@ -22,10 +22,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 import 'messages_page_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<InboxPageCubit>(),
-  MockSpec<MessagesPageCubit>(),
-])
+@GenerateNiceMocks([MockSpec<InboxPageCubit>(), MockSpec<MessagesPageCubit>()])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 

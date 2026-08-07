@@ -6,7 +6,7 @@ import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
 
 class InboxPageCubit extends Cubit<InboxPageState> {
   InboxPageCubit(this._fetchMessagesUseCase, this._saveConversationsUseCase)

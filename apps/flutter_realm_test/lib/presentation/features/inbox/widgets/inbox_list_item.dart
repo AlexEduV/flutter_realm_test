@@ -2,9 +2,9 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
@@ -15,7 +15,7 @@ import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 import 'package:test_flutter_project/utils/inline_style_parser.dart';
 
-import '../../../../widgets/app_badge.dart';
+import '../../../widgets/app_badge.dart';
 
 class InboxListItem extends StatelessWidget {
   const InboxListItem({
