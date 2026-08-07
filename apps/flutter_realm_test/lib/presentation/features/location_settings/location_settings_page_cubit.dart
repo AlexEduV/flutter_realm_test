@@ -1,29 +1,28 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/domain/entities/region_entity.dart';
-import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 import 'package:test_flutter_project/domain/usecases/regions/get_all_region_models_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/url/open_url_link_use_case.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_state.dart';
 
-class LocationSettingsPageCubit extends Cubit<Object?> {
+class LocationSettingsPageCubit extends Cubit<LocationSettingsPageState> {
   LocationSettingsPageCubit(
     this._getRegionByCodeUseCase,
     this._getAllRegionModelsUseCase,
     this._openUrlLinkUseCase,
-  ) : super(null);
+  ) : super(const LocationSettingsPageState());
 
   final GetRegionByCodeUseCase _getRegionByCodeUseCase;
   final GetAllRegionModelsUseCase _getAllRegionModelsUseCase;
   final OpenUrlLinkUseCase _openUrlLinkUseCase;
 
-  RegionEntity? getRegionByCode(String code) {
+  void loadCurrentRegionByCode(String code) {
     final region = _getRegionByCodeUseCase.call(code);
-    return region;
+    emit(state.copyWith(currentRegion: region));
   }
 
-  List<RegionUiModel> getAvailableCountries() {
+  void updateAvailableCountries() {
     final availableCountries = _getAllRegionModelsUseCase.call();
-    return availableCountries;
+    emit(state.copyWith(availableRegions: availableCountries));
   }
 
   Future<void> openUrl(String url) async {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_state.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/widgets/footer_text.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
@@ -49,7 +50,7 @@ class LocationSettingsPage extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: BlocBuilder<UserDataCubit, UserDataState>(
                 builder: (context, state) {
-                  final region = context.read<LocationSettingsPageCubit>().getRegionByCode(
+                  context.read<LocationSettingsPageCubit>().loadCurrentRegionByCode(
                     state.user.region,
                   );
 
@@ -65,11 +66,19 @@ class LocationSettingsPage extends StatelessWidget {
                         onTap: () => context.read<UserDataCubit>().openLocationSettings(),
                       ),
 
-                      PersonalDetailsListItem(
-                        title: context.tr(LocationSettingsLocaleKeys.locationSettingsItemRegion),
-                        description: context.tr('${L10nKeys.countryPrefix}${region?.locale}'),
-                        icon: Icons.explore,
-                        onTap: () => onRegionItemTap(state, context),
+                      BlocBuilder<LocationSettingsPageCubit, LocationSettingsPageState>(
+                        builder: (context, locationState) {
+                          return PersonalDetailsListItem(
+                            title: context.tr(
+                              LocationSettingsLocaleKeys.locationSettingsItemRegion,
+                            ),
+                            description: context.tr(
+                              '${L10nKeys.countryPrefix}${locationState.currentRegion?.locale}',
+                            ),
+                            icon: Icons.explore,
+                            onTap: () => onRegionItemTap(state, context),
+                          );
+                        },
                       ),
                     ].withDividers(divider: const CustomDivider()),
                   );
@@ -110,9 +119,10 @@ class LocationSettingsPage extends StatelessWidget {
   }
 
   Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
-    final availableCountries = context.read<LocationSettingsPageCubit>().getAvailableCountries();
+    context.read<LocationSettingsPageCubit>().updateAvailableCountries();
 
     final currentRegion = state.user.region;
+    final availableCountries = context.read<LocationSettingsPageCubit>().state.availableRegions;
     final currentIndex = availableCountries.indexWhereOrNull(
       (element) => element.code == currentRegion,
     );

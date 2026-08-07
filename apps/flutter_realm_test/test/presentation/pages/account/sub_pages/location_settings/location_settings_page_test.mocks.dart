@@ -3,18 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i7;
+import 'dart:async' as _i4;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i8;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/entities/region_entity.dart' as _i3;
-import 'package:test_flutter_project/domain/models/region_ui_model.dart' as _i5;
-import 'package:test_flutter_project/domain/usecases/regions/get_all_region_models_use_case.dart'
-    as _i4;
-import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart'
-    as _i2;
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart'
-    as _i6;
+    as _i3;
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_state.dart'
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -30,48 +26,42 @@ import 'package:test_flutter_project/presentation/features/location_settings/loc
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [GetRegionByCodeUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetRegionByCodeUseCase extends _i1.Mock
-    implements _i2.GetRegionByCodeUseCase {
-  @override
-  _i3.RegionEntity? call(String? code) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [code],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i3.RegionEntity?);
-}
-
-/// A class which mocks [GetAllRegionModelsUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetAllRegionModelsUseCase extends _i1.Mock
-    implements _i4.GetAllRegionModelsUseCase {
-  @override
-  List<_i5.RegionUiModel> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: <_i5.RegionUiModel>[],
-        returnValueForMissingStub: <_i5.RegionUiModel>[],
-      ) as List<_i5.RegionUiModel>);
+class _FakeLocationSettingsPageState_0 extends _i1.SmartFake
+    implements _i2.LocationSettingsPageState {
+  _FakeLocationSettingsPageState_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [LocationSettingsPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLocationSettingsPageCubit extends _i1.Mock
-    implements _i6.LocationSettingsPageCubit {
+    implements _i3.LocationSettingsPageCubit {
   @override
-  _i7.Stream<Object?> get stream => (super.noSuchMethod(
+  _i2.LocationSettingsPageState get state => (super.noSuchMethod(
+        Invocation.getter(#state),
+        returnValue: _FakeLocationSettingsPageState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+        returnValueForMissingStub: _FakeLocationSettingsPageState_0(
+          this,
+          Invocation.getter(#state),
+        ),
+      ) as _i2.LocationSettingsPageState);
+
+  @override
+  _i4.Stream<_i2.LocationSettingsPageState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i7.Stream<Object?>.empty(),
-        returnValueForMissingStub: _i7.Stream<Object?>.empty(),
-      ) as _i7.Stream<Object?>);
+        returnValue: _i4.Stream<_i2.LocationSettingsPageState>.empty(),
+        returnValueForMissingStub:
+            _i4.Stream<_i2.LocationSettingsPageState>.empty(),
+      ) as _i4.Stream<_i2.LocationSettingsPageState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -81,36 +71,35 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       ) as bool);
 
   @override
-  _i3.RegionEntity? getRegionByCode(String? code) => (super.noSuchMethod(
+  void loadCurrentRegionByCode(String? code) => super.noSuchMethod(
         Invocation.method(
-          #getRegionByCode,
+          #loadCurrentRegionByCode,
           [code],
         ),
         returnValueForMissingStub: null,
-      ) as _i3.RegionEntity?);
+      );
 
   @override
-  List<_i5.RegionUiModel> getAvailableCountries() => (super.noSuchMethod(
+  void updateAvailableCountries() => super.noSuchMethod(
         Invocation.method(
-          #getAvailableCountries,
+          #updateAvailableCountries,
           [],
         ),
-        returnValue: <_i5.RegionUiModel>[],
-        returnValueForMissingStub: <_i5.RegionUiModel>[],
-      ) as List<_i5.RegionUiModel>);
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i7.Future<void> openUrl(String? url) => (super.noSuchMethod(
+  _i4.Future<void> openUrl(String? url) => (super.noSuchMethod(
         Invocation.method(
           #openUrl,
           [url],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  void emit(Object? state) => super.noSuchMethod(
+  void emit(_i2.LocationSettingsPageState? state) => super.noSuchMethod(
         Invocation.method(
           #emit,
           [state],
@@ -119,7 +108,8 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       );
 
   @override
-  void onChange(_i8.Change<Object?>? change) => super.noSuchMethod(
+  void onChange(_i5.Change<_i2.LocationSettingsPageState>? change) =>
+      super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -160,12 +150,12 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       );
 
   @override
-  _i7.Future<void> close() => (super.noSuchMethod(
+  _i4.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i7.Future<void>.value(),
-        returnValueForMissingStub: _i7.Future<void>.value(),
-      ) as _i7.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
