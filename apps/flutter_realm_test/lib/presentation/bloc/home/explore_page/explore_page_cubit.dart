@@ -57,6 +57,11 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     return car.carId != 'testId';
   }
 
+  CarEntity getCarById(String id) {
+    final car = _getCarByIdUseCase.call(id);
+    return car;
+  }
+
   void removeCarById(String id) {
     final updatedCars = state.cars
         .map((c) => c.carId == id ? c.copyWith(isShown: false) : c)
