@@ -1,9 +1,8 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
@@ -11,7 +10,6 @@ import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
-import 'package:test_flutter_project/presentation/features/inbox/inbox_page_params.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
@@ -49,10 +47,7 @@ class InboxListItem extends StatelessWidget {
           child: InkWell(
             onLongPress: () => DialogHelper.showInboxItemModalBottomSheet(context, conversationId),
             borderRadius: BorderRadius.circular(AppDimensions.normalM),
-            onTap: () => context.go(
-              AppRoutes.home + AppRoutes.inbox,
-              extra: InboxPageParams(conversationId: conversationId),
-            ),
+            onTap: () => AppRouter.goToInbox(context: context, conversationId: conversationId),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalXS),
               child: SizedBox(

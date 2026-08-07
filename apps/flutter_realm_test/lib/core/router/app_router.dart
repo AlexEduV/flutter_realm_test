@@ -137,4 +137,18 @@ class AppRouter {
   static void goToDetails({required DetailsPageSource from, required String carId}) {
     _router.go(from.detailsPath, extra: DetailsPageParams(carId: carId));
   }
+
+  static void goToInbox({required BuildContext context, required String conversationId}) {
+    context.go(
+      AppRoutes.home + AppRoutes.inbox,
+      extra: InboxPageParams(conversationId: conversationId),
+    );
+  }
+
+  static void goToArticle({required BuildContext context, required String articleId}) {
+    context.go(
+      AppRoutes.home + AppRoutes.articleDetails,
+      extra: ArticleDetailsPageParams(articleId: articleId),
+    );
+  }
 }
