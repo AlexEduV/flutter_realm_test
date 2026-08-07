@@ -49,7 +49,7 @@ class LocationSettingsPage extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: BlocBuilder<UserDataCubit, UserDataState>(
                 builder: (context, state) {
-                  final region = context.read<LocationSettingsPageCubit>().getRegionByCode(
+                  context.read<LocationSettingsPageCubit>().loadCurrentRegionByCode(
                     state.user.region,
                   );
 
@@ -67,7 +67,9 @@ class LocationSettingsPage extends StatelessWidget {
 
                       PersonalDetailsListItem(
                         title: context.tr(LocationSettingsLocaleKeys.locationSettingsItemRegion),
-                        description: context.tr('${L10nKeys.countryPrefix}${region?.locale}'),
+                        description: context.tr(
+                          '${L10nKeys.countryPrefix}${context.read<LocationSettingsPageCubit>().state.currentRegion?.locale}',
+                        ),
                         icon: Icons.explore,
                         onTap: () => onRegionItemTap(state, context),
                       ),

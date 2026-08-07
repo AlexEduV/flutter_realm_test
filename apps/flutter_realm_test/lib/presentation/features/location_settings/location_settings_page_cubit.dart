@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/domain/entities/region_entity.dart';
 import 'package:test_flutter_project/domain/usecases/regions/get_all_region_models_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/url/open_url_link_use_case.dart';
@@ -16,9 +15,9 @@ class LocationSettingsPageCubit extends Cubit<LocationSettingsState> {
   final GetAllRegionModelsUseCase _getAllRegionModelsUseCase;
   final OpenUrlLinkUseCase _openUrlLinkUseCase;
 
-  RegionEntity? getRegionByCode(String code) {
+  void loadCurrentRegionByCode(String code) {
     final region = _getRegionByCodeUseCase.call(code);
-    return region;
+    emit(state.copyWith(currentRegion: region));
   }
 
   void updateAvailableCountries() {

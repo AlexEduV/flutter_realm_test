@@ -16,6 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LocationSettingsState {
   List<RegionUiModel> get availableRegions;
+  RegionEntity? get currentRegion;
 
   /// Create a copy of LocationSettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,16 +32,18 @@ mixin _$LocationSettingsState {
         (other.runtimeType == runtimeType &&
             other is LocationSettingsState &&
             const DeepCollectionEquality()
-                .equals(other.availableRegions, availableRegions));
+                .equals(other.availableRegions, availableRegions) &&
+            (identical(other.currentRegion, currentRegion) ||
+                other.currentRegion == currentRegion));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(availableRegions));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(availableRegions), currentRegion);
 
   @override
   String toString() {
-    return 'LocationSettingsState(availableRegions: $availableRegions)';
+    return 'LocationSettingsState(availableRegions: $availableRegions, currentRegion: $currentRegion)';
   }
 }
 
@@ -50,7 +53,8 @@ abstract mixin class $LocationSettingsStateCopyWith<$Res> {
           $Res Function(LocationSettingsState) _then) =
       _$LocationSettingsStateCopyWithImpl;
   @useResult
-  $Res call({List<RegionUiModel> availableRegions});
+  $Res call(
+      {List<RegionUiModel> availableRegions, RegionEntity? currentRegion});
 }
 
 /// @nodoc
@@ -67,12 +71,17 @@ class _$LocationSettingsStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? availableRegions = null,
+    Object? currentRegion = freezed,
   }) {
     return _then(_self.copyWith(
       availableRegions: null == availableRegions
           ? _self.availableRegions
           : availableRegions // ignore: cast_nullable_to_non_nullable
               as List<RegionUiModel>,
+      currentRegion: freezed == currentRegion
+          ? _self.currentRegion
+          : currentRegion // ignore: cast_nullable_to_non_nullable
+              as RegionEntity?,
     ));
   }
 }
@@ -81,7 +90,8 @@ class _$LocationSettingsStateCopyWithImpl<$Res>
 
 class _LocationSettingsState implements LocationSettingsState {
   const _LocationSettingsState(
-      {final List<RegionUiModel> availableRegions = const []})
+      {final List<RegionUiModel> availableRegions = const [],
+      this.currentRegion})
       : _availableRegions = availableRegions;
 
   final List<RegionUiModel> _availableRegions;
@@ -93,6 +103,9 @@ class _LocationSettingsState implements LocationSettingsState {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_availableRegions);
   }
+
+  @override
+  final RegionEntity? currentRegion;
 
   /// Create a copy of LocationSettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -109,16 +122,18 @@ class _LocationSettingsState implements LocationSettingsState {
         (other.runtimeType == runtimeType &&
             other is _LocationSettingsState &&
             const DeepCollectionEquality()
-                .equals(other._availableRegions, _availableRegions));
+                .equals(other._availableRegions, _availableRegions) &&
+            (identical(other.currentRegion, currentRegion) ||
+                other.currentRegion == currentRegion));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_availableRegions));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_availableRegions), currentRegion);
 
   @override
   String toString() {
-    return 'LocationSettingsState(availableRegions: $availableRegions)';
+    return 'LocationSettingsState(availableRegions: $availableRegions, currentRegion: $currentRegion)';
   }
 }
 
@@ -130,7 +145,8 @@ abstract mixin class _$LocationSettingsStateCopyWith<$Res>
       __$LocationSettingsStateCopyWithImpl;
   @override
   @useResult
-  $Res call({List<RegionUiModel> availableRegions});
+  $Res call(
+      {List<RegionUiModel> availableRegions, RegionEntity? currentRegion});
 }
 
 /// @nodoc
@@ -147,12 +163,17 @@ class __$LocationSettingsStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? availableRegions = null,
+    Object? currentRegion = freezed,
   }) {
     return _then(_LocationSettingsState(
       availableRegions: null == availableRegions
           ? _self._availableRegions
           : availableRegions // ignore: cast_nullable_to_non_nullable
               as List<RegionUiModel>,
+      currentRegion: freezed == currentRegion
+          ? _self.currentRegion
+          : currentRegion // ignore: cast_nullable_to_non_nullable
+              as RegionEntity?,
     ));
   }
 }

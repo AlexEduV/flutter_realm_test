@@ -108,9 +108,10 @@ class MockLocationSettingsPageCubit extends _i1.Mock
       ) as bool);
 
   @override
-  _i4.RegionEntity? getRegionByCode(String? code) => (super.noSuchMethod(
+  _i4.RegionEntity? loadCurrentRegionByCode(String? code) =>
+      (super.noSuchMethod(
         Invocation.method(
-          #getRegionByCode,
+          #loadCurrentRegionByCode,
           [code],
         ),
         returnValueForMissingStub: null,
