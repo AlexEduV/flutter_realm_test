@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
-import 'package:test_flutter_project/features/location_settings_page/location_settings_identifiers.dart';
-import 'package:test_flutter_project/features/location_settings_page/location_settings_page_cubit.dart';
-import 'package:test_flutter_project/features/location_settings_page/widgets/footer_text.dart';
+import 'package:test_flutter_project/presentation/features/location_settings_page/widgets/footer_text.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../../common/constants/api_constants.dart';
-import '../../common/extensions/list_extension.dart';
-import '../../l10n/l10n_keys.dart';
-import '../../presentation/bloc/user/user_data_cubit.dart';
-import '../../presentation/bloc/user/user_data_state.dart';
-import '../../presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
-import '../../presentation/pages/account/widgets/custom_divider.dart';
+import '../../../common/constants/api_constants.dart';
+import '../../../common/extensions/list_extension.dart';
+import '../../../l10n/l10n_keys.dart';
+import '../../bloc/user/user_data_cubit.dart';
+import '../../bloc/user/user_data_state.dart';
+import '../../pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
+import '../../pages/account/widgets/custom_divider.dart';
+import 'location_settings_identifiers.dart';
+import 'location_settings_page_cubit.dart';
 
 class LocationSettingsPage extends StatelessWidget {
   const LocationSettingsPage({super.key});

@@ -128,7 +128,6 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
-import 'package:test_flutter_project/features/location_settings_page/location_settings_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
@@ -149,6 +148,7 @@ import '../../domain/repositories/geolocator_repository.dart';
 import '../../domain/repositories/url_launch_repository.dart';
 import '../../domain/usecases/inbox/save_conversations_use_case.dart';
 import '../../presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import '../../presentation/features/location_settings_page/location_settings_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 

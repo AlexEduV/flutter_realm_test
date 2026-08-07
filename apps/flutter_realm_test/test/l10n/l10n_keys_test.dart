@@ -335,38 +335,6 @@ void main() {
       () => expect(L10nKeys.accountItemLocation, 'pages.account.items.location.title'),
     );
     test(
-      'locationUsageDescription',
-      () => expect(
-        L10nKeys.locationUsageDescription,
-        'pages.account.items.location.locationUsageDescription',
-      ),
-    );
-    test(
-      'locationSettingsItemAccess',
-      () => expect(
-        L10nKeys.locationSettingsItemAccess,
-        'pages.account.items.location.locationAccessItem',
-      ),
-    );
-    test(
-      'locationSettingsItemRegion',
-      () => expect(L10nKeys.locationSettingsItemRegion, 'pages.account.items.location.regionItem'),
-    );
-    test(
-      'locationSettingsPrivacyItemConditions',
-      () => expect(
-        L10nKeys.locationSettingsPrivacyItemConditions,
-        'pages.account.items.location.privacyPolicyItemConditions',
-      ),
-    );
-    test(
-      'locationSettingsPrivacyItemPrivacyPolicy',
-      () => expect(
-        L10nKeys.locationSettingsPrivacyItemPrivacyPolicy,
-        'pages.account.items.location.privacyPolicyItemPolicy',
-      ),
-    );
-    test(
       'accountItemMyItems',
       () => expect(L10nKeys.accountItemMyItems, 'pages.account.items.myItems.title'),
     );
