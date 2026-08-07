@@ -9,8 +9,10 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_na
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_item.dart';
-import 'package:test_flutter_project/presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/color_picker_dialog.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/color_picker_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/widgets/color_item.dart';
 
 import '../../../pages/details/widgets/vehicle_specs_widget_test.mocks.dart';
 import 'color_picker_dialog_test.mocks.dart';
@@ -22,7 +24,7 @@ import 'color_picker_dialog_test.mocks.dart';
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
   appLocalisationsCubit.load({
-    L10nKeys.pickColorDialogTitle: 'Pick a color',
+    ColorPickerLocaleKeys.pickColorDialogTitle: 'Pick a color',
     L10nKeys.cancelLabel: 'Cancel',
     L10nKeys.confirmLabel: 'Confirm',
   });
@@ -61,7 +63,16 @@ void main() {
     String? result;
     await tester.pumpWidget(
       MultiBlocProvider(
-        providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+        providers: [
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          BlocProvider<ColorPickerCubit>(
+            create: (_) => ColorPickerCubit(
+              serviceLocator<GetCarColorsUseCase>(),
+              serviceLocator<GetCarColorByNameUseCase>(),
+              serviceLocator<GetCarColorNameFromColorUseCase>(),
+            ),
+          ),
+        ],
         child: MaterialApp(
           home: Builder(
             builder: (context) => Scaffold(
@@ -69,7 +80,7 @@ void main() {
                 onPressed: () async {
                   result = await showDialog<String>(
                     context: context,
-                    builder: (_) => const ColorPickerDialog(initialColor: 'blue'),
+                    builder: (context) => const ColorPickerDialog(initialColor: 'blue'),
                   );
                 },
                 child: const Text('Open'),
@@ -113,7 +124,16 @@ void main() {
     String? result;
     await tester.pumpWidget(
       MultiBlocProvider(
-        providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
+        providers: [
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          BlocProvider<ColorPickerCubit>(
+            create: (_) => ColorPickerCubit(
+              serviceLocator<GetCarColorsUseCase>(),
+              serviceLocator<GetCarColorByNameUseCase>(),
+              serviceLocator<GetCarColorNameFromColorUseCase>(),
+            ),
+          ),
+        ],
         child: MaterialApp(
           home: Builder(
             builder: (context) => Scaffold(
@@ -121,7 +141,7 @@ void main() {
                 onPressed: () async {
                   result = await showDialog<String>(
                     context: context,
-                    builder: (_) => const ColorPickerDialog(initialColor: 'green'),
+                    builder: (context) => const ColorPickerDialog(initialColor: 'green'),
                   );
                 },
                 child: const Text('Open'),

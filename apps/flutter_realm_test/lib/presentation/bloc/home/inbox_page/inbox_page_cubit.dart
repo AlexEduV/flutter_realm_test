@@ -79,4 +79,16 @@ class InboxPageCubit extends Cubit<InboxPageState> {
     emit(state.copyWith(conversations: updatedConversations));
     await _saveConversationsUseCase.call(updatedConversations);
   }
+
+  int getUnreadCountFromConversation(ConversationModel conversation) {
+    final unreadCount = conversation.messages
+        .where(
+          (element) =>
+              element.senderId == conversation.ownerId &&
+              element.messageStatus == MessageStatus.sent,
+        )
+        .length;
+
+    return unreadCount;
+  }
 }

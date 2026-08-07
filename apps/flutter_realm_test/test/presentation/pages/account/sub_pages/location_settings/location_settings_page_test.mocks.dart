@@ -3,6 +3,9 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _i7;
+
+import 'package:flutter_bloc/flutter_bloc.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/region_entity.dart' as _i3;
 import 'package:test_flutter_project/domain/models/region_ui_model.dart' as _i5;
@@ -10,6 +13,8 @@ import 'package:test_flutter_project/domain/usecases/regions/get_all_region_mode
     as _i4;
 import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart'
     as _i2;
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart'
+    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -54,4 +59,113 @@ class MockGetAllRegionModelsUseCase extends _i1.Mock
         returnValue: <_i5.RegionUiModel>[],
         returnValueForMissingStub: <_i5.RegionUiModel>[],
       ) as List<_i5.RegionUiModel>);
+}
+
+/// A class which mocks [LocationSettingsPageCubit].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLocationSettingsPageCubit extends _i1.Mock
+    implements _i6.LocationSettingsPageCubit {
+  @override
+  _i7.Stream<Object?> get stream => (super.noSuchMethod(
+        Invocation.getter(#stream),
+        returnValue: _i7.Stream<Object?>.empty(),
+        returnValueForMissingStub: _i7.Stream<Object?>.empty(),
+      ) as _i7.Stream<Object?>);
+
+  @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  _i3.RegionEntity? getRegionByCode(String? code) => (super.noSuchMethod(
+        Invocation.method(
+          #getRegionByCode,
+          [code],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.RegionEntity?);
+
+  @override
+  List<_i5.RegionUiModel> getAvailableCountries() => (super.noSuchMethod(
+        Invocation.method(
+          #getAvailableCountries,
+          [],
+        ),
+        returnValue: <_i5.RegionUiModel>[],
+        returnValueForMissingStub: <_i5.RegionUiModel>[],
+      ) as List<_i5.RegionUiModel>);
+
+  @override
+  _i7.Future<void> openUrl(String? url) => (super.noSuchMethod(
+        Invocation.method(
+          #openUrl,
+          [url],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
+
+  @override
+  void emit(Object? state) => super.noSuchMethod(
+        Invocation.method(
+          #emit,
+          [state],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onChange(_i8.Change<Object?>? change) => super.noSuchMethod(
+        Invocation.method(
+          #onChange,
+          [change],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addError(
+    Object? error, [
+    StackTrace? stackTrace,
+  ]) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void onError(
+    Object? error,
+    StackTrace? stackTrace,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #onError,
+          [
+            error,
+            stackTrace,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i7.Future<void> close() => (super.noSuchMethod(
+        Invocation.method(
+          #close,
+          [],
+        ),
+        returnValue: _i7.Future<void>.value(),
+        returnValueForMissingStub: _i7.Future<void>.value(),
+      ) as _i7.Future<void>);
 }

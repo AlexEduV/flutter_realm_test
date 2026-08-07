@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
@@ -9,10 +8,6 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
-import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/inbox_page/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
@@ -23,35 +18,19 @@ import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_in
 import 'package:test_flutter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
 import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/message_item.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
-import 'package:test_flutter_project/utils/date_formatter.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import 'messages_page_test.mocks.dart';
 
-final getIt = GetIt.instance;
-
 @GenerateNiceMocks([
-  MockSpec<GetConversationByIdUseCase>(),
-  MockSpec<GetOwnerByIdUseCase>(),
-  MockSpec<ExtractUsersFromConversationUseCase>(),
-  MockSpec<GetUserByIdUseCase>(),
   MockSpec<InboxPageCubit>(),
   MockSpec<MessagesPageCubit>(),
 ])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
 
-  setUp(() async {
+  setUp(() {
     VisibilityDetectorController.instance.updateInterval = Duration.zero;
-    await getIt.reset();
-    getIt.registerSingleton<GetConversationByIdUseCase>(MockGetConversationByIdUseCase());
-    getIt.registerSingleton<AppLocalisationsCubit>(appLocalisationsCubit);
-    getIt.registerSingleton<GetOwnerByIdUseCase>(MockGetOwnerByIdUseCase());
-    getIt.registerSingleton<ExtractUsersFromConversationUseCase>(
-      MockExtractUsersFromConversationUseCase(),
-    );
-    getIt.registerSingleton<GetUserByIdUseCase>(MockGetUserByIdUseCase());
-    getIt.registerLazySingleton<DateFormatter>(() => DateFormatter(appLocalisationsCubit));
   });
 
   Widget buildTestableWidget({
@@ -74,15 +53,15 @@ void main() {
     final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
     final cubit = MockInboxPageCubit();
 
-    when(getIt<GetConversationByIdUseCase>().call('c1')).thenReturn(conversation);
-    when(getIt<GetOwnerByIdUseCase>().call('o1')).thenReturn(owner);
-    when(getIt<ExtractUsersFromConversationUseCase>().call(conversation)).thenReturn({});
     when(cubit.state).thenReturn(const InboxPageState());
     when(cubit.stream).thenAnswer((_) => const Stream.empty());
 
     final messagesPageCubit = MockMessagesPageCubit();
     when(messagesPageCubit.state).thenReturn(const MessagesPageState());
     when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(messagesPageCubit.getConversationById('c1')).thenReturn(conversation);
+    when(messagesPageCubit.getOwnerById('o1')).thenReturn(owner);
+    when(messagesPageCubit.getUsersFromConversation(conversation)).thenReturn({});
 
     await tester.pumpWidget(
       buildTestableWidget(conversationId: 'c1', cubit: cubit, messagesCubit: messagesPageCubit),
@@ -98,10 +77,15 @@ void main() {
     final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
     final cubit = MockInboxPageCubit();
 
-    when(getIt<GetConversationByIdUseCase>().call('c1')).thenReturn(conversation);
-    when(getIt<GetOwnerByIdUseCase>().call('o1')).thenReturn(owner);
     when(cubit.state).thenReturn(const InboxPageState());
-    when(getIt<ExtractUsersFromConversationUseCase>().call(conversation)).thenReturn({
+    when(cubit.stream).thenAnswer((_) => const Stream.empty());
+
+    final messagesPageCubit = MockMessagesPageCubit();
+    when(messagesPageCubit.state).thenReturn(const MessagesPageState());
+    when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(messagesPageCubit.getConversationById('c1')).thenReturn(conversation);
+    when(messagesPageCubit.getOwnerById('o1')).thenReturn(owner);
+    when(messagesPageCubit.getUsersFromConversation(conversation)).thenReturn({
       'u1': UserEntity.initial(
         userId: 'u1',
         firstName: 'Alice',
@@ -110,11 +94,6 @@ void main() {
         password: '',
       ),
     });
-    when(cubit.stream).thenAnswer((_) => const Stream.empty());
-
-    final messagesPageCubit = MockMessagesPageCubit();
-    when(messagesPageCubit.state).thenReturn(const MessagesPageState());
-    when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
       buildTestableWidget(conversationId: 'c1', cubit: cubit, messagesCubit: messagesPageCubit),
@@ -137,14 +116,7 @@ void main() {
       ownerId: 'o1',
       messages: [message],
     );
-    final cubit = MockInboxPageCubit();
-
-    when(getIt<GetConversationByIdUseCase>().call('c1')).thenReturn(conversation);
-    when(getIt<GetOwnerByIdUseCase>().call('o1')).thenReturn(owner);
-    when(cubit.state).thenReturn(const InboxPageState());
-    when(cubit.stream).thenAnswer((_) => const Stream.empty());
-
-    when(getIt<ExtractUsersFromConversationUseCase>().call(conversation)).thenReturn({
+    final users = {
       'u1': UserEntity.initial(
         userId: 'u1',
         firstName: 'Alice',
@@ -152,11 +124,20 @@ void main() {
         email: 'alice@mock.com',
         password: '',
       ),
-    });
+    };
+    final cubit = MockInboxPageCubit();
+
+    when(cubit.state).thenReturn(const InboxPageState());
+    when(cubit.stream).thenAnswer((_) => const Stream.empty());
 
     final messagesPageCubit = MockMessagesPageCubit();
     when(messagesPageCubit.state).thenReturn(const MessagesPageState());
     when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(messagesPageCubit.getConversationById('c1')).thenReturn(conversation);
+    when(messagesPageCubit.getOwnerById('o1')).thenReturn(owner);
+    when(messagesPageCubit.getUsersFromConversation(conversation)).thenReturn(users);
+    when(messagesPageCubit.getMessageDividerDate(any)).thenReturn('Today');
+    when(messagesPageCubit.getMessageTime(any)).thenReturn('12:00');
 
     await tester.pumpWidget(
       buildTestableWidget(conversationId: 'c1', cubit: cubit, messagesCubit: messagesPageCubit),
@@ -172,9 +153,15 @@ void main() {
     final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
     final cubit = MockInboxPageCubit();
 
-    when(getIt<GetConversationByIdUseCase>().call('c1')).thenReturn(conversation);
-    when(getIt<GetOwnerByIdUseCase>().call('o1')).thenReturn(owner);
-    when(getIt<ExtractUsersFromConversationUseCase>().call(conversation)).thenReturn({
+    when(cubit.state).thenReturn(const InboxPageState());
+    when(cubit.stream).thenAnswer((_) => const Stream.empty());
+
+    final messagesPageCubit = MockMessagesPageCubit();
+    when(messagesPageCubit.state).thenReturn(const MessagesPageState());
+    when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
+    when(messagesPageCubit.getConversationById('c1')).thenReturn(conversation);
+    when(messagesPageCubit.getOwnerById('o1')).thenReturn(owner);
+    when(messagesPageCubit.getUsersFromConversation(conversation)).thenReturn({
       'u1': UserEntity.initial(
         userId: 'u1',
         firstName: 'Alice',
@@ -183,12 +170,6 @@ void main() {
         password: '',
       ),
     });
-    when(cubit.state).thenReturn(const InboxPageState());
-    when(cubit.stream).thenAnswer((_) => const Stream.empty());
-
-    final messagesPageCubit = MockMessagesPageCubit();
-    when(messagesPageCubit.state).thenReturn(const MessagesPageState());
-    when(messagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
       buildTestableWidget(conversationId: 'c1', cubit: cubit, messagesCubit: messagesPageCubit),

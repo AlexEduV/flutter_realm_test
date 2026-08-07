@@ -132,16 +132,6 @@ class L10nKeys {
       'pages.account.items.personalDetails.passwordItem.dialog.secondLabel';
 
   static const String accountItemLocation = 'pages.account.items.location.title';
-  static const String locationUsageDescription =
-      'pages.account.items.location.locationUsageDescription';
-  static const String locationSettingsItemAccess =
-      'pages.account.items.location.locationAccessItem';
-  static const String locationSettingsItemRegion = 'pages.account.items.location.regionItem';
-
-  static const String locationSettingsPrivacyItemConditions =
-      'pages.account.items.location.privacyPolicyItemConditions';
-  static const String locationSettingsPrivacyItemPrivacyPolicy =
-      'pages.account.items.location.privacyPolicyItemPolicy';
 
   static const String accountItemMyItems = 'pages.account.items.myItems.title';
   static const String myItemsNoResultsPlaceholder = 'pages.account.items.myItems.emptyPlaceholder';
@@ -279,8 +269,6 @@ class L10nKeys {
   static const String fieldParamsColorLabel = 'forms.fieldParams.color.label';
   static const String fieldParamsColorRegexErrorMessage =
       'forms.fieldParams.color.regexErrorMessage';
-
-  static const String pickColorDialogTitle = 'dialogs.pickColor.title';
 
   static const String noContentWidgetTitle = 'dialogs.network.contentNotAvailable.title';
   static const String noContentWidgetSubtitle = 'dialogs.network.contentNotAvailable.subtitle';

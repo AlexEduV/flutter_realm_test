@@ -60,9 +60,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     await initLocalisation(user.region);
 
     checkLastSeenCarExpiration(days: 7);
-    final isLocationPermissionGranted = await _checkLocationPermissionStatusUseCase
-        .call()
-        .isGranted;
+    final isLocationPermissionGranted = await checkLocationPermissionStatus().isGranted;
 
     final updatedUser = user.copyWith(isLocationPermissionGranted: isLocationPermissionGranted);
 
@@ -71,6 +69,10 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   void updateCloudUser(UserEntity user) {
     _authRepository.updateUser(user.userId, user);
+  }
+
+  Future<PermissionStatus> checkLocationPermissionStatus() {
+    return _checkLocationPermissionStatusUseCase.call();
   }
 
   Future<void> initLocalisation(String locale) async {

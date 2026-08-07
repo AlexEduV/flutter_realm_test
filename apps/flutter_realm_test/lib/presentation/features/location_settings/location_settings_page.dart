@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/domain/usecases/regions/get_all_region_models_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
-import 'package:test_flutter_project/presentation/pages/account/sub_pages/location_settings/widgets/footer_text.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/widgets/footer_text.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../../../../../common/constants/api_constants.dart';
-import '../../../../../common/extensions/list_extension.dart';
-import '../../../../../l10n/l10n_keys.dart';
-import '../../../../bloc/user/user_data_cubit.dart';
-import '../../../../bloc/user/user_data_state.dart';
-import '../../widgets/custom_divider.dart';
-import '../personal_details/widgets/personal_details_list_item.dart';
+import '../../../common/constants/api_constants.dart';
+import '../../../common/extensions/list_extension.dart';
+import '../../../l10n/l10n_keys.dart';
+import '../../bloc/user/user_data_cubit.dart';
+import '../../bloc/user/user_data_state.dart';
+import '../../pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
+import '../../pages/account/widgets/custom_divider.dart';
+import 'location_settings_identifiers.dart';
+import 'location_settings_page_cubit.dart';
 
 class LocationSettingsPage extends StatelessWidget {
   const LocationSettingsPage({super.key});
@@ -37,7 +36,10 @@ class LocationSettingsPage extends StatelessWidget {
           children: [
             const SizedBox(height: AppDimensions.minorS),
 
-            Text(context.tr(L10nKeys.locationUsageDescription), style: AppTextStyles.zonaPro14),
+            Text(
+              context.tr(LocationSettingsLocaleKeys.locationUsageDescription),
+              style: AppTextStyles.zonaPro14,
+            ),
 
             const SizedBox(height: AppDimensions.normalXS),
 
@@ -47,12 +49,14 @@ class LocationSettingsPage extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: BlocBuilder<UserDataCubit, UserDataState>(
                 builder: (context, state) {
-                  final region = serviceLocator<GetRegionByCodeUseCase>().call(state.user.region);
+                  final region = context.read<LocationSettingsPageCubit>().getRegionByCode(
+                    state.user.region,
+                  );
 
                   return Column(
                     children: [
                       PersonalDetailsListItem(
-                        title: context.tr(L10nKeys.locationSettingsItemAccess),
+                        title: context.tr(LocationSettingsLocaleKeys.locationSettingsItemAccess),
                         description: state.user.isLocationPermissionGranted
                             ? context.tr(L10nKeys.onLabel)
                             : context.tr(L10nKeys.offLabel),
@@ -62,7 +66,7 @@ class LocationSettingsPage extends StatelessWidget {
                       ),
 
                       PersonalDetailsListItem(
-                        title: context.tr(L10nKeys.locationSettingsItemRegion),
+                        title: context.tr(LocationSettingsLocaleKeys.locationSettingsItemRegion),
                         description: context.tr('${L10nKeys.countryPrefix}${region?.locale}'),
                         icon: Icons.explore,
                         onTap: () => onRegionItemTap(state, context),
@@ -81,12 +85,20 @@ class LocationSettingsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FooterText(
-                    text: context.tr(L10nKeys.locationSettingsPrivacyItemConditions),
-                    url: ApiConstants.termsAndConditionsUrl,
+                    text: context.tr(
+                      LocationSettingsLocaleKeys.locationSettingsPrivacyItemConditions,
+                    ),
+                    onTap: () => context.read<LocationSettingsPageCubit>().openUrl(
+                      ApiConstants.termsAndConditionsUrl,
+                    ),
                   ),
                   FooterText(
-                    text: context.tr(L10nKeys.locationSettingsPrivacyItemPrivacyPolicy),
-                    url: ApiConstants.privacyPolicyUrl,
+                    text: context.tr(
+                      LocationSettingsLocaleKeys.locationSettingsPrivacyItemPrivacyPolicy,
+                    ),
+                    onTap: () => context.read<LocationSettingsPageCubit>().openUrl(
+                      ApiConstants.privacyPolicyUrl,
+                    ),
                   ),
                 ],
               ),
@@ -98,7 +110,7 @@ class LocationSettingsPage extends StatelessWidget {
   }
 
   Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
-    final availableCountries = serviceLocator<GetAllRegionModelsUseCase>().call();
+    final availableCountries = context.read<LocationSettingsPageCubit>().getAvailableCountries();
 
     final currentRegion = state.user.region;
     final currentIndex = availableCountries.indexWhereOrNull(

@@ -7,8 +7,6 @@ import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore
 import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 
 import '../../../../../common/constants/app_semantics_labels.dart';
-import '../../../../../core/di/injection_container.dart';
-import '../../../../../domain/usecases/database/get_car_by_id_use_case.dart';
 import '../../../../../l10n/l10n_keys.dart';
 import '../../../../../utils/app_router.dart';
 import '../../../../bloc/user/user_data_cubit.dart';
@@ -31,7 +29,7 @@ class LastSeenWidget extends StatelessWidget {
         return BlocBuilder<ExplorePageCubit, ExplorePageState>(
           builder: (context, state) {
             final carId = userState.user.lastSeenCar?.carId;
-            final carEntityFull = serviceLocator<GetCarByIdUseCase>().call(carId ?? '');
+            final carEntityFull = context.read<ExplorePageCubit>().getCarById(carId ?? '');
             final isTestCar = carEntityFull.carId == 'testId';
 
             final image = carEntityFull.images.firstOrNull;

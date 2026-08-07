@@ -140,6 +140,7 @@ import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cu
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 
 import '../../data/repositories/car_repository_impl.dart';
@@ -148,6 +149,7 @@ import '../../domain/repositories/geolocator_repository.dart';
 import '../../domain/repositories/url_launch_repository.dart';
 import '../../domain/usecases/inbox/save_conversations_use_case.dart';
 import '../../presentation/bloc/home/explore_page/explore_page_cubit.dart';
+import '../../presentation/features/location_settings/location_settings_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -481,16 +483,36 @@ void _registerCubits() {
 
   serviceLocator.registerFactory(() => ArticlePageCubit(serviceLocator()));
 
+  serviceLocator.registerFactory(
+    () => LocationSettingsPageCubit(
+      serviceLocator<GetRegionByCodeUseCase>(),
+      serviceLocator<GetAllRegionModelsUseCase>(),
+      serviceLocator<OpenUrlLinkUseCase>(),
+    ),
+  );
+
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 
   serviceLocator.registerFactory(() => ShareCubit(serviceLocator()));
   serviceLocator.registerFactory(() => EditDialogCubit());
 
   serviceLocator.registerFactory(
+    () => ColorPickerCubit(
+      serviceLocator<GetCarColorsUseCase>(),
+      serviceLocator<GetCarColorByNameUseCase>(),
+      serviceLocator<GetCarColorNameFromColorUseCase>(),
+    ),
+  );
+
+  serviceLocator.registerFactory(
     () => MessagesPageCubit(
       serviceLocator<SearchGifsUseCase>(),
       serviceLocator<GetTrendingGifsUseCase>(),
       serviceLocator<PickAttachmentFileUseCase>(),
+      serviceLocator<GetConversationByIdUseCase>(),
+      serviceLocator<GetOwnerByIdUseCase>(),
+      serviceLocator<ExtractUsersFromConversationUseCase>(),
+      serviceLocator<DateFormatter>(),
     ),
   );
 

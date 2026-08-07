@@ -1,10 +1,9 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
-import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/account_page.dart';
@@ -13,7 +12,6 @@ import 'package:test_flutter_project/presentation/pages/home/favorites_page/favo
 import 'package:test_flutter_project/presentation/pages/home/inbox_page/inbox_page.dart';
 
 import '../../../common/constants/app_routes.dart';
-import '../../../core/di/injection_container.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import 'home_bottom_bar/home_bottom_bar.dart';
 
@@ -28,7 +26,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final PageController _pageController = PageController();
   int _bottomBarIndexDiff = 0;
 
-  final ScrollController scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -36,7 +34,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final status = await serviceLocator<CheckLocationPermissionStatusUseCase>().call();
+      final status = await context.read<UserDataCubit>().checkLocationPermissionStatus();
 
       if (!mounted) return;
       context.read<UserDataCubit>().updateLocationPermissionStatus(status.isGranted);
@@ -54,6 +52,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _pageController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            _KeepAlive(child: ExplorePage(scrollController: scrollController)),
+            _KeepAlive(child: ExplorePage(scrollController: _scrollController)),
             const _KeepAlive(child: FavoritesPage()),
             const _KeepAlive(child: InboxPage()),
             const _KeepAlive(child: AccountPage()),

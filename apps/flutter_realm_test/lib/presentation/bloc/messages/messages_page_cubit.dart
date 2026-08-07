@@ -1,20 +1,36 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
+import 'package:test_flutter_project/domain/entities/owner_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
+import 'package:test_flutter_project/utils/date_formatter.dart';
+
+import '../../../domain/models/conversation_model.dart';
 
 class MessagesPageCubit extends Cubit<MessagesPageState> {
   MessagesPageCubit(
     this._searchGifsUseCase,
     this._getTrendingGifsUseCase,
     this._pickAttachmentFileUseCase,
+    this._getConversationByIdUseCase,
+    this._getOwnerByIdUseCase,
+    this._extractUsersFromConversationUseCase,
+    this._dateFormatter,
   ) : super(const MessagesPageState());
 
   final SearchGifsUseCase _searchGifsUseCase;
   final GetTrendingGifsUseCase _getTrendingGifsUseCase;
   final PickAttachmentFileUseCase _pickAttachmentFileUseCase;
+  final GetConversationByIdUseCase _getConversationByIdUseCase;
+  final GetOwnerByIdUseCase _getOwnerByIdUseCase;
+  final ExtractUsersFromConversationUseCase _extractUsersFromConversationUseCase;
+  final DateFormatter _dateFormatter;
 
   int activeRequestId = 0;
 
@@ -60,5 +76,30 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
   Future<AttachmentEntity?> getAttachmentFile() async {
     final result = await _pickAttachmentFileUseCase.call();
     return result;
+  }
+
+  ConversationModel getConversationById(String conversationId) {
+    final conversation = _getConversationByIdUseCase.call(conversationId);
+    return conversation;
+  }
+
+  OwnerEntity getOwnerById(String ownerId) {
+    final owner = _getOwnerByIdUseCase.call(ownerId);
+    return owner;
+  }
+
+  Map<String, UserEntity?> getUsersFromConversation(ConversationModel conversation) {
+    final users = _extractUsersFromConversationUseCase.call(conversation);
+    return users;
+  }
+
+  String getMessageDividerDate(DateTime date) {
+    final dividerTime = _dateFormatter.formatMessageDividerDate(date);
+    return dividerTime;
+  }
+
+  String getMessageTime(DateTime date) {
+    final messageTime = _dateFormatter.formatSmartDate(date);
+    return messageTime;
   }
 }
