@@ -149,7 +149,7 @@ class DialogHelper {
       await showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (context) {
+        builder: (_) {
           return AcknowledgementDialog(
             title: title,
             description: description,
