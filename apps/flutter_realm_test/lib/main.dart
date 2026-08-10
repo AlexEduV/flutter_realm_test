@@ -152,7 +152,10 @@ class _MyAppState extends State<MyApp> {
     if (!context.mounted) return;
     context.read<UserDataCubit>().updateLocationPermissionStatus(isGranted);
 
-    if (!isGranted) {
+    if (isGranted) {
+      if (!context.mounted) return;
+      DialogHelper.dismissLocationPermissionDialog(context);
+    } else {
       if (!context.mounted) return;
 
       final l10n = context.read<AppLocalisationsCubit>();

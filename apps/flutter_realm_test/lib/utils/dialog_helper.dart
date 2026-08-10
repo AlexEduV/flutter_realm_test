@@ -135,6 +135,12 @@ class DialogHelper {
     return result;
   }
 
+  static void dismissLocationPermissionDialog(BuildContext context) {
+    if (_isLocationPermissionDialogShowing) {
+      Navigator.of(context, rootNavigator: true).pop();
+    }
+  }
+
   static Future<void> showLocationPermissionDialog(
     BuildContext context, {
     required String title,
