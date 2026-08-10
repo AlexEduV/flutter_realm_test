@@ -11,7 +11,6 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/edit_personal_
 import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
 
-import '../core/router/app_router.dart';
 import '../presentation/features/l10n/app_localisations_cubit.dart';
 import '../presentation/features/l10n/l10n_keys.dart';
 
@@ -141,15 +140,16 @@ class DialogHelper {
     return result;
   }
 
-  static Future<void> showLocationPermissionDialog(VoidCallback onConfirm) async {
+  static Future<void> showLocationPermissionDialog(
+    BuildContext context,
+    VoidCallback onConfirm,
+  ) async {
     if (_isLocationPermissionDialogShowing) return;
-    final navigatorContext = AppRouter.router.routerDelegate.navigatorKey.currentContext;
-    if (navigatorContext == null) return;
 
     _isLocationPermissionDialogShowing = true;
     await showDialog(
       barrierDismissible: false,
-      context: navigatorContext,
+      context: context,
       builder: (context) {
         final l10n = context.read<AppLocalisationsCubit>();
 

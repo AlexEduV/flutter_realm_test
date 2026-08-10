@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    _listener = AppLifecycleListener(onResume: () => _handleLocationPermission());
+    _listener = AppLifecycleListener(onResume: () => _handleLocationPermission(context));
     _scheduleInitialPermissionCheck();
   }
 
@@ -129,25 +129,32 @@ class _MyAppState extends State<MyApp> {
 
   void _scheduleInitialPermissionCheck() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (AppRouter.router.routerDelegate.navigatorKey.currentContext != null) {
-        _handleLocationPermission();
+      final context = AppRouter.router.routerDelegate.navigatorKey.currentContext;
+
+      if (context != null) {
+        _handleLocationPermission(context);
       } else {
         _scheduleInitialPermissionCheck();
       }
     });
   }
 
-  Future<void> _handleLocationPermission() async {
-    final locationPermissionStatus = await serviceLocator<UserDataCubit>()
+  Future<void> _handleLocationPermission(BuildContext context) async {
+    final locationPermissionStatus = await context
+        .read<UserDataCubit>()
         .checkLocationPermissionStatus();
 
     final isGranted = locationPermissionStatus == PermissionStatus.granted;
 
-    serviceLocator<UserDataCubit>().updateLocationPermissionStatus(isGranted);
+    if (!context.mounted) return;
+    context.read<UserDataCubit>().updateLocationPermissionStatus(isGranted);
 
     if (!isGranted) {
+      if (!context.mounted) return;
+
       await DialogHelper.showLocationPermissionDialog(
-        () => serviceLocator<UserDataCubit>().openLocationSettings(),
+        context,
+        () => context.read<UserDataCubit>().openLocationSettings(),
       );
     }
   }
