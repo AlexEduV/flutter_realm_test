@@ -8,7 +8,6 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_by
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_dialog.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_identifiers.dart';
@@ -20,6 +19,7 @@ import 'package:test_flutter_project/presentation/features/messages/messages_pag
 import 'package:test_flutter_project/presentation/features/messages/messages_page_state.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/confirmation_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
+import 'package:test_flutter_project/presentation/widgets/dialogs/edit_dialog_cubit.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/edit_password_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/edit_personal_info_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
