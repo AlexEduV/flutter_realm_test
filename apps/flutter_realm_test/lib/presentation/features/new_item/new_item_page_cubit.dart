@@ -7,17 +7,17 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 
-import '../../../../domain/entities/car_entity.dart';
-import '../../../../domain/entities/engine_entity.dart';
-import '../../../../domain/entities/owner_entity.dart';
-import '../../../../domain/usecases/database/add_car_use_case.dart';
-import '../../../../domain/usecases/database/get_all_cars_use_case.dart';
-import '../../../../domain/usecases/database/get_current_max_car_id_use_case.dart';
-import '../../../../l10n/l10n_keys.dart';
-import '../../l10n/app_localisations_cubit.dart';
-import '../../user/user_data_cubit.dart';
+import '../../../domain/entities/car_entity.dart';
+import '../../../domain/entities/engine_entity.dart';
+import '../../../domain/entities/owner_entity.dart';
+import '../../../domain/usecases/database/add_car_use_case.dart';
+import '../../../domain/usecases/database/get_all_cars_use_case.dart';
+import '../../../domain/usecases/database/get_current_max_car_id_use_case.dart';
+import '../../../l10n/l10n_keys.dart';
+import '../../bloc/l10n/app_localisations_cubit.dart';
+import '../../bloc/user/user_data_cubit.dart';
+import 'new_item_page_state.dart';
 
 class NewItemPageCubit extends Cubit<NewItemPageState> {
   NewItemPageCubit(

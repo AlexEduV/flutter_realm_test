@@ -5,11 +5,12 @@ import 'package:test_flutter_project/common/constants/app_semantics_labels.dart'
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
-import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
-import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
+import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/home_bottom_bar/widgets/animated_add_button.dart';
+import 'package:test_flutter_project/presentation/features/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../common/extensions/num_extension.dart';
+import '../../../common/extensions/num_extension.dart';
 
 class HomeBottomBar extends StatelessWidget {
   const HomeBottomBar({required this.onAddPressed, super.key});
@@ -54,7 +55,7 @@ class HomeBottomBar extends StatelessWidget {
               index: AppConstants.homeTabFavorites,
               unselectedIcon: Icons.favorite_border_outlined,
               selectedIcon: Icons.favorite_outlined,
-              label: context.tr(L10nKeys.favoritesPageTitle),
+              label: context.tr(FavoritesPageLocaleKeys.favoritesPageTitle),
             ),
 
             AppSemantics(

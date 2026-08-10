@@ -5,13 +5,13 @@ import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
-import 'package:test_flutter_project/presentation/pages/home/favorites_page/favorites_page.dart';
+import 'package:test_flutter_project/presentation/features/favorites/favorites_page.dart';
+import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 
@@ -56,7 +56,9 @@ void main() {
     await tester.pumpWidget(makeTestableWidget(const FavoritesPage()));
 
     expect(
-      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.favoritesPageTitle)),
+      find.text(
+        appLocalisationsCubit.getLocalisationByKey(FavoritesPageLocaleKeys.favoritesPageTitle),
+      ),
       findsOneWidget,
     );
   });
@@ -86,7 +88,11 @@ void main() {
 
     // Replace with your actual empty state text
     expect(
-      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.favoritesEmptyPlaceholder)),
+      find.text(
+        appLocalisationsCubit.getLocalisationByKey(
+          FavoritesPageLocaleKeys.favoritesEmptyPlaceholder,
+        ),
+      ),
       findsOneWidget,
     );
   });

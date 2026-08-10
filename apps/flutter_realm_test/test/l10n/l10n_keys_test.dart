@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
 
 void main() {
   group('L10nKeys', () {
@@ -12,10 +13,16 @@ void main() {
       () => expect(ExplorePageLocaleKeys.explorePageTitle, 'pages.explore.title'),
     );
     test('results', () => expect(L10nKeys.results, 'pages.search.resultsSection.title'));
-    test('favoritesPageTitle', () => expect(L10nKeys.favoritesPageTitle, 'pages.favorites.title'));
+    test(
+      'favoritesPageTitle',
+      () => expect(FavoritesPageLocaleKeys.favoritesPageTitle, 'pages.favorites.title'),
+    );
     test(
       'favoritesEmptyPlaceholder',
-      () => expect(L10nKeys.favoritesEmptyPlaceholder, 'pages.favorites.emptyPlaceholder'),
+      () => expect(
+        FavoritesPageLocaleKeys.favoritesEmptyPlaceholder,
+        'pages.favorites.emptyPlaceholder',
+      ),
     );
     test(
       'addCarButtonTooltip',

@@ -1,7 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:core_ui/core_ui.dart';
-import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/radio_group_title.dart';
+import 'package:test_flutter_project/presentation/features/new_item/widgets/radio_group_title.dart';
 
 void main() {
   testWidgets('RadioGroupTitle displays the correct text and style', (WidgetTester tester) async {

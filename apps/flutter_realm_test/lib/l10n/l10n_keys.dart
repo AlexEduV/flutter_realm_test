@@ -5,8 +5,6 @@ class L10nKeys {
   static const String locale = 'app.locale';
 
   static const String results = 'pages.search.resultsSection.title';
-  static const String favoritesPageTitle = 'pages.favorites.title';
-  static const String favoritesEmptyPlaceholder = 'pages.favorites.emptyPlaceholder';
 
   static const String addCarButtonTooltip = 'actions.addCar.tooltip';
   static const String deleteButtonTitle = 'actions.delete.title';

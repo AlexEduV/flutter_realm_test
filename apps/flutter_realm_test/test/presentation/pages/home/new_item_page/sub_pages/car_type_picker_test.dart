@@ -5,12 +5,12 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
-import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/car_type_picker.dart';
-import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/radio_group_title.dart';
+import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/new_item/new_item_page_state.dart';
+import 'package:test_flutter_project/presentation/features/new_item/sub_pages/car_type_picker.dart';
+import 'package:test_flutter_project/presentation/features/new_item/widgets/radio_group_title.dart';
 
 import '../../../../../common/extensions/context_extension_test.mocks.dart';
 import 'car_type_picker_test.mocks.dart';

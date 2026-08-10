@@ -7,11 +7,11 @@ import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/new_item_page/new_item_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/item_specs_picker.dart';
-import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/radio_group_title.dart';
+import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/new_item/new_item_page_state.dart';
+import 'package:test_flutter_project/presentation/features/new_item/sub_pages/item_specs_picker.dart';
+import 'package:test_flutter_project/presentation/features/new_item/widgets/radio_group_title.dart';
 
 import 'car_type_picker_test.mocks.dart';
 

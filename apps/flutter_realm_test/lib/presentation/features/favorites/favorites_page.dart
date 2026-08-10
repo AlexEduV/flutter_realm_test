@@ -5,10 +5,10 @@ import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.dart';
+import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/widgets/car_list_item.dart';
 
-import '../../../../l10n/l10n_keys.dart';
-import '../../../features/explore/explore_page_state.dart';
+import '../explore/explore_page_state.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -18,7 +18,10 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(context.tr(L10nKeys.favoritesPageTitle), style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(FavoritesPageLocaleKeys.favoritesPageTitle),
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
@@ -35,7 +38,7 @@ class FavoritesPage extends StatelessWidget {
 
               if (favoriteEntities.isEmpty) {
                 return EmptyResultsPlaceholderWidget(
-                  text: context.tr(L10nKeys.favoritesEmptyPlaceholder),
+                  text: context.tr(FavoritesPageLocaleKeys.favoritesEmptyPlaceholder),
                 );
               }
 

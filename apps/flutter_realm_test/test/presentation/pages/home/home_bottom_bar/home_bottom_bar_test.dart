@@ -1,14 +1,14 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/home_bottom_bar.dart';
-import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
+import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar.dart';
+import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_cubit.dart';
+import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_state.dart';
+import 'package:test_flutter_project/presentation/features/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 

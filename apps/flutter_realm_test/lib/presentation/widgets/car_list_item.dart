@@ -8,8 +8,8 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../common/enums/car_type.dart';
-import '../../../../core/router/app_router.dart';
+import '../../common/enums/car_type.dart';
+import '../../core/router/app_router.dart';
 
 class CarListItem extends StatelessWidget {
   const CarListItem({
