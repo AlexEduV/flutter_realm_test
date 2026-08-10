@@ -8,6 +8,7 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_params.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
@@ -67,7 +68,7 @@ class OwnerWidget extends StatelessWidget {
                           Expanded(
                             child: Text(
                               maxLines: 1,
-                              context.tr(L10nKeys.ownerSectionPersonTypeOwner),
+                              context.tr(DetailsPageLocaleKeys.ownerSectionPersonTypeOwner),
                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                 fontWeight: FontWeight.w400,
                               ),
@@ -124,7 +125,7 @@ class OwnerWidget extends StatelessWidget {
                     foregroundColor: Colors.white,
                   ),
                   child: Text(
-                    context.tr(L10nKeys.ownerSectionContactButtonTitle),
+                    context.tr(DetailsPageLocaleKeys.ownerSectionContactButtonTitle),
                     style: AppTextStyles.zonaPro16,
                     textAlign: TextAlign.center,
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/owner_widget.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
@@ -14,9 +15,9 @@ Widget buildOwnerWidgetUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()
     ..load({
       InboxPageLocaleKeys.messageSenderYou: 'You',
-      L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
+      DetailsPageLocaleKeys.ownerSectionPersonTypeOwner: 'Owner',
       L10nKeys.distanceAway: 'km',
-      L10nKeys.ownerSectionContactButtonTitle: 'Send a message',
+      DetailsPageLocaleKeys.ownerSectionContactButtonTitle: 'Send a message',
     });
 
   return MultiBlocProvider(

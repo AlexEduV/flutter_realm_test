@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
@@ -31,14 +32,14 @@ class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
 Widget buildVehicleSpecsWidgetUseCase(BuildContext context, {bool isExpanded = true}) {
   final appLocalisationsCubit = AppLocalisationsCubit()
     ..load({
-      L10nKeys.vehicleSpecificationsSectionTitle: 'Vehicle specs',
-      L10nKeys.vehicleSpecificationBody: 'Body',
-      L10nKeys.vehicleSpecificationEngine: 'Engine',
-      L10nKeys.vehicleSpecificationTransmission: 'Transmission',
-      L10nKeys.vehicleSpecificationMileage: 'Mileage',
+      DetailsPageLocaleKeys.vehicleSpecificationsSectionTitle: 'Vehicle specs',
+      DetailsPageLocaleKeys.vehicleSpecificationBody: 'Body',
+      DetailsPageLocaleKeys.vehicleSpecificationEngine: 'Engine',
+      DetailsPageLocaleKeys.vehicleSpecificationTransmission: 'Transmission',
+      DetailsPageLocaleKeys.vehicleSpecificationMileage: 'Mileage',
       L10nKeys.unknownLabel: 'Unknown',
-      L10nKeys.vehicleSpecificationColor: 'Color',
-      L10nKeys.vehicleSpecificationYear: 'Year',
+      DetailsPageLocaleKeys.vehicleSpecificationColor: 'Color',
+      DetailsPageLocaleKeys.vehicleSpecificationYear: 'Year',
     });
 
   return MultiBlocProvider(

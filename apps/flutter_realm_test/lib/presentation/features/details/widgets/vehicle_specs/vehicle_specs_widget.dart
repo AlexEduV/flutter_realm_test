@@ -8,7 +8,7 @@ import 'package:test_flutter_project/presentation/features/details/widgets/vehic
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../features/details/details_page_cubit.dart';
-import '../../../l10n/l10n_keys.dart';
+import '../../details_page_identifiers.dart';
 import '../../details_page_state.dart';
 
 class VehicleSpecsWidget extends StatelessWidget {
@@ -32,7 +32,7 @@ class VehicleSpecsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                context.tr(L10nKeys.vehicleSpecificationsSectionTitle),
+                context.tr(DetailsPageLocaleKeys.vehicleSpecificationsSectionTitle),
                 style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w600),
               ),
 

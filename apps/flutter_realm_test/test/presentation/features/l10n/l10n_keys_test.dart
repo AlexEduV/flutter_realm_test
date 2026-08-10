@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
@@ -206,50 +207,64 @@ void main() {
     );
     test(
       'vehicleSpecificationsSectionTitle',
-      () => expect(L10nKeys.vehicleSpecificationsSectionTitle, 'pages.vehicleDetails.sectionTitle'),
+      () => expect(
+        DetailsPageLocaleKeys.vehicleSpecificationsSectionTitle,
+        'pages.vehicleDetails.sectionTitle',
+      ),
     );
     test(
       'vehicleSpecificationBody',
-      () => expect(L10nKeys.vehicleSpecificationBody, 'pages.vehicleDetails.specifications.body'),
+      () => expect(
+        DetailsPageLocaleKeys.vehicleSpecificationBody,
+        'pages.vehicleDetails.specifications.body',
+      ),
     );
     test(
       'vehicleSpecificationEngine',
-      () =>
-          expect(L10nKeys.vehicleSpecificationEngine, 'pages.vehicleDetails.specifications.engine'),
+      () => expect(
+        DetailsPageLocaleKeys.vehicleSpecificationEngine,
+        'pages.vehicleDetails.specifications.engine',
+      ),
     );
     test(
       'vehicleSpecificationTransmission',
       () => expect(
-        L10nKeys.vehicleSpecificationTransmission,
+        DetailsPageLocaleKeys.vehicleSpecificationTransmission,
         'pages.vehicleDetails.specifications.transmission',
       ),
     );
     test(
       'vehicleSpecificationMileage',
       () => expect(
-        L10nKeys.vehicleSpecificationMileage,
+        DetailsPageLocaleKeys.vehicleSpecificationMileage,
         'pages.vehicleDetails.specifications.mileage',
       ),
     );
     test(
       'vehicleSpecificationColor',
-      () => expect(L10nKeys.vehicleSpecificationColor, 'pages.vehicleDetails.specifications.color'),
+      () => expect(
+        DetailsPageLocaleKeys.vehicleSpecificationColor,
+        'pages.vehicleDetails.specifications.color',
+      ),
     );
     test(
       'vehicleSpecificationYear',
-      () => expect(L10nKeys.vehicleSpecificationYear, 'pages.vehicleDetails.specifications.year'),
+      () => expect(
+        DetailsPageLocaleKeys.vehicleSpecificationYear,
+        'pages.vehicleDetails.specifications.year',
+      ),
     );
     test(
       'ownerSectionPersonTypeOwner',
       () => expect(
-        L10nKeys.ownerSectionPersonTypeOwner,
+        DetailsPageLocaleKeys.ownerSectionPersonTypeOwner,
         'pages.vehicleDetails.ownerSection.personTypeOwner',
       ),
     );
     test(
       'ownerSectionContactButtonTitle',
       () => expect(
-        L10nKeys.ownerSectionContactButtonTitle,
+        DetailsPageLocaleKeys.ownerSectionContactButtonTitle,
         'pages.vehicleDetails.ownerSection.contactButtonTitle',
       ),
     );
