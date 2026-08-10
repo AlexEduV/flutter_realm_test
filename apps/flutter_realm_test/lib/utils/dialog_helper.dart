@@ -15,7 +15,6 @@ import '../presentation/features/l10n/app_localisations_cubit.dart';
 import '../presentation/features/l10n/l10n_keys.dart';
 
 class DialogHelper {
-  //todo: location permission dialog is not showing up, if the location is turned off and then the app is opened from scratch
   static bool _isLocationPermissionDialogShowing = false;
 
   static Future<void> showConfirmationDialog(
