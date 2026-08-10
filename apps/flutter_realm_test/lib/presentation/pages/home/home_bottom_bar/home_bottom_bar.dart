@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/animated_add_button.dart';
 import 'package:test_flutter_project/presentation/pages/home/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
@@ -45,7 +46,7 @@ class HomeBottomBar extends StatelessWidget {
               index: AppConstants.homeTabExplore,
               unselectedIcon: Icons.web_stories_outlined,
               selectedIcon: Icons.web_stories,
-              label: context.tr(L10nKeys.explorePageTitle),
+              label: context.tr(ExplorePageLocaleKeys.explorePageTitle),
               rotationAngle: 90.0.toRadians,
             ),
             HomeBottomBarItem(

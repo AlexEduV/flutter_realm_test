@@ -4,14 +4,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/my_items/my_items_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.dart';
 
@@ -76,7 +76,9 @@ void main() {
   testWidgets('shows car list items for each createdId', (tester) async {
     final car1 = CarEntity.empty().copyWith(carId: 'car1', model: 'Model 1');
     final car2 = CarEntity.empty().copyWith(carId: 'car2', model: 'Model 2');
-    final userState = UserDataState(user: UserEntity.empty().copyWith(createdIds: ['car1', 'car2']));
+    final userState = UserDataState(
+      user: UserEntity.empty().copyWith(createdIds: ['car1', 'car2']),
+    );
     final exploreState = ExplorePageState(cars: [car1, car2]);
 
     await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));

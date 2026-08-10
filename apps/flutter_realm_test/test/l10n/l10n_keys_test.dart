@@ -1,12 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 
 void main() {
   group('L10nKeys', () {
     test('appName', () => expect(L10nKeys.appName, 'app.name'));
     test('locale', () => expect(L10nKeys.locale, 'app.locale'));
-    test('explorePageTitle', () => expect(L10nKeys.explorePageTitle, 'pages.explore.title'));
+    test(
+      'explorePageTitle',
+      () => expect(ExplorePageLocaleKeys.explorePageTitle, 'pages.explore.title'),
+    );
     test('results', () => expect(L10nKeys.results, 'pages.search.resultsSection.title'));
     test('favoritesPageTitle', () => expect(L10nKeys.favoritesPageTitle, 'pages.favorites.title'));
     test(
@@ -21,7 +25,10 @@ void main() {
     test('distanceWidgetText', () => expect(L10nKeys.distanceAway, 'widgets.distance.text'));
     test(
       'recommendedSectionTitle',
-      () => expect(L10nKeys.recommendedSectionTitle, 'pages.explore.recommendedSection.title'),
+      () => expect(
+        ExplorePageLocaleKeys.recommendedSectionTitle,
+        'pages.explore.recommendedSection.title',
+      ),
     );
     test(
       'lastSeenSectionTitle',

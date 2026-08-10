@@ -4,14 +4,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/recently_viewed/recently_viewed_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/widgets/car_list_item.dart';
 
@@ -94,7 +94,9 @@ void main() {
   testWidgets('does not crash when a viewedId references a deleted car', (tester) async {
     final car1 = CarEntity.empty().copyWith(carId: 'car1', model: 'Model 1');
     // 'orphan_id' was once viewed but the car has since been removed.
-    final userState = UserDataState(user: UserEntity.empty().copyWith(viewedIds: ['car1', 'orphan_id']));
+    final userState = UserDataState(
+      user: UserEntity.empty().copyWith(viewedIds: ['car1', 'orphan_id']),
+    );
     final exploreState = ExplorePageState(cars: [car1]);
 
     await tester.pumpWidget(buildTestable(userState: userState, exploreState: exploreState));

@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 
 import '../../../../../common/constants/app_semantics_labels.dart';
 import '../../../../../core/router/app_router.dart';
 import '../../../../../l10n/l10n_keys.dart';
-import '../../../../bloc/user/user_data_cubit.dart';
-import '../../../../bloc/user/user_data_state.dart';
-import '../../../../widgets/app_semantics.dart';
+import '../../../bloc/user/user_data_cubit.dart';
+import '../../../bloc/user/user_data_state.dart';
+import '../../../widgets/app_semantics.dart';
+import '../explore_page_state.dart';
 
 class LastSeenWidget extends StatelessWidget {
   const LastSeenWidget({super.key});

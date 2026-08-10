@@ -15,8 +15,8 @@ import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
 
 import 'explore_page_cubit_test.mocks.dart';
 

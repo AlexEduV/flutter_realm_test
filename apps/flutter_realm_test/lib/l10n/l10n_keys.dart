@@ -4,7 +4,6 @@ class L10nKeys {
   static const String appName = 'app.name';
   static const String locale = 'app.locale';
 
-  static const String explorePageTitle = 'pages.explore.title';
   static const String results = 'pages.search.resultsSection.title';
   static const String favoritesPageTitle = 'pages.favorites.title';
   static const String favoritesEmptyPlaceholder = 'pages.favorites.emptyPlaceholder';
@@ -14,7 +13,6 @@ class L10nKeys {
 
   static const String distanceAway = 'widgets.distance.text';
 
-  static const String recommendedSectionTitle = 'pages.explore.recommendedSection.title';
   static const String lastSeenSectionTitle = 'pages.explore.lastSeenSection.title';
 
   static const String searchPageTitle = 'pages.search.title';

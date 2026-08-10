@@ -5,14 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/pages/home/explore_page/widgets/explore_header_delegate.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/explore/widgets/explore_header_delegate.dart';
 import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_list_item.dart';
 
-import '../../../../l10n/l10n_keys.dart';
-import '../../../bloc/home/explore_page/explore_page_state.dart';
+import 'explore_page_state.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({required this.scrollController, super.key});
@@ -35,7 +35,7 @@ class ExplorePage extends StatelessWidget {
         body: CustomScrollView(
           controller: scrollController,
           slivers: [
-            _ExploreHeader(title: context.tr(L10nKeys.explorePageTitle)),
+            _ExploreHeader(title: context.tr(ExplorePageLocaleKeys.explorePageTitle)),
 
             SliverToBoxAdapter(
               child: Padding(
@@ -44,7 +44,7 @@ class ExplorePage extends StatelessWidget {
                   top: AppDimensions.normalL,
                 ),
                 child: Text(
-                  context.tr(L10nKeys.recommendedSectionTitle),
+                  context.tr(ExplorePageLocaleKeys.recommendedSectionTitle),
                   style: AppTextStyles.zonaPro18,
                 ),
               ),

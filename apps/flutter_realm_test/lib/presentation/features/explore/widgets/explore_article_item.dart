@@ -5,10 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../bloc/home/explore_page/explore_page_cubit.dart';
+import '../explore_page_cubit.dart';
+import '../explore_page_state.dart';
 
 class ExploreArticleItem extends StatefulWidget {
   const ExploreArticleItem({

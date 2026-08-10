@@ -6,14 +6,14 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_state.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/account_page.dart';
-import 'package:test_flutter_project/presentation/pages/home/explore_page/explore_page.dart';
 import 'package:test_flutter_project/presentation/pages/home/favorites_page/favorites_page.dart';
 
 import '../../../common/constants/app_routes.dart';
 import '../../bloc/user/user_data_cubit.dart';
-import '../../features/inbox/inbox_page.dart';
-import 'home_bottom_bar/home_bottom_bar.dart';
+import '../../pages/home/home_bottom_bar/home_bottom_bar.dart';
+import '../inbox/inbox_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

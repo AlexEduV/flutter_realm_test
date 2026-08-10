@@ -4,13 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/pages/home/favorites_page/favorites_page.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
@@ -64,7 +64,9 @@ void main() {
   testWidgets('shows only favorite cars', (tester) async {
     final car1 = CarEntity.empty().copyWith(carId: '1', model: 'Car 1');
     final car2 = CarEntity.empty().copyWith(carId: '2', model: 'Car 2');
-    when(userDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty().copyWith(favoriteIds: ['1'])));
+    when(
+      userDataCubit.state,
+    ).thenReturn(UserDataState(user: UserEntity.empty().copyWith(favoriteIds: ['1'])));
     when(explorePageCubit.state).thenReturn(ExplorePageState(cars: [car1, car2]));
 
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
@@ -91,7 +93,9 @@ void main() {
 
   testWidgets('delete button calls removeCarIdFromFavorites', (tester) async {
     final car = CarEntity.empty().copyWith(carId: '1', model: 'Car 1');
-    when(userDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty().copyWith(favoriteIds: ['1'])));
+    when(
+      userDataCubit.state,
+    ).thenReturn(UserDataState(user: UserEntity.empty().copyWith(favoriteIds: ['1'])));
     when(explorePageCubit.state).thenReturn(ExplorePageState(cars: [car]));
 
     when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());

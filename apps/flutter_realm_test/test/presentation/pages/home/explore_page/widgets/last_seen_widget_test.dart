@@ -10,12 +10,12 @@ import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/pages/home/explore_page/widgets/last_seen_widget.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
+import 'package:test_flutter_project/presentation/features/explore/widgets/last_seen_widget.dart';
 
 import '../../../../../utils/app_router_test.mocks.dart';
 import '../../../../bloc/details/details_page_cubit_test.mocks.dart';
@@ -80,7 +80,9 @@ void main() {
   }
 
   testWidgets('shows loading indicator when userState.isLoading is true', (tester) async {
-    when(mockUserDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty(), isLoading: true));
+    when(
+      mockUserDataCubit.state,
+    ).thenReturn(UserDataState(user: UserEntity.empty(), isLoading: true));
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(
@@ -100,7 +102,9 @@ void main() {
     final carId = 'car124';
 
     final userState = UserDataState(
-      user: UserEntity.empty().copyWith(lastSeenCar: LastSeenCarEntity(carId: carId, seenAt: DateTime.now())),
+      user: UserEntity.empty().copyWith(
+        lastSeenCar: LastSeenCarEntity(carId: carId, seenAt: DateTime.now()),
+      ),
       isLoading: false,
     );
     final exploreState = const ExplorePageState();

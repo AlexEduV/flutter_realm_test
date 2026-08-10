@@ -14,7 +14,7 @@ import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_p
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/sub_pages/item_specs_picker.dart';
 import 'package:test_flutter_project/presentation/pages/home/new_item_page/widgets/page_selection_bar.dart';
 
-import '../../../bloc/home/explore_page/explore_page_cubit.dart';
+import '../../../features/explore/explore_page_cubit.dart';
 
 class NewItemPage extends StatefulWidget {
   const NewItemPage({super.key});

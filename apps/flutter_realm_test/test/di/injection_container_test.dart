@@ -20,11 +20,11 @@ import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_cas
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/home/explore_page/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/home/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 
 import '../common/fakes/fake_realm.dart';
 import '../domain/repositories/base_local_storage_test.mocks.dart';
