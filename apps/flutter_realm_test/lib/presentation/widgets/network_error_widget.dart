@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
 class NetworkErrorWidget extends StatelessWidget {
   const NetworkErrorWidget({super.key});

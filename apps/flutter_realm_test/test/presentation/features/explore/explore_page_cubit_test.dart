@@ -1,0 +1,135 @@
+import 'dart:async';
+
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:realm/realm.dart';
+import 'package:test_flutter_project/common/enums/body_type.dart';
+import 'package:test_flutter_project/common/enums/fuel_type.dart';
+import 'package:test_flutter_project/common/enums/promo_type.dart';
+import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/engine_entity.dart';
+import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
+
+import 'explore_page_cubit_test.mocks.dart';
+
+@GenerateNiceMocks([
+  MockSpec<SyncCarsUseCase>(),
+  MockSpec<WatchCarsUseCase>(),
+  MockSpec<FetchArticlesUseCase>(),
+  MockSpec<GetCarByIdUseCase>(),
+])
+void main() {
+  late MockSyncCarsUseCase mockSyncCarsUseCase;
+  late MockWatchCarsUseCase mockWatchCarsUseCase;
+  late MockFetchArticlesUseCase mockFetchArticlesUseCase;
+  late MockGetCarByIdUseCase mockGetCarByIdUseCase;
+
+  late ExplorePageCubit cubit;
+
+  final carList = [
+    CarEntity(
+      id: ObjectId(),
+      carId: '1',
+      model: 'Model S',
+      manufacturer: 'Tesla',
+      isVerified: true,
+      type: 'car',
+      engine: EngineEntity(type: FuelType.ev.name),
+      bodyType: BodyType.sedan.name,
+      transmissionType: TransmissionType.automatic.name,
+    ),
+    CarEntity(
+      id: ObjectId(),
+      carId: '2',
+      model: 'Civic',
+      manufacturer: 'Honda',
+      isVerified: false,
+      promoType: PromoType.limitedTimeOffer,
+      type: 'car',
+      engine: EngineEntity(type: FuelType.hybrid.name),
+      bodyType: BodyType.sedan.name,
+      transmissionType: TransmissionType.automatic.name,
+    ),
+  ];
+
+  setUp(() {
+    mockWatchCarsUseCase = MockWatchCarsUseCase();
+    mockSyncCarsUseCase = MockSyncCarsUseCase();
+    mockFetchArticlesUseCase = MockFetchArticlesUseCase();
+    mockGetCarByIdUseCase = MockGetCarByIdUseCase();
+    cubit = ExplorePageCubit(
+      mockWatchCarsUseCase,
+      mockSyncCarsUseCase,
+      mockFetchArticlesUseCase,
+      mockGetCarByIdUseCase,
+    );
+  });
+
+  tearDown(() async {
+    await cubit.close();
+  });
+
+  blocTest<ExplorePageCubit, ExplorePageState>(
+    'should init',
+    setUp: () {
+      when(mockSyncCarsUseCase.call()).thenAnswer((_) async => {});
+      when(mockWatchCarsUseCase.call()).thenAnswer((_) => Stream.value(carList));
+      when(mockFetchArticlesUseCase.call()).thenAnswer((_) async => []);
+    },
+    build: () {
+      return cubit;
+    },
+    act: (cubit) => cubit.init(),
+    expect: () => [
+      // sync started
+      isA<ExplorePageState>()
+          .having((s) => s.isLoading, 'isLoading', true)
+          .having((s) => s.isArticleListLoading, 'isArticleListLoading', true),
+      // sync done
+      isA<ExplorePageState>()
+          .having((s) => s.isLoading, 'isLoading', false)
+          .having((s) => s.isArticleListLoading, 'isArticleListLoading', true),
+      // articles done (articles:[] equals default so that emit is deduplicated;
+      // this state reflects isArticleListLoading flipping to false)
+      isA<ExplorePageState>()
+          .having((s) => s.isLoading, 'isLoading', false)
+          .having((s) => s.isArticleListLoading, 'isArticleListLoading', false),
+      // cars from watch stream (cubit maps isShown: true for all non-hidden cars)
+      isA<ExplorePageState>()
+          .having((s) => s.isArticleListLoading, 'isArticleListLoading', false)
+          .having((s) => s.cars.map((c) => c.carId).toList(), 'car ids', ['1', '2'])
+          .having((s) => s.cars.every((c) => c.isShown), 'all visible', true),
+    ],
+    verify: (_) {
+      verify(mockWatchCarsUseCase.call()).called(1);
+      verify(mockSyncCarsUseCase.call()).called(1);
+    },
+  );
+
+  blocTest<ExplorePageCubit, ExplorePageState>(
+    'updateCars emits state with new cars',
+    build: () => cubit,
+    act: (cubit) => cubit.updateCars(carList),
+    expect: () => [isA<ExplorePageState>().having((s) => s.cars, 'cars', carList)],
+  );
+
+  blocTest<ExplorePageCubit, ExplorePageState>(
+    'removeCarAt removes the car at the given index',
+    build: () => cubit,
+    seed: () => ExplorePageState(cars: carList),
+    act: (cubit) => cubit.removeCarById('1'),
+    expect: () => [
+      isA<ExplorePageState>()
+          .having((s) => s.cars.length, 'cars.length', 2)
+          .having((s) => s.cars.first.isShown, 'deleted car', false),
+    ],
+  );
+}

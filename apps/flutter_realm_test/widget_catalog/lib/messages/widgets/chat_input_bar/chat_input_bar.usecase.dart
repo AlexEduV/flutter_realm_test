@@ -1,19 +1,17 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mockito/mockito.dart';
-import 'package:core_ui/core_ui.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_state.dart';
+import 'package:test_flutter_project/presentation/features/messages/widgets/chat_input_bar/chat_input_bar.dart';
 
 //todo: interactions, like button presses are not mocked;
 class MockMessagesPageCubit extends Mock implements MessagesPageCubit {
   @override
-  MessagesPageState get state => const MessagesPageState(
-    isLoading: false,
-    currentMessageText: 'Some text',
-  );
+  MessagesPageState get state =>
+      const MessagesPageState(isLoading: false, currentMessageText: 'Some text');
 
   @override
   Stream<MessagesPageState> get stream => const Stream.empty();

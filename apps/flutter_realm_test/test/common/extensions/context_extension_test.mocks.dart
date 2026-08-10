@@ -8,9 +8,9 @@ import 'dart:async' as _i4;
 import 'package:flutter_bloc/flutter_bloc.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i5;
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart'
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart'
     as _i3;
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart'
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_state.dart'
     as _i2;
 
 // ignore_for_file: type=lint

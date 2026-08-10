@@ -1,0 +1,390 @@
+import 'package:collection/collection.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
+import 'package:test_flutter_project/utils/dialog_helper.dart';
+
+import '../../../features/authentication/widgets/app_form_field.dart';
+import '../new_item_page_cubit.dart';
+import '../new_item_page_identifiers.dart';
+import '../new_item_page_state.dart';
+import '../widgets/radio_group_title.dart';
+
+class ItemInfoForm extends StatefulWidget {
+  const ItemInfoForm({
+    required this.manufacturerFocusNode,
+    required this.modelFocusNode,
+    required this.yearFocusNode,
+    required this.colorFocusNode,
+    required this.priceFocusNode,
+    super.key,
+  });
+
+  final FocusNode manufacturerFocusNode;
+  final FocusNode modelFocusNode;
+  final FocusNode yearFocusNode;
+  final FocusNode colorFocusNode;
+  final FocusNode priceFocusNode;
+
+  @override
+  State<ItemInfoForm> createState() => _ItemInfoFormState();
+}
+
+class _ItemInfoFormState extends State<ItemInfoForm> {
+  final manufacturerTextController = TextEditingController();
+  final modelTextController = TextEditingController();
+  final yearTextController = TextEditingController();
+  final colorTextController = TextEditingController();
+  final priceTextController = TextEditingController();
+
+  String? selectedManufacturerImageSrc;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final cubit = context.read<NewItemPageCubit>();
+    cubit.clearFieldErrors();
+    cubit.clearFields();
+
+    manufacturerTextController.text = cubit.state.manufacturerText;
+    modelTextController.text = cubit.state.modelText;
+    yearTextController.text = cubit.state.yearText;
+    colorTextController.text = cubit.state.colorText;
+    priceTextController.text = cubit.state.priceText;
+
+    cubit.getAutoCompleteEntitiesByType(cubit.state.selectedCarType);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NewItemPageCubit, NewItemPageState>(
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Column(
+            spacing: AppDimensions.normalS,
+            children: [
+              RadioGroupTitle(
+                text: context.tr(NewItemPageLocaleKeys.addNewItemInfoFormDescription),
+              ),
+
+              BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                builder: (context, state) {
+                  final manufacturers = state.autoCompleteEntities;
+
+                  return Autocomplete<CarAutoCompleteEntity>(
+                    textEditingController: manufacturerTextController,
+                    focusNode: widget.manufacturerFocusNode,
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text == '') {
+                        return const Iterable<CarAutoCompleteEntity>.empty();
+                      }
+                      return manufacturers.where((option) {
+                        return option.manufacturer.toLowerCase().contains(
+                          textEditingValue.text.toLowerCase(),
+                        );
+                      });
+                    },
+                    displayStringForOption: (option) => option.manufacturer,
+                    optionsViewBuilder: (context, onSelected, options) {
+                      final borderRadius = BorderRadius.circular(AppDimensions.normalS);
+
+                      return Align(
+                        alignment: Alignment.topLeft,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: borderRadius,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withAlpha(38),
+                                offset: const Offset(0, 4),
+                                blurRadius: 8,
+                                spreadRadius: 0,
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: borderRadius,
+                            child: Material(
+                              borderRadius: borderRadius,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.zero,
+                                itemCount: options.length,
+                                itemBuilder: (context, index) {
+                                  final option = options.elementAt(index);
+                                  return ListTile(
+                                    tileColor: Colors.white,
+                                    leading: option.imageSrc != null
+                                        ? SvgPicture.asset(
+                                            width: AppDimensions.majorS,
+                                            height: AppDimensions.majorS,
+                                            '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc ?? ''}',
+                                          )
+                                        : const SizedBox(
+                                            width: AppDimensions.majorS,
+                                            height: AppDimensions.majorS,
+                                          ),
+                                    title: Text(option.manufacturer),
+                                    onTap: () {
+                                      onSelected(option);
+                                      selectedManufacturerImageSrc = option.imageSrc != null
+                                          ? '${AppAssetRoutes.manufacturerIconRoute}${option.imageSrc}'
+                                          : null;
+                                      widget.manufacturerFocusNode.unfocus();
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    fieldViewBuilder:
+                        (context, textEditingController, focusNode, onFieldSubmitted) {
+                          return AppFormField(
+                            focusNode: focusNode,
+                            textEditingController: textEditingController,
+                            labelText: state.manufacturerFieldParams?.label ?? '',
+                            hintText: state.manufacturerFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            errorText: state.manufacturerErrorText,
+                            onFocusChange: (hasFocus) {
+                              if (hasFocus) return;
+
+                              context.read<NewItemPageCubit>().validateManufacturer(
+                                textEditingController.text,
+                                false,
+                              );
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateManufacturer(
+                                newText ?? '',
+                                focusNode.hasFocus,
+                              );
+
+                              context.read<NewItemPageCubit>().updateManufacturerText(
+                                textEditingController.text,
+                              );
+                            },
+                            padding: 0.0,
+                            maxLength: state.manufacturerFieldParams?.maxLength,
+                            leadingSvg: selectedManufacturerImageSrc,
+                          );
+                        },
+                    onSelected: (CarAutoCompleteEntity selection) {
+                      final manufacturer = selection.manufacturer;
+
+                      manufacturerTextController.text = manufacturer;
+                      context.read<NewItemPageCubit>().updateManufacturerText(manufacturer);
+                    },
+                  );
+                },
+              ),
+
+              BlocBuilder<NewItemPageCubit, NewItemPageState>(
+                builder: (context, state) {
+                  final selectedManufacturer = state.manufacturerText;
+                  final models =
+                      state.autoCompleteEntities
+                          .firstWhereOrNull(
+                            (element) => element.manufacturer == selectedManufacturer,
+                          )
+                          ?.models ??
+                      [];
+
+                  return Autocomplete<String>(
+                    focusNode: widget.modelFocusNode,
+                    textEditingController: modelTextController,
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text == '') {
+                        return const Iterable<String>.empty();
+                      }
+                      return models.where((String option) {
+                        return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                      });
+                    },
+                    optionsViewBuilder: (context, onSelected, options) {
+                      final borderRadius = BorderRadius.circular(AppDimensions.normalS);
+
+                      return Align(
+                        alignment: Alignment.topLeft,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: borderRadius,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withAlpha(38),
+                                offset: const Offset(0, 4),
+                                blurRadius: 8,
+                                spreadRadius: 0,
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: borderRadius,
+                            child: Material(
+                              borderRadius: borderRadius,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.zero,
+                                itemCount: options.length,
+                                itemBuilder: (context, index) {
+                                  final option = options.elementAt(index);
+                                  return ListTile(
+                                    tileColor: Colors.white,
+                                    title: Text(option),
+                                    onTap: () {
+                                      onSelected(option);
+                                      widget.modelFocusNode.unfocus();
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    fieldViewBuilder:
+                        (context, textEditingController, focusNode, onFieldSubmitted) {
+                          return AppFormField(
+                            focusNode: focusNode,
+                            textEditingController: textEditingController,
+                            labelText: state.modelFieldParams?.label ?? '',
+                            hintText: state.modelFieldParams?.hintText ?? '',
+                            textInputType: TextInputType.text,
+                            textInputAction: TextInputAction.next,
+                            errorText: state.modelErrorText,
+                            onFocusChange: (hasFocus) {
+                              if (hasFocus) return;
+
+                              context.read<NewItemPageCubit>().validateModel(
+                                textEditingController.text,
+                                false,
+                              );
+                            },
+                            onChanged: (newText) {
+                              context.read<NewItemPageCubit>().validateModel(
+                                textEditingController.text,
+                                focusNode.hasFocus,
+                              );
+
+                              context.read<NewItemPageCubit>().updateModelText(
+                                textEditingController.text,
+                              );
+                            },
+                            padding: 0.0,
+                            maxLength: state.modelFieldParams?.maxLength,
+                          );
+                        },
+                    onSelected: (String selection) {
+                      modelTextController.text = selection;
+                      context.read<NewItemPageCubit>().updateModelText(selection);
+                    },
+                  );
+                },
+              ),
+
+              AppFormField(
+                focusNode: widget.yearFocusNode,
+                textEditingController: yearTextController,
+                labelText: state.yearFieldParams?.label ?? '',
+                hintText: state.yearFieldParams?.hintText ?? '',
+                textInputType: TextInputType.number,
+                textInputAction: TextInputAction.next,
+                errorText: state.yearErrorText,
+                onFocusChange: (hasFocus) {
+                  if (hasFocus) return;
+
+                  context.read<NewItemPageCubit>().validateYear(yearTextController.text, false);
+                },
+                onChanged: (newText) {
+                  context.read<NewItemPageCubit>().validateYear(
+                    yearTextController.text,
+                    widget.yearFocusNode.hasFocus,
+                  );
+
+                  context.read<NewItemPageCubit>().updateYearText(yearTextController.text);
+                },
+                padding: 0.0,
+              ),
+
+              AppFormField(
+                focusNode: widget.priceFocusNode,
+                textEditingController: priceTextController,
+                labelText: state.priceFieldParams?.label ?? '',
+                hintText: state.priceFieldParams?.hintText ?? '',
+                textInputType: TextInputType.number,
+                textInputAction: TextInputAction.next,
+                errorText: state.priceErrorText,
+                onFocusChange: (hasFocus) {
+                  if (hasFocus) return;
+
+                  context.read<NewItemPageCubit>().validatePrice(priceTextController.text, false);
+                },
+                onChanged: (newText) {
+                  context.read<NewItemPageCubit>().validatePrice(
+                    priceTextController.text,
+                    widget.priceFocusNode.hasFocus,
+                  );
+
+                  context.read<NewItemPageCubit>().updatePriceText(priceTextController.text);
+                },
+                padding: 0.0,
+              ),
+
+              AppFormField(
+                focusNode: widget.colorFocusNode,
+                textEditingController: colorTextController,
+                labelText: state.colorFieldParams?.label ?? '',
+                hintText: state.colorFieldParams?.hintText ?? '',
+                textInputType: TextInputType.text,
+                textInputAction: TextInputAction.done,
+                errorText: state.colorErrorText,
+                onFocusChange: (hasFocus) {
+                  if (hasFocus) return;
+
+                  context.read<NewItemPageCubit>().validateColor(colorTextController.text, false);
+                },
+                onChanged: (newText) => onColorChanged(),
+                padding: 0.0,
+                maxLength: state.colorFieldParams?.maxLength,
+                onTap: () async {
+                  final color = await DialogHelper.showColorsPickerDialog(
+                    context,
+                    colorTextController.text,
+                  );
+
+                  colorTextController.text = color ?? '';
+                  widget.colorFocusNode.unfocus();
+
+                  if (!context.mounted) return;
+
+                  onColorChanged();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void onColorChanged() {
+    context.read<NewItemPageCubit>().validateColor(
+      colorTextController.text,
+      widget.colorFocusNode.hasFocus,
+    );
+
+    context.read<NewItemPageCubit>().updateColorText(colorTextController.text);
+  }
+}

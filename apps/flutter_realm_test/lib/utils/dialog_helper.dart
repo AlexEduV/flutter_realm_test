@@ -11,9 +11,9 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/edit_personal_
 import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
 
-import '../l10n/l10n_keys.dart';
-import '../presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'app_router.dart';
+import '../core/router/app_router.dart';
+import '../presentation/features/l10n/app_localisations_cubit.dart';
+import '../presentation/features/l10n/l10n_keys.dart';
 
 class DialogHelper {
   //todo: location permission dialog is not showing up, if the location is turned off and then the app is opened from scratch

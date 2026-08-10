@@ -1,10 +1,10 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
-import '../../bloc/account/edit_dialog_cubit.dart';
-import '../../bloc/account/edit_dialog_state.dart';
+import '../../widgets/dialogs/edit_dialog_cubit.dart';
+import '../../widgets/dialogs/edit_dialog_state.dart';
 import '../app_semantics.dart';
 
 class EditPersonalInfoDialog extends StatefulWidget {

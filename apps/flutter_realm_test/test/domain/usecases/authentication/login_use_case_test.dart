@@ -4,7 +4,7 @@ import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/models/login_model.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart';
 
-import '../../../presentation/bloc/user/user_data_cubit_test.mocks.dart';
+import '../../../presentation/features/user/user_data_cubit_test.mocks.dart';
 
 void main() {
   late MockAuthRepository mockAuthRepository;

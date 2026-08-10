@@ -1,0 +1,88 @@
+import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/search/widgets/results_widget.dart';
+import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
+
+void main() {
+  final appLocalisationsCubit = AppLocalisationsCubit();
+
+  setUp(() {
+    serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
+
+    // Set up localisation values for the test
+    final localisations = {'pages.results.title': 'Results'};
+    appLocalisationsCubit.load(localisations);
+  });
+
+  tearDown(() {
+    serviceLocator.unregister<AppLocalisationsCubit>();
+  });
+
+  group('ResultsWidget', () {
+    testWidgets('displays the results text from localisation', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        BlocProvider<AppLocalisationsCubit>.value(
+          value: appLocalisationsCubit,
+          child: const MaterialApp(
+            home: Scaffold(body: ResultsWidget(resultsCount: '5')),
+          ),
+        ),
+      );
+
+      expect(
+        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.results)),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets('displays the badge with the correct value', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        BlocProvider<AppLocalisationsCubit>.value(
+          value: appLocalisationsCubit,
+          child: const MaterialApp(
+            home: Scaffold(body: ResultsWidget(resultsCount: '10')),
+          ),
+        ),
+      );
+
+      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.text('10'), findsOneWidget);
+    });
+
+    testWidgets('uses correct text style for results', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        BlocProvider<AppLocalisationsCubit>.value(
+          value: appLocalisationsCubit,
+          child: const MaterialApp(
+            home: Scaffold(body: ResultsWidget(resultsCount: '3')),
+          ),
+        ),
+      );
+
+      final textWidget = tester.widget<Text>(
+        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.results)),
+      );
+      expect(textWidget.style?.fontSize, AppTextStyles.zonaPro16.fontSize);
+      expect(textWidget.style?.fontWeight, FontWeight.w600);
+    });
+
+    testWidgets('row has correct spacing', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        BlocProvider<AppLocalisationsCubit>.value(
+          value: appLocalisationsCubit,
+          child: const MaterialApp(
+            home: Scaffold(body: ResultsWidget(resultsCount: '7')),
+          ),
+        ),
+      );
+
+      final rowWidget = tester.widget<Row>(find.byType(Row));
+      expect(rowWidget.spacing, AppDimensions.minorL);
+    });
+  });
+}

@@ -1,0 +1,141 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_flutter_project/common/constants/api_constants.dart';
+import 'package:test_flutter_project/common/constants/app_constants.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
+import 'package:test_flutter_project/presentation/features/article/article_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
+
+import '../../../common/constants/app_semantics_labels.dart';
+import '../../../domain/models/share_params_model.dart';
+import '../../widgets/app_semantics.dart';
+import '../share/share_cubit.dart';
+import 'article_page_cubit.dart';
+import 'article_page_state.dart';
+
+class ArticlePage extends StatefulWidget {
+  const ArticlePage({required this.articleId, super.key});
+
+  final String articleId;
+
+  @override
+  State<ArticlePage> createState() => _ArticlePageState();
+}
+
+class _ArticlePageState extends State<ArticlePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    context.read<ArticlePageCubit>().init(widget.articleId);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ArticlePageCubit, ArticlePageState>(
+      builder: (context, state) {
+        final minsToRead = state.article?.minsToRead;
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(state.article?.title ?? '', style: AppTextStyles.zonaPro20),
+            centerTitle: true,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: AppDimensions.normalS),
+                child: IconButton(
+                  onPressed: () async {
+                    await context.read<ShareCubit>().share(
+                      ShareParamsModel(
+                        title: '${state.article?.title}',
+                        text: '${ApiConstants.webHost}articles/?id=${widget.articleId}',
+                      ),
+                    );
+                  },
+                  icon: const AppSemantics(
+                    button: true,
+                    label: AppSemanticsLabels.shareButton,
+                    child: Icon(Icons.ios_share_rounded, size: AppDimensions.normalXL),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: state.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Padding(
+                  padding: const EdgeInsetsGeometry.symmetric(horizontal: AppDimensions.normalL),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: AppDimensions.normalL,
+                      children: [
+                        AspectRatio(
+                          aspectRatio: AppConstants.aspectRatio,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                            child: CachedNetworkImage(
+                              imageUrl: state.article?.imageUrl ?? '',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              placeholder: (context, url) =>
+                                  Container(color: AppColors.placeholderColor),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                              color: Colors.black.withAlpha(70),
+                              colorBlendMode: BlendMode.darken,
+                            ),
+                          ),
+                        ),
+
+                        Row(
+                          spacing: AppDimensions.minorL,
+                          children: [
+                            if (minsToRead != null) ...[
+                              Text(
+                                '$minsToRead ${context.tr(ArticlePageLocaleKeys.articlePageMinsToRead)}',
+                              ),
+                            ],
+
+                            Text(state.article?.datePublished ?? ''),
+                          ],
+                        ),
+
+                        Row(
+                          spacing: AppDimensions.normalXS,
+                          children: [
+                            AvatarWidget(imageSrc: state.article?.author.imageSrc),
+
+                            Text(
+                              state.article?.author.fullName ?? '',
+                              style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+
+                        Text(
+                          state.article?.summary ?? '',
+                          style: AppTextStyles.zonaPro14.copyWith(
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+
+                        ...?state.article?.paragraphs.map(
+                          (paragraph) => Text(
+                            paragraph,
+                            style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w400),
+                          ),
+                        ),
+
+                        const SizedBox(height: AppDimensions.normalL),
+                      ],
+                    ),
+                  ),
+                ),
+        );
+      },
+    );
+  }
+}

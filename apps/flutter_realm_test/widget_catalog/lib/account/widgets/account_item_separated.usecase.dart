@@ -1,17 +1,15 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.dart';
+import 'package:test_flutter_project/presentation/features/account/widgets/account_item_separated.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 Widget buildAccountItemSeparatedUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()..load({});
 
   return MultiBlocProvider(
-    providers: [
-      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
-    ],
+    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       body: Padding(
@@ -20,21 +18,9 @@ Widget buildAccountItemSeparatedUseCase(BuildContext context) {
           spacing: AppDimensions.normalL,
           children: [
             AccountItemSeparated(
-              title: context.knobs.string(
-                label: 'Item name',
-                initialValue: 'Account item',
-              ),
-              onTap:
-                  context.knobs.boolean(
-                    label: 'With onTap',
-                    initialValue: false,
-                  )
-                  ? () {}
-                  : null,
-              isEnabled: context.knobs.boolean(
-                label: 'Is enabled',
-                initialValue: true,
-              ),
+              title: context.knobs.string(label: 'Item name', initialValue: 'Account item'),
+              onTap: context.knobs.boolean(label: 'With onTap', initialValue: false) ? () {} : null,
+              isEnabled: context.knobs.boolean(label: 'Is enabled', initialValue: true),
             ),
           ],
         ),

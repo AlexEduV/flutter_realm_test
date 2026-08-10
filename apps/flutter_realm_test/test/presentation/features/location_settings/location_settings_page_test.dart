@@ -1,0 +1,148 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_state.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_state.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/widgets/footer_text.dart';
+import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
+
+import '../../../common/extensions/context_extension_test.mocks.dart';
+import '../../../utils/app_router_test.mocks.dart';
+import 'location_settings_page_test.mocks.dart';
+
+@GenerateNiceMocks([MockSpec<LocationSettingsPageCubit>()])
+void main() {
+  final appLocalisationsCubit = MockAppLocalisationsCubit();
+  final mockLocationSettingsPageCubit = MockLocationSettingsPageCubit();
+
+  Widget buildTestableWidget({
+    required UserDataCubit userDataCubit,
+    required AppLocalisationsCubit appLocalisationsCubit,
+  }) {
+    return MaterialApp(
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<UserDataCubit>.value(value: userDataCubit),
+          BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          BlocProvider<LocationSettingsPageCubit>.value(value: mockLocationSettingsPageCubit),
+        ],
+        child: const LocationSettingsPage(),
+      ),
+    );
+  }
+
+  setUp(() {
+    when(mockLocationSettingsPageCubit.state).thenReturn(const LocationSettingsPageState());
+    when(mockLocationSettingsPageCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    when(appLocalisationsCubit.state).thenReturn(
+      const AppLocalisationsState(
+        localisations: {
+          AccountPageLocaleKeys.accountItemLocation: 'Location',
+          LocationSettingsLocaleKeys.locationUsageDescription: 'Description',
+        },
+      ),
+    );
+    when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
+  });
+
+  testWidgets('shows app bar title and location usage description', (WidgetTester tester) async {
+    final userDataCubit = MockUserDataCubit();
+    when(userDataCubit.state).thenReturn(
+      UserDataState(
+        user: UserEntity.empty().copyWith(isLocationPermissionGranted: true, region: 'us'),
+      ),
+    );
+    when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(
+      buildTestableWidget(
+        userDataCubit: userDataCubit,
+        appLocalisationsCubit: appLocalisationsCubit,
+      ),
+    );
+
+    expect(
+      find.textContaining('Location'),
+      findsOneWidget,
+    ); // Adjust if your localization is different
+    expect(
+      find.textContaining('Description'),
+      findsOneWidget,
+    ); // Adjust for your actual description
+  });
+
+  testWidgets('shows region and permission items', (WidgetTester tester) async {
+    final userDataCubit = MockUserDataCubit();
+    when(userDataCubit.state).thenReturn(
+      UserDataState(
+        user: UserEntity.empty().copyWith(isLocationPermissionGranted: true, region: 'us'),
+      ),
+    );
+    when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(
+      buildTestableWidget(
+        userDataCubit: userDataCubit,
+        appLocalisationsCubit: appLocalisationsCubit,
+      ),
+    );
+
+    expect(find.byType(PersonalDetailsListItem), findsNWidgets(2));
+  });
+
+  testWidgets('shows footer texts', (WidgetTester tester) async {
+    final userDataCubit = MockUserDataCubit();
+    when(userDataCubit.state).thenReturn(
+      UserDataState(
+        user: UserEntity.empty().copyWith(isLocationPermissionGranted: true, region: 'us'),
+      ),
+    );
+    when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(
+      buildTestableWidget(
+        userDataCubit: userDataCubit,
+        appLocalisationsCubit: appLocalisationsCubit,
+      ),
+    );
+
+    expect(find.byType(FooterText), findsNWidgets(2));
+  });
+
+  testWidgets('tapping region item calls onRegionItemTap', (WidgetTester tester) async {
+    final userDataCubit = MockUserDataCubit();
+    when(userDataCubit.state).thenReturn(
+      UserDataState(
+        user: UserEntity.empty().copyWith(isLocationPermissionGranted: true, region: 'us'),
+      ),
+    );
+    when(userDataCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(
+      buildTestableWidget(
+        userDataCubit: userDataCubit,
+        appLocalisationsCubit: appLocalisationsCubit,
+      ),
+    );
+
+    // Find the region item and tap it
+    final regionItem = find.byType(PersonalDetailsListItem).last;
+    await tester.tap(regionItem);
+    await tester.pumpAndSettle();
+
+    // You can verify that updateRegion is called if you mock DialogHelper and RegionRemoteDataSource
+    // For now, just check that the tap does not throw
+    expect(regionItem, findsOneWidget);
+  });
+}
