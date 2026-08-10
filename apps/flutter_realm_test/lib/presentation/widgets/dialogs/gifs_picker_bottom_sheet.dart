@@ -27,8 +27,8 @@ class GifsPickerBottomSheet extends StatefulWidget {
 }
 
 class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
-  double textFieldScale = 1.0;
-  final textController = TextEditingController();
+  double _textFieldScale = 1.0;
+  final _textController = TextEditingController();
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
 
   @override
   void dispose() {
-    textController.dispose();
+    _textController.dispose();
     super.dispose();
   }
 
@@ -57,11 +57,11 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
               padding: const EdgeInsets.all(AppDimensions.normalS).copyWith(bottom: 0.0),
               child: AnimatedScale(
                 duration: const Duration(milliseconds: 300),
-                scale: textFieldScale,
+                scale: _textFieldScale,
                 curve: Curves.easeInOut,
                 child: TextFormField(
                   onTap: onTextFieldTap,
-                  controller: textController,
+                  controller: _textController,
                   onChanged: (newValue) =>
                       context.read<MessagesPageCubit>().updateGifsSearch(newValue),
                   decoration: InputDecoration(
@@ -169,9 +169,9 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
   }
 
   Future<void> onTextFieldTap() async {
-    setState(() => textFieldScale = 1.2);
+    setState(() => _textFieldScale = 1.2);
     await Future.delayed(const Duration(milliseconds: 100));
-    setState(() => textFieldScale = 1.0);
+    setState(() => _textFieldScale = 1.0);
   }
 
   void onGifItemTap(GifEntity gif) {
