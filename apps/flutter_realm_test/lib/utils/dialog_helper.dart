@@ -31,7 +31,7 @@ class DialogHelper {
   }) async {
     await showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (_) {
         return ConfirmationDialog(
           title: title,
           description: description,
@@ -58,7 +58,7 @@ class DialogHelper {
   }) async {
     await showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (_) {
         return EditPersonalInfoDialog(
           initialValue: initialValue,
           title: title,
@@ -84,7 +84,7 @@ class DialogHelper {
   }) async {
     await showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (_) {
         return EditPasswordDialog(
           title: title,
           cancelButtonTitle: cancelButtonTitle,
@@ -106,9 +106,7 @@ class DialogHelper {
       context: context,
       backgroundColor: AppColors.scaffoldColor,
       clipBehavior: Clip.antiAlias,
-      builder: (BuildContext context) {
-        return CountryPickerBottomSheet(items: items, currentSelectedIndex: currentIndex);
-      },
+      builder: (_) => CountryPickerBottomSheet(items: items, currentSelectedIndex: currentIndex),
     );
   }
 
@@ -119,9 +117,7 @@ class DialogHelper {
     await showModalBottomSheet(
       backgroundColor: AppColors.scaffoldColor,
       context: context,
-      builder: (context) {
-        return InboxItemMenuBottomSheet(conversationId: conversationId);
-      },
+      builder: (_) => InboxItemMenuBottomSheet(conversationId: conversationId),
     );
   }
 
@@ -132,7 +128,7 @@ class DialogHelper {
     await showModalBottomSheet(
       backgroundColor: AppColors.scaffoldColor,
       context: context,
-      builder: (context) => GifsPickerBottomSheet(listKey: listKey),
+      builder: (_) => GifsPickerBottomSheet(listKey: listKey),
     );
   }
 
