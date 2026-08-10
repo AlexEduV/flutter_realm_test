@@ -13,9 +13,9 @@ import 'package:test_flutter_project/presentation/features/search/widgets/search
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 
-import '../../../l10n/l10n_keys.dart';
 import '../../features/search/widgets/results_widget.dart';
 import '../../widgets/announcement_item/announcement_list_item.dart';
+import '../l10n/l10n_keys.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

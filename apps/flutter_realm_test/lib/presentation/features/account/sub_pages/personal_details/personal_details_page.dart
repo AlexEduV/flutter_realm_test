@@ -10,8 +10,8 @@ import 'package:test_flutter_project/presentation/features/user/user_data_cubit.
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../../../../../l10n/l10n_keys.dart';
 import '../../../../features/account/widgets/custom_divider.dart';
+import '../../../l10n/l10n_keys.dart';
 import '../../account_page_identifiers.dart';
 
 class PersonalDetailsPage extends StatelessWidget {

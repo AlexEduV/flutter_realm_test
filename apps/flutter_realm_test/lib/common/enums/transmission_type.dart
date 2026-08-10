@@ -1,4 +1,4 @@
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
 import '../../core/di/injection_container.dart';
 import '../../presentation/features/l10n/app_localisations_cubit.dart';

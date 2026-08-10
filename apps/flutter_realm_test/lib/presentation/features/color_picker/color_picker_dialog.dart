@@ -7,8 +7,8 @@ import 'package:test_flutter_project/presentation/features/color_picker/color_pi
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_state.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
-import '../../../l10n/l10n_keys.dart';
 import '../../widgets/app_semantics.dart';
+import '../l10n/l10n_keys.dart';
 import 'widgets/color_item.dart';
 
 class ColorPickerDialog extends StatefulWidget {

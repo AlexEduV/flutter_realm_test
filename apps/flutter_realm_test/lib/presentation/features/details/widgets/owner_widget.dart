@@ -13,8 +13,8 @@ import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../../common/constants/app_routes.dart';
-import '../../../../l10n/l10n_keys.dart';
 import '../../inbox/inbox_page_identifiers.dart';
+import '../../l10n/l10n_keys.dart';
 
 class OwnerWidget extends StatelessWidget {
   const OwnerWidget({required this.car, required this.user, super.key});

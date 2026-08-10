@@ -9,8 +9,8 @@ import 'package:test_flutter_project/presentation/features/authentication/authen
 import 'package:test_flutter_project/presentation/features/authentication/widgets/animated_divider_with_text.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../l10n/l10n_keys.dart';
 import '../../../features/authentication/authentication_cubit.dart';
+import '../../l10n/l10n_keys.dart';
 import 'app_form_field.dart';
 
 class LoginForm extends StatefulWidget {

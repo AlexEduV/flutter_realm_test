@@ -7,8 +7,8 @@ import 'package:test_flutter_project/presentation/features/authentication/authen
 import 'package:test_flutter_project/presentation/features/authentication/widgets/password_strength_bar_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../l10n/l10n_keys.dart';
 import '../../../features/authentication/authentication_cubit.dart';
+import '../../l10n/l10n_keys.dart';
 import 'animated_divider_with_text.dart';
 import 'app_form_field.dart';
 

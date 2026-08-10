@@ -15,7 +15,7 @@ import 'package:test_flutter_project/presentation/features/user/user_data_cubit.
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../../../l10n/l10n_keys.dart';
+import '../l10n/l10n_keys.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});

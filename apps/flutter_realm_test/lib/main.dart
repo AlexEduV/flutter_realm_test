@@ -9,7 +9,6 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/domain/usecases/regions/fetch_regions_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/init_region_models_use_case.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
@@ -18,6 +17,7 @@ import 'package:test_flutter_project/presentation/features/explore/explore_page_
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';

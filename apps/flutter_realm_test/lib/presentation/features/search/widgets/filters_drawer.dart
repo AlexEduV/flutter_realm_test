@@ -12,7 +12,7 @@ import 'package:test_flutter_project/presentation/features/search/search_page_st
 import 'package:test_flutter_project/presentation/features/search/widgets/debounced_text_form_field.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../l10n/l10n_keys.dart';
+import '../../l10n/l10n_keys.dart';
 
 class FiltersDrawer extends StatefulWidget {
   const FiltersDrawer({super.key});

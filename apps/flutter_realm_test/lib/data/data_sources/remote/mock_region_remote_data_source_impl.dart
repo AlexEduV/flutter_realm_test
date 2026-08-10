@@ -9,8 +9,8 @@ import '../../../common/constants/app_asset_routes.dart';
 import '../../../core/di/injection_container.dart';
 import '../../../domain/models/api_response.dart';
 import '../../../domain/models/region_ui_model.dart';
-import '../../../l10n/l10n_keys.dart';
 import '../../../presentation/features/l10n/app_localisations_cubit.dart';
+import '../../../presentation/features/l10n/l10n_keys.dart';
 
 class MockRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
   List<RegionEntity>? regions = [];

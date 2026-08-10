@@ -11,8 +11,8 @@ import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_c
 import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 
-import '../../../l10n/l10n_keys.dart';
 import '../l10n/app_localisations_cubit.dart';
+import '../l10n/l10n_keys.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
   SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase, this._appLocalisationsCubit)

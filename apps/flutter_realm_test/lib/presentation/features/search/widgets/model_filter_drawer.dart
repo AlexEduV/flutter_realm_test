@@ -6,7 +6,7 @@ import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 
-import '../../../../l10n/l10n_keys.dart';
+import '../../l10n/l10n_keys.dart';
 
 class ModelFilterDrawer extends StatelessWidget {
   const ModelFilterDrawer({required this.models, super.key});

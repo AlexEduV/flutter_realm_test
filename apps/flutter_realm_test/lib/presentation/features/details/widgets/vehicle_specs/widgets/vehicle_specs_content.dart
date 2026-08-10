@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 
 import '../../../../../../common/extensions/context_extension.dart';
 import '../../../../../../common/extensions/string_extension.dart';
-import '../../../../../../l10n/l10n_keys.dart';
+import '../../../../l10n/l10n_keys.dart';
 import '../../specification_item/specification_item.dart';
 import '../../specification_item/widgets/spec_color_widget.dart';
 

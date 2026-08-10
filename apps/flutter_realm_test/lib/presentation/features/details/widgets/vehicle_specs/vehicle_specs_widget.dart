@@ -7,8 +7,8 @@ import 'package:test_flutter_project/common/extensions/num_extension.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/vehicle_specs/widgets/vehicle_specs_content.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../../../l10n/l10n_keys.dart';
 import '../../../../features/details/details_page_cubit.dart';
+import '../../../l10n/l10n_keys.dart';
 import '../../details_page_state.dart';
 
 class VehicleSpecsWidget extends StatelessWidget {

@@ -1,6 +1,6 @@
 import '../../core/di/injection_container.dart';
-import '../../l10n/l10n_keys.dart';
 import '../../presentation/features/l10n/app_localisations_cubit.dart';
+import '../../presentation/features/l10n/l10n_keys.dart';
 
 enum FuelType {
   diesel(L10nKeys.fuelTypeDiesel),

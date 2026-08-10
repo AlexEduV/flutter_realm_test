@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
 void main() {
   group('L10nKeys', () {

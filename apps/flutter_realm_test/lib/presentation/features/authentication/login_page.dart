@@ -9,7 +9,7 @@ import 'package:test_flutter_project/presentation/features/authentication/authen
 import 'package:test_flutter_project/presentation/features/authentication/widgets/auth_error_widget.dart';
 import 'package:test_flutter_project/presentation/features/authentication/widgets/auth_form_switcher.dart';
 
-import '../../../l10n/l10n_keys.dart';
+import '../l10n/l10n_keys.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
