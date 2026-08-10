@@ -81,36 +81,42 @@ class AccountPage extends StatelessWidget {
                           textStyle: itemTextStyle,
                           icon: Icons.person_outlined,
                           label: context.tr(AccountPageLocaleKeys.accountItemPersonalDetails),
+                          semanticsId: AccountPageIds.accountItem,
                           onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
                         ),
 
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.location_on_outlined,
+                          semanticsId: AccountPageIds.accountItem,
                           label: context.tr(AccountPageLocaleKeys.accountItemLocation),
                           onTap: () => context.go(AppRoutes.home + AppRoutes.locationSettings),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.checklist_outlined,
+                          semanticsId: AccountPageIds.accountItem,
                           label: context.tr(AccountPageLocaleKeys.accountItemMyItems),
                           onTap: () => context.go(AppRoutes.home + AppRoutes.myItems),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.remove_red_eye_outlined,
+                          semanticsId: AccountPageIds.accountItem,
                           label: context.tr(AccountPageLocaleKeys.accountItemViewedItems),
                           onTap: () => context.go(AppRoutes.home + AppRoutes.recentlyViewed),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.cleaning_services,
+                          semanticsId: AccountPageIds.accountItem,
                           label: context.tr(AccountPageLocaleKeys.accountItemClearData),
                           onTap: () => context.go(AppRoutes.home + AppRoutes.clearUserData),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.logout_outlined,
+                          semanticsId: AccountPageIds.accountItem,
                           label: context.tr(AccountPageLocaleKeys.accountItemLogout),
                           onTap: () async {
                             await context.read<AuthenticationCubit>().logOut();

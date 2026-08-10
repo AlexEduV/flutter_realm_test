@@ -38,10 +38,8 @@ class AppSemanticsLabels {
 
   static const orDivider = 'orDivider';
 
-  static const inboxItem = 'inboxItem';
   static const favoriteListItem = 'favoriteListItem';
 
-  static const accountItem = 'accountItem';
   static const personalDetailsItem = 'personalDetailsItem';
 
   static const avatarSetImageButton = 'avatarSetImageButton';
@@ -49,12 +47,6 @@ class AppSemanticsLabels {
   static const dialogConfirmButton = 'dialogConfirmButton';
   static const dialogCancelButton = 'dialogCancelButton';
   static const dialogEditField = 'dialogEditField';
-
-  static const chatInputBarAttachmentButton = 'chatInputBarAttachmentButton';
-  static const chatInputBarSendMessageButton = 'chatInputBarSendMessageButton';
-  static const chatInputBarMessageTextField = 'chatInputBarMessageTextField';
-  static const chatInputBarGifButton = 'chatInputBarGifButton';
-  static const gifListItem = 'gifListItem';
 
   static const avatarWidget = 'avatarWidget';
   static const avatarWidgetEnhanced = 'avatarWidgetEnhanced';

@@ -2,7 +2,6 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/gif_entity.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
@@ -14,6 +13,7 @@ import '../../../domain/models/message_model.dart';
 import '../../features/inbox/inbox_page_cubit.dart';
 import '../../features/inbox/inbox_page_identifiers.dart';
 import '../../features/messages/messages_page_cubit.dart';
+import '../../features/messages/messages_page_identifiers.dart';
 import '../../features/messages/messages_page_state.dart';
 import '../../features/user/user_data_cubit.dart';
 
@@ -140,7 +140,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                           final gif = state.gifsInSearch[index];
 
                           return AppSemantics(
-                            label: '${AppSemanticsLabels.gifListItem} ${gif.title}',
+                            label: '${MessagesPageIds.gifListItem} ${gif.title}',
                             button: true,
                             child: Padding(
                               padding: const EdgeInsets.all(AppDimensions.minorXS),
