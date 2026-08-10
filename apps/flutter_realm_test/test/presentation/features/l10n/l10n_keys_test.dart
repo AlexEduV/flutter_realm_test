@@ -42,7 +42,8 @@ void main() {
     );
     test(
       'lastSeenSectionTitle',
-      () => expect(L10nKeys.lastSeenSectionTitle, 'pages.explore.lastSeenSection.title'),
+      () =>
+          expect(ExplorePageLocaleKeys.lastSeenSectionTitle, 'pages.explore.lastSeenSection.title'),
     );
     test('searchPageTitle', () => expect(L10nKeys.searchPageTitle, 'pages.search.title'));
     test('searchTabCars', () => expect(L10nKeys.searchTabCars, 'pages.search.tabs.cars'));

@@ -11,8 +11,6 @@ class L10nKeys {
 
   static const String distanceAway = 'widgets.distance.text';
 
-  static const String lastSeenSectionTitle = 'pages.explore.lastSeenSection.title';
-
   static const String searchPageTitle = 'pages.search.title';
   static const String searchTabCars = 'pages.search.tabs.cars';
   static const String searchTabBikes = 'pages.search.tabs.bikes';
