@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/widgets/animated_add_button.dart';
@@ -11,6 +10,7 @@ import 'package:test_flutter_project/presentation/features/home_bottom_bar/widge
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../common/extensions/num_extension.dart';
+import '../account/account_page_identifiers.dart';
 import '../inbox/inbox_page_identifiers.dart';
 
 class HomeBottomBar extends StatelessWidget {
@@ -81,7 +81,7 @@ class HomeBottomBar extends StatelessWidget {
               unselectedIcon: Icons.person_2_outlined,
               selectedIcon: Icons.person_2,
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemAccount,
-              label: context.tr(L10nKeys.accountPageTitle),
+              label: context.tr(AccountPageLocaleKeys.accountPageTitle),
             ),
           ],
         ),

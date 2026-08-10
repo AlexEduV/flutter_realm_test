@@ -11,6 +11,7 @@ import '../../../../features/account/widgets/account_item_separated.dart';
 import '../../../../features/account/widgets/custom_divider.dart';
 import '../../../user/user_data_cubit.dart';
 import '../../../user/user_data_state.dart';
+import '../../account_page_identifiers.dart';
 
 class ClearUserDataPage extends StatelessWidget {
   const ClearUserDataPage({super.key});
@@ -20,7 +21,10 @@ class ClearUserDataPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(context.tr(L10nKeys.accountItemClearData), style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(AccountPageLocaleKeys.accountItemClearData),
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -33,7 +37,10 @@ class ClearUserDataPage extends StatelessWidget {
           children: [
             const SizedBox(height: AppDimensions.minorS),
 
-            Text(context.tr(L10nKeys.dataDeletionDescription), style: AppTextStyles.zonaPro14),
+            Text(
+              context.tr(AccountPageLocaleKeys.dataDeletionDescription),
+              style: AppTextStyles.zonaPro14,
+            ),
 
             const SizedBox(height: AppDimensions.normalXS),
 
@@ -46,7 +53,7 @@ class ClearUserDataPage extends StatelessWidget {
                   return Column(
                     children: [
                       PersonalDetailsListItem(
-                        title: context.tr(L10nKeys.clearViewHistoryItem),
+                        title: context.tr(AccountPageLocaleKeys.clearViewHistoryItem),
                         description: state.user.viewedIds.isNotEmpty
                             ? context.tr(L10nKeys.activeStateLabel)
                             : context.tr(L10nKeys.emptyStateLabel),
@@ -57,7 +64,7 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: context.trRead(L10nKeys.clearViewHistoryItem),
+                                  title: context.trRead(AccountPageLocaleKeys.clearViewHistoryItem),
                                   description: context.trRead(
                                     L10nKeys.clearViewHistoryDialogDescription,
                                   ),
@@ -75,7 +82,7 @@ class ClearUserDataPage extends StatelessWidget {
                       ),
 
                       PersonalDetailsListItem(
-                        title: context.tr(L10nKeys.clearFavoritesItem),
+                        title: context.tr(AccountPageLocaleKeys.clearFavoritesItem),
                         description: state.user.favoriteIds.isNotEmpty
                             ? context.tr(L10nKeys.activeStateLabel)
                             : context.tr(L10nKeys.emptyStateLabel),
@@ -86,7 +93,7 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: context.trRead(L10nKeys.clearFavoritesItem),
+                                  title: context.trRead(AccountPageLocaleKeys.clearFavoritesItem),
                                   description: context.trRead(
                                     L10nKeys.clearFavoriteItemsDialogDescription,
                                   ),
@@ -104,7 +111,7 @@ class ClearUserDataPage extends StatelessWidget {
                       ),
 
                       PersonalDetailsListItem(
-                        title: context.tr(L10nKeys.clearMyItemsItem),
+                        title: context.tr(AccountPageLocaleKeys.clearMyItemsItem),
                         description: state.user.createdIds.isNotEmpty
                             ? context.tr(L10nKeys.activeStateLabel)
                             : context.tr(L10nKeys.emptyStateLabel),
@@ -115,7 +122,7 @@ class ClearUserDataPage extends StatelessWidget {
                             : () {
                                 DialogHelper.showConfirmationDialog(
                                   context,
-                                  title: context.trRead(L10nKeys.clearMyItemsItem),
+                                  title: context.trRead(AccountPageLocaleKeys.clearMyItemsItem),
                                   description: context.trRead(
                                     L10nKeys.clearMyItemsDialogDescription,
                                   ),
@@ -142,13 +149,13 @@ class ClearUserDataPage extends StatelessWidget {
             BlocBuilder<UserDataCubit, UserDataState>(
               builder: (context, state) {
                 return AccountItemSeparated(
-                  title: context.tr(L10nKeys.clearAllDataItem),
+                  title: context.tr(AccountPageLocaleKeys.clearAllDataItem),
                   isEnabled: !state.isDataClear,
                   onTap: !state.isDataClear
                       ? () {
                           DialogHelper.showConfirmationDialog(
                             context,
-                            title: context.trRead(L10nKeys.clearAllDataItem),
+                            title: context.trRead(AccountPageLocaleKeys.clearAllDataItem),
                             description: context.trRead(L10nKeys.clearAllDataDialogDescription),
                             cancelButtonTitle: context.trRead(
                               L10nKeys.clearAllDataDialogCancelLabel,

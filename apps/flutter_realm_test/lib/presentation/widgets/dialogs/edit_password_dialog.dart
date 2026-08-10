@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
-import '../../../l10n/l10n_keys.dart';
+import '../../features/account/account_page_identifiers.dart';
 import '../../features/account/sub_pages/personal_details/widgets/edit_password_field_widget.dart';
 import '../../widgets/dialogs/edit_dialog_cubit.dart';
 import '../../widgets/dialogs/edit_dialog_state.dart';
@@ -75,7 +75,7 @@ class _EditPasswordDialogState extends State<EditPasswordDialog> {
             mainAxisSize: MainAxisSize.min,
             spacing: AppDimensions.minorL,
             children: [
-              Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogLabel)),
+              Text(context.tr(AccountPageLocaleKeys.personalDetailsItemPasswordDialogLabel)),
 
               EditPasswordFieldWidget(
                 textEditingController: textEditingController,
@@ -90,7 +90,7 @@ class _EditPasswordDialogState extends State<EditPasswordDialog> {
 
               const SizedBox(height: AppDimensions.minorS),
 
-              Text(context.tr(L10nKeys.personalDetailsItemPasswordDialogSecondLabel)),
+              Text(context.tr(AccountPageLocaleKeys.personalDetailsItemPasswordDialogSecondLabel)),
 
               EditPasswordFieldWidget(
                 textEditingController: confirmationTextEditingController,

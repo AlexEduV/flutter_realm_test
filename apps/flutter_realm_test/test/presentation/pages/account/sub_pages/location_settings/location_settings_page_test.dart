@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_state.dart';
@@ -48,7 +48,7 @@ void main() {
     when(appLocalisationsCubit.state).thenReturn(
       const AppLocalisationsState(
         localisations: {
-          L10nKeys.accountItemLocation: 'Location',
+          AccountPageLocaleKeys.accountItemLocation: 'Location',
           LocationSettingsLocaleKeys.locationUsageDescription: 'Description',
         },
       ),

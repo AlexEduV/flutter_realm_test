@@ -6,6 +6,7 @@ import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
+import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/account/widgets/account_item_separated.dart';
 import 'package:test_flutter_project/presentation/features/account/widgets/custom_divider.dart';
 import 'package:test_flutter_project/presentation/features/account/widgets/user_avatar_enhanced.dart';
@@ -32,7 +33,10 @@ class AccountPage extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
-            title: Text(context.tr(L10nKeys.accountPageTitle), style: AppTextStyles.zonaPro20),
+            title: Text(
+              context.tr(AccountPageLocaleKeys.accountPageTitle),
+              style: AppTextStyles.zonaPro20,
+            ),
             centerTitle: true,
           ),
           body: SingleChildScrollView(
@@ -76,38 +80,38 @@ class AccountPage extends StatelessWidget {
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.person_outlined,
-                          label: context.tr(L10nKeys.accountItemPersonalDetails),
+                          label: context.tr(AccountPageLocaleKeys.accountItemPersonalDetails),
                           onTap: () => context.go(AppRoutes.home + AppRoutes.personalDetails),
                         ),
 
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.location_on_outlined,
-                          label: context.tr(L10nKeys.accountItemLocation),
+                          label: context.tr(AccountPageLocaleKeys.accountItemLocation),
                           onTap: () => context.go(AppRoutes.home + AppRoutes.locationSettings),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.checklist_outlined,
-                          label: context.tr(L10nKeys.accountItemMyItems),
+                          label: context.tr(AccountPageLocaleKeys.accountItemMyItems),
                           onTap: () => context.go(AppRoutes.home + AppRoutes.myItems),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.remove_red_eye_outlined,
-                          label: context.tr(L10nKeys.accountItemViewedItems),
+                          label: context.tr(AccountPageLocaleKeys.accountItemViewedItems),
                           onTap: () => context.go(AppRoutes.home + AppRoutes.recentlyViewed),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.cleaning_services,
-                          label: context.tr(L10nKeys.accountItemClearData),
+                          label: context.tr(AccountPageLocaleKeys.accountItemClearData),
                           onTap: () => context.go(AppRoutes.home + AppRoutes.clearUserData),
                         ),
                         AccountItem(
                           textStyle: itemTextStyle,
                           icon: Icons.logout_outlined,
-                          label: context.tr(L10nKeys.accountItemLogout),
+                          label: context.tr(AccountPageLocaleKeys.accountItemLogout),
                           onTap: () async {
                             await context.read<AuthenticationCubit>().logOut();
 
@@ -124,11 +128,11 @@ class AccountPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(AppDimensions.normalS),
                   child: AccountItemSeparated(
-                    title: context.tr(L10nKeys.accountItemDeleteAccount),
+                    title: context.tr(AccountPageLocaleKeys.accountItemDeleteAccount),
                     onTap: () {
                       DialogHelper.showConfirmationDialog(
                         context,
-                        title: context.trRead(L10nKeys.accountItemDeleteAccount),
+                        title: context.trRead(AccountPageLocaleKeys.accountItemDeleteAccount),
                         description: context.trRead(L10nKeys.deleteAccountDialogDescription),
                         cancelButtonTitle: context.trRead(L10nKeys.deleteAccountDialogCancelLabel),
                         confirmButtonTitle: context.trRead(

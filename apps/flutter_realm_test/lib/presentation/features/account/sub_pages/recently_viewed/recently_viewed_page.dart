@@ -6,12 +6,12 @@ import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 
-import '../../../../../l10n/l10n_keys.dart';
 import '../../../../widgets/car_list_item.dart';
 import '../../../explore/explore_page_cubit.dart';
 import '../../../explore/explore_page_state.dart';
 import '../../../user/user_data_cubit.dart';
 import '../../../user/user_data_state.dart';
+import '../../account_page_identifiers.dart';
 
 class RecentlyViewedPage extends StatelessWidget {
   const RecentlyViewedPage({super.key});
@@ -21,7 +21,10 @@ class RecentlyViewedPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(context.tr(L10nKeys.accountItemViewedItems), style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(AccountPageLocaleKeys.accountItemViewedItems),
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
@@ -40,7 +43,7 @@ class RecentlyViewedPage extends StatelessWidget {
 
               if (viewedEntities.isEmpty) {
                 return EmptyResultsPlaceholderWidget(
-                  text: context.tr(L10nKeys.viewedItemsNoResultsPlaceholder),
+                  text: context.tr(AccountPageLocaleKeys.viewedItemsNoResultsPlaceholder),
                 );
               }
 

@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
-import '../../../../../l10n/l10n_keys.dart';
 import '../../../../widgets/car_list_item.dart';
 import '../../../explore/explore_page_cubit.dart';
 import '../../../explore/explore_page_state.dart';
 import '../../../user/user_data_cubit.dart';
 import '../../../user/user_data_state.dart';
+import '../../account_page_identifiers.dart';
 
 class MyItemsPage extends StatelessWidget {
   const MyItemsPage({super.key});
@@ -19,7 +19,10 @@ class MyItemsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(context.tr(L10nKeys.accountItemMyItems), style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(AccountPageLocaleKeys.accountItemMyItems),
+          style: AppTextStyles.zonaPro20,
+        ),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
@@ -36,7 +39,7 @@ class MyItemsPage extends StatelessWidget {
 
               if (createdEntities.isEmpty) {
                 return EmptyResultsPlaceholderWidget(
-                  text: context.tr(L10nKeys.myItemsNoResultsPlaceholder),
+                  text: context.tr(AccountPageLocaleKeys.myItemsNoResultsPlaceholder),
                 );
               }
 

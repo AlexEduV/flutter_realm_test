@@ -8,6 +8,7 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_by
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_dialog.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_identifiers.dart';
@@ -38,8 +39,8 @@ void main() {
 
   setUpAll(() {
     appLocalisationsCubit.load({
-      L10nKeys.personalDetailsItemPasswordDialogLabel: 'New Password',
-      L10nKeys.personalDetailsItemPasswordDialogSecondLabel: 'Confirm Password',
+      AccountPageLocaleKeys.personalDetailsItemPasswordDialogLabel: 'New Password',
+      AccountPageLocaleKeys.personalDetailsItemPasswordDialogSecondLabel: 'Confirm Password',
       InboxPageLocaleKeys.conversationDialogDeleteItemTitle: 'Delete conversation',
       InboxPageLocaleKeys.gifsTextFieldHint: 'Search GIFs',
       InboxPageLocaleKeys.gifsResultsTrendingLabel: 'Trending',

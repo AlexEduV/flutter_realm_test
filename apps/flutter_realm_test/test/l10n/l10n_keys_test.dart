@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
@@ -315,101 +316,124 @@ void main() {
       () => expect(InboxPageLocaleKeys.inboxPageEmptyText, 'pages.inbox.emptyPlaceholderText'),
     );
     test('inboxPageTitle', () => expect(InboxPageLocaleKeys.inboxPageTitle, 'pages.inbox.title'));
-    test('accountPageTitle', () => expect(L10nKeys.accountPageTitle, 'pages.account.title'));
+    test(
+      'accountPageTitle',
+      () => expect(AccountPageLocaleKeys.accountPageTitle, 'pages.account.title'),
+    );
     test(
       'accountItemPersonalDetails',
-      () =>
-          expect(L10nKeys.accountItemPersonalDetails, 'pages.account.items.personalDetails.title'),
+      () => expect(
+        AccountPageLocaleKeys.accountItemPersonalDetails,
+        'pages.account.items.personalDetails.title',
+      ),
     );
     test(
       'personalDetailsItemFirstName',
       () => expect(
-        L10nKeys.personalDetailsItemFirstName,
+        AccountPageLocaleKeys.personalDetailsItemFirstName,
         'pages.account.items.personalDetails.firstNameItem',
       ),
     );
     test(
       'personalDetailsItemLastName',
       () => expect(
-        L10nKeys.personalDetailsItemLastName,
+        AccountPageLocaleKeys.personalDetailsItemLastName,
         'pages.account.items.personalDetails.lastNameItem',
       ),
     );
     test(
       'personalDetailsItemEmail',
       () => expect(
-        L10nKeys.personalDetailsItemEmail,
+        AccountPageLocaleKeys.personalDetailsItemEmail,
         'pages.account.items.personalDetails.emailItem',
       ),
     );
     test(
       'personalDetailsItemPassword',
       () => expect(
-        L10nKeys.personalDetailsItemPassword,
+        AccountPageLocaleKeys.personalDetailsItemPassword,
         'pages.account.items.personalDetails.passwordItem.title',
       ),
     );
     test(
       'accountItemLocation',
-      () => expect(L10nKeys.accountItemLocation, 'pages.account.items.location.title'),
+      () => expect(AccountPageLocaleKeys.accountItemLocation, 'pages.account.items.location.title'),
     );
     test(
       'accountItemMyItems',
-      () => expect(L10nKeys.accountItemMyItems, 'pages.account.items.myItems.title'),
+      () => expect(AccountPageLocaleKeys.accountItemMyItems, 'pages.account.items.myItems.title'),
     );
     test(
       'myItemsNoResultsPlaceholder',
       () => expect(
-        L10nKeys.myItemsNoResultsPlaceholder,
+        AccountPageLocaleKeys.myItemsNoResultsPlaceholder,
         'pages.account.items.myItems.emptyPlaceholder',
       ),
     );
     test(
       'accountItemViewedItems',
-      () => expect(L10nKeys.accountItemViewedItems, 'pages.account.items.recentlyViewed.title'),
+      () => expect(
+        AccountPageLocaleKeys.accountItemViewedItems,
+        'pages.account.items.recentlyViewed.title',
+      ),
     );
     test(
       'viewedItemsNoResultsPlaceholder',
       () => expect(
-        L10nKeys.viewedItemsNoResultsPlaceholder,
+        AccountPageLocaleKeys.viewedItemsNoResultsPlaceholder,
         'pages.account.items.recentlyViewed.emptyPlaceholder',
       ),
     );
     test(
       'accountItemClearData',
-      () => expect(L10nKeys.accountItemClearData, 'pages.account.items.clearData.title'),
+      () =>
+          expect(AccountPageLocaleKeys.accountItemClearData, 'pages.account.items.clearData.title'),
     );
     test(
       'dataDeletionDescription',
       () => expect(
-        L10nKeys.dataDeletionDescription,
+        AccountPageLocaleKeys.dataDeletionDescription,
         'pages.account.items.clearData.dataDeletionDescription',
       ),
     );
     test(
       'clearViewHistoryItem',
-      () =>
-          expect(L10nKeys.clearViewHistoryItem, 'pages.account.items.clearData.viewedHistoryItem'),
+      () => expect(
+        AccountPageLocaleKeys.clearViewHistoryItem,
+        'pages.account.items.clearData.viewedHistoryItem',
+      ),
     );
     test(
       'clearFavoritesItem',
-      () => expect(L10nKeys.clearFavoritesItem, 'pages.account.items.clearData.favoritesItem'),
+      () => expect(
+        AccountPageLocaleKeys.clearFavoritesItem,
+        'pages.account.items.clearData.favoritesItem',
+      ),
     );
     test(
       'clearMyItemsItem',
-      () => expect(L10nKeys.clearMyItemsItem, 'pages.account.items.clearData.myItemsItem'),
+      () => expect(
+        AccountPageLocaleKeys.clearMyItemsItem,
+        'pages.account.items.clearData.myItemsItem',
+      ),
     );
     test(
       'clearAllDataItem',
-      () => expect(L10nKeys.clearAllDataItem, 'pages.account.items.clearData.clearAllDataItem'),
+      () => expect(
+        AccountPageLocaleKeys.clearAllDataItem,
+        'pages.account.items.clearData.clearAllDataItem',
+      ),
     );
     test(
       'accountItemLogout',
-      () => expect(L10nKeys.accountItemLogout, 'pages.account.items.logOut'),
+      () => expect(AccountPageLocaleKeys.accountItemLogout, 'pages.account.items.logOut'),
     );
     test(
       'accountItemDeleteAccount',
-      () => expect(L10nKeys.accountItemDeleteAccount, 'pages.account.items.deleteAccount'),
+      () => expect(
+        AccountPageLocaleKeys.accountItemDeleteAccount,
+        'pages.account.items.deleteAccount',
+      ),
     );
     test(
       'dateFormattingYesterday',

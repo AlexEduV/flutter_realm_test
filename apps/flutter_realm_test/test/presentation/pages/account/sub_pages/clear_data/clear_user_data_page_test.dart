@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/account/sub_pages/clear_data/clear_user_data_page.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_state.dart';
@@ -39,12 +39,12 @@ void main() {
     when(mockAppLocalisationsCubit.state).thenReturn(
       const AppLocalisationsState(
         localisations: {
-          L10nKeys.accountItemClearData: 'clearData',
-          L10nKeys.dataDeletionDescription: 'dataDeletionDescription',
-          L10nKeys.clearViewHistoryItem: 'clearViewHistoryItem',
-          L10nKeys.clearFavoritesItem: 'clearFavoritesItem',
-          L10nKeys.clearMyItemsItem: 'clearMyItemsItem',
-          L10nKeys.clearAllDataItem: 'clearAllDataItem',
+          AccountPageLocaleKeys.accountItemClearData: 'clearData',
+          AccountPageLocaleKeys.dataDeletionDescription: 'dataDeletionDescription',
+          AccountPageLocaleKeys.clearViewHistoryItem: 'clearViewHistoryItem',
+          AccountPageLocaleKeys.clearFavoritesItem: 'clearFavoritesItem',
+          AccountPageLocaleKeys.clearMyItemsItem: 'clearMyItemsItem',
+          AccountPageLocaleKeys.clearAllDataItem: 'clearAllDataItem',
         },
       ),
     );

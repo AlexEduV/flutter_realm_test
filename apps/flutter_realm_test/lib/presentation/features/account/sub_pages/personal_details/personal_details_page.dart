@@ -12,6 +12,7 @@ import 'package:test_flutter_project/utils/dialog_helper.dart';
 
 import '../../../../../l10n/l10n_keys.dart';
 import '../../../../features/account/widgets/custom_divider.dart';
+import '../../account_page_identifiers.dart';
 
 class PersonalDetailsPage extends StatelessWidget {
   const PersonalDetailsPage({super.key});
@@ -22,7 +23,7 @@ class PersonalDetailsPage extends StatelessWidget {
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         title: Text(
-          context.tr(L10nKeys.accountItemPersonalDetails),
+          context.tr(AccountPageLocaleKeys.accountItemPersonalDetails),
           style: AppTextStyles.zonaPro20,
         ),
         centerTitle: true,
@@ -42,12 +43,12 @@ class PersonalDetailsPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   PersonalDetailsListItem(
-                    title: context.tr(L10nKeys.personalDetailsItemFirstName),
+                    title: context.tr(AccountPageLocaleKeys.personalDetailsItemFirstName),
                     description: state.user.firstName,
                     icon: Icons.person_pin_outlined,
                     onTap: () => DialogHelper.showEditDialog(
                       context,
-                      title: context.trRead(L10nKeys.personalDetailsItemFirstName),
+                      title: context.trRead(AccountPageLocaleKeys.personalDetailsItemFirstName),
                       initialValue: state.user.firstName,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
@@ -62,12 +63,12 @@ class PersonalDetailsPage extends StatelessWidget {
                   ),
 
                   PersonalDetailsListItem(
-                    title: context.tr(L10nKeys.personalDetailsItemLastName),
+                    title: context.tr(AccountPageLocaleKeys.personalDetailsItemLastName),
                     description: state.user.lastName,
                     icon: Icons.person_outlined,
                     onTap: () => DialogHelper.showEditDialog(
                       context,
-                      title: context.trRead(L10nKeys.personalDetailsItemLastName),
+                      title: context.trRead(AccountPageLocaleKeys.personalDetailsItemLastName),
                       initialValue: state.user.lastName,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
@@ -93,12 +94,12 @@ class PersonalDetailsPage extends StatelessWidget {
                   //   icon: Icons.cake_outlined,
                   //),
                   PersonalDetailsListItem(
-                    title: context.tr(L10nKeys.personalDetailsItemEmail),
+                    title: context.tr(AccountPageLocaleKeys.personalDetailsItemEmail),
                     description: state.user.email,
                     icon: Icons.email_outlined,
                     onTap: () => DialogHelper.showEditDialog(
                       context,
-                      title: context.trRead(L10nKeys.personalDetailsItemEmail),
+                      title: context.trRead(AccountPageLocaleKeys.personalDetailsItemEmail),
                       initialValue: state.user.email,
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
@@ -111,12 +112,12 @@ class PersonalDetailsPage extends StatelessWidget {
                   ),
 
                   PersonalDetailsListItem(
-                    title: context.tr(L10nKeys.personalDetailsItemPassword),
+                    title: context.tr(AccountPageLocaleKeys.personalDetailsItemPassword),
                     description: state.user.password.obscure(),
                     icon: Icons.password,
                     onTap: () => DialogHelper.showEditPasswordDialog(
                       context,
-                      title: context.trRead(L10nKeys.personalDetailsItemPassword),
+                      title: context.trRead(AccountPageLocaleKeys.personalDetailsItemPassword),
                       confirmButtonTitle: context.trRead(L10nKeys.confirmLabel),
                       cancelButtonTitle: context.trRead(L10nKeys.cancelLabel),
                       onConfirm: context.read<UserDataCubit>().setPassword,
