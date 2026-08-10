@@ -8,7 +8,7 @@ import 'package:test_flutter_project/presentation/features/authentication/widget
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../features/authentication/authentication_cubit.dart';
-import '../../l10n/l10n_keys.dart';
+import '../login_page_identifiers.dart';
 import 'animated_divider_with_text.dart';
 import 'app_form_field.dart';
 
@@ -165,9 +165,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
             // Sign up button
             AppSemantics(
               button: true,
-              label: context.tr(L10nKeys.signUpButtonTitle),
+              label: context.tr(LoginPageIds.signUpButtonTitle),
               child: SplashButton(
-                title: context.tr(L10nKeys.signUpButtonTitle),
+                title: context.tr(LoginPageIds.signUpButtonTitle),
                 onPressed: () {
                   if (state.isLoading) {
                     return;
@@ -187,7 +187,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             //Or Divider
             AppSemantics(
               label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: context.tr(L10nKeys.orDividerTitle)),
+              child: AnimatedDividerWithText(text: context.tr(LoginPageIds.orDividerTitle)),
             ),
 
             // join us button if not registered
@@ -195,7 +195,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               button: true,
               label: AppSemanticsLabels.loginButton,
               child: SplashButton(
-                title: context.tr(L10nKeys.loginButtonTitle),
+                title: context.tr(LoginPageIds.loginButtonTitle),
                 onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
                 buttonType: ButtonType.secondary,
               ),

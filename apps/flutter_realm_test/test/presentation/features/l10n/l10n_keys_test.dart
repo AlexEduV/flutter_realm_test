@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/authentication/login_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
@@ -31,10 +32,6 @@ void main() {
         FavoritesPageLocaleKeys.favoritesEmptyPlaceholder,
         'pages.favorites.emptyPlaceholder',
       ),
-    );
-    test(
-      'addCarButtonTooltip',
-      () => expect(L10nKeys.addCarButtonTooltip, 'actions.addCar.tooltip'),
     );
     test('deleteButtonTitle', () => expect(L10nKeys.deleteButtonTitle, 'actions.delete.title'));
     test('distanceWidgetText', () => expect(L10nKeys.distanceAway, 'widgets.distance.text'));
@@ -270,22 +267,25 @@ void main() {
     );
     test(
       'loginPageLoginWelcomeText',
-      () => expect(L10nKeys.loginPageLoginWelcomeText, 'forms.ui.welcomeLoginTitle'),
+      () => expect(LoginPageIds.loginPageLoginWelcomeText, 'forms.ui.welcomeLoginTitle'),
     );
     test(
       'loginPageRegistrationWelcomeText',
-      () => expect(L10nKeys.loginPageRegistrationWelcomeText, 'forms.ui.welcomeRegisterTitle'),
+      () => expect(LoginPageIds.loginPageRegistrationWelcomeText, 'forms.ui.welcomeRegisterTitle'),
     );
     test(
       'forgotPasswordButtonTitle',
-      () => expect(L10nKeys.forgotPasswordButtonTitle, 'forms.ui.forgotPasswordButtonText'),
+      () => expect(LoginPageIds.forgotPasswordButtonTitle, 'forms.ui.forgotPasswordButtonText'),
     );
-    test('loginButtonTitle', () => expect(L10nKeys.loginButtonTitle, 'forms.ui.loginButtonTitle'));
+    test(
+      'loginButtonTitle',
+      () => expect(LoginPageIds.loginButtonTitle, 'forms.ui.loginButtonTitle'),
+    );
     test(
       'signUpButtonTitle',
-      () => expect(L10nKeys.signUpButtonTitle, 'forms.ui.signUpButtonTitle'),
+      () => expect(LoginPageIds.signUpButtonTitle, 'forms.ui.signUpButtonTitle'),
     );
-    test('orDividerTitle', () => expect(L10nKeys.orDividerTitle, 'forms.ui.orDividerTitle'));
+    test('orDividerTitle', () => expect(LoginPageIds.orDividerTitle, 'forms.ui.orDividerTitle'));
     test(
       'fieldParamsValidationMessage',
       () => expect(L10nKeys.fieldParamsValidationMessage, 'forms.validationMessage'),
@@ -337,36 +337,42 @@ void main() {
     );
     test(
       'authErrorUserNotFoundMessage',
-      () => expect(L10nKeys.authErrorUserNotFoundMessage, 'forms.warnings.userNotFound'),
+      () => expect(LoginPageIds.authErrorUserNotFoundMessage, 'forms.warnings.userNotFound'),
     );
     test(
       'authErrorIncorrectPassword',
-      () => expect(L10nKeys.authErrorIncorrectPassword, 'forms.warnings.incorrectPassword'),
+      () => expect(LoginPageIds.authErrorIncorrectPassword, 'forms.warnings.incorrectPassword'),
     );
     test(
       'authErrorUserAlreadyExists',
-      () => expect(L10nKeys.authErrorUserAlreadyExists, 'forms.warnings.userAlreadyExists'),
+      () => expect(LoginPageIds.authErrorUserAlreadyExists, 'forms.warnings.userAlreadyExists'),
     );
     test(
       'authPasswordStrengthLengthHint',
-      () => expect(L10nKeys.authPasswordStrengthLengthHint, 'forms.hints.passwordMinLength'),
+      () => expect(LoginPageIds.authPasswordStrengthLengthHint, 'forms.hints.passwordMinLength'),
     );
     test(
       'authPasswordStrengthLowercaseHint',
-      () => expect(L10nKeys.authPasswordStrengthLowercaseHint, 'forms.hints.passwordLowercaseChar'),
+      () => expect(
+        LoginPageIds.authPasswordStrengthLowercaseHint,
+        'forms.hints.passwordLowercaseChar',
+      ),
     );
     test(
       'authPasswordStrengthUppercaseHint',
-      () => expect(L10nKeys.authPasswordStrengthUppercaseHint, 'forms.hints.passwordUpperCaseChar'),
+      () => expect(
+        LoginPageIds.authPasswordStrengthUppercaseHint,
+        'forms.hints.passwordUpperCaseChar',
+      ),
     );
     test(
       'authPasswordStrengthDigitHint',
-      () => expect(L10nKeys.authPasswordStrengthDigitHint, 'forms.hints.passwordDigitChar'),
+      () => expect(LoginPageIds.authPasswordStrengthDigitHint, 'forms.hints.passwordDigitChar'),
     );
     test(
       'authPasswordStrengthSpecialCharacterHint',
       () => expect(
-        L10nKeys.authPasswordStrengthSpecialCharacterHint,
+        LoginPageIds.authPasswordStrengthSpecialCharacterHint,
         'forms.hints.passwordSpecialChar',
       ),
     );

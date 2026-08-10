@@ -11,6 +11,7 @@ import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 
 import '../l10n/app_localisations_cubit.dart';
+import 'login_page_identifiers.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit(
@@ -169,7 +170,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 0,
           passwordStrengthHintText:
-              '${_appLocalisationsCubit.getLocalisationByKey(L10nKeys.authPasswordStrengthLengthHint)} $minLength',
+              '${_appLocalisationsCubit.getLocalisationByKey(LoginPageIds.authPasswordStrengthLengthHint)} $minLength',
         ),
       );
       return false;
@@ -180,7 +181,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 1,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            L10nKeys.authPasswordStrengthLowercaseHint,
+            LoginPageIds.authPasswordStrengthLowercaseHint,
           ),
         ),
       );
@@ -192,7 +193,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 2,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            L10nKeys.authPasswordStrengthUppercaseHint,
+            LoginPageIds.authPasswordStrengthUppercaseHint,
           ),
         ),
       );
@@ -204,7 +205,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 3,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            L10nKeys.authPasswordStrengthDigitHint,
+            LoginPageIds.authPasswordStrengthDigitHint,
           ),
         ),
       );
@@ -217,7 +218,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 4,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            L10nKeys.authPasswordStrengthSpecialCharacterHint,
+            LoginPageIds.authPasswordStrengthSpecialCharacterHint,
           ),
         ),
       );

@@ -10,7 +10,7 @@ import 'package:test_flutter_project/presentation/features/authentication/widget
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../features/authentication/authentication_cubit.dart';
-import '../../l10n/l10n_keys.dart';
+import '../login_page_identifiers.dart';
 import 'app_form_field.dart';
 
 class LoginForm extends StatefulWidget {
@@ -133,7 +133,7 @@ class _LoginFormState extends State<LoginForm> {
                   button: true,
                   child: GestureDetector(
                     child: Text(
-                      context.tr(L10nKeys.forgotPasswordButtonTitle),
+                      context.tr(LoginPageIds.forgotPasswordButtonTitle),
                       style: AppTextStyles.zonaPro16.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppColors.headerColor,
@@ -152,7 +152,7 @@ class _LoginFormState extends State<LoginForm> {
               button: true,
               label: AppSemanticsLabels.loginButton,
               child: SplashButton(
-                title: context.tr(L10nKeys.loginButtonTitle),
+                title: context.tr(LoginPageIds.loginButtonTitle),
                 onPressed: () {
                   if (state.isLoading) {
                     return;
@@ -171,15 +171,15 @@ class _LoginFormState extends State<LoginForm> {
             //Or Divider
             AppSemantics(
               label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: context.tr(L10nKeys.orDividerTitle)),
+              child: AnimatedDividerWithText(text: context.tr(LoginPageIds.orDividerTitle)),
             ),
 
             // join us button if not registered
             AppSemantics(
-              label: context.tr(L10nKeys.signUpButtonTitle),
+              label: context.tr(LoginPageIds.signUpButtonTitle),
               button: true,
               child: SplashButton(
-                title: context.tr(L10nKeys.signUpButtonTitle),
+                title: context.tr(LoginPageIds.signUpButtonTitle),
                 onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
                 buttonType: ButtonType.secondary,
               ),

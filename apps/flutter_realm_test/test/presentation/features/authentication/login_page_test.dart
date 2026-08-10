@@ -7,10 +7,10 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/features/authentication/login_page.dart';
+import 'package:test_flutter_project/presentation/features/authentication/login_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/authentication/widgets/auth_error_widget.dart';
 import 'package:test_flutter_project/presentation/features/authentication/widgets/auth_form_switcher.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
 import 'login_page_test.mocks.dart';
 
@@ -54,7 +54,7 @@ void main() {
     await tester.pumpWidget(makeTestableWidget(const LoginPage()));
 
     expect(
-      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.loginPageLoginWelcomeText)),
+      find.text(appLocalisationsCubit.getLocalisationByKey(LoginPageIds.loginPageLoginWelcomeText)),
       findsOneWidget,
     );
   });
@@ -67,7 +67,7 @@ void main() {
 
     expect(
       find.text(
-        appLocalisationsCubit.getLocalisationByKey(L10nKeys.loginPageRegistrationWelcomeText),
+        appLocalisationsCubit.getLocalisationByKey(LoginPageIds.loginPageRegistrationWelcomeText),
       ),
       findsOneWidget,
     );

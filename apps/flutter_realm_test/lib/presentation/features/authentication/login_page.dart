@@ -9,7 +9,7 @@ import 'package:test_flutter_project/presentation/features/authentication/authen
 import 'package:test_flutter_project/presentation/features/authentication/widgets/auth_error_widget.dart';
 import 'package:test_flutter_project/presentation/features/authentication/widgets/auth_form_switcher.dart';
 
-import '../l10n/l10n_keys.dart';
+import 'login_page_identifiers.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -24,8 +24,8 @@ class _LoginPageState extends State<LoginPage> {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
       builder: (context, state) {
         final welcomeText = state.isLoginMode
-            ? context.tr(L10nKeys.loginPageLoginWelcomeText)
-            : context.tr(L10nKeys.loginPageRegistrationWelcomeText);
+            ? context.tr(LoginPageIds.loginPageLoginWelcomeText)
+            : context.tr(LoginPageIds.loginPageRegistrationWelcomeText);
 
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: const SystemUiOverlayStyle(
