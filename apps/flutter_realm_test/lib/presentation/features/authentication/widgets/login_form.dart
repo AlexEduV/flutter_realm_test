@@ -21,19 +21,19 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final emailTextController = TextEditingController();
-  final passwordTextController = TextEditingController();
+  final _emailTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
 
-  final emailFocusNode = FocusNode();
-  final passwordFocusNode = FocusNode();
+  final _emailFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
-    emailFocusNode.dispose();
-    passwordFocusNode.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
 
-    emailTextController.dispose();
-    passwordTextController.dispose();
+    _emailTextController.dispose();
+    _passwordTextController.dispose();
 
     super.dispose();
   }
@@ -48,29 +48,29 @@ class _LoginFormState extends State<LoginForm> {
               label: AppSemanticsLabels.emailTextField,
               textField: true,
               child: AppFormField(
-                focusNode: emailFocusNode,
-                textEditingController: emailTextController,
+                focusNode: _emailFocusNode,
+                textEditingController: _emailTextController,
                 labelText: state.emailFieldParams?.label ?? '',
                 hintText: state.emailFieldParams?.hintText ?? '',
                 textInputType: TextInputType.emailAddress,
                 leadingIcon: Icons.email_outlined,
                 textInputAction: TextInputAction.next,
                 onEditingComplete: () {
-                  passwordFocusNode.requestFocus();
+                  _passwordFocusNode.requestFocus();
                 },
                 errorText: state.emailError,
                 onChanged: (newValue) {
-                  context.read<AuthenticationCubit>().updateEmail(emailTextController.text);
+                  context.read<AuthenticationCubit>().updateEmail(_emailTextController.text);
 
                   context.read<AuthenticationCubit>().validateEmail(
-                    emailTextController.text,
-                    emailFocusNode.hasFocus,
+                    _emailTextController.text,
+                    _emailFocusNode.hasFocus,
                   );
                 },
                 onFocusChange: (hasFocus) {
                   if (!hasFocus) {
                     context.read<AuthenticationCubit>().validateEmail(
-                      emailTextController.text,
+                      _emailTextController.text,
                       false,
                     );
                   }
@@ -85,8 +85,8 @@ class _LoginFormState extends State<LoginForm> {
               label: AppSemanticsLabels.passwordTextField,
               textField: true,
               child: AppFormField(
-                focusNode: passwordFocusNode,
-                textEditingController: passwordTextController,
+                focusNode: _passwordFocusNode,
+                textEditingController: _passwordTextController,
                 labelText: state.passwordFieldParams?.label ?? '',
                 hintText: state.passwordFieldParams?.hintText ?? '',
                 textInputType: TextInputType.visiblePassword,
@@ -100,17 +100,17 @@ class _LoginFormState extends State<LoginForm> {
                 },
                 errorText: state.passwordError,
                 onChanged: (newValue) {
-                  context.read<AuthenticationCubit>().updatePassword(passwordTextController.text);
+                  context.read<AuthenticationCubit>().updatePassword(_passwordTextController.text);
 
                   context.read<AuthenticationCubit>().validatePassword(
-                    passwordTextController.text,
-                    passwordFocusNode.hasFocus,
+                    _passwordTextController.text,
+                    _passwordFocusNode.hasFocus,
                   );
                 },
                 onFocusChange: (hasFocus) {
                   if (!hasFocus) {
                     context.read<AuthenticationCubit>().validatePassword(
-                      passwordTextController.text,
+                      _passwordTextController.text,
                       false,
                     );
                   }
@@ -158,8 +158,8 @@ class _LoginFormState extends State<LoginForm> {
                     return;
                   }
 
-                  emailFocusNode.unfocus();
-                  passwordFocusNode.unfocus();
+                  _emailFocusNode.unfocus();
+                  _passwordFocusNode.unfocus();
 
                   context.read<AuthenticationCubit>().onLoginButtonPressed();
                 },
