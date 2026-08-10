@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/country_picker_bottom_sheet.dart';
 
 import '../../../common/fakes/image_fakes.dart';
@@ -9,59 +11,64 @@ void main() {
   testWidgets('CountryPickerBottomSheet renders items and handles selection', (
     WidgetTester tester,
   ) async {
-    // Arrange
     final items = [
-      const RegionUiModel(code: 'us', countryName: 'United States'),
-      const RegionUiModel(code: 'it', countryName: 'Italy'),
-      const RegionUiModel(code: 'fr', countryName: 'France'),
+      const RegionUiModel(code: 'us', countryName: 'countries.us'),
+      const RegionUiModel(code: 'it', countryName: 'countries.it'),
+      const RegionUiModel(code: 'fr', countryName: 'countries.fr'),
     ];
 
-    // Build the widget inside a MaterialApp with a Navigator for pop
+    final appLocalisationsCubit = AppLocalisationsCubit()
+      ..load({
+        'countries.us': 'United States',
+        'countries.it': 'Italy',
+        'countries.fr': 'France',
+      });
+
     RegionUiModel? selected;
     await tester.pumpWidget(
       DefaultAssetBundle(
         bundle: FakeAssetBundle(),
-        child: MaterialApp(
-          home: Builder(
-          builder: (context) => Scaffold(
-            body: ElevatedButton(
-              onPressed: () async {
-                selected = await showModalBottomSheet<RegionUiModel>(
-                  context: context,
-                  builder: (_) => CountryPickerBottomSheet(items: items, currentSelectedIndex: 1),
-                );
-              },
-              child: const Text('Open'),
+        child: BlocProvider<AppLocalisationsCubit>.value(
+          value: appLocalisationsCubit,
+          child: MaterialApp(
+            home: Builder(
+              builder: (context) => Scaffold(
+                body: ElevatedButton(
+                  onPressed: () async {
+                    selected = await showModalBottomSheet<RegionUiModel>(
+                      context: context,
+                      builder: (_) => BlocProvider<AppLocalisationsCubit>.value(
+                        value: appLocalisationsCubit,
+                        child: CountryPickerBottomSheet(items: items, currentSelectedIndex: 1),
+                      ),
+                    );
+                  },
+                  child: const Text('Open'),
+                ),
+              ),
             ),
           ),
         ),
       ),
-      ),
     );
 
-    // Open the bottom sheet
     await tester.tap(find.text('Open'));
     await tester.pumpAndSettle();
 
-    // Assert: All ListTiles are present
     expect(find.byType(ListTile), findsNWidgets(items.length));
 
-    // Assert: Correct country names are displayed
-    for (final item in items) {
-      expect(find.text(item.countryName), findsOneWidget);
-    }
+    expect(find.text('United States'), findsOneWidget);
+    expect(find.text('Italy'), findsOneWidget);
+    expect(find.text('France'), findsOneWidget);
 
-    // Assert: The correct tile is selected
     final selectedTile = tester.widget<ListTile>(find.byType(ListTile).at(1));
     expect(selectedTile.selected, isTrue);
 
-    // Act: Tap the third tile (France)
     await tester.tap(find.text('France'));
     await tester.pumpAndSettle();
 
-    // Assert: The selected value is returned
     expect(selected, isNotNull);
     expect(selected!.code, 'fr');
-    expect(selected!.countryName, 'France');
+    expect(selected!.countryName, 'countries.fr');
   });
 }

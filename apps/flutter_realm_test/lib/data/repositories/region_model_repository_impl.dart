@@ -9,7 +9,12 @@ class RegionModelRepositoryImpl implements RegionModelRepository {
 
   @override
   List<RegionUiModel> getAvailableCountries() {
-    return _regionRemoteDataSource.getAvailableCountries();
+    return _regionRemoteDataSource.getAllRegions().map((region) {
+      return RegionUiModel(
+        code: region.locale,
+        countryName: 'countries.${region.locale}',
+      );
+    }).toList();
   }
 
   @override

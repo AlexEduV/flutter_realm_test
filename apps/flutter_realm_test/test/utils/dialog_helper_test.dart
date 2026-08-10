@@ -47,6 +47,8 @@ void main() {
       ColorPickerLocaleKeys.pickColorDialogTitle: 'Pick a color',
       L10nKeys.cancelLabel: 'Cancel',
       L10nKeys.confirmLabel: 'Confirm',
+      'countries.US': 'United States',
+      'countries.IT': 'Italy',
     });
   });
 
@@ -157,21 +159,26 @@ void main() {
 
   testWidgets('showCountryPicker shows CountryPickerBottomSheet and items', (tester) async {
     final items = [
-      const RegionUiModel(code: 'US', countryName: 'United States'),
-      const RegionUiModel(code: 'IT', countryName: 'Italy'),
+      const RegionUiModel(code: 'US', countryName: 'countries.US'),
+      const RegionUiModel(code: 'IT', countryName: 'countries.IT'),
     ];
 
     await tester.pumpWidget(
       DefaultAssetBundle(
         bundle: FakeAssetBundle(),
-        child: MaterialApp(
-          home: Builder(
-            builder: (context) {
-              return ElevatedButton(
-                onPressed: () => DialogHelper.showCountryPicker(context, items, 0),
-                child: const Text('Open'),
-              );
-            },
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
+          ],
+          child: MaterialApp(
+            home: Builder(
+              builder: (context) {
+                return ElevatedButton(
+                  onPressed: () => DialogHelper.showCountryPicker(context, items, 0),
+                  child: const Text('Open'),
+                );
+              },
+            ),
           ),
         ),
       ),

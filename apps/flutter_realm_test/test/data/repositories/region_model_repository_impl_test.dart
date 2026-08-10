@@ -3,6 +3,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/data/repositories/region_model_repository_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/region_remote_data_source.dart';
+import 'package:test_flutter_project/domain/entities/region_entity.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 
 import 'region_model_repository_impl_test.mocks.dart';
@@ -17,17 +18,19 @@ void main() {
     repository = RegionModelRepositoryImpl(mockRemoteDataSource);
   });
 
-  test('getAvailableCountries calls remote data source and returns list', () {
-    final countries = [
-      const RegionUiModel(code: 'us', countryName: 'United States'),
-      const RegionUiModel(code: 'uk', countryName: 'United Kingdom'),
-    ];
-    when(mockRemoteDataSource.getAvailableCountries()).thenReturn(countries);
+  test('getAvailableCountries maps regions to UI models with l10n keys', () {
+    when(mockRemoteDataSource.getAllRegions()).thenReturn([
+      const RegionEntity(locale: 'us'),
+      const RegionEntity(locale: 'uk'),
+    ]);
 
     final result = repository.getAvailableCountries();
 
-    expect(result, countries);
-    verify(mockRemoteDataSource.getAvailableCountries()).called(1);
+    expect(result, [
+      const RegionUiModel(code: 'us', countryName: 'countries.us'),
+      const RegionUiModel(code: 'uk', countryName: 'countries.uk'),
+    ]);
+    verify(mockRemoteDataSource.getAllRegions()).called(1);
     verifyNoMoreInteractions(mockRemoteDataSource);
   });
 

@@ -9,7 +9,6 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/data_sources/remote/region_remote_data_source.dart'
     as _i2;
 import 'package:test_flutter_project/domain/entities/region_entity.dart' as _i4;
-import 'package:test_flutter_project/domain/models/region_ui_model.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -59,14 +58,4 @@ class MockRegionRemoteDataSource extends _i1.Mock
         returnValue: <_i4.RegionEntity>[],
         returnValueForMissingStub: <_i4.RegionEntity>[],
       ) as List<_i4.RegionEntity>);
-
-  @override
-  List<_i5.RegionUiModel> getAvailableCountries() => (super.noSuchMethod(
-        Invocation.method(
-          #getAvailableCountries,
-          [],
-        ),
-        returnValue: <_i5.RegionUiModel>[],
-        returnValueForMissingStub: <_i5.RegionUiModel>[],
-      ) as List<_i5.RegionUiModel>);
 }

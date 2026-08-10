@@ -1,8 +1,10 @@
+import 'package:test_flutter_project/domain/models/auth_error_code.dart';
+
 class AuthResult {
-  AuthResult({required this.success, this.message});
+  AuthResult({required this.success, this.errorCode});
 
   final bool success;
-  final String? message;
+  final AuthErrorCode? errorCode;
 
   @override
   bool operator ==(Object other) =>
@@ -10,8 +12,8 @@ class AuthResult {
       other is AuthResult &&
           runtimeType == other.runtimeType &&
           success == other.success &&
-          message == other.message;
+          errorCode == other.errorCode;
 
   @override
-  int get hashCode => success.hashCode ^ (message?.hashCode ?? 0);
+  int get hashCode => success.hashCode ^ (errorCode?.hashCode ?? 0);
 }
