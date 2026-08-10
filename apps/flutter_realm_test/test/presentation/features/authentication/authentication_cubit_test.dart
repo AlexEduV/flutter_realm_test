@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_flutter_project/domain/models/auth_error_code.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart';
@@ -44,6 +45,9 @@ void main() {
       'forms.fieldParams.fullName.label': 'Full name',
       'forms.fieldParams.fullName.regexErrorMessage': 'Invalid name',
       'forms.fieldParams.fullName.hintText': 'Enter name',
+      'forms.warnings.userNotFound': 'User not found',
+      'forms.warnings.incorrectPassword': 'Incorrect password',
+      'forms.warnings.userAlreadyExists': 'User already exists',
     };
 
     appLocalisationsCubit.load(localisations);
@@ -131,14 +135,14 @@ void main() {
       build: () {
         when(
           mockLoginUseCase.call(any),
-        ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
+        ).thenAnswer((_) async => AuthResult(success: false, errorCode: AuthErrorCode.userNotFound));
         return cubit;
       },
       seed: () => cubit.state.copyWith(emailValue: 'a@mail.com', passwordValue: 'Password1!'),
       act: (cubit) => cubit.onLoginButtonPressed(),
       expect: () => [
         cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
-        cubit.state.copyWith(authenticationErrorText: 'fail', isLoading: true),
+        cubit.state.copyWith(authenticationErrorText: 'User not found', isLoading: true),
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {
@@ -175,7 +179,7 @@ void main() {
       build: () {
         when(
           mockRegisterUseCase.call(any),
-        ).thenAnswer((_) async => AuthResult(success: false, message: 'fail'));
+        ).thenAnswer((_) async => AuthResult(success: false, errorCode: AuthErrorCode.userAlreadyExists));
         return cubit;
       },
       seed: () => cubit.state.copyWith(
@@ -187,7 +191,7 @@ void main() {
       expect: () => [
         cubit.state.copyWith(authenticationErrorText: null, isLoading: false),
         cubit.state.copyWith(authenticationErrorText: null, isLoading: true),
-        cubit.state.copyWith(authenticationErrorText: 'fail', isLoading: true),
+        cubit.state.copyWith(authenticationErrorText: 'User already exists', isLoading: true),
         cubit.state.copyWith(isLoading: false),
       ],
       verify: (_) {

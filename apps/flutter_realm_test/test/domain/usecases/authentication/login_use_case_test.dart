@@ -18,7 +18,7 @@ void main() {
   test('calls login on the repository with correct params and returns result', () async {
     // Arrange
     final loginModel = LoginModel('test@mail.com', 'password123');
-    final expectedResult = AuthResult(success: true, message: 'Success');
+    final expectedResult = AuthResult(success: true, errorCode: null);
     when(
       mockAuthRepository.login(email: loginModel.email, password: loginModel.password),
     ).thenAnswer((_) async => expectedResult);
