@@ -5,7 +5,7 @@ import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../l10n/l10n_keys.dart';
+import '../search_page_identifiers.dart';
 
 class ResultsWidget extends StatelessWidget {
   const ResultsWidget({required this.resultsCount, super.key});
@@ -20,7 +20,7 @@ class ResultsWidget extends StatelessWidget {
         spacing: AppDimensions.minorL,
         children: [
           Text(
-            context.tr(L10nKeys.results),
+            context.tr(SearchPageLocaleKeys.results),
             style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
           ),
 

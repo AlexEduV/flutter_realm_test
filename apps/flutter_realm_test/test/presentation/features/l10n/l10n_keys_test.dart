@@ -6,6 +6,7 @@ import 'package:test_flutter_project/presentation/features/favorites/favorites_p
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/placeholder/placeholder_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 
 void main() {
   group('L10nKeys', () {
@@ -15,7 +16,10 @@ void main() {
       'explorePageTitle',
       () => expect(ExplorePageLocaleKeys.explorePageTitle, 'pages.explore.title'),
     );
-    test('results', () => expect(L10nKeys.results, 'pages.search.resultsSection.title'));
+    test(
+      'results',
+      () => expect(SearchPageLocaleKeys.results, 'pages.search.resultsSection.title'),
+    );
     test(
       'favoritesPageTitle',
       () => expect(FavoritesPageLocaleKeys.favoritesPageTitle, 'pages.favorites.title'),
@@ -45,53 +49,74 @@ void main() {
       () =>
           expect(ExplorePageLocaleKeys.lastSeenSectionTitle, 'pages.explore.lastSeenSection.title'),
     );
-    test('searchPageTitle', () => expect(L10nKeys.searchPageTitle, 'pages.search.title'));
-    test('searchTabCars', () => expect(L10nKeys.searchTabCars, 'pages.search.tabs.cars'));
-    test('searchTabBikes', () => expect(L10nKeys.searchTabBikes, 'pages.search.tabs.bikes'));
-    test('searchTabTrucks', () => expect(L10nKeys.searchTabTrucks, 'pages.search.tabs.trucks'));
+    test(
+      'searchPageTitle',
+      () => expect(SearchPageLocaleKeys.searchPageTitle, 'pages.search.title'),
+    );
+    test(
+      'searchTabCars',
+      () => expect(SearchPageLocaleKeys.searchTabCars, 'pages.search.tabs.cars'),
+    );
+    test(
+      'searchTabBikes',
+      () => expect(SearchPageLocaleKeys.searchTabBikes, 'pages.search.tabs.bikes'),
+    );
+    test(
+      'searchTabTrucks',
+      () => expect(SearchPageLocaleKeys.searchTabTrucks, 'pages.search.tabs.trucks'),
+    );
     test(
       'emptySearchPlaceholderText',
-      () => expect(L10nKeys.emptySearchPlaceholderText, 'pages.search.emptyPlaceholder'),
+      () =>
+          expect(SearchPageLocaleKeys.emptySearchPlaceholderText, 'pages.search.emptyPlaceholder'),
     );
     test(
       'searchFilterModelTitle',
-      () => expect(L10nKeys.searchFilterModelTitle, 'filters.model.title'),
+      () => expect(SearchPageLocaleKeys.searchFilterModelTitle, 'filters.model.title'),
     );
     test(
       'searchFilterModelPlaceholder',
-      () => expect(L10nKeys.searchFilterModelPlaceholder, 'filters.model.placeholder'),
+      () => expect(SearchPageLocaleKeys.searchFilterModelPlaceholder, 'filters.model.placeholder'),
     );
     test(
       'searchFilterParametersTitle',
-      () => expect(L10nKeys.searchFilterParametersTitle, 'filters.parameters.title'),
+      () => expect(SearchPageLocaleKeys.searchFilterParametersTitle, 'filters.parameters.title'),
     );
-    test('parameterYearName', () => expect(L10nKeys.parameterYearName, 'filters.parameters.year'));
+    test(
+      'parameterYearName',
+      () => expect(SearchPageLocaleKeys.parameterYearName, 'filters.parameters.year'),
+    );
     test(
       'parameterColorName',
-      () => expect(L10nKeys.parameterColorName, 'filters.parameters.color'),
+      () => expect(SearchPageLocaleKeys.parameterColorName, 'filters.parameters.color'),
     );
     test(
       'parameterBodyTypeName',
-      () => expect(L10nKeys.parameterBodyTypeName, 'filters.parameters.bodyTypes.title'),
+      () =>
+          expect(SearchPageLocaleKeys.parameterBodyTypeName, 'filters.parameters.bodyTypes.title'),
     );
     test(
       'parameterPriceRangeName',
-      () => expect(L10nKeys.parameterPriceRangeName, 'filters.parameters.priceRange'),
+      () => expect(SearchPageLocaleKeys.parameterPriceRangeName, 'filters.parameters.priceRange'),
     );
     test(
       'parameterFuelTypeName',
-      () => expect(L10nKeys.parameterFuelTypeName, 'filters.parameters.fuelTypes.title'),
+      () =>
+          expect(SearchPageLocaleKeys.parameterFuelTypeName, 'filters.parameters.fuelTypes.title'),
     );
     test(
       'parameterTransmissionTypeName',
       () => expect(
-        L10nKeys.parameterTransmissionTypeName,
+        SearchPageLocaleKeys.parameterTransmissionTypeName,
         'filters.parameters.transmissionTypes.title',
       ),
     );
     test(
       'filterValidationMessage',
-      () => expect(L10nKeys.filterValidationMessage, 'filters.parameters.filterValidationMessage'),
+      () => expect(
+        SearchPageLocaleKeys.filterValidationMessage,
+        'filters.parameters.filterValidationMessage',
+      ),
     );
     test(
       'comingSoonPlaceholderPageTitle',
@@ -109,57 +134,75 @@ void main() {
     );
     test(
       'bodyTypeSedan',
-      () => expect(L10nKeys.bodyTypeSedan, 'filters.parameters.bodyTypes.sedan'),
+      () => expect(SearchPageLocaleKeys.bodyTypeSedan, 'filters.parameters.bodyTypes.sedan'),
     );
     test(
       'bodyTypeHatchback',
-      () => expect(L10nKeys.bodyTypeHatchback, 'filters.parameters.bodyTypes.hatchback'),
+      () =>
+          expect(SearchPageLocaleKeys.bodyTypeHatchback, 'filters.parameters.bodyTypes.hatchback'),
     );
     test(
       'bodyTypeUniversal',
-      () => expect(L10nKeys.bodyTypeUniversal, 'filters.parameters.bodyTypes.universal'),
+      () =>
+          expect(SearchPageLocaleKeys.bodyTypeUniversal, 'filters.parameters.bodyTypes.universal'),
     );
     test(
       'bodyTypeMinivan',
-      () => expect(L10nKeys.bodyTypeMinivan, 'filters.parameters.bodyTypes.minivan'),
+      () => expect(SearchPageLocaleKeys.bodyTypeMinivan, 'filters.parameters.bodyTypes.minivan'),
     );
     test(
       'bodyTypeCoupe',
-      () => expect(L10nKeys.bodyTypeCoupe, 'filters.parameters.bodyTypes.coupe'),
+      () => expect(SearchPageLocaleKeys.bodyTypeCoupe, 'filters.parameters.bodyTypes.coupe'),
     );
     test(
       'bodyTypeCrossover',
-      () => expect(L10nKeys.bodyTypeCrossover, 'filters.parameters.bodyTypes.crossover'),
+      () =>
+          expect(SearchPageLocaleKeys.bodyTypeCrossover, 'filters.parameters.bodyTypes.crossover'),
     );
-    test('bodyTypeSemi', () => expect(L10nKeys.bodyTypeSemi, 'filters.parameters.bodyTypes.semi'));
-    test('bodyTypeBike', () => expect(L10nKeys.bodyTypeBike, 'filters.parameters.bodyTypes.bike'));
+    test(
+      'bodyTypeSemi',
+      () => expect(SearchPageLocaleKeys.bodyTypeSemi, 'filters.parameters.bodyTypes.semi'),
+    );
+    test(
+      'bodyTypeBike',
+      () => expect(SearchPageLocaleKeys.bodyTypeBike, 'filters.parameters.bodyTypes.bike'),
+    );
     test(
       'fuelTypeDiesel',
-      () => expect(L10nKeys.fuelTypeDiesel, 'filters.parameters.fuelTypes.diesel'),
+      () => expect(SearchPageLocaleKeys.fuelTypeDiesel, 'filters.parameters.fuelTypes.diesel'),
     );
     test(
       'fuelTypeGasoline',
-      () => expect(L10nKeys.fuelTypeGasoline, 'filters.parameters.fuelTypes.gasoline'),
+      () => expect(SearchPageLocaleKeys.fuelTypeGasoline, 'filters.parameters.fuelTypes.gasoline'),
     );
-    test('fuelTypeEv', () => expect(L10nKeys.fuelTypeEv, 'filters.parameters.fuelTypes.ev'));
+    test(
+      'fuelTypeEv',
+      () => expect(SearchPageLocaleKeys.fuelTypeEv, 'filters.parameters.fuelTypes.ev'),
+    );
     test(
       'fuelTypeHybrid',
-      () => expect(L10nKeys.fuelTypeHybrid, 'filters.parameters.fuelTypes.hybrid'),
+      () => expect(SearchPageLocaleKeys.fuelTypeHybrid, 'filters.parameters.fuelTypes.hybrid'),
     );
     test(
       'transmissionTypeManual',
-      () => expect(L10nKeys.transmissionTypeManual, 'filters.parameters.transmissionTypes.manual'),
+      () => expect(
+        SearchPageLocaleKeys.transmissionTypeManual,
+        'filters.parameters.transmissionTypes.manual',
+      ),
     );
     test(
       'transmissionTypeAutomatic',
       () => expect(
-        L10nKeys.transmissionTypeAutomatic,
+        SearchPageLocaleKeys.transmissionTypeAutomatic,
         'filters.parameters.transmissionTypes.automatic',
       ),
     );
     test(
       'transmissionTypeHybrid',
-      () => expect(L10nKeys.transmissionTypeHybrid, 'filters.parameters.transmissionTypes.hybrid'),
+      () => expect(
+        SearchPageLocaleKeys.transmissionTypeHybrid,
+        'filters.parameters.transmissionTypes.hybrid',
+      ),
     );
     test(
       'vehicleSpecificationsSectionTitle',

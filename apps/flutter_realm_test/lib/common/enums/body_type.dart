@@ -1,18 +1,18 @@
 import 'package:test_flutter_project/common/enums/car_type.dart';
-import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
 import '../../core/di/injection_container.dart';
 import '../../presentation/features/l10n/app_localisations_cubit.dart';
+import '../../presentation/features/search/search_page_identifiers.dart';
 
 enum BodyType {
-  sedan(CarType.car, L10nKeys.bodyTypeSedan),
-  hatchback(CarType.car, L10nKeys.bodyTypeHatchback),
-  universal(CarType.car, L10nKeys.bodyTypeUniversal),
-  minivan(CarType.car, L10nKeys.bodyTypeMinivan),
-  coupe(CarType.car, L10nKeys.bodyTypeCoupe),
-  crossover(CarType.car, L10nKeys.bodyTypeCrossover),
-  semi(CarType.truck, L10nKeys.bodyTypeSemi),
-  bike(CarType.bike, L10nKeys.bodyTypeBike);
+  sedan(CarType.car, SearchPageLocaleKeys.bodyTypeSedan),
+  hatchback(CarType.car, SearchPageLocaleKeys.bodyTypeHatchback),
+  universal(CarType.car, SearchPageLocaleKeys.bodyTypeUniversal),
+  minivan(CarType.car, SearchPageLocaleKeys.bodyTypeMinivan),
+  coupe(CarType.car, SearchPageLocaleKeys.bodyTypeCoupe),
+  crossover(CarType.car, SearchPageLocaleKeys.bodyTypeCrossover),
+  semi(CarType.truck, SearchPageLocaleKeys.bodyTypeSemi),
+  bike(CarType.bike, SearchPageLocaleKeys.bodyTypeBike);
 
   const BodyType(this.carType, this.localisationKey);
 

@@ -6,6 +6,7 @@ import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 import 'package:test_flutter_project/presentation/features/search/widgets/filters_drawer.dart';
 import 'package:test_flutter_project/presentation/features/search/widgets/model_filter_drawer.dart';
@@ -15,7 +16,6 @@ import 'package:test_flutter_project/presentation/features/user/user_data_state.
 
 import '../../features/search/widgets/results_widget.dart';
 import '../../widgets/announcement_item/announcement_list_item.dart';
-import '../l10n/l10n_keys.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -56,7 +56,10 @@ class _SearchPageState extends State<SearchPage> {
           appBar: AppBar(
             scrolledUnderElevation: isDrawerOpened ? 0.0 : null,
             centerTitle: true,
-            title: Text(context.tr(L10nKeys.searchPageTitle), style: AppTextStyles.zonaPro20),
+            title: Text(
+              context.tr(SearchPageLocaleKeys.searchPageTitle),
+              style: AppTextStyles.zonaPro20,
+            ),
             backgroundColor: AppColors.scaffoldColor,
             //hidden hamburger icon this way;
             actions: const [SizedBox.shrink()],
@@ -71,9 +74,9 @@ class _SearchPageState extends State<SearchPage> {
                       return SegmentedSwitch(
                         selectedIndex: state.currentSelectedType.index,
                         options: [
-                          context.tr(L10nKeys.searchTabCars),
-                          context.tr(L10nKeys.searchTabBikes),
-                          context.tr(L10nKeys.searchTabTrucks),
+                          context.tr(SearchPageLocaleKeys.searchTabCars),
+                          context.tr(SearchPageLocaleKeys.searchTabBikes),
+                          context.tr(SearchPageLocaleKeys.searchTabTrucks),
                         ],
                         onChanged: (newIndex) {
                           context.read<SearchPageCubit>().updateTypeSelection(
@@ -92,14 +95,14 @@ class _SearchPageState extends State<SearchPage> {
                   builder: (context) {
                     final isFilterEmpty = state.selectedModels.isEmpty;
                     final modelFilters = isFilterEmpty
-                        ? context.tr(L10nKeys.searchFilterModelPlaceholder)
+                        ? context.tr(SearchPageLocaleKeys.searchFilterModelPlaceholder)
                         : state.selectedModels.entries
                               .map((entry) => '${entry.key}: ${entry.value.join(', ')}')
                               .join('; ');
 
                     return SearchFilterButton(
                       icon: Icons.directions_car,
-                      title: '${context.tr(L10nKeys.searchFilterModelTitle)}: ',
+                      title: '${context.tr(SearchPageLocaleKeys.searchFilterModelTitle)}: ',
                       text: modelFilters,
                       selectionCount: state.selectedModels.length.toString(),
                       onPressed: () {
@@ -117,7 +120,7 @@ class _SearchPageState extends State<SearchPage> {
                   builder: (context) {
                     return SearchFilterButton(
                       icon: Icons.filter_list_sharp,
-                      title: context.tr(L10nKeys.searchFilterParametersTitle),
+                      title: context.tr(SearchPageLocaleKeys.searchFilterParametersTitle),
                       selectionCount: selectedFilterCount.toString(),
                       onPressed: () {
                         context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);
@@ -138,7 +141,7 @@ class _SearchPageState extends State<SearchPage> {
               if (filteredResults.isEmpty)
                 SliverToBoxAdapter(
                   child: EmptyResultsPlaceholderWidget(
-                    text: context.tr(L10nKeys.emptySearchPlaceholderText),
+                    text: context.tr(SearchPageLocaleKeys.emptySearchPlaceholderText),
                   ),
                 )
               else

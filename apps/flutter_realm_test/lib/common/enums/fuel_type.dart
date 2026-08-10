@@ -1,12 +1,12 @@
 import '../../core/di/injection_container.dart';
 import '../../presentation/features/l10n/app_localisations_cubit.dart';
-import '../../presentation/features/l10n/l10n_keys.dart';
+import '../../presentation/features/search/search_page_identifiers.dart';
 
 enum FuelType {
-  diesel(L10nKeys.fuelTypeDiesel),
-  gasoline(L10nKeys.fuelTypeGasoline),
-  ev(L10nKeys.fuelTypeEv),
-  hybrid(L10nKeys.fuelTypeHybrid);
+  diesel(SearchPageLocaleKeys.fuelTypeDiesel),
+  gasoline(SearchPageLocaleKeys.fuelTypeGasoline),
+  ev(SearchPageLocaleKeys.fuelTypeEv),
+  hybrid(SearchPageLocaleKeys.fuelTypeHybrid);
 
   const FuelType(this.localisationKey);
 
