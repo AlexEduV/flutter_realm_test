@@ -20,7 +20,7 @@ import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 
-import 'search_page_cubit_test.mocks.dart';
+import '../../features/search/search_page_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<GetAllCarsUseCase>(), MockSpec<WatchCarsUseCase>()])
 void main() {
