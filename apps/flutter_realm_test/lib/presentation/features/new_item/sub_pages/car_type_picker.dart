@@ -5,7 +5,7 @@ import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';
 
 import '../../../../../common/enums/car_type.dart';
-import '../../../../../l10n/l10n_keys.dart';
+import '../new_item_page_identifiers.dart';
 import '../new_item_page_state.dart';
 import '../widgets/radio_group_title.dart';
 
@@ -25,7 +25,9 @@ class _CarTypePickerState extends State<CarTypePicker> {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: AppDimensions.minorS,
       children: [
-        RadioGroupTitle(text: context.tr(L10nKeys.addNewItemTypePickerGroupDescription)),
+        RadioGroupTitle(
+          text: context.tr(NewItemPageLocaleKeys.addNewItemTypePickerGroupDescription),
+        ),
 
         BlocBuilder<NewItemPageCubit, NewItemPageState>(
           builder: (context, state) {
@@ -38,21 +40,25 @@ class _CarTypePickerState extends State<CarTypePicker> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   ListTile(
-                    title: Text(context.tr(L10nKeys.addNewItemTypePickerGroupItemCar)),
+                    title: Text(context.tr(NewItemPageLocaleKeys.addNewItemTypePickerGroupItemCar)),
                     leading: const Radio<CarType>(toggleable: true, value: CarType.car),
                     onTap: () =>
                         context.read<NewItemPageCubit>().updateSelectedCarType(CarType.car),
                     contentPadding: listTileContentPadding,
                   ),
                   ListTile(
-                    title: Text(context.tr(L10nKeys.addNewItemTypePickerGroupItemBike)),
+                    title: Text(
+                      context.tr(NewItemPageLocaleKeys.addNewItemTypePickerGroupItemBike),
+                    ),
                     leading: const Radio<CarType>(value: CarType.bike),
                     onTap: () =>
                         context.read<NewItemPageCubit>().updateSelectedCarType(CarType.bike),
                     contentPadding: listTileContentPadding,
                   ),
                   ListTile(
-                    title: Text(context.tr(L10nKeys.addNewItemTypePickerGroupItemTruck)),
+                    title: Text(
+                      context.tr(NewItemPageLocaleKeys.addNewItemTypePickerGroupItemTruck),
+                    ),
                     leading: const Radio<CarType>(value: CarType.truck),
                     onTap: () =>
                         context.read<NewItemPageCubit>().updateSelectedCarType(CarType.truck),

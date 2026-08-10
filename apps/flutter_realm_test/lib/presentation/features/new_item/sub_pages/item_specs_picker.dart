@@ -7,8 +7,8 @@ import 'package:test_flutter_project/presentation/features/new_item/new_item_pag
 import '../../../../../common/enums/body_type.dart';
 import '../../../../../common/enums/fuel_type.dart';
 import '../../../../../common/enums/transmission_type.dart';
-import '../../../../../l10n/l10n_keys.dart';
 import '../../../pages/authentication/widgets/app_form_field.dart';
+import '../new_item_page_identifiers.dart';
 import '../new_item_page_state.dart';
 import '../widgets/radio_group_title.dart';
 
@@ -48,7 +48,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RadioGroupTitle(
-                    text: context.tr(L10nKeys.addNewItemSpecsPickerBodyTypeGroupDescription),
+                    text: context.tr(
+                      NewItemPageLocaleKeys.addNewItemSpecsPickerBodyTypeGroupDescription,
+                    ),
                   ),
 
                   RadioGroup<BodyType>(
@@ -79,7 +81,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RadioGroupTitle(
-                    text: context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupDescription),
+                    text: context.tr(
+                      NewItemPageLocaleKeys.addNewItemSpecsPickerFuelTypeGroupDescription,
+                    ),
                   ),
 
                   RadioGroup<FuelType>(
@@ -92,7 +96,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                       children: <Widget>[
                         ListTile(
                           title: Text(
-                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemDiesel),
+                            context.tr(
+                              NewItemPageLocaleKeys.addNewItemSpecsPickerFuelTypeGroupItemDiesel,
+                            ),
                           ),
                           leading: const Radio<FuelType>(toggleable: true, value: FuelType.diesel),
                           contentPadding: listTileContentPadding,
@@ -102,7 +108,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                         ),
                         ListTile(
                           title: Text(
-                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemGasoline),
+                            context.tr(
+                              NewItemPageLocaleKeys.addNewItemSpecsPickerFuelTypeGroupItemGasoline,
+                            ),
                           ),
                           leading: const Radio<FuelType>(value: FuelType.gasoline),
                           contentPadding: listTileContentPadding,
@@ -112,7 +120,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                         ),
                         ListTile(
                           title: Text(
-                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemEV),
+                            context.tr(
+                              NewItemPageLocaleKeys.addNewItemSpecsPickerFuelTypeGroupItemEV,
+                            ),
                           ),
                           leading: const Radio<FuelType>(value: FuelType.ev),
                           contentPadding: listTileContentPadding,
@@ -121,7 +131,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                         ),
                         ListTile(
                           title: Text(
-                            context.tr(L10nKeys.addNewItemSpecsPickerFuelTypeGroupItemHybrid),
+                            context.tr(
+                              NewItemPageLocaleKeys.addNewItemSpecsPickerFuelTypeGroupItemHybrid,
+                            ),
                           ),
                           leading: const Radio<FuelType>(value: FuelType.hybrid),
                           contentPadding: listTileContentPadding,
@@ -134,7 +146,9 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                   ),
 
                   RadioGroupTitle(
-                    text: context.tr(L10nKeys.addNewItemSpecsPickerEngineVolumeDescription),
+                    text: context.tr(
+                      NewItemPageLocaleKeys.addNewItemSpecsPickerEngineVolumeDescription,
+                    ),
                   ),
 
                   Row(
@@ -182,7 +196,7 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                 children: [
                   RadioGroupTitle(
                     text: context.tr(
-                      L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupDescription,
+                      NewItemPageLocaleKeys.addNewItemSpecsPickerTransmissionTypeGroupDescription,
                     ),
                   ),
 
@@ -197,7 +211,8 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                         ListTile(
                           title: Text(
                             context.tr(
-                              L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupItemManual,
+                              NewItemPageLocaleKeys
+                                  .addNewItemSpecsPickerTransmissionTypeGroupItemManual,
                             ),
                           ),
                           leading: const Radio<TransmissionType>(
@@ -212,7 +227,8 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                         ListTile(
                           title: Text(
                             context.tr(
-                              L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupItemAutomatic,
+                              NewItemPageLocaleKeys
+                                  .addNewItemSpecsPickerTransmissionTypeGroupItemAutomatic,
                             ),
                           ),
                           leading: const Radio<TransmissionType>(value: TransmissionType.automatic),
@@ -224,7 +240,8 @@ class _ItemSpecsPickerState extends State<ItemSpecsPicker> {
                         ListTile(
                           title: Text(
                             context.tr(
-                              L10nKeys.addNewItemSpecsPickerTransmissionTypeGroupItemHybrid,
+                              NewItemPageLocaleKeys
+                                  .addNewItemSpecsPickerTransmissionTypeGroupItemHybrid,
                             ),
                           ),
                           leading: const Radio<TransmissionType>(value: TransmissionType.hybrid),

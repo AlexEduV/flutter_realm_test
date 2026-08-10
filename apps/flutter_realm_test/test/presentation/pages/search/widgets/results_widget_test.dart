@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.dart';
+import 'package:test_flutter_project/presentation/features/search/widgets/results_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
 
 void main() {

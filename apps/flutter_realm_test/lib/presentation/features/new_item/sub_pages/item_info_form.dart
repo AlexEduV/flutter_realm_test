@@ -8,9 +8,9 @@ import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../../../../../l10n/l10n_keys.dart';
 import '../../../pages/authentication/widgets/app_form_field.dart';
 import '../new_item_page_cubit.dart';
+import '../new_item_page_identifiers.dart';
 import '../new_item_page_state.dart';
 import '../widgets/radio_group_title.dart';
 
@@ -68,7 +68,9 @@ class _ItemInfoFormState extends State<ItemInfoForm> {
           child: Column(
             spacing: AppDimensions.normalS,
             children: [
-              RadioGroupTitle(text: context.tr(L10nKeys.addNewItemInfoFormDescription)),
+              RadioGroupTitle(
+                text: context.tr(NewItemPageLocaleKeys.addNewItemInfoFormDescription),
+              ),
 
               BlocBuilder<NewItemPageCubit, NewItemPageState>(
                 builder: (context, state) {

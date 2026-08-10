@@ -5,17 +5,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/drawer_type.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
+import 'package:test_flutter_project/presentation/features/search/widgets/filters_drawer.dart';
+import 'package:test_flutter_project/presentation/features/search/widgets/model_filter_drawer.dart';
+import 'package:test_flutter_project/presentation/features/search/widgets/search_filter_button.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/filters_drawer.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/model_filter_drawer.dart';
-import 'package:test_flutter_project/presentation/pages/search/widgets/search_filter_button.dart';
 
 import '../../../l10n/l10n_keys.dart';
+import '../../features/search/widgets/results_widget.dart';
 import '../../widgets/announcement_item/announcement_list_item.dart';
-import 'widgets/results_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

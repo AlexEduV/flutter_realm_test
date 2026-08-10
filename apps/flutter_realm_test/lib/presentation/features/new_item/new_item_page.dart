@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/enums/item_setup_tab.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/home/home_page_params.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/new_item/sub_pages/car_type_picker.dart';
@@ -14,6 +13,7 @@ import 'package:test_flutter_project/presentation/features/new_item/sub_pages/it
 import 'package:test_flutter_project/presentation/features/new_item/widgets/page_selection_bar.dart';
 
 import '../explore/explore_page_cubit.dart';
+import 'new_item_page_identifiers.dart';
 import 'new_item_page_state.dart';
 
 class NewItemPage extends StatefulWidget {
@@ -67,7 +67,10 @@ class _NewItemPageState extends State<NewItemPage> {
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(context.tr(L10nKeys.addNewItemPageTitle), style: AppTextStyles.zonaPro20),
+        title: Text(
+          context.tr(NewItemPageLocaleKeys.addNewItemPageTitle),
+          style: AppTextStyles.zonaPro20,
+        ),
       ),
       body: Stack(
         alignment: AlignmentGeometry.center,

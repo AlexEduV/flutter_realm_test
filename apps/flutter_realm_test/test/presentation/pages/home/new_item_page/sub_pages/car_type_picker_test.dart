@@ -4,10 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/new_item/new_item_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_state.dart';
 import 'package:test_flutter_project/presentation/features/new_item/sub_pages/car_type_picker.dart';
 import 'package:test_flutter_project/presentation/features/new_item/widgets/radio_group_title.dart';
@@ -36,11 +36,11 @@ void main() {
     when(mockAppLocalisationsCubit.state).thenReturn(
       const AppLocalisationsState(
         localisations: {
-          L10nKeys.addNewItemTypePickerGroupDescription:
+          NewItemPageLocaleKeys.addNewItemTypePickerGroupDescription:
               'What kind of an item are you trying to add?',
-          L10nKeys.addNewItemTypePickerGroupItemCar: 'Car',
-          L10nKeys.addNewItemTypePickerGroupItemBike: 'Bike',
-          L10nKeys.addNewItemTypePickerGroupItemTruck: 'Truck',
+          NewItemPageLocaleKeys.addNewItemTypePickerGroupItemCar: 'Car',
+          NewItemPageLocaleKeys.addNewItemTypePickerGroupItemBike: 'Bike',
+          NewItemPageLocaleKeys.addNewItemTypePickerGroupItemTruck: 'Truck',
         },
       ),
     );

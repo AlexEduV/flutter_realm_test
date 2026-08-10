@@ -9,10 +9,10 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 
 import '../../../l10n/l10n_keys.dart';
-import '../../features/l10n/app_localisations_cubit.dart';
+import '../l10n/app_localisations_cubit.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
   SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase, this._appLocalisationsCubit)

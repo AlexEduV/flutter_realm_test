@@ -13,8 +13,6 @@ import 'package:test_flutter_project/common/enums/car_type.dart' as _i16;
 import 'package:test_flutter_project/common/enums/drawer_type.dart' as _i18;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i4;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i13;
-import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart' as _i15;
-import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart' as _i6;
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart' as _i19;
 import 'package:test_flutter_project/presentation/features/details/details_page_state.dart' as _i7;
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart' as _i11;
@@ -23,6 +21,8 @@ import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_
     as _i8;
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_state.dart'
     as _i2;
+import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart' as _i15;
+import 'package:test_flutter_project/presentation/features/search/search_page_state.dart' as _i6;
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart' as _i12;
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart' as _i5;
 

@@ -18,7 +18,7 @@ import 'package:test_flutter_project/presentation/widgets/placeholder_page.dart'
 
 import '../../common/constants/app_routes.dart';
 import '../../common/enums/details_page_source.dart';
-import '../../presentation/pages/search/search_page.dart';
+import '../../presentation/features/search/search_page.dart';
 
 class AppRouter {
   static final GoRouter _router = GoRouter(
