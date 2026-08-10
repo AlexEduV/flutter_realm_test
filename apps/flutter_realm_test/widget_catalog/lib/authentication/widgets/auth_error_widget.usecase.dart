@@ -1,8 +1,8 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_flutter_project/presentation/features/authentication/widgets/auth_error_widget.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/auth_error_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 Widget buildAuthErrorWidgetUseCase(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:test_flutter_project/presentation/features/new_item/new_item_pag
 import '../../../../../common/enums/body_type.dart';
 import '../../../../../common/enums/fuel_type.dart';
 import '../../../../../common/enums/transmission_type.dart';
-import '../../../pages/authentication/widgets/app_form_field.dart';
+import '../../../features/authentication/widgets/app_form_field.dart';
 import '../new_item_page_identifiers.dart';
 import '../new_item_page_state.dart';
 import '../widgets/radio_group_title.dart';

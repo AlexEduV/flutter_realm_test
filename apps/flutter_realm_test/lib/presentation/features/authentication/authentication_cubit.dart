@@ -7,10 +7,10 @@ import 'package:test_flutter_project/domain/usecases/authentication/login_use_ca
 import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
+import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 
-import '../../features/l10n/app_localisations_cubit.dart';
+import '../l10n/app_localisations_cubit.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit(

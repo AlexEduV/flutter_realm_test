@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/edit_dialog_state.dart';
 
 import '../../../../../../common/constants/app_semantics_labels.dart';
-import '../../../../../pages/authentication/widgets/animated_password_visibility_icon.dart';
+import '../../../../../features/authentication/widgets/animated_password_visibility_icon.dart';
 import '../../../../../widgets/app_semantics.dart';
 import '../../../../../widgets/dialogs/edit_dialog_cubit.dart';
 

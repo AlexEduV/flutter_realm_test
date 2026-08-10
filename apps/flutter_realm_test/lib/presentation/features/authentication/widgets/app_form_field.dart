@@ -1,7 +1,7 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:core_ui/core_ui.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/animated_password_visibility_icon.dart';
+import 'package:test_flutter_project/presentation/features/authentication/widgets/animated_password_visibility_icon.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 class AppFormField extends StatelessWidget {

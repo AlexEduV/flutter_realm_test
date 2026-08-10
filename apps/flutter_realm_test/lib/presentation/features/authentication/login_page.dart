@@ -1,13 +1,13 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/auth_error_widget.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/auth_form_switcher.dart';
+import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
+import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
+import 'package:test_flutter_project/presentation/features/authentication/widgets/auth_error_widget.dart';
+import 'package:test_flutter_project/presentation/features/authentication/widgets/auth_form_switcher.dart';
 
 import '../../../l10n/l10n_keys.dart';
 

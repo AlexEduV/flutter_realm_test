@@ -128,8 +128,8 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_cubit.dart';

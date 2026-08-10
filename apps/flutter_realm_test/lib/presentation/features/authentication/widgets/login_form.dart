@@ -1,40 +1,37 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_flutter_project/presentation/pages/authentication/widgets/password_strength_bar_widget.dart';
+import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
+import 'package:test_flutter_project/presentation/features/authentication/widgets/animated_divider_with_text.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../l10n/l10n_keys.dart';
-import '../../../bloc/authentication/authentication_cubit.dart';
-import 'animated_divider_with_text.dart';
+import '../../../features/authentication/authentication_cubit.dart';
 import 'app_form_field.dart';
 
-class RegistrationForm extends StatefulWidget {
-  const RegistrationForm({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
   @override
-  State<RegistrationForm> createState() => _RegistrationFormState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _RegistrationFormState extends State<RegistrationForm> {
-  final fullNameTextController = TextEditingController();
+class _LoginFormState extends State<LoginForm> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
-  final fullNameFocusNode = FocusNode();
   final emailFocusNode = FocusNode();
   final passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
-    fullNameFocusNode.dispose();
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
 
-    fullNameTextController.dispose();
     emailTextController.dispose();
     passwordTextController.dispose();
 
@@ -47,42 +44,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
       builder: (context, state) {
         return Column(
           children: [
-            AppSemantics(
-              textField: true,
-              label: AppSemanticsLabels.fullNameTextField,
-              child: AppFormField(
-                focusNode: fullNameFocusNode,
-                textEditingController: fullNameTextController,
-                labelText: state.fullNameFieldParams?.label ?? '',
-                hintText: state.fullNameFieldParams?.hintText ?? '',
-                textInputType: TextInputType.name,
-                leadingIcon: Icons.person_outlined,
-                textInputAction: TextInputAction.next,
-                onEditingComplete: () {
-                  emailFocusNode.requestFocus();
-                },
-                errorText: state.fullNameError,
-                onChanged: (newValue) {
-                  context.read<AuthenticationCubit>().updateFullName(fullNameTextController.text);
-
-                  context.read<AuthenticationCubit>().validateFullName(
-                    fullNameTextController.text,
-                    fullNameFocusNode.hasFocus,
-                  );
-                },
-                onFocusChange: (hasFocus) {
-                  if (!hasFocus) {
-                    context.read<AuthenticationCubit>().validateFullName(
-                      fullNameTextController.text,
-                      false,
-                    );
-                  }
-                },
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
             AppSemantics(
               label: AppSemanticsLabels.emailTextField,
               textField: true,
@@ -141,14 +102,16 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 onChanged: (newValue) {
                   context.read<AuthenticationCubit>().updatePassword(passwordTextController.text);
 
-                  context.read<AuthenticationCubit>().validatePasswordWithStrengthBar(
+                  context.read<AuthenticationCubit>().validatePassword(
                     passwordTextController.text,
+                    passwordFocusNode.hasFocus,
                   );
                 },
                 onFocusChange: (hasFocus) {
                   if (!hasFocus) {
-                    context.read<AuthenticationCubit>().validatePasswordWithStrengthBar(
+                    context.read<AuthenticationCubit>().validatePassword(
                       passwordTextController.text,
+                      false,
                     );
                   }
                 },
@@ -157,17 +120,39 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
             ),
 
-            const PasswordStrengthBarWidget(),
+            //forgot password button
+            Padding(
+              padding: const EdgeInsets.only(
+                top: AppDimensions.minorS,
+                right: AppDimensions.normalM,
+              ),
+              child: Align(
+                alignment: AlignmentGeometry.centerRight,
+                child: AppSemantics(
+                  label: AppSemanticsLabels.forgotPasswordButton,
+                  button: true,
+                  child: GestureDetector(
+                    child: Text(
+                      context.tr(L10nKeys.forgotPasswordButtonTitle),
+                      style: AppTextStyles.zonaPro16.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.headerColor,
+                      ),
+                    ),
+                    onTap: () => context.go(AppRoutes.home + AppRoutes.forgotPassword),
+                  ),
+                ),
+              ),
+            ),
 
-            //todo: add password confirmation field as well
             const SizedBox(height: 20),
 
-            // Sign up button
+            // login button
             AppSemantics(
               button: true,
-              label: context.tr(L10nKeys.signUpButtonTitle),
+              label: AppSemanticsLabels.loginButton,
               child: SplashButton(
-                title: context.tr(L10nKeys.signUpButtonTitle),
+                title: context.tr(L10nKeys.loginButtonTitle),
                 onPressed: () {
                   if (state.isLoading) {
                     return;
@@ -175,9 +160,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
                   emailFocusNode.unfocus();
                   passwordFocusNode.unfocus();
-                  fullNameFocusNode.unfocus();
 
-                  context.read<AuthenticationCubit>().onRegisterButtonPressed();
+                  context.read<AuthenticationCubit>().onLoginButtonPressed();
                 },
                 buttonType: ButtonType.primary,
                 isLoading: state.isLoading,
@@ -192,11 +176,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
             // join us button if not registered
             AppSemantics(
+              label: context.tr(L10nKeys.signUpButtonTitle),
               button: true,
-              label: AppSemanticsLabels.loginButton,
               child: SplashButton(
-                title: context.tr(L10nKeys.loginButtonTitle),
-                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
+                title: context.tr(L10nKeys.signUpButtonTitle),
+                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
                 buttonType: ButtonType.secondary,
               ),
             ),

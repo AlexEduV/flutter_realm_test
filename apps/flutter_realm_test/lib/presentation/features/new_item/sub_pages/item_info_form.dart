@@ -8,7 +8,7 @@ import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../../../pages/authentication/widgets/app_form_field.dart';
+import '../../../features/authentication/widgets/app_form_field.dart';
 import '../new_item_page_cubit.dart';
 import '../new_item_page_identifiers.dart';
 import '../new_item_page_state.dart';
