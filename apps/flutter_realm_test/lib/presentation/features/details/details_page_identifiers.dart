@@ -13,3 +13,8 @@ final class DetailsPageLocaleKeys {
   static const String ownerSectionContactButtonTitle =
       'pages.vehicleDetails.ownerSection.contactButtonTitle';
 }
+
+final class DetailsPageIds {
+  static const detailsPageVehicleSpecsExpandButton = 'detailsPageVehicleSpecsExpandButton';
+  static const detailsPageContactButton = 'detailsPageContactButton';
+}

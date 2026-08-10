@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/constants/app_routes.dart';
@@ -63,7 +63,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                   Text(title, style: AppTextStyles.zonaPro30White),
                   AppSemantics(
                     button: true,
-                    label: AppSemanticsLabels.homePageSearchButton,
+                    label: ExplorePageIds.homePageSearchButton,
                     child: IconButton(
                       highlightColor: Colors.white10,
                       onPressed: () => context.go(AppRoutes.home + AppRoutes.search),

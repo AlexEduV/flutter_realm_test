@@ -1,7 +1,6 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/num_extension.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/vehicle_specs/widgets/vehicle_specs_content.dart';
@@ -43,7 +42,7 @@ class VehicleSpecsWidget extends StatelessWidget {
                   return AppSemantics(
                     button: true,
                     expanded: state.isVehicleSpecsExpanded,
-                    label: AppSemanticsLabels.detailsPageVehicleSpecsExpandButton,
+                    label: DetailsPageIds.detailsPageVehicleSpecsExpandButton,
                     child: IconButton(
                       onPressed: () => context
                           .read<DetailsPageCubit>()

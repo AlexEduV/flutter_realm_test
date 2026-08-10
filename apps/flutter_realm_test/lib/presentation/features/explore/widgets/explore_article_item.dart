@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../explore_page_cubit.dart';
@@ -53,7 +53,7 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
             );
           },
           child: AppSemantics(
-            label: AppSemanticsLabels.exploreArticleItem,
+            label: ExplorePageIds.exploreArticleItem,
             button: true,
             child: Material(
               color: AppColors.accentColor.withAlpha(60),

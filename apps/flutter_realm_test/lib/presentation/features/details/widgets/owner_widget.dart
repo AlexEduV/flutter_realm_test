@@ -2,7 +2,6 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
@@ -109,7 +108,7 @@ class OwnerWidget extends StatelessWidget {
               width: double.infinity, // Makes the button full width
               child: AppSemantics(
                 button: true,
-                label: AppSemanticsLabels.detailsPageContactButton,
+                label: DetailsPageIds.detailsPageContactButton,
                 child: ElevatedButton(
                   onPressed: () => onSendMessageButtonTap(owner, context),
                   style: ElevatedButton.styleFrom(
