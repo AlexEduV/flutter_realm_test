@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../features/home_bottom_bar/widgets/animated_add_button.dart';
+import '../../home_bottom_bar/widgets/animated_add_button.dart';
 
 class UserAvatarEnhanced extends StatelessWidget {
   const UserAvatarEnhanced({

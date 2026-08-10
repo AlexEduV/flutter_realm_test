@@ -6,11 +6,11 @@ import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/widget_list_extension.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
+import 'package:test_flutter_project/presentation/features/account/widgets/account_item_separated.dart';
+import 'package:test_flutter_project/presentation/features/account/widgets/custom_divider.dart';
+import 'package:test_flutter_project/presentation/features/account/widgets/user_avatar_enhanced.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/pages/account/widgets/account_item_separated.dart';
-import 'package:test_flutter_project/presentation/pages/account/widgets/custom_divider.dart';
-import 'package:test_flutter_project/presentation/pages/account/widgets/user_avatar_enhanced.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/login_page.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 

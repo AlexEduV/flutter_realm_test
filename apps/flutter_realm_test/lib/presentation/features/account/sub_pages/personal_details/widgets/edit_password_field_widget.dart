@@ -1,12 +1,12 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_state.dart';
 
 import '../../../../../../common/constants/app_semantics_labels.dart';
 import '../../../../../bloc/account/edit_dialog_cubit.dart';
+import '../../../../../pages/authentication/widgets/animated_password_visibility_icon.dart';
 import '../../../../../widgets/app_semantics.dart';
-import '../../../../authentication/widgets/animated_password_visibility_icon.dart';
 
 class EditPasswordFieldWidget extends StatelessWidget {
   const EditPasswordFieldWidget({

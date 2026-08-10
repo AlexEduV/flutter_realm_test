@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
+import '../../features/account/widgets/account_item_separated.dart';
 import '../../features/inbox/inbox_page_cubit.dart';
 import '../../features/inbox/inbox_page_identifiers.dart';
-import '../../pages/account/widgets/account_item_separated.dart';
 
 class InboxItemMenuBottomSheet extends StatelessWidget {
   const InboxItemMenuBottomSheet({required this.conversationId, super.key});

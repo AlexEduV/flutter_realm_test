@@ -5,11 +5,11 @@ import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
 import '../../../../../l10n/l10n_keys.dart';
-import '../../../../features/explore/explore_page_cubit.dart';
-import '../../../../features/explore/explore_page_state.dart';
-import '../../../../features/user/user_data_cubit.dart';
-import '../../../../features/user/user_data_state.dart';
 import '../../../../widgets/car_list_item.dart';
+import '../../../explore/explore_page_cubit.dart';
+import '../../../explore/explore_page_state.dart';
+import '../../../user/user_data_cubit.dart';
+import '../../../user/user_data_state.dart';
 
 class MyItemsPage extends StatelessWidget {
   const MyItemsPage({super.key});

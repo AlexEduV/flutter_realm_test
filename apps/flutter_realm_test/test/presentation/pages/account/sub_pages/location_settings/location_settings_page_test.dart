@@ -5,6 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_identifiers.dart';
@@ -14,7 +15,6 @@ import 'package:test_flutter_project/presentation/features/location_settings/loc
 import 'package:test_flutter_project/presentation/features/location_settings/widgets/footer_text.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
-import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 
 import '../../../../../common/extensions/context_extension_test.mocks.dart';
 import '../../../../../utils/app_router_test.mocks.dart';

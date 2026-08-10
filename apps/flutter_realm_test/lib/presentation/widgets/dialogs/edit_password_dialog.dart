@@ -1,13 +1,13 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
 import '../../../l10n/l10n_keys.dart';
 import '../../bloc/account/edit_dialog_cubit.dart';
 import '../../bloc/account/edit_dialog_state.dart';
-import '../../pages/account/sub_pages/personal_details/widgets/edit_password_field_widget.dart';
+import '../../features/account/sub_pages/personal_details/widgets/edit_password_field_widget.dart';
 import '../app_semantics.dart';
 
 class EditPasswordDialog extends StatefulWidget {

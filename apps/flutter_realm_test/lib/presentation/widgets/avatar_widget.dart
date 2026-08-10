@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/cupertino.dart'
     show BuildContext, BoxFit, StatelessWidget, Widget, ColoredBox, ClipOval, SizedBox;
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
-import 'package:test_flutter_project/presentation/pages/account/widgets/user_avatar_enhanced.dart';
+import 'package:test_flutter_project/presentation/features/account/widgets/user_avatar_enhanced.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 class AvatarWidget extends StatelessWidget {
