@@ -152,9 +152,16 @@ class _MyAppState extends State<MyApp> {
     if (!isGranted) {
       if (!context.mounted) return;
 
+      final l10n = context.read<AppLocalisationsCubit>();
+
       await DialogHelper.showLocationPermissionDialog(
         context,
-        () => context.read<UserDataCubit>().openLocationSettings(),
+        title: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogTitle),
+        description: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogDescription),
+        confirmButtonTitle: l10n.getLocalisationByKey(
+          L10nKeys.locationPermissionDialogOpenSettings,
+        ),
+        onConfirm: () => context.read<UserDataCubit>().openLocationSettings(),
       );
     }
   }

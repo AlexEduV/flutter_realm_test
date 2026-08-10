@@ -1,6 +1,5 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/acknowledgement_dialog.dart';
@@ -10,9 +9,6 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/edit_password_
 import 'package:test_flutter_project/presentation/widgets/dialogs/edit_personal_info_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
-
-import '../presentation/features/l10n/app_localisations_cubit.dart';
-import '../presentation/features/l10n/l10n_keys.dart';
 
 class DialogHelper {
   static bool _isLocationPermissionDialogShowing = false;
@@ -140,29 +136,31 @@ class DialogHelper {
   }
 
   static Future<void> showLocationPermissionDialog(
-    BuildContext context,
-    VoidCallback onConfirm,
-  ) async {
+    BuildContext context, {
+    required String title,
+    required String description,
+    required String confirmButtonTitle,
+    required VoidCallback onConfirm,
+  }) async {
     if (_isLocationPermissionDialogShowing) return;
 
     _isLocationPermissionDialogShowing = true;
-    await showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        final l10n = context.read<AppLocalisationsCubit>();
-
-        return AcknowledgementDialog(
-          title: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogTitle),
-          description: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogDescription),
-          confirmButtonTitle: l10n.getLocalisationByKey(
-            L10nKeys.locationPermissionDialogOpenSettings,
-          ),
-          onConfirm: () => onConfirm.call(),
-          icon: const Icon(Icons.location_on, color: AppColors.headerColor),
-        );
-      },
-    );
-    _isLocationPermissionDialogShowing = false;
+    try {
+      await showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return AcknowledgementDialog(
+            title: title,
+            description: description,
+            confirmButtonTitle: confirmButtonTitle,
+            onConfirm: () => onConfirm.call(),
+            icon: const Icon(Icons.location_on, color: AppColors.headerColor),
+          );
+        },
+      );
+    } finally {
+      _isLocationPermissionDialogShowing = false;
+    }
   }
 }
