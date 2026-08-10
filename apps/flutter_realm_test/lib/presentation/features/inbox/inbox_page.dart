@@ -2,14 +2,13 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/features/inbox/widgets/inbox_list_item.dart';
-
-import '../../../../l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
 
 class InboxPage extends StatefulWidget {
   const InboxPage({super.key});
@@ -29,13 +28,15 @@ class _InboxPageState extends State<InboxPage> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
-        title: Text(context.tr(L10nKeys.inboxPageTitle), style: AppTextStyles.zonaPro20),
+        title: Text(context.tr(InboxPageLocaleKeys.inboxPageTitle), style: AppTextStyles.zonaPro20),
         centerTitle: true,
       ),
       body: BlocBuilder<UserDataCubit, UserDataState>(
         builder: (context, state) {
           if (!state.isUserAuthenticated) {
-            return EmptyResultsPlaceholderWidget(text: context.tr(L10nKeys.inboxPageLoggedOutText));
+            return EmptyResultsPlaceholderWidget(
+              text: context.tr(InboxPageLocaleKeys.inboxPageLoggedOutText),
+            );
           }
 
           return BlocBuilder<InboxPageCubit, InboxPageState>(
@@ -47,7 +48,9 @@ class _InboxPageState extends State<InboxPage> {
               }
 
               if (state.conversations.isEmpty) {
-                return EmptyResultsPlaceholderWidget(text: context.tr(L10nKeys.inboxPageEmptyText));
+                return EmptyResultsPlaceholderWidget(
+                  text: context.tr(InboxPageLocaleKeys.inboxPageEmptyText),
+                );
               }
 
               return ListView.builder(

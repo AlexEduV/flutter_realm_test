@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
-import '../../../../../../l10n/l10n_keys.dart';
+import '../../../../inbox/inbox_page_identifiers.dart';
 
 class MessageInfoRow extends StatelessWidget {
   const MessageInfoRow({
@@ -24,7 +24,7 @@ class MessageInfoRow extends StatelessWidget {
       textDirection: isMyMessage ? TextDirection.rtl : TextDirection.ltr,
       children: [
         Text(
-          isMyMessage ? context.tr(L10nKeys.messageSenderYou) : senderName,
+          isMyMessage ? context.tr(InboxPageLocaleKeys.messageSenderYou) : senderName,
           style: AppTextStyles.zonaPro14.copyWith(fontWeight: FontWeight.w600),
         ),
         Text(time),

@@ -8,10 +8,10 @@ import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.d
 import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 
 import '../../../domain/models/conversation_model.dart';
+import 'messages_page_state.dart';
 
 class MessagesPageCubit extends Cubit<MessagesPageState> {
   MessagesPageCubit(

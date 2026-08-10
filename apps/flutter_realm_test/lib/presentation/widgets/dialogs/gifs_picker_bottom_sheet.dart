@@ -11,11 +11,11 @@ import 'package:transparent_image/transparent_image.dart';
 
 import '../../../common/enums/message_status.dart';
 import '../../../domain/models/message_model.dart';
-import '../../../l10n/l10n_keys.dart';
-import '../../bloc/messages/messages_page_cubit.dart';
-import '../../bloc/messages/messages_page_state.dart';
 import '../../bloc/user/user_data_cubit.dart';
 import '../../features/inbox/inbox_page_cubit.dart';
+import '../../features/inbox/inbox_page_identifiers.dart';
+import '../../features/messages/messages_page_cubit.dart';
+import '../../features/messages/messages_page_state.dart';
 
 class GifsPickerBottomSheet extends StatefulWidget {
   const GifsPickerBottomSheet({required this.listKey, super.key});
@@ -65,7 +65,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                   onChanged: (newValue) =>
                       context.read<MessagesPageCubit>().updateGifsSearch(newValue),
                   decoration: InputDecoration(
-                    hintText: context.tr(L10nKeys.gifsTextFieldHint),
+                    hintText: context.tr(InboxPageLocaleKeys.gifsTextFieldHint),
                     fillColor: Colors.white,
                     filled: true,
                     border: OutlineInputBorder(
@@ -105,12 +105,14 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                                 children: [
                                   if (isQueryEmpty)
                                     TextSpan(
-                                      text: context.tr(L10nKeys.gifsResultsTrendingLabel),
+                                      text: context.tr(
+                                        InboxPageLocaleKeys.gifsResultsTrendingLabel,
+                                      ),
                                       style: const TextStyle(fontWeight: FontWeight.bold),
                                     )
                                   else ...[
                                     TextSpan(
-                                      text: context.tr(L10nKeys.gifsResultsQueryLabel),
+                                      text: context.tr(InboxPageLocaleKeys.gifsResultsQueryLabel),
                                       style: AppTextStyles.zonaPro18,
                                     ),
                                     TextSpan(

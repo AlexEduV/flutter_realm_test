@@ -62,10 +62,6 @@ class AppSemanticsLabels {
   static const chatInputBarGifButton = 'chatInputBarGifButton';
   static const gifListItem = 'gifListItem';
 
-  static const messageListItem = 'messageListItem';
-  static const messageItemText = 'messageItemText';
-  static const dateDivider = 'dateDivider';
-
   static const avatarWidget = 'avatarWidget';
   static const avatarWidgetEnhanced = 'avatarWidgetEnhanced';
 }

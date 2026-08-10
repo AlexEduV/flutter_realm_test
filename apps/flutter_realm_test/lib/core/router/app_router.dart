@@ -8,12 +8,12 @@ import 'package:test_flutter_project/presentation/features/home/home_page.dart';
 import 'package:test_flutter_project/presentation/features/home/home_page_params.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_params.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/clear_data/clear_user_data_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/my_items/my_items_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/personal_details_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/recently_viewed/recently_viewed_page.dart';
-import 'package:test_flutter_project/presentation/pages/messages/messages_page.dart';
 import 'package:test_flutter_project/presentation/widgets/placeholder_page.dart';
 
 import '../../common/constants/app_routes.dart';

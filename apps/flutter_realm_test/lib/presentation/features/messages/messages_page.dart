@@ -3,23 +3,23 @@ import 'dart:convert';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/chat_input_bar/chat_input_bar.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/date_divider.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/empty_conversation_placeholder.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/message_item.dart';
-import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/messages/widgets/chat_input_bar/chat_input_bar.dart';
+import 'package:test_flutter_project/presentation/features/messages/widgets/date_divider.dart';
+import 'package:test_flutter_project/presentation/features/messages/widgets/empty_conversation_placeholder.dart';
+import 'package:test_flutter_project/presentation/features/messages/widgets/message_item/message_item.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../utils/inline_style_parser.dart';
+import '../../widgets/app_semantics.dart';
 
 class MessagesPage extends StatefulWidget {
   const MessagesPage({required this.conversationId, super.key});
@@ -138,7 +138,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   children: [
                     if (showDivider) ...[
                       AppSemantics(
-                        label: AppSemanticsLabels.dateDivider,
+                        label: MessagesPageIds.dateDivider,
                         child: DateDivider(
                           text: context.read<MessagesPageCubit>().getMessageDividerDate(
                             message.date,
@@ -148,7 +148,7 @@ class _MessagesPageState extends State<MessagesPage> {
                     ],
 
                     AppSemantics(
-                      label: AppSemanticsLabels.messageListItem,
+                      label: MessagesPageIds.messageListItem,
                       child: MessageItem(
                         senderName: '${sender?.firstName ?? ''} ${sender?.lastName ?? ''}',
                         imageSrc: sender?.avatarImageSrc,

@@ -11,6 +11,7 @@ import 'package:test_flutter_project/presentation/features/home_bottom_bar/widge
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../common/extensions/num_extension.dart';
+import '../inbox/inbox_page_identifiers.dart';
 
 class HomeBottomBar extends StatelessWidget {
   const HomeBottomBar({required this.onAddPressed, super.key});
@@ -73,7 +74,7 @@ class HomeBottomBar extends StatelessWidget {
               unselectedIcon: Icons.mail_outlined,
               selectedIcon: Icons.mail,
               semanticsLabel: AppSemanticsLabels.homeBottomBarItemInbox,
-              label: context.tr(L10nKeys.inboxPageTitle),
+              label: context.tr(InboxPageLocaleKeys.inboxPageTitle),
             ),
             HomeBottomBarItem(
               index: AppConstants.homeTabAccount,

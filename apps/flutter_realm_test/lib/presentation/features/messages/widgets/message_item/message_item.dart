@@ -5,8 +5,8 @@ import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_content.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_info_row.dart';
+import 'package:test_flutter_project/presentation/features/messages/widgets/message_item/widgets/message_content.dart';
+import 'package:test_flutter_project/presentation/features/messages/widgets/message_item/widgets/message_info_row.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../widgets/avatar_widget.dart';

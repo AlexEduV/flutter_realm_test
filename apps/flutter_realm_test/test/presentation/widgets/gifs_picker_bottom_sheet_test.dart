@@ -7,14 +7,14 @@ import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/gif_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_state.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 
 import '../../common/extensions/context_extension_test.mocks.dart';
@@ -67,7 +67,9 @@ void main() {
     when(messagesCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.state).thenReturn(
-      const AppLocalisationsState(localisations: {L10nKeys.gifsResultsTrendingLabel: 'Trending'}),
+      const AppLocalisationsState(
+        localisations: {InboxPageLocaleKeys.gifsResultsTrendingLabel: 'Trending'},
+      ),
     );
 
     await tester.pumpWidget(
@@ -97,7 +99,7 @@ void main() {
     when(appLocalisationsCubit.stream).thenAnswer((_) => const Stream.empty());
     when(appLocalisationsCubit.state).thenReturn(
       const AppLocalisationsState(
-        localisations: {L10nKeys.gifsResultsQueryLabel: 'Search results for '},
+        localisations: {InboxPageLocaleKeys.gifsResultsQueryLabel: 'Search results for '},
       ),
     );
 

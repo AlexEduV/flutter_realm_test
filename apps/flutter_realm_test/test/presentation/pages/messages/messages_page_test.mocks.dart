@@ -14,10 +14,12 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i5;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i13;
 import 'package:test_flutter_project/domain/models/conversation_model.dart' as _i4;
 import 'package:test_flutter_project/domain/models/message_model.dart' as _i8;
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart' as _i11;
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_state.dart' as _i3;
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart' as _i6;
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart' as _i2;
+import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart'
+    as _i11;
+import 'package:test_flutter_project/presentation/features/messages/messages_page_state.dart'
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

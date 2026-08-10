@@ -3,6 +3,7 @@ import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 
 void main() {
   group('L10nKeys', () {
@@ -304,13 +305,16 @@ void main() {
     );
     test(
       'inboxPageLoggedOutText',
-      () => expect(L10nKeys.inboxPageLoggedOutText, 'pages.inbox.loggedOutPlaceholderText'),
+      () => expect(
+        InboxPageLocaleKeys.inboxPageLoggedOutText,
+        'pages.inbox.loggedOutPlaceholderText',
+      ),
     );
     test(
       'inboxPageEmptyText',
-      () => expect(L10nKeys.inboxPageEmptyText, 'pages.inbox.emptyPlaceholderText'),
+      () => expect(InboxPageLocaleKeys.inboxPageEmptyText, 'pages.inbox.emptyPlaceholderText'),
     );
-    test('inboxPageTitle', () => expect(L10nKeys.inboxPageTitle, 'pages.inbox.title'));
+    test('inboxPageTitle', () => expect(InboxPageLocaleKeys.inboxPageTitle, 'pages.inbox.title'));
     test('accountPageTitle', () => expect(L10nKeys.accountPageTitle, 'pages.account.title'));
     test(
       'accountItemPersonalDetails',

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/extensions/text_style_extension.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_file_content.dart';
-import 'package:test_flutter_project/presentation/pages/messages/widgets/message_item/widgets/message_gif_content.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_identifiers.dart';
 
-import '../../../../../../common/constants/app_semantics_labels.dart';
 import '../../../../../../utils/inline_style_parser.dart';
 import '../../../../../widgets/app_semantics.dart';
+import 'message_file_content.dart';
+import 'message_gif_content.dart';
 
 class MessageContent extends StatelessWidget {
   const MessageContent({
@@ -29,7 +29,7 @@ class MessageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSemantics(
-      label: AppSemanticsLabels.messageItemText,
+      label: MessagesPageIds.messageItemText,
       child: Container(
         padding: const EdgeInsets.symmetric(
           vertical: AppDimensions.normalS,

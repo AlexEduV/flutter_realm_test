@@ -1,14 +1,14 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
 import '../../../../../common/constants/app_semantics_labels.dart';
-import '../../../../../l10n/l10n_keys.dart';
 import '../../../../../utils/dialog_helper.dart';
-import '../../../../bloc/messages/messages_page_cubit.dart';
-import '../../../../bloc/messages/messages_page_state.dart';
 import '../../../../widgets/app_semantics.dart';
+import '../../../inbox/inbox_page_identifiers.dart';
+import '../../messages_page_cubit.dart';
+import '../../messages_page_state.dart';
 
 class ChatInputTextField extends StatefulWidget {
   const ChatInputTextField({
@@ -70,7 +70,7 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
                 ),
               ),
               hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),
-              hintText: context.tr(L10nKeys.messageBarHint),
+              hintText: context.tr(InboxPageLocaleKeys.messageBarHint),
               contentPadding: const EdgeInsets.symmetric(
                 vertical: AppDimensions.normalM,
                 horizontal: AppDimensions.normalS,

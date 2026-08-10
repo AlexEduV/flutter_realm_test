@@ -8,14 +8,14 @@ import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
-import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/messages/messages_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 import 'package:test_flutter_project/utils/inline_style_parser.dart';
 
 import '../../../widgets/app_badge.dart';
+import '../inbox_page_identifiers.dart';
 
 class InboxListItem extends StatelessWidget {
   const InboxListItem({
@@ -131,15 +131,15 @@ class InboxListItem extends StatelessWidget {
 
   String _formatMessageText(String? message, BuildContext context) {
     if (message == null) {
-      return context.tr(L10nKeys.inboxPageEmptyText);
+      return context.tr(InboxPageLocaleKeys.inboxPageEmptyText);
     }
 
     if (message.contains('url')) {
-      return context.tr(L10nKeys.gifMessagePlaceholder);
+      return context.tr(InboxPageLocaleKeys.gifMessagePlaceholder);
     }
 
     if (message.contains('file')) {
-      return context.tr(L10nKeys.attachmentMessagePlaceholder);
+      return context.tr(InboxPageLocaleKeys.attachmentMessagePlaceholder);
     }
 
     return message;

@@ -107,10 +107,6 @@ class L10nKeys {
   static const String authPasswordStrengthDigitHint = 'forms.hints.passwordDigitChar';
   static const String authPasswordStrengthSpecialCharacterHint = 'forms.hints.passwordSpecialChar';
 
-  static const String inboxPageLoggedOutText = 'pages.inbox.loggedOutPlaceholderText';
-  static const String inboxPageEmptyText = 'pages.inbox.emptyPlaceholderText';
-  static const String inboxPageTitle = 'pages.inbox.title';
-
   static const String accountPageTitle = 'pages.account.title';
 
   static const String accountItemPersonalDetails = 'pages.account.items.personalDetails.title';
@@ -189,20 +185,6 @@ class L10nKeys {
   static const String promoTypeLimitedTimeOffer = 'pages.vehicleDetails.promoType.limitedTimeOffer';
   static const String promoTypeOneOwner = 'pages.vehicleDetails.promoType.oneOwner';
   static const String promoTypeFeatured = 'pages.vehicleDetails.promoType.featured';
-
-  static const String messageSenderYou = 'pages.inbox.general.senderYou';
-  static const String messageBarHint = 'pages.inbox.general.messageHint';
-
-  static const String conversationDialogDeleteItemTitle =
-      'pages.inbox.conversationDialog.deleteItemTitle';
-
-  static const String gifsTextFieldHint = 'pages.inbox.gifs.inputHint';
-  static const String gifsResultsTrendingLabel = 'pages.inbox.gifs.resultsTrending';
-  static const String gifsResultsQueryLabel = 'pages.inbox.gifs.resultsQuery';
-  static const String gifMessagePlaceholder = 'pages.inbox.gifs.gifMessagePlaceholder';
-
-  static const String attachmentMessagePlaceholder =
-      'pages.inbox.attachments.attachmentMessagePlaceholder';
 
   static const String addNewItemPageTitle = 'pages.addNewItem.title';
 

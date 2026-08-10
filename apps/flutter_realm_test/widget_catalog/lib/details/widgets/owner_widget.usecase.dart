@@ -7,12 +7,13 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/owner_widget.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 Widget buildOwnerWidgetUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()
     ..load({
-      L10nKeys.messageSenderYou: 'You',
+      InboxPageLocaleKeys.messageSenderYou: 'You',
       L10nKeys.ownerSectionPersonTypeOwner: 'Owner',
       L10nKeys.distanceAway: 'km',
       L10nKeys.ownerSectionContactButtonTitle: 'Send a message',

@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
-import '../../../l10n/l10n_keys.dart';
 import '../../features/inbox/inbox_page_cubit.dart';
+import '../../features/inbox/inbox_page_identifiers.dart';
 import '../../pages/account/widgets/account_item_separated.dart';
 
 class InboxItemMenuBottomSheet extends StatelessWidget {
@@ -23,7 +23,7 @@ class InboxItemMenuBottomSheet extends StatelessWidget {
             AppDimensions.normalS,
           ).copyWith(bottom: AppDimensions.majorS),
           child: AccountItemSeparated(
-            title: context.tr(L10nKeys.conversationDialogDeleteItemTitle),
+            title: context.tr(InboxPageLocaleKeys.conversationDialogDeleteItemTitle),
             onTap: () => onDeleteItemTap(context),
           ),
         ),
