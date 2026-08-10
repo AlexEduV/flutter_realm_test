@@ -10,7 +10,7 @@ import '../../../common/extensions/context_extension.dart';
 import '../../../core/router/app_router.dart';
 import '../../../domain/entities/car_entity.dart';
 import '../../../domain/entities/user_entity.dart';
-import '../../bloc/user/user_data_cubit.dart';
+import '../../features/user/user_data_cubit.dart';
 import '../app_semantics.dart';
 
 class AnnouncementItemBody extends StatelessWidget {

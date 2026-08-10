@@ -131,8 +131,6 @@ import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.d
 import 'package:test_flutter_project/presentation/bloc/account/edit_dialog_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
@@ -141,6 +139,7 @@ import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubi
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 
 import '../../data/repositories/car_repository_impl.dart';
@@ -150,6 +149,7 @@ import '../../domain/repositories/url_launch_repository.dart';
 import '../../domain/usecases/inbox/save_conversations_use_case.dart';
 import '../../presentation/features/explore/explore_page_cubit.dart';
 import '../../presentation/features/location_settings/location_settings_page_cubit.dart';
+import '../../presentation/features/share/share_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 

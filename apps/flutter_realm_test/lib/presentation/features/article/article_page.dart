@@ -10,8 +10,8 @@ import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 
 import '../../../common/constants/app_semantics_labels.dart';
 import '../../../domain/models/share_params_model.dart';
-import '../../bloc/share/share_cubit.dart';
 import '../../widgets/app_semantics.dart';
+import '../share/share_cubit.dart';
 import 'article_page_cubit.dart';
 import 'article_page_state.dart';
 

@@ -10,10 +10,10 @@ import 'package:test_flutter_project/utils/dialog_helper.dart';
 import '../../../common/constants/api_constants.dart';
 import '../../../common/extensions/list_extension.dart';
 import '../../../l10n/l10n_keys.dart';
-import '../../bloc/user/user_data_cubit.dart';
-import '../../bloc/user/user_data_state.dart';
+import '../../features/user/user_data_state.dart';
 import '../../pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 import '../../pages/account/widgets/custom_divider.dart';
+import '../user/user_data_cubit.dart';
 import 'location_settings_identifiers.dart';
 import 'location_settings_page_cubit.dart';
 

@@ -6,8 +6,8 @@ import 'package:test_flutter_project/common/extensions/widget_list_extension.dar
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../../../../bloc/user/user_data_cubit.dart';
-import '../../../../bloc/user/user_data_state.dart';
+import '../../../../features/user/user_data_cubit.dart';
+import '../../../../features/user/user_data_state.dart';
 import '../../widgets/account_item_separated.dart';
 import '../../widgets/custom_divider.dart';
 import '../personal_details/widgets/personal_details_list_item.dart';

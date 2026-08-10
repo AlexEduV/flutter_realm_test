@@ -15,8 +15,8 @@ import '../../../domain/usecases/database/add_car_use_case.dart';
 import '../../../domain/usecases/database/get_all_cars_use_case.dart';
 import '../../../domain/usecases/database/get_current_max_car_id_use_case.dart';
 import '../../../l10n/l10n_keys.dart';
-import '../../bloc/user/user_data_cubit.dart';
 import '../l10n/app_localisations_cubit.dart';
+import '../user/user_data_cubit.dart';
 import 'new_item_page_state.dart';
 
 class NewItemPageCubit extends Cubit<NewItemPageState> {

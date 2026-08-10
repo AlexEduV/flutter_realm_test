@@ -2,13 +2,13 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
 import 'package:test_flutter_project/presentation/features/inbox/widgets/inbox_list_item.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 
 class InboxPage extends StatefulWidget {
   const InboxPage({super.key});

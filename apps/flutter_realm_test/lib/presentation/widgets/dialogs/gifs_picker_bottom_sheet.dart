@@ -11,11 +11,11 @@ import 'package:transparent_image/transparent_image.dart';
 
 import '../../../common/enums/message_status.dart';
 import '../../../domain/models/message_model.dart';
-import '../../bloc/user/user_data_cubit.dart';
 import '../../features/inbox/inbox_page_cubit.dart';
 import '../../features/inbox/inbox_page_identifiers.dart';
 import '../../features/messages/messages_page_cubit.dart';
 import '../../features/messages/messages_page_state.dart';
+import '../../features/user/user_data_cubit.dart';
 
 class GifsPickerBottomSheet extends StatefulWidget {
   const GifsPickerBottomSheet({required this.listKey, super.key});

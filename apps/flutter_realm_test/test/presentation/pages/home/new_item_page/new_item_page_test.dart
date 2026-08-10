@@ -13,8 +13,6 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/features/home/home_page.dart';
@@ -28,6 +26,8 @@ import 'package:test_flutter_project/presentation/features/new_item/sub_pages/ca
 import 'package:test_flutter_project/presentation/features/new_item/sub_pages/item_info_form.dart';
 import 'package:test_flutter_project/presentation/features/new_item/sub_pages/item_specs_picker.dart';
 import 'package:test_flutter_project/presentation/features/new_item/widgets/page_selection_bar.dart';
+import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 import '../../../bloc/user/user_data_cubit_test.mocks.dart';

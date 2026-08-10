@@ -3,8 +3,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/models/share_params_model.dart';
 import 'package:test_flutter_project/domain/usecases/share/share_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/share/share_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/share/share_state.dart';
+import 'package:test_flutter_project/presentation/features/share/share_cubit.dart';
+import 'package:test_flutter_project/presentation/features/share/share_state.dart';
 
 import 'share_cubit_test.mocks.dart';
 

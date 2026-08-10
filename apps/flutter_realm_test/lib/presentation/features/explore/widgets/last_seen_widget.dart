@@ -8,9 +8,9 @@ import 'package:test_flutter_project/presentation/features/explore/explore_page_
 import '../../../../../common/constants/app_semantics_labels.dart';
 import '../../../../../core/router/app_router.dart';
 import '../../../../../l10n/l10n_keys.dart';
-import '../../../bloc/user/user_data_cubit.dart';
-import '../../../bloc/user/user_data_state.dart';
+import '../../../features/user/user_data_state.dart';
 import '../../../widgets/app_semantics.dart';
+import '../../user/user_data_cubit.dart';
 import '../explore_page_state.dart';
 
 class LastSeenWidget extends StatelessWidget {
