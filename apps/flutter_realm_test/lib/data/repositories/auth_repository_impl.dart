@@ -1,14 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
+import 'package:test_flutter_project/domain/models/auth_error_code.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
-import 'package:test_flutter_project/presentation/features/authentication/login_page_identifiers.dart';
-import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 
 import '../../common/extensions/user_scheme_extension.dart';
-import '../../core/di/injection_container.dart';
 import '../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../domain/entities/user_entity.dart';
 
@@ -54,21 +52,11 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (!users.any((element) => element.email == email)) {
-      return AuthResult(
-        success: false,
-        message: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-          LoginPageIds.authErrorUserNotFoundMessage,
-        ),
-      );
+      return AuthResult(success: false, errorCode: AuthErrorCode.userNotFound);
     }
 
     if (!users.any((element) => element.password == password && element.email == email)) {
-      return AuthResult(
-        success: false,
-        message: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-          LoginPageIds.authErrorIncorrectPassword,
-        ),
-      );
+      return AuthResult(success: false, errorCode: AuthErrorCode.incorrectPassword);
     }
 
     final user = users.firstWhere((element) => element.email == email);
@@ -94,12 +82,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (users.any((element) => element.email == email)) {
-      return AuthResult(
-        success: false,
-        message: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-          LoginPageIds.authErrorUserAlreadyExists,
-        ),
-      );
+      return AuthResult(success: false, errorCode: AuthErrorCode.userAlreadyExists);
     }
 
     final newUserId = _usersRemoteDataSource.getMaxUserId() + 1;
