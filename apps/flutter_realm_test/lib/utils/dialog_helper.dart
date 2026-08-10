@@ -155,7 +155,7 @@ class DialogHelper {
             description: description,
             confirmButtonTitle: confirmButtonTitle,
             onConfirm: () => onConfirm.call(),
-            icon: const Icon(Icons.location_on, color: AppColors.headerColor),
+            icon: const Icon(Icons.pin_drop, color: AppColors.headerColor),
           );
         },
       );
