@@ -16,8 +16,8 @@ import 'package:test_flutter_project/presentation/features/location_settings/wid
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 
-import '../../../../../common/extensions/context_extension_test.mocks.dart';
-import '../../../../../utils/app_router_test.mocks.dart';
+import '../../../common/extensions/context_extension_test.mocks.dart';
+import '../../../utils/app_router_test.mocks.dart';
 import 'location_settings_page_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<LocationSettingsPageCubit>()])

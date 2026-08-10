@@ -13,7 +13,7 @@ import 'package:test_flutter_project/presentation/features/user/user_data_cubit.
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
-import '../authentication/login_page_test.mocks.dart';
+import '../../pages/authentication/login_page_test.mocks.dart';
 
 void main() {
   late MockUserDataCubit userDataCubit;
