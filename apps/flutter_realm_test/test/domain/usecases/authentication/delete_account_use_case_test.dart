@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
 
-import '../../../presentation/bloc/user/user_data_cubit_test.mocks.dart';
+import '../../../presentation/features/user/user_data_cubit_test.mocks.dart';
 
 void main() {
   late MockAuthRepository mockAuthRepository;

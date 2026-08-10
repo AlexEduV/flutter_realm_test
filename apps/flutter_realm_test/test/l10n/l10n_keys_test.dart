@@ -5,6 +5,7 @@ import 'package:test_flutter_project/presentation/features/explore/explore_page_
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/placeholder/placeholder_page_identifiers.dart';
 
 void main() {
   group('L10nKeys', () {
@@ -93,11 +94,17 @@ void main() {
     );
     test(
       'comingSoonPlaceholderPageTitle',
-      () => expect(L10nKeys.comingSoonPlaceholderPageTitle, 'pages.comingSoon.title'),
+      () => expect(
+        PlaceholderPageLocaleKeys.comingSoonPlaceholderPageTitle,
+        'pages.comingSoon.title',
+      ),
     );
     test(
       'comingSoonPlaceholderPageSubTitle',
-      () => expect(L10nKeys.comingSoonPlaceholderPageSubTitle, 'pages.comingSoon.subtitle'),
+      () => expect(
+        PlaceholderPageLocaleKeys.comingSoonPlaceholderPageSubTitle,
+        'pages.comingSoon.subtitle',
+      ),
     );
     test(
       'bodyTypeSedan',

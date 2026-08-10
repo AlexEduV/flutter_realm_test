@@ -26,7 +26,7 @@ import 'package:test_flutter_project/presentation/features/search/search_page_st
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 
-import '../presentation/bloc/user/user_data_cubit_test.mocks.dart';
+import '../presentation/features/user/user_data_cubit_test.mocks.dart';
 import 'app_router_test.mocks.dart';
 
 @GenerateNiceMocks([

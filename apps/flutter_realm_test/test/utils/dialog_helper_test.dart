@@ -28,8 +28,8 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_men
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
 import '../common/fakes/image_fakes.dart';
-import '../presentation/pages/details/widgets/vehicle_specs_widget_test.mocks.dart';
-import '../presentation/pages/messages/messages_page_test.mocks.dart';
+import '../presentation/features/details/widgets/vehicle_specs_widget_test.mocks.dart';
+import '../presentation/features/messages/messages_page_test.mocks.dart';
 import '../presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog_test.mocks.dart';
 
 void main() {

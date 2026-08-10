@@ -32,7 +32,7 @@ import 'package:test_flutter_project/presentation/widgets/announcement_item/anno
 
 import '../../../common/extensions/context_extension_test.mocks.dart';
 import '../../../utils/app_router_test.mocks.dart';
-import '../../bloc/user/user_data_cubit_test.mocks.dart';
+import '../../features/user/user_data_cubit_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

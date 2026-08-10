@@ -20,7 +20,7 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bo
 import '../../common/extensions/context_extension_test.mocks.dart';
 import '../../common/fakes/image_fakes.dart';
 import '../../utils/app_router_test.mocks.dart';
-import '../pages/messages/messages_page_test.mocks.dart';
+import '../features/messages/messages_page_test.mocks.dart';
 
 void main() {
   setUp(() => HttpOverrides.global = MockHttpOverrides());

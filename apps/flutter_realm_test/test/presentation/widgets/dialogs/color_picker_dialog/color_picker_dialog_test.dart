@@ -14,7 +14,7 @@ import 'package:test_flutter_project/presentation/features/color_picker/widgets/
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
-import '../../../pages/details/widgets/vehicle_specs_widget_test.mocks.dart';
+import '../../../features/details/widgets/vehicle_specs_widget_test.mocks.dart';
 import 'color_picker_dialog_test.mocks.dart';
 
 @GenerateNiceMocks([

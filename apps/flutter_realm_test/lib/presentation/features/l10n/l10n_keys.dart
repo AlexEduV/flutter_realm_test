@@ -31,9 +31,6 @@ class L10nKeys {
   static const String parameterTransmissionTypeName = 'filters.parameters.transmissionTypes.title';
   static const String filterValidationMessage = 'filters.parameters.filterValidationMessage';
 
-  static const String comingSoonPlaceholderPageTitle = 'pages.comingSoon.title';
-  static const String comingSoonPlaceholderPageSubTitle = 'pages.comingSoon.subtitle';
-
   static const String bodyTypeSedan = 'filters.parameters.bodyTypes.sedan';
   static const String bodyTypeHatchback = 'filters.parameters.bodyTypes.hatchback';
   static const String bodyTypeUniversal = 'filters.parameters.bodyTypes.universal';

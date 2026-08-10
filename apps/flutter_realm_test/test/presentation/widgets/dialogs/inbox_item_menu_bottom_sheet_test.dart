@@ -10,7 +10,7 @@ import 'package:test_flutter_project/presentation/features/inbox/inbox_page_stat
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
 
-import '../../pages/messages/messages_page_test.mocks.dart';
+import '../../features/messages/messages_page_test.mocks.dart';
 
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();

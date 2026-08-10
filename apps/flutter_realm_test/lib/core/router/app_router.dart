@@ -14,7 +14,7 @@ import 'package:test_flutter_project/presentation/features/inbox/inbox_page_para
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_page.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page.dart';
-import 'package:test_flutter_project/presentation/widgets/placeholder_page.dart';
+import 'package:test_flutter_project/presentation/features/placeholder/placeholder_page.dart';
 
 import '../../common/constants/app_routes.dart';
 import '../../common/enums/details_page_source.dart';
