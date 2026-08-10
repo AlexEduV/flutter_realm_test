@@ -7,8 +7,8 @@ import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
+import 'package:test_flutter_project/presentation/features/authentication/login_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'auth_repository_impl_test.mocks.dart';
@@ -90,7 +90,7 @@ void main() {
       expect(
         result.message,
         serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-          L10nKeys.authErrorUserNotFoundMessage,
+          LoginPageIds.authErrorUserNotFoundMessage,
         ),
       );
     });
@@ -101,7 +101,7 @@ void main() {
       expect(
         result.message,
         serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-          L10nKeys.authErrorIncorrectPassword,
+          LoginPageIds.authErrorIncorrectPassword,
         ),
       );
     });
@@ -130,7 +130,7 @@ void main() {
       expect(
         result.message,
         serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-          L10nKeys.authErrorUserAlreadyExists,
+          LoginPageIds.authErrorUserAlreadyExists,
         ),
       );
     });

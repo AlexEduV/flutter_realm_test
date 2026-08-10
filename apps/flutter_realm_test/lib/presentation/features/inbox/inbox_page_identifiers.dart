@@ -17,3 +17,7 @@ final class InboxPageLocaleKeys {
   static const String attachmentMessagePlaceholder =
       'pages.inbox.attachments.attachmentMessagePlaceholder';
 }
+
+final class InboxPageIds {
+  static const inboxItem = 'inboxItem';
+}

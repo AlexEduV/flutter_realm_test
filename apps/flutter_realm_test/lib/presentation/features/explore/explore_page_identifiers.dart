@@ -1,4 +1,10 @@
 final class ExplorePageLocaleKeys {
   static const String explorePageTitle = 'pages.explore.title';
   static const String recommendedSectionTitle = 'pages.explore.recommendedSection.title';
+  static const String lastSeenSectionTitle = 'pages.explore.lastSeenSection.title';
+}
+
+final class ExplorePageIds {
+  static const exploreArticleItem = 'exploreArticleItem';
+  static const homePageSearchButton = 'homePageSearchButton';
 }

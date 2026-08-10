@@ -35,3 +35,7 @@ final class AccountPageLocaleKeys {
   static const String accountItemLogout = 'pages.account.items.logOut';
   static const String accountItemDeleteAccount = 'pages.account.items.deleteAccount';
 }
+
+final class AccountPageIds {
+  static const accountItem = 'accountItem';
+}

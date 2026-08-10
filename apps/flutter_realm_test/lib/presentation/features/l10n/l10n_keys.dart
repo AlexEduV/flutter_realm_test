@@ -4,71 +4,9 @@ class L10nKeys {
   static const String appName = 'app.name';
   static const String locale = 'app.locale';
 
-  static const String results = 'pages.search.resultsSection.title';
-
-  static const String addCarButtonTooltip = 'actions.addCar.tooltip';
   static const String deleteButtonTitle = 'actions.delete.title';
 
   static const String distanceAway = 'widgets.distance.text';
-
-  static const String lastSeenSectionTitle = 'pages.explore.lastSeenSection.title';
-
-  static const String searchPageTitle = 'pages.search.title';
-  static const String searchTabCars = 'pages.search.tabs.cars';
-  static const String searchTabBikes = 'pages.search.tabs.bikes';
-  static const String searchTabTrucks = 'pages.search.tabs.trucks';
-  static const String emptySearchPlaceholderText = 'pages.search.emptyPlaceholder';
-
-  static const String searchFilterModelTitle = 'filters.model.title';
-  static const String searchFilterModelPlaceholder = 'filters.model.placeholder';
-  static const String searchFilterParametersTitle = 'filters.parameters.title';
-
-  static const String parameterYearName = 'filters.parameters.year';
-  static const String parameterColorName = 'filters.parameters.color';
-  static const String parameterBodyTypeName = 'filters.parameters.bodyTypes.title';
-  static const String parameterPriceRangeName = 'filters.parameters.priceRange';
-  static const String parameterFuelTypeName = 'filters.parameters.fuelTypes.title';
-  static const String parameterTransmissionTypeName = 'filters.parameters.transmissionTypes.title';
-  static const String filterValidationMessage = 'filters.parameters.filterValidationMessage';
-
-  static const String bodyTypeSedan = 'filters.parameters.bodyTypes.sedan';
-  static const String bodyTypeHatchback = 'filters.parameters.bodyTypes.hatchback';
-  static const String bodyTypeUniversal = 'filters.parameters.bodyTypes.universal';
-  static const String bodyTypeMinivan = 'filters.parameters.bodyTypes.minivan';
-  static const String bodyTypeCoupe = 'filters.parameters.bodyTypes.coupe';
-  static const String bodyTypeCrossover = 'filters.parameters.bodyTypes.crossover';
-  static const String bodyTypeSemi = 'filters.parameters.bodyTypes.semi';
-  static const String bodyTypeBike = 'filters.parameters.bodyTypes.bike';
-
-  static const String fuelTypeDiesel = 'filters.parameters.fuelTypes.diesel';
-  static const String fuelTypeGasoline = 'filters.parameters.fuelTypes.gasoline';
-  static const String fuelTypeEv = 'filters.parameters.fuelTypes.ev';
-  static const String fuelTypeHybrid = 'filters.parameters.fuelTypes.hybrid';
-
-  static const String transmissionTypeManual = 'filters.parameters.transmissionTypes.manual';
-  static const String transmissionTypeAutomatic = 'filters.parameters.transmissionTypes.automatic';
-  static const String transmissionTypeHybrid = 'filters.parameters.transmissionTypes.hybrid';
-
-  static const String vehicleSpecificationsSectionTitle = 'pages.vehicleDetails.sectionTitle';
-  static const String vehicleSpecificationBody = 'pages.vehicleDetails.specifications.body';
-  static const String vehicleSpecificationEngine = 'pages.vehicleDetails.specifications.engine';
-  static const String vehicleSpecificationTransmission =
-      'pages.vehicleDetails.specifications.transmission';
-  static const String vehicleSpecificationMileage = 'pages.vehicleDetails.specifications.mileage';
-  static const String vehicleSpecificationColor = 'pages.vehicleDetails.specifications.color';
-  static const String vehicleSpecificationYear = 'pages.vehicleDetails.specifications.year';
-
-  static const String ownerSectionPersonTypeOwner =
-      'pages.vehicleDetails.ownerSection.personTypeOwner';
-  static const String ownerSectionContactButtonTitle =
-      'pages.vehicleDetails.ownerSection.contactButtonTitle';
-
-  static const String loginPageLoginWelcomeText = 'forms.ui.welcomeLoginTitle';
-  static const String loginPageRegistrationWelcomeText = 'forms.ui.welcomeRegisterTitle';
-  static const String forgotPasswordButtonTitle = 'forms.ui.forgotPasswordButtonText';
-  static const String loginButtonTitle = 'forms.ui.loginButtonTitle';
-  static const String signUpButtonTitle = 'forms.ui.signUpButtonTitle';
-  static const String orDividerTitle = 'forms.ui.orDividerTitle';
 
   static const String fieldParamsValidationMessage = 'forms.validationMessage';
 
@@ -93,16 +31,6 @@ class L10nKeys {
 
   static const String fieldParamsHintMax = 'forms.fieldParams.hintTextMax';
   static const String fieldParamsHintMin = 'forms.fieldParams.hintTextMin';
-
-  static const String authErrorUserNotFoundMessage = 'forms.warnings.userNotFound';
-  static const String authErrorIncorrectPassword = 'forms.warnings.incorrectPassword';
-  static const String authErrorUserAlreadyExists = 'forms.warnings.userAlreadyExists';
-
-  static const String authPasswordStrengthLengthHint = 'forms.hints.passwordMinLength';
-  static const String authPasswordStrengthLowercaseHint = 'forms.hints.passwordLowercaseChar';
-  static const String authPasswordStrengthUppercaseHint = 'forms.hints.passwordUpperCaseChar';
-  static const String authPasswordStrengthDigitHint = 'forms.hints.passwordDigitChar';
-  static const String authPasswordStrengthSpecialCharacterHint = 'forms.hints.passwordSpecialChar';
 
   static const String dateFormattingYesterday = 'dateFormatting.yesterday';
   static const String dateFormattingToday = 'dateFormatting.today';

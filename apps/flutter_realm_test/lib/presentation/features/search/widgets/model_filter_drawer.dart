@@ -6,7 +6,7 @@ import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 
-import '../../l10n/l10n_keys.dart';
+import '../search_page_identifiers.dart';
 
 class ModelFilterDrawer extends StatelessWidget {
   const ModelFilterDrawer({required this.models, super.key});
@@ -31,7 +31,7 @@ class ModelFilterDrawer extends StatelessWidget {
             children: [
               DrawerHeader(
                 child: Text(
-                  context.tr(L10nKeys.searchFilterModelTitle),
+                  context.tr(SearchPageLocaleKeys.searchFilterModelTitle),
                   style: AppTextStyles.zonaPro20,
                 ),
               ),
@@ -46,7 +46,7 @@ class ModelFilterDrawer extends StatelessWidget {
                   }
                 },
                 title: Text(
-                  context.tr(L10nKeys.searchFilterModelPlaceholder),
+                  context.tr(SearchPageLocaleKeys.searchFilterModelPlaceholder),
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 controlAffinity: checkBoxPosition,

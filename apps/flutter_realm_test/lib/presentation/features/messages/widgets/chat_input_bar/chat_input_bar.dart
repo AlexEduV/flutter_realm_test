@@ -1,11 +1,11 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/messages/messages_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 
 import '../../messages_page_state.dart';
@@ -45,7 +45,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
               icon: Icons.attach_file,
               onTap: () async => await addAttachment(),
               iconRotationAngleDegrees: 40,
-              semanticsLabel: AppSemanticsLabels.chatInputBarAttachmentButton,
+              semanticsLabel: MessagesPageIds.chatInputBarAttachmentButton,
             ),
 
             Expanded(
@@ -62,7 +62,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
               icon: Icons.send,
               onTap: isTextFieldEmpty ? null : () => onSendMessageTap(context),
               iconRotationAngleDegrees: -40,
-              semanticsLabel: AppSemanticsLabels.chatInputBarSendMessageButton,
+              semanticsLabel: MessagesPageIds.chatInputBarSendMessageButton,
             ),
           ],
         );

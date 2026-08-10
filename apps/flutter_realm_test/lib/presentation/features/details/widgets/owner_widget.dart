@@ -2,12 +2,12 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/details/details_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_params.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
@@ -67,7 +67,7 @@ class OwnerWidget extends StatelessWidget {
                           Expanded(
                             child: Text(
                               maxLines: 1,
-                              context.tr(L10nKeys.ownerSectionPersonTypeOwner),
+                              context.tr(DetailsPageLocaleKeys.ownerSectionPersonTypeOwner),
                               style: AppTextStyles.zonaPro16Grey.copyWith(
                                 fontWeight: FontWeight.w400,
                               ),
@@ -108,7 +108,7 @@ class OwnerWidget extends StatelessWidget {
               width: double.infinity, // Makes the button full width
               child: AppSemantics(
                 button: true,
-                label: AppSemanticsLabels.detailsPageContactButton,
+                label: DetailsPageIds.detailsPageContactButton,
                 child: ElevatedButton(
                   onPressed: () => onSendMessageButtonTap(owner, context),
                   style: ElevatedButton.styleFrom(
@@ -124,7 +124,7 @@ class OwnerWidget extends StatelessWidget {
                     foregroundColor: Colors.white,
                   ),
                   child: Text(
-                    context.tr(L10nKeys.ownerSectionContactButtonTitle),
+                    context.tr(DetailsPageLocaleKeys.ownerSectionContactButtonTitle),
                     style: AppTextStyles.zonaPro16,
                     textAlign: TextAlign.center,
                   ),

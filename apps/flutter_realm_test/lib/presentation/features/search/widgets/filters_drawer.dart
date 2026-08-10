@@ -12,7 +12,7 @@ import 'package:test_flutter_project/presentation/features/search/search_page_st
 import 'package:test_flutter_project/presentation/features/search/widgets/debounced_text_form_field.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../l10n/l10n_keys.dart';
+import '../search_page_identifiers.dart';
 
 class FiltersDrawer extends StatefulWidget {
   const FiltersDrawer({super.key});
@@ -71,7 +71,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
             children: [
               DrawerHeader(
                 child: Text(
-                  context.tr(L10nKeys.searchFilterParametersTitle),
+                  context.tr(SearchPageLocaleKeys.searchFilterParametersTitle),
                   style: AppTextStyles.zonaPro20,
                 ),
               ),
@@ -79,7 +79,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               if (state.allColors.isNotEmpty) ...[
                 ListTile(
                   title: Text(
-                    context.tr(L10nKeys.parameterColorName),
+                    context.tr(SearchPageLocaleKeys.parameterColorName),
                     style: AppTextStyles.zonaPro18,
                   ),
                 ),
@@ -98,7 +98,10 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
               }),
 
               ListTile(
-                title: Text(context.tr(L10nKeys.parameterYearName), style: AppTextStyles.zonaPro18),
+                title: Text(
+                  context.tr(SearchPageLocaleKeys.parameterYearName),
+                  style: AppTextStyles.zonaPro18,
+                ),
               ),
 
               //todo: use a slider here
@@ -131,7 +134,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ListTile(
                 title: Text(
-                  context.tr(L10nKeys.parameterBodyTypeName),
+                  context.tr(SearchPageLocaleKeys.parameterBodyTypeName),
                   style: AppTextStyles.zonaPro18,
                 ),
               ),
@@ -148,7 +151,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ListTile(
                 title: Text(
-                  context.tr(L10nKeys.parameterPriceRangeName),
+                  context.tr(SearchPageLocaleKeys.parameterPriceRangeName),
                   style: AppTextStyles.zonaPro18,
                 ),
               ),
@@ -184,7 +187,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ListTile(
                 title: Text(
-                  context.tr(L10nKeys.parameterFuelTypeName),
+                  context.tr(SearchPageLocaleKeys.parameterFuelTypeName),
                   style: AppTextStyles.zonaPro18,
                 ),
               ),
@@ -201,7 +204,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ListTile(
                 title: Text(
-                  context.tr(L10nKeys.parameterTransmissionTypeName),
+                  context.tr(SearchPageLocaleKeys.parameterTransmissionTypeName),
                   style: AppTextStyles.zonaPro18,
                 ),
               ),

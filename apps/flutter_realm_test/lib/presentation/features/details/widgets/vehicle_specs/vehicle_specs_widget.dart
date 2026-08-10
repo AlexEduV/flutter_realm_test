@@ -1,14 +1,13 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/common/extensions/num_extension.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/vehicle_specs/widgets/vehicle_specs_content.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../features/details/details_page_cubit.dart';
-import '../../../l10n/l10n_keys.dart';
+import '../../details_page_identifiers.dart';
 import '../../details_page_state.dart';
 
 class VehicleSpecsWidget extends StatelessWidget {
@@ -32,7 +31,7 @@ class VehicleSpecsWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                context.tr(L10nKeys.vehicleSpecificationsSectionTitle),
+                context.tr(DetailsPageLocaleKeys.vehicleSpecificationsSectionTitle),
                 style: AppTextStyles.zonaPro20.copyWith(fontWeight: FontWeight.w600),
               ),
 
@@ -43,7 +42,7 @@ class VehicleSpecsWidget extends StatelessWidget {
                   return AppSemantics(
                     button: true,
                     expanded: state.isVehicleSpecsExpanded,
-                    label: AppSemanticsLabels.detailsPageVehicleSpecsExpandButton,
+                    label: DetailsPageIds.detailsPageVehicleSpecsExpandButton,
                     child: IconButton(
                       onPressed: () => context
                           .read<DetailsPageCubit>()

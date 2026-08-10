@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
@@ -29,14 +29,20 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: EmptyResultsPlaceholderWidget(
-              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+              text: appLocalisationsCubit.getLocalisationByKey(
+                SearchPageLocaleKeys.emptySearchPlaceholderText,
+              ),
             ),
           ),
         ),
       );
 
       expect(
-        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText)),
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(
+            SearchPageLocaleKeys.emptySearchPlaceholderText,
+          ),
+        ),
         findsOneWidget,
       );
     });
@@ -46,14 +52,20 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: EmptyResultsPlaceholderWidget(
-              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+              text: appLocalisationsCubit.getLocalisationByKey(
+                SearchPageLocaleKeys.emptySearchPlaceholderText,
+              ),
             ),
           ),
         ),
       );
 
       final textWidget = tester.widget<Text>(
-        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText)),
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(
+            SearchPageLocaleKeys.emptySearchPlaceholderText,
+          ),
+        ),
       );
       expect(textWidget.style?.fontSize, AppTextStyles.zonaPro18.fontSize);
       expect(textWidget.style?.fontWeight, AppTextStyles.zonaPro18.fontWeight);
@@ -65,7 +77,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: EmptyResultsPlaceholderWidget(
-              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+              text: appLocalisationsCubit.getLocalisationByKey(
+                SearchPageLocaleKeys.emptySearchPlaceholderText,
+              ),
             ),
           ),
         ),
@@ -82,7 +96,9 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: EmptyResultsPlaceholderWidget(
-              text: appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText),
+              text: appLocalisationsCubit.getLocalisationByKey(
+                SearchPageLocaleKeys.emptySearchPlaceholderText,
+              ),
             ),
           ),
         ),
@@ -92,7 +108,11 @@ void main() {
       expect(find.byType(Flexible), findsNothing);
 
       final textWidget = tester.widget<Text>(
-        find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.emptySearchPlaceholderText)),
+        find.text(
+          appLocalisationsCubit.getLocalisationByKey(
+            SearchPageLocaleKeys.emptySearchPlaceholderText,
+          ),
+        ),
       );
       expect(textWidget.overflow, TextOverflow.ellipsis);
     });

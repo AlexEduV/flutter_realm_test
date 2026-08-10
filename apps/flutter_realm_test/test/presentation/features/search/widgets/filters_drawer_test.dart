@@ -9,8 +9,8 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 import 'package:test_flutter_project/presentation/features/search/widgets/filters_drawer.dart';
 
@@ -78,13 +78,17 @@ void main() {
 
     // Check DrawerHeader title
     expect(
-      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.searchFilterParametersTitle)),
+      find.text(
+        appLocalisationsCubit.getLocalisationByKey(
+          SearchPageLocaleKeys.searchFilterParametersTitle,
+        ),
+      ),
       findsOneWidget,
     );
 
     // Check selected body type
     expect(
-      find.text(appLocalisationsCubit.getLocalisationByKey(L10nKeys.bodyTypeSedan)),
+      find.text(appLocalisationsCubit.getLocalisationByKey(SearchPageLocaleKeys.bodyTypeSedan)),
       findsOneWidget,
     );
     final sedanCheckbox = find.byWidgetPredicate(
@@ -92,7 +96,7 @@ void main() {
           widget is CheckboxListTile &&
           widget.title is Text &&
           (widget.title as Text).data ==
-              appLocalisationsCubit.getLocalisationByKey(L10nKeys.bodyTypeSedan),
+              appLocalisationsCubit.getLocalisationByKey(SearchPageLocaleKeys.bodyTypeSedan),
     );
     expect(sedanCheckbox, findsOneWidget);
   });
@@ -120,7 +124,7 @@ void main() {
           widget is CheckboxListTile &&
           widget.title is Text &&
           (widget.title as Text).data ==
-              appLocalisationsCubit.getLocalisationByKey(L10nKeys.bodyTypeSedan),
+              appLocalisationsCubit.getLocalisationByKey(SearchPageLocaleKeys.bodyTypeSedan),
     );
     await tester.tap(sedanCheckbox);
     await tester.pumpAndSettle();
@@ -139,7 +143,7 @@ void main() {
           widget is CheckboxListTile &&
           widget.title is Text &&
           (widget.title as Text).data ==
-              appLocalisationsCubit.getLocalisationByKey(L10nKeys.fuelTypeDiesel),
+              appLocalisationsCubit.getLocalisationByKey(SearchPageLocaleKeys.fuelTypeDiesel),
     );
 
     await tester.scrollUntilVisible(
@@ -165,7 +169,9 @@ void main() {
           widget is CheckboxListTile &&
           widget.title is Text &&
           (widget.title as Text).data ==
-              appLocalisationsCubit.getLocalisationByKey(L10nKeys.transmissionTypeManual),
+              appLocalisationsCubit.getLocalisationByKey(
+                SearchPageLocaleKeys.transmissionTypeManual,
+              ),
     );
 
     await tester.scrollUntilVisible(

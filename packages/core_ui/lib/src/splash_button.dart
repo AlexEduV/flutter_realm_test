@@ -34,9 +34,7 @@ class SplashButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: AppDimensions.normalM), // Button height
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                AppDimensions.normalS,
-              ), // Optional rounded corners
+              borderRadius: BorderRadius.circular(AppDimensions.normalS),
             ),
             backgroundColor: backgroundColor,
             foregroundColor: foregroundColor,

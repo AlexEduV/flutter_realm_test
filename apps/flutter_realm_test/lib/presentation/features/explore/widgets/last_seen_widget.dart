@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 
 import '../../../../../common/constants/app_semantics_labels.dart';
 import '../../../../../core/router/app_router.dart';
 import '../../../features/user/user_data_state.dart';
 import '../../../widgets/app_semantics.dart';
-import '../../l10n/l10n_keys.dart';
 import '../../user/user_data_cubit.dart';
 import '../explore_page_state.dart';
 
@@ -43,7 +43,7 @@ class LastSeenWidget extends StatelessWidget {
                     top: AppDimensions.normalL,
                   ),
                   child: Text(
-                    context.tr(L10nKeys.lastSeenSectionTitle),
+                    context.tr(ExplorePageLocaleKeys.lastSeenSectionTitle),
                     style: AppTextStyles.zonaPro18White.copyWith(fontWeight: FontWeight.w600),
                   ),
                 ),

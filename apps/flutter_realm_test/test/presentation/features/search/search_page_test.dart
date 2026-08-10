@@ -19,9 +19,9 @@ import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_state.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_state.dart';
-import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 import 'package:test_flutter_project/presentation/features/search/widgets/filters_drawer.dart';
 import 'package:test_flutter_project/presentation/features/search/widgets/model_filter_drawer.dart';
@@ -108,9 +108,9 @@ void main() {
       ]),
     );
 
-    when(
-      appLocalisationsCubit.state,
-    ).thenReturn(const AppLocalisationsState(localisations: {L10nKeys.searchPageTitle: 'Search'}));
+    when(appLocalisationsCubit.state).thenReturn(
+      const AppLocalisationsState(localisations: {SearchPageLocaleKeys.searchPageTitle: 'Search'}),
+    );
 
     return MultiBlocProvider(
       providers: [

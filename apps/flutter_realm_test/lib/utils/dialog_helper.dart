@@ -1,6 +1,5 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_dialog.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/acknowledgement_dialog.dart';
@@ -11,12 +10,7 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/edit_personal_
 import 'package:test_flutter_project/presentation/widgets/dialogs/gifs_picker_bottom_sheet.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_menu_bottom_sheet.dart';
 
-import '../core/router/app_router.dart';
-import '../presentation/features/l10n/app_localisations_cubit.dart';
-import '../presentation/features/l10n/l10n_keys.dart';
-
 class DialogHelper {
-  //todo: location permission dialog is not showing up, if the location is turned off and then the app is opened from scratch
   static bool _isLocationPermissionDialogShowing = false;
 
   static Future<void> showConfirmationDialog(
@@ -31,7 +25,7 @@ class DialogHelper {
   }) async {
     await showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (_) {
         return ConfirmationDialog(
           title: title,
           description: description,
@@ -58,7 +52,7 @@ class DialogHelper {
   }) async {
     await showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (_) {
         return EditPersonalInfoDialog(
           initialValue: initialValue,
           title: title,
@@ -84,7 +78,7 @@ class DialogHelper {
   }) async {
     await showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (_) {
         return EditPasswordDialog(
           title: title,
           cancelButtonTitle: cancelButtonTitle,
@@ -106,9 +100,7 @@ class DialogHelper {
       context: context,
       backgroundColor: AppColors.scaffoldColor,
       clipBehavior: Clip.antiAlias,
-      builder: (BuildContext context) {
-        return CountryPickerBottomSheet(items: items, currentSelectedIndex: currentIndex);
-      },
+      builder: (_) => CountryPickerBottomSheet(items: items, currentSelectedIndex: currentIndex),
     );
   }
 
@@ -119,9 +111,7 @@ class DialogHelper {
     await showModalBottomSheet(
       backgroundColor: AppColors.scaffoldColor,
       context: context,
-      builder: (context) {
-        return InboxItemMenuBottomSheet(conversationId: conversationId);
-      },
+      builder: (_) => InboxItemMenuBottomSheet(conversationId: conversationId),
     );
   }
 
@@ -132,44 +122,51 @@ class DialogHelper {
     await showModalBottomSheet(
       backgroundColor: AppColors.scaffoldColor,
       context: context,
-      builder: (context) => GifsPickerBottomSheet(listKey: listKey),
+      builder: (_) => GifsPickerBottomSheet(listKey: listKey),
     );
   }
 
   static Future<String?> showColorsPickerDialog(BuildContext context, String initialColor) async {
     final result = await showDialog<String>(
       context: context,
-      builder: (context) {
-        return ColorPickerDialog(initialColor: initialColor);
-      },
+      builder: (_) => ColorPickerDialog(initialColor: initialColor),
     );
 
     return result;
   }
 
-  static Future<void> showLocationPermissionDialog(VoidCallback onConfirm) async {
+  static void dismissLocationPermissionDialog(BuildContext context) {
+    if (_isLocationPermissionDialogShowing) {
+      Navigator.of(context, rootNavigator: true).pop();
+    }
+  }
+
+  static Future<void> showLocationPermissionDialog(
+    BuildContext context, {
+    required String title,
+    required String description,
+    required String confirmButtonTitle,
+    required VoidCallback onConfirm,
+  }) async {
     if (_isLocationPermissionDialogShowing) return;
-    final navigatorContext = AppRouter.router.routerDelegate.navigatorKey.currentContext;
-    if (navigatorContext == null) return;
 
     _isLocationPermissionDialogShowing = true;
-    await showDialog(
-      barrierDismissible: false,
-      context: navigatorContext,
-      builder: (context) {
-        final l10n = context.read<AppLocalisationsCubit>();
-
-        return AcknowledgementDialog(
-          title: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogTitle),
-          description: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogDescription),
-          confirmButtonTitle: l10n.getLocalisationByKey(
-            L10nKeys.locationPermissionDialogOpenSettings,
-          ),
-          onConfirm: () => onConfirm.call(),
-          icon: const Icon(Icons.location_on, color: AppColors.headerColor),
-        );
-      },
-    );
-    _isLocationPermissionDialogShowing = false;
+    try {
+      await showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          return AcknowledgementDialog(
+            title: title,
+            description: description,
+            confirmButtonTitle: confirmButtonTitle,
+            onConfirm: () => onConfirm.call(),
+            icon: const Icon(Icons.pin_drop, color: AppColors.headerColor),
+          );
+        },
+      );
+    } finally {
+      _isLocationPermissionDialogShowing = false;
+    }
   }
 }

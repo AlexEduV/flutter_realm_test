@@ -5,6 +5,7 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import '../../../../../../common/extensions/context_extension.dart';
 import '../../../../../../common/extensions/string_extension.dart';
 import '../../../../l10n/l10n_keys.dart';
+import '../../../details_page_identifiers.dart';
 import '../../specification_item/specification_item.dart';
 import '../../specification_item/widgets/spec_color_widget.dart';
 
@@ -26,19 +27,19 @@ class VehicleSpecsContent extends StatelessWidget {
               spacing: AppDimensions.normalS,
               children: [
                 SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationBody),
+                  title: context.tr(DetailsPageLocaleKeys.vehicleSpecificationBody),
                   subtitle: car.bodyType.capitalizeFirst(),
                 ),
 
                 SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationEngine),
+                  title: context.tr(DetailsPageLocaleKeys.vehicleSpecificationEngine),
                   subtitle:
                       '${car.engine.type?.capitalizeFirst() ?? context.tr(L10nKeys.unknownLabel)} ${car.engine.volume?.capitalizeFirst() ?? ''}'
                           .trim(),
                 ),
 
                 SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationTransmission),
+                  title: context.tr(DetailsPageLocaleKeys.vehicleSpecificationTransmission),
                   subtitle: car.transmissionType.capitalizeFirst(),
                 ),
               ],
@@ -51,19 +52,19 @@ class VehicleSpecsContent extends StatelessWidget {
               spacing: AppDimensions.normalS,
               children: [
                 SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationMileage),
+                  title: context.tr(DetailsPageLocaleKeys.vehicleSpecificationMileage),
                   subtitle: car.mileage != null
                       ? ('${car.mileage} ${context.tr(L10nKeys.distanceKm)}')
                       : context.tr(L10nKeys.unknownLabel),
                 ),
 
                 SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationYear),
+                  title: context.tr(DetailsPageLocaleKeys.vehicleSpecificationYear),
                   subtitle: car.year ?? context.tr(L10nKeys.unknownLabel),
                 ),
 
                 SpecificationItem(
-                  title: context.tr(L10nKeys.vehicleSpecificationColor),
+                  title: context.tr(DetailsPageLocaleKeys.vehicleSpecificationColor),
                   subtitle: car.color?.capitalizeFirst() ?? context.tr(L10nKeys.unknownLabel),
                   leading: SpecColorWidget(color: carColor),
                 ),

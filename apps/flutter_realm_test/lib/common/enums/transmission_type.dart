@@ -1,12 +1,11 @@
-import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
-
 import '../../core/di/injection_container.dart';
 import '../../presentation/features/l10n/app_localisations_cubit.dart';
+import '../../presentation/features/search/search_page_identifiers.dart';
 
 enum TransmissionType {
-  manual(L10nKeys.transmissionTypeManual),
-  automatic(L10nKeys.transmissionTypeAutomatic),
-  hybrid(L10nKeys.transmissionTypeHybrid);
+  manual(SearchPageLocaleKeys.transmissionTypeManual),
+  automatic(SearchPageLocaleKeys.transmissionTypeAutomatic),
+  hybrid(SearchPageLocaleKeys.transmissionTypeHybrid);
 
   const TransmissionType(this.localisationKey);
 

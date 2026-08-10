@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 
-import '../../../../../common/constants/app_semantics_labels.dart';
 import '../../../../../utils/dialog_helper.dart';
 import '../../../../widgets/app_semantics.dart';
 import '../../../inbox/inbox_page_identifiers.dart';
 import '../../messages_page_cubit.dart';
+import '../../messages_page_identifiers.dart';
 import '../../messages_page_state.dart';
 
 class ChatInputTextField extends StatefulWidget {
@@ -51,7 +51,7 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
                 padding: const EdgeInsets.all(AppDimensions.minorM),
                 child: AppSemantics(
                   button: true,
-                  label: AppSemanticsLabels.chatInputBarGifButton,
+                  label: MessagesPageIds.chatInputBarGifButton,
                   child: IconButton(
                     onLongPress: () {
                       //this blocks refocus on field when long pressing the button

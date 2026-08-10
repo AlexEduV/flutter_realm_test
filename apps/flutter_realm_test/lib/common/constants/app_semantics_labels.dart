@@ -8,7 +8,6 @@ class AppSemanticsLabels {
   static const favoriteButton = 'favoriteButton';
   static const shareButton = 'shareButton';
 
-  static const exploreArticleItem = 'exploreArticleItem';
   static const resultsLabel = 'resultsLabel';
   static const lastSeenSectionItem = 'lastSeenSectionItem';
 
@@ -18,17 +17,12 @@ class AppSemanticsLabels {
   static const homeBottomBarItemInbox = 'homeBottomBarItemInbox';
   static const homeBottomBarItemAccount = 'homeBottomBarItemAccount';
 
-  static const homePageSearchButton = 'homePageSearchButton';
-
   static const filterButton = 'filterButton';
 
   static const filterDrawerBodyTypeCheckbox = 'filterDrawerBodyTypeCheckbox';
   static const filterDrawerColorCheckbox = 'filterDrawerColorCheckbox';
   static const filterDrawerFuelTypeCheckbox = 'filterDrawerFuelTypeCheckbox';
   static const filterDrawerTransmissionTypeCheckbox = 'filterDrawerTransmissionTypeCheckbox';
-
-  static const detailsPageVehicleSpecsExpandButton = 'detailsPageVehicleSpecsExpandButton';
-  static const detailsPageContactButton = 'detailsPageContactButton';
 
   static const fullNameTextField = 'fullNameTextField';
   static const emailTextField = 'emailTextField';
@@ -44,10 +38,8 @@ class AppSemanticsLabels {
 
   static const orDivider = 'orDivider';
 
-  static const inboxItem = 'inboxItem';
   static const favoriteListItem = 'favoriteListItem';
 
-  static const accountItem = 'accountItem';
   static const personalDetailsItem = 'personalDetailsItem';
 
   static const avatarSetImageButton = 'avatarSetImageButton';
@@ -55,12 +47,6 @@ class AppSemanticsLabels {
   static const dialogConfirmButton = 'dialogConfirmButton';
   static const dialogCancelButton = 'dialogCancelButton';
   static const dialogEditField = 'dialogEditField';
-
-  static const chatInputBarAttachmentButton = 'chatInputBarAttachmentButton';
-  static const chatInputBarSendMessageButton = 'chatInputBarSendMessageButton';
-  static const chatInputBarMessageTextField = 'chatInputBarMessageTextField';
-  static const chatInputBarGifButton = 'chatInputBarGifButton';
-  static const gifListItem = 'gifListItem';
 
   static const avatarWidget = 'avatarWidget';
   static const avatarWidgetEnhanced = 'avatarWidgetEnhanced';
