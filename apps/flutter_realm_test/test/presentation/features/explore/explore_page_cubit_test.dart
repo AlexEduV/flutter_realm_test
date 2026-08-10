@@ -89,16 +89,24 @@ void main() {
     },
     act: (cubit) => cubit.init(),
     expect: () => [
+      // sync started
       isA<ExplorePageState>()
           .having((s) => s.isLoading, 'isLoading', true)
           .having((s) => s.isArticleListLoading, 'isArticleListLoading', true),
+      // sync done
       isA<ExplorePageState>()
           .having((s) => s.isLoading, 'isLoading', false)
           .having((s) => s.isArticleListLoading, 'isArticleListLoading', true),
+      // articles done (articles:[] equals default so that emit is deduplicated;
+      // this state reflects isArticleListLoading flipping to false)
       isA<ExplorePageState>()
           .having((s) => s.isLoading, 'isLoading', false)
           .having((s) => s.isArticleListLoading, 'isArticleListLoading', false),
-      isA<ExplorePageState>().having((s) => s.cars, 'cars', carList),
+      // cars from watch stream (cubit maps isShown: true for all non-hidden cars)
+      isA<ExplorePageState>()
+          .having((s) => s.isArticleListLoading, 'isArticleListLoading', false)
+          .having((s) => s.cars.map((c) => c.carId).toList(), 'car ids', ['1', '2'])
+          .having((s) => s.cars.every((c) => c.isShown), 'all visible', true),
     ],
     verify: (_) {
       verify(mockWatchCarsUseCase.call()).called(1);

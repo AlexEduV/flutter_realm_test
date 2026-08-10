@@ -37,7 +37,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
       final articles = await _fetchArticlesUseCase.call();
       emit(state.copyWith(articles: articles));
     } finally {
-      if (!isClosed) emit(state.copyWith(isLoading: false));
+      if (!isClosed) emit(state.copyWith(isArticleListLoading: false));
     }
 
     await _carSubscription?.cancel();
