@@ -69,7 +69,10 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    _listener = AppLifecycleListener(onResume: () => _handleLocationPermission(context));
+    _listener = AppLifecycleListener(onResume: () {
+      final ctx = AppRouter.router.routerDelegate.navigatorKey.currentContext;
+      if (ctx != null) _handleLocationPermission(ctx);
+    });
     _scheduleInitialPermissionCheck();
   }
 
