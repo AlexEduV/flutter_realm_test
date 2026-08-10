@@ -1,19 +1,16 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/search/widgets/results_widget.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 Widget buildResultsWidgetUseCase(BuildContext context) {
-  final appLocalisationsCubit = AppLocalisationsCubit()
-    ..load({L10nKeys.results: 'Results'});
+  final appLocalisationsCubit = AppLocalisationsCubit()..load({L10nKeys.results: 'Results'});
 
   return MultiBlocProvider(
-    providers: [
-      BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit),
-    ],
+    providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: Padding(
       padding: const EdgeInsets.all(AppDimensions.normalM),
       child: Column(

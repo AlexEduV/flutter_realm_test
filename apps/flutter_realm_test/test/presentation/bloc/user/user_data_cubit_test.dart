@@ -16,9 +16,9 @@ import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_fro
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 
 import '../../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;

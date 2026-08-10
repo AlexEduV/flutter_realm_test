@@ -6,10 +6,10 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/domain/entities/author_entity.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_state.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 
 import 'article_page_test.mocks.dart';
 

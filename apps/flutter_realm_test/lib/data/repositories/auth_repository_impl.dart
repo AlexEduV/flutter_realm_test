@@ -5,7 +5,7 @@ import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 
 import '../../common/extensions/user_scheme_extension.dart';
 import '../../core/di/injection_container.dart';

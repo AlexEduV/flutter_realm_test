@@ -9,7 +9,7 @@ import 'package:test_flutter_project/domain/usecases/authentication/logout_use_c
 import 'package:test_flutter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
 import 'authentication_cubit_test.mocks.dart';

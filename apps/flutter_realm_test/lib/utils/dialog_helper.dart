@@ -13,7 +13,7 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/inbox_item_men
 
 import '../core/router/app_router.dart';
 import '../l10n/l10n_keys.dart';
-import '../presentation/bloc/l10n/app_localisations_cubit.dart';
+import '../presentation/features/l10n/app_localisations_cubit.dart';
 
 class DialogHelper {
   //todo: location permission dialog is not showing up, if the location is turned off and then the app is opened from scratch

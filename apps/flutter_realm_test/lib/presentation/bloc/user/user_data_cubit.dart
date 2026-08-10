@@ -18,7 +18,7 @@ import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
 import '../../../utils/localisation_util.dart';
-import '../l10n/app_localisations_cubit.dart';
+import '../../features/l10n/app_localisations_cubit.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(

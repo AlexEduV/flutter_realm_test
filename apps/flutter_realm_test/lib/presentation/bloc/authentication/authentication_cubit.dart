@@ -10,7 +10,7 @@ import 'package:test_flutter_project/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 
-import '../l10n/app_localisations_cubit.dart';
+import '../../features/l10n/app_localisations_cubit.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit(

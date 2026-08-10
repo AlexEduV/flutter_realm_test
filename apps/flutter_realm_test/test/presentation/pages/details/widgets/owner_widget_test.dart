@@ -12,10 +12,10 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/owner_widget.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 import 'owner_widget_test.mocks.dart';

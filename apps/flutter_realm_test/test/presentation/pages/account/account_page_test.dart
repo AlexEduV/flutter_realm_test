@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/authentication/authentication_state.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/pages/account/account_page.dart';
-import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/pages/authentication/login_page.dart';
 
 import '../../../utils/app_router_test.mocks.dart';
@@ -57,14 +57,16 @@ void main() {
   }
 
   testWidgets('shows LoginPage when user is not authenticated', (tester) async {
-    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
+    when(
+      userDataCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
 
-    when(userDataCubit.state).thenReturn(
-      UserDataState(user: UserEntity.empty(), isUserAuthenticated: false),
-    );
+    when(
+      userDataCubit.state,
+    ).thenReturn(UserDataState(user: UserEntity.empty(), isUserAuthenticated: false));
     when(authenticationCubit.state).thenReturn(const AuthenticationState());
 
     await tester.pumpWidget(makeTestableWidget(const AccountPage()));
@@ -73,14 +75,22 @@ void main() {
   });
 
   testWidgets('shows user info and account items when authenticated', (tester) async {
-    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
+    when(
+      userDataCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
 
     when(userDataCubit.state).thenReturn(
       UserDataState(
-        user: UserEntity.initial(userId: '', firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', password: ''),
+        user: UserEntity.initial(
+          userId: '',
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john.doe@example.com',
+          password: '',
+        ),
         isUserAuthenticated: true,
       ),
     );
@@ -103,7 +113,9 @@ void main() {
   });
 
   testWidgets('tapping logout calls cubit methods', (tester) async {
-    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
+    when(
+      userDataCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
@@ -112,7 +124,13 @@ void main() {
 
     when(userDataCubit.state).thenReturn(
       UserDataState(
-        user: UserEntity.initial(userId: '', firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', password: ''),
+        user: UserEntity.initial(
+          userId: '',
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john.doe@example.com',
+          password: '',
+        ),
         isUserAuthenticated: true,
       ),
     );
@@ -133,7 +151,9 @@ void main() {
   });
 
   testWidgets('tapping delete account calls cubit methods', (tester) async {
-    when(userDataCubit.stream).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
+    when(
+      userDataCubit.stream,
+    ).thenAnswer((_) => Stream.fromIterable([UserDataState(user: UserEntity.empty())]));
     when(
       authenticationCubit.stream,
     ).thenAnswer((_) => Stream.fromIterable([const AuthenticationState()]));
@@ -142,7 +162,13 @@ void main() {
 
     when(userDataCubit.state).thenReturn(
       UserDataState(
-        user: UserEntity.initial(userId: '', firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', password: ''),
+        user: UserEntity.initial(
+          userId: '',
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john.doe@example.com',
+          password: '',
+        ),
         isUserAuthenticated: true,
       ),
     );

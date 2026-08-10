@@ -10,10 +10,10 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 import '../../../bloc/details/details_page_cubit_test.mocks.dart';

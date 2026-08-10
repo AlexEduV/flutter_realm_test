@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
-import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/presentation/bloc/authentication/authentication_cubit.dart';
+import 'package:test_flutter_project/presentation/bloc/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/user/user_data_state.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/personal_details_page.dart';
 import 'package:test_flutter_project/presentation/pages/account/sub_pages/personal_details/widgets/personal_details_list_item.dart';
 
@@ -31,7 +31,13 @@ void main() {
     // Provide a fake state
     when(mockUserDataCubit.state).thenReturn(
       UserDataState(
-        user: UserEntity.initial(userId: '', firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com', password: 'secret'),
+        user: UserEntity.initial(
+          userId: '',
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john.doe@example.com',
+          password: 'secret',
+        ),
       ),
     );
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());

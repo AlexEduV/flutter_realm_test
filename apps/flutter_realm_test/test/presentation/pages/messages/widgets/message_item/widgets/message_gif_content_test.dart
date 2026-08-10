@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_state.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_state.dart';
 import 'package:test_flutter_project/presentation/features/messages/widgets/message_item/widgets/gif_label.dart';
 import 'package:test_flutter_project/presentation/features/messages/widgets/message_item/widgets/message_gif_content.dart';
 

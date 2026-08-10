@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/data_sources/remote/users_remote_dat
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'auth_repository_impl_test.mocks.dart';

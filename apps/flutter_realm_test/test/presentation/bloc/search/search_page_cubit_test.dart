@@ -16,9 +16,9 @@ import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
-import 'package:test_flutter_project/presentation/bloc/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/bloc/search/search_page_state.dart';
+import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 
 import 'search_page_cubit_test.mocks.dart';
 
@@ -253,7 +253,9 @@ void main() {
       act: (cubit) => cubit.addCarModelToSelection('Tesla', 'Model S'),
       expect: () => [
         isA<SearchPageState>()
-            .having((s) => s.selectedModels, 'selectedModels', {'Tesla': ['Model S']})
+            .having((s) => s.selectedModels, 'selectedModels', {
+              'Tesla': ['Model S'],
+            })
             .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1]),
       ],
     );
@@ -263,13 +265,17 @@ void main() {
       build: () => cubit,
       seed: () => SearchPageState(
         allResults: carList,
-        selectedModels: {'Tesla': ['Tesla Model S']},
+        selectedModels: {
+          'Tesla': ['Tesla Model S'],
+        },
       ),
       act: (cubit) => cubit.removeCarModelFromSelection('Tesla', 'Tesla Model S'),
       expect: () => [
-        isA<SearchPageState>()
-            .having((s) => s.selectedModels, 'selectedModels', isEmpty)
-            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
+        isA<SearchPageState>().having((s) => s.selectedModels, 'selectedModels', isEmpty).having(
+          (s) => cubit.getFilteredResults(s.allResults),
+          'filtered results',
+          [car1, car3],
+        ),
       ],
     );
 
@@ -281,7 +287,10 @@ void main() {
       expect: () => [
         isA<SearchPageState>()
             .having((s) => s.selectedBodyTypes, 'selectedBodyTypes', [BodyType.sedan.name])
-            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [
+              car1,
+              car3,
+            ]),
       ],
     );
 
@@ -293,7 +302,10 @@ void main() {
       expect: () => [
         isA<SearchPageState>()
             .having((s) => s.selectedBodyTypes, 'selectedBodyTypes', isEmpty)
-            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [
+              car1,
+              car3,
+            ]),
       ],
     );
 
@@ -317,7 +329,10 @@ void main() {
       expect: () => [
         isA<SearchPageState>()
             .having((s) => s.selectedFuelTypes, 'selectedFuelTypes', isEmpty)
-            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [
+              car1,
+              car3,
+            ]),
       ],
     );
 
@@ -328,8 +343,13 @@ void main() {
       act: (cubit) => cubit.addTransmissionTypeToSelection(TransmissionType.automatic.name),
       expect: () => [
         isA<SearchPageState>()
-            .having((s) => s.selectedTransmissionTypes, 'selectedTransmissionTypes', [TransmissionType.automatic.name])
-            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
+            .having((s) => s.selectedTransmissionTypes, 'selectedTransmissionTypes', [
+              TransmissionType.automatic.name,
+            ])
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [
+              car1,
+              car3,
+            ]),
       ],
     );
 
@@ -344,7 +364,10 @@ void main() {
       expect: () => [
         isA<SearchPageState>()
             .having((s) => s.selectedTransmissionTypes, 'selectedTransmissionTypes', isEmpty)
-            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [car1, car3]),
+            .having((s) => cubit.getFilteredResults(s.allResults), 'filtered results', [
+              car1,
+              car3,
+            ]),
       ],
     );
 

@@ -2,7 +2,7 @@ import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/l10n/l10n_keys.dart';
 
 import '../../core/di/injection_container.dart';
-import '../../presentation/bloc/l10n/app_localisations_cubit.dart';
+import '../../presentation/features/l10n/app_localisations_cubit.dart';
 
 enum BodyType {
   sedan(CarType.car, L10nKeys.bodyTypeSedan),
