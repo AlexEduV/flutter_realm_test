@@ -6,11 +6,7 @@ import 'package:test_flutter_project/domain/entities/region_entity.dart';
 
 import '../../../common/constants/api_constants.dart';
 import '../../../common/constants/app_asset_routes.dart';
-import '../../../core/di/injection_container.dart';
 import '../../../domain/models/api_response.dart';
-import '../../../domain/models/region_ui_model.dart';
-import '../../../presentation/features/l10n/app_localisations_cubit.dart';
-import '../../../presentation/features/l10n/l10n_keys.dart';
 
 class MockRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
   List<RegionEntity>? regions = [];
@@ -18,22 +14,6 @@ class MockRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
   @override
   Future<void> init() async {
     await loadRegions();
-  }
-
-  @override
-  List<RegionUiModel> getAvailableCountries() {
-    final availableCountries = (regions ?? [])
-        .map(
-          (element) => RegionUiModel(
-            code: element.locale,
-            countryName: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(
-              '${L10nKeys.countryPrefix}${element.locale}',
-            ),
-          ),
-        )
-        .toList();
-
-    return availableCountries;
   }
 
   @override

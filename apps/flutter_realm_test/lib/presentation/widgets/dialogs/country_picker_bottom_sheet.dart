@@ -3,6 +3,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
 
 import '../../../common/constants/app_asset_routes.dart';
+import '../../../common/extensions/context_extension.dart';
 
 class CountryPickerBottomSheet extends StatelessWidget {
   const CountryPickerBottomSheet({
@@ -39,7 +40,7 @@ class CountryPickerBottomSheet extends StatelessWidget {
             ),
           ),
           title: Text(
-            items[index].countryName,
+            context.tr(items[index].countryName),
             style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
           ),
           selected: index == currentSelectedIndex,
