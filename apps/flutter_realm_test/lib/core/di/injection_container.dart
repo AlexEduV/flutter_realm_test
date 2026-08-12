@@ -269,7 +269,7 @@ void _registerDataSources() {
   );
 
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
-    () => MockMessagesRemoteDataSourceImpl(),
+    () => MockMessagesRemoteDataSourceImpl(serviceLocator()),
   );
 }
 
