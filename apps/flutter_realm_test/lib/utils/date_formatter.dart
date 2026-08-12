@@ -1,17 +1,19 @@
 import 'package:intl/intl.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
 typedef _NormalizedDates = ({DateTime today, DateTime dateDay});
 
 class DateFormatter {
-  DateFormatter(this._appLocalisationsCubit);
+  DateFormatter(this._appLocalisationsCubit, this._timeService);
 
   final AppLocalisationsCubit _appLocalisationsCubit;
+  final TimeService _timeService;
 
   _NormalizedDates _normalizeDates(DateTime date) {
-    final now = DateTime.now();
+    final now = _timeService.now();
     return (
       today: DateTime(now.year, now.month, now.day),
       dateDay: DateTime(date.year, date.month, date.day),

@@ -48,6 +48,7 @@ import 'package:test_flutter_project/data/services/image_picker_service_impl.dar
 import 'package:test_flutter_project/data/services/network_logging_service_impl.dart';
 import 'package:test_flutter_project/data/services/permission_service_impl.dart';
 import 'package:test_flutter_project/data/services/share_service_impl.dart';
+import 'package:test_flutter_project/data/services/time_service_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/local/car_colors_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart';
@@ -82,6 +83,7 @@ import 'package:test_flutter_project/domain/services/image_picker_service.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/services/permission_service.dart';
 import 'package:test_flutter_project/domain/services/share_service.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
@@ -289,10 +291,12 @@ void _registerServices() {
   serviceLocator.registerLazySingleton<ShareService>(() => ShareServiceImpl());
 
   serviceLocator.registerLazySingleton<PermissionService>(() => PermissionServiceImpl());
+
+  serviceLocator.registerLazySingleton<TimeService>(() => TimeServiceImpl());
 }
 
 void _registerUtils() {
-  serviceLocator.registerLazySingleton(() => DateFormatter(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => DateFormatter(serviceLocator(), serviceLocator()));
 }
 
 Future<void> _registerRepositories() async {
