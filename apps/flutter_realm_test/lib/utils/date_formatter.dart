@@ -4,7 +4,7 @@ import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
-typedef _NormalizedDates = ({DateTime today, DateTime dateDay});
+typedef _NormalizedDates = ({DateTime today, DateTime dateDay, DateTime yesterday});
 
 class DateFormatter {
   DateFormatter(this._appLocalisationsCubit, this._timeService);
@@ -17,6 +17,7 @@ class DateFormatter {
     return (
       today: DateTime(now.year, now.month, now.day),
       dateDay: DateTime(date.year, date.month, date.day),
+      yesterday: DateTime(now.year, now.month, now.day - 1),
     );
   }
 
@@ -28,7 +29,7 @@ class DateFormatter {
     if (dates.dateDay == dates.today) {
       // Today: show time
       return DateFormat.Hm().format(date); // e.g., "14:23"
-    } else if (dates.dateDay == dates.today.subtract(const Duration(days: 1))) {
+    } else if (dates.dateDay == dates.yesterday) {
       // Yesterday
       return _appLocalisationsCubit.getLocalisationByKey(L10nKeys.dateFormattingYesterday);
     } else {
@@ -47,7 +48,7 @@ class DateFormatter {
     if (dates.dateDay == dates.today) {
       // Today
       return _appLocalisationsCubit.getLocalisationByKey(L10nKeys.dateFormattingToday);
-    } else if (dates.dateDay == dates.today.subtract(const Duration(days: 1))) {
+    } else if (dates.dateDay == dates.yesterday) {
       // Yesterday
       return _appLocalisationsCubit.getLocalisationByKey(L10nKeys.dateFormattingYesterday);
     } else {
