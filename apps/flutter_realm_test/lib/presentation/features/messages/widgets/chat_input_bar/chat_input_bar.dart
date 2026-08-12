@@ -2,7 +2,9 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_identifiers.dart';
@@ -96,7 +98,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
         senderId: user.userId,
         messageStatus: MessageStatus.sent,
         payload: message,
-        date: DateTime.now(),
+        date: serviceLocator<TimeService>().now(),
       ),
       widget.listKey,
     );
