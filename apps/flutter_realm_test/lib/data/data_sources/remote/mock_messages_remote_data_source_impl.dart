@@ -5,16 +5,20 @@ import 'package:test_flutter_project/common/extensions/list_extension.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 
 import '../../../common/enums/message_status.dart';
 
 class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
+  MockMessagesRemoteDataSourceImpl(this._timeService);
+
   List<ConversationModel> _conversationsList = [];
+  final TimeService _timeService;
 
   @override
   void initSampleData(String currentUserId) {
-    final testDate = DateTime.now().subtract(const Duration(hours: 4));
-    final testDateOlder = DateTime.now().subtract(const Duration(days: 2));
+    final testDate = _timeService.now().subtract(const Duration(hours: 4));
+    final testDateOlder = _timeService.now().subtract(const Duration(days: 2));
 
     _conversationsList = [
       ConversationModel(

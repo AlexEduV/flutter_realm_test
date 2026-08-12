@@ -7,7 +7,8 @@ class ApiConstants {
 
   static const envKlipyKeyPath = 'KLIPY_API_KEY';
   static const klipyApiHost = 'api.klipy.com';
+  static const klipyBase = 'api/v1/{API_KEY}/gifs/';
 
-  static const String klipySearchPath = 'api/v1/{API_KEY}/gifs/search';
-  static const String klipyTrendingPath = 'api/v1/{API_KEY}/gifs/trending';
+  static const String klipySearchPath = '${klipyBase}search';
+  static const String klipyTrendingPath = '${klipyBase}trending';
 }

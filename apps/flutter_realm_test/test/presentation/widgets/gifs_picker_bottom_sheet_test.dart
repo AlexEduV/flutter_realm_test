@@ -5,8 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/gif_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
@@ -22,9 +24,20 @@ import '../../common/fakes/image_fakes.dart';
 import '../../utils/app_router_test.mocks.dart';
 import '../features/messages/messages_page_test.mocks.dart';
 
+class _FakeTimeService implements TimeService {
+  @override
+  DateTime now() => DateTime(2024, 6, 15, 14, 23);
+}
+
 void main() {
-  setUp(() => HttpOverrides.global = MockHttpOverrides());
-  tearDown(() => HttpOverrides.global = null);
+  setUp(() {
+    HttpOverrides.global = MockHttpOverrides();
+    serviceLocator.registerSingleton<TimeService>(_FakeTimeService());
+  });
+  tearDown(() {
+    HttpOverrides.global = null;
+    serviceLocator.unregister<TimeService>();
+  });
 
   Widget buildTestableWidget({
     required MessagesPageCubit messagesCubit,
