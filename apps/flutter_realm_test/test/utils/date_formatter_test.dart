@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:test_flutter_project/data/services/time_service_impl.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 
@@ -9,7 +9,7 @@ void main() {
   initializeDateFormatting('en');
 
   late DateFormatter formatter;
-  final timeService = TimeServiceImpl();
+  final timeService = FakeTimeService(DateTime(2024, 6, 15, 14, 23));
 
   setUpAll(() {
     final cubit = AppLocalisationsCubit();
@@ -30,7 +30,8 @@ void main() {
     });
 
     test('returns "Yesterday" for yesterday\'s date', () {
-      final yesterday = timeService.now().subtract(const Duration(days: 1));
+      final now = timeService.now();
+      final yesterday = DateTime(now.year, now.month, now.day - 1, 10, 0);
       final formatted = formatter.formatSmartDate(yesterday);
       expect(formatted, 'Yesterday');
     });
@@ -66,7 +67,8 @@ void main() {
     });
 
     test('returns "Yesterday" for yesterday\'s date', () {
-      final yesterday = timeService.now().subtract(const Duration(days: 1));
+      final now = timeService.now();
+      final yesterday = DateTime(now.year, now.month, now.day - 1, 10, 0);
       final formatted = formatter.formatMessageDividerDate(yesterday);
       expect(formatted, 'Yesterday');
     });
@@ -89,4 +91,11 @@ void main() {
       expect(formatter.formatMessageDividerDate(null), '');
     });
   });
+}
+
+class FakeTimeService implements TimeService {
+  FakeTimeService(this._now);
+  final DateTime _now;
+  @override
+  DateTime now() => _now;
 }
