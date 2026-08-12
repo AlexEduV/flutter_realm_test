@@ -4,7 +4,7 @@ import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
-typedef _NormalizedDates = ({DateTime today, DateTime dateDay, DateTime yesterday});
+typedef _NormalizedDates = ({DateTime today, DateTime yesterday, DateTime dateDay});
 
 class DateFormatter {
   DateFormatter(this._appLocalisationsCubit, this._timeService);
@@ -16,8 +16,8 @@ class DateFormatter {
     final now = _timeService.now();
     return (
       today: DateTime(now.year, now.month, now.day),
-      dateDay: DateTime(date.year, date.month, date.day),
       yesterday: DateTime(now.year, now.month, now.day - 1),
+      dateDay: DateTime(date.year, date.month, date.day),
     );
   }
 
