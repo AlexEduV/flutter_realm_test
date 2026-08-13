@@ -26,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
   final MessagesRemoteDataSource _messagesRemoteDataSource;
 
   late final List<UserEntity> users;
-  late bool isAuthenticated = false;
+  late bool _isAuthenticated = false;
   final _userSessionKey = 'userId';
 
   Future<void> init() async {
@@ -43,7 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 200));
 
     _localStorage.initUser();
-    isAuthenticated = false;
+    _isAuthenticated = false;
   }
 
   @override
@@ -68,7 +68,7 @@ class AuthRepositoryImpl implements AuthRepository {
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
 
-    isAuthenticated = true;
+    _isAuthenticated = true;
     return const AuthSuccess();
   }
 
@@ -103,7 +103,7 @@ class AuthRepositoryImpl implements AuthRepository {
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
 
-    isAuthenticated = true;
+    _isAuthenticated = true;
     return const AuthSuccess();
   }
 
@@ -118,7 +118,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> updateUser(String userId, UserEntity data) async {
-    if (!isAuthenticated) return;
+    if (!_isAuthenticated) return;
 
     users.removeWhere((element) => element.userId == userId);
     users.add(data);
