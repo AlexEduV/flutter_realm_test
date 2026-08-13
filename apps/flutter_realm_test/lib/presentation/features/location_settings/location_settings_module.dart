@@ -21,6 +21,7 @@ import '../../../domain/services/geolocator_service.dart';
 import '../../../domain/services/permission_service.dart';
 import '../../../domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import '../../../domain/usecases/geolocator/open_app_settings_use_case.dart';
+import '../../../domain/usecases/permissions/request_location_permission_use_case.dart';
 import '../../../domain/usecases/regions/fetch_regions_use_case.dart';
 import '../../../domain/usecases/regions/get_all_region_models_use_case.dart';
 import '../../../domain/usecases/regions/get_all_regions_use_case.dart';
@@ -73,6 +74,7 @@ void registerLocationSettingsModule(GetIt serviceLocator) {
   serviceLocator.registerLazySingleton(
     () => CheckLocationPermissionStatusUseCase(serviceLocator()),
   );
+  serviceLocator.registerLazySingleton(() => RequestLocationPermissionUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetAllRegionModelsUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));

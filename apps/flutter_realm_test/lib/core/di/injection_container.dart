@@ -4,20 +4,15 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:realm/realm.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/extensions/get_it_extension.dart';
 import 'package:test_flutter_project/core/network/app_http_client.dart';
 import 'package:test_flutter_project/core/network/app_http_client_impl.dart';
 import 'package:test_flutter_project/core/network/app_interceptor.dart';
-import 'package:test_flutter_project/data/data_sources/local/car_color_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/local/env_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart';
 import 'package:test_flutter_project/data/data_sources/remote/seed_article_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/seed_car_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/database/realm_configuration.dart';
 import 'package:test_flutter_project/data/repositories/article_repository_impl.dart';
-import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
-import 'package:test_flutter_project/data/repositories/car_color_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/env_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/image_picker_repository_impl.dart';
 import 'package:test_flutter_project/data/services/app_logging_service_impl.dart';
@@ -25,64 +20,35 @@ import 'package:test_flutter_project/data/services/image_picker_service_impl.dar
 import 'package:test_flutter_project/data/services/network_logging_service_impl.dart';
 import 'package:test_flutter_project/data/services/time_service_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
-import 'package:test_flutter_project/domain/data_sources/local/car_colors_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/article_remote_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/repositories/article_repository.dart';
-import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
-import 'package:test_flutter_project/domain/repositories/car_color_repository.dart';
 import 'package:test_flutter_project/domain/repositories/env_repository.dart';
 import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart';
-import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/domain/services/image_picker_service.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/authentication/register_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/add_car_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/delete_all_cars_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/env/get_env_data_by_key_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/env/init_env_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
-import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
-import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/authentication/authentication_module.dart';
+import 'package:test_flutter_project/presentation/features/color_picker/color_picker_module.dart';
+import 'package:test_flutter_project/presentation/features/details/details_module.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_module.dart';
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_module.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_module.dart';
-import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_module.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_module.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_module.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_module.dart';
 import 'package:test_flutter_project/presentation/features/search/search_module.dart';
 import 'package:test_flutter_project/presentation/features/share/share_module.dart';
-import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_module.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/edit_dialog_cubit.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
-
-import '../../data/repositories/car_repository_impl.dart';
-import '../../domain/repositories/car_repository.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -99,10 +65,14 @@ Future<void> initDependenciesContainer() async {
   registerUserModule(serviceLocator);
   registerLocationSettingsModule(serviceLocator);
   registerL10nModule(serviceLocator);
+  await registerAuthenticationModule(serviceLocator);
+
   registerMessagesModule(serviceLocator);
   registerInboxModule(serviceLocator);
   registerHomeBottomBarModule(serviceLocator);
   registerExploreModule(serviceLocator);
+  registerDetailsModule(serviceLocator);
+  registerColorPickerModule(serviceLocator);
 
   _registerServices();
   _registerDataSources();
@@ -167,18 +137,6 @@ Future<void> _registerEnv() async {
 }
 
 void _registerDataSources() {
-  final mockCarRemoteDataSource = SeedCarRemoteDataSourceImpl(
-    serviceLocator(),
-    serviceLocator<OwnersRemoteDataSource>(),
-  );
-  mockCarRemoteDataSource.init();
-
-  serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
-
-  serviceLocator.registerLazySingleton<CarColorLocalDataSource>(
-    () => CarColorLocalDataSourceImpl(),
-  );
-
   serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
     () => SeedArticleRemoteDataSourceImpl(serviceLocator()),
   );
@@ -198,79 +156,22 @@ void _registerUtils() {
 }
 
 Future<void> _registerRepositories() async {
-  final cloudStorage = await SharedPreferences.getInstance();
-  final authRepositoryImpl = AuthRepositoryImpl(
-    serviceLocator<BaseLocalStorage>(),
-    cloudStorage,
-    serviceLocator<UsersRemoteDataSource>(),
-    serviceLocator<MessagesRemoteDataSource>(),
-    serviceLocator<OwnerRepository>(),
-  );
-  await authRepositoryImpl.init();
-
-  serviceLocator.registerLazySingleton<CarRepository>(
-    () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
-  );
-
   serviceLocator.registerLazySingleton<ArticleRepository>(
     () => ArticleRepositoryImpl(serviceLocator()),
   );
   serviceLocator.registerLazySingleton<ImagePickerRepository>(
     () => ImagePickerRepositoryImpl(serviceLocator()),
   );
-
-  serviceLocator.registerLazySingleton<CarColorRepository>(
-    () => CarColorRepositoryImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
 }
 
 void _registerUseCases() {
-  serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => WatchCarsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => SyncCarsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => AddCarUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => DeleteCarByIdUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => DeleteAllCarsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetCarByIdUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetCurrentMaxCarIdUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => RequestLocationPermissionUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => LogoutUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => LoginUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => DeleteAccountUseCase(serviceLocator()));
-
   serviceLocator.registerLazySingleton(() => FetchArticlesUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetArticleByIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => GetCarColorsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetCarColorByNameUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetCarColorNameFromColorUseCase(serviceLocator()));
 }
 
 void _registerCubits() {
-  serviceLocator.registerFactory(
-    () => DetailsPageCubit(
-      serviceLocator<GetCarByIdUseCase>(),
-      serviceLocator<GetCarColorsUseCase>(),
-      serviceLocator<GetConversationByOwnerIdUseCase>(),
-    ),
-  );
-
-  serviceLocator.registerLazySingleton(
-    () => AuthenticationCubit(
-      serviceLocator<AppLocalisationsCubit>(),
-      serviceLocator<UserDataCubit>(),
-      serviceLocator<LoginUseCase>(),
-      serviceLocator<LogoutUseCase>(),
-      serviceLocator<RegisterUseCase>(),
-      serviceLocator<DeleteAccountUseCase>(),
-    ),
-  );
-
   serviceLocator.registerFactory(() => ArticlePageCubit(serviceLocator()));
 
   serviceLocator.registerFactory(() => EditDialogCubit());
