@@ -20,7 +20,6 @@ import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart
 import 'package:test_flutter_project/data/repositories/car_color_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/env_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/image_picker_repository_impl.dart';
-import 'package:test_flutter_project/data/repositories/inbox_repository_impl.dart';
 import 'package:test_flutter_project/data/services/app_logging_service_impl.dart';
 import 'package:test_flutter_project/data/services/image_picker_service_impl.dart';
 import 'package:test_flutter_project/data/services/network_logging_service_impl.dart';
@@ -38,7 +37,6 @@ import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/car_color_repository.dart';
 import 'package:test_flutter_project/domain/repositories/env_repository.dart';
 import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart';
-import 'package:test_flutter_project/domain/repositories/inbox_repository.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/domain/services/image_picker_service.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
@@ -63,15 +61,14 @@ import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_cas
 import 'package:test_flutter_project/domain/usecases/env/get_env_data_by_key_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/env/init_env_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
-import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_cubit.dart';
-import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/explore/explore_module.dart';
+import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_module.dart';
+import 'package:test_flutter_project/presentation/features/inbox/inbox_module.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_module.dart';
 import 'package:test_flutter_project/presentation/features/location_settings/location_settings_module.dart';
@@ -86,8 +83,6 @@ import 'package:test_flutter_project/utils/date_formatter.dart';
 
 import '../../data/repositories/car_repository_impl.dart';
 import '../../domain/repositories/car_repository.dart';
-import '../../domain/usecases/inbox/save_conversations_use_case.dart';
-import '../../presentation/features/explore/explore_page_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -105,6 +100,9 @@ Future<void> initDependenciesContainer() async {
   registerLocationSettingsModule(serviceLocator);
   registerL10nModule(serviceLocator);
   registerMessagesModule(serviceLocator);
+  registerInboxModule(serviceLocator);
+  registerHomeBottomBarModule(serviceLocator);
+  registerExploreModule(serviceLocator);
 
   _registerServices();
   _registerDataSources();
@@ -226,10 +224,6 @@ Future<void> _registerRepositories() async {
   );
 
   serviceLocator.registerLazySingleton<AuthRepository>(() => authRepositoryImpl);
-
-  serviceLocator.registerLazySingleton<InboxRepository>(
-    () => InboxRepositoryImpl(serviceLocator()),
-  );
 }
 
 void _registerUseCases() {
@@ -247,15 +241,8 @@ void _registerUseCases() {
   serviceLocator.registerLazySingleton(() => RegisterUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => DeleteAccountUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => FetchConversationsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => SaveConversationsUseCase(serviceLocator()));
-
   serviceLocator.registerLazySingleton(() => FetchArticlesUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetArticleByIdUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => GetConversationByOwnerIdUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
 
@@ -265,17 +252,6 @@ void _registerUseCases() {
 }
 
 void _registerCubits() {
-  serviceLocator.registerFactory(
-    () => ExplorePageCubit(
-      serviceLocator<WatchCarsUseCase>(),
-      serviceLocator<SyncCarsUseCase>(),
-      serviceLocator<FetchArticlesUseCase>(),
-      serviceLocator<GetCarByIdUseCase>(),
-    ),
-  );
-
-  serviceLocator.registerFactory(() => HomeBottomBarCubit());
-
   serviceLocator.registerFactory(
     () => DetailsPageCubit(
       serviceLocator<GetCarByIdUseCase>(),
@@ -294,8 +270,6 @@ void _registerCubits() {
       serviceLocator<DeleteAccountUseCase>(),
     ),
   );
-
-  serviceLocator.registerLazySingleton(() => InboxPageCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerFactory(() => ArticlePageCubit(serviceLocator()));
 
