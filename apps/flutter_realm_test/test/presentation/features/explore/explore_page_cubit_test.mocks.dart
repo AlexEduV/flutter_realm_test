@@ -60,7 +60,17 @@ class MockSyncCarsUseCase extends _i1.Mock implements _i3.SyncCarsUseCase {
 /// A class which mocks [WatchCarsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockWatchCarsUseCase extends _i1.Mock implements _i5.WatchCarsUseCase {}
+class MockWatchCarsUseCase extends _i1.Mock implements _i5.WatchCarsUseCase {
+  @override
+  _i4.Stream<List<_i2.CarEntity>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i4.Stream<List<_i2.CarEntity>>.empty(),
+        returnValueForMissingStub: _i4.Stream<List<_i2.CarEntity>>.empty(),
+      ) as _i4.Stream<List<_i2.CarEntity>>);
+}
 
 /// A class which mocks [FetchArticlesUseCase].
 ///
