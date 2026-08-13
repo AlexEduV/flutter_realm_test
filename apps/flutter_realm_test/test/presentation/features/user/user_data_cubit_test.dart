@@ -19,6 +19,7 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
+import 'package:test_flutter_project/utils/localisation_util.dart';
 
 import '../../../domain/repositories/base_local_storage_test.mocks.dart';
 import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
@@ -34,6 +35,7 @@ import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
   MockSpec<PickImageFromGalleryUseCase>(),
   MockSpec<DeleteCarByIdUseCase>(),
   MockSpec<LoggingService>(),
+  MockSpec<LocalisationUtil>(),
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +51,7 @@ void main() {
   late UserDataCubit cubit;
   late UserEntity testUser;
   late MockLoggingService mockBaseLogger;
+  late MockLocalisationUtil mockLocalisationUtil;
 
   final mockAuthRepository = MockAuthRepository();
   final appLocalisationsCubit = AppLocalisationsCubit();
@@ -61,6 +64,7 @@ void main() {
   mockPickImageFromGalleryUseCase = MockPickImageFromGalleryUseCase();
   mockDeleteCarByIdUseCase = MockDeleteCarByIdUseCase();
   mockBaseLogger = MockLoggingService();
+  mockLocalisationUtil = MockLocalisationUtil();
 
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});
@@ -82,6 +86,7 @@ void main() {
       mockDeleteCarByIdUseCase,
       mockBaseLogger,
       appLocalisationsCubit,
+      mockLocalisationUtil,
     );
     testUser = const UserEntity(
       userId: 'u1',

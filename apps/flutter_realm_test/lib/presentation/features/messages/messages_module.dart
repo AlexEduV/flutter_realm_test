@@ -38,7 +38,7 @@ void registerMessagesModule(GetIt serviceLocator) {
   );
 
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
-    () => SeedMessagesRemoteDataSourceImpl(serviceLocator()),
+    () => SeedMessagesRemoteDataSourceImpl(serviceLocator(), serviceLocator()),
   );
 
   final filePicker = FilePickerIO();

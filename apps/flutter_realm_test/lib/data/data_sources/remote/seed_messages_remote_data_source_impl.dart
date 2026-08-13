@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/extensions/list_extension.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
@@ -10,10 +10,11 @@ import 'package:test_flutter_project/domain/services/time_service.dart';
 import '../../../common/enums/message_status.dart';
 
 class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
-  SeedMessagesRemoteDataSourceImpl(this._timeService);
+  SeedMessagesRemoteDataSourceImpl(this._timeService, this._remoteStorage);
 
   List<ConversationModel> _conversationsList = [];
   final TimeService _timeService;
+  final BaseRemoteStorage _remoteStorage;
 
   @override
   void initSampleData(String currentUserId) {
@@ -70,15 +71,13 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   Future<void> saveConversations(List<ConversationModel> conversations) async {
     _conversationsList = List.from(conversations);
 
-    final prefs = await SharedPreferences.getInstance();
     final conversationsJsonList = conversations.map((c) => c.toJson()).toList();
-    await prefs.setString('mock_conversations', jsonEncode(conversationsJsonList));
+    await _remoteStorage.setString('mock_conversations', jsonEncode(conversationsJsonList));
   }
 
   @override
   Future<List<ConversationModel>> loadConversations() async {
-    final prefs = await SharedPreferences.getInstance();
-    final usersJson = prefs.getString('mock_conversations');
+    final usersJson = _remoteStorage.getString('mock_conversations');
     if (usersJson != null) {
       final decoded = jsonDecode(usersJson);
 

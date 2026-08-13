@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
 
 import '../../../data/repositories/auth_repository_impl.dart';
 import '../../../domain/data_sources/local/base_local_storage.dart';
@@ -16,10 +16,9 @@ import '../user/user_data_cubit.dart';
 import 'authentication_cubit.dart';
 
 Future<void> registerAuthenticationModule(GetIt serviceLocator) async {
-  final cloudStorage = await SharedPreferences.getInstance();
   final authRepositoryImpl = AuthRepositoryImpl(
     serviceLocator<BaseLocalStorage>(),
-    cloudStorage,
+    serviceLocator<BaseRemoteStorage>(),
     serviceLocator<UsersRemoteDataSource>(),
     serviceLocator<MessagesRemoteDataSource>(),
     serviceLocator<OwnerRepository>(),

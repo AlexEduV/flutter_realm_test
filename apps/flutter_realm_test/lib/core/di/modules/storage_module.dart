@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:realm/realm.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_flutter_project/data/data_sources/remote/shared_preferences_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
 
 import '../../../common/extensions/get_it_extension.dart';
 import '../../../data/data_sources/local/realm_local_storage.dart';
 import '../../../data/database/realm_configuration.dart';
 import '../../../domain/data_sources/local/base_local_storage.dart';
 
-void registerStorageModule(GetIt serviceLocator) {
+Future<void> registerStorageModule(GetIt serviceLocator) async {
   if (serviceLocator.isNotRegistered<Realm>()) {
     try {
       final config = RealmConfiguration()..init();
@@ -24,6 +27,18 @@ void registerStorageModule(GetIt serviceLocator) {
       );
     } catch (e) {
       debugPrint('Could not register local storage');
+    }
+  }
+
+  if (serviceLocator.isNotRegistered<BaseRemoteStorage>()) {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+
+      serviceLocator.registerLazySingleton<BaseRemoteStorage>(
+        () => SharedPreferencesStorage(prefs),
+      );
+    } catch (e) {
+      debugPrint('Could not register remote storage');
     }
   }
 }

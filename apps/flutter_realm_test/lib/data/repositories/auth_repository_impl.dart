@@ -1,5 +1,5 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_flutter_project/domain/models/auth_error_code.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
@@ -13,14 +13,14 @@ import '../../domain/entities/user_entity.dart';
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(
     this._localStorage,
-    this._cloudStorage,
+    this._remoteStorage,
     this._usersRemoteDataSource,
     this._messagesRemoteDataSource,
     this._ownerRepository,
   );
 
   final BaseLocalStorage _localStorage;
-  final SharedPreferences _cloudStorage;
+  final BaseRemoteStorage _remoteStorage;
   final OwnerRepository _ownerRepository;
   final UsersRemoteDataSource _usersRemoteDataSource;
   final MessagesRemoteDataSource _messagesRemoteDataSource;
@@ -128,14 +128,14 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<bool> isUserLoggedIn() async {
-    return _cloudStorage.getString(_userSessionKey) != null;
+    return _remoteStorage.getString(_userSessionKey) != null;
   }
 
   Future<void> _saveUserSession(String userId) async {
-    await _cloudStorage.setString(_userSessionKey, userId);
+    await _remoteStorage.setString(_userSessionKey, userId);
   }
 
   Future<void> _clearUserSession() async {
-    await _cloudStorage.remove(_userSessionKey);
+    await _remoteStorage.remove(_userSessionKey);
   }
 }

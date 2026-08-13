@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_flutter_project/data/data_sources/remote/shared_preferences_storage.dart';
 import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
@@ -43,6 +44,7 @@ void main() {
 
     SharedPreferences.setMockInitialValues({'seed_users': initUsers});
     final prefs = await SharedPreferences.getInstance();
+    final cloudStorage = SharedPreferencesStorage(prefs);
 
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);
     when(mockUsersRemoteDataSource.getMaxUserId()).thenReturn(1);
@@ -50,7 +52,7 @@ void main() {
 
     repo = AuthRepositoryImpl(
       mockLocalStorage,
-      prefs,
+      cloudStorage,
       mockUsersRemoteDataSource,
       mockMessagesRemoteDataSource,
       mockOwnerRepository,

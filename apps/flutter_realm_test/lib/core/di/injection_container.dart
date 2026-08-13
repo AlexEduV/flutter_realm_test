@@ -22,7 +22,7 @@ import 'package:test_flutter_project/presentation/features/user/user_module.dart
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependenciesContainer() async {
-  registerStorageModule(serviceLocator);
+  await registerStorageModule(serviceLocator);
   registerNetworkModule(serviceLocator);
   await registerEnvModule(serviceLocator);
   registerInfrastructureModule(serviceLocator);

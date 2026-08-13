@@ -33,6 +33,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._deleteCarByIdUseCase,
     this._logger,
     this._appLocalisationsCubit,
+    this._localisationUtil,
   ) : super(UserDataState(user: UserEntity.empty()));
 
   final BaseLocalStorage _localStorage;
@@ -50,6 +51,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   final LoggingService _logger;
   final AppLocalisationsCubit _appLocalisationsCubit;
+  final LocalisationUtil _localisationUtil;
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
@@ -76,17 +78,17 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> initLocalisation(String locale) async {
-    final rawJson = await LocalisationUtil.loadRawJson(
+    final rawJson = await _localisationUtil.loadRawJson(
       '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}localisation_mock_response_data_$locale.json',
     );
 
-    final localisations = LocalisationUtil.extractLocalisations(rawJson);
+    final localisations = _localisationUtil.extractLocalisations(rawJson);
     if (localisations == null) return;
 
     _appLocalisationsCubit.load(localisations);
 
     await initializeDateFormatting(locale, null);
-    await LocalisationUtil.saveLocalisations(localisations);
+    await _localisationUtil.saveLocalisations(localisations);
   }
 
   void setFirstName(String firstName) {
