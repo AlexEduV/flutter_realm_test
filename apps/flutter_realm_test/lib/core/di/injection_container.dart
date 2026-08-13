@@ -21,7 +21,7 @@ import 'package:test_flutter_project/data/data_sources/remote/mock_car_remote_da
 import 'package:test_flutter_project/data/data_sources/remote/mock_messages_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_users_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_users_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/database/realm_configuration.dart';
 import 'package:test_flutter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
@@ -241,7 +241,7 @@ void _registerDataSources() {
   );
 
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
-    () => MockUsersRemoteDataSourceImpl(),
+    () => SeedUsersRemoteDataSourceImpl(),
   );
 
   final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(

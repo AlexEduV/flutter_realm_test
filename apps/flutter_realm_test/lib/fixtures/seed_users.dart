@@ -1,6 +1,6 @@
 import '../domain/entities/user_entity.dart';
 
-class MockUsers {
+class SeedUsers {
   static final List<UserEntity> initialUsers = [
     UserEntity.initial(
       userId: '16',

@@ -22,7 +22,7 @@ void main() {
     mockRemoteDataSource = MockOwnersRemoteDataSource();
     mockUsersRemoteDataSource = MockUsersRemoteDataSource();
     when(mockUsersRemoteDataSource.users).thenReturn([]);
-    when(mockUsersRemoteDataSource.saveMockUsers(any)).thenAnswer((_) async {});
+    when(mockUsersRemoteDataSource.saveSeedUsers(any)).thenAnswer((_) async {});
     repository = OwnerRepositoryImpl(mockRemoteDataSource, mockUsersRemoteDataSource);
   });
 
@@ -37,7 +37,7 @@ void main() {
 
     expect(result, owners);
     verify(mockRemoteDataSource.fetchOwners()).called(1);
-    verify(mockUsersRemoteDataSource.saveMockUsers(any)).called(1);
+    verify(mockUsersRemoteDataSource.saveSeedUsers(any)).called(1);
   });
 
   test('fetchOwners does not add duplicate users', () async {
@@ -57,7 +57,7 @@ void main() {
 
     await repository.fetchOwners();
 
-    verify(mockUsersRemoteDataSource.saveMockUsers(any)).called(1);
+    verify(mockUsersRemoteDataSource.saveSeedUsers(any)).called(1);
     verifyNever(mockUsersRemoteDataSource.users = any);
   });
 

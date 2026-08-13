@@ -32,27 +32,27 @@ void main() {
         password: 'test2',
       ),
     ];
-    when(mockUserRepository.loadMockUsers()).thenAnswer((_) async => tUsers);
+    when(mockUserRepository.loadSeedUsers()).thenAnswer((_) async => tUsers);
 
     // Act
     final result = await useCase();
 
     // Assert
     expect(result, tUsers);
-    verify(mockUserRepository.loadMockUsers()).called(1);
+    verify(mockUserRepository.loadSeedUsers()).called(1);
     verifyNoMoreInteractions(mockUserRepository);
   });
 
   test('should return empty list when repository returns empty', () async {
     // Arrange
-    when(mockUserRepository.loadMockUsers()).thenAnswer((_) async => []);
+    when(mockUserRepository.loadSeedUsers()).thenAnswer((_) async => []);
 
     // Act
     final result = await useCase();
 
     // Assert
     expect(result, isEmpty);
-    verify(mockUserRepository.loadMockUsers()).called(1);
+    verify(mockUserRepository.loadSeedUsers()).called(1);
     verifyNoMoreInteractions(mockUserRepository);
   });
 }

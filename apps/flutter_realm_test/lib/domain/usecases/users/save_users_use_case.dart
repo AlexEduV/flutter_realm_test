@@ -9,6 +9,6 @@ class SaveUsersUseCase implements UseCaseWithParams<List<UserEntity>, Future<voi
 
   @override
   Future<void> call(List<UserEntity> params) {
-    return _userRepository.saveMockUsers(params);
+    return _userRepository.saveSeedUsers(params);
   }
 }

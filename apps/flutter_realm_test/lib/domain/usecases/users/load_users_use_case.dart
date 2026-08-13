@@ -9,6 +9,6 @@ class LoadUsersUseCase implements UseCaseNoParams<Future<List<UserEntity>>> {
 
   @override
   Future<List<UserEntity>> call() {
-    return _userRepository.loadMockUsers();
+    return _userRepository.loadSeedUsers();
   }
 }

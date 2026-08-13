@@ -14,7 +14,7 @@ void main() {
     useCase = SaveUsersUseCase(mockUserRepository);
   });
 
-  test('should call saveMockUsers on repository with correct params', () async {
+  test('should call saveSeedUsers on repository with correct params', () async {
     // Arrange
     final tUsers = [
       UserEntity.initial(
@@ -32,24 +32,24 @@ void main() {
         password: 'test2',
       ),
     ];
-    when(mockUserRepository.saveMockUsers(tUsers)).thenAnswer((_) async {});
+    when(mockUserRepository.saveSeedUsers(tUsers)).thenAnswer((_) async {});
 
     // Act
     await useCase(tUsers);
 
     // Assert
-    verify(mockUserRepository.saveMockUsers(tUsers)).called(1);
+    verify(mockUserRepository.saveSeedUsers(tUsers)).called(1);
     verifyNoMoreInteractions(mockUserRepository);
   });
 
   test('should complete without error when repository succeeds', () {
     // Arrange
     final tUsers = <UserEntity>[];
-    when(mockUserRepository.saveMockUsers(tUsers)).thenAnswer((_) async {});
+    when(mockUserRepository.saveSeedUsers(tUsers)).thenAnswer((_) async {});
 
     // Act & Assert
     expect(useCase(tUsers), completes);
-    verify(mockUserRepository.saveMockUsers(tUsers)).called(1);
+    verify(mockUserRepository.saveSeedUsers(tUsers)).called(1);
     verifyNoMoreInteractions(mockUserRepository);
   });
 }

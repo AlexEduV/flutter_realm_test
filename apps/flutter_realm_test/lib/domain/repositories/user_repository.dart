@@ -7,7 +7,7 @@ abstract class UserRepository {
 
   UserEntity? getUserById(String id);
 
-  Future<List<UserEntity>> loadMockUsers();
+  Future<List<UserEntity>> loadSeedUsers();
 
-  Future<void> saveMockUsers(List<UserEntity> users);
+  Future<void> saveSeedUsers(List<UserEntity> users);
 }

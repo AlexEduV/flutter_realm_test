@@ -40,12 +40,12 @@ void main() {
       ),
     ];
 
-    SharedPreferences.setMockInitialValues({'mock_users': initUsers});
+    SharedPreferences.setMockInitialValues({'seed_users': initUsers});
     final prefs = await SharedPreferences.getInstance();
 
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);
     when(mockUsersRemoteDataSource.getMaxUserId()).thenReturn(1);
-    when(mockUsersRemoteDataSource.saveMockUsers(any)).thenAnswer((_) async {});
+    when(mockUsersRemoteDataSource.saveSeedUsers(any)).thenAnswer((_) async {});
 
     repo = AuthRepositoryImpl(
       mockLocalStorage,

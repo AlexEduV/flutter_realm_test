@@ -30,7 +30,7 @@ class AuthRepositoryImpl implements AuthRepository {
   final _userSessionKey = 'userId';
 
   Future<void> init() async {
-    await _usersRemoteDataSource.loadMockUsers();
+    await _usersRemoteDataSource.loadSeedUsers();
     await _ownerRepository.fetchOwners();
 
     users = List.from(_usersRemoteDataSource.users);
@@ -97,7 +97,7 @@ class AuthRepositoryImpl implements AuthRepository {
     users.add(user);
     _usersRemoteDataSource.users = List.from(users);
 
-    await _usersRemoteDataSource.saveMockUsers(users);
+    await _usersRemoteDataSource.saveSeedUsers(users);
     await _saveUserSession(newUserId.toString());
 
     _localStorage.clearUser();
@@ -113,7 +113,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
     users.removeWhere((element) => element.email == email);
     _usersRemoteDataSource.users = List.from(users);
-    await _usersRemoteDataSource.saveMockUsers(users);
+    await _usersRemoteDataSource.saveSeedUsers(users);
   }
 
   @override
@@ -123,7 +123,7 @@ class AuthRepositoryImpl implements AuthRepository {
     users.removeWhere((element) => element.userId == userId);
     users.add(data);
 
-    await _usersRemoteDataSource.saveMockUsers(users);
+    await _usersRemoteDataSource.saveSeedUsers(users);
   }
 
   @override

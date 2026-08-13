@@ -73,7 +73,7 @@ void main() {
     verifyNoMoreInteractions(mockRemoteDataSource);
   });
 
-  test('loadMockUsers should delegate to remote data source', () async {
+  test('loadSeedUsers should delegate to remote data source', () async {
     // Arrange
     final tUsers = [
       UserEntity.initial(
@@ -91,18 +91,18 @@ void main() {
         password: 'test',
       ),
     ];
-    when(mockRemoteDataSource.loadMockUsers()).thenAnswer((_) async => tUsers);
+    when(mockRemoteDataSource.loadSeedUsers()).thenAnswer((_) async => tUsers);
 
     // Act
-    final result = await repository.loadMockUsers();
+    final result = await repository.loadSeedUsers();
 
     // Assert
     expect(result, tUsers);
-    verify(mockRemoteDataSource.loadMockUsers()).called(1);
+    verify(mockRemoteDataSource.loadSeedUsers()).called(1);
     verifyNoMoreInteractions(mockRemoteDataSource);
   });
 
-  test('saveMockUsers should delegate to remote data source', () async {
+  test('saveSeedUsers should delegate to remote data source', () async {
     // Arrange
     final tUsers = [
       UserEntity.initial(
@@ -120,13 +120,13 @@ void main() {
         password: 'test',
       ),
     ];
-    when(mockRemoteDataSource.saveMockUsers(tUsers)).thenAnswer((_) async => {});
+    when(mockRemoteDataSource.saveSeedUsers(tUsers)).thenAnswer((_) async => {});
 
     // Act
-    await repository.saveMockUsers(tUsers);
+    await repository.saveSeedUsers(tUsers);
 
     // Assert
-    verify(mockRemoteDataSource.saveMockUsers(tUsers)).called(1);
+    verify(mockRemoteDataSource.saveSeedUsers(tUsers)).called(1);
     verifyNoMoreInteractions(mockRemoteDataSource);
   });
 }
