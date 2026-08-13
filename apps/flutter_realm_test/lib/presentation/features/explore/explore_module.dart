@@ -26,7 +26,7 @@ void registerExploreModule(GetIt serviceLocator) {
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
 
   serviceLocator.registerLazySingleton<CarRepository>(
-    () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
+    () => CarRepositoryImpl(serviceLocator(), serviceLocator(), serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));

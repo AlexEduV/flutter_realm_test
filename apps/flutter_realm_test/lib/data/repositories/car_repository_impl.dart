@@ -1,20 +1,21 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:realm/realm.dart';
 import 'package:test_flutter_project/data/models/scheme.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/repositories/car_repository.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 
 import '../../common/extensions/car_scheme_extension.dart';
 import '../../domain/entities/car_entity.dart';
 
 class CarRepositoryImpl implements CarRepository {
-  CarRepositoryImpl(this._localStorage, this._carRemoteDataSource);
+  CarRepositoryImpl(this._localStorage, this._carRemoteDataSource, this._loggingService);
 
   final BaseLocalStorage _localStorage;
   final CarRemoteDataSource _carRemoteDataSource;
+  final LoggingService _loggingService;
 
   @override
   void addCar(CarEntity carEntity) {
@@ -52,11 +53,11 @@ class CarRepositoryImpl implements CarRepository {
           _localStorage.update(CarExtensions.fromDto(dto));
         }
       },
-      onError: (error, _) {
-        debugPrint('car stream error: $error');
+      onError: (error, stackTrace) {
+        _loggingService.error('car stream error: $error', stackTrace: stackTrace);
       },
       onDone: () {
-        debugPrint('car stream closed.');
+        _loggingService.info('car stream closed.');
       },
     );
   }
