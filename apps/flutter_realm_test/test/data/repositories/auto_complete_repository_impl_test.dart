@@ -2,13 +2,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_auto_complete_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_auto_complete_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/repositories/auto_complete_repository_impl.dart';
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
 
 import 'auto_complete_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<MockAutoCompleteRemoteDataSource>()])
+@GenerateNiceMocks([MockSpec<SeedAutoCompleteRemoteDataSource>()])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 

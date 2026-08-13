@@ -9,8 +9,8 @@ import 'package:test_flutter_project/domain/services/time_service.dart';
 
 import '../../../common/enums/message_status.dart';
 
-class MockMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
-  MockMessagesRemoteDataSourceImpl(this._timeService);
+class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
+  SeedMessagesRemoteDataSourceImpl(this._timeService);
 
   List<ConversationModel> _conversationsList = [];
   final TimeService _timeService;

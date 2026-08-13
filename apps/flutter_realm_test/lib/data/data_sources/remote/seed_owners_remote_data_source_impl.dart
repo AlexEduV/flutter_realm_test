@@ -6,10 +6,11 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
 
 import '../../../common/constants/api_constants.dart';
+import '../../../common/constants/app_asset_routes.dart';
 import '../../../domain/models/api_response.dart';
 
-class MockOwnersRemoteDataSourceImpl implements OwnersRemoteDataSource {
-  MockOwnersRemoteDataSourceImpl(this._logger);
+class SeedOwnersRemoteDataSourceImpl implements OwnersRemoteDataSource {
+  SeedOwnersRemoteDataSourceImpl(this._logger);
 
   final LoggingService _logger;
 
@@ -17,7 +18,9 @@ class MockOwnersRemoteDataSourceImpl implements OwnersRemoteDataSource {
 
   @override
   Future<List<OwnerEntity>> fetchOwners() async {
-    final jsonString = await rootBundle.loadString('assets/mocks/mock_owners.json');
+    final jsonString = await rootBundle.loadString(
+      '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}mock_owners.json',
+    );
     final jsonDecoded = json.decode(jsonString);
     final response = ApiResponse.fromJson(
       jsonDecoded,

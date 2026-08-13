@@ -1,14 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_region_remote_data_source_impl.dart';
 import 'package:test_flutter_project/domain/entities/region_entity.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  late MockRegionRemoteDataSourceImpl dataSource;
+  late SeedRegionRemoteDataSourceImpl dataSource;
 
   setUp(() {
-    dataSource = MockRegionRemoteDataSourceImpl();
+    dataSource = SeedRegionRemoteDataSourceImpl();
   });
 
   group('MockRegionRemoteDataSourceImpl', () {

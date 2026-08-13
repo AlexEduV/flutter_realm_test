@@ -15,12 +15,12 @@ import 'package:test_flutter_project/data/data_sources/local/car_color_local_dat
 import 'package:test_flutter_project/data/data_sources/local/env_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart';
 import 'package:test_flutter_project/data/data_sources/remote/gifs_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_auto_complete_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_car_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_messages_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_owners_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_region_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_article_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_auto_complete_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_car_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_messages_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_owners_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_region_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/seed_users_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/database/realm_configuration.dart';
 import 'package:test_flutter_project/data/repositories/article_repository_impl.dart';
@@ -237,14 +237,14 @@ void _registerDataSources() {
   );
 
   serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(
-    () => MockOwnersRemoteDataSourceImpl(serviceLocator()),
+    () => SeedOwnersRemoteDataSourceImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
     () => SeedUsersRemoteDataSourceImpl(),
   );
 
-  final mockCarRemoteDataSource = MockCarRemoteDataSourceImpl(
+  final mockCarRemoteDataSource = SeedCarRemoteDataSourceImpl(
     serviceLocator(),
     serviceLocator<OwnersRemoteDataSource>(),
   );
@@ -253,11 +253,11 @@ void _registerDataSources() {
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
 
   serviceLocator.registerLazySingleton<AutoCompleteRemoteDataSource>(
-    () => MockAutoCompleteRemoteDataSource(serviceLocator()),
+    () => SeedAutoCompleteRemoteDataSource(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
-    () => MockRegionRemoteDataSourceImpl(),
+    () => SeedRegionRemoteDataSourceImpl(),
   );
 
   serviceLocator.registerLazySingleton<CarColorLocalDataSource>(
@@ -265,11 +265,11 @@ void _registerDataSources() {
   );
 
   serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
-    () => MockArticleRemoteDataSourceImpl(serviceLocator()),
+    () => SeedArticleRemoteDataSourceImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(
-    () => MockMessagesRemoteDataSourceImpl(serviceLocator()),
+    () => SeedMessagesRemoteDataSourceImpl(serviceLocator()),
   );
 }
 

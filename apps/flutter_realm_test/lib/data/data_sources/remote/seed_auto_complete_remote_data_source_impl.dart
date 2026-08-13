@@ -4,13 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/auto_complete_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 
 import '../../../common/constants/api_constants.dart';
-import 'package:test_flutter_project/domain/services/logging_service.dart';
+import '../../../common/constants/app_asset_routes.dart';
 import '../../../domain/models/api_response.dart';
 
-class MockAutoCompleteRemoteDataSource implements AutoCompleteRemoteDataSource {
-  MockAutoCompleteRemoteDataSource(this._logger);
+class SeedAutoCompleteRemoteDataSource implements AutoCompleteRemoteDataSource {
+  SeedAutoCompleteRemoteDataSource(this._logger);
 
   final LoggingService _logger;
 
@@ -18,7 +19,9 @@ class MockAutoCompleteRemoteDataSource implements AutoCompleteRemoteDataSource {
   Future<List<CarAutoCompleteEntity>> getAutoCompleteModelListByType(CarType type) async {
     final resourceSrc = getResourceByType(type);
 
-    final jsonString = await rootBundle.loadString('assets/mocks/$resourceSrc');
+    final jsonString = await rootBundle.loadString(
+      '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}$resourceSrc',
+    );
 
     final jsonDecoded = json.decode(jsonString);
     final response = ApiResponse.fromJson(

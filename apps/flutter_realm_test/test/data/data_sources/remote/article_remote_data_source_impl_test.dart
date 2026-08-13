@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/domain/services/logging_service.dart';
-import 'package:test_flutter_project/data/data_sources/remote/mock_article_remote_data_source_impl.dart';
+import 'package:test_flutter_project/data/data_sources/remote/seed_article_remote_data_source_impl.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 
 import 'article_remote_data_source_impl_test.mocks.dart';
 
@@ -15,11 +15,11 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late MockLoggingService mockLogger;
-  late MockArticleRemoteDataSourceImpl dataSource;
+  late SeedArticleRemoteDataSourceImpl dataSource;
 
   setUp(() {
     mockLogger = MockLoggingService();
-    dataSource = MockArticleRemoteDataSourceImpl(mockLogger);
+    dataSource = SeedArticleRemoteDataSourceImpl(mockLogger);
   });
 
   group('MockArticleRemoteDataSourceImpl', () {
