@@ -52,11 +52,11 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (!users.any((element) => element.email == email)) {
-      return AuthResult(success: false, errorCode: AuthErrorCode.userNotFound);
+      return AuthFailure(AuthErrorCode.userNotFound);
     }
 
     if (!users.any((element) => element.password == password && element.email == email)) {
-      return AuthResult(success: false, errorCode: AuthErrorCode.incorrectPassword);
+      return AuthFailure(AuthErrorCode.incorrectPassword);
     }
 
     final user = users.firstWhere((element) => element.email == email);
@@ -69,7 +69,7 @@ class AuthRepositoryImpl implements AuthRepository {
     _localStorage.update(UserExtensions.fromEntity(user));
 
     isAuthenticated = true;
-    return AuthResult(success: true);
+    return const AuthSuccess();
   }
 
   @override
@@ -82,7 +82,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (users.any((element) => element.email == email)) {
-      return AuthResult(success: false, errorCode: AuthErrorCode.userAlreadyExists);
+      return AuthFailure(AuthErrorCode.userAlreadyExists);
     }
 
     final newUserId = _usersRemoteDataSource.getMaxUserId() + 1;
@@ -104,7 +104,7 @@ class AuthRepositoryImpl implements AuthRepository {
     _localStorage.update(UserExtensions.fromEntity(user));
 
     isAuthenticated = true;
-    return AuthResult(success: true);
+    return const AuthSuccess();
   }
 
   @override

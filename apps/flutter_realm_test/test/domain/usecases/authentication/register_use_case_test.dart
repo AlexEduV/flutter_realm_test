@@ -11,6 +11,7 @@ void main() {
   late RegisterUseCase registerUseCase;
 
   setUp(() {
+    provideDummy<AuthResult>(const AuthSuccess());
     mockAuthRepository = MockAuthRepository();
     registerUseCase = RegisterUseCase(mockAuthRepository);
   });
@@ -18,7 +19,7 @@ void main() {
   test('calls register on the repository with correct params and returns result', () async {
     // Arrange
     final registerModel = RegisterModel('test@mail.com', 'password123', 'Test', 'User');
-    final expectedResult = AuthResult(success: true, errorCode: null);
+    const expectedResult = AuthSuccess();
     when(
       mockAuthRepository.register(
         email: registerModel.email,

@@ -11,6 +11,7 @@ void main() {
   late LoginUseCase loginUseCase;
 
   setUp(() {
+    provideDummy<AuthResult>(const AuthSuccess());
     mockAuthRepository = MockAuthRepository();
     loginUseCase = LoginUseCase(mockAuthRepository);
   });
@@ -18,7 +19,7 @@ void main() {
   test('calls login on the repository with correct params and returns result', () async {
     // Arrange
     final loginModel = LoginModel('test@mail.com', 'password123');
-    final expectedResult = AuthResult(success: true, errorCode: null);
+    const expectedResult = AuthSuccess();
     when(
       mockAuthRepository.login(email: loginModel.email, password: loginModel.password),
     ).thenAnswer((_) async => expectedResult);

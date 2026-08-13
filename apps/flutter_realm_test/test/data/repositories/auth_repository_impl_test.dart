@@ -6,6 +6,7 @@ import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/models/auth_error_code.dart';
+import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
@@ -60,20 +61,17 @@ void main() {
   group('login', () {
     test('returns success for correct credentials', () async {
       final result = await repo.login(email: 'mock@example.com', password: 'Password1!');
-      expect(result.success, isTrue);
-      expect(result.errorCode, isNull);
+      expect(result, isA<AuthSuccess>());
     });
 
     test('returns user not found for unknown email', () async {
       final result = await repo.login(email: 'unknown@example.com', password: 'Password1!');
-      expect(result.success, isFalse);
-      expect(result.errorCode, AuthErrorCode.userNotFound);
+      expect(result, AuthFailure(AuthErrorCode.userNotFound));
     });
 
     test('returns incorrect password for wrong password', () async {
       final result = await repo.login(email: 'mock@example.com', password: 'wrongpassword');
-      expect(result.success, isFalse);
-      expect(result.errorCode, AuthErrorCode.incorrectPassword);
+      expect(result, AuthFailure(AuthErrorCode.incorrectPassword));
     });
   });
 
@@ -85,8 +83,7 @@ void main() {
         firstName: 'User',
         lastName: 'Test',
       );
-      expect(result.success, isTrue);
-      expect(result.errorCode, isNull);
+      expect(result, isA<AuthSuccess>());
     });
 
     test('returns user already exists for duplicate email', () async {
@@ -96,8 +93,7 @@ void main() {
         firstName: 'Test',
         lastName: 'User',
       );
-      expect(result.success, isFalse);
-      expect(result.errorCode, AuthErrorCode.userAlreadyExists);
+      expect(result, AuthFailure(AuthErrorCode.userAlreadyExists));
     });
 
     test('actually adds the user to the repository', () async {
@@ -108,7 +104,7 @@ void main() {
         lastName: 'User',
       );
       final result = await repo.login(email: 'unique@example.com', password: 'UniquePass!');
-      expect(result.success, isTrue);
+      expect(result, isA<AuthSuccess>());
     });
   });
 

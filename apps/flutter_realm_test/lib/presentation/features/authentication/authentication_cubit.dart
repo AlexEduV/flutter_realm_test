@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/models/auth_error_code.dart';
+import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/models/login_model.dart';
 import 'package:test_flutter_project/domain/models/register_model.dart';
@@ -230,7 +231,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     return true;
   }
 
-  String? _localizeAuthError(AuthErrorCode? code) => switch (code) {
+  String? _localizeAuthError(AuthErrorCode code) => switch (code) {
     AuthErrorCode.userNotFound => _appLocalisationsCubit.getLocalisationByKey(
       LoginPageIds.authErrorUserNotFoundMessage,
     ),
@@ -240,7 +241,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     AuthErrorCode.userAlreadyExists => _appLocalisationsCubit.getLocalisationByKey(
       LoginPageIds.authErrorUserAlreadyExists,
     ),
-    null => null,
   };
 
   void onLoginButtonPressed() async {
@@ -256,10 +256,11 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     emit(state.copyWith(isLoading: true));
     final result = await _loginUseCase.call(LoginModel(state.emailValue, state.passwordValue));
 
-    if (!result.success) {
-      emit(state.copyWith(authenticationErrorText: _localizeAuthError(result.errorCode)));
-    } else {
-      await _userDataCubit.authUser(state.emailValue);
+    switch (result) {
+      case AuthSuccess():
+        await _userDataCubit.authUser(state.emailValue);
+      case AuthFailure(:final errorCode):
+        emit(state.copyWith(authenticationErrorText: _localizeAuthError(errorCode)));
     }
 
     emit(state.copyWith(isLoading: false));
@@ -291,10 +292,11 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       RegisterModel(state.emailValue, state.passwordValue, firstName, lastName),
     );
 
-    if (!result.success) {
-      emit(state.copyWith(authenticationErrorText: _localizeAuthError(result.errorCode)));
-    } else {
-      await _userDataCubit.authUser(state.emailValue);
+    switch (result) {
+      case AuthSuccess():
+        await _userDataCubit.authUser(state.emailValue);
+      case AuthFailure(:final errorCode):
+        emit(state.copyWith(authenticationErrorText: _localizeAuthError(errorCode)));
     }
 
     emit(state.copyWith(isLoading: false));

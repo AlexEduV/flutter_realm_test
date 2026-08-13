@@ -52,6 +52,8 @@ void main() {
 
     appLocalisationsCubit.load(localisations);
 
+    provideDummy<AuthResult>(const AuthSuccess());
+
     mockUserDataCubit = MockUserDataCubit();
     mockLoginUseCase = MockLoginUseCase();
     mockLogoutUseCase = MockLogoutUseCase();
@@ -112,7 +114,7 @@ void main() {
     blocTest<AuthenticationCubit, AuthenticationState>(
       'onLoginButtonPressed emits loading, calls repo, emits result and stops loading (success)',
       setUp: () {
-        when(mockLoginUseCase.call(any)).thenAnswer((_) async => AuthResult(success: true));
+        when(mockLoginUseCase.call(any)).thenAnswer((_) async => const AuthSuccess());
       },
       build: () {
         return cubit;
@@ -135,7 +137,7 @@ void main() {
       build: () {
         when(
           mockLoginUseCase.call(any),
-        ).thenAnswer((_) async => AuthResult(success: false, errorCode: AuthErrorCode.userNotFound));
+        ).thenAnswer((_) async => AuthFailure(AuthErrorCode.userNotFound));
         return cubit;
       },
       seed: () => cubit.state.copyWith(emailValue: 'a@mail.com', passwordValue: 'Password1!'),
@@ -154,7 +156,7 @@ void main() {
     blocTest<AuthenticationCubit, AuthenticationState>(
       'onRegisterButtonPressed emits loading, calls repo, emits result and stops loading (success)',
       build: () {
-        when(mockRegisterUseCase.call(any)).thenAnswer((_) async => AuthResult(success: true));
+        when(mockRegisterUseCase.call(any)).thenAnswer((_) async => const AuthSuccess());
         return cubit;
       },
       seed: () => cubit.state.copyWith(
@@ -179,7 +181,7 @@ void main() {
       build: () {
         when(
           mockRegisterUseCase.call(any),
-        ).thenAnswer((_) async => AuthResult(success: false, errorCode: AuthErrorCode.userAlreadyExists));
+        ).thenAnswer((_) async => AuthFailure(AuthErrorCode.userAlreadyExists));
         return cubit;
       },
       seed: () => cubit.state.copyWith(
