@@ -13,7 +13,7 @@ void migrateV28(Migration migration) {
     // Move the old 'kilometers' to 'mileage'
     int? oldCarMileage;
     try {
-      oldCarMileage = oldCar.dynamic.get<int>('kilometers');
+      oldCarMileage = oldCar.dynamic.get<int?>('kilometers');
     } catch (e) {
       oldCarMileage = null;
     }
