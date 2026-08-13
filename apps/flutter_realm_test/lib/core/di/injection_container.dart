@@ -10,9 +10,7 @@ import 'package:test_flutter_project/core/network/app_http_client_impl.dart';
 import 'package:test_flutter_project/core/network/app_interceptor.dart';
 import 'package:test_flutter_project/data/data_sources/local/env_local_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart';
-import 'package:test_flutter_project/data/data_sources/remote/seed_article_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/database/realm_configuration.dart';
-import 'package:test_flutter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/env_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/image_picker_repository_impl.dart';
 import 'package:test_flutter_project/data/services/app_logging_service_impl.dart';
@@ -21,19 +19,15 @@ import 'package:test_flutter_project/data/services/network_logging_service_impl.
 import 'package:test_flutter_project/data/services/time_service_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/article_remote_data_source.dart';
-import 'package:test_flutter_project/domain/repositories/article_repository.dart';
 import 'package:test_flutter_project/domain/repositories/env_repository.dart';
 import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart';
 import 'package:test_flutter_project/domain/services/image_picker_service.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/services/time_service.dart';
-import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/env/get_env_data_by_key_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/env/init_env_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
-import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/article/article_module.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_module.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_module.dart';
 import 'package:test_flutter_project/presentation/features/details/details_module.dart';
@@ -61,24 +55,24 @@ Future<void> initDependenciesContainer() async {
   _registerNetwork();
 
   await _registerEnv();
+  _registerServices();
 
+  registerMessagesModule(serviceLocator);
   registerUserModule(serviceLocator);
   registerLocationSettingsModule(serviceLocator);
   registerL10nModule(serviceLocator);
   await registerAuthenticationModule(serviceLocator);
 
-  registerMessagesModule(serviceLocator);
   registerInboxModule(serviceLocator);
   registerHomeBottomBarModule(serviceLocator);
   registerExploreModule(serviceLocator);
+  registerArticleModule(serviceLocator);
   registerDetailsModule(serviceLocator);
   registerColorPickerModule(serviceLocator);
 
-  _registerServices();
-  _registerDataSources();
   _registerUtils();
 
-  await _registerRepositories();
+  _registerRepositories();
   _registerUseCases();
 
   _registerCubits();
@@ -136,12 +130,6 @@ Future<void> _registerEnv() async {
   }
 }
 
-void _registerDataSources() {
-  serviceLocator.registerLazySingleton<ArticleRemoteDataSource>(
-    () => SeedArticleRemoteDataSourceImpl(serviceLocator()),
-  );
-}
-
 void _registerServices() {
   final imagePicker = ImagePicker();
   serviceLocator.registerLazySingleton<ImagePickerService>(
@@ -155,24 +143,16 @@ void _registerUtils() {
   serviceLocator.registerLazySingleton(() => DateFormatter(serviceLocator(), serviceLocator()));
 }
 
-Future<void> _registerRepositories() async {
-  serviceLocator.registerLazySingleton<ArticleRepository>(
-    () => ArticleRepositoryImpl(serviceLocator()),
-  );
+void _registerRepositories() {
   serviceLocator.registerLazySingleton<ImagePickerRepository>(
     () => ImagePickerRepositoryImpl(serviceLocator()),
   );
 }
 
 void _registerUseCases() {
-  serviceLocator.registerLazySingleton(() => FetchArticlesUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetArticleByIdUseCase(serviceLocator()));
-
   serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
 }
 
 void _registerCubits() {
-  serviceLocator.registerFactory(() => ArticlePageCubit(serviceLocator()));
-
   serviceLocator.registerFactory(() => EditDialogCubit());
 }
