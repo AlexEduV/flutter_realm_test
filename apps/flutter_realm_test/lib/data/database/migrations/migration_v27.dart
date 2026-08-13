@@ -19,8 +19,16 @@ void migrateV27(Migration migration) {
     }
     if (oldName == null) continue;
 
-    final parts = oldName.split(' ');
-    newUser.firstName = parts.isNotEmpty ? parts.first : '';
-    newUser.lastName = parts.length > 1 ? parts.sublist(1).join(' ') : '';
+    final (firstName: firstName, lastName: lastName) = splitFullName(oldName);
+    newUser.firstName = firstName;
+    newUser.lastName = lastName;
   }
+}
+
+({String firstName, String lastName}) splitFullName(String name) {
+  final parts = name.split(' ');
+  return (
+    firstName: parts.isNotEmpty ? parts.first : '',
+    lastName: parts.length > 1 ? parts.sublist(1).join(' ') : '',
+  );
 }
