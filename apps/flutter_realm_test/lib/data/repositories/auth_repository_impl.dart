@@ -52,11 +52,11 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (!users.any((element) => element.email == email)) {
-      return AuthFailure(AuthErrorCode.userNotFound);
+      return const AuthFailure(AuthErrorCode.userNotFound);
     }
 
     if (!users.any((element) => element.password == password && element.email == email)) {
-      return AuthFailure(AuthErrorCode.incorrectPassword);
+      return const AuthFailure(AuthErrorCode.incorrectPassword);
     }
 
     final user = users.firstWhere((element) => element.email == email);
@@ -82,7 +82,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 1500));
 
     if (users.any((element) => element.email == email)) {
-      return AuthFailure(AuthErrorCode.userAlreadyExists);
+      return const AuthFailure(AuthErrorCode.userAlreadyExists);
     }
 
     final newUserId = _usersRemoteDataSource.getMaxUserId() + 1;

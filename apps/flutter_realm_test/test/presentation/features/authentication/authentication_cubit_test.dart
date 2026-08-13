@@ -137,7 +137,7 @@ void main() {
       build: () {
         when(
           mockLoginUseCase.call(any),
-        ).thenAnswer((_) async => AuthFailure(AuthErrorCode.userNotFound));
+        ).thenAnswer((_) async => const AuthFailure(AuthErrorCode.userNotFound));
         return cubit;
       },
       seed: () => cubit.state.copyWith(emailValue: 'a@mail.com', passwordValue: 'Password1!'),
@@ -181,7 +181,7 @@ void main() {
       build: () {
         when(
           mockRegisterUseCase.call(any),
-        ).thenAnswer((_) async => AuthFailure(AuthErrorCode.userAlreadyExists));
+        ).thenAnswer((_) async => const AuthFailure(AuthErrorCode.userAlreadyExists));
         return cubit;
       },
       seed: () => cubit.state.copyWith(

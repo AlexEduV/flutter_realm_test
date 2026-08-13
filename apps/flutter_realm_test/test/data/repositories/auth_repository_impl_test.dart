@@ -66,12 +66,12 @@ void main() {
 
     test('returns user not found for unknown email', () async {
       final result = await repo.login(email: 'unknown@example.com', password: 'Password1!');
-      expect(result, AuthFailure(AuthErrorCode.userNotFound));
+      expect(result, const AuthFailure(AuthErrorCode.userNotFound));
     });
 
     test('returns incorrect password for wrong password', () async {
       final result = await repo.login(email: 'mock@example.com', password: 'wrongpassword');
-      expect(result, AuthFailure(AuthErrorCode.incorrectPassword));
+      expect(result, const AuthFailure(AuthErrorCode.incorrectPassword));
     });
   });
 
@@ -93,7 +93,7 @@ void main() {
         firstName: 'Test',
         lastName: 'User',
       );
-      expect(result, AuthFailure(AuthErrorCode.userAlreadyExists));
+      expect(result, const AuthFailure(AuthErrorCode.userAlreadyExists));
     });
 
     test('actually adds the user to the repository', () async {
