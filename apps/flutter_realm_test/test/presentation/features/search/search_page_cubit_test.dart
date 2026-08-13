@@ -95,7 +95,7 @@ void main() {
       'init emits field params and calls loadData',
       build: () {
         when(mockGetAllCarsUseCase.call()).thenReturn(carList);
-        when(mockWatchCarsUseCase.call()).thenReturn(const Stream.empty());
+        when(mockWatchCarsUseCase.call()).thenAnswer((_) => Stream.empty());
         return cubit;
       },
       act: (cubit) => cubit.init(),
@@ -137,7 +137,7 @@ void main() {
       'loadData emits loading, updates allModels, and results',
       build: () {
         when(mockGetAllCarsUseCase.call()).thenReturn(carList);
-        when(mockWatchCarsUseCase.call()).thenReturn(const Stream.empty());
+        when(mockWatchCarsUseCase.call()).thenAnswer((_) => Stream.empty());
         return cubit;
       },
       act: (cubit) => cubit.loadData(),
