@@ -8,7 +8,7 @@ import 'package:test_flutter_project/common/constants/app_semantics_labels.dart'
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/main.dart' as app;
 
-// Credentials from MockUsers.initialUsers
+// Credentials from SeedUsers.initialUsers
 const _validEmail = 'mock@gmail.com';
 const _validPassword = 'qwertyUI10!';
 

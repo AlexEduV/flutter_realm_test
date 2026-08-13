@@ -1,10 +1,15 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_flutter_project/data/data_sources/remote/shared_preferences_storage.dart';
 import 'package:test_flutter_project/utils/localisation_util.dart';
 
 void main() {
-  setUp(() {
+  late LocalisationUtil localisationUtil;
+
+  setUp(() async {
     SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    localisationUtil = LocalisationUtil(SharedPreferencesStorage(prefs));
   });
 
   group('LocalisationUtil.extractLocalisations', () {
@@ -20,9 +25,7 @@ void main() {
         ],
       };
 
-      final result = LocalisationUtil.extractLocalisations(rawJson);
-
-      expect(result, {'app.locale': 'en', 'greeting': 'Hello'});
+      expect(localisationUtil.extractLocalisations(rawJson), {'app.locale': 'en', 'greeting': 'Hello'});
     });
 
     test('returns null when status is not success', () {
@@ -34,27 +37,25 @@ void main() {
         ],
       };
 
-      expect(LocalisationUtil.extractLocalisations(rawJson), isNull);
+      expect(localisationUtil.extractLocalisations(rawJson), isNull);
     });
 
     test('returns null when results is null', () {
       final rawJson = {'status': 'success', 'message': '', 'results': null};
 
-      expect(LocalisationUtil.extractLocalisations(rawJson), isNull);
+      expect(localisationUtil.extractLocalisations(rawJson), isNull);
     });
 
     test('returns null when results list is empty', () {
       final rawJson = {'status': 'success', 'message': '', 'results': []};
 
-      expect(LocalisationUtil.extractLocalisations(rawJson), isNull);
+      expect(localisationUtil.extractLocalisations(rawJson), isNull);
     });
   });
 
   group('LocalisationUtil', () {
     test('saveLocalisations saves all key-value pairs to SharedPreferences', () async {
-      final localisations = {'key1': 'value1', 'key2': 'value2'};
-
-      await LocalisationUtil.saveLocalisations(localisations);
+      await localisationUtil.saveLocalisations({'key1': 'value1', 'key2': 'value2'});
 
       final prefs = await SharedPreferences.getInstance();
       expect(prefs.getString('key1'), 'value1');
@@ -65,13 +66,11 @@ void main() {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('test.key', 'Test Value');
 
-      final value = await LocalisationUtil.getLocalisation('test.key');
-      expect(value, 'Test Value');
+      expect(await localisationUtil.getLocalisation('test.key'), 'Test Value');
     });
 
     test('getLocalisation returns empty string if key is missing', () async {
-      final value = await LocalisationUtil.getLocalisation('missing.key');
-      expect(value, '');
+      expect(await localisationUtil.getLocalisation('missing.key'), '');
     });
   });
 }

@@ -1,21 +1,22 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
 import 'package:test_flutter_project/domain/models/api_response.dart';
 import 'package:test_flutter_project/utils/json_util.dart';
 
 import '../common/constants/api_constants.dart';
 
 class LocalisationUtil {
-  //todo: use abstraction of shared preferences storage, so that the vendor might be changed easily
+  LocalisationUtil(this._remoteStorage);
+  final BaseRemoteStorage _remoteStorage;
 
-  static Future<Map<String, dynamic>> loadRawJson(String path) async {
+  Future<Map<String, dynamic>> loadRawJson(String path) async {
     final jsonString = await rootBundle.loadString(path);
     return json.decode(jsonString) as Map<String, dynamic>;
   }
 
-  static Map<String, String>? extractLocalisations(Map<String, dynamic> rawJson) {
+  Map<String, String>? extractLocalisations(Map<String, dynamic> rawJson) {
     final response = ApiResponse.fromJson(rawJson, (json) => json as List);
 
     if (response.status != ApiConstants.apiSuccessStatus || response.results == null) {
@@ -28,16 +29,13 @@ class LocalisationUtil {
     return JsonUtil.flattenJson(jsonMap);
   }
 
-  static Future<void> saveLocalisations(Map<String, dynamic> localisations) async {
-    final prefs = await SharedPreferences.getInstance();
-
+  Future<void> saveLocalisations(Map<String, dynamic> localisations) async {
     await Future.wait(
-      localisations.entries.map((e) => prefs.setString(e.key, e.value.toString())),
+      localisations.entries.map((e) => _remoteStorage.setString(e.key, e.value.toString())),
     );
   }
 
-  static Future<String> getLocalisation(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key) ?? '';
+  Future<String> getLocalisation(String key) async {
+    return _remoteStorage.getString(key) ?? '';
   }
 }

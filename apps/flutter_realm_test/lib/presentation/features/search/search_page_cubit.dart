@@ -84,7 +84,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(allResults: allCars, isLoading: false));
 
     _carSubscription?.cancel();
-    _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
+    _carSubscription = _watchCarsUseCase.call().listen((entities) {
       emit(state.copyWith(allResults: entities));
     });
   }

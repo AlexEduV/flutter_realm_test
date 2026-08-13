@@ -25,6 +25,9 @@ UseCases, Services, Repositories, and Utilities should be registered as `singlet
 
 Models and Entities are not registered.
 
+Explicit type annotations for registrations are used only in implementations of abstract classes
+and when `serviceLocator()` is used as a param 3+ times.
+
 
 ---
 

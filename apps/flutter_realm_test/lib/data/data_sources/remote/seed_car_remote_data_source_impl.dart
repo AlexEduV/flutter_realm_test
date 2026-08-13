@@ -16,8 +16,8 @@ import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_da
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 
-class MockCarRemoteDataSourceImpl implements CarRemoteDataSource {
-  MockCarRemoteDataSourceImpl(this._localStorage, this._ownersRemoteDataSource);
+class SeedCarRemoteDataSourceImpl implements CarRemoteDataSource {
+  SeedCarRemoteDataSourceImpl(this._localStorage, this._ownersRemoteDataSource);
 
   final BaseLocalStorage _localStorage;
   final OwnersRemoteDataSource _ownersRemoteDataSource;

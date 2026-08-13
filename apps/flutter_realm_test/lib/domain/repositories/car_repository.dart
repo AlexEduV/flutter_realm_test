@@ -7,7 +7,7 @@ abstract class CarRepository {
 
   Future<void> syncCars();
 
-  Stream<List<CarEntity>>? watchCars();
+  Stream<List<CarEntity>> watchCars();
 
   void deleteAll();
 

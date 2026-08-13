@@ -2,10 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_flutter_project/data/data_sources/remote/shared_preferences_storage.dart';
 import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/models/auth_error_code.dart';
+import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 
 import '../../domain/repositories/base_local_storage_test.mocks.dart';
@@ -40,16 +42,17 @@ void main() {
       ),
     ];
 
-    SharedPreferences.setMockInitialValues({'mock_users': initUsers});
+    SharedPreferences.setMockInitialValues({'seed_users': initUsers});
     final prefs = await SharedPreferences.getInstance();
+    final cloudStorage = SharedPreferencesStorage(prefs);
 
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);
     when(mockUsersRemoteDataSource.getMaxUserId()).thenReturn(1);
-    when(mockUsersRemoteDataSource.saveMockUsers(any)).thenAnswer((_) async {});
+    when(mockUsersRemoteDataSource.saveSeedUsers(any)).thenAnswer((_) async {});
 
     repo = AuthRepositoryImpl(
       mockLocalStorage,
-      prefs,
+      cloudStorage,
       mockUsersRemoteDataSource,
       mockMessagesRemoteDataSource,
       mockOwnerRepository,
@@ -60,20 +63,17 @@ void main() {
   group('login', () {
     test('returns success for correct credentials', () async {
       final result = await repo.login(email: 'mock@example.com', password: 'Password1!');
-      expect(result.success, isTrue);
-      expect(result.errorCode, isNull);
+      expect(result, isA<AuthSuccess>());
     });
 
     test('returns user not found for unknown email', () async {
       final result = await repo.login(email: 'unknown@example.com', password: 'Password1!');
-      expect(result.success, isFalse);
-      expect(result.errorCode, AuthErrorCode.userNotFound);
+      expect(result, const AuthFailure(AuthErrorCode.userNotFound));
     });
 
     test('returns incorrect password for wrong password', () async {
       final result = await repo.login(email: 'mock@example.com', password: 'wrongpassword');
-      expect(result.success, isFalse);
-      expect(result.errorCode, AuthErrorCode.incorrectPassword);
+      expect(result, const AuthFailure(AuthErrorCode.incorrectPassword));
     });
   });
 
@@ -85,8 +85,7 @@ void main() {
         firstName: 'User',
         lastName: 'Test',
       );
-      expect(result.success, isTrue);
-      expect(result.errorCode, isNull);
+      expect(result, isA<AuthSuccess>());
     });
 
     test('returns user already exists for duplicate email', () async {
@@ -96,8 +95,7 @@ void main() {
         firstName: 'Test',
         lastName: 'User',
       );
-      expect(result.success, isFalse);
-      expect(result.errorCode, AuthErrorCode.userAlreadyExists);
+      expect(result, const AuthFailure(AuthErrorCode.userAlreadyExists));
     });
 
     test('actually adds the user to the repository', () async {
@@ -108,7 +106,7 @@ void main() {
         lastName: 'User',
       );
       final result = await repo.login(email: 'unique@example.com', password: 'UniquePass!');
-      expect(result.success, isTrue);
+      expect(result, isA<AuthSuccess>());
     });
   });
 

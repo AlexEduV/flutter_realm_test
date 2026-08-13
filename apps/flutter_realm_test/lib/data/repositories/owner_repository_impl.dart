@@ -29,6 +29,6 @@ class OwnerRepositoryImpl implements OwnerRepository {
         _usersRemoteDataSource.users.add(UserEntity.fromOwner(owner));
       }
     }
-    await _usersRemoteDataSource.saveMockUsers(_usersRemoteDataSource.users);
+    await _usersRemoteDataSource.saveSeedUsers(_usersRemoteDataSource.users);
   }
 }

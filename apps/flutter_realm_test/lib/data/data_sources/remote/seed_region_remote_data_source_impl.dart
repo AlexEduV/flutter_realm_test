@@ -8,7 +8,7 @@ import '../../../common/constants/api_constants.dart';
 import '../../../common/constants/app_asset_routes.dart';
 import '../../../domain/models/api_response.dart';
 
-class MockRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
+class SeedRegionRemoteDataSourceImpl implements RegionRemoteDataSource {
   List<RegionEntity>? regions = [];
 
   @override

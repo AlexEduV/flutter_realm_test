@@ -3,6 +3,8 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _i5;
+
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart'
@@ -42,4 +44,14 @@ class MockGetAllCarsUseCase extends _i1.Mock implements _i2.GetAllCarsUseCase {
 /// A class which mocks [WatchCarsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockWatchCarsUseCase extends _i1.Mock implements _i4.WatchCarsUseCase {}
+class MockWatchCarsUseCase extends _i1.Mock implements _i4.WatchCarsUseCase {
+  @override
+  _i5.Stream<List<_i3.CarEntity>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i5.Stream<List<_i3.CarEntity>>.empty(),
+        returnValueForMissingStub: _i5.Stream<List<_i3.CarEntity>>.empty(),
+      ) as _i5.Stream<List<_i3.CarEntity>>);
+}

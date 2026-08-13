@@ -98,10 +98,10 @@ class MockUsersRemoteDataSource extends _i1.Mock
       );
 
   @override
-  _i4.Future<void> saveMockUsers(List<_i6.UserEntity>? users) =>
+  _i4.Future<void> saveSeedUsers(List<_i6.UserEntity>? users) =>
       (super.noSuchMethod(
         Invocation.method(
-          #saveMockUsers,
+          #saveSeedUsers,
           [users],
         ),
         returnValue: _i4.Future<void>.value(),
@@ -109,9 +109,9 @@ class MockUsersRemoteDataSource extends _i1.Mock
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<List<_i6.UserEntity>> loadMockUsers() => (super.noSuchMethod(
+  _i4.Future<List<_i6.UserEntity>> loadSeedUsers() => (super.noSuchMethod(
         Invocation.method(
-          #loadMockUsers,
+          #loadSeedUsers,
           [],
         ),
         returnValue: _i4.Future<List<_i6.UserEntity>>.value(<_i6.UserEntity>[]),

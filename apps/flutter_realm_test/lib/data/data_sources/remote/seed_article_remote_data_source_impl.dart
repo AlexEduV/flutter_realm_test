@@ -1,15 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 
 import '../../../common/constants/api_constants.dart';
+import '../../../common/constants/app_asset_routes.dart';
 import '../../../domain/data_sources/remote/article_remote_data_source.dart';
 import '../../../domain/models/api_response.dart';
 
-class MockArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
-  MockArticleRemoteDataSourceImpl(this._logger);
+class SeedArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
+  SeedArticleRemoteDataSourceImpl(this._logger);
 
   final LoggingService _logger;
 
@@ -18,7 +19,7 @@ class MockArticleRemoteDataSourceImpl implements ArticleRemoteDataSource {
   @override
   Future<List<ArticleEntity>> fetchArticles() async {
     final jsonString = await rootBundle.loadString(
-      'assets/mocks/articles_mock_response_data_global.json',
+      '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}articles_mock_response_data_global.json',
     );
     final jsonDecoded = json.decode(jsonString);
     final response = ApiResponse.fromJson(

@@ -6,9 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i5;
-import 'package:test_flutter_project/data/data_sources/remote/mock_auto_complete_remote_data_source_impl.dart'
+import 'package:test_flutter_project/domain/data_sources/remote/auto_complete_remote_data_source.dart'
     as _i2;
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart'
     as _i4;
@@ -27,11 +26,11 @@ import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.da
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [MockAutoCompleteRemoteDataSource].
+/// A class which mocks [AutoCompleteRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMockAutoCompleteRemoteDataSource extends _i1.Mock
-    implements _i2.MockAutoCompleteRemoteDataSource {
+class MockAutoCompleteRemoteDataSource extends _i1.Mock
+    implements _i2.AutoCompleteRemoteDataSource {
   @override
   _i3.Future<List<_i4.CarAutoCompleteEntity>> getAutoCompleteModelListByType(
           _i5.CarType? type) =>
@@ -46,26 +45,4 @@ class MockMockAutoCompleteRemoteDataSource extends _i1.Mock
             _i3.Future<List<_i4.CarAutoCompleteEntity>>.value(
                 <_i4.CarAutoCompleteEntity>[]),
       ) as _i3.Future<List<_i4.CarAutoCompleteEntity>>);
-
-  @override
-  String getResourceByType(_i5.CarType? type) => (super.noSuchMethod(
-        Invocation.method(
-          #getResourceByType,
-          [type],
-        ),
-        returnValue: _i6.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getResourceByType,
-            [type],
-          ),
-        ),
-        returnValueForMissingStub: _i6.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getResourceByType,
-            [type],
-          ),
-        ),
-      ) as String);
 }

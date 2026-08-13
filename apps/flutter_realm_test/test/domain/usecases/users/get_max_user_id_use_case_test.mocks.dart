@@ -57,9 +57,9 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
       ) as _i3.UserEntity?);
 
   @override
-  _i4.Future<List<_i3.UserEntity>> loadMockUsers() => (super.noSuchMethod(
+  _i4.Future<List<_i3.UserEntity>> loadSeedUsers() => (super.noSuchMethod(
         Invocation.method(
-          #loadMockUsers,
+          #loadSeedUsers,
           [],
         ),
         returnValue: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
@@ -68,10 +68,10 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
       ) as _i4.Future<List<_i3.UserEntity>>);
 
   @override
-  _i4.Future<void> saveMockUsers(List<_i3.UserEntity>? users) =>
+  _i4.Future<void> saveSeedUsers(List<_i3.UserEntity>? users) =>
       (super.noSuchMethod(
         Invocation.method(
-          #saveMockUsers,
+          #saveSeedUsers,
           [users],
         ),
         returnValue: _i4.Future<void>.value(),

@@ -1,14 +1,17 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
-import '../../../mocks/mock_users.dart';
+import '../../../fixtures/seed_users.dart';
 
-class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
-  static const _mockUsersLocalStorageKey = 'mock_users';
+class SeedUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
+  SeedUsersRemoteDataSourceImpl(this._remoteStorage);
+
+  static const _seedUsersLocalStorageKey = 'seed_users';
+  final BaseRemoteStorage _remoteStorage;
 
   @override
   int getMaxUserId() {
@@ -32,14 +35,13 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   }
 
   @override
-  Future<List<UserEntity>> loadMockUsers() async {
-    final prefs = await SharedPreferences.getInstance();
-    final usersJson = prefs.getString(_mockUsersLocalStorageKey);
+  Future<List<UserEntity>> loadSeedUsers() async {
+    final usersJson = _remoteStorage.getString(_seedUsersLocalStorageKey);
     if (usersJson != null) {
       final decoded = jsonDecode(usersJson);
 
       if (decoded is! List) {
-        await saveMockUsers(this.users);
+        await saveSeedUsers(this.users);
         return this.users;
       }
 
@@ -51,17 +53,16 @@ class MockUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
       return users;
     }
 
-    await saveMockUsers(users);
+    await saveSeedUsers(users);
     return users;
   }
 
   @override
-  Future<void> saveMockUsers(List<UserEntity> users) async {
-    final prefs = await SharedPreferences.getInstance();
+  Future<void> saveSeedUsers(List<UserEntity> users) async {
     final usersJsonList = users.map((user) => user.toJson()).toList();
-    await prefs.setString(_mockUsersLocalStorageKey, jsonEncode(usersJsonList));
+    await _remoteStorage.setString(_seedUsersLocalStorageKey, jsonEncode(usersJsonList));
   }
 
   @override
-  List<UserEntity> users = List.from(MockUsers.initialUsers);
+  List<UserEntity> users = List.from(SeedUsers.initialUsers);
 }

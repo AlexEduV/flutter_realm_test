@@ -23,12 +23,12 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<List<UserEntity>> loadMockUsers() {
-    return _usersRemoteDataSource.loadMockUsers();
+  Future<List<UserEntity>> loadSeedUsers() {
+    return _usersRemoteDataSource.loadSeedUsers();
   }
 
   @override
-  Future<void> saveMockUsers(List<UserEntity> users) {
-    return _usersRemoteDataSource.saveMockUsers(users);
+  Future<void> saveSeedUsers(List<UserEntity> users) {
+    return _usersRemoteDataSource.saveSeedUsers(users);
   }
 }
