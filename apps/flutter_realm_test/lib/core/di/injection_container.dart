@@ -16,14 +16,12 @@ import 'package:test_flutter_project/data/data_sources/local/env_local_data_sour
 import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart';
 import 'package:test_flutter_project/data/data_sources/remote/gifs_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/seed_article_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/seed_auto_complete_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/seed_car_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/seed_messages_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/seed_region_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/database/realm_configuration.dart';
 import 'package:test_flutter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
-import 'package:test_flutter_project/data/repositories/auto_complete_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/car_color_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/env_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/file_picker_repository_impl.dart';
@@ -47,7 +45,6 @@ import 'package:test_flutter_project/domain/data_sources/local/base_local_storag
 import 'package:test_flutter_project/domain/data_sources/local/car_colors_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/article_remote_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/auto_complete_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
@@ -57,7 +54,6 @@ import 'package:test_flutter_project/domain/data_sources/remote/users_remote_dat
 import 'package:test_flutter_project/domain/models/env_params_model.dart';
 import 'package:test_flutter_project/domain/repositories/article_repository.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
-import 'package:test_flutter_project/domain/repositories/auto_complete_repository.dart';
 import 'package:test_flutter_project/domain/repositories/car_color_repository.dart';
 import 'package:test_flutter_project/domain/repositories/env_repository.dart';
 import 'package:test_flutter_project/domain/repositories/file_picker_repository.dart';
@@ -81,7 +77,6 @@ import 'package:test_flutter_project/domain/usecases/authentication/delete_accou
 import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/register_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
@@ -122,8 +117,8 @@ import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
-import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';
-import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/new_item/new_item_module.dart';
+import 'package:test_flutter_project/presentation/features/search/search_module.dart';
 import 'package:test_flutter_project/presentation/features/share/share_module.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_module.dart';
@@ -150,6 +145,8 @@ Future<void> initDependenciesContainer() async {
 
   await _registerEnv();
 
+  registerUserModule(serviceLocator);
+
   _registerServices();
   _registerDataSources();
   _registerUtils();
@@ -158,6 +155,10 @@ Future<void> initDependenciesContainer() async {
   _registerUseCases();
 
   _registerCubits();
+
+  registerNewItemModule(serviceLocator);
+  registerSearchModule(serviceLocator);
+  registerShareModule(serviceLocator);
 }
 
 void _registerStorage() {
@@ -228,10 +229,6 @@ void _registerDataSources() {
   mockCarRemoteDataSource.init();
 
   serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
-
-  serviceLocator.registerLazySingleton<AutoCompleteRemoteDataSource>(
-    () => SeedAutoCompleteRemoteDataSource(serviceLocator()),
-  );
 
   serviceLocator.registerLazySingleton<RegionRemoteDataSource>(
     () => SeedRegionRemoteDataSourceImpl(),
@@ -306,10 +303,6 @@ Future<void> _registerRepositories() async {
 
   serviceLocator.registerLazySingleton<RegionRepository>(
     () => RegionRepositoryImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton<AutoCompleteRepository>(
-    () => AutoCompleteRepositoryImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<PermissionRepository>(
@@ -387,10 +380,6 @@ void _registerUseCases() {
   serviceLocator.registerLazySingleton(() => GetCarColorsUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetCarColorByNameUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetCarColorNameFromColorUseCase(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(
-    () => GetAutoCompleteManufacturersByTypeUseCase(serviceLocator()),
-  );
 }
 
 void _registerCubits() {
@@ -400,25 +389,6 @@ void _registerCubits() {
       serviceLocator<SyncCarsUseCase>(),
       serviceLocator<FetchArticlesUseCase>(),
       serviceLocator<GetCarByIdUseCase>(),
-    ),
-  );
-
-  serviceLocator.registerFactory(
-    () => NewItemPageCubit(
-      serviceLocator<GetAutoCompleteManufacturersByTypeUseCase>(),
-      serviceLocator<AppLocalisationsCubit>(),
-      serviceLocator<AddCarUseCase>(),
-      serviceLocator<GetAllCarsUseCase>(),
-      serviceLocator<GetCurrentMaxCarIdUseCase>(),
-      serviceLocator<UserDataCubit>(),
-    ),
-  );
-
-  serviceLocator.registerFactory(
-    () => SearchPageCubit(
-      serviceLocator<GetAllCarsUseCase>(),
-      serviceLocator<WatchCarsUseCase>(),
-      serviceLocator<AppLocalisationsCubit>(),
     ),
   );
 
@@ -478,7 +448,4 @@ void _registerCubits() {
       serviceLocator<DateFormatter>(),
     ),
   );
-
-  registerShareModule(serviceLocator);
-  registerUserModule(serviceLocator);
 }
