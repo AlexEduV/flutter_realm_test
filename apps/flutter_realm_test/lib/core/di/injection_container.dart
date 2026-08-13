@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/extensions/get_it_extension.dart';
 import 'package:test_flutter_project/core/network/app_http_client.dart';
@@ -12,21 +11,17 @@ import 'package:test_flutter_project/data/data_sources/local/env_local_data_sour
 import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart';
 import 'package:test_flutter_project/data/database/realm_configuration.dart';
 import 'package:test_flutter_project/data/repositories/env_repository_impl.dart';
-import 'package:test_flutter_project/data/repositories/image_picker_repository_impl.dart';
 import 'package:test_flutter_project/data/services/app_logging_service_impl.dart';
-import 'package:test_flutter_project/data/services/image_picker_service_impl.dart';
 import 'package:test_flutter_project/data/services/network_logging_service_impl.dart';
 import 'package:test_flutter_project/data/services/time_service_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/local/env_local_data_source.dart';
 import 'package:test_flutter_project/domain/repositories/env_repository.dart';
-import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart';
-import 'package:test_flutter_project/domain/services/image_picker_service.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/env/get_env_data_by_key_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/env/init_env_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
+import 'package:test_flutter_project/presentation/features/account/account_module.dart';
 import 'package:test_flutter_project/presentation/features/article/article_module.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_module.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_module.dart';
@@ -41,7 +36,6 @@ import 'package:test_flutter_project/presentation/features/new_item/new_item_mod
 import 'package:test_flutter_project/presentation/features/search/search_module.dart';
 import 'package:test_flutter_project/presentation/features/share/share_module.dart';
 import 'package:test_flutter_project/presentation/features/user/user_module.dart';
-import 'package:test_flutter_project/presentation/widgets/dialogs/edit_dialog_cubit.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 
 final serviceLocator = GetIt.instance;
@@ -53,33 +47,24 @@ final serviceLocator = GetIt.instance;
 Future<void> initDependenciesContainer() async {
   _registerStorage();
   _registerNetwork();
-
   await _registerEnv();
-  _registerServices();
+  _registerInfrastructure();
 
   registerMessagesModule(serviceLocator);
   registerUserModule(serviceLocator);
   registerLocationSettingsModule(serviceLocator);
   registerL10nModule(serviceLocator);
   await registerAuthenticationModule(serviceLocator);
-
   registerInboxModule(serviceLocator);
   registerHomeBottomBarModule(serviceLocator);
   registerExploreModule(serviceLocator);
   registerArticleModule(serviceLocator);
   registerDetailsModule(serviceLocator);
   registerColorPickerModule(serviceLocator);
-
-  _registerUtils();
-
-  _registerRepositories();
-  _registerUseCases();
-
-  _registerCubits();
-
   registerNewItemModule(serviceLocator);
   registerSearchModule(serviceLocator);
   registerShareModule(serviceLocator);
+  registerAccountModule(serviceLocator);
 }
 
 void _registerStorage() {
@@ -130,29 +115,7 @@ Future<void> _registerEnv() async {
   }
 }
 
-void _registerServices() {
-  final imagePicker = ImagePicker();
-  serviceLocator.registerLazySingleton<ImagePickerService>(
-    () => ImagePickerServiceImpl(imagePicker),
-  );
-
+void _registerInfrastructure() {
   serviceLocator.registerLazySingleton<TimeService>(() => TimeServiceImpl());
-}
-
-void _registerUtils() {
   serviceLocator.registerLazySingleton(() => DateFormatter(serviceLocator(), serviceLocator()));
-}
-
-void _registerRepositories() {
-  serviceLocator.registerLazySingleton<ImagePickerRepository>(
-    () => ImagePickerRepositoryImpl(serviceLocator()),
-  );
-}
-
-void _registerUseCases() {
-  serviceLocator.registerLazySingleton(() => PickImageFromGalleryUseCase(serviceLocator()));
-}
-
-void _registerCubits() {
-  serviceLocator.registerFactory(() => EditDialogCubit());
 }
