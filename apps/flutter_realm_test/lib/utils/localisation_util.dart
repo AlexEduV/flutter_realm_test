@@ -31,7 +31,6 @@ class LocalisationUtil {
 
   Future<void> saveLocalisations(Map<String, dynamic> localisations) async {
     await Future.wait(
-      //todo: not sure about future.wait doing anything here
       localisations.entries.map((e) => _remoteStorage.setString(e.key, e.value.toString())),
     );
   }
