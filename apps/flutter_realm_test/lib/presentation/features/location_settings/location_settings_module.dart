@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 
 import '../../../data/data_sources/remote/seed_region_remote_data_source_impl.dart';
 import '../../../data/repositories/geolocator_repository_impl.dart';
@@ -69,6 +70,9 @@ void registerLocationSettingsModule(GetIt serviceLocator) {
 
   serviceLocator.registerLazySingleton(() => OpenAppSettingsUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => CheckLocationServiceStatusUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(
+    () => CheckLocationPermissionStatusUseCase(serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton(() => GetAllRegionModelsUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));

@@ -73,6 +73,8 @@ import 'package:test_flutter_project/presentation/features/details/details_page_
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_cubit.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
+import 'package:test_flutter_project/presentation/features/l10n/l10n_module.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_module.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_module.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_module.dart';
 import 'package:test_flutter_project/presentation/features/search/search_module.dart';
@@ -100,6 +102,9 @@ Future<void> initDependenciesContainer() async {
   await _registerEnv();
 
   registerUserModule(serviceLocator);
+  registerLocationSettingsModule(serviceLocator);
+  registerL10nModule(serviceLocator);
+  registerMessagesModule(serviceLocator);
 
   _registerServices();
   _registerDataSources();
@@ -110,7 +115,6 @@ Future<void> initDependenciesContainer() async {
 
   _registerCubits();
 
-  registerMessagesModule(serviceLocator);
   registerNewItemModule(serviceLocator);
   registerSearchModule(serviceLocator);
   registerShareModule(serviceLocator);
@@ -294,8 +298,6 @@ void _registerCubits() {
   serviceLocator.registerLazySingleton(() => InboxPageCubit(serviceLocator(), serviceLocator()));
 
   serviceLocator.registerFactory(() => ArticlePageCubit(serviceLocator()));
-
-  serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 
   serviceLocator.registerFactory(() => EditDialogCubit());
 }
