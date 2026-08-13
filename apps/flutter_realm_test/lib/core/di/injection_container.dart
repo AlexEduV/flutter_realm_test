@@ -19,9 +19,7 @@ import 'package:test_flutter_project/data/data_sources/remote/seed_article_remot
 import 'package:test_flutter_project/data/data_sources/remote/seed_auto_complete_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/seed_car_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/seed_messages_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/seed_owners_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/data_sources/remote/seed_region_remote_data_source_impl.dart';
-import 'package:test_flutter_project/data/data_sources/remote/seed_users_remote_data_source_impl.dart';
 import 'package:test_flutter_project/data/database/realm_configuration.dart';
 import 'package:test_flutter_project/data/repositories/article_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
@@ -33,13 +31,10 @@ import 'package:test_flutter_project/data/repositories/geolocator_repository_imp
 import 'package:test_flutter_project/data/repositories/gifs_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/image_picker_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/inbox_repository_impl.dart';
-import 'package:test_flutter_project/data/repositories/owner_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/permission_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/region_model_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/region_repository_impl.dart';
-import 'package:test_flutter_project/data/repositories/share_repository_impl.dart';
 import 'package:test_flutter_project/data/repositories/url_launch_repository_impl.dart';
-import 'package:test_flutter_project/data/repositories/user_repository_impl.dart';
 import 'package:test_flutter_project/data/services/app_logging_service_impl.dart';
 import 'package:test_flutter_project/data/services/external_link_service_impl.dart';
 import 'package:test_flutter_project/data/services/file_picker_service_impl.dart';
@@ -47,7 +42,6 @@ import 'package:test_flutter_project/data/services/geolocator_service_impl.dart'
 import 'package:test_flutter_project/data/services/image_picker_service_impl.dart';
 import 'package:test_flutter_project/data/services/network_logging_service_impl.dart';
 import 'package:test_flutter_project/data/services/permission_service_impl.dart';
-import 'package:test_flutter_project/data/services/share_service_impl.dart';
 import 'package:test_flutter_project/data/services/time_service_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/local/car_colors_local_data_source.dart';
@@ -74,15 +68,12 @@ import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/domain/repositories/permission_repository.dart';
 import 'package:test_flutter_project/domain/repositories/region_model_repository.dart';
 import 'package:test_flutter_project/domain/repositories/region_repository.dart';
-import 'package:test_flutter_project/domain/repositories/share_repository.dart';
-import 'package:test_flutter_project/domain/repositories/user_repository.dart';
 import 'package:test_flutter_project/domain/services/external_link_service.dart';
 import 'package:test_flutter_project/domain/services/file_picker_service.dart';
 import 'package:test_flutter_project/domain/services/geolocator_service.dart';
 import 'package:test_flutter_project/domain/services/image_picker_service.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/services/permission_service.dart';
-import 'package:test_flutter_project/domain/services/share_service.dart';
 import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/articles/get_article_by_id_use_case.dart';
@@ -114,7 +105,6 @@ import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_co
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/owners/fetch_owners_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
@@ -123,13 +113,7 @@ import 'package:test_flutter_project/domain/usecases/regions/get_all_region_mode
 import 'package:test_flutter_project/domain/usecases/regions/get_all_regions_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/get_region_by_code_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/regions/init_region_models_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/share/share_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/url/open_url_link_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_max_user_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/load_users_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/save_users_use_case.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
@@ -140,7 +124,9 @@ import 'package:test_flutter_project/presentation/features/l10n/app_localisation
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/share/share_module.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
+import 'package:test_flutter_project/presentation/features/user/user_module.dart';
 import 'package:test_flutter_project/presentation/widgets/dialogs/edit_dialog_cubit.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 
@@ -151,7 +137,6 @@ import '../../domain/repositories/url_launch_repository.dart';
 import '../../domain/usecases/inbox/save_conversations_use_case.dart';
 import '../../presentation/features/explore/explore_page_cubit.dart';
 import '../../presentation/features/location_settings/location_settings_page_cubit.dart';
-import '../../presentation/features/share/share_cubit.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -236,14 +221,6 @@ void _registerDataSources() {
     () => GifsRemoteDataSourceImpl(serviceLocator(), apiKey),
   );
 
-  serviceLocator.registerLazySingleton<OwnersRemoteDataSource>(
-    () => SeedOwnersRemoteDataSourceImpl(serviceLocator()),
-  );
-
-  serviceLocator.registerLazySingleton<UsersRemoteDataSource>(
-    () => SeedUsersRemoteDataSourceImpl(),
-  );
-
   final mockCarRemoteDataSource = SeedCarRemoteDataSourceImpl(
     serviceLocator(),
     serviceLocator<OwnersRemoteDataSource>(),
@@ -288,8 +265,6 @@ void _registerServices() {
 
   serviceLocator.registerLazySingleton<GeolocatorService>(() => GeolocatorServiceImpl());
 
-  serviceLocator.registerLazySingleton<ShareService>(() => ShareServiceImpl());
-
   serviceLocator.registerLazySingleton<PermissionService>(() => PermissionServiceImpl());
 
   serviceLocator.registerLazySingleton<TimeService>(() => TimeServiceImpl());
@@ -300,11 +275,6 @@ void _registerUtils() {
 }
 
 Future<void> _registerRepositories() async {
-  serviceLocator.registerLazySingleton<OwnerRepository>(
-    () => OwnerRepositoryImpl(serviceLocator(), serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
-
   final cloudStorage = await SharedPreferences.getInstance();
   final authRepositoryImpl = AuthRepositoryImpl(
     serviceLocator<BaseLocalStorage>(),
@@ -317,9 +287,6 @@ Future<void> _registerRepositories() async {
 
   serviceLocator.registerLazySingleton<CarRepository>(
     () => CarRepositoryImpl(serviceLocator(), serviceLocator()),
-  );
-  serviceLocator.registerLazySingleton<ShareRepository>(
-    () => ShareRepositoryImpl(serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<ArticleRepository>(
@@ -369,14 +336,8 @@ Future<void> _registerRepositories() async {
 }
 
 void _registerUseCases() {
-  serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => LoadUsersUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => SaveUsersUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetMaxUserIdUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetUserByIdUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetUserByEmailUseCase(serviceLocator()));
+
   serviceLocator.registerLazySingleton(
     () => CheckLocationPermissionStatusUseCase(serviceLocator()),
   );
@@ -407,7 +368,6 @@ void _registerUseCases() {
 
   serviceLocator.registerLazySingleton(() => OpenAppSettingsUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => CheckLocationServiceStatusUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => ShareUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(() => GetConversationByIdUseCase(serviceLocator()));
 
@@ -497,7 +457,6 @@ void _registerCubits() {
 
   serviceLocator.registerLazySingleton(() => AppLocalisationsCubit());
 
-  serviceLocator.registerFactory(() => ShareCubit(serviceLocator()));
   serviceLocator.registerFactory(() => EditDialogCubit());
 
   serviceLocator.registerFactory(
@@ -520,19 +479,6 @@ void _registerCubits() {
     ),
   );
 
-  serviceLocator.registerLazySingleton(
-    () => UserDataCubit(
-      serviceLocator<BaseLocalStorage>(),
-      serviceLocator<AuthRepository>(),
-      serviceLocator<CheckLocationServiceStatusUseCase>(),
-      serviceLocator<OpenAppSettingsUseCase>(),
-      serviceLocator<RequestLocationPermissionUseCase>(),
-      serviceLocator<CheckLocationPermissionStatusUseCase>(),
-      serviceLocator<GetUserByEmailUseCase>(),
-      serviceLocator<PickImageFromGalleryUseCase>(),
-      serviceLocator<DeleteCarByIdUseCase>(),
-      serviceLocator<LoggingService>(),
-      serviceLocator<AppLocalisationsCubit>(),
-    ),
-  );
+  registerShareModule(serviceLocator);
+  registerUserModule(serviceLocator);
 }
