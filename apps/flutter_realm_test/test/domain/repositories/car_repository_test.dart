@@ -89,7 +89,7 @@ void main() {
 
     final stream = mockRepo.watchCars();
 
-    expect(await stream?.first, cars);
+    expect(await stream.first, cars);
     verify(mockRepo.watchCars()).called(1);
   });
 

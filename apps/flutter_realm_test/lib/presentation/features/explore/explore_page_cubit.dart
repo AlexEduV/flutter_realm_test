@@ -41,7 +41,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     }
 
     await _carSubscription?.cancel();
-    _carSubscription = _watchCarsUseCase.call()?.listen((entities) {
+    _carSubscription = _watchCarsUseCase.call().listen((entities) {
       final visibleCars = entities
           .map((e) => e.copyWith(isShown: !state.hiddenCarIds.contains(e.carId)))
           .toList();
