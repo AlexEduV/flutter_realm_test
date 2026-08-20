@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart';
+import 'package:test_flutter_project/data/network/app_http_response.dart';
 import 'package:test_flutter_project/data/network/app_interceptor.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
 
@@ -16,7 +16,7 @@ class AppInterceptorImpl implements AppInterceptor {
 
   @override
   Future<Either<ServerFailure, String>> onRequest({
-    required Future<Response> Function() request,
+    required Future<AppHttpResponse> Function() request,
     required String url,
     required String requestType,
   }) async {
@@ -44,7 +44,7 @@ class AppInterceptorImpl implements AppInterceptor {
 
   @override
   Future<Either<ServerFailure, String>> onResponse({
-    required Response response,
+    required AppHttpResponse response,
     required String url,
     required String requestType,
   }) async {
