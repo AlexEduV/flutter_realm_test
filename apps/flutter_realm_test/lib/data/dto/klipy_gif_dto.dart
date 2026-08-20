@@ -8,20 +8,6 @@ class KlipyGifDto {
     required this.width,
   });
 
-  factory KlipyGifDto.fromJson(Map<String, dynamic> json) {
-    // KLIPY puts media inside 'media_formats'
-    final media = json['media_formats']['tinygif'];
-
-    return KlipyGifDto(
-      id: json['id'] ?? '',
-      title: json['title'] ?? '',
-      imageUrl: json['media_formats']['gif']['url'],
-      previewImageUrl: media['url'],
-      width: (media['dims'][0] as num).toDouble(),
-      height: (media['dims'][1] as num).toDouble(),
-    );
-  }
-
   factory KlipyGifDto.fromV1Json(Map<String, dynamic> json) {
     final media = json['file']['sm']['gif'];
     final previewMedia = json['file']['xs']['gif'];
