@@ -133,7 +133,11 @@ class LocationSettingsPage extends StatelessWidget {
 
     if (currentIndex == null) return;
 
-    final region = await DialogHelper.showCountryPicker(context, availableCountries, currentIndex);
+    final region = await DialogHelper.showCountryPickerBottomSheet(
+      context,
+      availableCountries,
+      currentIndex,
+    );
 
     if (!context.mounted) return;
 
