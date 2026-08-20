@@ -17,8 +17,8 @@ class DetailsPageCubit extends Cubit<DetailsPageState> {
   final GetCarColorsUseCase _getCarColorsUseCase;
   final GetConversationByOwnerIdUseCase _getConversationByOwnerIdUseCase;
 
-  void loadData(String id) {
-    final entity = _getCarByIdUseCase.call(id);
+  void loadData(String carId) {
+    final entity = _getCarByIdUseCase.call(carId);
     final normalized = entity.color?.toLowerCase().replaceAll(' ', '') ?? '';
     final carColor = _getCarColorsUseCase
         .call()

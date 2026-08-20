@@ -32,7 +32,7 @@ Future<void> registerStorageModule(GetIt serviceLocator) async {
 
   if (serviceLocator.isNotRegistered<AppRemoteStorage>()) {
     try {
-      final prefs = await SharedPreferences.getInstance();
+      final prefs = SharedPreferencesAsync();
 
       serviceLocator.registerLazySingleton<AppRemoteStorage>(() => SharedPreferencesStorage(prefs));
     } catch (e) {

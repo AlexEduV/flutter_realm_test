@@ -46,7 +46,7 @@ class PersonalDetailsPage extends StatelessWidget {
                     title: context.tr(AccountPageLocaleKeys.personalDetailsItemFirstName),
                     description: state.user.firstName,
                     icon: Icons.person_pin_outlined,
-                    onTap: () => DialogHelper.showEditDialog(
+                    onTap: () => DialogHelper.showEditPersonalInfoDialog(
                       context,
                       title: context.trRead(AccountPageLocaleKeys.personalDetailsItemFirstName),
                       initialValue: state.user.firstName,
@@ -66,7 +66,7 @@ class PersonalDetailsPage extends StatelessWidget {
                     title: context.tr(AccountPageLocaleKeys.personalDetailsItemLastName),
                     description: state.user.lastName,
                     icon: Icons.person_outlined,
-                    onTap: () => DialogHelper.showEditDialog(
+                    onTap: () => DialogHelper.showEditPersonalInfoDialog(
                       context,
                       title: context.trRead(AccountPageLocaleKeys.personalDetailsItemLastName),
                       initialValue: state.user.lastName,
@@ -97,7 +97,7 @@ class PersonalDetailsPage extends StatelessWidget {
                     title: context.tr(AccountPageLocaleKeys.personalDetailsItemEmail),
                     description: state.user.email,
                     icon: Icons.email_outlined,
-                    onTap: () => DialogHelper.showEditDialog(
+                    onTap: () => DialogHelper.showEditPersonalInfoDialog(
                       context,
                       title: context.trRead(AccountPageLocaleKeys.personalDetailsItemEmail),
                       initialValue: state.user.email,

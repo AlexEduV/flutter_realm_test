@@ -22,8 +22,10 @@ class SplashButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foregroundColor = buttonType == ButtonType.primary ? Colors.white : Colors.grey;
-    final backgroundColor = buttonType == ButtonType.primary ? AppColors.headerColor : Colors.white;
+    final foregroundColor = buttonType == ButtonType.primary ? AppColors.white : Colors.grey;
+    final backgroundColor = buttonType == ButtonType.primary
+        ? AppColors.headerColor
+        : AppColors.white;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),

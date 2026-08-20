@@ -36,6 +36,6 @@ class LocalisationUtil {
   }
 
   Future<String> getLocalisation(String key) async {
-    return _remoteStorage.getString(key) ?? '';
+    return await _remoteStorage.getString(key) ?? '';
   }
 }

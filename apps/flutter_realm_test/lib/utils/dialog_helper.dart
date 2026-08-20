@@ -39,7 +39,7 @@ class DialogHelper {
     );
   }
 
-  static Future<void> showEditDialog(
+  static Future<void> showEditPersonalInfoDialog(
     BuildContext context, {
     required String title,
     required String initialValue,
@@ -91,7 +91,7 @@ class DialogHelper {
     );
   }
 
-  static Future<RegionUiModel?> showCountryPicker(
+  static Future<RegionUiModel?> showCountryPickerBottomSheet(
     BuildContext context,
     List<RegionUiModel> items,
     int currentIndex,
@@ -161,7 +161,7 @@ class DialogHelper {
             description: description,
             confirmButtonTitle: confirmButtonTitle,
             onConfirm: () => onConfirm.call(),
-            icon: const Icon(Icons.pin_drop, color: AppColors.headerColor),
+            icon: const Icon(Icons.near_me, color: AppColors.headerColor),
           );
         },
       );

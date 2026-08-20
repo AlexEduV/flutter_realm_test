@@ -94,7 +94,7 @@ void main() {
             builder: (context) {
               return ElevatedButton(
                 onPressed: () {
-                  DialogHelper.showEditDialog(
+                  DialogHelper.showEditPersonalInfoDialog(
                     context,
                     title: 'Edit',
                     initialValue: 'init',
@@ -167,14 +167,12 @@ void main() {
       DefaultAssetBundle(
         bundle: FakeAssetBundle(),
         child: MultiBlocProvider(
-          providers: [
-            BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
-          ],
+          providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
           child: MaterialApp(
             home: Builder(
               builder: (context) {
                 return ElevatedButton(
-                  onPressed: () => DialogHelper.showCountryPicker(context, items, 0),
+                  onPressed: () => DialogHelper.showCountryPickerBottomSheet(context, items, 0),
                   child: const Text('Open'),
                 );
               },

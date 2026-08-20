@@ -1,5 +1,5 @@
 abstract interface class AppRemoteStorage {
-  String? getString(String key);
-  Future<bool> setString(String key, String value);
-  Future<bool> remove(String key);
+  Future<String?> getString(String key);
+  Future<void> setString(String key, String value);
+  Future<void> remove(String key);
 }

@@ -81,7 +81,7 @@ class _EditPersonalInfoDialogState extends State<EditPersonalInfoDialog> {
               style: AppTextStyles.zonaPro16,
             ),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.white,
           actions: [
             AppSemantics(
               label: AppSemanticsLabels.dialogCancelButton,
@@ -115,7 +115,7 @@ class _EditPersonalInfoDialogState extends State<EditPersonalInfoDialog> {
                     }
                     return AppColors.headerColor;
                   }),
-                  foregroundColor: const WidgetStatePropertyAll(Colors.white),
+                  foregroundColor: const WidgetStatePropertyAll(AppColors.white),
                 ),
                 child: Text(
                   widget.confirmButtonTitle,

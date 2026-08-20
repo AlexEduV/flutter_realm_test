@@ -1,14 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences_platform_interface/in_memory_shared_preferences_async.dart';
+import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
 import 'package:test_flutter_project/data/data_sources/remote/shared_preferences_storage.dart';
 import 'package:test_flutter_project/utils/localisation_util.dart';
 
 void main() {
   late LocalisationUtil localisationUtil;
 
-  setUp(() async {
-    SharedPreferences.setMockInitialValues({});
-    final prefs = await SharedPreferences.getInstance();
+  setUp(() {
+    SharedPreferencesAsyncPlatform.instance = InMemorySharedPreferencesAsync.empty();
+    final prefs = SharedPreferencesAsync();
     localisationUtil = LocalisationUtil(SharedPreferencesStorage(prefs));
   });
 
@@ -25,7 +27,10 @@ void main() {
         ],
       };
 
-      expect(localisationUtil.extractLocalisations(rawJson), {'app.locale': 'en', 'greeting': 'Hello'});
+      expect(localisationUtil.extractLocalisations(rawJson), {
+        'app.locale': 'en',
+        'greeting': 'Hello',
+      });
     });
 
     test('returns null when status is not success', () {
@@ -57,13 +62,12 @@ void main() {
     test('saveLocalisations saves all key-value pairs to SharedPreferences', () async {
       await localisationUtil.saveLocalisations({'key1': 'value1', 'key2': 'value2'});
 
-      final prefs = await SharedPreferences.getInstance();
-      expect(prefs.getString('key1'), 'value1');
-      expect(prefs.getString('key2'), 'value2');
+      expect(await localisationUtil.getLocalisation('key1'), 'value1');
+      expect(await localisationUtil.getLocalisation('key2'), 'value2');
     });
 
     test('getLocalisation returns value from SharedPreferences', () async {
-      final prefs = await SharedPreferences.getInstance();
+      final prefs = SharedPreferencesAsync();
       await prefs.setString('test.key', 'Test Value');
 
       expect(await localisationUtil.getLocalisation('test.key'), 'Test Value');

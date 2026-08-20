@@ -29,7 +29,7 @@ class ConfirmationDialog extends StatelessWidget {
     return AlertDialog(
       title: Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w700)),
       content: Text(description),
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       actions: [
         AppSemantics(
           label: AppSemanticsLabels.dialogCancelButton,
@@ -56,7 +56,7 @@ class ConfirmationDialog extends StatelessWidget {
             child: Text(
               confirmButtonTitle,
               style: TextStyle(
-                color: isAlertStyling ? Colors.white : null,
+                color: isAlertStyling ? AppColors.white : null,
                 fontWeight: FontWeight.w600,
               ),
             ),

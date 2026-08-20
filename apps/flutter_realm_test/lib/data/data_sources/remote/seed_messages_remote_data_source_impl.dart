@@ -77,7 +77,7 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
 
   @override
   Future<List<ConversationEntity>> loadConversations() async {
-    final usersJson = _remoteStorage.getString('mock_conversations');
+    final usersJson = await _remoteStorage.getString('mock_conversations');
     if (usersJson != null) {
       final decoded = jsonDecode(usersJson);
 

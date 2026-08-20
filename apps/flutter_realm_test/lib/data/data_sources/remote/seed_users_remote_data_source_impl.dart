@@ -36,7 +36,7 @@ class SeedUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
 
   @override
   Future<List<UserEntity>> loadSeedUsers() async {
-    final usersJson = _remoteStorage.getString(_seedUsersLocalStorageKey);
+    final usersJson = await _remoteStorage.getString(_seedUsersLocalStorageKey);
     if (usersJson != null) {
       final decoded = jsonDecode(usersJson);
 

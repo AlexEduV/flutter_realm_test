@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
@@ -27,7 +28,7 @@ class AccountItem extends StatelessWidget {
         title: isCentered ? Center(child: _getTextBody()) : _getTextBody(),
         leading: (icon != null && !isCentered) ? Icon(icon) : null,
         onTap: onTap,
-        tileColor: Colors.white,
+        tileColor: AppColors.white,
         trailing: (onTap != null && !isCentered)
             ? const Icon(Icons.chevron_right_outlined, color: Colors.grey)
             : null,

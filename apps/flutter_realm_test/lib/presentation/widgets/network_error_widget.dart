@@ -19,7 +19,7 @@ class NetworkErrorWidget extends StatelessWidget {
               child: Image.asset(
                 AppAssetRoutes.errorImageRoute,
                 fit: BoxFit.cover,
-                color: Colors.black.withAlpha(140), // Dark overlay
+                color: AppColors.black.withAlpha(140), // Dark overlay
                 colorBlendMode: BlendMode.darken,
               ),
             ),
@@ -35,7 +35,7 @@ class NetworkErrorWidget extends StatelessWidget {
                     context.tr(L10nKeys.noContentWidgetTitle),
                     style: AppTextStyles.zonaPro24.copyWith(
                       fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      color: AppColors.white,
                     ),
                   ),
                   Text(

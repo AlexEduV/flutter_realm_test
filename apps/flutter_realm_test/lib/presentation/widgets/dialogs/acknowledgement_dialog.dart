@@ -20,7 +20,7 @@ class AcknowledgementDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       title: Row(
         children: [
           if (icon != null) ...[icon!, const SizedBox(width: AppDimensions.normalM)],

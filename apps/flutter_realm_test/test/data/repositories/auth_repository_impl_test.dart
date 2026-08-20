@@ -2,6 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences_platform_interface/in_memory_shared_preferences_async.dart';
+import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
 import 'package:test_flutter_project/common/enums/auth_error_code.dart';
 import 'package:test_flutter_project/data/data_sources/remote/shared_preferences_storage.dart';
 import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
@@ -24,7 +26,7 @@ void main() {
   final mockUsersRemoteDataSource = MockUsersRemoteDataSource();
   final mockMessagesRemoteDataSource = MockMessagesRemoteDataSource();
 
-  setUp(() async {
+  setUp(() {
     final initUsers = [
       UserEntity.initial(
         userId: '1',
@@ -42,8 +44,8 @@ void main() {
       ),
     ];
 
-    SharedPreferences.setMockInitialValues({'seed_users': initUsers});
-    final prefs = await SharedPreferences.getInstance();
+    SharedPreferencesAsyncPlatform.instance = InMemorySharedPreferencesAsync.empty();
+    final prefs = SharedPreferencesAsync();
     final cloudStorage = SharedPreferencesStorage(prefs);
 
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);

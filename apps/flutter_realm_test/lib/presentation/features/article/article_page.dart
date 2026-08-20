@@ -81,7 +81,7 @@ class _ArticlePageState extends State<ArticlePage> {
                               fit: BoxFit.cover,
                               width: double.infinity,
                               placeholder: (context, url) =>
-                                  Container(color: AppColors.placeholderColor),
+                                  ColoredBox(color: AppColors.placeholderColor),
                               errorWidget: (context, url, error) => const Icon(Icons.error),
                               color: Colors.black.withAlpha(70),
                               colorBlendMode: BlendMode.darken,

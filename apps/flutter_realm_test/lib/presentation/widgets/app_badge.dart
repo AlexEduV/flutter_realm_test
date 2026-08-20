@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 
 class AppBadge extends StatelessWidget {
   const AppBadge({required this.text, super.key});
@@ -13,7 +13,7 @@ class AppBadge extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+      decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.black),
       alignment: Alignment.center,
       child: FittedBox(
         fit: BoxFit.scaleDown,

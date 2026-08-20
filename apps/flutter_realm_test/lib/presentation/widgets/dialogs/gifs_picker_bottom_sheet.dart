@@ -68,7 +68,7 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
                       context.read<MessagesPageCubit>().updateGifsSearch(newValue),
                   decoration: InputDecoration(
                     hintText: context.tr(InboxPageLocaleKeys.gifsTextFieldHint),
-                    fillColor: Colors.white,
+                    fillColor: AppColors.white,
                     filled: true,
                     border: OutlineInputBorder(
                       borderRadius: textFieldBorderRadius,

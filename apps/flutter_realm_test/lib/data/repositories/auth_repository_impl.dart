@@ -26,8 +26,8 @@ class AuthRepositoryImpl implements AuthRepository {
   final MessagesRemoteDataSource _messagesRemoteDataSource;
 
   late final List<UserEntity> users;
-  late bool _isAuthenticated = false;
-  final _userSessionKey = 'userId';
+  bool _isAuthenticated = false;
+  static const _userSessionKey = 'userId';
 
   Future<void> init() async {
     await _usersRemoteDataSource.loadSeedUsers();
@@ -40,7 +40,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> logOut() async {
     await _clearUserSession();
     _localStorage.clearUser();
-    await Future.delayed(const Duration(milliseconds: 200));
+
+    await _simulateNetworkDelay();
 
     _localStorage.initUser();
     _isAuthenticated = false;
@@ -48,8 +49,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<AuthResult> login({required String email, required String password}) async {
-    // Simulate network delay
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await _simulateNetworkDelay();
 
     if (!users.any((element) => element.email == email)) {
       return const AuthFailure(AuthErrorCode.userNotFound);
@@ -79,7 +79,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String firstName,
     required String lastName,
   }) async {
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await _simulateNetworkDelay();
 
     if (users.any((element) => element.email == email)) {
       return const AuthFailure(AuthErrorCode.userAlreadyExists);
@@ -123,12 +123,13 @@ class AuthRepositoryImpl implements AuthRepository {
     users.removeWhere((element) => element.userId == userId);
     users.add(data);
 
+    _usersRemoteDataSource.users = List.from(users);
     await _usersRemoteDataSource.saveSeedUsers(users);
   }
 
   @override
   Future<bool> isUserLoggedIn() async {
-    return _remoteStorage.getString(_userSessionKey) != null;
+    return await _remoteStorage.getString(_userSessionKey) != null;
   }
 
   Future<void> _saveUserSession(String userId) async {
@@ -137,5 +138,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   Future<void> _clearUserSession() async {
     await _remoteStorage.remove(_userSessionKey);
+  }
+
+  Future<void> _simulateNetworkDelay({int duration = 1500}) async {
+    await Future.delayed(Duration(milliseconds: duration));
   }
 }

@@ -30,7 +30,7 @@ class AnnouncementItemBody extends StatelessWidget {
     final carId = car?.carId ?? '';
 
     return Material(
-      color: Colors.white,
+      color: AppColors.white,
       borderRadius: BorderRadius.circular(AppDimensions.normalL),
       child: AppSemantics(
         button: true,
@@ -49,7 +49,7 @@ class AnnouncementItemBody extends StatelessWidget {
                 children: [
                   AspectRatio(
                     aspectRatio: AppConstants.aspectRatio,
-                    child: Container(
+                    child: DecoratedBox(
                       decoration: BoxDecoration(
                         color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
                         borderRadius: BorderRadius.circular(AppDimensions.normalL),
@@ -68,7 +68,7 @@ class AnnouncementItemBody extends StatelessWidget {
                     right: AppDimensions.normalS,
                     child: Material(
                       borderRadius: BorderRadius.circular(AppDimensions.minorL),
-                      color: Colors.white,
+                      color: AppColors.white,
                       child: AppSemantics(
                         button: true,
                         label: AppSemanticsLabels.favoriteButton,

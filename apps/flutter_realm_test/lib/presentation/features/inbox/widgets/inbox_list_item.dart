@@ -41,7 +41,7 @@ class InboxListItem extends StatelessWidget {
       child: AppSemantics(
         label: '${InboxPageIds.inboxItem} ${owner.firstName} ${owner.lastName}',
         child: Material(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(AppDimensions.normalM),
           child: InkWell(
             onLongPress: () => DialogHelper.showInboxItemModalBottomSheet(context, conversationId),

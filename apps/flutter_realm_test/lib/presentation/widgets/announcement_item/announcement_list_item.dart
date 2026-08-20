@@ -48,7 +48,7 @@ class AnnouncementListItem extends StatelessWidget {
                       autoClose: false,
                       onPressed: (context) => onDismissed?.call(),
                       backgroundColor: Colors.transparent,
-                      foregroundColor: Colors.white,
+                      foregroundColor: AppColors.white,
                       icon: Icons.close,
                       label: context.tr(L10nKeys.deleteButtonTitle),
                     ),

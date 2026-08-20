@@ -49,7 +49,7 @@ class LocationSettingsPage extends StatelessWidget {
             const SizedBox(height: AppDimensions.normalXS),
 
             Material(
-              color: Colors.white,
+              color: AppColors.white,
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
               clipBehavior: Clip.antiAlias,
               child: BlocBuilder<UserDataCubit, UserDataState>(
@@ -80,7 +80,7 @@ class LocationSettingsPage extends StatelessWidget {
                               '${L10nKeys.countryPrefix}${locationState.currentRegion?.locale}',
                             ),
                             icon: Icons.explore,
-                            onTap: () => onRegionItemTap(state, context),
+                            onTap: () => onRegionItemTap(state.user.region, context),
                           );
                         },
                       ),
@@ -122,18 +122,21 @@ class LocationSettingsPage extends StatelessWidget {
     );
   }
 
-  Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
+  Future<void> onRegionItemTap(String currentRegionCode, BuildContext context) async {
     context.read<LocationSettingsPageCubit>().updateAvailableCountries();
 
-    final currentRegion = state.user.region;
     final availableCountries = context.read<LocationSettingsPageCubit>().state.availableRegions;
     final currentIndex = availableCountries.indexWhereOrNull(
-      (element) => element.code == currentRegion,
+      (element) => element.code == currentRegionCode,
     );
 
     if (currentIndex == null) return;
 
-    final region = await DialogHelper.showCountryPicker(context, availableCountries, currentIndex);
+    final region = await DialogHelper.showCountryPickerBottomSheet(
+      context,
+      availableCountries,
+      currentIndex,
+    );
 
     if (!context.mounted) return;
 
