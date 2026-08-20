@@ -10,6 +10,8 @@ import 'package:test_flutter_project/domain/entities/conversation_entity.dart'
     as _i4;
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart'
     as _i2;
+import 'package:test_flutter_project/domain/usecases/inbox/get_unread_count_from_conversation_use_case.dart'
+    as _i6;
 import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart'
     as _i5;
 
@@ -61,4 +63,20 @@ class MockSaveConversationsUseCase extends _i1.Mock
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+}
+
+/// A class which mocks [GetUnreadCountFromConversationUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetUnreadCountFromConversationUseCase extends _i1.Mock
+    implements _i6.GetUnreadCountFromConversationUseCase {
+  @override
+  int call(_i4.ConversationEntity? params) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
 }
