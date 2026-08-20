@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:test_flutter_project/common/enums/request_type.dart';
 import 'package:test_flutter_project/common/enums/server_failure.dart';
 import 'package:test_flutter_project/data/network/app_http_client.dart';
+import 'package:test_flutter_project/data/network/app_http_response.dart';
 
 import '../../data/network/app_interceptor.dart';
 
@@ -17,7 +18,9 @@ class AppHttpClientImpl implements AppHttpClient {
   @override
   Future<Either<ServerFailure, String>> get(Uri url, {Map<String, String>? headers}) {
     return _appInterceptor.onRequest(
-      request: () => _client.get(url, headers: headers),
+      request: () async {
+        return AppHttpResponse.fromHttp(await _client.get(url, headers: headers));
+      },
       url: url.path,
       requestType: HttpRequestType.get.name,
     );
@@ -31,7 +34,11 @@ class AppHttpClientImpl implements AppHttpClient {
     Encoding? encoding,
   }) {
     return _appInterceptor.onRequest(
-      request: () => _client.post(url, headers: headers, body: body, encoding: encoding),
+      request: () async {
+        return AppHttpResponse.fromHttp(
+          await _client.post(url, headers: headers, body: body, encoding: encoding),
+        );
+      },
       url: url.path,
       requestType: HttpRequestType.post.name,
     );
