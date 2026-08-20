@@ -132,7 +132,7 @@ class _DetailsPageState extends State<DetailsPage> {
               children: [
                 AspectRatio(
                   aspectRatio: AppConstants.aspectRatio,
-                  child: Container(
+                  child: DecoratedBox(
                     decoration: BoxDecoration(
                       color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
                       borderRadius: const BorderRadius.only(

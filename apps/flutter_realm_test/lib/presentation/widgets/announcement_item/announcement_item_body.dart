@@ -49,7 +49,7 @@ class AnnouncementItemBody extends StatelessWidget {
                 children: [
                   AspectRatio(
                     aspectRatio: AppConstants.aspectRatio,
-                    child: Container(
+                    child: DecoratedBox(
                       decoration: BoxDecoration(
                         color: (car?.images.isEmpty ?? true) ? AppColors.placeholderColor : null,
                         borderRadius: BorderRadius.circular(AppDimensions.normalL),
