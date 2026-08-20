@@ -49,7 +49,7 @@ class LocationSettingsPage extends StatelessWidget {
             const SizedBox(height: AppDimensions.normalXS),
 
             Material(
-              color: Colors.white,
+              color: AppColors.white,
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
               clipBehavior: Clip.antiAlias,
               child: BlocBuilder<UserDataCubit, UserDataState>(
