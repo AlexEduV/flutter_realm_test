@@ -22,7 +22,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     final url = Uri.https(ApiConstants.klipyApiHost, path, {'q': query, 'limit': limit});
 
     final response = await client.get(url);
-    return processKlipyResponse(response);
+    return _processKlipyResponse(response);
   }
 
   @override
@@ -31,11 +31,11 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     final url = Uri.https(ApiConstants.klipyApiHost, path);
 
     final response = await client.get(url);
-    return processKlipyResponse(response);
+    return _processKlipyResponse(response);
   }
 }
 
-Either<ServerFailure, List<KlipyGifDto>> processKlipyResponse(
+Either<ServerFailure, List<KlipyGifDto>> _processKlipyResponse(
   Either<ServerFailure, String> response,
 ) {
   final Either<ServerFailure, List<KlipyGifDto>> results = response.fold(
