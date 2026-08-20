@@ -1,7 +1,7 @@
+import 'package:test_flutter_project/common/enums/auth_error_code.dart';
 import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/app_remote_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
-import 'package:test_flutter_project/domain/models/auth_error_code.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';

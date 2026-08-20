@@ -8,14 +8,14 @@ import 'package:test_flutter_project/data/data_sources/remote/seed_car_remote_da
 import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
-import '../../../domain/repositories/base_local_storage_test.mocks.dart';
+import '../../../domain/repositories/app_local_storage_test.mocks.dart';
 import 'car_remote_data_source_impl_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<OwnersRemoteDataSource>()])
 void main() {
   late SeedCarRemoteDataSourceImpl service;
   final mockOwnersRemoteDataSource = MockOwnersRemoteDataSource();
-  final mockLocalStorage = MockBaseLocalStorage();
+  final mockLocalStorage = MockAppLocalStorage();
 
   setUp(() {
     when(mockLocalStorage.getAll()).thenReturn([]);

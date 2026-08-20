@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 
-part '../../features/authentication/authentication_state.freezed.dart';
+part 'authentication_state.freezed.dart';
 
 @freezed
 abstract class AuthenticationState with _$AuthenticationState {

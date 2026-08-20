@@ -12,17 +12,17 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
-import 'base_local_storage_test.mocks.dart';
+import 'app_local_storage_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<AppLocalStorage>()])
 void main() {
-  late MockBaseLocalStorage mockStorage;
+  late MockAppLocalStorage mockStorage;
 
   setUp(() {
-    mockStorage = MockBaseLocalStorage();
+    mockStorage = MockAppLocalStorage();
   });
 
-  group('BaseLocalStorage', () {
+  group('AppLocalStorage', () {
     test('getAll returns a list of CarEntity', () {
       final cars = [
         CarEntity(

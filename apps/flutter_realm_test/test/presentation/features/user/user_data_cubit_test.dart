@@ -21,8 +21,7 @@ import 'package:test_flutter_project/presentation/features/user/user_data_cubit.
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 import 'package:test_flutter_project/utils/localisation_util.dart';
 
-import '../../../domain/repositories/base_local_storage_test.mocks.dart';
-import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
+import 'user_data_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
   MockSpec<AuthRepository>(),
@@ -40,7 +39,7 @@ import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  late MockBaseLocalStorage mockLocalStorage;
+  late MockAppLocalStorage mockLocalStorage;
   late MockRequestLocationPermissionUseCase mockRequestLocationPermissionUseCase;
   late MockCheckLocationPermissionStatusUseCase mockCheckLocationPermissionStatusUseCase;
   late MockCheckLocationServiceStatusUseCase mockCheckLocationServiceStatusUseCase;
@@ -69,7 +68,7 @@ void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});
 
-    mockLocalStorage = MockBaseLocalStorage();
+    mockLocalStorage = MockAppLocalStorage();
 
     when(mockAuthRepository.isUserLoggedIn()).thenAnswer((_) async => false);
     when(mockAuthRepository.updateUser(any, any)).thenAnswer((_) async {});

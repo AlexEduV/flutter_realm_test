@@ -2,15 +2,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_flutter_project/common/enums/auth_error_code.dart';
 import 'package:test_flutter_project/data/data_sources/remote/shared_preferences_storage.dart';
 import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/models/auth_error_code.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 
-import '../../domain/repositories/base_local_storage_test.mocks.dart';
+import '../../domain/repositories/app_local_storage_test.mocks.dart';
 import 'auth_repository_impl_test.mocks.dart';
 import 'inbox_repository_impl_test.mocks.dart';
 
@@ -19,7 +19,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late AuthRepositoryImpl repo;
 
-  final mockLocalStorage = MockBaseLocalStorage();
+  final mockLocalStorage = MockAppLocalStorage();
   final mockOwnerRepository = MockOwnerRepository();
   final mockUsersRemoteDataSource = MockUsersRemoteDataSource();
   final mockMessagesRemoteDataSource = MockMessagesRemoteDataSource();
