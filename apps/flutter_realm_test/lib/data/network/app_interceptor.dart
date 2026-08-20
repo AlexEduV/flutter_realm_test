@@ -12,6 +12,8 @@ class AppInterceptor implements BaseInterceptor {
 
   final LoggingService _logger;
 
+  //todo: implement authorisation with token for Klipy here
+
   @override
   Future<Either<ServerFailure, String>> onRequest({
     required Future<Response> Function() request,

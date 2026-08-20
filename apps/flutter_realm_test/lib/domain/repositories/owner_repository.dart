@@ -1,6 +1,6 @@
 import '../entities/owner_entity.dart';
 
-abstract class OwnerRepository {
+abstract interface class OwnerRepository {
   Future<List<OwnerEntity>> fetchOwners();
 
   OwnerEntity getOwnerById(String id);

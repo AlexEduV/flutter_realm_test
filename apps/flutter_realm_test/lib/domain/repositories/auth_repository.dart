@@ -2,7 +2,7 @@ import 'package:test_flutter_project/domain/models/auth_result.dart';
 
 import '../entities/user_entity.dart';
 
-abstract class AuthRepository {
+abstract interface class AuthRepository {
   Future<AuthResult> login({required String email, required String password});
 
   Future<AuthResult> register({

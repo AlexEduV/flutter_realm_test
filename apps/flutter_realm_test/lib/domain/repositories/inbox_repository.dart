@@ -1,6 +1,6 @@
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 
-abstract class InboxRepository {
+abstract interface class InboxRepository {
   Future<List<ConversationModel>> fetchConversations();
 
   ConversationModel getConversationById(String conversationId);

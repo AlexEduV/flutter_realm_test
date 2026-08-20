@@ -1,6 +1,6 @@
 import '../../entities/region_entity.dart';
 
-abstract class RegionRemoteDataSource {
+abstract interface class RegionRemoteDataSource {
   Future<void> init();
 
   Future<void> loadRegions();

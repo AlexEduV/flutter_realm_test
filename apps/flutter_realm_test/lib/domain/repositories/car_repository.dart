@@ -1,6 +1,6 @@
 import '../entities/car_entity.dart';
 
-abstract class CarRepository {
+abstract interface class CarRepository {
   List<CarEntity> getAllCars();
 
   void addCar(CarEntity car);

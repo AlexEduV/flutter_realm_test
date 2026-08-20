@@ -1,4 +1,4 @@
-abstract class EnvLocalDataSource {
+abstract interface class EnvLocalDataSource {
   Future<void> init();
 
   String get({required String key, String fallback});

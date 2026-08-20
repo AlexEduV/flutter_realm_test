@@ -1,5 +1,5 @@
 import 'dart:ui' show Color;
 
-abstract class CarColorLocalDataSource {
+abstract interface class CarColorLocalDataSource {
   Map<String, Color> getColors();
 }

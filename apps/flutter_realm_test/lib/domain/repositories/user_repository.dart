@@ -1,6 +1,6 @@
 import '../entities/user_entity.dart';
 
-abstract class UserRepository {
+abstract interface class UserRepository {
   int getMaxUserId();
 
   UserEntity? getUserByEmail(String email);

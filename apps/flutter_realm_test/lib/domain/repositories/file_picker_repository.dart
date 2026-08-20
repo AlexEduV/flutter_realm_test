@@ -1,5 +1,5 @@
 import '../entities/attachment_entity.dart';
 
-abstract class FilePickerRepository {
+abstract interface class FilePickerRepository {
   Future<AttachmentEntity?> pickFile();
 }

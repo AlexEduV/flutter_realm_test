@@ -1,6 +1,6 @@
 import '../../../data/dto/car_dto.dart';
 
-abstract class CarRemoteDataSource {
+abstract interface class CarRemoteDataSource {
   Future<List<CarDto>> fetchCars();
 
   Stream<List<CarDto>> get carStream;

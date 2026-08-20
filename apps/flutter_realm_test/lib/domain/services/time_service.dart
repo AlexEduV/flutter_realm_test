@@ -1,3 +1,3 @@
-abstract class TimeService {
+abstract interface class TimeService {
   DateTime now();
 }
