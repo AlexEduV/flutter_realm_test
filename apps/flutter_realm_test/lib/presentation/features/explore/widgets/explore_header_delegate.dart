@@ -70,7 +70,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                       icon: const Icon(
                         Icons.search,
                         size: AppDimensions.appBarIconSize,
-                        color: Colors.white,
+                        color: AppColors.white,
                       ),
                     ),
                   ),
