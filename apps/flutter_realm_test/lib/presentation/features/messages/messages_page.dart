@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/models/sent_attachment_meta_data_model.dart';
 import 'package:test_flutter_project/domain/models/sent_image_meta_data_model.dart';
@@ -38,7 +38,7 @@ class _MessagesPageState extends State<MessagesPage> {
 
   final _listViewScrollController = ScrollController();
 
-  late ConversationModel conversation;
+  late ConversationEntity conversation;
   late OwnerEntity owner;
 
   @override

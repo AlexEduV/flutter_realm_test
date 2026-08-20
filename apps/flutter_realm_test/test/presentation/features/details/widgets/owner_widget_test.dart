@@ -7,10 +7,10 @@ import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/owner_widget.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
@@ -160,7 +160,7 @@ void main() {
       distanceTo: 42,
     );
 
-    when(mockGetConversationByOwnerUseCase.call('test')).thenReturn(ConversationModel.empty());
+    when(mockGetConversationByOwnerUseCase.call('test')).thenReturn(ConversationEntity.empty());
 
     // Override OwnerWidget to inject a callback for testing
     await tester.pumpWidget(

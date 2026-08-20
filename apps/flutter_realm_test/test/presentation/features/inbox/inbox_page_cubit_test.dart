@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
@@ -36,7 +36,7 @@ void main() {
     build: () {
       when(mockFetchConversationsUseCase.call()).thenAnswer(
         (_) async => [
-          ConversationModel(
+          ConversationEntity(
             conversationId: 'c1',
             ownerId: 'u1',
             messages: [
@@ -56,7 +56,7 @@ void main() {
     expect: () => [
       const InboxPageState().copyWith(
         conversations: [
-          ConversationModel(
+          ConversationEntity(
             conversationId: 'c1',
             ownerId: 'u1',
             messages: [
@@ -76,7 +76,7 @@ void main() {
   blocTest<InboxPageCubit, InboxPageState>(
     'sendMessage updates conversation and calls save use case',
     build: () {
-      final conversation = ConversationModel(
+      final conversation = ConversationEntity(
         conversationId: 'c1',
         ownerId: 'u1',
         messages: [
@@ -108,7 +108,7 @@ void main() {
     expect: () => [
       const InboxPageState().copyWith(
         conversations: [
-          ConversationModel(
+          ConversationEntity(
             conversationId: 'c1',
             ownerId: 'u1',
             messages: [
@@ -137,7 +137,7 @@ void main() {
   blocTest<InboxPageCubit, InboxPageState>(
     'markMessageAsRead updates message status and calls save use case',
     build: () {
-      final conversation = ConversationModel(
+      final conversation = ConversationEntity(
         conversationId: 'c1',
         ownerId: 'u1',
         messages: [
@@ -159,7 +159,7 @@ void main() {
     expect: () => [
       const InboxPageState().copyWith(
         conversations: [
-          ConversationModel(
+          ConversationEntity(
             conversationId: 'c1',
             ownerId: 'u1',
             messages: [
@@ -182,8 +182,8 @@ void main() {
   blocTest<InboxPageCubit, InboxPageState>(
     'deleteConversation removes conversation and calls save use case',
     build: () {
-      final conversation1 = ConversationModel(conversationId: 'c1', ownerId: 'u1', messages: []);
-      final conversation2 = ConversationModel(conversationId: 'c2', ownerId: 'u2', messages: []);
+      final conversation1 = ConversationEntity(conversationId: 'c1', ownerId: 'u1', messages: []);
+      final conversation2 = ConversationEntity(conversationId: 'c2', ownerId: 'u2', messages: []);
       cubit.emit(cubit.state.copyWith(conversations: [conversation1, conversation2]));
       when(mockSaveConversationsUseCase.call(any)).thenAnswer((_) async {});
       return cubit;
@@ -193,7 +193,7 @@ void main() {
     },
     expect: () => [
       const InboxPageState().copyWith(
-        conversations: [ConversationModel(conversationId: 'c2', ownerId: 'u2', messages: [])],
+        conversations: [ConversationEntity(conversationId: 'c2', ownerId: 'u2', messages: [])],
       ),
     ],
     verify: (_) {

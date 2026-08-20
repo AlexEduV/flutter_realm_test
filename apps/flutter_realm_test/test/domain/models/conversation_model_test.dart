@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 
 void main() {
@@ -14,21 +14,21 @@ void main() {
     ];
 
     test('constructor and properties', () {
-      final model = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
+      final model = ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: messages);
       expect(model.conversationId, 'c1');
       expect(model.ownerId, 'o1');
       expect(model.messages, messages);
     });
 
     test('empty factory', () {
-      final empty = ConversationModel.empty();
+      final empty = ConversationEntity.empty();
       expect(empty.conversationId, '');
       expect(empty.ownerId, '');
       expect(empty.messages, []);
     });
 
     test('copyWith returns updated values', () {
-      final model = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
+      final model = ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: messages);
       final copy = model.copyWith(conversationId: 'c2', ownerId: 'o2');
       expect(copy.conversationId, 'c2');
       expect(copy.ownerId, 'o2');
@@ -39,7 +39,7 @@ void main() {
     });
 
     test('toJson and fromJson', () {
-      final model = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
+      final model = ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: messages);
       final json = model.toJson();
       expect(json['conversationId'], 'c1');
       expect(json['ownerId'], 'o1');
@@ -59,7 +59,7 @@ void main() {
       ]);
 
       // Adapt fromJson to use TestMessageModel
-      final fromJsonModel = ConversationModel(
+      final fromJsonModel = ConversationEntity(
         conversationId: json['conversationId'] as String,
         ownerId: json['ownerId'] as String,
         messages: (json['messages'] as List<dynamic>)
@@ -70,9 +70,9 @@ void main() {
     });
 
     test('== and hashCode', () {
-      final model1 = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
-      final model2 = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: messages);
-      final model3 = ConversationModel(conversationId: 'c2', ownerId: 'o1', messages: messages);
+      final model1 = ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: messages);
+      final model2 = ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: messages);
+      final model3 = ConversationEntity(conversationId: 'c2', ownerId: 'o1', messages: messages);
       expect(model1, model2);
       expect(model1.hashCode, model2.hashCode);
       expect(model1 == model3, false);
@@ -80,7 +80,7 @@ void main() {
 
     test('toJson returns correct map', () {
       // Arrange
-      final conversation = ConversationModel(
+      final conversation = ConversationEntity(
         conversationId: 'c1',
         ownerId: 'u1',
         messages: messages,
@@ -112,7 +112,7 @@ void main() {
 
     test('toJson returns correct map for empty conversation', () {
       // Arrange
-      final conversation = ConversationModel.empty();
+      final conversation = ConversationEntity.empty();
 
       // Act
       final json = conversation.toJson();
@@ -133,7 +133,7 @@ void main() {
       };
 
       // Act
-      final model = ConversationModel.fromJson(json);
+      final model = ConversationEntity.fromJson(json);
 
       // Assert
       expect(model.conversationId, 'conv1');

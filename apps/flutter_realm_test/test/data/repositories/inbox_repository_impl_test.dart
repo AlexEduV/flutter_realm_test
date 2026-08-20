@@ -3,7 +3,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/data/repositories/inbox_repository_impl.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 
 import 'inbox_repository_impl_test.mocks.dart';
 
@@ -19,8 +19,8 @@ void main() {
 
   test('fetchConversations calls remote data source and returns conversations', () async {
     final conversations = [
-      ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []),
-      ConversationModel(conversationId: 'c2', ownerId: 'o2', messages: []),
+      ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: []),
+      ConversationEntity(conversationId: 'c2', ownerId: 'o2', messages: []),
     ];
     when(mockRemoteDataSource.loadConversations()).thenAnswer((_) async => conversations);
 
@@ -32,7 +32,7 @@ void main() {
   });
 
   test('getConversationById calls remote data source and returns conversation', () {
-    final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
+    final conversation = ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: []);
     when(mockRemoteDataSource.getConversationById('c1')).thenReturn(conversation);
 
     final result = repository.getConversationById('c1');
@@ -43,7 +43,7 @@ void main() {
   });
 
   test('saveConversations calls remote data source with correct parameter', () async {
-    final conversations = [ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: [])];
+    final conversations = [ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: [])];
     when(mockRemoteDataSource.saveConversations(conversations)).thenAnswer((_) async {});
 
     await repository.saveConversations(conversations);
@@ -53,7 +53,7 @@ void main() {
   });
 
   test('getConversationByOwnerId calls remote data source and returns conversation', () {
-    final conversation = ConversationModel(conversationId: 'c2', ownerId: 'o2', messages: []);
+    final conversation = ConversationEntity(conversationId: 'c2', ownerId: 'o2', messages: []);
     when(mockRemoteDataSource.getOrCreateConversationByOwnerId('o2')).thenReturn(conversation);
 
     final result = repository.getConversationByOwnerId('o2');

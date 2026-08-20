@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
@@ -141,7 +141,7 @@ void main() {
     final inboxPageCubit = MockInboxPageCubit();
     final messagesPageCubit = MockMessagesPageCubit();
 
-    final conversation = ConversationModel.empty();
+    final conversation = ConversationEntity.empty();
 
     when(
       userDataCubit.state,

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 
 part 'inbox_page_state.freezed.dart';
 
@@ -7,6 +7,6 @@ part 'inbox_page_state.freezed.dart';
 abstract class InboxPageState with _$InboxPageState {
   const factory InboxPageState({
     @Default(false) bool isLoading,
-    @Default([]) List<ConversationModel> conversations,
+    @Default([]) List<ConversationEntity> conversations,
   }) = _InboxPageState;
 }

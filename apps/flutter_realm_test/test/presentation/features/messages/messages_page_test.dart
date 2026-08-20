@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
@@ -47,7 +47,7 @@ void main() {
 
   testWidgets('displays app bar with owner name and avatar', (WidgetTester tester) async {
     final owner = OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []);
-    final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
+    final conversation = ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: []);
     final cubit = MockInboxPageCubit();
 
     when(cubit.state).thenReturn(const InboxPageState());
@@ -71,7 +71,7 @@ void main() {
 
   testWidgets('shows EmptyConversationPlaceholder when no messages', (WidgetTester tester) async {
     final owner = OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []);
-    final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
+    final conversation = ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: []);
     final cubit = MockInboxPageCubit();
 
     when(cubit.state).thenReturn(const InboxPageState());
@@ -108,7 +108,7 @@ void main() {
       payload: 'Hello!',
       date: DateTime.now(),
     );
-    final conversation = ConversationModel(
+    final conversation = ConversationEntity(
       conversationId: 'c1',
       ownerId: 'o1',
       messages: [message],
@@ -147,7 +147,7 @@ void main() {
 
   testWidgets('shows ChatInputBar at the bottom', (WidgetTester tester) async {
     final owner = OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []);
-    final conversation = ConversationModel(conversationId: 'c1', ownerId: 'o1', messages: []);
+    final conversation = ConversationEntity(conversationId: 'c1', ownerId: 'o1', messages: []);
     final cubit = MockInboxPageCubit();
 
     when(cubit.state).thenReturn(const InboxPageState());
