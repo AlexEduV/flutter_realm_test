@@ -13,8 +13,6 @@ class AppInterceptorImpl implements AppInterceptor {
   final LoggingService logger;
   final bool isVerboseOutput;
 
-  //todo: implement authorisation with token for Klipy here
-
   @override
   Future<Either<ServerFailure, String>> onRequest({
     required Future<AppHttpResponse> Function() request,
