@@ -15,11 +15,12 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   final String _apiKey;
 
   @override
-  Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(String query) async {
-    final limit = '15';
-
+  Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(
+    String query, {
+    int limit = 15,
+  }) async {
     final path = ApiConstants.klipySearchPath.replaceFirst('{API_KEY}', _apiKey);
-    final url = Uri.https(ApiConstants.klipyApiHost, path, {'q': query, 'limit': limit});
+    final url = Uri.https(ApiConstants.klipyApiHost, path, {'q': query, 'limit': limit.toString()});
 
     final response = await client.get(url);
     return _processKlipyResponse(response);
