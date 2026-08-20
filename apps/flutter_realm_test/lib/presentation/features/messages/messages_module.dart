@@ -34,7 +34,7 @@ void registerMessagesModule(GetIt serviceLocator) {
     debugPrint('Could not load API key: $e');
   }
   serviceLocator.registerLazySingleton<GifsRemoteDataSource>(
-    () => GifsRemoteDataSourceImpl(serviceLocator(), apiKey),
+    () => GifsRemoteDataSourceImpl(serviceLocator(), apiKey, serviceLocator()),
   );
 
   serviceLocator.registerLazySingleton<MessagesRemoteDataSource>(

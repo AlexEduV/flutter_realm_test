@@ -5,14 +5,16 @@ import 'package:test_flutter_project/common/enums/server_failure.dart';
 import 'package:test_flutter_project/data/dto/klipy_gif_dto.dart';
 import 'package:test_flutter_project/data/network/app_http_client.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 
 import '../../../common/constants/api_constants.dart';
 
 class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
-  GifsRemoteDataSourceImpl(this._client, this._apiKey);
+  GifsRemoteDataSourceImpl(this._client, this._apiKey, this._loggingService);
 
   final AppHttpClient _client;
   final String _apiKey;
+  final LoggingService _loggingService;
 
   @override
   Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(
@@ -55,7 +57,12 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
             .toList();
 
         return Right(list);
-      } catch (e) {
+      } catch (exception, stackTrace) {
+        _loggingService.error(
+          'Error on processing klipy response',
+          error: exception,
+          stackTrace: stackTrace,
+        );
         return const Left(ServerFailure.notAvailable);
       }
     });
