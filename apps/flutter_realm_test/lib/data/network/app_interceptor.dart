@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart';
+import 'package:test_flutter_project/data/network/base_interceptor.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
-import 'package:test_flutter_project/core/network/base_interceptor.dart';
 
 import '../../common/enums/server_failure.dart';
 
@@ -32,12 +32,16 @@ class AppInterceptor implements BaseInterceptor {
       }
 
       if (response.statusCode != HttpStatus.ok) {
-        _logger.error('Error during $requestType request at url $url, status: ${response.statusCode}');
+        _logger.error(
+          'Error during $requestType request at url $url, status: ${response.statusCode}',
+        );
         return const Left(ServerFailure.internalError);
       }
 
       if (response.body.isEmpty) {
-        _logger.error('Empty body on $requestType request at url $url, status: ${response.statusCode}');
+        _logger.error(
+          'Empty body on $requestType request at url $url, status: ${response.statusCode}',
+        );
         return const Left(ServerFailure.notAvailable);
       }
 

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:test_flutter_project/common/enums/server_failure.dart';
-import 'package:test_flutter_project/core/network/app_http_client.dart';
 import 'package:test_flutter_project/data/dto/klipy_gif_dto.dart';
+import 'package:test_flutter_project/data/network/app_http_client.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
 
 import '../../../common/constants/api_constants.dart';
