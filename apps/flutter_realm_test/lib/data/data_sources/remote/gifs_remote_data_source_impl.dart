@@ -36,24 +36,23 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     final response = await _client.get(url);
     return _processKlipyResponse(response);
   }
-}
 
-Either<ServerFailure, List<KlipyGifDto>> _processKlipyResponse(
-  Either<ServerFailure, String> response,
-) {
-  final Either<ServerFailure, List<KlipyGifDto>> results = response.fold(
-    (l) {
-      return Left(l);
-    },
-    (r) {
-      final Map<String, dynamic> data = jsonDecode(r);
-      final List<KlipyGifDto> list = (data['data']['data'] as List)
-          .map((json) => KlipyGifDto.fromV1Json(json as Map<String, dynamic>))
-          .toList();
+  Either<ServerFailure, List<KlipyGifDto>> _processKlipyResponse(
+    Either<ServerFailure, String> response,
+  ) {
+    final Either<ServerFailure, List<KlipyGifDto>> results = response.fold((l) => Left(l), (r) {
+      try {
+        final Map<String, dynamic>? data = jsonDecode(r);
+        final List<KlipyGifDto> list = (data?['data']?['data'] as List)
+            .map((json) => KlipyGifDto.fromV1Json(json as Map<String, dynamic>))
+            .toList();
 
-      return Right(list);
-    },
-  );
+        return Right(list);
+      } catch (e) {
+        return const Left(ServerFailure.notAvailable);
+      }
+    });
 
-  return results;
+    return results;
+  }
 }
