@@ -197,14 +197,14 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
       ) as _i5.Future<void>);
 
   @override
-  bool isUserLoggedIn() => (super.noSuchMethod(
+  _i5.Future<bool> isUserLoggedIn() => (super.noSuchMethod(
         Invocation.method(
           #isUserLoggedIn,
           [],
         ),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
 
 /// A class which mocks [AppLocalStorage].

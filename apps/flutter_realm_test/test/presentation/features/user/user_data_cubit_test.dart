@@ -70,7 +70,7 @@ void main() {
 
     mockLocalStorage = MockAppLocalStorage();
 
-    when(mockAuthRepository.isUserLoggedIn()).thenReturn(false);
+    when(mockAuthRepository.isUserLoggedIn()).thenAnswer((_) async => false);
     when(mockAuthRepository.updateUser(any, any)).thenAnswer((_) async {});
 
     cubit = UserDataCubit(
@@ -229,7 +229,7 @@ void main() {
 
       when(mockGetUserByEmailUseCase.call('auth@example.com')).thenReturn(user);
       when(mockLocalStorage.initUser()).thenReturn(user);
-      when(mockAuthRepository.isUserLoggedIn()).thenReturn(true);
+      when(mockAuthRepository.isUserLoggedIn()).thenAnswer((_) async => true);
 
       await cubit.authUser('auth@example.com');
       expect(cubit.state.isUserAuthenticated, true);
