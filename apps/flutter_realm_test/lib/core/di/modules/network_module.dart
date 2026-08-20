@@ -17,7 +17,7 @@ void registerNetworkModule(GetIt serviceLocator) {
 
   final client = http.Client();
   final appInterceptor = AppInterceptorImpl(
-    logger: serviceLocator<LoggingService>(instanceName: 'network'),
+    loggingService: serviceLocator<LoggingService>(instanceName: 'network'),
   );
   serviceLocator.registerLazySingleton<AppHttpClient>(
     () => AppHttpClientImpl(client, appInterceptor),

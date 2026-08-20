@@ -8,9 +8,9 @@ import 'package:test_flutter_project/domain/services/logging_service.dart';
 import '../../common/enums/server_failure.dart';
 
 class AppInterceptorImpl implements AppInterceptor {
-  AppInterceptorImpl({required this.logger, this.isVerboseOutput = false});
+  AppInterceptorImpl({required this.loggingService, this.isVerboseOutput = false});
 
-  final LoggingService logger;
+  final LoggingService loggingService;
   final bool isVerboseOutput;
 
   @override
@@ -19,7 +19,7 @@ class AppInterceptorImpl implements AppInterceptor {
     required String url,
     required String requestType,
   }) async {
-    logger.info('-> $requestType $url');
+    loggingService.info('-> $requestType $url');
 
     try {
       final response = await request();
@@ -36,10 +36,10 @@ class AppInterceptorImpl implements AppInterceptor {
     required String requestType,
   }) async {
     if (error is SocketException) {
-      logger.error('No network on $requestType request at url $url, exception: $error');
+      loggingService.error('No network on $requestType request at url $url, exception: $error');
       return const Left(ServerFailure.noNetwork);
     }
-    logger.error('Error during $requestType request at url $url, exception: $error');
+    loggingService.error('Error during $requestType request at url $url, exception: $error');
     return const Left(ServerFailure.notAvailable);
   }
 
@@ -49,21 +49,25 @@ class AppInterceptorImpl implements AppInterceptor {
     required String url,
     required String requestType,
   }) async {
-    logger.info('<- $requestType ${response.statusCode} $url');
+    loggingService.info('<- $requestType ${response.statusCode} $url');
 
     if (response.statusCode == HttpStatus.notFound) {
-      if (isVerboseOutput) logger.error('Not Found on $requestType request at url $url, 404');
+      if (isVerboseOutput) {
+        loggingService.error('Not Found on $requestType request at url $url, 404');
+      }
       return const Left(ServerFailure.notFound);
     }
 
     if (response.statusCode == HttpStatus.unauthorized) {
-      if (isVerboseOutput) logger.error('Unauthorised on $requestType request at url $url, 401');
+      if (isVerboseOutput) {
+        loggingService.error('Unauthorised on $requestType request at url $url, 401');
+      }
       return const Left(ServerFailure.unauthorized);
     }
 
     if (response.statusCode != HttpStatus.ok) {
       if (isVerboseOutput) {
-        logger.error(
+        loggingService.error(
           'Error during $requestType request at url $url, status: ${response.statusCode}',
         );
       }
@@ -72,7 +76,7 @@ class AppInterceptorImpl implements AppInterceptor {
 
     if (response.body.isEmpty) {
       if (isVerboseOutput) {
-        logger.error(
+        loggingService.error(
           'Empty body on $requestType request at url $url, status: ${response.statusCode}',
         );
       }
@@ -80,7 +84,9 @@ class AppInterceptorImpl implements AppInterceptor {
     }
 
     if (isVerboseOutput) {
-      logger.info('Successful $requestType request at url $url, status: ${response.statusCode}');
+      loggingService.info(
+        'Successful $requestType request at url $url, status: ${response.statusCode}',
+      );
     }
     return Right(response.body);
   }
