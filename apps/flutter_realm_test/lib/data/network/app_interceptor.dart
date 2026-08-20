@@ -10,9 +10,15 @@ abstract interface class AppInterceptor {
     required String requestType,
   });
 
-  //todo: implement onFailure for logging unification
+  Future<Either<ServerFailure, String>> onFailure({
+    required Object error,
+    required String url,
+    required String requestType,
+  });
 
-  //todo: implement onResponse
-
-  //todo: learn what 'base' keyword does
+  Future<Either<ServerFailure, String>> onResponse({
+    required Response response,
+    required String url,
+    required String requestType,
+  });
 }
