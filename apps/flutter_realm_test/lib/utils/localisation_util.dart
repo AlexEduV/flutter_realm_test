@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/app_remote_storage.dart';
 import 'package:test_flutter_project/domain/models/api_response.dart';
 import 'package:test_flutter_project/utils/json_util.dart';
 
@@ -9,7 +9,7 @@ import '../common/constants/api_constants.dart';
 
 class LocalisationUtil {
   LocalisationUtil(this._remoteStorage);
-  final BaseRemoteStorage _remoteStorage;
+  final AppRemoteStorage _remoteStorage;
 
   Future<Map<String, dynamic>> loadRawJson(String path) async {
     final jsonString = await rootBundle.loadString(path);

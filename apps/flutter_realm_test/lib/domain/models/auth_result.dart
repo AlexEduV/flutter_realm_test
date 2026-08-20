@@ -1,4 +1,4 @@
-import 'package:test_flutter_project/domain/models/auth_error_code.dart';
+import 'package:test_flutter_project/common/enums/auth_error_code.dart';
 
 sealed class AuthResult {
   const AuthResult();

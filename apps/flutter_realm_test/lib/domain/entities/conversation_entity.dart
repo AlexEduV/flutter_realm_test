@@ -1,14 +1,14 @@
 import 'package:test_flutter_project/domain/models/message_model.dart';
 
-class ConversationModel {
-  ConversationModel({required this.conversationId, required this.ownerId, required this.messages});
+class ConversationEntity {
+  ConversationEntity({required this.conversationId, required this.ownerId, required this.messages});
 
-  factory ConversationModel.empty() {
-    return ConversationModel(conversationId: '', ownerId: '', messages: []);
+  factory ConversationEntity.empty() {
+    return ConversationEntity(conversationId: '', ownerId: '', messages: []);
   }
 
-  factory ConversationModel.fromJson(Map<String, dynamic> json) {
-    return ConversationModel(
+  factory ConversationEntity.fromJson(Map<String, dynamic> json) {
+    return ConversationEntity(
       conversationId: json['conversationId'] as String,
       ownerId: json['ownerId'] as String,
       messages: (json['messages'] as List<dynamic>)
@@ -21,12 +21,12 @@ class ConversationModel {
   final String ownerId;
   final List<MessageModel> messages;
 
-  ConversationModel copyWith({
+  ConversationEntity copyWith({
     String? conversationId,
     String? ownerId,
     List<MessageModel>? messages,
   }) {
-    return ConversationModel(
+    return ConversationEntity(
       conversationId: conversationId ?? this.conversationId,
       ownerId: ownerId ?? this.ownerId,
       messages: messages ?? this.messages,
@@ -44,7 +44,7 @@ class ConversationModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (other is! ConversationModel) return false;
+    if (other is! ConversationEntity) return false;
     return conversationId == other.conversationId &&
         ownerId == other.ownerId &&
         _listEquals(messages, other.messages);

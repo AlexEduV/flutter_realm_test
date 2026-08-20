@@ -11,11 +11,11 @@ import 'package:mockito/src/dummies.dart' as _i17;
 import 'package:test_flutter_project/common/enums/server_failure.dart' as _i7;
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
     as _i11;
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart'
+    as _i3;
 import 'package:test_flutter_project/domain/entities/gif_entity.dart' as _i8;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i4;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i15;
-import 'package:test_flutter_project/domain/models/conversation_model.dart'
-    as _i3;
 import 'package:test_flutter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart'
     as _i10;
 import 'package:test_flutter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart'
@@ -54,9 +54,9 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-class _FakeConversationModel_1 extends _i1.SmartFake
-    implements _i3.ConversationModel {
-  _FakeConversationModel_1(
+class _FakeConversationEntity_1 extends _i1.SmartFake
+    implements _i3.ConversationEntity {
+  _FakeConversationEntity_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -163,26 +163,26 @@ class MockPickAttachmentFileUseCase extends _i1.Mock
 class MockGetConversationByIdUseCase extends _i1.Mock
     implements _i12.GetConversationByIdUseCase {
   @override
-  _i3.ConversationModel call(String? params) => (super.noSuchMethod(
+  _i3.ConversationEntity call(String? params) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],
         ),
-        returnValue: _FakeConversationModel_1(
+        returnValue: _FakeConversationEntity_1(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         ),
-        returnValueForMissingStub: _FakeConversationModel_1(
+        returnValueForMissingStub: _FakeConversationEntity_1(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         ),
-      ) as _i3.ConversationModel);
+      ) as _i3.ConversationEntity);
 }
 
 /// A class which mocks [GetOwnerByIdUseCase].
@@ -219,7 +219,7 @@ class MockGetOwnerByIdUseCase extends _i1.Mock
 class MockExtractUsersFromConversationUseCase extends _i1.Mock
     implements _i14.ExtractUsersFromConversationUseCase {
   @override
-  Map<String, _i15.UserEntity?> call(_i3.ConversationModel? conversation) =>
+  Map<String, _i15.UserEntity?> call(_i3.ConversationEntity? conversation) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,

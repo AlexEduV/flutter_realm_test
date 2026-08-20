@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/repositories/inbox_repository.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 
@@ -21,8 +21,8 @@ void main() {
     'should call fetchConversations on repository and return list of ConversationModel',
     () async {
       final conversations = [
-        ConversationModel(conversationId: '1', ownerId: '3', messages: []),
-        ConversationModel(conversationId: '2', ownerId: '4', messages: []),
+        ConversationEntity(conversationId: '1', ownerId: '3', messages: []),
+        ConversationEntity(conversationId: '2', ownerId: '4', messages: []),
       ];
       when(mockRepository.fetchConversations()).thenAnswer((_) async => conversations);
 

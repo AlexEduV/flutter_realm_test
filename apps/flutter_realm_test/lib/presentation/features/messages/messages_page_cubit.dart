@@ -10,7 +10,7 @@ import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_i
 import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 
-import '../../../domain/models/conversation_model.dart';
+import '../../../domain/entities/conversation_entity.dart';
 import 'messages_page_state.dart';
 
 class MessagesPageCubit extends Cubit<MessagesPageState> {
@@ -78,7 +78,7 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
     return result;
   }
 
-  ConversationModel getConversationById(String conversationId) {
+  ConversationEntity getConversationById(String conversationId) {
     final conversation = _getConversationByIdUseCase.call(conversationId);
     return conversation;
   }
@@ -88,7 +88,7 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
     return owner;
   }
 
-  Map<String, UserEntity?> getUsersFromConversation(ConversationModel conversation) {
+  Map<String, UserEntity?> getUsersFromConversation(ConversationEntity conversation) {
     final users = _extractUsersFromConversationUseCase.call(conversation);
     return users;
   }

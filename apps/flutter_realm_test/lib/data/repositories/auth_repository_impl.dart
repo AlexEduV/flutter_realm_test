@@ -1,7 +1,7 @@
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
+import 'package:test_flutter_project/common/enums/auth_error_code.dart';
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/app_remote_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
-import 'package:test_flutter_project/domain/models/auth_error_code.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
@@ -19,14 +19,14 @@ class AuthRepositoryImpl implements AuthRepository {
     this._ownerRepository,
   );
 
-  final BaseLocalStorage _localStorage;
-  final BaseRemoteStorage _remoteStorage;
+  final AppLocalStorage _localStorage;
+  final AppRemoteStorage _remoteStorage;
   final OwnerRepository _ownerRepository;
   final UsersRemoteDataSource _usersRemoteDataSource;
   final MessagesRemoteDataSource _messagesRemoteDataSource;
 
   late final List<UserEntity> users;
-  late bool isAuthenticated = false;
+  late bool _isAuthenticated = false;
   final _userSessionKey = 'userId';
 
   Future<void> init() async {
@@ -43,7 +43,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await Future.delayed(const Duration(milliseconds: 200));
 
     _localStorage.initUser();
-    isAuthenticated = false;
+    _isAuthenticated = false;
   }
 
   @override
@@ -68,7 +68,7 @@ class AuthRepositoryImpl implements AuthRepository {
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
 
-    isAuthenticated = true;
+    _isAuthenticated = true;
     return const AuthSuccess();
   }
 
@@ -103,7 +103,7 @@ class AuthRepositoryImpl implements AuthRepository {
     _localStorage.clearUser();
     _localStorage.update(UserExtensions.fromEntity(user));
 
-    isAuthenticated = true;
+    _isAuthenticated = true;
     return const AuthSuccess();
   }
 
@@ -118,7 +118,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> updateUser(String userId, UserEntity data) async {
-    if (!isAuthenticated) return;
+    if (!_isAuthenticated) return;
 
     users.removeWhere((element) => element.userId == userId);
     users.add(data);

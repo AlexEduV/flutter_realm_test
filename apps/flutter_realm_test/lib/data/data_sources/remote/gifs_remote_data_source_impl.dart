@@ -2,55 +2,69 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:test_flutter_project/common/enums/server_failure.dart';
-import 'package:test_flutter_project/core/network/app_http_client.dart';
 import 'package:test_flutter_project/data/dto/klipy_gif_dto.dart';
+import 'package:test_flutter_project/data/network/app_http_client.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/gifs_remote_data_source.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 
 import '../../../common/constants/api_constants.dart';
 
 class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
-  GifsRemoteDataSourceImpl(this.client, this._apiKey);
+  GifsRemoteDataSourceImpl(this._client, this._apiKey, this._loggingService);
 
-  final AppHttpClient client;
+  final AppHttpClient _client;
   final String _apiKey;
+  final LoggingService _loggingService;
 
   @override
-  Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(String query) async {
-    final limit = '15';
+  Future<Either<ServerFailure, List<KlipyGifDto>>> searchGifs(
+    String query, {
+    int limit = 15,
+  }) async {
+    assert(limit >= 0, "'limit' must be a non-negative value");
 
-    final path = ApiConstants.klipySearchPath.replaceFirst('{API_KEY}', _apiKey);
-    final url = Uri.https(ApiConstants.klipyApiHost, path, {'q': query, 'limit': limit});
+    final url = _buildUrl(
+      ApiConstants.klipySearchPath,
+      queryParams: {'q': query, 'limit': limit.toString()},
+    );
 
-    final response = await client.get(url);
-    return processKlipyResponse(response);
+    final response = await _client.get(url, logUrl: ApiConstants.klipySearchPath);
+    return _processKlipyResponse(response);
   }
 
   @override
   Future<Either<ServerFailure, List<KlipyGifDto>>> getTrending() async {
-    final path = ApiConstants.klipyTrendingPath.replaceFirst('{API_KEY}', _apiKey);
-    final url = Uri.https(ApiConstants.klipyApiHost, path);
+    final url = _buildUrl(ApiConstants.klipyTrendingPath);
 
-    final response = await client.get(url);
-    return processKlipyResponse(response);
+    final response = await _client.get(url, logUrl: ApiConstants.klipyTrendingPath);
+    return _processKlipyResponse(response);
   }
-}
 
-Either<ServerFailure, List<KlipyGifDto>> processKlipyResponse(
-  Either<ServerFailure, String> response,
-) {
-  final Either<ServerFailure, List<KlipyGifDto>> results = response.fold(
-    (l) {
-      return Left(l);
-    },
-    (r) {
-      final Map<String, dynamic> data = jsonDecode(r);
-      final List<KlipyGifDto> list = (data['data']['data'] as List)
-          .map((json) => KlipyGifDto.fromV1Json(json as Map<String, dynamic>))
-          .toList();
+  Uri _buildUrl(String template, {Map<String, dynamic>? queryParams}) {
+    final path = template.replaceFirst('{API_KEY}', _apiKey);
+    final url = Uri.https(ApiConstants.klipyApiHost, path, queryParams);
+    return url;
+  }
 
-      return Right(list);
-    },
-  );
+  Either<ServerFailure, List<KlipyGifDto>> _processKlipyResponse(
+    Either<ServerFailure, String> response,
+  ) {
+    return response.fold((l) => Left(l), (r) {
+      try {
+        final Map<String, dynamic>? data = jsonDecode(r);
+        final List<KlipyGifDto> list = (data?['data']?['data'] as List)
+            .map((json) => KlipyGifDto.fromV1Json(json as Map<String, dynamic>))
+            .toList();
 
-  return results;
+        return Right(list);
+      } catch (exception, stackTrace) {
+        _loggingService.error(
+          'Error on processing klipy response',
+          error: exception,
+          stackTrace: stackTrace,
+        );
+        return const Left(ServerFailure.notAvailable);
+      }
+    });
+  }
 }

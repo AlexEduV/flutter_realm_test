@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart';
 
 import 'fetch_conversations_use_case_test.mocks.dart';
@@ -18,7 +18,7 @@ void main() {
     'should call getConversationByOwnerId on repository with correct ownerId and return ConversationModel',
     () {
       final ownerId = 'owner123';
-      final conversation = ConversationModel(
+      final conversation = ConversationEntity(
         conversationId: 'conv1',
         ownerId: ownerId,
         messages: [],
@@ -35,11 +35,11 @@ void main() {
 
   test('should return null when repository returns null', () {
     final ownerId = 'not_found';
-    when(mockRepository.getConversationByOwnerId(ownerId)).thenReturn(ConversationModel.empty());
+    when(mockRepository.getConversationByOwnerId(ownerId)).thenReturn(ConversationEntity.empty());
 
     final result = useCase.call(ownerId);
 
-    expect(result, ConversationModel.empty());
+    expect(result, ConversationEntity.empty());
     verify(mockRepository.getConversationByOwnerId(ownerId)).called(1);
     verifyNoMoreInteractions(mockRepository);
   });

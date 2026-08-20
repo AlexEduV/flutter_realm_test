@@ -20,6 +20,7 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
+import '../data_sources/remote/article_remote_data_source_impl_test.mocks.dart';
 import 'car_repository_impl_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -32,6 +33,7 @@ void main() {
   late MockCarRemoteDataSource apiService;
   late CarRepositoryImpl repository;
   late MockRealmLocalStorage localStorage;
+  late MockLoggingService loggingService;
 
   final mockCar = Car(
     ObjectId(),
@@ -61,7 +63,8 @@ void main() {
     setUp(() {
       apiService = MockCarRemoteDataSource();
       localStorage = MockRealmLocalStorage();
-      repository = CarRepositoryImpl(localStorage, apiService);
+      loggingService = MockLoggingService();
+      repository = CarRepositoryImpl(localStorage, apiService, loggingService);
     });
 
     test('addCar calls realm.write and adds car', () {

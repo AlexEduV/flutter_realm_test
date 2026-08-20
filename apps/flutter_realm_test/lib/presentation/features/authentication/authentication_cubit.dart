@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/domain/models/auth_error_code.dart';
+import 'package:test_flutter_project/common/enums/auth_error_code.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/models/login_model.dart';

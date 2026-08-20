@@ -1,15 +1,15 @@
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 
-abstract class MessagesRemoteDataSource {
+abstract interface class MessagesRemoteDataSource {
   void initSampleData(String userId);
 
-  Future<void> saveConversations(List<ConversationModel> conversations);
+  Future<void> saveConversations(List<ConversationEntity> conversations);
 
-  Future<List<ConversationModel>> loadConversations();
+  Future<List<ConversationEntity>> loadConversations();
 
-  ConversationModel getConversationById(String conversationId);
+  ConversationEntity getConversationById(String conversationId);
 
-  ConversationModel getOrCreateConversationByOwnerId(String ownerId);
+  ConversationEntity getOrCreateConversationByOwnerId(String ownerId);
 
   void dispose();
 }

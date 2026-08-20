@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:test_flutter_project/common/extensions/list_extension.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/app_remote_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/services/time_service.dart';
 
@@ -12,9 +12,9 @@ import '../../../common/enums/message_status.dart';
 class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   SeedMessagesRemoteDataSourceImpl(this._timeService, this._remoteStorage);
 
-  List<ConversationModel> _conversationsList = [];
+  List<ConversationEntity> _conversationsList = [];
   final TimeService _timeService;
-  final BaseRemoteStorage _remoteStorage;
+  final AppRemoteStorage _remoteStorage;
 
   @override
   void initSampleData(String currentUserId) {
@@ -22,7 +22,7 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
     final testDateOlder = _timeService.now().subtract(const Duration(days: 2));
 
     _conversationsList = [
-      ConversationModel(
+      ConversationEntity(
         conversationId: '1',
         ownerId: '1',
         messages: [
@@ -34,7 +34,7 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
           ),
         ],
       ),
-      ConversationModel(
+      ConversationEntity(
         conversationId: '2',
         ownerId: '4',
         messages: [
@@ -68,7 +68,7 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   }
 
   @override
-  Future<void> saveConversations(List<ConversationModel> conversations) async {
+  Future<void> saveConversations(List<ConversationEntity> conversations) async {
     _conversationsList = List.from(conversations);
 
     final conversationsJsonList = conversations.map((c) => c.toJson()).toList();
@@ -76,7 +76,7 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   }
 
   @override
-  Future<List<ConversationModel>> loadConversations() async {
+  Future<List<ConversationEntity>> loadConversations() async {
     final usersJson = _remoteStorage.getString('mock_conversations');
     if (usersJson != null) {
       final decoded = jsonDecode(usersJson);
@@ -87,8 +87,8 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
       }
 
       final conversations = decoded
-          .map<ConversationModel>(
-            (value) => ConversationModel.fromJson(value as Map<String, dynamic>),
+          .map<ConversationEntity>(
+            (value) => ConversationEntity.fromJson(value as Map<String, dynamic>),
           )
           .toList();
 
@@ -101,20 +101,20 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
   }
 
   @override
-  ConversationModel getConversationById(String conversationId) {
+  ConversationEntity getConversationById(String conversationId) {
     final conversationIndex = _conversationsList.indexWhereOrNull(
       (element) => element.conversationId == conversationId,
     );
 
     if (conversationIndex == null) {
-      return ConversationModel.empty();
+      return ConversationEntity.empty();
     }
 
     return _conversationsList[conversationIndex];
   }
 
   @override
-  ConversationModel getOrCreateConversationByOwnerId(String ownerId) {
+  ConversationEntity getOrCreateConversationByOwnerId(String ownerId) {
     final conversationIndex = _conversationsList.indexWhereOrNull(
       (element) => element.ownerId == ownerId,
     );
@@ -138,9 +138,9 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
     return maxId;
   }
 
-  ConversationModel _getNewConversation(String ownerId) {
+  ConversationEntity _getNewConversation(String ownerId) {
     final newConversationId = _getMaxConversationId() + 1;
-    final conversation = ConversationModel.empty().copyWith(
+    final conversation = ConversationEntity.empty().copyWith(
       conversationId: newConversationId.toString(),
       ownerId: ownerId,
     );

@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
@@ -73,14 +73,14 @@ class InboxPageCubit extends Cubit<InboxPageState> {
   }
 
   Future<void> deleteConversation(String conversationId) async {
-    final updatedConversations = List<ConversationModel>.from(state.conversations);
+    final updatedConversations = List<ConversationEntity>.from(state.conversations);
     updatedConversations.removeWhere((element) => element.conversationId == conversationId);
 
     emit(state.copyWith(conversations: updatedConversations));
     await _saveConversationsUseCase.call(updatedConversations);
   }
 
-  int getUnreadCountFromConversation(ConversationModel conversation) {
+  int getUnreadCountFromConversation(ConversationEntity conversation) {
     final unreadCount = conversation.messages
         .where(
           (element) =>

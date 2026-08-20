@@ -1,15 +1,15 @@
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/repositories/inbox_repository.dart';
 
 import '../usecase.dart';
 
-class FetchConversationsUseCase extends UseCaseNoParams<Future<List<ConversationModel>>> {
+class FetchConversationsUseCase extends UseCaseNoParams<Future<List<ConversationEntity>>> {
   FetchConversationsUseCase(this._inboxRepository);
 
   final InboxRepository _inboxRepository;
 
   @override
-  Future<List<ConversationModel>> call() {
+  Future<List<ConversationEntity>> call() {
     return _inboxRepository.fetchConversations();
   }
 }

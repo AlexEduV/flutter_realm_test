@@ -1,6 +1,6 @@
 import '../entities/region_entity.dart';
 
-abstract class RegionRepository {
+abstract interface class RegionRepository {
   Future<void> loadRegions();
 
   RegionEntity? getRegionByCode(String code);

@@ -4,7 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/models/conversation_model.dart'
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart'
     as _i2;
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_owner_id_use_case.dart'
     as _i3;
@@ -23,9 +23,9 @@ import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_o
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeConversationModel_0 extends _i1.SmartFake
-    implements _i2.ConversationModel {
-  _FakeConversationModel_0(
+class _FakeConversationEntity_0 extends _i1.SmartFake
+    implements _i2.ConversationEntity {
+  _FakeConversationEntity_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -40,24 +40,24 @@ class _FakeConversationModel_0 extends _i1.SmartFake
 class MockGetConversationByOwnerIdUseCase extends _i1.Mock
     implements _i3.GetConversationByOwnerIdUseCase {
   @override
-  _i2.ConversationModel call(String? params) => (super.noSuchMethod(
+  _i2.ConversationEntity call(String? params) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],
         ),
-        returnValue: _FakeConversationModel_0(
+        returnValue: _FakeConversationEntity_0(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         ),
-        returnValueForMissingStub: _FakeConversationModel_0(
+        returnValueForMissingStub: _FakeConversationEntity_0(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         ),
-      ) as _i2.ConversationModel);
+      ) as _i2.ConversationEntity);
 }

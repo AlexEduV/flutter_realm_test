@@ -1,4 +1,4 @@
-class ApiResponse<T> {
+final class ApiResponse<T> {
   factory ApiResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) {
     return ApiResponse<T>(
       status: json['status'],

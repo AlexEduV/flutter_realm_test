@@ -1,5 +1,5 @@
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/repositories/inbox_repository.dart';
 
 class InboxRepositoryImpl implements InboxRepository {
@@ -8,22 +8,22 @@ class InboxRepositoryImpl implements InboxRepository {
   final MessagesRemoteDataSource _messagesRemoteDataSource;
 
   @override
-  Future<List<ConversationModel>> fetchConversations() {
+  Future<List<ConversationEntity>> fetchConversations() {
     return _messagesRemoteDataSource.loadConversations();
   }
 
   @override
-  ConversationModel getConversationById(String conversationId) {
+  ConversationEntity getConversationById(String conversationId) {
     return _messagesRemoteDataSource.getConversationById(conversationId);
   }
 
   @override
-  Future<void> saveConversations(List<ConversationModel> conversations) {
+  Future<void> saveConversations(List<ConversationEntity> conversations) {
     return _messagesRemoteDataSource.saveConversations(conversations);
   }
 
   @override
-  ConversationModel getConversationByOwnerId(String ownerId) {
+  ConversationEntity getConversationByOwnerId(String ownerId) {
     return _messagesRemoteDataSource.getOrCreateConversationByOwnerId(ownerId);
   }
 }

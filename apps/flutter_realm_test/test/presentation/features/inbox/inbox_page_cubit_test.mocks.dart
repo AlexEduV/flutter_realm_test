@@ -6,7 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/models/conversation_model.dart'
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart'
     as _i4;
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart'
     as _i2;
@@ -33,17 +33,17 @@ import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_us
 class MockFetchConversationsUseCase extends _i1.Mock
     implements _i2.FetchConversationsUseCase {
   @override
-  _i3.Future<List<_i4.ConversationModel>> call() => (super.noSuchMethod(
+  _i3.Future<List<_i4.ConversationEntity>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i3.Future<List<_i4.ConversationModel>>.value(
-            <_i4.ConversationModel>[]),
+        returnValue: _i3.Future<List<_i4.ConversationEntity>>.value(
+            <_i4.ConversationEntity>[]),
         returnValueForMissingStub:
-            _i3.Future<List<_i4.ConversationModel>>.value(
-                <_i4.ConversationModel>[]),
-      ) as _i3.Future<List<_i4.ConversationModel>>);
+            _i3.Future<List<_i4.ConversationEntity>>.value(
+                <_i4.ConversationEntity>[]),
+      ) as _i3.Future<List<_i4.ConversationEntity>>);
 }
 
 /// A class which mocks [SaveConversationsUseCase].
@@ -52,7 +52,7 @@ class MockFetchConversationsUseCase extends _i1.Mock
 class MockSaveConversationsUseCase extends _i1.Mock
     implements _i5.SaveConversationsUseCase {
   @override
-  _i3.Future<void> call(List<_i4.ConversationModel>? params) =>
+  _i3.Future<void> call(List<_i4.ConversationEntity>? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,

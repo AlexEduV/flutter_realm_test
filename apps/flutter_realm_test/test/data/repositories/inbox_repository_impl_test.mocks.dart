@@ -8,7 +8,7 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart'
     as _i3;
-import 'package:test_flutter_project/domain/models/conversation_model.dart'
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart'
     as _i2;
 
 // ignore_for_file: type=lint
@@ -25,9 +25,9 @@ import 'package:test_flutter_project/domain/models/conversation_model.dart'
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeConversationModel_0 extends _i1.SmartFake
-    implements _i2.ConversationModel {
-  _FakeConversationModel_0(
+class _FakeConversationEntity_0 extends _i1.SmartFake
+    implements _i2.ConversationEntity {
+  _FakeConversationEntity_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -52,7 +52,7 @@ class MockMessagesRemoteDataSource extends _i1.Mock
 
   @override
   _i4.Future<void> saveConversations(
-          List<_i2.ConversationModel>? conversations) =>
+          List<_i2.ConversationEntity>? conversations) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveConversations,
@@ -63,64 +63,64 @@ class MockMessagesRemoteDataSource extends _i1.Mock
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<List<_i2.ConversationModel>> loadConversations() =>
+  _i4.Future<List<_i2.ConversationEntity>> loadConversations() =>
       (super.noSuchMethod(
         Invocation.method(
           #loadConversations,
           [],
         ),
-        returnValue: _i4.Future<List<_i2.ConversationModel>>.value(
-            <_i2.ConversationModel>[]),
+        returnValue: _i4.Future<List<_i2.ConversationEntity>>.value(
+            <_i2.ConversationEntity>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i2.ConversationModel>>.value(
-                <_i2.ConversationModel>[]),
-      ) as _i4.Future<List<_i2.ConversationModel>>);
+            _i4.Future<List<_i2.ConversationEntity>>.value(
+                <_i2.ConversationEntity>[]),
+      ) as _i4.Future<List<_i2.ConversationEntity>>);
 
   @override
-  _i2.ConversationModel getConversationById(String? conversationId) =>
+  _i2.ConversationEntity getConversationById(String? conversationId) =>
       (super.noSuchMethod(
         Invocation.method(
           #getConversationById,
           [conversationId],
         ),
-        returnValue: _FakeConversationModel_0(
+        returnValue: _FakeConversationEntity_0(
           this,
           Invocation.method(
             #getConversationById,
             [conversationId],
           ),
         ),
-        returnValueForMissingStub: _FakeConversationModel_0(
+        returnValueForMissingStub: _FakeConversationEntity_0(
           this,
           Invocation.method(
             #getConversationById,
             [conversationId],
           ),
         ),
-      ) as _i2.ConversationModel);
+      ) as _i2.ConversationEntity);
 
   @override
-  _i2.ConversationModel getOrCreateConversationByOwnerId(String? ownerId) =>
+  _i2.ConversationEntity getOrCreateConversationByOwnerId(String? ownerId) =>
       (super.noSuchMethod(
         Invocation.method(
           #getOrCreateConversationByOwnerId,
           [ownerId],
         ),
-        returnValue: _FakeConversationModel_0(
+        returnValue: _FakeConversationEntity_0(
           this,
           Invocation.method(
             #getOrCreateConversationByOwnerId,
             [ownerId],
           ),
         ),
-        returnValueForMissingStub: _FakeConversationModel_0(
+        returnValueForMissingStub: _FakeConversationEntity_0(
           this,
           Invocation.method(
             #getOrCreateConversationByOwnerId,
             [ownerId],
           ),
         ),
-      ) as _i2.ConversationModel);
+      ) as _i2.ConversationEntity);
 
   @override
   void dispose() => super.noSuchMethod(

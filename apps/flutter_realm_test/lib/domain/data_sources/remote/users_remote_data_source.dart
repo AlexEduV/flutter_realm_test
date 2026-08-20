@@ -1,6 +1,6 @@
 import '../../entities/user_entity.dart';
 
-abstract class UsersRemoteDataSource {
+abstract interface class UsersRemoteDataSource {
   late List<UserEntity> users;
 
   Future<void> saveSeedUsers(List<UserEntity> users);

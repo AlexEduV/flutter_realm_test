@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:realm/realm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
@@ -27,7 +27,7 @@ import 'package:test_flutter_project/presentation/features/search/search_page_cu
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 
 import '../common/fakes/fake_realm.dart';
-import '../domain/repositories/base_local_storage_test.mocks.dart';
+import '../domain/repositories/app_local_storage_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -38,10 +38,10 @@ void main() {
     await serviceLocator.reset();
     serviceLocator.registerSingleton<Realm>(FakeRealm());
 
-    final mockLocalStorage = MockBaseLocalStorage();
+    final mockLocalStorage = MockAppLocalStorage();
     when(mockLocalStorage.getAll()).thenReturn([CarEntity.empty()]);
 
-    serviceLocator.registerSingleton<BaseLocalStorage>(mockLocalStorage);
+    serviceLocator.registerSingleton<AppLocalStorage>(mockLocalStorage);
     // Register other mocks as needed
     await initDependenciesContainer();
   });
@@ -51,7 +51,7 @@ void main() {
   });
 
   test('All dependencies are registered and resolvable', () {
-    expect(serviceLocator.isRegistered<BaseLocalStorage>(), isTrue);
+    expect(serviceLocator.isRegistered<AppLocalStorage>(), isTrue);
     expect(serviceLocator.isRegistered<CarRemoteDataSource>(), isTrue);
     expect(serviceLocator.isRegistered<CarRepository>(), isTrue);
     expect(serviceLocator.isRegistered<PermissionRepository>(), isTrue);
@@ -77,7 +77,7 @@ void main() {
   });
 
   test('All dependencies can be resolved', () {
-    expect(serviceLocator<BaseLocalStorage>(), isA<BaseLocalStorage>());
+    expect(serviceLocator<AppLocalStorage>(), isA<AppLocalStorage>());
     expect(serviceLocator<CarRemoteDataSource>(), isA<CarRemoteDataSource>());
     expect(serviceLocator<CarRepository>(), isA<CarRepository>());
     expect(serviceLocator<PermissionRepository>(), isA<PermissionRepository>());

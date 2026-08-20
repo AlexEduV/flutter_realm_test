@@ -1,3 +1,3 @@
-abstract class ExternalLinkService {
+abstract interface class ExternalLinkService {
   Future<void> openUrl(String? url);
 }

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
 
 import 'fetch_conversations_use_case_test.mocks.dart';
@@ -16,8 +16,8 @@ void main() {
 
   test('should call saveConversations on repository with correct conversations', () async {
     final conversations = [
-      ConversationModel(conversationId: '1', ownerId: 'owner1', messages: []),
-      ConversationModel(conversationId: '2', ownerId: 'owner2', messages: []),
+      ConversationEntity(conversationId: '1', ownerId: 'owner1', messages: []),
+      ConversationEntity(conversationId: '2', ownerId: 'owner2', messages: []),
     ];
     when(mockRepository.saveConversations(conversations)).thenAnswer((_) async {});
 

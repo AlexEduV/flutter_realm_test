@@ -11,10 +11,10 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i14;
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
     as _i12;
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart'
+    as _i4;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i5;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i13;
-import 'package:test_flutter_project/domain/models/conversation_model.dart'
-    as _i4;
 import 'package:test_flutter_project/domain/models/message_model.dart' as _i8;
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart'
     as _i6;
@@ -61,9 +61,9 @@ class _FakeMessagesPageState_1 extends _i1.SmartFake
         );
 }
 
-class _FakeConversationModel_2 extends _i1.SmartFake
-    implements _i4.ConversationModel {
-  _FakeConversationModel_2(
+class _FakeConversationEntity_2 extends _i1.SmartFake
+    implements _i4.ConversationEntity {
+  _FakeConversationEntity_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -171,7 +171,7 @@ class MockInboxPageCubit extends _i1.Mock implements _i6.InboxPageCubit {
       ) as _i7.Future<void>);
 
   @override
-  int getUnreadCountFromConversation(_i4.ConversationModel? conversation) =>
+  int getUnreadCountFromConversation(_i4.ConversationEntity? conversation) =>
       (super.noSuchMethod(
         Invocation.method(
           #getUnreadCountFromConversation,
@@ -338,27 +338,27 @@ class MockMessagesPageCubit extends _i1.Mock implements _i11.MessagesPageCubit {
       ) as _i7.Future<_i12.AttachmentEntity?>);
 
   @override
-  _i4.ConversationModel getConversationById(String? conversationId) =>
+  _i4.ConversationEntity getConversationById(String? conversationId) =>
       (super.noSuchMethod(
         Invocation.method(
           #getConversationById,
           [conversationId],
         ),
-        returnValue: _FakeConversationModel_2(
+        returnValue: _FakeConversationEntity_2(
           this,
           Invocation.method(
             #getConversationById,
             [conversationId],
           ),
         ),
-        returnValueForMissingStub: _FakeConversationModel_2(
+        returnValueForMissingStub: _FakeConversationEntity_2(
           this,
           Invocation.method(
             #getConversationById,
             [conversationId],
           ),
         ),
-      ) as _i4.ConversationModel);
+      ) as _i4.ConversationEntity);
 
   @override
   _i5.OwnerEntity getOwnerById(String? ownerId) => (super.noSuchMethod(
@@ -384,7 +384,7 @@ class MockMessagesPageCubit extends _i1.Mock implements _i11.MessagesPageCubit {
 
   @override
   Map<String, _i13.UserEntity?> getUsersFromConversation(
-          _i4.ConversationModel? conversation) =>
+          _i4.ConversationEntity? conversation) =>
       (super.noSuchMethod(
         Invocation.method(
           #getUsersFromConversation,

@@ -5,7 +5,7 @@ import '../../../data/data_sources/remote/seed_owners_remote_data_source_impl.da
 import '../../../data/data_sources/remote/seed_users_remote_data_source_impl.dart';
 import '../../../data/repositories/owner_repository_impl.dart';
 import '../../../data/repositories/user_repository_impl.dart';
-import '../../../domain/data_sources/local/base_local_storage.dart';
+import '../../../domain/data_sources/local/app_local_storage.dart';
 import '../../../domain/data_sources/remote/owners_remote_data_source.dart';
 import '../../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../../domain/repositories/auth_repository.dart';
@@ -53,7 +53,7 @@ void registerUserModule(GetIt serviceLocator) {
 
   serviceLocator.registerLazySingleton(
     () => UserDataCubit(
-      serviceLocator<BaseLocalStorage>(),
+      serviceLocator<AppLocalStorage>(),
       serviceLocator<AuthRepository>(),
       serviceLocator<CheckLocationServiceStatusUseCase>(),
       serviceLocator<OpenAppSettingsUseCase>(),

@@ -1,4 +1,4 @@
-abstract class LoggingService {
+abstract interface class LoggingService {
   void verbose(String message);
   void debug(String message);
   void info(String message);

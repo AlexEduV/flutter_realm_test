@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/core/router/app_router.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
@@ -24,7 +24,7 @@ class InboxListItem extends StatelessWidget {
     super.key,
   });
 
-  final ConversationModel conversation;
+  final ConversationEntity conversation;
   final OwnerEntity owner;
   final int unreadCount;
 

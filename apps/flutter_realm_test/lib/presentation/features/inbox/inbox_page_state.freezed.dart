@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$InboxPageState {
   bool get isLoading;
-  List<ConversationModel> get conversations;
+  List<ConversationEntity> get conversations;
 
   /// Create a copy of InboxPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -53,7 +53,7 @@ abstract mixin class $InboxPageStateCopyWith<$Res> {
           InboxPageState value, $Res Function(InboxPageState) _then) =
       _$InboxPageStateCopyWithImpl;
   @useResult
-  $Res call({bool isLoading, List<ConversationModel> conversations});
+  $Res call({bool isLoading, List<ConversationEntity> conversations});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$InboxPageStateCopyWithImpl<$Res>
       conversations: null == conversations
           ? _self.conversations
           : conversations // ignore: cast_nullable_to_non_nullable
-              as List<ConversationModel>,
+              as List<ConversationEntity>,
     ));
   }
 }
@@ -90,16 +90,16 @@ class _$InboxPageStateCopyWithImpl<$Res>
 class _InboxPageState implements InboxPageState {
   const _InboxPageState(
       {this.isLoading = false,
-      final List<ConversationModel> conversations = const []})
+      final List<ConversationEntity> conversations = const []})
       : _conversations = conversations;
 
   @override
   @JsonKey()
   final bool isLoading;
-  final List<ConversationModel> _conversations;
+  final List<ConversationEntity> _conversations;
   @override
   @JsonKey()
-  List<ConversationModel> get conversations {
+  List<ConversationEntity> get conversations {
     if (_conversations is EqualUnmodifiableListView) return _conversations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_conversations);
@@ -142,7 +142,7 @@ abstract mixin class _$InboxPageStateCopyWith<$Res>
       __$InboxPageStateCopyWithImpl;
   @override
   @useResult
-  $Res call({bool isLoading, List<ConversationModel> conversations});
+  $Res call({bool isLoading, List<ConversationEntity> conversations});
 }
 
 /// @nodoc
@@ -169,7 +169,7 @@ class __$InboxPageStateCopyWithImpl<$Res>
       conversations: null == conversations
           ? _self._conversations
           : conversations // ignore: cast_nullable_to_non_nullable
-              as List<ConversationModel>,
+              as List<ConversationEntity>,
     ));
   }
 }

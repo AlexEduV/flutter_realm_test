@@ -1,11 +1,11 @@
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 
-abstract class InboxRepository {
-  Future<List<ConversationModel>> fetchConversations();
+abstract interface class InboxRepository {
+  Future<List<ConversationEntity>> fetchConversations();
 
-  ConversationModel getConversationById(String conversationId);
+  ConversationEntity getConversationById(String conversationId);
 
-  ConversationModel getConversationByOwnerId(String ownerId);
+  ConversationEntity getConversationByOwnerId(String ownerId);
 
-  Future<void> saveConversations(List<ConversationModel> conversations);
+  Future<void> saveConversations(List<ConversationEntity> conversations);
 }

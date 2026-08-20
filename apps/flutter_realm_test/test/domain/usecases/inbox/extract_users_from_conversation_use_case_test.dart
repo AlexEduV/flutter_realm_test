@@ -2,8 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
+import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart';
@@ -56,7 +56,7 @@ void main() {
         date: DateTime.now(),
       ),
     ];
-    final conversation = ConversationModel(messages: messages, conversationId: '1', ownerId: '2');
+    final conversation = ConversationEntity(messages: messages, conversationId: '1', ownerId: '2');
 
     when(mockGetUserByIdUseCase.call('1')).thenReturn(user1);
     when(mockGetUserByIdUseCase.call('2')).thenReturn(user2);
@@ -81,7 +81,11 @@ void main() {
         date: DateTime.now(),
       ),
     ];
-    final conversation = ConversationModel(messages: messages, ownerId: '1', conversationId: '505');
+    final conversation = ConversationEntity(
+      messages: messages,
+      ownerId: '1',
+      conversationId: '505',
+    );
 
     when(mockGetUserByIdUseCase.call('3')).thenReturn(null);
 

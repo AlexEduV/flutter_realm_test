@@ -8,7 +8,7 @@ import 'dart:async' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:permission_handler/permission_handler.dart' as _i13;
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart'
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart'
     as _i8;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i2;
@@ -207,10 +207,10 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
       ) as _i5.Future<bool>);
 }
 
-/// A class which mocks [BaseLocalStorage].
+/// A class which mocks [AppLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBaseLocalStorage extends _i1.Mock implements _i8.BaseLocalStorage {
+class MockAppLocalStorage extends _i1.Mock implements _i8.AppLocalStorage {
   @override
   List<_i3.CarEntity> getAll() => (super.noSuchMethod(
         Invocation.method(
