@@ -9,9 +9,9 @@ import 'package:test_flutter_project/domain/data_sources/remote/gifs_remote_data
 import '../../../common/constants/api_constants.dart';
 
 class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
-  GifsRemoteDataSourceImpl(this.client, this._apiKey);
+  GifsRemoteDataSourceImpl(this._client, this._apiKey);
 
-  final AppHttpClient client;
+  final AppHttpClient _client;
   final String _apiKey;
 
   @override
@@ -24,7 +24,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     final path = ApiConstants.klipySearchPath.replaceFirst('{API_KEY}', _apiKey);
     final url = Uri.https(ApiConstants.klipyApiHost, path, {'q': query, 'limit': limit.toString()});
 
-    final response = await client.get(url);
+    final response = await _client.get(url);
     return _processKlipyResponse(response);
   }
 
@@ -33,7 +33,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     final path = ApiConstants.klipyTrendingPath.replaceFirst('{API_KEY}', _apiKey);
     final url = Uri.https(ApiConstants.klipyApiHost, path);
 
-    final response = await client.get(url);
+    final response = await _client.get(url);
     return _processKlipyResponse(response);
   }
 }
