@@ -8,15 +8,12 @@ import 'dart:async' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
 import 'package:permission_handler/permission_handler.dart' as _i13;
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart'
-    as _i8;
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart' as _i8;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_flutter_project/domain/models/auth_result.dart' as _i6;
-import 'package:test_flutter_project/domain/repositories/auth_repository.dart'
-    as _i4;
-import 'package:test_flutter_project/domain/services/logging_service.dart'
-    as _i17;
+import 'package:test_flutter_project/domain/repositories/auth_repository.dart' as _i4;
+import 'package:test_flutter_project/domain/services/logging_service.dart' as _i17;
 import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart'
     as _i16;
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
@@ -29,8 +26,7 @@ import 'package:test_flutter_project/domain/usecases/permissions/check_location_
     as _i12;
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
     as _i11;
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart'
-    as _i14;
+import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart' as _i14;
 import 'package:test_flutter_project/utils/localisation_util.dart' as _i18;
 
 // ignore_for_file: type=lint
@@ -48,23 +44,11 @@ import 'package:test_flutter_project/utils/localisation_util.dart' as _i18;
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
-  _FakeUserEntity_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeUserEntity_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
-  _FakeCarEntity_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
+  _FakeCarEntity_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
 }
 
 /// A class which mocks [AuthRepository].
@@ -72,44 +56,23 @@ class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
   @override
-  _i5.Future<_i6.AuthResult> login({
-    required String? email,
-    required String? password,
-  }) =>
+  _i5.Future<_i6.AuthResult> login({required String? email, required String? password}) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #login,
-          [],
-          {
-            #email: email,
-            #password: password,
-          },
-        ),
-        returnValue:
-            _i5.Future<_i6.AuthResult>.value(_i7.dummyValue<_i6.AuthResult>(
-          this,
-          Invocation.method(
-            #login,
-            [],
-            {
-              #email: email,
-              #password: password,
-            },
-          ),
-        )),
-        returnValueForMissingStub:
-            _i5.Future<_i6.AuthResult>.value(_i7.dummyValue<_i6.AuthResult>(
-          this,
-          Invocation.method(
-            #login,
-            [],
-            {
-              #email: email,
-              #password: password,
-            },
-          ),
-        )),
-      ) as _i5.Future<_i6.AuthResult>);
+            Invocation.method(#login, [], {#email: email, #password: password}),
+            returnValue: _i5.Future<_i6.AuthResult>.value(
+              _i7.dummyValue<_i6.AuthResult>(
+                this,
+                Invocation.method(#login, [], {#email: email, #password: password}),
+              ),
+            ),
+            returnValueForMissingStub: _i5.Future<_i6.AuthResult>.value(
+              _i7.dummyValue<_i6.AuthResult>(
+                this,
+                Invocation.method(#login, [], {#email: email, #password: password}),
+              ),
+            ),
+          )
+          as _i5.Future<_i6.AuthResult>);
 
   @override
   _i5.Future<_i6.AuthResult> register({
@@ -119,232 +82,156 @@ class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
     required String? lastName,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #register,
-          [],
-          {
-            #email: email,
-            #password: password,
-            #firstName: firstName,
-            #lastName: lastName,
-          },
-        ),
-        returnValue:
-            _i5.Future<_i6.AuthResult>.value(_i7.dummyValue<_i6.AuthResult>(
-          this,
-          Invocation.method(
-            #register,
-            [],
-            {
+            Invocation.method(#register, [], {
               #email: email,
               #password: password,
               #firstName: firstName,
               #lastName: lastName,
-            },
-          ),
-        )),
-        returnValueForMissingStub:
-            _i5.Future<_i6.AuthResult>.value(_i7.dummyValue<_i6.AuthResult>(
-          this,
-          Invocation.method(
-            #register,
-            [],
-            {
-              #email: email,
-              #password: password,
-              #firstName: firstName,
-              #lastName: lastName,
-            },
-          ),
-        )),
-      ) as _i5.Future<_i6.AuthResult>);
+            }),
+            returnValue: _i5.Future<_i6.AuthResult>.value(
+              _i7.dummyValue<_i6.AuthResult>(
+                this,
+                Invocation.method(#register, [], {
+                  #email: email,
+                  #password: password,
+                  #firstName: firstName,
+                  #lastName: lastName,
+                }),
+              ),
+            ),
+            returnValueForMissingStub: _i5.Future<_i6.AuthResult>.value(
+              _i7.dummyValue<_i6.AuthResult>(
+                this,
+                Invocation.method(#register, [], {
+                  #email: email,
+                  #password: password,
+                  #firstName: firstName,
+                  #lastName: lastName,
+                }),
+              ),
+            ),
+          )
+          as _i5.Future<_i6.AuthResult>);
 
   @override
-  _i5.Future<void> logOut() => (super.noSuchMethod(
-        Invocation.method(
-          #logOut,
-          [],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<void> deleteAccount(String? email) => (super.noSuchMethod(
-        Invocation.method(
-          #deleteAccount,
-          [email],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-
-  @override
-  _i5.Future<void> updateUser(
-    String? email,
-    _i2.UserEntity? data,
-  ) =>
+  _i5.Future<void> logOut() =>
       (super.noSuchMethod(
-        Invocation.method(
-          #updateUser,
-          [
-            email,
-            data,
-          ],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+            Invocation.method(#logOut, []),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
 
   @override
-  _i5.Future<bool> isUserLoggedIn() => (super.noSuchMethod(
-        Invocation.method(
-          #isUserLoggedIn,
-          [],
-        ),
-        returnValue: _i5.Future<bool>.value(false),
-        returnValueForMissingStub: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+  _i5.Future<void> deleteAccount(String? email) =>
+      (super.noSuchMethod(
+            Invocation.method(#deleteAccount, [email]),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> updateUser(String? email, _i2.UserEntity? data) =>
+      (super.noSuchMethod(
+            Invocation.method(#updateUser, [email, data]),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
+
+  @override
+  _i5.Future<bool> isUserLoggedIn() =>
+      (super.noSuchMethod(
+            Invocation.method(#isUserLoggedIn, []),
+            returnValue: _i5.Future<bool>.value(false),
+            returnValueForMissingStub: _i5.Future<bool>.value(false),
+          )
+          as _i5.Future<bool>);
 }
 
 /// A class which mocks [BaseLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBaseLocalStorage extends _i1.Mock implements _i8.BaseLocalStorage {
+class MockBaseLocalStorage extends _i1.Mock implements _i8.AppLocalStorage {
   @override
-  List<_i3.CarEntity> getAll() => (super.noSuchMethod(
-        Invocation.method(
-          #getAll,
-          [],
-        ),
-        returnValue: <_i3.CarEntity>[],
-        returnValueForMissingStub: <_i3.CarEntity>[],
-      ) as List<_i3.CarEntity>);
+  List<_i3.CarEntity> getAll() =>
+      (super.noSuchMethod(
+            Invocation.method(#getAll, []),
+            returnValue: <_i3.CarEntity>[],
+            returnValueForMissingStub: <_i3.CarEntity>[],
+          )
+          as List<_i3.CarEntity>);
 
   @override
-  void add(dynamic T) => super.noSuchMethod(
-        Invocation.method(
-          #add,
-          [T],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void add(dynamic T) =>
+      super.noSuchMethod(Invocation.method(#add, [T]), returnValueForMissingStub: null);
 
   @override
-  void update(dynamic T) => super.noSuchMethod(
-        Invocation.method(
-          #update,
-          [T],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void update(dynamic T) =>
+      super.noSuchMethod(Invocation.method(#update, [T]), returnValueForMissingStub: null);
 
   @override
-  _i5.Stream<dynamic> watch<T>() => (super.noSuchMethod(
-        Invocation.method(
-          #watch,
-          [],
-        ),
-        returnValue: _i5.Stream<dynamic>.empty(),
-        returnValueForMissingStub: _i5.Stream<dynamic>.empty(),
-      ) as _i5.Stream<dynamic>);
+  _i5.Stream<dynamic> watch<T>() =>
+      (super.noSuchMethod(
+            Invocation.method(#watch, []),
+            returnValue: _i5.Stream<dynamic>.empty(),
+            returnValueForMissingStub: _i5.Stream<dynamic>.empty(),
+          )
+          as _i5.Stream<dynamic>);
 
   @override
-  void deleteAllCars() => super.noSuchMethod(
-        Invocation.method(
-          #deleteAllCars,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void deleteAllCars() =>
+      super.noSuchMethod(Invocation.method(#deleteAllCars, []), returnValueForMissingStub: null);
 
   @override
-  void deleteById(String? id) => super.noSuchMethod(
-        Invocation.method(
-          #deleteById,
-          [id],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void deleteById(String? id) =>
+      super.noSuchMethod(Invocation.method(#deleteById, [id]), returnValueForMissingStub: null);
 
   @override
-  _i2.UserEntity initUser() => (super.noSuchMethod(
-        Invocation.method(
-          #initUser,
-          [],
-        ),
-        returnValue: _FakeUserEntity_0(
-          this,
-          Invocation.method(
-            #initUser,
-            [],
-          ),
-        ),
-        returnValueForMissingStub: _FakeUserEntity_0(
-          this,
-          Invocation.method(
-            #initUser,
-            [],
-          ),
-        ),
-      ) as _i2.UserEntity);
+  _i2.UserEntity initUser() =>
+      (super.noSuchMethod(
+            Invocation.method(#initUser, []),
+            returnValue: _FakeUserEntity_0(this, Invocation.method(#initUser, [])),
+            returnValueForMissingStub: _FakeUserEntity_0(this, Invocation.method(#initUser, [])),
+          )
+          as _i2.UserEntity);
 
   @override
-  _i3.CarEntity getCarById(String? id) => (super.noSuchMethod(
-        Invocation.method(
-          #getCarById,
-          [id],
-        ),
-        returnValue: _FakeCarEntity_1(
-          this,
-          Invocation.method(
-            #getCarById,
-            [id],
-          ),
-        ),
-        returnValueForMissingStub: _FakeCarEntity_1(
-          this,
-          Invocation.method(
-            #getCarById,
-            [id],
-          ),
-        ),
-      ) as _i3.CarEntity);
+  _i3.CarEntity getCarById(String? id) =>
+      (super.noSuchMethod(
+            Invocation.method(#getCarById, [id]),
+            returnValue: _FakeCarEntity_1(this, Invocation.method(#getCarById, [id])),
+            returnValueForMissingStub: _FakeCarEntity_1(this, Invocation.method(#getCarById, [id])),
+          )
+          as _i3.CarEntity);
 
   @override
-  int getMaxCarId() => (super.noSuchMethod(
-        Invocation.method(
-          #getMaxCarId,
-          [],
-        ),
-        returnValue: 0,
-        returnValueForMissingStub: 0,
-      ) as int);
+  int getMaxCarId() =>
+      (super.noSuchMethod(
+            Invocation.method(#getMaxCarId, []),
+            returnValue: 0,
+            returnValueForMissingStub: 0,
+          )
+          as int);
 
   @override
-  void clearUser() => super.noSuchMethod(
-        Invocation.method(
-          #clearUser,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void clearUser() =>
+      super.noSuchMethod(Invocation.method(#clearUser, []), returnValueForMissingStub: null);
 }
 
 /// A class which mocks [OpenAppSettingsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOpenAppSettingsUseCase extends _i1.Mock
-    implements _i9.OpenAppSettingsUseCase {
+class MockOpenAppSettingsUseCase extends _i1.Mock implements _i9.OpenAppSettingsUseCase {
   @override
-  _i5.Future<bool> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: _i5.Future<bool>.value(false),
-        returnValueForMissingStub: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+  _i5.Future<bool> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i5.Future<bool>.value(false),
+            returnValueForMissingStub: _i5.Future<bool>.value(false),
+          )
+          as _i5.Future<bool>);
 }
 
 /// A class which mocks [CheckLocationServiceStatusUseCase].
@@ -353,14 +240,13 @@ class MockOpenAppSettingsUseCase extends _i1.Mock
 class MockCheckLocationServiceStatusUseCase extends _i1.Mock
     implements _i10.CheckLocationServiceStatusUseCase {
   @override
-  _i5.Future<bool> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: _i5.Future<bool>.value(false),
-        returnValueForMissingStub: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+  _i5.Future<bool> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i5.Future<bool>.value(false),
+            returnValueForMissingStub: _i5.Future<bool>.value(false),
+          )
+          as _i5.Future<bool>);
 }
 
 /// A class which mocks [RequestLocationPermissionUseCase].
@@ -369,14 +255,13 @@ class MockCheckLocationServiceStatusUseCase extends _i1.Mock
 class MockRequestLocationPermissionUseCase extends _i1.Mock
     implements _i11.RequestLocationPermissionUseCase {
   @override
-  _i5.Future<bool> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: _i5.Future<bool>.value(false),
-        returnValueForMissingStub: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+  _i5.Future<bool> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i5.Future<bool>.value(false),
+            returnValueForMissingStub: _i5.Future<bool>.value(false),
+          )
+          as _i5.Future<bool>);
 }
 
 /// A class which mocks [CheckLocationPermissionStatusUseCase].
@@ -385,62 +270,48 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
 class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
     implements _i12.CheckLocationPermissionStatusUseCase {
   @override
-  _i5.Future<_i13.PermissionStatus> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: _i5.Future<_i13.PermissionStatus>.value(
-            _i13.PermissionStatus.denied),
-        returnValueForMissingStub: _i5.Future<_i13.PermissionStatus>.value(
-            _i13.PermissionStatus.denied),
-      ) as _i5.Future<_i13.PermissionStatus>);
+  _i5.Future<_i13.PermissionStatus> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i5.Future<_i13.PermissionStatus>.value(_i13.PermissionStatus.denied),
+            returnValueForMissingStub: _i5.Future<_i13.PermissionStatus>.value(
+              _i13.PermissionStatus.denied,
+            ),
+          )
+          as _i5.Future<_i13.PermissionStatus>);
 }
 
 /// A class which mocks [GetUserByEmailUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetUserByEmailUseCase extends _i1.Mock
-    implements _i14.GetUserByEmailUseCase {
+class MockGetUserByEmailUseCase extends _i1.Mock implements _i14.GetUserByEmailUseCase {
   @override
-  _i2.UserEntity? call(String? params) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i2.UserEntity?);
+  _i2.UserEntity? call(String? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]), returnValueForMissingStub: null)
+          as _i2.UserEntity?);
 }
 
 /// A class which mocks [PickImageFromGalleryUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPickImageFromGalleryUseCase extends _i1.Mock
-    implements _i15.PickImageFromGalleryUseCase {
+class MockPickImageFromGalleryUseCase extends _i1.Mock implements _i15.PickImageFromGalleryUseCase {
   @override
-  _i5.Future<String?> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: _i5.Future<String?>.value(),
-        returnValueForMissingStub: _i5.Future<String?>.value(),
-      ) as _i5.Future<String?>);
+  _i5.Future<String?> call() =>
+      (super.noSuchMethod(
+            Invocation.method(#call, []),
+            returnValue: _i5.Future<String?>.value(),
+            returnValueForMissingStub: _i5.Future<String?>.value(),
+          )
+          as _i5.Future<String?>);
 }
 
 /// A class which mocks [DeleteCarByIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDeleteCarByIdUseCase extends _i1.Mock
-    implements _i16.DeleteCarByIdUseCase {
+class MockDeleteCarByIdUseCase extends _i1.Mock implements _i16.DeleteCarByIdUseCase {
   @override
-  void call(String? params) => super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void call(String? params) =>
+      super.noSuchMethod(Invocation.method(#call, [params]), returnValueForMissingStub: null);
 }
 
 /// A class which mocks [LoggingService].
@@ -448,58 +319,26 @@ class MockDeleteCarByIdUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockLoggingService extends _i1.Mock implements _i17.LoggingService {
   @override
-  void verbose(String? message) => super.noSuchMethod(
-        Invocation.method(
-          #verbose,
-          [message],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void verbose(String? message) =>
+      super.noSuchMethod(Invocation.method(#verbose, [message]), returnValueForMissingStub: null);
 
   @override
-  void debug(String? message) => super.noSuchMethod(
-        Invocation.method(
-          #debug,
-          [message],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void debug(String? message) =>
+      super.noSuchMethod(Invocation.method(#debug, [message]), returnValueForMissingStub: null);
 
   @override
-  void info(String? message) => super.noSuchMethod(
-        Invocation.method(
-          #info,
-          [message],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void info(String? message) =>
+      super.noSuchMethod(Invocation.method(#info, [message]), returnValueForMissingStub: null);
 
   @override
-  void warning(String? message) => super.noSuchMethod(
-        Invocation.method(
-          #warning,
-          [message],
-        ),
-        returnValueForMissingStub: null,
-      );
+  void warning(String? message) =>
+      super.noSuchMethod(Invocation.method(#warning, [message]), returnValueForMissingStub: null);
 
   @override
-  void error(
-    String? message, {
-    Object? error,
-    StackTrace? stackTrace,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(
-          #error,
-          [message],
-          {
-            #error: error,
-            #stackTrace: stackTrace,
-          },
-        ),
-        returnValueForMissingStub: null,
-      );
+  void error(String? message, {Object? error, StackTrace? stackTrace}) => super.noSuchMethod(
+    Invocation.method(#error, [message], {#error: error, #stackTrace: stackTrace}),
+    returnValueForMissingStub: null,
+  );
 }
 
 /// A class which mocks [LocalisationUtil].
@@ -509,57 +348,39 @@ class MockLocalisationUtil extends _i1.Mock implements _i18.LocalisationUtil {
   @override
   _i5.Future<Map<String, dynamic>> loadRawJson(String? path) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #loadRawJson,
-          [path],
-        ),
-        returnValue:
-            _i5.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-        returnValueForMissingStub:
-            _i5.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i5.Future<Map<String, dynamic>>);
+            Invocation.method(#loadRawJson, [path]),
+            returnValue: _i5.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+            returnValueForMissingStub: _i5.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+          )
+          as _i5.Future<Map<String, dynamic>>);
 
   @override
   Map<String, String>? extractLocalisations(Map<String, dynamic>? rawJson) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #extractLocalisations,
-          [rawJson],
-        ),
-        returnValueForMissingStub: null,
-      ) as Map<String, String>?);
+            Invocation.method(#extractLocalisations, [rawJson]),
+            returnValueForMissingStub: null,
+          )
+          as Map<String, String>?);
 
   @override
   _i5.Future<void> saveLocalisations(Map<String, dynamic>? localisations) =>
       (super.noSuchMethod(
-        Invocation.method(
-          #saveLocalisations,
-          [localisations],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+            Invocation.method(#saveLocalisations, [localisations]),
+            returnValue: _i5.Future<void>.value(),
+            returnValueForMissingStub: _i5.Future<void>.value(),
+          )
+          as _i5.Future<void>);
 
   @override
-  _i5.Future<String> getLocalisation(String? key) => (super.noSuchMethod(
-        Invocation.method(
-          #getLocalisation,
-          [key],
-        ),
-        returnValue: _i5.Future<String>.value(_i7.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getLocalisation,
-            [key],
-          ),
-        )),
-        returnValueForMissingStub:
-            _i5.Future<String>.value(_i7.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getLocalisation,
-            [key],
-          ),
-        )),
-      ) as _i5.Future<String>);
+  _i5.Future<String> getLocalisation(String? key) =>
+      (super.noSuchMethod(
+            Invocation.method(#getLocalisation, [key]),
+            returnValue: _i5.Future<String>.value(
+              _i7.dummyValue<String>(this, Invocation.method(#getLocalisation, [key])),
+            ),
+            returnValueForMissingStub: _i5.Future<String>.value(
+              _i7.dummyValue<String>(this, Invocation.method(#getLocalisation, [key])),
+            ),
+          )
+          as _i5.Future<String>);
 }

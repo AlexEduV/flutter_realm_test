@@ -6,13 +6,13 @@ import 'package:test_flutter_project/common/enums/request_type.dart';
 import 'package:test_flutter_project/common/enums/server_failure.dart';
 import 'package:test_flutter_project/data/network/app_http_client.dart';
 
-import '../../data/network/base_interceptor.dart';
+import '../../data/network/app_interceptor.dart';
 
 class AppHttpClientImpl implements AppHttpClient {
   AppHttpClientImpl(this._client, this._appInterceptor);
 
   final http.Client _client;
-  final BaseInterceptor _appInterceptor;
+  final AppInterceptor _appInterceptor;
 
   @override
   Future<Either<ServerFailure, String>> get(Uri url, {Map<String, String>? headers}) {

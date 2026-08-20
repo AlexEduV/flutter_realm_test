@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/app_remote_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
@@ -11,7 +11,7 @@ class SeedUsersRemoteDataSourceImpl implements UsersRemoteDataSource {
   SeedUsersRemoteDataSourceImpl(this._remoteStorage);
 
   static const _seedUsersLocalStorageKey = 'seed_users';
-  final BaseRemoteStorage _remoteStorage;
+  final AppRemoteStorage _remoteStorage;
 
   @override
   int getMaxUserId() {

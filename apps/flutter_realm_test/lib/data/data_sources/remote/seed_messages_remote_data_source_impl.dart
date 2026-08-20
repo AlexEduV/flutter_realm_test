@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:test_flutter_project/common/extensions/list_extension.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/app_remote_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_flutter_project/domain/models/conversation_model.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
@@ -14,7 +14,7 @@ class SeedMessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
 
   List<ConversationModel> _conversationsList = [];
   final TimeService _timeService;
-  final BaseRemoteStorage _remoteStorage;
+  final AppRemoteStorage _remoteStorage;
 
   @override
   void initSampleData(String currentUserId) {

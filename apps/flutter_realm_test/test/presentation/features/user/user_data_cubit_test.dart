@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
@@ -26,7 +26,7 @@ import 'user_data_cubit_test.mocks.dart' hide MockBaseLocalStorage;
 
 @GenerateNiceMocks([
   MockSpec<AuthRepository>(),
-  MockSpec<BaseLocalStorage>(),
+  MockSpec<AppLocalStorage>(),
   MockSpec<OpenAppSettingsUseCase>(),
   MockSpec<CheckLocationServiceStatusUseCase>(),
   MockSpec<RequestLocationPermissionUseCase>(),

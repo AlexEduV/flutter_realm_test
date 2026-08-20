@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/app_remote_storage.dart';
 
-class SharedPreferencesStorage implements BaseRemoteStorage {
+class SharedPreferencesStorage implements AppRemoteStorage {
   SharedPreferencesStorage(this._prefs);
 
   final SharedPreferences _prefs;

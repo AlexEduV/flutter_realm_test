@@ -3,7 +3,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
@@ -36,7 +36,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._localisationUtil,
   ) : super(UserDataState(user: UserEntity.empty()));
 
-  final BaseLocalStorage _localStorage;
+  final AppLocalStorage _localStorage;
   final AuthRepository _authRepository;
 
   final OpenAppSettingsUseCase _openAppSettingsUseCase;

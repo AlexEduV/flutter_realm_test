@@ -10,7 +10,7 @@ import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/data/dto/car_dto.dart';
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
@@ -19,7 +19,7 @@ import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 class SeedCarRemoteDataSourceImpl implements CarRemoteDataSource {
   SeedCarRemoteDataSourceImpl(this._localStorage, this._ownersRemoteDataSource);
 
-  final BaseLocalStorage _localStorage;
+  final AppLocalStorage _localStorage;
   final OwnersRemoteDataSource _ownersRemoteDataSource;
 
   // 1. Single source of truth

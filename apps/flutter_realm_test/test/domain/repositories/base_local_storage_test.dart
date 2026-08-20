@@ -7,14 +7,14 @@ import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
 import 'base_local_storage_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<BaseLocalStorage>()])
+@GenerateNiceMocks([MockSpec<AppLocalStorage>()])
 void main() {
   late MockBaseLocalStorage mockStorage;
 

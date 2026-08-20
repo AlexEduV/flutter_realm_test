@@ -1,5 +1,5 @@
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/app_remote_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/messages_remote_data_source.dart';
 import 'package:test_flutter_project/domain/models/auth_error_code.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
@@ -19,8 +19,8 @@ class AuthRepositoryImpl implements AuthRepository {
     this._ownerRepository,
   );
 
-  final BaseLocalStorage _localStorage;
-  final BaseRemoteStorage _remoteStorage;
+  final AppLocalStorage _localStorage;
+  final AppRemoteStorage _remoteStorage;
   final OwnerRepository _ownerRepository;
   final UsersRemoteDataSource _usersRemoteDataSource;
   final MessagesRemoteDataSource _messagesRemoteDataSource;

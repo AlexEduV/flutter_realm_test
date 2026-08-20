@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:realm/realm.dart';
 import 'package:test_flutter_project/data/models/scheme.dart';
-import 'package:test_flutter_project/domain/data_sources/local/base_local_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart';
 import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
@@ -13,7 +13,7 @@ import '../../domain/entities/car_entity.dart';
 class CarRepositoryImpl implements CarRepository {
   CarRepositoryImpl(this._localStorage, this._carRemoteDataSource, this._loggingService);
 
-  final BaseLocalStorage _localStorage;
+  final AppLocalStorage _localStorage;
   final CarRemoteDataSource _carRemoteDataSource;
   final LoggingService _loggingService;
 

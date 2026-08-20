@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/base_remote_storage.dart';
+import 'package:test_flutter_project/domain/data_sources/remote/app_remote_storage.dart';
 
 import '../../../data/repositories/auth_repository_impl.dart';
-import '../../../domain/data_sources/local/base_local_storage.dart';
+import '../../../domain/data_sources/local/app_local_storage.dart';
 import '../../../domain/data_sources/remote/messages_remote_data_source.dart';
 import '../../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../../domain/repositories/auth_repository.dart';
@@ -17,8 +17,8 @@ import 'authentication_cubit.dart';
 
 Future<void> registerAuthenticationModule(GetIt serviceLocator) async {
   final authRepositoryImpl = AuthRepositoryImpl(
-    serviceLocator<BaseLocalStorage>(),
-    serviceLocator<BaseRemoteStorage>(),
+    serviceLocator<AppLocalStorage>(),
+    serviceLocator<AppRemoteStorage>(),
     serviceLocator<UsersRemoteDataSource>(),
     serviceLocator<MessagesRemoteDataSource>(),
     serviceLocator<OwnerRepository>(),
