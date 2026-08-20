@@ -80,7 +80,7 @@ class LocationSettingsPage extends StatelessWidget {
                               '${L10nKeys.countryPrefix}${locationState.currentRegion?.locale}',
                             ),
                             icon: Icons.explore,
-                            onTap: () => onRegionItemTap(state, context),
+                            onTap: () => onRegionItemTap(state.user.region, context),
                           );
                         },
                       ),
@@ -122,13 +122,12 @@ class LocationSettingsPage extends StatelessWidget {
     );
   }
 
-  Future<void> onRegionItemTap(UserDataState state, BuildContext context) async {
+  Future<void> onRegionItemTap(String currentRegionCode, BuildContext context) async {
     context.read<LocationSettingsPageCubit>().updateAvailableCountries();
 
-    final currentRegion = state.user.region;
     final availableCountries = context.read<LocationSettingsPageCubit>().state.availableRegions;
     final currentIndex = availableCountries.indexWhereOrNull(
-      (element) => element.code == currentRegion,
+      (element) => element.code == currentRegionCode,
     );
 
     if (currentIndex == null) return;
