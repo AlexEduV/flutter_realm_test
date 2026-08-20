@@ -27,7 +27,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   late final List<UserEntity> users;
   bool _isAuthenticated = false;
-  final _userSessionKey = 'userId';
+  static const _userSessionKey = 'userId';
 
   Future<void> init() async {
     await _usersRemoteDataSource.loadSeedUsers();
