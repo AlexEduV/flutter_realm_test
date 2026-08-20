@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/services/logging_service.dart';
 import '../../common/enums/server_failure.dart';
 
 class AppInterceptorImpl implements AppInterceptor {
-  AppInterceptorImpl({required this.logger, this.isVerboseOutput = true});
+  AppInterceptorImpl({required this.logger, this.isVerboseOutput = false});
 
   final LoggingService logger;
   final bool isVerboseOutput;
