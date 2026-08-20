@@ -26,7 +26,7 @@ class AuthRepositoryImpl implements AuthRepository {
   final MessagesRemoteDataSource _messagesRemoteDataSource;
 
   late final List<UserEntity> users;
-  late bool _isAuthenticated = false;
+  bool _isAuthenticated = false;
   final _userSessionKey = 'userId';
 
   Future<void> init() async {
