@@ -83,45 +83,42 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
               right: 0,
               top: minHeight,
               height: articleHeight,
-              child: Opacity(
-                opacity: 1.0,
-                child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
-                  builder: (context, state) {
-                    return AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 400),
-                      switchInCurve: Curves.easeIn,
-                      switchOutCurve: Curves.easeOut,
-                      child: Skeletonizer(
-                        enabled: state.isArticleListLoading,
-                        child: ListView.separated(
-                          key: const ValueKey('list'),
-                          itemCount: state.isArticleListLoading ? 10 : state.articles.length,
-                          scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.only(right: AppDimensions.normalL),
-                          itemBuilder: (context, index) {
-                            if (state.isArticleListLoading) {
-                              return Container(
-                                width: AppDimensions.exploreArticleItemBaseSize,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                                  color: AppColors.placeholderColor,
-                                ),
-                              );
-                            }
-                            return ExploreArticleItem(
-                              height: articleHeight,
-                              article: state.articles[index],
-                              index: index,
+              child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
+                builder: (context, state) {
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 400),
+                    switchInCurve: Curves.easeIn,
+                    switchOutCurve: Curves.easeOut,
+                    child: Skeletonizer(
+                      enabled: state.isArticleListLoading,
+                      child: ListView.separated(
+                        key: const ValueKey('list'),
+                        itemCount: state.isArticleListLoading ? 10 : state.articles.length,
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.only(right: AppDimensions.normalL),
+                        itemBuilder: (context, index) {
+                          if (state.isArticleListLoading) {
+                            return Container(
+                              width: AppDimensions.exploreArticleItemBaseSize,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                                color: AppColors.placeholderColor,
+                              ),
                             );
-                          },
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(width: AppDimensions.normalS);
-                          },
-                        ),
+                          }
+                          return ExploreArticleItem(
+                            height: articleHeight,
+                            article: state.articles[index],
+                            index: index,
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(width: AppDimensions.normalS);
+                        },
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ),
             // Last Seen Widget (only if not empty)
