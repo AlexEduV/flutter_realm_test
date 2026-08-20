@@ -21,8 +21,10 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   }) async {
     assert(limit >= 0, "'limit' must be a non-negative value");
 
-    final path = ApiConstants.klipySearchPath.replaceFirst('{API_KEY}', _apiKey);
-    final url = Uri.https(ApiConstants.klipyApiHost, path, {'q': query, 'limit': limit.toString()});
+    final url = _buildUrl(
+      ApiConstants.klipySearchPath,
+      queryParams: {'q': query, 'limit': limit.toString()},
+    );
 
     final response = await _client.get(url);
     return _processKlipyResponse(response);
@@ -30,17 +32,22 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
 
   @override
   Future<Either<ServerFailure, List<KlipyGifDto>>> getTrending() async {
-    final path = ApiConstants.klipyTrendingPath.replaceFirst('{API_KEY}', _apiKey);
-    final url = Uri.https(ApiConstants.klipyApiHost, path);
+    final url = _buildUrl(ApiConstants.klipyTrendingPath);
 
     final response = await _client.get(url);
     return _processKlipyResponse(response);
   }
 
+  Uri _buildUrl(String template, {Map<String, dynamic>? queryParams}) {
+    final path = template.replaceFirst('{API_KEY}', _apiKey);
+    final url = Uri.https(ApiConstants.klipyApiHost, path, queryParams);
+    return url;
+  }
+
   Either<ServerFailure, List<KlipyGifDto>> _processKlipyResponse(
     Either<ServerFailure, String> response,
   ) {
-    final Either<ServerFailure, List<KlipyGifDto>> results = response.fold((l) => Left(l), (r) {
+    return response.fold((l) => Left(l), (r) {
       try {
         final Map<String, dynamic>? data = jsonDecode(r);
         final List<KlipyGifDto> list = (data?['data']?['data'] as List)
@@ -52,7 +59,5 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
         return const Left(ServerFailure.notAvailable);
       }
     });
-
-    return results;
   }
 }
