@@ -57,7 +57,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(isLoading: true));
 
     final user = _localStorage.initUser();
-    final isUserLoggedIn = await _authRepository.isUserLoggedIn();
+    final isUserLoggedIn = _authRepository.isUserLoggedIn();
 
     await initLocalisation(user.region);
 

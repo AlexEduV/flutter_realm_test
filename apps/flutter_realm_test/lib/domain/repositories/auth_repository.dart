@@ -18,5 +18,5 @@ abstract interface class AuthRepository {
 
   Future<void> updateUser(String email, UserEntity data);
 
-  Future<bool> isUserLoggedIn();
+  bool isUserLoggedIn();
 }

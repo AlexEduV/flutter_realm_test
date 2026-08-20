@@ -127,7 +127,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> isUserLoggedIn() async {
+  bool isUserLoggedIn() {
     return _remoteStorage.getString(_userSessionKey) != null;
   }
 
