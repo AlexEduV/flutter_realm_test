@@ -146,6 +146,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _handleLocationPermission(BuildContext context) async {
+    final userDataCubit = context.read<UserDataCubit>();
+    if (userDataCubit.state.isLoading) {
+      await userDataCubit.stream.firstWhere((s) => !s.isLoading);
+    }
+
+    if (!context.mounted) return;
+
     final locationPermissionStatus = await context
         .read<UserDataCubit>()
         .checkLocationPermissionStatus();
