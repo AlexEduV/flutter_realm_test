@@ -19,6 +19,8 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
     String query, {
     int limit = 15,
   }) async {
+    assert(limit >= 0, "'limit' must be a non-negative value");
+
     final path = ApiConstants.klipySearchPath.replaceFirst('{API_KEY}', _apiKey);
     final url = Uri.https(ApiConstants.klipyApiHost, path, {'q': query, 'limit': limit.toString()});
 
