@@ -40,7 +40,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> logOut() async {
     await _clearUserSession();
     _localStorage.clearUser();
-    await Future.delayed(const Duration(milliseconds: 200));
+
+    await _simulateNetworkDelay();
 
     _localStorage.initUser();
     _isAuthenticated = false;
@@ -48,8 +49,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<AuthResult> login({required String email, required String password}) async {
-    // Simulate network delay
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await _simulateNetworkDelay();
 
     if (!users.any((element) => element.email == email)) {
       return const AuthFailure(AuthErrorCode.userNotFound);
@@ -79,7 +79,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String firstName,
     required String lastName,
   }) async {
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await _simulateNetworkDelay();
 
     if (users.any((element) => element.email == email)) {
       return const AuthFailure(AuthErrorCode.userAlreadyExists);
@@ -137,5 +137,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   Future<void> _clearUserSession() async {
     await _remoteStorage.remove(_userSessionKey);
+  }
+
+  Future<void> _simulateNetworkDelay({int duration = 1500}) async {
+    await Future.delayed(Duration(milliseconds: duration));
   }
 }
