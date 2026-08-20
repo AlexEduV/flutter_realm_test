@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
+import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/core/router/app_router.dart';
 import 'package:test_flutter_project/domain/usecases/regions/fetch_regions_use_case.dart';
@@ -69,10 +70,12 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    _listener = AppLifecycleListener(onResume: () {
-      final ctx = AppRouter.router.routerDelegate.navigatorKey.currentContext;
-      if (ctx != null) _handleLocationPermission(ctx);
-    });
+    _listener = AppLifecycleListener(
+      onResume: () {
+        final ctx = AppRouter.router.routerDelegate.navigatorKey.currentContext;
+        if (ctx != null) _handleLocationPermission(ctx);
+      },
+    );
     _scheduleInitialPermissionCheck();
   }
 
@@ -158,15 +161,11 @@ class _MyAppState extends State<MyApp> {
     } else {
       if (!context.mounted) return;
 
-      final l10n = context.read<AppLocalisationsCubit>();
-
       await DialogHelper.showLocationPermissionDialog(
         context,
-        title: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogTitle),
-        description: l10n.getLocalisationByKey(L10nKeys.locationPermissionDialogDescription),
-        confirmButtonTitle: l10n.getLocalisationByKey(
-          L10nKeys.locationPermissionDialogOpenSettings,
-        ),
+        title: context.trRead(L10nKeys.locationPermissionDialogTitle),
+        description: context.trRead(L10nKeys.locationPermissionDialogDescription),
+        confirmButtonTitle: context.trRead(L10nKeys.locationPermissionDialogOpenSettings),
         onConfirm: () => context.read<UserDataCubit>().openLocationSettings(),
       );
     }
