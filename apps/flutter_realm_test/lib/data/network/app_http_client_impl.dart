@@ -16,12 +16,12 @@ class AppHttpClientImpl implements AppHttpClient {
   final AppInterceptor _appInterceptor;
 
   @override
-  Future<Either<ServerFailure, String>> get(Uri url, {Map<String, String>? headers}) {
+  Future<Either<ServerFailure, String>> get(Uri url, {Map<String, String>? headers, String? logUrl}) {
     return _appInterceptor.onRequest(
       request: () async {
         return AppHttpResponse.fromHttp(await _client.get(url, headers: headers));
       },
-      url: url.path,
+      url: logUrl ?? url.path,
       requestType: HttpRequestType.get.name,
     );
   }
@@ -32,6 +32,7 @@ class AppHttpClientImpl implements AppHttpClient {
     Map<String, String>? headers,
     Object? body,
     Encoding? encoding,
+    String? logUrl,
   }) {
     return _appInterceptor.onRequest(
       request: () async {
@@ -39,7 +40,7 @@ class AppHttpClientImpl implements AppHttpClient {
           await _client.post(url, headers: headers, body: body, encoding: encoding),
         );
       },
-      url: url.path,
+      url: logUrl ?? url.path,
       requestType: HttpRequestType.post.name,
     );
   }

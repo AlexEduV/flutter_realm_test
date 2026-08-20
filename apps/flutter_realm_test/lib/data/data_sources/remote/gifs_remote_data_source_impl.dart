@@ -28,7 +28,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
       queryParams: {'q': query, 'limit': limit.toString()},
     );
 
-    final response = await _client.get(url);
+    final response = await _client.get(url, logUrl: ApiConstants.klipySearchPath);
     return _processKlipyResponse(response);
   }
 
@@ -36,7 +36,7 @@ class GifsRemoteDataSourceImpl implements GifsRemoteDataSource {
   Future<Either<ServerFailure, List<KlipyGifDto>>> getTrending() async {
     final url = _buildUrl(ApiConstants.klipyTrendingPath);
 
-    final response = await _client.get(url);
+    final response = await _client.get(url, logUrl: ApiConstants.klipyTrendingPath);
     return _processKlipyResponse(response);
   }
 
