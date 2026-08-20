@@ -123,6 +123,7 @@ class AuthRepositoryImpl implements AuthRepository {
     users.removeWhere((element) => element.userId == userId);
     users.add(data);
 
+    _usersRemoteDataSource.users = List.from(users);
     await _usersRemoteDataSource.saveSeedUsers(users);
   }
 
