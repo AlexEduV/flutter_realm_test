@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 
 class AnimatedFavoriteIcon extends StatefulWidget {
   const AnimatedFavoriteIcon({
@@ -79,7 +79,7 @@ class _AnimatedFavoriteIconState extends State<AnimatedFavoriteIcon>
             children: [
               Icon(
                 widget.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: widget.isFavorite ? AppColors.gold : Colors.black,
+                color: widget.isFavorite ? AppColors.gold : AppColors.black,
               ),
 
               if (widget.isFavorite) ...[

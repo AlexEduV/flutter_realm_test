@@ -18,7 +18,7 @@ class MockDetailsPageCubit extends Mock implements DetailsPageCubit {
   @override
   DetailsPageState get state => DetailsPageState(
     isVehicleSpecsExpanded: isExpanded,
-    carColor: Colors.white,
+    carColor: AppColors.white,
     car: CarEntity.empty(),
   );
 

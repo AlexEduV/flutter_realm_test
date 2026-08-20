@@ -3,6 +3,9 @@ import 'package:flutter/material.dart' show Colors, Color;
 class AppColors {
   static const mainThemeColor = Colors.indigo;
 
+  static const white = Colors.white;
+  static const black = Colors.black;
+
   static final whiteGrey = Colors.grey[100] as Color;
   static final lightGrey = Colors.grey[300] as Color;
   static final hintColor = Colors.grey[600] as Color;

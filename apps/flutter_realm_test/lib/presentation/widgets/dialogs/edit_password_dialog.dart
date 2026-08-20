@@ -105,7 +105,7 @@ class _EditPasswordDialogState extends State<EditPasswordDialog> {
               ),
             ],
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.white,
           actions: [
             AppSemantics(
               label: AppSemanticsLabels.dialogCancelButton,
@@ -139,7 +139,7 @@ class _EditPasswordDialogState extends State<EditPasswordDialog> {
                     }
                     return AppColors.headerColor;
                   }),
-                  foregroundColor: const WidgetStatePropertyAll(Colors.white),
+                  foregroundColor: const WidgetStatePropertyAll(AppColors.white),
                 ),
                 child: Text(
                   widget.confirmButtonTitle,

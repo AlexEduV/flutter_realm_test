@@ -43,13 +43,13 @@ Widget _basePreview({required bool isOwner}) {
         useMaterial3: true,
         fontFamily: 'Zona Pro',
         textTheme: ThemeData.light().textTheme.apply(
-          bodyColor: Colors.black,
-          displayColor: Colors.black,
+          bodyColor: AppColors.black,
+          displayColor: AppColors.black,
         ),
       ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         body: Column(
           children: [
             Padding(

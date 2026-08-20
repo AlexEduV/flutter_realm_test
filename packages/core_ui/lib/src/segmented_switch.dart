@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 
 class SegmentedSwitch extends StatelessWidget {
@@ -22,7 +22,7 @@ class SegmentedSwitch extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(AppDimensions.normalL),
       ),
       padding: const EdgeInsets.all(AppDimensions.minorL),
@@ -66,7 +66,7 @@ class SegmentedSwitch extends StatelessWidget {
                         child: AnimatedDefaultTextStyle(
                           duration: const Duration(milliseconds: animationDuration),
                           style: TextStyle(
-                            color: isSelected ? Colors.white : AppColors.headerColor,
+                            color: isSelected ? AppColors.white : AppColors.headerColor,
                             fontWeight: FontWeight.w600,
                           ),
                           child: Text(options[index]),
