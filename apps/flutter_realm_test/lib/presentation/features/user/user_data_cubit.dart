@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
-import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
 import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
@@ -296,7 +295,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void updateUser({required UserEntity user, bool updateCloud = true}) {
-    _localStorage.update(UserExtensions.fromEntity(user));
+    _localStorage.updateUser(user);
     updateCloudUser(user);
   }
 }

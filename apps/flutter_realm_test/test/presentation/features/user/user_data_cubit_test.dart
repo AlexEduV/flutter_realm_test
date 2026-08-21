@@ -138,7 +138,7 @@ void main() {
       'requestLocationPermission emits denied status when permission not granted',
       build: () {
         when(mockRequestLocationPermissionUseCase.call()).thenAnswer((_) async => false);
-        when(mockLocalStorage.update(any)).thenReturn(null);
+        when(mockLocalStorage.updateUser(any)).thenReturn(null);
         cubit.emit(cubit.state.copyWith(user: testUser));
         return cubit;
       },
@@ -158,7 +158,7 @@ void main() {
       'requestLocationPermission updates permission status and opens location settings if service not enabled',
       build: () {
         when(mockRequestLocationPermissionUseCase.call()).thenAnswer((_) async => true);
-        when(mockLocalStorage.update(any)).thenReturn(null);
+        when(mockLocalStorage.updateUser(any)).thenReturn(null);
         when(mockCheckLocationServiceStatusUseCase.call()).thenAnswer((_) async => false);
         when(mockOpenAppSettingsUseCase.call()).thenAnswer((_) async => true);
         cubit.emit(cubit.state.copyWith(user: testUser));
@@ -183,7 +183,7 @@ void main() {
     blocTest<UserDataCubit, UserDataState>(
       'updateLocationPermissionStatus updates user and emits new state',
       build: () {
-        when(mockLocalStorage.update(any)).thenReturn(null);
+        when(mockLocalStorage.updateUser(any)).thenReturn(null);
         cubit.emit(cubit.state.copyWith(user: testUser));
         return cubit;
       },
@@ -203,7 +203,7 @@ void main() {
   group('addCarIdToFavorites', () {
     test('adds new carId and emits updated state without duplicates', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(favoriteIds: ['1', '2'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
       cubit.addCarIdToFavorites('3');
       expect(cubit.state.user.favoriteIds, contains('3'));
       expect(cubit.state.user.favoriteIds.length, 3);
@@ -211,7 +211,7 @@ void main() {
 
     test('does not add duplicate carId', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(favoriteIds: ['1', '2'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
       cubit.addCarIdToFavorites('1');
       expect(cubit.state.user.favoriteIds.length, 2);
     });
@@ -220,7 +220,7 @@ void main() {
   group('removeCarIdFromFavorites', () {
     test('removes carId and emits updated state', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(favoriteIds: ['1', '2'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
       cubit.removeCarIdFromFavorites('1');
       expect(cubit.state.user.favoriteIds, isNot(contains('1')));
     });
@@ -267,7 +267,7 @@ void main() {
   group('setFirstName', () {
     test('updates firstName and emits new state', () {
       cubit.emit(cubit.state.copyWith(user: testUser));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.setFirstName('Jane');
 
@@ -278,7 +278,7 @@ void main() {
   group('setLastName', () {
     test('updates lastName and emits new state', () {
       cubit.emit(cubit.state.copyWith(user: testUser));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.setLastName('Smith');
 
@@ -289,7 +289,7 @@ void main() {
   group('setEmail', () {
     test('updates email and emits new state', () {
       cubit.emit(cubit.state.copyWith(user: testUser));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.setEmail('new@email.com');
 
@@ -300,7 +300,7 @@ void main() {
   group('setPassword', () {
     test('updates password and emits new state', () {
       cubit.emit(cubit.state.copyWith(user: testUser));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.setPassword('newSecret!1');
 
@@ -311,7 +311,7 @@ void main() {
   group('setLastSeenCar', () {
     test('sets lastSeenCar with given carId and current timestamp', () {
       cubit.emit(cubit.state.copyWith(user: testUser));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       final before = DateTime.now();
       cubit.setLastSeenCar('car42');
@@ -338,7 +338,7 @@ void main() {
     test('does not clear recent car that is within expiry window', () {
       final recentCar = LastSeenCarEntity(carId: 'car1', seenAt: DateTime.now());
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(lastSeenCar: recentCar)));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.checkLastSeenCarExpiration(days: 7);
 
@@ -361,7 +361,7 @@ void main() {
     test('updates avatarImageSrc when picker returns a path', () async {
       cubit.emit(cubit.state.copyWith(user: testUser));
       when(mockPickImageFromGalleryUseCase.call()).thenAnswer((_) async => '/path/to/image.png');
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       await cubit.updateAvatarImage();
 
@@ -372,7 +372,7 @@ void main() {
   group('addCarIdToCreated', () {
     test('adds a new carId and emits updated state', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(createdIds: ['c1'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.addCarIdToCreated('c2');
 
@@ -382,7 +382,7 @@ void main() {
 
     test('deduplicates when same carId is added twice', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(createdIds: ['c1'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.addCarIdToCreated('c1');
 
@@ -393,7 +393,7 @@ void main() {
   group('removeCarIdFromCreated', () {
     test('removes carId, emits updated state, and calls delete use case', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(createdIds: ['c1', 'c2'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.removeCarIdFromCreated('c1');
 
@@ -424,7 +424,7 @@ void main() {
 
     test('appends new carId to the list', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(viewedIds: ['car1'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.addCarToRecentlyViewed('car2');
 
@@ -434,7 +434,7 @@ void main() {
     test('trims list to 20 most recent entries when limit is exceeded', () {
       final existing = List.generate(20, (i) => 'car$i');
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(viewedIds: existing)));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.addCarToRecentlyViewed('carNew');
 
@@ -456,7 +456,7 @@ void main() {
 
     test('clears favoriteIds and emits updated state', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(favoriteIds: ['c1', 'c2'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.clearFavorites();
 
@@ -476,7 +476,7 @@ void main() {
 
     test('clears viewedIds and emits updated state', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(viewedIds: ['v1', 'v2'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.clearRecentItems();
 
@@ -497,7 +497,7 @@ void main() {
 
     test('deletes each car and clears createdIds', () {
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(createdIds: ['c1', 'c2'])));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.clearMyItems();
 
@@ -509,14 +509,12 @@ void main() {
 
   group('clearAllData', () {
     test('clears favorites, created items, and recent items', () {
-      cubit.emit(cubit.state.copyWith(
-        user: testUser.copyWith(
-          favoriteIds: ['f1'],
-          createdIds: ['c1'],
-          viewedIds: ['v1'],
+      cubit.emit(
+        cubit.state.copyWith(
+          user: testUser.copyWith(favoriteIds: ['f1'], createdIds: ['c1'], viewedIds: ['v1']),
         ),
-      ));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      );
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.clearAllData();
 
@@ -526,10 +524,12 @@ void main() {
     });
 
     test('isDataClear is true after clearAllData', () {
-      cubit.emit(cubit.state.copyWith(
-        user: testUser.copyWith(favoriteIds: ['f1'], createdIds: ['c1'], viewedIds: ['v1']),
-      ));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      cubit.emit(
+        cubit.state.copyWith(
+          user: testUser.copyWith(favoriteIds: ['f1'], createdIds: ['c1'], viewedIds: ['v1']),
+        ),
+      );
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.clearAllData();
 
@@ -558,7 +558,7 @@ void main() {
 
     test('updates region and emits state when region changes', () {
       cubit.emit(cubit.state.copyWith(user: testUser));
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
 
       cubit.updateRegion('de');
 
@@ -587,7 +587,7 @@ void main() {
   group('requestLocationPermission (service enabled)', () {
     test('does not open app settings when location service is already enabled', () async {
       when(mockRequestLocationPermissionUseCase.call()).thenAnswer((_) async => true);
-      when(mockLocalStorage.update(any)).thenReturn(null);
+      when(mockLocalStorage.updateUser(any)).thenReturn(null);
       when(mockCheckLocationServiceStatusUseCase.call()).thenAnswer((_) async => true);
       cubit.emit(cubit.state.copyWith(user: testUser));
 
@@ -601,30 +601,38 @@ void main() {
 
   group('UserDataState.isDataClear', () {
     test('returns true when all lists are empty', () {
-      cubit.emit(cubit.state.copyWith(
-        user: testUser.copyWith(favoriteIds: [], createdIds: [], viewedIds: []),
-      ));
+      cubit.emit(
+        cubit.state.copyWith(
+          user: testUser.copyWith(favoriteIds: [], createdIds: [], viewedIds: []),
+        ),
+      );
       expect(cubit.state.isDataClear, isTrue);
     });
 
     test('returns false when favorites are not empty', () {
-      cubit.emit(cubit.state.copyWith(
-        user: testUser.copyWith(favoriteIds: ['f1'], createdIds: [], viewedIds: []),
-      ));
+      cubit.emit(
+        cubit.state.copyWith(
+          user: testUser.copyWith(favoriteIds: ['f1'], createdIds: [], viewedIds: []),
+        ),
+      );
       expect(cubit.state.isDataClear, isFalse);
     });
 
     test('returns false when viewedIds are not empty', () {
-      cubit.emit(cubit.state.copyWith(
-        user: testUser.copyWith(favoriteIds: [], createdIds: [], viewedIds: ['v1']),
-      ));
+      cubit.emit(
+        cubit.state.copyWith(
+          user: testUser.copyWith(favoriteIds: [], createdIds: [], viewedIds: ['v1']),
+        ),
+      );
       expect(cubit.state.isDataClear, isFalse);
     });
 
     test('returns false when createdIds are not empty', () {
-      cubit.emit(cubit.state.copyWith(
-        user: testUser.copyWith(favoriteIds: [], createdIds: ['c1'], viewedIds: []),
-      ));
+      cubit.emit(
+        cubit.state.copyWith(
+          user: testUser.copyWith(favoriteIds: [], createdIds: ['c1'], viewedIds: []),
+        ),
+      );
       expect(cubit.state.isDataClear, isFalse);
     });
   });

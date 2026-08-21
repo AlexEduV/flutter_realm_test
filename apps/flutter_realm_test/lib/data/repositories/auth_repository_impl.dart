@@ -6,7 +6,6 @@ import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 
-import '../../common/extensions/user_scheme_extension.dart';
 import '../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../domain/entities/user_entity.dart';
 
@@ -66,7 +65,7 @@ class AuthRepositoryImpl implements AuthRepository {
     _messagesRemoteDataSource.initSampleData(user.userId);
 
     _localStorage.clearUser();
-    _localStorage.update(UserExtensions.fromEntity(user));
+    _localStorage.updateUser(user);
 
     _isAuthenticated = true;
     return const AuthSuccess();
@@ -101,7 +100,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await _saveUserSession(newUserId.toString());
 
     _localStorage.clearUser();
-    _localStorage.update(UserExtensions.fromEntity(user));
+    _localStorage.updateUser(user);
 
     _isAuthenticated = true;
     return const AuthSuccess();

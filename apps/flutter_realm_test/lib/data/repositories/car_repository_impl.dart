@@ -21,12 +21,12 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   void addCar(CarEntity carEntity) {
-    _localStorage.add(carEntity);
+    _localStorage.addCar(carEntity);
   }
 
   @override
   Stream<List<CarEntity>> watchCars() {
-    return _localStorage.watch<Car>().map((changes) {
+    return _localStorage.watchCars().map((changes) {
       final realmChanges = changes as RealmResultsChanges<Car>;
 
       final results = realmChanges.results;
@@ -45,7 +45,7 @@ class CarRepositoryImpl implements CarRepository {
 
     final dtos = await _carRemoteDataSource.fetchCars();
     for (final dto in dtos) {
-      _localStorage.update(CarExtensions.fromDto(dto));
+      _localStorage.updateCar(CarEntity.fromDto(dto));
     }
 
     // 3. Listen to the stream for the 5-second updates
@@ -53,7 +53,7 @@ class CarRepositoryImpl implements CarRepository {
     _carStreamSubscription = _carRemoteDataSource.carStream.listen(
       (updatedDtos) {
         for (final dto in updatedDtos) {
-          _localStorage.update(CarExtensions.fromDto(dto));
+          _localStorage.updateCar(CarEntity.fromDto(dto));
         }
       },
       onError: (error, stackTrace) {
@@ -67,12 +67,12 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   void deleteCarById(String id) {
-    _localStorage.deleteById(id);
+    _localStorage.deleteCarById(id);
   }
 
   @override
   List<CarEntity> getAllCars() {
-    return _localStorage.getAll().toList();
+    return _localStorage.getAllCars().toList();
   }
 
   @override

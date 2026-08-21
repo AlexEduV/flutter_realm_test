@@ -202,9 +202,9 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
 /// See the documentation for Mockito's code generation for more information.
 class MockAppLocalStorage extends _i1.Mock implements _i7.AppLocalStorage {
   @override
-  List<_i8.CarEntity> getAll() => (super.noSuchMethod(
+  List<_i8.CarEntity> getAllCars() => (super.noSuchMethod(
         Invocation.method(
-          #getAll,
+          #getAllCars,
           [],
         ),
         returnValue: <_i8.CarEntity>[],
@@ -212,27 +212,36 @@ class MockAppLocalStorage extends _i1.Mock implements _i7.AppLocalStorage {
       ) as List<_i8.CarEntity>);
 
   @override
-  void add(dynamic T) => super.noSuchMethod(
+  void addCar(_i8.CarEntity? car) => super.noSuchMethod(
         Invocation.method(
-          #add,
-          [T],
+          #addCar,
+          [car],
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void update(dynamic T) => super.noSuchMethod(
+  void updateCar(_i8.CarEntity? car) => super.noSuchMethod(
         Invocation.method(
-          #update,
-          [T],
+          #updateCar,
+          [car],
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  _i4.Stream<dynamic> watch<T>() => (super.noSuchMethod(
+  void updateUser(_i2.UserEntity? user) => super.noSuchMethod(
         Invocation.method(
-          #watch,
+          #updateUser,
+          [user],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.Stream<dynamic> watchCars() => (super.noSuchMethod(
+        Invocation.method(
+          #watchCars,
           [],
         ),
         returnValue: _i4.Stream<dynamic>.empty(),
@@ -249,13 +258,32 @@ class MockAppLocalStorage extends _i1.Mock implements _i7.AppLocalStorage {
       );
 
   @override
-  void deleteById(String? id) => super.noSuchMethod(
+  void deleteCarById(String? id) => super.noSuchMethod(
         Invocation.method(
-          #deleteById,
+          #deleteCarById,
           [id],
         ),
         returnValueForMissingStub: null,
       );
+
+  @override
+  _i8.CarEntity? getCarById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getCarById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i8.CarEntity?);
+
+  @override
+  int getMaxCarId() => (super.noSuchMethod(
+        Invocation.method(
+          #getMaxCarId,
+          [],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
 
   @override
   _i2.UserEntity initUser() => (super.noSuchMethod(
@@ -278,25 +306,6 @@ class MockAppLocalStorage extends _i1.Mock implements _i7.AppLocalStorage {
           ),
         ),
       ) as _i2.UserEntity);
-
-  @override
-  _i8.CarEntity? getCarById(String? id) => (super.noSuchMethod(
-        Invocation.method(
-          #getCarById,
-          [id],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i8.CarEntity?);
-
-  @override
-  int getMaxCarId() => (super.noSuchMethod(
-        Invocation.method(
-          #getMaxCarId,
-          [],
-        ),
-        returnValue: 0,
-        returnValueForMissingStub: 0,
-      ) as int);
 
   @override
   void clearUser() => super.noSuchMethod(

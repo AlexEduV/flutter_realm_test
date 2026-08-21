@@ -38,7 +38,7 @@ void main() {
 
   group('RealmLocalStorage', () {
     test('add inserts a car into Realm', () {
-      storage.add(testCarEntity);
+      storage.addCar(testCarEntity);
 
       expect(fakeRealm.all<Car>().length, 1);
       expect(fakeRealm.all<Car>().first.manufacturer, 'Tesla');
@@ -48,7 +48,7 @@ void main() {
       final id = ObjectId();
       fakeRealm.write(() => fakeRealm.add(Car(id, 'car1', 'Tesla', CarType.car.name)));
 
-      storage.update(Car(id, 'car1', 'BMW', CarType.car.name));
+      storage.updateCar(CarEntity.fromSchema(Car(id, 'car1', 'BMW', CarType.car.name)));
 
       expect(fakeRealm.all<Car>().length, 1);
       expect(fakeRealm.all<Car>().first.manufacturer, 'BMW');
@@ -57,7 +57,7 @@ void main() {
     test('deleteById removes the matching car', () {
       fakeRealm.write(() => fakeRealm.add(Car(ObjectId(), 'car123', 'Tesla', CarType.car.name)));
 
-      storage.deleteById('car123');
+      storage.deleteCarById('car123');
 
       expect(fakeRealm.all<Car>().length, 0);
     });

@@ -3,23 +3,25 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import '../../entities/user_entity.dart';
 
 abstract interface class AppLocalStorage {
-  List<CarEntity> getAll();
+  List<CarEntity> getAllCars();
 
-  void add(T);
+  void addCar(CarEntity car);
 
-  void update(T);
+  void updateCar(CarEntity car);
 
-  Stream watch<T>();
+  void updateUser(UserEntity user);
+
+  Stream watchCars();
 
   void deleteAllCars();
 
-  void deleteById(String id);
-
-  UserEntity initUser();
+  void deleteCarById(String id);
 
   CarEntity? getCarById(String id);
 
   int getMaxCarId();
+
+  UserEntity initUser();
 
   void clearUser();
 }
