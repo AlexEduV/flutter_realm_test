@@ -77,7 +77,7 @@ class CarRepositoryImpl implements CarRepository {
   }
 
   @override
-  CarEntity getCarById(String id) {
+  CarEntity? getCarById(String id) {
     return _localStorage.getCarById(id);
   }
 

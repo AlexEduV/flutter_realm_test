@@ -17,7 +17,7 @@ abstract interface class AppLocalStorage {
 
   UserEntity initUser();
 
-  CarEntity getCarById(String id);
+  CarEntity? getCarById(String id);
 
   int getMaxCarId();
 

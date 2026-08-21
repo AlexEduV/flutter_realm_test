@@ -55,10 +55,10 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
 
   bool isCarExistsById(String carId) {
     final car = _getCarByIdUseCase.call(carId);
-    return car.carId != 'testId';
+    return car != null;
   }
 
-  CarEntity getCarById(String id) {
+  CarEntity? getCarById(String id) {
     final car = _getCarByIdUseCase.call(id);
     return car;
   }

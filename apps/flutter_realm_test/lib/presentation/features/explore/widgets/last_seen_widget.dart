@@ -30,9 +30,9 @@ class LastSeenWidget extends StatelessWidget {
           builder: (context, state) {
             final carId = userState.user.lastSeenCar?.carId;
             final carEntityFull = context.read<ExplorePageCubit>().getCarById(carId ?? '');
-            final isTestCar = carEntityFull.carId == 'testId';
+            final isTestCar = carEntityFull?.carId == 'testId';
 
-            final image = carEntityFull.images.firstOrNull;
+            final image = carEntityFull?.images.firstOrNull;
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,10 +58,15 @@ class LastSeenWidget extends StatelessWidget {
                       top: AppDimensions.minorM,
                     ),
                     child: InkWell(
-                      onTap: () => AppRouter.goToDetails(
-                        from: DetailsPageSource.explore,
-                        carId: carEntityFull.carId,
-                      ),
+                      onTap: () {
+                        if (carEntityFull == null) return;
+                        //todo: add logs
+
+                        AppRouter.goToDetails(
+                          from: DetailsPageSource.explore,
+                          carId: carEntityFull.carId,
+                        );
+                      },
                       borderRadius: BorderRadius.circular(AppDimensions.normalL),
                       child: Container(
                         decoration: BoxDecoration(
@@ -91,13 +96,13 @@ class LastSeenWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${carEntityFull.manufacturer} ${carEntityFull.model} ${carEntityFull.year ?? ''}',
+                                    '${carEntityFull?.manufacturer} ${carEntityFull?.model} ${carEntityFull?.year ?? ''}',
                                     style: AppTextStyles.zonaPro16White.copyWith(
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   Text(
-                                    '\$ ${carEntityFull.price ?? 0}',
+                                    '\$ ${carEntityFull?.price ?? 0}',
                                     style: AppTextStyles.zonaPro14White,
                                   ),
                                 ],
