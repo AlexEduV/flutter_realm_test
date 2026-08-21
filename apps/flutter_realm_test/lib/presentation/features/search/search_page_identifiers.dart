@@ -37,3 +37,8 @@ final class SearchPageLocaleKeys {
   static const String transmissionTypeAutomatic = 'filters.parameters.transmissionTypes.automatic';
   static const String transmissionTypeHybrid = 'filters.parameters.transmissionTypes.hybrid';
 }
+
+final class SearchPageIds {
+  static const filterButton = 'filterButton';
+  static const resultsLabel = 'resultsLabel';
+}

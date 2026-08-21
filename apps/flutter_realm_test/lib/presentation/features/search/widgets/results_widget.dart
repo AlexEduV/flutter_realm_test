@@ -1,6 +1,5 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
@@ -15,7 +14,7 @@ class ResultsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSemantics(
-      label: '${AppSemanticsLabels.resultsLabel} $resultsCount',
+      label: '${SearchPageIds.resultsLabel} $resultsCount',
       child: Row(
         spacing: AppDimensions.minorL,
         children: [

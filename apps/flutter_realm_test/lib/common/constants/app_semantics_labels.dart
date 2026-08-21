@@ -8,16 +8,7 @@ class AppSemanticsLabels {
   static const favoriteButton = 'favoriteButton';
   static const shareButton = 'shareButton';
 
-  static const resultsLabel = 'resultsLabel';
   static const lastSeenSectionItem = 'lastSeenSectionItem';
-
-  static const homeBottomBarItemHome = 'homeBottomBarItemHome';
-  static const homeBottomBarItemFavorites = 'homeBottomBarItemFavorites';
-  static const homeBottomBarItemAdd = 'homeBottomBarItemAdd';
-  static const homeBottomBarItemInbox = 'homeBottomBarItemInbox';
-  static const homeBottomBarItemAccount = 'homeBottomBarItemAccount';
-
-  static const filterButton = 'filterButton';
 
   static const filterDrawerBodyTypeCheckbox = 'filterDrawerBodyTypeCheckbox';
   static const filterDrawerColorCheckbox = 'filterDrawerColorCheckbox';

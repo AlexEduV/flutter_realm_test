@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/main.dart' as app;
+import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_identifiers.dart';
 
 // Credentials from SeedUsers.initialUsers
 const _validEmail = 'mock@gmail.com';
@@ -89,7 +90,7 @@ void main() {
       // Still on the login page
       loginPage.assertLoginButtonVisible();
       // Home nav is absent
-      expect(find.bySemanticsLabel(AppSemanticsLabels.homeBottomBarItemHome), findsNothing);
+      expect(find.bySemanticsLabel(HomeBottomBarPageIds.homeBottomBarItemHome), findsNothing);
     });
   });
 }
@@ -128,7 +129,7 @@ class HomePagePOM {
   final WidgetTester _tester;
 
   Future<void> openAccountTab() async {
-    await _tester.tap(find.bySemanticsLabel(AppSemanticsLabels.homeBottomBarItemAccount));
+    await _tester.tap(find.bySemanticsLabel(HomeBottomBarPageIds.homeBottomBarItemAccount));
     await _tester.pumpAndSettle();
   }
 }
