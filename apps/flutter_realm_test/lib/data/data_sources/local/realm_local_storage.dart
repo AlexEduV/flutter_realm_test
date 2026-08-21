@@ -43,9 +43,8 @@ class RealmLocalStorage implements AppLocalStorage {
     _realm.write(() {
       final liveCars = _realm.query<Car>('carId == \$0', [id]);
       for (final liveCar in liveCars) {
-        if (liveCar.isValid) {
-          _realm.delete(liveCar);
-        }
+        if (!liveCar.isValid) continue;
+        _realm.delete(liveCar);
       }
     });
   }
