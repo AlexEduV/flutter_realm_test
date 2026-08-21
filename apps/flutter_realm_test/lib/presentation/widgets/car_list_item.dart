@@ -35,7 +35,7 @@ class CarListItem extends StatelessWidget {
       ),
       child: Material(
         borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-        color: Colors.white,
+        color: AppColors.white,
         child: AppSemantics(
           label: AppSemanticsLabels.favoriteListItem,
           child: InkWell(
