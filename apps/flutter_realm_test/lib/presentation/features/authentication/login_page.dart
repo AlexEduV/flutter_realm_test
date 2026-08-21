@@ -1,5 +1,5 @@
 import 'package:core_ui/core_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Colors;
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
 
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
+            statusBarColor: AppColors.transparent,
             statusBarIconBrightness: Brightness.light, //Android
             statusBarBrightness: Brightness.dark, //iOS
           ),
@@ -46,9 +46,9 @@ class LoginPage extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         stops: [0.0, 0.7, 1.0],
                         colors: [
-                          Colors.white, // Fully visible image
-                          Colors.white, // Start fading
-                          Colors.transparent, // Fully faded (shows background)
+                          AppColors.white, // Fully visible image
+                          AppColors.white, // Start fading
+                          AppColors.transparent, // Fully faded (shows background)
                         ],
                       ).createShader(bounds);
                     },
@@ -63,7 +63,7 @@ class LoginPage extends StatelessWidget {
                           height: double.infinity,
                           alignment: Alignment.bottomCenter,
                         ),
-                        ColoredBox(color: Colors.black.withAlpha(70)),
+                        ColoredBox(color: AppColors.black.withAlpha(70)),
                       ],
                     ),
                   ),
@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
                             shadows: [
                               const Shadow(
                                 blurRadius: 2.0,
-                                color: Colors.black,
+                                color: AppColors.black,
                                 offset: Offset(0, 0),
                               ),
                             ],

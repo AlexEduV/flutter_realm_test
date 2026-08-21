@@ -47,7 +47,7 @@ class AnnouncementListItem extends StatelessWidget {
                     SlidableAction(
                       autoClose: false,
                       onPressed: (context) => onDismissed?.call(),
-                      backgroundColor: Colors.transparent,
+                      backgroundColor: AppColors.transparent,
                       foregroundColor: AppColors.white,
                       icon: Icons.close,
                       label: context.tr(L10nKeys.deleteButtonTitle),

@@ -40,7 +40,7 @@ class NetworkErrorWidget extends StatelessWidget {
                   ),
                   Text(
                     context.tr(L10nKeys.noContentWidgetSubtitle),
-                    style: AppTextStyles.zonaPro16.copyWith(color: Colors.white),
+                    style: AppTextStyles.zonaPro16.copyWith(color: AppColors.white),
                   ),
                 ],
               ),

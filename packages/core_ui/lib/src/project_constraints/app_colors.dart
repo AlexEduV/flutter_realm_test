@@ -5,6 +5,8 @@ class AppColors {
 
   static const white = Colors.white;
   static const black = Colors.black;
+  static const transparent = Colors.transparent;
+
   static const success = Colors.green;
   static const error = Colors.red;
 
