@@ -21,9 +21,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   final AppLocalStorage _localStorage;
   final AppRemoteStorage _remoteStorage;
-  final OwnerRepository _ownerRepository;
   final UsersRemoteDataSource _usersRemoteDataSource;
   final MessagesRemoteDataSource _messagesRemoteDataSource;
+  final OwnerRepository _ownerRepository;
 
   late final List<UserEntity> users;
   bool _isAuthenticated = false;
