@@ -39,7 +39,7 @@ void main() {
       verifyNoMoreInteractions(mockRepository);
     });
 
-    test('propagates exception thrown by repository', () async {
+    test('propagates exception thrown by repository', () {
       when(mockRepository.fetchOwners()).thenThrow(Exception('network error'));
 
       expect(() => useCase(), throwsException);
