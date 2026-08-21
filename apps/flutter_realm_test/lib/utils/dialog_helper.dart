@@ -115,14 +115,11 @@ class DialogHelper {
     );
   }
 
-  static Future<void> showGifsPickerModalBottomSheet(
-    BuildContext context,
-    GlobalKey<AnimatedListState> listKey,
-  ) async {
+  static Future<void> showGifsPickerModalBottomSheet(BuildContext context) async {
     await showModalBottomSheet(
       backgroundColor: AppColors.scaffoldColor,
       context: context,
-      builder: (_) => GifsPickerBottomSheet(listKey: listKey),
+      builder: (_) => const GifsPickerBottomSheet(),
     );
   }
 

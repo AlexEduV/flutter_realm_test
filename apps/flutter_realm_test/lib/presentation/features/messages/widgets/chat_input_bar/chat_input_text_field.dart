@@ -14,7 +14,6 @@ class ChatInputTextField extends StatefulWidget {
   const ChatInputTextField({
     required this.focusNode,
     required this.textEditingController,
-    required this.listKey,
     super.key,
     this.onMessageSent,
     this.sendMessage,
@@ -24,7 +23,6 @@ class ChatInputTextField extends StatefulWidget {
   final TextEditingController textEditingController;
   final Function()? onMessageSent;
   final Function(BuildContext context, MessagesPageState state)? sendMessage;
-  final GlobalKey<AnimatedListState> listKey;
 
   @override
   State<ChatInputTextField> createState() => _ChatInputTextFieldState();
@@ -58,7 +56,7 @@ class _ChatInputTextFieldState extends State<ChatInputTextField> {
                     },
                     icon: const Icon(Icons.gif, size: AppDimensions.bottomMessageBarIconSize),
                     onPressed: () async {
-                      await DialogHelper.showGifsPickerModalBottomSheet(context, widget.listKey);
+                      await DialogHelper.showGifsPickerModalBottomSheet(context);
                       if (!context.mounted) return;
 
                       final result = context.read<MessagesPageCubit>().state.selectedGif;

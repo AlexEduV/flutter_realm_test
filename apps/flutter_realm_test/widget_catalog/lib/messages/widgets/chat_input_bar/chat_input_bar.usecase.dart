@@ -24,7 +24,6 @@ Widget buildChatInputBarUseCase(BuildContext context) {
 
   final textController = TextEditingController();
   final focusNode = FocusNode();
-  final GlobalKey<AnimatedListState> listKey = GlobalKey();
 
   return MultiBlocProvider(
     providers: [
@@ -38,11 +37,7 @@ Widget buildChatInputBarUseCase(BuildContext context) {
         child: Column(
           spacing: AppDimensions.normalL,
           children: [
-            ChatInputBar(
-              messageTextController: textController,
-              messageFocusNode: focusNode,
-              listKey: listKey,
-            ),
+            ChatInputBar(messageTextController: textController, messageFocusNode: focusNode),
           ],
         ),
       ),

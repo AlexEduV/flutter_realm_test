@@ -18,7 +18,6 @@ class ChatInputBar extends StatefulWidget {
   const ChatInputBar({
     required this.messageTextController,
     required this.messageFocusNode,
-    required this.listKey,
     this.onMessageSent,
     super.key,
   });
@@ -26,7 +25,6 @@ class ChatInputBar extends StatefulWidget {
   final TextEditingController messageTextController;
   final FocusNode messageFocusNode;
   final VoidCallback? onMessageSent;
-  final GlobalKey<AnimatedListState> listKey;
 
   @override
   State<ChatInputBar> createState() => _ChatInputBarState();
@@ -45,7 +43,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
           children: [
             ChatInputButton(
               icon: Icons.attach_file,
-              onTap: () async => await addAttachment(),
+              onTap: () async => await _addAttachment(),
               iconRotationAngleDegrees: 40,
               semanticsLabel: MessagesPageIds.chatInputBarAttachmentButton,
             ),
@@ -54,15 +52,14 @@ class _ChatInputBarState extends State<ChatInputBar> {
               child: ChatInputTextField(
                 focusNode: widget.messageFocusNode,
                 textEditingController: widget.messageTextController,
-                sendMessage: (context, state) => onSendMessageTap(context),
+                sendMessage: (context, state) => _onSendMessageTap(context),
                 onMessageSent: widget.onMessageSent,
-                listKey: widget.listKey,
               ),
             ),
 
             ChatInputButton(
               icon: Icons.send,
-              onTap: isTextFieldEmpty ? null : () => onSendMessageTap(context),
+              onTap: isTextFieldEmpty ? null : () => _onSendMessageTap(context),
               iconRotationAngleDegrees: -40,
               semanticsLabel: MessagesPageIds.chatInputBarSendMessageButton,
             ),
@@ -72,8 +69,8 @@ class _ChatInputBarState extends State<ChatInputBar> {
     );
   }
 
-  void onSendMessageTap(BuildContext context) {
-    sendMessage(widget.messageTextController.text);
+  void _onSendMessageTap(BuildContext context) {
+    _sendMessage(widget.messageTextController.text);
 
     context.read<MessagesPageCubit>().updateMessageText('');
     widget.messageTextController.clear();
@@ -81,14 +78,14 @@ class _ChatInputBarState extends State<ChatInputBar> {
     widget.messageFocusNode.requestFocus();
   }
 
-  Future<void> addAttachment() async {
+  Future<void> _addAttachment() async {
     final attachment = await context.read<MessagesPageCubit>().getAttachmentFile();
     if (attachment == null) return;
 
-    sendMessage(attachment.toPayload());
+    _sendMessage(attachment.toPayload());
   }
 
-  void sendMessage(String message) {
+  void _sendMessage(String message) {
     final conversationId = context.read<MessagesPageCubit>().state.currentConversationId ?? '';
     final user = context.read<UserDataCubit>().state.user;
 
@@ -100,7 +97,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
         payload: message,
         date: serviceLocator<TimeService>().now(),
       ),
-      widget.listKey,
     );
 
     widget.onMessageSent?.call();

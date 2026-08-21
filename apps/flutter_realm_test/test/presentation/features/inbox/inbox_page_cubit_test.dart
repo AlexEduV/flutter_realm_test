@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -104,7 +103,6 @@ void main() {
       return cubit;
     },
     act: (cubit) async {
-      final listKey = GlobalKey<AnimatedListState>();
       await cubit.sendMessage(
         'c1',
         MessageModel(
@@ -113,7 +111,6 @@ void main() {
           senderId: 'u2',
           date: DateTime(2023, 1, 2),
         ),
-        listKey,
       );
     },
     expect: () => [
