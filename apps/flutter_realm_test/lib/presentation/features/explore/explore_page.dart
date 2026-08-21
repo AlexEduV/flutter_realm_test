@@ -173,9 +173,7 @@ class _ExploreHeader extends StatelessWidget {
           builder: (context, userState) {
             final showLastSeen =
                 userState.user.lastSeenCar != null &&
-                context.read<ExplorePageCubit>().isCarExistsById(
-                  userState.user.lastSeenCar?.carId ?? '',
-                );
+                context.read<ExplorePageCubit>().isCarExistsById(userState.user.lastSeenCar?.carId);
 
             return SliverPersistentHeader(
               pinned: true,

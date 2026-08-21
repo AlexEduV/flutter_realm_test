@@ -18,6 +18,7 @@ import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_cas
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
 
+import '../../../data/data_sources/remote/article_remote_data_source_impl_test.mocks.dart';
 import 'explore_page_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -27,6 +28,7 @@ import 'explore_page_cubit_test.mocks.dart';
   MockSpec<GetCarByIdUseCase>(),
 ])
 void main() {
+  late MockLoggingService mockLoggingService;
   late MockSyncCarsUseCase mockSyncCarsUseCase;
   late MockWatchCarsUseCase mockWatchCarsUseCase;
   late MockFetchArticlesUseCase mockFetchArticlesUseCase;
@@ -61,11 +63,13 @@ void main() {
   ];
 
   setUp(() {
+    mockLoggingService = MockLoggingService();
     mockWatchCarsUseCase = MockWatchCarsUseCase();
     mockSyncCarsUseCase = MockSyncCarsUseCase();
     mockFetchArticlesUseCase = MockFetchArticlesUseCase();
     mockGetCarByIdUseCase = MockGetCarByIdUseCase();
     cubit = ExplorePageCubit(
+      mockLoggingService,
       mockWatchCarsUseCase,
       mockSyncCarsUseCase,
       mockFetchArticlesUseCase,
