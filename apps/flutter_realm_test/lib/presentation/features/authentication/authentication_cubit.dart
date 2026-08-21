@@ -304,11 +304,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   void setNewFormMode(AuthMode newMode) {
-    final isLoginMode = newMode == AuthMode.login;
-
     emit(
       state.copyWith(
-        isLoginMode: isLoginMode,
+        currentAuthMode: newMode,
         fullNameError: null,
         emailError: null,
         passwordError: null,
@@ -324,11 +322,11 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   Future<void> logOut() async {
     await _logoutUseCase.call();
-    emit(state.copyWith(isLoginMode: true));
+    emit(state.copyWith(currentAuthMode: AuthMode.login));
   }
 
   Future<void> deleteAccount(String email) async {
     await _deleteAccountUseCase.call(email);
-    emit(state.copyWith(isLoginMode: true));
+    emit(state.copyWith(currentAuthMode: AuthMode.login));
   }
 }

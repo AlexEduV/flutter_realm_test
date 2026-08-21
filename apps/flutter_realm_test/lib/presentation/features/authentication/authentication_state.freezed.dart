@@ -28,7 +28,7 @@ mixin _$AuthenticationState {
   String get fullNameValue;
   bool get isLoading;
   String? get authenticationErrorText;
-  bool get isLoginMode;
+  AuthMode get currentAuthMode;
   int get passwordValidationStage;
   String? get passwordStrengthHintText;
 
@@ -72,8 +72,8 @@ mixin _$AuthenticationState {
             (identical(
                     other.authenticationErrorText, authenticationErrorText) ||
                 other.authenticationErrorText == authenticationErrorText) &&
-            (identical(other.isLoginMode, isLoginMode) ||
-                other.isLoginMode == isLoginMode) &&
+            (identical(other.currentAuthMode, currentAuthMode) ||
+                other.currentAuthMode == currentAuthMode) &&
             (identical(
                     other.passwordValidationStage, passwordValidationStage) ||
                 other.passwordValidationStage == passwordValidationStage) &&
@@ -98,13 +98,13 @@ mixin _$AuthenticationState {
       fullNameValue,
       isLoading,
       authenticationErrorText,
-      isLoginMode,
+      currentAuthMode,
       passwordValidationStage,
       passwordStrengthHintText);
 
   @override
   String toString() {
-    return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, fullNameFieldParams: $fullNameFieldParams, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, fullNameError: $fullNameError, isButtonEnabled: $isButtonEnabled, emailValue: $emailValue, passwordValue: $passwordValue, fullNameValue: $fullNameValue, isLoading: $isLoading, authenticationErrorText: $authenticationErrorText, isLoginMode: $isLoginMode, passwordValidationStage: $passwordValidationStage, passwordStrengthHintText: $passwordStrengthHintText)';
+    return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, fullNameFieldParams: $fullNameFieldParams, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, fullNameError: $fullNameError, isButtonEnabled: $isButtonEnabled, emailValue: $emailValue, passwordValue: $passwordValue, fullNameValue: $fullNameValue, isLoading: $isLoading, authenticationErrorText: $authenticationErrorText, currentAuthMode: $currentAuthMode, passwordValidationStage: $passwordValidationStage, passwordStrengthHintText: $passwordStrengthHintText)';
   }
 }
 
@@ -128,7 +128,7 @@ abstract mixin class $AuthenticationStateCopyWith<$Res> {
       String fullNameValue,
       bool isLoading,
       String? authenticationErrorText,
-      bool isLoginMode,
+      AuthMode currentAuthMode,
       int passwordValidationStage,
       String? passwordStrengthHintText});
 }
@@ -159,7 +159,7 @@ class _$AuthenticationStateCopyWithImpl<$Res>
     Object? fullNameValue = null,
     Object? isLoading = null,
     Object? authenticationErrorText = freezed,
-    Object? isLoginMode = null,
+    Object? currentAuthMode = null,
     Object? passwordValidationStage = null,
     Object? passwordStrengthHintText = freezed,
   }) {
@@ -216,10 +216,10 @@ class _$AuthenticationStateCopyWithImpl<$Res>
           ? _self.authenticationErrorText
           : authenticationErrorText // ignore: cast_nullable_to_non_nullable
               as String?,
-      isLoginMode: null == isLoginMode
-          ? _self.isLoginMode
-          : isLoginMode // ignore: cast_nullable_to_non_nullable
-              as bool,
+      currentAuthMode: null == currentAuthMode
+          ? _self.currentAuthMode
+          : currentAuthMode // ignore: cast_nullable_to_non_nullable
+              as AuthMode,
       passwordValidationStage: null == passwordValidationStage
           ? _self.passwordValidationStage
           : passwordValidationStage // ignore: cast_nullable_to_non_nullable
@@ -249,7 +249,7 @@ class _AuthenticationState implements AuthenticationState {
       this.fullNameValue = '',
       this.isLoading = false,
       this.authenticationErrorText,
-      this.isLoginMode = true,
+      this.currentAuthMode = AuthMode.login,
       this.passwordValidationStage = 0,
       this.passwordStrengthHintText});
 
@@ -287,7 +287,7 @@ class _AuthenticationState implements AuthenticationState {
   final String? authenticationErrorText;
   @override
   @JsonKey()
-  final bool isLoginMode;
+  final AuthMode currentAuthMode;
   @override
   @JsonKey()
   final int passwordValidationStage;
@@ -335,8 +335,8 @@ class _AuthenticationState implements AuthenticationState {
             (identical(
                     other.authenticationErrorText, authenticationErrorText) ||
                 other.authenticationErrorText == authenticationErrorText) &&
-            (identical(other.isLoginMode, isLoginMode) ||
-                other.isLoginMode == isLoginMode) &&
+            (identical(other.currentAuthMode, currentAuthMode) ||
+                other.currentAuthMode == currentAuthMode) &&
             (identical(
                     other.passwordValidationStage, passwordValidationStage) ||
                 other.passwordValidationStage == passwordValidationStage) &&
@@ -361,13 +361,13 @@ class _AuthenticationState implements AuthenticationState {
       fullNameValue,
       isLoading,
       authenticationErrorText,
-      isLoginMode,
+      currentAuthMode,
       passwordValidationStage,
       passwordStrengthHintText);
 
   @override
   String toString() {
-    return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, fullNameFieldParams: $fullNameFieldParams, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, fullNameError: $fullNameError, isButtonEnabled: $isButtonEnabled, emailValue: $emailValue, passwordValue: $passwordValue, fullNameValue: $fullNameValue, isLoading: $isLoading, authenticationErrorText: $authenticationErrorText, isLoginMode: $isLoginMode, passwordValidationStage: $passwordValidationStage, passwordStrengthHintText: $passwordStrengthHintText)';
+    return 'AuthenticationState(isPasswordFieldObscure: $isPasswordFieldObscure, fullNameFieldParams: $fullNameFieldParams, emailFieldParams: $emailFieldParams, passwordFieldParams: $passwordFieldParams, emailError: $emailError, passwordError: $passwordError, fullNameError: $fullNameError, isButtonEnabled: $isButtonEnabled, emailValue: $emailValue, passwordValue: $passwordValue, fullNameValue: $fullNameValue, isLoading: $isLoading, authenticationErrorText: $authenticationErrorText, currentAuthMode: $currentAuthMode, passwordValidationStage: $passwordValidationStage, passwordStrengthHintText: $passwordStrengthHintText)';
   }
 }
 
@@ -393,7 +393,7 @@ abstract mixin class _$AuthenticationStateCopyWith<$Res>
       String fullNameValue,
       bool isLoading,
       String? authenticationErrorText,
-      bool isLoginMode,
+      AuthMode currentAuthMode,
       int passwordValidationStage,
       String? passwordStrengthHintText});
 }
@@ -424,7 +424,7 @@ class __$AuthenticationStateCopyWithImpl<$Res>
     Object? fullNameValue = null,
     Object? isLoading = null,
     Object? authenticationErrorText = freezed,
-    Object? isLoginMode = null,
+    Object? currentAuthMode = null,
     Object? passwordValidationStage = null,
     Object? passwordStrengthHintText = freezed,
   }) {
@@ -481,10 +481,10 @@ class __$AuthenticationStateCopyWithImpl<$Res>
           ? _self.authenticationErrorText
           : authenticationErrorText // ignore: cast_nullable_to_non_nullable
               as String?,
-      isLoginMode: null == isLoginMode
-          ? _self.isLoginMode
-          : isLoginMode // ignore: cast_nullable_to_non_nullable
-              as bool,
+      currentAuthMode: null == currentAuthMode
+          ? _self.currentAuthMode
+          : currentAuthMode // ignore: cast_nullable_to_non_nullable
+              as AuthMode,
       passwordValidationStage: null == passwordValidationStage
           ? _self.passwordValidationStage
           : passwordValidationStage // ignore: cast_nullable_to_non_nullable

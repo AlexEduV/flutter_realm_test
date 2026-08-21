@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
+import 'package:test_flutter_project/common/enums/auth_mode.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
@@ -23,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
       builder: (context, state) {
-        final welcomeText = state.isLoginMode
+        final welcomeText = state.currentAuthMode == AuthMode.login
             ? context.tr(LoginPageIds.loginPageLoginWelcomeText)
             : context.tr(LoginPageIds.loginPageRegistrationWelcomeText);
 
@@ -97,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     AuthErrorWidget(text: state.authenticationErrorText),
 
-                    AuthFormsSwitcher(isLoginMode: state.isLoginMode),
+                    AuthFormsSwitcher(isLoginMode: state.currentAuthMode == AuthMode.login),
                   ],
                 ),
               ],

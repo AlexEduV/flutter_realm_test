@@ -74,7 +74,7 @@ void main() {
 
   group('AuthenticationCubit', () {
     test('initial state is correct', () {
-      expect(cubit.state.isLoginMode, true);
+      expect(cubit.state.currentAuthMode, AuthMode.login);
       expect(cubit.state.emailFieldParams?.label, 'Email');
       expect(cubit.state.passwordFieldParams?.label, 'Password');
       expect(cubit.state.fullNameFieldParams?.label, 'Full name');
@@ -100,7 +100,7 @@ void main() {
       act: (cubit) => cubit.setNewFormMode(AuthMode.register),
       expect: () => [
         cubit.state.copyWith(
-          isLoginMode: false,
+          currentAuthMode: AuthMode.register,
           fullNameError: null,
           emailError: null,
           passwordError: null,
