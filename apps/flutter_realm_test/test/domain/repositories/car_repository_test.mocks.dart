@@ -6,9 +6,9 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i2;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_flutter_project/domain/repositories/car_repository.dart'
-    as _i3;
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -24,32 +24,22 @@ import 'package:test_flutter_project/domain/repositories/car_repository.dart'
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeCarEntity_0 extends _i1.SmartFake implements _i2.CarEntity {
-  _FakeCarEntity_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [CarRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
+class MockCarRepository extends _i1.Mock implements _i2.CarRepository {
   @override
-  List<_i2.CarEntity> getAllCars() => (super.noSuchMethod(
+  List<_i3.CarEntity> getAllCars() => (super.noSuchMethod(
         Invocation.method(
           #getAllCars,
           [],
         ),
-        returnValue: <_i2.CarEntity>[],
-        returnValueForMissingStub: <_i2.CarEntity>[],
-      ) as List<_i2.CarEntity>);
+        returnValue: <_i3.CarEntity>[],
+        returnValueForMissingStub: <_i3.CarEntity>[],
+      ) as List<_i3.CarEntity>);
 
   @override
-  void addCar(_i2.CarEntity? car) => super.noSuchMethod(
+  void addCar(_i3.CarEntity? car) => super.noSuchMethod(
         Invocation.method(
           #addCar,
           [car],
@@ -68,14 +58,14 @@ class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Stream<List<_i2.CarEntity>> watchCars() => (super.noSuchMethod(
+  _i4.Stream<List<_i3.CarEntity>> watchCars() => (super.noSuchMethod(
         Invocation.method(
           #watchCars,
           [],
         ),
-        returnValue: _i4.Stream<List<_i2.CarEntity>>.empty(),
-        returnValueForMissingStub: _i4.Stream<List<_i2.CarEntity>>.empty(),
-      ) as _i4.Stream<List<_i2.CarEntity>>);
+        returnValue: _i4.Stream<List<_i3.CarEntity>>.empty(),
+        returnValueForMissingStub: _i4.Stream<List<_i3.CarEntity>>.empty(),
+      ) as _i4.Stream<List<_i3.CarEntity>>);
 
   @override
   void deleteAll() => super.noSuchMethod(
@@ -96,26 +86,13 @@ class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
       );
 
   @override
-  _i2.CarEntity getCarById(String? id) => (super.noSuchMethod(
+  _i3.CarEntity? getCarById(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getCarById,
           [id],
         ),
-        returnValue: _FakeCarEntity_0(
-          this,
-          Invocation.method(
-            #getCarById,
-            [id],
-          ),
-        ),
-        returnValueForMissingStub: _FakeCarEntity_0(
-          this,
-          Invocation.method(
-            #getCarById,
-            [id],
-          ),
-        ),
-      ) as _i2.CarEntity);
+        returnValueForMissingStub: null,
+      ) as _i3.CarEntity?);
 
   @override
   int getMaxCarId() => (super.noSuchMethod(

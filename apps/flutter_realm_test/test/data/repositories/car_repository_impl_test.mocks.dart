@@ -711,26 +711,13 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
       ) as _i6.UserEntity);
 
   @override
-  _i4.CarEntity getCarById(String? id) => (super.noSuchMethod(
+  _i4.CarEntity? getCarById(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getCarById,
           [id],
         ),
-        returnValue: _FakeCarEntity_2(
-          this,
-          Invocation.method(
-            #getCarById,
-            [id],
-          ),
-        ),
-        returnValueForMissingStub: _FakeCarEntity_2(
-          this,
-          Invocation.method(
-            #getCarById,
-            [id],
-          ),
-        ),
-      ) as _i4.CarEntity);
+        returnValueForMissingStub: null,
+      ) as _i4.CarEntity?);
 
   @override
   int getMaxCarId() => (super.noSuchMethod(
