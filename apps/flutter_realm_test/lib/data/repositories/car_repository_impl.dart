@@ -44,13 +44,17 @@ class CarRepositoryImpl implements CarRepository {
     deleteAll();
 
     final dtos = await _carRemoteDataSource.fetchCars();
-    dtos.map((element) => _localStorage.update(CarExtensions.fromDto(element)));
+    for (final dto in dtos) {
+      _localStorage.update(CarExtensions.fromDto(dto));
+    }
 
     // 3. Listen to the stream for the 5-second updates
     await _carStreamSubscription?.cancel();
     _carStreamSubscription = _carRemoteDataSource.carStream.listen(
       (updatedDtos) {
-        updatedDtos.map((element) => _localStorage.update(CarExtensions.fromDto(element)));
+        for (final dto in updatedDtos) {
+          _localStorage.update(CarExtensions.fromDto(dto));
+        }
       },
       onError: (error, stackTrace) {
         _loggingService.error('car stream error: $error', stackTrace: stackTrace);
