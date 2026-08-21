@@ -1,5 +1,4 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -7,24 +6,35 @@ import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/get_unread_count_from_conversation_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
 
 import '../../features/inbox/inbox_page_cubit_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<FetchConversationsUseCase>(), MockSpec<SaveConversationsUseCase>()])
+@GenerateNiceMocks([
+  MockSpec<FetchConversationsUseCase>(),
+  MockSpec<SaveConversationsUseCase>(),
+  MockSpec<GetUnreadCountFromConversationUseCase>(),
+])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late MockFetchConversationsUseCase mockFetchConversationsUseCase;
   late MockSaveConversationsUseCase mockSaveConversationsUseCase;
+  late MockGetUnreadCountFromConversationUseCase mockGetUnreadCountFromConversationUseCase;
   late InboxPageCubit cubit;
 
   setUp(() {
     mockFetchConversationsUseCase = MockFetchConversationsUseCase();
     mockSaveConversationsUseCase = MockSaveConversationsUseCase();
-    cubit = InboxPageCubit(mockFetchConversationsUseCase, mockSaveConversationsUseCase);
+    mockGetUnreadCountFromConversationUseCase = MockGetUnreadCountFromConversationUseCase();
+    cubit = InboxPageCubit(
+      mockFetchConversationsUseCase,
+      mockSaveConversationsUseCase,
+      mockGetUnreadCountFromConversationUseCase,
+    );
   });
 
   test('initial state is InboxPageState()', () {
@@ -93,7 +103,6 @@ void main() {
       return cubit;
     },
     act: (cubit) async {
-      final listKey = GlobalKey<AnimatedListState>();
       await cubit.sendMessage(
         'c1',
         MessageModel(
@@ -102,7 +111,6 @@ void main() {
           senderId: 'u2',
           date: DateTime(2023, 1, 2),
         ),
-        listKey,
       );
     },
     expect: () => [

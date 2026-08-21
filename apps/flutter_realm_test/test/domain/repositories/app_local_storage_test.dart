@@ -180,7 +180,7 @@ void main() {
       final result = mockStorage.getCarById('car5');
 
       expect(result, isA<CarEntity>());
-      expect(result.carId, 'car5');
+      expect(result?.carId, 'car5');
     });
 
     test('getMaxCarId returns an int', () {

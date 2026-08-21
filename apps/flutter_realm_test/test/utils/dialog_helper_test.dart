@@ -221,7 +221,6 @@ void main() {
   });
 
   testWidgets('showGifsPickerModalBottomSheet shows GifsPickerBottomSheet', (tester) async {
-    final listKey = GlobalKey<AnimatedListState>();
     final mockMessagesPageCubit = MockMessagesPageCubit();
     when(mockMessagesPageCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockMessagesPageCubit.state).thenReturn(const MessagesPageState());
@@ -236,7 +235,7 @@ void main() {
           home: Builder(
             builder: (context) {
               return ElevatedButton(
-                onPressed: () => DialogHelper.showGifsPickerModalBottomSheet(context, listKey),
+                onPressed: () => DialogHelper.showGifsPickerModalBottomSheet(context),
                 child: const Text('Open'),
               );
             },

@@ -1,30 +1,30 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
+import 'package:test_flutter_project/domain/usecases/inbox/get_unread_count_from_conversation_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart';
 
 class InboxPageCubit extends Cubit<InboxPageState> {
-  InboxPageCubit(this._fetchMessagesUseCase, this._saveConversationsUseCase)
-    : super(const InboxPageState());
+  InboxPageCubit(
+    this._fetchMessagesUseCase,
+    this._saveConversationsUseCase,
+    this._getUnreadCountFromConversationUseCase,
+  ) : super(const InboxPageState());
 
   final FetchConversationsUseCase _fetchMessagesUseCase;
   final SaveConversationsUseCase _saveConversationsUseCase;
+  final GetUnreadCountFromConversationUseCase _getUnreadCountFromConversationUseCase;
 
   Future<void> init() async {
     final conversationsList = await _fetchMessagesUseCase.call();
     emit(state.copyWith(conversations: conversationsList));
   }
 
-  Future<void> sendMessage(
-    String? conversationId,
-    MessageModel message,
-    GlobalKey<AnimatedListState> listKey,
-  ) async {
+  Future<void> sendMessage(String? conversationId, MessageModel message) async {
     if (conversationId == null) return;
 
     final conversation = state.conversations.firstWhereOrNull(
@@ -41,7 +41,6 @@ class InboxPageCubit extends Cubit<InboxPageState> {
         .toList();
 
     emit(state.copyWith(conversations: updatedConversations));
-    listKey.currentState?.insertItem(0, duration: const Duration(milliseconds: 200));
 
     //todo: save to local storage cache as well
     await _saveConversationsUseCase.call(updatedConversations);
@@ -81,14 +80,7 @@ class InboxPageCubit extends Cubit<InboxPageState> {
   }
 
   int getUnreadCountFromConversation(ConversationEntity conversation) {
-    final unreadCount = conversation.messages
-        .where(
-          (element) =>
-              element.senderId == conversation.ownerId &&
-              element.messageStatus == MessageStatus.sent,
-        )
-        .length;
-
+    final unreadCount = _getUnreadCountFromConversationUseCase.call(conversation);
     return unreadCount;
   }
 }

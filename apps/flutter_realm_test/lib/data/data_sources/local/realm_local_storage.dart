@@ -88,9 +88,9 @@ class RealmLocalStorage implements AppLocalStorage {
   }
 
   @override
-  CarEntity getCarById(String id) {
+  CarEntity? getCarById(String id) {
     final car = realm.query<Car>('carId == \$0', [id]).firstOrNull;
-    if (car == null) return CarEntity.empty();
+    if (car == null) return null;
 
     //todo: too many calls when just opening home page -> details;
 

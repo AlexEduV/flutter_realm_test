@@ -26,7 +26,7 @@ void main() {
   final mockUsersRemoteDataSource = MockUsersRemoteDataSource();
   final mockMessagesRemoteDataSource = MockMessagesRemoteDataSource();
 
-  setUp(() {
+  setUp(() async {
     final initUsers = [
       UserEntity.initial(
         userId: '1',
@@ -51,6 +51,7 @@ void main() {
     when(mockLocalStorage.initUser()).thenReturn(initUsers.first);
     when(mockUsersRemoteDataSource.getMaxUserId()).thenReturn(1);
     when(mockUsersRemoteDataSource.saveSeedUsers(any)).thenAnswer((_) async {});
+    when(mockUsersRemoteDataSource.users).thenReturn(initUsers);
 
     repo = AuthRepositoryImpl(
       mockLocalStorage,
@@ -59,7 +60,8 @@ void main() {
       mockMessagesRemoteDataSource,
       mockOwnerRepository,
     );
-    repo.users = initUsers;
+
+    await repo.init();
   });
 
   group('login', () {

@@ -35,9 +35,9 @@ class CarListItem extends StatelessWidget {
       ),
       child: Material(
         borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-        color: Colors.white,
+        color: AppColors.white,
         child: AppSemantics(
-          label: AppSemanticsLabels.favoriteListItem,
+          label: '${AppSemanticsLabels.carListItem} ${source.name}',
           child: InkWell(
             borderRadius: BorderRadius.circular(AppDimensions.normalXL),
             onTap: () => AppRouter.goToDetails(from: source, carId: car.carId),
@@ -76,7 +76,7 @@ class CarListItem extends StatelessWidget {
                         Row(
                           children: [
                             Icon(
-                              getIconByCarType(car.type),
+                              _getIconByCarType(car.type),
                               size: AppDimensions.normalM,
                               color: AppColors.placeholderColorDark,
                             ),
@@ -93,7 +93,7 @@ class CarListItem extends StatelessWidget {
                         Text(
                           '\$ ${car.price ?? context.tr(L10nKeys.emptyStateLabel)}',
                           style: AppTextStyles.zonaPro16.copyWith(
-                            color: Colors.green,
+                            color: AppColors.success,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -120,7 +120,7 @@ class CarListItem extends StatelessWidget {
                             height: AppDimensions.favoriteButtonSize,
                             child: isFavoriteItem
                                 ? const Icon(Icons.favorite, color: AppColors.gold)
-                                : const Icon(Icons.remove_circle, color: Colors.red),
+                                : const Icon(Icons.remove_circle, color: AppColors.error),
                           ),
                         ),
                       ),
@@ -135,7 +135,7 @@ class CarListItem extends StatelessWidget {
     );
   }
 
-  IconData getIconByCarType(String type) {
+  IconData _getIconByCarType(String type) {
     final iconMap = {
       CarType.truck.name: Icons.local_shipping_outlined,
       CarType.bike.name: Icons.motorcycle_outlined,

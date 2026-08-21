@@ -5,23 +5,22 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i7;
 
-import 'package:flutter/cupertino.dart' as _i9;
-import 'package:flutter_bloc/flutter_bloc.dart' as _i10;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i14;
+import 'package:mockito/src/dummies.dart' as _i13;
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
-    as _i12;
+    as _i11;
 import 'package:test_flutter_project/domain/entities/conversation_entity.dart'
     as _i4;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i5;
-import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i13;
+import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i12;
 import 'package:test_flutter_project/domain/models/message_model.dart' as _i8;
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_cubit.dart'
     as _i6;
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_state.dart'
     as _i2;
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart'
-    as _i11;
+    as _i10;
 import 'package:test_flutter_project/presentation/features/messages/messages_page_state.dart'
     as _i3;
 
@@ -127,7 +126,6 @@ class MockInboxPageCubit extends _i1.Mock implements _i6.InboxPageCubit {
   _i7.Future<void> sendMessage(
     String? conversationId,
     _i8.MessageModel? message,
-    _i9.GlobalKey<_i9.AnimatedListState>? listKey,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -135,7 +133,6 @@ class MockInboxPageCubit extends _i1.Mock implements _i6.InboxPageCubit {
           [
             conversationId,
             message,
-            listKey,
           ],
         ),
         returnValue: _i7.Future<void>.value(),
@@ -191,7 +188,7 @@ class MockInboxPageCubit extends _i1.Mock implements _i6.InboxPageCubit {
       );
 
   @override
-  void onChange(_i10.Change<_i2.InboxPageState>? change) => super.noSuchMethod(
+  void onChange(_i9.Change<_i2.InboxPageState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -245,7 +242,7 @@ class MockInboxPageCubit extends _i1.Mock implements _i6.InboxPageCubit {
 /// A class which mocks [MessagesPageCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMessagesPageCubit extends _i1.Mock implements _i11.MessagesPageCubit {
+class MockMessagesPageCubit extends _i1.Mock implements _i10.MessagesPageCubit {
   @override
   int get activeRequestId => (super.noSuchMethod(
         Invocation.getter(#activeRequestId),
@@ -328,14 +325,14 @@ class MockMessagesPageCubit extends _i1.Mock implements _i11.MessagesPageCubit {
       );
 
   @override
-  _i7.Future<_i12.AttachmentEntity?> getAttachmentFile() => (super.noSuchMethod(
+  _i7.Future<_i11.AttachmentEntity?> getAttachmentFile() => (super.noSuchMethod(
         Invocation.method(
           #getAttachmentFile,
           [],
         ),
-        returnValue: _i7.Future<_i12.AttachmentEntity?>.value(),
-        returnValueForMissingStub: _i7.Future<_i12.AttachmentEntity?>.value(),
-      ) as _i7.Future<_i12.AttachmentEntity?>);
+        returnValue: _i7.Future<_i11.AttachmentEntity?>.value(),
+        returnValueForMissingStub: _i7.Future<_i11.AttachmentEntity?>.value(),
+      ) as _i7.Future<_i11.AttachmentEntity?>);
 
   @override
   _i4.ConversationEntity getConversationById(String? conversationId) =>
@@ -383,16 +380,16 @@ class MockMessagesPageCubit extends _i1.Mock implements _i11.MessagesPageCubit {
       ) as _i5.OwnerEntity);
 
   @override
-  Map<String, _i13.UserEntity?> getUsersFromConversation(
+  Map<String, _i12.UserEntity?> getUsersFromConversation(
           _i4.ConversationEntity? conversation) =>
       (super.noSuchMethod(
         Invocation.method(
           #getUsersFromConversation,
           [conversation],
         ),
-        returnValue: <String, _i13.UserEntity?>{},
-        returnValueForMissingStub: <String, _i13.UserEntity?>{},
-      ) as Map<String, _i13.UserEntity?>);
+        returnValue: <String, _i12.UserEntity?>{},
+        returnValueForMissingStub: <String, _i12.UserEntity?>{},
+      ) as Map<String, _i12.UserEntity?>);
 
   @override
   String getMessageDividerDate(DateTime? date) => (super.noSuchMethod(
@@ -400,14 +397,14 @@ class MockMessagesPageCubit extends _i1.Mock implements _i11.MessagesPageCubit {
           #getMessageDividerDate,
           [date],
         ),
-        returnValue: _i14.dummyValue<String>(
+        returnValue: _i13.dummyValue<String>(
           this,
           Invocation.method(
             #getMessageDividerDate,
             [date],
           ),
         ),
-        returnValueForMissingStub: _i14.dummyValue<String>(
+        returnValueForMissingStub: _i13.dummyValue<String>(
           this,
           Invocation.method(
             #getMessageDividerDate,
@@ -422,14 +419,14 @@ class MockMessagesPageCubit extends _i1.Mock implements _i11.MessagesPageCubit {
           #getMessageTime,
           [date],
         ),
-        returnValue: _i14.dummyValue<String>(
+        returnValue: _i13.dummyValue<String>(
           this,
           Invocation.method(
             #getMessageTime,
             [date],
           ),
         ),
-        returnValueForMissingStub: _i14.dummyValue<String>(
+        returnValueForMissingStub: _i13.dummyValue<String>(
           this,
           Invocation.method(
             #getMessageTime,
@@ -448,7 +445,7 @@ class MockMessagesPageCubit extends _i1.Mock implements _i11.MessagesPageCubit {
       );
 
   @override
-  void onChange(_i10.Change<_i3.MessagesPageState>? change) =>
+  void onChange(_i9.Change<_i3.MessagesPageState>? change) =>
       super.noSuchMethod(
         Invocation.method(
           #onChange,

@@ -16,7 +16,7 @@ abstract interface class AuthRepository {
 
   Future<void> deleteAccount(String email);
 
-  Future<void> updateUser(String email, UserEntity data);
+  Future<void> updateUser(String email, UserEntity updatedUser);
 
   Future<bool> isUserLoggedIn();
 }

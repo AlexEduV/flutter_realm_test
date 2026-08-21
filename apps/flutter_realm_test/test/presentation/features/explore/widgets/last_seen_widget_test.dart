@@ -114,7 +114,7 @@ void main() {
 
     when(mockExplorePageCubit.state).thenReturn(exploreState);
     when(mockExplorePageCubit.stream).thenAnswer((_) => Stream.fromIterable([exploreState]));
-    when(mockExplorePageCubit.getCarById(any)).thenReturn(carEntity);
+    when(mockExplorePageCubit.getLastSeenCarById(any)).thenReturn(carEntity);
 
     await tester.pumpWidget(
       buildTestWidget(userState: userState, exploreState: exploreState, carEntity: carEntity),

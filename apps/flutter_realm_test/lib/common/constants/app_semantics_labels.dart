@@ -38,7 +38,7 @@ class AppSemanticsLabels {
 
   static const orDivider = 'orDivider';
 
-  static const favoriteListItem = 'favoriteListItem';
+  static const carListItem = 'carListItem';
 
   static const personalDetailsItem = 'personalDetailsItem';
 

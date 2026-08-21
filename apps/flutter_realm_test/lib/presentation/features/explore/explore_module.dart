@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:test_flutter_project/domain/services/logging_service.dart';
 
 import '../../../data/data_sources/remote/seed_car_remote_data_source_impl.dart';
 import '../../../data/repositories/car_repository_impl.dart';
@@ -40,6 +41,7 @@ void registerExploreModule(GetIt serviceLocator) {
 
   serviceLocator.registerFactory(
     () => ExplorePageCubit(
+      serviceLocator<LoggingService>(),
       serviceLocator<WatchCarsUseCase>(),
       serviceLocator<SyncCarsUseCase>(),
       serviceLocator<FetchArticlesUseCase>(),

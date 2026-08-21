@@ -21,11 +21,11 @@ class AuthRepositoryImpl implements AuthRepository {
 
   final AppLocalStorage _localStorage;
   final AppRemoteStorage _remoteStorage;
-  final OwnerRepository _ownerRepository;
   final UsersRemoteDataSource _usersRemoteDataSource;
   final MessagesRemoteDataSource _messagesRemoteDataSource;
+  final OwnerRepository _ownerRepository;
 
-  late final List<UserEntity> users;
+  late List<UserEntity> _users;
   bool _isAuthenticated = false;
   static const _userSessionKey = 'userId';
 
@@ -33,7 +33,7 @@ class AuthRepositoryImpl implements AuthRepository {
     await _usersRemoteDataSource.loadSeedUsers();
     await _ownerRepository.fetchOwners();
 
-    users = List.from(_usersRemoteDataSource.users);
+    _users = List.from(_usersRemoteDataSource.users);
   }
 
   @override
@@ -51,15 +51,15 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<AuthResult> login({required String email, required String password}) async {
     await _simulateNetworkDelay();
 
-    if (!users.any((element) => element.email == email)) {
+    if (!_users.any((element) => element.email == email)) {
       return const AuthFailure(AuthErrorCode.userNotFound);
     }
 
-    if (!users.any((element) => element.password == password && element.email == email)) {
+    if (!_users.any((element) => element.password == password && element.email == email)) {
       return const AuthFailure(AuthErrorCode.incorrectPassword);
     }
 
-    final user = users.firstWhere((element) => element.email == email);
+    final user = _users.firstWhere((element) => element.email == email);
 
     await _saveUserSession(user.userId);
 
@@ -81,7 +81,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     await _simulateNetworkDelay();
 
-    if (users.any((element) => element.email == email)) {
+    if (_users.any((element) => element.email == email)) {
       return const AuthFailure(AuthErrorCode.userAlreadyExists);
     }
 
@@ -94,10 +94,10 @@ class AuthRepositoryImpl implements AuthRepository {
       lastName: lastName,
     );
 
-    users.add(user);
-    _usersRemoteDataSource.users = List.from(users);
+    _users = [..._users, user];
+    _usersRemoteDataSource.users = List.from(_users);
 
-    await _usersRemoteDataSource.saveSeedUsers(users);
+    await _usersRemoteDataSource.saveSeedUsers(_users);
     await _saveUserSession(newUserId.toString());
 
     _localStorage.clearUser();
@@ -111,20 +111,19 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> deleteAccount(String email) async {
     await logOut();
 
-    users.removeWhere((element) => element.email == email);
-    _usersRemoteDataSource.users = List.from(users);
-    await _usersRemoteDataSource.saveSeedUsers(users);
+    _users = _users.where((element) => element.email != email).toList();
+    _usersRemoteDataSource.users = List.from(_users);
+    await _usersRemoteDataSource.saveSeedUsers(_users);
   }
 
   @override
-  Future<void> updateUser(String userId, UserEntity data) async {
+  Future<void> updateUser(String userId, UserEntity updatedUser) async {
     if (!_isAuthenticated) return;
 
-    users.removeWhere((element) => element.userId == userId);
-    users.add(data);
+    _users = [..._users.where((e) => e.userId != userId), updatedUser];
 
-    _usersRemoteDataSource.users = List.from(users);
-    await _usersRemoteDataSource.saveSeedUsers(users);
+    _usersRemoteDataSource.users = List.from(_users);
+    await _usersRemoteDataSource.saveSeedUsers(_users);
   }
 
   @override

@@ -17,6 +17,8 @@ class CarRepositoryImpl implements CarRepository {
   final CarRemoteDataSource _carRemoteDataSource;
   final LoggingService _loggingService;
 
+  StreamSubscription? _carStreamSubscription;
+
   @override
   void addCar(CarEntity carEntity) {
     _localStorage.add(carEntity);
@@ -47,7 +49,8 @@ class CarRepositoryImpl implements CarRepository {
     }
 
     // 3. Listen to the stream for the 5-second updates
-    _carRemoteDataSource.carStream.listen(
+    await _carStreamSubscription?.cancel();
+    _carStreamSubscription = _carRemoteDataSource.carStream.listen(
       (updatedDtos) {
         for (final dto in updatedDtos) {
           _localStorage.update(CarExtensions.fromDto(dto));
@@ -78,7 +81,7 @@ class CarRepositoryImpl implements CarRepository {
   }
 
   @override
-  CarEntity getCarById(String id) {
+  CarEntity? getCarById(String id) {
     return _localStorage.getCarById(id);
   }
 

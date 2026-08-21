@@ -7,8 +7,8 @@ import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart'
-    as _i4;
-import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
+    as _i3;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i4;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -35,29 +35,19 @@ class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
         );
 }
 
-class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
-  _FakeCarEntity_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [AppLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAppLocalStorage extends _i1.Mock implements _i4.AppLocalStorage {
+class MockAppLocalStorage extends _i1.Mock implements _i3.AppLocalStorage {
   @override
-  List<_i3.CarEntity> getAll() => (super.noSuchMethod(
+  List<_i4.CarEntity> getAll() => (super.noSuchMethod(
         Invocation.method(
           #getAll,
           [],
         ),
-        returnValue: <_i3.CarEntity>[],
-        returnValueForMissingStub: <_i3.CarEntity>[],
-      ) as List<_i3.CarEntity>);
+        returnValue: <_i4.CarEntity>[],
+        returnValueForMissingStub: <_i4.CarEntity>[],
+      ) as List<_i4.CarEntity>);
 
   @override
   void add(dynamic T) => super.noSuchMethod(
@@ -128,26 +118,13 @@ class MockAppLocalStorage extends _i1.Mock implements _i4.AppLocalStorage {
       ) as _i2.UserEntity);
 
   @override
-  _i3.CarEntity getCarById(String? id) => (super.noSuchMethod(
+  _i4.CarEntity? getCarById(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getCarById,
           [id],
         ),
-        returnValue: _FakeCarEntity_1(
-          this,
-          Invocation.method(
-            #getCarById,
-            [id],
-          ),
-        ),
-        returnValueForMissingStub: _FakeCarEntity_1(
-          this,
-          Invocation.method(
-            #getCarById,
-            [id],
-          ),
-        ),
-      ) as _i3.CarEntity);
+        returnValueForMissingStub: null,
+      ) as _i4.CarEntity?);
 
   @override
   int getMaxCarId() => (super.noSuchMethod(
