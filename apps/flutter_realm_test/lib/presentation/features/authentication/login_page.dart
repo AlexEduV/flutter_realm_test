@@ -24,7 +24,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
       builder: (context, state) {
-        final welcomeText = state.currentAuthMode == AuthMode.login
+        final isLogin = state.currentAuthMode == AuthMode.login;
+
+        final welcomeText = isLogin
             ? context.tr(LoginPageIds.loginPageLoginWelcomeText)
             : context.tr(LoginPageIds.loginPageRegistrationWelcomeText);
 
@@ -98,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     AuthErrorWidget(text: state.authenticationErrorText),
 
-                    AuthFormsSwitcher(isLoginMode: state.currentAuthMode == AuthMode.login),
+                    AuthFormsSwitcher(isLoginMode: isLogin),
                   ],
                 ),
               ],
