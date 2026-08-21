@@ -16,8 +16,8 @@ import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
-import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 
 import '../../features/search/search_page_cubit_test.mocks.dart';
@@ -27,7 +27,10 @@ void main() {
   late MockGetAllCarsUseCase mockGetAllCarsUseCase;
   late MockWatchCarsUseCase mockWatchCarsUseCase;
   final appLocalisationsCubit = AppLocalisationsCubit()
-    ..load({L10nKeys.fieldParamsHintMin: 'Min:', L10nKeys.fieldParamsHintMax: 'Max:'});
+    ..load({
+      SearchPageLocaleKeys.fieldParamsHintMin: 'Min:',
+      SearchPageLocaleKeys.fieldParamsHintMax: 'Max:',
+    });
 
   late SearchPageCubit cubit;
   final car1 = CarEntity(

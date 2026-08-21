@@ -3,6 +3,8 @@ final class LocationSettingsIds {
 }
 
 final class LocationSettingsLocaleKeys {
+  static const String countryPrefix = 'countries.';
+
   static const locationUsageDescription = 'pages.account.items.location.locationUsageDescription';
   static const locationSettingsItemAccess = 'pages.account.items.location.locationAccessItem';
   static const locationSettingsItemRegion = 'pages.account.items.location.regionItem';

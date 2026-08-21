@@ -42,4 +42,24 @@ final class NewItemPageLocaleKeys {
   static const String fieldParamsEngineVolumeLabel = 'forms.fieldParams.engineVolume.label';
   static const String fieldParamsEngineVolumeRegexErrorMessage =
       'forms.fieldParams.engineVolume.regexErrorMessage';
+
+  static const String fieldParamsManufacturerLabel = 'forms.fieldParams.manufacturer.label';
+  static const String fieldParamsManufacturerRegexErrorMessage =
+      'forms.fieldParams.manufacturer.regexErrorMessage';
+
+  static const String fieldParamsVehicleModelLabel = 'forms.fieldParams.vehicleModel.label';
+  static const String fieldParamsVehicleModelRegexErrorMessage =
+      'forms.fieldParams.vehicleModel.regexErrorMessage';
+
+  static const String fieldParamsYearOfProductionLabel = 'forms.fieldParams.yearOfProduction.label';
+  static const String fieldParamsYearOfProductionRegexErrorMessage =
+      'forms.fieldParams.yearOfProduction.regexErrorMessage';
+
+  static const String fieldParamsPriceLabel = 'forms.fieldParams.price.label';
+  static const String fieldParamsPriceRegexErrorMessage =
+      'forms.fieldParams.price.regexErrorMessage';
+
+  static const String fieldParamsColorLabel = 'forms.fieldParams.color.label';
+  static const String fieldParamsColorRegexErrorMessage =
+      'forms.fieldParams.color.regexErrorMessage';
 }

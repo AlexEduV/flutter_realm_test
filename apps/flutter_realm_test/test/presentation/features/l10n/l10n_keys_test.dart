@@ -7,6 +7,7 @@ import 'package:test_flutter_project/presentation/features/explore/explore_page_
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/placeholder/placeholder_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 
@@ -545,7 +546,6 @@ void main() {
       'articlePageMinsToRead',
       () => expect(ArticlePageLocaleKeys.articlePageMinsToRead, 'pages.article.minsToRead'),
     );
-    test('shareButtonLabel', () => expect(L10nKeys.shareButtonLabel, 'general.share'));
     test('onLabel', () => expect(L10nKeys.onLabel, 'general.on'));
     test('offLabel', () => expect(L10nKeys.offLabel, 'general.off'));
     test('confirmLabel', () => expect(L10nKeys.confirmLabel, 'general.confirm'));
@@ -553,82 +553,109 @@ void main() {
     test(
       'clearViewHistoryDialogDescription',
       () => expect(
-        L10nKeys.clearViewHistoryDialogDescription,
+        AccountPageLocaleKeys.clearViewHistoryDialogDescription,
         'dialogs.clearViewHistory.description',
       ),
     );
     test(
       'clearViewHistoryDialogConfirmLabel',
       () => expect(
-        L10nKeys.clearViewHistoryDialogConfirmLabel,
+        AccountPageLocaleKeys.clearViewHistoryDialogConfirmLabel,
         'dialogs.clearViewHistory.confirmLabel',
       ),
     );
     test(
       'clearViewHistoryDialogCancelLabel',
       () => expect(
-        L10nKeys.clearViewHistoryDialogCancelLabel,
+        AccountPageLocaleKeys.clearViewHistoryDialogCancelLabel,
         'dialogs.clearViewHistory.cancelLabel',
       ),
     );
     test(
       'clearFavoriteItemsDialogDescription',
       () => expect(
-        L10nKeys.clearFavoriteItemsDialogDescription,
+        AccountPageLocaleKeys.clearFavoriteItemsDialogDescription,
         'dialogs.clearFavoriteItems.description',
       ),
     );
     test(
       'clearFavoriteItemsDialogConfirmLabel',
       () => expect(
-        L10nKeys.clearFavoriteItemsDialogConfirmLabel,
+        AccountPageLocaleKeys.clearFavoriteItemsDialogConfirmLabel,
         'dialogs.clearFavoriteItems.confirmLabel',
       ),
     );
     test(
       'clearFavoriteItemsDialogCancelLabel',
       () => expect(
-        L10nKeys.clearFavoriteItemsDialogCancelLabel,
+        AccountPageLocaleKeys.clearFavoriteItemsDialogCancelLabel,
         'dialogs.clearFavoriteItems.cancelLabel',
       ),
     );
     test(
       'clearMyItemsDialogDescription',
-      () => expect(L10nKeys.clearMyItemsDialogDescription, 'dialogs.clearMyItems.description'),
+      () => expect(
+        AccountPageLocaleKeys.clearMyItemsDialogDescription,
+        'dialogs.clearMyItems.description',
+      ),
     );
     test(
       'clearMyItemsDialogConfirmLabel',
-      () => expect(L10nKeys.clearMyItemsDialogConfirmLabel, 'dialogs.clearMyItems.confirmLabel'),
+      () => expect(
+        AccountPageLocaleKeys.clearMyItemsDialogConfirmLabel,
+        'dialogs.clearMyItems.confirmLabel',
+      ),
     );
     test(
       'clearMyItemsDialogCancelLabel',
-      () => expect(L10nKeys.clearMyItemsDialogCancelLabel, 'dialogs.clearMyItems.cancelLabel'),
+      () => expect(
+        AccountPageLocaleKeys.clearMyItemsDialogCancelLabel,
+        'dialogs.clearMyItems.cancelLabel',
+      ),
     );
     test(
       'clearAllDataDialogDescription',
-      () => expect(L10nKeys.clearAllDataDialogDescription, 'dialogs.clearAllData.description'),
+      () => expect(
+        AccountPageLocaleKeys.clearAllDataDialogDescription,
+        'dialogs.clearAllData.description',
+      ),
     );
     test(
       'clearAllDataDialogConfirmLabel',
-      () => expect(L10nKeys.clearAllDataDialogConfirmLabel, 'dialogs.clearAllData.confirmLabel'),
+      () => expect(
+        AccountPageLocaleKeys.clearAllDataDialogConfirmLabel,
+        'dialogs.clearAllData.confirmLabel',
+      ),
     );
     test(
       'clearAllDataDialogCancelLabel',
-      () => expect(L10nKeys.clearAllDataDialogCancelLabel, 'dialogs.clearAllData.cancelLabel'),
+      () => expect(
+        AccountPageLocaleKeys.clearAllDataDialogCancelLabel,
+        'dialogs.clearAllData.cancelLabel',
+      ),
     );
     test(
       'deleteAccountDialogDescription',
-      () => expect(L10nKeys.deleteAccountDialogDescription, 'dialogs.deleteAccount.description'),
+      () => expect(
+        AccountPageLocaleKeys.deleteAccountDialogDescription,
+        'dialogs.deleteAccount.description',
+      ),
     );
     test(
       'deleteAccountDialogConfirmLabel',
-      () => expect(L10nKeys.deleteAccountDialogConfirmLabel, 'dialogs.deleteAccount.confirmLabel'),
+      () => expect(
+        AccountPageLocaleKeys.deleteAccountDialogConfirmLabel,
+        'dialogs.deleteAccount.confirmLabel',
+      ),
     );
     test(
       'deleteAccountDialogCancelLabel',
-      () => expect(L10nKeys.deleteAccountDialogCancelLabel, 'dialogs.deleteAccount.cancelLabel'),
+      () => expect(
+        AccountPageLocaleKeys.deleteAccountDialogCancelLabel,
+        'dialogs.deleteAccount.cancelLabel',
+      ),
     );
-    test('countryPrefix', () => expect(L10nKeys.countryPrefix, 'countries.'));
+    test('countryPrefix', () => expect(LocationSettingsLocaleKeys.countryPrefix, 'countries.'));
     test(
       'promoTypeBestPrice',
       () => expect(L10nKeys.promoTypeBestPrice, 'pages.vehicleDetails.promoType.bestPrice'),

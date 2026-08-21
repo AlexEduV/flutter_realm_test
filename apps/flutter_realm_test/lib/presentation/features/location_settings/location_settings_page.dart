@@ -77,7 +77,7 @@ class LocationSettingsPage extends StatelessWidget {
                               LocationSettingsLocaleKeys.locationSettingsItemRegion,
                             ),
                             description: context.tr(
-                              '${L10nKeys.countryPrefix}${locationState.currentRegion?.locale}',
+                              '${LocationSettingsLocaleKeys.countryPrefix}${locationState.currentRegion?.locale}',
                             ),
                             icon: Icons.explore,
                             onTap: () => onRegionItemTap(state.user.region, context),

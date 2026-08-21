@@ -13,7 +13,6 @@ import 'package:test_flutter_project/presentation/features/search/search_page_id
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 
 import '../l10n/app_localisations_cubit.dart';
-import '../l10n/l10n_keys.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
   SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase, this._appLocalisationsCubit)
@@ -30,7 +29,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
       state.copyWith(
         minYearFieldParamsModel:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMin),
+              _appLocalisationsCubit.getLocalisationByKey(SearchPageLocaleKeys.fieldParamsHintMin),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 SearchPageLocaleKeys.filterValidationMessage,
@@ -38,7 +37,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
             ),
         maxYearFieldParamsModel:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMax),
+              _appLocalisationsCubit.getLocalisationByKey(SearchPageLocaleKeys.fieldParamsHintMax),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 SearchPageLocaleKeys.filterValidationMessage,
@@ -46,7 +45,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
             ),
         minPriceFieldParamsModel:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMin),
+              _appLocalisationsCubit.getLocalisationByKey(SearchPageLocaleKeys.fieldParamsHintMin),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 SearchPageLocaleKeys.filterValidationMessage,
@@ -54,7 +53,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
             ),
         maxPriceFieldParamsModel:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsHintMax),
+              _appLocalisationsCubit.getLocalisationByKey(SearchPageLocaleKeys.fieldParamsHintMax),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 SearchPageLocaleKeys.filterValidationMessage,
