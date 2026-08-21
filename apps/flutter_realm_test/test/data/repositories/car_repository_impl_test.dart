@@ -86,7 +86,7 @@ void main() {
 
       repository.addCar(carEntity);
 
-      verify(localStorage.add(carEntity)).called(1);
+      verify(localStorage.addCar(carEntity)).called(1);
     });
 
     test('deleteCarById deletes car if found and valid', () {
@@ -96,7 +96,7 @@ void main() {
 
       repository.deleteCarById(carId);
 
-      verify(localStorage.deleteById(any)).called(1);
+      verify(localStorage.deleteCarById(any)).called(1);
     });
 
     test('deleteCarById delegates to localStorage.deleteById', () {
@@ -104,7 +104,7 @@ void main() {
 
       repository.deleteCarById(carId);
 
-      verify(localStorage.deleteById(carId)).called(1);
+      verify(localStorage.deleteCarById(carId)).called(1);
     });
 
     test('deleteAll calls realm.deleteAll<Car>()', () {
@@ -130,7 +130,7 @@ void main() {
     });
 
     test('getAllCars returns mapped entities', () {
-      when(localStorage.getAll()).thenReturn([CarEntity.empty()]);
+      when(localStorage.getAllCars()).thenReturn([CarEntity.empty()]);
 
       final result = repository.getAllCars();
 
@@ -181,7 +181,7 @@ void main() {
       await repository.syncCars();
 
       verify(localStorage.deleteAllCars()).called(1);
-      verify(localStorage.update(any)).called(1);
+      verify(localStorage.updateCar(any)).called(1);
       verify(apiService.fetchCars()).called(1);
     });
   });

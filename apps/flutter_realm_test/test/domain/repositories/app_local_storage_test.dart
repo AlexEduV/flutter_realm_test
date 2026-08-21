@@ -42,9 +42,9 @@ void main() {
         ),
       ];
 
-      when(mockStorage.getAll()).thenReturn(cars);
+      when(mockStorage.getAllCars()).thenReturn(cars);
 
-      final result = mockStorage.getAll();
+      final result = mockStorage.getAllCars();
 
       expect(result, isA<List<CarEntity>>());
       expect(result.length, 1);
@@ -68,9 +68,9 @@ void main() {
         transmissionType: TransmissionType.manual.name,
       );
 
-      mockStorage.add(car);
+      mockStorage.addCar(car);
 
-      verify(mockStorage.add(car)).called(1);
+      verify(mockStorage.addCar(car)).called(1);
     });
 
     test('update can be called with any object', () {
@@ -90,9 +90,9 @@ void main() {
         transmissionType: TransmissionType.automatic.name,
       );
 
-      mockStorage.update(car);
+      mockStorage.updateCar(car);
 
-      verify(mockStorage.update(car)).called(1);
+      verify(mockStorage.updateCar(car)).called(1);
     });
 
     test('watch returns a Stream', () {
@@ -115,9 +115,9 @@ void main() {
         ),
       ]);
 
-      when(mockStorage.watch<CarEntity>()).thenAnswer((_) => carStream);
+      when(mockStorage.watchCars()).thenAnswer((_) => carStream);
 
-      expect(mockStorage.watch<CarEntity>(), emits(isA<List<CarEntity>>()));
+      expect(mockStorage.watchCars(), emits(isA<List<CarEntity>>()));
     });
 
     test('deleteAll can be called', () {
@@ -129,9 +129,9 @@ void main() {
     test('deleteById can be called with car Id', () {
       final id = '1';
 
-      mockStorage.deleteById(id);
+      mockStorage.deleteCarById(id);
 
-      verify(mockStorage.deleteById(id)).called(1);
+      verify(mockStorage.deleteCarById(id)).called(1);
     });
 
     test('initUser returns a UserEntity', () {

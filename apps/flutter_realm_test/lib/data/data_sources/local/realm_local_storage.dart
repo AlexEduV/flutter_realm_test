@@ -10,56 +10,72 @@ import '../../../domain/entities/car_entity.dart';
 import '../../models/scheme.dart';
 
 class RealmLocalStorage implements AppLocalStorage {
-  RealmLocalStorage(this.realm);
+  RealmLocalStorage(this._realm);
 
-  final Realm realm;
+  final Realm _realm;
 
   @override
-  void add(T) {
-    realm.write(() {
-      realm.add(CarExtensions.fromEntity(T));
+  void addCar(CarEntity car) {
+    _realm.write(() {
+      _realm.add(CarExtensions.fromEntity(car));
     });
   }
 
   @override
-  void update(T) {
-    realm.write(() {
-      realm.add(T, update: true);
+  void updateCar(CarEntity car) {
+    _realm.write(() {
+      _realm.add(CarExtensions.fromEntity(car), update: true);
     });
   }
 
   @override
-  Stream watch<T>() {
-    return realm.all<Car>().changes;
+  Stream watchCars() {
+    return _realm.all<Car>().changes;
   }
 
   @override
-  List<CarEntity> getAll() {
-    return realm.all<Car>().map((element) => CarEntity.fromSchema(element)).toList();
+  List<CarEntity> getAllCars() {
+    return _realm.all<Car>().map((element) => CarEntity.fromSchema(element)).toList();
   }
 
   @override
-  void deleteById(String id) {
-    realm.write(() {
-      final liveCars = realm.query<Car>('carId == \$0', [id]);
+  void deleteCarById(String id) {
+    _realm.write(() {
+      final liveCars = _realm.query<Car>('carId == \$0', [id]);
       for (final liveCar in liveCars) {
-        if (liveCar.isValid) {
-          realm.delete(liveCar);
-        }
+        if (!liveCar.isValid) continue;
+        _realm.delete(liveCar);
       }
     });
   }
 
   @override
   void deleteAllCars() {
-    realm.write(() {
-      realm.deleteAll<Car>();
+    _realm.write(() {
+      _realm.deleteAll<Car>();
     });
   }
 
   @override
+  CarEntity? getCarById(String id) {
+    final car = _realm.query<Car>('carId == \$0', [id]).firstOrNull;
+    if (car == null) return null;
+
+    //todo: too many calls when just opening home page -> details;
+
+    return car.toEntity();
+  }
+
+  @override
+  int getMaxCarId() {
+    final cars = _realm.all<Car>();
+    if (cars.isEmpty) return 0;
+    return cars.map((c) => int.parse(c.carId)).reduce(max);
+  }
+
+  @override
   UserEntity initUser() {
-    final users = realm.all<User>().map((element) => UserEntity.fromSchema(element)).toList();
+    final users = _realm.all<User>().map((element) => UserEntity.fromSchema(element)).toList();
 
     if (users.isNotEmpty) {
       return users.first;
@@ -80,34 +96,24 @@ class RealmLocalStorage implements AppLocalStorage {
       avatarImageSrc: null,
     );
 
-    realm.write(() {
-      realm.add(UserExtensions.fromEntity(user));
+    _realm.write(() {
+      _realm.add(UserExtensions.fromEntity(user));
     });
 
     return user;
   }
 
   @override
-  CarEntity? getCarById(String id) {
-    final car = realm.query<Car>('carId == \$0', [id]).firstOrNull;
-    if (car == null) return null;
-
-    //todo: too many calls when just opening home page -> details;
-
-    return car.toEntity();
-  }
-
-  @override
-  int getMaxCarId() {
-    final cars = realm.all<Car>();
-    if (cars.isEmpty) return 0;
-    return cars.map((c) => int.parse(c.carId)).reduce(max);
+  void updateUser(UserEntity user) {
+    _realm.write(() {
+      _realm.add(UserExtensions.fromEntity(user), update: true);
+    });
   }
 
   @override
   void clearUser() {
-    realm.write(() {
-      realm.deleteAll<User>();
+    _realm.write(() {
+      _realm.deleteAll<User>();
     });
   }
 }

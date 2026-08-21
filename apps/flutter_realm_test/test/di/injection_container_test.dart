@@ -40,7 +40,7 @@ void main() {
     serviceLocator.registerSingleton<Realm>(FakeRealm());
 
     final mockLocalStorage = MockAppLocalStorage();
-    when(mockLocalStorage.getAll()).thenReturn([CarEntity.empty()]);
+    when(mockLocalStorage.getAllCars()).thenReturn([CarEntity.empty()]);
 
     serviceLocator.registerSingleton<AppLocalStorage>(mockLocalStorage);
     // Register other mocks as needed

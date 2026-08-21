@@ -73,18 +73,8 @@ class _FakeCarDto_3 extends _i1.SmartFake implements _i5.CarDto {
         );
 }
 
-class _FakeRealm_4 extends _i1.SmartFake implements _i2.Realm {
-  _FakeRealm_4(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeUserEntity_5 extends _i1.SmartFake implements _i6.UserEntity {
-  _FakeUserEntity_5(
+class _FakeUserEntity_4 extends _i1.SmartFake implements _i6.UserEntity {
+  _FakeUserEntity_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -620,40 +610,27 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
 /// See the documentation for Mockito's code generation for more information.
 class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
   @override
-  _i2.Realm get realm => (super.noSuchMethod(
-        Invocation.getter(#realm),
-        returnValue: _FakeRealm_4(
-          this,
-          Invocation.getter(#realm),
-        ),
-        returnValueForMissingStub: _FakeRealm_4(
-          this,
-          Invocation.getter(#realm),
-        ),
-      ) as _i2.Realm);
-
-  @override
-  void add(dynamic T) => super.noSuchMethod(
+  void addCar(_i4.CarEntity? car) => super.noSuchMethod(
         Invocation.method(
-          #add,
-          [T],
+          #addCar,
+          [car],
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  void update(dynamic T) => super.noSuchMethod(
+  void updateCar(_i4.CarEntity? car) => super.noSuchMethod(
         Invocation.method(
-          #update,
-          [T],
+          #updateCar,
+          [car],
         ),
         returnValueForMissingStub: null,
       );
 
   @override
-  _i8.Stream<dynamic> watch<T>() => (super.noSuchMethod(
+  _i8.Stream<dynamic> watchCars() => (super.noSuchMethod(
         Invocation.method(
-          #watch,
+          #watchCars,
           [],
         ),
         returnValue: _i8.Stream<dynamic>.empty(),
@@ -661,9 +638,9 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
       ) as _i8.Stream<dynamic>);
 
   @override
-  List<_i4.CarEntity> getAll() => (super.noSuchMethod(
+  List<_i4.CarEntity> getAllCars() => (super.noSuchMethod(
         Invocation.method(
-          #getAll,
+          #getAllCars,
           [],
         ),
         returnValue: <_i4.CarEntity>[],
@@ -671,9 +648,9 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
       ) as List<_i4.CarEntity>);
 
   @override
-  void deleteById(String? id) => super.noSuchMethod(
+  void deleteCarById(String? id) => super.noSuchMethod(
         Invocation.method(
-          #deleteById,
+          #deleteCarById,
           [id],
         ),
         returnValueForMissingStub: null,
@@ -687,28 +664,6 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
         ),
         returnValueForMissingStub: null,
       );
-
-  @override
-  _i6.UserEntity initUser() => (super.noSuchMethod(
-        Invocation.method(
-          #initUser,
-          [],
-        ),
-        returnValue: _FakeUserEntity_5(
-          this,
-          Invocation.method(
-            #initUser,
-            [],
-          ),
-        ),
-        returnValueForMissingStub: _FakeUserEntity_5(
-          this,
-          Invocation.method(
-            #initUser,
-            [],
-          ),
-        ),
-      ) as _i6.UserEntity);
 
   @override
   _i4.CarEntity? getCarById(String? id) => (super.noSuchMethod(
@@ -728,6 +683,37 @@ class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
         returnValue: 0,
         returnValueForMissingStub: 0,
       ) as int);
+
+  @override
+  _i6.UserEntity initUser() => (super.noSuchMethod(
+        Invocation.method(
+          #initUser,
+          [],
+        ),
+        returnValue: _FakeUserEntity_4(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeUserEntity_4(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
+      ) as _i6.UserEntity);
+
+  @override
+  void updateUser(_i6.UserEntity? user) => super.noSuchMethod(
+        Invocation.method(
+          #updateUser,
+          [user],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void clearUser() => super.noSuchMethod(

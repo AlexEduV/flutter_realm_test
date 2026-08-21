@@ -35,7 +35,7 @@ class SeedCarRemoteDataSourceImpl implements CarRemoteDataSource {
 
   void init() {
     //get all cars from the base
-    final cars = _localStorage.getAll();
+    final cars = _localStorage.getAllCars();
 
     //if empty, add three mock elements with ids;
     if (cars.isNotEmpty) {
@@ -109,7 +109,7 @@ class SeedCarRemoteDataSourceImpl implements CarRemoteDataSource {
     ];
 
     for (final element in initialData) {
-      _localStorage.add(CarEntity.fromDto(element));
+      _localStorage.addCar(CarEntity.fromDto(element));
     }
   }
 

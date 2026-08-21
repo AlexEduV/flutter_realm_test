@@ -18,7 +18,7 @@ void main() {
   final mockLocalStorage = MockAppLocalStorage();
 
   setUp(() {
-    when(mockLocalStorage.getAll()).thenReturn([]);
+    when(mockLocalStorage.getAllCars()).thenReturn([]);
     when(mockOwnersRemoteDataSource.getOwnerById(any)).thenReturn(OwnerEntity.empty());
 
     service = SeedCarRemoteDataSourceImpl(mockLocalStorage, mockOwnersRemoteDataSource);
