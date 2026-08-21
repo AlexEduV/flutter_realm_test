@@ -93,7 +93,7 @@ class CarListItem extends StatelessWidget {
                         Text(
                           '\$ ${car.price ?? context.tr(L10nKeys.emptyStateLabel)}',
                           style: AppTextStyles.zonaPro16.copyWith(
-                            color: Colors.green,
+                            color: AppColors.success,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -120,7 +120,7 @@ class CarListItem extends StatelessWidget {
                             height: AppDimensions.favoriteButtonSize,
                             child: isFavoriteItem
                                 ? const Icon(Icons.favorite, color: AppColors.gold)
-                                : const Icon(Icons.remove_circle, color: Colors.red),
+                                : const Icon(Icons.remove_circle, color: AppColors.error),
                           ),
                         ),
                       ),
