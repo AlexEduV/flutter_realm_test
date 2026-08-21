@@ -2,7 +2,6 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/presentation/features/account/account_page.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page.dart';
@@ -22,7 +21,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController();
   int _bottomBarIndexDiff = 0;
 
@@ -30,28 +29,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
     super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final status = await context.read<UserDataCubit>().checkLocationPermissionStatus();
-
-      if (!mounted) return;
-      context.read<UserDataCubit>().updateLocationPermissionStatus(status.isGranted);
-
-      final hasToAskPermission =
-          status != PermissionStatus.granted &&
-          status != PermissionStatus.permanentlyDenied &&
-          status != PermissionStatus.denied;
-      if (!hasToAskPermission) return;
-
-      await context.read<UserDataCubit>().requestLocationPermission();
-    });
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
     _pageController.dispose();
     _scrollController.dispose();
     super.dispose();
