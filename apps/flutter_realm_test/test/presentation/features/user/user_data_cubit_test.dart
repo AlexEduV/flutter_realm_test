@@ -92,7 +92,7 @@ void main() {
       userId: 'u1',
       firstName: 'John',
       lastName: 'Doe',
-      isLocationPermissionGranted: false,
+      isLocationPermissionGranted: null,
       favoriteIds: [],
       email: 'mock@gmail.com',
       password: '',
@@ -135,15 +135,23 @@ void main() {
     });
 
     blocTest<UserDataCubit, UserDataState>(
-      'requestLocationPermission does nothing if permission not granted',
+      'requestLocationPermission emits denied status when permission not granted',
       build: () {
         when(mockRequestLocationPermissionUseCase.call()).thenAnswer((_) async => false);
+        when(mockLocalStorage.update(any)).thenReturn(null);
+        cubit.emit(cubit.state.copyWith(user: testUser));
         return cubit;
       },
       act: (cubit) async {
         await cubit.requestLocationPermission();
       },
-      expect: () => [],
+      expect: () => [
+        isA<UserDataState>().having(
+          (state) => state.user.isLocationPermissionGranted,
+          'isLocationPermissionGranted',
+          false,
+        ),
+      ],
     );
 
     blocTest<UserDataCubit, UserDataState>(
