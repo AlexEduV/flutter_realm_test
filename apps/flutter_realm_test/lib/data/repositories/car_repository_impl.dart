@@ -17,6 +17,8 @@ class CarRepositoryImpl implements CarRepository {
   final CarRemoteDataSource _carRemoteDataSource;
   final LoggingService _loggingService;
 
+  StreamSubscription? _carStreamSubscription;
+
   @override
   void addCar(CarEntity carEntity) {
     _localStorage.add(carEntity);
@@ -24,6 +26,8 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   Stream<List<CarEntity>> watchCars() {
+    //todo: this stream is not cancelled, but the use case can call it again.
+
     return _localStorage.watch<Car>().map((changes) {
       final realmChanges = changes as RealmResultsChanges<Car>;
 
@@ -45,7 +49,8 @@ class CarRepositoryImpl implements CarRepository {
     dtos.map((element) => _localStorage.update(CarExtensions.fromDto(element)));
 
     // 3. Listen to the stream for the 5-second updates
-    _carRemoteDataSource.carStream.listen(
+    await _carStreamSubscription?.cancel();
+    _carStreamSubscription = _carRemoteDataSource.carStream.listen(
       (updatedDtos) {
         updatedDtos.map((element) => _localStorage.update(CarExtensions.fromDto(element)));
       },
