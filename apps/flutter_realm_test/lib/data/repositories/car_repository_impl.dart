@@ -26,8 +26,6 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   Stream<List<CarEntity>> watchCars() {
-    //todo: this stream is not cancelled, but the use case can call it again.
-
     return _localStorage.watch<Car>().map((changes) {
       final realmChanges = changes as RealmResultsChanges<Car>;
 
