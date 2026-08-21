@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/common/enums/auth_mode.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/features/authentication/widgets/animated_divider_with_text.dart';
@@ -180,7 +181,8 @@ class _LoginFormState extends State<LoginForm> {
               button: true,
               child: SplashButton(
                 title: context.tr(LoginPageIds.signUpButtonTitle),
-                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
+                onPressed: () =>
+                    context.read<AuthenticationCubit>().setNewFormMode(AuthMode.register),
                 buttonType: ButtonType.secondary,
               ),
             ),

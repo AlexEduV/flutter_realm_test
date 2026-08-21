@@ -7,6 +7,7 @@ import 'package:test_flutter_project/presentation/features/authentication/authen
 import 'package:test_flutter_project/presentation/features/authentication/widgets/password_strength_bar_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
+import '../../../../common/enums/auth_mode.dart';
 import '../../../features/authentication/authentication_cubit.dart';
 import '../login_page_identifiers.dart';
 import 'animated_divider_with_text.dart';
@@ -196,7 +197,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
               label: AppSemanticsLabels.loginButton,
               child: SplashButton(
                 title: context.tr(LoginPageIds.loginButtonTitle),
-                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
+                onPressed: () => context.read<AuthenticationCubit>().setNewFormMode(AuthMode.login),
                 buttonType: ButtonType.secondary,
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/auth_error_code.dart';
+import 'package:test_flutter_project/common/enums/auth_mode.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/models/login_model.dart';
@@ -302,10 +303,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     emit(state.copyWith(isLoading: false));
   }
 
-  void setNewFormModeToLogin(bool newValue) {
+  void setNewFormMode(AuthMode newMode) {
+    final isLoginMode = newMode == AuthMode.login;
+
     emit(
       state.copyWith(
-        isLoginMode: newValue,
+        isLoginMode: isLoginMode,
         fullNameError: null,
         emailError: null,
         passwordError: null,
