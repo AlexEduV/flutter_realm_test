@@ -12,14 +12,9 @@ import 'package:test_flutter_project/presentation/features/authentication/widget
 
 import 'login_page_identifiers.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
