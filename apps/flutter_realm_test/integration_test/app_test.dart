@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/main.dart' as app;
+import 'package:test_flutter_project/presentation/features/authentication/login_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_identifiers.dart';
 
 // Credentials from SeedUsers.initialUsers
@@ -101,13 +102,13 @@ class LoginPagePOM {
   final WidgetTester _tester;
 
   Future<void> tapLoginButton() async {
-    await _tester.tap(find.bySemanticsLabel(AppSemanticsLabels.loginButton));
+    await _tester.tap(find.bySemanticsLabel(LoginPageIds.loginButton));
     await _tester.pump();
   }
 
   Future<void> enterCredentials({required String email, required String password}) async {
-    final emailField = find.bySemanticsLabel(AppSemanticsLabels.emailTextField);
-    final passwordField = find.bySemanticsLabel(AppSemanticsLabels.passwordTextField);
+    final emailField = find.bySemanticsLabel(LoginPageIds.emailTextField);
+    final passwordField = find.bySemanticsLabel(LoginPageIds.passwordTextField);
 
     await _tester.tap(emailField);
     await _tester.enterText(emailField, email);
@@ -119,7 +120,7 @@ class LoginPagePOM {
   }
 
   void assertLoginButtonVisible() {
-    expect(find.bySemanticsLabel(AppSemanticsLabels.loginButton), findsOneWidget);
+    expect(find.bySemanticsLabel(LoginPageIds.loginButton), findsOneWidget);
   }
 }
 

@@ -1,4 +1,4 @@
-final class LoginPageIds {
+final class LoginPageLocaleKeys {
   static const String loginPageLoginWelcomeText = 'forms.ui.welcomeLoginTitle';
   static const String loginPageRegistrationWelcomeText = 'forms.ui.welcomeRegisterTitle';
   static const String forgotPasswordButtonTitle = 'forms.ui.forgotPasswordButtonText';
@@ -15,4 +15,20 @@ final class LoginPageIds {
   static const String authPasswordStrengthUppercaseHint = 'forms.hints.passwordUpperCaseChar';
   static const String authPasswordStrengthDigitHint = 'forms.hints.passwordDigitChar';
   static const String authPasswordStrengthSpecialCharacterHint = 'forms.hints.passwordSpecialChar';
+}
+
+final class LoginPageIds {
+  static const fullNameTextField = 'fullNameTextField';
+  static const emailTextField = 'emailTextField';
+  static const passwordTextField = 'passwordTextField';
+
+  static const forgotPasswordButton = 'forgotPasswordButton';
+
+  static const registerButton = 'registerButton';
+  static const loginButton = 'loginButton';
+  static const obscurePasswordButton = 'obscurePasswordButton';
+
+  static const authErrorMessage = 'authErrorMessage';
+
+  static const orDivider = 'orDivider';
 }

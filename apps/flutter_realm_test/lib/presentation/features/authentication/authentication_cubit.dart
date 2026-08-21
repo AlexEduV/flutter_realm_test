@@ -173,7 +173,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 0,
           passwordStrengthHintText:
-              '${_appLocalisationsCubit.getLocalisationByKey(LoginPageIds.authPasswordStrengthLengthHint)} $minLength',
+              '${_appLocalisationsCubit.getLocalisationByKey(LoginPageLocaleKeys.authPasswordStrengthLengthHint)} $minLength',
         ),
       );
       return false;
@@ -184,7 +184,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 1,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            LoginPageIds.authPasswordStrengthLowercaseHint,
+            LoginPageLocaleKeys.authPasswordStrengthLowercaseHint,
           ),
         ),
       );
@@ -196,7 +196,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 2,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            LoginPageIds.authPasswordStrengthUppercaseHint,
+            LoginPageLocaleKeys.authPasswordStrengthUppercaseHint,
           ),
         ),
       );
@@ -208,7 +208,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 3,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            LoginPageIds.authPasswordStrengthDigitHint,
+            LoginPageLocaleKeys.authPasswordStrengthDigitHint,
           ),
         ),
       );
@@ -221,7 +221,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 4,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            LoginPageIds.authPasswordStrengthSpecialCharacterHint,
+            LoginPageLocaleKeys.authPasswordStrengthSpecialCharacterHint,
           ),
         ),
       );
@@ -234,13 +234,13 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   String? _localizeAuthError(AuthErrorCode code) => switch (code) {
     AuthErrorCode.userNotFound => _appLocalisationsCubit.getLocalisationByKey(
-      LoginPageIds.authErrorUserNotFoundMessage,
+      LoginPageLocaleKeys.authErrorUserNotFoundMessage,
     ),
     AuthErrorCode.incorrectPassword => _appLocalisationsCubit.getLocalisationByKey(
-      LoginPageIds.authErrorIncorrectPassword,
+      LoginPageLocaleKeys.authErrorIncorrectPassword,
     ),
     AuthErrorCode.userAlreadyExists => _appLocalisationsCubit.getLocalisationByKey(
-      LoginPageIds.authErrorUserAlreadyExists,
+      LoginPageLocaleKeys.authErrorUserAlreadyExists,
     ),
   };
 

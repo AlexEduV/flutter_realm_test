@@ -38,4 +38,6 @@ final class AccountPageLocaleKeys {
 
 final class AccountPageIds {
   static const accountItem = 'accountItem';
+  static const personalDetailsItem = 'personalDetailsItem';
+  static const avatarSetImageButton = 'avatarSetImageButton';
 }

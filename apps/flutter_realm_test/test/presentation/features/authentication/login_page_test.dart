@@ -57,7 +57,9 @@ void main() {
     await tester.pumpWidget(makeTestableWidget(const LoginPage()));
 
     expect(
-      find.text(appLocalisationsCubit.getLocalisationByKey(LoginPageIds.loginPageLoginWelcomeText)),
+      find.text(
+        appLocalisationsCubit.getLocalisationByKey(LoginPageLocaleKeys.loginPageLoginWelcomeText),
+      ),
       findsOneWidget,
     );
   });
@@ -72,7 +74,9 @@ void main() {
 
     expect(
       find.text(
-        appLocalisationsCubit.getLocalisationByKey(LoginPageIds.loginPageRegistrationWelcomeText),
+        appLocalisationsCubit.getLocalisationByKey(
+          LoginPageLocaleKeys.loginPageRegistrationWelcomeText,
+        ),
       ),
       findsOneWidget,
     );

@@ -7,4 +7,5 @@ final class ExplorePageLocaleKeys {
 final class ExplorePageIds {
   static const exploreArticleItem = 'exploreArticleItem';
   static const homePageSearchButton = 'homePageSearchButton';
+  static const lastSeenSectionItem = 'lastSeenSectionItem';
 }

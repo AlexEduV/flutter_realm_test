@@ -267,25 +267,34 @@ void main() {
     );
     test(
       'loginPageLoginWelcomeText',
-      () => expect(LoginPageIds.loginPageLoginWelcomeText, 'forms.ui.welcomeLoginTitle'),
+      () => expect(LoginPageLocaleKeys.loginPageLoginWelcomeText, 'forms.ui.welcomeLoginTitle'),
     );
     test(
       'loginPageRegistrationWelcomeText',
-      () => expect(LoginPageIds.loginPageRegistrationWelcomeText, 'forms.ui.welcomeRegisterTitle'),
+      () => expect(
+        LoginPageLocaleKeys.loginPageRegistrationWelcomeText,
+        'forms.ui.welcomeRegisterTitle',
+      ),
     );
     test(
       'forgotPasswordButtonTitle',
-      () => expect(LoginPageIds.forgotPasswordButtonTitle, 'forms.ui.forgotPasswordButtonText'),
+      () => expect(
+        LoginPageLocaleKeys.forgotPasswordButtonTitle,
+        'forms.ui.forgotPasswordButtonText',
+      ),
     );
     test(
       'loginButtonTitle',
-      () => expect(LoginPageIds.loginButtonTitle, 'forms.ui.loginButtonTitle'),
+      () => expect(LoginPageLocaleKeys.loginButtonTitle, 'forms.ui.loginButtonTitle'),
     );
     test(
       'signUpButtonTitle',
-      () => expect(LoginPageIds.signUpButtonTitle, 'forms.ui.signUpButtonTitle'),
+      () => expect(LoginPageLocaleKeys.signUpButtonTitle, 'forms.ui.signUpButtonTitle'),
     );
-    test('orDividerTitle', () => expect(LoginPageIds.orDividerTitle, 'forms.ui.orDividerTitle'));
+    test(
+      'orDividerTitle',
+      () => expect(LoginPageLocaleKeys.orDividerTitle, 'forms.ui.orDividerTitle'),
+    );
     test(
       'fieldParamsValidationMessage',
       () => expect(L10nKeys.fieldParamsValidationMessage, 'forms.validationMessage'),
@@ -337,42 +346,54 @@ void main() {
     );
     test(
       'authErrorUserNotFoundMessage',
-      () => expect(LoginPageIds.authErrorUserNotFoundMessage, 'forms.warnings.userNotFound'),
+      () => expect(LoginPageLocaleKeys.authErrorUserNotFoundMessage, 'forms.warnings.userNotFound'),
     );
     test(
       'authErrorIncorrectPassword',
-      () => expect(LoginPageIds.authErrorIncorrectPassword, 'forms.warnings.incorrectPassword'),
+      () => expect(
+        LoginPageLocaleKeys.authErrorIncorrectPassword,
+        'forms.warnings.incorrectPassword',
+      ),
     );
     test(
       'authErrorUserAlreadyExists',
-      () => expect(LoginPageIds.authErrorUserAlreadyExists, 'forms.warnings.userAlreadyExists'),
+      () => expect(
+        LoginPageLocaleKeys.authErrorUserAlreadyExists,
+        'forms.warnings.userAlreadyExists',
+      ),
     );
     test(
       'authPasswordStrengthLengthHint',
-      () => expect(LoginPageIds.authPasswordStrengthLengthHint, 'forms.hints.passwordMinLength'),
+      () => expect(
+        LoginPageLocaleKeys.authPasswordStrengthLengthHint,
+        'forms.hints.passwordMinLength',
+      ),
     );
     test(
       'authPasswordStrengthLowercaseHint',
       () => expect(
-        LoginPageIds.authPasswordStrengthLowercaseHint,
+        LoginPageLocaleKeys.authPasswordStrengthLowercaseHint,
         'forms.hints.passwordLowercaseChar',
       ),
     );
     test(
       'authPasswordStrengthUppercaseHint',
       () => expect(
-        LoginPageIds.authPasswordStrengthUppercaseHint,
+        LoginPageLocaleKeys.authPasswordStrengthUppercaseHint,
         'forms.hints.passwordUpperCaseChar',
       ),
     );
     test(
       'authPasswordStrengthDigitHint',
-      () => expect(LoginPageIds.authPasswordStrengthDigitHint, 'forms.hints.passwordDigitChar'),
+      () => expect(
+        LoginPageLocaleKeys.authPasswordStrengthDigitHint,
+        'forms.hints.passwordDigitChar',
+      ),
     );
     test(
       'authPasswordStrengthSpecialCharacterHint',
       () => expect(
-        LoginPageIds.authPasswordStrengthSpecialCharacterHint,
+        LoginPageLocaleKeys.authPasswordStrengthSpecialCharacterHint,
         'forms.hints.passwordSpecialChar',
       ),
     );

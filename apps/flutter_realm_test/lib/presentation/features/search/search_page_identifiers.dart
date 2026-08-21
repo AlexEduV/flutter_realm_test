@@ -41,4 +41,9 @@ final class SearchPageLocaleKeys {
 final class SearchPageIds {
   static const filterButton = 'filterButton';
   static const resultsLabel = 'resultsLabel';
+
+  static const filterDrawerBodyTypeCheckbox = 'filterDrawerBodyTypeCheckbox';
+  static const filterDrawerColorCheckbox = 'filterDrawerColorCheckbox';
+  static const filterDrawerFuelTypeCheckbox = 'filterDrawerFuelTypeCheckbox';
+  static const filterDrawerTransmissionTypeCheckbox = 'filterDrawerTransmissionTypeCheckbox';
 }

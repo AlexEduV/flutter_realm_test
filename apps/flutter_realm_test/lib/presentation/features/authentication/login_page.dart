@@ -22,8 +22,8 @@ class LoginPage extends StatelessWidget {
         final isLogin = state.currentAuthMode == AuthMode.login;
 
         final welcomeText = isLogin
-            ? context.tr(LoginPageIds.loginPageLoginWelcomeText)
-            : context.tr(LoginPageIds.loginPageRegistrationWelcomeText);
+            ? context.tr(LoginPageLocaleKeys.loginPageLoginWelcomeText)
+            : context.tr(LoginPageLocaleKeys.loginPageRegistrationWelcomeText);
 
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: const SystemUiOverlayStyle(
