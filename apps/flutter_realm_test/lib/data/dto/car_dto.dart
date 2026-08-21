@@ -68,8 +68,6 @@ class CarDto {
     this.images = const [],
   });
 
-  // NOTE: non-final fields are used in fixtures to simulate a value change from stream.
-  // When using real APIs, the value would be immutable.
   final ObjectId id;
   final String carId;
   final String model;
@@ -83,10 +81,10 @@ class CarDto {
   final OwnerEntity? owner;
   final bool isVerified;
   final PromoType? promoType;
-  int? mileage;
-  int? distanceTo;
-  int? price;
-  List<String> images;
+  final int? mileage;
+  final int? distanceTo;
+  final int? price;
+  final List<String> images;
 
   CarDto copyWith({
     ObjectId? id,
