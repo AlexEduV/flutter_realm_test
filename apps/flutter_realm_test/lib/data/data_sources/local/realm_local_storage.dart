@@ -69,7 +69,7 @@ class RealmLocalStorage implements AppLocalStorage {
       userId: '0',
       firstName: 'Guest',
       lastName: 'Account',
-      isLocationPermissionGranted: false,
+      isLocationPermissionGranted: null,
       favoriteIds: [],
       createdIds: [],
       viewedIds: [],

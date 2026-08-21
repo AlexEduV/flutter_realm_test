@@ -386,8 +386,8 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
     String lastName,
     String email,
     String password,
-    bool isLocationPermissionGranted,
     String region, {
+    bool? isLocationPermissionGranted,
     Iterable<String> favoriteIds = const [],
     Iterable<String> createdIds = const [],
     Iterable<String> viewedIds = const [],
@@ -443,10 +443,10 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
   set password(String value) => RealmObjectBase.set(this, 'password', value);
 
   @override
-  bool get isLocationPermissionGranted =>
-      RealmObjectBase.get<bool>(this, 'isLocationPermissionGranted') as bool;
+  bool? get isLocationPermissionGranted =>
+      RealmObjectBase.get<bool>(this, 'isLocationPermissionGranted') as bool?;
   @override
-  set isLocationPermissionGranted(bool value) =>
+  set isLocationPermissionGranted(bool? value) =>
       RealmObjectBase.set(this, 'isLocationPermissionGranted', value);
 
   @override
@@ -527,7 +527,6 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
         'lastName': EJsonValue lastName,
         'email': EJsonValue email,
         'password': EJsonValue password,
-        'isLocationPermissionGranted': EJsonValue isLocationPermissionGranted,
         'region': EJsonValue region,
       } =>
         User(
@@ -536,8 +535,9 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
           fromEJson(lastName),
           fromEJson(email),
           fromEJson(password),
-          fromEJson(isLocationPermissionGranted),
           fromEJson(region),
+          isLocationPermissionGranted:
+              fromEJson(ejson['isLocationPermissionGranted']),
           favoriteIds: fromEJson(ejson['favoriteIds']),
           createdIds: fromEJson(ejson['createdIds']),
           viewedIds: fromEJson(ejson['viewedIds']),
@@ -557,7 +557,8 @@ class User extends _User with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('lastName', RealmPropertyType.string),
       SchemaProperty('email', RealmPropertyType.string),
       SchemaProperty('password', RealmPropertyType.string),
-      SchemaProperty('isLocationPermissionGranted', RealmPropertyType.bool),
+      SchemaProperty('isLocationPermissionGranted', RealmPropertyType.bool,
+          optional: true),
       SchemaProperty('region', RealmPropertyType.string),
       SchemaProperty('favoriteIds', RealmPropertyType.string,
           collectionType: RealmCollectionType.list),

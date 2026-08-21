@@ -42,7 +42,7 @@ class _User {
   late String lastName;
   late String email;
   late String password;
-  late bool isLocationPermissionGranted;
+  late bool? isLocationPermissionGranted;
   late String region;
   late List<String> favoriteIds;
   late List<String> createdIds;

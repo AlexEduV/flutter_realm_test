@@ -62,11 +62,11 @@ class LocationSettingsPage extends StatelessWidget {
                     children: [
                       PersonalDetailsListItem(
                         title: context.tr(LocationSettingsLocaleKeys.locationSettingsItemAccess),
-                        description: state.user.isLocationPermissionGranted
+                        description: (state.user.isLocationPermissionGranted ?? false)
                             ? context.tr(L10nKeys.onLabel)
                             : context.tr(L10nKeys.offLabel),
                         icon: Icons.location_on_outlined,
-                        showEnabled: state.user.isLocationPermissionGranted,
+                        showEnabled: state.user.isLocationPermissionGranted ?? false,
                         onTap: () => context.read<UserDataCubit>().openLocationSettings(),
                       ),
 
