@@ -301,46 +301,55 @@ void main() {
     );
     test(
       'fieldParamsEmailLabel',
-      () => expect(L10nKeys.fieldParamsEmailLabel, 'forms.fieldParams.email.label'),
+      () => expect(LoginPageLocaleKeys.fieldParamsEmailLabel, 'forms.fieldParams.email.label'),
     );
     test(
       'fieldParamsEmailHintText',
-      () => expect(L10nKeys.fieldParamsEmailHintText, 'forms.fieldParams.email.hintText'),
+      () =>
+          expect(LoginPageLocaleKeys.fieldParamsEmailHintText, 'forms.fieldParams.email.hintText'),
     );
     test(
       'fieldParamsEmailRegexErrorMessage',
       () => expect(
-        L10nKeys.fieldParamsEmailRegexErrorMessage,
+        LoginPageLocaleKeys.fieldParamsEmailRegexErrorMessage,
         'forms.fieldParams.email.regexErrorMessage',
       ),
     );
     test(
       'fieldParamsPasswordLabel',
-      () => expect(L10nKeys.fieldParamsPasswordLabel, 'forms.fieldParams.password.label'),
+      () =>
+          expect(LoginPageLocaleKeys.fieldParamsPasswordLabel, 'forms.fieldParams.password.label'),
     );
     test(
       'fieldParamsPasswordHintText',
-      () => expect(L10nKeys.fieldParamsPasswordHintText, 'forms.fieldParams.password.hintText'),
+      () => expect(
+        LoginPageLocaleKeys.fieldParamsPasswordHintText,
+        'forms.fieldParams.password.hintText',
+      ),
     );
     test(
       'fieldParamsPasswordRegexErrorMessage',
       () => expect(
-        L10nKeys.fieldParamsPasswordRegexErrorMessage,
+        LoginPageLocaleKeys.fieldParamsPasswordRegexErrorMessage,
         'forms.fieldParams.password.regexErrorMessage',
       ),
     );
     test(
       'fieldParamsFullNameLabel',
-      () => expect(L10nKeys.fieldParamsFullNameLabel, 'forms.fieldParams.fullName.label'),
+      () =>
+          expect(LoginPageLocaleKeys.fieldParamsFullNameLabel, 'forms.fieldParams.fullName.label'),
     );
     test(
       'fieldParamsFullNameHintText',
-      () => expect(L10nKeys.fieldParamsFullNameHintText, 'forms.fieldParams.fullName.hintText'),
+      () => expect(
+        LoginPageLocaleKeys.fieldParamsFullNameHintText,
+        'forms.fieldParams.fullName.hintText',
+      ),
     );
     test(
       'fieldParamsFullNameRegexErrorMessage',
       () => expect(
-        L10nKeys.fieldParamsFullNameRegexErrorMessage,
+        LoginPageLocaleKeys.fieldParamsFullNameRegexErrorMessage,
         'forms.fieldParams.fullName.regexErrorMessage',
       ),
     );

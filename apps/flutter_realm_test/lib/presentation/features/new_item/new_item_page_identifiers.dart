@@ -38,4 +38,8 @@ final class NewItemPageLocaleKeys {
       'pages.addNewItem.itemSpecsPicker.transmissionTypeGroup.itemAutomatic';
   static const String addNewItemSpecsPickerTransmissionTypeGroupItemHybrid =
       'pages.addNewItem.itemSpecsPicker.transmissionTypeGroup.itemHybrid';
+
+  static const String fieldParamsEngineVolumeLabel = 'forms.fieldParams.engineVolume.label';
+  static const String fieldParamsEngineVolumeRegexErrorMessage =
+      'forms.fieldParams.engineVolume.regexErrorMessage';
 }

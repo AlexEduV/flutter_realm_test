@@ -38,22 +38,26 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       state.copyWith(
         emailFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsEmailLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                LoginPageLocaleKeys.fieldParamsEmailLabel,
+              ),
             ).copyWith(
               regex: r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$',
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsEmailRegexErrorMessage,
+                LoginPageLocaleKeys.fieldParamsEmailRegexErrorMessage,
               ),
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               hintText: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsEmailHintText,
+                LoginPageLocaleKeys.fieldParamsEmailHintText,
               ),
             ),
         passwordFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsPasswordLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                LoginPageLocaleKeys.fieldParamsPasswordLabel,
+              ),
             ).copyWith(
               minLength: 8,
               maxLength: 20,
@@ -62,25 +66,27 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
               ),
               regex: r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{8,}$',
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsPasswordRegexErrorMessage,
+                LoginPageLocaleKeys.fieldParamsPasswordRegexErrorMessage,
               ),
               hintText: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsPasswordHintText,
+                LoginPageLocaleKeys.fieldParamsPasswordHintText,
               ),
             ),
         fullNameFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsFullNameLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                LoginPageLocaleKeys.fieldParamsFullNameLabel,
+              ),
             ).copyWith(
               regex: r"^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$",
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsFullNameRegexErrorMessage,
+                LoginPageLocaleKeys.fieldParamsFullNameRegexErrorMessage,
               ),
               hintText: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsFullNameHintText,
+                LoginPageLocaleKeys.fieldParamsFullNameHintText,
               ),
             ),
       ),

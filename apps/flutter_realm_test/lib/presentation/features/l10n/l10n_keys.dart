@@ -10,25 +10,6 @@ class L10nKeys {
 
   static const String fieldParamsValidationMessage = 'forms.validationMessage';
 
-  static const String fieldParamsEmailLabel = 'forms.fieldParams.email.label';
-  static const String fieldParamsEmailHintText = 'forms.fieldParams.email.hintText';
-  static const String fieldParamsEmailRegexErrorMessage =
-      'forms.fieldParams.email.regexErrorMessage';
-
-  static const String fieldParamsPasswordLabel = 'forms.fieldParams.password.label';
-  static const String fieldParamsPasswordHintText = 'forms.fieldParams.password.hintText';
-  static const String fieldParamsPasswordRegexErrorMessage =
-      'forms.fieldParams.password.regexErrorMessage';
-
-  static const String fieldParamsFullNameLabel = 'forms.fieldParams.fullName.label';
-  static const String fieldParamsFullNameHintText = 'forms.fieldParams.fullName.hintText';
-  static const String fieldParamsFullNameRegexErrorMessage =
-      'forms.fieldParams.fullName.regexErrorMessage';
-
-  static const String fieldParamsEngineVolumeLabel = 'forms.fieldParams.engineVolume.label';
-  static const String fieldParamsEngineVolumeRegexErrorMessage =
-      'forms.fieldParams.engineVolume.regexErrorMessage';
-
   static const String fieldParamsHintMax = 'forms.fieldParams.hintTextMax';
   static const String fieldParamsHintMin = 'forms.fieldParams.hintTextMin';
 
