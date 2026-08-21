@@ -37,7 +37,7 @@ class CarListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.normalXL),
         color: AppColors.white,
         child: AppSemantics(
-          label: AppSemanticsLabels.favoriteListItem,
+          label: '${AppSemanticsLabels.carListItem} ${source.name}',
           child: InkWell(
             borderRadius: BorderRadius.circular(AppDimensions.normalXL),
             onTap: () => AppRouter.goToDetails(from: source, carId: car.carId),
@@ -76,7 +76,7 @@ class CarListItem extends StatelessWidget {
                         Row(
                           children: [
                             Icon(
-                              getIconByCarType(car.type),
+                              _getIconByCarType(car.type),
                               size: AppDimensions.normalM,
                               color: AppColors.placeholderColorDark,
                             ),
@@ -135,7 +135,7 @@ class CarListItem extends StatelessWidget {
     );
   }
 
-  IconData getIconByCarType(String type) {
+  IconData _getIconByCarType(String type) {
     final iconMap = {
       CarType.truck.name: Icons.local_shipping_outlined,
       CarType.bike.name: Icons.motorcycle_outlined,
