@@ -7,6 +7,7 @@ import '../../../../../../common/constants/app_semantics_labels.dart';
 import '../../../../../features/authentication/widgets/animated_password_visibility_icon.dart';
 import '../../../../../widgets/app_semantics.dart';
 import '../../../../../widgets/dialogs/edit_dialog_cubit.dart';
+import '../../../../authentication/login_page_identifiers.dart';
 
 class EditPasswordFieldWidget extends StatelessWidget {
   const EditPasswordFieldWidget({
@@ -48,7 +49,7 @@ class EditPasswordFieldWidget extends StatelessWidget {
               ),
               suffixIcon: _getFieldSuffixWidget(
                 isObscureText,
-                AppSemanticsLabels.obscurePasswordButton,
+                LoginPageIds.obscurePasswordButton,
                 onSuffixIconTap,
               ),
               hintStyle: AppTextStyles.zonaPro16.copyWith(color: AppColors.hintColor),

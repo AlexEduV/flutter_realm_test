@@ -9,6 +9,7 @@ import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
+import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
@@ -136,4 +137,77 @@ void main() {
           .having((s) => s.cars.first.isShown, 'deleted car', false),
     ],
   );
+
+  group('isCarExistsById', () {
+    test('returns false for null carId', () {
+      expect(cubit.isCarExistsById(null), isFalse);
+    });
+
+    test('returns true when car is found', () {
+      when(mockGetCarByIdUseCase.call('1')).thenReturn(carList.first);
+      expect(cubit.isCarExistsById('1'), isTrue);
+    });
+
+    test('returns false when car is not found', () {
+      when(mockGetCarByIdUseCase.call('99')).thenReturn(null);
+      expect(cubit.isCarExistsById('99'), isFalse);
+    });
+  });
+
+  group('getLastSeenCarById', () {
+    test('returns null for null carId', () {
+      expect(cubit.getLastSeenCarById(null), isNull);
+    });
+
+    test('returns car entity when found', () {
+      when(mockGetCarByIdUseCase.call('1')).thenReturn(carList.first);
+      expect(cubit.getLastSeenCarById('1'), carList.first);
+    });
+
+    test('returns null and logs error when car is not found', () {
+      when(mockGetCarByIdUseCase.call('99')).thenReturn(null);
+      expect(cubit.getLastSeenCarById('99'), isNull);
+      verify(mockLoggingService.error(any)).called(1);
+    });
+  });
+
+  group('hoverArticle', () {
+    final article = ArticleEntity.empty();
+
+    blocTest<ExplorePageCubit, ExplorePageState>(
+      'sets isHovering to true for the matching article',
+      build: () => cubit,
+      seed: () => ExplorePageState(articles: [article]),
+      act: (cubit) => cubit.hoverArticle(article.id, true),
+      expect: () => [
+        isA<ExplorePageState>().having(
+          (s) => s.articles.first.isHovering,
+          'isHovering',
+          true,
+        ),
+      ],
+    );
+
+    blocTest<ExplorePageCubit, ExplorePageState>(
+      'sets isHovering to false for the matching article',
+      build: () => cubit,
+      seed: () => ExplorePageState(articles: [article.copyWith(isHovering: true)]),
+      act: (cubit) => cubit.hoverArticle(article.id, false),
+      expect: () => [
+        isA<ExplorePageState>().having(
+          (s) => s.articles.first.isHovering,
+          'isHovering',
+          false,
+        ),
+      ],
+    );
+
+    blocTest<ExplorePageCubit, ExplorePageState>(
+      'does not emit when no article matches the id',
+      build: () => cubit,
+      seed: () => ExplorePageState(articles: [article]),
+      act: (cubit) => cubit.hoverArticle('other-id', true),
+      expect: () => [],
+    );
+  });
 }

@@ -208,8 +208,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               previous.user.favoriteIds != current.user.favoriteIds ||
                               previous.user.email != current.user.email,
                           builder: (context, state) {
-                            final user = context.read<UserDataCubit>().state.user;
-                            return OwnerWidget(car: car, user: user);
+                            return OwnerWidget(car: car, user: state.user);
                           },
                         ),
                       ],

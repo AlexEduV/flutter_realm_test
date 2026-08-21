@@ -1,12 +1,12 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/features/authentication/widgets/password_strength_bar_widget.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
+import '../../../../common/enums/auth_mode.dart';
 import '../../../features/authentication/authentication_cubit.dart';
 import '../login_page_identifiers.dart';
 import 'animated_divider_with_text.dart';
@@ -49,7 +49,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           children: [
             AppSemantics(
               textField: true,
-              label: AppSemanticsLabels.fullNameTextField,
+              label: LoginPageIds.fullNameTextField,
               child: AppFormField(
                 focusNode: fullNameFocusNode,
                 textEditingController: fullNameTextController,
@@ -84,7 +84,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             const SizedBox(height: 20),
 
             AppSemantics(
-              label: AppSemanticsLabels.emailTextField,
+              label: LoginPageIds.emailTextField,
               textField: true,
               child: AppFormField(
                 focusNode: emailFocusNode,
@@ -121,7 +121,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
             // password textField
             AppSemantics(
-              label: AppSemanticsLabels.passwordTextField,
+              label: LoginPageIds.passwordTextField,
               textField: true,
               child: AppFormField(
                 focusNode: passwordFocusNode,
@@ -153,7 +153,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   }
                 },
                 maxLength: state.passwordFieldParams?.maxLength,
-                trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
+                trailingActionSemanticsLabel: LoginPageIds.obscurePasswordButton,
               ),
             ),
 
@@ -165,9 +165,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
             // Sign up button
             AppSemantics(
               button: true,
-              label: context.tr(LoginPageIds.signUpButtonTitle),
+              label: context.tr(LoginPageLocaleKeys.signUpButtonTitle),
               child: SplashButton(
-                title: context.tr(LoginPageIds.signUpButtonTitle),
+                title: context.tr(LoginPageLocaleKeys.signUpButtonTitle),
                 onPressed: () {
                   if (state.isLoading) {
                     return;
@@ -186,17 +186,17 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
             //Or Divider
             AppSemantics(
-              label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: context.tr(LoginPageIds.orDividerTitle)),
+              label: LoginPageIds.orDivider,
+              child: AnimatedDividerWithText(text: context.tr(LoginPageLocaleKeys.orDividerTitle)),
             ),
 
             // join us button if not registered
             AppSemantics(
               button: true,
-              label: AppSemanticsLabels.loginButton,
+              label: LoginPageIds.loginButton,
               child: SplashButton(
-                title: context.tr(LoginPageIds.loginButtonTitle),
-                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(true),
+                title: context.tr(LoginPageLocaleKeys.loginButtonTitle),
+                onPressed: () => context.read<AuthenticationCubit>().setNewFormMode(AuthMode.login),
                 buttonType: ButtonType.secondary,
               ),
             ),

@@ -5,8 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i5;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:test_flutter_project/common/enums/auth_mode.dart' as _i5;
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart'
     as _i3;
 import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart'
@@ -194,10 +195,10 @@ class MockAuthenticationCubit extends _i1.Mock
       );
 
   @override
-  void setNewFormModeToLogin(bool? newValue) => super.noSuchMethod(
+  void setNewFormMode(_i5.AuthMode? newMode) => super.noSuchMethod(
         Invocation.method(
-          #setNewFormModeToLogin,
-          [newValue],
+          #setNewFormMode,
+          [newMode],
         ),
         returnValueForMissingStub: null,
       );
@@ -232,7 +233,7 @@ class MockAuthenticationCubit extends _i1.Mock
       );
 
   @override
-  void onChange(_i5.Change<_i2.AuthenticationState>? change) =>
+  void onChange(_i6.Change<_i2.AuthenticationState>? change) =>
       super.noSuchMethod(
         Invocation.method(
           #onChange,

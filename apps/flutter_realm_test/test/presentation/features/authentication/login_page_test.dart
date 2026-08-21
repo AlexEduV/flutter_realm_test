@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test_flutter_project/common/enums/auth_mode.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
@@ -48,26 +49,34 @@ void main() {
   }
 
   testWidgets('shows login welcome text in login mode', (tester) async {
-    when(authenticationCubit.state).thenReturn(const AuthenticationState(isLoginMode: true));
-    when(authenticationCubit.stream).thenAnswer((_) => const Stream.empty());
-
-    await tester.pumpWidget(makeTestableWidget(const LoginPage()));
-
-    expect(
-      find.text(appLocalisationsCubit.getLocalisationByKey(LoginPageIds.loginPageLoginWelcomeText)),
-      findsOneWidget,
-    );
-  });
-
-  testWidgets('shows registration welcome text in registration mode', (tester) async {
-    when(authenticationCubit.state).thenReturn(const AuthenticationState(isLoginMode: false));
+    when(
+      authenticationCubit.state,
+    ).thenReturn(const AuthenticationState(currentAuthMode: AuthMode.login));
     when(authenticationCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(makeTestableWidget(const LoginPage()));
 
     expect(
       find.text(
-        appLocalisationsCubit.getLocalisationByKey(LoginPageIds.loginPageRegistrationWelcomeText),
+        appLocalisationsCubit.getLocalisationByKey(LoginPageLocaleKeys.loginPageLoginWelcomeText),
+      ),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('shows registration welcome text in registration mode', (tester) async {
+    when(
+      authenticationCubit.state,
+    ).thenReturn(const AuthenticationState(currentAuthMode: AuthMode.register));
+    when(authenticationCubit.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const LoginPage()));
+
+    expect(
+      find.text(
+        appLocalisationsCubit.getLocalisationByKey(
+          LoginPageLocaleKeys.loginPageRegistrationWelcomeText,
+        ),
       ),
       findsOneWidget,
     );
@@ -75,7 +84,10 @@ void main() {
 
   testWidgets('shows error message when authenticationErrorText is set', (tester) async {
     when(authenticationCubit.state).thenReturn(
-      const AuthenticationState(isLoginMode: true, authenticationErrorText: 'Invalid credentials'),
+      const AuthenticationState(
+        currentAuthMode: AuthMode.login,
+        authenticationErrorText: 'Invalid credentials',
+      ),
     );
     when(authenticationCubit.stream).thenAnswer((_) => const Stream.empty());
 
@@ -85,9 +97,9 @@ void main() {
   });
 
   testWidgets('does not show error message when authenticationErrorText is null', (tester) async {
-    when(
-      authenticationCubit.state,
-    ).thenReturn(const AuthenticationState(isLoginMode: true, authenticationErrorText: null));
+    when(authenticationCubit.state).thenReturn(
+      const AuthenticationState(currentAuthMode: AuthMode.login, authenticationErrorText: null),
+    );
     when(authenticationCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(makeTestableWidget(const LoginPage()));
@@ -99,7 +111,9 @@ void main() {
   });
 
   testWidgets('shows AuthFormsSwitcher with correct mode', (tester) async {
-    when(authenticationCubit.state).thenReturn(const AuthenticationState(isLoginMode: true));
+    when(
+      authenticationCubit.state,
+    ).thenReturn(const AuthenticationState(currentAuthMode: AuthMode.login));
     when(authenticationCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(makeTestableWidget(const LoginPage()));
@@ -113,7 +127,9 @@ void main() {
   });
 
   testWidgets('shows background image', (tester) async {
-    when(authenticationCubit.state).thenReturn(const AuthenticationState(isLoginMode: true));
+    when(
+      authenticationCubit.state,
+    ).thenReturn(const AuthenticationState(currentAuthMode: AuthMode.login));
     when(authenticationCubit.stream).thenAnswer((_) => const Stream.empty());
 
     await tester.pumpWidget(makeTestableWidget(const LoginPage()));

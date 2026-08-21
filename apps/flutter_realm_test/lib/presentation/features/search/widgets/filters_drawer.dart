@@ -1,7 +1,6 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
@@ -89,7 +88,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                 final capitalisedElement = element.capitalizeFirst();
 
                 return _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerColorCheckbox,
+                  semanticsLabel: SearchPageIds.filterDrawerColorCheckbox,
                   label: element.capitalizeFirst(),
                   isChecked: selectedColorSet.contains(capitalisedElement),
                   onChecked: () => cubit.addCarColorToSelection(capitalisedElement),
@@ -141,7 +140,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ...bodyTypeList.map(
                 (element) => _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerBodyTypeCheckbox,
+                  semanticsLabel: SearchPageIds.filterDrawerBodyTypeCheckbox,
                   label: element.fromLocalisations(),
                   isChecked: selectedBodyTypeSet.contains(element.name),
                   onChecked: () => cubit.addBodyTypeToSelection(element.name),
@@ -194,7 +193,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ...FuelType.values.map(
                 (element) => _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerFuelTypeCheckbox,
+                  semanticsLabel: SearchPageIds.filterDrawerFuelTypeCheckbox,
                   label: element.fromLocalisations(),
                   isChecked: selectedFuelTypeSet.contains(element.name),
                   onChecked: () => cubit.addFuelTypeToSelection(element.name),
@@ -211,7 +210,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
               ...TransmissionType.values.map(
                 (element) => _buildCheckboxTile(
-                  semanticsLabel: AppSemanticsLabels.filterDrawerTransmissionTypeCheckbox,
+                  semanticsLabel: SearchPageIds.filterDrawerTransmissionTypeCheckbox,
                   label: element.fromLocalisations(),
                   isChecked: selectedTransmissionTypeSet.contains(element.name),
                   onChecked: () => cubit.addTransmissionTypeToSelection(element.name),

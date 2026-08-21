@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:flutter/material.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../widgets/app_badge.dart';
@@ -37,7 +37,7 @@ class SearchFilterButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.normalL),
         child: AppSemantics(
           button: true,
-          label: '${AppSemanticsLabels.filterButton} $title',
+          label: '${SearchPageIds.filterButton} $title',
           child: InkWell(
             borderRadius: BorderRadius.circular(AppDimensions.normalL),
             onTap: onPressed,

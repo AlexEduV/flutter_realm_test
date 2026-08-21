@@ -153,6 +153,14 @@ class _MyAppState extends State<MyApp> {
 
     if (!context.mounted) return;
 
+    final storedPermission = userDataCubit.state.user.isLocationPermissionGranted;
+
+    if (storedPermission == null) {
+      // First launch: never asked — show the native OS dialog
+      await context.read<UserDataCubit>().requestLocationPermission();
+      return;
+    }
+
     final locationPermissionStatus = await context
         .read<UserDataCubit>()
         .checkLocationPermissionStatus();

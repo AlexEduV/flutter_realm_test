@@ -36,4 +36,17 @@ final class SearchPageLocaleKeys {
   static const String transmissionTypeManual = 'filters.parameters.transmissionTypes.manual';
   static const String transmissionTypeAutomatic = 'filters.parameters.transmissionTypes.automatic';
   static const String transmissionTypeHybrid = 'filters.parameters.transmissionTypes.hybrid';
+
+  static const String fieldParamsHintMax = 'forms.fieldParams.hintTextMax';
+  static const String fieldParamsHintMin = 'forms.fieldParams.hintTextMin';
+}
+
+final class SearchPageIds {
+  static const filterButton = 'filterButton';
+  static const resultsLabel = 'resultsLabel';
+
+  static const filterDrawerBodyTypeCheckbox = 'filterDrawerBodyTypeCheckbox';
+  static const filterDrawerColorCheckbox = 'filterDrawerColorCheckbox';
+  static const filterDrawerFuelTypeCheckbox = 'filterDrawerFuelTypeCheckbox';
+  static const filterDrawerTransmissionTypeCheckbox = 'filterDrawerTransmissionTypeCheckbox';
 }

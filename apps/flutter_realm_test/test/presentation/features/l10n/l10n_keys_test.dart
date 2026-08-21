@@ -7,6 +7,7 @@ import 'package:test_flutter_project/presentation/features/explore/explore_page_
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/inbox/inbox_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
+import 'package:test_flutter_project/presentation/features/location_settings/location_settings_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/placeholder/placeholder_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 
@@ -267,112 +268,142 @@ void main() {
     );
     test(
       'loginPageLoginWelcomeText',
-      () => expect(LoginPageIds.loginPageLoginWelcomeText, 'forms.ui.welcomeLoginTitle'),
+      () => expect(LoginPageLocaleKeys.loginPageLoginWelcomeText, 'forms.ui.welcomeLoginTitle'),
     );
     test(
       'loginPageRegistrationWelcomeText',
-      () => expect(LoginPageIds.loginPageRegistrationWelcomeText, 'forms.ui.welcomeRegisterTitle'),
+      () => expect(
+        LoginPageLocaleKeys.loginPageRegistrationWelcomeText,
+        'forms.ui.welcomeRegisterTitle',
+      ),
     );
     test(
       'forgotPasswordButtonTitle',
-      () => expect(LoginPageIds.forgotPasswordButtonTitle, 'forms.ui.forgotPasswordButtonText'),
+      () => expect(
+        LoginPageLocaleKeys.forgotPasswordButtonTitle,
+        'forms.ui.forgotPasswordButtonText',
+      ),
     );
     test(
       'loginButtonTitle',
-      () => expect(LoginPageIds.loginButtonTitle, 'forms.ui.loginButtonTitle'),
+      () => expect(LoginPageLocaleKeys.loginButtonTitle, 'forms.ui.loginButtonTitle'),
     );
     test(
       'signUpButtonTitle',
-      () => expect(LoginPageIds.signUpButtonTitle, 'forms.ui.signUpButtonTitle'),
+      () => expect(LoginPageLocaleKeys.signUpButtonTitle, 'forms.ui.signUpButtonTitle'),
     );
-    test('orDividerTitle', () => expect(LoginPageIds.orDividerTitle, 'forms.ui.orDividerTitle'));
+    test(
+      'orDividerTitle',
+      () => expect(LoginPageLocaleKeys.orDividerTitle, 'forms.ui.orDividerTitle'),
+    );
     test(
       'fieldParamsValidationMessage',
       () => expect(L10nKeys.fieldParamsValidationMessage, 'forms.validationMessage'),
     );
     test(
       'fieldParamsEmailLabel',
-      () => expect(L10nKeys.fieldParamsEmailLabel, 'forms.fieldParams.email.label'),
+      () => expect(LoginPageLocaleKeys.fieldParamsEmailLabel, 'forms.fieldParams.email.label'),
     );
     test(
       'fieldParamsEmailHintText',
-      () => expect(L10nKeys.fieldParamsEmailHintText, 'forms.fieldParams.email.hintText'),
+      () =>
+          expect(LoginPageLocaleKeys.fieldParamsEmailHintText, 'forms.fieldParams.email.hintText'),
     );
     test(
       'fieldParamsEmailRegexErrorMessage',
       () => expect(
-        L10nKeys.fieldParamsEmailRegexErrorMessage,
+        LoginPageLocaleKeys.fieldParamsEmailRegexErrorMessage,
         'forms.fieldParams.email.regexErrorMessage',
       ),
     );
     test(
       'fieldParamsPasswordLabel',
-      () => expect(L10nKeys.fieldParamsPasswordLabel, 'forms.fieldParams.password.label'),
+      () =>
+          expect(LoginPageLocaleKeys.fieldParamsPasswordLabel, 'forms.fieldParams.password.label'),
     );
     test(
       'fieldParamsPasswordHintText',
-      () => expect(L10nKeys.fieldParamsPasswordHintText, 'forms.fieldParams.password.hintText'),
+      () => expect(
+        LoginPageLocaleKeys.fieldParamsPasswordHintText,
+        'forms.fieldParams.password.hintText',
+      ),
     );
     test(
       'fieldParamsPasswordRegexErrorMessage',
       () => expect(
-        L10nKeys.fieldParamsPasswordRegexErrorMessage,
+        LoginPageLocaleKeys.fieldParamsPasswordRegexErrorMessage,
         'forms.fieldParams.password.regexErrorMessage',
       ),
     );
     test(
       'fieldParamsFullNameLabel',
-      () => expect(L10nKeys.fieldParamsFullNameLabel, 'forms.fieldParams.fullName.label'),
+      () =>
+          expect(LoginPageLocaleKeys.fieldParamsFullNameLabel, 'forms.fieldParams.fullName.label'),
     );
     test(
       'fieldParamsFullNameHintText',
-      () => expect(L10nKeys.fieldParamsFullNameHintText, 'forms.fieldParams.fullName.hintText'),
+      () => expect(
+        LoginPageLocaleKeys.fieldParamsFullNameHintText,
+        'forms.fieldParams.fullName.hintText',
+      ),
     );
     test(
       'fieldParamsFullNameRegexErrorMessage',
       () => expect(
-        L10nKeys.fieldParamsFullNameRegexErrorMessage,
+        LoginPageLocaleKeys.fieldParamsFullNameRegexErrorMessage,
         'forms.fieldParams.fullName.regexErrorMessage',
       ),
     );
     test(
       'authErrorUserNotFoundMessage',
-      () => expect(LoginPageIds.authErrorUserNotFoundMessage, 'forms.warnings.userNotFound'),
+      () => expect(LoginPageLocaleKeys.authErrorUserNotFoundMessage, 'forms.warnings.userNotFound'),
     );
     test(
       'authErrorIncorrectPassword',
-      () => expect(LoginPageIds.authErrorIncorrectPassword, 'forms.warnings.incorrectPassword'),
+      () => expect(
+        LoginPageLocaleKeys.authErrorIncorrectPassword,
+        'forms.warnings.incorrectPassword',
+      ),
     );
     test(
       'authErrorUserAlreadyExists',
-      () => expect(LoginPageIds.authErrorUserAlreadyExists, 'forms.warnings.userAlreadyExists'),
+      () => expect(
+        LoginPageLocaleKeys.authErrorUserAlreadyExists,
+        'forms.warnings.userAlreadyExists',
+      ),
     );
     test(
       'authPasswordStrengthLengthHint',
-      () => expect(LoginPageIds.authPasswordStrengthLengthHint, 'forms.hints.passwordMinLength'),
+      () => expect(
+        LoginPageLocaleKeys.authPasswordStrengthLengthHint,
+        'forms.hints.passwordMinLength',
+      ),
     );
     test(
       'authPasswordStrengthLowercaseHint',
       () => expect(
-        LoginPageIds.authPasswordStrengthLowercaseHint,
+        LoginPageLocaleKeys.authPasswordStrengthLowercaseHint,
         'forms.hints.passwordLowercaseChar',
       ),
     );
     test(
       'authPasswordStrengthUppercaseHint',
       () => expect(
-        LoginPageIds.authPasswordStrengthUppercaseHint,
+        LoginPageLocaleKeys.authPasswordStrengthUppercaseHint,
         'forms.hints.passwordUpperCaseChar',
       ),
     );
     test(
       'authPasswordStrengthDigitHint',
-      () => expect(LoginPageIds.authPasswordStrengthDigitHint, 'forms.hints.passwordDigitChar'),
+      () => expect(
+        LoginPageLocaleKeys.authPasswordStrengthDigitHint,
+        'forms.hints.passwordDigitChar',
+      ),
     );
     test(
       'authPasswordStrengthSpecialCharacterHint',
       () => expect(
-        LoginPageIds.authPasswordStrengthSpecialCharacterHint,
+        LoginPageLocaleKeys.authPasswordStrengthSpecialCharacterHint,
         'forms.hints.passwordSpecialChar',
       ),
     );
@@ -515,7 +546,6 @@ void main() {
       'articlePageMinsToRead',
       () => expect(ArticlePageLocaleKeys.articlePageMinsToRead, 'pages.article.minsToRead'),
     );
-    test('shareButtonLabel', () => expect(L10nKeys.shareButtonLabel, 'general.share'));
     test('onLabel', () => expect(L10nKeys.onLabel, 'general.on'));
     test('offLabel', () => expect(L10nKeys.offLabel, 'general.off'));
     test('confirmLabel', () => expect(L10nKeys.confirmLabel, 'general.confirm'));
@@ -523,82 +553,109 @@ void main() {
     test(
       'clearViewHistoryDialogDescription',
       () => expect(
-        L10nKeys.clearViewHistoryDialogDescription,
+        AccountPageLocaleKeys.clearViewHistoryDialogDescription,
         'dialogs.clearViewHistory.description',
       ),
     );
     test(
       'clearViewHistoryDialogConfirmLabel',
       () => expect(
-        L10nKeys.clearViewHistoryDialogConfirmLabel,
+        AccountPageLocaleKeys.clearViewHistoryDialogConfirmLabel,
         'dialogs.clearViewHistory.confirmLabel',
       ),
     );
     test(
       'clearViewHistoryDialogCancelLabel',
       () => expect(
-        L10nKeys.clearViewHistoryDialogCancelLabel,
+        AccountPageLocaleKeys.clearViewHistoryDialogCancelLabel,
         'dialogs.clearViewHistory.cancelLabel',
       ),
     );
     test(
       'clearFavoriteItemsDialogDescription',
       () => expect(
-        L10nKeys.clearFavoriteItemsDialogDescription,
+        AccountPageLocaleKeys.clearFavoriteItemsDialogDescription,
         'dialogs.clearFavoriteItems.description',
       ),
     );
     test(
       'clearFavoriteItemsDialogConfirmLabel',
       () => expect(
-        L10nKeys.clearFavoriteItemsDialogConfirmLabel,
+        AccountPageLocaleKeys.clearFavoriteItemsDialogConfirmLabel,
         'dialogs.clearFavoriteItems.confirmLabel',
       ),
     );
     test(
       'clearFavoriteItemsDialogCancelLabel',
       () => expect(
-        L10nKeys.clearFavoriteItemsDialogCancelLabel,
+        AccountPageLocaleKeys.clearFavoriteItemsDialogCancelLabel,
         'dialogs.clearFavoriteItems.cancelLabel',
       ),
     );
     test(
       'clearMyItemsDialogDescription',
-      () => expect(L10nKeys.clearMyItemsDialogDescription, 'dialogs.clearMyItems.description'),
+      () => expect(
+        AccountPageLocaleKeys.clearMyItemsDialogDescription,
+        'dialogs.clearMyItems.description',
+      ),
     );
     test(
       'clearMyItemsDialogConfirmLabel',
-      () => expect(L10nKeys.clearMyItemsDialogConfirmLabel, 'dialogs.clearMyItems.confirmLabel'),
+      () => expect(
+        AccountPageLocaleKeys.clearMyItemsDialogConfirmLabel,
+        'dialogs.clearMyItems.confirmLabel',
+      ),
     );
     test(
       'clearMyItemsDialogCancelLabel',
-      () => expect(L10nKeys.clearMyItemsDialogCancelLabel, 'dialogs.clearMyItems.cancelLabel'),
+      () => expect(
+        AccountPageLocaleKeys.clearMyItemsDialogCancelLabel,
+        'dialogs.clearMyItems.cancelLabel',
+      ),
     );
     test(
       'clearAllDataDialogDescription',
-      () => expect(L10nKeys.clearAllDataDialogDescription, 'dialogs.clearAllData.description'),
+      () => expect(
+        AccountPageLocaleKeys.clearAllDataDialogDescription,
+        'dialogs.clearAllData.description',
+      ),
     );
     test(
       'clearAllDataDialogConfirmLabel',
-      () => expect(L10nKeys.clearAllDataDialogConfirmLabel, 'dialogs.clearAllData.confirmLabel'),
+      () => expect(
+        AccountPageLocaleKeys.clearAllDataDialogConfirmLabel,
+        'dialogs.clearAllData.confirmLabel',
+      ),
     );
     test(
       'clearAllDataDialogCancelLabel',
-      () => expect(L10nKeys.clearAllDataDialogCancelLabel, 'dialogs.clearAllData.cancelLabel'),
+      () => expect(
+        AccountPageLocaleKeys.clearAllDataDialogCancelLabel,
+        'dialogs.clearAllData.cancelLabel',
+      ),
     );
     test(
       'deleteAccountDialogDescription',
-      () => expect(L10nKeys.deleteAccountDialogDescription, 'dialogs.deleteAccount.description'),
+      () => expect(
+        AccountPageLocaleKeys.deleteAccountDialogDescription,
+        'dialogs.deleteAccount.description',
+      ),
     );
     test(
       'deleteAccountDialogConfirmLabel',
-      () => expect(L10nKeys.deleteAccountDialogConfirmLabel, 'dialogs.deleteAccount.confirmLabel'),
+      () => expect(
+        AccountPageLocaleKeys.deleteAccountDialogConfirmLabel,
+        'dialogs.deleteAccount.confirmLabel',
+      ),
     );
     test(
       'deleteAccountDialogCancelLabel',
-      () => expect(L10nKeys.deleteAccountDialogCancelLabel, 'dialogs.deleteAccount.cancelLabel'),
+      () => expect(
+        AccountPageLocaleKeys.deleteAccountDialogCancelLabel,
+        'dialogs.deleteAccount.cancelLabel',
+      ),
     );
-    test('countryPrefix', () => expect(L10nKeys.countryPrefix, 'countries.'));
+    test('countryPrefix', () => expect(LocationSettingsLocaleKeys.countryPrefix, 'countries.'));
     test(
       'promoTypeBestPrice',
       () => expect(L10nKeys.promoTypeBestPrice, 'pages.vehicleDetails.promoType.bestPrice'),

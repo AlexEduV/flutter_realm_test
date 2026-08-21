@@ -1,10 +1,10 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_bottom_bar_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/widgets/animated_add_button.dart';
 import 'package:test_flutter_project/presentation/features/home_bottom_bar/widgets/home_bottom_bar_item.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
@@ -44,7 +44,7 @@ class HomeBottomBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             HomeBottomBarItem(
-              semanticsLabel: AppSemanticsLabels.homeBottomBarItemHome,
+              semanticsLabel: HomeBottomBarPageIds.homeBottomBarItemHome,
               index: AppConstants.homeTabExplore,
               unselectedIcon: Icons.web_stories_outlined,
               selectedIcon: Icons.web_stories,
@@ -52,7 +52,7 @@ class HomeBottomBar extends StatelessWidget {
               rotationAngle: 90.0.toRadians,
             ),
             HomeBottomBarItem(
-              semanticsLabel: AppSemanticsLabels.homeBottomBarItemFavorites,
+              semanticsLabel: HomeBottomBarPageIds.homeBottomBarItemFavorites,
               index: AppConstants.homeTabFavorites,
               unselectedIcon: Icons.favorite_border_outlined,
               selectedIcon: Icons.favorite_outlined,
@@ -61,7 +61,7 @@ class HomeBottomBar extends StatelessWidget {
 
             AppSemantics(
               button: true,
-              label: AppSemanticsLabels.homeBottomBarItemAdd,
+              label: HomeBottomBarPageIds.homeBottomBarItemAdd,
               child: AnimatedAddButton(
                 onPressed: onAddPressed,
                 backgroundColor: AppColors.headerColor,
@@ -73,14 +73,14 @@ class HomeBottomBar extends StatelessWidget {
               index: AppConstants.homeTabInbox,
               unselectedIcon: Icons.mail_outlined,
               selectedIcon: Icons.mail,
-              semanticsLabel: AppSemanticsLabels.homeBottomBarItemInbox,
+              semanticsLabel: HomeBottomBarPageIds.homeBottomBarItemInbox,
               label: context.tr(InboxPageLocaleKeys.inboxPageTitle),
             ),
             HomeBottomBarItem(
               index: AppConstants.homeTabAccount,
               unselectedIcon: Icons.person_2_outlined,
               selectedIcon: Icons.person_2,
-              semanticsLabel: AppSemanticsLabels.homeBottomBarItemAccount,
+              semanticsLabel: HomeBottomBarPageIds.homeBottomBarItemAccount,
               label: context.tr(AccountPageLocaleKeys.accountPageTitle),
             ),
           ],

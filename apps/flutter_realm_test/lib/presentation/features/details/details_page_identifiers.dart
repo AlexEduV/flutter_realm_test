@@ -12,6 +12,8 @@ final class DetailsPageLocaleKeys {
       'pages.vehicleDetails.ownerSection.personTypeOwner';
   static const String ownerSectionContactButtonTitle =
       'pages.vehicleDetails.ownerSection.contactButtonTitle';
+
+  static const String distanceKm = 'general.distanceMeasurementKm';
 }
 
 final class DetailsPageIds {

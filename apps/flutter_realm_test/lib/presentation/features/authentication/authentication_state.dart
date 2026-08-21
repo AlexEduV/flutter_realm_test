@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_flutter_project/common/enums/auth_mode.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 
 part 'authentication_state.freezed.dart';
@@ -19,7 +20,7 @@ abstract class AuthenticationState with _$AuthenticationState {
     @Default('') String fullNameValue,
     @Default(false) bool isLoading,
     String? authenticationErrorText,
-    @Default(true) bool isLoginMode,
+    @Default(AuthMode.login) AuthMode currentAuthMode,
     @Default(0) int passwordValidationStage,
     String? passwordStrengthHintText,
   }) = _AuthenticationState;

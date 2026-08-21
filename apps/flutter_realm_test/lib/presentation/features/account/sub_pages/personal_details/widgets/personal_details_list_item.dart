@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:flutter/material.dart';
+import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 class PersonalDetailsListItem extends StatelessWidget {
@@ -22,7 +22,7 @@ class PersonalDetailsListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSemantics(
-      label: '${AppSemanticsLabels.personalDetailsItem} $title',
+      label: '${AccountPageIds.personalDetailsItem} $title',
       child: ListTile(
         contentPadding: const EdgeInsets.all(AppDimensions.normalS),
         title: Text(title, style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600)),

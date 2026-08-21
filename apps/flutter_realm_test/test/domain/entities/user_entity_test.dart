@@ -35,8 +35,8 @@ void main() {
         'Smith',
         'mock@gmail.com',
         '',
-        false,
         'uk',
+        isLocationPermissionGranted: false,
         favoriteIds: RealmList([]),
       );
 

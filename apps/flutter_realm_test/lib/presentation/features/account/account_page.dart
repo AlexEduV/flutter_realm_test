@@ -15,8 +15,6 @@ import 'package:test_flutter_project/presentation/features/user/user_data_cubit.
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 
-import '../l10n/l10n_keys.dart';
-
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
 
@@ -139,10 +137,14 @@ class AccountPage extends StatelessWidget {
                       DialogHelper.showConfirmationDialog(
                         context,
                         title: context.trRead(AccountPageLocaleKeys.accountItemDeleteAccount),
-                        description: context.trRead(L10nKeys.deleteAccountDialogDescription),
-                        cancelButtonTitle: context.trRead(L10nKeys.deleteAccountDialogCancelLabel),
+                        description: context.trRead(
+                          AccountPageLocaleKeys.deleteAccountDialogDescription,
+                        ),
+                        cancelButtonTitle: context.trRead(
+                          AccountPageLocaleKeys.deleteAccountDialogCancelLabel,
+                        ),
                         confirmButtonTitle: context.trRead(
-                          L10nKeys.deleteAccountDialogConfirmLabel,
+                          AccountPageLocaleKeys.deleteAccountDialogConfirmLabel,
                         ),
                         onConfirm: () async {
                           await context.read<AuthenticationCubit>().deleteAccount(state.user.email);

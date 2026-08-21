@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:test_flutter_project/common/enums/auth_mode.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/features/authentication/widgets/animated_divider_with_text.dart';
@@ -45,7 +45,7 @@ class _LoginFormState extends State<LoginForm> {
         return Column(
           children: [
             AppSemantics(
-              label: AppSemanticsLabels.emailTextField,
+              label: LoginPageIds.emailTextField,
               textField: true,
               child: AppFormField(
                 focusNode: _emailFocusNode,
@@ -82,7 +82,7 @@ class _LoginFormState extends State<LoginForm> {
 
             // password textField
             AppSemantics(
-              label: AppSemanticsLabels.passwordTextField,
+              label: LoginPageIds.passwordTextField,
               textField: true,
               child: AppFormField(
                 focusNode: _passwordFocusNode,
@@ -116,7 +116,7 @@ class _LoginFormState extends State<LoginForm> {
                   }
                 },
                 maxLength: state.passwordFieldParams?.maxLength,
-                trailingActionSemanticsLabel: AppSemanticsLabels.obscurePasswordButton,
+                trailingActionSemanticsLabel: LoginPageIds.obscurePasswordButton,
               ),
             ),
 
@@ -129,11 +129,11 @@ class _LoginFormState extends State<LoginForm> {
               child: Align(
                 alignment: AlignmentGeometry.centerRight,
                 child: AppSemantics(
-                  label: AppSemanticsLabels.forgotPasswordButton,
+                  label: LoginPageIds.forgotPasswordButton,
                   button: true,
                   child: GestureDetector(
                     child: Text(
-                      context.tr(LoginPageIds.forgotPasswordButtonTitle),
+                      context.tr(LoginPageLocaleKeys.forgotPasswordButtonTitle),
                       style: AppTextStyles.zonaPro16.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppColors.headerColor,
@@ -150,9 +150,9 @@ class _LoginFormState extends State<LoginForm> {
             // login button
             AppSemantics(
               button: true,
-              label: AppSemanticsLabels.loginButton,
+              label: LoginPageIds.loginButton,
               child: SplashButton(
-                title: context.tr(LoginPageIds.loginButtonTitle),
+                title: context.tr(LoginPageLocaleKeys.loginButtonTitle),
                 onPressed: () {
                   if (state.isLoading) {
                     return;
@@ -170,17 +170,18 @@ class _LoginFormState extends State<LoginForm> {
 
             //Or Divider
             AppSemantics(
-              label: AppSemanticsLabels.orDivider,
-              child: AnimatedDividerWithText(text: context.tr(LoginPageIds.orDividerTitle)),
+              label: LoginPageIds.orDivider,
+              child: AnimatedDividerWithText(text: context.tr(LoginPageLocaleKeys.orDividerTitle)),
             ),
 
             // join us button if not registered
             AppSemantics(
-              label: context.tr(LoginPageIds.signUpButtonTitle),
+              label: context.tr(LoginPageLocaleKeys.signUpButtonTitle),
               button: true,
               child: SplashButton(
-                title: context.tr(LoginPageIds.signUpButtonTitle),
-                onPressed: () => context.read<AuthenticationCubit>().setNewFormModeToLogin(false),
+                title: context.tr(LoginPageLocaleKeys.signUpButtonTitle),
+                onPressed: () =>
+                    context.read<AuthenticationCubit>().setNewFormMode(AuthMode.register),
                 buttonType: ButtonType.secondary,
               ),
             ),

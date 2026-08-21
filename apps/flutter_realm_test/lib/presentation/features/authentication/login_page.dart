@@ -1,8 +1,9 @@
 import 'package:core_ui/core_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Colors;
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
+import 'package:test_flutter_project/common/enums/auth_mode.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
@@ -11,25 +12,22 @@ import 'package:test_flutter_project/presentation/features/authentication/widget
 
 import 'login_page_identifiers.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationCubit, AuthenticationState>(
       builder: (context, state) {
-        final welcomeText = state.isLoginMode
-            ? context.tr(LoginPageIds.loginPageLoginWelcomeText)
-            : context.tr(LoginPageIds.loginPageRegistrationWelcomeText);
+        final isLogin = state.currentAuthMode == AuthMode.login;
+
+        final welcomeText = isLogin
+            ? context.tr(LoginPageLocaleKeys.loginPageLoginWelcomeText)
+            : context.tr(LoginPageLocaleKeys.loginPageRegistrationWelcomeText);
 
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: const SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
+            statusBarColor: AppColors.transparent,
             statusBarIconBrightness: Brightness.light, //Android
             statusBarBrightness: Brightness.dark, //iOS
           ),
@@ -48,9 +46,9 @@ class _LoginPageState extends State<LoginPage> {
                         end: Alignment.bottomCenter,
                         stops: [0.0, 0.7, 1.0],
                         colors: [
-                          Colors.white, // Fully visible image
-                          Colors.white, // Start fading
-                          Colors.transparent, // Fully faded (shows background)
+                          AppColors.white, // Fully visible image
+                          AppColors.white, // Start fading
+                          AppColors.transparent, // Fully faded (shows background)
                         ],
                       ).createShader(bounds);
                     },
@@ -65,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: double.infinity,
                           alignment: Alignment.bottomCenter,
                         ),
-                        ColoredBox(color: Colors.black.withAlpha(70)),
+                        ColoredBox(color: AppColors.black.withAlpha(70)),
                       ],
                     ),
                   ),
@@ -86,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                             shadows: [
                               const Shadow(
                                 blurRadius: 2.0,
-                                color: Colors.black,
+                                color: AppColors.black,
                                 offset: Offset(0, 0),
                               ),
                             ],
@@ -97,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
 
                     AuthErrorWidget(text: state.authenticationErrorText),
 
-                    AuthFormsSwitcher(isLoginMode: state.isLoginMode),
+                    AuthFormsSwitcher(isLoginMode: isLogin),
                   ],
                 ),
               ],

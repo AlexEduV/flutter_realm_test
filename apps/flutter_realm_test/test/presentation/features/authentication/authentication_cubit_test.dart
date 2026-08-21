@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/auth_error_code.dart';
+import 'package:test_flutter_project/common/enums/auth_mode.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart';
@@ -73,7 +74,7 @@ void main() {
 
   group('AuthenticationCubit', () {
     test('initial state is correct', () {
-      expect(cubit.state.isLoginMode, true);
+      expect(cubit.state.currentAuthMode, AuthMode.login);
       expect(cubit.state.emailFieldParams?.label, 'Email');
       expect(cubit.state.passwordFieldParams?.label, 'Password');
       expect(cubit.state.fullNameFieldParams?.label, 'Full name');
@@ -96,10 +97,10 @@ void main() {
     blocTest<AuthenticationCubit, AuthenticationState>(
       'setNewFormModeToLogin resets form fields and errors',
       build: () => cubit,
-      act: (cubit) => cubit.setNewFormModeToLogin(false),
+      act: (cubit) => cubit.setNewFormMode(AuthMode.register),
       expect: () => [
         cubit.state.copyWith(
-          isLoginMode: false,
+          currentAuthMode: AuthMode.register,
           fullNameError: null,
           emailError: null,
           passwordError: null,

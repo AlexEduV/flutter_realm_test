@@ -34,8 +34,33 @@ final class AccountPageLocaleKeys {
 
   static const String accountItemLogout = 'pages.account.items.logOut';
   static const String accountItemDeleteAccount = 'pages.account.items.deleteAccount';
+
+  static const String clearViewHistoryDialogDescription = 'dialogs.clearViewHistory.description';
+  static const String clearViewHistoryDialogConfirmLabel = 'dialogs.clearViewHistory.confirmLabel';
+  static const String clearViewHistoryDialogCancelLabel = 'dialogs.clearViewHistory.cancelLabel';
+
+  static const String clearFavoriteItemsDialogDescription =
+      'dialogs.clearFavoriteItems.description';
+  static const String clearFavoriteItemsDialogConfirmLabel =
+      'dialogs.clearFavoriteItems.confirmLabel';
+  static const String clearFavoriteItemsDialogCancelLabel =
+      'dialogs.clearFavoriteItems.cancelLabel';
+
+  static const String clearMyItemsDialogDescription = 'dialogs.clearMyItems.description';
+  static const String clearMyItemsDialogConfirmLabel = 'dialogs.clearMyItems.confirmLabel';
+  static const String clearMyItemsDialogCancelLabel = 'dialogs.clearMyItems.cancelLabel';
+
+  static const String clearAllDataDialogDescription = 'dialogs.clearAllData.description';
+  static const String clearAllDataDialogConfirmLabel = 'dialogs.clearAllData.confirmLabel';
+  static const String clearAllDataDialogCancelLabel = 'dialogs.clearAllData.cancelLabel';
+
+  static const String deleteAccountDialogDescription = 'dialogs.deleteAccount.description';
+  static const String deleteAccountDialogConfirmLabel = 'dialogs.deleteAccount.confirmLabel';
+  static const String deleteAccountDialogCancelLabel = 'dialogs.deleteAccount.cancelLabel';
 }
 
 final class AccountPageIds {
   static const accountItem = 'accountItem';
+  static const personalDetailsItem = 'personalDetailsItem';
+  static const avatarSetImageButton = 'avatarSetImageButton';
 }

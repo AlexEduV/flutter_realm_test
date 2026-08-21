@@ -7,6 +7,7 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
+import 'package:test_flutter_project/presentation/features/new_item/new_item_page_identifiers.dart';
 
 import '../../../domain/entities/car_entity.dart';
 import '../../../domain/entities/engine_entity.dart';
@@ -41,75 +42,85 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       state.copyWith(
         manufacturerFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsManufacturerLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                NewItemPageLocaleKeys.fieldParamsManufacturerLabel,
+              ),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsManufacturerRegexErrorMessage,
+                NewItemPageLocaleKeys.fieldParamsManufacturerRegexErrorMessage,
               ),
               regex: r'^[A-Za-z\s\-]+$',
             ),
         modelFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsVehicleModelLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                NewItemPageLocaleKeys.fieldParamsVehicleModelLabel,
+              ),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsVehicleModelRegexErrorMessage,
+                NewItemPageLocaleKeys.fieldParamsVehicleModelRegexErrorMessage,
               ),
               regex: r'^[A-Za-z0-9\s\-\/\+]+$',
             ),
         yearFieldParams:
             FieldParamsModel.withLabel(
               _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsYearOfProductionLabel,
+                NewItemPageLocaleKeys.fieldParamsYearOfProductionLabel,
               ),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsYearOfProductionRegexErrorMessage,
+                NewItemPageLocaleKeys.fieldParamsYearOfProductionRegexErrorMessage,
               ),
               regex: r'^\d{4}$',
             ),
         priceFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsPriceLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                NewItemPageLocaleKeys.fieldParamsPriceLabel,
+              ),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsPriceRegexErrorMessage,
+                NewItemPageLocaleKeys.fieldParamsPriceRegexErrorMessage,
               ),
               regex: r'^(0|[1-9]\d{0,7})$',
             ),
         colorFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsColorLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                NewItemPageLocaleKeys.fieldParamsColorLabel,
+              ),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsColorRegexErrorMessage,
+                NewItemPageLocaleKeys.fieldParamsColorRegexErrorMessage,
               ),
               regex: r'^[A-Za-z\s\-]+$',
             ),
         engineVolumeFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsEngineVolumeLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                NewItemPageLocaleKeys.fieldParamsEngineVolumeLabel,
+              ),
             ).copyWith(
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsEngineVolumeRegexErrorMessage,
+                NewItemPageLocaleKeys.fieldParamsEngineVolumeRegexErrorMessage,
               ),
               regex: r'^\d{1,2}(\.\d{1,2})?$|^\d{2,4}$',
             ),

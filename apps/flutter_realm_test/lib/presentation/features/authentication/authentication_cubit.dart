@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/auth_error_code.dart';
+import 'package:test_flutter_project/common/enums/auth_mode.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/models/login_model.dart';
@@ -37,22 +38,26 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       state.copyWith(
         emailFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsEmailLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                LoginPageLocaleKeys.fieldParamsEmailLabel,
+              ),
             ).copyWith(
               regex: r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$',
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsEmailRegexErrorMessage,
+                LoginPageLocaleKeys.fieldParamsEmailRegexErrorMessage,
               ),
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               hintText: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsEmailHintText,
+                LoginPageLocaleKeys.fieldParamsEmailHintText,
               ),
             ),
         passwordFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsPasswordLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                LoginPageLocaleKeys.fieldParamsPasswordLabel,
+              ),
             ).copyWith(
               minLength: 8,
               maxLength: 20,
@@ -61,25 +66,27 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
               ),
               regex: r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$&*~]).{8,}$',
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsPasswordRegexErrorMessage,
+                LoginPageLocaleKeys.fieldParamsPasswordRegexErrorMessage,
               ),
               hintText: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsPasswordHintText,
+                LoginPageLocaleKeys.fieldParamsPasswordHintText,
               ),
             ),
         fullNameFieldParams:
             FieldParamsModel.withLabel(
-              _appLocalisationsCubit.getLocalisationByKey(L10nKeys.fieldParamsFullNameLabel),
+              _appLocalisationsCubit.getLocalisationByKey(
+                LoginPageLocaleKeys.fieldParamsFullNameLabel,
+              ),
             ).copyWith(
               regex: r"^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,}$",
               validationMessage: _appLocalisationsCubit.getLocalisationByKey(
                 L10nKeys.fieldParamsValidationMessage,
               ),
               regexErrorMessage: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsFullNameRegexErrorMessage,
+                LoginPageLocaleKeys.fieldParamsFullNameRegexErrorMessage,
               ),
               hintText: _appLocalisationsCubit.getLocalisationByKey(
-                L10nKeys.fieldParamsFullNameHintText,
+                LoginPageLocaleKeys.fieldParamsFullNameHintText,
               ),
             ),
       ),
@@ -172,7 +179,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 0,
           passwordStrengthHintText:
-              '${_appLocalisationsCubit.getLocalisationByKey(LoginPageIds.authPasswordStrengthLengthHint)} $minLength',
+              '${_appLocalisationsCubit.getLocalisationByKey(LoginPageLocaleKeys.authPasswordStrengthLengthHint)} $minLength',
         ),
       );
       return false;
@@ -183,7 +190,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 1,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            LoginPageIds.authPasswordStrengthLowercaseHint,
+            LoginPageLocaleKeys.authPasswordStrengthLowercaseHint,
           ),
         ),
       );
@@ -195,7 +202,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 2,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            LoginPageIds.authPasswordStrengthUppercaseHint,
+            LoginPageLocaleKeys.authPasswordStrengthUppercaseHint,
           ),
         ),
       );
@@ -207,7 +214,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 3,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            LoginPageIds.authPasswordStrengthDigitHint,
+            LoginPageLocaleKeys.authPasswordStrengthDigitHint,
           ),
         ),
       );
@@ -220,7 +227,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
         state.copyWith(
           passwordValidationStage: 4,
           passwordStrengthHintText: _appLocalisationsCubit.getLocalisationByKey(
-            LoginPageIds.authPasswordStrengthSpecialCharacterHint,
+            LoginPageLocaleKeys.authPasswordStrengthSpecialCharacterHint,
           ),
         ),
       );
@@ -233,13 +240,13 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   String? _localizeAuthError(AuthErrorCode code) => switch (code) {
     AuthErrorCode.userNotFound => _appLocalisationsCubit.getLocalisationByKey(
-      LoginPageIds.authErrorUserNotFoundMessage,
+      LoginPageLocaleKeys.authErrorUserNotFoundMessage,
     ),
     AuthErrorCode.incorrectPassword => _appLocalisationsCubit.getLocalisationByKey(
-      LoginPageIds.authErrorIncorrectPassword,
+      LoginPageLocaleKeys.authErrorIncorrectPassword,
     ),
     AuthErrorCode.userAlreadyExists => _appLocalisationsCubit.getLocalisationByKey(
-      LoginPageIds.authErrorUserAlreadyExists,
+      LoginPageLocaleKeys.authErrorUserAlreadyExists,
     ),
   };
 
@@ -302,10 +309,10 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     emit(state.copyWith(isLoading: false));
   }
 
-  void setNewFormModeToLogin(bool newValue) {
+  void setNewFormMode(AuthMode newMode) {
     emit(
       state.copyWith(
-        isLoginMode: newValue,
+        currentAuthMode: newMode,
         fullNameError: null,
         emailError: null,
         passwordError: null,
@@ -321,11 +328,11 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   Future<void> logOut() async {
     await _logoutUseCase.call();
-    emit(state.copyWith(isLoginMode: true));
+    emit(state.copyWith(currentAuthMode: AuthMode.login));
   }
 
   Future<void> deleteAccount(String email) async {
     await _deleteAccountUseCase.call(email);
-    emit(state.copyWith(isLoginMode: true));
+    emit(state.copyWith(currentAuthMode: AuthMode.login));
   }
 }

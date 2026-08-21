@@ -25,7 +25,7 @@ class UserEntity {
       userId: user.userId,
       firstName: user.firstName,
       lastName: user.lastName,
-      isLocationPermissionGranted: user.isLocationPermissionGranted,
+      isLocationPermissionGranted: user.isLocationPermissionGranted,  // null = never asked
       favoriteIds: user.favoriteIds.toList(),
       createdIds: user.createdIds.toList(),
       viewedIds: user.viewedIds.toList(),
@@ -53,7 +53,7 @@ class UserEntity {
       email: email,
       password: password,
       region: 'uk',
-      isLocationPermissionGranted: false,
+      isLocationPermissionGranted: null,
       favoriteIds: [],
       createdIds: [],
       viewedIds: [],
@@ -80,7 +80,7 @@ class UserEntity {
       viewedIds: (json['viewedIds'] as List<dynamic>).map((e) => e as String).toList(),
       createdIds: (json['createdIds'] as List<dynamic>).map((e) => e as String).toList(),
       favoriteIds: (json['favoriteIds'] as List<dynamic>).map((e) => e as String).toList(),
-      isLocationPermissionGranted: json['isLocationPermissionGranted'] as bool,
+      isLocationPermissionGranted: json['isLocationPermissionGranted'] as bool?,
     );
   }
 
@@ -102,7 +102,7 @@ class UserEntity {
   final String firstName;
   final String lastName;
   final String email;
-  final bool isLocationPermissionGranted;
+  final bool? isLocationPermissionGranted;
   final String region;
   final List<String> favoriteIds;
   final List<String> createdIds;

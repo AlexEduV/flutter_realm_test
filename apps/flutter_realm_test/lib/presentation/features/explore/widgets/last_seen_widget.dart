@@ -6,7 +6,6 @@ import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 
-import '../../../../../common/constants/app_semantics_labels.dart';
 import '../../../../../core/router/app_router.dart';
 import '../../../features/user/user_data_state.dart';
 import '../../../widgets/app_semantics.dart';
@@ -49,7 +48,7 @@ class LastSeenWidget extends StatelessWidget {
                 ),
 
                 AppSemantics(
-                  label: AppSemanticsLabels.lastSeenSectionItem,
+                  label: ExplorePageIds.lastSeenSectionItem,
                   button: true,
                   child: Padding(
                     padding: const EdgeInsets.only(

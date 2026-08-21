@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:test_flutter_project/common/constants/app_semantics_labels.dart';
+import 'package:flutter/material.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
+
+import '../login_page_identifiers.dart';
 
 class AuthErrorWidget extends StatelessWidget {
   const AuthErrorWidget({this.text, super.key});
@@ -11,7 +12,7 @@ class AuthErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppSemantics(
-      label: AppSemanticsLabels.authErrorMessage,
+      label: LoginPageIds.authErrorMessage,
       child: AnimatedOpacity(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,

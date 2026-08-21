@@ -54,7 +54,7 @@ class VehicleSpecsContent extends StatelessWidget {
                 SpecificationItem(
                   title: context.tr(DetailsPageLocaleKeys.vehicleSpecificationMileage),
                   subtitle: car.mileage != null
-                      ? ('${car.mileage} ${context.tr(L10nKeys.distanceKm)}')
+                      ? ('${car.mileage} ${context.tr(DetailsPageLocaleKeys.distanceKm)}')
                       : context.tr(L10nKeys.unknownLabel),
                 ),
 

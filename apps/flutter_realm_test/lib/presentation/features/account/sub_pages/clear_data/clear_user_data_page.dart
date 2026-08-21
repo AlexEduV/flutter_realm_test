@@ -66,13 +66,13 @@ class ClearUserDataPage extends StatelessWidget {
                                   context,
                                   title: context.trRead(AccountPageLocaleKeys.clearViewHistoryItem),
                                   description: context.trRead(
-                                    L10nKeys.clearViewHistoryDialogDescription,
+                                    AccountPageLocaleKeys.clearViewHistoryDialogDescription,
                                   ),
                                   cancelButtonTitle: context.trRead(
-                                    L10nKeys.clearViewHistoryDialogCancelLabel,
+                                    AccountPageLocaleKeys.clearViewHistoryDialogCancelLabel,
                                   ),
                                   confirmButtonTitle: context.trRead(
-                                    L10nKeys.clearViewHistoryDialogConfirmLabel,
+                                    AccountPageLocaleKeys.clearViewHistoryDialogConfirmLabel,
                                   ),
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearRecentItems();
@@ -95,13 +95,13 @@ class ClearUserDataPage extends StatelessWidget {
                                   context,
                                   title: context.trRead(AccountPageLocaleKeys.clearFavoritesItem),
                                   description: context.trRead(
-                                    L10nKeys.clearFavoriteItemsDialogDescription,
+                                    AccountPageLocaleKeys.clearFavoriteItemsDialogDescription,
                                   ),
                                   cancelButtonTitle: context.trRead(
-                                    L10nKeys.clearFavoriteItemsDialogCancelLabel,
+                                    AccountPageLocaleKeys.clearFavoriteItemsDialogCancelLabel,
                                   ),
                                   confirmButtonTitle: context.trRead(
-                                    L10nKeys.clearFavoriteItemsDialogConfirmLabel,
+                                    AccountPageLocaleKeys.clearFavoriteItemsDialogConfirmLabel,
                                   ),
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearFavorites();
@@ -124,13 +124,13 @@ class ClearUserDataPage extends StatelessWidget {
                                   context,
                                   title: context.trRead(AccountPageLocaleKeys.clearMyItemsItem),
                                   description: context.trRead(
-                                    L10nKeys.clearMyItemsDialogDescription,
+                                    AccountPageLocaleKeys.clearMyItemsDialogDescription,
                                   ),
                                   cancelButtonTitle: context.trRead(
-                                    L10nKeys.clearMyItemsDialogCancelLabel,
+                                    AccountPageLocaleKeys.clearMyItemsDialogCancelLabel,
                                   ),
                                   confirmButtonTitle: context.trRead(
-                                    L10nKeys.clearMyItemsDialogConfirmLabel,
+                                    AccountPageLocaleKeys.clearMyItemsDialogConfirmLabel,
                                   ),
                                   onConfirm: () {
                                     context.read<UserDataCubit>().clearMyItems();
@@ -156,12 +156,14 @@ class ClearUserDataPage extends StatelessWidget {
                           DialogHelper.showConfirmationDialog(
                             context,
                             title: context.trRead(AccountPageLocaleKeys.clearAllDataItem),
-                            description: context.trRead(L10nKeys.clearAllDataDialogDescription),
+                            description: context.trRead(
+                              AccountPageLocaleKeys.clearAllDataDialogDescription,
+                            ),
                             cancelButtonTitle: context.trRead(
-                              L10nKeys.clearAllDataDialogCancelLabel,
+                              AccountPageLocaleKeys.clearAllDataDialogCancelLabel,
                             ),
                             confirmButtonTitle: context.trRead(
-                              L10nKeys.clearAllDataDialogConfirmLabel,
+                              AccountPageLocaleKeys.clearAllDataDialogConfirmLabel,
                             ),
                             onConfirm: () {
                               context.read<UserDataCubit>().clearAllData();
