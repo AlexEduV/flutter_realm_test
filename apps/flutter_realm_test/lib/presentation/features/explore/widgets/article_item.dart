@@ -30,12 +30,8 @@ class ArticleItem extends StatelessWidget {
           tween: Tween<double>(begin: 1.0, end: article.isHovering ? 1.07 : 1.0),
           curve: Curves.easeOut,
           duration: const Duration(milliseconds: 120),
-          builder: (context, scaleX, child) {
-            return Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.diagonal3Values(scaleX, scaleX, 1.0),
-              child: child,
-            );
+          builder: (context, scale, child) {
+            return Transform.scale(alignment: Alignment.center, scale: scale, child: child);
           },
           child: AppSemantics(
             label: ExplorePageIds.exploreArticleItem,
