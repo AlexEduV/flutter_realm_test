@@ -35,6 +35,7 @@ void main() {
             unselectedIcon: unselectedIcon,
             semanticsLabel: 'test',
             label: 'test',
+            onItemSelected: (index) => {},
           ),
         ),
       );

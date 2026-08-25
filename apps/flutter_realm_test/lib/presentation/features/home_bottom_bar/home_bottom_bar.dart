@@ -1,5 +1,6 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
@@ -12,6 +13,7 @@ import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import '../../../common/extensions/num_extension.dart';
 import '../account/account_page_identifiers.dart';
 import '../inbox/inbox_page_identifiers.dart';
+import 'home_bottom_bar_cubit.dart';
 
 class HomeBottomBar extends StatelessWidget {
   const HomeBottomBar({required this.onAddPressed, super.key});
@@ -50,6 +52,7 @@ class HomeBottomBar extends StatelessWidget {
               selectedIcon: Icons.web_stories,
               label: context.tr(ExplorePageLocaleKeys.explorePageTitle),
               iconRotationAngle: 90.0.toRadians,
+              onItemSelected: (index) => _updateHomeBottomBarIndex(context, index),
             ),
             HomeBottomBarItem(
               semanticsLabel: HomeBottomBarPageIds.homeBottomBarItemFavorites,
@@ -57,6 +60,7 @@ class HomeBottomBar extends StatelessWidget {
               unselectedIcon: Icons.favorite_border_outlined,
               selectedIcon: Icons.favorite_outlined,
               label: context.tr(FavoritesPageLocaleKeys.favoritesPageTitle),
+              onItemSelected: (index) => _updateHomeBottomBarIndex(context, index),
             ),
 
             AppSemantics(
@@ -75,6 +79,7 @@ class HomeBottomBar extends StatelessWidget {
               selectedIcon: Icons.mail,
               semanticsLabel: HomeBottomBarPageIds.homeBottomBarItemInbox,
               label: context.tr(InboxPageLocaleKeys.inboxPageTitle),
+              onItemSelected: (index) => _updateHomeBottomBarIndex(context, index),
             ),
             HomeBottomBarItem(
               index: AppConstants.homeTabAccount,
@@ -82,10 +87,15 @@ class HomeBottomBar extends StatelessWidget {
               selectedIcon: Icons.person_2,
               semanticsLabel: HomeBottomBarPageIds.homeBottomBarItemAccount,
               label: context.tr(AccountPageLocaleKeys.accountPageTitle),
+              onItemSelected: (index) => _updateHomeBottomBarIndex(context, index),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _updateHomeBottomBarIndex(BuildContext context, int newIndex) {
+    context.read<HomeBottomBarCubit>().updateSelectedIndex(newIndex);
   }
 }

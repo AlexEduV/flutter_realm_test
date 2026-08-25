@@ -9,6 +9,7 @@ import '../home_bottom_bar_state.dart';
 class HomeBottomBarItem extends StatelessWidget {
   const HomeBottomBarItem({
     required this.index,
+    required this.onItemSelected,
     required this.selectedIcon,
     required this.unselectedIcon,
     required this.semanticsLabel,
@@ -19,6 +20,7 @@ class HomeBottomBarItem extends StatelessWidget {
   });
 
   final int index;
+  final void Function(int) onItemSelected;
   final IconData selectedIcon;
   final IconData unselectedIcon;
   final String semanticsLabel;
@@ -45,8 +47,7 @@ class HomeBottomBarItem extends StatelessWidget {
             color: AppColors.transparent,
             child: InkWell(
               borderRadius: BorderRadius.circular(borderRadius),
-              //todo: use a callback here
-              onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
+              onTap: () => onItemSelected(index),
               child: SizedBox(
                 height: 60,
                 width: 73,
