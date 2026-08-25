@@ -61,16 +61,22 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(title, style: AppTextStyles.zonaPro30White),
-                  AppSemantics(
-                    button: true,
-                    label: ExplorePageIds.homePageSearchButton,
-                    child: IconButton(
-                      highlightColor: Colors.white10,
-                      onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
-                      icon: const Icon(
-                        Icons.search,
-                        size: AppDimensions.appBarIconSize,
-                        color: AppColors.white,
+                  Builder(
+                    builder: (btnContext) => AppSemantics(
+                      button: true,
+                      label: ExplorePageIds.homePageSearchButton,
+                      child: IconButton(
+                        highlightColor: Colors.white10,
+                        onPressed: () {
+                          final box = btnContext.findRenderObject() as RenderBox?;
+                          final origin = box?.localToGlobal(box.size.center(Offset.zero));
+                          context.go(AppRoutes.home + AppRoutes.search, extra: origin);
+                        },
+                        icon: const Icon(
+                          Icons.search,
+                          size: AppDimensions.appBarIconSize,
+                          color: AppColors.white,
+                        ),
                       ),
                     ),
                   ),
