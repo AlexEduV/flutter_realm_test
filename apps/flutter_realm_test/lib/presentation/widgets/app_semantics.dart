@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+//todo: move to core_ui package
 class AppSemantics extends StatelessWidget {
   const AppSemantics({
     required this.label,

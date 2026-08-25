@@ -25,6 +25,7 @@ void main() {
       required int index,
       required IconData selectedIcon,
       required IconData unselectedIcon,
+      void Function(int)? onItemSelected,
     }) {
       return MaterialApp(
         home: BlocProvider<HomeBottomBarCubit>.value(
@@ -35,6 +36,7 @@ void main() {
             unselectedIcon: unselectedIcon,
             semanticsLabel: 'test',
             label: 'test',
+            onItemSelected: onItemSelected ?? (_) {},
           ),
         ),
       );
@@ -90,17 +92,23 @@ void main() {
       expect(foregroundColor, AppColors.headerColor.withAlpha((0.48 * 255).toInt()));
     });
 
-    testWidgets('calls updateSelectedIndex when pressed', (WidgetTester tester) async {
+    testWidgets('calls onItemSelected with correct index when pressed', (WidgetTester tester) async {
       when(mockCubit.state).thenReturn(state);
       when(mockCubit.stream).thenAnswer((_) => Stream<HomeBottomBarState>.fromIterable([state]));
 
+      int? tappedIndex;
       await tester.pumpWidget(
-        buildTestWidget(index: 1, selectedIcon: Icons.home, unselectedIcon: Icons.home_outlined),
+        buildTestWidget(
+          index: 1,
+          selectedIcon: Icons.home,
+          unselectedIcon: Icons.home_outlined,
+          onItemSelected: (index) => tappedIndex = index,
+        ),
       );
-      await tester.tap(find.byType(Icon));
+      await tester.tap(find.byType(InkWell));
       await tester.pump();
 
-      verify(mockCubit.updateSelectedIndex(1)).called(1);
+      expect(tappedIndex, 1);
     });
   });
 }

@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart' show Colors, Color;
 
 class AppColors {
-  static const mainThemeColor = Colors.indigo;
+  //Note ```as Color``` cast where is not redundant, highlights the color palette.
+
+  static const mainThemeColor = Colors.indigo as Color;
 
   static const white = Colors.white;
   static const black = Colors.black;
   static const transparent = Colors.transparent;
 
-  static const success = Colors.green;
-  static const error = Colors.red;
+  static const success = Colors.green as Color;
+  static const error = Colors.red as Color;
+
+  static final verified = Colors.green[600] as Color;
 
   static final whiteGrey = Colors.grey[100] as Color;
   static final lightGrey = Colors.grey[300] as Color;
-  static final hintColor = Colors.grey[600] as Color;
   static final placeholderColor = Colors.grey[400] as Color;
+  static const grey = Colors.grey as Color;
+  static final hintColor = Colors.grey[600] as Color;
   static final placeholderColorDark = Colors.grey[700] as Color;
 
   static const headerColor = Color(0xFF181C2A);

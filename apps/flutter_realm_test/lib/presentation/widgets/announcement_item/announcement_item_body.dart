@@ -9,7 +9,6 @@ import '../../../common/enums/details_page_source.dart';
 import '../../../common/extensions/context_extension.dart';
 import '../../../core/router/app_router.dart';
 import '../../../domain/entities/car_entity.dart';
-import '../../../domain/entities/user_entity.dart';
 import '../../features/user/user_data_cubit.dart';
 import '../app_semantics.dart';
 
@@ -17,13 +16,15 @@ class AnnouncementItemBody extends StatelessWidget {
   const AnnouncementItemBody({
     required this.car,
     required this.isExploreItem,
-    required this.user,
+    required this.favoriteIds,
+    required this.isLocationPermissionGranted,
     super.key,
   });
 
   final CarEntity? car;
   final bool isExploreItem;
-  final UserEntity? user;
+  final List<String> favoriteIds;
+  final bool isLocationPermissionGranted;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class AnnouncementItemBody extends StatelessWidget {
                           onTap: () => onFavoriteButtonTap(context, carId),
                           child: AnimatedFavoriteIcon(
                             size: AppDimensions.favoriteButtonSize,
-                            isFavorite: user?.favoriteIds.contains(carId) ?? false,
+                            isFavorite: favoriteIds.contains(carId),
                           ),
                         ),
                       ),
@@ -127,7 +128,7 @@ class AnnouncementItemBody extends StatelessWidget {
                       ),
                     ),
 
-                    if (user?.isLocationPermissionGranted ?? false) ...[
+                    if (isLocationPermissionGranted) ...[
                       Text.rich(
                         TextSpan(
                           children: [
@@ -166,7 +167,7 @@ class AnnouncementItemBody extends StatelessWidget {
   void onFavoriteButtonTap(BuildContext context, String carId) {
     if (car == null) return;
 
-    if (user?.favoriteIds.contains(carId) ?? false) {
+    if (favoriteIds.contains(carId)) {
       context.read<UserDataCubit>().removeCarIdFromFavorites(carId);
     } else {
       context.read<UserDataCubit>().addCarIdToFavorites(carId);

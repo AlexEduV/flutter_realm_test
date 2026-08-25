@@ -1,15 +1,14 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-
-import 'project_constraints/app_dimensions.dart';
 
 class VerifiedBadge extends StatelessWidget {
   const VerifiedBadge({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.all(AppDimensions.minorS),
-      child: Icon(Icons.beenhere_outlined, color: Colors.green[700], size: AppDimensions.normalL),
+      child: Icon(Icons.beenhere_outlined, color: AppColors.verified, size: AppDimensions.normalL),
     );
   }
 }

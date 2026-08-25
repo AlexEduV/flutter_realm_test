@@ -65,7 +65,12 @@ void main() {
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              favoriteIds: user.favoriteIds,
+              isLocationPermissionGranted: user.isLocationPermissionGranted ?? false,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -78,7 +83,12 @@ void main() {
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              favoriteIds: user.favoriteIds,
+              isLocationPermissionGranted: user.isLocationPermissionGranted ?? false,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -101,7 +111,12 @@ void main() {
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              favoriteIds: user.favoriteIds,
+              isLocationPermissionGranted: user.isLocationPermissionGranted ?? false,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -123,7 +138,12 @@ void main() {
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              favoriteIds: user.favoriteIds,
+              isLocationPermissionGranted: user.isLocationPermissionGranted ?? false,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -139,7 +159,8 @@ void main() {
           child: MaterialApp(
             home: AnnouncementListItem(
               car: car,
-              user: user,
+              favoriteIds: user.favoriteIds,
+              isLocationPermissionGranted: user.isLocationPermissionGranted ?? false,
               onDismissed: () {
                 dismissed = true;
               },
@@ -189,7 +210,12 @@ void main() {
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: car, user: userNoLocation, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: car,
+              favoriteIds: userNoLocation.favoriteIds,
+              isLocationPermissionGranted: userNoLocation.isLocationPermissionGranted ?? false,
+              onDismissed: () {},
+            ),
           ),
         ),
       );
@@ -220,7 +246,12 @@ void main() {
         MultiBlocProvider(
           providers: [BlocProvider.value(value: appLocalisationsCubit)],
           child: MaterialApp(
-            home: AnnouncementListItem(car: carNotVerified, user: user, onDismissed: () {}),
+            home: AnnouncementListItem(
+              car: carNotVerified,
+              favoriteIds: user.favoriteIds,
+              isLocationPermissionGranted: user.isLocationPermissionGranted ?? false,
+              onDismissed: () {},
+            ),
           ),
         ),
       );

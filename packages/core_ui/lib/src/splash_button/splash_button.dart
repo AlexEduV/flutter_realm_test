@@ -1,8 +1,7 @@
+import 'package:core_ui/src/splash_button/splash_button_theme.dart';
 import 'package:flutter/material.dart';
 
-import 'project_constraints/app_colors.dart';
-import 'project_constraints/app_dimensions.dart';
-import 'project_constraints/app_text_styles.dart';
+import '../project_constraints/app_text_styles.dart';
 
 enum ButtonType { primary, secondary }
 
@@ -22,34 +21,36 @@ class SplashButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foregroundColor = buttonType == ButtonType.primary ? AppColors.white : Colors.grey;
-    final backgroundColor = buttonType == ButtonType.primary
-        ? AppColors.headerColor
-        : AppColors.white;
+    final theme =
+        Theme.of(context).extension<SplashButtonThemeData>() ?? const SplashButtonThemeData();
+
+    final isPrimary = buttonType == ButtonType.primary;
+    final foregroundColor = isPrimary ? theme.primaryForegroundColor : theme.secondaryForegroundColor;
+    final backgroundColor = isPrimary ? theme.primaryBackgroundColor : theme.secondaryBackgroundColor;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.normalM),
+      padding: EdgeInsets.symmetric(horizontal: theme.horizontalMargin),
       child: SizedBox(
         width: double.infinity,
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: AppDimensions.normalM), // Button height
+            padding: theme.padding,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppDimensions.normalS),
+              borderRadius: BorderRadius.circular(theme.borderRadius),
             ),
             backgroundColor: backgroundColor,
             foregroundColor: foregroundColor,
           ),
           child: isLoading
               ? SizedBox(
-                  height: AppDimensions.splashButtonProgressBarSize,
-                  width: AppDimensions.splashButtonProgressBarSize,
+                  height: theme.progressBarSize,
+                  width: theme.progressBarSize,
                   child: CircularProgressIndicator(color: foregroundColor),
                 )
               : Text(
                   title,
-                  style: AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
+                  style: theme.labelStyle ?? AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
         ),

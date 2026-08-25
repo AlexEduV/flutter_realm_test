@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext, BlocBuilder;
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/explore/widgets/explore_header_delegate.dart';
@@ -15,9 +16,10 @@ import 'package:test_flutter_project/presentation/widgets/announcement_item/anno
 import 'explore_page_state.dart';
 
 class ExplorePage extends StatelessWidget {
-  const ExplorePage({required this.scrollController, super.key});
+  const ExplorePage({required ScrollController scrollController, super.key})
+    : _scrollController = scrollController;
 
-  final ScrollController scrollController;
+  final ScrollController _scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +28,14 @@ class ExplorePage extends StatelessWidget {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
+        statusBarColor: AppColors.transparent,
         statusBarIconBrightness: Brightness.light, //Android
         statusBarBrightness: Brightness.dark, //iOS
       ),
       child: Scaffold(
         backgroundColor: AppColors.scaffoldColor,
         body: CustomScrollView(
-          controller: scrollController,
+          controller: _scrollController,
           slivers: [
             _ExploreHeader(title: context.tr(ExplorePageLocaleKeys.explorePageTitle)),
 
@@ -61,6 +63,7 @@ class ExplorePage extends StatelessWidget {
                     builder: (context, userState) {
                       Widget buildAnimatedItem(int index) {
                         final car = cars[index];
+                        final user = userState.user;
 
                         return TweenAnimationBuilder<double>(
                           key: ValueKey(car.carId),
@@ -84,7 +87,7 @@ class ExplorePage extends StatelessWidget {
                                         opacity: value,
                                         child: Transform.scale(
                                           scale: 0.95 + (0.05 * value),
-                                          child: _buildItem(car, context),
+                                          child: _buildItem(context, car, user),
                                         ),
                                       );
                                     },
@@ -102,11 +105,7 @@ class ExplorePage extends StatelessWidget {
                           child: SliverList(
                             delegate: SliverChildBuilderDelegate(
                               (context, index) => state.isLoading
-                                  ? const AnnouncementListItem(
-                                      car: null,
-                                      user: null,
-                                      onDismissed: null,
-                                    )
+                                  ? const AnnouncementListItem(car: null, onDismissed: null)
                                   : buildAnimatedItem(index),
                               childCount: state.isLoading ? 12 : cars.length,
                             ),
@@ -119,11 +118,7 @@ class ExplorePage extends StatelessWidget {
                         child: SliverGrid(
                           delegate: SliverChildBuilderDelegate(
                             (context, index) => state.isLoading
-                                ? const AnnouncementListItem(
-                                    car: null,
-                                    user: null,
-                                    onDismissed: null,
-                                  )
+                                ? const AnnouncementListItem(car: null, onDismissed: null)
                                 : buildAnimatedItem(index),
                             childCount: state.isLoading ? 12 : cars.length,
                           ),
@@ -144,17 +139,13 @@ class ExplorePage extends StatelessWidget {
     );
   }
 
-  Widget _buildItem(CarEntity car, BuildContext context) {
+  Widget _buildItem(BuildContext context, CarEntity car, UserEntity? user) {
     return AnnouncementListItem(
-      user: context.read<UserDataCubit>().state.user,
+      isLocationPermissionGranted: user?.isLocationPermissionGranted ?? false,
+      favoriteIds: user?.favoriteIds ?? [],
       car: car,
-      onDismissed: () => _handleDelete(car, context),
+      onDismissed: () => context.read<ExplorePageCubit>().removeCarById(car.carId),
     );
-  }
-
-  void _handleDelete(CarEntity carToDelete, BuildContext context) {
-    final id = carToDelete.carId;
-    context.read<ExplorePageCubit>().removeCarById(id);
   }
 }
 

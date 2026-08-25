@@ -11,7 +11,7 @@ import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/constants/app_routes.dart';
 import '../explore_page_state.dart';
-import 'explore_article_item.dart';
+import 'article_item.dart';
 import 'last_seen_widget.dart';
 
 class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
@@ -61,16 +61,22 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(title, style: AppTextStyles.zonaPro30White),
-                  AppSemantics(
-                    button: true,
-                    label: ExplorePageIds.homePageSearchButton,
-                    child: IconButton(
-                      highlightColor: Colors.white10,
-                      onPressed: () => context.go(AppRoutes.home + AppRoutes.search),
-                      icon: const Icon(
-                        Icons.search,
-                        size: AppDimensions.appBarIconSize,
-                        color: AppColors.white,
+                  Builder(
+                    builder: (btnContext) => AppSemantics(
+                      button: true,
+                      label: ExplorePageIds.homePageSearchButton,
+                      child: IconButton(
+                        highlightColor: Colors.white10,
+                        onPressed: () {
+                          final box = btnContext.findRenderObject() as RenderBox?;
+                          final origin = box?.localToGlobal(box.size.center(Offset.zero));
+                          context.go(AppRoutes.home + AppRoutes.search, extra: origin);
+                        },
+                        icon: const Icon(
+                          Icons.search,
+                          size: AppDimensions.appBarIconSize,
+                          color: AppColors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -84,6 +90,9 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
               top: minHeight,
               height: articleHeight,
               child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
+                buildWhen: (previous, current) =>
+                    previous.isArticleListLoading != current.isArticleListLoading ||
+                    previous.articles != current.articles,
                 builder: (context, state) {
                   return AnimatedSwitcher(
                     duration: const Duration(milliseconds: 400),
@@ -98,18 +107,23 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                         padding: const EdgeInsets.only(right: AppDimensions.normalL),
                         itemBuilder: (context, index) {
                           if (state.isArticleListLoading) {
-                            return Container(
-                              width: AppDimensions.exploreArticleItemBaseSize,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                                color: AppColors.placeholderColor,
+                            return Padding(
+                              padding: const EdgeInsets.all(AppDimensions.minorS),
+                              child: Container(
+                                width: AppDimensions.exploreArticleItemBaseSize,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                                  color: AppColors.placeholderColor,
+                                ),
                               ),
                             );
                           }
-                          return ExploreArticleItem(
-                            height: articleHeight,
-                            article: state.articles[index],
-                            index: index,
+                          return Padding(
+                            padding: const EdgeInsets.all(AppDimensions.minorS),
+                            child: ArticleItem(
+                              height: articleHeight,
+                              article: state.articles[index],
+                            ),
                           );
                         },
                         separatorBuilder: (context, index) {

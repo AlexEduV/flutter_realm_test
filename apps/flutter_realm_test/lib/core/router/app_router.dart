@@ -19,6 +19,7 @@ import 'package:test_flutter_project/presentation/features/placeholder/placehold
 import '../../common/constants/app_routes.dart';
 import '../../common/enums/details_page_source.dart';
 import '../../presentation/features/search/search_page.dart';
+import '../../presentation/widgets/circular_reveal_route.dart';
 
 class AppRouter {
   static final GoRouter _router = GoRouter(
@@ -49,7 +50,10 @@ class AppRouter {
         routes: <RouteBase>[
           GoRoute(
             path: AppRoutes.search,
-            pageBuilder: (context, state) => const CupertinoPage(child: SearchPage()),
+            pageBuilder: (context, state) {
+              final origin = state.extra is Offset ? state.extra as Offset : null;
+              return circularRevealPage(child: const SearchPage(), origin: origin);
+            },
             routes: <RouteBase>[_buildDetailsRoute()],
           ),
           _buildDetailsRoute(),
