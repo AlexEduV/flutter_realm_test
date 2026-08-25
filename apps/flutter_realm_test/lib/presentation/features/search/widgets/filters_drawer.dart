@@ -21,13 +21,13 @@ class FiltersDrawer extends StatefulWidget {
 }
 
 class _FiltersDrawerState extends State<FiltersDrawer> {
-  final minYearTextController = TextEditingController();
-  final maxYearTextController = TextEditingController();
+  final _minYearTextController = TextEditingController();
+  final _maxYearTextController = TextEditingController();
 
-  final minPriceTextController = TextEditingController();
-  final maxPriceTextController = TextEditingController();
+  final _minPriceTextController = TextEditingController();
+  final _maxPriceTextController = TextEditingController();
 
-  final checkBoxPosition = ListTileControlAffinity.leading;
+  final _checkBoxPosition = ListTileControlAffinity.leading;
 
   @override
   void initState() {
@@ -35,18 +35,18 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
 
     final state = context.read<SearchPageCubit>().state;
 
-    minYearTextController.text = state.selectedMinYear ?? '';
-    maxYearTextController.text = state.selectedMaxYear ?? '';
-    minPriceTextController.text = state.selectedMinPrice ?? '';
-    maxPriceTextController.text = state.selectedMaxPrice ?? '';
+    _minYearTextController.text = state.selectedMinYear ?? '';
+    _maxYearTextController.text = state.selectedMaxYear ?? '';
+    _minPriceTextController.text = state.selectedMinPrice ?? '';
+    _maxPriceTextController.text = state.selectedMaxPrice ?? '';
   }
 
   @override
   void dispose() {
-    minYearTextController.dispose();
-    maxYearTextController.dispose();
-    minPriceTextController.dispose();
-    maxPriceTextController.dispose();
+    _minYearTextController.dispose();
+    _maxYearTextController.dispose();
+    _minPriceTextController.dispose();
+    _maxPriceTextController.dispose();
 
     super.dispose();
   }
@@ -109,7 +109,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                     child: Padding(
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
-                        controller: minYearTextController,
+                        controller: _minYearTextController,
                         label: '',
                         onDebouncedChanged: (value) => cubit.updateSelectedMinYear(value),
                         errorText: state.minYearError,
@@ -120,7 +120,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                     child: Padding(
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
-                        controller: maxYearTextController,
+                        controller: _maxYearTextController,
                         label: '',
                         onDebouncedChanged: (value) => cubit.updateSelectedMaxYear(value),
                         errorText: state.maxYearError,
@@ -160,7 +160,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                     child: Padding(
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
-                        controller: minPriceTextController,
+                        controller: _minPriceTextController,
                         //the label is empty here, because now the fields are auto-filled, and it's not
                         //necessary.
                         label: '',
@@ -173,7 +173,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
                     child: Padding(
                       padding: const EdgeInsets.all(AppDimensions.normalS),
                       child: DebouncedTextFormField(
-                        controller: maxPriceTextController,
+                        controller: _maxPriceTextController,
                         label: '',
                         onDebouncedChanged: (newValue) => cubit.updateSelectedMaxPrice(newValue),
                         errorText: state.maxPriceError,
@@ -243,7 +243,7 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
             onUnChecked();
           }
         },
-        controlAffinity: checkBoxPosition,
+        controlAffinity: _checkBoxPosition,
       ),
     );
   }
