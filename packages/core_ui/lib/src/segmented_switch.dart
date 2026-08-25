@@ -47,6 +47,7 @@ class SegmentedSwitch extends StatelessWidget {
           ),
 
           //Buttons
+          //todo: maybe use app semantics class instead
           Semantics(
             label: AppSemanticsLabels.segmentedSwitch,
             child: Row(
