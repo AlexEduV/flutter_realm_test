@@ -10,8 +10,8 @@ import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import '../explore_page_cubit.dart';
 import '../explore_page_state.dart';
 
-class ExploreArticleItem extends StatefulWidget {
-  const ExploreArticleItem({
+class ArticleItem extends StatelessWidget {
+  const ArticleItem({
     required this.index,
     required this.article,
     this.height = AppDimensions.exploreArticleItemBaseSize,
@@ -23,26 +23,11 @@ class ExploreArticleItem extends StatefulWidget {
   final int index;
 
   @override
-  State<ExploreArticleItem> createState() => _ExploreArticleItemState();
-}
-
-class _ExploreArticleItemState extends State<ExploreArticleItem> {
-  void _setPressed(bool isPressed) {
-    final cubit = context.read<ExplorePageCubit>();
-    final state = cubit.state;
-
-    cubit.hoverArticle(state.articles[widget.index].id, isPressed);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<ExplorePageCubit, ExplorePageState>(
       builder: (context, state) {
         return TweenAnimationBuilder<double>(
-          tween: Tween<double>(
-            begin: 1.0,
-            end: state.articles[widget.index].isHovering ? 1.07 : 1.0,
-          ),
+          tween: Tween<double>(begin: 1.0, end: state.articles[index].isHovering ? 1.07 : 1.0),
           curve: Curves.easeOut,
           duration: const Duration(milliseconds: 120),
           builder: (context, scaleX, child) {
@@ -59,13 +44,13 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
               color: AppColors.accentColor.withAlpha(60),
               borderRadius: BorderRadius.circular(AppDimensions.normalL),
               child: InkWell(
-                onTap: () => AppRouter.goToArticle(context: context, articleId: widget.article.id),
-                onTapDown: (_) => _setPressed(true),
-                onTapUp: (_) => _setPressed(false),
-                onTapCancel: () => _setPressed(false),
+                onTap: () => AppRouter.goToArticle(context: context, articleId: article.id),
+                onTapDown: (_) => _setPressed(context, true),
+                onTapUp: (_) => _setPressed(context, false),
+                onTapCancel: () => _setPressed(context, false),
                 borderRadius: BorderRadius.circular(AppDimensions.normalL),
                 child: Container(
-                  height: widget.height,
+                  height: height,
                   width: AppDimensions.exploreArticleItemBaseSize,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(AppDimensions.normalL),
@@ -77,10 +62,10 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(AppDimensions.normalL),
                         child: CachedNetworkImage(
-                          imageUrl: widget.article.imageUrl ?? '',
+                          imageUrl: article.imageUrl ?? '',
                           fit: BoxFit.cover,
                           width: AppDimensions.exploreArticleItemBaseSize,
-                          height: widget.height,
+                          height: height,
                           placeholder: (context, url) =>
                               ColoredBox(color: AppColors.placeholderColor),
                           errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -94,7 +79,7 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
                         child: Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            widget.article.title,
+                            article.title,
                             maxLines: 2,
                             style: AppTextStyles.zonaPro16White.copyWith(
                               fontWeight: FontWeight.w600,
@@ -111,5 +96,12 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
         );
       },
     );
+  }
+
+  void _setPressed(BuildContext context, bool isPressed) {
+    final cubit = context.read<ExplorePageCubit>();
+    final state = cubit.state;
+
+    cubit.hoverArticle(state.articles[index].id, isPressed);
   }
 }

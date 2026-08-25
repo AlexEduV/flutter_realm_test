@@ -7,7 +7,7 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
-import 'package:test_flutter_project/presentation/features/explore/widgets/explore_article_item.dart';
+import 'package:test_flutter_project/presentation/features/explore/widgets/article_item.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
 
@@ -38,9 +38,7 @@ void main() {
   group('ExploreSectionItem', () {
     testWidgets('has default height and width', (WidgetTester tester) async {
       await tester.pumpWidget(
-        makeTestableWidget(
-          Scaffold(body: ExploreArticleItem(article: ArticleEntity.empty(), index: 0)),
-        ),
+        makeTestableWidget(Scaffold(body: ArticleItem(article: ArticleEntity.empty(), index: 0))),
       );
 
       final containerFinder = find.byType(Container).first;
@@ -54,7 +52,7 @@ void main() {
         makeTestableWidget(
           MaterialApp(
             home: Scaffold(
-              body: ExploreArticleItem(height: 200.0, article: ArticleEntity.empty(), index: 0),
+              body: ArticleItem(height: 200.0, article: ArticleEntity.empty(), index: 0),
             ),
           ),
         ),
@@ -70,7 +68,7 @@ void main() {
       await tester.pumpWidget(
         makeTestableWidget(
           MaterialApp(
-            home: Scaffold(body: ExploreArticleItem(article: ArticleEntity.empty(), index: 0)),
+            home: Scaffold(body: ArticleItem(article: ArticleEntity.empty(), index: 0)),
           ),
         ),
       );

@@ -11,7 +11,7 @@ import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/constants/app_routes.dart';
 import '../explore_page_state.dart';
-import 'explore_article_item.dart';
+import 'article_item.dart';
 import 'last_seen_widget.dart';
 
 class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
@@ -117,7 +117,7 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                           }
                           return Padding(
                             padding: const EdgeInsets.all(AppDimensions.minorS),
-                            child: ExploreArticleItem(
+                            child: ArticleItem(
                               height: articleHeight,
                               article: state.articles[index],
                               index: index,
