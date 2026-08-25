@@ -16,14 +16,12 @@ class CarListItem extends StatelessWidget {
     required this.car,
     this.onDeleteCallback,
     this.source = DetailsPageSource.explore,
-    this.isFavoriteItem = true,
     super.key,
   });
 
   final CarEntity car;
   final void Function()? onDeleteCallback;
   final DetailsPageSource source;
-  final bool isFavoriteItem;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +116,7 @@ class CarListItem extends StatelessWidget {
                             ),
                             width: AppDimensions.favoriteButtonSize,
                             height: AppDimensions.favoriteButtonSize,
-                            child: isFavoriteItem
+                            child: source == DetailsPageSource.favorites
                                 ? const Icon(Icons.favorite, color: AppColors.gold)
                                 : const Icon(Icons.remove_circle, color: AppColors.error),
                           ),

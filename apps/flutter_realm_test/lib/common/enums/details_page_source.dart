@@ -1,6 +1,6 @@
 import '../constants/app_routes.dart';
 
-enum DetailsPageSource { explore, myItems, recentlyViewed, search }
+enum DetailsPageSource { explore, favorites, myItems, recentlyViewed, search }
 
 extension DetailsPageSourcePath on DetailsPageSource {
   String get detailsPath {
