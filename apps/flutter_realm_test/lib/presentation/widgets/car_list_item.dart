@@ -26,11 +26,7 @@ class CarListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: AppDimensions.normalL,
-        left: AppDimensions.normalL,
-        right: AppDimensions.normalL,
-      ),
+      padding: const EdgeInsets.all(AppDimensions.normalL).copyWith(top: 0),
       child: Material(
         borderRadius: BorderRadius.circular(AppDimensions.normalXL),
         color: AppColors.white,
