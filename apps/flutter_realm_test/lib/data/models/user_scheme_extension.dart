@@ -1,7 +1,7 @@
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
-import '../../data/models/scheme.dart';
+import 'scheme.dart';
 
 extension UserExtensions on User {
   static User fromEntity(UserEntity entity) {

@@ -4,7 +4,7 @@ import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
-import 'package:test_flutter_project/common/extensions/car_scheme_extension.dart';
+import 'package:test_flutter_project/data/models/car_scheme_extension.dart';
 import 'package:test_flutter_project/data/models/scheme.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';

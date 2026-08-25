@@ -2,8 +2,8 @@ import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
-import '../../data/models/scheme.dart';
 import '../../domain/entities/car_entity.dart';
+import 'scheme.dart';
 
 extension CarExtensions on Car {
   CarEntity toEntity() {
