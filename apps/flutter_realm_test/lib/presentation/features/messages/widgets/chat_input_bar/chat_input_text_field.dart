@@ -21,8 +21,8 @@ class ChatInputTextField extends StatefulWidget {
 
   final FocusNode focusNode;
   final TextEditingController textEditingController;
-  final Function()? onMessageSent;
-  final Function(BuildContext context, MessagesPageState state)? sendMessage;
+  final void Function()? onMessageSent;
+  final void Function(BuildContext context, MessagesPageState state)? sendMessage;
 
   @override
   State<ChatInputTextField> createState() => _ChatInputTextFieldState();

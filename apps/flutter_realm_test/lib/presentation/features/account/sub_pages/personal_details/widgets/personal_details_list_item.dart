@@ -16,7 +16,7 @@ class PersonalDetailsListItem extends StatelessWidget {
   final IconData icon;
   final String title;
   final String description;
-  final Function()? onTap;
+  final void Function()? onTap;
   final bool? showEnabled;
 
   @override

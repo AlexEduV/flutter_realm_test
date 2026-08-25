@@ -12,7 +12,7 @@ class AccountItemSeparated extends StatelessWidget {
   });
 
   final String title;
-  final Function()? onTap;
+  final void Function()? onTap;
   final bool isEnabled;
 
   @override

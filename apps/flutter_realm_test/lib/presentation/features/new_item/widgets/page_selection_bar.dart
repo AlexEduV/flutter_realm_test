@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_flutter_project/common/enums/item_setup_tab.dart';
 
@@ -13,8 +13,8 @@ class PageSelectionBar extends StatelessWidget {
     super.key,
   });
 
-  final Function() onForwardPressed;
-  final Function() onBackPressed;
+  final void Function() onForwardPressed;
+  final void Function() onBackPressed;
   final int currentIndex;
   final Color iconColor;
   final double iconSize;

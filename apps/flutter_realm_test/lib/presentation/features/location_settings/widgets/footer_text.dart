@@ -9,14 +9,14 @@ class FooterText extends StatelessWidget {
   const FooterText({required this.text, this.onTap, super.key});
 
   final String text;
-  final Function? onTap;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return AppSemantics(
       label: LocationSettingsIds.privacyLinkItem,
       child: InkWell(
-        onTap: () => onTap?.call(),
+        onTap: onTap,
         child: Text(text, style: AppTextStyles.zonaPro16Grey.copyWith(fontWeight: FontWeight.w600)),
       ),
     );

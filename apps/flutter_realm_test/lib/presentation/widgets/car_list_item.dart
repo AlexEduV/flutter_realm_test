@@ -21,7 +21,7 @@ class CarListItem extends StatelessWidget {
   });
 
   final CarEntity car;
-  final Function()? onDeleteCallback;
+  final void Function()? onDeleteCallback;
   final DetailsPageSource source;
   final bool isFavoriteItem;
 
