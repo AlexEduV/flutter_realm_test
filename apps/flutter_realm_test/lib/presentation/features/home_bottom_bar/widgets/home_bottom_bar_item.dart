@@ -55,7 +55,7 @@ class HomeBottomBarItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     spacing: AppDimensions.minorXS,
                     children: [
-                      //todo: check if transform can be updated
+                      //Note: Transform.rotate is cheaper than RotatedBox()
                       Transform.rotate(
                         angle: iconRotationAngle,
                         child: Icon(icon, color: foregroundColor),
