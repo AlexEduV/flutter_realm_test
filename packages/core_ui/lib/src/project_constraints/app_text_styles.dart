@@ -4,6 +4,7 @@ import 'package:test_flutter_project/common/extensions/text_style_extension.dart
 import 'app_colors.dart';
 
 class AppTextStyles {
+  static const zonaPro12 = TextStyle(fontSize: 12, fontWeight: FontWeight.w400);
   static const zonaPro14 = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
   static const zonaPro16 = TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
   static const zonaPro18 = TextStyle(fontSize: 18, fontWeight: FontWeight.w600);
@@ -16,6 +17,8 @@ class AppTextStyles {
   static final zonaPro18White = zonaPro18.whiten();
   static final zonaPro16White = zonaPro16.whiten();
   static final zonaPro14White = zonaPro14.whiten();
+
+  static final zonaPro12Bold = zonaPro12.embolden();
 
   static final zonaPro16Grey = zonaPro16.copyWith(color: AppColors.placeholderColorDark);
 }

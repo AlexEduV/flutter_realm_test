@@ -28,13 +28,13 @@ class HomeBottomBar extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withAlpha(60),
+            color: AppColors.grey.withAlpha(60),
             spreadRadius: 2,
             blurRadius: 8,
             offset: const Offset(0, -2),
           ),
         ],
-        color: Colors.white,
+        color: AppColors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(

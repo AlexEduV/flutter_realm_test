@@ -40,7 +40,7 @@ class HomeBottomBarItem extends StatelessWidget {
           button: true,
           isSelected: isSelected,
           child: Material(
-            color: Colors.transparent,
+            color: AppColors.transparent,
             child: InkWell(
               borderRadius: BorderRadius.circular(AppDimensions.majorM),
               onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
@@ -60,7 +60,7 @@ class HomeBottomBarItem extends StatelessWidget {
                       Text(
                         label,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: color),
+                        style: AppTextStyles.zonaPro12Bold.copyWith(color: color),
                       ),
                     ],
                   ),
