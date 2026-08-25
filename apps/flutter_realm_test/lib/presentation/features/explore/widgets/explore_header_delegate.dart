@@ -107,12 +107,14 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                         padding: const EdgeInsets.only(right: AppDimensions.normalL),
                         itemBuilder: (context, index) {
                           if (state.isArticleListLoading) {
-                            return Container(
-                              width: AppDimensions.exploreArticleItemBaseSize,
+                            return Padding(
                               padding: const EdgeInsets.all(AppDimensions.minorS),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                                color: AppColors.placeholderColor,
+                              child: Container(
+                                width: AppDimensions.exploreArticleItemBaseSize,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                                  color: AppColors.placeholderColor,
+                                ),
                               ),
                             );
                           }
