@@ -10,18 +10,8 @@ import 'package:test_flutter_project/presentation/features/messages/messages_pag
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 
-class InboxPage extends StatefulWidget {
+class InboxPage extends StatelessWidget {
   const InboxPage({super.key});
-
-  @override
-  State<InboxPage> createState() => _InboxPageState();
-}
-
-class _InboxPageState extends State<InboxPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
