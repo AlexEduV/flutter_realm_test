@@ -4,7 +4,6 @@ import 'package:flutter_slidable/flutter_slidable.dart'
     show ActionPane, DrawerMotion, Slidable, SlidableAction;
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
-import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/presentation/widgets/announcement_item/announcement_item_body.dart';
 
 import '../../features/l10n/l10n_keys.dart';
@@ -12,14 +11,16 @@ import '../../features/l10n/l10n_keys.dart';
 class AnnouncementListItem extends StatelessWidget {
   const AnnouncementListItem({
     required this.car,
-    required this.user,
     required this.onDismissed,
+    this.favoriteIds = const [],
+    this.isLocationPermissionGranted = false,
     this.isExploreItem = true,
     super.key,
   });
 
   final CarEntity? car;
-  final UserEntity? user;
+  final List<String> favoriteIds;
+  final bool isLocationPermissionGranted;
   final void Function()? onDismissed;
   final bool isExploreItem;
 
@@ -27,7 +28,12 @@ class AnnouncementListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final carId = car?.carId ?? '';
 
-    final content = AnnouncementItemBody(car: car, isExploreItem: isExploreItem, user: user);
+    final content = AnnouncementItemBody(
+      car: car,
+      isExploreItem: isExploreItem,
+      favoriteIds: favoriteIds,
+      isLocationPermissionGranted: isLocationPermissionGranted,
+    );
 
     return Padding(
       padding: const EdgeInsets.all(AppDimensions.normalS),

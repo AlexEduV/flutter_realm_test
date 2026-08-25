@@ -156,7 +156,9 @@ class _SearchPageState extends State<SearchPage> {
                           return AnnouncementListItem(
                             isExploreItem: false,
                             car: filteredResults[index],
-                            user: context.read<UserDataCubit>().state.user,
+                            isLocationPermissionGranted:
+                                userState.user.isLocationPermissionGranted ?? false,
+                            favoriteIds: userState.user.favoriteIds,
                             onDismissed: () {},
                           );
                         }, childCount: filteredResults.length),

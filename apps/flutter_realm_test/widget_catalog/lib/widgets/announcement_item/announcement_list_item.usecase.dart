@@ -12,6 +12,14 @@ Widget buildAnnouncementListItemUseCase(BuildContext context) {
   final appLocalisationsCubit = AppLocalisationsCubit()
     ..load({L10nKeys.deleteButtonTitle: 'Delete'});
 
+  final user = UserEntity.initial(
+    userId: '1',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john@mock.com',
+    password: 'pass',
+  );
+
   return MultiBlocProvider(
     providers: [BlocProvider<AppLocalisationsCubit>(create: (_) => appLocalisationsCubit)],
     child: Scaffold(
@@ -21,13 +29,8 @@ Widget buildAnnouncementListItemUseCase(BuildContext context) {
         children: [
           AnnouncementListItem(
             car: CarEntity.empty(),
-            user: UserEntity.initial(
-              userId: '1',
-              firstName: 'John',
-              lastName: 'Doe',
-              email: 'john@mock.com',
-              password: 'pass',
-            ),
+            favoriteIds: user.favoriteIds,
+            isLocationPermissionGranted: user.isLocationPermissionGranted ?? false,
             onDismissed: () {},
             isExploreItem: context.knobs.boolean(label: 'Is explore item', initialValue: true),
           ),
