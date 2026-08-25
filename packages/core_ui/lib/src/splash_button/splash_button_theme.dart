@@ -13,7 +13,7 @@ class SplashButtonThemeData extends ThemeExtension<SplashButtonThemeData> {
     this.padding = const EdgeInsets.symmetric(vertical: AppDimensions.normalM),
     this.horizontalMargin = AppDimensions.normalM,
     this.borderRadius = AppDimensions.normalS,
-    this.labelStyle = const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+    this.labelStyle,
     this.progressBarSize = AppDimensions.splashButtonProgressBarSize,
   });
 
@@ -24,7 +24,7 @@ class SplashButtonThemeData extends ThemeExtension<SplashButtonThemeData> {
   final EdgeInsetsGeometry padding;
   final double horizontalMargin;
   final double borderRadius;
-  final TextStyle labelStyle;
+  final TextStyle? labelStyle;
   final double progressBarSize;
 
   @override
@@ -71,7 +71,7 @@ class SplashButtonThemeData extends ThemeExtension<SplashButtonThemeData> {
       padding: EdgeInsetsGeometry.lerp(padding, other.padding, t)!,
       horizontalMargin: lerpDouble(horizontalMargin, other.horizontalMargin, t)!,
       borderRadius: lerpDouble(borderRadius, other.borderRadius, t)!,
-      labelStyle: TextStyle.lerp(labelStyle, other.labelStyle, t)!,
+      labelStyle: TextStyle.lerp(labelStyle, other.labelStyle, t),
       progressBarSize: lerpDouble(progressBarSize, other.progressBarSize, t)!,
     );
   }

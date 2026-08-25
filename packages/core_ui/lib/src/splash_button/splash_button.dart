@@ -1,6 +1,8 @@
 import 'package:core_ui/src/splash_button/splash_button_theme.dart';
 import 'package:flutter/material.dart';
 
+import '../project_constraints/app_text_styles.dart';
+
 enum ButtonType { primary, secondary }
 
 class SplashButton extends StatelessWidget {
@@ -48,7 +50,7 @@ class SplashButton extends StatelessWidget {
                 )
               : Text(
                   title,
-                  style: theme.labelStyle,
+                  style: theme.labelStyle ?? AppTextStyles.zonaPro16.copyWith(fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
         ),
