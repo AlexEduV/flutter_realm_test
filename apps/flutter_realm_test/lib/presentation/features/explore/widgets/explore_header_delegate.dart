@@ -90,6 +90,9 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
               top: minHeight,
               height: articleHeight,
               child: BlocBuilder<ExplorePageCubit, ExplorePageState>(
+                buildWhen: (previous, current) =>
+                    previous.isArticleListLoading != current.isArticleListLoading ||
+                    previous.articles != current.articles,
                 builder: (context, state) {
                   return AnimatedSwitcher(
                     duration: const Duration(milliseconds: 400),
@@ -104,14 +107,12 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                         padding: const EdgeInsets.only(right: AppDimensions.normalL),
                         itemBuilder: (context, index) {
                           if (state.isArticleListLoading) {
-                            return Padding(
+                            return Container(
+                              width: AppDimensions.exploreArticleItemBaseSize,
                               padding: const EdgeInsets.all(AppDimensions.minorS),
-                              child: Container(
-                                width: AppDimensions.exploreArticleItemBaseSize,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                                  color: AppColors.placeholderColor,
-                                ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                                color: AppColors.placeholderColor,
                               ),
                             );
                           }
