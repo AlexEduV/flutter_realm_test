@@ -10,6 +10,8 @@ class AppColors {
   static const success = Colors.green;
   static const error = Colors.red;
 
+  static final verified = Colors.green[600] as Color;
+
   static final whiteGrey = Colors.grey[100] as Color;
   static final lightGrey = Colors.grey[300] as Color;
   static final hintColor = Colors.grey[600] as Color;
