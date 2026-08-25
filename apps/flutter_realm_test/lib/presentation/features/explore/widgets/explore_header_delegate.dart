@@ -98,24 +98,19 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                         padding: const EdgeInsets.only(right: AppDimensions.normalL),
                         itemBuilder: (context, index) {
                           if (state.isArticleListLoading) {
-                            return Container(
-                              width: AppDimensions.exploreArticleItemBaseSize,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                                color: AppColors.placeholderColor,
+                            return Padding(
+                              padding: const EdgeInsets.all(AppDimensions.minorS),
+                              child: Container(
+                                width: AppDimensions.exploreArticleItemBaseSize,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(AppDimensions.normalL),
+                                  color: AppColors.placeholderColor,
+                                ),
                               ),
                             );
                           }
-                          return AnimatedPadding(
-                            curve: Curves.easeOut,
-                            duration: const Duration(milliseconds: 120),
-                            padding: EdgeInsets.symmetric(
-                              vertical: state.articles[index].isHovering
-                                  ? 0
-                                  : (AppDimensions.exploreArticleItemBaseSize * 1.07 -
-                                          AppDimensions.exploreArticleItemBaseSize) /
-                                      2,
-                            ),
+                          return Padding(
+                            padding: const EdgeInsets.all(AppDimensions.minorS),
                             child: ExploreArticleItem(
                               height: articleHeight,
                               article: state.articles[index],
