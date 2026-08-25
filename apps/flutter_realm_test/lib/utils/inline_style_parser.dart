@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart'
+    show FontStyle, FontWeight, InlineSpan, TextDecoration, TextSpan, TextStyle;
 
 /// Parses a string with inline markdown-lite markers into styled [InlineSpan]s.
 /// Supports `_italic_`, `~~strikethrough~~`, `*bold*`, nesting, and `\` escapes.
@@ -29,10 +30,12 @@ List<InlineSpan> _parse(String text) {
       final close = text.indexOf('~~', i + 2);
       if (close != -1) {
         flush();
-        spans.add(TextSpan(
-          style: const TextStyle(decoration: TextDecoration.lineThrough),
-          children: _parse(text.substring(i + 2, close)),
-        ));
+        spans.add(
+          TextSpan(
+            style: const TextStyle(decoration: TextDecoration.lineThrough),
+            children: _parse(text.substring(i + 2, close)),
+          ),
+        );
         i = close + 2;
         continue;
       }
@@ -42,10 +45,12 @@ List<InlineSpan> _parse(String text) {
       final close = text.indexOf('*', i + 1);
       if (close != -1) {
         flush();
-        spans.add(TextSpan(
-          style: const TextStyle(fontWeight: FontWeight.bold),
-          children: _parse(text.substring(i + 1, close)),
-        ));
+        spans.add(
+          TextSpan(
+            style: const TextStyle(fontWeight: FontWeight.bold),
+            children: _parse(text.substring(i + 1, close)),
+          ),
+        );
         i = close + 1;
         continue;
       }
@@ -55,10 +60,12 @@ List<InlineSpan> _parse(String text) {
       final close = text.indexOf('_', i + 1);
       if (close != -1) {
         flush();
-        spans.add(TextSpan(
-          style: const TextStyle(fontStyle: FontStyle.italic),
-          children: _parse(text.substring(i + 1, close)),
-        ));
+        spans.add(
+          TextSpan(
+            style: const TextStyle(fontStyle: FontStyle.italic),
+            children: _parse(text.substring(i + 1, close)),
+          ),
+        );
         i = close + 1;
         continue;
       }

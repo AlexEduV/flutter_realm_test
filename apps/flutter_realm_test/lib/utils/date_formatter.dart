@@ -1,4 +1,4 @@
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' show DateFormat;
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
