@@ -6,7 +6,6 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/search/widgets/results_widget.dart';
-import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
 
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();

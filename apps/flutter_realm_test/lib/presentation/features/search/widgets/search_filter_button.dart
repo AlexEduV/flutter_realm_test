@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../widgets/app_badge.dart';
-
 class SearchFilterButton extends StatelessWidget {
   const SearchFilterButton({
     required this.title,

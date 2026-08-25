@@ -13,7 +13,6 @@ import 'package:test_flutter_project/presentation/widgets/avatar_widget.dart';
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 import 'package:test_flutter_project/utils/inline_style_parser.dart';
 
-import '../../../widgets/app_badge.dart';
 import '../inbox_page_identifiers.dart';
 
 class InboxListItem extends StatelessWidget {
