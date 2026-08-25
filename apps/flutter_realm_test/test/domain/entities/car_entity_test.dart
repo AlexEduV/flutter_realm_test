@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
@@ -12,7 +11,6 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
 void main() {
   final mockCar = Car(
-    ObjectId(),
     'car123',
     'Tesla',
     'car',

@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -44,17 +43,16 @@ void main() {
     });
 
     test('update overwrites an existing car by primary key', () {
-      final id = ObjectId();
-      fakeRealm.write(() => fakeRealm.add(Car(id, 'car1', 'Tesla', CarType.car.name)));
+      fakeRealm.write(() => fakeRealm.add(Car('1', 'Tesla', CarType.car.name)));
 
-      storage.updateCar(CarEntity.fromSchema(Car(id, 'car1', 'BMW', CarType.car.name)));
+      storage.updateCar(CarEntity.fromSchema(Car('1', 'BMW', CarType.car.name)));
 
       expect(fakeRealm.all<Car>().length, 1);
       expect(fakeRealm.all<Car>().first.manufacturer, 'BMW');
     });
 
     test('deleteById removes the matching car', () {
-      fakeRealm.write(() => fakeRealm.add(Car(ObjectId(), 'car123', 'Tesla', CarType.car.name)));
+      fakeRealm.write(() => fakeRealm.add(Car('123', 'Tesla', CarType.car.name)));
 
       storage.deleteCarById('car123');
 
@@ -63,8 +61,8 @@ void main() {
 
     test('deleteAllCars removes all cars', () {
       fakeRealm.write(() {
-        fakeRealm.add(Car(ObjectId(), 'c1', 'Tesla', CarType.car.name));
-        fakeRealm.add(Car(ObjectId(), 'c2', 'BMW', CarType.car.name));
+        fakeRealm.add(Car('1', 'Tesla', CarType.car.name));
+        fakeRealm.add(Car('2', 'BMW', CarType.car.name));
       });
 
       storage.deleteAllCars();
@@ -78,9 +76,9 @@ void main() {
 
     test('getMaxCarId returns the highest numeric carId', () {
       fakeRealm.write(() {
-        fakeRealm.add(Car(ObjectId(), '3', 'Tesla', CarType.car.name));
-        fakeRealm.add(Car(ObjectId(), '1', 'BMW', CarType.car.name));
-        fakeRealm.add(Car(ObjectId(), '7', 'Audi', CarType.car.name));
+        fakeRealm.add(Car('3', 'Tesla', CarType.car.name));
+        fakeRealm.add(Car('1', 'BMW', CarType.car.name));
+        fakeRealm.add(Car('7', 'Audi', CarType.car.name));
       });
 
       expect(storage.getMaxCarId(), 7);

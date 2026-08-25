@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -14,7 +13,6 @@ void main() {
   group('CarExtensions', () {
     test('toEntity should convert Car to CarEntity correctly', () {
       final car = Car(
-        ObjectId(),
         'car123',
         'Toyota',
         CarType.car.name,

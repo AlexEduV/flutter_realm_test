@@ -1,4 +1,3 @@
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
@@ -36,7 +35,6 @@ extension CarExtensions on Car {
 
   static Car fromEntity(CarEntity entity) {
     return Car(
-      ObjectId(),
       entity.carId,
       entity.manufacturer,
       entity.type,
