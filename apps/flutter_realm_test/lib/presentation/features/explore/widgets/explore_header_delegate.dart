@@ -106,10 +106,21 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                               ),
                             );
                           }
-                          return ExploreArticleItem(
-                            height: articleHeight,
-                            article: state.articles[index],
-                            index: index,
+                          return AnimatedPadding(
+                            curve: Curves.easeOut,
+                            duration: const Duration(milliseconds: 120),
+                            padding: EdgeInsets.symmetric(
+                              vertical: state.articles[index].isHovering
+                                  ? 0
+                                  : (AppDimensions.exploreArticleItemBaseSize * 1.07 -
+                                          AppDimensions.exploreArticleItemBaseSize) /
+                                      2,
+                            ),
+                            child: ExploreArticleItem(
+                              height: articleHeight,
+                              article: state.articles[index],
+                              index: index,
+                            ),
                           );
                         },
                         separatorBuilder: (context, index) {

@@ -48,7 +48,7 @@ class _ExploreArticleItemState extends State<ExploreArticleItem> {
           builder: (context, scaleX, child) {
             return Transform(
               alignment: Alignment.center,
-              transform: Matrix4.diagonal3Values(scaleX, scaleX, 1.0),
+              transform: Matrix4.diagonal3Values(scaleX, 1.0, 1.0),
               child: child,
             );
           },
