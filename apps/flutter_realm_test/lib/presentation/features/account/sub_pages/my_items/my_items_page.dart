@@ -50,7 +50,6 @@ class MyItemsPage extends StatelessWidget {
 
                   return CarListItem(
                     car: car,
-                    isFavoriteItem: false,
                     source: DetailsPageSource.myItems,
                     onDeleteCallback: () {
                       context.read<UserDataCubit>().removeCarIdFromCreated(car.carId);

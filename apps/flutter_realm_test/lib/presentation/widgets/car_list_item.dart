@@ -16,23 +16,17 @@ class CarListItem extends StatelessWidget {
     required this.car,
     this.onDeleteCallback,
     this.source = DetailsPageSource.explore,
-    this.isFavoriteItem = true,
     super.key,
   });
 
   final CarEntity car;
-  final Function()? onDeleteCallback;
+  final void Function()? onDeleteCallback;
   final DetailsPageSource source;
-  final bool isFavoriteItem;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: AppDimensions.normalL,
-        left: AppDimensions.normalL,
-        right: AppDimensions.normalL,
-      ),
+      padding: const EdgeInsets.all(AppDimensions.normalL).copyWith(top: 0),
       child: Material(
         borderRadius: BorderRadius.circular(AppDimensions.normalXL),
         color: AppColors.white,
@@ -118,7 +112,7 @@ class CarListItem extends StatelessWidget {
                             ),
                             width: AppDimensions.favoriteButtonSize,
                             height: AppDimensions.favoriteButtonSize,
-                            child: isFavoriteItem
+                            child: source == DetailsPageSource.favorites
                                 ? const Icon(Icons.favorite, color: AppColors.gold)
                                 : const Icon(Icons.remove_circle, color: AppColors.error),
                           ),

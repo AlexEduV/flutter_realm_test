@@ -6,30 +6,8 @@ import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import '../../common/enums/promo_type.dart';
 
 class CarDto {
-  factory CarDto.fromJson(Map<String, dynamic> json) {
-    return CarDto(
-      id: ObjectId(),
-      carId: json['id'] as String,
-      model: json['model'] as String,
-      type: json['type'] as String,
-      manufacturer: json['manufacturer'] as String,
-      year: json['year'] as String?,
-      isVerified: json['is_verified'] as bool,
-      price: json['price'] as int?,
-      promoType: PromoType.fromCode(json['promo_type'] as String?),
-      transmissionType: json['transmission_type'] as String,
-      engine: EngineEntity.fromJson(json['engine'] as Map<String, dynamic>),
-      bodyType: json['body_type'] as String,
-      color: json['color'] as String,
-      owner: OwnerEntity.fromJson(json['owner'] as Map<String, dynamic>),
-      images: (json['images'] as List<dynamic>).map((e) => e as String).toList(),
-      mileage: json['mileage'] as int?,
-    );
-  }
-
   factory CarDto.fromEntity(CarEntity entity) {
     return CarDto(
-      id: entity.id,
       carId: entity.carId,
       model: entity.model,
       type: entity.type,
@@ -49,7 +27,6 @@ class CarDto {
     );
   }
   CarDto({
-    required this.id,
     required this.carId,
     required this.model,
     required this.manufacturer,
@@ -68,9 +45,6 @@ class CarDto {
     this.images = const [],
   });
 
-  // NOTE: non-final fields are used in fixtures to simulate a value change from stream.
-  // When using real APIs, the value would be immutable.
-  final ObjectId id;
   final String carId;
   final String model;
   final String manufacturer;
@@ -83,10 +57,10 @@ class CarDto {
   final OwnerEntity? owner;
   final bool isVerified;
   final PromoType? promoType;
-  int? mileage;
-  int? distanceTo;
-  int? price;
-  List<String> images;
+  final int? mileage;
+  final int? distanceTo;
+  final int? price;
+  final List<String> images;
 
   CarDto copyWith({
     ObjectId? id,
@@ -108,7 +82,6 @@ class CarDto {
     List<String>? images,
   }) {
     return CarDto(
-      id: id ?? this.id,
       carId: carId ?? this.carId,
       model: model ?? this.model,
       manufacturer: manufacturer ?? this.manufacturer,

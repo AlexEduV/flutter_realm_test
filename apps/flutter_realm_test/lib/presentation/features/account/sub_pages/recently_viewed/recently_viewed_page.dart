@@ -52,11 +52,7 @@ class RecentlyViewedPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final car = viewedEntities[index];
 
-                  return CarListItem(
-                    car: car,
-                    isFavoriteItem: false,
-                    source: DetailsPageSource.recentlyViewed,
-                  );
+                  return CarListItem(car: car, source: DetailsPageSource.recentlyViewed);
                 },
                 itemCount: viewedEntities.length,
               );

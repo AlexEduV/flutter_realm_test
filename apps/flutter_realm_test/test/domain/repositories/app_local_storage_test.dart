@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -26,7 +25,6 @@ void main() {
     test('getAll returns a list of CarEntity', () {
       final cars = [
         CarEntity(
-          id: ObjectId(),
           carId: 'car1',
           model: 'Model S',
           manufacturer: 'Tesla',
@@ -53,7 +51,6 @@ void main() {
 
     test('add can be called with any object', () {
       final car = CarEntity(
-        id: ObjectId(),
         carId: 'car2',
         model: 'Civic',
         manufacturer: 'Honda',
@@ -75,7 +72,6 @@ void main() {
 
     test('update can be called with any object', () {
       final car = CarEntity(
-        id: ObjectId(),
         carId: 'car3',
         model: 'Corolla',
         manufacturer: 'Toyota',
@@ -98,7 +94,6 @@ void main() {
     test('watch returns a Stream', () {
       final carStream = Stream<List<CarEntity>>.value([
         CarEntity(
-          id: ObjectId(),
           carId: 'car4',
           model: 'Mustang',
           manufacturer: 'Ford',
@@ -160,7 +155,6 @@ void main() {
 
     test('getCarById returns a CarEntity', () {
       final car = CarEntity(
-        id: ObjectId(),
         carId: 'car5',
         model: 'Model 3',
         manufacturer: 'Tesla',

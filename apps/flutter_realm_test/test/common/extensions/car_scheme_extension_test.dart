@@ -1,12 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/common/extensions/car_scheme_extension.dart';
-import 'package:test_flutter_project/data/dto/car_dto.dart';
 import 'package:test_flutter_project/data/models/scheme.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
@@ -15,7 +13,6 @@ void main() {
   group('CarExtensions', () {
     test('toEntity should convert Car to CarEntity correctly', () {
       final car = Car(
-        ObjectId(),
         'car123',
         'Toyota',
         CarType.car.name,
@@ -41,44 +38,8 @@ void main() {
       expect(entity.price, 20000);
     });
 
-    test('fromDto should convert CarDto to Car correctly', () {
-      final dto = CarDto(
-        id: ObjectId(),
-        carId: 'car456',
-        model: 'CBR',
-        manufacturer: 'Honda',
-        type: CarType.bike.name,
-        year: '2018',
-        isVerified: false,
-        promoType: PromoType.fromCode('best_price'),
-        mileage: 8000,
-        distanceTo: 5,
-        price: 7500,
-        bodyType: BodyType.bike.name,
-        engine: EngineEntity(type: FuelType.gasoline.name),
-        transmissionType: TransmissionType.automatic.name,
-      );
-
-      final car = CarExtensions.fromDto(dto);
-
-      expect(car.carId, 'car456');
-      expect(car.model, 'CBR');
-      expect(car.manufacturer, 'Honda');
-      expect(car.type, CarType.bike.name);
-      expect(car.isChecked, false);
-      expect(car.hotPromotionDescription, 'best_price');
-      expect(car.year, '2018');
-      expect(car.mileage, 8000);
-      expect(car.distanceTo, 5);
-      expect(car.price, 7500);
-      expect(car.engine?.fuelType, 'gasoline');
-      expect(car.bodyType, 'bike');
-      expect(car.transmissionType, 'automatic');
-    });
-
     test('fromEntity should convert CarEntity to Car correctly', () {
       final entity = CarEntity(
-        id: ObjectId(),
         carId: 'car789',
         model: 'Model S',
         manufacturer: 'Tesla',

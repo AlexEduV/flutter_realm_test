@@ -18,9 +18,7 @@ Widget buildSearchFilterButtonUseCase(BuildContext context) {
           SearchFilterButton(
             title: context.knobs.string(label: 'Title', initialValue: 'Title'),
             icon: Icons.filter_list_sharp,
-            selectionCount: context.knobs.int
-                .input(label: 'Count Selected', initialValue: 1)
-                .toString(),
+            selectionCount: context.knobs.int.input(label: 'Count Selected', initialValue: 1),
             iconSize: context.knobs.double.slider(
               label: 'Icon size',
               initialValue: 40,

@@ -5,6 +5,7 @@ library;
 
 export 'src/account_item.dart';
 export 'src/animated_favorite_icon.dart';
+export 'src/app_badge.dart';
 export 'src/empty_results_placeholder_widget.dart';
 export 'src/project_constraints/app_colors.dart';
 export 'src/project_constraints/app_dimensions.dart';

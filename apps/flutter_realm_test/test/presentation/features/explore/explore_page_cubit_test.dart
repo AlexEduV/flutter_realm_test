@@ -4,7 +4,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
@@ -39,7 +38,6 @@ void main() {
 
   final carList = [
     CarEntity(
-      id: ObjectId(),
       carId: '1',
       model: 'Model S',
       manufacturer: 'Tesla',
@@ -50,7 +48,6 @@ void main() {
       transmissionType: TransmissionType.automatic.name,
     ),
     CarEntity(
-      id: ObjectId(),
       carId: '2',
       model: 'Civic',
       manufacturer: 'Honda',
@@ -180,11 +177,7 @@ void main() {
       seed: () => ExplorePageState(articles: [article]),
       act: (cubit) => cubit.hoverArticle(article.id, true),
       expect: () => [
-        isA<ExplorePageState>().having(
-          (s) => s.articles.first.isHovering,
-          'isHovering',
-          true,
-        ),
+        isA<ExplorePageState>().having((s) => s.articles.first.isHovering, 'isHovering', true),
       ],
     );
 
@@ -194,11 +187,7 @@ void main() {
       seed: () => ExplorePageState(articles: [article.copyWith(isHovering: true)]),
       act: (cubit) => cubit.hoverArticle(article.id, false),
       expect: () => [
-        isA<ExplorePageState>().having(
-          (s) => s.articles.first.isHovering,
-          'isHovering',
-          false,
-        ),
+        isA<ExplorePageState>().having((s) => s.articles.first.isHovering, 'isHovering', false),
       ],
     );
 

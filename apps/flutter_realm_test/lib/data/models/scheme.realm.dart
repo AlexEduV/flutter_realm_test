@@ -13,7 +13,6 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   static var _defaultsSet = false;
 
   Car(
-    ObjectId id,
     String carId,
     String manufacturer,
     String type, {
@@ -38,7 +37,6 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
         'price': 0,
       });
     }
-    RealmObjectBase.set(this, 'id', id);
     RealmObjectBase.set(this, 'carId', carId);
     RealmObjectBase.set(this, 'manufacturer', manufacturer);
     RealmObjectBase.set(this, 'type', type);
@@ -60,11 +58,6 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
   }
 
   Car._();
-
-  @override
-  ObjectId get id => RealmObjectBase.get<ObjectId>(this, 'id') as ObjectId;
-  @override
-  set id(ObjectId value) => RealmObjectBase.set(this, 'id', value);
 
   @override
   String get carId => RealmObjectBase.get<String>(this, 'carId') as String;
@@ -170,7 +163,6 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
 
   EJsonValue toEJson() {
     return <String, dynamic>{
-      'id': id.toEJson(),
       'carId': carId.toEJson(),
       'manufacturer': manufacturer.toEJson(),
       'type': type.toEJson(),
@@ -195,13 +187,11 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     if (ejson is! Map<String, dynamic>) return raiseInvalidEJson(ejson);
     return switch (ejson) {
       {
-        'id': EJsonValue id,
         'carId': EJsonValue carId,
         'manufacturer': EJsonValue manufacturer,
         'type': EJsonValue type,
       } =>
         Car(
-          fromEJson(id),
           fromEJson(carId),
           fromEJson(manufacturer),
           fromEJson(type),
@@ -227,8 +217,7 @@ class Car extends _Car with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.registerFactory(Car._);
     register(_toEJson, _fromEJson);
     return const SchemaObject(ObjectType.realmObject, Car, 'Car', [
-      SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
-      SchemaProperty('carId', RealmPropertyType.string),
+      SchemaProperty('carId', RealmPropertyType.string, primaryKey: true),
       SchemaProperty('manufacturer', RealmPropertyType.string),
       SchemaProperty('type', RealmPropertyType.string),
       SchemaProperty('model', RealmPropertyType.string, optional: true),

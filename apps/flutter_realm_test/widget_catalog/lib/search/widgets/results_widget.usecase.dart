@@ -18,9 +18,7 @@ Widget buildResultsWidgetUseCase(BuildContext context) {
         spacing: AppDimensions.normalL,
         children: [
           ResultsWidget(
-            resultsCount: context.knobs.int
-                .input(label: 'Results count', initialValue: 0)
-                .toString(),
+            resultsCount: context.knobs.int.input(label: 'Results count', initialValue: 0),
           ),
         ],
       ),

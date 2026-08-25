@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
-import '../../../widgets/app_badge.dart';
-
 class SearchFilterButton extends StatelessWidget {
   const SearchFilterButton({
     required this.title,
@@ -19,7 +17,7 @@ class SearchFilterButton extends StatelessWidget {
 
   final String title;
   final String? text;
-  final String selectionCount;
+  final int selectionCount;
   final double iconSize;
   final IconData icon;
   final void Function()? onPressed;
@@ -78,7 +76,7 @@ class SearchFilterButton extends StatelessWidget {
                     const Spacer(),
                   ],
 
-                  if ((int.tryParse(selectionCount) ?? 0) > 0) ...[AppBadge(text: selectionCount)],
+                  if (selectionCount > 0) ...[AppBadge(count: selectionCount)],
                 ],
               ),
             ),

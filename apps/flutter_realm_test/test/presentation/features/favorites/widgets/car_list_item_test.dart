@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:realm/realm.dart';
+import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
@@ -8,7 +8,6 @@ import 'package:test_flutter_project/presentation/widgets/car_list_item.dart';
 
 void main() {
   final testCar = CarEntity(
-    id: ObjectId(),
     carId: '1',
     model: 'Model S',
     manufacturer: 'Tesla',
@@ -41,6 +40,7 @@ void main() {
         home: Scaffold(
           body: CarListItem(
             car: testCar,
+            source: DetailsPageSource.favorites,
             onDeleteCallback: () {
               tapped = true;
             },

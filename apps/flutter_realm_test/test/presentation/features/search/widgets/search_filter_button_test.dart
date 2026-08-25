@@ -1,14 +1,14 @@
+import 'package:core_ui/src/app_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/presentation/features/search/widgets/search_filter_button.dart';
-import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
 
 void main() {
   group('SearchFilterButton', () {
     testWidgets('displays icon, title, and badge', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: SearchFilterButton(title: 'Filter', icon: Icons.filter_alt, selectionCount: '2'),
+          home: SearchFilterButton(title: 'Filter', icon: Icons.filter_alt, selectionCount: 2),
         ),
       );
 
@@ -24,7 +24,7 @@ void main() {
           home: SearchFilterButton(
             title: 'Filter',
             icon: Icons.filter_alt,
-            selectionCount: '1',
+            selectionCount: 1,
             text: 'Selected',
           ),
         ),
@@ -36,7 +36,7 @@ void main() {
     testWidgets('does not display optional text when not provided', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: SearchFilterButton(title: 'Filter', icon: Icons.filter_alt, selectionCount: '0'),
+          home: SearchFilterButton(title: 'Filter', icon: Icons.filter_alt, selectionCount: 0),
         ),
       );
 
@@ -52,7 +52,7 @@ void main() {
           home: SearchFilterButton(
             title: 'Filter',
             icon: Icons.filter_alt,
-            selectionCount: '3',
+            selectionCount: 3,
             onPressed: () {
               tapped = true;
             },
@@ -72,7 +72,7 @@ void main() {
           home: SearchFilterButton(
             title: 'Filter',
             icon: Icons.filter_alt,
-            selectionCount: '1',
+            selectionCount: 1,
             text: 'Placeholder',
             isPlaceHolder: true,
           ),
@@ -89,7 +89,7 @@ void main() {
           home: SearchFilterButton(
             title: 'Filter',
             icon: Icons.filter_alt,
-            selectionCount: '1',
+            selectionCount: 1,
             iconSize: 50.0,
           ),
         ),

@@ -6,7 +6,6 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/search/widgets/results_widget.dart';
-import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
 
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
@@ -28,9 +27,7 @@ void main() {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
-          child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(resultsCount: '5')),
-          ),
+          child: const MaterialApp(home: Scaffold(body: ResultsWidget(resultsCount: 5))),
         ),
       );
 
@@ -44,13 +41,11 @@ void main() {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
-          child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(resultsCount: '10')),
-          ),
+          child: const MaterialApp(home: Scaffold(body: ResultsWidget(resultsCount: 10))),
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(Badge), findsOneWidget);
       expect(find.text('10'), findsOneWidget);
     });
 
@@ -58,9 +53,7 @@ void main() {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
-          child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(resultsCount: '3')),
-          ),
+          child: const MaterialApp(home: Scaffold(body: ResultsWidget(resultsCount: 3))),
         ),
       );
 
@@ -75,9 +68,7 @@ void main() {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
-          child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(resultsCount: '7')),
-          ),
+          child: const MaterialApp(home: Scaffold(body: ResultsWidget(resultsCount: 7))),
         ),
       );
 

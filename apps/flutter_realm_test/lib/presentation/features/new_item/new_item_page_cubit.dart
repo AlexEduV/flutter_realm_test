@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -356,7 +355,6 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     final newCarId = (_getCurrentMaxCarIdUseCase.call() + 1).toString();
 
     final car = CarEntity(
-      id: ObjectId(),
       carId: newCarId,
       model: state.modelText.capitalizeFirst(),
       manufacturer: state.manufacturerText.capitalizeFirst(),

@@ -1,6 +1,7 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_flutter_project/common/enums/details_page_source.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/favorites/favorites_page_identifiers.dart';
@@ -51,6 +52,7 @@ class FavoritesPage extends StatelessWidget {
                     car: car,
                     onDeleteCallback: () =>
                         context.read<UserDataCubit>().removeCarIdFromFavorites(car.carId),
+                    source: DetailsPageSource.favorites,
                   );
                 },
                 itemCount: favoriteEntities.length,

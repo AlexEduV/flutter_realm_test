@@ -10,7 +10,6 @@ import '../../data/models/scheme.dart';
 
 class CarEntity {
   CarEntity({
-    required this.id,
     required this.carId,
     required this.model,
     required this.manufacturer,
@@ -32,7 +31,6 @@ class CarEntity {
 
   factory CarEntity.empty() {
     return CarEntity(
-      id: ObjectId(),
       carId: 'testId',
       model: 'Test Model',
       type: 'Car',
@@ -47,7 +45,6 @@ class CarEntity {
 
   factory CarEntity.fromDto(CarDto dto) {
     return CarEntity(
-      id: dto.id,
       carId: dto.carId,
       model: dto.model,
       manufacturer: dto.manufacturer,
@@ -69,7 +66,6 @@ class CarEntity {
 
   factory CarEntity.fromSchema(Car car) {
     return CarEntity(
-      id: car.id,
       carId: car.carId,
       model: car.model ?? '',
       manufacturer: car.manufacturer,
@@ -95,7 +91,6 @@ class CarEntity {
     );
   }
 
-  final ObjectId id;
   final String carId;
   final String model;
   final String manufacturer;
@@ -135,7 +130,6 @@ class CarEntity {
     bool? isShown,
   }) {
     return CarEntity(
-      id: id ?? this.id,
       carId: carId ?? this.carId,
       model: model ?? this.model,
       manufacturer: manufacturer ?? this.manufacturer,

@@ -6,7 +6,6 @@ import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:realm/realm.dart' show ObjectId;
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -36,7 +35,6 @@ void main() {
   late MockLoggingService loggingService;
 
   final mockCar = Car(
-    ObjectId(),
     'car123',
     'Tesla',
     'car',
@@ -140,7 +138,6 @@ void main() {
 
     test('syncCars deletes all, fetches, and adds cars', () async {
       final carDto = CarDto(
-        id: ObjectId(),
         carId: 'testId',
         manufacturer: 'Test Motors',
         model: 'Model X',
@@ -164,7 +161,6 @@ void main() {
         (_) => Stream.fromIterable([
           [
             CarDto(
-              id: ObjectId(),
               carId: '1',
               model: 'Model S',
               manufacturer: 'Tesla',

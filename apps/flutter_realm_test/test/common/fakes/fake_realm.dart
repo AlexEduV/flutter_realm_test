@@ -20,7 +20,7 @@ class FakeRealm implements Realm {
   @override
   T add<T extends RealmObject>(T object, {bool update = false}) {
     final car = object as Car;
-    if (update) _cars.removeWhere((c) => c.id == car.id);
+    if (update) _cars.removeWhere((c) => c.carId == car.carId);
     _cars.add(car);
     return object;
   }

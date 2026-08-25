@@ -104,7 +104,7 @@ class _SearchPageState extends State<SearchPage> {
                       icon: Icons.directions_car,
                       title: '${context.tr(SearchPageLocaleKeys.searchFilterModelTitle)}: ',
                       text: modelFilters,
-                      selectionCount: state.selectedModels.length.toString(),
+                      selectionCount: state.selectedModels.length,
                       onPressed: () {
                         context.read<SearchPageCubit>().openDrawer(SearchDrawerType.model);
                         Scaffold.of(context).openEndDrawer();
@@ -121,7 +121,7 @@ class _SearchPageState extends State<SearchPage> {
                     return SearchFilterButton(
                       icon: Icons.filter_list_sharp,
                       title: context.tr(SearchPageLocaleKeys.searchFilterParametersTitle),
-                      selectionCount: selectedFilterCount.toString(),
+                      selectionCount: selectedFilterCount,
                       onPressed: () {
                         context.read<SearchPageCubit>().openDrawer(SearchDrawerType.parameters);
                         Scaffold.of(context).openEndDrawer();
@@ -134,7 +134,7 @@ class _SearchPageState extends State<SearchPage> {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.all(AppDimensions.normalL),
-                  child: ResultsWidget(resultsCount: filteredResults.length.toString()),
+                  child: ResultsWidget(resultsCount: filteredResults.length),
                 ),
               ),
 

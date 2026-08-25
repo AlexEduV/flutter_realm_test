@@ -18,7 +18,7 @@ class UserAvatarEnhanced extends StatelessWidget {
   });
 
   final String? imageSrc;
-  final Function()? onTap;
+  final void Function()? onTap;
   final double size;
   final bool isDecorated;
 

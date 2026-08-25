@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -21,7 +20,6 @@ void main() {
     test('fetchCars returns a list of CarDto', () async {
       final cars = [
         CarDto(
-          id: ObjectId(),
           carId: 'car1',
           manufacturer: 'Toyota',
           type: CarType.car.name,
@@ -32,7 +30,6 @@ void main() {
           bodyType: BodyType.sedan.name,
         ),
         CarDto(
-          id: ObjectId(),
           carId: 'car2',
           manufacturer: 'Honda',
           type: CarType.bike.name,
@@ -56,7 +53,6 @@ void main() {
     test('carStream emits a list of CarDto', () async {
       final cars = [
         CarDto(
-          id: ObjectId(),
           carId: 'car1',
           manufacturer: 'Toyota',
           type: CarType.car.name,
@@ -67,7 +63,6 @@ void main() {
           bodyType: BodyType.sedan.name,
         ),
         CarDto(
-          id: ObjectId(),
           carId: 'car2',
           manufacturer: 'Honda',
           type: CarType.bike.name,

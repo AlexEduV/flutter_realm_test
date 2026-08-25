@@ -14,7 +14,7 @@ class RealmConfiguration {
   void init() {
     _config = Configuration.local(
       [Car.schema, Person.schema, User.schema, LastSeenCar.schema, Engine.schema],
-      schemaVersion: 30,
+      schemaVersion: 31,
       migrationCallback: (migration, oldVersion) {
         if (oldVersion < 2) migrateV2(migration);
         if (oldVersion < 10) migrateV10(migration);

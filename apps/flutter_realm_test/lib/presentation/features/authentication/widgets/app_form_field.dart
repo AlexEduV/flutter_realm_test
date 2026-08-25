@@ -37,10 +37,10 @@ class AppFormField extends StatelessWidget {
   final String? leadingSvg;
   final TextInputAction textInputAction;
   final bool isObscureText;
-  final Function()? onEditingComplete;
-  final Function()? onSuffixIconPressed;
-  final Function(bool)? onFocusChange;
-  final Function(String? value) onChanged;
+  final void Function()? onEditingComplete;
+  final void Function()? onSuffixIconPressed;
+  final void Function(bool)? onFocusChange;
+  final void Function(String? value) onChanged;
   final String? trailingActionSemanticsLabel;
   final int? maxLength;
   final double? padding;
