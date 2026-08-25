@@ -12,7 +12,6 @@ import '../explore_page_state.dart';
 
 class ArticleItem extends StatelessWidget {
   const ArticleItem({
-    required this.index,
     required this.article,
     this.height = AppDimensions.exploreArticleItemBaseSize,
     this.borderRadius = AppDimensions.normalL,
@@ -21,7 +20,6 @@ class ArticleItem extends StatelessWidget {
 
   final double height;
   final ArticleEntity article;
-  final int index;
   final double borderRadius;
 
   @override
@@ -29,7 +27,7 @@ class ArticleItem extends StatelessWidget {
     return BlocBuilder<ExplorePageCubit, ExplorePageState>(
       builder: (context, state) {
         return TweenAnimationBuilder<double>(
-          tween: Tween<double>(begin: 1.0, end: state.articles[index].isHovering ? 1.07 : 1.0),
+          tween: Tween<double>(begin: 1.0, end: article.isHovering ? 1.07 : 1.0),
           curve: Curves.easeOut,
           duration: const Duration(milliseconds: 120),
           builder: (context, scaleX, child) {
@@ -103,9 +101,6 @@ class ArticleItem extends StatelessWidget {
   }
 
   void _setPressed(BuildContext context, bool isPressed) {
-    final cubit = context.read<ExplorePageCubit>();
-    final state = cubit.state;
-
-    cubit.hoverArticle(state.articles[index].id, isPressed);
+    context.read<ExplorePageCubit>().hoverArticle(article.id, isPressed);
   }
 }

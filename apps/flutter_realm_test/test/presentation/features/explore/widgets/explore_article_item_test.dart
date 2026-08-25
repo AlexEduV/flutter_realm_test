@@ -38,7 +38,7 @@ void main() {
   group('ExploreSectionItem', () {
     testWidgets('has default height and width', (WidgetTester tester) async {
       await tester.pumpWidget(
-        makeTestableWidget(Scaffold(body: ArticleItem(article: ArticleEntity.empty(), index: 0))),
+        makeTestableWidget(Scaffold(body: ArticleItem(article: ArticleEntity.empty()))),
       );
 
       final containerFinder = find.byType(Container).first;
@@ -51,9 +51,7 @@ void main() {
       await tester.pumpWidget(
         makeTestableWidget(
           MaterialApp(
-            home: Scaffold(
-              body: ArticleItem(height: 200.0, article: ArticleEntity.empty(), index: 0),
-            ),
+            home: Scaffold(body: ArticleItem(height: 200.0, article: ArticleEntity.empty())),
           ),
         ),
       );
@@ -68,7 +66,7 @@ void main() {
       await tester.pumpWidget(
         makeTestableWidget(
           MaterialApp(
-            home: Scaffold(body: ArticleItem(article: ArticleEntity.empty(), index: 0)),
+            home: Scaffold(body: ArticleItem(article: ArticleEntity.empty())),
           ),
         ),
       );

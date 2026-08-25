@@ -120,7 +120,6 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                             child: ArticleItem(
                               height: articleHeight,
                               article: state.articles[index],
-                              index: index,
                             ),
                           );
                         },
