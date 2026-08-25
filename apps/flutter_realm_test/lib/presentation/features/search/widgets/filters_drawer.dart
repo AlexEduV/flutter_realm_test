@@ -65,7 +65,6 @@ class _FiltersDrawerState extends State<FiltersDrawer> {
         final bodyTypeList = BodyType.filterByCarType(state.currentSelectedType);
 
         return Drawer(
-          backgroundColor: AppColors.scaffoldColor,
           child: ListView(
             children: [
               DrawerHeader(
