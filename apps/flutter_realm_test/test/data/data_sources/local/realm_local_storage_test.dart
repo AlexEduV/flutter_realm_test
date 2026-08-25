@@ -54,7 +54,7 @@ void main() {
     test('deleteById removes the matching car', () {
       fakeRealm.write(() => fakeRealm.add(Car('123', 'Tesla', CarType.car.name)));
 
-      storage.deleteCarById('car123');
+      storage.deleteCarById('123');
 
       expect(fakeRealm.all<Car>().length, 0);
     });
