@@ -49,7 +49,7 @@ class HomeBottomBar extends StatelessWidget {
               unselectedIcon: Icons.web_stories_outlined,
               selectedIcon: Icons.web_stories,
               label: context.tr(ExplorePageLocaleKeys.explorePageTitle),
-              rotationAngle: 90.0.toRadians,
+              iconRotationAngle: 90.0.toRadians,
             ),
             HomeBottomBarItem(
               semanticsLabel: HomeBottomBarPageIds.homeBottomBarItemFavorites,

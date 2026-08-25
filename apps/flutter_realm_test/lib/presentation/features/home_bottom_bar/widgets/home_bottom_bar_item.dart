@@ -13,7 +13,8 @@ class HomeBottomBarItem extends StatelessWidget {
     required this.unselectedIcon,
     required this.semanticsLabel,
     required this.label,
-    this.rotationAngle = 0.0,
+    this.iconRotationAngle = 0.0,
+    this.borderRadius = AppDimensions.majorM,
     super.key,
   });
 
@@ -22,14 +23,15 @@ class HomeBottomBarItem extends StatelessWidget {
   final IconData unselectedIcon;
   final String semanticsLabel;
   final String label;
-  final double rotationAngle;
+  final double iconRotationAngle;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBottomBarCubit, HomeBottomBarState>(
       builder: (context, state) {
         final isSelected = state.currentSelectedTabIndex == index;
-        final color = isSelected
+        final foregroundColor = isSelected
             ? AppColors.headerColor
             : AppColors.headerColor.withAlpha((0.48 * 255).toInt());
 
@@ -42,7 +44,8 @@ class HomeBottomBarItem extends StatelessWidget {
           child: Material(
             color: AppColors.transparent,
             child: InkWell(
-              borderRadius: BorderRadius.circular(AppDimensions.majorM),
+              borderRadius: BorderRadius.circular(borderRadius),
+              //todo: use a callback here
               onTap: () => context.read<HomeBottomBarCubit>().updateSelectedIndex(index),
               child: SizedBox(
                 height: 60,
@@ -52,15 +55,16 @@ class HomeBottomBarItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     spacing: AppDimensions.minorXS,
                     children: [
+                      //todo: check if transform can be updated
                       Transform.rotate(
-                        angle: rotationAngle,
-                        child: Icon(icon, color: color),
+                        angle: iconRotationAngle,
+                        child: Icon(icon, color: foregroundColor),
                       ),
 
                       Text(
                         label,
                         textAlign: TextAlign.center,
-                        style: AppTextStyles.zonaPro12Bold.copyWith(color: color),
+                        style: AppTextStyles.zonaPro12Bold.copyWith(color: foregroundColor),
                       ),
                     ],
                   ),
