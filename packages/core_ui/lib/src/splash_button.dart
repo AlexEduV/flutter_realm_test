@@ -22,7 +22,8 @@ class SplashButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foregroundColor = buttonType == ButtonType.primary ? AppColors.white : Colors.grey;
+    //todo: a theme class or type def would be nice here
+    final foregroundColor = buttonType == ButtonType.primary ? AppColors.white : AppColors.grey;
     final backgroundColor = buttonType == ButtonType.primary
         ? AppColors.headerColor
         : AppColors.white;
