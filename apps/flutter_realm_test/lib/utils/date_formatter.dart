@@ -12,16 +12,7 @@ class DateFormatter {
   final AppLocalisationsCubit _appLocalisationsCubit;
   final TimeService _timeService;
 
-  _NormalizedDates _normalizeDates(DateTime date) {
-    final now = _timeService.now();
-    return (
-      today: DateTime(now.year, now.month, now.day),
-      yesterday: DateTime(now.year, now.month, now.day - 1),
-      dateDay: DateTime(date.year, date.month, date.day),
-    );
-  }
-
-  String formatSmartDate(DateTime? date) {
+  String formatMessageIncomingTime(DateTime? date) {
     if (date == null) return '';
 
     final dates = _normalizeDates(date);
@@ -63,5 +54,14 @@ class DateFormatter {
         return DateFormat('MMMM d, y', locale).format(date);
       }
     }
+  }
+
+  _NormalizedDates _normalizeDates(DateTime date) {
+    final now = _timeService.now();
+    return (
+      today: DateTime(now.year, now.month, now.day),
+      yesterday: DateTime(now.year, now.month, now.day - 1),
+      dateDay: DateTime(date.year, date.month, date.day),
+    );
   }
 }

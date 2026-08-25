@@ -99,7 +99,7 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
   }
 
   String getMessageTime(DateTime date) {
-    final messageTime = _dateFormatter.formatSmartDate(date);
+    final messageTime = _dateFormatter.formatMessageIncomingTime(date);
     return messageTime;
   }
 }
