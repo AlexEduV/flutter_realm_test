@@ -45,7 +45,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(AppBadge), findsOneWidget);
+      expect(find.byType(Badge), findsOneWidget);
       expect(find.text('10'), findsOneWidget);
     });
 

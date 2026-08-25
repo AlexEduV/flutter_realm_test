@@ -21,11 +21,11 @@ void main() {
       expect(realmConfig.instance, isA<LocalConfiguration>());
     });
 
-    test('init sets schema version to 30', () {
+    test('init sets schema version to 31', () {
       realmConfig.init();
 
       final config = realmConfig.instance as LocalConfiguration;
-      expect(config.schemaVersion, 30);
+      expect(config.schemaVersion, 31);
     });
 
     test('init registers all five required schemas', () {
