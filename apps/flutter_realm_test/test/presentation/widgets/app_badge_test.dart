@@ -1,26 +1,18 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:test_flutter_project/presentation/widgets/app_badge.dart';
 
 void main() {
   group('AppBadge', () {
     testWidgets('displays the correct text', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppBadge(text: '5')),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: AppBadge(count: 5))));
 
       expect(find.text('5'), findsOneWidget);
     });
 
     testWidgets('has circular shape and black background', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppBadge(text: 'A')),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: AppBadge(count: 1))));
 
       final container = tester.widget<Container>(find.byType(Container));
       final decoration = container.decoration as BoxDecoration;
@@ -30,13 +22,9 @@ void main() {
     });
 
     testWidgets('uses correct text style', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppBadge(text: 'X')),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: AppBadge(count: 10))));
 
-      final textWidget = tester.widget<Text>(find.text('X'));
+      final textWidget = tester.widget<Text>(find.text('10'));
       final expectedStyle = AppTextStyles.zonaPro16.copyWith(color: Colors.white);
 
       expect(textWidget.style?.fontSize, expectedStyle.fontSize);
@@ -45,11 +33,7 @@ void main() {
     });
 
     testWidgets('is centered and fits text', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: AppBadge(text: 'LongText')),
-        ),
-      );
+      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: AppBadge(count: 999))));
 
       final fittedBox = find.byType(FittedBox);
       expect(fittedBox, findsOneWidget);

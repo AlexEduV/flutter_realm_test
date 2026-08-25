@@ -103,7 +103,7 @@ class InboxListItem extends StatelessWidget {
                           ],
                         ),
 
-                        if (unreadCount > 0) ...[AppBadge(text: unreadCount.toString())],
+                        if (unreadCount > 0) ...[AppBadge(count: unreadCount)],
                       ],
                     ),
                   ],

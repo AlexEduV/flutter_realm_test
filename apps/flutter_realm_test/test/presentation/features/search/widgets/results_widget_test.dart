@@ -28,9 +28,7 @@ void main() {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
-          child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(resultsCount: '5')),
-          ),
+          child: const MaterialApp(home: Scaffold(body: ResultsWidget(resultsCount: 5))),
         ),
       );
 
@@ -44,9 +42,7 @@ void main() {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
-          child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(resultsCount: '10')),
-          ),
+          child: const MaterialApp(home: Scaffold(body: ResultsWidget(resultsCount: 10))),
         ),
       );
 
@@ -58,9 +54,7 @@ void main() {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
-          child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(resultsCount: '3')),
-          ),
+          child: const MaterialApp(home: Scaffold(body: ResultsWidget(resultsCount: 3))),
         ),
       );
 
@@ -75,9 +69,7 @@ void main() {
       await tester.pumpWidget(
         BlocProvider<AppLocalisationsCubit>.value(
           value: appLocalisationsCubit,
-          child: const MaterialApp(
-            home: Scaffold(body: ResultsWidget(resultsCount: '7')),
-          ),
+          child: const MaterialApp(home: Scaffold(body: ResultsWidget(resultsCount: 7))),
         ),
       );
 
