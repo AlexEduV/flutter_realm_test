@@ -28,6 +28,7 @@ class SeedCarRemoteDataSourceImpl implements CarRemoteDataSource {
   Stream<List<CarDto>> get carStream => _carStreamController.stream;
 
   late List<CarDto> initialData = [];
+  final _random = Random();
 
   // Track the subscription so we can stop the timer if needed
   StreamSubscription? _liveUpdateSubscription;
@@ -135,8 +136,7 @@ class SeedCarRemoteDataSourceImpl implements CarRemoteDataSource {
 
   List<CarDto> _generateRandomUpdates() {
     return initialData.map((car) {
-      final random = Random();
-      int? distanceTo = random.nextInt(60);
+      int? distanceTo = _random.nextInt(60);
       return car.copyWith(distanceTo: distanceTo);
     }).toList();
   }
