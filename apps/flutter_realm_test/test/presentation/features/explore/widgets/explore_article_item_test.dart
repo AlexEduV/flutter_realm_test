@@ -2,11 +2,9 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
-import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
 import 'package:test_flutter_project/presentation/features/explore/widgets/article_item.dart';
 
 import '../../../../utils/app_router_test.mocks.dart';
@@ -16,10 +14,6 @@ void main() {
 
   setUpAll(() {
     serviceLocator.registerSingleton<ExplorePageCubit>(mockExplorePageCubit);
-    when(
-      mockExplorePageCubit.state,
-    ).thenReturn(ExplorePageState(cars: [], articles: [ArticleEntity.empty()]));
-    when(mockExplorePageCubit.stream).thenAnswer((_) => const Stream.empty());
   });
 
   tearDownAll(() async {
@@ -41,10 +35,11 @@ void main() {
         makeTestableWidget(Scaffold(body: ArticleItem(article: ArticleEntity.empty()))),
       );
 
-      final containerFinder = find.byType(Container).first;
-      final size = tester.getSize(containerFinder);
-      expect(size.height, 120.0);
-      expect(size.width, 120.0);
+      final sizedBox = tester.widget<SizedBox>(
+        find.descendant(of: find.byType(InkWell), matching: find.byType(SizedBox)).first,
+      );
+      expect(sizedBox.height, AppDimensions.exploreArticleItemBaseSize);
+      expect(sizedBox.width, AppDimensions.exploreArticleItemBaseSize);
     });
 
     testWidgets('uses custom height when provided', (WidgetTester tester) async {
@@ -56,10 +51,11 @@ void main() {
         ),
       );
 
-      final containerFinder = find.byType(Container).first;
-      final size = tester.getSize(containerFinder);
-      expect(size.height, 200.0);
-      expect(size.width, 120.0);
+      final sizedBox = tester.widget<SizedBox>(
+        find.descendant(of: find.byType(InkWell), matching: find.byType(SizedBox)).first,
+      );
+      expect(sizedBox.height, 200.0);
+      expect(sizedBox.width, AppDimensions.exploreArticleItemBaseSize);
     });
 
     testWidgets('has correct color and border radius', (WidgetTester tester) async {
@@ -71,8 +67,8 @@ void main() {
         ),
       );
 
-      final containerWidget = tester.widget<Container>(find.byType(Container).first);
-      final decoration = containerWidget.decoration as BoxDecoration;
+      final decoratedBox = tester.widget<DecoratedBox>(find.byType(DecoratedBox).first);
+      final decoration = decoratedBox.decoration as BoxDecoration;
 
       expect(decoration.color, AppColors.accentColor.withAlpha(60));
       expect(decoration.borderRadius, BorderRadius.circular(AppDimensions.normalL));
