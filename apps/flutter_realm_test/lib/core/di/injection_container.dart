@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/core/di/modules/env_module.dart';
 import 'package:test_flutter_project/core/di/modules/infrastructure_module.dart';
 import 'package:test_flutter_project/core/di/modules/network_module.dart';
@@ -22,6 +23,8 @@ import 'package:test_flutter_project/presentation/features/user/user_module.dart
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependenciesContainer() async {
+  serviceLocator.debugEventsEnabled = AppConstants.showGetItLogs;
+
   await registerStorageModule(serviceLocator);
   registerNetworkModule(serviceLocator);
   await registerEnvModule(serviceLocator);
