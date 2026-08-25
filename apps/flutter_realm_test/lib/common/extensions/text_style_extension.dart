@@ -8,5 +8,5 @@ extension WhitenTextStyle on TextStyle {
 }
 
 extension EmboldenTextStyle on TextStyle {
-  TextStyle embolden() => copyWith(fontWeight: FontWeight(fontWeight?.value ?? 0 + 200));
+  TextStyle embolden() => copyWith(fontWeight: FontWeight(((fontWeight?.value ?? 400) + 200).clamp(100, 900)));
 }
