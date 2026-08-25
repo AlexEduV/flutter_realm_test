@@ -16,12 +16,12 @@ extension UserExtensions on User {
       favoriteIds: entity.favoriteIds,
       viewedIds: entity.viewedIds,
       createdIds: entity.createdIds,
-      lastSeenCar: getLastSeenCar(entity.lastSeenCar),
+      lastSeenCar: _getLastSeenCar(entity.lastSeenCar),
       avatarImage: entity.avatarImageSrc,
     );
   }
 
-  static LastSeenCar? getLastSeenCar(LastSeenCarEntity? entity) {
+  static LastSeenCar? _getLastSeenCar(LastSeenCarEntity? entity) {
     if (entity == null) return null;
     return LastSeenCar(entity.seenAt, carId: entity.carId);
   }
