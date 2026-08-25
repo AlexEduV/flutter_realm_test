@@ -140,7 +140,6 @@ void main() {
 
     test('syncCars deletes all, fetches, and adds cars', () async {
       final carDto = CarDto(
-        id: ObjectId(),
         carId: 'testId',
         manufacturer: 'Test Motors',
         model: 'Model X',
@@ -164,7 +163,6 @@ void main() {
         (_) => Stream.fromIterable([
           [
             CarDto(
-              id: ObjectId(),
               carId: '1',
               model: 'Model S',
               manufacturer: 'Tesla',

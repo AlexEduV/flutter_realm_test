@@ -1,15 +1,14 @@
+import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 
-import '../../data/dto/car_dto.dart';
 import '../../data/models/scheme.dart';
 import '../../domain/entities/car_entity.dart';
 
 extension CarExtensions on Car {
   CarEntity toEntity() {
     return CarEntity(
-      id: id,
       carId: carId,
       model: model ?? '',
       manufacturer: manufacturer,
@@ -35,37 +34,9 @@ extension CarExtensions on Car {
     );
   }
 
-  static Car fromDto(CarDto dto) {
-    return Car(
-      dto.id,
-      dto.carId,
-      dto.manufacturer,
-      dto.type,
-      model: dto.model,
-      year: dto.year,
-      isChecked: dto.isVerified,
-      hotPromotionDescription: dto.promoType?.code,
-      mileage: dto.mileage,
-      distanceTo: dto.distanceTo,
-      price: dto.price ?? 0,
-      bodyType: dto.bodyType,
-      engine: Engine(fuelType: dto.engine.type, volume: dto.engine.volume),
-      transmissionType: dto.transmissionType,
-      owner: Person(
-        dto.owner?.firstName ?? '',
-        dto.owner?.lastName ?? '',
-        dto.owner?.id ?? '',
-        linkedIds: dto.owner?.linkedItemIds ?? [],
-        imageSrc: dto.owner?.imageSrc,
-      ),
-      color: dto.color,
-      images: dto.images,
-    );
-  }
-
   static Car fromEntity(CarEntity entity) {
     return Car(
-      entity.id,
+      ObjectId(),
       entity.carId,
       entity.manufacturer,
       entity.type,

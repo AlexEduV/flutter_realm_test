@@ -3,19 +3,21 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i8;
+import 'dart:async' as _i7;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i9;
-import 'package:realm/realm.dart' as _i2;
+import 'package:mockito/src/dummies.dart' as _i8;
+import 'package:realm/realm.dart' as _i9;
 import 'package:test_flutter_project/common/enums/promo_type.dart' as _i11;
-import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart' as _i12;
-import 'package:test_flutter_project/data/dto/car_dto.dart' as _i5;
-import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart' as _i7;
-import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i4;
-import 'package:test_flutter_project/domain/entities/engine_entity.dart' as _i3;
+import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart'
+    as _i12;
+import 'package:test_flutter_project/data/dto/car_dto.dart' as _i4;
+import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart'
+    as _i6;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
+import 'package:test_flutter_project/domain/entities/engine_entity.dart' as _i2;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i10;
-import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i6;
+import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -31,165 +33,198 @@ import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i6;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeObjectId_0 extends _i1.SmartFake implements _i2.ObjectId {
-  _FakeObjectId_0(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeEngineEntity_0 extends _i1.SmartFake implements _i2.EngineEntity {
+  _FakeEngineEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
-class _FakeEngineEntity_1 extends _i1.SmartFake implements _i3.EngineEntity {
-  _FakeEngineEntity_1(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeCarEntity_1 extends _i1.SmartFake implements _i3.CarEntity {
+  _FakeCarEntity_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
-class _FakeCarEntity_2 extends _i1.SmartFake implements _i4.CarEntity {
-  _FakeCarEntity_2(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeCarDto_2 extends _i1.SmartFake implements _i4.CarDto {
+  _FakeCarDto_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
-class _FakeCarDto_3 extends _i1.SmartFake implements _i5.CarDto {
-  _FakeCarDto_3(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
-}
-
-class _FakeUserEntity_4 extends _i1.SmartFake implements _i6.UserEntity {
-  _FakeUserEntity_4(Object parent, Invocation parentInvocation) : super(parent, parentInvocation);
+class _FakeUserEntity_3 extends _i1.SmartFake implements _i5.UserEntity {
+  _FakeUserEntity_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
 }
 
 /// A class which mocks [CarRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarRemoteDataSource extends _i1.Mock implements _i7.CarRemoteDataSource {
+class MockCarRemoteDataSource extends _i1.Mock
+    implements _i6.CarRemoteDataSource {
   @override
-  _i8.Stream<List<_i5.CarDto>> get carStream =>
-      (super.noSuchMethod(
-            Invocation.getter(#carStream),
-            returnValue: _i8.Stream<List<_i5.CarDto>>.empty(),
-            returnValueForMissingStub: _i8.Stream<List<_i5.CarDto>>.empty(),
-          )
-          as _i8.Stream<List<_i5.CarDto>>);
+  _i7.Stream<List<_i4.CarDto>> get carStream => (super.noSuchMethod(
+        Invocation.getter(#carStream),
+        returnValue: _i7.Stream<List<_i4.CarDto>>.empty(),
+        returnValueForMissingStub: _i7.Stream<List<_i4.CarDto>>.empty(),
+      ) as _i7.Stream<List<_i4.CarDto>>);
 
   @override
-  _i8.Future<List<_i5.CarDto>> fetchCars() =>
-      (super.noSuchMethod(
-            Invocation.method(#fetchCars, []),
-            returnValue: _i8.Future<List<_i5.CarDto>>.value(<_i5.CarDto>[]),
-            returnValueForMissingStub: _i8.Future<List<_i5.CarDto>>.value(<_i5.CarDto>[]),
-          )
-          as _i8.Future<List<_i5.CarDto>>);
+  _i7.Future<List<_i4.CarDto>> fetchCars() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchCars,
+          [],
+        ),
+        returnValue: _i7.Future<List<_i4.CarDto>>.value(<_i4.CarDto>[]),
+        returnValueForMissingStub:
+            _i7.Future<List<_i4.CarDto>>.value(<_i4.CarDto>[]),
+      ) as _i7.Future<List<_i4.CarDto>>);
 
   @override
-  void dispose() =>
-      super.noSuchMethod(Invocation.method(#dispose, []), returnValueForMissingStub: null);
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [CarEntity].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
+class MockCarEntity extends _i1.Mock implements _i3.CarEntity {
   @override
-  _i2.ObjectId get id =>
-      (super.noSuchMethod(
-            Invocation.getter(#id),
-            returnValue: _FakeObjectId_0(this, Invocation.getter(#id)),
-            returnValueForMissingStub: _FakeObjectId_0(this, Invocation.getter(#id)),
-          )
-          as _i2.ObjectId);
+  String get carId => (super.noSuchMethod(
+        Invocation.getter(#carId),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#carId),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#carId),
+        ),
+      ) as String);
 
   @override
-  String get carId =>
-      (super.noSuchMethod(
-            Invocation.getter(#carId),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#carId)),
-            returnValueForMissingStub: _i9.dummyValue<String>(this, Invocation.getter(#carId)),
-          )
-          as String);
+  String get model => (super.noSuchMethod(
+        Invocation.getter(#model),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#model),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#model),
+        ),
+      ) as String);
 
   @override
-  String get model =>
-      (super.noSuchMethod(
-            Invocation.getter(#model),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#model)),
-            returnValueForMissingStub: _i9.dummyValue<String>(this, Invocation.getter(#model)),
-          )
-          as String);
+  String get manufacturer => (super.noSuchMethod(
+        Invocation.getter(#manufacturer),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#manufacturer),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#manufacturer),
+        ),
+      ) as String);
 
   @override
-  String get manufacturer =>
-      (super.noSuchMethod(
-            Invocation.getter(#manufacturer),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#manufacturer)),
-            returnValueForMissingStub: _i9.dummyValue<String>(
-              this,
-              Invocation.getter(#manufacturer),
-            ),
-          )
-          as String);
+  String get type => (super.noSuchMethod(
+        Invocation.getter(#type),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#type),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#type),
+        ),
+      ) as String);
 
   @override
-  String get type =>
-      (super.noSuchMethod(
-            Invocation.getter(#type),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#type)),
-            returnValueForMissingStub: _i9.dummyValue<String>(this, Invocation.getter(#type)),
-          )
-          as String);
+  String get bodyType => (super.noSuchMethod(
+        Invocation.getter(#bodyType),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#bodyType),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#bodyType),
+        ),
+      ) as String);
 
   @override
-  String get bodyType =>
-      (super.noSuchMethod(
-            Invocation.getter(#bodyType),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#bodyType)),
-            returnValueForMissingStub: _i9.dummyValue<String>(this, Invocation.getter(#bodyType)),
-          )
-          as String);
+  _i2.EngineEntity get engine => (super.noSuchMethod(
+        Invocation.getter(#engine),
+        returnValue: _FakeEngineEntity_0(
+          this,
+          Invocation.getter(#engine),
+        ),
+        returnValueForMissingStub: _FakeEngineEntity_0(
+          this,
+          Invocation.getter(#engine),
+        ),
+      ) as _i2.EngineEntity);
 
   @override
-  _i3.EngineEntity get engine =>
-      (super.noSuchMethod(
-            Invocation.getter(#engine),
-            returnValue: _FakeEngineEntity_1(this, Invocation.getter(#engine)),
-            returnValueForMissingStub: _FakeEngineEntity_1(this, Invocation.getter(#engine)),
-          )
-          as _i3.EngineEntity);
+  String get transmissionType => (super.noSuchMethod(
+        Invocation.getter(#transmissionType),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#transmissionType),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#transmissionType),
+        ),
+      ) as String);
 
   @override
-  String get transmissionType =>
-      (super.noSuchMethod(
-            Invocation.getter(#transmissionType),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#transmissionType)),
-            returnValueForMissingStub: _i9.dummyValue<String>(
-              this,
-              Invocation.getter(#transmissionType),
-            ),
-          )
-          as String);
+  bool get isVerified => (super.noSuchMethod(
+        Invocation.getter(#isVerified),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 
   @override
-  bool get isVerified =>
-      (super.noSuchMethod(
-            Invocation.getter(#isVerified),
-            returnValue: false,
-            returnValueForMissingStub: false,
-          )
-          as bool);
+  List<String> get images => (super.noSuchMethod(
+        Invocation.getter(#images),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
 
   @override
-  List<String> get images =>
-      (super.noSuchMethod(
-            Invocation.getter(#images),
-            returnValue: <String>[],
-            returnValueForMissingStub: <String>[],
-          )
-          as List<String>);
+  bool get isShown => (super.noSuchMethod(
+        Invocation.getter(#isShown),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 
   @override
-  bool get isShown =>
-      (super.noSuchMethod(
-            Invocation.getter(#isShown),
-            returnValue: false,
-            returnValueForMissingStub: false,
-          )
-          as bool);
-
-  @override
-  _i4.CarEntity copyWith({
-    _i2.ObjectId? id,
+  _i3.CarEntity copyWith({
+    _i9.ObjectId? id,
     String? carId,
     String? model,
     String? manufacturer,
@@ -198,7 +233,7 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
     String? color,
     _i10.OwnerEntity? owner,
     String? bodyType,
-    _i3.EngineEntity? engine,
+    _i2.EngineEntity? engine,
     String? transmissionType,
     bool? isVerified,
     _i11.PromoType? promoType,
@@ -209,7 +244,36 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
     bool? isShown,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#copyWith, [], {
+        Invocation.method(
+          #copyWith,
+          [],
+          {
+            #id: id,
+            #carId: carId,
+            #model: model,
+            #manufacturer: manufacturer,
+            #type: type,
+            #year: year,
+            #color: color,
+            #owner: owner,
+            #bodyType: bodyType,
+            #engine: engine,
+            #transmissionType: transmissionType,
+            #isVerified: isVerified,
+            #promoType: promoType,
+            #mileage: mileage,
+            #distanceTo: distanceTo,
+            #price: price,
+            #images: images,
+            #isShown: isShown,
+          },
+        ),
+        returnValue: _FakeCarEntity_1(
+          this,
+          Invocation.method(
+            #copyWith,
+            [],
+            {
               #id: id,
               #carId: carId,
               #model: model,
@@ -228,160 +292,151 @@ class MockCarEntity extends _i1.Mock implements _i4.CarEntity {
               #price: price,
               #images: images,
               #isShown: isShown,
-            }),
-            returnValue: _FakeCarEntity_2(
-              this,
-              Invocation.method(#copyWith, [], {
-                #id: id,
-                #carId: carId,
-                #model: model,
-                #manufacturer: manufacturer,
-                #type: type,
-                #year: year,
-                #color: color,
-                #owner: owner,
-                #bodyType: bodyType,
-                #engine: engine,
-                #transmissionType: transmissionType,
-                #isVerified: isVerified,
-                #promoType: promoType,
-                #mileage: mileage,
-                #distanceTo: distanceTo,
-                #price: price,
-                #images: images,
-                #isShown: isShown,
-              }),
-            ),
-            returnValueForMissingStub: _FakeCarEntity_2(
-              this,
-              Invocation.method(#copyWith, [], {
-                #id: id,
-                #carId: carId,
-                #model: model,
-                #manufacturer: manufacturer,
-                #type: type,
-                #year: year,
-                #color: color,
-                #owner: owner,
-                #bodyType: bodyType,
-                #engine: engine,
-                #transmissionType: transmissionType,
-                #isVerified: isVerified,
-                #promoType: promoType,
-                #mileage: mileage,
-                #distanceTo: distanceTo,
-                #price: price,
-                #images: images,
-                #isShown: isShown,
-              }),
-            ),
-          )
-          as _i4.CarEntity);
+            },
+          ),
+        ),
+        returnValueForMissingStub: _FakeCarEntity_1(
+          this,
+          Invocation.method(
+            #copyWith,
+            [],
+            {
+              #id: id,
+              #carId: carId,
+              #model: model,
+              #manufacturer: manufacturer,
+              #type: type,
+              #year: year,
+              #color: color,
+              #owner: owner,
+              #bodyType: bodyType,
+              #engine: engine,
+              #transmissionType: transmissionType,
+              #isVerified: isVerified,
+              #promoType: promoType,
+              #mileage: mileage,
+              #distanceTo: distanceTo,
+              #price: price,
+              #images: images,
+              #isShown: isShown,
+            },
+          ),
+        ),
+      ) as _i3.CarEntity);
 }
 
 /// A class which mocks [CarDto].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCarDto extends _i1.Mock implements _i5.CarDto {
+class MockCarDto extends _i1.Mock implements _i4.CarDto {
   @override
-  _i2.ObjectId get id =>
-      (super.noSuchMethod(
-            Invocation.getter(#id),
-            returnValue: _FakeObjectId_0(this, Invocation.getter(#id)),
-            returnValueForMissingStub: _FakeObjectId_0(this, Invocation.getter(#id)),
-          )
-          as _i2.ObjectId);
+  String get carId => (super.noSuchMethod(
+        Invocation.getter(#carId),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#carId),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#carId),
+        ),
+      ) as String);
 
   @override
-  String get carId =>
-      (super.noSuchMethod(
-            Invocation.getter(#carId),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#carId)),
-            returnValueForMissingStub: _i9.dummyValue<String>(this, Invocation.getter(#carId)),
-          )
-          as String);
+  String get model => (super.noSuchMethod(
+        Invocation.getter(#model),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#model),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#model),
+        ),
+      ) as String);
 
   @override
-  String get model =>
-      (super.noSuchMethod(
-            Invocation.getter(#model),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#model)),
-            returnValueForMissingStub: _i9.dummyValue<String>(this, Invocation.getter(#model)),
-          )
-          as String);
+  String get manufacturer => (super.noSuchMethod(
+        Invocation.getter(#manufacturer),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#manufacturer),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#manufacturer),
+        ),
+      ) as String);
 
   @override
-  String get manufacturer =>
-      (super.noSuchMethod(
-            Invocation.getter(#manufacturer),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#manufacturer)),
-            returnValueForMissingStub: _i9.dummyValue<String>(
-              this,
-              Invocation.getter(#manufacturer),
-            ),
-          )
-          as String);
+  String get type => (super.noSuchMethod(
+        Invocation.getter(#type),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#type),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#type),
+        ),
+      ) as String);
 
   @override
-  String get type =>
-      (super.noSuchMethod(
-            Invocation.getter(#type),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#type)),
-            returnValueForMissingStub: _i9.dummyValue<String>(this, Invocation.getter(#type)),
-          )
-          as String);
+  String get bodyType => (super.noSuchMethod(
+        Invocation.getter(#bodyType),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#bodyType),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#bodyType),
+        ),
+      ) as String);
 
   @override
-  String get bodyType =>
-      (super.noSuchMethod(
-            Invocation.getter(#bodyType),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#bodyType)),
-            returnValueForMissingStub: _i9.dummyValue<String>(this, Invocation.getter(#bodyType)),
-          )
-          as String);
+  _i2.EngineEntity get engine => (super.noSuchMethod(
+        Invocation.getter(#engine),
+        returnValue: _FakeEngineEntity_0(
+          this,
+          Invocation.getter(#engine),
+        ),
+        returnValueForMissingStub: _FakeEngineEntity_0(
+          this,
+          Invocation.getter(#engine),
+        ),
+      ) as _i2.EngineEntity);
 
   @override
-  _i3.EngineEntity get engine =>
-      (super.noSuchMethod(
-            Invocation.getter(#engine),
-            returnValue: _FakeEngineEntity_1(this, Invocation.getter(#engine)),
-            returnValueForMissingStub: _FakeEngineEntity_1(this, Invocation.getter(#engine)),
-          )
-          as _i3.EngineEntity);
+  String get transmissionType => (super.noSuchMethod(
+        Invocation.getter(#transmissionType),
+        returnValue: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#transmissionType),
+        ),
+        returnValueForMissingStub: _i8.dummyValue<String>(
+          this,
+          Invocation.getter(#transmissionType),
+        ),
+      ) as String);
 
   @override
-  String get transmissionType =>
-      (super.noSuchMethod(
-            Invocation.getter(#transmissionType),
-            returnValue: _i9.dummyValue<String>(this, Invocation.getter(#transmissionType)),
-            returnValueForMissingStub: _i9.dummyValue<String>(
-              this,
-              Invocation.getter(#transmissionType),
-            ),
-          )
-          as String);
+  bool get isVerified => (super.noSuchMethod(
+        Invocation.getter(#isVerified),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 
   @override
-  bool get isVerified =>
-      (super.noSuchMethod(
-            Invocation.getter(#isVerified),
-            returnValue: false,
-            returnValueForMissingStub: false,
-          )
-          as bool);
+  List<String> get images => (super.noSuchMethod(
+        Invocation.getter(#images),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
 
   @override
-  List<String> get images =>
-      (super.noSuchMethod(
-            Invocation.getter(#images),
-            returnValue: <String>[],
-            returnValueForMissingStub: <String>[],
-          )
-          as List<String>);
-
-  @override
-  _i5.CarDto copyWith({
-    _i2.ObjectId? id,
+  _i4.CarDto copyWith({
+    _i9.ObjectId? id,
     String? carId,
     String? model,
     String? manufacturer,
@@ -389,7 +444,7 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
     String? year,
     String? color,
     String? bodyType,
-    _i3.EngineEntity? engine,
+    _i2.EngineEntity? engine,
     String? transmissionType,
     _i10.OwnerEntity? owner,
     bool? isVerified,
@@ -400,7 +455,35 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
     List<String>? images,
   }) =>
       (super.noSuchMethod(
-            Invocation.method(#copyWith, [], {
+        Invocation.method(
+          #copyWith,
+          [],
+          {
+            #id: id,
+            #carId: carId,
+            #model: model,
+            #manufacturer: manufacturer,
+            #type: type,
+            #year: year,
+            #color: color,
+            #bodyType: bodyType,
+            #engine: engine,
+            #transmissionType: transmissionType,
+            #owner: owner,
+            #isVerified: isVerified,
+            #promoType: promoType,
+            #mileage: mileage,
+            #distanceTo: distanceTo,
+            #price: price,
+            #images: images,
+          },
+        ),
+        returnValue: _FakeCarDto_2(
+          this,
+          Invocation.method(
+            #copyWith,
+            [],
+            {
               #id: id,
               #carId: carId,
               #model: model,
@@ -418,53 +501,36 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
               #distanceTo: distanceTo,
               #price: price,
               #images: images,
-            }),
-            returnValue: _FakeCarDto_3(
-              this,
-              Invocation.method(#copyWith, [], {
-                #id: id,
-                #carId: carId,
-                #model: model,
-                #manufacturer: manufacturer,
-                #type: type,
-                #year: year,
-                #color: color,
-                #bodyType: bodyType,
-                #engine: engine,
-                #transmissionType: transmissionType,
-                #owner: owner,
-                #isVerified: isVerified,
-                #promoType: promoType,
-                #mileage: mileage,
-                #distanceTo: distanceTo,
-                #price: price,
-                #images: images,
-              }),
-            ),
-            returnValueForMissingStub: _FakeCarDto_3(
-              this,
-              Invocation.method(#copyWith, [], {
-                #id: id,
-                #carId: carId,
-                #model: model,
-                #manufacturer: manufacturer,
-                #type: type,
-                #year: year,
-                #color: color,
-                #bodyType: bodyType,
-                #engine: engine,
-                #transmissionType: transmissionType,
-                #owner: owner,
-                #isVerified: isVerified,
-                #promoType: promoType,
-                #mileage: mileage,
-                #distanceTo: distanceTo,
-                #price: price,
-                #images: images,
-              }),
-            ),
-          )
-          as _i5.CarDto);
+            },
+          ),
+        ),
+        returnValueForMissingStub: _FakeCarDto_2(
+          this,
+          Invocation.method(
+            #copyWith,
+            [],
+            {
+              #id: id,
+              #carId: carId,
+              #model: model,
+              #manufacturer: manufacturer,
+              #type: type,
+              #year: year,
+              #color: color,
+              #bodyType: bodyType,
+              #engine: engine,
+              #transmissionType: transmissionType,
+              #owner: owner,
+              #isVerified: isVerified,
+              #promoType: promoType,
+              #mileage: mileage,
+              #distanceTo: distanceTo,
+              #price: price,
+              #images: images,
+            },
+          ),
+        ),
+      ) as _i4.CarDto);
 }
 
 /// A class which mocks [RealmLocalStorage].
@@ -472,67 +538,117 @@ class MockCarDto extends _i1.Mock implements _i5.CarDto {
 /// See the documentation for Mockito's code generation for more information.
 class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
   @override
-  void addCar(_i4.CarEntity? car) =>
-      super.noSuchMethod(Invocation.method(#addCar, [car]), returnValueForMissingStub: null);
+  void addCar(_i3.CarEntity? car) => super.noSuchMethod(
+        Invocation.method(
+          #addCar,
+          [car],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void updateCar(_i4.CarEntity? car) =>
-      super.noSuchMethod(Invocation.method(#updateCar, [car]), returnValueForMissingStub: null);
+  void updateCar(_i3.CarEntity? car) => super.noSuchMethod(
+        Invocation.method(
+          #updateCar,
+          [car],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i8.Stream<dynamic> watchCars() =>
-      (super.noSuchMethod(
-            Invocation.method(#watchCars, []),
-            returnValue: _i8.Stream<dynamic>.empty(),
-            returnValueForMissingStub: _i8.Stream<dynamic>.empty(),
-          )
-          as _i8.Stream<dynamic>);
+  _i7.Stream<dynamic> watchCars() => (super.noSuchMethod(
+        Invocation.method(
+          #watchCars,
+          [],
+        ),
+        returnValue: _i7.Stream<dynamic>.empty(),
+        returnValueForMissingStub: _i7.Stream<dynamic>.empty(),
+      ) as _i7.Stream<dynamic>);
 
   @override
-  List<_i4.CarEntity> getAllCars() =>
-      (super.noSuchMethod(
-            Invocation.method(#getAllCars, []),
-            returnValue: <_i4.CarEntity>[],
-            returnValueForMissingStub: <_i4.CarEntity>[],
-          )
-          as List<_i4.CarEntity>);
+  List<_i3.CarEntity> getAllCars() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllCars,
+          [],
+        ),
+        returnValue: <_i3.CarEntity>[],
+        returnValueForMissingStub: <_i3.CarEntity>[],
+      ) as List<_i3.CarEntity>);
 
   @override
-  void deleteCarById(String? id) =>
-      super.noSuchMethod(Invocation.method(#deleteCarById, [id]), returnValueForMissingStub: null);
+  void deleteCarById(String? id) => super.noSuchMethod(
+        Invocation.method(
+          #deleteCarById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void deleteAllCars() =>
-      super.noSuchMethod(Invocation.method(#deleteAllCars, []), returnValueForMissingStub: null);
+  void deleteAllCars() => super.noSuchMethod(
+        Invocation.method(
+          #deleteAllCars,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  _i4.CarEntity? getCarById(String? id) =>
-      (super.noSuchMethod(Invocation.method(#getCarById, [id]), returnValueForMissingStub: null)
-          as _i4.CarEntity?);
+  _i3.CarEntity? getCarById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getCarById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.CarEntity?);
 
   @override
-  int getMaxCarId() =>
-      (super.noSuchMethod(
-            Invocation.method(#getMaxCarId, []),
-            returnValue: 0,
-            returnValueForMissingStub: 0,
-          )
-          as int);
+  int getMaxCarId() => (super.noSuchMethod(
+        Invocation.method(
+          #getMaxCarId,
+          [],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
 
   @override
-  _i6.UserEntity initUser() =>
-      (super.noSuchMethod(
-            Invocation.method(#initUser, []),
-            returnValue: _FakeUserEntity_4(this, Invocation.method(#initUser, [])),
-            returnValueForMissingStub: _FakeUserEntity_4(this, Invocation.method(#initUser, [])),
-          )
-          as _i6.UserEntity);
+  _i5.UserEntity initUser() => (super.noSuchMethod(
+        Invocation.method(
+          #initUser,
+          [],
+        ),
+        returnValue: _FakeUserEntity_3(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeUserEntity_3(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
+      ) as _i5.UserEntity);
 
   @override
-  void updateUser(_i6.UserEntity? user) =>
-      super.noSuchMethod(Invocation.method(#updateUser, [user]), returnValueForMissingStub: null);
+  void updateUser(_i5.UserEntity? user) => super.noSuchMethod(
+        Invocation.method(
+          #updateUser,
+          [user],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
-  void clearUser() =>
-      super.noSuchMethod(Invocation.method(#clearUser, []), returnValueForMissingStub: null);
+  void clearUser() => super.noSuchMethod(
+        Invocation.method(
+          #clearUser,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

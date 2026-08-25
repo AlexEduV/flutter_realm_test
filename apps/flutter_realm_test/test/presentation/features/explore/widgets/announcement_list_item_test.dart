@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:realm/realm.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -31,7 +30,6 @@ void main() {
 
   group('ExploreListItem', () {
     final car = CarEntity(
-      id: ObjectId(),
       carId: 'car123',
       model: 'Model S',
       manufacturer: 'Tesla',
@@ -204,7 +202,6 @@ void main() {
       WidgetTester tester,
     ) async {
       final carNotVerified = CarEntity(
-        id: ObjectId(),
         carId: 'car124',
         model: 'Model 3',
         manufacturer: 'Tesla',

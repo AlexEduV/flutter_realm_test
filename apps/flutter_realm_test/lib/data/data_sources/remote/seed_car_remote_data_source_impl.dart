@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:realm/realm.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
@@ -43,15 +42,12 @@ class SeedCarRemoteDataSourceImpl implements CarRemoteDataSource {
       return;
     }
 
-    final List<ObjectId> initIds = [ObjectId(), ObjectId(), ObjectId()];
-
     final owner1 = _ownersRemoteDataSource.getOwnerById('1');
     final owner2 = _ownersRemoteDataSource.getOwnerById('2');
     final owner3 = _ownersRemoteDataSource.getOwnerById('3');
 
     initialData = [
       CarDto(
-        id: initIds[0],
         carId: '1',
         manufacturer: 'Porsche',
         type: CarType.car.name,
@@ -70,7 +66,6 @@ class SeedCarRemoteDataSourceImpl implements CarRemoteDataSource {
         distanceTo: 56,
       ),
       CarDto(
-        id: initIds[1],
         carId: '2',
         manufacturer: 'Honda',
         model: 'Civic',
@@ -89,7 +84,6 @@ class SeedCarRemoteDataSourceImpl implements CarRemoteDataSource {
         distanceTo: 48,
       ),
       CarDto(
-        id: initIds[2],
         carId: '3',
         manufacturer: 'Scania',
         model: 'Nova',

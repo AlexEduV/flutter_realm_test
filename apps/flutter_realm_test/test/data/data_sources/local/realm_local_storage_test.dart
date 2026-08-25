@@ -16,7 +16,6 @@ void main() {
   late RealmLocalStorage storage;
 
   final testCarEntity = CarEntity(
-    id: ObjectId(),
     carId: 'car1',
     model: 'Model S',
     manufacturer: 'Tesla',
