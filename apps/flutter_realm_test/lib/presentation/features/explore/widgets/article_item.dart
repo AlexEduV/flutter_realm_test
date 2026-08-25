@@ -15,12 +15,14 @@ class ArticleItem extends StatelessWidget {
     required this.index,
     required this.article,
     this.height = AppDimensions.exploreArticleItemBaseSize,
+    this.borderRadius = AppDimensions.normalL,
     super.key,
   });
 
   final double height;
   final ArticleEntity article;
   final int index;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -42,52 +44,54 @@ class ArticleItem extends StatelessWidget {
             button: true,
             child: Material(
               color: AppColors.accentColor.withAlpha(60),
-              borderRadius: BorderRadius.circular(AppDimensions.normalL),
+              borderRadius: BorderRadius.circular(borderRadius),
               child: InkWell(
                 onTap: () => AppRouter.goToArticle(context: context, articleId: article.id),
                 onTapDown: (_) => _setPressed(context, true),
                 onTapUp: (_) => _setPressed(context, false),
                 onTapCancel: () => _setPressed(context, false),
-                borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                child: Container(
+                borderRadius: BorderRadius.circular(borderRadius),
+                child: SizedBox(
                   height: height,
                   width: AppDimensions.exploreArticleItemBaseSize,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                    color: AppColors.accentColor.withAlpha(60),
-                  ),
-                  child: Stack(
-                    children: [
-                      // Cached network image as background
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(AppDimensions.normalL),
-                        child: CachedNetworkImage(
-                          imageUrl: article.imageUrl ?? '',
-                          fit: BoxFit.cover,
-                          width: AppDimensions.exploreArticleItemBaseSize,
-                          height: height,
-                          placeholder: (context, url) =>
-                              ColoredBox(color: AppColors.placeholderColor),
-                          errorWidget: (context, url, error) => const Icon(Icons.error),
-                          color: Colors.black.withAlpha(70),
-                          colorBlendMode: BlendMode.darken,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(borderRadius),
+                      color: AppColors.accentColor.withAlpha(60),
+                    ),
+                    child: Stack(
+                      children: [
+                        // Cached network image as background
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(borderRadius),
+                          child: CachedNetworkImage(
+                            imageUrl: article.imageUrl ?? '',
+                            fit: BoxFit.cover,
+                            width: AppDimensions.exploreArticleItemBaseSize,
+                            height: height,
+                            placeholder: (context, url) =>
+                                ColoredBox(color: AppColors.placeholderColor),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                            color: AppColors.black.withAlpha(70),
+                            colorBlendMode: BlendMode.darken,
+                          ),
                         ),
-                      ),
-                      // Article title
-                      Padding(
-                        padding: const EdgeInsets.all(AppDimensions.minorL),
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Text(
-                            article.title,
-                            maxLines: 2,
-                            style: AppTextStyles.zonaPro16White.copyWith(
-                              fontWeight: FontWeight.w600,
+                        // Article title
+                        Padding(
+                          padding: const EdgeInsets.all(AppDimensions.minorL),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              article.title,
+                              maxLines: 2,
+                              style: AppTextStyles.zonaPro16White.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
