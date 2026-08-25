@@ -22,7 +22,7 @@ class AvatarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (showPlaceholder) {
-      return SizedBox(width: size, height: size);
+      return SizedBox.square(dimension: size);
     }
 
     if (isLocal) {
