@@ -116,8 +116,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> updateUser(String userId, UserEntity updatedUser) async {
+  Future<void> updateUser(UserEntity updatedUser) async {
     if (!_isAuthenticated) return;
+    final userId = updatedUser.userId;
 
     _users = [..._users.where((e) => e.userId != userId), updatedUser];
 

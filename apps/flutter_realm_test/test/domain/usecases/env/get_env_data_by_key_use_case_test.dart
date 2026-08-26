@@ -5,16 +5,19 @@ import 'package:test_flutter_project/domain/models/env_params_model.dart';
 import 'package:test_flutter_project/domain/repositories/env_repository.dart';
 import 'package:test_flutter_project/domain/usecases/env/get_env_data_by_key_use_case.dart';
 
+import '../../../data/data_sources/remote/article_remote_data_source_impl_test.mocks.dart';
 import 'get_env_data_by_key_use_case_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<EnvRepository>()])
 void main() {
   late MockEnvRepository mockEnvRepository;
+  late MockLoggingService mockLoggingService;
   late GetEnvDataByKeyUseCase useCase;
 
   setUp(() {
     mockEnvRepository = MockEnvRepository();
-    useCase = GetEnvDataByKeyUseCase(mockEnvRepository);
+    mockLoggingService = MockLoggingService();
+    useCase = GetEnvDataByKeyUseCase(mockLoggingService, mockEnvRepository);
   });
 
   test('should return value from repository when key exists', () {

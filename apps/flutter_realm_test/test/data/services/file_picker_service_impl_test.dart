@@ -6,13 +6,13 @@ import 'package:test_flutter_project/data/services/file_picker_service_impl.dart
 
 import 'file_picker_service_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<FilePickerIO>(), MockSpec<FilePickerResult>()])
+@GenerateNiceMocks([MockSpec<FilePicker>(), MockSpec<FilePickerResult>()])
 void main() {
-  late MockFilePickerIO mockFilePicker;
+  late MockFilePicker mockFilePicker;
   late FilePickerServiceImpl dataSource;
 
   setUp(() {
-    mockFilePicker = MockFilePickerIO();
+    mockFilePicker = MockFilePicker();
     dataSource = FilePickerServiceImpl(mockFilePicker);
   });
 

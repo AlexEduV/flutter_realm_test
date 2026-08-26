@@ -4,10 +4,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:typed_data' as _i4;
+import 'dart:typed_data' as _i5;
 
-import 'package:cross_file/cross_file.dart' as _i5;
-import 'package:file_picker/file_picker.dart' as _i2;
+import 'package:cross_file/cross_file.dart' as _i7;
+import 'package:file_picker/src/file_picker.dart' as _i2;
+import 'package:file_picker/src/file_picker_result.dart' as _i4;
+import 'package:file_picker/src/platform_file.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -24,21 +26,21 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [FilePickerIO].
+/// A class which mocks [FilePicker].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
+class MockFilePicker extends _i1.Mock implements _i2.FilePicker {
   @override
-  _i3.Future<_i2.FilePickerResult?> pickFiles({
-    _i2.FileType? type = _i2.FileType.any,
-    List<String>? allowedExtensions,
+  _i3.Future<_i4.FilePickerResult?> pickFiles({
     String? dialogTitle,
     String? initialDirectory,
+    _i2.FileType? type = _i2.FileType.any,
+    List<String>? allowedExtensions,
     dynamic Function(_i2.FilePickerStatus)? onFileLoading,
     bool? allowCompression = false,
+    int? compressionQuality = 0,
     bool? allowMultiple = false,
     bool? withData = false,
-    int? compressionQuality = 0,
     bool? withReadStream = false,
     bool? lockParentWindow = false,
     bool? readSequential = false,
@@ -48,23 +50,43 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
           #pickFiles,
           [],
           {
-            #type: type,
-            #allowedExtensions: allowedExtensions,
             #dialogTitle: dialogTitle,
             #initialDirectory: initialDirectory,
+            #type: type,
+            #allowedExtensions: allowedExtensions,
             #onFileLoading: onFileLoading,
             #allowCompression: allowCompression,
+            #compressionQuality: compressionQuality,
             #allowMultiple: allowMultiple,
             #withData: withData,
-            #compressionQuality: compressionQuality,
             #withReadStream: withReadStream,
             #lockParentWindow: lockParentWindow,
             #readSequential: readSequential,
           },
         ),
-        returnValue: _i3.Future<_i2.FilePickerResult?>.value(),
-        returnValueForMissingStub: _i3.Future<_i2.FilePickerResult?>.value(),
-      ) as _i3.Future<_i2.FilePickerResult?>);
+        returnValue: _i3.Future<_i4.FilePickerResult?>.value(),
+        returnValueForMissingStub: _i3.Future<_i4.FilePickerResult?>.value(),
+      ) as _i3.Future<_i4.FilePickerResult?>);
+
+  @override
+  _i3.Future<List<String>?> pickFileAndDirectoryPaths({
+    String? initialDirectory,
+    _i2.FileType? type = _i2.FileType.any,
+    List<String>? allowedExtensions,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #pickFileAndDirectoryPaths,
+          [],
+          {
+            #initialDirectory: initialDirectory,
+            #type: type,
+            #allowedExtensions: allowedExtensions,
+          },
+        ),
+        returnValue: _i3.Future<List<String>?>.value(),
+        returnValueForMissingStub: _i3.Future<List<String>?>.value(),
+      ) as _i3.Future<List<String>?>);
 
   @override
   _i3.Future<bool?> clearTemporaryFiles() => (super.noSuchMethod(
@@ -103,7 +125,7 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
     String? initialDirectory,
     _i2.FileType? type = _i2.FileType.any,
     List<String>? allowedExtensions,
-    _i4.Uint8List? bytes,
+    _i5.Uint8List? bytes,
     bool? lockParentWindow = false,
   }) =>
       (super.noSuchMethod(
@@ -123,38 +145,18 @@ class MockFilePickerIO extends _i1.Mock implements _i2.FilePickerIO {
         returnValue: _i3.Future<String?>.value(),
         returnValueForMissingStub: _i3.Future<String?>.value(),
       ) as _i3.Future<String?>);
-
-  @override
-  _i3.Future<List<String>?> pickFileAndDirectoryPaths({
-    String? initialDirectory,
-    _i2.FileType? type = _i2.FileType.any,
-    List<String>? allowedExtensions,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #pickFileAndDirectoryPaths,
-          [],
-          {
-            #initialDirectory: initialDirectory,
-            #type: type,
-            #allowedExtensions: allowedExtensions,
-          },
-        ),
-        returnValue: _i3.Future<List<String>?>.value(),
-        returnValueForMissingStub: _i3.Future<List<String>?>.value(),
-      ) as _i3.Future<List<String>?>);
 }
 
 /// A class which mocks [FilePickerResult].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFilePickerResult extends _i1.Mock implements _i2.FilePickerResult {
+class MockFilePickerResult extends _i1.Mock implements _i4.FilePickerResult {
   @override
-  List<_i2.PlatformFile> get files => (super.noSuchMethod(
+  List<_i6.PlatformFile> get files => (super.noSuchMethod(
         Invocation.getter(#files),
-        returnValue: <_i2.PlatformFile>[],
-        returnValueForMissingStub: <_i2.PlatformFile>[],
-      ) as List<_i2.PlatformFile>);
+        returnValue: <_i6.PlatformFile>[],
+        returnValueForMissingStub: <_i6.PlatformFile>[],
+      ) as List<_i6.PlatformFile>);
 
   @override
   bool get isSinglePick => (super.noSuchMethod(
@@ -185,9 +187,9 @@ class MockFilePickerResult extends _i1.Mock implements _i2.FilePickerResult {
       ) as List<String?>);
 
   @override
-  List<_i5.XFile> get xFiles => (super.noSuchMethod(
+  List<_i7.XFile> get xFiles => (super.noSuchMethod(
         Invocation.getter(#xFiles),
-        returnValue: <_i5.XFile>[],
-        returnValueForMissingStub: <_i5.XFile>[],
-      ) as List<_i5.XFile>);
+        returnValue: <_i7.XFile>[],
+        returnValueForMissingStub: <_i7.XFile>[],
+      ) as List<_i7.XFile>);
 }

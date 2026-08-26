@@ -1,11 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
-import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/services/logging_service.dart';
+import 'package:test_flutter_project/domain/repositories/user_repository.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
@@ -16,12 +13,12 @@ import 'package:test_flutter_project/presentation/features/user/user_data_state.
 
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
-import '../../../utils/localisation_util.dart';
 import '../l10n/app_localisations_cubit.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(
-    this._localStorage,
+    this._timeService,
+    this._userRepository,
     this._authRepository,
     this._checkLocationServiceStatusUseCase,
     this._openAppSettingsUseCase,
@@ -30,12 +27,12 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._getUserByEmailUseCase,
     this._pickImageFromGalleryUseCase,
     this._deleteCarByIdUseCase,
-    this._logger,
     this._appLocalisationsCubit,
-    this._localisationUtil,
   ) : super(UserDataState(user: UserEntity.empty()));
 
-  final AppLocalStorage _localStorage;
+  final TimeService _timeService;
+
+  final UserRepository _userRepository;
   final AuthRepository _authRepository;
 
   final OpenAppSettingsUseCase _openAppSettingsUseCase;
@@ -48,43 +45,23 @@ class UserDataCubit extends Cubit<UserDataState> {
   final GetUserByEmailUseCase _getUserByEmailUseCase;
   final DeleteCarByIdUseCase _deleteCarByIdUseCase;
 
-  final LoggingService _logger;
   final AppLocalisationsCubit _appLocalisationsCubit;
-  final LocalisationUtil _localisationUtil;
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
 
-    final user = _localStorage.initUser();
+    final user = _userRepository.initUser();
     final isUserLoggedIn = await _authRepository.isUserLoggedIn();
 
-    await initLocalisation(user.region);
+    await _appLocalisationsCubit.initLocalisation(user.region);
 
     checkLastSeenCarExpiration(days: 7);
 
     emit(state.copyWith(user: user, isLoading: false, isUserAuthenticated: isUserLoggedIn));
   }
 
-  void updateCloudUser(UserEntity user) {
-    _authRepository.updateUser(user.userId, user);
-  }
-
-  Future<PermissionStatus> checkLocationPermissionStatus() {
+  Future<bool> isLocationPermissionGranted() {
     return _checkLocationPermissionStatusUseCase.call();
-  }
-
-  Future<void> initLocalisation(String locale) async {
-    final rawJson = await _localisationUtil.loadRawJson(
-      '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}localisation_mock_response_data_$locale.json',
-    );
-
-    final localisations = _localisationUtil.extractLocalisations(rawJson);
-    if (localisations == null) return;
-
-    _appLocalisationsCubit.load(localisations);
-
-    await initializeDateFormatting(locale, null);
-    await _localisationUtil.saveLocalisations(localisations);
   }
 
   void setFirstName(String firstName) {
@@ -118,7 +95,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   void setLastSeenCar(String? carId) {
     final newLastSeenCar = carId == null
         ? null
-        : LastSeenCarEntity(carId: carId, seenAt: DateTime.now());
+        : LastSeenCarEntity(carId: carId, seenAt: _timeService.now());
 
     final user = state.user.copyWith(lastSeenCar: newLastSeenCar);
     emit(state.copyWith(user: user));
@@ -131,7 +108,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     if (lastSeenCar == null) return;
 
-    final daysAgo = DateTime.now().subtract(Duration(days: days));
+    final daysAgo = _timeService.now().subtract(Duration(days: days));
     if (lastSeenCar.seenAt.isBefore(daysAgo)) {
       setLastSeenCar(null);
     }
@@ -150,11 +127,8 @@ class UserDataCubit extends Cubit<UserDataState> {
     }
   }
 
-  Future<void> openLocationSettings() async {
-    final canLocationSettingsBeOpened = await _openAppSettingsUseCase.call();
-    if (!canLocationSettingsBeOpened) {
-      _logger.error('Could not open system location settings');
-    }
+  Future<bool> openLocationSettings() {
+    return _openAppSettingsUseCase.call();
   }
 
   void updateLocationPermissionStatus(bool newStatus) {
@@ -276,7 +250,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     final user = state.user.copyWith(region: region);
     emit(state.copyWith(user: user));
 
-    initLocalisation(region);
+    _appLocalisationsCubit.initLocalisation(region);
 
     updateUser(user: user);
   }
@@ -295,7 +269,11 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   void updateUser({required UserEntity user, bool updateCloud = true}) {
-    _localStorage.updateUser(user);
-    updateCloudUser(user);
+    _userRepository.updateUser(user);
+    if (updateCloud) _updateCloudUser(user);
+  }
+
+  void _updateCloudUser(UserEntity user) {
+    _authRepository.updateUser(user);
   }
 }

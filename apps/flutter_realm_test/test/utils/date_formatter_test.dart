@@ -24,7 +24,7 @@ void main() {
   group('DateFormatter.formatSmartDate', () {
     test('returns time for today\'s date', () {
       final now = timeService.now();
-      final formatted = formatter.formatSmartDate(now);
+      final formatted = formatter.formatMessageIncomingTime(now);
       final expected = DateFormat.Hm().format(now);
       expect(formatted, expected);
     });
@@ -32,13 +32,13 @@ void main() {
     test('returns "Yesterday" for yesterday\'s date', () {
       final now = timeService.now();
       final yesterday = DateTime(now.year, now.month, now.day - 1, 10, 0);
-      final formatted = formatter.formatSmartDate(yesterday);
+      final formatted = formatter.formatMessageIncomingTime(yesterday);
       expect(formatted, 'Yesterday');
     });
 
     test('returns weekday for other dates', () {
       final twoDaysAgo = timeService.now().subtract(const Duration(days: 2));
-      final formatted = formatter.formatSmartDate(twoDaysAgo);
+      final formatted = formatter.formatMessageIncomingTime(twoDaysAgo);
       final expected =
           DateFormat.E('en').format(twoDaysAgo)[0].toUpperCase() +
           DateFormat.E('en').format(twoDaysAgo).substring(1);
@@ -47,7 +47,7 @@ void main() {
 
     test('returns weekday for a date in the future', () {
       final futureDate = timeService.now().add(const Duration(days: 3));
-      final formatted = formatter.formatSmartDate(futureDate);
+      final formatted = formatter.formatMessageIncomingTime(futureDate);
       final expected =
           DateFormat.E('en').format(futureDate)[0].toUpperCase() +
           DateFormat.E('en').format(futureDate).substring(1);
@@ -55,7 +55,7 @@ void main() {
     });
 
     test('returns empty string for null date', () {
-      expect(formatter.formatSmartDate(null), '');
+      expect(formatter.formatMessageIncomingTime(null), '');
     });
   });
 

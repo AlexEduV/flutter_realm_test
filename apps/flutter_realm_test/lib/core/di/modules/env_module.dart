@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 
@@ -13,11 +12,10 @@ Future<void> registerEnvModule(GetIt serviceLocator) async {
   final dotEnv = dotenv;
   serviceLocator.registerLazySingleton<EnvLocalDataSource>(() => EnvLocalDataSourceImpl(dotEnv));
   serviceLocator.registerLazySingleton<EnvRepository>(() => EnvRepositoryImpl(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetEnvDataByKeyUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator()));
-  try {
-    await serviceLocator<InitEnvUseCase>().call();
-  } catch (e) {
-    debugPrint('Could not load .env file: $e');
-  }
+  serviceLocator.registerLazySingleton(
+    () => GetEnvDataByKeyUseCase(serviceLocator(), serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(() => InitEnvUseCase(serviceLocator(), serviceLocator()));
+
+  await serviceLocator<InitEnvUseCase>().call();
 }

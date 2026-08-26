@@ -89,7 +89,7 @@ class MessageItem extends StatelessWidget {
               imageSrc: imageSrc,
               size: AppDimensions.majorM,
               isLocal: isMyMessage,
-              showPlaceholder: !withExtendedData,
+              shouldShowPlaceholder: !withExtendedData,
             ),
           ],
         ),

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
-import 'package:test_flutter_project/domain/services/logging_service.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
@@ -12,7 +11,6 @@ import 'explore_page_state.dart';
 
 class ExplorePageCubit extends Cubit<ExplorePageState> {
   ExplorePageCubit(
-    this._loggingService,
     this._watchCarsUseCase,
     this._syncCarsUseCase,
     this._fetchArticlesUseCase,
@@ -21,7 +19,6 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
 
   StreamSubscription? _carSubscription;
 
-  final LoggingService _loggingService;
   final SyncCarsUseCase _syncCarsUseCase;
   final WatchCarsUseCase _watchCarsUseCase;
   final FetchArticlesUseCase _fetchArticlesUseCase;
@@ -67,11 +64,6 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     if (carId == null) return null;
 
     final car = _getCarByIdUseCase.call(carId);
-    if (car == null) {
-      _loggingService.error('Last seen car not found: $carId');
-      return null;
-    }
-
     return car;
   }
 

@@ -9,8 +9,6 @@ abstract interface class AppLocalStorage {
 
   void updateCar(CarEntity car);
 
-  void updateUser(UserEntity user);
-
   Stream watchCars();
 
   void deleteAllCars();
@@ -22,6 +20,8 @@ abstract interface class AppLocalStorage {
   int getMaxCarId();
 
   UserEntity initUser();
+
+  void updateUser(UserEntity user);
 
   void clearUser();
 }

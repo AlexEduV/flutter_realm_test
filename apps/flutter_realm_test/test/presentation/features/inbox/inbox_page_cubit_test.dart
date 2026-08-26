@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_unread_count_from_conversation_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
@@ -14,6 +15,7 @@ import 'package:test_flutter_project/presentation/features/inbox/inbox_page_stat
 import '../../features/inbox/inbox_page_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
+  MockSpec<TimeService>(),
   MockSpec<FetchConversationsUseCase>(),
   MockSpec<SaveConversationsUseCase>(),
   MockSpec<GetUnreadCountFromConversationUseCase>(),
@@ -21,16 +23,19 @@ import '../../features/inbox/inbox_page_cubit_test.mocks.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  late MockTimeService mockTimeService;
   late MockFetchConversationsUseCase mockFetchConversationsUseCase;
   late MockSaveConversationsUseCase mockSaveConversationsUseCase;
   late MockGetUnreadCountFromConversationUseCase mockGetUnreadCountFromConversationUseCase;
   late InboxPageCubit cubit;
 
   setUp(() {
+    mockTimeService = MockTimeService();
     mockFetchConversationsUseCase = MockFetchConversationsUseCase();
     mockSaveConversationsUseCase = MockSaveConversationsUseCase();
     mockGetUnreadCountFromConversationUseCase = MockGetUnreadCountFromConversationUseCase();
     cubit = InboxPageCubit(
+      mockTimeService,
       mockFetchConversationsUseCase,
       mockSaveConversationsUseCase,
       mockGetUnreadCountFromConversationUseCase,
@@ -86,6 +91,7 @@ void main() {
   blocTest<InboxPageCubit, InboxPageState>(
     'sendMessage updates conversation and calls save use case',
     build: () {
+      when(mockTimeService.now()).thenReturn(DateTime(2023, 1, 2));
       final conversation = ConversationEntity(
         conversationId: 'c1',
         ownerId: 'u1',
@@ -109,7 +115,6 @@ void main() {
           payload: 'World',
           messageStatus: MessageStatus.sent,
           senderId: 'u2',
-          date: DateTime(2023, 1, 2),
         ),
       );
     },

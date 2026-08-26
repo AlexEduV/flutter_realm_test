@@ -1,4 +1,4 @@
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' show DateFormat;
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
@@ -12,16 +12,7 @@ class DateFormatter {
   final AppLocalisationsCubit _appLocalisationsCubit;
   final TimeService _timeService;
 
-  _NormalizedDates _normalizeDates(DateTime date) {
-    final now = _timeService.now();
-    return (
-      today: DateTime(now.year, now.month, now.day),
-      yesterday: DateTime(now.year, now.month, now.day - 1),
-      dateDay: DateTime(date.year, date.month, date.day),
-    );
-  }
-
-  String formatSmartDate(DateTime? date) {
+  String formatMessageIncomingTime(DateTime? date) {
     if (date == null) return '';
 
     final dates = _normalizeDates(date);
@@ -63,5 +54,14 @@ class DateFormatter {
         return DateFormat('MMMM d, y', locale).format(date);
       }
     }
+  }
+
+  _NormalizedDates _normalizeDates(DateTime date) {
+    final now = _timeService.now();
+    return (
+      today: DateTime(now.year, now.month, now.day),
+      yesterday: DateTime(now.year, now.month, now.day - 1),
+      dateDay: DateTime(date.year, date.month, date.day),
+    );
   }
 }

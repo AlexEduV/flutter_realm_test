@@ -7,8 +7,8 @@ import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_
 import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/domain/services/logging_service.dart';
 
-import '../../common/extensions/car_scheme_extension.dart';
 import '../../domain/entities/car_entity.dart';
+import '../mappers/car_scheme_extension.dart';
 
 class CarRepositoryImpl implements CarRepository {
   CarRepositoryImpl(this._localStorage, this._carRemoteDataSource, this._loggingService);

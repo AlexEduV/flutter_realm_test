@@ -72,6 +72,16 @@ class MockAppLocalisationsCubit extends _i1.Mock
       ) as bool);
 
   @override
+  _i4.Future<void> initLocalisation(String? locale) => (super.noSuchMethod(
+        Invocation.method(
+          #initLocalisation,
+          [locale],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
   void load(Map<String, String>? newLocalisations) => super.noSuchMethod(
         Invocation.method(
           #load,

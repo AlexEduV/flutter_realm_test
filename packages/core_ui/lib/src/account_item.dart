@@ -30,7 +30,7 @@ class AccountItem extends StatelessWidget {
         onTap: onTap,
         tileColor: AppColors.white,
         trailing: (onTap != null && !isCentered)
-            ? const Icon(Icons.chevron_right_outlined, color: Colors.grey)
+            ? const Icon(Icons.chevron_right_outlined, color: AppColors.grey)
             : null,
       ),
     );

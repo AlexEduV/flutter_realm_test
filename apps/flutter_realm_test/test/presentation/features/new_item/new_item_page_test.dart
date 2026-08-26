@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/common/constants/app_routes.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/car_type.dart';
@@ -150,9 +149,7 @@ void main() {
     when(mockUserDataCubit.stream).thenAnswer((_) => const Stream.empty());
     when(mockUserDataCubit.state).thenReturn(UserDataState(user: UserEntity.empty()));
 
-    when(
-      mockCheckLocationPermissionStatusUseCase.call(),
-    ).thenAnswer((_) async => PermissionStatus.granted);
+    when(mockCheckLocationPermissionStatusUseCase.call()).thenAnswer((_) async => true);
 
     final router = GoRouter(
       initialLocation: AppRoutes.home + AppRoutes.newItem,

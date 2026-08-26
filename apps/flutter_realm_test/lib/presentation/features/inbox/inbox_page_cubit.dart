@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_unread_count_from_conversation_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart';
@@ -10,22 +11,26 @@ import 'package:test_flutter_project/presentation/features/inbox/inbox_page_stat
 
 class InboxPageCubit extends Cubit<InboxPageState> {
   InboxPageCubit(
-    this._fetchMessagesUseCase,
+    this._timeService,
+    this._fetchConversationsUseCase,
     this._saveConversationsUseCase,
     this._getUnreadCountFromConversationUseCase,
   ) : super(const InboxPageState());
 
-  final FetchConversationsUseCase _fetchMessagesUseCase;
+  final TimeService _timeService;
+  final FetchConversationsUseCase _fetchConversationsUseCase;
   final SaveConversationsUseCase _saveConversationsUseCase;
   final GetUnreadCountFromConversationUseCase _getUnreadCountFromConversationUseCase;
 
   Future<void> init() async {
-    final conversationsList = await _fetchMessagesUseCase.call();
+    final conversationsList = await _fetchConversationsUseCase.call();
     emit(state.copyWith(conversations: conversationsList));
   }
 
   Future<void> sendMessage(String? conversationId, MessageModel message) async {
     if (conversationId == null) return;
+
+    final stampedMessage = message.copyWith(date: _timeService.now());
 
     final conversation = state.conversations.firstWhereOrNull(
       (c) => c.conversationId == conversationId,
@@ -33,7 +38,7 @@ class InboxPageCubit extends Cubit<InboxPageState> {
     if (conversation == null) return;
 
     final updatedConversation = conversation.copyWith(
-      messages: [...conversation.messages, message],
+      messages: [...conversation.messages, stampedMessage],
     );
 
     final updatedConversations = state.conversations

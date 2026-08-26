@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/gif_entity.dart';
-import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 import 'package:test_flutter_project/presentation/widgets/network_error_widget.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -174,22 +172,18 @@ class _GifsPickerBottomSheetState extends State<GifsPickerBottomSheet> {
     setState(() => _textFieldScale = 1.0);
   }
 
-  void onGifItemTap(GifEntity gif) {
+  Future<void> onGifItemTap(GifEntity gif) async {
     final payload = gif.toPayload();
 
     final userId = context.read<UserDataCubit>().state.user.userId;
 
     final conversationId = context.read<MessagesPageCubit>().state.currentConversationId;
-    context.read<InboxPageCubit>().sendMessage(
+    await context.read<InboxPageCubit>().sendMessage(
       conversationId,
-      MessageModel(
-        senderId: userId,
-        messageStatus: MessageStatus.sent,
-        payload: payload,
-        date: serviceLocator<TimeService>().now(),
-      ),
+      MessageModel(senderId: userId, messageStatus: MessageStatus.sent, payload: payload),
     );
 
+    if (!mounted) return;
     context.read<MessagesPageCubit>().updateSelectedGif(payload);
 
     if (context.canPop()) {

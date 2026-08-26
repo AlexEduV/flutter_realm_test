@@ -6,9 +6,9 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i3;
+import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_flutter_project/domain/repositories/user_repository.dart'
-    as _i2;
+    as _i3;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -24,10 +24,20 @@ import 'package:test_flutter_project/domain/repositories/user_repository.dart'
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
+  _FakeUserEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i3.UserRepository {
   @override
   int getMaxUserId() => (super.noSuchMethod(
         Invocation.method(
@@ -39,36 +49,36 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
       ) as int);
 
   @override
-  _i3.UserEntity? getUserByEmail(String? email) => (super.noSuchMethod(
+  _i2.UserEntity? getUserByEmail(String? email) => (super.noSuchMethod(
         Invocation.method(
           #getUserByEmail,
           [email],
         ),
         returnValueForMissingStub: null,
-      ) as _i3.UserEntity?);
+      ) as _i2.UserEntity?);
 
   @override
-  _i3.UserEntity? getUserById(String? id) => (super.noSuchMethod(
+  _i2.UserEntity? getUserById(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getUserById,
           [id],
         ),
         returnValueForMissingStub: null,
-      ) as _i3.UserEntity?);
+      ) as _i2.UserEntity?);
 
   @override
-  _i4.Future<List<_i3.UserEntity>> loadSeedUsers() => (super.noSuchMethod(
+  _i4.Future<List<_i2.UserEntity>> loadSeedUsers() => (super.noSuchMethod(
         Invocation.method(
           #loadSeedUsers,
           [],
         ),
-        returnValue: _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
+        returnValue: _i4.Future<List<_i2.UserEntity>>.value(<_i2.UserEntity>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i3.UserEntity>>.value(<_i3.UserEntity>[]),
-      ) as _i4.Future<List<_i3.UserEntity>>);
+            _i4.Future<List<_i2.UserEntity>>.value(<_i2.UserEntity>[]),
+      ) as _i4.Future<List<_i2.UserEntity>>);
 
   @override
-  _i4.Future<void> saveSeedUsers(List<_i3.UserEntity>? users) =>
+  _i4.Future<void> saveSeedUsers(List<_i2.UserEntity>? users) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveSeedUsers,
@@ -77,4 +87,35 @@ class MockUserRepository extends _i1.Mock implements _i2.UserRepository {
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
+
+  @override
+  _i2.UserEntity initUser() => (super.noSuchMethod(
+        Invocation.method(
+          #initUser,
+          [],
+        ),
+        returnValue: _FakeUserEntity_0(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeUserEntity_0(
+          this,
+          Invocation.method(
+            #initUser,
+            [],
+          ),
+        ),
+      ) as _i2.UserEntity);
+
+  @override
+  void updateUser(_i2.UserEntity? user) => super.noSuchMethod(
+        Invocation.method(
+          #updateUser,
+          [user],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

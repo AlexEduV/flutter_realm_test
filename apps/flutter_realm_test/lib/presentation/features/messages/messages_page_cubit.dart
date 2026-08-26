@@ -93,13 +93,13 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
     return users;
   }
 
-  String getMessageDividerDate(DateTime date) {
+  String getMessageDividerDate(DateTime? date) {
     final dividerTime = _dateFormatter.formatMessageDividerDate(date);
     return dividerTime;
   }
 
-  String getMessageTime(DateTime date) {
-    final messageTime = _dateFormatter.formatSmartDate(date);
+  String getMessageTime(DateTime? date) {
+    final messageTime = _dateFormatter.formatMessageIncomingTime(date);
     return messageTime;
   }
 }

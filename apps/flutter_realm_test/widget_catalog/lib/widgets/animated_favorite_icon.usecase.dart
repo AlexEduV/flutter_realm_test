@@ -18,7 +18,7 @@ Widget buildAnimatedFavoriteIconUseCase(BuildContext context) {
           children: [
             AnimatedFavoriteIcon(
               isFavorite: context.knobs.boolean(label: 'Is favorite', initialValue: true),
-              decorated: context.knobs.boolean(label: 'Is decorated', initialValue: false),
+              isDecorated: context.knobs.boolean(label: 'Is decorated', initialValue: false),
               size: AppDimensions.majorM,
             ),
           ],

@@ -235,22 +235,22 @@ class MockExtractUsersFromConversationUseCase extends _i1.Mock
 /// See the documentation for Mockito's code generation for more information.
 class MockDateFormatter extends _i1.Mock implements _i16.DateFormatter {
   @override
-  String formatSmartDate(DateTime? date) => (super.noSuchMethod(
+  String formatMessageIncomingTime(DateTime? date) => (super.noSuchMethod(
         Invocation.method(
-          #formatSmartDate,
+          #formatMessageIncomingTime,
           [date],
         ),
         returnValue: _i17.dummyValue<String>(
           this,
           Invocation.method(
-            #formatSmartDate,
+            #formatMessageIncomingTime,
             [date],
           ),
         ),
         returnValueForMissingStub: _i17.dummyValue<String>(
           this,
           Invocation.method(
-            #formatSmartDate,
+            #formatMessageIncomingTime,
             [date],
           ),
         ),

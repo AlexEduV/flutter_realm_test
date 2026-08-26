@@ -108,7 +108,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         button: true,
                         label: AppSemanticsLabels.favoriteButton,
                         child: AnimatedFavoriteIcon(
-                          decorated: false,
+                          isDecorated: false,
                           isFavorite: isCarFavorite,
                           size: AppDimensions.appBarIconSize,
                         ),

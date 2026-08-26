@@ -69,7 +69,9 @@ void registerLocationSettingsModule(GetIt serviceLocator) {
 
   serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => OpenAppSettingsUseCase(serviceLocator()));
+  serviceLocator.registerLazySingleton(
+    () => OpenAppSettingsUseCase(serviceLocator(), serviceLocator()),
+  );
   serviceLocator.registerLazySingleton(() => CheckLocationServiceStatusUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(
     () => CheckLocationPermissionStatusUseCase(serviceLocator()),

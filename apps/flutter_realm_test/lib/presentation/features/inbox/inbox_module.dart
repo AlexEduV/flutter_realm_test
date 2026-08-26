@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_unread_count_from_conversation_use_case.dart';
 
 import '../../../data/repositories/inbox_repository_impl.dart';
@@ -22,6 +23,11 @@ void registerInboxModule(GetIt serviceLocator) {
   serviceLocator.registerLazySingleton(() => GetUnreadCountFromConversationUseCase());
 
   serviceLocator.registerLazySingleton(
-    () => InboxPageCubit(serviceLocator(), serviceLocator(), serviceLocator()),
+    () => InboxPageCubit(
+      serviceLocator<TimeService>(),
+      serviceLocator<FetchConversationsUseCase>(),
+      serviceLocator<SaveConversationsUseCase>(),
+      serviceLocator<GetUnreadCountFromConversationUseCase>(),
+    ),
   );
 }

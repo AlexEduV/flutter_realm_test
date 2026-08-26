@@ -1,12 +1,12 @@
 import 'dart:math';
 
 import 'package:realm/realm.dart';
-import 'package:test_flutter_project/common/extensions/user_scheme_extension.dart';
+import 'package:test_flutter_project/data/mappers/user_scheme_extension.dart';
 import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
-import '../../../common/extensions/car_scheme_extension.dart';
 import '../../../domain/entities/car_entity.dart';
+import '../../mappers/car_scheme_extension.dart';
 import '../../models/scheme.dart';
 
 class RealmLocalStorage implements AppLocalStorage {

@@ -1,5 +1,4 @@
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../common/constants/api_constants.dart';
@@ -25,14 +24,12 @@ import '../../../utils/date_formatter.dart';
 import 'messages_page_cubit.dart';
 
 void registerMessagesModule(GetIt serviceLocator) {
-  String apiKey = '';
-  try {
-    apiKey = serviceLocator<GetEnvDataByKeyUseCase>().call(
-      EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
-    );
-  } catch (e) {
-    debugPrint('Could not load API key: $e');
-  }
+  final apiKey =
+      serviceLocator<GetEnvDataByKeyUseCase>().call(
+        EnvParamsModel(key: ApiConstants.envKlipyKeyPath),
+      ) ??
+      '';
+
   serviceLocator.registerLazySingleton<GifsRemoteDataSource>(
     () => GifsRemoteDataSourceImpl(serviceLocator(), apiKey, serviceLocator()),
   );
