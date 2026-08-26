@@ -57,10 +57,6 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(user: user, isLoading: false, isUserAuthenticated: isUserLoggedIn));
   }
 
-  void _updateCloudUser(UserEntity user) {
-    _authRepository.updateUser(user.userId, user);
-  }
-
   Future<PermissionStatus> checkLocationPermissionStatus() {
     return _checkLocationPermissionStatusUseCase.call();
   }
@@ -271,6 +267,10 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   void updateUser({required UserEntity user, bool updateCloud = true}) {
     _userRepository.updateUser(user);
-    _updateCloudUser(user);
+    if (updateCloud) _updateCloudUser(user);
+  }
+
+  void _updateCloudUser(UserEntity user) {
+    _authRepository.updateUser(user);
   }
 }

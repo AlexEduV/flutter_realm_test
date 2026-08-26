@@ -19,6 +19,7 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
+
 import 'user_data_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -63,7 +64,7 @@ void main() {
     mockUserRepository = MockUserRepository();
 
     when(mockAuthRepository.isUserLoggedIn()).thenAnswer((_) async => false);
-    when(mockAuthRepository.updateUser(any, any)).thenAnswer((_) async {});
+    when(mockAuthRepository.updateUser(any)).thenAnswer((_) async {});
 
     cubit = UserDataCubit(
       mockUserRepository,

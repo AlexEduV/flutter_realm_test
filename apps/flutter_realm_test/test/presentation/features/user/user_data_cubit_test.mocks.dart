@@ -166,17 +166,10 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<void> updateUser(
-    String? email,
-    _i2.UserEntity? updatedUser,
-  ) =>
-      (super.noSuchMethod(
+  _i4.Future<void> updateUser(_i2.UserEntity? user) => (super.noSuchMethod(
         Invocation.method(
           #updateUser,
-          [
-            email,
-            updatedUser,
-          ],
+          [user],
         ),
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
