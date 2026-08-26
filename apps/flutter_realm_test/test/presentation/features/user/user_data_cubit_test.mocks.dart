@@ -7,7 +7,6 @@ import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
-import 'package:permission_handler/permission_handler.dart' as _i13;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_flutter_project/domain/models/auth_result.dart' as _i6;
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart'
@@ -16,19 +15,19 @@ import 'package:test_flutter_project/domain/repositories/user_repository.dart'
     as _i8;
 import 'package:test_flutter_project/domain/services/time_service.dart' as _i3;
 import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart'
-    as _i16;
+    as _i15;
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
     as _i10;
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
     as _i9;
 import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart'
-    as _i15;
+    as _i14;
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
     as _i12;
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
     as _i11;
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart'
-    as _i14;
+    as _i13;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -364,23 +363,21 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
 class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
     implements _i12.CheckLocationPermissionStatusUseCase {
   @override
-  _i5.Future<_i13.PermissionStatus> call() => (super.noSuchMethod(
+  _i5.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i5.Future<_i13.PermissionStatus>.value(
-            _i13.PermissionStatus.denied),
-        returnValueForMissingStub: _i5.Future<_i13.PermissionStatus>.value(
-            _i13.PermissionStatus.denied),
-      ) as _i5.Future<_i13.PermissionStatus>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
 
 /// A class which mocks [GetUserByEmailUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetUserByEmailUseCase extends _i1.Mock
-    implements _i14.GetUserByEmailUseCase {
+    implements _i13.GetUserByEmailUseCase {
   @override
   _i2.UserEntity? call(String? params) => (super.noSuchMethod(
         Invocation.method(
@@ -395,7 +392,7 @@ class MockGetUserByEmailUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPickImageFromGalleryUseCase extends _i1.Mock
-    implements _i15.PickImageFromGalleryUseCase {
+    implements _i14.PickImageFromGalleryUseCase {
   @override
   _i5.Future<String?> call() => (super.noSuchMethod(
         Invocation.method(
@@ -411,7 +408,7 @@ class MockPickImageFromGalleryUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockDeleteCarByIdUseCase extends _i1.Mock
-    implements _i16.DeleteCarByIdUseCase {
+    implements _i15.DeleteCarByIdUseCase {
   @override
   void call(String? params) => super.noSuchMethod(
         Invocation.method(

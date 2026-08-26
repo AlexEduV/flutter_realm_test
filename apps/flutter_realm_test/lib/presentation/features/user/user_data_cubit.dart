@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
@@ -61,7 +60,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     emit(state.copyWith(user: user, isLoading: false, isUserAuthenticated: isUserLoggedIn));
   }
 
-  Future<PermissionStatus> checkLocationPermissionStatus() {
+  Future<bool> isLocationPermissionGranted() {
     return _checkLocationPermissionStatusUseCase.call();
   }
 

@@ -5,14 +5,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i14;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i13;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:permission_handler/permission_handler.dart' as _i12;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i6;
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart'
     as _i5;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i8;
-import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i13;
+import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i12;
 import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart'
     as _i3;
 import 'package:test_flutter_project/domain/usecases/database/add_car_use_case.dart'
@@ -157,17 +156,14 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       ) as _i4.Future<void>);
 
   @override
-  _i4.Future<_i12.PermissionStatus> checkLocationPermissionStatus() =>
-      (super.noSuchMethod(
+  _i4.Future<bool> isLocationPermissionGranted() => (super.noSuchMethod(
         Invocation.method(
-          #checkLocationPermissionStatus,
+          #isLocationPermissionGranted,
           [],
         ),
-        returnValue: _i4.Future<_i12.PermissionStatus>.value(
-            _i12.PermissionStatus.denied),
-        returnValueForMissingStub: _i4.Future<_i12.PermissionStatus>.value(
-            _i12.PermissionStatus.denied),
-      ) as _i4.Future<_i12.PermissionStatus>);
+        returnValue: _i4.Future<bool>.value(false),
+        returnValueForMissingStub: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
   void setFirstName(String? firstName) => super.noSuchMethod(
@@ -374,7 +370,7 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
 
   @override
   void updateUser({
-    required _i13.UserEntity? user,
+    required _i12.UserEntity? user,
     bool? updateCloud = true,
   }) =>
       super.noSuchMethod(
@@ -399,7 +395,7 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       );
 
   @override
-  void onChange(_i14.Change<_i2.UserDataState>? change) => super.noSuchMethod(
+  void onChange(_i13.Change<_i2.UserDataState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
