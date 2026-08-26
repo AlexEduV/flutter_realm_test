@@ -10,18 +10,18 @@ class AvatarWidget extends StatelessWidget {
     required this.imageSrc,
     this.size = AppDimensions.majorXL,
     this.isLocal = false,
-    this.showPlaceholder = false,
+    this.shouldShowPlaceholder = false,
     super.key,
   });
 
   final String? imageSrc;
   final double size;
   final bool isLocal;
-  final bool showPlaceholder;
+  final bool shouldShowPlaceholder;
 
   @override
   Widget build(BuildContext context) {
-    if (showPlaceholder) {
+    if (shouldShowPlaceholder) {
       return SizedBox.square(dimension: size);
     }
 
