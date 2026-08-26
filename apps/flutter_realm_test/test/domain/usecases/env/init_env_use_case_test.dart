@@ -26,15 +26,19 @@ void main() {
     // Assert
     verify(mockEnvRepository.init()).called(1);
     verifyNoMoreInteractions(mockEnvRepository);
+    verifyZeroInteractions(mockLoggingService);
   });
 
-  test('should propagate errors from EnvRepository.init', () {
+  test('should log error and complete normally when EnvRepository.init throws', () async {
     // Arrange
-    when(mockEnvRepository.init()).thenThrow(Exception('init failed'));
+    final exception = Exception('init failed');
+    when(mockEnvRepository.init()).thenThrow(exception);
 
     // Act & Assert
-    expect(() => useCase(), throwsException);
+    await expectLater(useCase(), completes);
     verify(mockEnvRepository.init()).called(1);
+    verify(mockLoggingService.error('Could not load .env file: $exception')).called(1);
     verifyNoMoreInteractions(mockEnvRepository);
+    verifyNoMoreInteractions(mockLoggingService);
   });
 }
