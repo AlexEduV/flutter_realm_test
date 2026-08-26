@@ -3,17 +3,18 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/conversation_entity.dart'
-    as _i4;
-import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart'
-    as _i2;
-import 'package:test_flutter_project/domain/usecases/inbox/get_unread_count_from_conversation_use_case.dart'
-    as _i6;
-import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart'
     as _i5;
+import 'package:test_flutter_project/domain/services/time_service.dart' as _i2;
+import 'package:test_flutter_project/domain/usecases/inbox/fetch_conversations_use_case.dart'
+    as _i3;
+import 'package:test_flutter_project/domain/usecases/inbox/get_unread_count_from_conversation_use_case.dart'
+    as _i7;
+import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_use_case.dart'
+    as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -29,49 +30,86 @@ import 'package:test_flutter_project/domain/usecases/inbox/save_conversations_us
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeDateTime_0 extends _i1.SmartFake implements DateTime {
+  _FakeDateTime_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+/// A class which mocks [TimeService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTimeService extends _i1.Mock implements _i2.TimeService {
+  @override
+  DateTime now() => (super.noSuchMethod(
+        Invocation.method(
+          #now,
+          [],
+        ),
+        returnValue: _FakeDateTime_0(
+          this,
+          Invocation.method(
+            #now,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeDateTime_0(
+          this,
+          Invocation.method(
+            #now,
+            [],
+          ),
+        ),
+      ) as DateTime);
+}
+
 /// A class which mocks [FetchConversationsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchConversationsUseCase extends _i1.Mock
-    implements _i2.FetchConversationsUseCase {
+    implements _i3.FetchConversationsUseCase {
   @override
-  _i3.Future<List<_i4.ConversationEntity>> call() => (super.noSuchMethod(
+  _i4.Future<List<_i5.ConversationEntity>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i3.Future<List<_i4.ConversationEntity>>.value(
-            <_i4.ConversationEntity>[]),
+        returnValue: _i4.Future<List<_i5.ConversationEntity>>.value(
+            <_i5.ConversationEntity>[]),
         returnValueForMissingStub:
-            _i3.Future<List<_i4.ConversationEntity>>.value(
-                <_i4.ConversationEntity>[]),
-      ) as _i3.Future<List<_i4.ConversationEntity>>);
+            _i4.Future<List<_i5.ConversationEntity>>.value(
+                <_i5.ConversationEntity>[]),
+      ) as _i4.Future<List<_i5.ConversationEntity>>);
 }
 
 /// A class which mocks [SaveConversationsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockSaveConversationsUseCase extends _i1.Mock
-    implements _i5.SaveConversationsUseCase {
+    implements _i6.SaveConversationsUseCase {
   @override
-  _i3.Future<void> call(List<_i4.ConversationEntity>? params) =>
+  _i4.Future<void> call(List<_i5.ConversationEntity>? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
 
 /// A class which mocks [GetUnreadCountFromConversationUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetUnreadCountFromConversationUseCase extends _i1.Mock
-    implements _i6.GetUnreadCountFromConversationUseCase {
+    implements _i7.GetUnreadCountFromConversationUseCase {
   @override
-  int call(_i4.ConversationEntity? params) => (super.noSuchMethod(
+  int call(_i5.ConversationEntity? params) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],

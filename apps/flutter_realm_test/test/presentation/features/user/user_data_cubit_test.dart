@@ -9,6 +9,7 @@ import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
@@ -23,6 +24,7 @@ import 'package:test_flutter_project/presentation/features/user/user_data_state.
 import 'user_data_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
+  MockSpec<TimeService>(),
   MockSpec<AuthRepository>(),
   MockSpec<UserRepository>(),
   MockSpec<OpenAppSettingsUseCase>(),
@@ -36,6 +38,7 @@ import 'user_data_cubit_test.mocks.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  late MockTimeService mockTimeService;
   late MockUserRepository mockUserRepository;
   late MockRequestLocationPermissionUseCase mockRequestLocationPermissionUseCase;
   late MockCheckLocationPermissionStatusUseCase mockCheckLocationPermissionStatusUseCase;
@@ -61,12 +64,14 @@ void main() {
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});
 
+    mockTimeService = MockTimeService();
     mockUserRepository = MockUserRepository();
 
     when(mockAuthRepository.isUserLoggedIn()).thenAnswer((_) async => false);
     when(mockAuthRepository.updateUser(any)).thenAnswer((_) async {});
 
     cubit = UserDataCubit(
+      mockTimeService,
       mockUserRepository,
       mockAuthRepository,
       mockCheckLocationServiceStatusUseCase,
@@ -303,15 +308,14 @@ void main() {
       cubit.emit(cubit.state.copyWith(user: testUser));
       when(mockUserRepository.updateUser(any)).thenReturn(null);
 
-      final before = DateTime.now();
+      final fixedNow = DateTime(2024, 1, 1, 12);
+      when(mockTimeService.now()).thenReturn(fixedNow);
       cubit.setLastSeenCar('car42');
-      final after = DateTime.now();
 
       final lastSeen = cubit.state.user.lastSeenCar;
       expect(lastSeen, isNotNull);
       expect(lastSeen!.carId, 'car42');
-      expect(lastSeen.seenAt.isAfter(before) || lastSeen.seenAt.isAtSameMomentAs(before), isTrue);
-      expect(lastSeen.seenAt.isBefore(after) || lastSeen.seenAt.isAtSameMomentAs(after), isTrue);
+      expect(lastSeen.seenAt, fixedNow);
     });
   });
 
@@ -326,7 +330,9 @@ void main() {
     });
 
     test('does not clear recent car that is within expiry window', () {
-      final recentCar = LastSeenCarEntity(carId: 'car1', seenAt: DateTime.now());
+      final fixedNow = DateTime(2024, 1, 10);
+      when(mockTimeService.now()).thenReturn(fixedNow);
+      final recentCar = LastSeenCarEntity(carId: 'car1', seenAt: DateTime(2024, 1, 8));
       cubit.emit(cubit.state.copyWith(user: testUser.copyWith(lastSeenCar: recentCar)));
       when(mockUserRepository.updateUser(any)).thenReturn(null);
 

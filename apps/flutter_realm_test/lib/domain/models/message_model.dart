@@ -5,7 +5,7 @@ class MessageModel {
     required this.senderId,
     required this.messageStatus,
     required this.payload,
-    required this.date,
+    this.date,
   });
 
   factory MessageModel.fromJson(Map<String, dynamic> json) {
@@ -20,7 +20,7 @@ class MessageModel {
   final String senderId;
   final MessageStatus messageStatus;
   final String payload;
-  final DateTime date;
+  final DateTime? date;
 
   MessageModel copyWith({
     String? senderId,
@@ -41,7 +41,7 @@ class MessageModel {
       'senderId': senderId,
       'messageStatus': messageStatus.name,
       'text': payload,
-      'date': date.toIso8601String(),
+      'date': date?.toIso8601String(),
     };
   }
 

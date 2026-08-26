@@ -3,6 +3,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
@@ -17,6 +18,7 @@ import '../l10n/app_localisations_cubit.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
   UserDataCubit(
+    this._timeService,
     this._userRepository,
     this._authRepository,
     this._checkLocationServiceStatusUseCase,
@@ -28,6 +30,8 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._deleteCarByIdUseCase,
     this._appLocalisationsCubit,
   ) : super(UserDataState(user: UserEntity.empty()));
+
+  final TimeService _timeService;
 
   final UserRepository _userRepository;
   final AuthRepository _authRepository;
@@ -92,7 +96,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   void setLastSeenCar(String? carId) {
     final newLastSeenCar = carId == null
         ? null
-        : LastSeenCarEntity(carId: carId, seenAt: DateTime.now());
+        : LastSeenCarEntity(carId: carId, seenAt: _timeService.now());
 
     final user = state.user.copyWith(lastSeenCar: newLastSeenCar);
     emit(state.copyWith(user: user));
@@ -105,7 +109,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     if (lastSeenCar == null) return;
 
-    final daysAgo = DateTime.now().subtract(Duration(days: days));
+    final daysAgo = _timeService.now().subtract(Duration(days: days));
     if (lastSeenCar.seenAt.isBefore(daysAgo)) {
       setLastSeenCar(null);
     }

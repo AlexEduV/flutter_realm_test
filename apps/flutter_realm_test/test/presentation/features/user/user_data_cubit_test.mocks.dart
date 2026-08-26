@@ -3,31 +3,32 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i6;
-import 'package:permission_handler/permission_handler.dart' as _i12;
+import 'package:mockito/src/dummies.dart' as _i7;
+import 'package:permission_handler/permission_handler.dart' as _i13;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i2;
-import 'package:test_flutter_project/domain/models/auth_result.dart' as _i5;
+import 'package:test_flutter_project/domain/models/auth_result.dart' as _i6;
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart'
-    as _i3;
+    as _i4;
 import 'package:test_flutter_project/domain/repositories/user_repository.dart'
-    as _i7;
-import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart'
-    as _i15;
-import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
-    as _i9;
-import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
     as _i8;
-import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart'
-    as _i14;
-import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
-    as _i11;
-import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
+import 'package:test_flutter_project/domain/services/time_service.dart' as _i3;
+import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart'
+    as _i16;
+import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
     as _i10;
+import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
+    as _i9;
+import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart'
+    as _i15;
+import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
+    as _i12;
+import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
+    as _i11;
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart'
-    as _i13;
+    as _i14;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -43,8 +44,8 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
-  _FakeUserEntity_0(
+class _FakeDateTime_0 extends _i1.SmartFake implements DateTime {
+  _FakeDateTime_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -53,12 +54,49 @@ class _FakeUserEntity_0 extends _i1.SmartFake implements _i2.UserEntity {
         );
 }
 
+class _FakeUserEntity_1 extends _i1.SmartFake implements _i2.UserEntity {
+  _FakeUserEntity_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+/// A class which mocks [TimeService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockTimeService extends _i1.Mock implements _i3.TimeService {
+  @override
+  DateTime now() => (super.noSuchMethod(
+        Invocation.method(
+          #now,
+          [],
+        ),
+        returnValue: _FakeDateTime_0(
+          this,
+          Invocation.method(
+            #now,
+            [],
+          ),
+        ),
+        returnValueForMissingStub: _FakeDateTime_0(
+          this,
+          Invocation.method(
+            #now,
+            [],
+          ),
+        ),
+      ) as DateTime);
+}
+
 /// A class which mocks [AuthRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
+class MockAuthRepository extends _i1.Mock implements _i4.AuthRepository {
   @override
-  _i4.Future<_i5.AuthResult> login({
+  _i5.Future<_i6.AuthResult> login({
     required String? email,
     required String? password,
   }) =>
@@ -72,7 +110,7 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
           },
         ),
         returnValue:
-            _i4.Future<_i5.AuthResult>.value(_i6.dummyValue<_i5.AuthResult>(
+            _i5.Future<_i6.AuthResult>.value(_i7.dummyValue<_i6.AuthResult>(
           this,
           Invocation.method(
             #login,
@@ -84,7 +122,7 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i4.Future<_i5.AuthResult>.value(_i6.dummyValue<_i5.AuthResult>(
+            _i5.Future<_i6.AuthResult>.value(_i7.dummyValue<_i6.AuthResult>(
           this,
           Invocation.method(
             #login,
@@ -95,10 +133,10 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
             },
           ),
         )),
-      ) as _i4.Future<_i5.AuthResult>);
+      ) as _i5.Future<_i6.AuthResult>);
 
   @override
-  _i4.Future<_i5.AuthResult> register({
+  _i5.Future<_i6.AuthResult> register({
     required String? email,
     required String? password,
     required String? firstName,
@@ -116,7 +154,7 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
           },
         ),
         returnValue:
-            _i4.Future<_i5.AuthResult>.value(_i6.dummyValue<_i5.AuthResult>(
+            _i5.Future<_i6.AuthResult>.value(_i7.dummyValue<_i6.AuthResult>(
           this,
           Invocation.method(
             #register,
@@ -130,7 +168,7 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i4.Future<_i5.AuthResult>.value(_i6.dummyValue<_i5.AuthResult>(
+            _i5.Future<_i6.AuthResult>.value(_i7.dummyValue<_i6.AuthResult>(
           this,
           Invocation.method(
             #register,
@@ -143,53 +181,53 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
             },
           ),
         )),
-      ) as _i4.Future<_i5.AuthResult>);
+      ) as _i5.Future<_i6.AuthResult>);
 
   @override
-  _i4.Future<void> logOut() => (super.noSuchMethod(
+  _i5.Future<void> logOut() => (super.noSuchMethod(
         Invocation.method(
           #logOut,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
-  _i4.Future<void> deleteAccount(String? email) => (super.noSuchMethod(
+  _i5.Future<void> deleteAccount(String? email) => (super.noSuchMethod(
         Invocation.method(
           #deleteAccount,
           [email],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
-  _i4.Future<void> updateUser(_i2.UserEntity? user) => (super.noSuchMethod(
+  _i5.Future<void> updateUser(_i2.UserEntity? user) => (super.noSuchMethod(
         Invocation.method(
           #updateUser,
           [user],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
-  _i4.Future<bool> isUserLoggedIn() => (super.noSuchMethod(
+  _i5.Future<bool> isUserLoggedIn() => (super.noSuchMethod(
         Invocation.method(
           #isUserLoggedIn,
           [],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
 
 /// A class which mocks [UserRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserRepository extends _i1.Mock implements _i7.UserRepository {
+class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
   @override
   int getMaxUserId() => (super.noSuchMethod(
         Invocation.method(
@@ -219,26 +257,26 @@ class MockUserRepository extends _i1.Mock implements _i7.UserRepository {
       ) as _i2.UserEntity?);
 
   @override
-  _i4.Future<List<_i2.UserEntity>> loadSeedUsers() => (super.noSuchMethod(
+  _i5.Future<List<_i2.UserEntity>> loadSeedUsers() => (super.noSuchMethod(
         Invocation.method(
           #loadSeedUsers,
           [],
         ),
-        returnValue: _i4.Future<List<_i2.UserEntity>>.value(<_i2.UserEntity>[]),
+        returnValue: _i5.Future<List<_i2.UserEntity>>.value(<_i2.UserEntity>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i2.UserEntity>>.value(<_i2.UserEntity>[]),
-      ) as _i4.Future<List<_i2.UserEntity>>);
+            _i5.Future<List<_i2.UserEntity>>.value(<_i2.UserEntity>[]),
+      ) as _i5.Future<List<_i2.UserEntity>>);
 
   @override
-  _i4.Future<void> saveSeedUsers(List<_i2.UserEntity>? users) =>
+  _i5.Future<void> saveSeedUsers(List<_i2.UserEntity>? users) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveSeedUsers,
           [users],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
   _i2.UserEntity initUser() => (super.noSuchMethod(
@@ -246,14 +284,14 @@ class MockUserRepository extends _i1.Mock implements _i7.UserRepository {
           #initUser,
           [],
         ),
-        returnValue: _FakeUserEntity_0(
+        returnValue: _FakeUserEntity_1(
           this,
           Invocation.method(
             #initUser,
             [],
           ),
         ),
-        returnValueForMissingStub: _FakeUserEntity_0(
+        returnValueForMissingStub: _FakeUserEntity_1(
           this,
           Invocation.method(
             #initUser,
@@ -276,73 +314,73 @@ class MockUserRepository extends _i1.Mock implements _i7.UserRepository {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockOpenAppSettingsUseCase extends _i1.Mock
-    implements _i8.OpenAppSettingsUseCase {
+    implements _i9.OpenAppSettingsUseCase {
   @override
-  _i4.Future<bool> call() => (super.noSuchMethod(
+  _i5.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
 
 /// A class which mocks [CheckLocationServiceStatusUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationServiceStatusUseCase extends _i1.Mock
-    implements _i9.CheckLocationServiceStatusUseCase {
+    implements _i10.CheckLocationServiceStatusUseCase {
   @override
-  _i4.Future<bool> call() => (super.noSuchMethod(
+  _i5.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
 
 /// A class which mocks [RequestLocationPermissionUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRequestLocationPermissionUseCase extends _i1.Mock
-    implements _i10.RequestLocationPermissionUseCase {
+    implements _i11.RequestLocationPermissionUseCase {
   @override
-  _i4.Future<bool> call() => (super.noSuchMethod(
+  _i5.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
 
 /// A class which mocks [CheckLocationPermissionStatusUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
-    implements _i11.CheckLocationPermissionStatusUseCase {
+    implements _i12.CheckLocationPermissionStatusUseCase {
   @override
-  _i4.Future<_i12.PermissionStatus> call() => (super.noSuchMethod(
+  _i5.Future<_i13.PermissionStatus> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<_i12.PermissionStatus>.value(
-            _i12.PermissionStatus.denied),
-        returnValueForMissingStub: _i4.Future<_i12.PermissionStatus>.value(
-            _i12.PermissionStatus.denied),
-      ) as _i4.Future<_i12.PermissionStatus>);
+        returnValue: _i5.Future<_i13.PermissionStatus>.value(
+            _i13.PermissionStatus.denied),
+        returnValueForMissingStub: _i5.Future<_i13.PermissionStatus>.value(
+            _i13.PermissionStatus.denied),
+      ) as _i5.Future<_i13.PermissionStatus>);
 }
 
 /// A class which mocks [GetUserByEmailUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetUserByEmailUseCase extends _i1.Mock
-    implements _i13.GetUserByEmailUseCase {
+    implements _i14.GetUserByEmailUseCase {
   @override
   _i2.UserEntity? call(String? params) => (super.noSuchMethod(
         Invocation.method(
@@ -357,23 +395,23 @@ class MockGetUserByEmailUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockPickImageFromGalleryUseCase extends _i1.Mock
-    implements _i14.PickImageFromGalleryUseCase {
+    implements _i15.PickImageFromGalleryUseCase {
   @override
-  _i4.Future<String?> call() => (super.noSuchMethod(
+  _i5.Future<String?> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<String?>.value(),
-        returnValueForMissingStub: _i4.Future<String?>.value(),
-      ) as _i4.Future<String?>);
+        returnValue: _i5.Future<String?>.value(),
+        returnValueForMissingStub: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
 }
 
 /// A class which mocks [DeleteCarByIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockDeleteCarByIdUseCase extends _i1.Mock
-    implements _i15.DeleteCarByIdUseCase {
+    implements _i16.DeleteCarByIdUseCase {
   @override
   void call(String? params) => super.noSuchMethod(
         Invocation.method(

@@ -200,7 +200,19 @@ class _MessagesPageState extends State<MessagesPage> {
     if (index < messages.length - 1) {
       final currentMessage = messages[index];
       final nextMessage = messages[index + 1];
-      final differenceInMinutes = currentMessage.date.difference(nextMessage.date).inMinutes.abs();
+
+      final currentMessageDate = currentMessage.date;
+      final nextMessageDate = nextMessage.date;
+
+      assert(
+        currentMessageDate != null,
+        'current message: dates in messages are not expected to be null',
+      );
+      assert(nextMessageDate != null, 'nextMessage: dates in messages are not expected to be null');
+
+      if (currentMessageDate == null || nextMessageDate == null) return true;
+
+      final differenceInMinutes = currentMessageDate.difference(nextMessageDate).inMinutes.abs();
 
       if (nextMessage.senderId == currentMessage.senderId && differenceInMinutes < 2) {
         return false;
@@ -216,8 +228,8 @@ class _MessagesPageState extends State<MessagesPage> {
     final currentMessage = messages[index];
     final nextMessage = messages[index + 1];
 
-    final nextMessageDay = nextMessage.date.day;
-    final currentMessageDay = currentMessage.date.day;
+    final nextMessageDay = nextMessage.date?.day;
+    final currentMessageDay = currentMessage.date?.day;
     if (nextMessageDay != currentMessageDay) {
       return true;
     }
