@@ -67,7 +67,6 @@ void main() {
     mockFetchArticlesUseCase = MockFetchArticlesUseCase();
     mockGetCarByIdUseCase = MockGetCarByIdUseCase();
     cubit = ExplorePageCubit(
-      mockLoggingService,
       mockWatchCarsUseCase,
       mockSyncCarsUseCase,
       mockFetchArticlesUseCase,
