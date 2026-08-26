@@ -28,7 +28,6 @@ import 'package:test_flutter_project/domain/usecases/permissions/request_locatio
     as _i10;
 import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart'
     as _i13;
-import 'package:test_flutter_project/utils/localisation_util.dart' as _i16;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -390,66 +389,4 @@ class MockDeleteCarByIdUseCase extends _i1.Mock
         ),
         returnValueForMissingStub: null,
       );
-}
-
-/// A class which mocks [LocalisationUtil].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockLocalisationUtil extends _i1.Mock implements _i16.LocalisationUtil {
-  @override
-  _i4.Future<Map<String, dynamic>> loadRawJson(String? path) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #loadRawJson,
-          [path],
-        ),
-        returnValue:
-            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-        returnValueForMissingStub:
-            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i4.Future<Map<String, dynamic>>);
-
-  @override
-  Map<String, String>? extractLocalisations(Map<String, dynamic>? rawJson) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #extractLocalisations,
-          [rawJson],
-        ),
-        returnValueForMissingStub: null,
-      ) as Map<String, String>?);
-
-  @override
-  _i4.Future<void> saveLocalisations(Map<String, dynamic>? localisations) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #saveLocalisations,
-          [localisations],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<String> getLocalisation(String? key) => (super.noSuchMethod(
-        Invocation.method(
-          #getLocalisation,
-          [key],
-        ),
-        returnValue: _i4.Future<String>.value(_i6.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getLocalisation,
-            [key],
-          ),
-        )),
-        returnValueForMissingStub:
-            _i4.Future<String>.value(_i6.dummyValue<String>(
-          this,
-          Invocation.method(
-            #getLocalisation,
-            [key],
-          ),
-        )),
-      ) as _i4.Future<String>);
 }

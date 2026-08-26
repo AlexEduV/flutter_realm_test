@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:test_flutter_project/utils/localisation_util.dart';
 
 import '../../../data/data_sources/remote/seed_owners_remote_data_source_impl.dart';
 import '../../../data/data_sources/remote/seed_users_remote_data_source_impl.dart';
@@ -63,7 +62,6 @@ void registerUserModule(GetIt serviceLocator) {
       serviceLocator<PickImageFromGalleryUseCase>(),
       serviceLocator<DeleteCarByIdUseCase>(),
       serviceLocator<AppLocalisationsCubit>(),
-      serviceLocator<LocalisationUtil>(),
     ),
   );
 }

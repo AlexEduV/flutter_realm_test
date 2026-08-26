@@ -170,16 +170,6 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       ) as _i4.Future<_i12.PermissionStatus>);
 
   @override
-  _i4.Future<void> initLocalisation(String? locale) => (super.noSuchMethod(
-        Invocation.method(
-          #initLocalisation,
-          [locale],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
   void setFirstName(String? firstName) => super.noSuchMethod(
         Invocation.method(
           #setFirstName,

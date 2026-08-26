@@ -7,16 +7,15 @@ import 'dart:async' as _i7;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i8;
-import 'package:realm/realm.dart' as _i9;
-import 'package:test_flutter_project/common/enums/promo_type.dart' as _i11;
+import 'package:test_flutter_project/common/enums/promo_type.dart' as _i10;
 import 'package:test_flutter_project/data/data_sources/local/realm_local_storage.dart'
-    as _i12;
+    as _i11;
 import 'package:test_flutter_project/data/dto/car_dto.dart' as _i4;
 import 'package:test_flutter_project/domain/data_sources/remote/car_remote_data_source.dart'
     as _i6;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
 import 'package:test_flutter_project/domain/entities/engine_entity.dart' as _i2;
-import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i10;
+import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i9;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i5;
 
 // ignore_for_file: type=lint
@@ -224,19 +223,19 @@ class MockCarEntity extends _i1.Mock implements _i3.CarEntity {
 
   @override
   _i3.CarEntity copyWith({
-    _i9.ObjectId? id,
+    dynamic id,
     String? carId,
     String? model,
     String? manufacturer,
     String? type,
     String? year,
     String? color,
-    _i10.OwnerEntity? owner,
+    _i9.OwnerEntity? owner,
     String? bodyType,
     _i2.EngineEntity? engine,
     String? transmissionType,
     bool? isVerified,
-    _i11.PromoType? promoType,
+    _i10.PromoType? promoType,
     int? mileage,
     int? distanceTo,
     int? price,
@@ -436,7 +435,7 @@ class MockCarDto extends _i1.Mock implements _i4.CarDto {
 
   @override
   _i4.CarDto copyWith({
-    _i9.ObjectId? id,
+    dynamic id,
     String? carId,
     String? model,
     String? manufacturer,
@@ -446,9 +445,9 @@ class MockCarDto extends _i1.Mock implements _i4.CarDto {
     String? bodyType,
     _i2.EngineEntity? engine,
     String? transmissionType,
-    _i10.OwnerEntity? owner,
+    _i9.OwnerEntity? owner,
     bool? isVerified,
-    _i11.PromoType? promoType,
+    _i10.PromoType? promoType,
     int? mileage,
     int? distanceTo,
     int? price,
@@ -536,7 +535,7 @@ class MockCarDto extends _i1.Mock implements _i4.CarDto {
 /// A class which mocks [RealmLocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
+class MockRealmLocalStorage extends _i1.Mock implements _i11.RealmLocalStorage {
   @override
   void addCar(_i3.CarEntity? car) => super.noSuchMethod(
         Invocation.method(

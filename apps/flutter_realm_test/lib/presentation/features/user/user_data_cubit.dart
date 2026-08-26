@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:test_flutter_project/common/constants/app_asset_routes.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
@@ -15,7 +13,6 @@ import 'package:test_flutter_project/presentation/features/user/user_data_state.
 
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
-import '../../../utils/localisation_util.dart';
 import '../l10n/app_localisations_cubit.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
@@ -30,7 +27,6 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._pickImageFromGalleryUseCase,
     this._deleteCarByIdUseCase,
     this._appLocalisationsCubit,
-    this._localisationUtil,
   ) : super(UserDataState(user: UserEntity.empty()));
 
   final UserRepository _userRepository;
@@ -47,7 +43,6 @@ class UserDataCubit extends Cubit<UserDataState> {
   final DeleteCarByIdUseCase _deleteCarByIdUseCase;
 
   final AppLocalisationsCubit _appLocalisationsCubit;
-  final LocalisationUtil _localisationUtil;
 
   Future<void> init() async {
     emit(state.copyWith(isLoading: true));
@@ -55,7 +50,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     final user = _userRepository.initUser();
     final isUserLoggedIn = await _authRepository.isUserLoggedIn();
 
-    await initLocalisation(user.region);
+    await _appLocalisationsCubit.initLocalisation(user.region);
 
     checkLastSeenCarExpiration(days: 7);
 
@@ -68,20 +63,6 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   Future<PermissionStatus> checkLocationPermissionStatus() {
     return _checkLocationPermissionStatusUseCase.call();
-  }
-
-  Future<void> initLocalisation(String locale) async {
-    final rawJson = await _localisationUtil.loadRawJson(
-      '${AppAssetRoutes.assetFolder}${AppAssetRoutes.mocksFolder}localisation_mock_response_data_$locale.json',
-    );
-
-    final localisations = _localisationUtil.extractLocalisations(rawJson);
-    if (localisations == null) return;
-
-    _appLocalisationsCubit.load(localisations);
-
-    await initializeDateFormatting(locale, null);
-    await _localisationUtil.saveLocalisations(localisations);
   }
 
   void setFirstName(String firstName) {
@@ -270,7 +251,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     final user = state.user.copyWith(region: region);
     emit(state.copyWith(user: user));
 
-    initLocalisation(region);
+    _appLocalisationsCubit.initLocalisation(region);
 
     updateUser(user: user);
   }

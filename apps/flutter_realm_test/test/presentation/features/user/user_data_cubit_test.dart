@@ -19,8 +19,6 @@ import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
-import 'package:test_flutter_project/utils/localisation_util.dart';
-
 import 'user_data_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -33,7 +31,6 @@ import 'user_data_cubit_test.mocks.dart';
   MockSpec<GetUserByEmailUseCase>(),
   MockSpec<PickImageFromGalleryUseCase>(),
   MockSpec<DeleteCarByIdUseCase>(),
-  MockSpec<LocalisationUtil>(),
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -48,7 +45,6 @@ void main() {
   late MockDeleteCarByIdUseCase mockDeleteCarByIdUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
-  late MockLocalisationUtil mockLocalisationUtil;
 
   final mockAuthRepository = MockAuthRepository();
   final appLocalisationsCubit = AppLocalisationsCubit();
@@ -60,7 +56,6 @@ void main() {
   mockGetUserByEmailUseCase = MockGetUserByEmailUseCase();
   mockPickImageFromGalleryUseCase = MockPickImageFromGalleryUseCase();
   mockDeleteCarByIdUseCase = MockDeleteCarByIdUseCase();
-  mockLocalisationUtil = MockLocalisationUtil();
 
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});
@@ -81,7 +76,6 @@ void main() {
       mockPickImageFromGalleryUseCase,
       mockDeleteCarByIdUseCase,
       appLocalisationsCubit,
-      mockLocalisationUtil,
     );
     testUser = const UserEntity(
       userId: 'u1',
