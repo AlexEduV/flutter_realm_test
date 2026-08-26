@@ -22,30 +22,32 @@ class _AnimatedFavoriteIconState extends State<AnimatedFavoriteIcon>
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
+  final _animationSequence = TweenSequence([
+    // First Pulse (The "Lub")
+    TweenSequenceItem(
+      tween: Tween(begin: 1.0, end: 1.25).chain(CurveTween(curve: Curves.easeOut)),
+      weight: 25,
+    ),
+    TweenSequenceItem(
+      tween: Tween(begin: 1.25, end: 1.0).chain(CurveTween(curve: Curves.easeIn)),
+      weight: 25,
+    ),
+    // Second Pulse (The "Dub" - identical in scale)
+    TweenSequenceItem(
+      tween: Tween(begin: 1.0, end: 1.25).chain(CurveTween(curve: Curves.easeOut)),
+      weight: 25,
+    ),
+    TweenSequenceItem(
+      tween: Tween(begin: 1.25, end: 1.0).chain(CurveTween(curve: Curves.easeIn)),
+      weight: 25,
+    ),
+  ]);
+
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(duration: const Duration(milliseconds: 450), vsync: this);
-    _scaleAnimation = TweenSequence([
-      // First Pulse (The "Lub")
-      TweenSequenceItem(
-        tween: Tween(begin: 1.0, end: 1.25).chain(CurveTween(curve: Curves.easeOut)),
-        weight: 25,
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: 1.25, end: 1.0).chain(CurveTween(curve: Curves.easeIn)),
-        weight: 25,
-      ),
-      // Second Pulse (The "Dub" - identical in scale)
-      TweenSequenceItem(
-        tween: Tween(begin: 1.0, end: 1.25).chain(CurveTween(curve: Curves.easeOut)),
-        weight: 25,
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: 1.25, end: 1.0).chain(CurveTween(curve: Curves.easeIn)),
-        weight: 25,
-      ),
-    ]).animate(_controller);
+    _scaleAnimation = _animationSequence.animate(_controller);
   }
 
   @override
