@@ -68,15 +68,6 @@ class MockAppLocalStorage extends _i1.Mock implements _i3.AppLocalStorage {
       );
 
   @override
-  void updateUser(_i2.UserEntity? user) => super.noSuchMethod(
-        Invocation.method(
-          #updateUser,
-          [user],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   _i5.Stream<dynamic> watchCars() => (super.noSuchMethod(
         Invocation.method(
           #watchCars,
@@ -144,6 +135,15 @@ class MockAppLocalStorage extends _i1.Mock implements _i3.AppLocalStorage {
           ),
         ),
       ) as _i2.UserEntity);
+
+  @override
+  void updateUser(_i2.UserEntity? user) => super.noSuchMethod(
+        Invocation.method(
+          #updateUser,
+          [user],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void clearUser() => super.noSuchMethod(

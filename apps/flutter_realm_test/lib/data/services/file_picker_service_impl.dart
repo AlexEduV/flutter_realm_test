@@ -6,7 +6,7 @@ import '../../domain/services/file_picker_service.dart';
 class FilePickerServiceImpl implements FilePickerService {
   FilePickerServiceImpl(this.filePicker);
 
-  final FilePickerIO filePicker;
+  final FilePicker filePicker;
 
   @override
   Future<AttachmentEntity?> pickFile() async {
