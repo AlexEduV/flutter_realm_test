@@ -5,16 +5,19 @@ import 'package:test_flutter_project/data/repositories/user_repository_impl.dart
 import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
+import '../../domain/repositories/app_local_storage_test.mocks.dart';
 import 'user_repository_impl_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<UsersRemoteDataSource>()])
 void main() {
   late MockUsersRemoteDataSource mockRemoteDataSource;
+  late MockAppLocalStorage mockAppLocalStorage;
   late UserRepositoryImpl repository;
 
   setUp(() {
     mockRemoteDataSource = MockUsersRemoteDataSource();
-    repository = UserRepositoryImpl(mockRemoteDataSource);
+    mockAppLocalStorage = MockAppLocalStorage();
+    repository = UserRepositoryImpl(mockRemoteDataSource, mockAppLocalStorage);
   });
 
   test('getMaxUserId should delegate to remote data source', () {

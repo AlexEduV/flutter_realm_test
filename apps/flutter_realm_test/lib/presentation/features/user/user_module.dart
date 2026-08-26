@@ -5,13 +5,11 @@ import '../../../data/data_sources/remote/seed_owners_remote_data_source_impl.da
 import '../../../data/data_sources/remote/seed_users_remote_data_source_impl.dart';
 import '../../../data/repositories/owner_repository_impl.dart';
 import '../../../data/repositories/user_repository_impl.dart';
-import '../../../domain/data_sources/local/app_local_storage.dart';
 import '../../../domain/data_sources/remote/owners_remote_data_source.dart';
 import '../../../domain/data_sources/remote/users_remote_data_source.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/repositories/owner_repository.dart';
 import '../../../domain/repositories/user_repository.dart';
-import '../../../domain/services/logging_service.dart';
 import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
 import '../../../domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import '../../../domain/usecases/geolocator/open_app_settings_use_case.dart';
@@ -40,7 +38,9 @@ void registerUserModule(GetIt serviceLocator) {
   serviceLocator.registerLazySingleton<OwnerRepository>(
     () => OwnerRepositoryImpl(serviceLocator(), serviceLocator()),
   );
-  serviceLocator.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(serviceLocator()));
+  serviceLocator.registerLazySingleton<UserRepository>(
+    () => UserRepositoryImpl(serviceLocator(), serviceLocator()),
+  );
 
   serviceLocator.registerLazySingleton(() => GetOwnerByIdUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => FetchOwnersUseCase(serviceLocator()));
@@ -53,7 +53,7 @@ void registerUserModule(GetIt serviceLocator) {
 
   serviceLocator.registerLazySingleton(
     () => UserDataCubit(
-      serviceLocator<AppLocalStorage>(),
+      serviceLocator<UserRepository>(),
       serviceLocator<AuthRepository>(),
       serviceLocator<CheckLocationServiceStatusUseCase>(),
       serviceLocator<OpenAppSettingsUseCase>(),
@@ -62,7 +62,6 @@ void registerUserModule(GetIt serviceLocator) {
       serviceLocator<GetUserByEmailUseCase>(),
       serviceLocator<PickImageFromGalleryUseCase>(),
       serviceLocator<DeleteCarByIdUseCase>(),
-      serviceLocator<LoggingService>(),
       serviceLocator<AppLocalisationsCubit>(),
       serviceLocator<LocalisationUtil>(),
     ),

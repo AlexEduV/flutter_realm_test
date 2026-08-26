@@ -10,4 +10,8 @@ abstract interface class UserRepository {
   Future<List<UserEntity>> loadSeedUsers();
 
   Future<void> saveSeedUsers(List<UserEntity> users);
+
+  UserEntity initUser();
+
+  void updateUser(UserEntity user);
 }

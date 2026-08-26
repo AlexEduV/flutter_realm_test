@@ -8,11 +8,11 @@ import 'dart:async' as _i8;
 import 'package:flutter_bloc/flutter_bloc.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i17;
-import 'package:permission_handler/permission_handler.dart' as _i14;
+import 'package:permission_handler/permission_handler.dart' as _i13;
 import 'package:test_flutter_project/common/enums/car_type.dart' as _i16;
 import 'package:test_flutter_project/common/enums/drawer_type.dart' as _i18;
 import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i11;
-import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i13;
+import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i14;
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart'
     as _i19;
 import 'package:test_flutter_project/presentation/features/details/details_page_state.dart'
@@ -393,26 +393,17 @@ class MockUserDataCubit extends _i1.Mock implements _i12.UserDataCubit {
       ) as _i8.Future<void>);
 
   @override
-  void updateCloudUser(_i13.UserEntity? user) => super.noSuchMethod(
-        Invocation.method(
-          #updateCloudUser,
-          [user],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i8.Future<_i14.PermissionStatus> checkLocationPermissionStatus() =>
+  _i8.Future<_i13.PermissionStatus> checkLocationPermissionStatus() =>
       (super.noSuchMethod(
         Invocation.method(
           #checkLocationPermissionStatus,
           [],
         ),
-        returnValue: _i8.Future<_i14.PermissionStatus>.value(
-            _i14.PermissionStatus.denied),
-        returnValueForMissingStub: _i8.Future<_i14.PermissionStatus>.value(
-            _i14.PermissionStatus.denied),
-      ) as _i8.Future<_i14.PermissionStatus>);
+        returnValue: _i8.Future<_i13.PermissionStatus>.value(
+            _i13.PermissionStatus.denied),
+        returnValueForMissingStub: _i8.Future<_i13.PermissionStatus>.value(
+            _i13.PermissionStatus.denied),
+      ) as _i8.Future<_i13.PermissionStatus>);
 
   @override
   _i8.Future<void> initLocalisation(String? locale) => (super.noSuchMethod(
@@ -490,14 +481,14 @@ class MockUserDataCubit extends _i1.Mock implements _i12.UserDataCubit {
       ) as _i8.Future<void>);
 
   @override
-  _i8.Future<void> openLocationSettings() => (super.noSuchMethod(
+  _i8.Future<bool> openLocationSettings() => (super.noSuchMethod(
         Invocation.method(
           #openLocationSettings,
           [],
         ),
-        returnValue: _i8.Future<void>.value(),
-        returnValueForMissingStub: _i8.Future<void>.value(),
-      ) as _i8.Future<void>);
+        returnValue: _i8.Future<bool>.value(false),
+        returnValueForMissingStub: _i8.Future<bool>.value(false),
+      ) as _i8.Future<bool>);
 
   @override
   void updateLocationPermissionStatus(bool? newStatus) => super.noSuchMethod(
@@ -629,7 +620,7 @@ class MockUserDataCubit extends _i1.Mock implements _i12.UserDataCubit {
 
   @override
   void updateUser({
-    required _i13.UserEntity? user,
+    required _i14.UserEntity? user,
     bool? updateCloud = true,
   }) =>
       super.noSuchMethod(
