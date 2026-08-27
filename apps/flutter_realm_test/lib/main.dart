@@ -66,7 +66,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late AppLifecycleListener _listener;
+  AppLifecycleListener? _listener;
 
   @override
   void initState() {
@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    _listener.dispose();
+    _listener?.dispose();
     super.dispose();
   }
 
