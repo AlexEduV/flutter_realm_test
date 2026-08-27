@@ -17,13 +17,16 @@ import '../../../domain/usecases/database/watch_cars_use_case.dart';
 import 'explore_page_cubit.dart';
 
 void registerExploreModule(GetIt serviceLocator) {
-  final mockCarRemoteDataSource = SeedCarRemoteDataSourceImpl(
+  final seedCarRemoteDataSource = SeedCarRemoteDataSourceImpl(
     serviceLocator(),
     serviceLocator<OwnersRemoteDataSource>(),
   );
-  mockCarRemoteDataSource.init();
+  seedCarRemoteDataSource.init();
 
-  serviceLocator.registerLazySingleton<CarRemoteDataSource>(() => mockCarRemoteDataSource);
+  serviceLocator.registerLazySingleton<CarRemoteDataSource>(
+    () => seedCarRemoteDataSource,
+    dispose: (dataSource) => dataSource.dispose(),
+  );
 
   serviceLocator.registerLazySingleton<CarRepository>(
     () => CarRepositoryImpl(serviceLocator(), serviceLocator(), serviceLocator()),
