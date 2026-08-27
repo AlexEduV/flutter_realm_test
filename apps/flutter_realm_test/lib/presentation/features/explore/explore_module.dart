@@ -27,6 +27,7 @@ void registerExploreModule(GetIt serviceLocator) {
 
   serviceLocator.registerLazySingleton<CarRepository>(
     () => CarRepositoryImpl(serviceLocator(), serviceLocator(), serviceLocator()),
+    dispose: (repo) => (repo as CarRepositoryImpl).close(),
   );
 
   serviceLocator.registerLazySingleton(() => GetAllCarsUseCase(serviceLocator()));

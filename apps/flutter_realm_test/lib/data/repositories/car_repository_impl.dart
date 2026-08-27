@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realm/realm.dart';
 import 'package:test_flutter_project/data/models/scheme.dart';
 import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
@@ -10,7 +11,7 @@ import 'package:test_flutter_project/domain/services/logging_service.dart';
 import '../../domain/entities/car_entity.dart';
 import '../mappers/car_scheme_extension.dart';
 
-class CarRepositoryImpl implements CarRepository {
+class CarRepositoryImpl with Closable implements CarRepository {
   CarRepositoryImpl(this._localStorage, this._carRemoteDataSource, this._loggingService);
 
   final AppLocalStorage _localStorage;
@@ -18,6 +19,7 @@ class CarRepositoryImpl implements CarRepository {
   final LoggingService _loggingService;
 
   StreamSubscription? _carStreamSubscription;
+  bool? _isClosed;
 
   @override
   void addCar(CarEntity carEntity) {
@@ -63,6 +65,7 @@ class CarRepositoryImpl implements CarRepository {
         _loggingService.info('car stream closed.');
       },
     );
+    _isClosed = false;
   }
 
   @override
@@ -89,4 +92,13 @@ class CarRepositoryImpl implements CarRepository {
   int getMaxCarId() {
     return _localStorage.getMaxCarId();
   }
+
+  @override
+  FutureOr<void> close() async {
+    await _carStreamSubscription?.cancel();
+    _isClosed = true;
+  }
+
+  @override
+  bool get isClosed => _isClosed ?? true;
 }

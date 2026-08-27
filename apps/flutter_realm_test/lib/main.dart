@@ -74,6 +74,9 @@ class _MyAppState extends State<MyApp> {
         final ctx = AppRouter.router.routerDelegate.navigatorKey.currentContext;
         if (ctx != null) _handleLocationPermission(ctx);
       },
+      onDetach: () {
+        serviceLocator.reset();
+      },
     );
     _scheduleInitialPermissionCheck();
   }
