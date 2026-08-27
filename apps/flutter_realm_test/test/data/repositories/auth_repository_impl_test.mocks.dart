@@ -6,10 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart'
-    as _i5;
 import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i2;
-import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i6;
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart'
     as _i3;
 
@@ -74,76 +71,4 @@ class MockOwnerRepository extends _i1.Mock implements _i3.OwnerRepository {
           ),
         ),
       ) as _i2.OwnerEntity);
-}
-
-/// A class which mocks [UsersRemoteDataSource].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockUsersRemoteDataSource extends _i1.Mock
-    implements _i5.UsersRemoteDataSource {
-  @override
-  List<_i6.UserEntity> get users => (super.noSuchMethod(
-        Invocation.getter(#users),
-        returnValue: <_i6.UserEntity>[],
-        returnValueForMissingStub: <_i6.UserEntity>[],
-      ) as List<_i6.UserEntity>);
-
-  @override
-  set users(List<_i6.UserEntity>? _users) => super.noSuchMethod(
-        Invocation.setter(
-          #users,
-          _users,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i4.Future<void> saveSeedUsers(List<_i6.UserEntity>? users) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #saveSeedUsers,
-          [users],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Future<List<_i6.UserEntity>> loadSeedUsers() => (super.noSuchMethod(
-        Invocation.method(
-          #loadSeedUsers,
-          [],
-        ),
-        returnValue: _i4.Future<List<_i6.UserEntity>>.value(<_i6.UserEntity>[]),
-        returnValueForMissingStub:
-            _i4.Future<List<_i6.UserEntity>>.value(<_i6.UserEntity>[]),
-      ) as _i4.Future<List<_i6.UserEntity>>);
-
-  @override
-  _i6.UserEntity? getUserByEmail(String? email) => (super.noSuchMethod(
-        Invocation.method(
-          #getUserByEmail,
-          [email],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i6.UserEntity?);
-
-  @override
-  int getMaxUserId() => (super.noSuchMethod(
-        Invocation.method(
-          #getMaxUserId,
-          [],
-        ),
-        returnValue: 0,
-        returnValueForMissingStub: 0,
-      ) as int);
-
-  @override
-  _i6.UserEntity? getUserById(String? id) => (super.noSuchMethod(
-        Invocation.method(
-          #getUserById,
-          [id],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i6.UserEntity?);
 }

@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realm/realm.dart';
 import 'package:test_flutter_project/data/mappers/user_scheme_extension.dart';
 import 'package:test_flutter_project/domain/data_sources/local/app_local_storage.dart';
@@ -9,7 +11,7 @@ import '../../../domain/entities/car_entity.dart';
 import '../../mappers/car_scheme_extension.dart';
 import '../../models/scheme.dart';
 
-class RealmLocalStorage implements AppLocalStorage {
+class RealmLocalStorage with Closable implements AppLocalStorage {
   RealmLocalStorage(this._realm);
 
   final Realm _realm;
@@ -114,4 +116,12 @@ class RealmLocalStorage implements AppLocalStorage {
       _realm.deleteAll<User>();
     });
   }
+
+  @override
+  FutureOr<void> close() {
+    _realm.close();
+  }
+
+  @override
+  bool get isClosed => _realm.isClosed;
 }

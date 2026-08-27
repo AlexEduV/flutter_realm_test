@@ -7,21 +7,19 @@ import 'package:test_flutter_project/common/extensions/list_extension.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
-import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_state.dart';
 
 import '../l10n/app_localisations_cubit.dart';
 
 class SearchPageCubit extends Cubit<SearchPageState> {
-  SearchPageCubit(this._getAllCarsUseCase, this._watchCarsUseCase, this._appLocalisationsCubit)
+  SearchPageCubit(this._carRepository, this._appLocalisationsCubit)
     : super(const SearchPageState());
 
   StreamSubscription? _carSubscription;
 
-  final GetAllCarsUseCase _getAllCarsUseCase;
-  final WatchCarsUseCase _watchCarsUseCase;
+  final CarRepository _carRepository;
   final AppLocalisationsCubit _appLocalisationsCubit;
 
   void init() {
@@ -68,7 +66,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
   void loadData() {
     emit(state.copyWith(isLoading: true));
 
-    final allCars = _getAllCarsUseCase.call();
+    final allCars = _carRepository.getAllCars();
     final currentType = state.currentSelectedType;
 
     updateModelListFromEntities(allCars, currentType);
@@ -83,7 +81,7 @@ class SearchPageCubit extends Cubit<SearchPageState> {
     emit(state.copyWith(allResults: allCars, isLoading: false));
 
     _carSubscription?.cancel();
-    _carSubscription = _watchCarsUseCase.call().listen((entities) {
+    _carSubscription = _carRepository.watchCars().listen((entities) {
       emit(state.copyWith(allResults: entities));
     });
   }

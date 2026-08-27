@@ -5,12 +5,12 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
 import 'package:test_flutter_project/domain/entities/gif_entity.dart';
-import 'package:test_flutter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/file_picker_repository.dart';
+import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/messages/messages_page_state.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
@@ -18,38 +18,38 @@ import 'package:test_flutter_project/utils/date_formatter.dart';
 import 'messages_page_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
+  MockSpec<FilePickerRepository>(),
+  MockSpec<OwnerRepository>(),
   MockSpec<SearchGifsUseCase>(),
   MockSpec<GetTrendingGifsUseCase>(),
-  MockSpec<PickAttachmentFileUseCase>(),
   MockSpec<GetConversationByIdUseCase>(),
-  MockSpec<GetOwnerByIdUseCase>(),
   MockSpec<ExtractUsersFromConversationUseCase>(),
   MockSpec<DateFormatter>(),
 ])
 void main() {
+  late MockFilePickerRepository mockFilePickerRepository;
+  late MockOwnerRepository mockOwnerRepository;
   late MockSearchGifsUseCase mockSearchGifsUseCase;
   late MockGetTrendingGifsUseCase mockGetTrendingGifsUseCase;
-  late MockPickAttachmentFileUseCase mockPickAttachmentFileUseCase;
   late MockGetConversationByIdUseCase mockGetConversationByIdUseCase;
-  late MockGetOwnerByIdUseCase mockGetOwnerByIdUseCase;
   late MockExtractUsersFromConversationUseCase mockExtractUsersFromConversationUseCase;
   late MockDateFormatter mockDateFormatter;
   late MessagesPageCubit cubit;
 
   setUp(() {
+    mockFilePickerRepository = MockFilePickerRepository();
+    mockOwnerRepository = MockOwnerRepository();
     mockSearchGifsUseCase = MockSearchGifsUseCase();
     mockGetTrendingGifsUseCase = MockGetTrendingGifsUseCase();
-    mockPickAttachmentFileUseCase = MockPickAttachmentFileUseCase();
     mockGetConversationByIdUseCase = MockGetConversationByIdUseCase();
-    mockGetOwnerByIdUseCase = MockGetOwnerByIdUseCase();
     mockExtractUsersFromConversationUseCase = MockExtractUsersFromConversationUseCase();
     mockDateFormatter = MockDateFormatter();
     cubit = MessagesPageCubit(
+      mockFilePickerRepository,
+      mockOwnerRepository,
       mockSearchGifsUseCase,
       mockGetTrendingGifsUseCase,
-      mockPickAttachmentFileUseCase,
       mockGetConversationByIdUseCase,
-      mockGetOwnerByIdUseCase,
       mockExtractUsersFromConversationUseCase,
       mockDateFormatter,
     );
@@ -188,20 +188,20 @@ void main() {
 
   test('getAttachmentFile returns result from use case', () async {
     final attachment = AttachmentEntity(name: 'a1', path: 'file_url', size: 12);
-    when(mockPickAttachmentFileUseCase.call()).thenAnswer((_) async => attachment);
+    when(mockFilePickerRepository.pickFile()).thenAnswer((_) async => attachment);
 
     final result = await cubit.getAttachmentFile();
 
     expect(result, attachment);
-    verify(mockPickAttachmentFileUseCase.call()).called(1);
+    verify(mockFilePickerRepository.pickFile()).called(1);
   });
 
   test('getAttachmentFile returns null if use case returns null', () async {
-    when(mockPickAttachmentFileUseCase.call()).thenAnswer((_) async => null);
+    when(mockFilePickerRepository.pickFile()).thenAnswer((_) async => null);
 
     final result = await cubit.getAttachmentFile();
 
     expect(result, isNull);
-    verify(mockPickAttachmentFileUseCase.call()).called(1);
+    verify(mockFilePickerRepository.pickFile()).called(1);
   });
 }

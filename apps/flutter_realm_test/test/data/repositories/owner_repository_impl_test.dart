@@ -1,18 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/data/repositories/owner_repository_impl.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/owners_remote_data_source.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
-import 'owner_repository_impl_test.mocks.dart';
+import '../../common/fakes/common_mocks.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<OwnersRemoteDataSource>(),
-  MockSpec<UsersRemoteDataSource>(),
-])
 void main() {
   late MockOwnersRemoteDataSource mockRemoteDataSource;
   late MockUsersRemoteDataSource mockUsersRemoteDataSource;
@@ -50,9 +43,7 @@ void main() {
     );
     when(mockUsersRemoteDataSource.users).thenReturn([existingUser]);
 
-    final owners = [
-      OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: []),
-    ];
+    final owners = [OwnerEntity(id: 'o1', firstName: 'John', lastName: 'Doe', linkedItemIds: [])];
     when(mockRemoteDataSource.fetchOwners()).thenAnswer((_) async => owners);
 
     await repository.fetchOwners();

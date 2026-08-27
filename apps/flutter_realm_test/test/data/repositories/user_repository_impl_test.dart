@@ -1,14 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/data/repositories/user_repository_impl.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 
-import '../../domain/repositories/app_local_storage_test.mocks.dart';
-import 'user_repository_impl_test.mocks.dart';
+import '../../common/fakes/common_mocks.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<UsersRemoteDataSource>()])
 void main() {
   late MockUsersRemoteDataSource mockRemoteDataSource;
   late MockAppLocalStorage mockAppLocalStorage;

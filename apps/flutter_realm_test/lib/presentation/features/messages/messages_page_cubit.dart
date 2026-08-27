@@ -2,12 +2,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart';
 import 'package:test_flutter_project/domain/entities/owner_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
-import 'package:test_flutter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/file_picker_repository.dart';
+import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 import 'package:test_flutter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart';
 import 'package:test_flutter_project/utils/date_formatter.dart';
 
 import '../../../domain/entities/conversation_entity.dart';
@@ -15,20 +15,20 @@ import 'messages_page_state.dart';
 
 class MessagesPageCubit extends Cubit<MessagesPageState> {
   MessagesPageCubit(
+    this._filePickerRepository,
+    this._ownerRepository,
     this._searchGifsUseCase,
     this._getTrendingGifsUseCase,
-    this._pickAttachmentFileUseCase,
     this._getConversationByIdUseCase,
-    this._getOwnerByIdUseCase,
     this._extractUsersFromConversationUseCase,
     this._dateFormatter,
   ) : super(const MessagesPageState());
 
+  final FilePickerRepository _filePickerRepository;
+  final OwnerRepository _ownerRepository;
   final SearchGifsUseCase _searchGifsUseCase;
   final GetTrendingGifsUseCase _getTrendingGifsUseCase;
-  final PickAttachmentFileUseCase _pickAttachmentFileUseCase;
   final GetConversationByIdUseCase _getConversationByIdUseCase;
-  final GetOwnerByIdUseCase _getOwnerByIdUseCase;
   final ExtractUsersFromConversationUseCase _extractUsersFromConversationUseCase;
   final DateFormatter _dateFormatter;
 
@@ -74,7 +74,7 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
   }
 
   Future<AttachmentEntity?> getAttachmentFile() async {
-    final result = await _pickAttachmentFileUseCase.call();
+    final result = await _filePickerRepository.pickFile();
     return result;
   }
 
@@ -84,7 +84,7 @@ class MessagesPageCubit extends Cubit<MessagesPageState> {
   }
 
   OwnerEntity getOwnerById(String ownerId) {
-    final owner = _getOwnerByIdUseCase.call(ownerId);
+    final owner = _ownerRepository.getOwnerById(ownerId);
     return owner;
   }
 

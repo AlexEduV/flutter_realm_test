@@ -7,16 +7,15 @@ import 'package:shared_preferences_platform_interface/shared_preferences_async_p
 import 'package:test_flutter_project/common/enums/auth_error_code.dart';
 import 'package:test_flutter_project/data/data_sources/remote/shared_preferences_storage.dart';
 import 'package:test_flutter_project/data/repositories/auth_repository_impl.dart';
-import 'package:test_flutter_project/domain/data_sources/remote/users_remote_data_source.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 
-import '../../domain/repositories/app_local_storage_test.mocks.dart';
+import '../../common/fakes/common_mocks.mocks.dart';
 import 'auth_repository_impl_test.mocks.dart';
 import 'inbox_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<OwnerRepository>(), MockSpec<UsersRemoteDataSource>()])
+@GenerateNiceMocks([MockSpec<OwnerRepository>()])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   late AuthRepositoryImpl repo;

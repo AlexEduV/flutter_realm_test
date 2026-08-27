@@ -2,25 +2,19 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
+import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 
 import 'explore_page_state.dart';
 
 class ExplorePageCubit extends Cubit<ExplorePageState> {
-  ExplorePageCubit(
-    this._watchCarsUseCase,
-    this._syncCarsUseCase,
-    this._fetchArticlesUseCase,
-    this._getCarByIdUseCase,
-  ) : super(const ExplorePageState());
+  ExplorePageCubit(this._carRepository, this._fetchArticlesUseCase, this._getCarByIdUseCase)
+    : super(const ExplorePageState());
 
   StreamSubscription? _carSubscription;
 
-  final SyncCarsUseCase _syncCarsUseCase;
-  final WatchCarsUseCase _watchCarsUseCase;
+  final CarRepository _carRepository;
   final FetchArticlesUseCase _fetchArticlesUseCase;
   final GetCarByIdUseCase _getCarByIdUseCase;
 
@@ -28,7 +22,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     emit(state.copyWith(isLoading: true, isArticleListLoading: true));
 
     try {
-      await _syncCarsUseCase.call();
+      await _carRepository.syncCars();
     } finally {
       if (!isClosed) emit(state.copyWith(isLoading: false));
     }
@@ -41,7 +35,7 @@ class ExplorePageCubit extends Cubit<ExplorePageState> {
     }
 
     await _carSubscription?.cancel();
-    _carSubscription = _watchCarsUseCase.call().listen((entities) {
+    _carSubscription = _carRepository.watchCars().listen((entities) {
       final visibleCars = entities
           .map((e) => e.copyWith(isShown: !state.hiddenCarIds.contains(e.carId)))
           .toList();

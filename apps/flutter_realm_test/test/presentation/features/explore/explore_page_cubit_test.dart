@@ -13,22 +13,15 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
 
+import '../../../common/fakes/common_mocks.mocks.dart';
 import 'explore_page_cubit_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<SyncCarsUseCase>(),
-  MockSpec<WatchCarsUseCase>(),
-  MockSpec<FetchArticlesUseCase>(),
-  MockSpec<GetCarByIdUseCase>(),
-])
+@GenerateNiceMocks([MockSpec<FetchArticlesUseCase>(), MockSpec<GetCarByIdUseCase>()])
 void main() {
-  late MockSyncCarsUseCase mockSyncCarsUseCase;
-  late MockWatchCarsUseCase mockWatchCarsUseCase;
+  late MockCarRepository mockCarRepository;
   late MockFetchArticlesUseCase mockFetchArticlesUseCase;
   late MockGetCarByIdUseCase mockGetCarByIdUseCase;
 
@@ -59,16 +52,10 @@ void main() {
   ];
 
   setUp(() {
-    mockWatchCarsUseCase = MockWatchCarsUseCase();
-    mockSyncCarsUseCase = MockSyncCarsUseCase();
+    mockCarRepository = MockCarRepository();
     mockFetchArticlesUseCase = MockFetchArticlesUseCase();
     mockGetCarByIdUseCase = MockGetCarByIdUseCase();
-    cubit = ExplorePageCubit(
-      mockWatchCarsUseCase,
-      mockSyncCarsUseCase,
-      mockFetchArticlesUseCase,
-      mockGetCarByIdUseCase,
-    );
+    cubit = ExplorePageCubit(mockCarRepository, mockFetchArticlesUseCase, mockGetCarByIdUseCase);
   });
 
   tearDown(() async {
@@ -78,8 +65,8 @@ void main() {
   blocTest<ExplorePageCubit, ExplorePageState>(
     'should init',
     setUp: () {
-      when(mockSyncCarsUseCase.call()).thenAnswer((_) async => {});
-      when(mockWatchCarsUseCase.call()).thenAnswer((_) => Stream.value(carList));
+      when(mockCarRepository.syncCars()).thenAnswer((_) async => {});
+      when(mockCarRepository.watchCars()).thenAnswer((_) => Stream.value(carList));
       when(mockFetchArticlesUseCase.call()).thenAnswer((_) async => []);
     },
     build: () {
@@ -107,8 +94,8 @@ void main() {
           .having((s) => s.cars.every((c) => c.isShown), 'all visible', true),
     ],
     verify: (_) {
-      verify(mockWatchCarsUseCase.call()).called(1);
-      verify(mockSyncCarsUseCase.call()).called(1);
+      verify(mockCarRepository.watchCars()).called(1);
+      verify(mockCarRepository.syncCars()).called(1);
     },
   );
 

@@ -1,6 +1,7 @@
 import 'package:test_flutter_project/common/enums/message_status.dart';
 
 class MessageModel {
+  //todo: add a messageId field and promote to entity
   MessageModel({
     required this.senderId,
     required this.messageStatus,

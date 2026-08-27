@@ -34,21 +34,21 @@ class EditPersonalInfoDialog extends StatefulWidget {
 }
 
 class _EditPersonalInfoDialogState extends State<EditPersonalInfoDialog> {
-  final textEditingController = TextEditingController();
-  final focusNode = FocusNode();
+  final _textEditingController = TextEditingController();
+  final _focusNode = FocusNode();
 
   @override
   void initState() {
-    textEditingController.text = widget.initialValue;
-    _validateEditField(context, textEditingController.text, widget.validationCallback);
+    _textEditingController.text = widget.initialValue;
+    _validateEditField(context, _textEditingController.text, widget.validationCallback);
 
     super.initState();
   }
 
   @override
   void dispose() {
-    focusNode.dispose();
-    textEditingController.dispose();
+    _focusNode.dispose();
+    _textEditingController.dispose();
 
     super.dispose();
   }
@@ -66,8 +66,8 @@ class _EditPersonalInfoDialogState extends State<EditPersonalInfoDialog> {
             textField: true,
             label: AppSemanticsLabels.dialogEditField,
             child: TextFormField(
-              controller: textEditingController,
-              focusNode: focusNode,
+              controller: _textEditingController,
+              focusNode: _focusNode,
               onChanged: (newValue) =>
                   _validateEditField(context, newValue, widget.validationCallback),
               decoration: InputDecoration(
@@ -105,7 +105,7 @@ class _EditPersonalInfoDialogState extends State<EditPersonalInfoDialog> {
                 onPressed: state.isConfirmButtonEnabled
                     ? () {
                         Navigator.of(context).pop();
-                        widget.onConfirm?.call(textEditingController.text);
+                        widget.onConfirm?.call(_textEditingController.text);
                       }
                     : null,
                 style: ButtonStyle(

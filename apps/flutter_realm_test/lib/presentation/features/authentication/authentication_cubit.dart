@@ -5,9 +5,8 @@ import 'package:test_flutter_project/domain/models/auth_result.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/models/login_model.dart';
 import 'package:test_flutter_project/domain/models/register_model.dart';
-import 'package:test_flutter_project/domain/usecases/authentication/delete_account_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/login_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/authentication/logout_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/authentication/register_use_case.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_state.dart';
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
@@ -20,18 +19,16 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit(
     this._appLocalisationsCubit,
     this._userDataCubit,
+    this._authRepository,
     this._loginUseCase,
-    this._logoutUseCase,
     this._registerUseCase,
-    this._deleteAccountUseCase,
   ) : super(const AuthenticationState());
 
   final AppLocalisationsCubit _appLocalisationsCubit;
   final UserDataCubit _userDataCubit;
+  final AuthRepository _authRepository;
   final LoginUseCase _loginUseCase;
   final RegisterUseCase _registerUseCase;
-  final LogoutUseCase _logoutUseCase;
-  final DeleteAccountUseCase _deleteAccountUseCase;
 
   void init() {
     emit(
@@ -327,12 +324,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   Future<void> logOut() async {
-    await _logoutUseCase.call();
+    await _authRepository.logOut();
     emit(state.copyWith(currentAuthMode: AuthMode.login));
   }
 
   Future<void> deleteAccount(String email) async {
-    await _deleteAccountUseCase.call(email);
+    await _authRepository.deleteAccount(email);
     emit(state.copyWith(currentAuthMode: AuthMode.login));
   }
 }

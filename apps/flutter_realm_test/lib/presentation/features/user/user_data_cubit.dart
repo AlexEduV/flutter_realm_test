@@ -1,18 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
+import 'package:test_flutter_project/domain/repositories/car_repository.dart';
+import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
 import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 
 import '../../../domain/repositories/auth_repository.dart';
-import '../../../domain/usecases/database/delete_car_by_id_use_case.dart';
 import '../l10n/app_localisations_cubit.dart';
 
 class UserDataCubit extends Cubit<UserDataState> {
@@ -20,13 +19,12 @@ class UserDataCubit extends Cubit<UserDataState> {
     this._timeService,
     this._userRepository,
     this._authRepository,
+    this._imagePickerRepository,
+    this._carRepository,
     this._checkLocationServiceStatusUseCase,
     this._openAppSettingsUseCase,
     this._requestLocationPermissionUseCase,
     this._checkLocationPermissionStatusUseCase,
-    this._getUserByEmailUseCase,
-    this._pickImageFromGalleryUseCase,
-    this._deleteCarByIdUseCase,
     this._appLocalisationsCubit,
   ) : super(UserDataState(user: UserEntity.empty()));
 
@@ -35,15 +33,14 @@ class UserDataCubit extends Cubit<UserDataState> {
   final UserRepository _userRepository;
   final AuthRepository _authRepository;
 
+  final ImagePickerRepository _imagePickerRepository;
+  final CarRepository _carRepository;
+
   final OpenAppSettingsUseCase _openAppSettingsUseCase;
   final CheckLocationServiceStatusUseCase _checkLocationServiceStatusUseCase;
-  final PickImageFromGalleryUseCase _pickImageFromGalleryUseCase;
 
   final RequestLocationPermissionUseCase _requestLocationPermissionUseCase;
   final CheckLocationPermissionStatusUseCase _checkLocationPermissionStatusUseCase;
-
-  final GetUserByEmailUseCase _getUserByEmailUseCase;
-  final DeleteCarByIdUseCase _deleteCarByIdUseCase;
 
   final AppLocalisationsCubit _appLocalisationsCubit;
 
@@ -139,7 +136,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> updateAvatarImage() async {
-    final path = await _pickImageFromGalleryUseCase.call();
+    final path = await _imagePickerRepository.pickImage();
     if (path == null) return;
 
     final user = state.user.copyWith(avatarImageSrc: path);
@@ -183,7 +180,7 @@ class UserDataCubit extends Cubit<UserDataState> {
 
     updateUser(user: user);
 
-    _deleteCarByIdUseCase.call(carId);
+    _carRepository.deleteCarById(carId);
   }
 
   void addCarToRecentlyViewed(String carId) {
@@ -228,7 +225,7 @@ class UserDataCubit extends Cubit<UserDataState> {
     if (state.user.createdIds.isEmpty) return;
 
     for (final id in state.user.createdIds) {
-      _deleteCarByIdUseCase.call(id);
+      _carRepository.deleteCarById(id);
     }
 
     final List<String> newList = [];
@@ -256,7 +253,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   }
 
   Future<void> authUser(String email) async {
-    final user = _getUserByEmailUseCase.call(email);
+    final user = _userRepository.getUserByEmail(email);
 
     if (user == null) return;
 

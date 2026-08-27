@@ -6,7 +6,8 @@
 import 'dart:ui' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart'
+import 'package:mockito/src/dummies.dart' as _i4;
+import 'package:test_flutter_project/domain/repositories/car_color_repository.dart'
     as _i2;
 
 // ignore_for_file: type=lint
@@ -23,18 +24,49 @@ import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_u
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [GetCarColorsUseCase].
+/// A class which mocks [CarColorRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCarColorsUseCase extends _i1.Mock
-    implements _i2.GetCarColorsUseCase {
+class MockCarColorRepository extends _i1.Mock
+    implements _i2.CarColorRepository {
   @override
-  Map<String, _i3.Color> call() => (super.noSuchMethod(
+  Map<String, _i3.Color> getColors() => (super.noSuchMethod(
         Invocation.method(
-          #call,
+          #getColors,
           [],
         ),
         returnValue: <String, _i3.Color>{},
         returnValueForMissingStub: <String, _i3.Color>{},
       ) as Map<String, _i3.Color>);
+
+  @override
+  _i3.Color? getColorByName(String? colorName) => (super.noSuchMethod(
+        Invocation.method(
+          #getColorByName,
+          [colorName],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i3.Color?);
+
+  @override
+  String getColorNameFromColor(_i3.Color? color) => (super.noSuchMethod(
+        Invocation.method(
+          #getColorNameFromColor,
+          [color],
+        ),
+        returnValue: _i4.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getColorNameFromColor,
+            [color],
+          ),
+        ),
+        returnValueForMissingStub: _i4.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getColorNameFromColor,
+            [color],
+          ),
+        ),
+      ) as String);
 }

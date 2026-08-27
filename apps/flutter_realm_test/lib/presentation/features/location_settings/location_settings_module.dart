@@ -22,11 +22,6 @@ import '../../../domain/services/permission_service.dart';
 import '../../../domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import '../../../domain/usecases/geolocator/open_app_settings_use_case.dart';
 import '../../../domain/usecases/permissions/request_location_permission_use_case.dart';
-import '../../../domain/usecases/regions/fetch_regions_use_case.dart';
-import '../../../domain/usecases/regions/get_all_region_models_use_case.dart';
-import '../../../domain/usecases/regions/get_all_regions_use_case.dart';
-import '../../../domain/usecases/regions/get_region_by_code_use_case.dart';
-import '../../../domain/usecases/regions/init_region_models_use_case.dart';
 import '../../../domain/usecases/url/open_url_link_use_case.dart';
 import 'location_settings_page_cubit.dart';
 
@@ -63,10 +58,6 @@ void registerLocationSettingsModule(GetIt serviceLocator) {
     () => UrlLaunchRepositoryImpl(serviceLocator()),
   );
 
-  serviceLocator.registerLazySingleton(() => FetchRegionsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetRegionByCodeUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => GetAllRegionsUseCase(serviceLocator()));
-
   serviceLocator.registerLazySingleton(() => OpenUrlLinkUseCase(serviceLocator()));
 
   serviceLocator.registerLazySingleton(
@@ -78,13 +69,10 @@ void registerLocationSettingsModule(GetIt serviceLocator) {
   );
   serviceLocator.registerLazySingleton(() => RequestLocationPermissionUseCase(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => GetAllRegionModelsUseCase(serviceLocator()));
-  serviceLocator.registerLazySingleton(() => InitRegionModelsUseCase(serviceLocator()));
-
   serviceLocator.registerFactory(
     () => LocationSettingsPageCubit(
-      serviceLocator<GetRegionByCodeUseCase>(),
-      serviceLocator<GetAllRegionModelsUseCase>(),
+      serviceLocator<RegionRepository>(),
+      serviceLocator<RegionModelRepository>(),
       serviceLocator<OpenUrlLinkUseCase>(),
     ),
   );

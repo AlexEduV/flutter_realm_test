@@ -7,8 +7,7 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 
-import '../../../data/data_sources/remote/article_remote_data_source_impl_test.mocks.dart';
-import '../../repositories/car_repository_test.mocks.dart';
+import '../../../common/fakes/common_mocks.mocks.dart';
 
 void main() {
   group('GetCarByIdUseCase', () {

@@ -4,9 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/models/region_ui_model.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/car_color_repository.dart';
 import 'package:test_flutter_project/presentation/features/account/account_page_identifiers.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_dialog.dart';
@@ -30,7 +28,6 @@ import 'package:test_flutter_project/utils/dialog_helper.dart';
 import '../common/fakes/image_fakes.dart';
 import '../presentation/features/details/widgets/vehicle_specs_widget_test.mocks.dart';
 import '../presentation/features/messages/messages_page_test.mocks.dart';
-import '../presentation/widgets/dialogs/color_picker_dialog/color_picker_dialog_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -252,25 +249,17 @@ void main() {
 
   group('showColorsPickerDialog', () {
     setUp(() {
-      final mockGetCarColorsUseCase = MockGetCarColorsUseCase();
-      final mockGetCarColorByNameUseCase = MockGetCarColorByNameUseCase();
-      final mockGetCarColorNameFromColorUseCase = MockGetCarColorNameFromColorUseCase();
+      final mockCarColorRepository = MockCarColorRepository();
 
-      when(mockGetCarColorsUseCase.call()).thenReturn({'red': Colors.red, 'blue': Colors.blue});
-      when(mockGetCarColorByNameUseCase.call(any)).thenReturn(Colors.red);
-      when(mockGetCarColorNameFromColorUseCase.call(any)).thenReturn('red');
+      when(mockCarColorRepository.getColors()).thenReturn({'red': Colors.red, 'blue': Colors.blue});
+      when(mockCarColorRepository.getColorByName(any)).thenReturn(Colors.red);
+      when(mockCarColorRepository.getColorNameFromColor(any)).thenReturn('red');
 
-      serviceLocator.registerSingleton<GetCarColorsUseCase>(mockGetCarColorsUseCase);
-      serviceLocator.registerSingleton<GetCarColorByNameUseCase>(mockGetCarColorByNameUseCase);
-      serviceLocator.registerSingleton<GetCarColorNameFromColorUseCase>(
-        mockGetCarColorNameFromColorUseCase,
-      );
+      serviceLocator.registerSingleton<CarColorRepository>(mockCarColorRepository);
     });
 
     tearDown(() {
-      serviceLocator.unregister<GetCarColorsUseCase>();
-      serviceLocator.unregister<GetCarColorByNameUseCase>();
-      serviceLocator.unregister<GetCarColorNameFromColorUseCase>();
+      serviceLocator.unregister<CarColorRepository>();
     });
 
     testWidgets('shows ColorPickerDialog', (tester) async {
@@ -279,11 +268,7 @@ void main() {
           providers: [
             BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
             BlocProvider<ColorPickerCubit>(
-              create: (_) => ColorPickerCubit(
-                serviceLocator<GetCarColorsUseCase>(),
-                serviceLocator<GetCarColorByNameUseCase>(),
-                serviceLocator<GetCarColorNameFromColorUseCase>(),
-              ),
+              create: (_) => ColorPickerCubit(serviceLocator<CarColorRepository>()),
             ),
           ],
           child: MaterialApp(

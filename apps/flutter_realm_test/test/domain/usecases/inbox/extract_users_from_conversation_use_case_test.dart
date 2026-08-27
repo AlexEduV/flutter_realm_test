@@ -5,19 +5,19 @@ import 'package:test_flutter_project/common/enums/message_status.dart';
 import 'package:test_flutter_project/domain/entities/conversation_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/models/message_model.dart';
+import 'package:test_flutter_project/domain/repositories/user_repository.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_id_use_case.dart';
 
-import 'extract_users_from_conversation_use_case_test.mocks.dart';
+import '../../../common/fakes/common_mocks.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<GetUserByIdUseCase>()])
+@GenerateNiceMocks([MockSpec<UserRepository>()])
 void main() {
-  late MockGetUserByIdUseCase mockGetUserByIdUseCase;
+  late MockUserRepository mockUserRepository;
   late ExtractUsersFromConversationUseCase useCase;
 
   setUp(() {
-    mockGetUserByIdUseCase = MockGetUserByIdUseCase();
-    useCase = ExtractUsersFromConversationUseCase(mockGetUserByIdUseCase);
+    mockUserRepository = MockUserRepository();
+    useCase = ExtractUsersFromConversationUseCase(mockUserRepository);
   });
 
   test('should extract unique senderIds and map to UserEntity', () {
@@ -58,17 +58,17 @@ void main() {
     ];
     final conversation = ConversationEntity(messages: messages, conversationId: '1', ownerId: '2');
 
-    when(mockGetUserByIdUseCase.call('1')).thenReturn(user1);
-    when(mockGetUserByIdUseCase.call('2')).thenReturn(user2);
+    when(mockUserRepository.getUserById('1')).thenReturn(user1);
+    when(mockUserRepository.getUserById('2')).thenReturn(user2);
 
     // Act
     final result = useCase.call(conversation);
 
     // Assert
     expect(result, {'1': user1, '2': user2});
-    verify(mockGetUserByIdUseCase.call('1')).called(1);
-    verify(mockGetUserByIdUseCase.call('2')).called(1);
-    verifyNoMoreInteractions(mockGetUserByIdUseCase);
+    verify(mockUserRepository.getUserById('1')).called(1);
+    verify(mockUserRepository.getUserById('2')).called(1);
+    verifyNoMoreInteractions(mockUserRepository);
   });
 
   test('should return null for userIds not found', () {
@@ -87,15 +87,15 @@ void main() {
       conversationId: '505',
     );
 
-    when(mockGetUserByIdUseCase.call('3')).thenReturn(null);
+    when(mockUserRepository.getUserById('3')).thenReturn(null);
 
     // Act
     final result = useCase.call(conversation);
 
     // Assert
     expect(result, {'3': null});
-    verify(mockGetUserByIdUseCase.call('3')).called(1);
-    verifyNoMoreInteractions(mockGetUserByIdUseCase);
+    verify(mockUserRepository.getUserById('3')).called(1);
+    verifyNoMoreInteractions(mockUserRepository);
   });
 }
 

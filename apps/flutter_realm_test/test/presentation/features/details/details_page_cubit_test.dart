@@ -16,17 +16,17 @@ import 'widgets/vehicle_specs_widget_test.mocks.dart';
 @GenerateNiceMocks([MockSpec<GetCarByIdUseCase>()])
 void main() {
   late MockGetCarByIdUseCase mockGetCarByIdUseCase;
-  late MockGetCarColorsUseCase mockGetCarColorsUseCase;
+  late MockCarColorRepository mockCarColorRepository;
   late MockGetConversationByOwnerIdUseCase mockGetConversationByOwnerIdUseCase;
   late DetailsPageCubit cubit;
 
   setUp(() {
     mockGetCarByIdUseCase = MockGetCarByIdUseCase();
-    mockGetCarColorsUseCase = MockGetCarColorsUseCase();
+    mockCarColorRepository = MockCarColorRepository();
     mockGetConversationByOwnerIdUseCase = MockGetConversationByOwnerIdUseCase();
     cubit = DetailsPageCubit(
+      mockCarColorRepository,
       mockGetCarByIdUseCase,
-      mockGetCarColorsUseCase,
       mockGetConversationByOwnerIdUseCase,
     );
   });
@@ -41,7 +41,7 @@ void main() {
       build: () {
         final car = CarEntity.empty().copyWith(carId: '123', model: 'Test Car');
         when(mockGetCarByIdUseCase.call('123')).thenReturn(car);
-        when(mockGetCarColorsUseCase.call()).thenReturn({});
+        when(mockCarColorRepository.getColors()).thenReturn({});
         return cubit;
       },
       act: (cubit) => cubit.loadData('123'),
@@ -71,7 +71,7 @@ void main() {
         const lightBlue = Color(0xFF03A9F4);
         final car = CarEntity.empty().copyWith(carId: '1', color: 'Light Blue');
         when(mockGetCarByIdUseCase.call('1')).thenReturn(car);
-        when(mockGetCarColorsUseCase.call()).thenReturn({'lightBlue': lightBlue});
+        when(mockCarColorRepository.getColors()).thenReturn({'lightBlue': lightBlue});
         return cubit;
       },
       act: (cubit) => cubit.loadData('1'),
