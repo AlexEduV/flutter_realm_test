@@ -24,6 +24,7 @@ Future<void> registerStorageModule(GetIt serviceLocator) async {
     try {
       serviceLocator.registerLazySingleton<AppLocalStorage>(
         () => RealmLocalStorage(serviceLocator()),
+        dispose: (storage) => (storage as RealmLocalStorage).close(),
       );
     } catch (e) {
       debugPrint('Could not register local storage');
