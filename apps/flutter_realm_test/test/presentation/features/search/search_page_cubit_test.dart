@@ -12,8 +12,7 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
-import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/search/search_page_identifiers.dart';
@@ -21,10 +20,9 @@ import 'package:test_flutter_project/presentation/features/search/search_page_st
 
 import '../../features/search/search_page_cubit_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<GetAllCarsUseCase>(), MockSpec<WatchCarsUseCase>()])
+@GenerateNiceMocks([MockSpec<CarRepository>()])
 void main() {
-  late MockGetAllCarsUseCase mockGetAllCarsUseCase;
-  late MockWatchCarsUseCase mockWatchCarsUseCase;
+  late MockCarRepository mockCarRepository;
   final appLocalisationsCubit = AppLocalisationsCubit()
     ..load({
       SearchPageLocaleKeys.fieldParamsHintMin: 'Min:',
@@ -80,9 +78,8 @@ void main() {
   final carList = [car1, car2, car3];
 
   setUp(() {
-    mockWatchCarsUseCase = MockWatchCarsUseCase();
-    mockGetAllCarsUseCase = MockGetAllCarsUseCase();
-    cubit = SearchPageCubit(mockGetAllCarsUseCase, mockWatchCarsUseCase, appLocalisationsCubit);
+    mockCarRepository = MockCarRepository();
+    cubit = SearchPageCubit(mockCarRepository, appLocalisationsCubit);
   });
 
   group('SearchPageCubit', () {
@@ -93,8 +90,8 @@ void main() {
     blocTest<SearchPageCubit, SearchPageState>(
       'init emits field params and calls loadData',
       build: () {
-        when(mockGetAllCarsUseCase.call()).thenReturn(carList);
-        when(mockWatchCarsUseCase.call()).thenAnswer((_) => const Stream.empty());
+        when(mockCarRepository.getAllCars()).thenReturn(carList);
+        when(mockCarRepository.watchCars()).thenAnswer((_) => const Stream.empty());
         return cubit;
       },
       act: (cubit) => cubit.init(),
@@ -135,8 +132,8 @@ void main() {
     blocTest<SearchPageCubit, SearchPageState>(
       'loadData emits loading, updates allModels, and results',
       build: () {
-        when(mockGetAllCarsUseCase.call()).thenReturn(carList);
-        when(mockWatchCarsUseCase.call()).thenAnswer((_) => const Stream.empty());
+        when(mockCarRepository.getAllCars()).thenReturn(carList);
+        when(mockCarRepository.watchCars()).thenAnswer((_) => const Stream.empty());
         return cubit;
       },
       act: (cubit) => cubit.loadData(),
@@ -505,8 +502,8 @@ void main() {
 
     test('close cancels car subscription', () {
       final controller = StreamController<List<CarEntity>>();
-      when(mockGetAllCarsUseCase.call()).thenReturn(carList);
-      when(mockWatchCarsUseCase.call()).thenAnswer((_) => controller.stream);
+      when(mockCarRepository.getAllCars()).thenReturn(carList);
+      when(mockCarRepository.watchCars()).thenAnswer((_) => controller.stream);
       cubit.loadData();
       expect(cubit.close(), completes);
     });

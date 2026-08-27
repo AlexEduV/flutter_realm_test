@@ -8,7 +8,7 @@ import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/car_color_repository.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/details/details_page_state.dart';
 import 'package:test_flutter_project/presentation/features/details/widgets/vehicle_specs/vehicle_specs_widget.dart';
@@ -19,17 +19,17 @@ import '../../explore/explore_page_cubit_test.mocks.dart';
 import 'owner_widget_test.mocks.dart';
 import 'vehicle_specs_widget_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<GetCarColorsUseCase>()])
+@GenerateNiceMocks([MockSpec<CarColorRepository>()])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
-  final mockGetCarColorsUseCase = MockGetCarColorsUseCase();
+  final mockCarColorRepository = MockCarColorRepository();
   final mockGetConversationByOwnerIdUseCase = MockGetConversationByOwnerIdUseCase();
 
   setUp(() {
     serviceLocator.registerLazySingleton<AppLocalisationsCubit>(() => appLocalisationsCubit);
-    serviceLocator.registerLazySingleton<GetCarColorsUseCase>(() => mockGetCarColorsUseCase);
+    serviceLocator.registerLazySingleton<CarColorRepository>(() => mockCarColorRepository);
 
-    when(mockGetCarColorsUseCase.call()).thenReturn({'red': Colors.red});
+    when(mockCarColorRepository.getColors()).thenReturn({'red': Colors.red});
 
     final localisations = {
       'pages.vehicleDetails.sectionTitle': 'Vehicle Details',
@@ -46,7 +46,7 @@ void main() {
 
   tearDown(() {
     serviceLocator.unregister<AppLocalisationsCubit>();
-    serviceLocator.unregister<GetCarColorsUseCase>();
+    serviceLocator.unregister<CarColorRepository>();
   });
 
   final testCar = CarEntity(
@@ -90,8 +90,8 @@ void main() {
     final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
     when(mockGetCarByIdUseCase.call(any)).thenReturn(testCar);
     final cubit = DetailsPageCubit(
+      mockCarColorRepository,
       mockGetCarByIdUseCase,
-      mockGetCarColorsUseCase,
       mockGetConversationByOwnerIdUseCase,
     );
     cubit.loadData(testCar.carId);
@@ -127,8 +127,8 @@ void main() {
     final mockGetCarByIdUseCase = MockGetCarByIdUseCase();
     when(mockGetCarByIdUseCase.call(any)).thenReturn(testCar);
     final cubit = DetailsPageCubit(
+      mockCarColorRepository,
       mockGetCarByIdUseCase,
-      mockGetCarColorsUseCase,
       mockGetConversationByOwnerIdUseCase,
     );
     cubit.loadData(testCar.carId);

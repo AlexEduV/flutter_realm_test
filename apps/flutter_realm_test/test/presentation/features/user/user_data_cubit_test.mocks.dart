@@ -7,27 +7,26 @@ import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i7;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i11;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i2;
 import 'package:test_flutter_project/domain/models/auth_result.dart' as _i6;
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart'
     as _i4;
+import 'package:test_flutter_project/domain/repositories/car_repository.dart'
+    as _i10;
+import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart'
+    as _i9;
 import 'package:test_flutter_project/domain/repositories/user_repository.dart'
     as _i8;
 import 'package:test_flutter_project/domain/services/time_service.dart' as _i3;
-import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart'
-    as _i15;
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart'
-    as _i10;
-import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
-    as _i9;
-import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart'
-    as _i14;
-import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
-    as _i12;
-import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
-    as _i11;
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart'
     as _i13;
+import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart'
+    as _i12;
+import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart'
+    as _i15;
+import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart'
+    as _i14;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -309,11 +308,108 @@ class MockUserRepository extends _i1.Mock implements _i8.UserRepository {
       );
 }
 
+/// A class which mocks [ImagePickerRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockImagePickerRepository extends _i1.Mock
+    implements _i9.ImagePickerRepository {
+  @override
+  _i5.Future<String?> pickImage() => (super.noSuchMethod(
+        Invocation.method(
+          #pickImage,
+          [],
+        ),
+        returnValue: _i5.Future<String?>.value(),
+        returnValueForMissingStub: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
+}
+
+/// A class which mocks [CarRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCarRepository extends _i1.Mock implements _i10.CarRepository {
+  @override
+  List<_i11.CarEntity> getAllCars() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllCars,
+          [],
+        ),
+        returnValue: <_i11.CarEntity>[],
+        returnValueForMissingStub: <_i11.CarEntity>[],
+      ) as List<_i11.CarEntity>);
+
+  @override
+  void addCar(_i11.CarEntity? car) => super.noSuchMethod(
+        Invocation.method(
+          #addCar,
+          [car],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> syncCars() => (super.noSuchMethod(
+        Invocation.method(
+          #syncCars,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Stream<List<_i11.CarEntity>> watchCars() => (super.noSuchMethod(
+        Invocation.method(
+          #watchCars,
+          [],
+        ),
+        returnValue: _i5.Stream<List<_i11.CarEntity>>.empty(),
+        returnValueForMissingStub: _i5.Stream<List<_i11.CarEntity>>.empty(),
+      ) as _i5.Stream<List<_i11.CarEntity>>);
+
+  @override
+  void deleteAll() => super.noSuchMethod(
+        Invocation.method(
+          #deleteAll,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void deleteCarById(String? id) => super.noSuchMethod(
+        Invocation.method(
+          #deleteCarById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i11.CarEntity? getCarById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getCarById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i11.CarEntity?);
+
+  @override
+  int getMaxCarId() => (super.noSuchMethod(
+        Invocation.method(
+          #getMaxCarId,
+          [],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+}
+
 /// A class which mocks [OpenAppSettingsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockOpenAppSettingsUseCase extends _i1.Mock
-    implements _i9.OpenAppSettingsUseCase {
+    implements _i12.OpenAppSettingsUseCase {
   @override
   _i5.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
@@ -329,7 +425,7 @@ class MockOpenAppSettingsUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationServiceStatusUseCase extends _i1.Mock
-    implements _i10.CheckLocationServiceStatusUseCase {
+    implements _i13.CheckLocationServiceStatusUseCase {
   @override
   _i5.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
@@ -345,7 +441,7 @@ class MockCheckLocationServiceStatusUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRequestLocationPermissionUseCase extends _i1.Mock
-    implements _i11.RequestLocationPermissionUseCase {
+    implements _i14.RequestLocationPermissionUseCase {
   @override
   _i5.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
@@ -361,7 +457,7 @@ class MockRequestLocationPermissionUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
-    implements _i12.CheckLocationPermissionStatusUseCase {
+    implements _i15.CheckLocationPermissionStatusUseCase {
   @override
   _i5.Future<bool> call() => (super.noSuchMethod(
         Invocation.method(
@@ -371,50 +467,4 @@ class MockCheckLocationPermissionStatusUseCase extends _i1.Mock
         returnValue: _i5.Future<bool>.value(false),
         returnValueForMissingStub: _i5.Future<bool>.value(false),
       ) as _i5.Future<bool>);
-}
-
-/// A class which mocks [GetUserByEmailUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetUserByEmailUseCase extends _i1.Mock
-    implements _i13.GetUserByEmailUseCase {
-  @override
-  _i2.UserEntity? call(String? params) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i2.UserEntity?);
-}
-
-/// A class which mocks [PickImageFromGalleryUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockPickImageFromGalleryUseCase extends _i1.Mock
-    implements _i14.PickImageFromGalleryUseCase {
-  @override
-  _i5.Future<String?> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: _i5.Future<String?>.value(),
-        returnValueForMissingStub: _i5.Future<String?>.value(),
-      ) as _i5.Future<String?>);
-}
-
-/// A class which mocks [DeleteCarByIdUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockDeleteCarByIdUseCase extends _i1.Mock
-    implements _i15.DeleteCarByIdUseCase {
-  @override
-  void call(String? params) => super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValueForMissingStub: null,
-      );
 }

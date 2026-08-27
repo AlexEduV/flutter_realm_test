@@ -7,15 +7,14 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
+import 'package:test_flutter_project/domain/repositories/car_repository.dart';
+import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
 import 'package:test_flutter_project/domain/services/time_service.dart';
-import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/image_picker/pick_image_from_gallery_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/users/get_user_by_email_use_case.dart';
 import 'package:test_flutter_project/presentation/features/l10n/app_localisations_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
@@ -26,26 +25,24 @@ import 'user_data_cubit_test.mocks.dart';
   MockSpec<TimeService>(),
   MockSpec<AuthRepository>(),
   MockSpec<UserRepository>(),
+  MockSpec<ImagePickerRepository>(),
+  MockSpec<CarRepository>(),
   MockSpec<OpenAppSettingsUseCase>(),
   MockSpec<CheckLocationServiceStatusUseCase>(),
   MockSpec<RequestLocationPermissionUseCase>(),
   MockSpec<CheckLocationPermissionStatusUseCase>(),
-  MockSpec<GetUserByEmailUseCase>(),
-  MockSpec<PickImageFromGalleryUseCase>(),
-  MockSpec<DeleteCarByIdUseCase>(),
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late MockTimeService mockTimeService;
   late MockUserRepository mockUserRepository;
+  late MockImagePickerRepository mockImagePickerRepository;
+  late MockCarRepository mockCarRepository;
   late MockRequestLocationPermissionUseCase mockRequestLocationPermissionUseCase;
   late MockCheckLocationPermissionStatusUseCase mockCheckLocationPermissionStatusUseCase;
   late MockCheckLocationServiceStatusUseCase mockCheckLocationServiceStatusUseCase;
-  late MockGetUserByEmailUseCase mockGetUserByEmailUseCase;
   late MockOpenAppSettingsUseCase mockOpenAppSettingsUseCase;
-  late MockPickImageFromGalleryUseCase mockPickImageFromGalleryUseCase;
-  late MockDeleteCarByIdUseCase mockDeleteCarByIdUseCase;
   late UserDataCubit cubit;
   late UserEntity testUser;
 
@@ -56,15 +53,14 @@ void main() {
   mockCheckLocationPermissionStatusUseCase = MockCheckLocationPermissionStatusUseCase();
   mockCheckLocationServiceStatusUseCase = MockCheckLocationServiceStatusUseCase();
   mockOpenAppSettingsUseCase = MockOpenAppSettingsUseCase();
-  mockGetUserByEmailUseCase = MockGetUserByEmailUseCase();
-  mockPickImageFromGalleryUseCase = MockPickImageFromGalleryUseCase();
-  mockDeleteCarByIdUseCase = MockDeleteCarByIdUseCase();
 
   setUp(() {
     SharedPreferences.setMockInitialValues({'userId': ''});
 
     mockTimeService = MockTimeService();
     mockUserRepository = MockUserRepository();
+    mockImagePickerRepository = MockImagePickerRepository();
+    mockCarRepository = MockCarRepository();
 
     when(mockAuthRepository.isUserLoggedIn()).thenAnswer((_) async => false);
     when(mockAuthRepository.updateUser(any)).thenAnswer((_) async {});
@@ -73,13 +69,12 @@ void main() {
       mockTimeService,
       mockUserRepository,
       mockAuthRepository,
+      mockImagePickerRepository,
+      mockCarRepository,
       mockCheckLocationServiceStatusUseCase,
       mockOpenAppSettingsUseCase,
       mockRequestLocationPermissionUseCase,
       mockCheckLocationPermissionStatusUseCase,
-      mockGetUserByEmailUseCase,
-      mockPickImageFromGalleryUseCase,
-      mockDeleteCarByIdUseCase,
       appLocalisationsCubit,
     );
     testUser = const UserEntity(
@@ -228,7 +223,7 @@ void main() {
         lastName: 'User',
       );
 
-      when(mockGetUserByEmailUseCase.call('auth@example.com')).thenReturn(user);
+      when(mockUserRepository.getUserByEmail('auth@example.com')).thenReturn(user);
       when(mockUserRepository.initUser()).thenReturn(user);
       when(mockAuthRepository.isUserLoggedIn()).thenAnswer((_) async => true);
 
@@ -241,7 +236,7 @@ void main() {
 
     test('does nothing if user not found', () {
       final prevState = cubit.state;
-      when(mockGetUserByEmailUseCase.call('notfound@example.com')).thenReturn(null);
+      when(mockUserRepository.getUserByEmail('notfound@example.com')).thenReturn(null);
 
       cubit.authUser('notfound@example.com');
       expect(cubit.state, prevState);
@@ -343,7 +338,7 @@ void main() {
   group('updateAvatarImage', () {
     test('does nothing when picker returns null', () async {
       cubit.emit(cubit.state.copyWith(user: testUser));
-      when(mockPickImageFromGalleryUseCase.call()).thenAnswer((_) async => null);
+      when(mockImagePickerRepository.pickImage()).thenAnswer((_) async => null);
       final stateBefore = cubit.state;
 
       await cubit.updateAvatarImage();
@@ -353,7 +348,7 @@ void main() {
 
     test('updates avatarImageSrc when picker returns a path', () async {
       cubit.emit(cubit.state.copyWith(user: testUser));
-      when(mockPickImageFromGalleryUseCase.call()).thenAnswer((_) async => '/path/to/image.png');
+      when(mockImagePickerRepository.pickImage()).thenAnswer((_) async => '/path/to/image.png');
       when(mockUserRepository.updateUser(any)).thenReturn(null);
 
       await cubit.updateAvatarImage();
@@ -392,7 +387,7 @@ void main() {
 
       expect(cubit.state.user.createdIds, isNot(contains('c1')));
       expect(cubit.state.user.createdIds, contains('c2'));
-      verify(mockDeleteCarByIdUseCase.call('c1')).called(1);
+      verify(mockCarRepository.deleteCarById('c1')).called(1);
     });
   });
 
@@ -485,7 +480,7 @@ void main() {
       cubit.clearMyItems();
 
       expect(cubit.state, stateBefore);
-      verifyNever(mockDeleteCarByIdUseCase.call(any));
+      verifyNever(mockCarRepository.deleteCarById(any));
     });
 
     test('deletes each car and clears createdIds', () {
@@ -495,8 +490,8 @@ void main() {
       cubit.clearMyItems();
 
       expect(cubit.state.user.createdIds, isEmpty);
-      verify(mockDeleteCarByIdUseCase.call('c1')).called(1);
-      verify(mockDeleteCarByIdUseCase.call('c2')).called(1);
+      verify(mockCarRepository.deleteCarById('c1')).called(1);
+      verify(mockCarRepository.deleteCarById('c2')).called(1);
     });
   });
 

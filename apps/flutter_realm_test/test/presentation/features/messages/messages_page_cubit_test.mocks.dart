@@ -5,28 +5,28 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i6;
 
-import 'package:dartz/dartz.dart' as _i2;
+import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i17;
-import 'package:test_flutter_project/common/enums/server_failure.dart' as _i7;
+import 'package:test_flutter_project/common/enums/server_failure.dart' as _i10;
 import 'package:test_flutter_project/domain/entities/attachment_entity.dart'
-    as _i11;
+    as _i7;
 import 'package:test_flutter_project/domain/entities/conversation_entity.dart'
-    as _i3;
-import 'package:test_flutter_project/domain/entities/gif_entity.dart' as _i8;
-import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i4;
+    as _i4;
+import 'package:test_flutter_project/domain/entities/gif_entity.dart' as _i11;
+import 'package:test_flutter_project/domain/entities/owner_entity.dart' as _i2;
 import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i15;
-import 'package:test_flutter_project/domain/usecases/file_picker/pick_attachment_file_use_case.dart'
-    as _i10;
-import 'package:test_flutter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart'
-    as _i9;
-import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.dart'
+import 'package:test_flutter_project/domain/repositories/file_picker_repository.dart'
     as _i5;
+import 'package:test_flutter_project/domain/repositories/owner_repository.dart'
+    as _i8;
+import 'package:test_flutter_project/domain/usecases/gifs/get_trending_gifs_use_case.dart'
+    as _i12;
+import 'package:test_flutter_project/domain/usecases/gifs/search_gifs_use_case.dart'
+    as _i9;
 import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart'
     as _i14;
 import 'package:test_flutter_project/domain/usecases/inbox/get_conversation_by_id_use_case.dart'
-    as _i12;
-import 'package:test_flutter_project/domain/usecases/owners/get_owner_by_id_use_case.dart'
     as _i13;
 import 'package:test_flutter_project/utils/date_formatter.dart' as _i16;
 
@@ -44,8 +44,8 @@ import 'package:test_flutter_project/utils/date_formatter.dart' as _i16;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
-  _FakeEither_0(
+class _FakeOwnerEntity_0 extends _i1.SmartFake implements _i2.OwnerEntity {
+  _FakeOwnerEntity_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -54,9 +54,8 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-class _FakeConversationEntity_1 extends _i1.SmartFake
-    implements _i3.ConversationEntity {
-  _FakeConversationEntity_1(
+class _FakeEither_1<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
+  _FakeEither_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -65,22 +64,78 @@ class _FakeConversationEntity_1 extends _i1.SmartFake
         );
 }
 
-class _FakeOwnerEntity_2 extends _i1.SmartFake implements _i4.OwnerEntity {
-  _FakeOwnerEntity_2(
+class _FakeConversationEntity_2 extends _i1.SmartFake
+    implements _i4.ConversationEntity {
+  _FakeConversationEntity_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
           parent,
           parentInvocation,
         );
+}
+
+/// A class which mocks [FilePickerRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFilePickerRepository extends _i1.Mock
+    implements _i5.FilePickerRepository {
+  @override
+  _i6.Future<_i7.AttachmentEntity?> pickFile() => (super.noSuchMethod(
+        Invocation.method(
+          #pickFile,
+          [],
+        ),
+        returnValue: _i6.Future<_i7.AttachmentEntity?>.value(),
+        returnValueForMissingStub: _i6.Future<_i7.AttachmentEntity?>.value(),
+      ) as _i6.Future<_i7.AttachmentEntity?>);
+}
+
+/// A class which mocks [OwnerRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockOwnerRepository extends _i1.Mock implements _i8.OwnerRepository {
+  @override
+  _i6.Future<List<_i2.OwnerEntity>> fetchOwners() => (super.noSuchMethod(
+        Invocation.method(
+          #fetchOwners,
+          [],
+        ),
+        returnValue:
+            _i6.Future<List<_i2.OwnerEntity>>.value(<_i2.OwnerEntity>[]),
+        returnValueForMissingStub:
+            _i6.Future<List<_i2.OwnerEntity>>.value(<_i2.OwnerEntity>[]),
+      ) as _i6.Future<List<_i2.OwnerEntity>>);
+
+  @override
+  _i2.OwnerEntity getOwnerById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getOwnerById,
+          [id],
+        ),
+        returnValue: _FakeOwnerEntity_0(
+          this,
+          Invocation.method(
+            #getOwnerById,
+            [id],
+          ),
+        ),
+        returnValueForMissingStub: _FakeOwnerEntity_0(
+          this,
+          Invocation.method(
+            #getOwnerById,
+            [id],
+          ),
+        ),
+      ) as _i2.OwnerEntity);
 }
 
 /// A class which mocks [SearchGifsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSearchGifsUseCase extends _i1.Mock implements _i5.SearchGifsUseCase {
+class MockSearchGifsUseCase extends _i1.Mock implements _i9.SearchGifsUseCase {
   @override
-  _i6.Future<_i2.Either<_i7.ServerFailure, List<_i8.GifEntity>>> call(
+  _i6.Future<_i3.Either<_i10.ServerFailure, List<_i11.GifEntity>>> call(
           String? params) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -88,8 +143,8 @@ class MockSearchGifsUseCase extends _i1.Mock implements _i5.SearchGifsUseCase {
           [params],
         ),
         returnValue: _i6
-            .Future<_i2.Either<_i7.ServerFailure, List<_i8.GifEntity>>>.value(
-            _FakeEither_0<_i7.ServerFailure, List<_i8.GifEntity>>(
+            .Future<_i3.Either<_i10.ServerFailure, List<_i11.GifEntity>>>.value(
+            _FakeEither_1<_i10.ServerFailure, List<_i11.GifEntity>>(
           this,
           Invocation.method(
             #call,
@@ -97,32 +152,32 @@ class MockSearchGifsUseCase extends _i1.Mock implements _i5.SearchGifsUseCase {
           ),
         )),
         returnValueForMissingStub: _i6
-            .Future<_i2.Either<_i7.ServerFailure, List<_i8.GifEntity>>>.value(
-            _FakeEither_0<_i7.ServerFailure, List<_i8.GifEntity>>(
+            .Future<_i3.Either<_i10.ServerFailure, List<_i11.GifEntity>>>.value(
+            _FakeEither_1<_i10.ServerFailure, List<_i11.GifEntity>>(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         )),
-      ) as _i6.Future<_i2.Either<_i7.ServerFailure, List<_i8.GifEntity>>>);
+      ) as _i6.Future<_i3.Either<_i10.ServerFailure, List<_i11.GifEntity>>>);
 }
 
 /// A class which mocks [GetTrendingGifsUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetTrendingGifsUseCase extends _i1.Mock
-    implements _i9.GetTrendingGifsUseCase {
+    implements _i12.GetTrendingGifsUseCase {
   @override
-  _i6.Future<_i2.Either<_i7.ServerFailure, List<_i8.GifEntity>>> call() =>
+  _i6.Future<_i3.Either<_i10.ServerFailure, List<_i11.GifEntity>>> call() =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
         returnValue: _i6
-            .Future<_i2.Either<_i7.ServerFailure, List<_i8.GifEntity>>>.value(
-            _FakeEither_0<_i7.ServerFailure, List<_i8.GifEntity>>(
+            .Future<_i3.Either<_i10.ServerFailure, List<_i11.GifEntity>>>.value(
+            _FakeEither_1<_i10.ServerFailure, List<_i11.GifEntity>>(
           this,
           Invocation.method(
             #call,
@@ -130,87 +185,43 @@ class MockGetTrendingGifsUseCase extends _i1.Mock
           ),
         )),
         returnValueForMissingStub: _i6
-            .Future<_i2.Either<_i7.ServerFailure, List<_i8.GifEntity>>>.value(
-            _FakeEither_0<_i7.ServerFailure, List<_i8.GifEntity>>(
+            .Future<_i3.Either<_i10.ServerFailure, List<_i11.GifEntity>>>.value(
+            _FakeEither_1<_i10.ServerFailure, List<_i11.GifEntity>>(
           this,
           Invocation.method(
             #call,
             [],
           ),
         )),
-      ) as _i6.Future<_i2.Either<_i7.ServerFailure, List<_i8.GifEntity>>>);
-}
-
-/// A class which mocks [PickAttachmentFileUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockPickAttachmentFileUseCase extends _i1.Mock
-    implements _i10.PickAttachmentFileUseCase {
-  @override
-  _i6.Future<_i11.AttachmentEntity?> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: _i6.Future<_i11.AttachmentEntity?>.value(),
-        returnValueForMissingStub: _i6.Future<_i11.AttachmentEntity?>.value(),
-      ) as _i6.Future<_i11.AttachmentEntity?>);
+      ) as _i6.Future<_i3.Either<_i10.ServerFailure, List<_i11.GifEntity>>>);
 }
 
 /// A class which mocks [GetConversationByIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetConversationByIdUseCase extends _i1.Mock
-    implements _i12.GetConversationByIdUseCase {
+    implements _i13.GetConversationByIdUseCase {
   @override
-  _i3.ConversationEntity call(String? params) => (super.noSuchMethod(
+  _i4.ConversationEntity call(String? params) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],
         ),
-        returnValue: _FakeConversationEntity_1(
+        returnValue: _FakeConversationEntity_2(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         ),
-        returnValueForMissingStub: _FakeConversationEntity_1(
+        returnValueForMissingStub: _FakeConversationEntity_2(
           this,
           Invocation.method(
             #call,
             [params],
           ),
         ),
-      ) as _i3.ConversationEntity);
-}
-
-/// A class which mocks [GetOwnerByIdUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetOwnerByIdUseCase extends _i1.Mock
-    implements _i13.GetOwnerByIdUseCase {
-  @override
-  _i4.OwnerEntity call(String? params) => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValue: _FakeOwnerEntity_2(
-          this,
-          Invocation.method(
-            #call,
-            [params],
-          ),
-        ),
-        returnValueForMissingStub: _FakeOwnerEntity_2(
-          this,
-          Invocation.method(
-            #call,
-            [params],
-          ),
-        ),
-      ) as _i4.OwnerEntity);
+      ) as _i4.ConversationEntity);
 }
 
 /// A class which mocks [ExtractUsersFromConversationUseCase].
@@ -219,7 +230,7 @@ class MockGetOwnerByIdUseCase extends _i1.Mock
 class MockExtractUsersFromConversationUseCase extends _i1.Mock
     implements _i14.ExtractUsersFromConversationUseCase {
   @override
-  Map<String, _i15.UserEntity?> call(_i3.ConversationEntity? conversation) =>
+  Map<String, _i15.UserEntity?> call(_i4.ConversationEntity? conversation) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_dialog.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_identifiers.dart';
@@ -15,12 +10,7 @@ import 'package:test_flutter_project/presentation/features/l10n/app_localisation
 import 'package:test_flutter_project/presentation/features/l10n/l10n_keys.dart';
 
 import '../../../features/details/widgets/vehicle_specs_widget_test.mocks.dart';
-import 'color_picker_dialog_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<GetCarColorByNameUseCase>(),
-  MockSpec<GetCarColorNameFromColorUseCase>(),
-])
 void main() {
   final appLocalisationsCubit = AppLocalisationsCubit();
   appLocalisationsCubit.load({
@@ -29,31 +19,16 @@ void main() {
     L10nKeys.confirmLabel: 'Confirm',
   });
 
+  late MockCarColorRepository mockCarColorRepository;
+
   setUp(() {
-    // Register a mock for the service locator
-    final mockGetCarColorsUseCase = MockGetCarColorsUseCase();
-    final mockGetCarColorByNameUseCase = MockGetCarColorByNameUseCase();
-    final mockGetCarColorNameFromColorUseCase = MockGetCarColorNameFromColorUseCase();
+    mockCarColorRepository = MockCarColorRepository();
 
-    when(
-      mockGetCarColorsUseCase.call(),
-    ).thenReturn({'red': Colors.red, 'blue': Colors.blue, 'green': Colors.green});
-
-    when(mockGetCarColorByNameUseCase.call('blue')).thenReturn(Colors.blue);
-    when(mockGetCarColorByNameUseCase.call('green')).thenReturn(Colors.green);
-    when(mockGetCarColorNameFromColorUseCase.call(any)).thenReturn('Red');
-
-    serviceLocator.registerSingleton<GetCarColorsUseCase>(mockGetCarColorsUseCase);
-    serviceLocator.registerSingleton<GetCarColorNameFromColorUseCase>(
-      mockGetCarColorNameFromColorUseCase,
-    );
-    serviceLocator.registerSingleton<GetCarColorByNameUseCase>(mockGetCarColorByNameUseCase);
-  });
-
-  tearDown(() {
-    serviceLocator.unregister<GetCarColorsUseCase>();
-    serviceLocator.unregister<GetCarColorByNameUseCase>();
-    serviceLocator.unregister<GetCarColorNameFromColorUseCase>();
+    when(mockCarColorRepository.getColors())
+        .thenReturn({'red': Colors.red, 'blue': Colors.blue, 'green': Colors.green});
+    when(mockCarColorRepository.getColorByName('blue')).thenReturn(Colors.blue);
+    when(mockCarColorRepository.getColorByName('green')).thenReturn(Colors.green);
+    when(mockCarColorRepository.getColorNameFromColor(any)).thenReturn('Red');
   });
 
   testWidgets('ColorPickerDialog renders colors and handles selection', (
@@ -66,11 +41,7 @@ void main() {
         providers: [
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           BlocProvider<ColorPickerCubit>(
-            create: (_) => ColorPickerCubit(
-              serviceLocator<GetCarColorsUseCase>(),
-              serviceLocator<GetCarColorByNameUseCase>(),
-              serviceLocator<GetCarColorNameFromColorUseCase>(),
-            ),
+            create: (_) => ColorPickerCubit(mockCarColorRepository),
           ),
         ],
         child: MaterialApp(
@@ -127,11 +98,7 @@ void main() {
         providers: [
           BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit),
           BlocProvider<ColorPickerCubit>(
-            create: (_) => ColorPickerCubit(
-              serviceLocator<GetCarColorsUseCase>(),
-              serviceLocator<GetCarColorByNameUseCase>(),
-              serviceLocator<GetCarColorNameFromColorUseCase>(),
-            ),
+            create: (_) => ColorPickerCubit(mockCarColorRepository),
           ),
         ],
         child: MaterialApp(

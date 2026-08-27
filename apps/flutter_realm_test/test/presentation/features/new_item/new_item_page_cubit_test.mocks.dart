@@ -3,25 +3,23 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
-import 'package:flutter_bloc/flutter_bloc.dart' as _i13;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i12;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:test_flutter_project/common/enums/car_type.dart' as _i6;
+import 'package:test_flutter_project/common/enums/car_type.dart' as _i8;
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart'
-    as _i5;
-import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i8;
-import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i12;
-import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart'
-    as _i3;
-import 'package:test_flutter_project/domain/usecases/database/add_car_use_case.dart'
     as _i7;
-import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart'
-    as _i9;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i4;
+import 'package:test_flutter_project/domain/entities/user_entity.dart' as _i11;
+import 'package:test_flutter_project/domain/repositories/car_repository.dart'
+    as _i3;
+import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart'
+    as _i6;
 import 'package:test_flutter_project/domain/usecases/database/get_current_max_car_id_use_case.dart'
-    as _i10;
+    as _i9;
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart'
-    as _i11;
+    as _i10;
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart'
     as _i2;
 
@@ -49,60 +47,112 @@ class _FakeUserDataState_0 extends _i1.SmartFake implements _i2.UserDataState {
         );
 }
 
+/// A class which mocks [CarRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCarRepository extends _i1.Mock implements _i3.CarRepository {
+  @override
+  List<_i4.CarEntity> getAllCars() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllCars,
+          [],
+        ),
+        returnValue: <_i4.CarEntity>[],
+        returnValueForMissingStub: <_i4.CarEntity>[],
+      ) as List<_i4.CarEntity>);
+
+  @override
+  void addCar(_i4.CarEntity? car) => super.noSuchMethod(
+        Invocation.method(
+          #addCar,
+          [car],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i5.Future<void> syncCars() => (super.noSuchMethod(
+        Invocation.method(
+          #syncCars,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Stream<List<_i4.CarEntity>> watchCars() => (super.noSuchMethod(
+        Invocation.method(
+          #watchCars,
+          [],
+        ),
+        returnValue: _i5.Stream<List<_i4.CarEntity>>.empty(),
+        returnValueForMissingStub: _i5.Stream<List<_i4.CarEntity>>.empty(),
+      ) as _i5.Stream<List<_i4.CarEntity>>);
+
+  @override
+  void deleteAll() => super.noSuchMethod(
+        Invocation.method(
+          #deleteAll,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void deleteCarById(String? id) => super.noSuchMethod(
+        Invocation.method(
+          #deleteCarById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i4.CarEntity? getCarById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getCarById,
+          [id],
+        ),
+        returnValueForMissingStub: null,
+      ) as _i4.CarEntity?);
+
+  @override
+  int getMaxCarId() => (super.noSuchMethod(
+        Invocation.method(
+          #getMaxCarId,
+          [],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+}
+
 /// A class which mocks [GetAutoCompleteManufacturersByTypeUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAutoCompleteManufacturersByTypeUseCase extends _i1.Mock
-    implements _i3.GetAutoCompleteManufacturersByTypeUseCase {
+    implements _i6.GetAutoCompleteManufacturersByTypeUseCase {
   @override
-  _i4.Future<List<_i5.CarAutoCompleteEntity>> call(_i6.CarType? params) =>
+  _i5.Future<List<_i7.CarAutoCompleteEntity>> call(_i8.CarType? params) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],
         ),
-        returnValue: _i4.Future<List<_i5.CarAutoCompleteEntity>>.value(
-            <_i5.CarAutoCompleteEntity>[]),
+        returnValue: _i5.Future<List<_i7.CarAutoCompleteEntity>>.value(
+            <_i7.CarAutoCompleteEntity>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i5.CarAutoCompleteEntity>>.value(
-                <_i5.CarAutoCompleteEntity>[]),
-      ) as _i4.Future<List<_i5.CarAutoCompleteEntity>>);
-}
-
-/// A class which mocks [AddCarUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockAddCarUseCase extends _i1.Mock implements _i7.AddCarUseCase {
-  @override
-  void call(_i8.CarEntity? params) => super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [params],
-        ),
-        returnValueForMissingStub: null,
-      );
-}
-
-/// A class which mocks [GetAllCarsUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockGetAllCarsUseCase extends _i1.Mock implements _i9.GetAllCarsUseCase {
-  @override
-  List<_i8.CarEntity> call() => (super.noSuchMethod(
-        Invocation.method(
-          #call,
-          [],
-        ),
-        returnValue: <_i8.CarEntity>[],
-        returnValueForMissingStub: <_i8.CarEntity>[],
-      ) as List<_i8.CarEntity>);
+            _i5.Future<List<_i7.CarAutoCompleteEntity>>.value(
+                <_i7.CarAutoCompleteEntity>[]),
+      ) as _i5.Future<List<_i7.CarAutoCompleteEntity>>);
 }
 
 /// A class which mocks [GetCurrentMaxCarIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetCurrentMaxCarIdUseCase extends _i1.Mock
-    implements _i10.GetCurrentMaxCarIdUseCase {
+    implements _i9.GetCurrentMaxCarIdUseCase {
   @override
   int call() => (super.noSuchMethod(
         Invocation.method(
@@ -117,7 +167,7 @@ class MockGetCurrentMaxCarIdUseCase extends _i1.Mock
 /// A class which mocks [UserDataCubit].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
+class MockUserDataCubit extends _i1.Mock implements _i10.UserDataCubit {
   @override
   _i2.UserDataState get state => (super.noSuchMethod(
         Invocation.getter(#state),
@@ -132,11 +182,11 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       ) as _i2.UserDataState);
 
   @override
-  _i4.Stream<_i2.UserDataState> get stream => (super.noSuchMethod(
+  _i5.Stream<_i2.UserDataState> get stream => (super.noSuchMethod(
         Invocation.getter(#stream),
-        returnValue: _i4.Stream<_i2.UserDataState>.empty(),
-        returnValueForMissingStub: _i4.Stream<_i2.UserDataState>.empty(),
-      ) as _i4.Stream<_i2.UserDataState>);
+        returnValue: _i5.Stream<_i2.UserDataState>.empty(),
+        returnValueForMissingStub: _i5.Stream<_i2.UserDataState>.empty(),
+      ) as _i5.Stream<_i2.UserDataState>);
 
   @override
   bool get isClosed => (super.noSuchMethod(
@@ -146,24 +196,24 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       ) as bool);
 
   @override
-  _i4.Future<void> init() => (super.noSuchMethod(
+  _i5.Future<void> init() => (super.noSuchMethod(
         Invocation.method(
           #init,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
-  _i4.Future<bool> isLocationPermissionGranted() => (super.noSuchMethod(
+  _i5.Future<bool> isLocationPermissionGranted() => (super.noSuchMethod(
         Invocation.method(
           #isLocationPermissionGranted,
           [],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 
   @override
   void setFirstName(String? firstName) => super.noSuchMethod(
@@ -221,24 +271,24 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       );
 
   @override
-  _i4.Future<void> requestLocationPermission() => (super.noSuchMethod(
+  _i5.Future<void> requestLocationPermission() => (super.noSuchMethod(
         Invocation.method(
           #requestLocationPermission,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
-  _i4.Future<bool> openLocationSettings() => (super.noSuchMethod(
+  _i5.Future<bool> openLocationSettings() => (super.noSuchMethod(
         Invocation.method(
           #openLocationSettings,
           [],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 
   @override
   void updateLocationPermissionStatus(bool? newStatus) => super.noSuchMethod(
@@ -250,14 +300,14 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       );
 
   @override
-  _i4.Future<void> updateAvatarImage() => (super.noSuchMethod(
+  _i5.Future<void> updateAvatarImage() => (super.noSuchMethod(
         Invocation.method(
           #updateAvatarImage,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
   void addCarIdToFavorites(String? carId) => super.noSuchMethod(
@@ -350,14 +400,14 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       );
 
   @override
-  _i4.Future<void> authUser(String? email) => (super.noSuchMethod(
+  _i5.Future<void> authUser(String? email) => (super.noSuchMethod(
         Invocation.method(
           #authUser,
           [email],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
   void logOutUser() => super.noSuchMethod(
@@ -370,7 +420,7 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
 
   @override
   void updateUser({
-    required _i12.UserEntity? user,
+    required _i11.UserEntity? user,
     bool? updateCloud = true,
   }) =>
       super.noSuchMethod(
@@ -395,7 +445,7 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       );
 
   @override
-  void onChange(_i13.Change<_i2.UserDataState>? change) => super.noSuchMethod(
+  void onChange(_i12.Change<_i2.UserDataState>? change) => super.noSuchMethod(
         Invocation.method(
           #onChange,
           [change],
@@ -436,12 +486,12 @@ class MockUserDataCubit extends _i1.Mock implements _i11.UserDataCubit {
       );
 
   @override
-  _i4.Future<void> close() => (super.noSuchMethod(
+  _i5.Future<void> close() => (super.noSuchMethod(
         Invocation.method(
           #close,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }

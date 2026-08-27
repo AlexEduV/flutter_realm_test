@@ -538,6 +538,13 @@ class MockCarDto extends _i1.Mock implements _i4.CarDto {
 /// See the documentation for Mockito's code generation for more information.
 class MockRealmLocalStorage extends _i1.Mock implements _i12.RealmLocalStorage {
   @override
+  bool get isClosed => (super.noSuchMethod(
+        Invocation.getter(#isClosed),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
   void addCar(_i3.CarEntity? car) => super.noSuchMethod(
         Invocation.method(
           #addCar,
