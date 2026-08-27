@@ -28,29 +28,32 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/edit_dialog_cu
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 import 'package:test_flutter_project/utils/image_cache_util.dart';
 
+//todo: added flavors, but had to revert, because they broke the Android project.
+// The working version did not create a separate app, but used one. And launched only from
+// the android folder, not from `flutter run`. Updating gradle files did not help
+
 void main() async {
+  Future<void> initApp(WidgetsBinding binding) async {
+    if (!kIsWeb) {
+      FlutterNativeSplash.preserve(widgetsBinding: binding);
+    }
+
+    try {
+      await initDependenciesContainer();
+
+      await Future.wait([
+        serviceLocator<RegionModelRepository>().init(),
+        serviceLocator<RegionRepository>().loadRegions(),
+      ]);
+
+      ImageCacheUtil.initExtendedCacheSize();
+    } finally {
+      FlutterNativeSplash.remove();
+    }
+  }
+
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-
-  if (!kIsWeb) {
-    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  }
-
-  try {
-    await initDependenciesContainer();
-
-    //todo: added flavors, but had to revert, because they broke the Android project.
-    // The working version did not create a separate app, but used one. And launched only from
-    // the android folder, not from `flutter run`. Updating gradle files did not help
-
-    await Future.wait([
-      serviceLocator<RegionModelRepository>().init(),
-      serviceLocator<RegionRepository>().loadRegions(),
-    ]);
-
-    ImageCacheUtil.initExtendedCacheSize();
-  } finally {
-    FlutterNativeSplash.remove();
-  }
+  await initApp(widgetsBinding);
 
   runApp(const MyApp());
 }
