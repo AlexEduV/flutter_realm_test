@@ -10,14 +10,8 @@ import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
 import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/domain/repositories/permission_repository.dart';
-import 'package:test_flutter_project/domain/usecases/database/add_car_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/delete_all_cars_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/delete_car_by_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/get_all_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/sync_cars_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/database/watch_cars_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/request_location_permission_use_case.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
@@ -66,12 +60,6 @@ void main() {
 
     expect(serviceLocator.isRegistered<RequestLocationPermissionUseCase>(), isTrue);
     expect(serviceLocator.isRegistered<CheckLocationPermissionStatusUseCase>(), isTrue);
-    expect(serviceLocator.isRegistered<WatchCarsUseCase>(), isTrue);
-    expect(serviceLocator.isRegistered<SyncCarsUseCase>(), isTrue);
-    expect(serviceLocator.isRegistered<AddCarUseCase>(), isTrue);
-    expect(serviceLocator.isRegistered<GetAllCarsUseCase>(), isTrue);
-    expect(serviceLocator.isRegistered<DeleteCarByIdUseCase>(), isTrue);
-    expect(serviceLocator.isRegistered<DeleteAllCarsUseCase>(), isTrue);
     expect(serviceLocator.isRegistered<GetCarByIdUseCase>(), isTrue);
     expect(serviceLocator.isRegistered<GetCurrentMaxCarIdUseCase>(), isTrue);
     expect(serviceLocator.isRegistered<AuthenticationCubit>(), isTrue);
@@ -98,12 +86,6 @@ void main() {
       serviceLocator<CheckLocationPermissionStatusUseCase>(),
       isA<CheckLocationPermissionStatusUseCase>(),
     );
-    expect(serviceLocator<WatchCarsUseCase>(), isA<WatchCarsUseCase>());
-    expect(serviceLocator<SyncCarsUseCase>(), isA<SyncCarsUseCase>());
-    expect(serviceLocator<AddCarUseCase>(), isA<AddCarUseCase>());
-    expect(serviceLocator<GetAllCarsUseCase>(), isA<GetAllCarsUseCase>());
-    expect(serviceLocator<DeleteCarByIdUseCase>(), isA<DeleteCarByIdUseCase>());
-    expect(serviceLocator<DeleteAllCarsUseCase>(), isA<DeleteAllCarsUseCase>());
     expect(serviceLocator<GetCarByIdUseCase>(), isA<GetCarByIdUseCase>());
     expect(serviceLocator<GetCurrentMaxCarIdUseCase>(), isA<GetCurrentMaxCarIdUseCase>());
     expect(serviceLocator<AuthenticationCubit>(), isA<AuthenticationCubit>());

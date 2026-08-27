@@ -7,8 +7,8 @@ import 'package:test_flutter_project/common/constants/app_constants.dart';
 import 'package:test_flutter_project/common/extensions/context_extension.dart';
 import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/core/router/app_router.dart';
-import 'package:test_flutter_project/domain/usecases/regions/fetch_regions_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/regions/init_region_models_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/region_model_repository.dart';
+import 'package:test_flutter_project/domain/repositories/region_repository.dart';
 import 'package:test_flutter_project/presentation/features/article/article_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/authentication/authentication_cubit.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_cubit.dart';
@@ -43,8 +43,8 @@ void main() async {
     // the android folder, not from `flutter run`. Updating gradle files did not help
 
     await Future.wait([
-      serviceLocator<InitRegionModelsUseCase>().call(),
-      serviceLocator<FetchRegionsUseCase>().call(),
+      serviceLocator<RegionModelRepository>().init(),
+      serviceLocator<RegionRepository>().loadRegions(),
     ]);
 
     ImageCacheUtil.initExtendedCacheSize();

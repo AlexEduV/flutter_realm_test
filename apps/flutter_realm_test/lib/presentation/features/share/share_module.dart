@@ -5,7 +5,6 @@ import '../../../data/repositories/share_repository_impl.dart';
 import '../../../data/services/share_service_impl.dart';
 import '../../../domain/repositories/share_repository.dart';
 import '../../../domain/services/share_service.dart';
-import '../../../domain/usecases/share/share_use_case.dart';
 
 void registerShareModule(GetIt serviceLocator) {
   serviceLocator.registerLazySingleton<ShareService>(() => ShareServiceImpl());
@@ -13,8 +12,6 @@ void registerShareModule(GetIt serviceLocator) {
   serviceLocator.registerLazySingleton<ShareRepository>(
     () => ShareRepositoryImpl(serviceLocator()),
   );
-
-  serviceLocator.registerLazySingleton(() => ShareUseCase(serviceLocator()));
 
   serviceLocator.registerFactory(() => ShareCubit(serviceLocator()));
 }

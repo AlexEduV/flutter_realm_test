@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
+import 'package:test_flutter_project/domain/repositories/owner_repository.dart';
 
 import '../../../common/constants/api_constants.dart';
 import '../../../data/data_sources/remote/gifs_remote_data_source_impl.dart';
@@ -14,12 +15,10 @@ import '../../../domain/repositories/file_picker_repository.dart';
 import '../../../domain/repositories/gifs_repository.dart';
 import '../../../domain/services/file_picker_service.dart';
 import '../../../domain/usecases/env/get_env_data_by_key_use_case.dart';
-import '../../../domain/usecases/file_picker/pick_attachment_file_use_case.dart';
 import '../../../domain/usecases/gifs/get_trending_gifs_use_case.dart';
 import '../../../domain/usecases/gifs/search_gifs_use_case.dart';
 import '../../../domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
 import '../../../domain/usecases/inbox/get_conversation_by_id_use_case.dart';
-import '../../../domain/usecases/owners/get_owner_by_id_use_case.dart';
 import '../../../utils/date_formatter.dart';
 import 'messages_page_cubit.dart';
 
@@ -47,8 +46,6 @@ void registerMessagesModule(GetIt serviceLocator) {
 
   serviceLocator.registerLazySingleton<GifsRepository>(() => GifsRepositoryImpl(serviceLocator()));
 
-  serviceLocator.registerLazySingleton(() => PickAttachmentFileUseCase(serviceLocator()));
-
   serviceLocator.registerLazySingleton(() => SearchGifsUseCase(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetTrendingGifsUseCase(serviceLocator()));
 
@@ -56,11 +53,11 @@ void registerMessagesModule(GetIt serviceLocator) {
 
   serviceLocator.registerFactory(
     () => MessagesPageCubit(
+      serviceLocator<FilePickerRepository>(),
+      serviceLocator<OwnerRepository>(),
       serviceLocator<SearchGifsUseCase>(),
       serviceLocator<GetTrendingGifsUseCase>(),
-      serviceLocator<PickAttachmentFileUseCase>(),
       serviceLocator<GetConversationByIdUseCase>(),
-      serviceLocator<GetOwnerByIdUseCase>(),
       serviceLocator<ExtractUsersFromConversationUseCase>(),
       serviceLocator<DateFormatter>(),
     ),

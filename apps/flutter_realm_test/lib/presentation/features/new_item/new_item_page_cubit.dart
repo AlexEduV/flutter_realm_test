@@ -5,14 +5,13 @@ import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
+import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_identifiers.dart';
 
 import '../../../domain/entities/car_entity.dart';
 import '../../../domain/entities/engine_entity.dart';
 import '../../../domain/entities/owner_entity.dart';
-import '../../../domain/usecases/database/add_car_use_case.dart';
-import '../../../domain/usecases/database/get_all_cars_use_case.dart';
 import '../../../domain/usecases/database/get_current_max_car_id_use_case.dart';
 import '../l10n/app_localisations_cubit.dart';
 import '../l10n/l10n_keys.dart';
@@ -21,20 +20,18 @@ import 'new_item_page_state.dart';
 
 class NewItemPageCubit extends Cubit<NewItemPageState> {
   NewItemPageCubit(
-    this._autoCompleteManufacturersByTypeUseCase,
     this._appLocalisationsCubit,
-    this._addCarUseCase,
-    this._getAllCarsUseCase,
-    this._getCurrentMaxCarIdUseCase,
     this._userDataCubit,
+    this._carRepository,
+    this._autoCompleteManufacturersByTypeUseCase,
+    this._getCurrentMaxCarIdUseCase,
   ) : super(const NewItemPageState());
 
-  final GetAutoCompleteManufacturersByTypeUseCase _autoCompleteManufacturersByTypeUseCase;
   final AppLocalisationsCubit _appLocalisationsCubit;
-  final AddCarUseCase _addCarUseCase;
-  final GetAllCarsUseCase _getAllCarsUseCase;
-  final GetCurrentMaxCarIdUseCase _getCurrentMaxCarIdUseCase;
   final UserDataCubit _userDataCubit;
+  final CarRepository _carRepository;
+  final GetAutoCompleteManufacturersByTypeUseCase _autoCompleteManufacturersByTypeUseCase;
+  final GetCurrentMaxCarIdUseCase _getCurrentMaxCarIdUseCase;
 
   void init() {
     emit(
@@ -372,11 +369,11 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
       year: state.yearText,
     );
 
-    _addCarUseCase.call(car);
+    _carRepository.addCar(car);
 
     _userDataCubit.addCarIdToCreated(newCarId);
 
-    return _getAllCarsUseCase.call();
+    return _carRepository.getAllCars();
   }
 
   void clearFields() {

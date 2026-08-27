@@ -1,25 +1,16 @@
 import 'dart:ui';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_color_name_from_color_use_case.dart';
-import 'package:test_flutter_project/domain/usecases/car_colors/get_car_colors_use_case.dart';
+import 'package:test_flutter_project/domain/repositories/car_color_repository.dart';
 import 'package:test_flutter_project/presentation/features/color_picker/color_picker_state.dart';
 
-import '../../../domain/usecases/car_colors/get_car_color_by_name_use_case.dart';
-
 class ColorPickerCubit extends Cubit<ColorPickerState> {
-  ColorPickerCubit(
-    this._getCarColorsUseCase,
-    this._getCarColorByNameUseCase,
-    this._getCarColorNameFromColorUseCase,
-  ) : super(const ColorPickerState());
+  ColorPickerCubit(this._carColorRepository) : super(const ColorPickerState());
 
-  final GetCarColorsUseCase _getCarColorsUseCase;
-  final GetCarColorByNameUseCase _getCarColorByNameUseCase;
-  final GetCarColorNameFromColorUseCase _getCarColorNameFromColorUseCase;
+  final CarColorRepository _carColorRepository;
 
   void loadColors() {
-    final colors = _getCarColorsUseCase.call();
+    final colors = _carColorRepository.getColors();
     emit(state.copyWith(colors: colors));
   }
 
@@ -28,12 +19,12 @@ class ColorPickerCubit extends Cubit<ColorPickerState> {
   }
 
   Color? getColorByName(String name) {
-    final color = _getCarColorByNameUseCase.call(name);
+    final color = _carColorRepository.getColorByName(name);
     return color;
   }
 
   String getColorNameFromColor(Color? color) {
-    final colorName = _getCarColorNameFromColorUseCase.call(color);
+    final colorName = _carColorRepository.getColorNameFromColor(color);
     return colorName;
   }
 }
