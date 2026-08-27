@@ -11,19 +11,15 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
-import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_state.dart';
 
+import '../../../common/fakes/common_mocks.mocks.dart';
 import 'explore_page_cubit_test.mocks.dart';
 
-@GenerateNiceMocks([
-  MockSpec<CarRepository>(),
-  MockSpec<FetchArticlesUseCase>(),
-  MockSpec<GetCarByIdUseCase>(),
-])
+@GenerateNiceMocks([MockSpec<FetchArticlesUseCase>(), MockSpec<GetCarByIdUseCase>()])
 void main() {
   late MockCarRepository mockCarRepository;
   late MockFetchArticlesUseCase mockFetchArticlesUseCase;
@@ -59,11 +55,7 @@ void main() {
     mockCarRepository = MockCarRepository();
     mockFetchArticlesUseCase = MockFetchArticlesUseCase();
     mockGetCarByIdUseCase = MockGetCarByIdUseCase();
-    cubit = ExplorePageCubit(
-      mockCarRepository,
-      mockFetchArticlesUseCase,
-      mockGetCarByIdUseCase,
-    );
+    cubit = ExplorePageCubit(mockCarRepository, mockFetchArticlesUseCase, mockGetCarByIdUseCase);
   });
 
   tearDown(() async {

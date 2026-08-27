@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test_flutter_project/common/enums/body_type.dart';
 import 'package:test_flutter_project/common/enums/fuel_type.dart';
@@ -7,11 +6,9 @@ import 'package:test_flutter_project/common/enums/promo_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/domain/entities/car_entity.dart';
 import 'package:test_flutter_project/domain/entities/engine_entity.dart';
-import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 
-import 'car_repository_test.mocks.dart';
+import '../../common/fakes/common_mocks.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<CarRepository>()])
 void main() {
   late MockCarRepository mockRepo;
 

@@ -3,18 +3,16 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:test_flutter_project/domain/entities/article_entity.dart'
-    as _i6;
-import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i3;
-import 'package:test_flutter_project/domain/repositories/car_repository.dart'
-    as _i2;
+    as _i4;
+import 'package:test_flutter_project/domain/entities/car_entity.dart' as _i6;
 import 'package:test_flutter_project/domain/usecases/articles/fetch_articles_use_case.dart'
-    as _i5;
+    as _i2;
 import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_case.dart'
-    as _i7;
+    as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -30,115 +28,34 @@ import 'package:test_flutter_project/domain/usecases/database/get_car_by_id_use_
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [CarRepository].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockCarRepository extends _i1.Mock implements _i2.CarRepository {
-  @override
-  List<_i3.CarEntity> getAllCars() => (super.noSuchMethod(
-        Invocation.method(
-          #getAllCars,
-          [],
-        ),
-        returnValue: <_i3.CarEntity>[],
-        returnValueForMissingStub: <_i3.CarEntity>[],
-      ) as List<_i3.CarEntity>);
-
-  @override
-  void addCar(_i3.CarEntity? car) => super.noSuchMethod(
-        Invocation.method(
-          #addCar,
-          [car],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i4.Future<void> syncCars() => (super.noSuchMethod(
-        Invocation.method(
-          #syncCars,
-          [],
-        ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
-
-  @override
-  _i4.Stream<List<_i3.CarEntity>> watchCars() => (super.noSuchMethod(
-        Invocation.method(
-          #watchCars,
-          [],
-        ),
-        returnValue: _i4.Stream<List<_i3.CarEntity>>.empty(),
-        returnValueForMissingStub: _i4.Stream<List<_i3.CarEntity>>.empty(),
-      ) as _i4.Stream<List<_i3.CarEntity>>);
-
-  @override
-  void deleteAll() => super.noSuchMethod(
-        Invocation.method(
-          #deleteAll,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void deleteCarById(String? id) => super.noSuchMethod(
-        Invocation.method(
-          #deleteCarById,
-          [id],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  _i3.CarEntity? getCarById(String? id) => (super.noSuchMethod(
-        Invocation.method(
-          #getCarById,
-          [id],
-        ),
-        returnValueForMissingStub: null,
-      ) as _i3.CarEntity?);
-
-  @override
-  int getMaxCarId() => (super.noSuchMethod(
-        Invocation.method(
-          #getMaxCarId,
-          [],
-        ),
-        returnValue: 0,
-        returnValueForMissingStub: 0,
-      ) as int);
-}
-
 /// A class which mocks [FetchArticlesUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFetchArticlesUseCase extends _i1.Mock
-    implements _i5.FetchArticlesUseCase {
+    implements _i2.FetchArticlesUseCase {
   @override
-  _i4.Future<List<_i6.ArticleEntity>> call() => (super.noSuchMethod(
+  _i3.Future<List<_i4.ArticleEntity>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
         returnValue:
-            _i4.Future<List<_i6.ArticleEntity>>.value(<_i6.ArticleEntity>[]),
+            _i3.Future<List<_i4.ArticleEntity>>.value(<_i4.ArticleEntity>[]),
         returnValueForMissingStub:
-            _i4.Future<List<_i6.ArticleEntity>>.value(<_i6.ArticleEntity>[]),
-      ) as _i4.Future<List<_i6.ArticleEntity>>);
+            _i3.Future<List<_i4.ArticleEntity>>.value(<_i4.ArticleEntity>[]),
+      ) as _i3.Future<List<_i4.ArticleEntity>>);
 }
 
 /// A class which mocks [GetCarByIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetCarByIdUseCase extends _i1.Mock implements _i7.GetCarByIdUseCase {
+class MockGetCarByIdUseCase extends _i1.Mock implements _i5.GetCarByIdUseCase {
   @override
-  _i3.CarEntity? call(String? params) => (super.noSuchMethod(
+  _i6.CarEntity? call(String? params) => (super.noSuchMethod(
         Invocation.method(
           #call,
           [params],
         ),
         returnValueForMissingStub: null,
-      ) as _i3.CarEntity?);
+      ) as _i6.CarEntity?);
 }

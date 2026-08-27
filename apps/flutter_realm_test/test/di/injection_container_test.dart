@@ -21,8 +21,8 @@ import 'package:test_flutter_project/presentation/features/home_bottom_bar/home_
 import 'package:test_flutter_project/presentation/features/search/search_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 
+import '../common/fakes/common_mocks.mocks.dart';
 import '../common/fakes/fake_realm.dart';
-import '../domain/repositories/app_local_storage_test.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

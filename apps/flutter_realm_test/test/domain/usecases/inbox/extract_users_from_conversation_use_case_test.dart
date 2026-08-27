@@ -8,7 +8,7 @@ import 'package:test_flutter_project/domain/models/message_model.dart';
 import 'package:test_flutter_project/domain/repositories/user_repository.dart';
 import 'package:test_flutter_project/domain/usecases/inbox/extract_users_from_conversation_use_case.dart';
 
-import '../../../presentation/features/user/user_data_cubit_test.mocks.dart';
+import '../../../common/fakes/common_mocks.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<UserRepository>()])
 void main() {

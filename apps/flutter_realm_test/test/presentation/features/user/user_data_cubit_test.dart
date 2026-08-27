@@ -7,10 +7,7 @@ import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/last_seen_car_entity.dart';
 import 'package:test_flutter_project/domain/entities/user_entity.dart';
 import 'package:test_flutter_project/domain/repositories/auth_repository.dart';
-import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/domain/repositories/image_picker_repository.dart';
-import 'package:test_flutter_project/domain/repositories/user_repository.dart';
-import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/check_location_service_status_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/geolocator/open_app_settings_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/permissions/check_location_permission_status_use_case.dart';
@@ -19,14 +16,11 @@ import 'package:test_flutter_project/presentation/features/l10n/app_localisation
 import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 import 'package:test_flutter_project/presentation/features/user/user_data_state.dart';
 
+import '../../../common/fakes/common_mocks.mocks.dart';
 import 'user_data_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
-  MockSpec<TimeService>(),
-  MockSpec<AuthRepository>(),
-  MockSpec<UserRepository>(),
   MockSpec<ImagePickerRepository>(),
-  MockSpec<CarRepository>(),
   MockSpec<OpenAppSettingsUseCase>(),
   MockSpec<CheckLocationServiceStatusUseCase>(),
   MockSpec<RequestLocationPermissionUseCase>(),

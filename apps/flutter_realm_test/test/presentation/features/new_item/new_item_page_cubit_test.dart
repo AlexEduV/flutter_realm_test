@@ -8,21 +8,17 @@ import 'package:test_flutter_project/common/enums/fuel_type.dart';
 import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/domain/entities/car_auto_complete_entity.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
-import 'package:test_flutter_project/domain/repositories/car_repository.dart';
 import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
 import 'package:test_flutter_project/domain/usecases/database/get_current_max_car_id_use_case.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_state.dart';
-import 'package:test_flutter_project/presentation/features/user/user_data_cubit.dart';
 
-import '../../../common/extensions/context_extension_test.mocks.dart';
+import '../../../common/fakes/common_mocks.mocks.dart';
 import 'new_item_page_cubit_test.mocks.dart';
 
 @GenerateNiceMocks([
-  MockSpec<CarRepository>(),
   MockSpec<GetAutoCompleteManufacturersByTypeUseCase>(),
   MockSpec<GetCurrentMaxCarIdUseCase>(),
-  MockSpec<UserDataCubit>(),
 ])
 void main() {
   late MockCarRepository mockCarRepository;
