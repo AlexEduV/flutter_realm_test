@@ -15,11 +15,11 @@ void registerNetworkModule(GetIt serviceLocator) {
     instanceName: 'network',
   );
 
-  final client = http.Client();
   final appInterceptor = AppInterceptorImpl(
     loggingService: serviceLocator<LoggingService>(instanceName: 'network'),
   );
   serviceLocator.registerLazySingleton<AppHttpClient>(
-    () => AppHttpClientImpl(client, appInterceptor),
+    () => AppHttpClientImpl(http.Client(), appInterceptor),
+    dispose: (client) => (client as AppHttpClientImpl).close(),
   );
 }

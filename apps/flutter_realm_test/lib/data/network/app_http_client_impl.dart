@@ -26,6 +26,8 @@ class AppHttpClientImpl implements AppHttpClient {
     );
   }
 
+  void close() => _client.close();
+
   @override
   Future<Either<ServerFailure, String>> post(
     Uri url, {
