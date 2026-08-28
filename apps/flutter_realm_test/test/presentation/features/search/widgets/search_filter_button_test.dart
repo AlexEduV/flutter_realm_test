@@ -1,5 +1,4 @@
 import 'package:core_ui/core_ui.dart';
-import 'package:core_ui/src/app_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_flutter_project/presentation/features/search/widgets/search_filter_button.dart';
@@ -97,7 +96,9 @@ void main() {
       );
 
       final container = tester.widget<Container>(
-        find.descendant(of: find.byType(SearchFilterButton), matching: find.byType(Container)).first,
+        find
+            .descendant(of: find.byType(SearchFilterButton), matching: find.byType(Container))
+            .first,
       );
 
       expect(container.constraints?.maxHeight, 50.0);

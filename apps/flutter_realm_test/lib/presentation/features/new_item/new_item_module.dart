@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:test_flutter_project/domain/repositories/car_repository.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 
 import '../../../data/data_sources/remote/seed_auto_complete_remote_data_source_impl.dart';
 import '../../../data/repositories/auto_complete_repository_impl.dart';
@@ -28,6 +29,7 @@ void registerNewItemModule(GetIt serviceLocator) {
     () => NewItemPageCubit(
       serviceLocator<AppLocalisationsCubit>(),
       serviceLocator<UserDataCubit>(),
+      serviceLocator<TimeService>(),
       serviceLocator<CarRepository>(),
       serviceLocator<GetAutoCompleteManufacturersByTypeUseCase>(),
       serviceLocator<GetCurrentMaxCarIdUseCase>(),

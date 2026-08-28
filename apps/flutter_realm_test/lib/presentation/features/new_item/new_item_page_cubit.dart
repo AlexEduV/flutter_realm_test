@@ -6,6 +6,7 @@ import 'package:test_flutter_project/common/enums/transmission_type.dart';
 import 'package:test_flutter_project/common/extensions/string_extension.dart';
 import 'package:test_flutter_project/domain/models/field_params_model.dart';
 import 'package:test_flutter_project/domain/repositories/car_repository.dart';
+import 'package:test_flutter_project/domain/services/time_service.dart';
 import 'package:test_flutter_project/domain/usecases/auto_complete/get_auto_complete_manufacturers_by_type_use_case.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page_identifiers.dart';
 
@@ -22,6 +23,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
   NewItemPageCubit(
     this._appLocalisationsCubit,
     this._userDataCubit,
+    this._timeService,
     this._carRepository,
     this._autoCompleteManufacturersByTypeUseCase,
     this._getCurrentMaxCarIdUseCase,
@@ -29,6 +31,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
 
   final AppLocalisationsCubit _appLocalisationsCubit;
   final UserDataCubit _userDataCubit;
+  final TimeService _timeService;
   final CarRepository _carRepository;
   final GetAutoCompleteManufacturersByTypeUseCase _autoCompleteManufacturersByTypeUseCase;
   final GetCurrentMaxCarIdUseCase _getCurrentMaxCarIdUseCase;
@@ -184,7 +187,7 @@ class NewItemPageCubit extends Cubit<NewItemPageState> {
     }
 
     final yearInt = int.parse(year);
-    if (yearInt < 1980 || yearInt > DateTime.now().year) {
+    if (yearInt < 1980 || yearInt > _timeService.now().year) {
       emit(state.copyWith(yearErrorText: state.yearFieldParams?.regexErrorMessage));
       return false;
     }
