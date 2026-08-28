@@ -29,32 +29,31 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.home,
         pageBuilder: (context, state) {
-          final params = state.extra as HomePageParams;
-          final isFromSetup = params.isFromSetup;
+          final extra = state.extra;
+          final isFromSetup = extra is HomePageParams ? extra.isFromSetup : false;
 
-          if (!isFromSetup) {
+          if (isFromSetup) {
+            return CustomTransitionPage(
+              child: const HomePage(),
+              //reversed animation when going from the setup page
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0);
+                const end = Offset.zero;
+                var tween = Tween(begin: begin, end: end);
+                var offsetAnimation = animation.drive(tween);
+                return SlideTransition(position: offsetAnimation, child: child);
+              },
+            );
+          } else {
             return const CupertinoPage(child: HomePage());
           }
-
-          return CustomTransitionPage(
-            child: const HomePage(),
-            //reversed animation when going from the setup page
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              const begin = Offset(1.0, 0.0);
-              const end = Offset.zero;
-              final tween = Tween(begin: begin, end: end);
-              final offsetAnimation = animation.drive(tween);
-              return SlideTransition(position: offsetAnimation, child: child);
-            },
-          );
         },
         routes: <RouteBase>[
           GoRoute(
             path: AppRoutes.search,
             pageBuilder: (context, state) {
-              final params = state.extra as SearchPageParams;
-              final origin = params.origin;
-
+              final extra = state.extra;
+              final origin = extra is SearchPageParams ? extra.origin : null;
               return circularRevealPage(child: const SearchPage(), origin: origin);
             },
             routes: <RouteBase>[_buildDetailsRoute()],
@@ -108,8 +107,8 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.articleDetails,
             pageBuilder: (context, state) {
-              final params = state.extra as ArticlePageParams;
-              final articleId = params.articleId;
+              final extra = state.extra;
+              final articleId = extra is ArticlePageParams ? extra.articleId : '';
 
               return CupertinoPage(child: ArticlePage(articleId: articleId));
             },
@@ -124,8 +123,8 @@ class AppRouter {
   static final _inboxRoute = GoRoute(
     path: AppRoutes.inbox,
     pageBuilder: (context, state) {
-      final params = state.extra as InboxPageParams;
-      final conversationId = params.conversationId;
+      final extra = state.extra;
+      final conversationId = extra is InboxPageParams ? extra.conversationId : '';
 
       return CupertinoPage(child: MessagesPage(conversationId: conversationId));
     },
@@ -134,9 +133,8 @@ class AppRouter {
   static GoRoute _buildDetailsRoute() => GoRoute(
     path: AppRoutes.details,
     pageBuilder: (context, state) {
-      final params = state.extra as DetailsPageParams;
-      final carId = params.carId;
-
+      final extra = state.extra;
+      final carId = extra is DetailsPageParams ? extra.carId : '';
       return CupertinoPage(child: DetailsPage(carId: carId));
     },
     routes: [_inboxRoute],
