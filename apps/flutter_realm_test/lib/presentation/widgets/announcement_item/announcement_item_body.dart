@@ -32,12 +32,12 @@ class AnnouncementItemBody extends StatelessWidget {
 
     return Material(
       color: AppColors.white,
+      clipBehavior: Clip.antiAlias,
       borderRadius: BorderRadius.circular(AppDimensions.normalL),
       child: AppSemantics(
         button: true,
         label: AppSemanticsLabels.announcementListItem,
         child: InkWell(
-          borderRadius: BorderRadius.circular(AppDimensions.normalL),
           onTap: () => AppRouter.goToDetails(
             from: isExploreItem ? DetailsPageSource.explore : DetailsPageSource.search,
             carId: carId,
@@ -70,11 +70,11 @@ class AnnouncementItemBody extends StatelessWidget {
                     child: Material(
                       borderRadius: BorderRadius.circular(AppDimensions.minorL),
                       color: AppColors.white,
+                      clipBehavior: Clip.antiAlias,
                       child: AppSemantics(
                         button: true,
                         label: AppSemanticsLabels.favoriteButton,
                         child: InkWell(
-                          borderRadius: BorderRadius.circular(AppDimensions.minorL),
                           onTap: () => onFavoriteButtonTap(context, carId),
                           child: AnimatedFavoriteIcon(
                             size: AppDimensions.favoriteButtonSize,
