@@ -30,16 +30,13 @@ class CarListItem extends StatelessWidget {
       child: Material(
         borderRadius: BorderRadius.circular(AppDimensions.normalXL),
         color: AppColors.white,
+        clipBehavior: Clip.antiAlias,
         child: AppSemantics(
           label: '${AppSemanticsLabels.carListItem} ${source.name}',
           child: InkWell(
-            borderRadius: BorderRadius.circular(AppDimensions.normalXL),
             onTap: () => AppRouter.goToDetails(from: source, carId: car.carId),
-            child: Container(
+            child: Padding(
               key: ValueKey(car.carId),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppDimensions.normalXL),
-              ),
               padding: const EdgeInsets.all(AppDimensions.normalM),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

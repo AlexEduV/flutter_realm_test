@@ -31,16 +31,15 @@ class SearchFilterButton extends StatelessWidget {
         vertical: AppDimensions.contentPadding,
       ),
       child: Material(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(AppDimensions.normalL),
+        clipBehavior: Clip.antiAlias,
         child: AppSemantics(
           button: true,
           label: '${SearchPageIds.filterButton} $title',
           child: InkWell(
-            borderRadius: BorderRadius.circular(AppDimensions.normalL),
             onTap: onPressed,
-            child: Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppDimensions.normalL)),
+            child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalL),
               child: Row(
                 children: [

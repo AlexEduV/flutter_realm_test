@@ -45,8 +45,9 @@ class HomeBottomBarItem extends StatelessWidget {
           isSelected: isSelected,
           child: Material(
             color: AppColors.transparent,
+            borderRadius: BorderRadius.circular(borderRadius),
+            clipBehavior: Clip.antiAlias,
             child: InkWell(
-              borderRadius: BorderRadius.circular(borderRadius),
               onTap: () => onItemSelected(index),
               child: SizedBox(
                 height: 60,
