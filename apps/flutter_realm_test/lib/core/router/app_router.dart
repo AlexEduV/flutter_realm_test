@@ -32,21 +32,21 @@ class AppRouter {
           final extra = state.extra;
           final isFromSetup = extra is HomePageParams ? extra.isFromSetup : false;
 
-          if (isFromSetup) {
-            return CustomTransitionPage(
-              child: const HomePage(),
-              //reversed animation when going from the setup page
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                const begin = Offset(1.0, 0.0);
-                const end = Offset.zero;
-                var tween = Tween(begin: begin, end: end);
-                var offsetAnimation = animation.drive(tween);
-                return SlideTransition(position: offsetAnimation, child: child);
-              },
-            );
-          } else {
+          if (!isFromSetup) {
             return const CupertinoPage(child: HomePage());
           }
+
+          return CustomTransitionPage(
+            child: const HomePage(),
+            //reversed animation when going from the setup page
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              const begin = Offset(1.0, 0.0);
+              const end = Offset.zero;
+              final tween = Tween(begin: begin, end: end);
+              final offsetAnimation = animation.drive(tween);
+              return SlideTransition(position: offsetAnimation, child: child);
+            },
+          );
         },
         routes: <RouteBase>[
           GoRoute(
