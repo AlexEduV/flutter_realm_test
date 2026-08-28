@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 
 class AnimatedAddButton extends StatefulWidget {
   const AnimatedAddButton({
@@ -39,10 +39,10 @@ class _AnimatedAddButtonState extends State<AnimatedAddButton> {
       duration: const Duration(milliseconds: 120),
       curve: Curves.easeOut,
       child: Material(
-        color: widget.backgroundColor,
+        color: AppColors.transparent,
         shape: const CircleBorder(),
+        clipBehavior: Clip.antiAlias,
         child: InkWell(
-          customBorder: const CircleBorder(),
           splashColor: AppColors.accentColor.withAlpha(60),
           highlightColor: Colors.transparent,
           onTap: widget.onPressed,

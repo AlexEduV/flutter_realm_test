@@ -76,11 +76,11 @@ class EditPasswordFieldWidget extends StatelessWidget {
         isSelected: isObscureText,
         child: Material(
           shape: const CircleBorder(),
+          clipBehavior: Clip.antiAlias,
           child: InkWell(
             //this will prevent refocusing on the text field on icon long press;
             onLongPress: () {},
             onTap: onTap,
-            customBorder: const CircleBorder(),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.minorL),
               child: AnimatedVisibilityIcon(isObscure: isObscureText),
