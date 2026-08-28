@@ -21,12 +21,9 @@ dev_dependencies:
 
 dependency_overrides:
   analyzer: 7.3.0
-  test_api: 0.7.10
-  test_core: 0.6.17
   dart_style: 2.3.7
   analyzer_plugin: 0.12.0
   build_runner: 2.4.15
-  build_daemon: 4.0.1
 
 melos:
   name: flutter_realm_test_workspace
