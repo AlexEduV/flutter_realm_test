@@ -36,6 +36,11 @@ linter:
     sized_box_shrink_expand: true
     sort_constructors_first: true
     eol_at_end_of_file: true
+    cancel_subscriptions: true
+    close_sinks: true
+    use_super_parameters: true
+    avoid_void_async: true
+
 
 formatter:
   page_width: 100

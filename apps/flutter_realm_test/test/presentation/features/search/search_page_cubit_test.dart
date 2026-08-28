@@ -503,6 +503,7 @@ void main() {
       when(mockCarRepository.watchCars()).thenAnswer((_) => controller.stream);
       cubit.loadData();
       expect(cubit.close(), completes);
+      controller.close();
     });
   });
 }
