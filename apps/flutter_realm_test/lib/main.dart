@@ -123,7 +123,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp.router(
-        title: context.read<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
+        title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
           fontFamily: 'Zona Pro',
