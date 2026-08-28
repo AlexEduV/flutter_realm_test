@@ -125,7 +125,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.headerColor),
           fontFamily: 'Zona Pro',
           radioTheme: const RadioThemeData(
             fillColor: WidgetStatePropertyAll(AppColors.headerColor),

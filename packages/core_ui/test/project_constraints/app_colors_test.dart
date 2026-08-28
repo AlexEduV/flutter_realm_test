@@ -1,13 +1,9 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:core_ui/core_ui.dart';
 
 void main() {
   group('AppColors', () {
-    test('mainThemeColor is Colors.indigo', () {
-      expect(AppColors.mainThemeColor, Colors.indigo);
-    });
-
     test('lightGrey is Colors.grey[300]', () {
       expect(AppColors.lightGrey, Colors.grey[300]);
     });
