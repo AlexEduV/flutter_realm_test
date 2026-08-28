@@ -29,7 +29,6 @@ class AccountPage extends StatelessWidget {
         }
 
         return Scaffold(
-          backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
             title: Text(
               context.tr(AccountPageLocaleKeys.accountPageTitle),

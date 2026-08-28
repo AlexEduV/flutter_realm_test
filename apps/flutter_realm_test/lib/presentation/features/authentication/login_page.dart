@@ -32,7 +32,6 @@ class LoginPage extends StatelessWidget {
             statusBarBrightness: Brightness.dark, //iOS
           ),
           child: Scaffold(
-            backgroundColor: AppColors.scaffoldColor,
             body: Stack(
               children: [
                 FractionallySizedBox(

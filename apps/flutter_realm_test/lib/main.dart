@@ -130,6 +130,7 @@ class _MyAppState extends State<MyApp> {
           radioTheme: const RadioThemeData(
             fillColor: WidgetStatePropertyAll(AppColors.headerColor),
           ),
+          scaffoldBackgroundColor: AppColors.scaffoldColor,
           drawerTheme: const DrawerThemeData(backgroundColor: AppColors.scaffoldColor),
         ),
         routerConfig: AppRouter.router,

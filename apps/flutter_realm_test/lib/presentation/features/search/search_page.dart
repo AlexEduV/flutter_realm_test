@@ -52,7 +52,6 @@ class _SearchPageState extends State<SearchPage> {
         final isDrawerOpened = state.drawerOpened != SearchDrawerType.empty;
 
         return Scaffold(
-          backgroundColor: AppColors.scaffoldColor,
           appBar: AppBar(
             scrolledUnderElevation: isDrawerOpened ? 0.0 : null,
             centerTitle: true,

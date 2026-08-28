@@ -73,7 +73,6 @@ class _MessagesPageState extends State<MessagesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
       extendBody: true,
       appBar: AppBar(
         title: Text('${owner.firstName} ${owner.lastName}', style: AppTextStyles.zonaPro20),

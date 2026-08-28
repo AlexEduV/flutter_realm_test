@@ -24,13 +24,13 @@ class NewItemPage extends StatefulWidget {
 }
 
 class _NewItemPageState extends State<NewItemPage> {
-  final pageViewController = PageController();
+  final _pageViewController = PageController();
 
-  final manufacturerFocusNode = FocusNode();
-  final modelFocusNode = FocusNode();
-  final yearFocusNode = FocusNode();
-  final colorFocusNode = FocusNode();
-  final priceFocusNode = FocusNode();
+  final _manufacturerFocusNode = FocusNode();
+  final _modelFocusNode = FocusNode();
+  final _yearFocusNode = FocusNode();
+  final _colorFocusNode = FocusNode();
+  final _priceFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _NewItemPageState extends State<NewItemPage> {
     cubit.updateTabIndex(initIndex);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      pageViewController.jumpToPage(initIndex);
+      _pageViewController.jumpToPage(initIndex);
     });
 
     cubit.clearFields();
@@ -50,13 +50,13 @@ class _NewItemPageState extends State<NewItemPage> {
 
   @override
   void dispose() {
-    manufacturerFocusNode.dispose();
-    modelFocusNode.dispose();
-    yearFocusNode.dispose();
-    priceFocusNode.dispose();
-    colorFocusNode.dispose();
+    _manufacturerFocusNode.dispose();
+    _modelFocusNode.dispose();
+    _yearFocusNode.dispose();
+    _priceFocusNode.dispose();
+    _colorFocusNode.dispose();
 
-    pageViewController.dispose();
+    _pageViewController.dispose();
 
     super.dispose();
   }
@@ -64,7 +64,6 @@ class _NewItemPageState extends State<NewItemPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -84,17 +83,17 @@ class _NewItemPageState extends State<NewItemPage> {
               children: [
                 Expanded(
                   child: PageView(
-                    controller: pageViewController,
+                    controller: _pageViewController,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       const CarTypePicker(),
 
                       ItemInfoForm(
-                        manufacturerFocusNode: manufacturerFocusNode,
-                        modelFocusNode: modelFocusNode,
-                        colorFocusNode: colorFocusNode,
-                        yearFocusNode: yearFocusNode,
-                        priceFocusNode: priceFocusNode,
+                        manufacturerFocusNode: _manufacturerFocusNode,
+                        modelFocusNode: _modelFocusNode,
+                        colorFocusNode: _colorFocusNode,
+                        yearFocusNode: _yearFocusNode,
+                        priceFocusNode: _priceFocusNode,
                       ),
 
                       const ItemSpecsPicker(),
@@ -123,11 +122,11 @@ class _NewItemPageState extends State<NewItemPage> {
   }
 
   void clearAllFocuses() {
-    manufacturerFocusNode.unfocus();
-    modelFocusNode.unfocus();
-    yearFocusNode.unfocus();
-    colorFocusNode.unfocus();
-    priceFocusNode.unfocus();
+    _manufacturerFocusNode.unfocus();
+    _modelFocusNode.unfocus();
+    _yearFocusNode.unfocus();
+    _colorFocusNode.unfocus();
+    _priceFocusNode.unfocus();
   }
 
   void pageLeftPressed(int currentIndex) {
@@ -138,7 +137,7 @@ class _NewItemPageState extends State<NewItemPage> {
 
     cubit.updateTabIndex(currentIndex - 1);
 
-    pageViewController.previousPage(
+    _pageViewController.previousPage(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
@@ -167,7 +166,7 @@ class _NewItemPageState extends State<NewItemPage> {
       if (!areAllFieldsValid) return;
     }
 
-    pageViewController.nextPage(
+    _pageViewController.nextPage(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );

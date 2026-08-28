@@ -39,6 +39,7 @@ class _ArticlePageState extends State<ArticlePage> {
         final minsToRead = state.article?.minsToRead;
 
         return Scaffold(
+          backgroundColor: AppColors.white,
           appBar: AppBar(
             title: Text(state.article?.title ?? '', style: AppTextStyles.zonaPro20),
             centerTitle: true,
