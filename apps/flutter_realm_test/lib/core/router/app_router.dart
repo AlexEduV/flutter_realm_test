@@ -15,6 +15,7 @@ import 'package:test_flutter_project/presentation/features/location_settings/loc
 import 'package:test_flutter_project/presentation/features/messages/messages_page.dart';
 import 'package:test_flutter_project/presentation/features/new_item/new_item_page.dart';
 import 'package:test_flutter_project/presentation/features/placeholder/placeholder_page.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_params.dart';
 
 import '../../common/constants/app_routes.dart';
 import '../../common/enums/details_page_source.dart';
@@ -51,7 +52,8 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.search,
             pageBuilder: (context, state) {
-              final origin = state.extra is Offset ? state.extra as Offset : null;
+              final extra = state.extra;
+              final origin = extra is SearchPageParams ? extra.origin : null;
               return circularRevealPage(child: const SearchPage(), origin: origin);
             },
             routes: <RouteBase>[_buildDetailsRoute()],
