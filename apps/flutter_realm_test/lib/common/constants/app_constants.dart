@@ -8,6 +8,6 @@ class AppConstants {
 
   static const bool shouldShowSemantics = false;
 
-  static const bool showGetItLogs = true;
-  static const bool showNetworkLogs = true;
+  static const bool shouldShowGetItLogs = true;
+  static const bool shouldShowNetworkLogs = true;
 }
