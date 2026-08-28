@@ -2,7 +2,6 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_flutter_project/core/di/injection_container.dart';
 import 'package:test_flutter_project/domain/entities/article_entity.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/widgets/article_item.dart';
@@ -10,14 +9,10 @@ import 'package:test_flutter_project/presentation/features/explore/widgets/artic
 import '../../../../utils/app_router_test.mocks.dart';
 
 void main() {
-  final mockExplorePageCubit = MockExplorePageCubit();
+  late MockExplorePageCubit mockExplorePageCubit;
 
-  setUpAll(() {
-    serviceLocator.registerSingleton<ExplorePageCubit>(mockExplorePageCubit);
-  });
-
-  tearDownAll(() async {
-    await serviceLocator.reset();
+  setUp(() {
+    mockExplorePageCubit = MockExplorePageCubit();
   });
 
   Widget makeTestableWidget(Widget child) {
@@ -44,11 +39,7 @@ void main() {
 
     testWidgets('uses custom height when provided', (WidgetTester tester) async {
       await tester.pumpWidget(
-        makeTestableWidget(
-          MaterialApp(
-            home: Scaffold(body: ArticleItem(height: 200.0, article: ArticleEntity.empty())),
-          ),
-        ),
+        makeTestableWidget(Scaffold(body: ArticleItem(height: 200.0, article: ArticleEntity.empty()))),
       );
 
       final sizedBox = tester.widget<SizedBox>(
@@ -60,18 +51,15 @@ void main() {
 
     testWidgets('has correct color and border radius', (WidgetTester tester) async {
       await tester.pumpWidget(
-        makeTestableWidget(
-          MaterialApp(
-            home: Scaffold(body: ArticleItem(article: ArticleEntity.empty())),
-          ),
-        ),
+        makeTestableWidget(Scaffold(body: ArticleItem(article: ArticleEntity.empty()))),
       );
 
-      final decoratedBox = tester.widget<DecoratedBox>(find.byType(DecoratedBox).first);
-      final decoration = decoratedBox.decoration as BoxDecoration;
+      final material = tester.widget<Material>(
+        find.descendant(of: find.byType(ArticleItem), matching: find.byType(Material)).first,
+      );
 
-      expect(decoration.color, AppColors.accentColor.withAlpha(60));
-      expect(decoration.borderRadius, BorderRadius.circular(AppDimensions.normalL));
+      expect(material.color, AppColors.accentColor.withAlpha(60));
+      expect(material.borderRadius, BorderRadius.circular(AppDimensions.normalL));
     });
   });
 }

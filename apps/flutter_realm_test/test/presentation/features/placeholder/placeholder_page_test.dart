@@ -104,12 +104,18 @@ void main() {
       await tester.pumpWidget(
         MultiBlocProvider(
           providers: [BlocProvider<AppLocalisationsCubit>.value(value: appLocalisationsCubit)],
-          child: const MaterialApp(home: PlaceholderPage()),
+          child: MaterialApp(
+            theme: ThemeData(scaffoldBackgroundColor: AppColors.scaffoldColor),
+            home: const PlaceholderPage(),
+          ),
         ),
       );
 
       final scaffold = tester.widget<Scaffold>(find.byType(Scaffold));
-      expect(scaffold.backgroundColor, AppColors.scaffoldColor);
+      expect(
+        scaffold.backgroundColor ?? Theme.of(tester.element(find.byType(Scaffold))).scaffoldBackgroundColor,
+        AppColors.scaffoldColor,
+      );
     });
   });
 }

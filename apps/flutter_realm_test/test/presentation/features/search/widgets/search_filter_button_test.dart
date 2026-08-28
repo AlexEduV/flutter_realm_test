@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:core_ui/src/app_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -95,14 +96,13 @@ void main() {
         ),
       );
 
-      final containerFinder = find
-          .descendant(of: find.byType(SearchFilterButton), matching: find.byType(Container))
-          .first;
+      final container = tester.widget<Container>(
+        find.descendant(of: find.byType(SearchFilterButton), matching: find.byType(Container)).first,
+      );
 
-      final size = tester.getSize(containerFinder);
-
-      expect(size.height, 576.0);
-      expect(size.width, 764.0);
+      expect(container.constraints?.maxHeight, 50.0);
+      expect(container.constraints?.maxWidth, 50.0);
+      expect((container.decoration as BoxDecoration).color, AppColors.scaffoldColor);
     });
   });
 }
