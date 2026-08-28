@@ -146,15 +146,15 @@ class AppRouter {
     _router.go(from.detailsPath, extra: DetailsPageParams(carId: carId));
   }
 
-  static void goToInbox({required BuildContext context, required String conversationId}) {
-    context.go(
+  static void goToInbox({required String conversationId}) {
+    _router.go(
       AppRoutes.home + AppRoutes.inbox,
       extra: InboxPageParams(conversationId: conversationId),
     );
   }
 
-  static void goToArticle({required BuildContext context, required String articleId}) {
-    context.go(
+  static void goToArticle({required String articleId}) {
+    _router.go(
       AppRoutes.home + AppRoutes.articleDetails,
       extra: ArticlePageParams(articleId: articleId),
     );

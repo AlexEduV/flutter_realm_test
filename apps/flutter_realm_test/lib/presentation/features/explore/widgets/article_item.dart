@@ -38,7 +38,7 @@ class ArticleItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           clipBehavior: Clip.antiAlias,
           child: InkWell(
-            onTap: () => AppRouter.goToArticle(context: context, articleId: article.id),
+            onTap: () => AppRouter.goToArticle(articleId: article.id),
             onTapDown: (_) => _setPressed(context, true),
             onTapUp: (_) => _setPressed(context, false),
             onTapCancel: () => _setPressed(context, false),

@@ -47,7 +47,7 @@ class InboxListItem extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           child: InkWell(
             onLongPress: () => DialogHelper.showInboxItemModalBottomSheet(context, conversationId),
-            onTap: () => AppRouter.goToInbox(context: context, conversationId: conversationId),
+            onTap: () => AppRouter.goToInbox(conversationId: conversationId),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalXS),
               child: SizedBox(
