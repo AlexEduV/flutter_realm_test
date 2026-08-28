@@ -15,7 +15,6 @@ dependencies:
   collection: ^1.19.1
   core_ui:
     path: ../../packages/core_ui/
-  cupertino_icons: ^1.0.8
   dartz: 0.10.1
   file_picker: ^10.3.10
   flutter:
@@ -28,15 +27,15 @@ dependencies:
   flutter_svg: ^2.2.4
   freezed_annotation: ^3.1.0
   geolocator: ^14.0.2
-  get_it: ^9.2.0
+  get_it: ^9.2.1
   go_router: ^17.0.1
   http: ^1.6.0
   image_picker: ^1.2.1
-  intl: ^0.20.2
+  intl: ^0.20.3
   logger: ^2.7.0
   mockito: ^5.4.6
-  path_provider: ^2.0.15
-  permission_handler: ^12.0.1
+  path_provider: ^2.1.6
+  permission_handler: ^13.0.1
   realm: ^20.2.0
   rxdart: ^0.28.0
   share_plus: ^12.0.1

@@ -16,7 +16,6 @@ class InboxPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         title: Text(context.tr(InboxPageLocaleKeys.inboxPageTitle), style: AppTextStyles.zonaPro20),
         centerTitle: true,

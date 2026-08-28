@@ -20,12 +20,14 @@ class InboxListItem extends StatelessWidget {
     required this.conversation,
     required this.owner,
     required this.unreadCount,
+    this.borderRadius = AppDimensions.normalM,
     super.key,
   });
 
   final ConversationEntity conversation;
   final OwnerEntity owner;
   final int unreadCount;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +43,11 @@ class InboxListItem extends StatelessWidget {
         label: '${InboxPageIds.inboxItem} ${owner.firstName} ${owner.lastName}',
         child: Material(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(AppDimensions.normalM),
+          borderRadius: BorderRadius.circular(borderRadius),
+          clipBehavior: Clip.antiAlias,
           child: InkWell(
             onLongPress: () => DialogHelper.showInboxItemModalBottomSheet(context, conversationId),
-            borderRadius: BorderRadius.circular(AppDimensions.normalM),
-            onTap: () => AppRouter.goToInbox(context: context, conversationId: conversationId),
+            onTap: () => AppRouter.goToInbox(conversationId: conversationId),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalXS),
               child: SizedBox(

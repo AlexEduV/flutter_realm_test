@@ -23,7 +23,7 @@ import 'package:test_flutter_project/presentation/features/user/user_module.dart
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependenciesContainer() async {
-  serviceLocator.debugEventsEnabled = AppConstants.showGetItLogs;
+  serviceLocator.debugEventsEnabled = AppConstants.shouldShowGetItLogs;
 
   await registerStorageModule(serviceLocator);
   registerNetworkModule(serviceLocator);

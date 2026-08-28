@@ -133,11 +133,11 @@ class AppFormField extends StatelessWidget {
         isSelected: isObscureText,
         child: Material(
           shape: const CircleBorder(),
+          clipBehavior: Clip.antiAlias,
           child: InkWell(
             //this will prevent refocusing on the text field on icon long press;
             onLongPress: () {},
             onTap: onSuffixIconPressed,
-            customBorder: const CircleBorder(),
             child: Padding(
               padding: const EdgeInsets.all(AppDimensions.normalS),
               child: AnimatedVisibilityIcon(isObscure: isObscureText),

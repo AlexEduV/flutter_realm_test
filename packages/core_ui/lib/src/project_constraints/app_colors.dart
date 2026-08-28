@@ -3,8 +3,6 @@ import 'package:flutter/material.dart' show Colors, Color;
 class AppColors {
   //Note ```as Color``` cast where is not redundant, highlights the color palette.
 
-  static const mainThemeColor = Colors.indigo as Color;
-
   static const white = Colors.white;
   static const black = Colors.black;
   static const transparent = Colors.transparent;

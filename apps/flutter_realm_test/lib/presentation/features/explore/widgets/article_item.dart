@@ -36,51 +36,41 @@ class ArticleItem extends StatelessWidget {
         child: Material(
           color: AppColors.accentColor.withAlpha(60),
           borderRadius: BorderRadius.circular(borderRadius),
+          clipBehavior: Clip.antiAlias,
           child: InkWell(
-            onTap: () => AppRouter.goToArticle(context: context, articleId: article.id),
+            onTap: () => AppRouter.goToArticle(articleId: article.id),
             onTapDown: (_) => _setPressed(context, true),
             onTapUp: (_) => _setPressed(context, false),
             onTapCancel: () => _setPressed(context, false),
-            borderRadius: BorderRadius.circular(borderRadius),
             child: SizedBox(
               height: height,
               width: AppDimensions.exploreArticleItemBaseSize,
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(borderRadius),
-                  color: AppColors.accentColor.withAlpha(60),
-                ),
-                child: Stack(
-                  children: [
-                    // Cached network image as background
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(borderRadius),
-                      child: CachedNetworkImage(
-                        imageUrl: article.imageUrl ?? '',
-                        fit: BoxFit.cover,
-                        width: AppDimensions.exploreArticleItemBaseSize,
-                        height: height,
-                        placeholder: (context, url) =>
-                            ColoredBox(color: AppColors.placeholderColor),
-                        errorWidget: (context, url, error) => const Icon(Icons.error),
-                        color: AppColors.black.withAlpha(70),
-                        colorBlendMode: BlendMode.darken,
+              child: Stack(
+                children: [
+                  // Cached network image as background
+                  CachedNetworkImage(
+                    imageUrl: article.imageUrl ?? '',
+                    fit: BoxFit.cover,
+                    width: AppDimensions.exploreArticleItemBaseSize,
+                    height: height,
+                    placeholder: (context, url) => ColoredBox(color: AppColors.placeholderColor),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    color: AppColors.black.withAlpha(70),
+                    colorBlendMode: BlendMode.darken,
+                  ),
+                  // Article title
+                  Padding(
+                    padding: const EdgeInsets.all(AppDimensions.minorL),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        article.title,
+                        maxLines: 2,
+                        style: AppTextStyles.zonaPro16White.copyWith(fontWeight: FontWeight.w600),
                       ),
                     ),
-                    // Article title
-                    Padding(
-                      padding: const EdgeInsets.all(AppDimensions.minorL),
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Text(
-                          article.title,
-                          maxLines: 2,
-                          style: AppTextStyles.zonaPro16White.copyWith(fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

@@ -21,6 +21,7 @@ import 'new_item_page_cubit_test.mocks.dart';
   MockSpec<GetCurrentMaxCarIdUseCase>(),
 ])
 void main() {
+  late MockTimeService mockTimeService;
   late MockCarRepository mockCarRepository;
   late MockGetAutoCompleteManufacturersByTypeUseCase mockAutoCompleteUseCase;
   late MockAppLocalisationsCubit mockLocalisationsCubit;
@@ -29,6 +30,7 @@ void main() {
   late NewItemPageCubit cubit;
 
   setUp(() {
+    mockTimeService = MockTimeService();
     mockCarRepository = MockCarRepository();
     mockAutoCompleteUseCase = MockGetAutoCompleteManufacturersByTypeUseCase();
     mockLocalisationsCubit = MockAppLocalisationsCubit();
@@ -36,10 +38,12 @@ void main() {
     mockUserDataCubit = MockUserDataCubit();
 
     when(mockLocalisationsCubit.getLocalisationByKey(any)).thenReturn('label');
+    when(mockTimeService.now()).thenReturn(DateTime.now());
 
     cubit = NewItemPageCubit(
       mockLocalisationsCubit,
       mockUserDataCubit,
+      mockTimeService,
       mockCarRepository,
       mockAutoCompleteUseCase,
       mockGetCurrentMaxCarIdUseCase,

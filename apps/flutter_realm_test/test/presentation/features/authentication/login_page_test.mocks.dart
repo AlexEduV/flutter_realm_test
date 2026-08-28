@@ -177,22 +177,24 @@ class MockAuthenticationCubit extends _i1.Mock
       ) as bool);
 
   @override
-  void onLoginButtonPressed() => super.noSuchMethod(
+  _i4.Future<void> onLoginButtonPressed() => (super.noSuchMethod(
         Invocation.method(
           #onLoginButtonPressed,
           [],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  void onRegisterButtonPressed() => super.noSuchMethod(
+  _i4.Future<void> onRegisterButtonPressed() => (super.noSuchMethod(
         Invocation.method(
           #onRegisterButtonPressed,
           [],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
   void setNewFormMode(_i5.AuthMode? newMode) => super.noSuchMethod(

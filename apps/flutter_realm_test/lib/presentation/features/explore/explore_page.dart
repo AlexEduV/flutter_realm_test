@@ -33,7 +33,6 @@ class ExplorePage extends StatelessWidget {
         statusBarBrightness: Brightness.dark, //iOS
       ),
       child: Scaffold(
-        backgroundColor: AppColors.scaffoldColor,
         body: CustomScrollView(
           controller: _scrollController,
           slivers: [

@@ -9,7 +9,6 @@ class PlaceholderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

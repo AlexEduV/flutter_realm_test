@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_cubit.dart';
 import 'package:test_flutter_project/presentation/features/explore/explore_page_identifiers.dart';
+import 'package:test_flutter_project/presentation/features/search/search_page_params.dart';
 import 'package:test_flutter_project/presentation/widgets/app_semantics.dart';
 
 import '../../../../../common/constants/app_routes.dart';
@@ -70,7 +71,9 @@ class ExploreHeaderDelegate extends SliverPersistentHeaderDelegate {
                         onPressed: () {
                           final box = btnContext.findRenderObject() as RenderBox?;
                           final origin = box?.localToGlobal(box.size.center(Offset.zero));
-                          context.go(AppRoutes.home + AppRoutes.search, extra: origin);
+
+                          final extra = SearchPageParams(origin: origin);
+                          context.go(AppRoutes.home + AppRoutes.search, extra: extra);
                         },
                         icon: const Icon(
                           Icons.search,

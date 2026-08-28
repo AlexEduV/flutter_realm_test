@@ -28,29 +28,32 @@ import 'package:test_flutter_project/presentation/widgets/dialogs/edit_dialog_cu
 import 'package:test_flutter_project/utils/dialog_helper.dart';
 import 'package:test_flutter_project/utils/image_cache_util.dart';
 
+//todo: added flavors, but had to revert, because they broke the Android project.
+// The working version did not create a separate app, but used one. And launched only from
+// the android folder, not from `flutter run`. Updating gradle files did not help
+
 void main() async {
+  Future<void> initApp(WidgetsBinding binding) async {
+    if (!kIsWeb) {
+      FlutterNativeSplash.preserve(widgetsBinding: binding);
+    }
+
+    try {
+      await initDependenciesContainer();
+
+      await Future.wait([
+        serviceLocator<RegionModelRepository>().init(),
+        serviceLocator<RegionRepository>().loadRegions(),
+      ]);
+
+      ImageCacheUtil.initExtendedCacheSize();
+    } finally {
+      FlutterNativeSplash.remove();
+    }
+  }
+
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-
-  if (!kIsWeb) {
-    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  }
-
-  try {
-    await initDependenciesContainer();
-
-    //todo: added flavors, but had to revert, because they broke the Android project.
-    // The working version did not create a separate app, but used one. And launched only from
-    // the android folder, not from `flutter run`. Updating gradle files did not help
-
-    await Future.wait([
-      serviceLocator<RegionModelRepository>().init(),
-      serviceLocator<RegionRepository>().loadRegions(),
-    ]);
-
-    ImageCacheUtil.initExtendedCacheSize();
-  } finally {
-    FlutterNativeSplash.remove();
-  }
+  await initApp(widgetsBinding);
 
   runApp(const MyApp());
 }
@@ -63,7 +66,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late AppLifecycleListener _listener;
+  AppLifecycleListener? _listener;
 
   @override
   void initState() {
@@ -83,7 +86,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    _listener.dispose();
+    _listener?.dispose();
     super.dispose();
   }
 
@@ -122,16 +125,17 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         title: serviceLocator<AppLocalisationsCubit>().getLocalisationByKey(L10nKeys.appName),
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainThemeColor),
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.headerColor),
           fontFamily: 'Zona Pro',
           radioTheme: const RadioThemeData(
             fillColor: WidgetStatePropertyAll(AppColors.headerColor),
           ),
+          scaffoldBackgroundColor: AppColors.scaffoldColor,
           drawerTheme: const DrawerThemeData(backgroundColor: AppColors.scaffoldColor),
         ),
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
-        showSemanticsDebugger: AppConstants.showSemantics,
+        showSemanticsDebugger: AppConstants.shouldShowSemantics,
       ),
     );
   }

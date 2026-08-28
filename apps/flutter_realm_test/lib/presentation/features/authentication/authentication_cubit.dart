@@ -247,7 +247,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     ),
   };
 
-  void onLoginButtonPressed() async {
+  Future<void> onLoginButtonPressed() async {
     emit(state.copyWith(authenticationErrorText: null));
 
     validatePassword(state.passwordValue, false);
@@ -270,7 +270,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     emit(state.copyWith(isLoading: false));
   }
 
-  void onRegisterButtonPressed() async {
+  Future<void> onRegisterButtonPressed() async {
     emit(state.copyWith(authenticationErrorText: null));
 
     validatePasswordWithStrengthBar(state.passwordValue);

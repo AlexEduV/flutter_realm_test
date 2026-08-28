@@ -39,16 +39,16 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     final appBarButtonStyle = IconButton.styleFrom(
-      backgroundColor: Colors.white.withAlpha(140),
+      backgroundColor: AppColors.white.withAlpha(140),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDimensions.normalS)),
     );
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         leadingWidth: 70,
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.transparent,
         leading: IconButton(
           onPressed: () => context.pop(),
           icon: AppSemantics(
@@ -185,7 +185,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 const Icon(
                                   Icons.whatshot,
                                   size: AppDimensions.hotLabelIconSize,
-                                  color: Colors.red,
+                                  color: AppColors.error,
                                 ),
 
                                 Text(car?.promoType?.fromLocalisations() ?? ''),
