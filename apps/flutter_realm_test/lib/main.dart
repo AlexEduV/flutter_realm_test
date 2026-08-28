@@ -135,7 +135,7 @@ class _MyAppState extends State<MyApp> {
         ),
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
-        showSemanticsDebugger: AppConstants.showSemantics,
+        showSemanticsDebugger: AppConstants.shouldShowSemantics,
       ),
     );
   }
